@@ -1,0 +1,41 @@
+{
+  "id": "d5a9e2d8340c",
+  "slug": "566-millio-uj-genjeloltet-fedezett-fel-a-hugging-face-uj-ai-modellje",
+  "forras_id": "linkedin",
+  "forras_nev": "Hugging Face (LinkedIn)",
+  "url": "https://www.linkedin.com/feed/update/urn:li:activity:7513992950297784321/",
+  "szerzo": "Hugging Face",
+  "publikalva": "2026-10-08T16:05:22.589000+00:00",
+  "media": {
+    "tipus": "mp4",
+    "url": "https://dms.licdn.com/playlist/vid/v2/D4E05AQHthEAoD4GkGA/mp4-720p-30fp-crf28/B4EaEcJ8m1GQCA-/0/1791473735886?e=2147483647&v=beta&t=ZcM-jSc0wsuKpuA58wimi0X1duImqHOSAolISFZFsJs",
+    "kep": "https://media.licdn.com/dms/image/v2/D4E05AQHthEAoD4GkGA/videocover-high/B4EaEcJ8m1GQBQ-/0/1791473734539?e=2147483647&v=beta&t=21E7YKVxXMkVTXVWHv_mMPViB1pSB5whGLkmQFVUOwo",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7513992950297784321"
+  },
+  "cim_eredeti": "Today, we're releasing the Carbon Annotation Database and the model behind it, Carbon-A. We've used this model to discov",
+  "forrasok": [],
+  "szoveg_eredeti": "Today, we're releasing the Carbon Annotation Database and the model behind it, Carbon-A. We've used this model to discover 566.34 million new gene candidates across 22,617 species, thousands of which have never been studied like this before. \n\nWe validated a number of these new genes in well-studied species, such as in cats, chicken, and arabidopsis (plant), with our partners at Active Site and UC San Diego , with more extensive wet lab results on previously-unstudied genomes to be released soon. \n\nCarbon-A is an encoder with bi-directional attention that classifies nucleotides as coding (CDS) or non-coding in eukaryotes. We use a further small, post-processing model to identify genes from these nucleotide-level predictions. Carbon-A delivers a macro-F1 of 0.944, across mammals, other vertebrates, invertebrates, plants, fungi, and protozoa, when evaluated against RefSeq's reference genomes. \n\nWe think these metrics may, in fact, be fully saturated, as the reference genome assemblies may have mistakes themselves. In discussions with the NCBI, we learned that the pig genome assembly that we trained with, released in 2017, was known to have many mistakes. Since we completed model training, a new and improved pig genome assembly was released. Though Carbon-A had never seen the new assembly, it performed better on the newer assembly, likely having learned to overcome actual errors in the previous assmebly. \n\nWe show how our model identifies new genes through Iso-Seq experiments conducted with our wet-lab partners, and we are excited to share results in the next few weeks on a genome never studied before. \n\nThe Carbon Annotation Database makes available annotations for 22,617 species, which you can explore through our Carbon Annotation Database Explorer. This is a work in progress, and we will keep adding to the database until we have annotated all of GenBank—so you should expect changes to our total counts over time. \n\nWe hope that by releasing this to the community, we can create new levers for biologists to study the functional properties of many more species than possible before, and we look forward to feedback and improving this work over time. This is just one more step towards understanding life on earth, but there is still a huge amount of work to be done. We've identified millions of new genes, but we do not yet know what they do. We will need to work closely with the genomics community to turn these gene candidate discoveries into well-understood mechanisms useful for drug development, crop resilience, and more. \n\nThis is Hugging Face , so it's all an open-source collaboration. You can find the model, the training data, the annotations, and the technical report in the collection here: https://lnkd.in/edYzSCte",
+  "modell": "gemini-3.5-flash",
+  "cim": "566 millió új génjelöltet fedezett fel a Hugging Face új AI-modellje",
+  "lead": "A most kiadott Carbon-A kódoló modell és a hozzá tartozó adatbázis több mint 22 000 faj genetikai térképét egészíti ki eddig ismeretlen elemekkel.",
+  "osszefoglalo": "A [Hugging Face](https://huggingface.co) közzétette a biológiai kutatásokra tervezett új mesterségesintelligencia-modelljét és a kapcsolódó adatbázist. A kutatók az új eszközzel eddig **566,34 millió új génjelöltet** fedeztek fel 22 617 különböző fajban. Az azonosított gének egy részét a partnerek már sikeresen validálták macskák, csirkék és növények vizsgálata során.\n\nA Carbon-A egy kétirányú figyelemmel működő kódoló modell, amely az eukarióta sejtek nukleotidjait osztályozza kódoló és nem kódoló típusokra. Az eszköz kiemelkedő, **0,944-es pontossággal** működik az emlősök, növények és gombák vizsgálatakor. A fejlesztők tapasztalatai szerint a modell képes volt túllépni a korábbi referencia-adatbázisok hibáin is, így pontosabb eredményeket ad.\n\nA teljes projekt **nyílt forráskódú**, így a modell, a tanítóadatok és a technikai jelentés is szabadon hozzáférhető a Hugging Face felületén. Az adatbázist folyamatosan bővítik, amíg a teljes GenBank állományt fel nem dolgozzák.",
+  "miert_szamit": "A nyílt forráskódú modell alapjaiban gyorsíthatja fel a **gyógyszerfejlesztést és a mezőgazdasági innovációkat**. Ez új piaci lehetőségeket teremt a hazai biotech és egészségügyi vállalkozásoknak.",
+  "cimkek": [
+    "Hugging Face",
+    "Carbon-A",
+    "biotech",
+    "kutatás"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "A videó azt mutatja be, hogyan azonosítja a modell az új géneket az elvégzett kísérletek során.",
+  "relevans": true,
+  "kiprobalhato": null,
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "entitas_linkek": [
+    "Hugging Face"
+  ],
+  "linkek_ellenorizve": true
+}
