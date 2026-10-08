@@ -1,0 +1,24 @@
+name: Próba (X elérés a felhőből)
+on:
+  workflow_dispatch:
+jobs:
+  proba:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q curl_cffi
+      - run: |
+          python3 - <<'PY'
+          from curl_cffi import requests
+          import re
+          for u in ["https://x.com/sama", "https://syndication.twitter.com/srv/timeline-profile/screen-name/sama",
+                    "https://api.fxtwitter.com/sama", "https://cdn.syndication.twimg.com/timeline/profile?screen_name=sama"]:
+              try:
+                  r = requests.get(u, impersonate="chrome", timeout=30)
+                  ids = set(re.findall(r'"id_str":"(\d{15,})"', r.text))
+                  print(r.status_code, len(r.text), "id:", len(ids), u)
+              except Exception as e:
+                  print("hiba", type(e).__name__, u)
+          PY
