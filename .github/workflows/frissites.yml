@@ -59,7 +59,7 @@ jobs:
       - name: Gyűjtés, fordítás, linkek, renderelés
         if: steps.ido.outputs.fut == 'igen'
         run: |
-          python3 build/gyujt.py
+          python3 build/gyujt.py --nem-tipus x_profil
           python3 build/fordit.py
           python3 build/kiprobal_potlo.py --ir
           python3 build/termek_linkelo.py --ir
