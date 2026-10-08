@@ -16,7 +16,7 @@
   "modell": "gemini-3.5-flash",
   "cim": "A Hugging Face már közvetlenül futtatja a GGUF modelleket",
   "lead": "A népszerű Transformers könyvtár megkapta a llama.cpp-féle GGUF formátum támogatását, így a nagy nyelvi modellek sokkal könnyebben futtathatók helyben.",
-  "osszefoglalo": "A [Hugging Face](https://huggingface.co) bejelentette, hogy a Transformers könyvtár mostantól közvetlenül támogatja a **GGUF formátumú, tömörített modellek futtatását**. Ez azt jelenti, hogy a felhasználók a megszokott API-kon keresztül tölthetik be és futtathatják a saját laptopjuk memóriájára szabott modelleket közvetlenül a Hugging Face Hubról.\n\nAz integráció első körben az Apple Silicon chipekre és a **Qwen3.5 architektúrára fókuszál**, kihasználva a llama.cpp mögött álló ggml hardveres gyorsítását. A fejlesztők így a Python és a PyTorch környezet elhagyása nélkül érhetnek el a natív llama.cpp-hez közeli sebességet a helyi futtatás során.\n\nAz új funkció emellett lehetővé teszi egy [OpenAI-kompatibilis helyi szerver indítását](https://openai.com) is egyetlen paranccsal, amelyhez külső chatfelületek is könnyen csatlakoztathatók.",
+  "osszefoglalo": "A [Hugging Face](https://huggingface.co) bejelentette, hogy a Transformers könyvtár mostantól közvetlenül támogatja a **GGUF formátumú, tömörített modellek futtatását**. Ez azt jelenti, hogy a felhasználók a megszokott API-kon keresztül tölthetik be és futtathatják a saját laptopjuk memóriájára szabott modelleket közvetlenül a Hugging Face Hubról.\n\nAz integráció első körben az Apple Silicon chipekre és a **Qwen3.5 architektúrára fókuszál**, kihasználva a llama.cpp mögött álló ggml hardveres gyorsítását. A fejlesztők így a Python és a PyTorch környezet elhagyása nélkül érhetnek el a natív llama.cpp-hez közeli sebességet a helyi futtatás során.\n\nAz új funkció emellett lehetővé teszi egy **OpenAI-kompatibilis helyi szerver indítását** is egyetlen paranccsal, amelyhez külső chatfelületek is könnyen csatlakoztathatók.",
   "miert_szamit": "Ez a frissítés jelentősen leegyszerűsíti a saját gépen futó, teljesen privát AI-asszisztensek beállítását. A kreatív szakemberek és fejlesztők **könnyebben és gyorsabban futtathatnak nagy nyelvi modelleket helyben**, így felhős előfizetések és adatvédelmi aggályok nélkül dolgozhatnak érzékeny adatokkal.",
   "cimkek": [
     "Hugging Face",
@@ -33,7 +33,7 @@
   "entitas_linkek": [
     "OpenAI"
   ],
-  "linkek_ellenorizve": true,
   "kiprobal_nezve": true,
-  "termeklinkek_nezve": true
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
 }
