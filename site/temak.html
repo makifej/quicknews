@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<script>try{if(localStorage.getItem('qn-tema')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}</script>
+<meta name="theme-color" content="#181818">
+<title>Témák · quicknews.hu</title>
+<meta name="description" content="A quicknews.hu témái.">
+<link rel="canonical" href="https://quicknews.hu/temak">
+<meta property="og:title" content="Témák · quicknews.hu">
+<meta property="og:description" content="A quicknews.hu témái.">
+<meta property="og:image" content="https://quicknews.hu/assets/megoszto.png">
+<meta property="og:url" content="https://quicknews.hu/temak">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="quicknews.hu">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/ikon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="quicknews.hu" href="/rss.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css?v=40">
+
+</head>
+<body>
+<a class="ugras" href="#fo">Ugrás a tartalomra</a>
+<header class="fejlec" data-fejlec><div class="fejlec-felso"><div class="keret">
+  <a class="logo" href="/"><span class="pont"></span><span class="nev">quicknews<span class="hu">.hu</span></span></a>
+  <p class="szlogen">AI hírek, hogy <mark>ne maradj le</mark></p>
+  <div class="fejlec-info"><span>2026. október 8., csütörtök · frissítve 18:17</span><span class="frissit"><button type="button" class="frissit-gomb" hidden>Frissítés most</button><span class="frissit-allapot" aria-live="polite"></span></span></div>
+  <div class="kereso" data-kereso>
+    <form class="kereso-mezosor" role="search" onsubmit="return false">
+      <svg class="kereso-ikon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72 72.08 72.08 0 0 1-72-72Z"/></svg>
+      <input type="search" id="kereso-mezo" placeholder="Keresés a hírekben" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="kereso-panel" aria-label="Keresés a hírekben" data-kereso-mezo>
+      <button type="button" class="kereso-torlo" aria-label="Keresés törlése" data-kereso-zar hidden>×</button>
+    </form>
+    <div class="kereso-panel" id="kereso-panel" data-kereso-panel hidden><div class="kereso-talalatok" role="listbox" aria-label="Találatok" data-kereso-talalatok></div></div>
+  </div>
+  <div class="harang" data-harang>
+    <button class="harang-gomb" type="button" aria-expanded="false" aria-controls="harang-buborek" aria-label="Új hírek">
+      <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.8 175.94C216.25 166.38 208 139.33 208 104a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06ZM128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216Zm-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z"/></svg>
+      <span class="harang-jel" data-harang-jel hidden></span>
+    </button>
+    <div class="harang-buborek" id="harang-buborek" data-harang-buborek hidden></div>
+  </div>
+  <button class="tema-gomb" type="button" data-tema aria-label="Világos téma bekapcsolása">
+    <svg class="ikon-hold" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M233.54 142.23a8 8 0 0 0-8-2 88.08 88.08 0 0 1-109.8-109.8 8 8 0 0 0-10-10 104.84 104.84 0 0 0-52.91 37A104 104 0 0 0 136 224a103.09 103.09 0 0 0 62.52-20.88 104.84 104.84 0 0 0 37-52.91 8 8 0 0 0-1.98-7.98Zm-44.64 48.11A88 88 0 0 1 65.66 67.11a89 89 0 0 1 31.4-26A106 106 0 0 0 96 56a104.11 104.11 0 0 0 104 104 106 106 0 0 0 14.92-1.06 89 89 0 0 1-26.02 31.4Z"/></svg>
+    <svg class="ikon-nap" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M120 40V16a8 8 0 0 1 16 0v24a8 8 0 0 1-16 0Zm72 88a64 64 0 1 1-64-64 64.07 64.07 0 0 1 64 64Zm-16 0a48 48 0 1 0-48 48 48.05 48.05 0 0 0 48-48ZM58.34 69.66a8 8 0 0 0 11.32-11.32l-16-16a8 8 0 0 0-11.32 11.32Zm0 116.68-16 16a8 8 0 0 0 11.32 11.32l16-16a8 8 0 0 0-11.32-11.32ZM192 72a8 8 0 0 0 5.66-2.34l16-16a8 8 0 0 0-11.32-11.32l-16 16A8 8 0 0 0 192 72Zm5.66 114.34a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32-11.32ZM48 128a8 8 0 0 0-8-8H16a8 8 0 0 0 0 16h24a8 8 0 0 0 8-8Zm80 80a8 8 0 0 0-8 8v24a8 8 0 0 0 16 0v-24a8 8 0 0 0-8-8Zm112-88h-24a8 8 0 0 0 0 16h24a8 8 0 0 0 0-16Z"/></svg>
+  </button>
+</div></div>
+<nav class="rovatsor" aria-label="Rovatok"><div class="keret"><a href="/">Friss</a><a href="/rovat/modell">Modellek</a><a href="/rovat/eszkoz">Eszközök</a><a href="/rovat/video">Videó</a><a href="/rovat/kep">Kép</a><a href="/rovat/ugynok">Ügynökök</a><a href="/rovat/uzlet">Üzlet</a><a href="/rovat/kutatas">Kutatás</a><a href="/temak" aria-current="page">Témák</a><a href="/forrasok">Források</a><span class="kitolto"></span></div></nav>
+</header>
+<main id="fo">
+<div class="keret gyujto"><div class="gyujto-fej"><h1>Témák</h1><p>A hírekben legtöbbször előforduló cégek, termékek és témák.</p><span>40 téma</span></div><div class="forras-lista"><a href="/tema/openai"><span>OpenAI</span><span>73 hír</span></a><a href="/tema/ai-ugynok"><span>AI-ügynök</span><span>41 hír</span></a><a href="/tema/chatgpt"><span>ChatGPT</span><span>26 hír</span></a><a href="/tema/google"><span>Google</span><span>24 hír</span></a><a href="/tema/claude"><span>Claude</span><span>23 hír</span></a><a href="/tema/videogeneralas"><span>videógenerálás</span><span>23 hír</span></a><a href="/tema/anthropic"><span>Anthropic</span><span>19 hír</span></a><a href="/tema/hugging-face"><span>Hugging Face</span><span>17 hír</span></a><a href="/tema/runway"><span>Runway</span><span>15 hír</span></a><a href="/tema/kepgeneralas"><span>képgenerálás</span><span>14 hír</span></a><a href="/tema/biztonsag"><span>biztonság</span><span>13 hír</span></a><a href="/tema/kiberbiztonsag"><span>kiberbiztonság</span><span>12 hír</span></a><a href="/tema/adatvedelem"><span>adatvédelem</span><span>12 hír</span></a><a href="/tema/gemini"><span>Gemini</span><span>11 hír</span></a><a href="/tema/szabalyozas"><span>szabályozás</span><span>11 hír</span></a><a href="/tema/automatizacio"><span>automatizáció</span><span>11 hír</span></a><a href="/tema/marketing"><span>marketing</span><span>11 hír</span></a><a href="/tema/krea"><span>Krea</span><span>11 hír</span></a><a href="/tema/fejlesztes"><span>fejlesztés</span><span>10 hír</span></a><a href="/tema/ai-agens"><span>AI-ágens</span><span>9 hír</span></a><a href="/tema/ai-asszisztens"><span>AI-asszisztens</span><span>9 hír</span></a><a href="/tema/meta"><span>Meta</span><span>9 hír</span></a><a href="/tema/ai-biztonsag"><span>AI-biztonság</span><span>8 hír</span></a><a href="/tema/nyilt-forraskod"><span>nyílt forráskód</span><span>8 hír</span></a><a href="/tema/codex"><span>Codex</span><span>8 hír</span></a><a href="/tema/e-kereskedelem"><span>e-kereskedelem</span><span>8 hír</span></a><a href="/tema/oktatas"><span>oktatás</span><span>7 hír</span></a><a href="/tema/higgsfield"><span>Higgsfield</span><span>7 hír</span></a><a href="/tema/gpt-6-astra"><span>GPT-6 Astra</span><span>7 hír</span></a><a href="/tema/google-deepmind"><span>Google DeepMind</span><span>7 hír</span></a><a href="/tema/gepi-tanulas"><span>gépi tanulás</span><span>6 hír</span></a><a href="/tema/szoftverfejlesztes"><span>szoftverfejlesztés</span><span>6 hír</span></a><a href="/tema/nvidia"><span>Nvidia</span><span>6 hír</span></a><a href="/tema/api"><span>API</span><span>6 hír</span></a><a href="/tema/perplexity"><span>Perplexity</span><span>6 hír</span></a><a href="/tema/produktivitas"><span>produktivitás</span><span>6 hír</span></a><a href="/tema/hardver"><span>hardver</span><span>5 hír</span></a><a href="/tema/kepszerkesztes"><span>képszerkesztés</span><span>5 hír</span></a><a href="/tema/robotika"><span>robotika</span><span>5 hír</span></a><a href="/tema/elevenlabs"><span>ElevenLabs</span><span>4 hír</span></a></div></div>
+</main>
+<div class="uj-hirek" aria-live="polite"></div>
+<footer class="lablec"><div class="keret">
+  <span>quicknews.hu: a legfontosabb AI-bejelentések magyarul, videóval.</span>
+  <span><a href="/temak">Témák</a> · <a href="/forrasok">Források</a> · <a href="/rss.xml">RSS</a></span>
+</div></footer>
+<script src="/assets/app.js?v=14" defer></script>
+</body>
+</html>

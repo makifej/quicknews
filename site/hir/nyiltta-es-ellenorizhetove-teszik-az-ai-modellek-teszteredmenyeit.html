@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<script>try{if(localStorage.getItem('qn-tema')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}</script>
+<meta name="theme-color" content="#181818">
+<title>Nyílttá és ellenőrizhetővé teszik az AI-modellek teszteredményeit · quicknews.hu</title>
+<meta name="description" content="A brit AI Biztonsági Intézet és az EvalEval közösen teszi közzé a vezető AI-modellek részletes és ellenőrizhető teszteredményeit.">
+<link rel="canonical" href="https://quicknews.hu/hir/nyiltta-es-ellenorizhetove-teszik-az-ai-modellek-teszteredmenyeit">
+<meta property="og:title" content="Nyílttá és ellenőrizhetővé teszik az AI-modellek teszteredményeit · quicknews.hu">
+<meta property="og:description" content="A brit AI Biztonsági Intézet és az EvalEval közösen teszi közzé a vezető AI-modellek részletes és ellenőrizhető teszteredményeit.">
+<meta property="og:image" content="https://quicknews.hu/assets/kep/2960c64a019e.webp">
+<meta property="og:url" content="https://quicknews.hu/hir/nyiltta-es-ellenorizhetove-teszik-az-ai-modellek-teszteredmenyeit">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="quicknews.hu">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/ikon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="quicknews.hu" href="/rss.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css?v=40">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "Nyílttá és ellenőrizhetővé teszik az AI-modellek teszteredményeit", "description": "A brit AI Biztonsági Intézet és az EvalEval közösen teszi közzé a vezető AI-modellek részletes és ellenőrizhető teszteredményeit.", "datePublished": "2026-09-22T00:00:00+00:00", "inLanguage": "hu", "isBasedOn": "https://huggingface.co/blog/evaleval-aisi", "publisher": {"@type": "Organization", "name": "quicknews.hu"}}</script>
+</head>
+<body>
+<a class="ugras" href="#fo">Ugrás a tartalomra</a>
+<header class="fejlec" data-fejlec><div class="fejlec-felso"><div class="keret">
+  <a class="logo" href="/"><span class="pont"></span><span class="nev">quicknews<span class="hu">.hu</span></span></a>
+  <p class="szlogen">AI hírek, hogy <mark>ne maradj le</mark></p>
+  <div class="fejlec-info"><span>2026. október 8., csütörtök · frissítve 18:17</span><span class="frissit"><button type="button" class="frissit-gomb" hidden>Frissítés most</button><span class="frissit-allapot" aria-live="polite"></span></span></div>
+  <div class="kereso" data-kereso>
+    <form class="kereso-mezosor" role="search" onsubmit="return false">
+      <svg class="kereso-ikon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72 72.08 72.08 0 0 1-72-72Z"/></svg>
+      <input type="search" id="kereso-mezo" placeholder="Keresés a hírekben" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="kereso-panel" aria-label="Keresés a hírekben" data-kereso-mezo>
+      <button type="button" class="kereso-torlo" aria-label="Keresés törlése" data-kereso-zar hidden>×</button>
+    </form>
+    <div class="kereso-panel" id="kereso-panel" data-kereso-panel hidden><div class="kereso-talalatok" role="listbox" aria-label="Találatok" data-kereso-talalatok></div></div>
+  </div>
+  <div class="harang" data-harang>
+    <button class="harang-gomb" type="button" aria-expanded="false" aria-controls="harang-buborek" aria-label="Új hírek">
+      <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.8 175.94C216.25 166.38 208 139.33 208 104a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06ZM128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216Zm-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z"/></svg>
+      <span class="harang-jel" data-harang-jel hidden></span>
+    </button>
+    <div class="harang-buborek" id="harang-buborek" data-harang-buborek hidden></div>
+  </div>
+  <button class="tema-gomb" type="button" data-tema aria-label="Világos téma bekapcsolása">
+    <svg class="ikon-hold" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M233.54 142.23a8 8 0 0 0-8-2 88.08 88.08 0 0 1-109.8-109.8 8 8 0 0 0-10-10 104.84 104.84 0 0 0-52.91 37A104 104 0 0 0 136 224a103.09 103.09 0 0 0 62.52-20.88 104.84 104.84 0 0 0 37-52.91 8 8 0 0 0-1.98-7.98Zm-44.64 48.11A88 88 0 0 1 65.66 67.11a89 89 0 0 1 31.4-26A106 106 0 0 0 96 56a104.11 104.11 0 0 0 104 104 106 106 0 0 0 14.92-1.06 89 89 0 0 1-26.02 31.4Z"/></svg>
+    <svg class="ikon-nap" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M120 40V16a8 8 0 0 1 16 0v24a8 8 0 0 1-16 0Zm72 88a64 64 0 1 1-64-64 64.07 64.07 0 0 1 64 64Zm-16 0a48 48 0 1 0-48 48 48.05 48.05 0 0 0 48-48ZM58.34 69.66a8 8 0 0 0 11.32-11.32l-16-16a8 8 0 0 0-11.32 11.32Zm0 116.68-16 16a8 8 0 0 0 11.32 11.32l16-16a8 8 0 0 0-11.32-11.32ZM192 72a8 8 0 0 0 5.66-2.34l16-16a8 8 0 0 0-11.32-11.32l-16 16A8 8 0 0 0 192 72Zm5.66 114.34a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32-11.32ZM48 128a8 8 0 0 0-8-8H16a8 8 0 0 0 0 16h24a8 8 0 0 0 8-8Zm80 80a8 8 0 0 0-8 8v24a8 8 0 0 0 16 0v-24a8 8 0 0 0-8-8Zm112-88h-24a8 8 0 0 0 0 16h24a8 8 0 0 0 0-16Z"/></svg>
+  </button>
+</div></div>
+<nav class="rovatsor" aria-label="Rovatok"><div class="keret"><a href="/">Friss</a><a href="/rovat/modell">Modellek</a><a href="/rovat/eszkoz">Eszközök</a><a href="/rovat/video">Videó</a><a href="/rovat/kep">Kép</a><a href="/rovat/ugynok">Ügynökök</a><a href="/rovat/uzlet">Üzlet</a><a href="/rovat/kutatas">Kutatás</a><a href="/temak">Témák</a><a href="/forrasok">Források</a><span class="kitolto"></span></div></nav>
+</header>
+<main id="fo">
+<article class="cikk">
+  <div class="cikk-fej">
+    <a class="vissza" href="/"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224 128a8 8 0 0 1-8 8H59.31l58.35 58.34a8 8 0 0 1-11.32 11.32l-72-72a8 8 0 0 1 0-11.32l72-72a8 8 0 0 1 11.32 11.32L59.31 120H216a8 8 0 0 1 8 8Z"/></svg>Vissza a hírekhez</a>
+    <div class="meta"><span class="forras">Hugging Face</span><span>2026. szept. 22.</span><a class="kat" href="/rovat/kutatas">kutatás</a></div>
+    <h1>Nyílttá és ellenőrizhetővé teszik az AI-modellek teszteredményeit</h1>
+    <p class="lead">A brit AI Biztonsági Intézet és az EvalEval közösen teszi közzé a vezető AI-modellek részletes és ellenőrizhető teszteredményeit.</p>
+    
+  </div>
+  <div class="cikk-racs">
+    <div class="cikk-fo">
+      <div class="media-doboz"><div class="lejatszo"><img class="poszter" src="/assets/kep/2960c64a019e.webp" alt="How UK AISI and EvalEval Are Making Benchmark Results Reproducible"></div></div>
+      <div class="torzs"><p>A brit <a class="kulso" href="https://www.aisi.gov.uk/" target="_blank" rel="noopener">AI Biztonsági Intézet</a> (AISI) az <a class="kulso" href="https://huggingface.co/blog/evaleval-aisi" target="_blank" rel="noopener">EvalEval</a> nyílt platformját használja a jövőben az AI-modellek mérési eredményeinek megosztására. Az <a class="kulso" href="https://evalevalai.com/projects/every-eval-ever/" target="_blank" rel="noopener">Every Eval Ever</a> nevű közös séma és az <a class="kulso" href="https://evalcards.evalevalai.com/" target="_blank" rel="noopener">Evaluation Cards</a> rendszer segítségével a tesztek pontos körülményei is nyilvánossá válnak. Ez a lépés segít <strong>reprodukálhatóvá és ellenőrizhetővé tenni</strong> a különböző modellek teljesítményét.</p>
+<p>A most közzétett adatok 6 élvonalbeli modellt érintenek, köztük a <a class="kulso" href="https://claude.ai" target="_blank" rel="noopener">Claude</a> Opus 4 és a GPT-5 verzióit. A tesztek rávilágítanak arra, hogy a modellek pontossága jelentősen változhat a számítási kapacitás és a tesztelési protokoll függvényében. Az új rendszerrel a fejlesztők pontosan láthatják, hogy <strong>milyen feltételek mellett születtek</strong> a kiugró eredmények.</p>
+<p>Az EvalEval célja egy olyan tudományos alapú infrastruktúra kiépítése, amely megszünteti a tesztelési káoszt. A kezdeményezés révén a jövőben a marketingeszközként használt ranglisták helyett <strong>valódi összehasonlítási alap áll rendelkezésre</strong> a szakemberek számára.</p></div>
+      <details class="eredeti"><summary>Az eredeti szöveg (Hugging Face)</summary><div class="eredeti-szoveg">Why reproducible evaluation reporting matters What AISI is sharing Contribute to the shared mission About the EvalEval Coalition About the UK AI Security Institute Further reading The EvalEval Coalition is thrilled to share that the UK AI Security Institute (AISI) is using EvalEval&#x27;s infrastructure to openly share evaluation results, supporting more reproducible and verifiable evaluation science.
+
+AISI and EvalEval have previously collaborated on research that began at a joint workshop alongside NeurIPS 2025, and feedback from the Institute has helped shape the Every Eval Ever (EEE) schema. This next phase of the collaboration puts that shared infrastructure into practice.
+
+As AI deployment accelerates, evaluations are becoming increasingly important sources of evidence about model and system performance. Yet results are reported across many formats, platforms, and outlets, often without enough information to reproduce them. Running the evaluations again may itself be prohibitively expensive.
+
+EvalEval&#x27;s mission is to improve this ecosystem through a shared reporting schema, Every Eval Ever, and an open platform, Evaluation Cards, that brings evaluation results and the information needed to interpret them into a common structure.
+
+This builds naturally on AISI&#x27;s work to make evaluation more efficient through OptStop, more statistically rigorous through HiBayES, and more standardised in areas including transcript analysis and capability elicitation. Together, AISI and EvalEval are working to diagnose gaps in evaluation reporting and build shared infrastructure to close them.
+
+Transcript-level transparency matters not only for reproducibility, but also for analysis and diagnosis. In this new phase of the collaboration, AISI is making publicly reported evaluation methods and findings available through Evaluation Cards where appropriate. The release includes verified results, context, and configuration information for the five benchmarks in the paper&#x27;s main experiment:
+
+These results cover six frontier models: Claude Opus 4, Claude Opus 4.5, Claude Opus 4.6, GPT-5, GPT-5.2, and GPT-5.4. The release also includes results from two related cyber evaluations—Cyber CTFs and The Last Ones—which use a different, partially overlapping set of models. The data accompany AISI&#x27;s paper, How Inference Compute Shapes Frontier LLM Evaluation, which studies how benchmark performance depends on inference-time compute and evaluation protocol.
+
+Performance on Humanity&#x27;s Last Exam changes with evaluation protocol and inference compute. Each curve shows the cumulative share of attempted tasks solved within a given token count, using the earliest observed success per task. When models received correctness feedback from an oracle after each attempt, they continued to solve additional tasks as token use increased.
+
+When results are openly released with setup information, researchers and practitioners can examine individual studies more closely and compare findings across the wider ecosystem. Where other reports lack these details, releases like AISI&#x27;s provide verified reference points for interpreting evaluations in context—for example, by helping researchers understand how setup choices may influence reported performance. As more evaluators adopt EEE, open comparisons like these can support broader and more reliable meta-research.
+
+AISI&#x27;s Terminal-Bench 2.0 results alongside other reported evaluations for the same models, under different evaluation setups.
+
+We are excited about this adoption and look forward to further standardising and sharing evaluations with AISI and other AI evaluation organisations.
+
+The EvalEval Coalition is a research community developing scientifically grounded research and robust deployment infrastructure for the evaluation ecosystem. Its goal is to improve evaluation science, address the lack of consensus around documenting evaluation applicability and utility, and broaden coverage of the impacts that matter for scientific rese</div></details>
+    </div>
+    <aside class="cikk-oldal">
+      <div class="miert"><h2>Miért számít</h2><p>A jövőben nem kell vakon bízni a gyártók hangzatos ígéreteiben és a manipulálható ranglistákban. Az új, nyílt tesztelési rendszer segítségével <strong>pontosabb képet kaphatunk az AI-eszközök valós teljesítményéről</strong>, így könnyebben kiválaszthatjuk a vállalkozásunk számára leginkább megfelelő modellt.</p></div>
+      <div class="forras-sav">
+        <a class="eredeti" href="https://huggingface.co/blog/evaleval-aisi" target="_blank" rel="noopener"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224 104a8 8 0 0 1-16 0V59.32l-66.33 66.34a8 8 0 0 1-11.32-11.32L196.68 48H152a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm-40 24a8 8 0 0 0-8 8v72H48V80h72a8 8 0 0 0 0-16H48a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-72a8 8 0 0 0-8-8Z"/></svg>Az eredeti megnyitása</a>
+        
+        <span>Eredeti cím: How UK AISI and EvalEval Are Making Benchmark Results Reproducible</span>
+      </div>
+      
+      <section class="tovabbi"><h2>További hírek</h2><ul><li><a href="/hir/gyorsul-a-kepgeneralas-kv-gyorsitotarat-kapnak-a-flow-modellek"><div class="meta"><span class="forras">Hugging Face (LinkedIn)</span><span>okt. 8. 03:24</span></div>Gyorsul a képgenerálás: KV-gyorsítótárat kapnak a flow-modellek</a></li><li><a href="/hir/ket-nagy-orosz-es-irani-ai-kampanyt-kapcsolt-le-az-openai"><div class="meta"><span class="forras">OpenAI</span><span>okt. 8.</span></div>Két nagy orosz és iráni AI-kampányt kapcsolt le az OpenAI</a></li><li><a href="/hir/uj-mi-modellel-irt-722-matematikai-tanulmanyt-tett-kozze-az-openai"><div class="meta"><span class="forras">Perplexity Discover</span><span>okt. 7. 02:20</span></div>Új MI-modellel írt 722 matematikai tanulmányt tett közzé az OpenAI</a></li></ul></section>
+    </aside>
+  </div>
+</article>
+</main>
+<div class="uj-hirek" aria-live="polite"></div>
+<footer class="lablec"><div class="keret">
+  <span>quicknews.hu: a legfontosabb AI-bejelentések magyarul, videóval.</span>
+  <span><a href="/temak">Témák</a> · <a href="/forrasok">Források</a> · <a href="/rss.xml">RSS</a></span>
+</div></footer>
+<script src="/assets/app.js?v=14" defer></script>
+</body>
+</html>

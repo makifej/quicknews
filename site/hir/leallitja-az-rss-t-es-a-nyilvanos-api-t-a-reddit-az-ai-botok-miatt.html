@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<script>try{if(localStorage.getItem('qn-tema')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}</script>
+<meta name="theme-color" content="#181818">
+<title>Leállítja az RSS-t és a nyilvános API-t a Reddit az AI-botok miatt · quicknews.hu</title>
+<meta name="description" content="A Reddit az AI-botok általi tömeges adatgyűjtés miatt novemberben kivezeti az RSS-t, 2027 tavaszán pedig leállítja a nyilvános API-hozzáférést is.">
+<link rel="canonical" href="https://quicknews.hu/hir/leallitja-az-rss-t-es-a-nyilvanos-api-t-a-reddit-az-ai-botok-miatt">
+<meta property="og:title" content="Leállítja az RSS-t és a nyilvános API-t a Reddit az AI-botok miatt · quicknews.hu">
+<meta property="og:description" content="A Reddit az AI-botok általi tömeges adatgyűjtés miatt novemberben kivezeti az RSS-t, 2027 tavaszán pedig leállítja a nyilvános API-hozzáférést is.">
+<meta property="og:image" content="https://quicknews.hu/assets/kep/8b112c5c2190.webp">
+<meta property="og:url" content="https://quicknews.hu/hir/leallitja-az-rss-t-es-a-nyilvanos-api-t-a-reddit-az-ai-botok-miatt">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="quicknews.hu">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/ikon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="quicknews.hu" href="/rss.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css?v=40">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "Leállítja az RSS-t és a nyilvános API-t a Reddit az AI-botok miatt", "description": "A Reddit az AI-botok általi tömeges adatgyűjtés miatt novemberben kivezeti az RSS-t, 2027 tavaszán pedig leállítja a nyilvános API-hozzáférést is.", "datePublished": "2026-09-30T17:45:00+00:00", "inLanguage": "hu", "isBasedOn": "https://techcrunch.com/2026/09/30/reddit-is-killing-rss-feeds-ending-public-api-access-because-of-ai-bots/", "publisher": {"@type": "Organization", "name": "quicknews.hu"}}</script>
+</head>
+<body>
+<a class="ugras" href="#fo">Ugrás a tartalomra</a>
+<header class="fejlec" data-fejlec><div class="fejlec-felso"><div class="keret">
+  <a class="logo" href="/"><span class="pont"></span><span class="nev">quicknews<span class="hu">.hu</span></span></a>
+  <p class="szlogen">AI hírek, hogy <mark>ne maradj le</mark></p>
+  <div class="fejlec-info"><span>2026. október 8., csütörtök · frissítve 18:17</span><span class="frissit"><button type="button" class="frissit-gomb" hidden>Frissítés most</button><span class="frissit-allapot" aria-live="polite"></span></span></div>
+  <div class="kereso" data-kereso>
+    <form class="kereso-mezosor" role="search" onsubmit="return false">
+      <svg class="kereso-ikon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72 72.08 72.08 0 0 1-72-72Z"/></svg>
+      <input type="search" id="kereso-mezo" placeholder="Keresés a hírekben" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="kereso-panel" aria-label="Keresés a hírekben" data-kereso-mezo>
+      <button type="button" class="kereso-torlo" aria-label="Keresés törlése" data-kereso-zar hidden>×</button>
+    </form>
+    <div class="kereso-panel" id="kereso-panel" data-kereso-panel hidden><div class="kereso-talalatok" role="listbox" aria-label="Találatok" data-kereso-talalatok></div></div>
+  </div>
+  <div class="harang" data-harang>
+    <button class="harang-gomb" type="button" aria-expanded="false" aria-controls="harang-buborek" aria-label="Új hírek">
+      <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.8 175.94C216.25 166.38 208 139.33 208 104a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06ZM128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216Zm-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z"/></svg>
+      <span class="harang-jel" data-harang-jel hidden></span>
+    </button>
+    <div class="harang-buborek" id="harang-buborek" data-harang-buborek hidden></div>
+  </div>
+  <button class="tema-gomb" type="button" data-tema aria-label="Világos téma bekapcsolása">
+    <svg class="ikon-hold" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M233.54 142.23a8 8 0 0 0-8-2 88.08 88.08 0 0 1-109.8-109.8 8 8 0 0 0-10-10 104.84 104.84 0 0 0-52.91 37A104 104 0 0 0 136 224a103.09 103.09 0 0 0 62.52-20.88 104.84 104.84 0 0 0 37-52.91 8 8 0 0 0-1.98-7.98Zm-44.64 48.11A88 88 0 0 1 65.66 67.11a89 89 0 0 1 31.4-26A106 106 0 0 0 96 56a104.11 104.11 0 0 0 104 104 106 106 0 0 0 14.92-1.06 89 89 0 0 1-26.02 31.4Z"/></svg>
+    <svg class="ikon-nap" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M120 40V16a8 8 0 0 1 16 0v24a8 8 0 0 1-16 0Zm72 88a64 64 0 1 1-64-64 64.07 64.07 0 0 1 64 64Zm-16 0a48 48 0 1 0-48 48 48.05 48.05 0 0 0 48-48ZM58.34 69.66a8 8 0 0 0 11.32-11.32l-16-16a8 8 0 0 0-11.32 11.32Zm0 116.68-16 16a8 8 0 0 0 11.32 11.32l16-16a8 8 0 0 0-11.32-11.32ZM192 72a8 8 0 0 0 5.66-2.34l16-16a8 8 0 0 0-11.32-11.32l-16 16A8 8 0 0 0 192 72Zm5.66 114.34a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32-11.32ZM48 128a8 8 0 0 0-8-8H16a8 8 0 0 0 0 16h24a8 8 0 0 0 8-8Zm80 80a8 8 0 0 0-8 8v24a8 8 0 0 0 16 0v-24a8 8 0 0 0-8-8Zm112-88h-24a8 8 0 0 0 0 16h24a8 8 0 0 0 0-16Z"/></svg>
+  </button>
+</div></div>
+<nav class="rovatsor" aria-label="Rovatok"><div class="keret"><a href="/">Friss</a><a href="/rovat/modell">Modellek</a><a href="/rovat/eszkoz">Eszközök</a><a href="/rovat/video">Videó</a><a href="/rovat/kep">Kép</a><a href="/rovat/ugynok">Ügynökök</a><a href="/rovat/uzlet">Üzlet</a><a href="/rovat/kutatas">Kutatás</a><a href="/temak">Témák</a><a href="/forrasok">Források</a><span class="kitolto"></span></div></nav>
+</header>
+<main id="fo">
+<article class="cikk">
+  <div class="cikk-fej">
+    <a class="vissza" href="/"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224 128a8 8 0 0 1-8 8H59.31l58.35 58.34a8 8 0 0 1-11.32 11.32l-72-72a8 8 0 0 1 0-11.32l72-72a8 8 0 0 1 11.32 11.32L59.31 120H216a8 8 0 0 1 8 8Z"/></svg>Vissza a hírekhez</a>
+    <div class="meta"><span class="forras">TechCrunch AI</span><span>2026. szept. 30. 19:45</span><a class="kat" href="/rovat/uzlet">üzlet</a></div>
+    <h1>Leállítja az RSS-t és a nyilvános API-t a Reddit az AI-botok miatt</h1>
+    <p class="lead">A Reddit az AI-botok általi tömeges adatgyűjtés miatt novemberben kivezeti az RSS-t, 2027 tavaszán pedig leállítja a nyilvános API-hozzáférést is.</p>
+    
+  </div>
+  <div class="cikk-racs">
+    <div class="cikk-fo">
+      <div class="media-doboz"><div class="lejatszo"><img class="poszter" src="/assets/kep/8b112c5c2190.webp" alt="Reddit is killing RSS feeds and ending public API access because of AI bots"></div></div>
+      <div class="torzs"><p>A Reddit bejelentette, hogy az AI-botok és a tömeges adatgyűjtés elleni védekezésként <strong>leállítja az RSS-csatornák támogatását</strong>. A népszerű hírcsatorna-formátum 2026. november 13-án szűnik meg a platformon. A döntés hátterében az áll, hogy a fórumok felhasználói tartalmai rendkívül értékesek lettek az AI-cégekkel kötött licencszerződések miatt, így a Reddit nem akarja ingyen adni az adatokat.</p>
+<p>A másik komoly változás, hogy a platform 2027 márciusáig <strong>teljesen lezárja a nyilvános API-hozzáférést</strong> is. Ez közvetlenül érinti majd a kutatókat, a közösségimédia-figyelő szoftvereket és azokat az AI-asszisztenseket, amelyek eddig a Reddit beszélgetéseiből táplálkoztak. A jövőben ezeknek az eszközöknek kereskedelmi megállapodást kell kötniük a céggel a hozzáférésért.</p>
+<p>A moderátoroknak a Reddit a Discord Relay Devvit alkalmazás használatát javasolja a munkafolyamatok átterelésére. Az engedélyezett harmadik féltől származó alkalmazások fejlesztőinek pedig <strong>2027. január 12-ig kell regisztrálniuk</strong> a rendszereiket, hogy elkerüljék a leállást.</p></div>
+      <details class="eredeti"><summary>Az eredeti szöveg (TechCrunch AI)</summary><div class="eredeti-szoveg">Last day to exhibit your breakthrough to 10,000+ tech leaders at Disrupt is on Oct 2. Book Exhibit Table Now.
+
+Disrupt doors open Oct. 13. Get your pass and bring someone with you at 50% off. REGISTER NOW.
+
+Amid a number of updates for moderators and developers announced Wednesday, comes bad news for supporters of a more open web: Reddit is ending support for RSS feeds.
+
+Reddit says RSS has now become a “common surface for large-scale scraping and automated abuse,” which is why it’s made the decision to wind down RSS feeds on its platform.
+
+“We know RSS has been a beloved part of the open web for a long time, and we’re grateful to everyone who used it to stay connected to Reddit,” the company noted in its announcement, where it also shared a March 2027 shutdown date for its public API.
+
+Reddit said RSS support will cease on November 13.
+
+RSS, or Really Simple Syndication/Rich Site Summary, is a web feed that lets users and applications access updates to a website in a standardized format. The format became particularly popular in the blogging era, as it offered a way to subscribe to a site’s new posts in a news-reading app. Google once operated the most popular of these, but shut it down in 2013, ceding the market to companies like Feedly and other indie applications.
+
+The decision to kill Reddit’s RSS feeds comes at a time when the site’s treasure trove of user-generated content in its forums has become a profitable side business for the company in the form of AI licensing deals.
+
+During its second quarter, Reddit said its “other revenue” beyond advertising had grown 24% year-over-year to $43 million. It’s no wonder that Reddit doesn’t want to give any of that data away for free.
+
+For moderators who have relied on RSS channels for their own alerts, Reddit is now recommending a shift to the Discord Relay Devvit app. The company suggested that moderators and their teams review their setups and migrate their workflows before the shutdown date of November 13 to ensure there’s no disruption. However, Reddit said that there’s no replacement for the use of RSS feeds that were being used for feeds outside of the moderators’ community.
+
+Moderators have already expressed worry about how this shift would impact their workflow. When Reddit hinted earlier that it was preparing for the end of RSS on its site, many responded by complaining that Reddit would become unmanageable for them. Meanwhile, many users stressed that RSS was how they enjoyed accessing Reddit’s content.
+
+The RSS change was one of several updates issued on Wednesday by the company. Another big change will be the end of its public API.
+
+Public API access will also end by March 2027, which will impact any tools that used it for programmatic access to Reddit conversations, including social listening products, those used by researchers, and AI products, such as AI assistants. Today, those assistants can use Reddit to answer questions, but after closing public API access, they will need commercial deals with Reddit for its data.
+
+In addition, Reddit provided an update on its Rules Hub progress and auto-mod changes, and said it was “adding safeguards” to its classic, text-heavy version of its site known as Old Reddit. The latter will include limiting access to logged-in moderators and recent users — changes Reddit also said were required because of “abusive scraping and automated traffic.”
+
+Reddit said in the next few months it will limit access for logged-in users to those who have used Old Reddit in the last 6 months. (The company changed this from 90 days to 6 months, just as their news went out.)
+
+The company also reminded developers building approved third-party apps and bots to register them with the company before January 12, 2027, to avoid disruption. After that date, Reddit will remove API access for any developer that hasn’t registered.
+
+After publication, we updated to note that Reddit extended the Old Reddit “recent access” period from 3 to 6 months. The earlier ma</div></details>
+    </div>
+    <aside class="cikk-oldal">
+      <div class="miert"><h2>Miért számít</h2><p>Ha a munkád során közösségimédia-figyelő vagy piackutató szoftvereket használsz, számíts rá, hogy <strong>a Reddit-adatok elérése drágább vagy korlátozottabb lesz</strong>, mivel az AI-asszisztensek és elemzőeszközök csak fizetős licencszerződéssel férhetnek majd hozzá a platform tartalmához.</p></div>
+      <div class="forras-sav">
+        <a class="eredeti" href="https://techcrunch.com/2026/09/30/reddit-is-killing-rss-feeds-ending-public-api-access-because-of-ai-bots/" target="_blank" rel="noopener"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224 104a8 8 0 0 1-16 0V59.32l-66.33 66.34a8 8 0 0 1-11.32-11.32L196.68 48H152a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm-40 24a8 8 0 0 0-8 8v72H48V80h72a8 8 0 0 0 0-16H48a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-72a8 8 0 0 0-8-8Z"/></svg>Az eredeti megnyitása</a>
+        <span>Szerző: Sarah Perez</span>
+        <span>Eredeti cím: Reddit is killing RSS feeds and ending public API access because of AI bots</span>
+      </div>
+      
+      <section class="tovabbi"><h2>További hírek</h2><ul><li><a href="/hir/a-huawei-szerint-nagyreszt-fuggetlenedett-az-amerikai-technologiatol"><div class="meta"><span class="forras">Perplexity Discover</span><span>okt. 8. 15:28</span></div>A Huawei szerint nagyrészt függetlenedett az amerikai technológiától</a></li><li><a href="/hir/500-millio-dollar-feletti-toket-szerzett-a-kinai-manus-ai-ceg"><div class="meta"><span class="forras">TechCrunch AI</span><span>okt. 8. 15:20</span></div>500 millió dollár feletti tőkét szerzett a kínai Manus AI-cég</a></li><li><a href="/hir/az-anthropic-150-millio-dollarral-tamogatja-az-amerikai-kutatasokat"><div class="meta"><span class="forras">Anthropic</span><span>okt. 8. 15:00</span></div>Az Anthropic 150 millió dollárral támogatja az amerikai kutatásokat</a></li></ul></section>
+    </aside>
+  </div>
+</article>
+</main>
+<div class="uj-hirek" aria-live="polite"></div>
+<footer class="lablec"><div class="keret">
+  <span>quicknews.hu: a legfontosabb AI-bejelentések magyarul, videóval.</span>
+  <span><a href="/temak">Témák</a> · <a href="/forrasok">Források</a> · <a href="/rss.xml">RSS</a></span>
+</div></footer>
+<script src="/assets/app.js?v=14" defer></script>
+</body>
+</html>

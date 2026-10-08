@@ -1,0 +1,36 @@
+{
+  "id": "4c4abcff4acd",
+  "slug": "felhos-de-teljesen-privat-memoriat-kapnak-a-google-ai-eszkozei",
+  "forras_id": "deepmind",
+  "forras_nev": "Google DeepMind",
+  "url": "https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory/",
+  "szerzo": null,
+  "publikalva": "2026-09-23T16:00:57+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://lh3.googleusercontent.com/CsJavGl89SJwjdXVDdaKtAEpLbqHa_nzOW89VTThwA8rgYr9Gf3CSiUWk18i5thA57k8zhwdwmvf3F2yagtJ-P1ag-9ppxsPXcUe99DRY9asIRP2yA=w528-h297-n-nu-rw-lo"
+  },
+  "cim_eredeti": "Advancing Private AI Compute with secure, server-side memory",
+  "forrasok": [],
+  "szoveg_eredeti": "A technical update on our Private AI Compute architecture, which will enable persistent, cross-device AI memory with on-device privacy standards.\n\nAI is becoming more capable and intuitive — remembering what matters, understanding the world around you, and acting at your direction. Privacy and trust are core to making that possible, ensuring your data stays private and protected as AI systems evolve to provide more continuous assistance across your devices.\n\nToday, we are sharing how we will bring private, server-side memory to our Private AI Compute platform. This breakthrough resolves a longstanding dilemma in modern AI: how to give an assistant long-term continuity across devices while upholding the strict privacy standards typically limited to on-device processing.\n\nWith this new technical capability, a new persistent memory layer will be able to function like a secure digital vault in the cloud. Under this model, the information needed to assist you is sealed within dedicated, encrypted storage, while the cryptographic keys required to unlock it are held exclusively on your personal devices — ensuring your data is inaccessible to anyone else, even Google.\n\nThe diagram below shows how this update to Private AI Compute will work. When an AI model needs to access information to assist you, an authenticated, end-to-end encrypted channel connects your device to a protected, isolated environment in the cloud. That space, or “secure enclave,” temporarily decrypts your data in isolated memory to handle the request, saves any new context, and immediately encrypts it, keeping your information private as if it never left your device.\n\nBy combining hardware-enforced secure enclaves, encrypted channels, and per-user databases shielded by device-derived encryption keys, this architecture ensures your data stays fully private and under your control.\n\nThis evolution is necessary to meet the computing needs of the AI era. Local, on-device processing has historically been the gold standard for privacy — but frontier AI models often require far more computing power than any one device can provide. Bringing advanced AI to personal assistants means solving how to tap into the power of the cloud while ensuring personal data can remain as protected as if it never left your device.\n\nTo that end, we previously introduced our Private AI Compute platform, allowing users to process complex tasks in hardware-isolated cloud enclaves. Until now, that technology — along with similar solutions across the industry — was strictly “stateless,” meaning it wiped all context the moment a task ended. Workarounds, like having AI save a list of personal facts and preferences, aren’t enough to support the rich, continuous experiences people expect from personal AI. Making that level of assistance possible means engineering a way for cloud-scale AI to securely retain context over time and across devices.\n\nImagine pulling up assembly instructions on your laptop that you previously viewed through smart glasses, or resuming complex conversations between mobile and web. Private AI Compute is designed to make that kind of seamless assistance possible – keeping the pieces it needs to remember safely locked away. But the user’s trust in that system’s privacy is also important.\n\nBuilding that trust starts with transparency. That’s why, alongside our updated technical whitepaper, we’re publishing a tamper-proof public record of our server software. Devices running Private AI Compute will be able to verify that our software is authentic and unaltered before sending any personal data. In addition, we’re providing an update on our technical methods, including the results of an independent audit by a leading cybersecurity firm. By sharing these resources, we invite the broader privacy community to verify Private AI Compute’s protections.\n\nAdding private, persistent memory to Private AI Compute shows how deeply personal assistance can be private by design. We invite the community to review the updated Private AI Compute Technical Brief and our system architecture, security proofs, and verification protocols.\n\nThis research was co-developed by Google DeepMind, Platforms & Devices, Core and Cloud teams. We would also like to thank Four Flynn, Jay Yagnik, and David Kleidermacher for their executive sponsorship of this work.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Felhős, de teljesen privát memóriát kapnak a Google AI-eszközei",
+  "lead": "A Google DeepMind új megoldásával az AI-asszisztensek eszközökön átívelően, mégis teljesen privát módon, titkosítva emlékeznek a fontos adatokra.",
+  "osszefoglalo": "A Google DeepMind bejelentette a [Private AI Compute](https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory/) platform frissítését, amely biztonságos, szerveroldali memóriát biztosít a személyes AI-asszisztenseknek. Az új technológia lehetővé teszi, hogy az AI **eszközökön átívelően emlékezzen** a felhasználói adatokra és a korábbi beszélgetések kontextusára. Eddig a hasonló rendszerek törölték az adatokat a feladat végeztével, így nem tudtak hosszú távú folytonosságot biztosítani.\n\nA rendszer úgy működik, mint egy biztonságos digitális széf a felhőben. A szükséges információkat dedikált, titkosított tárhelyen tárolják, míg a feloldáshoz szükséges **kódkulcsok kizárólag a felhasználó saját eszközein** találhatók meg. Így még maga a Google sem férhet hozzá a tárolt adatokhoz.\n\nA fejlesztésnek köszönhetően zökkenőmentesen folytathatunk egy beszélgetést a mobilunkról a laptopunkra vagy akár okosszemüvegre váltva. A Google a transzparencia érdekében közzétette a szerverszoftver hitelesített nyilvántartását és egy független kibervédelmi cég auditját is.",
+  "miert_szamit": "A fejlesztésnek köszönhetően a jövőben úgy használhatunk rendkívül személyre szabott, eszközökön átívelő AI-asszisztenseket, hogy közben **nem kell aggódnunk az üzleti titkok és ügyféladatok kiszivárgása miatt**.",
+  "cimkek": [
+    "Google DeepMind",
+    "adatvédelem",
+    "felhő",
+    "AI-asszisztens"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkek_ellenorizve": true,
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}

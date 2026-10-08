@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<script>try{if(localStorage.getItem('qn-tema')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}</script>
+<meta name="theme-color" content="#181818">
+<title>A Hugging Face egyetlen munkafolyamatba gyúrta az AUTOMATIC1111-et · quicknews.hu</title>
+<meta name="description" content="A Workflow1111 nevű új Gradio-megoldás 11 különböző kép- és videógenerálási folyamatot egyesít egyetlen, könnyen testreszabható vizuális felületen.">
+<link rel="canonical" href="https://quicknews.hu/hir/a-hugging-face-egyetlen-munkafolyamatba-gyurta-az-automatic1111-et">
+<meta property="og:title" content="A Hugging Face egyetlen munkafolyamatba gyúrta az AUTOMATIC1111-et · quicknews.hu">
+<meta property="og:description" content="A Workflow1111 nevű új Gradio-megoldás 11 különböző kép- és videógenerálási folyamatot egyesít egyetlen, könnyen testreszabható vizuális felületen.">
+<meta property="og:image" content="https://quicknews.hu/assets/kep/cb50b0c3c856.webp">
+<meta property="og:url" content="https://quicknews.hu/hir/a-hugging-face-egyetlen-munkafolyamatba-gyurta-az-automatic1111-et">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="quicknews.hu">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/ikon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="quicknews.hu" href="/rss.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css?v=40">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "A Hugging Face egyetlen munkafolyamatba gyúrta az AUTOMATIC1111-et", "description": "A Workflow1111 nevű új Gradio-megoldás 11 különböző kép- és videógenerálási folyamatot egyesít egyetlen, könnyen testreszabható vizuális felületen.", "datePublished": "2026-09-10T00:00:00+00:00", "inLanguage": "hu", "isBasedOn": "https://huggingface.co/blog/gradio-workflow-1111", "publisher": {"@type": "Organization", "name": "quicknews.hu"}}</script>
+</head>
+<body>
+<a class="ugras" href="#fo">Ugrás a tartalomra</a>
+<header class="fejlec" data-fejlec><div class="fejlec-felso"><div class="keret">
+  <a class="logo" href="/"><span class="pont"></span><span class="nev">quicknews<span class="hu">.hu</span></span></a>
+  <p class="szlogen">AI hírek, hogy <mark>ne maradj le</mark></p>
+  <div class="fejlec-info"><span>2026. október 8., csütörtök · frissítve 18:17</span><span class="frissit"><button type="button" class="frissit-gomb" hidden>Frissítés most</button><span class="frissit-allapot" aria-live="polite"></span></span></div>
+  <div class="kereso" data-kereso>
+    <form class="kereso-mezosor" role="search" onsubmit="return false">
+      <svg class="kereso-ikon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72 72.08 72.08 0 0 1-72-72Z"/></svg>
+      <input type="search" id="kereso-mezo" placeholder="Keresés a hírekben" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="kereso-panel" aria-label="Keresés a hírekben" data-kereso-mezo>
+      <button type="button" class="kereso-torlo" aria-label="Keresés törlése" data-kereso-zar hidden>×</button>
+    </form>
+    <div class="kereso-panel" id="kereso-panel" data-kereso-panel hidden><div class="kereso-talalatok" role="listbox" aria-label="Találatok" data-kereso-talalatok></div></div>
+  </div>
+  <div class="harang" data-harang>
+    <button class="harang-gomb" type="button" aria-expanded="false" aria-controls="harang-buborek" aria-label="Új hírek">
+      <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.8 175.94C216.25 166.38 208 139.33 208 104a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06ZM128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216Zm-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z"/></svg>
+      <span class="harang-jel" data-harang-jel hidden></span>
+    </button>
+    <div class="harang-buborek" id="harang-buborek" data-harang-buborek hidden></div>
+  </div>
+  <button class="tema-gomb" type="button" data-tema aria-label="Világos téma bekapcsolása">
+    <svg class="ikon-hold" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M233.54 142.23a8 8 0 0 0-8-2 88.08 88.08 0 0 1-109.8-109.8 8 8 0 0 0-10-10 104.84 104.84 0 0 0-52.91 37A104 104 0 0 0 136 224a103.09 103.09 0 0 0 62.52-20.88 104.84 104.84 0 0 0 37-52.91 8 8 0 0 0-1.98-7.98Zm-44.64 48.11A88 88 0 0 1 65.66 67.11a89 89 0 0 1 31.4-26A106 106 0 0 0 96 56a104.11 104.11 0 0 0 104 104 106 106 0 0 0 14.92-1.06 89 89 0 0 1-26.02 31.4Z"/></svg>
+    <svg class="ikon-nap" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M120 40V16a8 8 0 0 1 16 0v24a8 8 0 0 1-16 0Zm72 88a64 64 0 1 1-64-64 64.07 64.07 0 0 1 64 64Zm-16 0a48 48 0 1 0-48 48 48.05 48.05 0 0 0 48-48ZM58.34 69.66a8 8 0 0 0 11.32-11.32l-16-16a8 8 0 0 0-11.32 11.32Zm0 116.68-16 16a8 8 0 0 0 11.32 11.32l16-16a8 8 0 0 0-11.32-11.32ZM192 72a8 8 0 0 0 5.66-2.34l16-16a8 8 0 0 0-11.32-11.32l-16 16A8 8 0 0 0 192 72Zm5.66 114.34a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32-11.32ZM48 128a8 8 0 0 0-8-8H16a8 8 0 0 0 0 16h24a8 8 0 0 0 8-8Zm80 80a8 8 0 0 0-8 8v24a8 8 0 0 0 16 0v-24a8 8 0 0 0-8-8Zm112-88h-24a8 8 0 0 0 0 16h24a8 8 0 0 0 0-16Z"/></svg>
+  </button>
+</div></div>
+<nav class="rovatsor" aria-label="Rovatok"><div class="keret"><a href="/">Friss</a><a href="/rovat/modell">Modellek</a><a href="/rovat/eszkoz">Eszközök</a><a href="/rovat/video">Videó</a><a href="/rovat/kep">Kép</a><a href="/rovat/ugynok">Ügynökök</a><a href="/rovat/uzlet">Üzlet</a><a href="/rovat/kutatas">Kutatás</a><a href="/temak">Témák</a><a href="/forrasok">Források</a><span class="kitolto"></span></div></nav>
+</header>
+<main id="fo">
+<article class="cikk">
+  <div class="cikk-fej">
+    <a class="vissza" href="/"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224 128a8 8 0 0 1-8 8H59.31l58.35 58.34a8 8 0 0 1-11.32 11.32l-72-72a8 8 0 0 1 0-11.32l72-72a8 8 0 0 1 11.32 11.32L59.31 120H216a8 8 0 0 1 8 8Z"/></svg>Vissza a hírekhez</a>
+    <div class="meta"><span class="forras">Hugging Face</span><span>2026. szept. 10.</span><a class="kat" href="/rovat/eszkoz">eszköz</a></div>
+    <h1>A Hugging Face egyetlen munkafolyamatba gyúrta az AUTOMATIC1111-et</h1>
+    <p class="lead">A Workflow1111 nevű új Gradio-megoldás 11 különböző kép- és videógenerálási folyamatot egyesít egyetlen, könnyen testreszabható vizuális felületen.</p>
+    
+  </div>
+  <div class="cikk-racs">
+    <div class="cikk-fo">
+      <div class="media-doboz"><div class="lejatszo"><img class="poszter" src="/assets/kep/cb50b0c3c856.webp" alt="Rebuilding AUTOMATIC1111 with Gradio Workflow"></div></div>
+      <div class="torzs"><p>A <a class="kulso" href="https://huggingface.co" target="_blank" rel="noopener">Hugging Face</a> bemutatta a Workflow1111 projektet, amely a népszerű AUTOMATIC1111 képgeneráló felület szinte összes funkcióját egyetlen <strong>Gradio-alapú vizuális munkafolyamatba</strong> sűríti. A rendszer 11 különböző média-pipeline-t és 73 csomópontot tartalmaz, amelyek lefedik a szövegből történő képalkotást, a felskálázást, a háttéreltávolítást és a videógenerálást is.</p>
+<p>A munkafolyamat különlegessége, hogy a különböző feladatokat, például a promptok finomítását vagy a képelemzést különálló nyelvi modellek végzik a háttérben. A felhasználók a saját Hugging Face-fiókjuk segítségével <strong>közvetlenül a felhőben is futtathatják</strong> a rendszert, de a kód saját gépre vagy helyi grafikus kártyára is letölthető.</p>
+<p>Minden egyes kimeneti pont automatikusan egy-egy REST API-végponttá és MCP-eszközzé válik. Ez azt jelenti, hogy a generált munkafolyamatokat <strong>AI-asszisztensek és fejlesztői ügynökök</strong> is közvetlenül tudják vezérelni és használni.</p></div>
+      <details class="eredeti"><summary>Az eredeti szöveg (Hugging Face)</summary><div class="eredeti-szoveg">What&#x27;s on the canvas Text-to-image Hi-resolution fix Image-to-image Let an LLM write the prompt Read an image back into a prompt Detection to inpaint mask Prompt matrix Upscale and background removal Annotators PNG Info Image-to-video Running models on your own GPU Every output is an API Where this sits next to ComfyUI Build your own In our last post, we built five small gr.Workflow graphs and hinted at what it would take to build something as complex as AUTOMATIC1111&#x27;s stable-diffusion-webui. In this post we walk you through Workflow1111, where we have rebuilt most of AUTOMATIC1111&#x27;s feature set as a single workflow canvas.
+
+Workflow1111 is a graph of eleven media pipelines built using seventy-three nodes. It brings together SOTA models for text-to-image, hi-resolution fix, image-to-image, prompt-matrix grids, VLM interrogate, detection-to-inpaint masks, ControlNet-style annotators, background removal, PNG Info storing, and image-to-video.
+
+You can run any of these pipelines by signing in with your Hugging Face account or providing an access token. Once you sign in, the model calls use your own quota.
+
+👉 Try Workflow1111, or duplicate the Space and start rewiring it for your own use case.
+
+All the media pipelines are built from the same four operator kinds covered in our last post and the official guide. Each node on the canvas wraps one operator, and the operator&#x27;s inputs and outputs become the ports you connect edges to. As a quick reference on our four operator kinds: fn is a Python function, model is a model called through InferenceClient, space is another Gradio Space, and dataset is a row from a Hub dataset.
+
+Let&#x27;s go through the pipelines one by one.
+
+This is the core pipeline. It has the controls you&#x27;d expect from A1111&#x27;s txt2img tab: negative prompt, steps, CFG, seed, width and height, plus a model_id field for choosing the checkpoint. The prompt goes through a prompt-builder fn node first, which appends the selected style preset and cleans up the text, then into a model node that calls the checkpoint through Inference Providers. A post-process fn node writes the generation parameters into the PNG&#x27;s metadata on the way out, which is what the PNG Info pipeline reads back later.
+
+In Automatic1111, hi-resolution fix first upscales the txt2img output and then runs a second denoising pass. Here it&#x27;s a two-node detour instead. The text-to-image result goes into a FLUX.1-Kontext model node with a refine instruction (&quot;enhance fine detail and micro-texture, keep the composition identical&quot;) and comes back sharper and larger.
+
+That same Kontext node doubles as the image-to-image tab. Upload an image, describe the change you want, and it returns the edited image.
+
+Start with a rough prompt like &quot;A lighthouse in a storm.&quot; This pipeline sends it to a Qwen3-4B model node, and a small fn node turns the reply into a clean list of tags, capped at forty: &quot;stormy sea, wet rocks, dramatic composition, low angle shot, volumetric lighting, ominous tone.&quot; You can connect any diffusion model node to this output to render the image.
+
+There&#x27;s no custom node involved, unlike in ComfyUI. In a Gradio workflow the LLM and the diffusion model are both ordinary model operators on the same canvas.
+
+This is like AUTOMATIC1111&#x27;s Interrogate button, with a VLM doing the interrogating instead of CLIP. Qwen2.5-VL looks at a night-market photo and writes a prompt that could have produced it. A ViT classifier node reads the same image and returns labels: restaurant 51.9%, tobacco shop 15.6%, toyshop 9.1%.
+
+Both nodes use the same image input, so gr.Workflow runs them in parallel and you get both answers in roughly the time it takes to run one.
+
+AUTOMATIC1111 makes you paint an inpaint mask by hand. This pipeline generates one from a detector instead. DETR finds six objects in a street photo (three people, a dog, a bicycle, and a car), and from there the workflow splits into two branches: one draws the detected boxes on the original image, the other turns th</div></details>
+    </div>
+    <aside class="cikk-oldal">
+      <div class="miert"><h2>Miért számít</h2><p>A kreatív szakemberek és marketingesek mostantól bonyolult technikai tudás nélkül, egyetlen felületen <strong>kapcsolhatnak össze különböző AI-modelleket</strong> a teljes munkafolyamatuk automatizálására. Ráadásul a kész folyamatokat azonnal megoszthatják vagy <strong>beépíthetik a saját szoftveres eszközeikbe</strong> programozási nehézségek nélkül.</p></div>
+      <div class="forras-sav">
+        <a class="eredeti" href="https://huggingface.co/blog/gradio-workflow-1111" target="_blank" rel="noopener"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224 104a8 8 0 0 1-16 0V59.32l-66.33 66.34a8 8 0 0 1-11.32-11.32L196.68 48H152a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm-40 24a8 8 0 0 0-8 8v72H48V80h72a8 8 0 0 0 0-16H48a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-72a8 8 0 0 0-8-8Z"/></svg>Az eredeti megnyitása</a>
+        
+        <span>Eredeti cím: Rebuilding AUTOMATIC1111 with Gradio Workflow</span>
+      </div>
+      
+      <section class="tovabbi"><h2>További hírek</h2><ul><li><a href="/hir/tizedannyiert-fekezi-meg-a-lazado-ai-ugynokoket-a-goodfire-uj-eszkoze"><div class="meta"><span class="forras">TechCrunch AI</span><span>okt. 8. 18:00</span></div>Tizedannyiért fékezi meg a lázadó AI-ügynököket a Goodfire új eszköze</a></li><li><a href="/hir/ai-ugynokoket-vezerel-a-natura-uj-99-dollaros-okosgyuruje"><div class="meta"><span class="forras">TechCrunch AI</span><span>okt. 8. 18:00</span></div>AI-ügynököket vezérel a Natura új, 99 dolláros okosgyűrűje</a></li><li><a href="/hir/arculati-keszlettel-biztositja-a-markahuseget-az-elevenlabs"><div class="meta"><span class="forras">ElevenLabs (LinkedIn)</span><span>okt. 8. 16:05</span></div>Arculati készlettel biztosítja a márkahűséget az ElevenLabs</a></li></ul></section>
+    </aside>
+  </div>
+</article>
+</main>
+<div class="uj-hirek" aria-live="polite"></div>
+<footer class="lablec"><div class="keret">
+  <span>quicknews.hu: a legfontosabb AI-bejelentések magyarul, videóval.</span>
+  <span><a href="/temak">Témák</a> · <a href="/forrasok">Források</a> · <a href="/rss.xml">RSS</a></span>
+</div></footer>
+<script src="/assets/app.js?v=14" defer></script>
+</body>
+</html>

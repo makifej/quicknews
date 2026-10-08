@@ -1,0 +1,80 @@
+name: Hírek frissítése
+
+# Indítás: a Cloudflare Worker (indito/) negyedóránként hív workflow_dispatch-csel.
+# A GitHub saját ütemezője csak tartalék, mert megbízhatatlan.
+on:
+  workflow_dispatch:
+    inputs:
+      kenyszer:
+        description: "Éjszaka is fusson (kézi indításhoz)"
+        type: boolean
+        default: false
+  schedule:
+    - cron: "7,37 6-21 * * *"
+
+concurrency:
+  group: frissites
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  frissit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      TZ: Europe/Budapest
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - name: Éjszakai szünet (23:00 és 08:00 között nem fut, magyar idő)
+        id: ido
+        run: |
+          ORA=$(date +%H)
+          if [ "${{ inputs.kenyszer }}" != "true" ] && { [ "$ORA" -ge 23 ] || [ "$ORA" -lt 8 ]; }; then echo "fut=nem" >> $GITHUB_OUTPUT; else echo "fut=igen" >> $GITHUB_OUTPUT; fi
+      - uses: actions/checkout@v4
+        if: steps.ido.outputs.fut == 'igen'
+        with:
+          fetch-depth: 1
+      - name: Titkosított fájlok feloldása (git-crypt)
+        if: steps.ido.outputs.fut == 'igen'
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+        run: |
+          sudo apt-get install -y -qq git-crypt >/dev/null
+          echo "$GIT_CRYPT_KEY" | base64 -d > /tmp/gc.key
+          git-crypt unlock /tmp/gc.key
+          rm -f /tmp/gc.key
+          if head -c 9 build/render.py | grep -q GITCRYPT; then echo "A feloldás nem sikerült"; exit 1; fi
+          echo "feloldva"
+      - uses: actions/setup-python@v5
+        if: steps.ido.outputs.fut == 'igen'
+        with:
+          python-version: "3.12"
+      - if: steps.ido.outputs.fut == 'igen'
+        run: pip install -q -r requirements.txt
+      - name: Gyűjtés, fordítás, linkek, renderelés
+        if: steps.ido.outputs.fut == 'igen'
+        run: |
+          python3 build/gyujt.py
+          python3 build/fordit.py
+          python3 build/kiprobal_potlo.py --ir
+          python3 build/termek_linkelo.py --ir
+          python3 build/entitas_link.py
+          python3 build/link_ellenor.py
+          python3 build/render.py
+      - name: Változások visszaírása (a titkosított útvonalak újra titkosítva mennek)
+        if: steps.ido.outputs.fut == 'igen'
+        run: |
+          git config user.name "makifej"
+          git config user.email "149273611+makifej@users.noreply.github.com"
+          git add -A data site
+          if git diff --cached --quiet; then echo "nincs változás"; exit 0; fi
+          git commit -m "Frissítés: $(date '+%Y-%m-%d %H:%M')"
+          for i in 1 2 3; do git push && break || { git pull --rebase -X theirs && sleep 5; }; done
+      - name: Kiadás a Vercelre
+        if: steps.ido.outputs.fut == 'igen' && env.VERCEL_TOKEN != ''
+        run: npx --yes vercel@latest deploy --prod --yes --token "$VERCEL_TOKEN"

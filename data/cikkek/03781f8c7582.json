@@ -1,0 +1,41 @@
+{
+  "id": "03781f8c7582",
+  "slug": "gyorsul-a-kepgeneralas-kv-gyorsitotarat-kapnak-a-flow-modellek",
+  "forras_id": "linkedin",
+  "forras_nev": "Hugging Face (LinkedIn)",
+  "url": "https://www.linkedin.com/feed/update/urn:li:activity:7513771260087021568/",
+  "szerzo": "Hugging Face",
+  "publikalva": "2026-10-08T01:24:27.524000+00:00",
+  "media": {
+    "tipus": "mp4",
+    "url": "https://dms.licdn.com/playlist/vid/v2/D4D05AQH1oOvqkeISUQ/mp4-640p-30fp-crf28/B4DaEXO3x.KUBk-/0/1791391139201?e=2147483647&v=beta&t=DQg9QNA9bW-InB2eeYe_eSd-BfmAwwNTKAMiDT28iJE",
+    "kep": "https://media.licdn.com/dms/image/v2/D4D05AQH1oOvqkeISUQ/videocover-high/B4DaEXO3x.KUBM-/0/1791391138126?e=2147483647&v=beta&t=vR8E2i7QFI4psougQ7tqT73Y3hphoWl90jO4IgzRDjs",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7513771260087021568"
+  },
+  "cim_eredeti": "KV caching is typically linked to autoregressive models, with its use in flow-based models seldom seen. But that is slow",
+  "forrasok": [],
+  "szoveg_eredeti": "KV caching is typically linked to autoregressive models, with its use in flow-based models seldom seen. But that is slowly changing with models like QwenImage 2.1 and Flux.2-Klein-MV.\n\nSo, I wrote a long piece on KV caching in flow models for image generation. \n\nThe piece includes intuition, commentary, implementation details, benchmarks, & some quirky experiments.\n\nLink to the post is in the first comment ⬇️",
+  "modell": "gemini-3.5-flash",
+  "cim": "Gyorsul a képgenerálás: KV-gyorsítótárat kapnak a flow-modellek",
+  "lead": "A Hugging Face részletes elemzésben mutatja be, hogyan teszi gyorsabbá a KV-gyorsítótárazás az olyan képgeneráló modelleket, mint a Flux.2.",
+  "osszefoglalo": "A [Hugging Face](https://huggingface.co) egy átfogó technikai elemzést publikált a KV-gyorsítótárazás (KV caching) alkalmazásáról a flow-alapú képgeneráló modellekben. Bár ezt a technológiát korábban szinte csak a szöveges, autoregresszív modelleknél használták, az újabb képalkotóknál is egyre elterjedtebbé válik. A módszer segítségével **jelentősen felgyorsítható a képek előállítása** a minőség romlása nélkül.\n\nAz elemzés részletesen kitér az elméleti háttérre, a gyakorlati megvalósításra és a teljesítménymérésekre is. A technológiát már olyan modern modellekben is sikeresen alkalmazzák, mint a QwenImage 2.1 vagy a Flux.2-Klein-MV. A leírás bemutatja, hogyan lehet optimalizálni ezeket a folyamatokat a **hatékonyabb erőforrás-kihasználás** érdekében.",
+  "miert_szamit": "A gyorsabb képgenerálás közvetlenül csökkenti a várakozási időt és a számítási költségeket. A kreatív szakemberek így **lényegesen gyorsabban kísérletezhetnek** a vizuális tartalmakkal a mindennapi munka során.",
+  "cimkek": [
+    "Hugging Face",
+    "képgenerálás",
+    "Flux.2",
+    "gépi tanulás"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "entitas_linkek": [
+    "Hugging Face"
+  ],
+  "linkek_ellenorizve": true,
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}

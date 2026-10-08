@@ -1,0 +1,36 @@
+{
+  "id": "c3d8360c1095",
+  "slug": "valos-ideju-tartalommoderalasra-adott-ki-nyilt-ai-modellt-a-musubi",
+  "forras_id": "techcrunch",
+  "forras_nev": "TechCrunch AI",
+  "url": "https://techcrunch.com/2026/10/06/how-ai-decision-models-could-change-content-moderation/",
+  "szerzo": "Russell Brandom",
+  "publikalva": "2026-10-06T20:35:20+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://techcrunch.com/wp-content/uploads/2026/10/ai-agents-chatbots-GettyImages-2243730029.jpg?resize=1200,675"
+  },
+  "cim_eredeti": "How AI decision models could change content moderation",
+  "forrasok": [],
+  "szoveg_eredeti": "Last day to exhibit your breakthrough to 10,000+ tech leaders at Disrupt is on Oct 2. Book Exhibit Table Now.\n\nDisrupt doors open Oct. 13. Get your pass and bring someone with you at 50% off. REGISTER NOW.\n\nAs decision models spread across the industry, a company called Musubi has a new idea for how to put them to work: moderating content. On Tuesday, Musubi announced a lightweight decision model made for real-time moderation called PolicyLM-1.7B, released with open weights.\n\nThe idea is to take a content policy written in plain English and apply it to messages in under 50 milliseconds. Musubi’s model is designed to be similar in cost and speed to the AI classifier systems that power moderation on most social platforms — but because it has the flexibility of a modern LLM, it can apply complex policies without special training. Even more important, the model won’t need new training when the policy changes, allowing for human policy-setters to iterate as much as they need.\n\nAs Musubi co-founder and chief AI officer Filip Jankovic sees it, it gives platform managers a way to label content proactively.\n\n“Product teams just want a better understanding of what’s happening on their platform, especially as the amount of content is exponentially increasing,” Jankovic says. “Being able to label all of that in a very scalable, customizable way is extremely useful.”\n\nDecision models have become a hot topic in the AI world since the release of TypeSafe AI’s Jev in September, which was shortly followed by competing decision models from OpenAI and Amazon. Instead of outputting text, a decision model outputs outcome probabilities, though in this case the model outputs a binary judgement: Either the content is in the category or it isn’t. By limiting the model’s output to a set of predetermined choices, decision models are able to run faster and cheaper than large language models, while still maintaining the flexibility of the transformer architecture.\n\nOne early use case is reining in misbehavior by AI agents — so it’s only natural to apply the same technology to human misbehavior.\n\nNotably, Jankovic says his interest in decision models predates Jev, tracing it back to a 2024 project called GLiNER (Generalist Model for Named Entity Recognition) that deployed many of the same techniques.\n\nStill, Musubi isn’t wary of the comparison. If anything, the company is eager to use the new interest in decision models to shine a light on content moderation. “If Jev caught your eye, PolicyLM-1.7B is the same kind of model, trained specifically for content moderation, that you can run yourself,” the product announcement reads.\n\nWhen you purchase through links in our articles, we may earn a small commission. This doesn’t affect our editorial independence.\n\nGet 50% off a second passThe Disrupt experience is meant to be shared. Get your pass and bring a colleague, partner, or peer at 50% off. Cover more ground by making connections, building momentum, and discovering what’s next in the startup ecosystem.\n\nAt 19, founder raises $11M for Ghost, maker of a $3,499 computer for personal AI Dominic-Madori Davis\n\nFederal judge calls Flock ‘indiscriminate mass surveillance’ Anthony Ha\n\nAmazon responds to data center backlash, says it no longer uses NDAs Anthony Ha\n\nOpenAI safety employee resigns, claiming the company’s ‘culture is broken’ Anthony Ha\n\nMeta wants your next gadget to be Muse-infused Kirsten Korosec\n\nGoogle thinks SpaceX’s Starship has to launch 1,800 times before space data centers get off the ground Tim Fernholz\n\nWorld’s first enhanced geothermal power plant completed in just 23 months Tim De Chant",
+  "modell": "gemini-3.5-flash",
+  "cim": "Valós idejű tartalommoderálásra adott ki nyílt AI-modellt a Musubi",
+  "lead": "A Musubi bemutatta a PolicyLM-1.7B nyílt súlyú döntési modellt, amely kevesebb mint 50 ezredmásodperc alatt képes alkalmazni a szöveges szabályzatokat.",
+  "osszefoglalo": "A Musubi bejelentette a [PolicyLM-1.7B](https://www.musubilabs.ai/blog/introducing-policylm-1-7b) nevű, nyílt súlyú döntési modellt, amelyet kifejezetten valós idejű tartalommoderálásra terveztek. Az eszköz képes egy egyszerű angol nyelven megírt moderációs szabályzatot közvetlenül alkalmazni a beérkező üzenetekre. A folyamat mindössze 50 ezredmásodpercet vesz igénybe, így azonnali szűrést tesz lehetővé.\n\nA hagyományos nyelvi modellekkel szemben a döntési modellek nem szöveget generálnak, hanem egyértelmű igen vagy nem választ adnak a besorolásra. Ennek köszönhetően a rendszer **sokkal gyorsabb és olcsóbb** a nagy nyelvi modelleknél, miközben megőrzi azok rugalmasságát. A szabályzatok módosításakor nincs szükség a modell újraoktatására, a változtatások azonnal életbe lépnek.\n\nA modell súlyai **nyíltan elérhetők**, így a fejlesztők saját infrastruktúrán is futtathatják a rendszert. A megoldás hatékony segítséget nyújt a platformok üzemeltetőinek a felhasználói tartalom kezelésében és az AI-ügynökök tevékenységének korlátozásában.",
+  "miert_szamit": "A marketingesek és közösségimédia-menedzserek **saját nyelvi szabályzatok alapján, azonnal és programozás nélkül** szűrhetik a kéretlen vagy nemkívánatos kommenteket. Ez jelentősen csökkenti a moderációs költségeket és a manuális munkaigényt a saját felületeken.",
+  "cimkek": [
+    "Musubi",
+    "PolicyLM",
+    "tartalommoderálás",
+    "AI-modell"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}

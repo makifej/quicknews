@@ -1,0 +1,39 @@
+{
+  "id": "82ec214d4a76",
+  "slug": "sokkal-hatekonyabba-tehetok-az-ai-ugynokok-egy-uj-modszerrel",
+  "forras_id": "x-huggingface",
+  "forras_nev": "Hugging Face (X)",
+  "url": "https://x.com/huggingface/status/2106034221005312448",
+  "szerzo": "Hugging Face (@huggingface)",
+  "publikalva": "2026-10-02T14:51:01+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pbs.twimg.com/media/HToib44XsAA-VYJ.jpg?name=orig",
+    "x_url": "https://x.com/huggingface/status/2106034221005312448"
+  },
+  "cim_eredeti": "The same model, with the same weights, scores 62% in one agent harness and 33% in another.",
+  "forrasok": [],
+  "szoveg_eredeti": "The same model, with the same weights, scores 62% in one agent harness and 33% in another.\n\n@adithya_s_k and the @huggingface team just released the ultimate guide to multi-harness RL, and it's one of the most practical RL write-ups this year, and everything open!\n\nThe trick is simple. Don't touch the harness. Point it at a proxy instead of the model. The proxy speaks all four API formats coding agents use (OpenAI Chat Completions, OpenAI Responses, Anthropic Messages, Gemini). It records the exact token ids and logprobs vLLM sampled, and you train on that. You don't change a single line of Claude Code, Codex or OpenCode.\n\nResults:\n🔹 Trained across 4 harnesses at once, LFM2.5-2.6B by @liquidai went from 42% to 54%\n🔹 31% fewer tool calls, thanks to a small bonus for solving tasks in fewer steps\n🔹 Training in OpenCode alone took OpenCode from 34% to 58%, but the multi-harness model improved everywhere\n\nThey also tried the shortcut everyone reaches for: fine-tune on 3,189 successful rollouts from Qwen3.8-27B. Imitation plateaued at 47.5%, below both RL runs. Copying a bigger model doesn't get you there. Practice does.\n\nThe best part is that everything is open: the capture proxy in OpenEnv, the trainer in TRL, the tasks, the SFT data, the training code and all seven trained models.\nAgents will run in dozens of harnesses. \n\nNow open models can be trained for each of them, by anyone.\n\nRead it here 👇\nhttps://huggingface.co/spaces/FineEnvs/multi-harness-rl",
+  "modell": "gemini-3.5-flash",
+  "cim": "Sokkal okosabb AI-ügynököket hoz a Hugging Face új módszere",
+  "lead": "A Hugging Face olyan nyílt forrású módszert és eszközöket adott ki, amelyekkel az AI-ügynökök egyszerre több szoftveres környezetre is betaníthatók.",
+  "osszefoglalo": "A Hugging Face csapata bemutatta a több környezetet lefedő megerősítéses tanulásról szóló útmutatóját és eszköztárát. A fejlesztők rámutattak, hogy ugyanaz a modell az egyik tesztkörnyezetben 62 százalékos, míg a másikban mindössze 33 százalékos eredményt ér el. A probléma megoldására egy olyan **köztes proxy szervert** hoztak létre, amely négy elterjedt API-formátumot kezel, így a meglévő kódok módosítása nélkül rögzíti a tanításhoz szükséges adatokat.\n\nA módszerrel a LiquidAI LFM2.5-2.6B modellje 42 százalékról 54 százalékra javította a teljesítményét, miközben 31 százalékkal kevesebb eszközhívásra volt szüksége a feladatok megoldásához. A kísérletek azt is bizonyították, hogy a nagyobb modellek másolása helyett a **gyakorlati megerősítéses tanulás** hozza a legjobb eredményeket.\n\nA projekt minden eleme teljesen nyílt forrású, így a [FineEnvs](https://huggingface.co/spaces/FineEnvs/multi-harness-rl) oldalon elérhető a rögzítő proxy, a tréner, a feladatok, a tanítási kódok és 7 előre betanított modell is. Ezzel a megoldással mostantól bárki hatékonyabb és rugalmasabb AI-ügynököket fejleszthet.",
+  "miert_szamit": "Az AI-ügynököket használó vállalkozások **sokkal stabilabb és olcsóbb automatizációkat** kapnak, amelyek nem omlanak össze a környezet változásakor. A kevesebb felesleges művelet közvetlenül **csökkenti az API-költségeket** és gyorsítja a feladatok elvégzését.",
+  "cimkek": [
+    "Hugging Face",
+    "AI-ügynök",
+    "gépi tanulás",
+    "nyílt forráskód"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "FineEnvs Multi-Harness RL",
+    "url": "https://huggingface.co/spaces/FineEnvs/multi-harness-rl"
+  },
+  "linkek_ellenorizve": true,
+  "termeklinkek_nezve": true
+}

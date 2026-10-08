@@ -1,0 +1,84 @@
+{
+  "id": "3b2ec803e1a7",
+  "slug": "hamis-biztonsagi-tanusitvanyokat-szereztek-a-google-neveben",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/google-says-hackers-forged-its-gw.FqIO.T3WjY2QwVJEjmg",
+  "szerzo": "Perplexity Discover",
+  "publikalva": "2026-10-07T01:54:32.557700+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/upload/t_limit/v1791337982/getty_uploads/842005474_e0asmb.jpg"
+  },
+  "cim_eredeti": "A Google szerint hackerek hamisítottak biztonsági tanúsítványokat a nevében",
+  "forrasok": [
+    {
+      "nev": "Hackers obtain counterfeit TLS certificates for Google and other large services",
+      "url": "https://arstechnica.com/security/2026/10/hackers-obtain-counterfeit-tls-certificates-for-google-and-other-large-services/",
+      "domain": "arstechnica"
+    },
+    {
+      "nev": "Hackers Used Hijacked Country Domains to Forge Real Google TLS Certificates - Startup Fortune",
+      "url": "https://startupfortune.com/hackers-used-hijacked-country-domains-to-forge-real-google-tls-certificates/",
+      "domain": "Startup Fortune"
+    },
+    {
+      "nev": "Attackers obtained counterfeit TLS certificates for Google domains",
+      "url": "https://ua.news/en/technologies/zlovmisniki-otrimali-pidrobleni-tls-sertifikati-dlia-domeniv-google-ars-technica",
+      "domain": "UaNews"
+    },
+    {
+      "nev": "Michele Chubirka posted this - LinkedIn",
+      "url": "https://www.linkedin.com/posts/mchubirka_hackers-obtain-counterfeit-tls-certificates-activity-7513338473538592768-0DC0",
+      "domain": null
+    },
+    {
+      "nev": "Verify TLS (or SSL) inspection works - Google Help",
+      "url": "https://support.google.com/chrome/a/answer/3504943?hl=en",
+      "domain": "support.google.com"
+    },
+    {
+      "nev": "Chrome: New SSL Certificates Can't Support Client Authentication ...",
+      "url": "https://www.thesslstore.com/blog/chrome-ssl-certificate-client-authentication-ends-june-2026/",
+      "domain": "Hashed Out by The SSL Store™"
+    },
+    {
+      "nev": "Google Chrome Root Removal: DigiCert Trusted Root G4, DigiCert ...",
+      "url": "https://knowledge.digicert.com/alerts/google-chrome-root-removal-trusted-root-g4-assured-id-g2-id-g3",
+      "domain": null
+    },
+    {
+      "nev": "Reminder: Popular Browsers To Distrust Symantec SSL/TLS ...",
+      "url": "https://www.wordfence.com/blog/2018/09/reminder-popular-browsers-to-distrust-symantec-ssl-tls-certificates-starting-in-october/",
+      "domain": "Wordfence"
+    },
+    {
+      "nev": "Important SSL Certificate Changes Coming to Chrome in 2026",
+      "url": "https://comlaude.com/ssl-certificate-changes-coming-to-chrome-in-2026/",
+      "domain": "Com Laude"
+    },
+    {
+      "nev": "Google to distrust Entrust SSL/TLS certificates: What this means for ...",
+      "url": "https://www.sectigo.com/blog/google-to-distrust-entrust-ssl-tls-certificates-what-this-means-for-the-industry",
+      "domain": "Sectigo® Official"
+    }
+  ],
+  "szoveg_eredeti": "A támadók három országkódos felső szintű domain (ccTLD) felett vették át az irányítást, és ezt kihasználva jogosulatlanul szereztek TLS-tanúsítványokat több Google-domainre, valamint más nagy márkák és széles körben használt online szolgáltatások domainjeire is – közölte a Google kedden, október 6-án. A támadások a .gh (Ghána), a .sl (Sierra Leone) és az .as (Amerikai Szamoa) domaineket célozták.\n\nA Google, amelynek tulajdonosa az Alphabet, közölte, hogy frissítette a Chте böngészőt, így az blokkol minden olyan tanúsítványt, amelyet jogosulatlanként azonosítottak. Együttműködött a tanúsítványokat kiállító hitelesítésszolgáltatókkal is, hogy a Google-tulajdonokra kiadott tanúsítványokat visszavonassa. A vállalat nem árulta el, mely domainjeit érintette a támadás, nem nevezte meg a többi érintett szervezetet, és azt sem közölte, hány tanúsítványt állítottak ki.\n\nAz Ars Technica szerint a támadók módosították a három regisztrátumnál (domainnév-nyilvántartónál) kiválasztott domainek hiteles (authoritative) DNS-rekordjait. Ezeknek a rekordoknak az irányításával átmentek azokon az automatizált domainellenőrzéseken, amelyeket a tanúsítványkiadók a tanúsítvány kiállítása előtt lefuttatnak. A Google közölte, hogy az érintett domaintulajdonosok saját infrastruktúráját nem törték fel, és a tanúsítványkiadók betartották a szabályokat. A zónák feletti irányítás lehetővé tette a támadóknak, hogy módosítsák az IP-címeket és a névszerver-delegációkat, így át tudták irányítani a forgalmat, és meg tudták válaszolni az ellenőrzési kihívásokat.\n\nA TLS-tanúsítvány digitális aláírással köti össze a domainnevet és a nyilvános kulcsot. Aki jogosulatlan tanúsítvány birtokában van, kriptográfiailag hitelesen kiadhatja magát a valódi webhelynek. A Startup Fortune megjegyezte, hogy a domainvalidáció „csak azt bizonyítja, hogy az ellenőrzés pillanatában te irányítod a domaint\", azt viszont nem, hogy valóban jogosult vagy-e erre.\n\nA Google közölte, hogy a Chrome-felhasználóknak nem kell tenniük semmit a védelem érdekében. A domaintulajdonosokat arra figyelmeztette, hogy ne csak a böngészőoldali blokkolásra támaszkodjanak. Azt javasolta nekik, hogy figyeljék a tanúsítvány-átláthatósági naplókat (certificate transparency logs) a nem várt tanúsítványok miatt, és tegyenek közzé szigorú CAA (Certification Authority Authorization) DNS-rekordokat. Ezek a rekordok megakadályozzák, hogy a támadók felhasználják a gyorsítótárazott érvényesítési adatokat azután, hogy a domaintulajdonos visszaszerezte a DNS feletti irányítást.\n\nAz eset nem előzmények nélküli. A Startup Fortune szerint 2026 elején a google.tg domainre Let's Encrypt-tanúsítványt állítottak ki, miután feltörték Togo .tg domainnyilvántartóját. 2011-ben a holland DigiNotar tanúsítványkiadó megtámadói hamis, helyettesítő karaktert (wildcard) tartalmazó tanúsítványt hoztak létre a google.com domainre, és ezt iráni internetezők ellen használták fel. A Google fenyegetéselemzői egy Sea Turtle nevű kampányt is nyomon követtek: ennek során ellopott hitelesítő adatokkal térítettek el domaineket több országkódos legfelső szintű domain (ccTLD) nyilvántartóján, és állítattak ki hozzájuk tanúsítványokat.\n\n„Ehhez az incidenshez nem kellett sem nulladik napi sebezhetőség az OpenSSL-ben, sem kriptográfiai törés – írta a Startup Fortune. – Elég volt hozzá egy alulfinanszírozott, gyengén védett állami domainnyilvántartó.\"",
+  "modell": "gemini-3.5-flash",
+  "cim": "Állami domainek feltörésével hamisítottak Google-tanúsítványokat",
+  "lead": "Ghánai, sierra leonei és amerikai szamoai domainnyilvántartók feltörésével szereztek hamis biztonsági tanúsítványokat a Google nevében.",
+  "osszefoglalo": "A Perplexity által feldolgozott források szerint támadók három országos domainnyilvántartó (.gh, .sl és .as) felett vették át az irányítást. Ezt kihasználva **jogosulatlanul szereztek TLS-tanúsítványokat** a Google és más nagy márkák domainjeire.\n\nA hackerek a DNS-rekordok módosításával játszották ki a tanúsítványkiadók automatikus ellenőrzéseit, így saját infrastruktúra feltörése nélkül is hitelesnek tűnő webhelyeket hozhattak létre. A Google már frissítette a Chrome böngészőt, amely így **automatikusan blokkolja a hamis tanúsítványokat**, így a felhasználóknak nincs teendőjük.\n\nA szakértők szerint az eset rávilágít a gyengén védett állami domainnyilvántartók kockázataira. A domaintulajdonosoknak azt javasolják, hogy **használjanak szigorú CAA DNS-rekordokat** a hasonló visszaélések megelőzésére.",
+  "miert_szamit": "Bár a Chrome automatikusan véd, a weboldaltulajdonosoknak érdemes **szigorú CAA DNS-rekordokat beállítaniuk**, hogy megvédjék saját domainjeiket a hasonló visszaélésektől. Emellett fontos **rendszeresen ellenőrizni a tanúsítvány-átláthatósági naplókat**, ha külföldi végződésű domaineket használnak.",
+  "cimkek": [
+    "Google",
+    "Chrome",
+    "kiberbiztonság",
+    "domain"
+  ],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": false,
+  "kiprobalhato": null
+}

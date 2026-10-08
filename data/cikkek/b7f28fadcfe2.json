@@ -1,0 +1,95 @@
+{
+  "id": "b7f28fadcfe2",
+  "slug": "rendkivul-gyors-dontesi-modellekkel-ujul-meg-az-ai-piac",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/amazon-cloudflare-open-source-TJrhNag7Qu6op2X_F7xtOw",
+  "szerzo": "Perplexity Discover",
+  "publikalva": "2026-10-02T16:37:16.285798+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--slaSe9oL--/t_limit/https://substackcdn.com/image/fetch/%24s_%21WD3n%21%2Cw_1200%2Ch_675%2Cc_fill%2Cf_jpg%2Cq_auto:good%2Cfl_progressive:steep%2Cg_auto/https%253A%252F%252Fsubstack-post-media.s3.amazonaws.com%252Fpublic%252Fimages%252Fd5355048-120e-4fd2-9fc3-2d69d75b022d_960x540.jpeg"
+  },
+  "cim_eredeti": "Az Amazon és a Cloudflare nyílt forráskódú döntési modellekkel száll szembe a TypeSafe Jevével",
+  "forrasok": [
+    {
+      "nev": "Amazon releases its own Jev clone as the AI decision model race turns into a pile-up - Startup Fortune",
+      "url": "https://startupfortune.com/amazon-releases-its-own-jev-clone-as-the-ai-decision-model-race-turns-into-a-pile-up/",
+      "domain": "Startup Fortune"
+    },
+    {
+      "nev": "Major tech firms join race for decision AI models after Jev debut",
+      "url": "https://www.digitaltoday.co.kr/en/view/110490/jev-decision-ai-model-race-heats-up-as-major-tech-firms-join-in",
+      "domain": "디지털투데이"
+    },
+    {
+      "nev": "Introducing System One Models & Jev - TypeSafe AI Blog",
+      "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+      "domain": "typesafe.ai"
+    },
+    {
+      "nev": "Introducing Jev, the First System One Model from TypeSafe AI",
+      "url": "https://www.linkedin.com/posts/diogomda_after-co-inventing-chatgpt-i-spent-2-years-activity-7505691479286308864-sem_",
+      "domain": "LinkedIn"
+    },
+    {
+      "nev": "A new kind of AI model from a ChatGPT inventor is thrilling developers",
+      "url": "https://techcrunch.com/2026/09/18/a-new-kind-of-ai-model-from-a-chatgpt-inventor-is-thrilling-developers/",
+      "domain": "TechCrunch"
+    },
+    {
+      "nev": "AWS Launches a Local Answer to TypeSafe's Jev Decision Model",
+      "url": "https://ground.news/article/aws-launches-a-local-answer-to-typesafes-jev-decision-model",
+      "domain": "Ground News"
+    },
+    {
+      "nev": "Introducing Strands Decider 2B: a small, open source, decision model",
+      "url": "https://strandsagents.com/blog/introducing-strands-decider/",
+      "domain": "Strands Agents SDK"
+    },
+    {
+      "nev": "Why AWS Gave Strands a Model That Can't Write a Word",
+      "url": "https://theaieconomy.substack.com/p/strands-decider-2b",
+      "domain": "The AI Economy"
+    },
+    {
+      "nev": "our open-source decision models, and new RL fine-tuning platform",
+      "url": "https://blog.cloudflare.com/clef-decision-models/",
+      "domain": "Cloudflare Blog"
+    },
+    {
+      "nev": "Cloudflare launches Clef as TypeSafe's 'decision model' idea ...",
+      "url": "https://app.dealroom.co/news/note/cloudflare-launches-clef-as-typesafe-s-decision-model-idea-spreads-across-big-tech",
+      "domain": null
+    },
+    {
+      "nev": "Cloudflare releases Clef, open-weight decision models,... - daily.dev",
+      "url": "https://daily.dev/posts/cloudflare-releases-clef-open-weight-decision-models-and-an-rl-fine-tuning-service-q5kwww262",
+      "domain": "daily"
+    },
+    {
+      "nev": "Clef: Open-source decision model - Cloudflare",
+      "url": "https://www.cloudflare.com/resource/clef-rl-interest",
+      "domain": "Cloudflare"
+    }
+  ],
+  "szoveg_eredeti": "Alig két héttel azután, hogy a TypeSafe AI bemutatta a Jevet, az OpenAI, az Amazon Web Services és a Cloudflare is előállt a saját döntési modelljével. Ezek a rendszerek nem szöveget írnak: egy rögzített listából választanak ki egy választ, és valószínűségi értéket rendelnek hozzá. A kiadások hulláma pedig gyorsan zsúfolt versenyt csinált egy korábban szűk réteget érdeklő ötletből.\n\nA rohanás jól mutatja, milyen gyorsan elmozdult az iparág afelé, amit a TypeSafe „System One\" modelleknek nevez. Ezek az AI-ügynökök által egész nap meghozott gyors, rutinszerű döntésekért felelnek, például azért, hogy sürgős-e egy feladat, folytassák vagy leállítsák-e, illetve engedélyezzenek vagy blokkoljanak egy műveletet.\n\nA TypeSafe AI-t Diogo Almeida alapította, aki korábban az OpenAI kutatója volt. A cég szeptember közepén mutatta be a Jevet, és a TechCrunch beszámolója szerint a rendszer kimenetét nem szövegként, hanem „kalibrált döntésekként\" írja le. Almeida a bejelentő bejegyzésében azt mondta, hogy a modellek „szavak helyett valószínűségekkel és megbízhatósági értékekkel ellátott döntéseket adnak ki\". A TypeSafe szerint a Jev ezeken a feladatokon a meglévő nagy nyelvi modellekkel azonos teljesítményt nyújt, miközben két nagyságrenddel gyorsabban fut. Az ára millió tokenenként 0,042 dollár. A Startup Fortune jelentése szerint a cég 40 millió dolláros magvetőtőke-finanszírozással lépett ki a rejtőzködő üzemmódból, a kört a DCVC vezette, és a befektetők 10 milliárd dolláros értékelés mellett érdeklődnek iránta.\n\nAz OpenAI szeptember végi fejlesztői rendezvényén bemutatta a „Decisions API\" korlátozott körű kiadását, amely a Luna modellre épül. „Ha leszűkítjük a választási lehetőségek körét, nagyon gyors működést érhetünk el úgy, hogy közben megmarad a képértés, a széles nyelvi támogatás és a biztonsági korlátok rendszere\" – mondta Sam Altman vezérigazgató.\n\nAz Amazon Strands Agents csapata kiadta a Strands Decider 2B-t, egy nyílt forráskódú modellt Apache 2.0 licenc alatt. Helyi processzoron vagy videokártyán fut, és tízezred-másodperces nagyságrendben, néhány tíz milliszekundum alatt válaszol. A Qwen3.5-2B-re épülő modell egyetlen előre irányuló lépésben ad vissza választásokat, igen/nem valószínűségeket vagy pontszámokat. Az AWS szerint a fejlesztők már most is használnak kis döntési modelleket például modellválasztásra, eszközkiválasztásra, védőkorlátokhoz és szabályzati besorolásra.\n\nA Cloudflare kiadott két nyílt súlyozású modellt, a Clef-et és a Clef-flasht, amelyek a Workers AI platformján futnak. Emellett elindított egy új, megerősítéses tanuláson alapuló finomhangolási szolgáltatást is. A cég állítása szerint a Clef pontosságban és késleltetésben is megveri a Jevet több tucat teljesítménytesztben. A Clef-flash medián késleltetését körülbelül 39 milliszekundumra teszi. A Clef a Workers AI-on millió tokenenként 0,24 dollárba kerül, ami nagyjából hatszorosa a Jev árának, de a súlyok ingyenesen letölthetők.\n\nA nyílt kiadások nyomás alá helyezik a TypeSafe üzleti modelljét. A Startup Fortune a folyamatot „támogatott árucikkesedésnek” nevezte, és úgy érvelt, hogy a startup API-hozzáférést árul, miközben „a világ két legnagyobb infrastruktúra-cége ingyenes licenc alatt adott ki egyenértékű képességeket”.\n\nA TypeSafe nem hozta nyilvánosságra a Jev architektúráját.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Rendkívül gyors döntési modellekkel újul meg az AI-piac",
+  "lead": "A TypeSafe Jev után az OpenAI, az Amazon és a Cloudflare is bemutatta saját, szövegírás helyett villámgyors döntésekre optimalizált rendszerét.",
+  "osszefoglalo": "A Perplexity által feldolgozott források szerint új kategória hódít az AI-piacon. A döntési modellek nem szöveget generálnak, hanem egy rögzített listából választanak választ, és ehhez **valószínűségi értéket** rendelnek. A TypeSafe AI által elindított trendhez azonnal csatlakozott az OpenAI, az Amazon és a Cloudflare is.\n\nEzek a rendszerek az AI-ügynökök gyors, rutinszerű döntéseiért felelnek, mint például egy feladat prioritása vagy egy folyamat leállítása. Az Amazon **Strands Decider 2B** nevű nyílt forráskódú modellje helyi eszközökön futva akár néhány tíz milliszekundum alatt válaszol. A Cloudflare pedig kiadta a **Clef** modelleket, amelyek ingyenesen letölthetők.\n\nA fejlesztők ezeket a kisméretű modelleket leginkább munkafolyamatok irányítására, biztonsági korlátok beállítására és egyéb modellek közötti választásra használják. A technológia elterjedése drasztikusan **lecsökkentheti az AI-alapú automatizációk** futási idejét és költségeit.",
+  "miert_szamit": "Az új döntési modellekkel sokkal gyorsabb és olcsóbb AI-ügynököket építhetünk a mindennapi feladatok automatizálására. Ezzel a technológiával **jelentősen csökkenthetjük a rutinfeladatok futtatási költségét** és válaszidejét a saját munkafolyamatainkban.",
+  "cimkek": [
+    "döntési modell",
+    "TypeSafe",
+    "Amazon",
+    "Cloudflare"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "dupla_of": "f85c4d066c1c"
+}

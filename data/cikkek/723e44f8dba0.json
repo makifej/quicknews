@@ -1,0 +1,95 @@
+{
+  "id": "723e44f8dba0",
+  "slug": "eszkozon-futo-multimodalis-keresomodellt-adott-ki-a-google",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/google-releases-embeddinggemma-570JifUxRLeqL0xUg6ntmw",
+  "szerzo": "Perplexity Discover",
+  "publikalva": "2026-10-06T17:39:16.375769+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/upload/t_limit/v1791308828/url_uploads/embeddinggemma2-banner_169.width-2200.format-webp_ohkf72.jpg"
+  },
+  "cim_eredeti": "A Google kiadta az EmbeddingGemma 2 multimodális nyílt modellt",
+  "forrasok": [
+    {
+      "nev": "EmbeddingGemma 2: The Developer Guide",
+      "url": "https://developers.googleblog.com/embeddinggemma-2-the-developer-guide/",
+      "domain": null
+    },
+    {
+      "nev": "EmbeddingGemma 2: an open, lightweight multimodal embedding model",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
+      "domain": "The Keyword"
+    },
+    {
+      "nev": "Introducing EmbeddingGemma: The Best-in-Class Open Model for ...",
+      "url": "https://developers.googleblog.com/en/introducing-embeddinggemma/",
+      "domain": null
+    },
+    {
+      "nev": "DeepMind Debuts EmbeddingGemma 2, Mapping Five Modalities Into One Space",
+      "url": "https://www.unite.ai/deepmind-debuts-embeddinggemma-2-mapping-five-modalities-into-one-space/",
+      "domain": "Unite.AI"
+    },
+    {
+      "nev": "Google launches EmbeddingGemma 2 for on-device multimodal search By Investing.com",
+      "url": "https://www.investing.com/news/stock-market-news/google-launches-embeddinggemma-2-for-ondevice-multimodal-search-93CH-4934995",
+      "domain": "Investing.com"
+    },
+    {
+      "nev": "Google DeepMind launches multimodal AI model for on-device search",
+      "url": "https://www.tradingview.com/news/seekingalpha:307fe54b3094b:0-google-deepmind-launches-multimodal-ai-model-for-on-device-search/",
+      "domain": "TradingView"
+    },
+    {
+      "nev": "EmbeddingGemma model overview - Google AI for Developers",
+      "url": "https://ai.google.dev/gemma/docs/embeddinggemma",
+      "domain": "Google AI for Developers"
+    },
+    {
+      "nev": "EmbeddingGemma - Google DeepMind",
+      "url": "https://deepmind.google/models/gemma/embeddinggemma/",
+      "domain": "Google DeepMind"
+    },
+    {
+      "nev": "google/embeddinggemma-300m - Hugging Face",
+      "url": "https://huggingface.co/google/embeddinggemma-300m",
+      "domain": "Huggingface"
+    },
+    {
+      "nev": "EmbeddingGemma: Powerful and Lightweight Text Representations",
+      "url": "https://arxiv.org/abs/2509.20354",
+      "domain": "arXiv.org"
+    },
+    {
+      "nev": "embeddinggemma - Ollama",
+      "url": "https://ollama.com/library/embeddinggemma",
+      "domain": "Ollama"
+    },
+    {
+      "nev": "google/embedding-gemma-300m - LM Studio",
+      "url": "https://lmstudio.ai/models/google/embedding-gemma-300m",
+      "domain": "LM Studio"
+    }
+  ],
+  "szoveg_eredeti": "A Google DeepMind október 6-án, kedden adta ki az EmbeddingGemma 2-t. A nyílt súlyozású modell a szöveget, a kódot, a képeket, a videókat és a hangot egyetlen közös, 768 dimenziós beágyazási térbe képezi le, és elég kicsi ahhoz, hogy telefonon vagy laptopon is fusson. A modell 740 millió paraméteres, a Gemma 4 architektúrára épül, és a kereskedelmi felhasználást is lehetővé tevő Apache 2.0 licenccel jelent meg.\n\nA kiadással a Google az eszközön futó beágyazási megoldásait a szövegen túlra is kiterjeszti. A beágyazások a tartalmat a jelentését megragadó számokká alakítják, a keresőeszközök és a visszakereséssel bővített generálást (RAG) használó rendszerek pedig ezek segítségével találják meg a releváns anyagokat. A Google elmondása szerint a modellel például egy hangjegyzet alapján lehet megkeresni egy adott videórészletet, vagy szöveges lekérdezéssel lehet órákig tartó hangfelvételek között keresni. Az első EmbeddingGemma, egy 308 millió paraméteres, kizárólag szöveget kezelő, Gemma 3-ra épülő modell 2025 szeptemberében jelent meg. A Google szerint több mint 20 milliószor töltötték le.\n\nA fejlesztőknek nem kell betölteniük a teljes modellt. A Google fejlesztői útmutatója szerint a szöveges és kódolási mag 270 millió paraméteres, a képi enkóder további 170 milliót, a hangenkóder pedig 300 milliót ad hozzá. Minden kombináció ugyanabban a vektortérben állít elő vektorokat, így a csak szöveges konfigurációval beágyazott lekérdezés közvetlenül összevethető a teljes modellel beágyazott dokumentumokkal. Minden bemenet 8192 tokenes kontextusablakot használ, ami az eredeti modellénél négyszer nagyobb. Ez egyetlen bemenetben legfeljebb 29 képhez, 58 videókockához vagy 5,5 perc hanganyaghoz elég.\n\nAz Investing.com beszámolója szerint a modell 78,68 pontot ért el a Massive Text Embedding Benchmark kódolási tesztjén, ami 9,92 ponttal több, mint az elődjének 68,76 pontja. A Matryoshka Representation Learning nevű technika lehetővé teszi, hogy a fejlesztők akár 128 dimenzióra rövidítsék a vektorokat, ami legfeljebb hatodára csökkenti a tárhelyigényt. A Google fejlesztői útmutatója szerint a 256 dimenziós vektorok a kép-, videó- és beszédalapú keresésnél megőrzik a teljes minőség nagyjából 95%-át. 128 dimenziónál a multimodális keresés minősége nagyjából 75%-ra esik vissza.\n\nA Unite.AI szerint a modellkártya megjegyzi, hogy az EmbeddingGemma 2 esetében nem történt utólagos biztonsági finomhangolás. Így az alkalmazásszintű védelmi megoldások kialakítása a fejlesztőkre marad.\n\nA Google közlése szerint kvantálással egy Pixel 11 Pro készüléken a csak szöveges súlyok nagyjából 191 megabájt aktív memóriát használnak, a teljes multimodális modell pedig nagyjából 567 megabájtot. A Seeking Alpha beszámolója szerint a Google AI Edge Gallery alkalmazás két, a modellre épülő demóval bővül. Az Instant Media Search segítségével leírás alapján kereshetünk a helyben tárolt fotók és videók között, a Video Moments Finder pedig olyan jeleneteket is megtalál, mint a „frizbit elkapó kutya\", anélkül, hogy előbb le kellene írnia a hangsávot. A Google bemutatta a Google AI Edge Foresight for Mac nevű kísérleti alkalmazást is, amely a számítógépen tárolt megbeszélés-átiratokban, jegyzetekben, képekben és dokumentumokban keres.\n\nA súlyok már elérhetők a Hugging Face-en és a Kaggle-n. A Google szerint a modell a következő hetekben megjelenik az Android ML Kitjében is, a hardveres gyorsítást támogató eszközökön pedig ezt a gyorsítást is használni lehet majd. A Gemini Enterprise Agent Platform Model Gardenben való elérhetőség a Google szerint szintén „hamarosan\" érkezik.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Mobilra is megérkezett a Google új, multimodális keresőmodellje",
+  "lead": "Az EmbeddingGemma 2 szöveget, képet, videót és hangot közös rendszerbe rendezve teszi lehetővé a villámgyors, helyi keresést akár egy okostelefonon is.",
+  "osszefoglalo": "A Google DeepMind bemutatta az **EmbeddingGemma 2** nyílt forráskódú modellt, amely képes a szövegeket, kódokat, képeket, videókat és hanganyagokat egyetlen közös keresési térbe rendezni. A Perplexity összegzése szerint a 740 millió paraméteres eszköz különlegessége, hogy olyan kicsi, hogy akár egy laptopon vagy okostelefonon is közvetlenül futtatható.\n\nA fejlesztőknek nem kell a teljes modellt betölteniük, mert az modulárisan épül fel, így a szöveges, képi és hangalapú keresőfunkciók külön is használhatók. A modell **8192 tokenes kontextusablakot** kezel, ami egyszerre legfeljebb 29 kép, 58 videókocka vagy 5,5 percnyi hanganyag feldolgozását teszi lehetővé. Egy Pixel 11 Pro telefonon a teljes multimodális változat mindössze 567 megabájt memóriát fogyaszt.\n\nA modell szabadon felhasználható súlyai már elérhetők a Hugging Face és a Kaggle felületén. A Google emellett bemutatott két **helyi keresést segítő demóalkalmazást** is, amelyekkel a telefonon tárolt képek és videók között lehet keresni egyszerű leírások alapján.",
+  "miert_szamit": "Ez a technológia lehetővé teszi, hogy a jövőben **internetkapcsolat nélkül, közvetlenül a saját eszközeinken** keressünk rá konkrét pillanatokra órányi videókban vagy hanganyagokban. A kreatív szakemberek így sokkal **gyorsabban és biztonságosabban** rendszerezhetik a helyi médiaállományaikat anélkül, hogy azokat felhős tárhelyekre kellene feltölteniük.",
+  "cimkek": [
+    "Google",
+    "keresés",
+    "mesterséges intelligencia",
+    "EmbeddingGemma"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "dupla_of": "3d2aa391b720"
+}

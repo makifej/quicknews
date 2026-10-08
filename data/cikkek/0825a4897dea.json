@@ -1,0 +1,39 @@
+{
+  "id": "0825a4897dea",
+  "slug": "ket-szupergyors-eszkozokon-futo-dontesi-modellt-adott-ki-a-liquid-ai",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/LiquidAI/open-d1",
+  "szerzo": null,
+  "publikalva": "2026-10-07T16:54:33+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/644249b08443bce4c9890a0f/hLsllw4zhC04cVGiV69v0.png"
+  },
+  "cim_eredeti": "Multimodal open d1 decision models for the edge",
+  "forrasok": [],
+  "szoveg_eredeti": "How we built decision models for the edge Benchmark results Speed How to use open d1 decision models Get Started with open d1 decision models Citation Today, we release two open decision models in our d1 decision model family: d1-3B and d1-omni-600M (experimental).\n\nThese open d1 decision models are built on our Liquid Foundation Models (LFMs). Unlike our generative models, decision models don’t produce tokens but answer in a single forward pass.\n\nd1-3B and d1-omni-600M are trained from two very different backbones:\n\nWe benchmarked d1-3B and d1-omni-600M on seven public datasets spanning reading comprehension, toxicity detection, intent classification, medical QA, and cross-lingual understanding. d1-3B achieves a mean score of 82.9, the highest in the table and above Decider 4B. d1-omni-600M scores 78.4, surpassing Decider 2B (77.1) with only a quarter of the parameters.\n\nWe validated that d1-3B retains the vision capabilities of its LFM2.5-VL-3B backbone on standard vision benchmarks, and that d1-omni-600M handles all three modalities. We do not report any vision or audio benchmarks, as the Decision Index v0.3 includes only a private vision split and audio decision benchmarks are currently an open problem.\n\nIn collaboration with NVIDIA, we evaluated d1-3B on the NVIDIA stack across NVIDIA GeForce RTX 4090, NVIDIA Jetson AGX Thor, Jetson AGX Orin 64 GB, and Jetson Orin Nano. Since d1-omni-600M is an early research release, we don’t report any speed numbers for it in this release.\n\nEdge inference. d1-3B answers a single question in under 50 ms on every measured device. Three questions take only 1.3x the time of one, with the AGX Thor going from 16 ms to 20 ms.\n\nGPU inference. On GPU, d1-3B answers a question in under 10 ms and processes a 384px image in under 18 ms on both platforms.\n\nReach for d1 decision models when you need fast, structured decisions, including multimodal inputs. d1-3B delivers the highest decision quality at its size, while d1-omni-600M fits where footprint matters.\n\nInstall the dependencies (requires transformers>=5.14):\n\nThese model ship their own code, so load it with trust_remote_code=True:\n\nFor brevity, we only include the example for d1-3B. See the d1-omni-600M model card for instructions on how to run it.\n\nBoth decision models are open-weight and available on Hugging Face today:\n\nIf you use this work, please cite the release blog:",
+  "modell": "gemini-3.5-flash",
+  "cim": "50 milliszekundumos döntési modelleket adott ki a Liquid AI",
+  "lead": "A Liquid AI bemutatta a d1-3B és d1-omni-600M nyílt modelleket, amelyek szöveggenerálás helyett azonnali, strukturált döntéseket hoznak helyi eszközökön.",
+  "osszefoglalo": "A [Liquid AI](https://www.liquid.ai) bejelentette a **d1 döntési modellcsalád** első két nyílt forráskódú tagját, a d1-3B-t és a kísérleti d1-omni-600M-et. Ezek a modellek a hagyományos generatív társaikkal ellentétben nem szöveget gyártanak, hanem egyetlen lépésben, azonnali és strukturált döntéseket hoznak meg.\n\nA d1-3B modell képes szöveges és vizuális adatok feldolgozására, és a mérések szerint helyi eszközökön is **kevesebb mint 50 milliszekundom** alatt válaszol. A kisebb, d1-omni-600M változat ráadásul a hangalapú bemeneteket is kezeli, miközben méretéhez képest kiemelkedő pontosságot nyújt.\n\nMindkét modell nyílt súlyokkal, szabadon elérhető a [Hugging Face](https://huggingface.co/blog/LiquidAI/open-d1) felületén keresztül. Használatukhoz a Transformers könyvtár legújabb verziójára van szükség.",
+  "miert_szamit": "Az új modellekkel a fejlesztők **rendkívül gyors és olcsó** helyi AI-alkalmazásokat építhetnek. Ez lehetővé teszi a valós idejű adatfeldolgozást és az **azonnali automatizációt** közvetlenül a felhasználó eszközén, internetkapcsolat nélkül.",
+  "cimkek": [
+    "Liquid AI",
+    "döntési modell",
+    "Hugging Face",
+    "edge AI"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "entitas_linkek": [
+    "Liquid AI"
+  ],
+  "linkek_ellenorizve": true,
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}

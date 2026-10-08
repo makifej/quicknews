@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<script>try{if(localStorage.getItem('qn-tema')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}</script>
+<meta name="theme-color" content="#181818">
+<title>Közös gyűjtőhelyet kaptak az AI-ágenseket tanító környezetek · quicknews.hu</title>
+<meta name="description" content="A Hugging Face Hub új felületet indított a megerősítéses tanulási (RL) környezeteknek, így egyszerűbbé válik az AI-ágensek fejlesztése és tesztelése.">
+<link rel="canonical" href="https://quicknews.hu/hir/kozos-helyre-gyujti-az-ai-agensek-tesztkornyezeteit-a-hugging-face">
+<meta property="og:title" content="Közös gyűjtőhelyet kaptak az AI-ágenseket tanító környezetek · quicknews.hu">
+<meta property="og:description" content="A Hugging Face Hub új felületet indított a megerősítéses tanulási (RL) környezeteknek, így egyszerűbbé válik az AI-ágensek fejlesztése és tesztelése.">
+<meta property="og:image" content="https://quicknews.hu/assets/kep/a30a6af008de.webp">
+<meta property="og:url" content="https://quicknews.hu/hir/kozos-helyre-gyujti-az-ai-agensek-tesztkornyezeteit-a-hugging-face">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="quicknews.hu">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/ikon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="quicknews.hu" href="/rss.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css?v=40">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "Közös gyűjtőhelyet kaptak az AI-ágenseket tanító környezetek", "description": "A Hugging Face Hub új felületet indított a megerősítéses tanulási (RL) környezeteknek, így egyszerűbbé válik az AI-ágensek fejlesztése és tesztelése.", "datePublished": "2026-09-28T00:00:00+00:00", "inLanguage": "hu", "isBasedOn": "https://huggingface.co/blog/rl-environments", "publisher": {"@type": "Organization", "name": "quicknews.hu"}}</script>
+</head>
+<body>
+<a class="ugras" href="#fo">Ugrás a tartalomra</a>
+<header class="fejlec" data-fejlec><div class="fejlec-felso"><div class="keret">
+  <a class="logo" href="/"><span class="pont"></span><span class="nev">quicknews<span class="hu">.hu</span></span></a>
+  <p class="szlogen">AI hírek, hogy <mark>ne maradj le</mark></p>
+  <div class="fejlec-info"><span>2026. október 8., csütörtök · frissítve 18:17</span><span class="frissit"><button type="button" class="frissit-gomb" hidden>Frissítés most</button><span class="frissit-allapot" aria-live="polite"></span></span></div>
+  <div class="kereso" data-kereso>
+    <form class="kereso-mezosor" role="search" onsubmit="return false">
+      <svg class="kereso-ikon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72 72.08 72.08 0 0 1-72-72Z"/></svg>
+      <input type="search" id="kereso-mezo" placeholder="Keresés a hírekben" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="kereso-panel" aria-label="Keresés a hírekben" data-kereso-mezo>
+      <button type="button" class="kereso-torlo" aria-label="Keresés törlése" data-kereso-zar hidden>×</button>
+    </form>
+    <div class="kereso-panel" id="kereso-panel" data-kereso-panel hidden><div class="kereso-talalatok" role="listbox" aria-label="Találatok" data-kereso-talalatok></div></div>
+  </div>
+  <div class="harang" data-harang>
+    <button class="harang-gomb" type="button" aria-expanded="false" aria-controls="harang-buborek" aria-label="Új hírek">
+      <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.8 175.94C216.25 166.38 208 139.33 208 104a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06ZM128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216Zm-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z"/></svg>
+      <span class="harang-jel" data-harang-jel hidden></span>
+    </button>
+    <div class="harang-buborek" id="harang-buborek" data-harang-buborek hidden></div>
+  </div>
+  <button class="tema-gomb" type="button" data-tema aria-label="Világos téma bekapcsolása">
+    <svg class="ikon-hold" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M233.54 142.23a8 8 0 0 0-8-2 88.08 88.08 0 0 1-109.8-109.8 8 8 0 0 0-10-10 104.84 104.84 0 0 0-52.91 37A104 104 0 0 0 136 224a103.09 103.09 0 0 0 62.52-20.88 104.84 104.84 0 0 0 37-52.91 8 8 0 0 0-1.98-7.98Zm-44.64 48.11A88 88 0 0 1 65.66 67.11a89 89 0 0 1 31.4-26A106 106 0 0 0 96 56a104.11 104.11 0 0 0 104 104 106 106 0 0 0 14.92-1.06 89 89 0 0 1-26.02 31.4Z"/></svg>
+    <svg class="ikon-nap" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M120 40V16a8 8 0 0 1 16 0v24a8 8 0 0 1-16 0Zm72 88a64 64 0 1 1-64-64 64.07 64.07 0 0 1 64 64Zm-16 0a48 48 0 1 0-48 48 48.05 48.05 0 0 0 48-48ZM58.34 69.66a8 8 0 0 0 11.32-11.32l-16-16a8 8 0 0 0-11.32 11.32Zm0 116.68-16 16a8 8 0 0 0 11.32 11.32l16-16a8 8 0 0 0-11.32-11.32ZM192 72a8 8 0 0 0 5.66-2.34l16-16a8 8 0 0 0-11.32-11.32l-16 16A8 8 0 0 0 192 72Zm5.66 114.34a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32-11.32ZM48 128a8 8 0 0 0-8-8H16a8 8 0 0 0 0 16h24a8 8 0 0 0 8-8Zm80 80a8 8 0 0 0-8 8v24a8 8 0 0 0 16 0v-24a8 8 0 0 0-8-8Zm112-88h-24a8 8 0 0 0 0 16h24a8 8 0 0 0 0-16Z"/></svg>
+  </button>
+</div></div>
+<nav class="rovatsor" aria-label="Rovatok"><div class="keret"><a href="/">Friss</a><a href="/rovat/modell">Modellek</a><a href="/rovat/eszkoz">Eszközök</a><a href="/rovat/video">Videó</a><a href="/rovat/kep">Kép</a><a href="/rovat/ugynok">Ügynökök</a><a href="/rovat/uzlet">Üzlet</a><a href="/rovat/kutatas">Kutatás</a><a href="/temak">Témák</a><a href="/forrasok">Források</a><span class="kitolto"></span></div></nav>
+</header>
+<main id="fo">
+<article class="cikk">
+  <div class="cikk-fej">
+    <a class="vissza" href="/"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224 128a8 8 0 0 1-8 8H59.31l58.35 58.34a8 8 0 0 1-11.32 11.32l-72-72a8 8 0 0 1 0-11.32l72-72a8 8 0 0 1 11.32 11.32L59.31 120H216a8 8 0 0 1 8 8Z"/></svg>Vissza a hírekhez</a>
+    <div class="meta"><span class="forras">Hugging Face</span><span>2026. szept. 28.</span><a class="kat" href="/rovat/eszkoz">eszköz</a></div>
+    <h1>Közös gyűjtőhelyet kaptak az AI-ágenseket tanító környezetek</h1>
+    <p class="lead">A Hugging Face Hub új felületet indított a megerősítéses tanulási (RL) környezeteknek, így egyszerűbbé válik az AI-ágensek fejlesztése és tesztelése.</p>
+    <a class="kiprobal" href="https://huggingface.co/datasets?other=rl-environment" target="_blank" rel="noopener"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224 104a8 8 0 0 1-16 0V59.32l-66.33 66.34a8 8 0 0 1-11.32-11.32L196.68 48H152a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm-40 24a8 8 0 0 0-8 8v72H48V80h72a8 8 0 0 0 0-16H48a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-72a8 8 0 0 0-8-8Z"/></svg>Kipróbálom: Hugging Face RL Environments<span class="kiprobal-url">huggingface.co/datasets?other=rl-environment</span></a>
+  </div>
+  <div class="cikk-racs">
+    <div class="cikk-fo">
+      <div class="media-doboz"><div class="lejatszo"><img class="poszter" src="/assets/kep/a30a6af008de.webp" alt="Welcome RL Environments to the hub"></div></div>
+      <div class="torzs"><p>A Hugging Face bejelentette, hogy mostantól dedikált helyet biztosít a megerősítéses tanulási (RL) környezeteknek a platformján. Az <a class="kulso" href="https://huggingface.co/blog/rl-environments" target="_blank" rel="noopener">RL Environments</a> szekcióban a fejlesztők <strong>1 közös helyen</strong> érhetik el a különböző keretrendszerekhez készült feladatokat és teszteket. Ezzel megszűnik a korábbi töredezettség, ahol minden fejlesztőcsapat saját egyedi adatbázist használt.</p>
+<p>A megerősítéses tanulás során az AI-ágensek feladatokat kapnak, amelyekre adott válaszaikért pontszámot, azaz jutalmat kapnak. A Hugging Face megoldása lehetővé teszi, hogy a fejlesztők <strong>1 kattintással futtassák</strong> ezeket a környezeteket olyan népszerű keretrendszerekben, mint a Harbor, a Verifiers vagy az NVIDIA NeMo Gym. A hibajavítások is egyszerűbbé válnak, hiszen a javítások minden keretrendszerre azonnal érvényesülnek.</p>
+<p>Az új funkció használatához a fejlesztőknek mindössze egy egyszerű címkét kell elhelyezniük az adatbázisuk leírásában. Az így megjelölt környezetek azonnal megjelennek a nyilvános, böngészhető listában, megkönnyítve az <strong>AI-ágensek teljesítményének mérését</strong> és összehasonlítását.</p></div>
+      <details class="eredeti"><summary>Az eredeti szöveg (Hugging Face)</summary><div class="eredeti-szoveg">Stop building environment registries What shipped Run an environment and inspect its reward Harbor: run a reference solution Verifiers: run a model on the same task OpenEnv: run an agent and inspect its reward NeMo Gym: generate responses and inspect rewards Tag your environment Already on the Hub What comes next Reinforcement Learning environments give new capabilities to agentic AI systems, and they’re a great way to measure and improve performance in your agents. Therefore, Hugging Face Hub now has a special place for RL Environments.
+
+An environment gives an agent a task, responds to its actions with observations, and scores the outcome. The resulting rewards can measure an agent&#x27;s performance during evaluation or provide a learning signal during training. For an introduction to this interaction loop, see our blogpost on environments. Within the environment, the agent will perform a set of tasks that are represented as datasets. Therefore, environments can be split into broadly two parts: tasksets and runtimes. In this release, we are focusing on the tasksets.
+
+An RL environment on the Hub is a dataset repo that shows up in the new RL Environments filter. The Use this dataset button gives you the command to run it in that framework. There is no new repo type, no registry, and no sign-up. There are already environments in Harbor, Verifiers, and NVIDIA NeMo Gym.
+
+Every RL paper or framework uses its own way to find environments. Custom hubs, runtime registries, independent task datasets, or a GitHub list of tasks with a custom loader. This means that many of the published environments are siloed: if you publish an environment for one framework, users of the other three can’t load it. If you want to train on an environment from another framework or a new paper, you’ll need to port it by hand.
+
+We think this is the wrong shape. An environment is tasks, tests, containers, and a reward rule, which are data with a runtime on top. The Hub already stores data, versions it, gates it, previews it, and serves it to millions of people. It does not need a second system to hold environments. It needs a way to say &quot;this data is an environment, and here is how you run it.&quot;
+
+The frameworks keep doing what they are good at. The Hub does what it is good at, which is hosting, discovery, and versioning. Nobody has to own the catalogue. In fact, catalogues can run on other platforms too, powered by the hub.
+
+The dataset repository hosts your environment files. The framework runs them locally or on a supported cloud backend. Hugging Face Jobs can run cloud workloads, and Hugging Face Sandboxes, built on Jobs, provide interactive command execution. The tags describe compatibility and generate loading commands; adding a tag does not start a job or sandbox.
+
+The RL Environments filter. Go to huggingface.co/datasets?other=rl-environment. Every dataset with the rl-environment tag appears there, whatever framework it works with.
+
+Framework tags. Four environment frameworks are registered as dataset libraries:
+
+Each framework tag puts the framework&#x27;s icon on the dataset page and adds a generated snippet to Use this dataset.
+
+A dataset can carry more than one framework tag. That is the point. Tags describe compatibility, and compatibility is not exclusive. Each listed framework must support the files in the repository; adding a tag does not convert them.
+
+Choose the example for your framework and run it in a separate Python environment with the prerequisites listed below.
+
+Harbor can load task directories from a Hub repository. The oracle agent runs the task&#x27;s reference solution, then the verifier scores the result. It does not call a model.
+
+The viewer shows the task&#x27;s reward, verifier output, and logs. This checks the task and its reference solution before you try a model agent.
+
+The Harbor integration of verifiers v1 can run the same task directories in different runtimes, such as Docker. It also supports different harnesses, including a minimal bash </div></details>
+    </div>
+    <aside class="cikk-oldal">
+      <div class="miert"><h2>Miért számít</h2><p>Az AI-ágensek fejlesztésének szabványosítása felgyorsítja az önállóan dolgozó marketinges és üzleti asszisztensek megjelenését. A vállalkozások hamarosan <strong>sokkal okosabb és megbízhatóbb AI-eszközöket</strong> kapnak, amelyek komplexebb munkafolyamatokat is képesek lesznek önállóan elvégezni.</p></div>
+      <div class="forras-sav">
+        <a class="eredeti" href="https://huggingface.co/blog/rl-environments" target="_blank" rel="noopener"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224 104a8 8 0 0 1-16 0V59.32l-66.33 66.34a8 8 0 0 1-11.32-11.32L196.68 48H152a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm-40 24a8 8 0 0 0-8 8v72H48V80h72a8 8 0 0 0 0-16H48a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-72a8 8 0 0 0-8-8Z"/></svg>Az eredeti megnyitása</a>
+        
+        <span>Eredeti cím: Welcome RL Environments to the hub</span>
+      </div>
+      
+      <section class="tovabbi"><h2>További hírek</h2><ul><li><a href="/hir/tizedannyiert-fekezi-meg-a-lazado-ai-ugynokoket-a-goodfire-uj-eszkoze"><div class="meta"><span class="forras">TechCrunch AI</span><span>okt. 8. 18:00</span></div>Tizedannyiért fékezi meg a lázadó AI-ügynököket a Goodfire új eszköze</a></li><li><a href="/hir/ai-ugynokoket-vezerel-a-natura-uj-99-dollaros-okosgyuruje"><div class="meta"><span class="forras">TechCrunch AI</span><span>okt. 8. 18:00</span></div>AI-ügynököket vezérel a Natura új, 99 dolláros okosgyűrűje</a></li><li><a href="/hir/arculati-keszlettel-biztositja-a-markahuseget-az-elevenlabs"><div class="meta"><span class="forras">ElevenLabs (LinkedIn)</span><span>okt. 8. 16:05</span></div>Arculati készlettel biztosítja a márkahűséget az ElevenLabs</a></li></ul></section>
+    </aside>
+  </div>
+</article>
+</main>
+<div class="uj-hirek" aria-live="polite"></div>
+<footer class="lablec"><div class="keret">
+  <span>quicknews.hu: a legfontosabb AI-bejelentések magyarul, videóval.</span>
+  <span><a href="/temak">Témák</a> · <a href="/forrasok">Források</a> · <a href="/rss.xml">RSS</a></span>
+</div></footer>
+<script src="/assets/app.js?v=14" defer></script>
+</body>
+</html>
