@@ -11,14 +11,25 @@ jobs:
       - run: pip install -q curl_cffi
       - run: |
           python3 - <<'PY'
+          import re, time
           from curl_cffi import requests
-          import re
-          for u in ["https://x.com/sama", "https://syndication.twitter.com/srv/timeline-profile/screen-name/sama",
-                    "https://api.fxtwitter.com/sama", "https://cdn.syndication.twimg.com/timeline/profile?screen_name=sama"]:
-              try:
-                  r = requests.get(u, impersonate="chrome", timeout=30)
-                  ids = set(re.findall(r'"id_str":"(\d{15,})"', r.text))
-                  print(r.status_code, len(r.text), "id:", len(ids), u)
-              except Exception as e:
-                  print("hiba", type(e).__name__, u)
+          UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+          urlek = [
+              "https://syndication.twitter.com/srv/timeline-profile/screen-name/sama?showReplies=false",
+              "https://nitter.net/sama/rss", "https://nitter.privacydev.net/sama/rss", "https://nitter.poast.org/sama/rss",
+              "https://xcancel.com/sama/rss", "https://nitter.tiekoetter.com/sama/rss",
+              "https://x.com/sama", "https://mobile.x.com/sama",
+          ]
+          for u in urlek:
+              for k in range(3):
+                  try:
+                      r = requests.get(u, impersonate="chrome", timeout=30, headers={"User-Agent": UA, "Accept-Language": "en"})
+                      ids = set(re.findall(r'status/(\d{15,})', r.text)) | set(re.findall(r'"id_str":"(\d{15,})"', r.text))
+                      print(r.status_code, len(r.text), "id:", len(ids), u, f"(próba {k+1})")
+                      if r.status_code != 429:
+                          break
+                  except Exception as e:
+                      print("hiba", type(e).__name__, u)
+                      break
+                  time.sleep(12)
           PY
