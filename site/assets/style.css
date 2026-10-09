@@ -655,3 +655,13 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .jogi a { color: var(--kiemelo-szin); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
 @media (max-width: 599px) { .jogi h1 { font-size: 30px; line-height: 36px; } .jogi p, .jogi li { font-size: 16px; line-height: 26px; } }
 .suti-belso p a { color: var(--szoveg); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Csengő mobilon: a lenyíló doboz a képernyő két széléhez igazodik, nem a gombhoz (kilógott balra) */
+@media (max-width: 599px) {
+  .harang-buborek {
+    position: fixed; left: 16px; right: 16px; width: auto;
+    top: var(--harang-teto, 72px);
+    max-height: calc(100vh - var(--harang-teto, 72px) - 16px);
+    max-height: calc(100dvh - var(--harang-teto, 72px) - 16px);
+  }
+}

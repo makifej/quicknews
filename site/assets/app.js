@@ -227,3 +227,10 @@
   document.addEventListener('click', function(e){ if (e.target.closest('[data-suti-ujra]')) { document.documentElement.classList.remove('suti-van'); mutat(); } });
   if (valasz) sav.hidden = true; else mutat();
 })();
+
+// a csengő lenyíló dobozának teteje mobilon a fejléc alja (CSS-változóban)
+(function(){
+  var fej = document.querySelector('.harang-gomb'); if (!fej) return;
+  function allit(){ var r = fej.getBoundingClientRect(); document.documentElement.style.setProperty('--harang-teto', Math.max(8, Math.round(r.bottom) + 8) + 'px'); }
+  allit(); window.addEventListener('resize', allit, {passive: true}); window.addEventListener('scroll', allit, {passive: true});
+})();
