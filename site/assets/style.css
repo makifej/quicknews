@@ -626,15 +626,20 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
   .suti-tettek .suti-gomb { flex: 1 1 0; }
 }
 
-/* Feltörekvő hír kép nélküli helyen: ugyanaz, mint a képek tetején (csík + lelógó címke ponttal, jobbról) */
-.felk-sor { display: block; position: relative; height: 4px; background: var(--piros); border-radius: 2px; margin: 4px 0 36px; flex-basis: 100%; width: 100%; }
-.felk-sor-cimke {
-  position: absolute; top: 4px; right: 12px;
+/* Feltörekvő hír kép nélküli helyen: ugyanaz, mint a képek tetején (csík + rátapadó címke ponttal, jobbról).
+   A dupla osztályválasztó azért kell, hogy a listák saját span-szabálya (.cimsor-lista span) ne írja felül. */
+.felk-sor.felk-sor {
+  display: block; position: relative; height: 4px; margin: 0 0 30px; padding: 0;
+  background: var(--piros); border-radius: 2px; flex-basis: 100%; width: 100%;
+  font-size: 0; line-height: 0; color: transparent;
+}
+.felk-sor.felk-sor .felk-sor-cimke {
+  position: absolute; top: 4px; right: 12px; margin: 0;
   display: inline-flex; align-items: center; gap: 8px;
   padding: 4px 12px 4px 8px; border-radius: 0 0 8px 8px;
   background: var(--piros-cimke); color: #ffffff;
   font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.02em; white-space: nowrap;
 }
 .felk-sor-cimke i { width: 8px; height: 8px; border-radius: 999px; background: currentColor; flex: none; animation: felk-pont 2400ms ease-in-out infinite; }
-.hmeta .felk-sor, .cikk-fej .meta .felk-sor { margin: 0 0 32px; }
+.cimsor-lista a:has(> .felk-sor) { padding-top: 0; }
 @media (prefers-reduced-motion: reduce) { .felk-sor-cimke i { animation: none; } }

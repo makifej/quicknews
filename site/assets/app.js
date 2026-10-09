@@ -219,7 +219,7 @@
     valasz = {meres: !!meres, ido: new Date().toISOString(), verzio: 1};
     try { localStorage.setItem(TAR, JSON.stringify(valasz)); } catch(e){}
     try { if (window.gtag) gtag('consent', 'update', {analytics_storage: meres ? 'granted' : 'denied'}); } catch(e){}
-    if (meres && window.gtag) { try { gtag('event', 'page_view'); } catch(e){} }
+    if (meres && window.qnGaBetolt) window.qnGaBetolt();
     document.documentElement.classList.add('suti-van');
     rejt();
   }
