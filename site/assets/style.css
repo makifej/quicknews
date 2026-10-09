@@ -643,3 +643,15 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .felk-sor-cimke i { width: 8px; height: 8px; border-radius: 999px; background: currentColor; flex: none; animation: felk-pont 2400ms ease-in-out infinite; }
 .cimsor-lista a:has(> .felk-sor) { padding-top: 0; }
 @media (prefers-reduced-motion: reduce) { .felk-sor-cimke i { animation: none; } }
+
+/* Jogi oldalak (adatvédelem) */
+.jogi { max-width: 760px; padding-top: 40px; padding-bottom: 96px; }
+.jogi h1 { font-size: 36px; line-height: 44px; font-weight: 800; margin: 0 0 8px; text-wrap: balance; }
+.jogi h2 { font-size: 22px; line-height: 30px; font-weight: 800; margin: 40px 0 12px; text-wrap: balance; }
+.jogi p, .jogi li { font-size: 17px; line-height: 28px; color: var(--szoveg-2); text-wrap: pretty; }
+.jogi p { margin: 0 0 12px; }
+.jogi ul { margin: 0 0 12px; padding-left: 20px; }
+.jogi strong { color: var(--szoveg); font-weight: 700; }
+.jogi a { color: var(--kiemelo-szin); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+@media (max-width: 599px) { .jogi h1 { font-size: 30px; line-height: 36px; } .jogi p, .jogi li { font-size: 16px; line-height: 26px; } }
+.suti-belso p a { color: var(--szoveg); text-decoration: underline; text-underline-offset: 3px; }

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<script>try{if(localStorage.getItem('qn-tema')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}</script>
+<meta name="theme-color" content="#181818">
+<title>Adatvédelmi tájékoztató · quicknews.hu</title>
+<meta name="description" content="A quicknews.hu adatvédelmi tájékoztatója.">
+<link rel="canonical" href="https://quicknews.hu/adatvedelem">
+<meta property="og:title" content="Adatvédelmi tájékoztató · quicknews.hu">
+<meta property="og:description" content="A quicknews.hu adatvédelmi tájékoztatója.">
+<meta property="og:image" content="https://quicknews.hu/assets/megoszto.png">
+<meta property="og:image:secure_url" content="https://quicknews.hu/assets/megoszto.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Adatvédelmi tájékoztató · quicknews.hu">
+<meta name="twitter:image" content="https://quicknews.hu/assets/megoszto.png">
+<meta property="og:locale" content="hu_HU">
+<meta property="og:url" content="https://quicknews.hu/adatvedelem">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="quicknews.hu">
+<meta name="twitter:card" content="summary_large_image">
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+var qnSuti=null;try{qnSuti=JSON.parse(localStorage.getItem('qn-suti')||'null');}catch(e){}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:(qnSuti&&qnSuti.meres)?'granted':'denied'});
+if(qnSuti)document.documentElement.classList.add('suti-van');
+gtag('js',new Date());gtag('config','G-MXSE5QFHHY');
+window.qnGaBetolt=function(){if(window.qnGaKesz)return;window.qnGaKesz=1;var g=document.createElement('script');g.async=1;g.src='https://www.googletagmanager.com/gtag/js?id=G-MXSE5QFHHY';document.head.appendChild(g);};
+if(qnSuti&&qnSuti.meres)window.qnGaBetolt();
+</script>
+<link rel="icon" href="/assets/ikon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="quicknews.hu" href="/rss.xml">
+<link rel="stylesheet" href="/assets/font/manrope.css">
+<link rel="stylesheet" href="/assets/style.css?v=47">
+
+</head>
+<body>
+<a class="ugras" href="#fo">Ugrás a tartalomra</a>
+<header class="fejlec" data-fejlec><div class="fejlec-felso"><div class="keret">
+  <a class="logo" href="/"><span class="pont"></span><span class="nev">quicknews<span class="hu">.hu</span></span></a>
+  <p class="szlogen">AI hírek, hogy <mark>ne maradj le</mark></p>
+  <div class="fejlec-info"><span>2026. október 9., péntek · frissítve 09:34</span><span class="frissit"><button type="button" class="frissit-gomb" hidden>Frissítés most</button><span class="frissit-allapot" aria-live="polite"></span></span></div>
+  <div class="kereso" data-kereso>
+    <form class="kereso-mezosor" role="search" onsubmit="return false">
+      <svg class="kereso-ikon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72 72.08 72.08 0 0 1-72-72Z"/></svg>
+      <input type="search" id="kereso-mezo" placeholder="Keresés a hírekben" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="kereso-panel" aria-label="Keresés a hírekben" data-kereso-mezo>
+      <button type="button" class="kereso-torlo" aria-label="Keresés törlése" data-kereso-zar hidden>×</button>
+    </form>
+    <div class="kereso-panel" id="kereso-panel" data-kereso-panel hidden><div class="kereso-talalatok" role="listbox" aria-label="Találatok" data-kereso-talalatok></div></div>
+  </div>
+  <div class="harang" data-harang>
+    <button class="harang-gomb" type="button" aria-expanded="false" aria-controls="harang-buborek" aria-label="Új hírek">
+      <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.8 175.94C216.25 166.38 208 139.33 208 104a80 80 0 1 0-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0 0 48 200h40.81a40 40 0 0 0 78.38 0H208a16 16 0 0 0 13.8-24.06ZM128 216a24 24 0 0 1-22.62-16h45.24A24 24 0 0 1 128 216Zm-80-32c7.7-13.24 16-43.92 16-80a64 64 0 1 1 128 0c0 36.05 8.28 66.73 16 80Z"/></svg>
+      <span class="harang-jel" data-harang-jel hidden></span>
+    </button>
+    <div class="harang-buborek" id="harang-buborek" data-harang-buborek hidden></div>
+  </div>
+  <button class="tema-gomb" type="button" data-tema aria-label="Világos téma bekapcsolása">
+    <svg class="ikon-hold" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M233.54 142.23a8 8 0 0 0-8-2 88.08 88.08 0 0 1-109.8-109.8 8 8 0 0 0-10-10 104.84 104.84 0 0 0-52.91 37A104 104 0 0 0 136 224a103.09 103.09 0 0 0 62.52-20.88 104.84 104.84 0 0 0 37-52.91 8 8 0 0 0-1.98-7.98Zm-44.64 48.11A88 88 0 0 1 65.66 67.11a89 89 0 0 1 31.4-26A106 106 0 0 0 96 56a104.11 104.11 0 0 0 104 104 106 106 0 0 0 14.92-1.06 89 89 0 0 1-26.02 31.4Z"/></svg>
+    <svg class="ikon-nap" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M120 40V16a8 8 0 0 1 16 0v24a8 8 0 0 1-16 0Zm72 88a64 64 0 1 1-64-64 64.07 64.07 0 0 1 64 64Zm-16 0a48 48 0 1 0-48 48 48.05 48.05 0 0 0 48-48ZM58.34 69.66a8 8 0 0 0 11.32-11.32l-16-16a8 8 0 0 0-11.32 11.32Zm0 116.68-16 16a8 8 0 0 0 11.32 11.32l16-16a8 8 0 0 0-11.32-11.32ZM192 72a8 8 0 0 0 5.66-2.34l16-16a8 8 0 0 0-11.32-11.32l-16 16A8 8 0 0 0 192 72Zm5.66 114.34a8 8 0 0 0-11.32 11.32l16 16a8 8 0 0 0 11.32-11.32ZM48 128a8 8 0 0 0-8-8H16a8 8 0 0 0 0 16h24a8 8 0 0 0 8-8Zm80 80a8 8 0 0 0-8 8v24a8 8 0 0 0 16 0v-24a8 8 0 0 0-8-8Zm112-88h-24a8 8 0 0 0 0 16h24a8 8 0 0 0 0-16Z"/></svg>
+  </button>
+</div></div>
+<nav class="rovatsor" aria-label="Rovatok"><div class="keret"><a href="/">Friss</a><a href="/rovat/modell">Modellek</a><a href="/rovat/eszkoz">Eszközök</a><a href="/rovat/video">Videó</a><a href="/rovat/kep">Kép</a><a href="/rovat/ugynok">Ügynökök</a><a href="/rovat/uzlet">Üzlet</a><a href="/rovat/kutatas">Kutatás</a><a href="/temak">Témák</a><a href="/forrasok">Források</a><span class="kitolto"></span></div></nav>
+</header>
+<main id="fo">
+<article class="keret jogi"><h1>Adatvédelmi tájékoztató</h1>
+<p>Hatályos: 2026. október 9.</p>
+<h2>Bevezetés</h2>
+<p>Ez a tájékoztató azt írja le, hogy a quicknews.hu weboldal látogatása során milyen személyes adat keletkezik, azt ki kezeli, milyen célból, meddig, és milyen jogok illetik meg Önt.</p>
+<p>Az adatkezelés az Európai Parlament és a Tanács (EU) 2016/679 rendeletével (GDPR), valamint az információs önrendelkezési jogról és az információszabadságról szóló 2011. évi CXII. törvénnyel összhangban történik.</p>
+<h2>Az adatkezelő</h2>
+<ul>
+<li>Név: Novák Henriette e.v.</li>
+<li>Székhely: Budapest, Magyarország</li>
+<li>E-mail: <a href="mailto:info@adverr.hu">info@adverr.hu</a></li>
+<li>Telefon: +36 30 845 0537</li>
+<li>Weboldal: <a href="https://quicknews.hu" target="_blank" rel="noopener">https://quicknews.hu</a></li>
+</ul>
+<p>Adatvédelmi kérdéseivel a fenti elérhetőségeken kereshet meg.</p>
+<h2>Amit ez a weboldal nem csinál</h2>
+<p>Ez egy statikus hírportál. Az átláthatóság kedvéért érdemes először azt rögzíteni, mi az, ami itt nem történik:</p>
+<ul>
+<li><strong>Nincs hirdetésmérés.</strong> Az oldalon nem fut hirdetési mérőkód, és hirdetési süti sem keletkezik.</li>
+<li><strong>Nincs regisztráció, nincs felhasználói fiók, és nincs beküldhető mező.</strong> Az oldal semmilyen adatot nem kér Öntől.</li>
+<li><strong>Külső tartalom csak az Ön kattintására töltődik be.</strong> Az oldal betűtípusai, képei és szkriptjei a saját kiszolgálóról érkeznek. Kivétel a beágyazott videó: a YouTube-videó (a youtube-nocookie.com címről), valamint az X-en és a LinkedInen közzétett videó (a video.twimg.com, illetve a dms.licdn.com címről) csak akkor töltődik be, ha a lejátszás gombra kattint. Ekkor a böngészője kapcsolatba lép a videó szolgáltatójával, és arra a szolgáltató saját adatkezelési tájékoztatója vonatkozik. Kivétel a látogatottságmérés is, ha ahhoz hozzájárult: erről a következő szakasz szól.</li>
+</ul>
+<p>A kereső teljes egészében a böngészőjében fut. Ha a látogatottságméréshez nem járult hozzá, a beírt keresőszó nem kerül továbbításra, és nem hagyja el a készülékét. Ha hozzájárult, a keresőszót a látogatottságmérés részeként rögzítjük, hogy lássuk, mire keresnek az olvasók.</p>
+<h2>Látogatottságmérés és a hozzájárulása</h2>
+<p>Az oldal megnyitásakor megkérdezzük, mérhetjük-e a látogatottságot. Amíg nem ad hozzájárulást, semmilyen mérés nem indul el: a mérőkód be sem töltődik.</p>
+<p><strong>Ha igent mond:</strong> a Google Analytics 4 mérőkódja töltődik be a Google kiszolgálójáról.</p>
+<p><strong>Amit ez mér:</strong> hány látogató járt az oldalon, mely oldalakat nyitották meg, milyen eszközről és böngészőből, melyik országból és városból érkeztek, és melyik oldalról jutottak ide. Ezen felül azt is, hogy egy hírt meddig görgetett le és mennyi ideig olvasott, melyik linkre kattintott (a hírekben szereplő linkek, a „Kipróbálom” gomb, az eredeti forrás), elindított-e videót, melyik rovatot nyitotta meg, és mit írt be a keresőbe.</p>
+<p><strong>Hogyan azonosítja a látogatót:</strong> a Google Analytics két sütit helyez el a böngészőjében (_ga és _ga_MXSE5QFHHY). Ezek egy véletlenszerű azonosítót tárolnak, amelyből a visszatérő látogatás felismerhető. A sütik legfeljebb 2 évig maradnak meg, és a böngésző beállításaiban bármikor törölhetők. A Google Analytics 4 a helymeghatározáshoz az IP-címet használja, de magát az IP-címet a Google tájékoztatása szerint nem naplózza és nem tárolja.</p>
+<p><strong>Amit nem kapcsoltunk be:</strong> a hirdetési funkciókat és a Google-fiókokhoz kapcsolódó adatgyűjtést (Google signals). A mérési adatokat nem használjuk hirdetésre.</p>
+<p><strong>Ki kapja meg az adatot:</strong> a Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Írország). A Google az adatot az Egyesült Államokba is továbbíthatja; ennek megfelelő védelmét az EU-US Data Privacy Framework és az Európai Bizottság által elfogadott általános szerződési feltételek biztosítják.</p>
+<p><strong>Meddig:</strong> a mérési adatokat 14 hónapig őrizzük meg, utána a Google Analytics automatikusan törli őket.</p>
+<p><strong>Az adatkezelés jogalapja:</strong> az Ön hozzájárulása, a GDPR 6. cikk (1) bekezdés a) pontja alapján.</p>
+<p><strong>A hozzájárulás visszavonása:</strong> a lábléc Sütibeállítások pontjára kattintva bármikor átállíthatja a döntését. A visszavonás ugyanolyan egyszerű, mint a megadás, és a visszavonástól kezdve a mérés nem fut tovább.</p>
+<h2>Amit a böngészője eltárol</h2>
+<p>Az oldal magától nem helyez el sütit. A böngésző saját tárolójába legfeljebb négy dolog kerül, mindegyik a készülékén marad, és egyik sem jut el hozzánk:</p>
+<ul>
+<li>A méréssel kapcsolatos döntése. Enélkül minden oldalbetöltésnél újra meg kellene kérdeznünk.</li>
+<li>A választott megjelenés (világos vagy sötét téma).</li>
+<li>Annak nyilvántartása, mely friss híreket mutatta már meg Önnek a fejlécben lévő csengő és a felugró „Új hír” kártya. Enélkül a jelzés olyan hírnél is megjelenne, amelyet már látott.</li>
+<li>Ha az értesítésekhez engedélyt ad, azt a böngészője tárolja. Az értesítést a megnyitott oldal maga jeleníti meg, amíg nyitva van; ehhez semmilyen adat nem kerül hozzánk vagy harmadik félhez.</li>
+</ul>
+<p>Ezek egyike sem alkalmas az Ön személyének felismerésére, és a böngészője beállításaiban bármikor törölheti őket. Ezen felül, és kizárólag akkor, ha a látogatottságméréshez hozzájárult, a Google Analytics elhelyezi a fent leírt két sütit.</p>
+<h2>A ténylegesen kezelt adatok</h2>
+<p>A weboldal megnyitásakor a tárhelyszolgáltató technikai naplót készít. Ez tartalmazza az Ön IP-címét, a böngésző típusát, a látogatás időpontját és a lekért oldal címét.</p>
+<ul>
+<li>Az adatkezelés célja: a weboldal biztonságos üzemeltetése, a hibák felderítése és a visszaélések megelőzése.</li>
+<li>Az adatkezelés jogalapja: jogos érdek, a GDPR 6. cikk (1) bekezdés f) pontja alapján.</li>
+<li>A megőrzés ideje: 90 nap, ezt követően a napló törlésre kerül.</li>
+</ul>
+<p>Ezen az adatkörön és a hozzájárulással működő látogatottságmérésen kívül a weboldal látogatásából más személyes adat nem keletkezik.</p>
+<h2>Tárhelyszolgáltató és adattovábbítás</h2>
+<p>A weboldal a Vercel Inc. (440 N Barranca Ave #4133, Covina, CA 91723, Amerikai Egyesült Államok) felhőplatformján üzemel. A technikai naplók ezen az infrastruktúrán keletkeznek.</p>
+<p>Az Európai Gazdasági Térségen kívülre irányuló adattovábbítás megfelelő szintű védelmét a Vercel az Európai Bizottság által elfogadott általános szerződési feltételek (Standard Contractual Clauses), valamint az EU-US Data Privacy Framework alapján biztosítja.</p>
+<p>Az oldal és a kiszolgáló közötti teljes forgalom titkosított kapcsolaton (HTTPS) keresztül zajlik.</p>
+<h2>Külső hivatkozások</h2>
+<p>Az oldalon található hivatkozások más szolgáltatók felületeire mutatnak. Ilyenek a hírek eredeti forrásai (például az X, a LinkedIn, a YouTube és a cégek saját oldalai), valamint a hírekben bemutatott eszközök és alkalmazások oldalai.</p>
+<p>Ezek megnyitása mindig az Ön döntése. Amint elhagyja a quicknews.hu oldalt, a megnyitott szolgáltató saját adatkezelési tájékoztatója lesz irányadó, amelyre ennek a weboldalnak nincs ráhatása.</p>
+<h2>Az Ön jogai</h2>
+<p>A GDPR alapján az alábbi jogok illetik meg:</p>
+<ul>
+<li><strong>Hozzáférés joga (15. cikk):</strong> tájékoztatást kérhet arról, hogy kezelünk-e Önről személyes adatot, és ha igen, milyet, milyen célból és meddig.</li>
+<li><strong>Helyesbítés joga (16. cikk):</strong> kérheti pontatlan vagy hiányos adatainak kijavítását.</li>
+<li><strong>Törlés joga (17. cikk):</strong> kérheti adatainak törlését, ha az adatkezelés jogalapja megszűnt.</li>
+<li><strong>Az adatkezelés korlátozásához való jog (18. cikk):</strong> meghatározott esetekben kérheti az adatkezelés korlátozását.</li>
+<li><strong>Adathordozhatóság joga (20. cikk):</strong> kérheti adatai géppel olvasható formátumban történő kiadását.</li>
+<li><strong>Tiltakozás joga (21. cikk):</strong> tiltakozhat a jogos érdeken alapuló adatkezelés ellen.</li>
+</ul>
+<p>Kérelmét az <a href="mailto:info@adverr.hu">info@adverr.hu</a> címre küldheti. A kérelemre 30 napon belül válaszolunk. Indokolt esetben ez a határidő további 60 nappal meghosszabbítható, amelyről tájékoztatjuk Önt.</p>
+<h2>Panasz és jogorvoslat</h2>
+<p>Ha úgy véli, hogy személyes adatainak kezelése sérti a GDPR vagy az Info tv. rendelkezéseit, panaszt nyújthat be a Nemzeti Adatvédelmi és Információszabadság Hatósághoz:</p>
+<ul>
+<li>Postacím: 1363 Budapest, Pf. 9.</li>
+<li>E-mail: <a href="mailto:ugyfelszolgalat@naih.hu">ugyfelszolgalat@naih.hu</a></li>
+<li>Weboldal: www.naih.hu</li>
+</ul>
+<p>Jogai megsértése esetén bírósághoz is fordulhat. Kérjük azonban, hogy előtte keressen meg minket az <a href="mailto:info@adverr.hu">info@adverr.hu</a> címen, mert a felmerülő kérdéseket igyekszünk gyorsan rendezni.</p>
+<h2>A tájékoztató módosítása</h2>
+<p>Ha a weboldal működése megváltozik, például ha a kezelt adatok köre vagy a felhasznált szolgáltatók listája bővül, ez a tájékoztató a változás előtt frissül, és a fenti hatálybalépési dátum is módosul.</p></article>
+</main>
+<div class="uj-hirek" aria-live="polite"></div>
+<section class="suti-sav" data-suti-sav role="region" aria-label="Sütik és látogatottságmérés">
+  <div class="suti-belso">
+    <p>Az oldal magától nem használ sütit. A látogatottságot csak a hozzájárulásoddal mérjük, a Google Analytics segítségével. <a href="/adatvedelem">Részletek</a></p>
+    <div class="suti-tettek">
+      <button class="suti-gomb" type="button" data-suti="nem">Elutasítom</button>
+      <button class="suti-gomb suti-gomb--fo" type="button" data-suti="igen">Elfogadom</button>
+    </div>
+  </div>
+</section>
+<footer class="lablec"><div class="keret">
+  <span>quicknews.hu: a legfontosabb AI-bejelentések magyarul, videóval.</span>
+  <span><a href="/temak">Témák</a> · <a href="/forrasok">Források</a> · <a href="/rss.xml">RSS</a> · <a href="/adatvedelem">Adatvédelem</a> · <button type="button" class="lablec-link" data-suti-ujra>Sütibeállítások</button></span>
+</div></footer>
+<script src="/assets/app.js?v=19" defer></script>
+</body>
+</html>
