@@ -25,7 +25,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+var qnSuti=null;try{qnSuti=JSON.parse(localStorage.getItem('qn-suti')||'null');}catch(e){}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:(qnSuti&&qnSuti.meres)?'granted':'denied'});
+if(qnSuti)document.documentElement.classList.add('suti-van');
 gtag('js',new Date());gtag('config','G-MXSE5QFHHY');
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXSE5QFHHY"></script>
@@ -34,7 +36,7 @@ gtag('js',new Date());gtag('config','G-MXSE5QFHHY');
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css?v=42">
+<link rel="stylesheet" href="/assets/style.css?v=43">
 
 </head>
 <body>
@@ -42,7 +44,7 @@ gtag('js',new Date());gtag('config','G-MXSE5QFHHY');
 <header class="fejlec" data-fejlec><div class="fejlec-felso"><div class="keret">
   <a class="logo" href="/"><span class="pont"></span><span class="nev">quicknews<span class="hu">.hu</span></span></a>
   <p class="szlogen">AI hírek, hogy <mark>ne maradj le</mark></p>
-  <div class="fejlec-info"><span>2026. október 9., péntek · frissítve 09:18</span><span class="frissit"><button type="button" class="frissit-gomb" hidden>Frissítés most</button><span class="frissit-allapot" aria-live="polite"></span></span></div>
+  <div class="fejlec-info"><span>2026. október 9., péntek · frissítve 09:26</span><span class="frissit"><button type="button" class="frissit-gomb" hidden>Frissítés most</button><span class="frissit-allapot" aria-live="polite"></span></span></div>
   <div class="kereso" data-kereso>
     <form class="kereso-mezosor" role="search" onsubmit="return false">
       <svg class="kereso-ikon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72 72.08 72.08 0 0 1-72-72Z"/></svg>
@@ -69,10 +71,19 @@ gtag('js',new Date());gtag('config','G-MXSE5QFHHY');
 <div class="keret gyujto"><div class="gyujto-fej"><h1>Google AI</h1><p>Minden hír ebből a forrásból: Google AI.</p><span>11 hír</span></div><div class="racs-4"><a class="hir hir-kicsi" href="/hir/kodolas-nelkul-keszithetunk-sajat-jatekokat-a-google-uj-platformjan"><div class="hkep "><img src="/assets/kep/22643d6fcb19.webp" alt="" loading="lazy"><span class="felk" aria-hidden="true"></span><span class="felk-cimke"><i></i>Feltörekvő hír</span></div><div class="htorzs"><div class="hmeta"><span class="forras">Google AI</span><span>okt. 7. 14:00</span><span class="kat">eszköz</span></div><h3>Promptokkal építhetünk saját játékokat a Google új platformján</h3><p class="hlead">Elindult a Google Playground, ahol programozói tudás nélkül, egyszerű szöveges utasításokkal hozhatunk létre és oszthatunk meg egyedi játékokat.</p></div></a><a class="hir hir-kicsi" href="/hir/egy-alkoto-nyerte-meg-az-xprize-2-5-millio-dollaros-filmalapjat"><div class="hkep "><img src="/assets/kep/1eadd5627184.webp" alt="" loading="lazy"></div><div class="htorzs"><div class="hmeta"><span class="forras">Google AI</span><span>szept. 28. 21:00</span><span class="kat">videó</span></div><h3>Egyetlen alkotó nyerte a Google és az XPRIZE filmversenyét</h3><p class="hlead">Jeff Synthesized független filmes nyerte a Future Vision XPRIZE fődíját, amellyel 2,5 millió dolláros játékfilmes gyártási támogatást kapott.</p></div></a><a class="hir hir-kicsi" href="/hir/6-orszagban-valik-elerhetove-a-google-beam-videorendszere"><div class="hkep "><img src="/assets/kep/8a86c97089bb.webp" alt="" loading="lazy"></div><div class="htorzs"><div class="hmeta"><span class="forras">Google AI</span><span>szept. 23. 20:00</span><span class="kat">eszköz</span></div><h3>Hat országban válik elérhetővé a Google Beam videórendszer</h3><p class="hlead">A Google hat országra terjeszti ki a Beam videóhívó technológiát, amely a HP hardverével teszi élethűbbé a távoli megbeszéléseket.</p></div></a><a class="hir hir-kicsi" href="/hir/neves-kozgazdaszokkal-boviti-mi-kutatocsoportjat-a-google"><div class="hkep "><img src="/assets/kep/079e661c04ce.webp" alt="" loading="lazy"></div><div class="htorzs"><div class="hmeta"><span class="forras">Google AI</span><span>szept. 18. 16:00</span><span class="kat">kutatás</span></div><h3>Neves közgazdászokkal bővíti MI-kutatócsoportját a Google</h3><p class="hlead">A Google neves szakértőkkel és új kutatási programmal vizsgálja, hogyan alakítja át a mesterséges intelligencia a munkahelyeket és a termelékenységet.</p></div></a><a class="hir hir-kicsi" href="/hir/kodolas-nelkul-epithetunk-sajat-ai-eszkozoket-a-google-flow-ban"><div class="hkep "><img src="/assets/kep/13d62ca6fcfd.webp" alt="" loading="lazy"></div><div class="htorzs"><div class="hmeta"><span class="forras">Google AI</span><span>szept. 18. 15:00</span><span class="kat">eszköz</span></div><h3>Kódolás nélkül építhetünk saját AI-eszközöket a Google Flow-ban</h3><p class="hlead">A Google Flow segítségével bárki építhet saját kreatív AI-eszközöket egyszerű szöveges utasításokkal, programozói tudás nélkül.</p></div></a><a class="hir hir-kicsi" href="/hir/kozos-ai-alapu-adatbazist-inditott-a-google-es-az-ensz"><div class="hkep "><img src="/assets/kep/e7b9d12d1b3a.webp" alt="" loading="lazy"></div><div class="htorzs"><div class="hmeta"><span class="forras">Google AI</span><span>szept. 17. 22:00</span><span class="kat">eszköz</span></div><h3>Közös AI-alapú adatbázist indított a Google és az ENSZ</h3><p class="hlead">Az UN System Data Commons egy helyen teszi kereshetővé és vizualizálhatóvá a globális statisztikákat egyszerű, hétköznapi kérdések segítségével.</p></div></a><a class="hir hir-kicsi" href="/hir/mar-300-nyelvet-tamogat-a-google-es-uj-ai-elemzoeszkozt-adott-ki"><div class="hkep "><img src="/assets/kep/b86d9a766fb7.webp" alt="" loading="lazy"></div><div class="htorzs"><div class="hmeta"><span class="forras">Google AI</span><span>szept. 15. 18:00</span><span class="kat">kutatás</span></div><h3>Már 300 nyelvet támogat a Google, és új AI-elemzőeszközt adott ki</h3><p class="hlead">A Google technológiái már 300 nyelvet támogatnak, emellett a cég kiadta az AI &amp; Economy ATLAS interaktív eszközt a globális AI-használat elemzésére.</p></div></a><a class="hir hir-kicsi" href="/hir/kozvetlenul-a-beszelt-nyelvet-es-a-hangszint-erti-meg-a-google-ai"><div class="hkep "><img src="/assets/kep/a243976a4aef.webp" alt="" loading="lazy"></div><div class="htorzs"><div class="hmeta"><span class="forras">Google AI</span><span>szept. 15. 18:00</span><span class="kat">modell</span></div><h3>Közvetlenül a beszélt nyelvet és a hangszínt érti meg a Google AI</h3><p class="hlead">A Google a puszta szövegfordításon túlmutató, közvetlen hangalapú AI-modelleket és offline is futtatható TranslateGemma eszközöket mutatott be.</p></div></a><a class="hir hir-kicsi" href="/hir/szemelyre-szabott-edzestervet-keszit-a-google-kereso-uj-ai-modja"><div class="hkep "><img src="/assets/kep/1852061b5cf6.webp" alt="" loading="lazy"></div><div class="htorzs"><div class="hmeta"><span class="forras">Google AI</span><span>szept. 10. 18:00</span><span class="kat">eszköz</span></div><h3>Személyre szabott edzéstervet készít a Google Kereső új AI-módja</h3><p class="hlead">A Google Kereső új AI-funkcióival egyedi edzéstervet és zenei listát generálhatunk, valamint a legmegfelelőbb futófelszerelést is felkutathatjuk.</p></div></a><a class="hir hir-kicsi" href="/hir/ai-jal-keltette-eletre-egy-idos-par-emlekeit-a-google-deepmind"><div class="hkep "><img src="/assets/kep/e8269fc9a109.webp" alt="" loading="lazy"></div><div class="htorzs"><div class="hmeta"><span class="forras">Google AI</span><span>szept. 9. 18:00</span><span class="kat">videó</span></div><h3>AI-jal keltette életre egy idős pár emlékeit a Google DeepMind</h3><p class="hlead">A Google DeepMind és neves rendezők AI-technológiával alkották újra egy idős házaspár fiatalkori, kamerával soha rögzített közös emlékét.</p></div></a><a class="hir hir-kicsi" href="/hir/ai-alapu-meccselemzest-es-fantasy-tippeket-kapott-a-google-kereso"><div class="hkep "><img src="/assets/kep/b0dd0e34ba0b.webp" alt="" loading="lazy"></div><div class="htorzs"><div class="hmeta"><span class="forras">Google AI</span><span>szept. 9. 18:00</span><span class="kat">eszköz</span></div><h3>AI-alapú meccselemzést és fantasy-tippeket kapott a Google Kereső</h3><p class="hlead">A Google Kereső új, valós idejű meccsfolyammal, részletes statisztikákkal és a fantasy-fiókokat elemző AI-asszisztenssel frissült az új NFL-szezonra.</p></div></a></div></div>
 </main>
 <div class="uj-hirek" aria-live="polite"></div>
+<section class="suti-sav" data-suti-sav role="region" aria-label="Sütik és látogatottságmérés">
+  <div class="suti-belso">
+    <p>Az oldal magától nem használ sütit. A látogatottságot csak a hozzájárulásoddal mérjük, a Google Analytics segítségével.</p>
+    <div class="suti-tettek">
+      <button class="suti-gomb" type="button" data-suti="nem">Elutasítom</button>
+      <button class="suti-gomb suti-gomb--fo" type="button" data-suti="igen">Elfogadom</button>
+    </div>
+  </div>
+</section>
 <footer class="lablec"><div class="keret">
   <span>quicknews.hu: a legfontosabb AI-bejelentések magyarul, videóval.</span>
-  <span><a href="/temak">Témák</a> · <a href="/forrasok">Források</a> · <a href="/rss.xml">RSS</a></span>
+  <span><a href="/temak">Témák</a> · <a href="/forrasok">Források</a> · <a href="/rss.xml">RSS</a> · <button type="button" class="lablec-link" data-suti-ujra>Sütibeállítások</button></span>
 </div></footer>
-<script src="/assets/app.js?v=18" defer></script>
+<script src="/assets/app.js?v=19" defer></script>
 </body>
 </html>

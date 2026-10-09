@@ -25,7 +25,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+var qnSuti=null;try{qnSuti=JSON.parse(localStorage.getItem('qn-suti')||'null');}catch(e){}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:(qnSuti&&qnSuti.meres)?'granted':'denied'});
+if(qnSuti)document.documentElement.classList.add('suti-van');
 gtag('js',new Date());gtag('config','G-MXSE5QFHHY');
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXSE5QFHHY"></script>
@@ -34,7 +36,7 @@ gtag('js',new Date());gtag('config','G-MXSE5QFHHY');
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css?v=42">
+<link rel="stylesheet" href="/assets/style.css?v=43">
 
 </head>
 <body>
@@ -42,7 +44,7 @@ gtag('js',new Date());gtag('config','G-MXSE5QFHHY');
 <header class="fejlec" data-fejlec><div class="fejlec-felso"><div class="keret">
   <a class="logo" href="/"><span class="pont"></span><span class="nev">quicknews<span class="hu">.hu</span></span></a>
   <p class="szlogen">AI hírek, hogy <mark>ne maradj le</mark></p>
-  <div class="fejlec-info"><span>2026. október 9., péntek · frissítve 09:18</span><span class="frissit"><button type="button" class="frissit-gomb" hidden>Frissítés most</button><span class="frissit-allapot" aria-live="polite"></span></span></div>
+  <div class="fejlec-info"><span>2026. október 9., péntek · frissítve 09:26</span><span class="frissit"><button type="button" class="frissit-gomb" hidden>Frissítés most</button><span class="frissit-allapot" aria-live="polite"></span></span></div>
   <div class="kereso" data-kereso>
     <form class="kereso-mezosor" role="search" onsubmit="return false">
       <svg class="kereso-ikon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72 72.08 72.08 0 0 1-72-72Z"/></svg>
@@ -69,10 +71,19 @@ gtag('js',new Date());gtag('config','G-MXSE5QFHHY');
 <div class="keret gyujto"><div class="gyujto-fej"><h1>robotika</h1><p>Minden hír a témában: robotika.</p><span>7 hír</span></div><div class="racs-4"><a class="hir hir-kicsi" href="/hir/robotokat-iranyit-es-autot-vezet-az-uj-odyssey-3-vilagmodell"><div class="hkep "><img src="/assets/kep/bdce40007b76.webp" alt="" loading="lazy"></div><div class="htorzs"><div class="hmeta"><span class="forras">Perplexity Discover</span><span>okt. 8. 19:32</span><span class="kat">modell</span></div><h3>Robotokat irányít és autót vezet az új Odyssey-3 világmodell</h3><p class="hlead">Megjelent az Odyssey-3 alapozó világmodell, amely a Perplexity által feldolgozott források szerint képes robotokat, drónokat és autókat is irányítani.</p></div></a><a class="hir hir-kicsi" href="/hir/clement-delangue-megmutatta-a-reachy-mini-robot-kepessegeit"><div class="hkep "><img src="/assets/kep/5483caba847a.webp" alt="" loading="lazy"><span class="jelveny"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M232.4 114.49 88.32 26.35a16 16 0 0 0-16.2-.3A15.86 15.86 0 0 0 64 39.87v176.26A15.94 15.94 0 0 0 80 232a16.07 16.07 0 0 0 8.36-2.35l144.04-88.14a15.81 15.81 0 0 0 0-27.02Z"/></svg>videó, 0:52</span></div><div class="htorzs"><div class="hmeta"><span class="forras">Clément Delangue (X)</span><span>okt. 8. 17:05</span><span class="kat">eszköz</span></div><h3>Clément Delangue megmutatta a Reachy mini robot képességeit</h3><p class="hlead">A Hugging Face vezérigazgatója egy rövid videóban mutatta be a Reachy mini nevű robot sokoldalú működését és gyakorlati alkalmazhatóságát.</p></div></a><a class="hir hir-kicsi" href="/hir/virtualis-emberekkel-teszteli-a-robotok-biztonsagat-a-safeworld"><div class="hkep "><img src="/assets/kep/8219cfaf573d.webp" alt="" loading="lazy"></div><div class="htorzs"><div class="hmeta"><span class="forras">TechCrunch AI</span><span>okt. 5. 14:00</span><span class="kat">üzlet</span></div><h3>Virtuális emberekkel teszteli a robotok biztonságát a Safeworld</h3><p class="hlead">Több mint 12 millió dolláros tőkével lépett ki a titoktartásból a Safeworld, amely szimulációkban teszteli, hogy az AI-vezérelt robotok ne bántsák az embereket.</p></div></a><a class="hir hir-kicsi" href="/hir/a-robotok-gyakorlati-alkalmazasarol-egyeztettek-a-runway-szinpadan"><div class="hkep "><img src="/assets/kep/5cbc906a5b57.webp" alt="" loading="lazy"><span class="jelveny"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M232.4 114.49 88.32 26.35a16 16 0 0 0-16.2-.3A15.86 15.86 0 0 0 64 39.87v176.26A15.94 15.94 0 0 0 80 232a16.07 16.07 0 0 0 8.36-2.35l144.04-88.14a15.81 15.81 0 0 0 0-27.02Z"/></svg>videó, 0:35</span></div><div class="htorzs"><div class="hmeta"><span class="forras">Runway (X)</span><span>okt. 2. 16:04</span><span class="kat">egyéb</span></div><h3>A robotok gyakorlati alkalmazásáról egyeztettek a Runway színpadán</h3><p class="hlead">Paril Jain és Quan Vuong a Runway AI Summit rendezvényen beszélgetett a robotok terepen történő bevetéséről és a technológia 3 éves jövőjéről.</p></div></a><a class="hir hir-kicsi" href="/hir/videokbol-tanul-robotokat-iranyitani-a-runway-uj-modellje"><div class="hkep "><img src="/assets/kep/2bf0446df08d.webp" alt="" loading="lazy"><span class="jelveny"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M232.4 114.49 88.32 26.35a16 16 0 0 0-16.2-.3A15.86 15.86 0 0 0 64 39.87v176.26A15.94 15.94 0 0 0 80 232a16.07 16.07 0 0 0 8.36-2.35l144.04-88.14a15.81 15.81 0 0 0 0-27.02Z"/></svg>videó</span></div><div class="htorzs"><div class="hmeta"><span class="forras">Runway (YouTube)</span><span>szept. 30. 20:07</span><span class="kat">modell</span></div><h3>A Runway bemutatta a videókból tanuló Praxis-1 robotmodellt</h3><p class="hlead">A Runway bejelentette a Praxis-1 modellt, amely a cég videós előtanítási technológiáját használja fel robotok valós idejű vezérlésére.</p></div></a><a class="hir hir-kicsi" href="/hir/robotok-es-emberek-munkajat-hangolja-ossze-a-destro-ai-szoftvere"><div class="hkep "><img src="/assets/kep/8e63278d5d97.webp" alt="" loading="lazy"></div><div class="htorzs"><div class="hmeta"><span class="forras">TechCrunch AI</span><span>szept. 30. 18:00</span><span class="kat">eszköz</span></div><h3>Robotok és emberek munkáját hangolja össze a Destro AI szoftvere</h3><p class="hlead">A 8 millió dolláros befektetést szerző startup nem saját robotokat gyárt, hanem egy mesterséges intelligenciára épülő karmesteri szoftvert kínál.</p></div></a><a class="hir hir-kicsi" href="/hir/az-amd-8-2-milliard-dollarert-felvasarolja-a-world-labs-et"><div class="hkep "><img src="/assets/kep/2f5ef0621565.webp" alt="" loading="lazy"></div><div class="htorzs"><div class="hmeta"><span class="forras">TechCrunch AI</span><span>szept. 28. 22:39</span><span class="kat">üzlet</span></div><h3>Az AMD 8,2 milliárd dollárért felvásárolja a World Labs-et</h3><p class="hlead">Az AMD bejelentette, hogy megvásárolja a neves AI-kutató, Fei-Fei Li által alapított World Labs-et, amely a fizikai világot modellező AI-rendszereket fejleszt.</p></div></a></div></div>
 </main>
 <div class="uj-hirek" aria-live="polite"></div>
+<section class="suti-sav" data-suti-sav role="region" aria-label="Sütik és látogatottságmérés">
+  <div class="suti-belso">
+    <p>Az oldal magától nem használ sütit. A látogatottságot csak a hozzájárulásoddal mérjük, a Google Analytics segítségével.</p>
+    <div class="suti-tettek">
+      <button class="suti-gomb" type="button" data-suti="nem">Elutasítom</button>
+      <button class="suti-gomb suti-gomb--fo" type="button" data-suti="igen">Elfogadom</button>
+    </div>
+  </div>
+</section>
 <footer class="lablec"><div class="keret">
   <span>quicknews.hu: a legfontosabb AI-bejelentések magyarul, videóval.</span>
-  <span><a href="/temak">Témák</a> · <a href="/forrasok">Források</a> · <a href="/rss.xml">RSS</a></span>
+  <span><a href="/temak">Témák</a> · <a href="/forrasok">Források</a> · <a href="/rss.xml">RSS</a> · <button type="button" class="lablec-link" data-suti-ujra>Sütibeállítások</button></span>
 </div></footer>
-<script src="/assets/app.js?v=18" defer></script>
+<script src="/assets/app.js?v=19" defer></script>
 </body>
 </html>

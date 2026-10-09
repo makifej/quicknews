@@ -207,3 +207,23 @@
   window.addEventListener('scroll', jel, {passive: true});
   setTimeout(nez, 1500);  // rövid hír: ha betöltéskor már 90% látszik, 1,5 mp után számol
 })();
+
+// qn-suti-kezelo: a sütisáv. Döntés a localStorage qn-suti kulcsában; elfogadáskor a Consent Mode frissül.
+(function(){
+  var sav = document.querySelector('[data-suti-sav]'); if (!sav) return;
+  var TAR = 'qn-suti', valasz = null;
+  try { valasz = JSON.parse(localStorage.getItem(TAR) || 'null'); } catch(e){}
+  function mutat(){ sav.hidden = false; setTimeout(function(){ sav.classList.add('nyitva'); }, 30); }
+  function rejt(){ sav.classList.remove('nyitva'); setTimeout(function(){ sav.hidden = true; }, 700); }
+  function ment(meres){
+    valasz = {meres: !!meres, ido: new Date().toISOString(), verzio: 1};
+    try { localStorage.setItem(TAR, JSON.stringify(valasz)); } catch(e){}
+    try { if (window.gtag) gtag('consent', 'update', {analytics_storage: meres ? 'granted' : 'denied'}); } catch(e){}
+    if (meres && window.gtag) { try { gtag('event', 'page_view'); } catch(e){} }
+    document.documentElement.classList.add('suti-van');
+    rejt();
+  }
+  sav.addEventListener('click', function(e){ var g = e.target.closest('[data-suti]'); if (!g) return; ment(g.getAttribute('data-suti') === 'igen'); });
+  document.addEventListener('click', function(e){ if (e.target.closest('[data-suti-ujra]')) { document.documentElement.classList.remove('suti-van'); mutat(); } });
+  if (valasz) sav.hidden = true; else mutat();
+})();
