@@ -186,3 +186,24 @@
   var mezo = document.getElementById('kereso-mezo'), idoz;
   if (mezo) mezo.addEventListener('input', function(){ clearTimeout(idoz); var q = mezo.value.trim(); if (q.length < 3) return; idoz = setTimeout(function(){ ev('search', {search_term: q.slice(0,60)}); }, 1500); });
 })();
+
+// cikk_elolvasva: a cikk szövegét (hír + "Miért számít") 90%-ig görgette le az olvasó; hírenként egyszer
+(function(){
+  var cikk = document.querySelector('article.cikk .cikk-racs'); if (!cikk || !window.gtag) return;
+  var kesz = false, var_ = false, kezd = Date.now();
+  function nez(){
+    var_ = false; if (kesz) return;
+    var r = cikk.getBoundingClientRect();
+    var latott = (window.innerHeight - r.top) / r.height;
+    if (r.height > 0 && latott >= 0.9) {
+      kesz = true;
+      var h1 = document.querySelector('article.cikk h1'), f = document.querySelector('.cikk-fej .meta .forras');
+      try { gtag('event', 'cikk_elolvasva', {cikk_cim: h1 ? h1.textContent.trim().slice(0, 100) : '', forras: f ? f.textContent.trim() : '',
+        olvasasi_ido_mp: Math.round((Date.now() - kezd) / 1000)}); } catch(e){}
+      window.removeEventListener('scroll', jel);
+    }
+  }
+  function jel(){ if (!var_) { var_ = true; requestAnimationFrame(nez); } }
+  window.addEventListener('scroll', jel, {passive: true});
+  setTimeout(nez, 1500);  // rövid hír: ha betöltéskor már 90% látszik, 1,5 mp után számol
+})();
