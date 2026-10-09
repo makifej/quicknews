@@ -78,3 +78,9 @@ jobs:
       - name: Kiadás a Vercelre
         if: steps.ido.outputs.fut == 'igen' && env.VERCEL_TOKEN != ''
         run: npx --yes vercel@latest deploy --prod --yes --token "$VERCEL_TOKEN"
+      - name: IndexNow (az új hírek beküldése a keresőknek)
+        if: steps.ido.outputs.fut == 'igen' && env.VERCEL_TOKEN != ''
+        run: |
+          python3 build/indexnow.py || true
+          git add data/indexnow_kuldve.json
+          if ! git diff --cached --quiet; then git commit -q -m "IndexNow-nyilvántartás"; for i in 1 2 3; do git push -q && break || { git pull -q --rebase -X theirs && sleep 5; }; done; fi
