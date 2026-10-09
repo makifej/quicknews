@@ -16,7 +16,7 @@
   "modell": "gemini-3.5-flash",
   "cim": "GPU-időkerettel oldja meg a szerverhiányt az Ai2 kutatóintézet",
   "lead": "Az Allen Institute for AI új ütemezési rendszerrel küszöböli ki a GPU-k pazarolását, így gyorsabban és hatékonyabban fejleszthetik az új AI-modelleket.",
-  "osszefoglalo": "Az Allen Institute for AI (Ai2) bemutatta új GPU-ütemezési rendszerét, amellyel a korábbi prioritásalapú modellt **időalapú GPU-keretekre** cserélték. A szervezet több ezer NVIDIA H100, B200 és B300 grafikus kártyát üzemeltet, amelyekre a kutatók részéről folyamatosan 2-3-szor nagyobb az igény, mint a valós kapacitás.\n\nAz új, hierarchikus rendszerben a kutatócsoportok nem konkrét fizikai eszközöket, hanem **százalékos GPU-időkeretet** kapnak, amelyet a vezetőség oszt el a projektek várható hatása alapján. Ha egy kutató feleslegesen foglalja le a rendszert, azzal a saját csapata véges keretét pazarolja, így megszűnt a korábbi trükközés és a kapacitások indokolatlan lefoglalása.",
+  "osszefoglalo": "Az Allen Institute for AI (Ai2) bemutatta új GPU-ütemezési rendszerét, amellyel a korábbi prioritásalapú modellt **időalapú GPU-keretekre** cserélték. A szervezet több ezer [NVIDIA H100](https://www.nvidia.com/en-us/data-center/h100/), B200 és B300 grafikus kártyát üzemeltet, amelyekre a kutatók részéről folyamatosan 2-3-szor nagyobb az igény, mint a valós kapacitás.\n\nAz új, hierarchikus rendszerben a kutatócsoportok nem konkrét fizikai eszközöket, hanem **százalékos GPU-időkeretet** kapnak, amelyet a vezetőség oszt el a projektek várható hatása alapján. Ha egy kutató feleslegesen foglalja le a rendszert, azzal a saját csapata véges keretét pazarolja, így megszűnt a korábbi trükközés és a kapacitások indokolatlan lefoglalása.",
   "miert_szamit": "Bár a háttérben futó infrastruktúráról van szó, az ilyen hatékonysági javulások közvetlenül **felgyorsítják az új generációs nyelvi és robotikai AI-modellek fejlesztését**, így a felhasználók hamarabb kapnak okosabb eszközöket.",
   "cimkek": [
     "GPU",
@@ -31,5 +31,7 @@
   "relevans": true,
   "kiprobalhato": null,
   "linkszabaly": 2,
-  "kiprobal_nezve": true
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
 }
