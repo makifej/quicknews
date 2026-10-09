@@ -1,0 +1,37 @@
+{
+  "id": "0d65ea2af387",
+  "slug": "7-szer-hosszabb-szoveggel-is-tanithatok-ai-modellek-az-uj-trl-lel",
+  "forras_id": "linkedin",
+  "forras_nev": "Hugging Face (LinkedIn)",
+  "url": "https://www.linkedin.com/feed/update/urn:li:activity:7514316213901074433/",
+  "szerzo": "Hugging Face",
+  "publikalva": "2026-10-09T13:29:54.638000+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.licdn.com/dms/image/v2/D5622AQGFAN-_yRopWQ/feedshare-shrink_800/B56aEg2vYZGgAc-/0/1791552583464?e=2147483647&v=beta&t=2DcwKcOplPsChbAxfIAGZPP5ba_E9btYtdjJhyLar7I",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7514316213901074433"
+  },
+  "cim_eredeti": "TRL v1.15 is out, and it’s an absolute banger of a release for memory-efficient post-training.",
+  "forrasok": [],
+  "szoveg_eredeti": "TRL v1.15 is out, and it’s an absolute banger of a release for memory-efficient post-training.\n\nThe main change: SFT, DPO, KTO, GRPO, RLOO and Distillation now use a fused LM head by default.Instead of materializing the huge [batch, seq, vocab] logits tensor, a Triton kernel computes the token-level quantities we actually need directly.\n\nThe results are quite significant.\n\nOn Gemma 3-1B with a 262k vocabulary, on the same GPU:\n\nDPO: 10k → 59k max sequence length\nKTO: 9k → 63k\nGRPO: 28k → 114k\nRLOO: 23k → 100k\nSFT: 20k → 107k\n\nUp to 6.9x longer sequences, with peak memory at 8k context reduced by 52-82%.\n\nSpeed isn't negatively impacted: training is also up to ~11% faster.\n\nThere’s more in the release too: selective activation checkpointing for SFT, assistant-only loss for vision datasets, better conversation logging, improvements to AsyncGRPO / AsyncDistillation, and a long list of fixes.\n\nI really like optimizations like this: the training API doesn’t need to become more complicated as the implementation underneath gets much better.",
+  "modell": "gemini-3.5-flash",
+  "cim": "7-szer hosszabb szöveggel is taníthatók AI-modellek az új TRL-lel",
+  "lead": "A Hugging Face kiadta a TRL v1.15-ös verzióját, amely jelentősen csökkenti a memóriahasználatot, így sokkal hosszabb kontextussal finomíthatók a modellek.",
+  "osszefoglalo": "A Hugging Face megjelentette a **TRL v1.15-ös frissítését**, amely komoly hatékonyságnövekedést hoz a nyelvi modellek utólagos betanításában. Az új verzió alapértelmezetten egy összevont nyelvi modellfejet használ, amely közvetlenül számítja ki a szükséges értékeket ahelyett, hogy hatalmas adatmennyiséget generálna a memóriában.\n\nA változtatásnak köszönhetően a modellek **akár 6,9-szer hosszabb szövegkörnyezetet** képesek kezelni ugyanazon a hardveren, miközben a memóriahasználat 52 és 82 százalék között csökkent. A tesztek alapján a betanítási sebesség is javult, a folyamat nagyjából 11 százalékkal lett gyorsabb.\n\nA frissítés emellett hatékonyabb memóriakezelést biztosít a képi adatsorokhoz, javítja a beszélgetések naplózását, és számos hibajavítást is tartalmaz. A fejlesztők számára jó hír, hogy a betanítási folyamat kódja nem bonyolódott, a háttérben futó optimalizáció automatikusan működik.",
+  "miert_szamit": "A fejlesztés révén a saját adatokkal történő modellfinomítás sokkal olcsóbbá válik, így a kisebb vállalkozások is **saját, egyedi igényekre szabott AI-asszisztenseket** építhetnek korlátozott költségvetésből. A hosszabb kontextusnak köszönhetően a modellek **egyszerre sokkal több dokumentumot** képesek feldolgozni a betanítás során.",
+  "cimkek": [
+    "Hugging Face",
+    "TRL",
+    "modellfinomítás",
+    "AI-fejlesztés"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkszabaly": 2,
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}
