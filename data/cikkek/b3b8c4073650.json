@@ -16,10 +16,10 @@
   "forrasok": [],
   "szoveg_eredeti": "An update for builders using Codex on Windows:\n\nWe’ve built a new sandbox mode using @Microsoft’s Execution Containers (MXC) for faster setup, stronger network enforcement, and granular file access controls.\n\nRequires a compatible Windows 11 device.",
   "modell": "gemini-3.5-flash",
-  "cim": "Biztonságosabb sandbox módot kapott az OpenAI Codex Windowsra",
-  "lead": "Az OpenAI a Microsoft technológiájával tette gyorsabbá és biztonságosabbá a Codex fejlesztői környezetét Windows 11-es eszközökön.",
-  "osszefoglalo": "Az OpenAI egy új sandbox módot fejlesztett ki a [Codex](https://openai.com/codex) rendszert Windows alatt használó fejlesztőknek. Az új környezet **gyorsabb beállítást** és erősebb hálózati védelmet biztosít a fejlesztési folyamatok során.\n\nA frissítés a [Microsoft Execution Containers](https://github.com/microsoft/mxc) technológiájára épül, így részletesebb hozzáférés-szabályozást tesz lehetővé a fájlokhoz. A funkció futtatásához egy **kompatibilis Windows 11** eszköz szükséges.",
-  "miert_szamit": "A Windows-alapú fejlesztők a biztonságosabb helyi környezetben **gyorsabban építhetnek egyedi AI-alkalmazásokat** a vállalkozások számára.",
+  "cim": "Új sandbox módot kapott az OpenAI Codex Windows 11-en",
+  "lead": "Az OpenAI a Microsoft technológiájával tette biztonságosabbá és gyorsabbá a Codex fejlesztői környezetét a kompatibilis Windows 11-es eszközökön.",
+  "osszefoglalo": "Az OpenAI frissítést adott ki a [Codex](https://openai.com/codex) modellt Windows rendszeren használó fejlesztők számára. A Microsoft Execution Containers technológiájára építve egy **új sandbox módot** vezettek be, amely biztonságosabb környezetet teremt a kódoláshoz.\n\nAz új megoldás gyorsabb beállítást, szigorúbb hálózati szabályozást és részletesebb fájlhozzáférési ellenőrzést biztosít. A funkció futtatásához egy **kompatibilis Windows 11-es eszköz** szükséges.",
+  "miert_szamit": "Ha saját AI-alapú megoldásokat fejlesztesz vagy tesztelsz, a Windows 11-es környezetben mostantól **gyorsabban és biztonságosabban** futtathatod a generált kódokat.",
   "cimkek": [
     "OpenAI",
     "Codex",
@@ -31,9 +31,12 @@
   "fontossag": 3,
   "video_szoveg": "",
   "relevans": true,
-  "kiprobalhato": null,
+  "kiprobalhato": {
+    "nev": "Codex",
+    "url": "https://openai.com/codex"
+  },
   "linkszabaly": 2,
-  "kiprobal_nezve": true,
   "termeklinkek_nezve": true,
+  "kiprobal_nezve": true,
   "linkek_ellenorizve": true
 }
