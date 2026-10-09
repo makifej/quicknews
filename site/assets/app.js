@@ -76,7 +76,7 @@
       a.querySelector('.uj-zar').addEventListener('click', function(ev){ ev.preventDefault(); ev.stopPropagation(); a.remove(); });
       doboz.prepend(a);
       setTimeout(function(){ a.classList.add('bent'); }, 30);
-      setTimeout(function(){ a.classList.remove('bent'); setTimeout(function(){ a.remove(); }, 800); }, 45000);
+      setTimeout(function(){ a.classList.remove('bent'); setTimeout(function(){ a.remove(); }, 800); }, 30000);
       if (window.Notification && Notification.permission === 'granted') {
         try { var n = new Notification('quicknews.hu: ' + h.forras, {body: h.cim, icon: '/assets/ikon.svg', tag: h.id}); n.onclick = function(){ window.focus(); location.href = '/hir/' + h.slug; }; } catch(e){}
       }
@@ -84,7 +84,7 @@
     function nez(){
       fetch('/feed.json?t=' + Date.now(), {cache:'no-store'}).then(function(r){ return r.json(); }).then(function(d){
         var l = latott(); var ujak = d.hirek.filter(function(h){ return l.indexOf(h.id) < 0; });
-        if (!elso) ujak.slice(0, 5).reverse().forEach(kartya);
+        if (!elso) ujak.slice(0, 3).reverse().forEach(kartya);
         elso = false;
         ment(d.hirek.map(function(h){ return h.id; }).concat(l));
       }).catch(function(){});
@@ -165,4 +165,24 @@
       }
     });
   });
+})();
+
+// qn-esemenyek: egyedi GA4-események (a bővített mérésen felül), csak ha a gtag betöltött
+(function(){
+  function ev(nev, adat){ try { if (window.gtag) gtag('event', nev, adat || {}); } catch(e){} }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a, button'); if (!a) return;
+    if (a.classList.contains('kiprobal')) ev('kiprobalom', {eszkoz: (a.textContent||'').replace('Kipróbálom:','').trim().slice(0,80), link_url: a.href});
+    else if (a.classList.contains('kulso')) ev('cikk_link', {link_text: (a.textContent||'').trim().slice(0,80), link_url: a.href});
+    else if (a.classList.contains('eredeti') && a.tagName === 'A') ev('eredeti_forras', {link_url: a.href});
+    else if (a.classList.contains('li-kartya')) ev('eredeti_forras', {link_url: a.href, tipus: 'linkedin'});
+    else if (a.classList.contains('uj-kartya')) ev('uj_hir_kartya', {link_url: a.href});
+    else if (a.classList.contains('kereso-tetel')) ev('kereses_talalat', {link_url: a.href});
+    else if (a.classList.contains('ertesit-gomb')) ev('ertesites_keres');
+    else if (a.classList.contains('tema-gomb')) ev('tema_valtas', {tema: document.documentElement.getAttribute('data-theme') === 'light' ? 'sotet' : 'vilagos'});
+    else if (a.closest('.rovatsor')) ev('rovat_menu', {rovat: (a.textContent||'').trim()});
+    var lj = e.target.closest && e.target.closest('.lejatszo'); if (lj && !lj.dataset.mert) { lj.dataset.mert = '1'; ev('video_inditas', {tipus: lj.dataset.video ? 'mp4' : 'beagyazott'}); }
+  }, true);
+  var mezo = document.getElementById('kereso-mezo'), idoz;
+  if (mezo) mezo.addEventListener('input', function(){ clearTimeout(idoz); var q = mezo.value.trim(); if (q.length < 3) return; idoz = setTimeout(function(){ ev('search', {search_term: q.slice(0,60)}); }, 1500); });
 })();
