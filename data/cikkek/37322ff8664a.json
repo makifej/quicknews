@@ -1,0 +1,96 @@
+{
+  "id": "37322ff8664a",
+  "slug": "ingyenes-mi-szkennert-inditott-az-anthropic-nyilt-projekteknek",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/anthropic-launches-free-ai-sec-DmtkYJ.6TKyKuWdDvK8aWw",
+  "szerzo": "Perplexity Discover",
+  "publikalva": "2026-10-09T01:14:09.001687+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--7Yid3tO3--/t_limit/https://cdn.mos.cms.futurecdn.net/SnWyqmbsH5h3PJcvC44zkH.jpg"
+  },
+  "cim_eredeti": "Az Anthropic ingyenes MI-alapú biztonsági vizsgálatokat indít nyílt forráskódú projekteknek",
+  "forrasok": [
+    {
+      "nev": "Anthropic launches free AI security scans for open-source projects",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1008521/anthropic-open-source-oss-scanner",
+      "domain": "The Verge"
+    },
+    {
+      "nev": "Introducing the Anthropic Cyber Mission",
+      "url": "https://www.anthropic.com/news/anthropic-cyber-mission",
+      "domain": "Anthropic"
+    },
+    {
+      "nev": "Anthropic launches critical infrastructure program and free OSS Scanner for open source - SiliconANGLE",
+      "url": "https://siliconangle.com/2026/10/08/anthropic-launches-critical-infrastructure-program-and-free-oss-scanner-for-open-source/",
+      "domain": "SiliconANGLE"
+    },
+    {
+      "nev": "Anthropic Launches Cyber Mission for Critical Infrastructure, Open Source",
+      "url": "https://www.unite.ai/anthropic-launches-cyber-mission-for-critical-infrastructure-open-source/",
+      "domain": "Unite.AI"
+    },
+    {
+      "nev": "AI company moves to defend critical infrastructure and open-source projects from AI",
+      "url": "https://www.theregister.com/ai-and-ml/2026/10/09/ai-company-moves-to-defend-critical-infrastructure-and-open-source-projects-from-ai/5302128",
+      "domain": "The Register"
+    },
+    {
+      "nev": "Anthropic rolls out program for ‘long-term commitment’ to secure critical infrastructure, open source software",
+      "url": "https://cyberscoop.com/anthropic-cybersecurity-program-critical-infrastructure-open-source/",
+      "domain": "CyberScoop"
+    },
+    {
+      "nev": "Anthropic offers free AI security scans for open source as Claude Code faces scrutiny - Startup Fortune",
+      "url": "https://startupfortune.com/anthropic-offers-free-ai-security-scans-for-open-source-as-claude-code-faces-scrutiny/",
+      "domain": "Startup Fortune"
+    },
+    {
+      "nev": "Anthropic launches free AI scanner for open-source projects",
+      "url": "https://ua.news/en/technologies/anthropic-zapustila-bezplatne-shi-skanuvannia-open-source-proiektiv-the-verge",
+      "domain": "UaNews"
+    },
+    {
+      "nev": "Anthropic Gives Open-Source Projects Free AI Security ...",
+      "url": "https://fourweekmba.com/ai-anthropic-gives-open-source-projects-free-ai-security-scans/",
+      "domain": "FourWeekMBA"
+    },
+    {
+      "nev": "Anthropic launches Critical Infrastructure Defense Program · Digg",
+      "url": "https://digg.com/tech/uyio6rlj",
+      "domain": "Digg"
+    },
+    {
+      "nev": "Anthropic launches free AI security scans for open-source projects",
+      "url": "https://mezha.net/eng/news/0856c1a2_anthropic_launches_free_ai/",
+      "domain": null
+    }
+  ],
+  "szoveg_eredeti": "Az Anthropic csütörtökön elindította az OSS Scannert, amely ingyenes, opt-in alapú szolgáltatás: a legfejlettebb modelljeivel, köztük a Claude Mythosszal rendszeresen átvizsgálja a jogosult nyílt forráskódú projekteket sebezhetőségek után. A szkenner az Anthropic Cyber Mission nevű új kezdeményezés része. Ennek keretében indul a Critical Infrastructure Defense Program is, amely 11 alapító partnerre épül.\n\nA cég arra fogad, hogy az MI segíthet a védőknek lépést tartani a támadókkal, akik ugyanezeket az eszközöket használják. „Soha nem volt még ilyen egyszerű sebezhetőségeket találni, ám a találatok ellenőrzése, rangsorolása és javítása továbbra is nehéz feladat” – írta az Anthropic a bejelentésében.\n\nMinden jelentés tartalmaz egy proof of conceptet (a sebezhetőség kihasználhatóságát igazoló példát), egy magyarázatot, és ha lehet, javítási javaslatot is. A jelentéseket a modell írja, és emberi átnézés nélkül küldi el a karbantartóknak. Az Anthropic szerint így gyorsabban eljutnak a címzettekhez, de előfordul, hogy némelyik téves, például hibás súlyossági besorolást kap. A cég azt várja, hogy a találatok több mint 90%-a valódi hiba lesz. Egy korábbi tesztben az Anthropic közzétételeit ellenőrző, szakértő penetrációs tesztelők 48 projekt 97 kritikus és magas súlyosságú találatát vizsgálták meg. Közülük 85-öt engedélyeztek közzétételre, a többi közül pedig csak egyről derült ki, hogy téves riasztás volt.\n\nA szolgáltatást kipróbáló karbantartók pozitívan nyilatkoztak. A wolfSSL-től Todd Ouska szerint „a kapott 74 jelentésből kettő kivételével mind érvényes volt, ötből pedig CVE lett”. Az OpenSSL Corporationtől Anton Arapov úgy fogalmazott, hogy a működő exploittal érkező jelentés „gyakorlatilag kész munka egy mérnök számára”.\n\nA szolgáltatás egy felgyülemlett hibalista miatt jött létre. Az Anthropic modelljei az elmúlt hat hónapban több mint 29 000 lehetséges sebezhetőséget jeleztek, a munkatársak viszont csak nagyjából 6000-et néztek át. Néhány karbantartó kérte, hogy megkapja az összes találatot, akár átnézték azokat, akár nem. A csatlakozáshoz a projekt fő karbantartóinak pull requestet kell beküldeniük az Anthropic GitHub-tárhelyére. A jogosultság a Google OSS-Fuzz programjának mércéjét követi: „kritikus hatás az infrastruktúrára és a felhasználók biztonságára”. A The Register beszámolója szerint a szolgáltatásra az Anthropic fogyasztói felhasználási feltételei vonatkoznak, amelyek lehetővé teszik a bemenetek és kimenetek modellek tanítására való felhasználását. Azok a projektek, amelyek nem tudnak lépést tartani a nyers találatokkal, továbbra is emberileg ellenőrzött közzétételeket kapnak.\n\nAz infrastruktúra-program Claude modelleket, helyszíni mérnököket és fenyegetéskutatást biztosít azoknak a biztonsági szolgáltatóknak, amelyek elektromos hálózatokon, vízellátó rendszereken és közlekedési hálózatokon dolgoznak. Az alapító partnerek: Accenture, Booz Allen, CrowdStrike, Deloitte, Dragos, Hitachi, Insane Cyber, Nozomi Networks, Palo Alto Networks, PwC és Rockwell Automation. A Booz Allen munkatársa, Andrew Turner az operatív technológiát (OT) „az autonóm, mesterséges intelligenciával támogatott támadások következő fő terepének” nevezte. Az Axios beszámolója szerint az Anthropic nem közölte, hogy a partnerek ingyen kapnak-e hozzáférést a modellekhez, és azt sem, hogy ki állja a számítási költségeket.\n\nMindkét program a Glasswing projektre épül, amelyet az Anthropic áprilisban indított el. A vállalat október 6-án a Glasswinget beolvasztotta a kibővített Cyber Verification Programba. Az Anthropic közlése szerint a Glasswing számos sebezhetőséget talált, a kiberkockázatot azonban egyelőre nem csökkentette kellő mértékben. A cég előrejelzése szerint az MI két éven belül a védők javára billenti majd a mérleget, de azt is elismeri, hogy ez rövid távon nem feltétlenül lesz igaz. A The Register megjegyezte, hogy az indulás olyan friss incidensek után történt, amelyekben élvonalbeli modellek szervezetekbe, köztük a Hugging Face-be is behatoltak.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Ingyenes MI-szkennert indított az Anthropic nyílt projekteknek",
+  "lead": "A Perplexity által feldolgozott források szerint az OSS Scanner emberi ellenőrzés nélkül, közvetlenül küld sebezhetőségi jelentéseket a fejlesztőknek.",
+  "osszefoglalo": "Az Anthropic elindította az [OSS Scanner](https://red.anthropic.com/oss-scanner) nevű ingyenes szolgáltatást, amely a legfejlettebb modelljeivel, köztük a [Claude](https://claude.ai) Mythosszal vizsgálja át a nyílt forráskódú szoftvereket. A rendszer **teljesen automatizáltan**, emberi ellenőrzés nélkül küld hibajelentéseket, javítási javaslatokat és működő példákat a fejlesztőknek.\\n\\nBár az ellenőrzés hiánya miatt előfordulhatnak téves riasztások, a tesztek alapján a találatok több mint **90 százaléka valós hibát** jelez. A csatlakozáshoz a jogosult projektek karbantartóinak egy pull requestet kell benyújtaniuk az Anthropic GitHub-oldalán. Fontos részlet, hogy a beküldött adatokat a cég felhasználhatja a modelljei tanítására.\\n\\nA kezdeményezés egy nagyobb védelmi program része, amellyel a fejlesztőcég a kritikus infrastruktúrák, például az áramhálózatok és a vízművek védelmét is támogatja. Az Anthropic előrejelzése szerint a mesterséges intelligencia **2 éven belül** a védők javára billenti majd a mérleget a kiberbiztonságban.",
+  "miert_szamit": "A nyílt forráskódú eszközöket használó vállalkozásoknak ez **biztonságosabb szoftverkörnyezetet** jelent, mivel a népszerű fejlesztői eszközök sérülékenységei gyorsabban javulhatnak. A saját nyílt projekteket fejlesztők pedig **ingyenes biztonsági auditot** kapnak, de figyelniük kell arra, hogy a kódjaik bekerülhetnek az Anthropic tanítóadatai közé.",
+  "cimkek": [
+    "Anthropic",
+    "Claude",
+    "kiberbiztonság",
+    "nyílt forráskód"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "entitas_linkek": [
+    "Anthropic",
+    "Claude"
+  ],
+  "linkek_ellenorizve": true
+}
