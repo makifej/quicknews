@@ -209,6 +209,29 @@
   setTimeout(nez, 1500);  // rövid hír: ha betöltéskor már 90% látszik, 1,5 mp után számol
 })();
 
+// Vissza a tetejére: legalább egy képernyőnyi görgetés után látszik (80 ms-mal fékezett, passzív figyelő).
+// Amíg a sütisáv nyitva van, fölé emelkedik, hogy ne takarja.
+(function(){
+  var gomb = document.querySelector('[data-fel-gomb]'); if (!gomb) return;
+  var var_ = false;
+  function allapot(){
+    var_ = false;
+    var kuszob = Math.max(400, window.innerHeight);
+    gomb.classList.toggle('lathato', (window.scrollY || document.documentElement.scrollTop) > kuszob);
+    var sav = document.querySelector('[data-suti-sav].nyitva');
+    gomb.style.setProperty('--fel-also', sav && !sav.hidden ? (sav.getBoundingClientRect().height + 16) + 'px' : '');
+  }
+  window.addEventListener('scroll', function(){ if (!var_) { var_ = true; setTimeout(allapot, 80); } }, {passive: true});
+  window.addEventListener('resize', allapot, {passive: true});
+  setInterval(allapot, 1500);  // a sütisáv nyílása és csukódása görgetés nélkül is
+  gomb.addEventListener('click', function(){
+    var halk = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top: 0, behavior: halk ? 'auto' : 'smooth'});
+    var fo = document.getElementById('fo') || document.body; fo.setAttribute('tabindex', '-1'); fo.focus({preventScroll: true});
+    try { if (window.gtag) gtag('event', 'vissza_a_tetejere'); } catch(e){}
+  });
+  allapot();
+})();
 // qn-suti-kezelo: a sütisáv. Döntés a localStorage qn-suti kulcsában; elfogadáskor a Consent Mode frissül.
 (function(){
   var sav = document.querySelector('[data-suti-sav]'); if (!sav) return;

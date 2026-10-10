@@ -714,3 +714,21 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
   .nap-lepteto .rovid { display: inline; }
   .nap-ugro label { flex-basis: 100%; }
 }
+
+/* ================= vissza a tetejére ================= */
+.fel-gomb {
+  position: fixed; right: 24px; bottom: var(--fel-also, 24px); z-index: 900;
+  display: grid; place-items: center; width: 48px; height: 48px; padding: 0;
+  color: var(--kiemelo-szoveg); background: var(--kiemelo); border: 0; border-radius: 50%;
+  box-shadow: 0 8px 24px var(--arnyek); cursor: pointer;
+  opacity: 0; visibility: hidden; transform: translateY(12px);
+  transition: opacity 700ms var(--gorbe), transform 700ms var(--gorbe), visibility 0s linear 700ms, bottom 700ms var(--gorbe);
+}
+.fel-gomb.lathato { opacity: 1; visibility: visible; transform: translateY(0); transition: opacity 700ms var(--gorbe), transform 700ms var(--gorbe), visibility 0s, bottom 700ms var(--gorbe); }
+.fel-gomb:hover { transform: translateY(-2px); }
+.fel-gomb:focus-visible { outline: 2px solid var(--szoveg); outline-offset: 3px; }
+.fel-gomb svg { width: 22px; height: 22px; }
+@media (max-width: 599px) {
+  .fel-gomb { right: 16px; bottom: calc(var(--fel-also, 16px) + env(safe-area-inset-bottom, 0px)); width: 44px; height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) { .fel-gomb, .fel-gomb.lathato { transition: none; } }
