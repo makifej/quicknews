@@ -234,3 +234,28 @@
   function allit(){ var r = fej.getBoundingClientRect(); document.documentElement.style.setProperty('--harang-teto', Math.max(8, Math.round(r.bottom) + 8) + 'px'); }
   allit(); window.addEventListener('resize', allit, {passive: true}); window.addEventListener('scroll', allit, {passive: true});
 })();
+// napválasztó: kattintásra máshova vagy Esc-re bezárul; a /napok dátumválasztója a nap oldalára ugrik
+(function(){
+  function zar(kivetel){ document.querySelectorAll('[data-nap-valaszto][open]').forEach(function(d){ if (d !== kivetel) d.removeAttribute('open'); }); }
+  document.addEventListener('click', function(ev){ var d = ev.target.closest ? ev.target.closest('[data-nap-valaszto]') : null; zar(d); });
+  document.addEventListener('keydown', function(ev){ if (ev.key === 'Escape') zar(null); });
+  // "Ma" és "Tegnap" előtag a látogató budapesti napja szerint
+  try {
+    var f = new Intl.DateTimeFormat('en-CA', {timeZone: 'Europe/Budapest'});
+    var ma = f.format(new Date()), tegnap = f.format(new Date(Date.now() - 864e5));
+    document.querySelectorAll('[data-nap]').forEach(function(el){
+      var n = el.getAttribute('data-nap'), elo = n === ma ? 'Ma, ' : n === tegnap ? 'Tegnap, ' : '';
+      if (!elo) return;
+      var t = el.textContent.replace(/^\d{4}\. /, '');
+      el.textContent = elo + t.charAt(0).toLowerCase() + t.slice(1);
+    });
+  } catch (e) {}
+  var ugro = document.querySelector('[data-nap-ugro]'); if (!ugro) return;
+  var napok = (ugro.getAttribute('data-napok') || '').split(',');
+  ugro.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var v = ugro.querySelector('input').value;
+    if (napok.indexOf(v) > -1) { location.href = '/nap/' + v; return; }
+    ugro.querySelector('.nap-ugro-uzenet').textContent = 'Ezen a napon nem jelent meg hír.';
+  });
+})();
