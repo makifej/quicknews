@@ -83,7 +83,8 @@ strong { font-weight: 600; color: var(--szoveg); }
 
 /* fejléc */
 .fejlec { border-bottom: 1px solid var(--vonal); background: var(--bg); }
-@media (min-width: 768px) { .fejlec { position: sticky; top: 0; z-index: 60; background: var(--fejlec-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); } }
+/* tömör háttér, elmosás nélkül: a backdrop-filter Chromiumban görgetéskor átvillantotta a tartalmat a fejlécen */
+@media (min-width: 768px) { .fejlec { position: sticky; top: 0; z-index: 60; background: var(--bg); isolation: isolate; } }
 .fejlec .keret { display: flex; align-items: center; justify-content: space-between; height: 80px; gap: 16px; }
 .logo { font-size: 30px; line-height: 36px; font-weight: 600; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
 .logo .nev { white-space: nowrap; }
