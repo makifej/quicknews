@@ -211,15 +211,13 @@ module.exports = async (req, res) => {
       const szavak = (s) => (s.match(/[0-9A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű][0-9A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű.\-]*[0-9A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű]/g) || []).filter((w) => w.length >= 4);
       for (const n of forras) {
         if (reszek.some((r) => r.forras === n)) continue;
-        const masik = new Set(forras.filter((m) => m !== n).flatMap((m) => szavak(pont[m - 1].h.cim).map(tobe)));
-        const jelolt = szavak(pont[n - 1].h.cim).filter((w) => !masik.has(tobe(w))).sort((a, b) => (/^[A-ZÁÉÍÓÖŐÚÜŰ]/.test(b) ? 1 : 0) - (/^[A-ZÁÉÍÓÖŐÚÜŰ]/.test(a) ? 1 : 0));
+        const masik = new Set(forras.filter((k) => k !== n).flatMap((k) => szavak(pont[k - 1].h.cim + " " + (pont[k - 1].h.lead || "")).map(tobe)));
+        const jo = new Set(szavak(pont[n - 1].h.cim + " " + (pont[n - 1].h.lead || "")).map(tobe).filter((w) => !masik.has(w)));
+        const nagy = (w) => (/^[A-ZÁÉÍÓÖŐÚÜŰ0-9]/.test(w) ? 1 : 0);
         const re = /[0-9A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű][0-9A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű.\-]*[0-9A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű]/g;
-        let talalt = null;
-        for (const w of jelolt) {
-          let m; re.lastIndex = 0;
-          while ((m = re.exec(szoveg))) { if (m[0].length >= 4 && tobe(m[0]) === tobe(w) && szabad(m.index, m.index + m[0].length)) { talalt = m; break; } }
-          if (talalt) break;
-        }
+        // a megkülönböztető név jellemzően hátrébb áll (a közös alany elöl): a legutolsó, lehetőleg nagybetűs találat nyer
+        let talalt = null, m;
+        while ((m = re.exec(szoveg))) { if (m[0].length >= 4 && jo.has(tobe(m[0])) && szabad(m.index, m.index + m[0].length) && (!talalt || nagy(m[0]) >= nagy(talalt[0]))) talalt = m; }
         if (talalt) reszek.push({ resz: talalt[0], forras: n, i: talalt.index, v: talalt.index + talalt[0].length });
       }
       return { szoveg, forras, reszek: reszek.sort((a, b) => a.i - b.i).map(({ resz, forras: f }) => ({ resz, forras: f })) };
