@@ -896,8 +896,10 @@ html:not(.suti-van) .chat { display: none; }
 .chat[data-sablon="keret"] .chat-b.en { max-width: 92%; }
 /* Kapcsolódó hírek: egy mérettel kisebb betű, mint a válasz (15 → 14, 14 → 13) */
 .chat[data-sablon="keret"] .hk-fej { font-size: 14px; line-height: 19px; }
-.chat[data-sablon="keret"] .hk-lead, .chat[data-sablon="keret"] .hk-szoveg, .chat[data-sablon="keret"] .hk-link { font-size: 13px; line-height: 19px; }
-.chat[data-sablon="keret"] .hk-datum { font-size: 11px; }
+/* lenyitva: legfeljebb 2 mondat, nagyobb betűvel (Heni 10-11: „nagyon kicsi a betűméret”) */
+.chat[data-sablon="keret"] .hk-lead { font-size: 16px; line-height: 24px; color: var(--szoveg); }
+.chat[data-sablon="keret"] .hk-link { font-size: 15px; line-height: 22px; }
+.chat[data-sablon="keret"] .hk-datum { font-size: 13px; }
 /* Válogatás korábbi híreinkből: egy keret, soronként elválasztva, kisebb betűvel */
 .kk { gap: 0; background: var(--bg-3); border: 1px solid var(--keret); border-radius: 12px; overflow: hidden; }
 .kk-elem + .kk-elem { border-top: 1px solid var(--keret); }
@@ -909,11 +911,11 @@ html:not(.suti-van) .chat { display: none; }
 .kk-le:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 1px; }
 .kk-le svg { width: 18px; height: 18px; }
 .kk-le[aria-expanded="true"] { transform: rotate(180deg); }
-.kk-test { margin: 0; padding: 0 12px 12px 30px; font-size: 14px; line-height: 20px; color: var(--szoveg-2); }
+.kk-test { margin: 0; padding: 0 12px 12px 30px; font-size: 16px; line-height: 24px; color: var(--szoveg); }
 .kk-elem.nyitva .kk-test { animation: lenyilik 300ms var(--gorbe); }
 .kk-nyil { display: inline-grid; place-items: center; vertical-align: -3px; color: var(--kiemelo); }
-.kk-nyil svg { width: 16px; height: 16px; }
+.kk-nyil svg { width: 18px; height: 18px; }
 .kk-nyil:hover { color: var(--kiemelo-szin); }
-.kk-datum { font-size: 12px; color: var(--szoveg-3); white-space: nowrap; }
+.kk-datum { font-size: 13px; color: var(--szoveg-3); white-space: nowrap; }
 @media (max-width: 599px) { .chat[data-sablon="keret"] .chat-panel { width: 100%; } .kk-test { padding-left: 12px; } }
 @media (prefers-reduced-motion: reduce) { .kk-le { transition: none; } .kk-elem.nyitva .kk-test { animation: none; } }
