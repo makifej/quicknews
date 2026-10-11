@@ -27,6 +27,15 @@
     "d": "okt. 10. 23:47"
   },
   {
+    "c": "Fényképezett bankkártyával vásárol internetes keresés után a Grok Bot",
+    "b": "A Grok Bot a beküldött kártyafotó alapján megkeresi a legjobb ajánlatot a weben, és le is bonyolítja a rendelést.",
+    "k": "Elon Musk (X)",
+    "g": "ügynök",
+    "u": "/hir/fenykepezett-bankkartyaval-vasarol-internetes-kereses-utan-a-grok-bot",
+    "sz": "Elon Musk bejelentése szerint a felhasználók egyszerűen lefotózhatják a bankkártyájukat, majd a képet feltölthetik a Grok Bot chates felületére. Az AI-asszisztens ezt követően átfésüli az internetet a kiválasztott termék legkedvezőbb ajánlatáért.\n\nA rendszer nemcsak megtalálja a legolcsóbb lehetőséget, hanem önállóan le is adja a rendelést a megadott fizetési adatok használatával. A funkció a teljes vásárlási folyamatot automatizálja a kereséstől a fizetésig.\n\nA poszt nem részletezi a biztonsági protokollokat és a funkció pontos elérhetőségének dátumát. Grok xAI e-kereskedelem automatizáció",
+    "d": "okt. 10. 23:04"
+  },
+  {
     "c": "Mustafa Suleyman szerint a szuperintelligencia kontrollálható mérnöki feladat",
     "b": "A Microsoft AI vezetője szerint a szuperintelligencia elkerítését és biztonságos működtetését mérnöki és szabályozási eszközökkel kell megoldani.",
     "k": "Mustafa Suleyman (X)",
@@ -54,6 +63,15 @@
     "d": "okt. 10. 16:00"
   },
   {
+    "c": "Megjelent az Agibot, a Maces háttérben futó személyi AI-ügynök",
+    "b": "Az Agibot egy Macen futó AI-asszisztens, amely a háttérben dolgozva kezeli a feladatokat, és üzenetküldőkön keresztül is elérhető.",
+    "k": "Product Hunt",
+    "g": "ügynök",
+    "u": "/hir/megjelent-az-agibot-a-maces-hatterben-futo-szemelyi-ai-ugynok",
+    "sz": "Az Ökte Çilmi által bemutatott Agibot egy mindig aktív személyi AI-ügynök, amely közvetlenül Mac számítógépeken fut. A szoftver az ablak bezárása után is működik a háttérben: képes reggeli összefoglalókat küldeni, webes feladatokat elvégezni, valamint értesíteni a felhasználót a fontos változásokról. A kommunikáció az applikáción kívül Telegramon és Slacken keresztül is folytatható.\n\nAz eszköz teljesen ingyenes, ha a felhasználó a saját API-kulcsát használja, de akár ingyenes helyi modellekkel is futtatható. A rendszer támogatja a Claude, GPT, Gemini, Grok és DeepSeek modelleket is. A megjegyzett adatok és az emlékezet a felhasználó saját gépén tárolódnak, így a modellváltáskor sem vesznek el.\n\nA biztonság érdekében az Agibot kötött szabályrendszert követ: a kockázatos műveleteknél (fájlírás, böngészővezérlés, törlés) előzetes jóváhagyást kér a felhasználótól Telegramon vagy Slacken. Ha nem érkezik válasz, a művelet nem fut le. A nem várt költségek elkerülésére napi költési limit is beállítható. Agibot AI ügynök Mac automatizálás",
+    "d": "okt. 10. 15:04"
+  },
+  {
     "c": "Elkészült a Kling 4.0 három különleges videótesztje",
     "b": "Egy koreai tartalomkészítő három összetett feladattal tesztelte a Kling 4.0 videógeneráló képességeit.",
     "k": "Kling (X)",
@@ -61,6 +79,15 @@
     "u": "/hir/elkeszult-a-kling-4-0-harom-kulonleges-videotesztje",
     "sz": "A Kling 4.0 videógenerálót három kihívást jelentő tesztnek vetette alá egy koreai tartalomkészítő. A vizsgálat célja az volt, hogy kiderüljön, mennyire képes a modell összetett mozgásokat és vizuális elemeket pontosan generálni.\n\nA teszt eredményeit és a tapasztalatokat a készítő részletes beszámolóban foglalta össze. A posztból nem derülnek ki a konkrét tesztelési feladatok részletei, de a tapasztalatok közvetlenül elérhetők a közzétett elemzésben. Kling 4.0 videógenerálás teszt",
     "d": "okt. 10. 14:04"
+  },
+  {
+    "c": "Megjelent a Farol: macOS terminál AI-kódoló ügynökök párhuzamos futtatásához",
+    "b": "A Farol macOS-alkalmazás lehetővé teszi a Claude Code és a Codex egyidejű használatát különálló Git worktree-kben.",
+    "k": "Product Hunt",
+    "g": "eszköz",
+    "u": "/hir/megjelent-a-farol-macos-terminal-ai-kodolo-ugynokok-parhuzamos",
+    "sz": "A Lucas Neves Pereira által fejlesztett Farol egy ingyenes, nyílt forráskódú macOS-terminál, amelyet kifejezetten arra terveztek, hogy több AI-kódoló ügynököt futtasson párhuzamosan. Az alkalmazás oldalsávja és a macOS menüsora folyamatosan mutatja, hogy az egyes feladatokon dolgozó ügynökök épp dolgoznak, várakoznak vagy végeztek.\n\nMinden feladat automatikusan saját Git worktree-t kap, amelyet a felhasználó elindíthat egy egyszerű promptból, GitHub-issue-ból vagy Jira-jegyből. Az alkalmazáson belüli felületen közvetlenül áttekinthető a módosítások diffje, végrehajtható a commit, a push és a PR megnyitása is. A szoftver a libghostty alapjaira épül, így automatikusan átveszi a Ghostty terminál beállításait.\n\nA fejlesztők jelzése szerint az átfedő fájlmódosítások automatikus ütközésvizsgálata még nem elérhető, de a beépített háromoszlopos konfliktuskezelő segíti a rebase során fellépő problémák feloldását. A szoftver használatához nincs szükség regisztrációra, és semmilyen telemetriai adatot nem gyűjt. A program teljesen ingyenes és MIT licencű. Claude Code Codex macOS Git",
+    "d": "okt. 10. 12:38"
   },
   {
     "c": "Az xAI szimulált Optimus robotja már emberként játszik videojátékokkal",
@@ -196,6 +223,15 @@
     "u": "/hir/betaban-a-codex-beszelgetes-elorejelzo-funkcioja-a-pro-felhasznaloknak",
     "sz": "Az OpenAI bemutatta a Codex legújabb béta állapotú fejlesztését, amely a composer predictions nevet kapta. A funkció lényege, hogy a rendszer képes előre kitalálni és javasolni a következő üzenetet a korábbi beszélgetések kontextusa és a felhasználó egyedi kommunikációs stílusa alapján.\n\nA fejlesztők szerint ez az egyik legnépszerűbb belső tesztelésű funkció, amelyet valaha vizsgáltak. A megoldás célja, hogy jelentősen felgyorsítsa a modellel való interakciót, minimalizálva a gépelési időt a visszatérő vagy logikusan következő munkafolyamatok során.\n\nA funkció jelenleg béta fázisban van, és kizárólag a Pro előfizetők számára érhető el a Codex felületén. A bejelentés nem tér ki arra, hogy a funkció mikor válik elérhetővé az ingyenes felhasználók számára. OpenAI Codex béta produktivitás",
     "d": "okt. 9. 20:22"
+  },
+  {
+    "c": "Böngészőben futó ingyenes alaprajztervező eszközt mutatott be a FloorGen",
+    "b": "A FloorGen nevű AI-eszközzel szöveges utasításokkal tervezhetsz házat, átalakítást vagy melléképületet közvetlenül a böngészőben.",
+    "k": "Product Hunt",
+    "g": "eszköz",
+    "u": "/hir/bongeszoben-futo-ingyenes-alaprajztervezo-eszkozt-mutatott-be-a",
+    "sz": "Megjelent a FloorGen, egy ingyenes webes alaprajztervező alkalmazás, amely mesterséges intelligenciával építi fel az ingatlanok terveit a megadott leírás alapján. A szoftver minden módosítást visszavonható lépésként kezel, így a felhasználó könnyen finomíthatja a tereket.\n\nA rendszer képes a terveket az nemzetközi lakóépület-szabványok (IRC) alapján ellenőrizni, emellett 3D-s virtuális sétát kínál, és nyomtatható tervdokumentációt generál. A felület érdekessége, hogy a szerkesztésbe külső AI-modellként a Claude és a ChatGPT is bevonható. FloorGen alaprajz 3D építészet",
+    "d": "okt. 9. 20:19"
   },
   {
     "c": "Saját e-mail-címet tud beállítani magának a Grok",

@@ -1,0 +1,43 @@
+{
+  "id": "f6161c15dfce",
+  "slug": "megjelent-az-agibot-a-maces-hatterben-futo-szemelyi-ai-ugynok",
+  "forras_id": "producthunt",
+  "forras_nev": "Product Hunt",
+  "url": "https://www.producthunt.com/products/agibot",
+  "szerzo": "Ökte Çilmi",
+  "publikalva": "2026-10-10T13:04:39+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://ph-files.imgix.net/e8f8ffe7-fb3d-4f58-a821-a180045dbce1.png?auto=format&fit=crop&frame=1&h=512&w=1024"
+  },
+  "cim_eredeti": "Agibot",
+  "forrasok": [],
+  "szoveg_eredeti": "@k_taro56 Fair question, and honestly Dots and Grok Bot are both impressive. If you want an agent with its own cloud computer that keeps going while your laptop is off, and you already pay for ChatGPT or SuperGrok, they’re a great fit.\n\nBut running locally isn’t the only reason to choose Agibot. Here are a few others:\n\nIt’s free. Both of those need a paid plan. Agibot costs nothing with your own API key: you pay the AI provider for what you use, with nothing added on top. Or run a local model and pay nothing at all.\n\nIt works with any model. Dots runs on OpenAI’s models and Grok Bot is xAI’s. In Agibot you can use Claude, GPT, Gemini, Grok, DeepSeek and more, switch whenever a better one comes out, and set backup models in case one goes down.\n\nYour memory isn’t tied to one company. What it learns about you is saved on your computer, and you can read, edit or delete any of it. If you switch models, it all comes with you.\n\nYou can reach it on Telegram too. Chat with it in the app, on Telegram or on Slack, all in one conversation.\n\nYou set the rules. Every tool is set to allow, ask or block, and there’s a daily spending cap and a log of everything it does.\n\nThe trade-off is that it only runs while your computer is on, or on a server you leave running. If that works for you, it’s hard to beat for $0.\n\n\"asks before doing anything risky\" is doing a lot of work in that sentence and it's the part I'd actually want to understand before trusting an always-on agent with my own API key running unattended. is \"risky\" a fixed list you ship with, deleting files, sending messages, spending money, or something the agent itself judges case by case? a fixed list is auditable but will miss things, a judgment call is more flexible but means the bar moves depending on how the model is feeling that day.\n\n@galdayan Great question, and it’s the right one to ask before leaving an agent running on its own.\n\nIt’s a fixed policy, not the model’s judgment. Every tool has a setting you control: allow, ask or block. The app enforces it outside the model, so the model can’t decide something is “safe enough” and can’t approve itself.\n\nOut of the box, file writes, web fetches, scheduling, deleting memories and browser control are all set to ask. Shell access is off until you turn it on. Even then, every command asks, and you can’t set it to always allow. For messages, it can only reply in chats you’ve paired with it. It can’t message new people.\n\nOn the “a fixed list will miss things” point: anything new, like the tools from an MCP server you just added, starts at ask. So when the list misses something, Agibot stops and asks you instead of going ahead.\n\nWhen it’s running unattended, approval requests come to you as buttons on Telegram or Slack. If you don’t answer, the answer is no.\n\nFor your API key, you set a daily spending cap during setup. Agibot checks the estimated cost before every call, and if it doesn’t know a model’s price, it blocks the call rather than guess. Those are estimates, though, so I’d still set a limit with your provider too.\n\nSo in the end, your trust goes into what you set to allow and which MCP servers you install. Everything it does is logged in Activity, and one click stops it all.\n\nWeboldal: https://www.agibot.sh",
+  "modell": "gemini-3.5-flash",
+  "cim": "Megjelent az Agibot, a Maces háttérben futó személyi AI-ügynök",
+  "lead": "Az Agibot egy Macen futó AI-asszisztens, amely a háttérben dolgozva kezeli a feladatokat, és üzenetküldőkön keresztül is elérhető.",
+  "osszefoglalo": "Az Ökte Çilmi által bemutatott [Agibot](https://www.agibot.sh) egy mindig aktív személyi AI-ügynök, amely közvetlenül Mac számítógépeken fut. A szoftver az ablak bezárása után is működik a háttérben: képes reggeli összefoglalókat küldeni, webes feladatokat elvégezni, valamint értesíteni a felhasználót a fontos változásokról. A kommunikáció az applikáción kívül Telegramon és Slacken keresztül is folytatható.\n\nAz eszköz teljesen ingyenes, ha a felhasználó a saját **API-kulcsát** használja, de akár ingyenes helyi modellekkel is futtatható. A rendszer támogatja a Claude, GPT, Gemini, Grok és DeepSeek modelleket is. A megjegyzett adatok és az emlékezet a felhasználó saját gépén tárolódnak, így a modellváltáskor sem vesznek el.\n\nA biztonság érdekében az Agibot kötött szabályrendszert követ: a kockázatos műveleteknél (fájlírás, böngészővezérlés, törlés) **előzetes jóváhagyást kér** a felhasználótól Telegramon vagy Slacken. Ha nem érkezik válasz, a művelet nem fut le. A nem várt költségek elkerülésére napi költési limit is beállítható.",
+  "miert_szamit": "Egy ingyenes, saját gépen futó AI-ügynökkel **automatizálhatók a napi rutinügyek** anélkül, hogy az adataink vagy a memóriánk egyetlen felhőszolgáltatóhoz lenne kötve.",
+  "cimkek": [
+    "Agibot",
+    "AI ügynök",
+    "Mac",
+    "automatizálás"
+  ],
+  "kategoria": "ügynök",
+  "forras_tipus": "bemutato",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Agibot",
+    "url": "https://www.agibot.sh"
+  },
+  "linkelendo_nevek": [
+    "Agibot"
+  ],
+  "linkszabaly": 2,
+  "forditva": "2026-10-11T09:19:12+00:00",
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}

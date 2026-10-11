@@ -1,0 +1,43 @@
+{
+  "id": "d6bf3fefe1e9",
+  "slug": "megjelent-a-farol-macos-terminal-ai-kodolo-ugynokok-parhuzamos",
+  "forras_id": "producthunt",
+  "forras_nev": "Product Hunt",
+  "url": "https://www.producthunt.com/products/farol-3",
+  "szerzo": "Lucas Neves Pereira",
+  "publikalva": "2026-10-10T10:38:06+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://ph-files.imgix.net/2fef6509-8315-4a32-bc9d-cfd956973a43.png?auto=format&fit=crop&frame=1&h=512&w=1024"
+  },
+  "cim_eredeti": "Farol",
+  "forrasok": [],
+  "szoveg_eredeti": "separate worktrees solves the file-conflict half of running agents in parallel, but not the half that actually bites me: two tasks that touch the same API contract or shared schema from different worktrees, where neither agent can see the other's change until someone opens both diffs side by side at merge time. does Farol do anything to flag \"these two active tasks touched overlapping files or symbols\" before you're staring at a nasty rebase, or is that still on the human to catch by reading both PRs?\n\n@galdayan Good question, and you're right that worktrees only solve part of it. Farol doesn't flag overlap between tasks yet, so today that's still on you reading both diffs. What does help: the review panel shows everything a session changed since it left main, so comparing two tasks is two clicks, not two PRs side by side. And when a rebase does stop, there's a three-column conflict resolver built in. Next on the roadmap is letting agents see each other's sessions, so one can check what another is changing before it touches a shared schema. Since Farol already tracks each session's changed files, a \"these two tasks touch the same file\" warning could be a natural addition.\n\nWeboldal: https://farol.sh",
+  "modell": "gemini-3.5-flash",
+  "cim": "Megjelent a Farol: macOS terminál AI-kódoló ügynökök párhuzamos futtatásához",
+  "lead": "A Farol macOS-alkalmazás lehetővé teszi a Claude Code és a Codex egyidejű használatát különálló Git worktree-kben.",
+  "osszefoglalo": "A Lucas Neves Pereira által fejlesztett [Farol](https://farol.sh) egy ingyenes, nyílt forráskódú macOS-terminál, amelyet kifejezetten arra terveztek, hogy **több AI-kódoló ügynököt futtasson párhuzamosan**. Az alkalmazás oldalsávja és a macOS menüsora folyamatosan mutatja, hogy az egyes feladatokon dolgozó ügynökök épp dolgoznak, várakoznak vagy végeztek.\n\nMinden feladat automatikusan **saját Git worktree-t kap**, amelyet a felhasználó elindíthat egy egyszerű promptból, GitHub-issue-ból vagy Jira-jegyből. Az alkalmazáson belüli felületen közvetlenül áttekinthető a módosítások diffje, végrehajtható a commit, a push és a PR megnyitása is. A szoftver a libghostty alapjaira épül, így automatikusan átveszi a Ghostty terminál beállításait.\n\nA fejlesztők jelzése szerint az átfedő fájlmódosítások automatikus ütközésvizsgálata még nem elérhető, de a beépített háromoszlopos konfliktuskezelő segíti a rebase során fellépő problémák feloldását. A szoftver használatához nincs szükség regisztrációra, és semmilyen telemetriai adatot nem gyűjt. A program teljesen **ingyenes és MIT licencű**.",
+  "miert_szamit": "A fejlesztők és technikai termékmenedzserek számára a Farol **jelentősen felgyorsítja a kódolási folyamatokat**, mivel nem kell megvárni egy AI-ügynök feladatának befejezését a következő elindításához.",
+  "cimkek": [
+    "Claude Code",
+    "Codex",
+    "macOS",
+    "Git"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bemutato",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Farol",
+    "url": "https://farol.sh"
+  },
+  "linkelendo_nevek": [
+    "Farol"
+  ],
+  "linkszabaly": 2,
+  "forditva": "2026-10-11T09:19:06+00:00",
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
