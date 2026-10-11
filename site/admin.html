@@ -19,7 +19,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .sav-bel{max-width:1200px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;gap:32px}
 .logo{font-weight:700;font-size:21px;letter-spacing:-.01em;white-space:nowrap}
 .logo span{color:var(--amber)}
-.fulek{display:flex;gap:24px;height:100%}
+.fulek{display:flex;gap:24px;height:100%;min-width:0;overflow-x:auto;scrollbar-width:none}
+.fulek::-webkit-scrollbar{display:none}
+.fulek button{flex:0 0 auto;white-space:nowrap}
+.logo{flex:0 0 auto}
 .fulek button{height:100%;font-weight:600;color:var(--halk);border-bottom:2px solid transparent;margin-bottom:-1px}
 .fulek button[aria-selected=true]{color:var(--szoveg);border-color:var(--amber)}
 .frissult{margin-left:auto;color:var(--halkabb);font-size:16px;white-space:nowrap}
@@ -192,6 +195,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <button role="tab" aria-selected="false" data-ful="ajanlott">Ajánlott</button>
 <button role="tab" aria-selected="false" data-ful="bekuldes">Beküldések</button>
 <button role="tab" aria-selected="false" data-ful="hirdetok">Hirdetők</button>
+<button role="tab" aria-selected="false" data-ful="cikkbehuzas">Cikkbehúzás</button>
 <button role="tab" aria-selected="false" data-ful="koltseg">Költség</button></nav>
 <div class="frissult num" id="frissult"></div></div></div>
 
@@ -206,6 +210,10 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <section id="p-hirdetok" hidden>
 <p class="a-bev">Az oldalsávos „Hirdess nálunk” űrlapon érdeklődő cégek. Hívd vissza őket, és jelöld, hol tartotok. Az adatokat 1 évig őrizzük.</p>
 <div id="h-lista"></div>
+</section>
+<section id="p-cikkbehuzas" hidden>
+<p class="a-bev">Akik a „Szeretnéd, hogy behúzzuk a cikkeidet?” dobozból kértek ajánlatot: az RSS-hírfolyamuk vagy API-juk cikkeinek átvételére. Hívd vissza őket, és jelöld, hol tartotok. Az adatokat 1 évig őrizzük.</p>
+<div id="c-lista"></div>
 </section>
 <section id="p-bekuldes" hidden>
 <p class="a-bev">A látogatók által beküldött hírlinkek. A moderátor AI előszűri őket, és javaslatot tesz (AI-témájú, hiteles, nem tiltott-e), de egyik sem megy tovább, amíg te el nem fogadod. Az általad elfogadott link negyedórán belül bekerül a kézi hírlistába, és a szokásos feldolgozással jelenik meg. Az AI által elutasítottakat is elfogadhatod.</p>
@@ -484,15 +492,15 @@ async function btolt(){const L=document.getElementById("b-lista");let d;try{d=aw
  L.querySelectorAll("[data-bek]").forEach(g=>g.onclick=async()=>{if(g.dataset.all==="torol"&&!confirm("Biztosan törlöd ezt a beküldést a listából?"))return;try{const r=await lekér(U.bekDontes,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:g.dataset.bek,allapot:g.dataset.all})});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}btolt()})}
 /* ---------- hirdetői érdeklődők ---------- */
 const HALL={uj:"Új, hívd vissza",felkerestem:"Felkerestem",ugyfel:"Ügyfél lett",nem:"Nem aktuális"};
-async function htolt(){const L=document.getElementById("h-lista");let d;try{d=await lekér(U.hirdetok)}catch(e){L.innerHTML=`<div class="hibasav">Az érdeklődők most nem érhetők el.</div>`;return}
- const t=d.tetel||[];
+async function htolt(cikk){const L=document.getElementById(cikk?"c-lista":"h-lista");let d;try{d=await lekér(U.hirdetok)}catch(e){L.innerHTML=`<div class="hibasav">Az érdeklődők most nem érhetők el.</div>`;return}
+ const t=(d.tetel||[]).filter(h=>(h.tema==="hirfolyam")===!!cikk);
  L.innerHTML=t.map(h=>{const dd=new Date(h.ido);
   return `<div class="ah bek-sor ${h.allapot==="uj"?"kerve":""}"><div><span class="cim">${esc(h.nev)}</span>
    <div class="lead"><a href="${esc(h.weboldal)}" target="_blank" rel="noopener" style="color:var(--amber)">${esc(h.weboldal)}</a> · <a href="tel:${esc(h.telefon.replace(/[^\d+]/g,""))}" style="color:var(--szoveg);font-weight:700">${esc(h.telefon)}</a></div>
    <div class="cimkek"><span class="cimke ${h.allapot==="uj"?"felk":""}">${HALL[h.allapot]||esc(h.allapot)}</span>${h.kulfoldi?`<span class="cimke">külföldi szám</span>`:""}${h.web_ellenorizve===false?`<span class="cimke ai-nem">⚠ a weboldal nem volt megnyitható</span>`:""}<span class="cimke">${fmt(dd,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span></div></div>
-   <div class="kapcs">${["felkerestem","ugyfel","nem"].map(a=>`<button aria-pressed="${h.allapot===a}" data-hird="${h.id}" data-all="${a}"><i></i>${HALL[a]}</button>`).join("")}<button class="sor-torol" data-hird="${h.id}" data-all="torol"><i></i>Törlés</button></div></div>`}).join("")||`<p class="ures">Még nem érkezett érdeklődő.</p>`;
+   <div class="kapcs">${["felkerestem","ugyfel","nem"].map(a=>`<button aria-pressed="${h.allapot===a}" data-hird="${h.id}" data-all="${a}"><i></i>${HALL[a]}</button>`).join("")}<button class="sor-torol" data-hird="${h.id}" data-all="torol"><i></i>Törlés</button></div></div>`}).join("")||`<p class="ures">${cikk?"Még senki nem kért ajánlatot a cikkei behúzására.":"Még nem érkezett érdeklődő."}</p>`;
  L.querySelectorAll("[data-hird]").forEach(g=>g.onclick=async()=>{if(g.dataset.all==="torol"&&!confirm("Biztosan törlöd ezt az érdeklődőt?"))return;const uj=g.getAttribute("aria-pressed")==="true"?"uj":g.dataset.all;
-  try{const r=await lekér(U.hirdAll,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:g.dataset.hird,allapot:uj})});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}htolt()})}
+  try{const r=await lekér(U.hirdAll,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:g.dataset.hird,allapot:uj})});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}htolt(cikk)})}
 
 /* ---------- ugrás a teendőhöz ---------- */
 function ugrik(sel){const el=document.querySelector(sel);if(!el)return;
@@ -502,11 +510,11 @@ document.addEventListener("click",e=>{const m=e.target.closest("[data-ugras]");i
 document.addEventListener("keydown",e=>{const m=e.target.closest&&e.target.closest("[data-ugras]");if(m&&(e.key==="Enter"||e.key===" ")){e.preventDefault();ugrik(m.dataset.ugras)}});
 
 /* ---------- fülek ---------- */
-function ful(f){document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===f));
- ["posztok","ajanlott","koltseg","bekuldes","hirdetok"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
- if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok")htolt();try{localStorage.setItem("ful",f)}catch(e){}}
+function ful(f){document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===f));try{document.querySelector(`.fulek [data-ful="${f}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
+ ["posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
+ if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok")htolt();if(f==="cikkbehuzas")htolt(true);try{localStorage.setItem("ful",f)}catch(e){}}
 document.querySelectorAll(".fulek button").forEach(b=>b.onclick=()=>ful(b.dataset.ful));
-try{const f=localStorage.getItem("ful");if(f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok")ful(f)}catch(e){}
+try{const f=localStorage.getItem("ful");if(f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok"||f==="cikkbehuzas")ful(f)}catch(e){}
 document.getElementById("k-valaszt");
 ptolt();setInterval(ptolt,60000);setInterval(prajzol,20000);
 setInterval(()=>{if(!document.getElementById("p-koltseg").hidden)ktolt()},300000);

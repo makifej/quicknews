@@ -153,6 +153,18 @@
     try { if (window.gtag) gtag('event', 'szavazas', {ertek: uj}); } catch(e2){}
   }); });
 })();
+// „Szeretnéd, hogy behúzzuk a cikkeidet?” gomb: ha van ajánlatkérő űrlap, oda visz és megjelöli a témát
+(function(){
+  var g = document.querySelector('[data-partner]'), f = document.querySelector('[data-hirdeto]'); if (!g || !f) return;
+  g.setAttribute('href', '#hird-cim');
+  g.addEventListener('click', function(e){
+    e.preventDefault(); f.elements.tema.value = 'hirfolyam';
+    var jel = document.querySelector('[data-tema-jel]'); if (jel) jel.hidden = false;
+    var doboz = f.closest('.hirdeto');
+    doboz.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center'});
+    setTimeout(function(){ f.elements.nev.focus({preventScroll: true}); }, 500);
+  });
+})();
 // Hirdetői érdeklődés (api/hirdetes): név, weboldal, telefonszám
 (function(){
   var f = document.querySelector('[data-hirdeto]'); if (!f) return;
