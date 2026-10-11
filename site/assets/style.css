@@ -735,3 +735,53 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
   .fel-gomb { right: 16px; bottom: calc(var(--fel-also, 16px) + env(safe-area-inset-bottom, 0px)); width: 44px; height: 44px; }
 }
 @media (prefers-reduced-motion: reduce) { .fel-gomb, .fel-gomb.lathato { transition: none; } }
+
+/* ================= Kérdezz a hírektől! (chatbot) ================= */
+.rejtett { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.fel-gomb { bottom: calc(var(--fel-also, 24px) + 68px); }
+.chat { position: fixed; right: 24px; bottom: var(--fel-also, 24px); z-index: 950; transition: bottom 700ms var(--gorbe); }
+.chat-indit { display: inline-flex; align-items: center; gap: 8px; height: 52px; padding: 0 20px 0 16px; font: 700 16px/1 Manrope, system-ui, sans-serif; color: var(--kiemelo-szoveg); background: var(--kiemelo); border: 0; border-radius: 999px; box-shadow: 0 8px 24px var(--arnyek); cursor: pointer; transition: transform 400ms var(--gorbe); }
+.chat-indit:hover { transform: translateY(-2px); }
+.chat-indit:focus-visible { outline: 2px solid var(--szoveg); outline-offset: 3px; }
+.chat-indit svg { width: 22px; height: 22px; flex: 0 0 auto; }
+.chat.nyitva .chat-indit { display: none; }
+.chat-panel { position: absolute; right: 0; bottom: 0; width: 400px; max-height: min(640px, calc(100dvh - 120px)); display: flex; flex-direction: column; background: var(--bg-2); border: 1px solid var(--keret); border-radius: 16px; box-shadow: 0 16px 48px var(--arnyek); overflow: hidden; }
+.chat-panel[hidden] { display: none; }
+.chat-fej { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 16px 16px 12px; border-bottom: 1px solid var(--keret); }
+.chat-fej strong { display: block; font-size: 18px; line-height: 24px; color: var(--szoveg); }
+.chat-fej span { display: block; font-size: 14px; line-height: 20px; color: var(--szoveg-2); margin-top: 2px; }
+.chat-zar { flex: 0 0 auto; width: 36px; height: 36px; font-size: 24px; line-height: 1; color: var(--szoveg-2); background: none; border: 0; border-radius: 8px; cursor: pointer; }
+.chat-zar:hover { color: var(--szoveg); background: var(--bg-3); }
+.chat-uzenetek { flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; padding: 16px; display: flex; flex-direction: column; gap: 12px; min-height: 160px; }
+.chat-javaslat { display: flex; flex-direction: column; gap: 8px; }
+.chat-javaslat button { text-align: left; font: 600 15px/20px Manrope, system-ui, sans-serif; color: var(--szoveg); background: var(--bg-3); border: 1px solid var(--keret); border-radius: 12px; padding: 10px 12px; cursor: pointer; }
+.chat-javaslat button:hover { border-color: var(--kiemelo); }
+.chat-b { max-width: 88%; font-size: 15px; line-height: 22px; border-radius: 14px; padding: 10px 12px; }
+.chat-b p { margin: 0; }
+.chat-b sup { font-size: 11px; font-weight: 700; color: var(--kiemelo-szin); margin-left: 1px; }
+.chat-b.en { align-self: flex-end; color: var(--kiemelo-szoveg); background: var(--kiemelo); }
+.chat-b.bot { align-self: flex-start; color: var(--szoveg); background: var(--bg-3); }
+.chat-b.hiba { color: var(--piros); }
+.chat-forras { list-style: none; margin: 10px 0 0; padding: 10px 0 0; border-top: 1px solid var(--keret); display: flex; flex-direction: column; gap: 6px; }
+.chat-forras a { display: flex; gap: 8px; font-size: 14px; line-height: 19px; font-weight: 600; color: var(--szoveg); text-decoration: none; }
+.chat-forras a:hover { color: var(--kiemelo-szin); }
+.chat-forras a span { flex: 0 0 auto; width: 20px; height: 20px; display: grid; place-items: center; font-size: 11px; font-weight: 800; color: var(--kiemelo-szoveg); background: var(--kiemelo); border-radius: 50%; }
+.chat-pont { display: inline-block; width: 7px; height: 7px; margin-right: 4px; border-radius: 50%; background: var(--szoveg-2); animation: chatpont 1.2s infinite ease-in-out; }
+.chat-pont:nth-child(2) { animation-delay: .15s; } .chat-pont:nth-child(3) { animation-delay: .3s; }
+@keyframes chatpont { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+.chat-urlap { display: flex; gap: 8px; padding: 12px 16px 8px; border-top: 1px solid var(--keret); }
+.chat-urlap input { flex: 1 1 auto; min-width: 0; font: 500 16px/22px Manrope, system-ui, sans-serif; color: var(--szoveg); background: var(--bg); border: 1px solid var(--keret); border-radius: 10px; padding: 10px 12px; }
+.chat-urlap input:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 1px; }
+.chat-urlap button { flex: 0 0 auto; width: 44px; height: 44px; display: grid; place-items: center; color: var(--kiemelo-szoveg); background: var(--kiemelo); border: 0; border-radius: 10px; cursor: pointer; }
+.chat-urlap button svg { width: 20px; height: 20px; }
+.chat-urlap button:disabled, .chat-urlap input:disabled { opacity: .5; }
+.chat-jog { margin: 0; padding: 0 16px 12px; font-size: 12px; line-height: 17px; color: var(--szoveg-3); }
+.chat-jog a { color: var(--szoveg-2); }
+@media (max-width: 599px) {
+  .chat { right: 16px; bottom: calc(var(--fel-also, 16px) + env(safe-area-inset-bottom, 0px)); }
+  .fel-gomb { bottom: calc(var(--fel-also, 16px) + 64px + env(safe-area-inset-bottom, 0px)); }
+  .chat-indit { height: 48px; padding: 0 16px 0 14px; font-size: 15px; }
+  .chat.nyitva { left: 8px; right: 8px; bottom: 8px; }
+  .chat-panel { position: relative; width: 100%; max-height: calc(100dvh - 16px); }
+}
+@media (prefers-reduced-motion: reduce) { .chat-indit, .chat { transition: none; } .chat-pont { animation: none; opacity: .6; } }
