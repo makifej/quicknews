@@ -24,7 +24,11 @@
     else {
       var j = u.bot, szoveg = biztos(j.valasz).replace(/^\s*[*-]\s+/gm, '• ').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n{2,}/g, '\n').replace(/\n/g, '<br>').replace(/\[(\d)\]/g, '<sup>$1</sup>');
       d.className = 'chat-valasz';
-      d.innerHTML = '<div class="chat-b bot"><p>'+szoveg+'</p></div>'
+      var jelek = function(l){ return '<span class="chat-jelek">' + (l || []).map(function(n){ return '<span class="chat-jel">'+n+'</span>'; }).join('') + '</span>'; };
+      var torzs = (j.pontok && j.pontok.length) || j.bevezeto
+        ? (j.bevezeto ? '<p class="chat-bev">'+biztos(j.bevezeto)+'</p>' : '') + ((j.pontok || []).length ? '<ul class="chat-pontok">' + j.pontok.map(function(x){ return '<li><span class="chat-psz">'+biztos(x.szoveg)+'</span>'+jelek(x.forras)+'</li>'; }).join('') + '</ul>' : '')
+        : '<p>'+szoveg+'</p>';
+      d.innerHTML = '<div class="chat-b bot">'+torzs+'</div>'
         + ((j.forrasok || []).length ? '<div class="chat-korabbi chat-forrasblokk"><h3>A válasz forrásai</h3><ul>'+hirlista(j.forrasok, true)+'</ul></div>' : '')
         + ((j.korabbi || []).length ? '<div class="chat-korabbi"><h3>Válogatás korábbi híreinkből</h3><ul>'+hirlista(j.korabbi, false)+'</ul></div>' : '');
     }
