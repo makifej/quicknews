@@ -21,7 +21,7 @@
       .then(function(j){
         var_.remove();
         if (j.hiba) { buborek('bot hiba', biztos(j.hiba)); return; }
-        var szoveg = biztos(j.valasz).replace(/\n/g, '<br>').replace(/\[(\d)\]/g, '<sup>$1</sup>');
+        var szoveg = biztos(j.valasz).replace(/^\s*[*-]\s+/gm, '• ').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n{2,}/g, '\n').replace(/\n/g, '<br>').replace(/\[(\d)\]/g, '<sup>$1</sup>');
         var forr = (j.forrasok || []).map(function(f){ return '<li><a href="'+biztos(f.url)+'"><span>'+f.n+'</span>'+biztos(f.cim)+'</a></li>'; }).join('');
         buborek('bot', '<p>'+szoveg+'</p>' + (forr ? '<ul class="chat-forras">'+forr+'</ul>' : ''));
       })
