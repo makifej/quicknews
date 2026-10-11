@@ -137,6 +137,9 @@
       kartyak.forEach(function(k){ var id = k.getAttribute('data-hid'); if (resz.indexOf(id) >= 0) jel(k, (j.pont || {})[id] || 0); });
     }).catch(function(){});
   })(ids.slice(c, c + 150));
+  function uzen(d, t){ if (!t) return; var u = d.parentNode.querySelector('.sz-uzenet');
+    if (!u) { u = document.createElement('p'); u.className = 'sz-uzenet'; u.setAttribute('role', 'status'); d.after(u); }
+    u.textContent = t; clearTimeout(u._t); u._t = setTimeout(function(){ u.remove(); }, 5000); }
   dobozok.forEach(function(d){ d.addEventListener('click', function(e){
     var b = e.target.closest('button[data-ertek]'); if (!b) return; azonosito();
     var id = d.getAttribute('data-szavaz'), regi = Number(d.getAttribute('data-sajat')), ert = Number(b.getAttribute('data-ertek'));
@@ -144,7 +147,7 @@
     var most = Number(String(elozo).replace(',', '.').replace('K', '')) * (/K/.test(elozo) ? 1000 : 1);
     rajzol(d, Math.round(most + uj - regi), uj); // azonnal látszik, a szerver válasza pontosítja
     fetch('/api/szavaz', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({id: id, l: L, ertek: uj})})
-      .then(function(r){ return r.json(); }).then(function(j){ if (typeof j.pont === 'number') rajzol(d, j.pont, j.sajat); else rajzol(d, most, regi); })
+      .then(function(r){ return r.json(); }).then(function(j){ if (typeof j.pont === 'number') rajzol(d, j.pont, j.sajat); else { rajzol(d, most, regi); uzen(d, j.hiba); } })
       .catch(function(){ d.querySelector('.sz-db').textContent = elozo; d.setAttribute('data-sajat', String(regi)); });
     try { if (window.gtag) gtag('event', 'szavazas', {ertek: uj}); } catch(e2){}
   }); });
