@@ -125,6 +125,7 @@
   var kartyak = [].slice.call(document.querySelectorAll('[data-hid]'));
   var ids = dobozok.map(function(d){ return d.getAttribute('data-szavaz'); }).concat(kartyak.map(function(k){ return k.getAttribute('data-hid'); }));
   ids = ids.filter(function(x, i){ return ids.indexOf(x) === i; });
+  function rajzolMind(id, pont, sajat){ dobozok.forEach(function(x){ if (x.getAttribute('data-szavaz') === id) rajzol(x, pont, sajat); }); }
   function rajzol(d, pont, sajat){ d.setAttribute('data-sajat', String(sajat)); d.querySelector('.sz-db').textContent = fmt(pont);
     d.querySelector('.sz-fel').setAttribute('aria-pressed', sajat === 1 ? 'true' : 'false'); d.querySelector('.sz-le').setAttribute('aria-pressed', sajat === -1 ? 'true' : 'false'); }
   function jel(k, pont){ if (!pont) return; var sp = k.querySelectorAll(':scope > span'); var m = k.querySelector('.hmeta') || (k.classList.contains('kiemelt-sav') ? null : sp[sp.length - 1]); var s = document.createElement('span');
@@ -145,10 +146,10 @@
     var id = d.getAttribute('data-szavaz'), regi = Number(d.getAttribute('data-sajat')), ert = Number(b.getAttribute('data-ertek'));
     var uj = regi === ert ? 0 : ert, db = d.querySelector('.sz-db'), elozo = db.textContent;
     var most = Number(String(elozo).replace(',', '.').replace('K', '')) * (/K/.test(elozo) ? 1000 : 1);
-    rajzol(d, Math.round(most + uj - regi), uj); // azonnal látszik, a szerver válasza pontosítja
+    rajzolMind(id, Math.round(most + uj - regi), uj); // azonnal látszik, a szerver válasza pontosítja
     fetch('/api/szavaz', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({id: id, l: L, ertek: uj})})
-      .then(function(r){ return r.json(); }).then(function(j){ if (typeof j.pont === 'number') rajzol(d, j.pont, j.sajat); else { rajzol(d, most, regi); uzen(d, j.hiba); } })
-      .catch(function(){ d.querySelector('.sz-db').textContent = elozo; d.setAttribute('data-sajat', String(regi)); });
+      .then(function(r){ return r.json(); }).then(function(j){ if (typeof j.pont === 'number') rajzolMind(id, j.pont, j.sajat); else { rajzolMind(id, most, regi); uzen(d, j.hiba); } })
+      .catch(function(){ rajzolMind(id, most, regi); });
     try { if (window.gtag) gtag('event', 'szavazas', {ertek: uj}); } catch(e2){}
   }); });
 })();

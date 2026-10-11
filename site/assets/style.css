@@ -893,9 +893,7 @@ html:not(.suti-van) .chat { display: none; }
 .kiemelt-sav .sz-jel { margin-left: 8px; font-size: 14px; }
 @media (prefers-reduced-motion: reduce) { .szavaz, .szavaz button { transition: none; } }
 .sz-uzenet { margin: 8px 0 0; font-size: 14px; line-height: 20px; color: var(--szoveg-2); }
-/* asztalon a szavazás a cím mellé, jobbra kerül, nem tolja le a képet (mobilon a lead alatt marad) */
-@media (min-width: 1024px) {
-  .cikk-fej { max-width: none; display: grid; grid-template-columns: minmax(0, 1100px) minmax(0, 1fr); column-gap: 32px; }
-  .cikk-fej > * { grid-column: 1; }
-  .cikk-fej .szavaz { grid-column: 2; grid-row: 1 / span 3; justify-self: end; align-self: start; margin-top: 0; }
-}
+/* a szavazás széles asztali nézetben a „Miért számít” doboz alatt, keskenyebb képernyőn és mobilon a lead alatt */
+.szavaz-oldal { display: none; margin-top: 16px; }
+.szavaz-oldal .szavaz { margin-top: 0; }
+@media (min-width: 1280px) { .szavaz-oldal { display: block; } .szavaz-fej { display: none; } }
