@@ -378,6 +378,7 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
   const d=new Date(s.publikalva);
   const kt=s.kartya||{};
   const kszoveg=kt.elutasitva?`<b>Elutasítva.</b><div class="lead" style="-webkit-line-clamp:3">Új kártya készül a cikk eredeti képéből vagy a videójából, és itt jelenik meg újra jóváhagyásra.</div>`
+   :kt.jo&&kt.auto?`<b>Eredeti képpel megy ki.</b><div class="lead">Nem töltöttél fel saját képet, ezért nem kell jóváhagynod.</div>`
    :kt.jo?`<b>Jóváhagyva.</b><div class="lead">A következő körben kimegy oda, ahova kérted.</div>`
    :`<b>Elkészült a kártya.</b><div class="lead" style="-webkit-line-clamp:3">Nézd meg nagyban (kattints rá). Ha jó, pipáld be, ha nem, utasítsd el, és újat csinálok. Csak jóváhagyott kártya mehet ki.</div>`;
   const kartya=kt.fajl?`<div class="kartyasor ${kt.elutasitva?"rossz":""} ${!kt.jo&&!kt.elutasitva?"var":""}"><a href="${U.kartya(kt.fajl)}" target="_blank"><img src="${U.kartya(kt.fajl)}" alt="A hír kártyája"></a>
