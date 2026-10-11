@@ -795,3 +795,6 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .chat-korabbi a:hover { border-color: var(--kiemelo); color: var(--kiemelo-szin); }
 .chat-b.info { color: var(--szoveg); background: var(--bg-3); border-left: 3px solid var(--kiemelo); }
 .chat-b.info a { color: var(--kiemelo-szin); font-weight: 700; }
+.chat-korabbi a { display: flex; gap: 10px; align-items: flex-start; }
+.chat-korabbi a span { flex: 0 0 auto; width: 22px; height: 22px; display: grid; place-items: center; margin-top: 0; font-size: 12px; font-weight: 800; color: var(--kiemelo-szoveg); background: var(--kiemelo); border-radius: 50%; }
+.chat-valasz .chat-korabbi + .chat-korabbi { margin-top: 4px; }
