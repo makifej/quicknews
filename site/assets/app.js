@@ -27,8 +27,9 @@
     return '<li class="hk" data-n="'+f.n+'"><button type="button" class="hk-fej" aria-expanded="false" title="'+biztos(f.lead || f.cim)+'">'
       + (szam ? '<span class="chat-jel">'+f.n+'</span>' : '<span class="hk-pont" aria-hidden="true"></span>')
       + '<span class="hk-cim">'+biztos(f.cim)+'</span><span class="hk-le">'+IK.le+'</span></button>'
-      + '<div class="hk-test" hidden>' + (f.lead ? '<p class="hk-lead">'+biztos(f.lead)+'</p>' : '')
-      + (f.szoveg ? '<p class="hk-szoveg">'+biztos(f.szoveg)+'</p>' : '')
+      + '<div class="hk-test" hidden>' + (SABLON === 'keret'
+        ? '<p class="hk-lead">'+biztos(ketMondat(f))+'</p>'
+        : (f.lead ? '<p class="hk-lead">'+biztos(f.lead)+'</p>' : '') + (f.szoveg ? '<p class="hk-szoveg">'+biztos(f.szoveg)+'</p>' : ''))
       + '<a class="hk-link" href="'+biztos(f.url)+'">'+IK.lap+'<span>Teljes cikk megnyitása</span>'+IK.nyil+'</a>'
       + (f.datum ? '<small class="hk-datum">'+datum(f.datum)+'</small>' : '') + '</div></li>';
   }
