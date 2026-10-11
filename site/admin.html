@@ -469,7 +469,7 @@ async function kepFeltolt(inp){const f=inp.files[0];if(!f)return;const lab=inp.c
 async function atolt(){try{A=await lekér(U.ajanlott)}catch(e){document.getElementById("a-lista").innerHTML=`<div class="hibasav">Az ajánlólista most nem érhető el.</div>`;return}arajzol()}
 
 /* ---------- beküldések ---------- */
-const BOK={elfogadva:"AI: elfogadható",tiltott:"AI: tiltott tartalom",nem_ai:"AI: nem AI-témájú",nem_hiteles:"AI: nem hiteles forrás",nem_olvashato:"AI: nem nyitható meg"};
+const BOK={elfogadva:"AI: elfogadható",tiltott:"AI: tiltott tartalom",nem_ai:"AI: nem AI-témájú",nem_hiteles:"AI: nem hiteles forrás",nem_olvashato:"AI: nem nyitható meg",ai_hiba:"AI: nem futott le"};
 /* hol tart az elfogadott beküldés, és mikorra várható: Mac (negyedóránként, 8-23 óra) -> felhő (negyedóránként, 3-5 perc) */
 function bekVarhato(alap,perc){let d=new Date(alap.getTime()+perc*60000);const h=d.getHours();
  if(h>=23||h<8){const k=new Date(d);if(h>=23)k.setDate(k.getDate()+1);k.setHours(8,15+(perc>20?20:0),0,0);d=k}

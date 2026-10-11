@@ -1,3 +1,7 @@
+// SEC-001 (2026-10-11): a feed.json mezői külső tartalomból jönnek, innerHTML-be csak escape-elve kerülhetnek
+function qnEsc(t){ return String(t == null ? '' : t).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function qnSlug(s){ return typeof s === 'string' && /^[a-z0-9-]{1,200}$/.test(s); }
+function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.test(k) || /^https:\/\/[^\s"'<>]+$/.test(k))) ? k : ''; }
 // qn-chat: „Kérdezz a hírektől!” (api/kerdez). A beszélgetés a böngészőfül munkamenetében megmarad
 // (sessionStorage): oldalról oldalra viszi, a fül bezárásával törlődik.
 (function(){
@@ -267,7 +271,7 @@
     allapot().then(function(a){ gomb.hidden = false; mutat(a); if (a.fut) figyel(); }).catch(function(){});
     gomb.addEventListener('click', function(){
       gomb.disabled = true; all.textContent = 'indul';
-      fetch('/frissit', {method:'POST'}).then(function(){ figyel(); }).catch(function(){ gomb.disabled = false; all.textContent = 'Nem érem el a helyi szervert.'; });
+      fetch('/frissit', {method:'POST', headers:{'Content-Type':'application/json'}, body:'{}'}).then(function(){ figyel(); }).catch(function(){ gomb.disabled = false; all.textContent = 'Nem érem el a helyi szervert.'; });
     });
   }
   // Új hírek figyelése: percenként lekéri a feed.json-t, ami új, azt kártyán kiteszi bal oldalt.
@@ -278,8 +282,10 @@
     function ment(l){ try { localStorage.setItem(KULCS, JSON.stringify(l.slice(0, 400))); } catch(e){} }
     var elso = latott().length === 0;
     function kartya(h){
+      if (!qnSlug(h.slug)) return;
       var a = document.createElement('a'); a.className = 'uj-kartya'; a.href = '/hir/' + h.slug;
-      a.innerHTML = (h.kep ? '<img src="'+h.kep+'" alt="">' : '') + '<div><span class="uj-cimke">Új hír · '+h.forras+(h.ido?' · '+h.ido:'')+'</span><strong>'+h.cim+'</strong></div><button type="button" class="uj-zar" aria-label="Bezárás">×</button>';
+      var kep = qnKep(h.kep);
+      a.innerHTML = (kep ? '<img src="'+qnEsc(kep)+'" alt="">' : '') + '<div><span class="uj-cimke">Új hír · '+qnEsc(h.forras)+(h.ido?' · '+qnEsc(h.ido):'')+'</span><strong>'+qnEsc(h.cim)+'</strong></div><button type="button" class="uj-zar" aria-label="Bezárás">×</button>';
       a.querySelector('.uj-zar').addEventListener('click', function(ev){ ev.preventDefault(); ev.stopPropagation(); a.remove(); });
       doboz.prepend(a);
       setTimeout(function(){ a.classList.add('bent'); }, 30);
@@ -316,7 +322,7 @@
     var kiemel=function(szoveg,kif){ var e=egyszeru(szoveg); var i=e.indexOf(kif); if(i<0) return null; var start=Math.max(0,i-45); return (start>0?'…':'')+biztos(szoveg.slice(start,i))+'<mark>'+biztos(szoveg.slice(i,i+kif.length))+'</mark>'+biztos(szoveg.slice(i+kif.length,i+kif.length+90))+'…'; };
     var nyitva=function(igen){ panel.hidden=!igen; mezo.setAttribute('aria-expanded',igen?'true':'false'); };
     var rajzol=function(talalatok,kif){ kiemeltIndex=-1; if(!kif){ nyitva(false); lista.innerHTML=''; return; } if(!talalatok.length){ lista.innerHTML='<div class="kereso-ures">Erre nincs találat. Próbálj rövidebb szót.</div>'; nyitva(true); return; }
-      lista.innerHTML=talalatok.slice(0,12).map(function(x){ var r=kiemel(x.sz,kif)||kiemel(x.b,kif)||''; return '<a class="kereso-tetel" href="'+x.u+'" role="option"><span class="kt-meta">'+biztos(x.k)+(x.d?' · '+x.d:'')+'</span><span class="kt-cim">'+(kiemel(x.c,kif)||biztos(x.c)).replace(/^…|…$/g,'')+'</span>'+(r?'<span class="kt-reszlet">'+r+'</span>':'')+'</a>'; }).join(''); nyitva(true); };
+      lista.innerHTML=talalatok.slice(0,12).map(function(x){ var r=kiemel(x.sz,kif)||kiemel(x.b,kif)||''; return '<a class="kereso-tetel" href="'+qnEsc(x.u)+'" role="option"><span class="kt-meta">'+biztos(x.k)+(x.d?' · '+qnEsc(x.d):'')+'</span><span class="kt-cim">'+(kiemel(x.c,kif)||biztos(x.c)).replace(/^…|…$/g,'')+'</span>'+(r?'<span class="kt-reszlet">'+r+'</span>':'')+'</a>'; }).join(''); nyitva(true); };
     var keres=function(nyers){ var kif=egyszeru(nyers.trim()); if(torlo) torlo.hidden=!nyers; if(!mutato||kif.length<2){ rajzol([],''); return; } var pont=[]; for(var i=0;i<mutato.length;i++){ var x=mutato[i], p=0; if(x._c.indexOf(kif)>=0) p+=100; if(x._c.indexOf(kif)===0) p+=40; if(x._k.indexOf(kif)>=0) p+=30; if(x._b.indexOf(kif)>=0) p+=20; if(x._sz.indexOf(kif)>=0) p+=10; if(p) pont.push([p,x]); } pont.sort(function(a,b){return b[0]-a[0];}); rajzol(pont.map(function(x){return x[1];}),kif); };
     var urit=function(){ mezo.value=''; if(torlo) torlo.hidden=true; lista.innerHTML=''; nyitva(false); };
     mezo.addEventListener('input',function(){ tolts().then(function(){ keres(mezo.value); }); });
@@ -339,9 +345,9 @@
     var TAR='qn-harang-latott', gomb=doboz.querySelector('.harang-gomb'), jel=doboz.querySelector('[data-harang-jel]'), buborek=doboz.querySelector('[data-harang-buborek]'), hirek=[], latott=[];
     try{ latott=JSON.parse(localStorage.getItem(TAR)||'[]'); }catch(e){ latott=[]; } if(!Array.isArray(latott)) latott=[];
     var ujak=function(){ return hirek.filter(function(h){ return latott.indexOf(h.id)<0; }); };
-    var biztos=function(t){ return (t||'').replace(/[&<>]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); };
+    var biztos=qnEsc;
     var jelol=function(){ var db=ujak().length; jel.textContent=db>9?'9+':String(db); jel.hidden=db===0; gomb.setAttribute('aria-label',db?'Új hírek, '+db+' új':'Új hírek'); };
-    var kirajzol=function(){ var ujId=ujak().map(function(h){return h.id;}); var sorok=hirek.slice(0,20).map(function(h){ return '<li'+(ujId.indexOf(h.id)>=0?' class="uj"':'')+'><a href="/hir/'+h.slug+'">'+(h.kep?'<img src="'+h.kep+'" alt="" loading="lazy">':'')+'<span><span class="harang-forras">'+biztos(h.forras)+(h.ido?' · '+h.ido:'')+'</span><strong>'+biztos(h.cim)+'</strong></span></a></li>'; }).join('');
+    var kirajzol=function(){ var ujId=ujak().map(function(h){return h.id;}); var sorok=hirek.filter(function(h){ return qnSlug(h.slug); }).slice(0,20).map(function(h){ var kep=qnKep(h.kep); return '<li'+(ujId.indexOf(h.id)>=0?' class="uj"':'')+'><a href="/hir/'+h.slug+'">'+(kep?'<img src="'+biztos(kep)+'" alt="" loading="lazy">':'')+'<span><span class="harang-forras">'+biztos(h.forras)+(h.ido?' · '+biztos(h.ido):'')+'</span><strong>'+biztos(h.cim)+'</strong></span></a></li>'; }).join('');
       buborek.innerHTML='<div class="harang-fej">Friss hírek</div>'+(sorok?'<ul>'+sorok+'</ul>':'<p class="harang-ures">Most nincs új hír.</p>')+(window.Notification?'<button type="button" class="harang-ertesit">'+(Notification.permission==='granted'?'Értesítés bekapcsolva':'Értesíts az új hírekről')+'</button>':'');
       var he=buborek.querySelector('.harang-ertesit'); if(he) he.addEventListener('click',function(ev){ ev.stopPropagation(); Notification.requestPermission().then(function(p){ he.textContent = p==='granted'?'Értesítés bekapcsolva':'Értesítés letiltva a böngészőben'; }); }); };
     var zar=function(){ buborek.hidden=true; gomb.setAttribute('aria-expanded','false'); document.removeEventListener('keydown',bill); document.removeEventListener('click',kivul); };
