@@ -2,6 +2,7 @@
 // Index: api/_hirek.json (build/kerdez_index.py). Env: GEMINI_API_KEY, CHAT_SO, KV_REST_API_URL, KV_REST_API_TOKEN.
 // Korlát: naponta összesen 50 kérdés, látogatónként 10. Napló: a kérdés szövege és ideje, névtelenül, 30 napig.
 const crypto = require("crypto");
+const szuro = require("./_szuro.js");
 const INDEX = require("./_hirek.json");
 
 const P = "qn:chat:";
@@ -122,7 +123,7 @@ async function nepszeruek() {
   for (let i = 0; i < v.length; i += 2) {
     if (Number(v[i + 1]) < NEPSZERU_MIN) continue;
     const sz = await kv("HGET", P + "nepszeru_szoveg", v[i]);
-    if (sz) ki.push(sz);
+    if (sz && !szuro.tiltottSzoveg(sz)) ki.push(sz);  // nyilvános javaslat: szennyes szöveg soha nem kerülhet ki
     if (ki.length >= 4) break;
   }
   for (const a of ALAP_KERDESEK) if (ki.length < 4 && !ki.some((x) => x.toLowerCase() === a.toLowerCase())) ki.push(a);
@@ -162,7 +163,7 @@ module.exports = async (req, res) => {
     await kv("ZADD", P + "naplo", most, JSON.stringify({ ido: new Date(most).toISOString(), kerdes: q }));
     await kv("ZREMRANGEBYSCORE", P + "naplo", 0, most - 30 * 864e5);
 
-    if (INJEKCIO.test(q)) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], kivul: true });
+    if (INJEKCIO.test(q) || szuro.tiltottSzoveg(q)) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], kivul: true });
     const v = await beagyaz(q);
     const friss = Date.now();
     // a kérdés tartalmas szavai (5 betűs tővel): a címben vagy a leadben előforduló egyezés pluszpontot ad,

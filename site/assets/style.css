@@ -960,3 +960,7 @@ html:not(.suti-van) .chat { display: none; }
 .szp-gomb svg { width: 18px; height: 18px; }
 .szp-megjegyzes { margin-top: 12px; font-size: 13px; line-height: 19px; color: var(--szoveg-3); }
 .szp-fokep { width: 100%; border-radius: 16px; display: block; }
+.hird-info { margin: 4px 0 0; padding: 10px 12px; font-size: 14px; line-height: 20px; color: var(--szoveg); background: var(--bg-3); border-left: 3px solid var(--kiemelo); border-radius: 8px; }
+.hird-info[hidden] { display: none; }
+.hird-info b { color: var(--kiemelo-szin); white-space: nowrap; }
+.hird-urlap input[aria-invalid="true"] { border-color: var(--piros); outline: 1px solid var(--piros); }

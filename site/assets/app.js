@@ -157,12 +157,19 @@
 (function(){
   var f = document.querySelector('[data-hirdeto]'); if (!f) return;
   var gomb = f.querySelector('button'), uz = f.parentNode.querySelector('.hird-uzenet');
+  var tel = f.querySelector('[name=telefon]'), info = f.querySelector('[data-kulfoldi]');
+  // külföldi szám jelzése gépelés közben: + vagy 00 előtag, de nem magyar (+36 / 0036)
+  function kulfoldi(v){ v = String(v || '').replace(/[\s().\-\/]/g, ''); return /^(\+|00)/.test(v) && !/^(\+36|0036)/.test(v) && v.replace(/\D/g, '').length >= 2; }
+  tel.addEventListener('input', function(){ info.hidden = !kulfoldi(tel.value); });
+  f.addEventListener('input', function(e){ if (e.target.getAttribute('aria-invalid') === 'true') e.target.removeAttribute('aria-invalid'); });
   f.addEventListener('submit', function(e){
     e.preventDefault(); var d = {}; [].forEach.call(f.elements, function(x){ if (x.name) d[x.name] = x.value; }); d.oldal = location.pathname;
     gomb.disabled = true; gomb.textContent = 'Küldés…'; uz.className = 'hird-uzenet'; uz.textContent = '';
     fetch('/api/hirdetes', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(d)})
       .then(function(r){ return r.json(); })
       .then(function(j){ uz.className = 'hird-uzenet ' + (j.ok ? 'ok' : 'hiba'); uz.textContent = j.uzenet || '';
+        if (!j.ok && j.mezo) { var m = f.querySelector('[name=' + j.mezo + ']'); if (m) { m.setAttribute('aria-invalid', 'true'); m.focus(); } }
+        if (j.kulfoldi) info.hidden = false;
         if (j.ok) { f.reset(); f.hidden = true; try { if (window.gtag) gtag('event', 'hirdetoi_erdeklodes'); if (window.fbq) fbq('track', 'Lead'); } catch(e2){} } })
       .catch(function(){ uz.className = 'hird-uzenet hiba'; uz.textContent = 'Most nem sikerült elküldeni. Írj nekünk az info@adverr.hu címre!'; })
       .then(function(){ gomb.disabled = false; gomb.textContent = 'Kérem az ajánlatot'; });

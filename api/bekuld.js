@@ -7,6 +7,7 @@
 // Tárolás: qn:bek:<url-kulcs> (a link, a cím, a döntés és indoka, az időpont), qn:bek:lista (idő szerint),
 // qn:bek:var (Heni elfogadta, a Mac még nem vette át). A beküldőről csak a napi IP-lenyomat marad, 24 óráig.
 const crypto = require("crypto");
+const szuro = require("./_szuro.js");
 let INDEX = { hirek: [] };
 try { INDEX = require("./_hirek.json"); } catch (e) { INDEX = { hirek: [] }; }
 
@@ -58,7 +59,7 @@ function normal(u) {
 }
 
 function tiltottHely(host) {
-  return TILTOTT_DOMAIN.test(host) || TILTOTT_TLD.test(host);
+  return TILTOTT_DOMAIN.test(host) || TILTOTT_TLD.test(host) || szuro.tiltottDomain(host);
 }
 
 function szoveg(html) {
@@ -157,7 +158,7 @@ module.exports = async (req, res) => {
       await kv("ZADD", P + "lista", Date.now(), kulcs);
       await kv("ZREMRANGEBYSCORE", P + "lista", 0, Date.now() - 90 * 864e5);
     };
-    if (tiltottHely(host)) {
+    if (tiltottHely(host) || szuro.tiltottSzoveg(decodeURIComponent(new URL(u).pathname).replace(/[/_-]/g, " "))) {
       Object.assign(rekord, { allapot: "elutasitva", ok: "tiltott", indok: "Tiltólistás domain." });
       await ment();
       return json(res, 200, { allapot: "elutasitva", uzenet: UZENET.tiltott });
