@@ -112,12 +112,12 @@ module.exports = async (req, res) => {
       }
       if (mi === "bekuldes_dontes_gep" && req.method === "POST") {
         const { id, allapot } = await torzs(req);
-        if (!/^[a-f0-9]{16}$/.test(id || "") || !["elfogadva", "elutasitva"].includes(allapot)) return json(res, 400, { hiba: "Rossz kérés." });
+        if (!/^[a-f0-9]{16}$/.test(id || "") || !["elfogadva", "elutasitva", "dontesre_var"].includes(allapot)) return json(res, 400, { hiba: "Rossz kérés." });
         const v = await kv("GET", "qn:bek:" + id);
         if (!v) return json(res, 404, { hiba: "Nincs ilyen beküldés." });
         const r = JSON.parse(v);
         if (r.atveve) return json(res, 409, { hiba: "Ez már bekerült a feldolgozásba." });
-        r.allapot = allapot; r.kezi = new Date().toISOString();
+        r.allapot = allapot; if (allapot === "dontesre_var") delete r.kezi; else r.kezi = new Date().toISOString();
         await kv("SET", "qn:bek:" + id, JSON.stringify(r), "EX", 90 * 86400);
         if (allapot === "elfogadva") await kv("SADD", "qn:bek:var", id); else await kv("SREM", "qn:bek:var", id);
         return json(res, 200, { ok: true });
@@ -258,12 +258,12 @@ module.exports = async (req, res) => {
     if (mi === "bekuldes_dontes" && req.method === "POST") {
       // Heni felülbírálja a moderátor AI döntését: elfogadva -> a Mac átveszi; elutasitva -> kikerül a várólistából
       const { id, allapot } = await torzs(req);
-      if (!/^[a-f0-9]{16}$/.test(id || "") || !["elfogadva", "elutasitva"].includes(allapot)) return json(res, 400, { hiba: "Rossz kérés." });
+      if (!/^[a-f0-9]{16}$/.test(id || "") || !["elfogadva", "elutasitva", "dontesre_var"].includes(allapot)) return json(res, 400, { hiba: "Rossz kérés." });
       const v = await kv("GET", "qn:bek:" + id);
       if (!v) return json(res, 404, { hiba: "Nincs ilyen beküldés." });
       const r = JSON.parse(v);
       if (r.atveve) return json(res, 409, { hiba: "Ez már bekerült a feldolgozásba." });
-      r.allapot = allapot; r.kezi = new Date().toISOString();
+      r.allapot = allapot; if (allapot === "dontesre_var") delete r.kezi; else r.kezi = new Date().toISOString();
       await kv("SET", "qn:bek:" + id, JSON.stringify(r), "EX", 90 * 86400);
       if (allapot === "elfogadva") await kv("SADD", "qn:bek:var", id); else await kv("SREM", "qn:bek:var", id);
       return json(res, 200, { ok: true });

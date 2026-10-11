@@ -1,10 +1,11 @@
-// Hírbeküldés (közösségi): a látogató egy linket küld, a moderátor AI ellenőrzi, az elfogadott a kézi hírlistába kerül.
+// Hírbeküldés (közösségi): a látogató egy linket küld, a moderátor AI előszűri és javaslatot tesz, de a kézi hírlistába
+// CSAK Heni pultbeli elfogadása után kerül (2026-10-11: „mindent ellenőriznem kell”).
 // Env: GEMINI_API_KEY, CHAT_SO, KV_REST_API_URL, KV_REST_API_TOKEN.
-//   POST /api/bekuld {url} -> {allapot: "elfogadva"|"elutasitva"|"atnezes"|"megvan", uzenet}
+//   POST /api/bekuld {url} -> {allapot: "dontesre_var"|"elutasitva"|"megvan"|"hiba"|"korlat", uzenet}
 // Szűrés: tiltólista (pornó, szerencsejáték, átverés), a megnyitott oldal tartalma alapján Gemini-döntés:
 // AI-hír-e, tiltott vagy kéretlen-e, hiteles-e a forrás. Korlát: látogatónként 10, összesen 300 beküldés naponta.
 // Tárolás: qn:bek:<url-kulcs> (a link, a cím, a döntés és indoka, az időpont), qn:bek:lista (idő szerint),
-// qn:bek:var (elfogadva, a Mac még nem vette át). A beküldőről csak a napi IP-lenyomat marad, 24 óráig.
+// qn:bek:var (Heni elfogadta, a Mac még nem vette át). A beküldőről csak a napi IP-lenyomat marad, 24 óráig.
 const crypto = require("crypto");
 let INDEX = { hirek: [] };
 try { INDEX = require("./_hirek.json"); } catch (e) { INDEX = { hirek: [] }; }
@@ -112,8 +113,8 @@ async function dont(adat) {
 }
 
 const UZENET = {
-  elfogadva: "Köszönjük! Átnéztük, és bekerült a feldolgozandó hírek közé.",
-  atnezes: "Köszönjük! Ezt az oldalt nem tudtuk automatikusan megnyitni, ezért kézzel nézzük át.",
+  elfogadva: "Köszönjük! Megkaptuk, átnézzük, és ha megfelel, megjelenik az oldalon.",
+  atnezes: "Köszönjük! Megkaptuk, és kézzel nézzük át.",
   nem_ai: "Köszönjük, de ez nem AI-témájú hír, ezért nem tudjuk közzétenni.",
   tiltott: "Ezt az oldalt nem tudjuk elfogadni.",
   nem_hiteles: "Köszönjük, de ezt a forrást nem tudtuk megbízhatónak ítélni, ezért nem tesszük közzé.",
@@ -155,7 +156,6 @@ module.exports = async (req, res) => {
       await kv("SET", P + kulcs, JSON.stringify(rekord), "EX", 90 * 86400);
       await kv("ZADD", P + "lista", Date.now(), kulcs);
       await kv("ZREMRANGEBYSCORE", P + "lista", 0, Date.now() - 90 * 864e5);
-      if (rekord.allapot === "elfogadva") await kv("SADD", P + "var", kulcs);
     };
     if (tiltottHely(host)) {
       Object.assign(rekord, { allapot: "elutasitva", ok: "tiltott", indok: "Tiltólistás domain." });
@@ -164,9 +164,9 @@ module.exports = async (req, res) => {
     }
     let adat;
     try { adat = await oldalOlvas(u); } catch (e) {
-      Object.assign(rekord, { allapot: "atnezes", ok: "nem_olvashato", indok: `Az oldal nem nyitható meg automatikusan (${String(e.message || e).slice(0, 60)}).` });
+      Object.assign(rekord, { allapot: "dontesre_var", ok: "nem_olvashato", indok: `Az oldal nem nyitható meg automatikusan (${String(e.message || e).slice(0, 60)}).` });
       await ment();
-      return json(res, 200, { allapot: "atnezes", uzenet: UZENET.atnezes });
+      return json(res, 200, { allapot: "dontesre_var", uzenet: UZENET.atnezes });
     }
     const vh = new URL(adat.vegso).hostname.toLowerCase();
     if (tiltottHely(vh)) {
@@ -180,7 +180,8 @@ module.exports = async (req, res) => {
     rekord.vegso = adat.vegso;
     const ok = d.tiltott ? "tiltott" : !d.ai_hir ? "nem_ai" : !d.hiteles ? "nem_hiteles" : "elfogadva";
     rekord.ok = ok;
-    rekord.allapot = ok === "elfogadva" ? "elfogadva" : "elutasitva";
+    // az AI csak javasol: a relevánsnak ítélt link is Heni döntésére vár, a kézi listába csak az ő elfogadásával kerül
+    rekord.allapot = ok === "elfogadva" ? "dontesre_var" : "elutasitva";
     await ment();
     return json(res, 200, { allapot: rekord.allapot, uzenet: UZENET[ok] });
   } catch (err) {

@@ -163,7 +163,7 @@
     gomb.disabled = mezo.disabled = true; gomb.textContent = 'Ellenőrizzük…'; uz.className = 'bek-uzenet'; uz.textContent = '';
     fetch('/api/bekuld', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({url: u})})
       .then(function(r){ return r.json(); })
-      .then(function(j){ uz.className = 'bek-uzenet ' + (j.allapot === 'elfogadva' || j.allapot === 'atnezes' ? 'ok' : j.allapot === 'megvan' ? '' : 'hiba');
+      .then(function(j){ uz.className = 'bek-uzenet ' + (j.allapot === 'dontesre_var' ? 'ok' : j.allapot === 'megvan' ? '' : 'hiba');
         uz.textContent = j.uzenet || 'Köszönjük!'; if (j.link) { var a = document.createElement('a'); a.href = j.link; a.textContent = ' Megnézem'; uz.appendChild(a); }
         if (j.allapot !== 'hiba') mezo.value = '';
         try { if (window.gtag) gtag('event', 'hir_bekuldes', {allapot: j.allapot}); } catch(e2){} })

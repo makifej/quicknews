@@ -195,7 +195,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 </section>
 
 <section id="p-bekuldes" hidden>
-<p class="a-bev">A látogatók által beküldött hírlinkek. A moderátor AI ellenőrzi őket: csak AI-témájú, hiteles, nem tiltott tartalom fogadható el. Az elfogadott link negyedórán belül bekerül a kézi hírlistába, és a szokásos feldolgozással jelenik meg. A döntést felülbírálhatod, amíg a link még nem került feldolgozásra.</p>
+<p class="a-bev">A látogatók által beküldött hírlinkek. A moderátor AI előszűri őket, és javaslatot tesz (AI-témájú, hiteles, nem tiltott-e), de egyik sem megy tovább, amíg te el nem fogadod. Az általad elfogadott link negyedórán belül bekerül a kézi hírlistába, és a szokásos feldolgozással jelenik meg. Az AI által elutasítottakat is elfogadhatod.</p>
 <div id="b-lista"></div>
 </section>
 <section id="p-ajanlott" hidden>
@@ -446,15 +446,16 @@ async function kepFeltolt(inp){const f=inp.files[0];if(!f)return;const lab=inp.c
 async function atolt(){try{A=await lekér(U.ajanlott)}catch(e){document.getElementById("a-lista").innerHTML=`<div class="hibasav">Az ajánlólista most nem érhető el.</div>`;return}arajzol()}
 
 /* ---------- beküldések ---------- */
-const BOK={elfogadva:"Elfogadva",tiltott:"Tiltott tartalom",nem_ai:"Nem AI-témájú",nem_hiteles:"Nem hiteles forrás",nem_olvashato:"Nem nyitható meg"};
+const BOK={elfogadva:"AI: elfogadható",tiltott:"AI: tiltott tartalom",nem_ai:"AI: nem AI-témájú",nem_hiteles:"AI: nem hiteles forrás",nem_olvashato:"AI: nem nyitható meg"};
 async function btolt(){const L=document.getElementById("b-lista");let d;try{d=await lekér(U.bekuldesek)}catch(e){L.innerHTML=`<div class="hibasav">A beküldések most nem érhetők el.</div>`;return}
  const t=d.tetel||[];
  L.innerHTML=t.map(b=>{const dd=new Date(b.ido);const all=b.atveve?"atveve":b.allapot;
-  const cimke=b.atveve?"Feldolgozásba került":b.allapot==="elfogadva"?"Elfogadva":b.allapot==="atnezes"?"Kézi átnézésre vár":"Elutasítva";
-  const gombok=b.atveve?"":`<div class="kapcs"><button aria-pressed="${b.allapot==="elfogadva"}" data-bek="${b.id}" data-all="elfogadva"><i></i>Elfogadom</button><button class="elut" aria-pressed="${b.allapot==="elutasitva"}" data-bek="${b.id}" data-all="elutasitva"><i></i>Elutasítom</button></div>`;
-  return `<div class="ah bek-sor ${all}"><div><a class="cim" href="${esc(b.vegso||b.url)}" target="_blank" rel="noopener">${esc(b.cim||b.url)}</a>
+  const var_=b.allapot==="dontesre_var"||b.allapot==="atnezes";
+  const cimke=b.atveve?"Feldolgozásba került":var_?"Döntésre vár":b.allapot==="elfogadva"?"Elfogadtad":b.kezi?"Elutasítottad":"Elutasítva";
+  const gombok=b.atveve?"":`<div class="kapcs"><button aria-pressed="${b.allapot==="elfogadva"}" data-bek="${b.id}" data-all="elfogadva"><i></i>Elfogadom</button><button class="elut" aria-pressed="${b.allapot==="elutasitva"&&!!b.kezi}" data-bek="${b.id}" data-all="elutasitva"><i></i>Elutasítom</button></div>`;
+  return `<div class="ah bek-sor ${all} ${var_?"kerve":""}"><div><a class="cim" href="${esc(b.vegso||b.url)}" target="_blank" rel="noopener">${esc(b.cim||b.url)}</a>
    <div class="lead">${esc(b.url)}</div>
-   <div class="cimkek"><span class="cimke ${b.allapot==="elfogadva"&&!b.atveve?"fo5":""}">${cimke}</span>${b.ok&&b.ok!=="elfogadva"?`<span class="cimke">${BOK[b.ok]||esc(b.ok)}</span>`:""}${b.kezi?`<span class="cimke">kézzel</span>`:""}<span class="cimke">${fmt(dd,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span></div>
+   <div class="cimkek"><span class="cimke ${var_?"felk":b.allapot==="elfogadva"&&!b.atveve?"fo5":""}">${cimke}</span>${b.ok?`<span class="cimke">${BOK[b.ok]||esc(b.ok)}</span>`:""}<span class="cimke">${fmt(dd,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span></div>
    ${b.indok?`<div class="lead" style="-webkit-line-clamp:3">${esc(b.indok)}</div>`:""}</div>${gombok}</div>`}).join("")||`<p class="ures">Még nem érkezett beküldés.</p>`;
  L.querySelectorAll("[data-bek]").forEach(g=>g.onclick=async()=>{try{const r=await lekér(U.bekDontes,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:g.dataset.bek,allapot:g.dataset.all})});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}btolt()})}
 /* ---------- ugrás a teendőhöz ---------- */
