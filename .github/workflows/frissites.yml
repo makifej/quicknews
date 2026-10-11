@@ -16,24 +16,30 @@ concurrency:
   group: frissites
   cancel-in-progress: false
 
-permissions:
-  contents: write
+# SEC-005 (2026-10-11): három, egymástól elzárt rész. A kulcsok nincsenek egy helyen:
+#   frissit  - gyűjtés, fordítás, renderelés, visszaírás: git-crypt kulcs, Gemini-kulcs, push-jog (Vercel-kulcs NINCS)
+#   kiadas   - élesítés tiszta gépen: csak a kész oldalcsomag és a Vercel-kulcs (repó, git-crypt, Python NINCS)
+#   indexnow - a keresők értesítése élesítés után: git-crypt kulcs és push-jog (Vercel- és Gemini-kulcs NINCS)
+# Az actionök commit-SHA-ra, a Python-csomagok hash-re, a vercel CLI pontos verzióra rögzítve.
+permissions: {}
 
 jobs:
   frissit:
     runs-on: ubuntu-latest
     timeout-minutes: 40
-    # SEC-005: a titkok csak abba a lépésbe kerülnek, amelyiknek kell (a csomagtelepítés és a git nem látja őket)
+    permissions:
+      contents: write
+    outputs:
+      fut: ${{ steps.ido.outputs.fut }}
     env:
       TZ: Europe/Budapest
-      VAN_VERCEL: ${{ secrets.VERCEL_TOKEN != '' }}
     steps:
       - name: Éjszakai szünet (23:00 és 08:00 között nem fut, magyar idő)
         id: ido
         run: |
           ORA=$(date +%H)
           if [ "${{ inputs.kenyszer }}" != "true" ] && { [ "$ORA" -ge 23 ] || [ "$ORA" -lt 8 ]; }; then echo "fut=nem" >> $GITHUB_OUTPUT; else echo "fut=igen" >> $GITHUB_OUTPUT; fi
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4
         if: steps.ido.outputs.fut == 'igen'
         with:
           fetch-depth: 1
@@ -48,12 +54,12 @@ jobs:
           rm -f /tmp/gc.key
           if head -c 9 build/render.py | grep -q GITCRYPT; then echo "A feloldás nem sikerült"; exit 1; fi
           echo "feloldva"
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5
         if: steps.ido.outputs.fut == 'igen'
         with:
           python-version: "3.12"
       - if: steps.ido.outputs.fut == 'igen'
-        run: pip install -q -r requirements.txt
+        run: pip install -q --require-hashes -r requirements.txt
       - name: Gyűjtés, fordítás, linkek, renderelés
         if: steps.ido.outputs.fut == 'igen'
         env:
@@ -85,17 +91,67 @@ jobs:
           }
           for i in 1 2 3; do git push && break || { rebase; sleep 5; }; done
           git push  # ha 3 próbából sem ment fel, a futás jogosan bukjon el
+      - name: A kész oldal csomagolása a kiadáshoz (csak a kiszolgált fájlok, titok nélkül)
+        if: steps.ido.outputs.fut == 'igen'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4
+        with:
+          name: kiadas
+          path: |
+            site
+            api
+            vercel.json
+            .vercelignore
+          include-hidden-files: true
+          retention-days: 1
+          if-no-files-found: error
+
+  kiadas:
+    needs: frissit
+    if: needs.frissit.outputs.fut == 'igen'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      actions: read
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093  # v4
+        with:
+          name: kiadas
+          path: kiadas
       - name: Kiadás a Vercelre
-        if: steps.ido.outputs.fut == 'igen' && env.VAN_VERCEL == 'true'
+        working-directory: kiadas
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        # rögzített verzió: egy új, esetleg kompromittált CLI-kiadás nem kaphatja meg automatikusan a tokent
-        run: npx --yes vercel@63.1.2 deploy --prod --yes --archive=tgz --token "$VERCEL_TOKEN"
-      - name: IndexNow (az új hírek beküldése a keresőknek)
-        if: steps.ido.outputs.fut == 'igen' && env.VAN_VERCEL == 'true'
         run: |
+          if [ -z "$VERCEL_TOKEN" ]; then echo "nincs Vercel-kulcs, kihagyva"; exit 0; fi
+          npx --yes vercel@63.1.2 deploy --prod --yes --archive=tgz --token "$VERCEL_TOKEN"
+
+  indexnow:
+    needs: kiadas
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      TZ: Europe/Budapest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: Titkosított fájlok feloldása (git-crypt)
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
+        run: |
+          sudo apt-get install -y -qq git-crypt >/dev/null
+          echo "$GIT_CRYPT_KEY" | base64 -d > /tmp/gc.key
+          git-crypt unlock /tmp/gc.key
+          rm -f /tmp/gc.key
+      - name: IndexNow (az új hírek beküldése a keresőknek)
+        run: |
+          git config user.name "makifej"
+          git config user.email "149273611+makifej@users.noreply.github.com"
           python3 build/indexnow.py || true
           git add data/indexnow_kuldve.json
           if ! git diff --cached --quiet; then git commit -q -m "IndexNow-nyilvántartás"; for i in 1 2 3; do git push -q && break || { git pull -q --rebase -X theirs && sleep 5; }; done; fi
