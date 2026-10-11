@@ -1,12 +1,12 @@
 // „Kérdezz a hírektől!”: a quicknews.hu elmúlt napokban megjelent híreiből válaszol (RAG), forráslinkekkel.
 // Index: api/_hirek.json (build/kerdez_index.py). Env: GEMINI_API_KEY, CHAT_SO, KV_REST_API_URL, KV_REST_API_TOKEN.
-// Korlát: naponta összesen 50 kérdés, látogatónként 5. Napló: a kérdés szövege és ideje, névtelenül, 30 napig.
+// Korlát: naponta összesen 50 kérdés, látogatónként 10. Napló: a kérdés szövege és ideje, névtelenül, 30 napig.
 const crypto = require("crypto");
 const INDEX = require("./_hirek.json");
 
 const P = "qn:chat:";
 const NAPI_OSSZES = 50;
-const NAPI_LATOGATO = 5;
+const NAPI_LATOGATO = 10;
 const MODELL = "gemini-3.5-flash";
 const BEAGYAZO = "gemini-embedding-2";
 
