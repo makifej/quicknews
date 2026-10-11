@@ -826,3 +826,5 @@ button.chat-jel[aria-expanded="true"] .chat-tipp { opacity: 0 !important; visibi
 .chat-hirkartya:hover .chat-hk-link { text-decoration: underline; }
 @keyframes lenyilik { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { .chat-hirkartya { animation: none; } .chat-tipp { transition: none; } }
+button.chat-jel:hover, button.chat-jel:focus-visible { z-index: 20; }
+.chat-tipp { z-index: 30; }
