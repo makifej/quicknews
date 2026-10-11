@@ -27,7 +27,23 @@
     if (l.length === 1) { var f = fm[l[0]];
       return '<a class="chat-hirpont" href="'+biztos(f.url)+'">'+biztos(x.szoveg)+tipp(f)+'</a>'; }
     var t = String(x.szoveg || ''), rr = [];
-    (x.reszek || []).forEach(function(r){ var i = t.indexOf(r.resz); if (i >= 0 && fm[r.forras]) rr.push({i: i, v: i + r.resz.length, f: fm[r.forras]}); });
+    var szabad = function(i, v){ return rr.every(function(r){ return v <= r.i || i >= r.v; }); };
+    (x.reszek || []).forEach(function(r){ var i = t.indexOf(r.resz); if (i >= 0 && fm[r.forras] && szabad(i, i + r.resz.length)) rr.push({i: i, v: i + r.resz.length, f: fm[r.forras], n: r.forras}); });
+    // ha egy hírhez nincs részlet (vagy régebbi, részlet nélküli válasz), a hír címének egy csak rá jellemző szavát jelöljük
+    var SZO = /[0-9A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű][0-9A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű.\-]*[0-9A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű]/g;
+    var szavak = function(s){ return (String(s || '').match(SZO) || []).filter(function(w){ return w.length >= 4; }); };
+    var tobe = function(w){ return w.toLowerCase().slice(0, 5); };
+    var nagy = function(w){ return /^[A-ZÁÉÍÓÖŐÚÜŰ0-9]/.test(w) ? 1 : 0; };
+    l.forEach(function(n){
+      if (rr.some(function(r){ return r.n === n; })) return;
+      var masik = {}; l.forEach(function(m){ if (m !== n) szavak(fm[m].cim + ' ' + (fm[m].lead || '')).forEach(function(w){ masik[tobe(w)] = 1; }); });
+      var jo = {}; szavak(fm[n].cim).concat(szavak(fm[n].lead)).forEach(function(w){ if (!masik[tobe(w)]) jo[tobe(w)] = 1; });
+      // a megkülönböztető név jellemzően hátrébb áll a mondatban (a közös alany elöl), ezért a legutolsó találat nyer, a nagybetűs előnyben
+      var best = null, m; SZO.lastIndex = 0;
+      while ((m = SZO.exec(t))) { if (m[0].length >= 4 && jo[tobe(m[0])] && szabad(m.index, m.index + m[0].length)
+        && (!best || nagy(m[0]) >= nagy(best[0]))) best = m; }
+      if (best) rr.push({i: best.index, v: best.index + best[0].length, f: fm[n], n: n});
+    });
     rr.sort(function(a, b){ return a.i - b.i; });
     var ki = '', poz = 0;
     rr.forEach(function(r){ if (r.i < poz) return;
@@ -53,6 +69,10 @@
     lista.appendChild(d); return d;
   }
   function gorget(){ lista.scrollTop = lista.scrollHeight; }
+  // a görgetési helyzet a munkamenetben megmarad: hírre kattintva, oldalváltáskor sem ugrik el
+  var gt = 0; function helyMent(){ all.gorgetes = lista.scrollTop; ment(); }
+  lista.addEventListener('scroll', function(){ clearTimeout(gt); gt = setTimeout(helyMent, 150); }, {passive: true});
+  window.addEventListener('pagehide', helyMent);
   // a leggyakoribb kérdések (api/kerdez?mi=nepszeru): kattintható javaslatok, hogy ne kelljen gépelni
   var nepszeru = all.nepszeru || [];
   function masok(volt){ var l = nepszeru.filter(function(k){ return k.toLowerCase() !== String(volt || '').toLowerCase(); }).slice(0, 3);
@@ -64,9 +84,9 @@
   }).catch(function(){});
   function uj(u){ all.uzenetek.push(u); all.uzenetek = all.uzenetek.slice(-30); ment(); var d = rajzol(u);
     // a kész válasz elejére görgetünk, nem a lista aljára
-    if (u.bot) { lista.scrollTop = Math.max(0, d.offsetTop - 8); } else gorget(); }
+    if (u.bot) { lista.scrollTop = Math.max(0, d.offsetTop - 8); } else gorget(); helyMent(); }
   if (all.uzenetek.length) { var jav0 = lista.querySelector('.chat-javaslat'); if (jav0) jav0.remove(); all.uzenetek.forEach(rajzol); }
-  if (all.nyitva) { nyit(true, true); setTimeout(gorget, 0); }
+  if (all.nyitva) { nyit(true, true); setTimeout(function(){ if (typeof all.gorgetes === 'number') lista.scrollTop = all.gorgetes; else gorget(); }, 0); }
   function kerdez(q){
     q = (q || '').trim(); if (q.length < 3) return;
     var jav = lista.querySelector('.chat-javaslat'); if (jav) jav.remove();
@@ -81,7 +101,7 @@
   }
   urlap.addEventListener('submit', function(e){ e.preventDefault(); kerdez(mezo.value); });
   lista.addEventListener('click', function(e){
-    if (e.target.closest('.chat-hirpont, .chat-resz')) { ev('chat_forras_kattintas', {resz: !!e.target.closest('.chat-resz')}); return; }
+    if (e.target.closest('.chat-hirpont, .chat-resz')) { helyMent(); ev('chat_forras_kattintas', {resz: !!e.target.closest('.chat-resz')}); return; }
     var b = e.target.closest('.chat-javaslat button, .chat-javas'); if (b) { ev('chat_javaslat'); kerdez(b.textContent); } });
 })();
 (function(){
