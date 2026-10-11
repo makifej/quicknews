@@ -136,9 +136,10 @@ module.exports = async (req, res) => {
       const most = new Date().toISOString();
       if (["facebook", "linkedin", "hirdetes"].includes(mezo)) {
         if (ertek) e[mezo] = { kerve: most }; else delete e[mezo];
-      } else if (mezo === "kartya_jo") {
+      } else if (mezo === "kartya_jo" || mezo === "kartya_rossz") {
         if (!e.kartya || !e.kartya.fajl) return json(res, 400, { hiba: "Ehhez a hírhez még nincs kártya." });
-        e.kartya.jo = ertek ? most : null;
+        if (mezo === "kartya_jo") { e.kartya.jo = ertek ? most : null; if (ertek) e.kartya.elutasitva = null; }
+        else { e.kartya.elutasitva = ertek ? most : null; if (ertek) e.kartya.jo = null; }
       } else return json(res, 400, { hiba: "Ismeretlen mező." });
       if (!e.facebook && !e.linkedin && !e.hirdetes && !e.kartya) await kv("HDEL", P + "kitenni", id);
       else await kv("HSET", P + "kitenni", id, JSON.stringify(e));
