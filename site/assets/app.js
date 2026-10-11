@@ -24,9 +24,14 @@
     else {
       var j = u.bot, szoveg = biztos(j.valasz).replace(/^\s*[*-]\s+/gm, '• ').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n{2,}/g, '\n').replace(/\n/g, '<br>').replace(/\[(\d)\]/g, '<sup>$1</sup>');
       d.className = 'chat-valasz';
-      var jelek = function(l){ return '<span class="chat-jelek">' + (l || []).map(function(n){ return '<span class="chat-jel">'+n+'</span>'; }).join('') + '</span>'; };
+      var fm = {}; (j.forrasok || []).forEach(function(f){ fm[f.n] = f; });
+      var jelek = function(l){ return '<span class="chat-jelek">' + (l || []).map(function(n){ var f = fm[n] || {};
+        return '<button type="button" class="chat-jel" data-n="'+n+'" aria-expanded="false" aria-label="'+biztos('Forrás '+n+(f.cim ? ': '+f.cim : ''))+'">'+n
+          + (f.cim ? '<span class="chat-tipp" role="tooltip"><strong>'+biztos(f.cim)+'</strong>'+(f.datum ? '<small>'+datum(f.datum)+'</small>' : '')+(f.lead ? '<em>'+biztos(f.lead)+'</em>' : '')+'</span>' : '')
+          + '</button>'; }).join('') + '</span>'; };
+      d._fm = fm;
       var torzs = (j.pontok && j.pontok.length) || j.bevezeto
-        ? (j.bevezeto ? '<p class="chat-bev">'+biztos(j.bevezeto)+'</p>' : '') + ((j.pontok || []).length ? '<ul class="chat-pontok">' + j.pontok.map(function(x){ return '<li><span class="chat-psz">'+biztos(x.szoveg)+'</span>'+jelek(x.forras)+'</li>'; }).join('') + '</ul>' : '')
+        ? (j.bevezeto ? '<p class="chat-bev">'+biztos(j.bevezeto)+'</p>' : '') + ((j.pontok || []).length ? '<ul class="chat-pontok">' + j.pontok.map(function(x){ return '<li><div class="chat-psor"><span class="chat-psz">'+biztos(x.szoveg)+'</span>'+jelek(x.forras)+'</div><div class="chat-lenyilo" hidden></div></li>'; }).join('') + '</ul>' : '')
         : '<p>'+szoveg+'</p>';
       d.innerHTML = '<div class="chat-b bot">'+torzs+'</div>'
         + ((j.forrasok || []).length ? '<div class="chat-korabbi chat-forrasblokk"><h3>A válasz forrásai</h3><ul>'+hirlista(j.forrasok, true)+'</ul></div>' : '')
@@ -51,7 +56,20 @@
       .then(function(){ mezo.disabled = kuld.disabled = false; mezo.focus(); });
   }
   urlap.addEventListener('submit', function(e){ e.preventDefault(); kerdez(mezo.value); });
-  lista.addEventListener('click', function(e){ var b = e.target.closest('.chat-javaslat button'); if (b) kerdez(b.textContent);
+  // forrásjel: ráhúzásra felugró ablak (CSS), kattintásra a pont alatt lenyíló hírkártya
+  lista.addEventListener('click', function(e){
+    var jel = e.target.closest('.chat-jel');
+    if (jel) {
+      var li = jel.closest('li'), le = li.querySelector('.chat-lenyilo'), n = jel.getAttribute('data-n');
+      var fm = (jel.closest('.chat-valasz') || {})._fm || {}, f = fm[n];
+      var nyitott = jel.getAttribute('aria-expanded') === 'true';
+      li.querySelectorAll('.chat-jel').forEach(function(x){ x.setAttribute('aria-expanded', 'false'); });
+      if (nyitott || !f) { le.hidden = true; le.innerHTML = ''; return; }
+      jel.setAttribute('aria-expanded', 'true');
+      le.innerHTML = '<a class="chat-hirkartya" href="'+biztos(f.url)+'"><span class="chat-hk-fej"><span class="chat-jel kicsi">'+n+'</span>'+(f.datum ? '<small>'+datum(f.datum)+'</small>' : '')+'</span><strong>'+biztos(f.cim)+'</strong>'+(f.lead ? '<em>'+biztos(f.lead)+'</em>' : '')+'<span class="chat-hk-link">Elolvasom →</span></a>';
+      le.hidden = false; ev('chat_forrasjel', {n: n}); return;
+    }
+    var b = e.target.closest('.chat-javaslat button'); if (b) kerdez(b.textContent);
     var a = e.target.closest('.chat-korabbi a'); if (a) ev('chat_forras_kattintas', {korabbi: !a.closest('.chat-forrasblokk')}); });
 })();
 (function(){
