@@ -27,11 +27,13 @@
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 var qnSuti=null;try{qnSuti=JSON.parse(localStorage.getItem('qn-suti')||'null');}catch(e){}
+if(qnSuti&&(qnSuti.verzio||1)<2)qnSuti=null;
 gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:(qnSuti&&qnSuti.meres)?'granted':'denied'});
 if(qnSuti)document.documentElement.classList.add('suti-van');
 gtag('js',new Date());gtag('config','G-MXSE5QFHHY');
 window.qnGaBetolt=function(){if(window.qnGaKesz)return;window.qnGaKesz=1;var g=document.createElement('script');g.async=1;g.src='https://www.googletagmanager.com/gtag/js?id=G-MXSE5QFHHY';document.head.appendChild(g);};
 if(qnSuti&&qnSuti.meres)window.qnGaBetolt();
+window.qnMetaBetolt=function(){if(window.fbq)return;!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1412347010430163');fbq('track','PageView');if(location.pathname.indexOf('/hir/')===0){var h=document.querySelector('meta[property="og:title"]');fbq('track','ViewContent',{content_name:h?h.content.slice(0,100):'',content_type:'article'});}};if(qnSuti&&qnSuti.hirdetes)window.qnMetaBetolt();
 </script>
 <link rel="icon" href="/assets/ikon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="quicknews.hu" href="/rss.xml">
@@ -114,11 +116,12 @@ A hírek hatására a Super Micro részvényei esésnek indultak.</div></details
 </main>
 <div class="uj-hirek" aria-live="polite"></div>
 <button type="button" class="fel-gomb" data-fel-gomb aria-label="Vissza a lap tetejére" title="Vissza a tetejére"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M205.66 117.66a8 8 0 0 1-11.32 0L136 59.31V216a8 8 0 0 1-16 0V59.31l-58.34 58.35a8 8 0 0 1-11.32-11.32l72-72a8 8 0 0 1 11.32 0l72 72a8 8 0 0 1 0 11.32Z"/></svg></button>
-<section class="suti-sav" data-suti-sav role="region" aria-label="Sütik és látogatottságmérés">
+<section class="suti-sav" data-suti-sav data-suti-verzio="2" role="region" aria-label="Sütik és látogatottságmérés">
   <div class="suti-belso">
-    <p>Az oldal magától nem használ sütit. A látogatottságot csak a hozzájárulásoddal mérjük, a Google Analytics segítségével. <a href="/adatvedelem">Részletek</a></p>
+    <p>Az oldal magától nem használ sütit. A hozzájárulásoddal a látogatottságot a Google Analytics, a Facebook-hirdetéseink eredményét a Meta pixel méri. <a href="/adatvedelem">Részletek</a></p>
     <div class="suti-tettek">
       <button class="suti-gomb" type="button" data-suti="nem">Elutasítom</button>
+      <button class="suti-gomb" type="button" data-suti="meres">Csak látogatottságmérés</button>
       <button class="suti-gomb suti-gomb--fo" type="button" data-suti="igen">Elfogadom</button>
     </div>
   </div>
