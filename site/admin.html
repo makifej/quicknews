@@ -40,6 +40,11 @@ main{max-width:1200px;margin:0 auto;padding:32px 24px 96px;overflow-wrap:anywher
 .mutato .sor2 .becs{font-size:26px}
 .osszeg .becs{font-size:31px}
 .mutato.riaszt b{color:var(--hiba)}
+.mutato[data-ugras]{cursor:pointer;transition:outline-color .3s cubic-bezier(.32,.72,0,1);outline:1px solid transparent}
+.mutato[data-ugras]:hover,.mutato[data-ugras]:focus-visible{outline-color:var(--amber)}
+.mutato[data-ugras] em::after{content:" →";color:var(--amber)}
+@keyframes villan{0%,100%{box-shadow:0 0 0 0 rgba(255,178,36,0)}25%,75%{box-shadow:0 0 0 3px rgba(255,178,36,.9)}}
+.villan{animation:villan 1.6s cubic-bezier(.32,.72,0,1)}
 
 /* napválasztó */
 .napok{display:flex;gap:8px;overflow-x:auto;margin-bottom:24px;padding-bottom:4px;scrollbar-width:none}
@@ -100,7 +105,8 @@ transition:border-color .3s cubic-bezier(.32,.72,0,1)}
 .kapcs button.kint i{background:#2f6f4a;border-color:#2f6f4a}
 .kapcs button.kint i::after{content:"✓";color:#fff}
 .kapcs button.idoz{color:var(--amber);border-color:var(--amber);opacity:1}
-.kapcs button.idoz i{border-color:var(--amber)}
+.kapcs button.idoz i{border-color:var(--amber);background:var(--amber)}
+.kapcs button.idoz i::after{content:"✓";color:#131313}
 #belep{position:fixed;inset:0;z-index:20;background:var(--bg);display:grid;place-items:center;padding:16px}
 #belep form{width:100%;max-width:400px;display:flex;flex-direction:column;gap:12px}
 #belep h1{font-size:31px;font-weight:700;margin-bottom:16px}#belep h1 span{color:var(--amber)}
@@ -244,7 +250,7 @@ function prajzol(){if(!D)return;
   `<div class="mutato kiemelt"><small>Következő</small><b class="num">${kov?ora(new Date(kov.idopont)):"Nincs"}</b><em>${kov?kov.felulet+" · "+hatra(new Date(kov.idopont)):"nincs várakozó poszt"}</em></div>`+
   `<div class="mutato"><small>Ma még vár</small><b class="num">${maVar.length}</b><em>${["Facebook","LinkedIn"].map(f=>f+" "+maVar.filter(s=>s.felulet===f).length).join(" · ")}</em></div>`+
   `<div class="mutato"><small>Ma kiment</small><b class="num">${maKint.length}</b><em>${["Facebook","LinkedIn"].map(f=>f+" "+maKint.filter(s=>s.felulet===f).length).join(" · ")}</em></div>`+
-  `<div class="mutato ${hiba.length?"riaszt":""}"><small>${hiba.length?"Hibás poszt":"Holnapra időzítve"}</small><b class="num">${hiba.length||holnap.length}</b><em>${hiba.length?"nézd meg lent":["Facebook","LinkedIn"].map(f=>f+" "+holnap.filter(s=>s.felulet===f).length).join(" · ")}</em></div>`;
+  `<div class="mutato ${hiba.length?"riaszt":""}" ${hiba.length?`data-ugras="#p-tabla .hibasav" role="button" tabindex="0"`:""}><small>${hiba.length?"Hibás poszt":"Holnapra időzítve"}</small><b class="num">${hiba.length||holnap.length}</b><em>${hiba.length?"nézd meg lent":["Facebook","LinkedIn"].map(f=>f+" "+holnap.filter(s=>s.felulet===f).length).join(" · ")}</em></div>`;
  // napok: ma, holnap és ami utána van; tegnap csak ha van benne valami
  const kulcs=s=>PARK(s)?"park":nk(new Date(KINT(s)&&s.kiment?s.kiment:s.idopont));
  const napok={};S.forEach(s=>{const k=kulcs(s);(napok[k]=napok[k]||[]).push(s)});
@@ -332,9 +338,9 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
  const kartyaVar=A.sorok.filter(s=>s.kartya&&s.kartya.fajl&&!s.kartya.jo&&!s.kartya.elutasitva);
  document.getElementById("a-mutatok").innerHTML=
   `<div class="mutato kiemelt"><small>Ajánlott hír</small><b class="num">${A.sorok.length}</b><em>az utóbbi 4 napból</em></div>`+
-  `<div class="mutato"><small>Kitételre kérve</small><b class="num">${kerve.length}</b><em>${["facebook","linkedin","hirdetes"].map(f=>FEL[f]+" "+A.sorok.filter(s=>s.kerve[f]).length).join(" · ")}</em></div>`+
-  `<div class="mutato ${kartyaVar.length?"riaszt":""}"><small>Kártya vár jóváhagyásra</small><b class="num">${kartyaVar.length}</b><em>${kartyaVar.length?"lent pipáld be":"nincs teendő"}</em></div>`+
-  `<div class="mutato"><small>Feltörekvő</small><b class="num">${A.sorok.filter(s=>s.felkapott).length}</b><em>több forrás is írt róla</em></div>`;
+  `<div class="mutato" ${kerve.length?`data-ugras=".ah.kerve" role="button" tabindex="0"`:""}><small>Kitételre kérve</small><b class="num">${kerve.length}</b><em>${["facebook","linkedin","hirdetes"].map(f=>FEL[f]+" "+A.sorok.filter(s=>s.kerve[f]).length).join(" · ")}</em></div>`+
+  `<div class="mutato ${kartyaVar.length?"riaszt":""}" ${kartyaVar.length?`data-ugras=".kartyasor.var" role="button" tabindex="0"`:""}><small>Kártya vár jóváhagyásra</small><b class="num">${kartyaVar.length}</b><em>${kartyaVar.length?"kattints, odaugrik":"nincs teendő"}</em></div>`+
+  `<div class="mutato" ${A.sorok.some(s=>s.felkapott)?`data-ugras=".ah.felk" role="button" tabindex="0"`:""}><small>Feltörekvő</small><b class="num">${A.sorok.filter(s=>s.felkapott).length}</b><em>több forrás is írt róla</em></div>`;
  L.innerHTML=A.sorok.map(s=>{const k=Object.values(s.kerve).some(Boolean);
   const gomb=f=>{const a=(s.allapot||{})[f];
    if(a&&a.kint)return `<button class="kint" disabled><i></i>${FEL[f]}: kint</button>`;
@@ -346,14 +352,14 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
   const kszoveg=kt.elutasitva?`<b>Elutasítva.</b><div class="lead" style="-webkit-line-clamp:3">Új kártya készül a cikk eredeti képéből vagy a videójából, és itt jelenik meg újra jóváhagyásra.</div>`
    :kt.jo?`<b>Jóváhagyva.</b><div class="lead">A következő körben kimegy oda, ahova kérted.</div>`
    :`<b>Elkészült a kártya.</b><div class="lead" style="-webkit-line-clamp:3">Nézd meg nagyban (kattints rá). Ha jó, pipáld be, ha nem, utasítsd el, és újat csinálok. Csak jóváhagyott kártya mehet ki.</div>`;
-  const kartya=kt.fajl?`<div class="kartyasor ${kt.elutasitva?"rossz":""}"><a href="${U.kartya(kt.fajl)}" target="_blank"><img src="${U.kartya(kt.fajl)}" alt="A hír kártyája"></a>
+  const kartya=kt.fajl?`<div class="kartyasor ${kt.elutasitva?"rossz":""} ${!kt.jo&&!kt.elutasitva?"var":""}"><a href="${U.kartya(kt.fajl)}" target="_blank"><img src="${U.kartya(kt.fajl)}" alt="A hír kártyája"></a>
    <div style="flex:1">${kszoveg}</div>
    <div class="kapcs"><button aria-pressed="${!!kt.jo}" data-id="${s.id}" data-mi="kartya_jo"><i></i>Kártya jó</button>
    <button class="elut" aria-pressed="${!!kt.elutasitva}" data-id="${s.id}" data-mi="kartya_rossz"><i></i>Elutasítom</button></div></div>`:"";
   const sk=s.sajat_kep, skUj=sk&&(!kt.kesz_utc||sk.ido>kt.kesz_utc);
   const sajat=skUj?`<div class="kartyasor"><a href="${U.kep(s.id)}" target="_blank"><img src="${U.kep(s.id)}" alt="A feltöltött kép"></a>
    <div style="flex:1"><b>Feltöltötted a saját képed.</b><div class="lead">Ebből készül az új kártya, változtatás nélkül, és itt jelenik meg jóváhagyásra.</div></div></div>`:"";
-  return `<div class="ah ${k?"kerve":""}"><div class="kp" style="background-image:url('${esc(s.kep)}')"></div>
+  return `<div class="ah ${k?"kerve":""} ${s.felkapott?"felk":""}" id="h-${s.id}"><div class="kp" style="background-image:url('${esc(s.kep)}')"></div>
   <div><a class="cim" href="https://quicknews.hu/hir/${esc(s.slug)}" target="_blank" rel="noopener">${esc(s.cim)}</a><div class="lead">${esc(s.lead)}</div>
   <div class="cimkek">${s.felkapott?`<span class="cimke felk">Feltörekvő</span>`:""}<span class="cimke ${s.fontossag>=5?"fo5":""}">Fontosság ${s.fontossag}</span>
   <span class="cimke">${fmt(d,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span><span class="cimke">${esc(s.forras||"")}</span>${s.video?`<span class="cimke">videó</span>`:""}</div></div>
@@ -373,6 +379,13 @@ async function kepFeltolt(inp){const f=inp.files[0];if(!f)return;const lab=inp.c
   if(r.hiba)alert(r.hiba)}catch(e){alert("A kép feltöltése nem sikerült.")}
  atolt()}
 async function atolt(){try{A=await lekér(U.ajanlott)}catch(e){document.getElementById("a-lista").innerHTML=`<div class="hibasav">Az ajánlólista most nem érhető el.</div>`;return}arajzol()}
+
+/* ---------- ugrás a teendőhöz ---------- */
+function ugrik(sel){const el=document.querySelector(sel);if(!el)return;
+ el.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"center"});
+ el.classList.remove("villan");void el.offsetWidth;el.classList.add("villan")}
+document.addEventListener("click",e=>{const m=e.target.closest("[data-ugras]");if(m)ugrik(m.dataset.ugras)});
+document.addEventListener("keydown",e=>{const m=e.target.closest&&e.target.closest("[data-ugras]");if(m&&(e.key==="Enter"||e.key===" ")){e.preventDefault();ugrik(m.dataset.ugras)}});
 
 /* ---------- fülek ---------- */
 function ful(f){document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===f));
