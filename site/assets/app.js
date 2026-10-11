@@ -16,25 +16,45 @@
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !panel.hidden) { nyit(false); indit.focus(); } });
   function datum(d){ var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d || ''); return m ? (+m[2]) + '. ' + (+m[3]) + '.' : ''; }
   function hirlista(l, szam){ return l.map(function(f){ return '<li><a href="'+biztos(f.url)+'">'+(szam ? '<span>'+f.n+'</span>' : '')+'<em>'+biztos(f.cim)+(f.datum ? ' <small>'+datum(f.datum)+'</small>' : '')+'</em></a></li>'; }).join(''); }
+  var IK = {
+    szikra: '<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M197.58 129.06l-51.61-19-19-51.65a15.92 15.92 0 0 0-29.88 0L78.07 110l-51.65 19a15.92 15.92 0 0 0 0 29.88L78 177.93l19 51.62a15.92 15.92 0 0 0 29.88 0l19-51.61 51.65-19a15.92 15.92 0 0 0 0-29.88ZM140.39 163a15.87 15.87 0 0 0-9.43 9.43l-19 51.46L93 172.39a15.87 15.87 0 0 0-9.39-9.39l-51.46-19 51.46-19a15.87 15.87 0 0 0 9.39-9.39l19-51.46 19 51.46a15.87 15.87 0 0 0 9.39 9.39l51.46 19ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8Zm104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8Z"/></svg>',
+    lap: '<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M213.66 82.34l-56-56A8 8 0 0 0 152 24H56a16 16 0 0 0-16 16v176a16 16 0 0 0 16 16h144a16 16 0 0 0 16-16V88a8 8 0 0 0-2.34-5.66ZM160 51.31 188.69 80H160ZM200 216H56V40h88v48a8 8 0 0 0 8 8h48v120Zm-32-80a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm0 32a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Z"/></svg>',
+    link: '<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M240 88.23a54.43 54.43 0 0 1-16 37L189.25 160a54.27 54.27 0 0 1-38.63 16h-.05A54.63 54.63 0 0 1 96 119.84a8 8 0 0 1 16 .45A38.62 38.62 0 0 0 150.58 160a38.39 38.39 0 0 0 27.31-11.31l34.75-34.75a38.63 38.63 0 0 0-54.63-54.63l-11 11A8 8 0 0 1 135.7 59l11-11a54.65 54.65 0 0 1 77.3 0 54.86 54.86 0 0 1 16 40.23Zm-131 97.43-11 11A38.4 38.4 0 0 1 70.6 208a38.63 38.63 0 0 1-27.29-65.94L78 107.31a38.63 38.63 0 0 1 66 28.4 8 8 0 0 0 7.78 8.22h.22a8 8 0 0 0 8-7.78A54.86 54.86 0 0 0 144 96a54.65 54.65 0 0 0-77.27 0L32 130.75A54.62 54.62 0 0 0 70.56 224h.05a54.28 54.28 0 0 0 38.64-16l11-11a8 8 0 0 0-11.3-11.32Z"/></svg>',
+    le: '<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32Z"/></svg>',
+    nyil: '<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32Z"/></svg>'
+  };
+  function hirElem(f, szam){
+    return '<li class="hk" data-n="'+f.n+'"><button type="button" class="hk-fej" aria-expanded="false" title="'+biztos(f.lead || f.cim)+'">'
+      + (szam ? '<span class="chat-jel">'+f.n+'</span>' : '<span class="hk-pont" aria-hidden="true"></span>')
+      + '<span class="hk-cim">'+biztos(f.cim)+'</span><span class="hk-le">'+IK.le+'</span></button>'
+      + '<div class="hk-test" hidden>' + (f.lead ? '<p class="hk-lead">'+biztos(f.lead)+'</p>' : '')
+      + (f.szoveg ? '<p class="hk-szoveg">'+biztos(f.szoveg)+'</p>' : '')
+      + '<a class="hk-link" href="'+biztos(f.url)+'">'+IK.lap+'<span>Teljes cikk megnyitása</span>'+IK.nyil+'</a>'
+      + (f.datum ? '<small class="hk-datum">'+datum(f.datum)+'</small>' : '') + '</div></li>';
+  }
+  function szakasz(cim, l, szam){
+    return l.length ? '<section class="hk-szakasz"><button type="button" class="hk-szakasz-fej" aria-expanded="true">'+IK.link+'<span>'+cim+'</span><span class="hk-le">'+IK.le+'</span></button><ul class="hk-lista">'
+      + l.map(function(f){ return hirElem(f, szam); }).join('') + '</ul></section>' : '';
+  }
   function rajzol(u){
     var d = document.createElement('div');
     if (u.en) { d.className = 'chat-b en'; d.innerHTML = biztos(u.en); }
     else if (u.hiba) { d.className = 'chat-b bot hiba'; d.innerHTML = biztos(u.hiba); }
     else if (u.info) { d.className = 'chat-b bot info'; d.innerHTML = biztos(u.info).replace('Napok menüben', '<a href="/napok">Napok</a> menüben'); }
     else {
-      var j = u.bot, szoveg = biztos(j.valasz).replace(/^\s*[*-]\s+/gm, '• ').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n{2,}/g, '\n').replace(/\n/g, '<br>').replace(/\[(\d)\]/g, '<sup>$1</sup>');
-      d.className = 'chat-valasz';
-      var fm = {}; (j.forrasok || []).forEach(function(f){ fm[f.n] = f; });
+      var j = u.bot, fm = {}; (j.forrasok || []).forEach(function(f){ fm[f.n] = f; });
       var jelek = function(l){ return '<span class="chat-jelek">' + (l || []).map(function(n){ var f = fm[n] || {};
-        return '<button type="button" class="chat-jel" data-n="'+n+'" aria-expanded="false" aria-label="'+biztos('Forrás '+n+(f.cim ? ': '+f.cim : ''))+'">'+n
-          + (f.cim ? '<span class="chat-tipp" role="tooltip"><strong>'+biztos(f.cim)+'</strong>'+(f.datum ? '<small>'+datum(f.datum)+'</small>' : '')+(f.lead ? '<em>'+biztos(f.lead)+'</em>' : '')+'</span>' : '')
-          + '</button>'; }).join('') + '</span>'; };
-      d._fm = fm;
+        return '<button type="button" class="chat-jel" data-n="'+n+'" aria-label="'+biztos('Forrás '+n+(f.cim ? ': '+f.cim : ''))+'">'+n
+          + (f.cim ? '<span class="chat-tipp" role="tooltip"><strong>'+biztos(f.cim)+'</strong>'+(f.lead ? '<em>'+biztos(f.lead)+'</em>' : '')+'</span>' : '') + '</button>'; }).join('') + '</span>'; };
       var torzs = (j.pontok && j.pontok.length) || j.bevezeto
-        ? (j.bevezeto ? '<p class="chat-bev">'+biztos(j.bevezeto)+'</p>' : '') + ((j.pontok || []).length ? '<ul class="chat-pontok">' + j.pontok.map(function(x){ return '<li><div class="chat-psor"><span class="chat-psz">'+biztos(x.szoveg)+'</span>'+jelek(x.forras)+'</div><div class="chat-lenyilo" hidden></div></li>'; }).join('') + '</ul>' : '')
-        : '<p>'+szoveg+'</p>';
-      d.innerHTML = '<div class="chat-b bot">'+torzs+'</div>'
-        + ((j.korabbi || []).length ? '<div class="chat-korabbi"><h3>Válogatás korábbi híreinkből</h3><ul>'+hirlista(j.korabbi, false)+'</ul></div>' : '')
+        ? (j.bevezeto ? '<p class="chat-bev">'+biztos(j.bevezeto)+'</p>' : '') + ((j.pontok || []).length ? '<ul class="chat-pontok">' + j.pontok.map(function(x){ return '<li><div class="chat-psor"><span class="chat-psz">'+biztos(x.szoveg)+'</span>'+jelek(x.forras)+'</div></li>'; }).join('') + '</ul>' : '')
+        : '<p>'+biztos(j.valasz || '')+'</p>';
+      var ido = u.ido ? new Date(u.ido) : null;
+      var lab = '<div class="ai-lab"><span>'+IK.lap+'Forrás: quicknews.hu</span>' + (ido ? '<span>'+(ido.getMonth()+1)+'. '+ido.getDate()+'. '+String(ido.getHours()).padStart(2,'0')+':'+String(ido.getMinutes()).padStart(2,'0')+'</span>' : '') + '</div>';
+      d.className = 'chat-valasz';
+      d.innerHTML = '<div class="ai-sor"><span class="ai-ikon">'+IK.szikra+'</span><div class="chat-b bot ai-buborek">'+torzs+lab+'</div></div>'
+        + szakasz('Kapcsolódó hírek', j.forrasok || [], true)
+        + szakasz('Válogatás korábbi híreinkből', j.korabbi || [], false)
         + masok(u.kerdes);
     }
     lista.appendChild(d); return d;
@@ -60,24 +80,24 @@
     ev('chat_kerdes');
     fetch('/api/kerdez', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({kerdes:q})})
       .then(function(r){ return r.json(); })
-      .then(function(j){ var_.remove(); uj(j.hiba ? {hiba: j.hiba} : j.info ? {info: j.info} : {bot: j, kerdes: q}); })
+      .then(function(j){ var_.remove(); uj(j.hiba ? {hiba: j.hiba} : j.info ? {info: j.info} : {bot: j, kerdes: q, ido: new Date().toISOString()}); })
       .catch(function(){ var_.remove(); uj({hiba: 'Most nem sikerült választ adni. Próbáld újra kicsit később!'}); })
       .then(function(){ mezo.disabled = kuld.disabled = false; mezo.focus(); });
   }
   urlap.addEventListener('submit', function(e){ e.preventDefault(); kerdez(mezo.value); });
-  // forrásjel: ráhúzásra felugró ablak (CSS), kattintásra a pont alatt lenyíló hírkártya
+  // forrásjel: ráhúzásra felugró ablak (CSS), kattintásra a hozzá tartozó hírkártya nyílik le a Kapcsolódó hírekben
+  function nyitHir(li, nyit){ var gomb = li.querySelector('.hk-fej'), test = li.querySelector('.hk-test');
+    gomb.setAttribute('aria-expanded', nyit ? 'true' : 'false'); test.hidden = !nyit; li.classList.toggle('nyitva', nyit); }
   lista.addEventListener('click', function(e){
-    var jel = e.target.closest('.chat-jel');
-    if (jel) {
-      var li = jel.closest('li'), le = li.querySelector('.chat-lenyilo'), n = jel.getAttribute('data-n');
-      var fm = (jel.closest('.chat-valasz') || {})._fm || {}, f = fm[n];
-      var nyitott = jel.getAttribute('aria-expanded') === 'true';
-      li.querySelectorAll('.chat-jel').forEach(function(x){ x.setAttribute('aria-expanded', 'false'); });
-      if (nyitott || !f) { le.hidden = true; le.innerHTML = ''; return; }
-      jel.setAttribute('aria-expanded', 'true');
-      le.innerHTML = '<a class="chat-hirkartya" href="'+biztos(f.url)+'"><span class="chat-hk-fej"><span class="chat-jel kicsi">'+n+'</span>'+(f.datum ? '<small>'+datum(f.datum)+'</small>' : '')+'</span><strong>'+biztos(f.cim)+'</strong>'+(f.lead ? '<em>'+biztos(f.lead)+'</em>' : '')+'<span class="chat-hk-link">Elolvasom →</span></a>';
-      le.hidden = false; ev('chat_forrasjel', {n: n}); return;
-    }
+    var jel = e.target.closest('.chat-psor .chat-jel');
+    if (jel) { var v = jel.closest('.chat-valasz'), li = v && v.querySelector('.hk-szakasz .hk[data-n="'+jel.getAttribute('data-n')+'"]');
+      if (li) { var sz = li.closest('.hk-szakasz'); sz.querySelector('.hk-szakasz-fej').setAttribute('aria-expanded','true'); sz.classList.remove('zarva');
+        nyitHir(li, true); li.scrollIntoView({block:'nearest', behavior:'smooth'}); li.classList.remove('villan'); void li.offsetWidth; li.classList.add('villan'); ev('chat_forrasjel'); }
+      return; }
+    var hf = e.target.closest('.hk-fej');
+    if (hf) { var li2 = hf.closest('.hk'); nyitHir(li2, hf.getAttribute('aria-expanded') !== 'true'); return; }
+    var sf = e.target.closest('.hk-szakasz-fej');
+    if (sf) { var ny = sf.getAttribute('aria-expanded') !== 'true'; sf.setAttribute('aria-expanded', ny ? 'true' : 'false'); sf.closest('.hk-szakasz').classList.toggle('zarva', !ny); return; }
     var b = e.target.closest('.chat-javaslat button, .chat-javas'); if (b) { ev('chat_javaslat'); kerdez(b.textContent); }
     var a = e.target.closest('.chat-korabbi a'); if (a) ev('chat_forras_kattintas', {korabbi: !a.closest('.chat-forrasblokk')}); });
 })();
