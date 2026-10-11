@@ -121,10 +121,22 @@ button.torol:disabled{opacity:.5}
 .kartyasor{grid-column:1/-1;display:flex;gap:16px;align-items:center;border-top:1px solid var(--vonal);padding-top:12px}
 .kartyasor img{width:96px;height:120px;object-fit:cover;border-radius:6px}
 .kartyasor.rossz img{opacity:.4}
+.kapcs button.sopor{color:var(--halk);border-style:dashed}
+.kapcs button.sopor i{border:0;width:20px;height:20px}
+.kapcs button.sopor i::after{content:"✕";font-size:16px;color:var(--halk)}
+.kapcs button.sopor:hover{color:var(--szoveg);border-color:var(--halk)}
+.ah{transition:transform .3s cubic-bezier(.32,.72,0,1),opacity .3s cubic-bezier(.32,.72,0,1)}
+.ah.sopor-ki{transform:translateX(-110%);opacity:0;pointer-events:none}
+.cimke.uj{color:#131313;background:#7dd3a0}
+.napfej{font-size:20px;font-weight:700;color:var(--halk);margin:24px 0 12px;text-transform:capitalize}
+.napfej:first-child{margin-top:8px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,24px);opacity:0;pointer-events:none;z-index:30;display:flex;gap:16px;align-items:center;max-width:calc(100% - 32px);background:var(--lap2);color:var(--szoveg);border:1px solid var(--vonal);border-radius:12px;padding:12px 16px;font-size:17px;transition:transform .3s cubic-bezier(.32,.72,0,1),opacity .3s}
+#toast.lat{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+#toast button{font:700 17px Manrope,sans-serif;color:var(--amber);white-space:nowrap}
 .kapcs button.elut[aria-pressed=true]{color:var(--hiba);border-color:var(--hiba)}
 .kapcs button.elut[aria-pressed=true] i{background:var(--hiba);border-color:var(--hiba)}
 .kapcs button.elut[aria-pressed=true] i::after{content:"✕";color:#fff}
-@media (max-width:700px){.ah{grid-template-columns:96px minmax(0,1fr)}.ah .kp{width:96px;height:54px}.kapcs{grid-column:1/-1;flex-direction:row;min-width:0;flex-wrap:wrap}.kapcs .feltolt{flex:1 1 100%;justify-content:center}.kapcs button{flex:1 1 0;padding:8px;font-size:16px;gap:6px}}
+@media (max-width:700px){.ah{grid-template-columns:96px minmax(0,1fr)}.ah .kp{width:96px;height:54px}.kapcs{grid-column:1/-1;flex-direction:row;min-width:0;flex-wrap:wrap}.kapcs .feltolt{flex:1 1 100%;justify-content:center}.kapcs button.sopor{flex:1 1 100%;justify-content:center}.kapcs button{flex:1 1 0;padding:8px;font-size:16px;gap:6px}}
 
 /* költség */
 .idoszak{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:24px}
@@ -181,7 +193,8 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 
 <section id="p-ajanlott" hidden>
 <div class="mutatok" id="a-mutatok"></div>
-<p class="a-bev">Az utóbbi 4 nap fontos hírei, amelyek még nem mentek ki Facebookra, fontosság szerint sorba rakva. Pipáld be, mi menjen ki és hova. A pipákat Claude a következő körben látja, elkészíti a kártyát, és itt jóváhagyhatod. Ami időzítve van, sárgán jelzi az időpontot, és amint kiment, eltűnik a listáról.</p>
+<p class="a-bev">Az utóbbi 4 nap összes híre, ami még nem ment ki Facebookra. Az új hír a kitétel pillanatában megjelenik felül. Pipáld be, mi menjen ki és hova, a kártyát itt hagyhatod jóvá. Amivel nem akarsz foglalkozni, azt söpörd ki: soha többé nem kerül vissza.</p>
+<div class="idoszak"><div class="szeg" role="group" aria-label="Sorrend"><button data-rend="ido" aria-pressed="true">Időrend</button><button data-rend="pont" aria-pressed="false">Fontosság</button></div></div>
 <div id="a-lista"></div>
 </section>
 
@@ -201,7 +214,7 @@ const U={posztok:ADMIN?"/api/admin?mi=posztok":"/adat.json",koltseg:ADMIN?"/api/
  ajanlott:ADMIN?"/api/admin?mi=ajanlott":"/ajanlott.json",kijeloles:ADMIN?"/api/admin?mi=kijeloles":"/kijeloles",
  kartya:f=>ADMIN?"/api/admin?mi=kartya&f="+encodeURIComponent(f):"/kartya/"+encodeURIComponent(f),
  kep:id=>ADMIN?"/api/admin?mi=kep&id="+id:"/kep?id="+id, kepFel:ADMIN?"/api/admin?mi=kep_feltolt":"/kep_feltolt",
- torles:ADMIN?"/api/admin?mi=torles":"/torles"};
+ torles:ADMIN?"/api/admin?mi=torles":"/torles",kisopor:ADMIN?"/api/admin?mi=kisopor":"/kisopor"};
 /* a választások (fül, nap, nézet, időszak) megmaradnak frissítés után is */
 const TAR=(k,v)=>{try{if(v===undefined)return JSON.parse(localStorage.getItem("qn-pult-"+k));localStorage.setItem("qn-pult-"+k,JSON.stringify(v))}catch(e){return null}};
 async function lekér(u,opt){const r=await fetch(u,Object.assign({cache:"no-store",credentials:"same-origin"},opt||{}));
@@ -348,11 +361,15 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
  const kerve=A.sorok.filter(s=>Object.values(s.kerve).some(Boolean));
  const kartyaVar=A.sorok.filter(s=>s.kartya&&s.kartya.fajl&&!s.kartya.jo&&!s.kartya.elutasitva);
  document.getElementById("a-mutatok").innerHTML=
-  `<div class="mutato kiemelt"><small>Ajánlott hír</small><b class="num">${A.sorok.length}</b><em>az utóbbi 4 napból</em></div>`+
+  `<div class="mutato kiemelt"><small>Ajánlott hír</small><b class="num">${A.sorok.length}</b><em>${A.sorok.filter(s=>s.uj).length?A.sorok.filter(s=>s.uj).length+" új az utóbbi 6 órában":"az utóbbi 4 napból"}</em></div>`+
   `<div class="mutato" ${kerve.length?`data-ugras=".ah.kerve" role="button" tabindex="0"`:""}><small>Kitételre kérve</small><b class="num">${kerve.length}</b><em>${["facebook","linkedin","hirdetes"].map(f=>FEL[f]+" "+A.sorok.filter(s=>s.kerve[f]).length).join(" · ")}</em></div>`+
   `<div class="mutato ${kartyaVar.length?"riaszt":""}" ${kartyaVar.length?`data-ugras=".kartyasor.var" role="button" tabindex="0"`:""}><small>Kártya vár jóváhagyásra</small><b class="num">${kartyaVar.length}</b><em>${kartyaVar.length?"kattints, odaugrik":"nincs teendő"}</em></div>`+
   `<div class="mutato" ${A.sorok.some(s=>s.felkapott)?`data-ugras=".ah.felk" role="button" tabindex="0"`:""}><small>Feltörekvő</small><b class="num">${A.sorok.filter(s=>s.felkapott).length}</b><em>több forrás is írt róla</em></div>`;
- L.innerHTML=A.sorok.map(s=>{const k=Object.values(s.kerve).some(Boolean);
+ const sorrend=[...A.sorok].sort(AREND==="pont"?(a,b)=>b.pont-a.pont:(a,b)=>String(b.publikalva).localeCompare(String(a.publikalva)));
+ let elozoNap="";
+ L.innerHTML=sorrend.map(s=>{const k=Object.values(s.kerve).some(Boolean);
+  const nap=nk(new Date(s.publikalva));let fej="";
+  if(AREND==="ido"&&nap!==elozoNap){elozoNap=nap;fej=`<h3 class="napfej">${nap===MA()?"Ma":nap===TEGNAP()?"Tegnap":fmt(new Date(s.publikalva),{month:"long",day:"numeric",weekday:"long"})}</h3>`}
   const gomb=f=>{const a=(s.allapot||{})[f];
    if(a&&a.kint)return `<button class="kint" disabled><i></i>${FEL[f]}: kint</button>`;
    if(a&&a.park)return `<button disabled><i></i>${FEL[f]}: leállítva</button>`;
@@ -370,16 +387,45 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
   const sk=s.sajat_kep, skUj=sk&&(!kt.kesz_utc||sk.ido>kt.kesz_utc);
   const sajat=skUj?`<div class="kartyasor"><a href="${U.kep(s.id)}" target="_blank"><img src="${U.kep(s.id)}" alt="A feltöltött kép"></a>
    <div style="flex:1"><b>Feltöltötted a saját képed.</b><div class="lead">Ebből készül az új kártya, változtatás nélkül, és itt jelenik meg jóváhagyásra.</div></div></div>`:"";
-  return `<div class="ah ${k?"kerve":""} ${s.felkapott?"felk":""}" id="h-${s.id}"><div class="kp" style="background-image:url('${esc(s.kep)}')"></div>
+  return fej+`<div class="ah ${k?"kerve":""} ${s.felkapott?"felk":""}" id="h-${s.id}" data-id="${s.id}"><div class="kp" style="background-image:url('${esc(s.kep)}')"></div>
   <div><a class="cim" href="https://quicknews.hu/hir/${esc(s.slug)}" target="_blank" rel="noopener">${esc(s.cim)}</a><div class="lead">${esc(s.lead)}</div>
-  <div class="cimkek">${s.felkapott?`<span class="cimke felk">Feltörekvő</span>`:""}<span class="cimke ${s.fontossag>=5?"fo5":""}">Fontosság ${s.fontossag}</span>
+  <div class="cimkek">${s.uj?`<span class="cimke uj">Új</span>`:""}${s.felkapott?`<span class="cimke felk">Feltörekvő</span>`:""}<span class="cimke ${s.fontossag>=5?"fo5":""}">Fontosság ${s.fontossag}</span>
   <span class="cimke">${fmt(d,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span><span class="cimke">${esc(s.forras||"")}</span>${s.video?`<span class="cimke">videó</span>`:""}</div></div>
   <div class="kapcs">${["facebook","linkedin","hirdetes"].map(gomb).join("")}
-  <label class="feltolt"><input type="file" accept="image/*" data-id="${s.id}" hidden><i></i>Saját kép</label></div>${skUj?sajat:kartya}</div>`}).join("")||`<p class="ures">Nincs ajánlott hír.</p>`;
+  <label class="feltolt"><input type="file" accept="image/*" data-id="${s.id}" hidden><i></i>Saját kép</label>
+  <button class="sopor" data-sopor="${s.id}" title="Eltűnik, és többé nem ajánlom"><i></i>Kisöpröm</button></div>${skUj?sajat:kartya}</div>`}).join("")||`<p class="ures">Nincs ajánlott hír.</p>`;
  L.querySelectorAll("button[data-mi]").forEach(b=>b.onclick=async()=>{const uj=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",uj);
   try{const r=await lekér(U.kijeloles,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:b.dataset.id,mi:b.dataset.mi,ertek:uj})});
    if(r.hiba){alert(r.hiba);b.setAttribute("aria-pressed",!uj)}}catch(e){b.setAttribute("aria-pressed",!uj)} atolt()});
- L.querySelectorAll("input[type=file]").forEach(i=>i.onchange=()=>kepFeltolt(i))}
+ L.querySelectorAll("input[type=file]").forEach(i=>i.onchange=()=>kepFeltolt(i));
+ L.querySelectorAll("[data-sopor]").forEach(b=>b.onclick=()=>kisopor(b.dataset.sopor));
+ L.querySelectorAll(".ah").forEach(huzhato)}
+/* ---------- kisöprés: a hír eltűnik, és többé nem ajánljuk ---------- */
+let AREND="ido";try{AREND=localStorage.getItem("arend")||"ido"}catch(e){}
+function rendGombok(){document.querySelectorAll("[data-rend]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.rend===AREND))}
+document.querySelectorAll("[data-rend]").forEach(b=>b.onclick=()=>{AREND=b.dataset.rend;try{localStorage.setItem("arend",AREND)}catch(e){}rendGombok();arajzol()});rendGombok();
+let visszaId=null,visszaT=0;
+async function kisopor(id,vissza){const sor=document.getElementById("h-"+id);
+ if(!vissza&&sor){sor.classList.add("sopor-ki")}
+ try{const r=await lekér(U.kisopor,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id,ertek:!vissza})});
+  if(r.hiba){alert(r.hiba);if(sor)sor.classList.remove("sopor-ki");return}}catch(e){if(sor)sor.classList.remove("sopor-ki");alert("A kisöprés nem sikerült.");return}
+ if(vissza){toast("");return atolt()}
+ setTimeout(()=>{A.sorok=A.sorok.filter(s=>s.id!==id);arajzol()},320);
+ visszaId=id;const s=(A.sorok.find(x=>x.id===id)||{}).cim||"";
+ toast(`<span>Kisöpörve: ${esc(s.length>60?s.slice(0,58)+"…":s)}</span><button id="visszavon">Visszavonás</button>`);
+ document.getElementById("visszavon").onclick=()=>kisopor(id,true)}
+function toast(h){let t=document.getElementById("toast");if(!t){t=document.createElement("div");t.id="toast";t.setAttribute("role","status");document.body.appendChild(t)}
+ clearTimeout(visszaT);t.innerHTML=h;t.classList.toggle("lat",!!h);if(h)visszaT=setTimeout(()=>t.classList.remove("lat"),8000)}
+/* mobilon balra húzva is kisöpörhető */
+function huzhato(el){let x0=null,y0=0,dx=0,irany=null;
+ el.addEventListener("touchstart",e=>{if(e.target.closest("button,label,a,input"))return;x0=e.touches[0].clientX;y0=e.touches[0].clientY;dx=0;irany=null},{passive:true});
+ el.addEventListener("touchmove",e=>{if(x0===null)return;const mx=e.touches[0].clientX-x0,my=e.touches[0].clientY-y0;
+  if(!irany)irany=Math.abs(mx)>Math.abs(my)+6?"x":(Math.abs(my)>6?"y":null);if(irany!=="x")return;
+  dx=Math.min(0,mx);el.style.transform=`translateX(${dx}px)`;el.style.opacity=1+dx/400},{passive:true});
+ el.addEventListener("touchend",()=>{if(x0===null)return;x0=null;
+  if(irany==="x"&&dx<-120){kisopor(el.dataset.id)}else{el.style.transform="";el.style.opacity=""}})}
+/* az új hír magától megjelenik: a nyitott Ajánlott fül 2 percenként frissül */
+setInterval(()=>{if(!document.hidden&&!document.getElementById("p-ajanlott").hidden&&!document.querySelector(".feltolt.tolt"))atolt()},120000);
 async function kepFeltolt(inp){const f=inp.files[0];if(!f)return;const lab=inp.closest("label");lab.classList.add("tolt");lab.lastChild.textContent="Feltöltés…";
  try{const kep=await new Promise((ok,hiba)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=hiba;i.src=URL.createObjectURL(f)});
   const max=2400,ar=Math.min(1,max/Math.max(kep.naturalWidth,kep.naturalHeight));
