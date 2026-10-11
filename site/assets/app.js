@@ -4,7 +4,7 @@
   var dob = document.querySelector('[data-chat]'); if (!dob) return;
   var indit = dob.querySelector('[data-chat-indit]'), panel = dob.querySelector('.chat-panel'), lista = dob.querySelector('[data-chat-uzenetek]');
   var urlap = dob.querySelector('[data-chat-urlap]'), mezo = urlap.querySelector('input'), kuld = urlap.querySelector('button');
-  var TAR = 'qn-chat', all = {nyitva: false, uzenetek: []}, SABLON = dob.getAttribute('data-sablon') || 'buborek';
+  var TAR = 'qn-chat', all = {nyitva: false, uzenetek: []};
   try { all = JSON.parse(sessionStorage.getItem(TAR)) || all; } catch(e){}
   function ment(){ try { sessionStorage.setItem(TAR, JSON.stringify(all)); } catch(e){} }
   function ev(nev, adat){ try { if (window.gtag) gtag('event', nev, adat || {}); } catch(e){} }
@@ -15,41 +15,24 @@
   dob.querySelector('[data-chat-zar]').addEventListener('click', function(){ nyit(false); indit.focus(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !panel.hidden) { nyit(false); indit.focus(); } });
   function datum(d){ var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d || ''); return m ? (+m[2]) + '. ' + (+m[3]) + '.' : ''; }
-  function hirlista(l, szam){ return l.map(function(f){ return '<li><a href="'+biztos(f.url)+'">'+(szam ? '<span>'+f.n+'</span>' : '')+'<em>'+biztos(f.cim)+(f.datum ? ' <small>'+datum(f.datum)+'</small>' : '')+'</em></a></li>'; }).join(''); }
   var IK = {
     szikra: '<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M197.58 129.06l-51.61-19-19-51.65a15.92 15.92 0 0 0-29.88 0L78.07 110l-51.65 19a15.92 15.92 0 0 0 0 29.88L78 177.93l19 51.62a15.92 15.92 0 0 0 29.88 0l19-51.61 51.65-19a15.92 15.92 0 0 0 0-29.88ZM140.39 163a15.87 15.87 0 0 0-9.43 9.43l-19 51.46L93 172.39a15.87 15.87 0 0 0-9.39-9.39l-51.46-19 51.46-19a15.87 15.87 0 0 0 9.39-9.39l19-51.46 19 51.46a15.87 15.87 0 0 0 9.39 9.39l51.46 19ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8Zm104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8Z"/></svg>',
-    lap: '<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M213.66 82.34l-56-56A8 8 0 0 0 152 24H56a16 16 0 0 0-16 16v176a16 16 0 0 0 16 16h144a16 16 0 0 0 16-16V88a8 8 0 0 0-2.34-5.66ZM160 51.31 188.69 80H160ZM200 216H56V40h88v48a8 8 0 0 0 8 8h48v120Zm-32-80a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm0 32a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Z"/></svg>',
-    link: '<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M240 88.23a54.43 54.43 0 0 1-16 37L189.25 160a54.27 54.27 0 0 1-38.63 16h-.05A54.63 54.63 0 0 1 96 119.84a8 8 0 0 1 16 .45A38.62 38.62 0 0 0 150.58 160a38.39 38.39 0 0 0 27.31-11.31l34.75-34.75a38.63 38.63 0 0 0-54.63-54.63l-11 11A8 8 0 0 1 135.7 59l11-11a54.65 54.65 0 0 1 77.3 0 54.86 54.86 0 0 1 16 40.23Zm-131 97.43-11 11A38.4 38.4 0 0 1 70.6 208a38.63 38.63 0 0 1-27.29-65.94L78 107.31a38.63 38.63 0 0 1 66 28.4 8 8 0 0 0 7.78 8.22h.22a8 8 0 0 0 8-7.78A54.86 54.86 0 0 0 144 96a54.65 54.65 0 0 0-77.27 0L32 130.75A54.62 54.62 0 0 0 70.56 224h.05a54.28 54.28 0 0 0 38.64-16l11-11a8 8 0 0 0-11.3-11.32Z"/></svg>',
-    le: '<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32Z"/></svg>',
-    nyil: '<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32Z"/></svg>'
+    lap: '<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M213.66 82.34l-56-56A8 8 0 0 0 152 24H56a16 16 0 0 0-16 16v176a16 16 0 0 0 16 16h144a16 16 0 0 0 16-16V88a8 8 0 0 0-2.34-5.66ZM160 51.31 188.69 80H160ZM200 216H56V40h88v48a8 8 0 0 0 8 8h48v120Zm-32-80a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm0 32a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Z"/></svg>'
   };
-  function hirElem(f, szam){
-    return '<li class="hk" data-n="'+f.n+'"><button type="button" class="hk-fej" aria-expanded="false" title="'+biztos(f.lead || f.cim)+'">'
-      + (szam ? '<span class="chat-jel">'+f.n+'</span>' : '<span class="hk-pont" aria-hidden="true"></span>')
-      + '<span class="hk-cim">'+biztos(f.cim)+'</span><span class="hk-le">'+IK.le+'</span></button>'
-      + '<div class="hk-test" hidden>' + (SABLON === 'keret'
-        ? '<p class="hk-lead">'+biztos(ketMondat(f))+'</p>'
-        : (f.lead ? '<p class="hk-lead">'+biztos(f.lead)+'</p>' : '') + (f.szoveg ? '<p class="hk-szoveg">'+biztos(f.szoveg)+'</p>' : ''))
-      + '<a class="hk-link" href="'+biztos(f.url)+'">'+IK.lap+'<span>Teljes cikk megnyitása</span>'+IK.nyil+'</a>'
-      + (f.datum ? '<small class="hk-datum">'+datum(f.datum)+'</small>' : '') + '</div></li>';
-  }
-  // Egykeretes sablon: a korábbi hírek egyetlen keretben; a címre kattintva a cikkhez ugrik, csak a gomb nyit le
-  function ketMondat(f){ var t = String(f.szoveg || f.lead || '').replace(/\s+/g, ' ').trim();
-    // mondatvég: írásjel, utána szóköz és nagybetű (így a „Zero 1.5” vagy a „3.5 Flash” nem vág ketté)
-    var re = /[.!?…]+(?=\s+[A-ZÁÉÍÓÖŐÚÜŰ„"(]|\s*$)/g, m, n = 0, veg = t.length;
-    while ((m = re.exec(t))) { n++; if (n === 2) { veg = m.index + m[0].length; break; } }
-    return t.slice(0, veg).trim(); }
-  function korabbiKeret(l){
-    return l.length ? '<section class="hk-szakasz kk-szakasz"><button type="button" class="hk-szakasz-fej" aria-expanded="true">'+IK.link+'<span>Válogatás korábbi híreinkből</span><span class="hk-le">'+IK.le+'</span></button><ul class="hk-lista kk">'
-      + l.map(function(f){ return '<li class="kk-elem" data-n="'+f.n+'"><div class="kk-sor"><span class="hk-pont" aria-hidden="true"></span>'
-        + '<a class="kk-cim" href="'+biztos(f.url)+'" title="'+biztos(f.lead || f.cim)+'">'+biztos(f.cim)+'</a>'
-        + '<button type="button" class="kk-le" aria-expanded="false" aria-label="Lenyitás: '+biztos(f.cim)+'">'+IK.le+'</button></div>'
-        + '<p class="kk-test" hidden>'+biztos(ketMondat(f))+' <a class="kk-nyil" href="'+biztos(f.url)+'" aria-label="Teljes cikk: '+biztos(f.cim)+'">'+IK.nyil+'</a>'
-        + (f.datum ? ' <small class="kk-datum">'+datum(f.datum)+'</small>' : '') + '</p></li>'; }).join('') + '</ul></section>' : '';
-  }
-  function szakasz(cim, l, szam){
-    return l.length ? '<section class="hk-szakasz"><button type="button" class="hk-szakasz-fej" aria-expanded="true">'+IK.link+'<span>'+cim+'</span><span class="hk-le">'+IK.le+'</span></button><ul class="hk-lista">'
-      + l.map(function(f){ return hirElem(f, szam); }).join('') + '</ul></section>' : '';
+  // A válasz pontjai: egy hírről szóló pontnál maga a szöveg visz a hírre (asztalon ráhúzva felugró ablak),
+  // több hírt összefogó pontnál csak a narancs szaggatott vonallal aláhúzott részlet, hírenként.
+  function tipp(f){ return '<span class="chat-tipp" role="tooltip"><strong>'+biztos(f.cim)+'</strong>'+(f.lead ? '<em>'+biztos(f.lead)+'</em>' : '')+'</span>'; }
+  function pontHtml(x, fm){
+    var l = (x.forras || []).filter(function(n){ return fm[n]; });
+    if (l.length === 1) { var f = fm[l[0]];
+      return '<a class="chat-hirpont" href="'+biztos(f.url)+'">'+biztos(x.szoveg)+tipp(f)+'</a>'; }
+    var t = String(x.szoveg || ''), rr = [];
+    (x.reszek || []).forEach(function(r){ var i = t.indexOf(r.resz); if (i >= 0 && fm[r.forras]) rr.push({i: i, v: i + r.resz.length, f: fm[r.forras]}); });
+    rr.sort(function(a, b){ return a.i - b.i; });
+    var ki = '', poz = 0;
+    rr.forEach(function(r){ if (r.i < poz) return;
+      ki += biztos(t.slice(poz, r.i)) + '<a class="chat-resz" href="'+biztos(r.f.url)+'">'+biztos(t.slice(r.i, r.v))+tipp(r.f)+'</a>'; poz = r.v; });
+    return '<span class="chat-psz">' + ki + biztos(t.slice(poz)) + '</span>';
   }
   function rajzol(u){
     var d = document.createElement('div');
@@ -58,18 +41,13 @@
     else if (u.info) { d.className = 'chat-b bot info'; d.innerHTML = biztos(u.info).replace('Napok menüben', '<a href="/napok">Napok</a> menüben'); }
     else {
       var j = u.bot, fm = {}; (j.forrasok || []).forEach(function(f){ fm[f.n] = f; });
-      var jelek = function(l){ return '<span class="chat-jelek">' + (l || []).map(function(n){ var f = fm[n] || {};
-        return '<button type="button" class="chat-jel" data-n="'+n+'" aria-label="'+biztos('Forrás '+n+(f.cim ? ': '+f.cim : ''))+'">'+n
-          + (f.cim ? '<span class="chat-tipp" role="tooltip"><strong>'+biztos(f.cim)+'</strong>'+(f.lead ? '<em>'+biztos(f.lead)+'</em>' : '')+'</span>' : '') + '</button>'; }).join('') + '</span>'; };
       var torzs = (j.pontok && j.pontok.length) || j.bevezeto
-        ? (j.bevezeto ? '<p class="chat-bev">'+biztos(j.bevezeto)+'</p>' : '') + ((j.pontok || []).length ? '<ul class="chat-pontok">' + j.pontok.map(function(x){ return '<li><div class="chat-psor"><span class="chat-psz">'+biztos(x.szoveg)+'</span>'+jelek(x.forras)+'</div></li>'; }).join('') + '</ul>' : '')
+        ? (j.bevezeto ? '<p class="chat-bev">'+biztos(j.bevezeto)+'</p>' : '') + ((j.pontok || []).length ? '<ul class="chat-pontok">' + j.pontok.map(function(x){ return '<li>'+pontHtml(x, fm)+'</li>'; }).join('') + '</ul>' : '')
         : '<p>'+biztos(j.valasz || '')+'</p>';
       var ido = u.ido ? new Date(u.ido) : null;
       var lab = '<div class="ai-lab"><span>'+IK.lap+'Forrás: quicknews.hu</span>' + (ido ? '<span>'+(ido.getMonth()+1)+'. '+ido.getDate()+'. '+String(ido.getHours()).padStart(2,'0')+':'+String(ido.getMinutes()).padStart(2,'0')+'</span>' : '') + '</div>';
       d.className = 'chat-valasz';
       d.innerHTML = '<div class="ai-sor"><span class="ai-ikon">'+IK.szikra+'</span><div class="chat-b bot ai-buborek">'+torzs+lab+'</div></div>'
-        + szakasz('Kapcsolódó hírek', j.forrasok || [], true)
-        + (SABLON === 'keret' ? korabbiKeret(j.korabbi || []) : szakasz('Válogatás korábbi híreinkből', j.korabbi || [], false))
         + masok(u.kerdes);
     }
     lista.appendChild(d); return d;
@@ -85,8 +63,8 @@
     if (j && j.kerdesek && j.kerdesek.length) { nepszeru = j.kerdesek; all.nepszeru = nepszeru; ment(); javaslatok(); }
   }).catch(function(){});
   function uj(u){ all.uzenetek.push(u); all.uzenetek = all.uzenetek.slice(-30); ment(); var d = rajzol(u);
-    // Egykeretes sablon: a kész válasz elejére görgetünk, nem a lista aljára
-    if (SABLON === 'keret' && u.bot) { lista.scrollTop = Math.max(0, d.offsetTop - 8); } else gorget(); }
+    // a kész válasz elejére görgetünk, nem a lista aljára
+    if (u.bot) { lista.scrollTop = Math.max(0, d.offsetTop - 8); } else gorget(); }
   if (all.uzenetek.length) { var jav0 = lista.querySelector('.chat-javaslat'); if (jav0) jav0.remove(); all.uzenetek.forEach(rajzol); }
   if (all.nyitva) { nyit(true, true); setTimeout(gorget, 0); }
   function kerdez(q){
@@ -102,25 +80,9 @@
       .then(function(){ mezo.disabled = kuld.disabled = false; mezo.focus(); });
   }
   urlap.addEventListener('submit', function(e){ e.preventDefault(); kerdez(mezo.value); });
-  // forrásjel: ráhúzásra felugró ablak (CSS), kattintásra a hozzá tartozó hírkártya nyílik le a Kapcsolódó hírekben
-  function nyitHir(li, nyit){ var gomb = li.querySelector('.hk-fej'), test = li.querySelector('.hk-test');
-    gomb.setAttribute('aria-expanded', nyit ? 'true' : 'false'); test.hidden = !nyit; li.classList.toggle('nyitva', nyit); }
   lista.addEventListener('click', function(e){
-    var jel = e.target.closest('.chat-psor .chat-jel');
-    if (jel) { var v = jel.closest('.chat-valasz'), li = v && v.querySelector('.hk-szakasz .hk[data-n="'+jel.getAttribute('data-n')+'"]');
-      if (li) { var sz = li.closest('.hk-szakasz'); sz.querySelector('.hk-szakasz-fej').setAttribute('aria-expanded','true'); sz.classList.remove('zarva');
-        nyitHir(li, true); li.scrollIntoView({block:'nearest', behavior:'smooth'}); li.classList.remove('villan'); void li.offsetWidth; li.classList.add('villan'); ev('chat_forrasjel'); }
-      return; }
-    var kl = e.target.closest('.kk-le');
-    if (kl) { var ny2 = kl.getAttribute('aria-expanded') !== 'true', el = kl.closest('.kk-elem');
-      kl.setAttribute('aria-expanded', ny2 ? 'true' : 'false'); el.querySelector('.kk-test').hidden = !ny2; el.classList.toggle('nyitva', ny2); return; }
-    if (e.target.closest('.kk-cim, .kk-nyil')) { ev('chat_forras_kattintas', {korabbi: true}); return; }
-    var hf = e.target.closest('.hk-fej');
-    if (hf) { var li2 = hf.closest('.hk'); nyitHir(li2, hf.getAttribute('aria-expanded') !== 'true'); return; }
-    var sf = e.target.closest('.hk-szakasz-fej');
-    if (sf) { var ny = sf.getAttribute('aria-expanded') !== 'true'; sf.setAttribute('aria-expanded', ny ? 'true' : 'false'); sf.closest('.hk-szakasz').classList.toggle('zarva', !ny); return; }
-    var b = e.target.closest('.chat-javaslat button, .chat-javas'); if (b) { ev('chat_javaslat'); kerdez(b.textContent); }
-    var a = e.target.closest('.chat-korabbi a'); if (a) ev('chat_forras_kattintas', {korabbi: !a.closest('.chat-forrasblokk')}); });
+    if (e.target.closest('.chat-hirpont, .chat-resz')) { ev('chat_forras_kattintas', {resz: !!e.target.closest('.chat-resz')}); return; }
+    var b = e.target.closest('.chat-javaslat button, .chat-javas'); if (b) { ev('chat_javaslat'); kerdez(b.textContent); } });
 })();
 (function(){
   document.querySelectorAll('.szakasz-tobb').forEach(function(b){ b.addEventListener('click', function(){ var r=b.parentElement.querySelector('.szakasz-rejtett'); var ny=!r.hidden; r.hidden=ny; b.setAttribute('aria-expanded', ny?'false':'true'); b.textContent = ny ? b.dataset.cimke : 'Kevesebb'; if(!b.dataset.cimke) b.dataset.cimke=b.textContent; }); b.dataset.cimke=b.textContent; });
