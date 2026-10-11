@@ -65,6 +65,7 @@ jobs:
           python3 build/termek_linkelo.py --ir
           python3 build/entitas_link.py
           python3 build/link_ellenor.py
+          python3 build/eszkoz_csoport.py
           python3 build/render.py
       - name: Változások visszaírása (a titkosított útvonalak újra titkosítva mennek)
         if: steps.ido.outputs.fut == 'igen'

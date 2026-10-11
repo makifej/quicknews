@@ -861,3 +861,10 @@ html:not(.suti-van) .chat { display: none; }
 .chat-alap:hover:not(:disabled) { color: var(--szoveg); }
 .chat-alap:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; border-radius: 4px; }
 .chat-alap:disabled { opacity: .45; cursor: default; }
+
+/* ===== Eszközök rovat: a főoldal mintájára csoportosítva (2026-10-11) ===== */
+.eszkoz-oldal .gyujto-fej { margin-bottom: 24px; }
+.eszkoz-csoport { scroll-margin-top: 140px; }
+.csoport-db { margin-left: auto; font-size: 15px; line-height: 22px; font-weight: 700; color: var(--szoveg-3); }
+.eszkoz-csoport .szakasz-rejtett { margin-top: 24px; }
+.eszkoz-csoport .szakasz-tobb { margin-top: 24px; }
