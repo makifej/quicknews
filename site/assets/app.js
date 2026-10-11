@@ -169,7 +169,11 @@
 
 // qn-esemenyek: egyedi GA4-események (a bővített mérésen felül), csak ha a gtag betöltött
 (function(){
-  function ev(nev, adat){ try { if (window.gtag) gtag('event', nev, adat || {}); } catch(e){} }
+  var META = {kiprobalom: 'Kiprobalom', facebook_kattintas: 'FacebookKattintas', eredeti_forras: 'EredetiForras', video_inditas: 'VideoInditas'};
+  function ev(nev, adat){
+    try { if (window.gtag) gtag('event', nev, adat || {}); } catch(e){}
+    try { if (window.fbq) { if (nev === 'search') fbq('track', 'Search', {search_string: (adat||{}).search_term}); else if (META[nev]) fbq('trackCustom', META[nev], adat || {}); } } catch(e){}
+  }
   document.addEventListener('click', function(e){
     var a = e.target.closest && e.target.closest('a, button'); if (!a) return;
     if (a.classList.contains('kiprobal')) ev('kiprobalom', {eszkoz: (a.textContent||'').replace('Kipróbálom:','').trim().slice(0,80), link_url: a.href});
@@ -201,6 +205,7 @@
       var h1 = document.querySelector('article.cikk h1'), f = document.querySelector('.cikk-fej .meta .forras');
       try { gtag('event', 'cikk_elolvasva', {cikk_cim: h1 ? h1.textContent.trim().slice(0, 100) : '', forras: f ? f.textContent.trim() : '',
         olvasasi_ido_mp: Math.round((Date.now() - kezd) / 1000)}); } catch(e){}
+      try { if (window.fbq) fbq('trackCustom', 'CikkElolvasva', {cikk_cim: h1 ? h1.textContent.trim().slice(0, 100) : ''}); } catch(e){}
       window.removeEventListener('scroll', jel);
     }
   }
@@ -235,19 +240,21 @@
 // qn-suti-kezelo: a sütisáv. Döntés a localStorage qn-suti kulcsában; elfogadáskor a Consent Mode frissül.
 (function(){
   var sav = document.querySelector('[data-suti-sav]'); if (!sav) return;
-  var TAR = 'qn-suti', valasz = null;
+  var TAR = 'qn-suti', valasz = null, VER = +(sav.getAttribute('data-suti-verzio') || 1);
   try { valasz = JSON.parse(localStorage.getItem(TAR) || 'null'); } catch(e){}
+  if (valasz && (valasz.verzio || 1) < VER) valasz = null;  // régi, csak GA-ra szóló döntés: újra kérdezünk
   function mutat(){ sav.hidden = false; setTimeout(function(){ sav.classList.add('nyitva'); }, 30); }
   function rejt(){ sav.classList.remove('nyitva'); setTimeout(function(){ sav.hidden = true; }, 700); }
-  function ment(meres){
-    valasz = {meres: !!meres, ido: new Date().toISOString(), verzio: 1};
+  function ment(meres, hirdetes){
+    valasz = {meres: !!meres, hirdetes: !!hirdetes, ido: new Date().toISOString(), verzio: VER};
     try { localStorage.setItem(TAR, JSON.stringify(valasz)); } catch(e){}
     try { if (window.gtag) gtag('consent', 'update', {analytics_storage: meres ? 'granted' : 'denied'}); } catch(e){}
     if (meres && window.qnGaBetolt) window.qnGaBetolt();
+    if (hirdetes && window.qnMetaBetolt) window.qnMetaBetolt();
     document.documentElement.classList.add('suti-van');
     rejt();
   }
-  sav.addEventListener('click', function(e){ var g = e.target.closest('[data-suti]'); if (!g) return; ment(g.getAttribute('data-suti') === 'igen'); });
+  sav.addEventListener('click', function(e){ var g = e.target.closest('[data-suti]'); if (!g) return; var v = g.getAttribute('data-suti'); ment(v !== 'nem', v === 'igen'); });
   document.addEventListener('click', function(e){ if (e.target.closest('[data-suti-ujra]')) { document.documentElement.classList.remove('suti-van'); mutat(); } });
   if (valasz) sav.hidden = true; else mutat();
 })();
