@@ -102,6 +102,17 @@ module.exports = async (req, res) => {
         const { id, b64 } = await torzs(req);
         return json(res, 200, await kepFeltolt(id, b64));
       }
+      if (mi === "torlendo") {
+        const k = (await kv("HGETALL", P + "torlendo")) || [];
+        const t = {};
+        for (let i = 0; i < k.length; i += 2) t[k[i]] = JSON.parse(k[i + 1]);
+        return json(res, 200, t);
+      }
+      if (mi === "torlendo_kesz" && req.method === "POST") {
+        const { pid } = await torzs(req);
+        await kv("HDEL", P + "torlendo", String(pid || ""));
+        return json(res, 200, { ok: true });
+      }
       if (mi === "kep") {
         const b64 = await kv("GET", P + "kep:" + (url.searchParams.get("id") || ""));
         return json(res, b64 ? 200 : 404, b64 ? { b64 } : { hiba: "nincs feltöltött kép" });
@@ -124,7 +135,19 @@ module.exports = async (req, res) => {
 
     if (mi === "posztok" || mi === "koltseg") {
       const v = await kv("GET", P + "pult:" + mi);
-      return json(res, 200, v ? JSON.parse(v) : { hiba: "Még nincs feltöltött adat.", sorok: [] });
+      const adat = v ? JSON.parse(v) : { hiba: "Még nincs feltöltött adat.", sorok: [] };
+      if (mi === "posztok") {
+        const k = (await kv("HGETALL", P + "torlendo")) || [];
+        const t = new Set(k.filter((_, i) => i % 2 === 0));
+        for (const s of adat.sorok || []) if (t.has(s.id)) s.torles_folyamatban = true;
+      }
+      return json(res, 200, adat);
+    }
+    if (mi === "torles" && req.method === "POST") {
+      const { pid, felulet, cim } = await torzs(req);
+      if (!/^[a-f0-9]{24}$/.test(pid || "")) return json(res, 400, { hiba: "Rossz posztazonosító." });
+      await kv("HSET", P + "torlendo", pid, JSON.stringify({ kert: new Date().toISOString(), felulet, cim: String(cim || "").slice(0, 200) }));
+      return json(res, 200, { ok: true, sorban: true });
     }
     if (mi === "ajanlott") {
       const v = await kv("GET", P + "pult:ajanlott");
