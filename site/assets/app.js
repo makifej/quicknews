@@ -153,6 +153,24 @@
     try { if (window.gtag) gtag('event', 'szavazas', {ertek: uj}); } catch(e2){}
   }); });
 })();
+// Hírbeküldés (api/bekuld): csak a link, a szerver és a moderátor AI dönt
+(function(){
+  var f = document.querySelector('[data-bekuldo]'); if (!f) return;
+  var mezo = f.querySelector('input'), gomb = f.querySelector('button'), uz = f.parentNode.querySelector('.bek-uzenet');
+  f.addEventListener('submit', function(e){
+    e.preventDefault(); var u = mezo.value.trim();
+    if (!/^https?:\/\/\S+\.\S+/.test(u)) { uz.className = 'bek-uzenet hiba'; uz.textContent = 'Másold be a hír teljes linkjét (https://…).'; mezo.focus(); return; }
+    gomb.disabled = mezo.disabled = true; gomb.textContent = 'Ellenőrizzük…'; uz.className = 'bek-uzenet'; uz.textContent = '';
+    fetch('/api/bekuld', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({url: u})})
+      .then(function(r){ return r.json(); })
+      .then(function(j){ uz.className = 'bek-uzenet ' + (j.allapot === 'elfogadva' || j.allapot === 'atnezes' ? 'ok' : j.allapot === 'megvan' ? '' : 'hiba');
+        uz.textContent = j.uzenet || 'Köszönjük!'; if (j.link) { var a = document.createElement('a'); a.href = j.link; a.textContent = ' Megnézem'; uz.appendChild(a); }
+        if (j.allapot !== 'hiba') mezo.value = '';
+        try { if (window.gtag) gtag('event', 'hir_bekuldes', {allapot: j.allapot}); } catch(e2){} })
+      .catch(function(){ uz.className = 'bek-uzenet hiba'; uz.textContent = 'Most nem sikerült elküldeni, próbáld újra kicsit később!'; })
+      .then(function(){ gomb.disabled = mezo.disabled = false; gomb.textContent = 'Beküldöm'; });
+  });
+})();
 (function(){
   document.querySelectorAll('.szakasz-tobb').forEach(function(b){ b.addEventListener('click', function(){ var r=b.parentElement.querySelector('.szakasz-rejtett'); var ny=!r.hidden; r.hidden=ny; b.setAttribute('aria-expanded', ny?'false':'true'); b.textContent = ny ? b.dataset.cimke : 'Kevesebb'; if(!b.dataset.cimke) b.dataset.cimke=b.textContent; }); b.dataset.cimke=b.textContent; });
   var csoportos = document.querySelector('.csoportos');

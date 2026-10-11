@@ -104,6 +104,39 @@ module.exports = async (req, res) => {
         const { id, b64 } = await torzs(req);
         return json(res, 200, await kepFeltolt(id, b64));
       }
+      if (mi === "bekuldesek_gep") {
+        const idk = (await kv("ZREVRANGE", "qn:bek:lista", 0, 99)) || [];
+        const tetel = [];
+        for (const id of idk) { const v = await kv("GET", "qn:bek:" + id); if (v) tetel.push(JSON.parse(v)); }
+        return json(res, 200, { tetel });
+      }
+      if (mi === "bekuldes_dontes_gep" && req.method === "POST") {
+        const { id, allapot } = await torzs(req);
+        if (!/^[a-f0-9]{16}$/.test(id || "") || !["elfogadva", "elutasitva"].includes(allapot)) return json(res, 400, { hiba: "Rossz kérés." });
+        const v = await kv("GET", "qn:bek:" + id);
+        if (!v) return json(res, 404, { hiba: "Nincs ilyen beküldés." });
+        const r = JSON.parse(v);
+        if (r.atveve) return json(res, 409, { hiba: "Ez már bekerült a feldolgozásba." });
+        r.allapot = allapot; r.kezi = new Date().toISOString();
+        await kv("SET", "qn:bek:" + id, JSON.stringify(r), "EX", 90 * 86400);
+        if (allapot === "elfogadva") await kv("SADD", "qn:bek:var", id); else await kv("SREM", "qn:bek:var", id);
+        return json(res, 200, { ok: true });
+      }
+      if (mi === "bekuldes_var") {
+        const idk = (await kv("SMEMBERS", "qn:bek:var")) || [];
+        const tetel = [];
+        for (const id of idk) { const v = await kv("GET", "qn:bek:" + id); if (v) tetel.push(JSON.parse(v)); }
+        return json(res, 200, { tetel });
+      }
+      if (mi === "bekuldes_atvett" && req.method === "POST") {
+        const { idk } = await torzs(req);
+        for (const id of (idk || []).filter((x) => /^[a-f0-9]{16}$/.test(x))) {
+          await kv("SREM", "qn:bek:var", id);
+          const v = await kv("GET", "qn:bek:" + id);
+          if (v) { const r = JSON.parse(v); r.atveve = new Date().toISOString(); await kv("SET", "qn:bek:" + id, JSON.stringify(r), "EX", 90 * 86400); }
+        }
+        return json(res, 200, { ok: true });
+      }
       if (mi === "kisopor_gep" && req.method === "POST") {
         const { id, ertek } = await torzs(req);
         if (!/^[a-f0-9]{12}$/.test(id || "")) return json(res, 400, { hiba: "rossz azonosító" });
@@ -215,6 +248,25 @@ module.exports = async (req, res) => {
       res.setHeader("Content-Type", "image/jpeg");
       res.setHeader("Cache-Control", "private, no-store");
       return res.end(Buffer.from(b64, "base64"));
+    }
+    if (mi === "bekuldesek") {
+      const idk = (await kv("ZREVRANGE", "qn:bek:lista", 0, 99)) || [];
+      const tetel = [];
+      for (const id of idk) { const v = await kv("GET", "qn:bek:" + id); if (v) tetel.push(JSON.parse(v)); }
+      return json(res, 200, { tetel });
+    }
+    if (mi === "bekuldes_dontes" && req.method === "POST") {
+      // Heni felülbírálja a moderátor AI döntését: elfogadva -> a Mac átveszi; elutasitva -> kikerül a várólistából
+      const { id, allapot } = await torzs(req);
+      if (!/^[a-f0-9]{16}$/.test(id || "") || !["elfogadva", "elutasitva"].includes(allapot)) return json(res, 400, { hiba: "Rossz kérés." });
+      const v = await kv("GET", "qn:bek:" + id);
+      if (!v) return json(res, 404, { hiba: "Nincs ilyen beküldés." });
+      const r = JSON.parse(v);
+      if (r.atveve) return json(res, 409, { hiba: "Ez már bekerült a feldolgozásba." });
+      r.allapot = allapot; r.kezi = new Date().toISOString();
+      await kv("SET", "qn:bek:" + id, JSON.stringify(r), "EX", 90 * 86400);
+      if (allapot === "elfogadva") await kv("SADD", "qn:bek:var", id); else await kv("SREM", "qn:bek:var", id);
+      return json(res, 200, { ok: true });
     }
     if (mi === "kisopor" && req.method === "POST") {
       const { id, ertek } = await torzs(req);

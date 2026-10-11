@@ -897,3 +897,21 @@ html:not(.suti-van) .chat { display: none; }
 .szavaz-oldal { display: none; margin-top: 16px; }
 .szavaz-oldal .szavaz { margin-top: 0; }
 @media (min-width: 1280px) { .szavaz-oldal { display: block; } .szavaz-fej { display: none; } }
+
+/* ===== Hírbeküldés a cikkoldal oldalsávjában (2026-10-11) ===== */
+.bekuldo { margin-top: 24px; padding: 20px; background: var(--bg-2); border: 1px solid var(--keret); border-left: 4px solid var(--kiemelo); border-radius: 16px; }
+.bekuldo h2 { margin: 0 0 12px; font-size: 18px; line-height: 25px; font-weight: 800; color: var(--szoveg); text-wrap: balance; }
+.bek-urlap { display: flex; gap: 8px; }
+.bek-urlap input { flex: 1 1 auto; min-width: 0; font: 500 16px/22px Manrope, system-ui, sans-serif; color: var(--szoveg); background: var(--bg); border: 1px solid var(--keret); border-radius: 10px; padding: 10px 12px; }
+.bek-urlap input:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 1px; }
+.bek-urlap button { flex: 0 0 auto; font: 700 15px/20px Manrope, system-ui, sans-serif; color: var(--kiemelo-szoveg); background: var(--kiemelo); border: 0; border-radius: 10px; padding: 10px 14px; cursor: pointer; }
+.bek-urlap button:disabled, .bek-urlap input:disabled { opacity: .6; cursor: default; }
+.bek-uzenet { margin: 10px 0 0; font-size: 14px; line-height: 20px; color: var(--szoveg-2); }
+.bek-uzenet:empty { display: none; }
+.bek-uzenet.ok { color: var(--szoveg); }
+.bek-uzenet.ok::before { content: "✓ "; color: var(--kiemelo-szin); font-weight: 800; }
+.bek-uzenet.hiba { color: var(--piros); }
+.bek-uzenet a { color: var(--kiemelo-szin); font-weight: 700; }
+.bek-jog { margin: 10px 0 0; font-size: 12px; line-height: 17px; color: var(--szoveg-3); }
+.bek-jog a { color: var(--szoveg-2); }
+@media (max-width: 420px) { .bek-urlap { flex-direction: column; } .bek-urlap button { width: 100%; } }

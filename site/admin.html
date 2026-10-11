@@ -85,6 +85,8 @@ button.torol:disabled{opacity:.5}
 .a-bev{color:var(--halk);max-width:720px;margin:-8px 0 24px}
 .ah{display:grid;grid-template-columns:128px minmax(0,1fr) auto;gap:20px;align-items:center;background:var(--lap);border-radius:12px;padding:16px;margin-bottom:12px}
 .ah.kerve{outline:1px solid var(--amber)}
+.ah.bek-sor{grid-template-columns:minmax(0,1fr) auto}.ah.bek-sor.atveve{opacity:.7}
+@media (max-width:700px){.ah.bek-sor{grid-template-columns:minmax(0,1fr)}}
 .ah .kp{width:128px;height:72px;border-radius:8px;background:var(--lap2) center/cover no-repeat}
 .ah .cim{font-weight:700;font-size:20px;line-height:1.35;color:var(--szoveg);text-decoration:none}
 .ah a.cim:hover{color:var(--amber)}
@@ -180,6 +182,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <nav class="fulek" role="tablist">
 <button role="tab" aria-selected="true" data-ful="posztok">Posztok</button>
 <button role="tab" aria-selected="false" data-ful="ajanlott">Ajánlott</button>
+<button role="tab" aria-selected="false" data-ful="bekuldes">Beküldések</button>
 <button role="tab" aria-selected="false" data-ful="koltseg">Költség</button></nav>
 <div class="frissult num" id="frissult"></div></div></div>
 
@@ -191,6 +194,10 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <p class="lab">Élő adat a Flybuiltből, percenként frissül. A Quicknews.hu Facebook-oldal és a Novák Henriette LinkedIn-profil posztjai.</p>
 </section>
 
+<section id="p-bekuldes" hidden>
+<p class="a-bev">A látogatók által beküldött hírlinkek. A moderátor AI ellenőrzi őket: csak AI-témájú, hiteles, nem tiltott tartalom fogadható el. Az elfogadott link negyedórán belül bekerül a kézi hírlistába, és a szokásos feldolgozással jelenik meg. A döntést felülbírálhatod, amíg a link még nem került feldolgozásra.</p>
+<div id="b-lista"></div>
+</section>
 <section id="p-ajanlott" hidden>
 <div class="mutatok" id="a-mutatok"></div>
 <p class="a-bev">Az utóbbi 4 nap összes híre, ami még nem ment ki Facebookra. Az új hír a kitétel pillanatában megjelenik felül. Pipáld be, mi menjen ki és hova, a kártyát itt hagyhatod jóvá. Amivel nem akarsz foglalkozni, azt söpörd ki: soha többé nem kerül vissza.</p>
@@ -214,7 +221,7 @@ const U={posztok:ADMIN?"/api/admin?mi=posztok":"/adat.json",koltseg:ADMIN?"/api/
  ajanlott:ADMIN?"/api/admin?mi=ajanlott":"/ajanlott.json",kijeloles:ADMIN?"/api/admin?mi=kijeloles":"/kijeloles",
  kartya:f=>ADMIN?"/api/admin?mi=kartya&f="+encodeURIComponent(f):"/kartya/"+encodeURIComponent(f),
  kep:id=>ADMIN?"/api/admin?mi=kep&id="+id:"/kep?id="+id, kepFel:ADMIN?"/api/admin?mi=kep_feltolt":"/kep_feltolt",
- torles:ADMIN?"/api/admin?mi=torles":"/torles",kisopor:ADMIN?"/api/admin?mi=kisopor":"/kisopor"};
+ torles:ADMIN?"/api/admin?mi=torles":"/torles",bekuldesek:ADMIN?"/api/admin?mi=bekuldesek":"/bekuldesek.json",bekDontes:ADMIN?"/api/admin?mi=bekuldes_dontes":"/bekuldes_dontes",kisopor:ADMIN?"/api/admin?mi=kisopor":"/kisopor"};
 /* a választások (fül, nap, nézet, időszak) megmaradnak frissítés után is */
 const TAR=(k,v)=>{try{if(v===undefined)return JSON.parse(localStorage.getItem("qn-pult-"+k));localStorage.setItem("qn-pult-"+k,JSON.stringify(v))}catch(e){return null}};
 async function lekér(u,opt){const r=await fetch(u,Object.assign({cache:"no-store",credentials:"same-origin"},opt||{}));
@@ -438,6 +445,18 @@ async function kepFeltolt(inp){const f=inp.files[0];if(!f)return;const lab=inp.c
  atolt()}
 async function atolt(){try{A=await lekér(U.ajanlott)}catch(e){document.getElementById("a-lista").innerHTML=`<div class="hibasav">Az ajánlólista most nem érhető el.</div>`;return}arajzol()}
 
+/* ---------- beküldések ---------- */
+const BOK={elfogadva:"Elfogadva",tiltott:"Tiltott tartalom",nem_ai:"Nem AI-témájú",nem_hiteles:"Nem hiteles forrás",nem_olvashato:"Nem nyitható meg"};
+async function btolt(){const L=document.getElementById("b-lista");let d;try{d=await lekér(U.bekuldesek)}catch(e){L.innerHTML=`<div class="hibasav">A beküldések most nem érhetők el.</div>`;return}
+ const t=d.tetel||[];
+ L.innerHTML=t.map(b=>{const dd=new Date(b.ido);const all=b.atveve?"atveve":b.allapot;
+  const cimke=b.atveve?"Feldolgozásba került":b.allapot==="elfogadva"?"Elfogadva":b.allapot==="atnezes"?"Kézi átnézésre vár":"Elutasítva";
+  const gombok=b.atveve?"":`<div class="kapcs"><button aria-pressed="${b.allapot==="elfogadva"}" data-bek="${b.id}" data-all="elfogadva"><i></i>Elfogadom</button><button class="elut" aria-pressed="${b.allapot==="elutasitva"}" data-bek="${b.id}" data-all="elutasitva"><i></i>Elutasítom</button></div>`;
+  return `<div class="ah bek-sor ${all}"><div><a class="cim" href="${esc(b.vegso||b.url)}" target="_blank" rel="noopener">${esc(b.cim||b.url)}</a>
+   <div class="lead">${esc(b.url)}</div>
+   <div class="cimkek"><span class="cimke ${b.allapot==="elfogadva"&&!b.atveve?"fo5":""}">${cimke}</span>${b.ok&&b.ok!=="elfogadva"?`<span class="cimke">${BOK[b.ok]||esc(b.ok)}</span>`:""}${b.kezi?`<span class="cimke">kézzel</span>`:""}<span class="cimke">${fmt(dd,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span></div>
+   ${b.indok?`<div class="lead" style="-webkit-line-clamp:3">${esc(b.indok)}</div>`:""}</div>${gombok}</div>`}).join("")||`<p class="ures">Még nem érkezett beküldés.</p>`;
+ L.querySelectorAll("[data-bek]").forEach(g=>g.onclick=async()=>{try{const r=await lekér(U.bekDontes,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:g.dataset.bek,allapot:g.dataset.all})});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}btolt()})}
 /* ---------- ugrás a teendőhöz ---------- */
 function ugrik(sel){const el=document.querySelector(sel);if(!el)return;
  el.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"center"});
@@ -447,10 +466,10 @@ document.addEventListener("keydown",e=>{const m=e.target.closest&&e.target.close
 
 /* ---------- fülek ---------- */
 function ful(f){document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===f));
- ["posztok","ajanlott","koltseg"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
- if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();try{localStorage.setItem("ful",f)}catch(e){}}
+ ["posztok","ajanlott","koltseg","bekuldes"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
+ if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();try{localStorage.setItem("ful",f)}catch(e){}}
 document.querySelectorAll(".fulek button").forEach(b=>b.onclick=()=>ful(b.dataset.ful));
-try{const f=localStorage.getItem("ful");if(f==="koltseg"||f==="ajanlott")ful(f)}catch(e){}
+try{const f=localStorage.getItem("ful");if(f==="koltseg"||f==="ajanlott"||f==="bekuldes")ful(f)}catch(e){}
 document.getElementById("k-valaszt");
 ptolt();setInterval(ptolt,60000);setInterval(prajzol,20000);
 setInterval(()=>{if(!document.getElementById("p-koltseg").hidden)ktolt()},300000);
