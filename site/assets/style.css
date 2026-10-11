@@ -915,3 +915,48 @@ html:not(.suti-van) .chat { display: none; }
 .bek-jog { margin: 10px 0 0; font-size: 12px; line-height: 17px; color: var(--szoveg-3); }
 .bek-jog a { color: var(--szoveg-2); }
 @media (max-width: 420px) { .bek-urlap { flex-direction: column; } .bek-urlap button { width: 100%; } }
+
+/* ===== Hirdetői érdeklődő doboz az oldalsávban (2026-10-11) ===== */
+.hirdeto { margin-top: 24px; padding: 20px; background: var(--bg-2); border: 2px solid var(--kiemelo); border-radius: 16px; }
+.hird-cimke { display: inline-block; margin-bottom: 10px; padding: 3px 10px; font-size: 12px; line-height: 18px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--kiemelo-szoveg); background: var(--kiemelo); border-radius: 999px; }
+.hirdeto h2 { margin: 0 0 8px; font-size: 20px; line-height: 26px; font-weight: 800; color: var(--szoveg); text-wrap: balance; }
+.hird-szoveg { margin: 0 0 14px; font-size: 15px; line-height: 22px; color: var(--szoveg-2); text-wrap: pretty; }
+.hird-urlap { display: flex; flex-direction: column; gap: 6px; }
+.hird-urlap label { font-size: 13px; line-height: 18px; font-weight: 700; color: var(--szoveg-2); margin-top: 4px; }
+.hird-urlap input:not(.rejtett) { font: 500 16px/22px Manrope, system-ui, sans-serif; color: var(--szoveg); background: var(--bg); border: 1px solid var(--keret); border-radius: 10px; padding: 10px 12px; }
+.hird-urlap input:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 1px; }
+.hird-urlap button { margin-top: 10px; font: 800 16px/22px Manrope, system-ui, sans-serif; color: var(--kiemelo-szoveg); background: var(--kiemelo); border: 0; border-radius: 10px; padding: 12px 16px; cursor: pointer; }
+.hird-urlap button:disabled { opacity: .6; cursor: default; }
+.hird-urlap[hidden] { display: none; }
+.hird-uzenet { margin: 10px 0 0; font-size: 15px; line-height: 21px; }
+.hird-uzenet:empty { display: none; }
+.hird-uzenet.ok { color: var(--szoveg); font-weight: 700; }
+.hird-uzenet.ok::before { content: "✓ "; color: var(--kiemelo-szin); }
+.hird-uzenet.hiba { color: var(--piros); }
+
+/* ===== Szponzorált eszköz-adatlapok (2026-10-11): mindig jól láthatóan hirdetésként jelölve ===== */
+.szp-jel { display: inline-block; font-size: 12px; line-height: 18px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--szoveg-2); border: 1px solid var(--keret); border-radius: 999px; padding: 2px 10px; }
+.szp-jel.nagy { margin: 16px 0 8px; font-size: 13px; color: var(--kiemelo-szin); border-color: var(--kiemelo); }
+.szp-sav { margin: 8px 0 32px; padding: 20px; border: 1px dashed var(--kiemelo); border-radius: 16px; }
+.szp-sav .rovat-fej { margin-bottom: 16px; }
+.szp-sav .rovat-fej p { font-size: 14px; color: var(--szoveg-3); }
+.szp-racs { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.szp-kartya { display: flex; gap: 14px; align-items: center; padding: 14px; color: var(--szoveg); text-decoration: none; background: var(--bg-2); border: 1px solid var(--keret); border-radius: 14px; transition: border-color 300ms var(--gorbe); }
+.szp-kartya:hover { border-color: var(--kiemelo); }
+.szp-kep { flex: 0 0 auto; width: 96px; height: 64px; border-radius: 10px; overflow: hidden; background: var(--bg-3); }
+.szp-kep img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.szp-torzs { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.szp-torzs strong { font-size: 17px; line-height: 22px; }
+.szp-torzs em { font-style: normal; font-size: 14px; line-height: 20px; color: var(--szoveg-2); }
+.szp-torzs .szp-jel { align-self: flex-start; font-size: 11px; padding: 1px 8px; }
+.szp-kupon { font-size: 13px; color: var(--szoveg-2); }
+.szp-kupon b { color: var(--kiemelo-szin); letter-spacing: .04em; }
+.szp-kupondoboz { display: flex; flex-direction: column; gap: 6px; padding: 20px; margin-bottom: 16px; border: 2px dashed var(--kiemelo); border-radius: 16px; text-align: center; }
+.szp-kupondoboz span { font-size: 14px; color: var(--szoveg-2); font-weight: 700; }
+.szp-kupondoboz b { font-size: 28px; line-height: 34px; letter-spacing: .08em; color: var(--kiemelo-szin); user-select: all; }
+.szp-kupondoboz em { font-style: normal; font-size: 15px; color: var(--szoveg); }
+.szp-kupondoboz small { font-size: 13px; color: var(--szoveg-3); }
+.szp-gomb { display: flex; justify-content: center; align-items: center; gap: 8px; padding: 14px 18px; font-weight: 800; font-size: 17px; color: var(--kiemelo-szoveg); background: var(--kiemelo); border-radius: 12px; text-decoration: none; }
+.szp-gomb svg { width: 18px; height: 18px; }
+.szp-megjegyzes { margin-top: 12px; font-size: 13px; line-height: 19px; color: var(--szoveg-3); }
+.szp-fokep { width: 100%; border-radius: 16px; display: block; }

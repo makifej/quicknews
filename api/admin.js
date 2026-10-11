@@ -104,6 +104,21 @@ module.exports = async (req, res) => {
         const { id, b64 } = await torzs(req);
         return json(res, 200, await kepFeltolt(id, b64));
       }
+      if (mi === "hirdetok_gep") {
+        const idk = (await kv("ZREVRANGE", "qn:hird:lista", 0, 199)) || [];
+        const tetel = [];
+        for (const id of idk) { const v = await kv("GET", "qn:hird:" + id); if (v) tetel.push(JSON.parse(v)); }
+        return json(res, 200, { tetel });
+      }
+      if (mi === "hirdeto_allapot_gep" && req.method === "POST") {
+        const { id, allapot } = await torzs(req);
+        if (!/^[a-f0-9]{16}$/.test(id || "") || !["uj", "felkerestem", "ugyfel", "nem"].includes(allapot)) return json(res, 400, { hiba: "Rossz kérés." });
+        const v = await kv("GET", "qn:hird:" + id);
+        if (!v) return json(res, 404, { hiba: "Nincs ilyen." });
+        const r = JSON.parse(v); r.allapot = allapot; r.modositva = new Date().toISOString();
+        await kv("SET", "qn:hird:" + id, JSON.stringify(r), "KEEPTTL");
+        return json(res, 200, { ok: true });
+      }
       if (mi === "bekuldesek_gep") {
         const idk = (await kv("ZREVRANGE", "qn:bek:lista", 0, 99)) || [];
         const tetel = [];
@@ -260,6 +275,21 @@ module.exports = async (req, res) => {
       res.setHeader("Content-Type", "image/jpeg");
       res.setHeader("Cache-Control", "private, no-store");
       return res.end(Buffer.from(b64, "base64"));
+    }
+    if (mi === "hirdetok") {
+      const idk = (await kv("ZREVRANGE", "qn:hird:lista", 0, 199)) || [];
+      const tetel = [];
+      for (const id of idk) { const v = await kv("GET", "qn:hird:" + id); if (v) tetel.push(JSON.parse(v)); }
+      return json(res, 200, { tetel });
+    }
+    if (mi === "hirdeto_allapot" && req.method === "POST") {
+      const { id, allapot } = await torzs(req);
+      if (!/^[a-f0-9]{16}$/.test(id || "") || !["uj", "felkerestem", "ugyfel", "nem"].includes(allapot)) return json(res, 400, { hiba: "Rossz kérés." });
+      const v = await kv("GET", "qn:hird:" + id);
+      if (!v) return json(res, 404, { hiba: "Nincs ilyen." });
+      const r = JSON.parse(v); r.allapot = allapot; r.modositva = new Date().toISOString();
+      await kv("SET", "qn:hird:" + id, JSON.stringify(r), "KEEPTTL");
+      return json(res, 200, { ok: true });
     }
     if (mi === "bekuldesek") {
       const idk = (await kv("ZREVRANGE", "qn:bek:lista", 0, 99)) || [];
