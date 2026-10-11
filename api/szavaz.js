@@ -2,7 +2,8 @@
 //   GET  /api/szavaz?ids=a,b,c[&l=<látogató>]  -> {pont: {id: összeg}, sajat: {id: 1|-1}}
 //   POST /api/szavaz {id, l, ertek: 1|-1|0}    -> {pont, sajat}
 // A látogató egy véletlen, névtelen azonosító a böngésző helyi tárolójából; hírenként egy szavazata számít,
-// amit visszavonhat vagy megfordíthat. Visszaélés ellen: óránként legfeljebb 120 szavazás IP-lenyomatonként.
+// amit visszavonhat vagy megfordíthat. Egy IP-címről hírenként csak egy szavazat élhet (az IP visszafejthetetlen
+// lenyomata hírenként a szavazó böngészőhöz kötve, 400 napig). Ezen felül óránként legfeljebb 120 szavazás IP-nként.
 const crypto = require("crypto");
 
 const P = "qn:sz:";
@@ -35,10 +36,17 @@ async function torzs(req) {
   try { return JSON.parse(s || "{}"); } catch { return {}; }
 }
 
-function ipLenyomat(req) {
-  const ip = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "?";
+function ipCim(req) {
+  return String(req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "?";
+}
+
+function ipLenyomat(req) {  // óránként változó: csak a tömeges szavazás fékezéséhez
   const ora = new Date().toISOString().slice(0, 13);
-  return crypto.createHash("sha256").update(`${process.env.CHAT_SO || ""}|${ora}|${ip}`).digest("hex").slice(0, 24);
+  return crypto.createHash("sha256").update(`${process.env.CHAT_SO || ""}|${ora}|${ipCim(req)}`).digest("hex").slice(0, 24);
+}
+
+function ipAllando(req) {  // állandó, visszafejthetetlen lenyomat: hírenként egy szavazat IP-címenként
+  return crypto.createHash("sha256").update(`szavaz|${process.env.CHAT_SO || ""}|${ipCim(req)}`).digest("hex").slice(0, 24);
 }
 
 module.exports = async (req, res) => {
@@ -66,6 +74,10 @@ module.exports = async (req, res) => {
     const db = await kv("INCR", kulcs);
     if (db === 1) await kv("EXPIRE", kulcs, 3600);
     if (db > ORANKENT) return json(res, 429, { hiba: "Túl sok szavazás, próbáld később." });
+    // egy IP-címről hírenként egy szavazat: ha erről a címről más böngésző már szavazott erre a hírre, elutasítjuk
+    const ipk = P + "ipv:" + id, ipl = ipAllando(req);
+    const gazda = await kv("HGET", ipk, ipl);
+    if (gazda && gazda !== l && uj !== 0) return json(res, 409, { hiba: "Erről a hálózatról már szavaztak erre a hírre." });
     // a látogató szavazatai egy hashben: {hír: 1|-1}; a különbség megy az összesítőbe
     const regi = Number((await kv("HGET", P + "l:" + l, id)) || 0);
     if (uj === regi) {
@@ -74,6 +86,8 @@ module.exports = async (req, res) => {
     }
     if (uj === 0) await kv("HDEL", P + "l:" + l, id); else await kv("HSET", P + "l:" + l, id, uj);
     await kv("EXPIRE", P + "l:" + l, 400 * 86400);
+    if (uj === 0) { if (gazda === l) await kv("HDEL", ipk, ipl); }  // visszavonáskor a cím felszabadul
+    else { await kv("HSET", ipk, ipl, l); await kv("EXPIRE", ipk, 400 * 86400); }
     const p = await kv("HINCRBY", P + "pont", id, uj - regi);
     return json(res, 200, { pont: Number(p), sajat: uj });
   } catch (err) {
