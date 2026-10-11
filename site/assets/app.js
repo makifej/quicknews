@@ -20,6 +20,7 @@
     var d = document.createElement('div');
     if (u.en) { d.className = 'chat-b en'; d.innerHTML = biztos(u.en); }
     else if (u.hiba) { d.className = 'chat-b bot hiba'; d.innerHTML = biztos(u.hiba); }
+    else if (u.info) { d.className = 'chat-b bot info'; d.innerHTML = biztos(u.info).replace('Napok menüben', '<a href="/napok">Napok</a> menüben'); }
     else {
       var j = u.bot, szoveg = biztos(j.valasz).replace(/^\s*[*-]\s+/gm, '• ').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n{2,}/g, '\n').replace(/\n/g, '<br>').replace(/\[(\d)\]/g, '<sup>$1</sup>');
       d.className = 'chat-valasz';
@@ -40,7 +41,7 @@
     ev('chat_kerdes');
     fetch('/api/kerdez', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({kerdes:q})})
       .then(function(r){ return r.json(); })
-      .then(function(j){ var_.remove(); uj(j.hiba ? {hiba: j.hiba} : {bot: j}); })
+      .then(function(j){ var_.remove(); uj(j.hiba ? {hiba: j.hiba} : j.info ? {info: j.info} : {bot: j}); })
       .catch(function(){ var_.remove(); uj({hiba: 'Most nem sikerült választ adni. Próbáld újra kicsit később!'}); })
       .then(function(){ mezo.disabled = kuld.disabled = false; mezo.focus(); });
   }
