@@ -285,7 +285,7 @@
       setTimeout(function(){ a.classList.add('bent'); }, 30);
       setTimeout(function(){ a.classList.remove('bent'); setTimeout(function(){ a.remove(); }, 800); }, 30000);
       if (window.Notification && Notification.permission === 'granted') {
-        try { var n = new Notification('quicknews.hu: ' + h.forras, {body: h.cim, icon: '/assets/ikon.svg', tag: h.id}); n.onclick = function(){ window.focus(); location.href = '/hir/' + h.slug; }; } catch(e){}
+        try { var n = new Notification('quicknews.hu: ' + h.forras, {body: h.cim, icon: '/assets/qn-ikon-192.png', tag: h.id}); n.onclick = function(){ window.focus(); location.href = '/hir/' + h.slug; }; } catch(e){}
       }
     }
     function nez(){
