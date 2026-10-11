@@ -805,3 +805,24 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .chat-psz { flex: 1 1 auto; }
 .chat-jelek { flex: 0 0 auto; display: inline-flex; gap: 4px; padding-top: 1px; }
 .chat-jel { width: 22px; height: 22px; display: grid; place-items: center; font-size: 12px; font-weight: 800; color: var(--kiemelo-szoveg); background: var(--kiemelo); border-radius: 50%; }
+.chat-psor { display: flex; gap: 10px; align-items: flex-start; justify-content: space-between; }
+.chat-pontok li { display: block; }
+button.chat-jel { position: relative; border: 0; padding: 0; cursor: pointer; font-family: inherit; transition: transform 300ms var(--gorbe), box-shadow 300ms var(--gorbe); }
+button.chat-jel:hover, button.chat-jel:focus-visible, button.chat-jel[aria-expanded="true"] { transform: scale(1.12); box-shadow: 0 0 0 3px rgba(255, 178, 36, .35); outline: none; }
+.chat-tipp { position: absolute; z-index: 5; top: calc(100% + 8px); right: -6px; width: 250px; padding: 10px 12px; text-align: left; background: var(--bg); color: var(--szoveg); border: 1px solid var(--kiemelo); border-radius: 10px; box-shadow: 0 12px 32px var(--arnyek); opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity 250ms var(--gorbe), transform 250ms var(--gorbe), visibility 0s linear 250ms; pointer-events: none; }
+.chat-tipp strong { display: block; font-size: 14px; line-height: 19px; font-weight: 700; }
+.chat-tipp small { display: block; font-size: 12px; color: var(--szoveg-3); margin-top: 2px; font-weight: 500; }
+.chat-tipp em { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-style: normal; font-size: 13px; line-height: 18px; font-weight: 500; color: var(--szoveg-2); margin-top: 6px; }
+@media (hover: hover) { button.chat-jel:hover .chat-tipp, button.chat-jel:focus-visible .chat-tipp { opacity: 1; visibility: visible; transform: translateY(0); transition: opacity 250ms var(--gorbe), transform 250ms var(--gorbe), visibility 0s; } }
+button.chat-jel[aria-expanded="true"] .chat-tipp { opacity: 0 !important; visibility: hidden !important; }
+.chat-lenyilo { margin-top: 8px; }
+.chat-hirkartya { display: flex; flex-direction: column; gap: 4px; padding: 12px; text-decoration: none; color: var(--szoveg); background: var(--bg); border: 1px solid var(--kiemelo); border-radius: 10px; animation: lenyilik 300ms var(--gorbe); }
+.chat-hk-fej { display: flex; align-items: center; gap: 8px; }
+.chat-hk-fej small { font-size: 12px; color: var(--szoveg-3); }
+.chat-jel.kicsi { width: 20px; height: 20px; font-size: 11px; }
+.chat-hirkartya strong { font-size: 15px; line-height: 20px; }
+.chat-hirkartya em { font-style: normal; font-size: 14px; line-height: 19px; color: var(--szoveg-2); }
+.chat-hk-link { font-size: 14px; font-weight: 700; color: var(--kiemelo-szin); margin-top: 2px; }
+.chat-hirkartya:hover .chat-hk-link { text-decoration: underline; }
+@keyframes lenyilik { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .chat-hirkartya { animation: none; } .chat-tipp { transition: none; } }

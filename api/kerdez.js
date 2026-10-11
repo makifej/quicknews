@@ -166,7 +166,7 @@ module.exports = async (req, res) => {
     const bevezeto = tiszt(ki.bevezeto);
     const pontok = (ki.pontok || []).slice(0, 4).map((x) => ({ szoveg: tiszt(x.szoveg), forras: [...new Set((x.forras || []).map(Number))].filter(ervenyes) })).filter((x) => x.szoveg);
     if (!bevezeto && !pontok.length) return json(res, 502, { hiba: "Most nem sikerült választ adni. Próbáld újra kicsit később!" });
-    const adat = (n) => ({ n, cim: pont[n - 1].h.cim, url: pont[n - 1].h.url, datum: pont[n - 1].h.datum });
+    const adat = (n) => ({ n, cim: pont[n - 1].h.cim, url: pont[n - 1].h.url, datum: pont[n - 1].h.datum, lead: pont[n - 1].h.lead });
     const hivatkozott = [...new Set(pontok.flatMap((x) => x.forras))].sort((a, b) => a - b);
     const korabbi = [...new Set((ki.kapcsolodo || []).map(Number))].filter((n) => ervenyes(n) && !hivatkozott.includes(n)).slice(0, 4);
     const valasz = [bevezeto, ...pontok.map((x) => "• " + x.szoveg)].filter(Boolean).join("\n");
