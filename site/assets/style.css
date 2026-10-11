@@ -853,3 +853,11 @@ html:not(.suti-van) .chat { display: none; }
 }
 @media (hover: none) { .chat-tipp { display: none; } }
 .chat-hirpont:focus-visible, .chat-resz:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; border-radius: 4px; }
+
+/* „Kiindulási állapot visszaállítása” gomb a beviteli mező alatt (2026-10-11) */
+.chat-alap-sor { padding: 0 16px 4px; }
+.chat-alap { display: inline-flex; align-items: center; gap: 6px; padding: 4px 0; font: 600 14px/20px Manrope, system-ui, sans-serif; color: var(--szoveg-2); background: none; border: 0; cursor: pointer; }
+.chat-alap svg { width: 16px; height: 16px; flex: 0 0 auto; color: var(--kiemelo); }
+.chat-alap:hover:not(:disabled) { color: var(--szoveg); }
+.chat-alap:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; border-radius: 4px; }
+.chat-alap:disabled { opacity: .45; cursor: default; }
