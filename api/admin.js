@@ -122,6 +122,18 @@ module.exports = async (req, res) => {
         if (allapot === "elfogadva") await kv("SADD", "qn:bek:var", id); else await kv("SREM", "qn:bek:var", id);
         return json(res, 200, { ok: true });
       }
+      if (mi === "bekuldes_allapot" && req.method === "POST") {
+        // a Mac jelzi, mi lett a feldolgozásba került beküldéssel: megjelent (linkkel) vagy kiszűrte a szerkesztés
+        const { id, megjelent, kiszurve, link } = await torzs(req);
+        if (!/^[a-f0-9]{16}$/.test(id || "")) return json(res, 400, { hiba: "rossz azonosító" });
+        const v = await kv("GET", "qn:bek:" + id);
+        if (!v) return json(res, 404, { hiba: "nincs" });
+        const r = JSON.parse(v);
+        if (megjelent) { r.megjelent = megjelent; r.link = String(link || "").slice(0, 300); }
+        if (kiszurve) r.kiszurve = String(kiszurve).slice(0, 200);
+        await kv("SET", "qn:bek:" + id, JSON.stringify(r), "EX", 90 * 86400);
+        return json(res, 200, { ok: true });
+      }
       if (mi === "bekuldes_var") {
         const idk = (await kv("SMEMBERS", "qn:bek:var")) || [];
         const tetel = [];

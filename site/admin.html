@@ -86,6 +86,7 @@ button.torol:disabled{opacity:.5}
 .ah{display:grid;grid-template-columns:128px minmax(0,1fr) auto;gap:20px;align-items:center;background:var(--lap);border-radius:12px;padding:16px;margin-bottom:12px}
 .ah.kerve{outline:1px solid var(--amber)}
 .ah.bek-sor{grid-template-columns:minmax(0,1fr) auto}
+.bek-ut{margin-top:10px;font-size:16px;color:var(--szoveg)}.bek-ut b{color:var(--amber)}.bek-ut.kesz{color:#7dd3a0}.bek-ut.kesz a{color:#7dd3a0;word-break:break-all}.bek-ut.nem{color:var(--halk)}
 .cimke.ai-nem{color:#131313;background:var(--amber);font-weight:800}
 .cimke.ai-igen{color:#fff;background:#2f6f4a}
 .ah .lead.ai-nem-indok{color:var(--amber);font-weight:600}.ah.bek-sor.atveve{opacity:.7}
@@ -450,6 +451,16 @@ async function atolt(){try{A=await lekér(U.ajanlott)}catch(e){document.getEleme
 
 /* ---------- beküldések ---------- */
 const BOK={elfogadva:"AI: elfogadható",tiltott:"AI: tiltott tartalom",nem_ai:"AI: nem AI-témájú",nem_hiteles:"AI: nem hiteles forrás",nem_olvashato:"AI: nem nyitható meg"};
+/* hol tart az elfogadott beküldés, és mikorra várható: Mac (negyedóránként, 8-23 óra) -> felhő (negyedóránként, 3-5 perc) */
+function bekVarhato(alap,perc){let d=new Date(alap.getTime()+perc*60000);const h=d.getHours();
+ if(h>=23||h<8){const k=new Date(d);if(h>=23)k.setDate(k.getDate()+1);k.setHours(8,15+(perc>20?20:0),0,0);d=k}
+ return (nk(d)===MA()?"ma ":nk(d)===HOLNAP()?"holnap ":"")+ora(d)}
+function bekUt(b){
+ if(b.megjelent)return `<div class="bek-ut kesz">✓ Megjelent: <a href="${esc(b.link)}" target="_blank" rel="noopener">${esc(b.link)}</a></div>`;
+ if(b.kiszurve)return `<div class="bek-ut nem">Nem jelent meg: ${esc(b.kiszurve)}.</div>`;
+ if(b.atveve)return `<div class="bek-ut">⏳ Bekerült a hírlistába, feldolgozás alatt. Várhatóan <b>${bekVarhato(new Date(b.atveve),20)}</b> körül jelenik meg.</div>`;
+ if(b.allapot==="elfogadva")return `<div class="bek-ut">⏳ Elfogadtad, a következő gyűjtéskor kerül a hírlistába. Várhatóan <b>${bekVarhato(new Date(b.kezi||b.ido),35)}</b> körül jelenik meg.</div>`;
+ return ""}
 async function btolt(){const L=document.getElementById("b-lista");let d;try{d=await lekér(U.bekuldesek)}catch(e){L.innerHTML=`<div class="hibasav">A beküldések most nem érhetők el.</div>`;return}
  const t=d.tetel||[];
  L.innerHTML=t.map(b=>{const dd=new Date(b.ido);const all=b.atveve?"atveve":b.allapot;
@@ -459,7 +470,7 @@ async function btolt(){const L=document.getElementById("b-lista");let d;try{d=aw
   return `<div class="ah bek-sor ${all} ${var_?"kerve":""}"><div><a class="cim" href="${esc(b.vegso||b.url)}" target="_blank" rel="noopener">${esc(b.cim||b.url)}</a>
    <div class="lead">${esc(b.url)}</div>
    <div class="cimkek"><span class="cimke ${var_?"felk":b.allapot==="elfogadva"&&!b.atveve?"fo5":""}">${cimke}</span>${b.ok?`<span class="cimke ${b.ok!=="elfogadva"?"ai-nem":"ai-igen"}">${b.ok!=="elfogadva"?"⚠ ":""}${BOK[b.ok]||esc(b.ok)}</span>`:""}<span class="cimke">${fmt(dd,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span></div>
-   ${b.indok?`<div class="lead ${b.ok&&b.ok!=="elfogadva"?"ai-nem-indok":""}" style="-webkit-line-clamp:3">${esc(b.indok)}</div>`:""}</div>${gombok}</div>`}).join("")||`<p class="ures">Még nem érkezett beküldés.</p>`;
+   ${b.indok?`<div class="lead ${b.ok&&b.ok!=="elfogadva"?"ai-nem-indok":""}" style="-webkit-line-clamp:3">${esc(b.indok)}</div>`:""}${bekUt(b)}</div>${gombok}</div>`}).join("")||`<p class="ures">Még nem érkezett beküldés.</p>`;
  L.querySelectorAll("[data-bek]").forEach(g=>g.onclick=async()=>{try{const r=await lekér(U.bekDontes,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:g.dataset.bek,allapot:g.dataset.all})});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}btolt()})}
 /* ---------- ugrás a teendőhöz ---------- */
 function ugrik(sel){const el=document.querySelector(sel);if(!el)return;
