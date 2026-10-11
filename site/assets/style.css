@@ -762,10 +762,6 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .chat-b.en { align-self: flex-end; color: var(--kiemelo-szoveg); background: var(--kiemelo); }
 .chat-b.bot { align-self: flex-start; color: var(--szoveg); background: var(--bg-3); }
 .chat-b.hiba { color: var(--piros); }
-.chat-forras { list-style: none; margin: 10px 0 0; padding: 10px 0 0; border-top: 1px solid var(--keret); display: flex; flex-direction: column; gap: 6px; }
-.chat-forras a { display: flex; gap: 8px; font-size: 14px; line-height: 19px; font-weight: 600; color: var(--szoveg); text-decoration: none; }
-.chat-forras a:hover { color: var(--kiemelo-szin); }
-.chat-forras a span { flex: 0 0 auto; width: 20px; height: 20px; display: grid; place-items: center; font-size: 11px; font-weight: 800; color: var(--kiemelo-szoveg); background: var(--kiemelo); border-radius: 50%; }
 .chat-pont { display: inline-block; width: 7px; height: 7px; margin-right: 4px; border-radius: 50%; background: var(--szoveg-2); animation: chatpont 1.2s infinite ease-in-out; }
 .chat-pont:nth-child(2) { animation-delay: .15s; } .chat-pont:nth-child(3) { animation-delay: .3s; }
 @keyframes chatpont { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
@@ -786,47 +782,19 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 }
 @media (prefers-reduced-motion: reduce) { .chat-indit, .chat { transition: none; } .chat-pont { animation: none; opacity: .6; } }
 .chat-valasz { display: flex; flex-direction: column; gap: 12px; }
-.chat-forras a em, .chat-korabbi a em { font-style: normal; }
-.chat-forras small, .chat-korabbi small { font-weight: 500; color: var(--szoveg-3); white-space: nowrap; }
-.chat-korabbi { margin-top: 12px; padding-top: 16px; border-top: 3px solid var(--kiemelo); }
-.chat-korabbi h3 { margin: 0 0 10px; font-size: 18px; line-height: 24px; font-weight: 800; color: var(--szoveg); }
-.chat-korabbi ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-.chat-korabbi a { display: block; font-size: 15px; line-height: 20px; font-weight: 600; color: var(--szoveg); text-decoration: none; background: var(--bg-3); border: 1px solid var(--keret); border-radius: 10px; padding: 10px 12px; }
-.chat-korabbi a:hover { border-color: var(--kiemelo); color: var(--kiemelo-szin); }
 .chat-b.info { color: var(--szoveg); background: var(--bg-3); border-left: 3px solid var(--kiemelo); }
 .chat-b.info a { color: var(--kiemelo-szin); font-weight: 700; }
-.chat-korabbi a { display: flex; gap: 10px; align-items: flex-start; }
-.chat-korabbi a span { flex: 0 0 auto; width: 22px; height: 22px; display: grid; place-items: center; margin-top: 0; font-size: 12px; font-weight: 800; color: var(--kiemelo-szoveg); background: var(--kiemelo); border-radius: 50%; }
-.chat-valasz .chat-korabbi + .chat-korabbi { margin-top: 4px; }
 .chat-b.bot .chat-bev { font-weight: 700; font-size: 16px; line-height: 23px; }
 .chat-pontok { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; }
 .chat-pontok li { display: flex; gap: 10px; align-items: flex-start; justify-content: space-between; padding: 10px 0; border-top: 1px solid var(--keret); font-size: 15px; line-height: 22px; }
 .chat-pontok li:first-child { border-top-color: var(--kiemelo); }
 .chat-psz { flex: 1 1 auto; }
-.chat-jelek { flex: 0 0 auto; display: inline-flex; gap: 4px; padding-top: 1px; }
-.chat-jel { width: 22px; height: 22px; display: grid; place-items: center; font-size: 12px; font-weight: 800; color: var(--kiemelo-szoveg); background: var(--kiemelo); border-radius: 50%; }
-.chat-psor { display: flex; gap: 10px; align-items: flex-start; justify-content: space-between; }
 .chat-pontok li { display: block; }
-button.chat-jel { position: relative; border: 0; padding: 0; cursor: pointer; font-family: inherit; transition: transform 300ms var(--gorbe), box-shadow 300ms var(--gorbe); }
-button.chat-jel:hover, button.chat-jel:focus-visible, button.chat-jel[aria-expanded="true"] { transform: scale(1.12); box-shadow: 0 0 0 3px rgba(255, 178, 36, .35); outline: none; }
 .chat-tipp { position: absolute; z-index: 5; top: calc(100% + 8px); right: -6px; width: 250px; padding: 10px 12px; text-align: left; background: var(--bg); color: var(--szoveg); border: 1px solid var(--kiemelo); border-radius: 10px; box-shadow: 0 12px 32px var(--arnyek); opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity 250ms var(--gorbe), transform 250ms var(--gorbe), visibility 0s linear 250ms; pointer-events: none; }
 .chat-tipp strong { display: block; font-size: 14px; line-height: 19px; font-weight: 700; }
 .chat-tipp small { display: block; font-size: 12px; color: var(--szoveg-3); margin-top: 2px; font-weight: 500; }
 .chat-tipp em { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-style: normal; font-size: 13px; line-height: 18px; font-weight: 500; color: var(--szoveg-2); margin-top: 6px; }
-@media (hover: hover) { button.chat-jel:hover .chat-tipp, button.chat-jel:focus-visible .chat-tipp { opacity: 1; visibility: visible; transform: translateY(0); transition: opacity 250ms var(--gorbe), transform 250ms var(--gorbe), visibility 0s; } }
-button.chat-jel[aria-expanded="true"] .chat-tipp { opacity: 0 !important; visibility: hidden !important; }
-.chat-lenyilo { margin-top: 8px; }
-.chat-hirkartya { display: flex; flex-direction: column; gap: 4px; padding: 12px; text-decoration: none; color: var(--szoveg); background: var(--bg); border: 1px solid var(--kiemelo); border-radius: 10px; animation: lenyilik 300ms var(--gorbe); }
-.chat-hk-fej { display: flex; align-items: center; gap: 8px; }
-.chat-hk-fej small { font-size: 12px; color: var(--szoveg-3); }
-.chat-jel.kicsi { width: 20px; height: 20px; font-size: 11px; }
-.chat-hirkartya strong { font-size: 15px; line-height: 20px; }
-.chat-hirkartya em { font-style: normal; font-size: 14px; line-height: 19px; color: var(--szoveg-2); }
-.chat-hk-link { font-size: 14px; font-weight: 700; color: var(--kiemelo-szin); margin-top: 2px; }
-.chat-hirkartya:hover .chat-hk-link { text-decoration: underline; }
-@keyframes lenyilik { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
-@media (prefers-reduced-motion: reduce) { .chat-hirkartya { animation: none; } .chat-tipp { transition: none; } }
-button.chat-jel:hover, button.chat-jel:focus-visible { z-index: 20; }
+@media (prefers-reduced-motion: reduce) { .chat-tipp { transition: none; } }
 .chat-tipp { z-index: 30; }
 .chat-javaslat-cim { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--szoveg-3); margin-bottom: 2px; }
 .chat-masok { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 4px; }
@@ -859,63 +827,29 @@ html:not(.suti-van) .chat { display: none; }
 .ai-lab span { display: inline-flex; align-items: center; gap: 4px; }
 .ai-lab svg { width: 14px; height: 14px; }
 .chat-pontok li:first-child { border-top-color: var(--keret); }
-.hk-szakasz { margin-top: 8px; }
-.hk-szakasz-fej { width: 100%; display: flex; align-items: center; gap: 8px; padding: 8px 2px; font: 800 17px/22px Manrope, system-ui, sans-serif; color: var(--szoveg); background: none; border: 0; cursor: pointer; text-align: left; }
-.hk-szakasz-fej > svg { width: 20px; height: 20px; color: var(--kiemelo); flex: 0 0 auto; }
-.hk-szakasz-fej span:first-of-type { flex: 1 1 auto; }
-.hk-le { flex: 0 0 auto; display: grid; place-items: center; color: var(--kiemelo); transition: transform 300ms var(--gorbe); }
-.hk-le svg { width: 18px; height: 18px; }
-.hk-szakasz-fej[aria-expanded="true"] .hk-le, .hk-fej[aria-expanded="true"] .hk-le { transform: rotate(180deg); }
-.hk-szakasz.zarva .hk-lista { display: none; }
-.hk-lista { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-.hk { background: var(--bg-3); border: 1px solid var(--keret); border-radius: 12px; overflow: hidden; transition: border-color 300ms var(--gorbe); }
-.hk.nyitva, .hk:hover { border-color: var(--kiemelo); }
-.hk-fej { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: none; border: 0; cursor: pointer; text-align: left; color: var(--szoveg); font: 700 15px/20px Manrope, system-ui, sans-serif; }
-.hk-cim { flex: 1 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.hk.nyitva .hk-cim { white-space: normal; }
-.hk-pont { flex: 0 0 auto; width: 8px; height: 8px; margin: 0 7px; border-radius: 50%; background: var(--kiemelo); }
-.hk-test { padding: 0 12px 12px 44px; }
-.hk-lead { margin: 0; font-size: 14px; line-height: 20px; color: var(--szoveg-2); }
-.hk-szoveg { margin: 10px 0 0; padding-top: 10px; border-top: 1px solid var(--keret); font-size: 14px; line-height: 21px; color: var(--szoveg); }
-.hk-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 14px; font-weight: 700; color: var(--kiemelo-szin); text-decoration: none; }
-.hk-link svg { width: 16px; height: 16px; }
-.hk-link:hover span { text-decoration: underline; }
-.hk-datum { display: block; margin-top: 6px; font-size: 12px; color: var(--szoveg-3); }
-.hk.villan { animation: villan 1.6s cubic-bezier(.32,.72,0,1); }
-@keyframes villan { 0%,100% { box-shadow: 0 0 0 0 rgba(255,178,36,0); } 25%,75% { box-shadow: 0 0 0 3px rgba(255,178,36,.9); } }
-@media (max-width: 599px) { .chat-panel { width: 100%; } .hk-test { padding-left: 12px; } }
+@media (max-width: 599px) { .chat-panel { width: 100%; } }
 
 
-/* ===== „Egykeretes” chat-sablon (2026-10-11), data-sablon="keret". A „Buborékos” sablon a fenti szabályokkal él. ===== */
-.chat[data-sablon="keret"] .chat-panel { width: 480px; }
-.chat[data-sablon="keret"] .chat-uzenetek { position: relative; padding: 12px; }
-.chat[data-sablon="keret"] .ai-sor { display: block; position: relative; padding-top: 14px; }
-.chat[data-sablon="keret"] .ai-ikon { position: absolute; z-index: 2; top: 0; left: -6px; width: 28px; height: 28px; box-shadow: 0 0 0 3px var(--bg-2); }
-.chat[data-sablon="keret"] .ai-ikon svg { width: 16px; height: 16px; }
-.chat[data-sablon="keret"] .chat-b.ai-buborek { width: 100%; padding: 16px 14px 12px; }
-.chat[data-sablon="keret"] .chat-b.en { max-width: 92%; }
-/* Kapcsolódó hírek: egy mérettel kisebb betű, mint a válasz (15 → 14, 14 → 13) */
-.chat[data-sablon="keret"] .hk-fej { font-size: 14px; line-height: 19px; }
-/* lenyitva: legfeljebb 2 mondat, nagyobb betűvel (Heni 10-11: „nagyon kicsi a betűméret”) */
-.chat[data-sablon="keret"] .hk-lead { font-size: 16px; line-height: 24px; color: var(--szoveg); }
-.chat[data-sablon="keret"] .hk-link { font-size: 15px; line-height: 22px; }
-.chat[data-sablon="keret"] .hk-datum { font-size: 13px; }
-/* Válogatás korábbi híreinkből: egy keret, soronként elválasztva, kisebb betűvel */
-.kk { gap: 0; background: var(--bg-3); border: 1px solid var(--keret); border-radius: 12px; overflow: hidden; }
-.kk-elem + .kk-elem { border-top: 1px solid var(--keret); }
-.kk-sor { display: flex; align-items: center; gap: 10px; padding: 8px 6px 8px 12px; }
-.kk-cim { flex: 1 1 auto; min-width: 0; font-size: 14px; line-height: 19px; font-weight: 700; color: var(--szoveg); text-decoration: none; }
-.kk-cim:hover { color: var(--kiemelo-szin); }
-.kk-le { flex: 0 0 auto; width: 32px; height: 32px; display: grid; place-items: center; color: var(--kiemelo); background: none; border: 0; border-radius: 8px; cursor: pointer; transition: transform 300ms var(--gorbe); }
-.kk-le:hover { background: var(--bg-2); }
-.kk-le:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 1px; }
-.kk-le svg { width: 18px; height: 18px; }
-.kk-le[aria-expanded="true"] { transform: rotate(180deg); }
-.kk-test { margin: 0; padding: 0 12px 12px 30px; font-size: 16px; line-height: 24px; color: var(--szoveg); }
-.kk-elem.nyitva .kk-test { animation: lenyilik 300ms var(--gorbe); }
-.kk-nyil { display: inline-grid; place-items: center; vertical-align: -3px; color: var(--kiemelo); }
-.kk-nyil svg { width: 18px; height: 18px; }
-.kk-nyil:hover { color: var(--kiemelo-szin); }
-.kk-datum { font-size: 13px; color: var(--szoveg-3); white-space: nowrap; }
-@media (max-width: 599px) { .chat[data-sablon="keret"] .chat-panel { width: 100%; } .kk-test { padding-left: 12px; } }
-@media (prefers-reduced-motion: reduce) { .kk-le { transition: none; } .kk-elem.nyitva .kk-test { animation: none; } }
+/* ===== chat: a válasz szélessége és az AI-ikon a válasz sarkán (az Egykeretesből megtartva, 2026-10-11) ===== */
+.chat .chat-panel { width: 480px; }
+.chat .chat-uzenetek { position: relative; padding: 12px; }
+.chat .ai-sor { display: block; position: relative; padding-top: 14px; }
+.chat .ai-ikon { position: absolute; z-index: 2; top: 0; left: -6px; width: 28px; height: 28px; box-shadow: 0 0 0 3px var(--bg-2); }
+.chat .ai-ikon svg { width: 16px; height: 16px; }
+.chat .chat-b.ai-buborek { width: 100%; padding: 16px 14px 12px; }
+.chat .chat-b.en { max-width: 92%; }
+@media (max-width: 599px) { .chat .chat-panel { width: 100%; } }
+
+
+/* ===== „Szövegbe linkelt” chat-sablon (2026-10-11): a hírre a válasz szövegéből lehet ugrani ===== */
+.chat-pontok li { position: relative; }
+.chat-hirpont { display: block; color: inherit; text-decoration: none; cursor: pointer; }
+.chat-resz { position: static; color: inherit; text-decoration: underline dashed var(--kiemelo); text-decoration-thickness: 2px; text-underline-offset: 4px; cursor: pointer; }
+.chat-hirpont .chat-tipp { left: 0; right: auto; top: calc(100% + 6px); width: min(300px, 100%); }
+.chat-resz .chat-tipp { left: 0; right: auto; top: calc(100% + 6px); width: min(300px, 100%); }  /* a ponthoz (li) igazodik, így nem lóg ki a panelből */
+@media (hover: hover) {
+  .chat-resz:hover { color: var(--kiemelo-szin); text-decoration-style: solid; }
+  .chat-hirpont:hover .chat-tipp, .chat-resz:hover .chat-tipp, .chat-hirpont:focus-visible .chat-tipp, .chat-resz:focus-visible .chat-tipp { opacity: 1; visibility: visible; transform: translateY(0); transition: opacity 250ms var(--gorbe), transform 250ms var(--gorbe), visibility 0s; }
+}
+@media (hover: none) { .chat-tipp { display: none; } }
+.chat-hirpont:focus-visible, .chat-resz:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; border-radius: 4px; }

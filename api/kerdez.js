@@ -102,8 +102,9 @@ HOGYAN VÁLASZOLSZ
 KIMENET (JSON)
 - "temaban": true, ha a kérdés a quicknews AI-híreiről szól és megválaszolható a fenti szabályokkal; különben false.
 - "bevezeto": egyetlen rövid mondat, amely közvetlenül felel a kérdésre (például: „A héten 3 új képgeneráló funkció jelent meg.” vagy „Mára nincs ilyen hírünk, a legutóbbiak ezek:”). Ebben ne legyen forrásjel.
-- "pontok": a válasz részletei, legfeljebb 4 pont. Minden pont egyetlen, önálló mondat egyetlen hírről vagy állításról, forrásjel nélkül a szövegben; a "forras" mezőbe kerül a hír sorszáma (egy vagy több szám). Csak azokból a hírekből, amelyek valóban a kérdésre felelnek.
-- "kapcsolodo": azoknak a további híreknek a sorszáma (legfeljebb 4), amelyek a témához kapcsolódnak, de nem a kérdés közvetlen válaszai (például régebbiek vagy csak részben illenek). Ezek ne szerepeljenek a pontokban. Ha "temaban" false, üres lista.
+- "pontok": a válasz részletei, legfeljebb 4 pont. Minden pont egyetlen, önálló mondat, forrásjel nélkül a szövegben. Csak azokból a hírekből, amelyek valóban a kérdésre felelnek. Lehetőleg minden pont egyetlen hírről szóljon.
+  - "forras": a pontban felhasznált hírek sorszáma (egy vagy több szám).
+  - "reszek": ha a pont egyetlen hírről szól, üres lista. Ha a "forras" mezőben egynél több szám van, KÖTELEZŐ: a "reszek" listában pontosan annyi elem legyen, ahány szám, minden hírhez egy. "resz" a pont szövegének az a 1-5 szavas részlete (például egy cégnév, termék vagy rövid kifejezés), amely arra a hírre vonatkozik, betűre pontosan úgy, ahogy a "szoveg"-ben áll; "forras" a hír sorszáma. Soha ne legyen a részlet az egész mondat, és a részletek ne fedjék egymást. Ha egy hírhez nem tudsz külön részletet mutatni, inkább írj neki külön pontot.
 Ha "temaban" false, a "bevezeto" legyen az elutasító szöveg, a "pontok" pedig üres lista.`;
 
 const ALAP_KERDESEK = ["Mi történt ma az OpenAI-jal?", "Milyen új képgeneráló eszköz jelent meg?", "Mi a legfontosabb AI-hír ezen a héten?", "Milyen új videógeneráló modell jelent meg?"];
@@ -148,25 +149,25 @@ module.exports = async (req, res) => {
     const lenyomat = crypto.createHash("sha256").update(ip + "|" + (process.env.CHAT_SO || "") + "|" + nap).digest("hex").slice(0, 32);
     const osszes = await kv("INCR", P + "nap:" + nap);
     if (osszes === 1) await kv("EXPIRE", P + "nap:" + nap, 172800);
-    if (osszes > NAPI_OSSZES) return json(res, 200, { info: "Mára elfogyott a chatbot napi kérdéskerete, holnap újra kérdezhetsz! Addig a Napok menüben böngészheted a nap összes hírét.", forrasok: [], korabbi: [] });
+    if (osszes > NAPI_OSSZES) return json(res, 200, { info: "Mára elfogyott a chatbot napi kérdéskerete, holnap újra kérdezhetsz! Addig a Napok menüben böngészheted a nap összes hírét.", forrasok: [] });
     const admin = adminBelepve(req);
     const sajat = admin ? 0 : await kv("INCR", P + "ip:" + lenyomat);
     if (sajat === 1) await kv("EXPIRE", P + "ip:" + lenyomat, 86400);
-    if (sajat > NAPI_LATOGATO) return json(res, 200, { info: `Mára elfogyott a ${NAPI_LATOGATO} kérdésed, holnap újra kérdezhetsz! Addig a Napok menüben böngészheted a nap összes hírét.`, forrasok: [], korabbi: [] });
+    if (sajat > NAPI_LATOGATO) return json(res, 200, { info: `Mára elfogyott a ${NAPI_LATOGATO} kérdésed, holnap újra kérdezhetsz! Addig a Napok menüben böngészheted a nap összes hírét.`, forrasok: [] });
 
     // névtelen napló: csak a kérdés és az idő, 30 napig
     const most = Date.now();
     await kv("ZADD", P + "naplo", most, JSON.stringify({ ido: new Date(most).toISOString(), kerdes: q }));
     await kv("ZREMRANGEBYSCORE", P + "naplo", 0, most - 30 * 864e5);
 
-    if (INJEKCIO.test(q)) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], korabbi: [], kivul: true });
+    if (INJEKCIO.test(q)) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], kivul: true });
     const v = await beagyaz(q);
     const friss = Date.now();
     const pont = INDEX.hirek.map((h) => {
       const kor = (friss - new Date(h.datum.replace(" ", "T") + ":00+02:00").getTime()) / 864e5;
       return { h, p: hasonlo(v, h.v) + (kor < 2 ? 0.03 : 0) };
     }).sort((a, b) => b.p - a.p).slice(0, 6);
-    if (!pont.length || hasonlo(v, pont[0].h.v) < MIN_HASONLOSAG) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], korabbi: [], kivul: true });
+    if (!pont.length || hasonlo(v, pont[0].h.v) < MIN_HASONLOSAG) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], kivul: true });
     const hirek = pont.map((x, i) => `[${i + 1}] ${x.h.datum} · ${x.h.kategoria || ""} · ${x.h.forras || ""}\nCím: ${x.h.cim}\nFelvezető: ${x.h.lead}\nRészletek: ${x.h.szoveg}`).join("\n\n");
 
     const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODELL}:generateContent?key=${process.env.GEMINI_API_KEY}`, {
@@ -180,8 +181,9 @@ module.exports = async (req, res) => {
           responseMimeType: "application/json",
           responseSchema: { type: "OBJECT", properties: {
             temaban: { type: "BOOLEAN" }, bevezeto: { type: "STRING" },
-            pontok: { type: "ARRAY", items: { type: "OBJECT", properties: { szoveg: { type: "STRING" }, forras: { type: "ARRAY", items: { type: "INTEGER" } } }, required: ["szoveg", "forras"] } },
-            kapcsolodo: { type: "ARRAY", items: { type: "INTEGER" } } }, required: ["temaban", "bevezeto", "pontok", "kapcsolodo"] },
+            pontok: { type: "ARRAY", items: { type: "OBJECT", properties: { szoveg: { type: "STRING" }, forras: { type: "ARRAY", items: { type: "INTEGER" } },
+              reszek: { type: "ARRAY", items: { type: "OBJECT", properties: { resz: { type: "STRING" }, forras: { type: "INTEGER" } }, required: ["resz", "forras"] } } },
+              required: ["szoveg", "forras", "reszek"] } } }, required: ["temaban", "bevezeto", "pontok"] },
         },
       }),
     });
@@ -189,16 +191,42 @@ module.exports = async (req, res) => {
     const nyers = (((j.candidates || [])[0] || {}).content || {}).parts?.map((p) => p.text || "").join("").trim();
     let ki = {};
     try { ki = JSON.parse(nyers || "{}"); } catch { ki = {}; }
-    if (ki.temaban === false) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], korabbi: [], kivul: true });
+    if (ki.temaban === false) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], kivul: true });
     const tiszt = (t) => String(t || "").replace(/https?:\/\/\S+/g, "").replace(/www\.\S+/g, "").replace(/[—–]/g, ",").replace(/\s*\[\d\](\[\d\])*/g, "").trim().slice(0, 400);
     const ervenyes = (n) => Number.isInteger(n) && n >= 1 && n <= pont.length;
     const bevezeto = tiszt(ki.bevezeto);
-    const pontok = (ki.pontok || []).slice(0, 4).map((x) => ({ szoveg: tiszt(x.szoveg), forras: [...new Set((x.forras || []).map(Number))].filter(ervenyes) })).filter((x) => x.szoveg);
+    // több hírt összefogó pontnál a hírenkénti részlet csak akkor marad, ha betűre benne van a pont szövegében és rövid;
+    // ha egy hírhez nincs részlet, a hír címének egy csak rá jellemző szavát keressük meg a pont szövegében
+    const pontok = (ki.pontok || []).slice(0, 4).map((x) => {
+      const szoveg = tiszt(x.szoveg), forras = [...new Set((x.forras || []).map(Number))].filter(ervenyes);
+      if (forras.length < 2) return { szoveg, forras, reszek: [] };
+      const reszek = [];
+      const szabad = (i, v) => reszek.every((r) => v <= r.i || i >= r.v);
+      for (const r0 of x.reszek || []) {
+        const resz = tiszt(r0.resz), n = Number(r0.forras), i = szoveg.indexOf(resz);
+        if (resz.length >= 3 && resz.split(/\s+/).length <= 6 && resz.length < szoveg.length * 0.6 && forras.includes(n)
+          && !reszek.some((r) => r.forras === n) && i >= 0 && szabad(i, i + resz.length)) reszek.push({ resz, forras: n, i, v: i + resz.length });
+      }
+      const tobe = (s) => s.toLowerCase().slice(0, 5);
+      const szavak = (s) => (s.match(/[0-9A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű][0-9A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű.\-]*[0-9A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű]/g) || []).filter((w) => w.length >= 4);
+      for (const n of forras) {
+        if (reszek.some((r) => r.forras === n)) continue;
+        const masik = new Set(forras.filter((m) => m !== n).flatMap((m) => szavak(pont[m - 1].h.cim).map(tobe)));
+        const jelolt = szavak(pont[n - 1].h.cim).filter((w) => !masik.has(tobe(w))).sort((a, b) => (/^[A-ZÁÉÍÓÖŐÚÜŰ]/.test(b) ? 1 : 0) - (/^[A-ZÁÉÍÓÖŐÚÜŰ]/.test(a) ? 1 : 0));
+        const re = /[0-9A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű][0-9A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű.\-]*[0-9A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű]/g;
+        let talalt = null;
+        for (const w of jelolt) {
+          let m; re.lastIndex = 0;
+          while ((m = re.exec(szoveg))) { if (m[0].length >= 4 && tobe(m[0]) === tobe(w) && szabad(m.index, m.index + m[0].length)) { talalt = m; break; } }
+          if (talalt) break;
+        }
+        if (talalt) reszek.push({ resz: talalt[0], forras: n, i: talalt.index, v: talalt.index + talalt[0].length });
+      }
+      return { szoveg, forras, reszek: reszek.sort((a, b) => a.i - b.i).map(({ resz, forras: f }) => ({ resz, forras: f })) };
+    }).filter((x) => x.szoveg);
     if (!bevezeto && !pontok.length) return json(res, 502, { hiba: "Most nem sikerült választ adni. Próbáld újra kicsit később!" });
-    const adat = (n) => ({ n, cim: pont[n - 1].h.cim, url: pont[n - 1].h.url, datum: pont[n - 1].h.datum, lead: pont[n - 1].h.lead,
-      szoveg: String(pont[n - 1].h.szoveg || "").slice(0, 520).replace(/\s+\S*$/, "") + (String(pont[n - 1].h.szoveg || "").length > 520 ? "…" : "") });
+    const adat = (n) => ({ n, cim: pont[n - 1].h.cim, url: pont[n - 1].h.url, datum: pont[n - 1].h.datum, lead: pont[n - 1].h.lead });
     const hivatkozott = [...new Set(pontok.flatMap((x) => x.forras))].sort((a, b) => a - b);
-    const korabbi = [...new Set((ki.kapcsolodo || []).map(Number))].filter((n) => ervenyes(n) && !hivatkozott.includes(n)).slice(0, 4);
     const valasz = [bevezeto, ...pontok.map((x) => "• " + x.szoveg)].filter(Boolean).join("\n");
     // népszerű kérdések: csak témába vágó, megválaszolt, rövid kérdés, látogatónként egyszer számolva
     if (pontok.length && q.length <= 90) {
@@ -210,7 +238,7 @@ module.exports = async (req, res) => {
         await kv("HSETNX", P + "nepszeru_szoveg", kk, q.replace(/\s+/g, " ").trim());
       }
     }
-    return json(res, 200, { valasz, bevezeto, pontok, forrasok: hivatkozott.map(adat), korabbi: korabbi.map(adat), maradt: Math.max(0, NAPI_LATOGATO - sajat) });
+    return json(res, 200, { valasz, bevezeto, pontok, forrasok: hivatkozott.map(adat), maradt: Math.max(0, NAPI_LATOGATO - sajat) });
   } catch (err) {
     return json(res, 500, { hiba: "Most nem sikerült választ adni. Próbáld újra kicsit később!" });
   }
