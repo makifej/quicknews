@@ -95,14 +95,16 @@ BIZTONSÁG
 HOGYAN VÁLASZOLSZ
 - Magyarul, tegezve, röviden: legfeljebb 5 mondat vagy egy rövid felsorolás.
 - Csak olyat állítasz, ami a kapott hírekben szerepel. Ha a hírekben nincs válasz, őszintén megmondod, hogy erről nincs hírünk az elmúlt napokból. Nem találsz ki semmit, és nem egészíted ki a saját tudásoddal.
-- Minden állítás után szögletes zárójelben jelölöd a hír sorszámát, például [1] vagy [2][3].
+- Minden állításhoz megadod a hír sorszámát (a "forras" mezőben).
 - Ha a kérdés időre vonatkozik (ma, tegnap, ezen a héten), a hírek dátumát figyelembe veszed. A mai dátum: {MA}.
 - Nem használsz hosszú gondolatjelet (— vagy –), a számot számjeggyel írod.
 
 KIMENET (JSON)
 - "temaban": true, ha a kérdés a quicknews AI-híreiről szól és megválaszolható a fenti szabályokkal; különben false.
-- "valasz": a közvetlen válasz, csak azokból a hírekből, amelyek valóban a kérdésre felelnek. Ha kevés vagy nincs közvetlen hír, ezt mondd ki röviden, és ne sorold fel benne a többi hírt.
-- "kapcsolodo": azoknak a további híreknek a sorszáma (legfeljebb 4), amelyek a témához kapcsolódnak, de nem a kérdés közvetlen válaszai (például régebbiek vagy csak részben illenek). A "valasz" mezőben ezeket ne említsd. Ha "temaban" false, üres lista.`;
+- "bevezeto": egyetlen rövid mondat, amely közvetlenül felel a kérdésre (például: „A héten 3 új képgeneráló funkció jelent meg.” vagy „Mára nincs ilyen hírünk, a legutóbbiak ezek:”). Ebben ne legyen forrásjel.
+- "pontok": a válasz részletei, legfeljebb 4 pont. Minden pont egyetlen, önálló mondat egyetlen hírről vagy állításról, forrásjel nélkül a szövegben; a "forras" mezőbe kerül a hír sorszáma (egy vagy több szám). Csak azokból a hírekből, amelyek valóban a kérdésre felelnek.
+- "kapcsolodo": azoknak a további híreknek a sorszáma (legfeljebb 4), amelyek a témához kapcsolódnak, de nem a kérdés közvetlen válaszai (például régebbiek vagy csak részben illenek). Ezek ne szerepeljenek a pontokban. Ha "temaban" false, üres lista.
+Ha "temaban" false, a "bevezeto" legyen az elutasító szöveg, a "pontok" pedig üres lista.`;
 
 module.exports = async (req, res) => {
   if (req.method !== "POST") return json(res, 405, { hiba: "Csak POST." });
@@ -147,25 +149,28 @@ module.exports = async (req, res) => {
         generationConfig: {
           temperature: 0.3, maxOutputTokens: 700, thinkingConfig: { thinkingBudget: 0 },
           responseMimeType: "application/json",
-          responseSchema: { type: "OBJECT", properties: { temaban: { type: "BOOLEAN" }, valasz: { type: "STRING" }, kapcsolodo: { type: "ARRAY", items: { type: "INTEGER" } } }, required: ["temaban", "valasz", "kapcsolodo"] },
+          responseSchema: { type: "OBJECT", properties: {
+            temaban: { type: "BOOLEAN" }, bevezeto: { type: "STRING" },
+            pontok: { type: "ARRAY", items: { type: "OBJECT", properties: { szoveg: { type: "STRING" }, forras: { type: "ARRAY", items: { type: "INTEGER" } } }, required: ["szoveg", "forras"] } },
+            kapcsolodo: { type: "ARRAY", items: { type: "INTEGER" } } }, required: ["temaban", "bevezeto", "pontok", "kapcsolodo"] },
         },
       }),
     });
     const j = await r.json();
     const nyers = (((j.candidates || [])[0] || {}).content || {}).parts?.map((p) => p.text || "").join("").trim();
     let ki = {};
-    try { ki = JSON.parse(nyers || "{}"); } catch { ki = { valasz: nyers, kapcsolodo: [] }; }
+    try { ki = JSON.parse(nyers || "{}"); } catch { ki = {}; }
     if (ki.temaban === false) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], korabbi: [], kivul: true });
-    let valasz = String(ki.valasz || "").trim().slice(0, 1500);
-    valasz = valasz.replace(/https?:\/\/\S+/g, "").replace(/www\.\S+/g, ""); // a modell nem tehet linket a válaszba
-    if (!valasz) return json(res, 502, { hiba: "Most nem sikerült választ adni. Próbáld újra kicsit később!" });
-    valasz = valasz.replace(/[—–]/g, ",");
-
-    // csak a ténylegesen hivatkozott hírek kerülnek a forráslistába, a sorszám megmarad
+    const tiszt = (t) => String(t || "").replace(/https?:\/\/\S+/g, "").replace(/www\.\S+/g, "").replace(/[—–]/g, ",").replace(/\s*\[\d\](\[\d\])*/g, "").trim().slice(0, 400);
+    const ervenyes = (n) => Number.isInteger(n) && n >= 1 && n <= pont.length;
+    const bevezeto = tiszt(ki.bevezeto);
+    const pontok = (ki.pontok || []).slice(0, 4).map((x) => ({ szoveg: tiszt(x.szoveg), forras: [...new Set((x.forras || []).map(Number))].filter(ervenyes) })).filter((x) => x.szoveg);
+    if (!bevezeto && !pontok.length) return json(res, 502, { hiba: "Most nem sikerült választ adni. Próbáld újra kicsit később!" });
     const adat = (n) => ({ n, cim: pont[n - 1].h.cim, url: pont[n - 1].h.url, datum: pont[n - 1].h.datum });
-    const hivatkozott = [...new Set([...valasz.matchAll(/\[(\d)\]/g)].map((m) => Number(m[1])))].filter((n) => n >= 1 && n <= pont.length);
-    const korabbi = [...new Set((ki.kapcsolodo || []).map(Number))].filter((n) => n >= 1 && n <= pont.length && !hivatkozott.includes(n)).slice(0, 4);
-    return json(res, 200, { valasz, forrasok: hivatkozott.map(adat), korabbi: korabbi.map(adat), maradt: Math.max(0, NAPI_LATOGATO - sajat) });
+    const hivatkozott = [...new Set(pontok.flatMap((x) => x.forras))].sort((a, b) => a - b);
+    const korabbi = [...new Set((ki.kapcsolodo || []).map(Number))].filter((n) => ervenyes(n) && !hivatkozott.includes(n)).slice(0, 4);
+    const valasz = [bevezeto, ...pontok.map((x) => "• " + x.szoveg)].filter(Boolean).join("\n");
+    return json(res, 200, { valasz, bevezeto, pontok, forrasok: hivatkozott.map(adat), korabbi: korabbi.map(adat), maradt: Math.max(0, NAPI_LATOGATO - sajat) });
   } catch (err) {
     return json(res, 500, { hiba: "Most nem sikerült választ adni. Próbáld újra kicsit később!" });
   }

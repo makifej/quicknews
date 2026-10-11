@@ -798,3 +798,10 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .chat-korabbi a { display: flex; gap: 10px; align-items: flex-start; }
 .chat-korabbi a span { flex: 0 0 auto; width: 22px; height: 22px; display: grid; place-items: center; margin-top: 0; font-size: 12px; font-weight: 800; color: var(--kiemelo-szoveg); background: var(--kiemelo); border-radius: 50%; }
 .chat-valasz .chat-korabbi + .chat-korabbi { margin-top: 4px; }
+.chat-b.bot .chat-bev { font-weight: 700; font-size: 16px; line-height: 23px; }
+.chat-pontok { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; }
+.chat-pontok li { display: flex; gap: 10px; align-items: flex-start; justify-content: space-between; padding: 10px 0; border-top: 1px solid var(--keret); font-size: 15px; line-height: 22px; }
+.chat-pontok li:first-child { border-top-color: var(--kiemelo); }
+.chat-psz { flex: 1 1 auto; }
+.chat-jelek { flex: 0 0 auto; display: inline-flex; gap: 4px; padding-top: 1px; }
+.chat-jel { width: 22px; height: 22px; display: grid; place-items: center; font-size: 12px; font-weight: 800; color: var(--kiemelo-szoveg); background: var(--kiemelo); border-radius: 50%; }
