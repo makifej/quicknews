@@ -97,6 +97,7 @@ HOGYAN VÁLASZOLSZ
 - Csak olyat állítasz, ami a kapott hírekben szerepel. Ha a hírekben nincs válasz, őszintén megmondod, hogy erről nincs hírünk az elmúlt napokból. Nem találsz ki semmit, és nem egészíted ki a saját tudásoddal.
 - Minden állításhoz megadod a hír sorszámát (a "forras" mezőben).
 - Ha a kérdés időre vonatkozik (ma, tegnap, ezen a héten), a hírek dátumát figyelembe veszed. A mai dátum: {MA}.
+- Ha a kérdés a hírek SZÁMÁRA vonatkozik (hány hír, mennyi hír jelent meg), KIZÁRÓLAG a „Statisztika” rész számát mondod, soha nem a „Hírek” lista elemeit számolod meg, mert az csak egy válogatás.
 - Nem használsz hosszú gondolatjelet (— vagy –), a számot számjeggyel írod.
 
 KIMENET (JSON)
@@ -163,11 +164,29 @@ module.exports = async (req, res) => {
     if (INJEKCIO.test(q)) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], kivul: true });
     const v = await beagyaz(q);
     const friss = Date.now();
-    const pont = INDEX.hirek.map((h) => {
+    const rangsor = INDEX.hirek.map((h) => {
       const kor = (friss - new Date(h.datum.replace(" ", "T") + ":00+02:00").getTime()) / 864e5;
       return { h, p: hasonlo(v, h.v) + (kor < 2 ? 0.03 : 0) };
-    }).sort((a, b) => b.p - a.p).slice(0, 6);
-    if (!pont.length || hasonlo(v, pont[0].h.v) < MIN_HASONLOSAG) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], kivul: true });
+    }).sort((a, b) => b.p - a.p);
+    // időre vonatkozó kérdés: az adott időszak összes híre kerül a modell elé (nem csak a 6 leghasonlóbb)
+    const napKulcs = (d) => new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Budapest", year: "numeric", month: "2-digit", day: "2-digit" }).format(d);
+    const ma = napKulcs(new Date()), tegnap = napKulcs(new Date(Date.now() - 864e5)), hetHatar = napKulcs(new Date(Date.now() - 6 * 864e5));
+    const ql = q.toLowerCase();
+    let idoszak = null;
+    if (/tegnapelőtt/.test(ql)) idoszak = (d) => d === napKulcs(new Date(Date.now() - 2 * 864e5));
+    else if (/tegnap/.test(ql)) idoszak = (d) => d === tegnap;
+    else if (/(^|[^a-záéíóöőúüű])(ma|mai|mára|máig|today)([^a-záéíóöőúüű]|$)/.test(ql)) idoszak = (d) => d === ma;
+    else if (/(ezen a|e|a mai|múlt) ?héten|heti|hét(en)?([^a-záéíóöőúüű]|$)|7 nap/.test(ql)) idoszak = (d) => d >= hetHatar;
+    const benne = idoszak ? rangsor.filter((x) => idoszak(x.h.datum.slice(0, 10))) : [];
+    const pont = idoszak && benne.length ? (benne.length <= 25 ? benne : benne.slice(0, 15)) : rangsor.slice(0, 6);
+    const temaKerdes = idoszak && /hír|újdonság|történt|megjelent|jelent meg|bejelent|ai|mesterséges/.test(ql);
+    if (!pont.length || (!temaKerdes && hasonlo(v, rangsor[0].h.v) < MIN_HASONLOSAG)) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], kivul: true });
+    // pontos hírszámok a quicknews.hu-ról (a Napok oldallal egyezően, Budapest szerinti nap)
+    const napi = {};
+    for (const h of INDEX.hirek) { const d = h.datum.slice(0, 10); napi[d] = (napi[d] || 0) + 1; }
+    const het = Object.entries(napi).filter(([d]) => d >= hetHatar).reduce((a, [, n]) => a + n, 0);
+    const statisztika = `Statisztika (a quicknews.hu-n megjelent hírek pontos száma, Budapest szerinti nap): ma (${ma}): ${napi[ma] || 0} hír; tegnap (${tegnap}): ${napi[tegnap] || 0} hír; az elmúlt 7 napban összesen ${het} hír. Naponta: ` +
+      Object.entries(napi).sort((a, b) => b[0].localeCompare(a[0])).slice(0, 14).map(([d, n]) => `${d}: ${n}`).join("; ") + ".";
     const hirek = pont.map((x, i) => `[${i + 1}] ${x.h.datum} · ${x.h.kategoria || ""} · ${x.h.forras || ""}\nCím: ${x.h.cim}\nFelvezető: ${x.h.lead}\nRészletek: ${x.h.szoveg}`).join("\n\n");
 
     const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODELL}:generateContent?key=${process.env.GEMINI_API_KEY}`, {
@@ -175,9 +194,9 @@ module.exports = async (req, res) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: UTASITAS.replace("{MA}", nap) }] },
-        contents: [{ role: "user", parts: [{ text: `Hírek:\n\n${hirek}\n\nKérdés: ${q}` }] }],
+        contents: [{ role: "user", parts: [{ text: `${statisztika}\n\nHírek${idoszak && benne.length > pont.length ? ` (válogatás az időszak ${benne.length} híréből)` : ""}:\n\n${hirek}\n\nKérdés: ${q}` }] }],
         generationConfig: {
-          temperature: 0.3, maxOutputTokens: 700, thinkingConfig: { thinkingBudget: 0 },
+          temperature: 0.3, maxOutputTokens: 900, thinkingConfig: { thinkingBudget: 0 },
           responseMimeType: "application/json",
           responseSchema: { type: "OBJECT", properties: {
             temaban: { type: "BOOLEAN" }, bevezeto: { type: "STRING" },
