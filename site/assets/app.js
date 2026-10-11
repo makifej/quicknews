@@ -114,6 +114,38 @@
       helyMent(); ev('chat_forras_kattintas', {resz: !!e.target.closest('.chat-resz')}); return; }
     var b = e.target.closest('.chat-javaslat button, .chat-javas'); if (b) { ev('chat_javaslat'); kerdez(b.textContent); } });
 })();
+// Fel- és leszavazás (api/szavaz): a látogató egy véletlen, névtelen azonosítót kap a helyi tárolóban
+(function(){
+  var L = ''; try { L = localStorage.getItem('qn-l') || ''; if (!/^[a-z0-9]{16,40}$/.test(L)) { L = ''; for (var i = 0; i < 24; i++) L += 'abcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random() * 36)]; localStorage.setItem('qn-l', L); } } catch(e){}
+  function fmt(n){ var a = Math.abs(n); if (a >= 1000) { var k = (a / 1000).toFixed(a >= 10000 ? 0 : 1).replace('.', ',').replace(',0', ''); return (n < 0 ? '-' : '') + k + 'K'; } return String(n); }
+  var dobozok = [].slice.call(document.querySelectorAll('[data-szavaz]'));
+  var kartyak = [].slice.call(document.querySelectorAll('[data-hid]'));
+  var ids = dobozok.map(function(d){ return d.getAttribute('data-szavaz'); }).concat(kartyak.map(function(k){ return k.getAttribute('data-hid'); }));
+  ids = ids.filter(function(x, i){ return ids.indexOf(x) === i; });
+  function rajzol(d, pont, sajat){ d.setAttribute('data-sajat', String(sajat)); d.querySelector('.sz-db').textContent = fmt(pont);
+    d.querySelector('.sz-fel').setAttribute('aria-pressed', sajat === 1 ? 'true' : 'false'); d.querySelector('.sz-le').setAttribute('aria-pressed', sajat === -1 ? 'true' : 'false'); }
+  function jel(k, pont){ if (!pont) return; var sp = k.querySelectorAll(':scope > span'); var m = k.querySelector('.hmeta') || (k.classList.contains('kiemelt-sav') ? null : sp[sp.length - 1]); var s = document.createElement('span');
+    s.className = 'sz-jel ' + (pont > 0 ? 'poz' : 'neg'); s.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 3.5 13H9v7.5h6V13h5.5z"/></svg>' + fmt(pont);
+    s.setAttribute('aria-label', 'Pontszám: ' + pont); (m || k).appendChild(s); }
+  if (!ids.length) return;
+  for (var c = 0; c < ids.length; c += 150) (function(resz){
+    fetch('/api/szavaz?ids=' + resz.join(',') + (dobozok.length ? '&l=' + L : '')).then(function(r){ return r.json(); }).then(function(j){
+      dobozok.forEach(function(d){ var id = d.getAttribute('data-szavaz'); if (resz.indexOf(id) >= 0) rajzol(d, (j.pont || {})[id] || 0, (j.sajat || {})[id] || 0); });
+      kartyak.forEach(function(k){ var id = k.getAttribute('data-hid'); if (resz.indexOf(id) >= 0) jel(k, (j.pont || {})[id] || 0); });
+    }).catch(function(){});
+  })(ids.slice(c, c + 150));
+  dobozok.forEach(function(d){ d.addEventListener('click', function(e){
+    var b = e.target.closest('button[data-ertek]'); if (!b || !L) return;
+    var id = d.getAttribute('data-szavaz'), regi = Number(d.getAttribute('data-sajat')), ert = Number(b.getAttribute('data-ertek'));
+    var uj = regi === ert ? 0 : ert, db = d.querySelector('.sz-db'), elozo = db.textContent;
+    var most = Number(String(elozo).replace(',', '.').replace('K', '')) * (/K/.test(elozo) ? 1000 : 1);
+    rajzol(d, Math.round(most + uj - regi), uj); // azonnal látszik, a szerver válasza pontosítja
+    fetch('/api/szavaz', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({id: id, l: L, ertek: uj})})
+      .then(function(r){ return r.json(); }).then(function(j){ if (typeof j.pont === 'number') rajzol(d, j.pont, j.sajat); else rajzol(d, most, regi); })
+      .catch(function(){ d.querySelector('.sz-db').textContent = elozo; d.setAttribute('data-sajat', String(regi)); });
+    try { if (window.gtag) gtag('event', 'szavazas', {ertek: uj}); } catch(e2){}
+  }); });
+})();
 (function(){
   document.querySelectorAll('.szakasz-tobb').forEach(function(b){ b.addEventListener('click', function(){ var r=b.parentElement.querySelector('.szakasz-rejtett'); var ny=!r.hidden; r.hidden=ny; b.setAttribute('aria-expanded', ny?'false':'true'); b.textContent = ny ? b.dataset.cimke : 'Kevesebb'; if(!b.dataset.cimke) b.dataset.cimke=b.textContent; }); b.dataset.cimke=b.textContent; });
   var csoportos = document.querySelector('.csoportos');
