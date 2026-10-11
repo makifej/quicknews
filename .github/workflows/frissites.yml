@@ -87,7 +87,7 @@ jobs:
           git push  # ha 3 próbából sem ment fel, a futás jogosan bukjon el
       - name: Kiadás a Vercelre
         if: steps.ido.outputs.fut == 'igen' && env.VERCEL_TOKEN != ''
-        run: npx --yes vercel@latest deploy --prod --yes --token "$VERCEL_TOKEN"
+        run: npx --yes vercel@latest deploy --prod --yes --archive=tgz --token "$VERCEL_TOKEN"
       - name: IndexNow (az új hírek beküldése a keresőknek)
         if: steps.ido.outputs.fut == 'igen' && env.VERCEL_TOKEN != ''
         run: |
