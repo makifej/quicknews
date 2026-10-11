@@ -335,6 +335,7 @@
     if (meres && window.qnGaBetolt) window.qnGaBetolt();
     if (hirdetes && window.qnMetaBetolt) window.qnMetaBetolt();
     document.documentElement.classList.add('suti-van');
+    document.documentElement.style.removeProperty('--fel-also');  // a chat és a fel-gomb azonnal visszaáll a helyére
     rejt();
   }
   sav.addEventListener('click', function(e){ var g = e.target.closest('[data-suti]'); if (!g) return; var v = g.getAttribute('data-suti'); ment(v !== 'nem', v === 'igen'); });
