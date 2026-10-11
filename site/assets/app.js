@@ -108,7 +108,10 @@
   }
   urlap.addEventListener('submit', function(e){ e.preventDefault(); kerdez(mezo.value); });
   lista.addEventListener('click', function(e){
-    if (e.target.closest('.chat-hirpont, .chat-resz')) { helyMent(); ev('chat_forras_kattintas', {resz: !!e.target.closest('.chat-resz')}); return; }
+    if (e.target.closest('.chat-hirpont, .chat-resz')) {
+      // mobilon a chat a teljes képernyőt takarja: hírre ugráskor összecsukjuk, hogy a hír látsszon (a beszélgetés megmarad)
+      if (window.matchMedia('(max-width: 767px)').matches) all.nyitva = false;
+      helyMent(); ev('chat_forras_kattintas', {resz: !!e.target.closest('.chat-resz')}); return; }
     var b = e.target.closest('.chat-javaslat button, .chat-javas'); if (b) { ev('chat_javaslat'); kerdez(b.textContent); } });
 })();
 (function(){
