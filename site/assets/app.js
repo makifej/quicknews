@@ -34,12 +34,21 @@
         ? (j.bevezeto ? '<p class="chat-bev">'+biztos(j.bevezeto)+'</p>' : '') + ((j.pontok || []).length ? '<ul class="chat-pontok">' + j.pontok.map(function(x){ return '<li><div class="chat-psor"><span class="chat-psz">'+biztos(x.szoveg)+'</span>'+jelek(x.forras)+'</div><div class="chat-lenyilo" hidden></div></li>'; }).join('') + '</ul>' : '')
         : '<p>'+szoveg+'</p>';
       d.innerHTML = '<div class="chat-b bot">'+torzs+'</div>'
-        + ((j.forrasok || []).length ? '<div class="chat-korabbi chat-forrasblokk"><h3>A válasz forrásai</h3><ul>'+hirlista(j.forrasok, true)+'</ul></div>' : '')
-        + ((j.korabbi || []).length ? '<div class="chat-korabbi"><h3>Válogatás korábbi híreinkből</h3><ul>'+hirlista(j.korabbi, false)+'</ul></div>' : '');
+        + ((j.korabbi || []).length ? '<div class="chat-korabbi"><h3>Válogatás korábbi híreinkből</h3><ul>'+hirlista(j.korabbi, false)+'</ul></div>' : '')
+        + masok(u.kerdes);
     }
     lista.appendChild(d); return d;
   }
   function gorget(){ lista.scrollTop = lista.scrollHeight; }
+  // a leggyakoribb kérdések (api/kerdez?mi=nepszeru): kattintható javaslatok, hogy ne kelljen gépelni
+  var nepszeru = all.nepszeru || [];
+  function masok(volt){ var l = nepszeru.filter(function(k){ return k.toLowerCase() !== String(volt || '').toLowerCase(); }).slice(0, 3);
+    return l.length ? '<div class="chat-masok"><span>Mások ezt is kérdezték:</span>' + l.map(function(k){ return '<button type="button" class="chat-javas">'+biztos(k)+'</button>'; }).join('') + '</div>' : ''; }
+  function javaslatok(){ var jv = lista.querySelector('.chat-javaslat'); if (!jv || !nepszeru.length) return;
+    jv.innerHTML = '<span class="chat-javaslat-cim">Gyakori kérdések</span>' + nepszeru.map(function(k){ return '<button type="button">'+biztos(k)+'</button>'; }).join(''); }
+  fetch('/api/kerdez?mi=nepszeru').then(function(r){ return r.json(); }).then(function(j){
+    if (j && j.kerdesek && j.kerdesek.length) { nepszeru = j.kerdesek; all.nepszeru = nepszeru; ment(); javaslatok(); }
+  }).catch(function(){});
   function uj(u){ all.uzenetek.push(u); all.uzenetek = all.uzenetek.slice(-30); ment(); rajzol(u); gorget(); }
   if (all.uzenetek.length) { var jav0 = lista.querySelector('.chat-javaslat'); if (jav0) jav0.remove(); all.uzenetek.forEach(rajzol); }
   if (all.nyitva) { nyit(true, true); setTimeout(gorget, 0); }
@@ -51,7 +60,7 @@
     ev('chat_kerdes');
     fetch('/api/kerdez', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({kerdes:q})})
       .then(function(r){ return r.json(); })
-      .then(function(j){ var_.remove(); uj(j.hiba ? {hiba: j.hiba} : j.info ? {info: j.info} : {bot: j}); })
+      .then(function(j){ var_.remove(); uj(j.hiba ? {hiba: j.hiba} : j.info ? {info: j.info} : {bot: j, kerdes: q}); })
       .catch(function(){ var_.remove(); uj({hiba: 'Most nem sikerült választ adni. Próbáld újra kicsit később!'}); })
       .then(function(){ mezo.disabled = kuld.disabled = false; mezo.focus(); });
   }
@@ -69,7 +78,7 @@
       le.innerHTML = '<a class="chat-hirkartya" href="'+biztos(f.url)+'"><span class="chat-hk-fej"><span class="chat-jel kicsi">'+n+'</span>'+(f.datum ? '<small>'+datum(f.datum)+'</small>' : '')+'</span><strong>'+biztos(f.cim)+'</strong>'+(f.lead ? '<em>'+biztos(f.lead)+'</em>' : '')+'<span class="chat-hk-link">Elolvasom →</span></a>';
       le.hidden = false; ev('chat_forrasjel', {n: n}); return;
     }
-    var b = e.target.closest('.chat-javaslat button'); if (b) kerdez(b.textContent);
+    var b = e.target.closest('.chat-javaslat button, .chat-javas'); if (b) { ev('chat_javaslat'); kerdez(b.textContent); }
     var a = e.target.closest('.chat-korabbi a'); if (a) ev('chat_forras_kattintas', {korabbi: !a.closest('.chat-forrasblokk')}); });
 })();
 (function(){
