@@ -23,12 +23,10 @@ jobs:
   frissit:
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    # SEC-005: a titkok csak abba a lépésbe kerülnek, amelyiknek kell (a csomagtelepítés és a git nem látja őket)
     env:
       TZ: Europe/Budapest
-      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VAN_VERCEL: ${{ secrets.VERCEL_TOKEN != '' }}
     steps:
       - name: Éjszakai szünet (23:00 és 08:00 között nem fut, magyar idő)
         id: ido
@@ -58,6 +56,8 @@ jobs:
         run: pip install -q -r requirements.txt
       - name: Gyűjtés, fordítás, linkek, renderelés
         if: steps.ido.outputs.fut == 'igen'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python3 build/gyujt.py --nem-tipus x_profil --nem-forras producthunt
           python3 build/fordit.py
@@ -86,10 +86,15 @@ jobs:
           for i in 1 2 3; do git push && break || { rebase; sleep 5; }; done
           git push  # ha 3 próbából sem ment fel, a futás jogosan bukjon el
       - name: Kiadás a Vercelre
-        if: steps.ido.outputs.fut == 'igen' && env.VERCEL_TOKEN != ''
-        run: npx --yes vercel@latest deploy --prod --yes --archive=tgz --token "$VERCEL_TOKEN"
+        if: steps.ido.outputs.fut == 'igen' && env.VAN_VERCEL == 'true'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        # rögzített verzió: egy új, esetleg kompromittált CLI-kiadás nem kaphatja meg automatikusan a tokent
+        run: npx --yes vercel@63.1.2 deploy --prod --yes --archive=tgz --token "$VERCEL_TOKEN"
       - name: IndexNow (az új hírek beküldése a keresőknek)
-        if: steps.ido.outputs.fut == 'igen' && env.VERCEL_TOKEN != ''
+        if: steps.ido.outputs.fut == 'igen' && env.VAN_VERCEL == 'true'
         run: |
           python3 build/indexnow.py || true
           git add data/indexnow_kuldve.json

@@ -76,11 +76,15 @@ module.exports = async (req, res) => {
     if (db > ORANKENT) return json(res, 429, { hiba: "Túl sok szavazás, próbáld később." });
     // egy IP-címről hírenként egy szavazat: ha erről a címről más böngésző már szavazott erre a hírre, elutasítjuk
     const ipk = P + "ipv:" + id, ipl = ipAllando(req);
+    // SEC-010: rövid zár hírenként és IP-nként, hogy a párhuzamos kérések ne tudják megkerülni az ellenőrzést
+    const zar = P + "zar:" + id + ":" + ipl;
+    if ((await kv("SET", zar, "1", "NX", "EX", 5)) !== "OK") return json(res, 429, { hiba: "Egy pillanat, a szavazatod még mentés alatt van." });
     const gazda = await kv("HGET", ipk, ipl);
-    if (gazda && gazda !== l && uj !== 0) return json(res, 409, { hiba: "Erről a hálózatról már szavaztak erre a hírre." });
+    if (gazda && gazda !== l && uj !== 0) { await kv("DEL", zar); return json(res, 409, { hiba: "Erről a hálózatról már szavaztak erre a hírre." }); }
     // a látogató szavazatai egy hashben: {hír: 1|-1}; a különbség megy az összesítőbe
     const regi = Number((await kv("HGET", P + "l:" + l, id)) || 0);
     if (uj === regi) {
+      await kv("DEL", zar);
       const p = Number((await kv("HGET", P + "pont", id)) || 0);
       return json(res, 200, { pont: p, sajat: uj });
     }
@@ -89,6 +93,7 @@ module.exports = async (req, res) => {
     if (uj === 0) { if (gazda === l) await kv("HDEL", ipk, ipl); }  // visszavonáskor a cím felszabadul
     else { await kv("HSET", ipk, ipl, l); await kv("EXPIRE", ipk, 400 * 86400); }
     const p = await kv("HINCRBY", P + "pont", id, uj - regi);
+    await kv("DEL", zar);
     return json(res, 200, { pont: Number(p), sajat: uj });
   } catch (err) {
     return json(res, 500, { hiba: "Most nem sikerült, próbáld újra." });

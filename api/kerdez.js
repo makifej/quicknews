@@ -25,7 +25,7 @@ async function kv(...parancs) {
 function json(res, kod, adat) {
   res.statusCode = kod;
   res.setHeader("Content-Type", "application/json; charset=utf-8");
-  res.setHeader("Cache-Control", "no-store");
+  if (!res.getHeader("Cache-Control")) res.setHeader("Cache-Control", "no-store");  // CQ-006: a hívó beállítása marad
   res.end(JSON.stringify(adat));
 }
 
@@ -150,13 +150,15 @@ module.exports = async (req, res) => {
     const nap = budapestNap();
     const ip = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "ismeretlen";
     const lenyomat = crypto.createHash("sha256").update(ip + "|" + (process.env.CHAT_SO || "") + "|" + nap).digest("hex").slice(0, 32);
-    const osszes = await kv("INCR", P + "nap:" + nap);
-    if (osszes === 1) await kv("EXPIRE", P + "nap:" + nap, 172800);
-    if (osszes > NAPI_OSSZES) return json(res, 200, { info: "Mára elfogyott a chatbot napi kérdéskerete, holnap újra kérdezhetsz! Addig a Napok menüben böngészheted a nap összes hírét.", forrasok: [] });
+    // SEC-008: előbb a látogatói korlát; a napi globális keretbe csak a látogatói korláton belüli kérdés számít,
+    // így egyetlen IP nem tudja a többiek elől elfogyasztani
     const admin = adminBelepve(req);
     const sajat = admin ? 0 : await kv("INCR", P + "ip:" + lenyomat);
     if (sajat === 1) await kv("EXPIRE", P + "ip:" + lenyomat, 86400);
     if (sajat > NAPI_LATOGATO) return json(res, 200, { info: `Mára elfogyott a ${NAPI_LATOGATO} kérdésed, holnap újra kérdezhetsz! Addig a Napok menüben böngészheted a nap összes hírét.`, forrasok: [] });
+    const osszes = await kv("INCR", P + "nap:" + nap);
+    if (osszes === 1) await kv("EXPIRE", P + "nap:" + nap, 172800);
+    if (osszes > NAPI_OSSZES) return json(res, 200, { info: "Mára elfogyott a chatbot napi kérdéskerete, holnap újra kérdezhetsz! Addig a Napok menüben böngészheted a nap összes hírét.", forrasok: [] });
 
     // névtelen napló: csak a kérdés és az idő, 30 napig
     const most = Date.now();
@@ -171,7 +173,7 @@ module.exports = async (req, res) => {
     const STOP = new Set(["milye", "melyi", "vanna", "volta", "lehet", "hogya", "miért", "mikor", "kérde", "hírek", "hírt ", "újabb", "legfr"]);
     const tok = [...new Set((q.toLowerCase().match(/[a-záéíóöőúüű0-9][a-záéíóöőúüű0-9.-]{3,}/g) || []).map((w) => w.slice(0, 5)).filter((w) => !STOP.has(w)))];
     const rangsor = INDEX.hirek.map((h) => {
-      const kor = (friss - new Date(h.datum.replace(" ", "T") + ":00+02:00").getTime()) / 864e5;
+      const kor = (friss - (h.ts || new Date(h.datum.replace(" ", "T") + ":00+01:00").getTime())) / 864e5;  // CQ-004: pontos időbélyeg az indexből
       const szoveg = (h.cim + " " + h.lead).toLowerCase();
       const egyezes = tok.filter((t) => szoveg.includes(t)).length;
       return { h, p: hasonlo(v, h.v) + (kor < 2 ? 0.03 : 0) + Math.min(egyezes, 3) * 0.025 };
@@ -256,7 +258,9 @@ module.exports = async (req, res) => {
     // népszerű kérdések: csak témába vágó, megválaszolt, rövid kérdés, látogatónként egyszer számolva
     if (pontok.length && q.length <= 90) {
       const kk = kerdesKulcs(q);
-      const uj = await kv("SADD", P + "nk:" + kk, lenyomat);
+      // SEC-009: állandó (nem naponta változó) IP-lenyomat, így egy IP 3 nap alatt sem számít 3 látogatónak
+      const allando = crypto.createHash("sha256").update(ip + "|nk|" + (process.env.CHAT_SO || "")).digest("hex").slice(0, 32);
+      const uj = await kv("SADD", P + "nk:" + kk, allando);
       await kv("EXPIRE", P + "nk:" + kk, 30 * 86400);
       if (uj === 1) {
         await kv("ZINCRBY", P + "nepszeru", 1, kk);

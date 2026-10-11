@@ -45,13 +45,13 @@ function nap() {
 async function weboldalTartalom(u) {
   let html = "";
   try {
-    const r = await fetch(u, { redirect: "follow", signal: AbortSignal.timeout(7000), headers: { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36", Accept: "text/html" } });
-    if (r.url && szuro.tiltottDomain(new URL(r.url).hostname)) return { tiltott: true, ellenorizve: true };
+    const { valasz: r, vegso } = await szuro.biztonsagosLekeres(u, { ido: 7000, headers: { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36", Accept: "text/html" } });
+    if (szuro.tiltottDomain(new URL(vegso).hostname)) return { tiltott: true, ellenorizve: true };
     html = (await r.text()).slice(0, 300000);
   } catch { return { tiltott: false, ellenorizve: false }; }
   const m = (re) => { const x = html.match(re); return x ? x[1].replace(/\s+/g, " ").trim() : ""; };
-  const cim = m(/<title[^>]*>([^<]*)<\/title>/i);
-  const leiras = m(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)/i) || m(/<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']*)/i);
+  const cim = m(/<title[^>]*>([^<]*)<\/title>/i).slice(0, 300);
+  const leiras = (m(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)/i) || m(/<meta[^>]+property=["']og:description["'][^>]+content=["']([^"']*)/i)).slice(0, 600);
   const szoveg = html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").slice(0, 2500);
   if (szuro.tiltottSzoveg(cim) || szuro.tiltottSzoveg(leiras)) return { tiltott: true, ellenorizve: true, cim };
   // a Gemini-ellenőrzés csak az adatvédelmi szöveg kiegészítése után kapcsolható be (most a tájékoztató szerint
@@ -82,18 +82,23 @@ module.exports = async (req, res) => {
     if (!n.ok) return json(res, 200, { ok: false, mezo: "nev", uzenet: n.uzenet });
     const t = szuro.telefon(b.telefon);
     if (!t.ok) return json(res, 200, { ok: false, mezo: "telefon", kulfoldi: !!t.kulfoldi, uzenet: t.uzenet });
+    // SEC-007: a látogatói korlát a drága lépések (DNS, a weboldal lekérése) ELŐTT fut; a globális csak az engedélyezettet számolja
+    const ip = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "?";
+    const lenyomat = crypto.createHash("sha256").update(`${process.env.CHAT_SO || ""}|hird|${nap()}|${ip}`).digest("hex").slice(0, 24);
+    const sajat = await kv("INCR", P + "ip:" + lenyomat);
+    if (sajat === 1) await kv("EXPIRE", P + "ip:" + lenyomat, 86400);
+    if (sajat > NAPI_LATOGATO * 3) return json(res, 200, { ok: false, uzenet: "Most nem tudjuk fogadni, írj nekünk az info@adverr.hu címre!" });
     const w = await szuro.weboldal(b.weboldal);
     if (!w.ok) return json(res, 200, { ok: false, mezo: "weboldal", uzenet: w.uzenet });
     const tart = await weboldalTartalom(w.ertek);
     if (tart.tiltott) return json(res, 200, { ok: false, mezo: "weboldal", uzenet: "Ezt a weboldalt nem tudjuk elfogadni." });
     const nev = n.ertek, web = w.ertek, tel = t.ertek;
-    const ip = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "?";
-    const lenyomat = crypto.createHash("sha256").update(`${process.env.CHAT_SO || ""}|hird|${nap()}|${ip}`).digest("hex").slice(0, 24);
-    const sajat = await kv("INCR", P + "ip:" + lenyomat);
-    if (sajat === 1) await kv("EXPIRE", P + "ip:" + lenyomat, 86400);
+    const mentett = await kv("INCR", P + "ment:" + lenyomat);
+    if (mentett === 1) await kv("EXPIRE", P + "ment:" + lenyomat, 86400);
+    if (mentett > NAPI_LATOGATO) return json(res, 200, { ok: false, uzenet: "Most nem tudjuk fogadni, írj nekünk az info@adverr.hu címre!" });
     const ossz = await kv("INCR", P + "nap:" + nap());
     if (ossz === 1) await kv("EXPIRE", P + "nap:" + nap(), 2 * 86400);
-    if (sajat > NAPI_LATOGATO || ossz > NAPI_OSSZES) return json(res, 200, { ok: false, uzenet: "Most nem tudjuk fogadni, írj nekünk az info@adverr.hu címre!" });
+    if (ossz > NAPI_OSSZES) return json(res, 200, { ok: false, uzenet: "Most nem tudjuk fogadni, írj nekünk az info@adverr.hu címre!" });
 
     const id = crypto.randomBytes(8).toString("hex");
     const rekord = { id, nev, weboldal: web, telefon: tel, kulfoldi: !!t.kulfoldi, web_ellenorizve: tart.ellenorizve, web_cim: tart.cim || "",

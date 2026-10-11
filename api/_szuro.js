@@ -77,12 +77,82 @@ async function weboldal(s) {
   const host = u.hostname.toLowerCase();
   if (!/^[a-z0-9.-]+\.[a-z]{2,24}$/i.test(host) || host.includes("..") || /^(localhost|\d+\.\d+\.\d+\.\d+)$/.test(host)) return { ok: false, uzenet: "Ez nem érvényes weboldalcím. Például: pelda.hu" };
   if (tiltottDomain(host) || tiltottSzoveg(host.replace(/[.-]/g, " ")) || tiltottSzoveg(u.pathname.replace(/[/_-]/g, " "))) return { ok: false, uzenet: "Ezt a weboldalt nem tudjuk elfogadni." };
-  try {
-    await Promise.race([dns.lookup(host), new Promise((_, nem) => setTimeout(() => nem(new Error("idő")), 4000))]);
-  } catch {
-    return { ok: false, uzenet: "Ezt a weboldalt nem találjuk. Ellenőrizd a címet!" };
-  }
+  if (!(await nyilvanosHost(host))) return { ok: false, uzenet: "Ezt a weboldalt nem találjuk. Ellenőrizd a címet!" };
   return { ok: true, ertek: `https://${host}${u.pathname === "/" ? "" : u.pathname}`, host };
 }
 
-module.exports = { tiltottSzoveg, tiltottDomain, nev, telefon, weboldal };
+// SEC-006: a szerver csak nyilvános internetes címre indíthat kérést. Privát, loopback, link-local, CGNAT,
+// többes küldésű és fenntartott címre (IPv4 és IPv6, minden írásmódban) nem, átirányítás után sem.
+// A címet a kapcsolódáskor ellenőrizzük (saját lookup), így a DNS a vizsgálat és a lekérés között sem cserélhető le.
+const net = require("net");
+const http = require("http");
+const https = require("https");
+// külön lista az IPv4-hez és az IPv6-hoz: a közös BlockList az IPv4-et ::ffff:-ként az IPv6-szabályokkal is összeveti
+const TILTOTT_IP = new net.BlockList(), TILTOTT_IP6 = new net.BlockList();
+for (const [cim, hossz] of [["0.0.0.0", 8], ["10.0.0.0", 8], ["100.64.0.0", 10], ["127.0.0.0", 8], ["169.254.0.0", 16], ["172.16.0.0", 12],
+  ["192.0.0.0", 24], ["192.0.2.0", 24], ["192.168.0.0", 16], ["198.18.0.0", 15], ["198.51.100.0", 24], ["203.0.113.0", 24], ["224.0.0.0", 3]])
+  TILTOTT_IP.addSubnet(cim, hossz, "ipv4");
+for (const [cim, hossz] of [["::", 96], ["::ffff:0:0", 96], ["64:ff9b::", 96], ["100::", 64], ["2001:db8::", 32], ["2002::", 16],
+  ["fc00::", 7], ["fe80::", 10], ["fec0::", 10], ["ff00::", 8]])
+  TILTOTT_IP6.addSubnet(cim, hossz, "ipv6");
+
+function belsoCim(ip) {
+  const v = net.isIP(String(ip || ""));
+  if (!v) return true;  // ismeretlen formátum: inkább tiltjuk
+  return v === 4 ? TILTOTT_IP.check(String(ip), "ipv4") : TILTOTT_IP6.check(String(ip), "ipv6");
+}
+
+function vedettLookup(host, opciok, cb) {
+  require("dns").lookup(host, { all: true }, (hiba, cimek) => {  // a callbackes változat (a dns itt a promises API)
+    if (hiba) return cb(hiba);
+    if (!cimek.length || cimek.some((c) => belsoCim(c.address))) return cb(new Error("nem nyilvános cím"));
+    if (opciok && opciok.all) return cb(null, cimek);
+    cb(null, cimek[0].address, cimek[0].family);
+  });
+}
+
+async function nyilvanosHost(host) {
+  if (/^\[|^\d+$|^0x/i.test(host) || net.isIP(host)) return false;
+  try {
+    const cimek = await Promise.race([dns.lookup(host, { all: true }), new Promise((_, nem) => setTimeout(() => nem(new Error("idő")), 4000))]);
+    return cimek.length > 0 && cimek.every((c) => !belsoCim(c.address));
+  } catch { return false; }
+}
+
+// egyetlen kérés a védett lookuppal; legfeljebb 1,5 MB választörzs
+function egyKeres(cel, { headers = {}, ido = 9000 } = {}) {
+  return new Promise((ok, nem) => {
+    const x = new URL(cel);
+    const modul = x.protocol === "https:" ? https : http;
+    const k = modul.request(x, { method: "GET", headers, lookup: vedettLookup, timeout: ido }, (r) => {
+      const darabok = []; let hossz = 0;
+      r.on("data", (d) => { hossz += d.length; if (hossz <= 1500000) darabok.push(d); else r.destroy(); });
+      const kesz = () => {
+        const test = Buffer.concat(darabok).toString("utf8");
+        ok({ status: r.statusCode, ok: r.statusCode >= 200 && r.statusCode < 300,
+          headers: { get: (n) => { const v = r.headers[String(n).toLowerCase()]; return Array.isArray(v) ? v.join(", ") : v ?? null; } },
+          text: async () => test });
+      };
+      r.on("end", kesz); r.on("close", kesz);
+    });
+    k.on("timeout", () => k.destroy(new Error("időtúllépés")));
+    k.on("error", nem);
+    k.end();
+  });
+}
+
+async function biztonsagosLekeres(u, opciok = {}) {
+  let cel = u;
+  for (let i = 0; i <= 3; i++) {
+    const x = new URL(cel);
+    if (!/^https?:$/.test(x.protocol) || (x.port && !["80", "443"].includes(x.port)) || x.username || x.password) throw new Error("nem engedett cím");
+    if (!(await nyilvanosHost(x.hostname))) throw new Error("nem nyilvános cím");
+    const r = await egyKeres(cel, { headers: opciok.headers, ido: opciok.ido });
+    const hova = r.status >= 300 && r.status < 400 && r.headers.get("location");
+    if (!hova) return { valasz: r, vegso: cel };
+    cel = new URL(hova, cel).toString();
+  }
+  throw new Error("túl sok átirányítás");
+}
+
+module.exports = { tiltottSzoveg, tiltottDomain, nev, telefon, weboldal, belsoCim, nyilvanosHost, biztonsagosLekeres };

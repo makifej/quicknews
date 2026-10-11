@@ -68,23 +68,27 @@ function szoveg(html) {
     m(new RegExp(`<meta[^>]+content=["']([^"']*)["'][^>]+(?:property|name)=["']${nev}["']`, "i"));
   const p = [...html.matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].map((x) => x[1].replace(/<[^>]+>/g, " ").replace(/&[a-z#0-9]+;/gi, " ").replace(/\s+/g, " ").trim())
     .filter((t) => t.length > 40).join("\n").slice(0, 3500);
-  return { cim: meta("og:title") || m(/<title[^>]*>([^<]*)<\/title>/i), leiras: meta("og:description") || meta("description"), oldal: meta("og:site_name"), torzs: p };
+  // SEC-004: minden promptba kerülő mező hosszkorlátos (a támadó oldal tetszőleges hosszú címet adhat)
+  return { cim: (meta("og:title") || m(/<title[^>]*>([^<]*)<\/title>/i)).slice(0, 300), leiras: (meta("og:description") || meta("description")).slice(0, 600),
+    oldal: meta("og:site_name").slice(0, 100), torzs: p };
 }
 
 async function oldalOlvas(u) {
   // X-poszt: a nyilvános fxtwitter végpont adja a szöveget (az x.com bejelentkezést kér)
-  const xp = u.match(/(?:x|twitter)\.com\/([^/]+)\/status\/(\d+)/i);
+  // ÚJ (ellenpróba): csak valódi x.com vagy twitter.com cím mehet az X-ágra; a minta nem illeszkedhet az URL közepére
+  const xu = new URL(u);
+  const xp = /^(www\.|mobile\.)?(x|twitter)\.com$/i.test(xu.hostname) && xu.pathname.match(/^\/([A-Za-z0-9_]{1,15})\/status\/(\d+)\/?$/);
   if (xp) {
     const r = await fetch(`https://api.fxtwitter.com/${xp[1]}/status/${xp[2]}`, { signal: AbortSignal.timeout(8000) });
     const j = await r.json();
     const t = j.tweet || {};
     return { vegso: u, cim: `${(t.author || {}).name || xp[1]} (X)`, leiras: "", oldal: "X", torzs: String(t.text || "").slice(0, 3500) };
   }
-  const r = await fetch(u, { redirect: "follow", signal: AbortSignal.timeout(9000), headers: { "User-Agent": UA, Accept: "text/html,application/xhtml+xml" } });
+  const { valasz: r, vegso } = await szuro.biztonsagosLekeres(u, { ido: 9000, headers: { "User-Agent": UA, Accept: "text/html,application/xhtml+xml" } });
   if (!r.ok) throw new Error("HTTP " + r.status);
   if (!/html/i.test(r.headers.get("content-type") || "")) throw new Error("nem HTML");
   const html = (await r.text()).slice(0, 800000);
-  return { vegso: r.url || u, ...szoveg(html) };
+  return { vegso, ...szoveg(html) };
 }
 
 const UTASITAS = `Egy magyar AI-hírportál (quicknews.hu) moderátora vagy. Egy látogató beküldött egy linket hírjavaslatként. Döntsd el a megnyitott oldal adatai alapján:
@@ -175,10 +179,18 @@ module.exports = async (req, res) => {
       await ment();
       return json(res, 200, { allapot: "elutasitva", uzenet: UZENET.tiltott });
     }
-    const d = await dont(adat);
+    let d = {};
+    try { d = await dont(adat); } catch { d = {}; }
+    // CQ-003: ha az AI nem adott értékelhető döntést (hiba, kvóta, sérült válasz), nem utasítjuk el csendben: Heni dönt
+    if (typeof d.ai_hir !== "boolean" || typeof d.tiltott !== "boolean" || typeof d.hiteles !== "boolean") {
+      Object.assign(rekord, { cim: String(adat.cim || "").slice(0, 140), vegso: adat.vegso, allapot: "dontesre_var", ok: "ai_hiba",
+        indok: "Az automatikus AI-ellenőrzés most nem futott le, kézi átnézés kell." });
+      await ment();
+      return json(res, 200, { allapot: "dontesre_var", uzenet: UZENET.atnezes });
+    }
     rekord.cim = String(d.cim || adat.cim || "").slice(0, 140);
     rekord.indok = String(d.indok || "").slice(0, 300);
-    rekord.vegso = adat.vegso;
+    rekord.vegso = String(adat.vegso || "").slice(0, 500);
     const ok = d.tiltott ? "tiltott" : !d.ai_hir ? "nem_ai" : !d.hiteles ? "nem_hiteles" : "elfogadva";
     rekord.ok = ok;
     // az AI csak javasol: a relevánsnak ítélt link is Heni döntésére vár, a kézi listába csak az ő elfogadásával kerül

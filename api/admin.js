@@ -21,10 +21,12 @@ async function kv(...parancs) {
 }
 
 function alair(lejar) {
-  return crypto.createHmac("sha256", process.env.ADMIN_TITOK || "").update(String(lejar)).digest("hex");
+  return crypto.createHmac("sha256", process.env.ADMIN_TITOK).update(String(lejar)).digest("hex");
 }
 
 function belepve(req) {
+  // SEC-012: titok nélkül semmilyen süti nem érvényes (különben üres kulccsal is hamisítható lenne)
+  if (!process.env.ADMIN_TITOK) return false;
   const m = (req.headers.cookie || "").match(new RegExp(`${SUTI}=(\\d+)\\.([a-f0-9]{64})`));
   if (!m || Number(m[1]) < Date.now()) return false;
   const a = Buffer.from(alair(m[1])), b = Buffer.from(m[2]);
@@ -76,9 +78,23 @@ module.exports = async (req, res) => {
   try {
     if (mi === "belep" && req.method === "POST") {
       const { jelszo } = await torzs(req);
-      if (!process.env.ADMIN_JELSZO) return json(res, 503, { hiba: "Még nincs beállítva admin jelszó." });
+      if (!process.env.ADMIN_JELSZO || !process.env.ADMIN_TITOK) return json(res, 503, { hiba: "Még nincs beállítva admin jelszó." });
+      // SEC-003: IP-nként óránként legfeljebb 10 jelszópróba. A próbát az ellenőrzés ELŐTT, atomikusan foglaljuk le
+      // (INCR), így párhuzamos kérésekkel sem lehet többet kiértékeltetni. Globális zárolás nincs, hogy egy támadó
+      // ne zárhassa ki a tulajdonost; az összesített számláló csak a megfigyeléshez van.
+      const ip = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "?";
+      const ora = new Date().toISOString().slice(0, 13);
+      const ipKulcs = "qn:admin:probak:" + crypto.createHash("sha256").update(`${process.env.CHAT_SO || ""}|${ora}|${ip}`).digest("hex").slice(0, 24);
+      const db = await kv("INCR", ipKulcs);
+      if (db === 1) await kv("EXPIRE", ipKulcs, 3600);
+      if (db > 10) return json(res, 429, { hiba: "Túl sok próbálkozás erről a hálózatról. Próbáld újra egy óra múlva." });
       await new Promise((r) => setTimeout(r, 400)); // lassítja a próbálgatást
-      if (!jelszo || !egyezik(jelszo, process.env.ADMIN_JELSZO)) return json(res, 401, { hiba: "Hibás jelszó." });
+      if (!jelszo || !egyezik(jelszo, process.env.ADMIN_JELSZO)) {
+        const ossz = "qn:admin:hibas:ossz:" + ora;
+        if ((await kv("INCR", ossz)) === 1) await kv("EXPIRE", ossz, 86400);
+        return json(res, 401, { hiba: "Hibás jelszó." });
+      }
+      await kv("DEL", ipKulcs);
       const lejar = Date.now() + NAP * 864e5;
       res.setHeader("Set-Cookie", `${SUTI}=${lejar}.${alair(lejar)}; Path=/; Max-Age=${NAP * 86400}; HttpOnly; Secure; SameSite=Strict`);
       return json(res, 200, { ok: true });
