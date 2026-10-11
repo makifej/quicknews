@@ -1,35 +1,52 @@
-// qn-chat: „Kérdezz a hírektől!” (api/kerdez)
+// qn-chat: „Kérdezz a hírektől!” (api/kerdez). A beszélgetés a böngészőfül munkamenetében megmarad
+// (sessionStorage): oldalról oldalra viszi, a fül bezárásával törlődik.
 (function(){
   var dob = document.querySelector('[data-chat]'); if (!dob) return;
   var indit = dob.querySelector('[data-chat-indit]'), panel = dob.querySelector('.chat-panel'), lista = dob.querySelector('[data-chat-uzenetek]');
   var urlap = dob.querySelector('[data-chat-urlap]'), mezo = urlap.querySelector('input'), kuld = urlap.querySelector('button');
+  var TAR = 'qn-chat', all = {nyitva: false, uzenetek: []};
+  try { all = JSON.parse(sessionStorage.getItem(TAR)) || all; } catch(e){}
+  function ment(){ try { sessionStorage.setItem(TAR, JSON.stringify(all)); } catch(e){} }
   function ev(nev, adat){ try { if (window.gtag) gtag('event', nev, adat || {}); } catch(e){} }
   function biztos(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
-  function nyit(n){ panel.hidden = !n; indit.setAttribute('aria-expanded', n ? 'true' : 'false'); dob.classList.toggle('nyitva', n); if (n) { setTimeout(function(){ mezo.focus(); }, 50); ev('chat_megnyitas'); } }
+  function nyit(n, csendes){ panel.hidden = !n; indit.setAttribute('aria-expanded', n ? 'true' : 'false'); dob.classList.toggle('nyitva', n);
+    all.nyitva = n; ment(); if (n && !csendes) { setTimeout(function(){ mezo.focus(); }, 50); ev('chat_megnyitas'); } }
   indit.addEventListener('click', function(){ nyit(panel.hidden); });
   dob.querySelector('[data-chat-zar]').addEventListener('click', function(){ nyit(false); indit.focus(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !panel.hidden) { nyit(false); indit.focus(); } });
-  function buborek(osztaly, html){ var d = document.createElement('div'); d.className = 'chat-b ' + osztaly; d.innerHTML = html; lista.appendChild(d); lista.scrollTop = lista.scrollHeight; return d; }
+  function datum(d){ var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d || ''); return m ? (+m[2]) + '. ' + (+m[3]) + '.' : ''; }
+  function hirlista(l, szam){ return l.map(function(f){ return '<li><a href="'+biztos(f.url)+'">'+(szam ? '<span>'+f.n+'</span>' : '')+'<em>'+biztos(f.cim)+(f.datum ? ' <small>'+datum(f.datum)+'</small>' : '')+'</em></a></li>'; }).join(''); }
+  function rajzol(u){
+    var d = document.createElement('div');
+    if (u.en) { d.className = 'chat-b en'; d.innerHTML = biztos(u.en); }
+    else if (u.hiba) { d.className = 'chat-b bot hiba'; d.innerHTML = biztos(u.hiba); }
+    else {
+      var j = u.bot, szoveg = biztos(j.valasz).replace(/^\s*[*-]\s+/gm, '• ').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n{2,}/g, '\n').replace(/\n/g, '<br>').replace(/\[(\d)\]/g, '<sup>$1</sup>');
+      d.className = 'chat-valasz';
+      d.innerHTML = '<div class="chat-b bot"><p>'+szoveg+'</p>' + ((j.forrasok || []).length ? '<ul class="chat-forras">'+hirlista(j.forrasok, true)+'</ul>' : '') + '</div>'
+        + ((j.korabbi || []).length ? '<div class="chat-korabbi"><h3>Válogatás korábbi híreinkből</h3><ul>'+hirlista(j.korabbi, false)+'</ul></div>' : '');
+    }
+    lista.appendChild(d); return d;
+  }
+  function gorget(){ lista.scrollTop = lista.scrollHeight; }
+  function uj(u){ all.uzenetek.push(u); all.uzenetek = all.uzenetek.slice(-30); ment(); rajzol(u); gorget(); }
+  if (all.uzenetek.length) { var jav0 = lista.querySelector('.chat-javaslat'); if (jav0) jav0.remove(); all.uzenetek.forEach(rajzol); }
+  if (all.nyitva) { nyit(true, true); setTimeout(gorget, 0); }
   function kerdez(q){
     q = (q || '').trim(); if (q.length < 3) return;
     var jav = lista.querySelector('.chat-javaslat'); if (jav) jav.remove();
-    buborek('en', biztos(q)); mezo.value = ''; mezo.disabled = kuld.disabled = true;
-    var var_ = buborek('bot var', '<span class="chat-pont"></span><span class="chat-pont"></span><span class="chat-pont"></span>');
+    uj({en: q}); mezo.value = ''; mezo.disabled = kuld.disabled = true;
+    var var_ = document.createElement('div'); var_.className = 'chat-b bot var'; var_.innerHTML = '<span class="chat-pont"></span><span class="chat-pont"></span><span class="chat-pont"></span>'; lista.appendChild(var_); gorget();
     ev('chat_kerdes');
     fetch('/api/kerdez', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({kerdes:q})})
       .then(function(r){ return r.json(); })
-      .then(function(j){
-        var_.remove();
-        if (j.hiba) { buborek('bot hiba', biztos(j.hiba)); return; }
-        var szoveg = biztos(j.valasz).replace(/^\s*[*-]\s+/gm, '• ').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n{2,}/g, '\n').replace(/\n/g, '<br>').replace(/\[(\d)\]/g, '<sup>$1</sup>');
-        var forr = (j.forrasok || []).map(function(f){ return '<li><a href="'+biztos(f.url)+'"><span>'+f.n+'</span>'+biztos(f.cim)+'</a></li>'; }).join('');
-        buborek('bot', '<p>'+szoveg+'</p>' + (forr ? '<ul class="chat-forras">'+forr+'</ul>' : ''));
-      })
-      .catch(function(){ var_.remove(); buborek('bot hiba', 'Most nem sikerült választ adni. Próbáld újra kicsit később!'); })
+      .then(function(j){ var_.remove(); uj(j.hiba ? {hiba: j.hiba} : {bot: j}); })
+      .catch(function(){ var_.remove(); uj({hiba: 'Most nem sikerült választ adni. Próbáld újra kicsit később!'}); })
       .then(function(){ mezo.disabled = kuld.disabled = false; mezo.focus(); });
   }
   urlap.addEventListener('submit', function(e){ e.preventDefault(); kerdez(mezo.value); });
-  lista.addEventListener('click', function(e){ var b = e.target.closest('.chat-javaslat button'); if (b) kerdez(b.textContent); var a = e.target.closest('.chat-forras a'); if (a) ev('chat_forras_kattintas'); });
+  lista.addEventListener('click', function(e){ var b = e.target.closest('.chat-javaslat button'); if (b) kerdez(b.textContent);
+    var a = e.target.closest('.chat-forras a, .chat-korabbi a'); if (a) ev('chat_forras_kattintas', {korabbi: !!a.closest('.chat-korabbi')}); });
 })();
 (function(){
   document.querySelectorAll('.szakasz-tobb').forEach(function(b){ b.addEventListener('click', function(){ var r=b.parentElement.querySelector('.szakasz-rejtett'); var ny=!r.hidden; r.hidden=ny; b.setAttribute('aria-expanded', ny?'false':'true'); b.textContent = ny ? b.dataset.cimke : 'Kevesebb'; if(!b.dataset.cimke) b.dataset.cimke=b.textContent; }); b.dataset.cimke=b.textContent; });
