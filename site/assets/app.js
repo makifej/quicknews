@@ -4,7 +4,8 @@
   var dob = document.querySelector('[data-chat]'); if (!dob) return;
   var indit = dob.querySelector('[data-chat-indit]'), panel = dob.querySelector('.chat-panel'), lista = dob.querySelector('[data-chat-uzenetek]');
   var urlap = dob.querySelector('[data-chat-urlap]'), mezo = urlap.querySelector('input'), kuld = urlap.querySelector('button');
-  var TAR = 'qn-chat', all = {nyitva: false, uzenetek: []};
+  var TAR = 'qn-chat', all = {nyitva: false, uzenetek: []}, alapGomb = dob.querySelector('[data-chat-alap]');
+  var KEZDO = lista.innerHTML; // a kiindulási állapot: az alap kérdésjavaslatok
   try { all = JSON.parse(sessionStorage.getItem(TAR)) || all; } catch(e){}
   function ment(){ try { sessionStorage.setItem(TAR, JSON.stringify(all)); } catch(e){} }
   function ev(nev, adat){ try { if (window.gtag) gtag('event', nev, adat || {}); } catch(e){} }
@@ -82,10 +83,16 @@
   fetch('/api/kerdez?mi=nepszeru').then(function(r){ return r.json(); }).then(function(j){
     if (j && j.kerdesek && j.kerdesek.length) { nepszeru = j.kerdesek; all.nepszeru = nepszeru; ment(); javaslatok(); }
   }).catch(function(){});
-  function uj(u){ all.uzenetek.push(u); all.uzenetek = all.uzenetek.slice(-30); ment(); var d = rajzol(u);
+  function uj(u){ all.uzenetek.push(u); all.uzenetek = all.uzenetek.slice(-30); ment(); var d = rajzol(u); alapGomb.disabled = false;
     // a kész válasz elejére görgetünk, nem a lista aljára
     if (u.bot) { lista.scrollTop = Math.max(0, d.offsetTop - 8); } else gorget(); helyMent(); }
   if (all.uzenetek.length) { var jav0 = lista.querySelector('.chat-javaslat'); if (jav0) jav0.remove(); all.uzenetek.forEach(rajzol); }
+  function alapAllapot(){ alapGomb.disabled = !all.uzenetek.length; }
+  alapAllapot();
+  // „Kiindulási állapot visszaállítása”: a beszélgetés törlődik, visszajönnek az alap kérdések
+  alapGomb.addEventListener('click', function(){
+    all.uzenetek = []; delete all.gorgetes; ment();
+    lista.innerHTML = KEZDO; javaslatok(); lista.scrollTop = 0; alapAllapot(); mezo.value = ''; mezo.focus(); ev('chat_alaphelyzet'); });
   if (all.nyitva) { nyit(true, true); setTimeout(function(){ if (typeof all.gorgetes === 'number') lista.scrollTop = all.gorgetes; else gorget(); }, 0); }
   function kerdez(q){
     q = (q || '').trim(); if (q.length < 3) return;
