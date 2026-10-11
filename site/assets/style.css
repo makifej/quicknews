@@ -828,3 +828,8 @@ button.chat-jel[aria-expanded="true"] .chat-tipp { opacity: 0 !important; visibi
 @media (prefers-reduced-motion: reduce) { .chat-hirkartya { animation: none; } .chat-tipp { transition: none; } }
 button.chat-jel:hover, button.chat-jel:focus-visible { z-index: 20; }
 .chat-tipp { z-index: 30; }
+.chat-javaslat-cim { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--szoveg-3); margin-bottom: 2px; }
+.chat-masok { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 4px; }
+.chat-masok > span { width: 100%; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--szoveg-3); }
+.chat-javas { font: 600 14px/19px Manrope, system-ui, sans-serif; color: var(--szoveg); background: var(--bg-3); border: 1px solid var(--keret); border-radius: 999px; padding: 6px 12px; cursor: pointer; text-align: left; }
+.chat-javas:hover { border-color: var(--kiemelo); color: var(--kiemelo-szin); }

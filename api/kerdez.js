@@ -106,7 +106,36 @@ KIMENET (JSON)
 - "kapcsolodo": azoknak a további híreknek a sorszáma (legfeljebb 4), amelyek a témához kapcsolódnak, de nem a kérdés közvetlen válaszai (például régebbiek vagy csak részben illenek). Ezek ne szerepeljenek a pontokban. Ha "temaban" false, üres lista.
 Ha "temaban" false, a "bevezeto" legyen az elutasító szöveg, a "pontok" pedig üres lista.`;
 
+const ALAP_KERDESEK = ["Mi történt ma az OpenAI-jal?", "Milyen új képgeneráló eszköz jelent meg?", "Mi a legfontosabb AI-hír ezen a héten?", "Milyen új videógeneráló modell jelent meg?"];
+const NEPSZERU_MIN = 3; // ennyi különböző látogatónak kell feltennie, hogy nyilvános javaslat legyen belőle
+
+function kerdesKulcs(q) {
+  return crypto.createHash("sha256").update(q.toLowerCase().replace(/[?!.,]+$/g, "").replace(/\s+/g, " ").trim()).digest("hex").slice(0, 24);
+}
+
+async function nepszeruek() {
+  const v = (await kv("ZREVRANGE", P + "nepszeru", 0, 19, "WITHSCORES")) || [];
+  const ki = [];
+  for (let i = 0; i < v.length; i += 2) {
+    if (Number(v[i + 1]) < NEPSZERU_MIN) continue;
+    const sz = await kv("HGET", P + "nepszeru_szoveg", v[i]);
+    if (sz) ki.push(sz);
+    if (ki.length >= 4) break;
+  }
+  for (const a of ALAP_KERDESEK) if (ki.length < 4 && !ki.some((x) => x.toLowerCase() === a.toLowerCase())) ki.push(a);
+  return ki;
+}
+
 module.exports = async (req, res) => {
+  if (req.method === "GET") {
+    const url = new URL(req.url, "https://quicknews.hu");
+    if (url.searchParams.get("mi") === "nepszeru") {
+      try {
+        res.setHeader("Cache-Control", "public, max-age=300");
+        return json(res, 200, { kerdesek: await nepszeruek() });
+      } catch { return json(res, 200, { kerdesek: ALAP_KERDESEK }); }
+    }
+  }
   if (req.method !== "POST") return json(res, 405, { hiba: "Csak POST." });
   try {
     const { kerdes } = await torzs(req);
@@ -170,6 +199,16 @@ module.exports = async (req, res) => {
     const hivatkozott = [...new Set(pontok.flatMap((x) => x.forras))].sort((a, b) => a - b);
     const korabbi = [...new Set((ki.kapcsolodo || []).map(Number))].filter((n) => ervenyes(n) && !hivatkozott.includes(n)).slice(0, 4);
     const valasz = [bevezeto, ...pontok.map((x) => "• " + x.szoveg)].filter(Boolean).join("\n");
+    // népszerű kérdések: csak témába vágó, megválaszolt, rövid kérdés, látogatónként egyszer számolva
+    if (pontok.length && q.length <= 90) {
+      const kk = kerdesKulcs(q);
+      const uj = await kv("SADD", P + "nk:" + kk, lenyomat);
+      await kv("EXPIRE", P + "nk:" + kk, 30 * 86400);
+      if (uj === 1) {
+        await kv("ZINCRBY", P + "nepszeru", 1, kk);
+        await kv("HSETNX", P + "nepszeru_szoveg", kk, q.replace(/\s+/g, " ").trim());
+      }
+    }
     return json(res, 200, { valasz, bevezeto, pontok, forrasok: hivatkozott.map(adat), korabbi: korabbi.map(adat), maradt: Math.max(0, NAPI_LATOGATO - sajat) });
   } catch (err) {
     return json(res, 500, { hiba: "Most nem sikerült választ adni. Próbáld újra kicsit később!" });
