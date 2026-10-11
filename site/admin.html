@@ -24,7 +24,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .fulek button[aria-selected=true]{color:var(--szoveg);border-color:var(--amber)}
 .frissult{margin-left:auto;color:var(--halkabb);font-size:16px;white-space:nowrap}
 
-main{max-width:1200px;margin:0 auto;padding:32px 24px 96px}
+main{max-width:1200px;margin:0 auto;padding:32px 24px 96px;overflow-wrap:anywhere}
 [hidden]{display:none!important}
 
 /* mutatók */
@@ -113,9 +113,9 @@ transition:border-color .3s cubic-bezier(.32,.72,0,1)}
 .szeg{display:inline-flex;background:var(--lap);border-radius:10px;padding:4px}
 .szeg button{padding:8px 16px;border-radius:7px;font-weight:600;color:var(--halk)}
 .szeg button[aria-pressed=true]{background:var(--lap2);color:var(--szoveg)}
-.valaszto{position:relative}
+.valaszto{position:relative;min-width:0;max-width:100%;flex:1 1 280px}
 .valaszto select{appearance:none;-webkit-appearance:none;font:600 18px Manrope,sans-serif;color:var(--szoveg);background:var(--lap);
-border:1px solid var(--vonal);border-radius:10px;padding:11px 40px 11px 16px;cursor:pointer;max-width:100%}
+border:1px solid var(--vonal);border-radius:10px;padding:11px 40px 11px 16px;cursor:pointer;width:100%;max-width:100%;text-overflow:ellipsis}
 .valaszto select:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
 .valaszto::after{content:"";position:absolute;right:16px;top:50%;width:8px;height:8px;border-right:2px solid var(--halk);
 border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);pointer-events:none}
@@ -141,7 +141,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 .fej{color:var(--halkabb);font-size:16px;padding:0 0 8px}
 
 @media (max-width:900px){.mutatok{grid-template-columns:repeat(2,minmax(0,1fr))}.tabla,.ketto{grid-template-columns:minmax(0,1fr)}}
-@media (max-width:560px){.sav-bel{padding:0 16px;gap:20px}.frissult{display:none}main{padding:24px 16px 80px}
+@media (max-width:560px){.sav-bel{padding:0 16px;gap:16px}.logo{font-size:17px}.fulek{gap:14px}.fulek button{font-size:16px}.frissult{display:none}main{padding:24px 16px 80px}
 .mutato{padding:14px 16px}.mutato b{font-size:31px}.kartya{grid-template-columns:48px 48px minmax(0,1fr);gap:12px;padding:14px 16px}
 .kartya .kep{width:48px;height:60px}.kartya .ido{font-size:21px}.osszeg b{font-size:42px}}
 </style></head><body>
