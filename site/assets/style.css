@@ -868,3 +868,27 @@ html:not(.suti-van) .chat { display: none; }
 .csoport-db { margin-left: auto; font-size: 15px; line-height: 22px; font-weight: 700; color: var(--szoveg-3); }
 .rovat-csoport .szakasz-rejtett { margin-top: 24px; }
 .rovat-csoport .szakasz-tobb { margin-top: 24px; }
+
+/* ===== Fel- és leszavazás (Reddit-szerűen), 2026-10-11 ===== */
+:root { --sz-fel: #ff4500; --sz-le: #6a5cff; }
+.szavaz { display: inline-flex; align-items: center; gap: 2px; height: 40px; padding: 0 4px; margin-top: 16px; border-radius: 999px; background: var(--bg-3); border: 1px solid var(--keret); transition: background-color 300ms var(--gorbe), border-color 300ms var(--gorbe); }
+.szavaz button { width: 32px; height: 32px; display: grid; place-items: center; padding: 0; color: var(--szoveg-2); background: none; border: 0; border-radius: 999px; cursor: pointer; transition: color 200ms var(--gorbe), background-color 200ms var(--gorbe); }
+.szavaz svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
+.szavaz .sz-le svg { transform: rotate(180deg); }
+.szavaz .sz-fel:hover { color: var(--sz-fel); background: rgba(255, 69, 0, .14); }
+.szavaz .sz-le:hover { color: var(--sz-le); background: rgba(106, 92, 255, .16); }
+.szavaz button:focus-visible { outline: 2px solid var(--szoveg); outline-offset: 1px; }
+.szavaz .sz-db { min-width: 28px; padding: 0 2px; text-align: center; font: 700 15px/1 Manrope, system-ui, sans-serif; color: var(--szoveg); font-variant-numeric: tabular-nums; }
+.szavaz[data-sajat="1"] { background: var(--sz-fel); border-color: var(--sz-fel); }
+.szavaz[data-sajat="-1"] { background: var(--sz-le); border-color: var(--sz-le); }
+.szavaz[data-sajat="1"] button, .szavaz[data-sajat="-1"] button, .szavaz[data-sajat="1"] .sz-db, .szavaz[data-sajat="-1"] .sz-db { color: #fff; }
+.szavaz[data-sajat="1"] .sz-fel svg, .szavaz[data-sajat="-1"] .sz-le svg { fill: #fff; }
+.szavaz[data-sajat="1"] button:hover, .szavaz[data-sajat="-1"] button:hover { background: rgba(255, 255, 255, .18); color: #fff; }
+.cikk-fej .szavaz { display: flex; width: max-content; }
+.sz-jel { display: inline-flex; align-items: center; gap: 3px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.sz-jel svg { width: 13px; height: 13px; fill: currentColor; }
+.sz-jel.poz { color: var(--sz-fel); }
+.sz-jel.neg { color: var(--sz-le); }
+.sz-jel.neg svg { transform: rotate(180deg); }
+.kiemelt-sav .sz-jel { margin-left: 8px; font-size: 14px; }
+@media (prefers-reduced-motion: reduce) { .szavaz, .szavaz button { transition: none; } }
