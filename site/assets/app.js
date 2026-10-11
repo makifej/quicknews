@@ -24,7 +24,8 @@
     else {
       var j = u.bot, szoveg = biztos(j.valasz).replace(/^\s*[*-]\s+/gm, '• ').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n{2,}/g, '\n').replace(/\n/g, '<br>').replace(/\[(\d)\]/g, '<sup>$1</sup>');
       d.className = 'chat-valasz';
-      d.innerHTML = '<div class="chat-b bot"><p>'+szoveg+'</p>' + ((j.forrasok || []).length ? '<ul class="chat-forras">'+hirlista(j.forrasok, true)+'</ul>' : '') + '</div>'
+      d.innerHTML = '<div class="chat-b bot"><p>'+szoveg+'</p></div>'
+        + ((j.forrasok || []).length ? '<div class="chat-korabbi chat-forrasblokk"><h3>A válasz forrásai</h3><ul>'+hirlista(j.forrasok, true)+'</ul></div>' : '')
         + ((j.korabbi || []).length ? '<div class="chat-korabbi"><h3>Válogatás korábbi híreinkből</h3><ul>'+hirlista(j.korabbi, false)+'</ul></div>' : '');
     }
     lista.appendChild(d); return d;
@@ -47,7 +48,7 @@
   }
   urlap.addEventListener('submit', function(e){ e.preventDefault(); kerdez(mezo.value); });
   lista.addEventListener('click', function(e){ var b = e.target.closest('.chat-javaslat button'); if (b) kerdez(b.textContent);
-    var a = e.target.closest('.chat-forras a, .chat-korabbi a'); if (a) ev('chat_forras_kattintas', {korabbi: !!a.closest('.chat-korabbi')}); });
+    var a = e.target.closest('.chat-korabbi a'); if (a) ev('chat_forras_kattintas', {korabbi: !a.closest('.chat-forrasblokk')}); });
 })();
 (function(){
   document.querySelectorAll('.szakasz-tobb').forEach(function(b){ b.addEventListener('click', function(){ var r=b.parentElement.querySelector('.szakasz-rejtett'); var ny=!r.hidden; r.hidden=ny; b.setAttribute('aria-expanded', ny?'false':'true'); b.textContent = ny ? b.dataset.cimke : 'Kevesebb'; if(!b.dataset.cimke) b.dataset.cimke=b.textContent; }); b.dataset.cimke=b.textContent; });
