@@ -1,3 +1,36 @@
+// qn-chat: „Kérdezz a hírektől!” (api/kerdez)
+(function(){
+  var dob = document.querySelector('[data-chat]'); if (!dob) return;
+  var indit = dob.querySelector('[data-chat-indit]'), panel = dob.querySelector('.chat-panel'), lista = dob.querySelector('[data-chat-uzenetek]');
+  var urlap = dob.querySelector('[data-chat-urlap]'), mezo = urlap.querySelector('input'), kuld = urlap.querySelector('button');
+  function ev(nev, adat){ try { if (window.gtag) gtag('event', nev, adat || {}); } catch(e){} }
+  function biztos(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function nyit(n){ panel.hidden = !n; indit.setAttribute('aria-expanded', n ? 'true' : 'false'); dob.classList.toggle('nyitva', n); if (n) { setTimeout(function(){ mezo.focus(); }, 50); ev('chat_megnyitas'); } }
+  indit.addEventListener('click', function(){ nyit(panel.hidden); });
+  dob.querySelector('[data-chat-zar]').addEventListener('click', function(){ nyit(false); indit.focus(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !panel.hidden) { nyit(false); indit.focus(); } });
+  function buborek(osztaly, html){ var d = document.createElement('div'); d.className = 'chat-b ' + osztaly; d.innerHTML = html; lista.appendChild(d); lista.scrollTop = lista.scrollHeight; return d; }
+  function kerdez(q){
+    q = (q || '').trim(); if (q.length < 3) return;
+    var jav = lista.querySelector('.chat-javaslat'); if (jav) jav.remove();
+    buborek('en', biztos(q)); mezo.value = ''; mezo.disabled = kuld.disabled = true;
+    var var_ = buborek('bot var', '<span class="chat-pont"></span><span class="chat-pont"></span><span class="chat-pont"></span>');
+    ev('chat_kerdes');
+    fetch('/api/kerdez', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({kerdes:q})})
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        var_.remove();
+        if (j.hiba) { buborek('bot hiba', biztos(j.hiba)); return; }
+        var szoveg = biztos(j.valasz).replace(/\n/g, '<br>').replace(/\[(\d)\]/g, '<sup>$1</sup>');
+        var forr = (j.forrasok || []).map(function(f){ return '<li><a href="'+biztos(f.url)+'"><span>'+f.n+'</span>'+biztos(f.cim)+'</a></li>'; }).join('');
+        buborek('bot', '<p>'+szoveg+'</p>' + (forr ? '<ul class="chat-forras">'+forr+'</ul>' : ''));
+      })
+      .catch(function(){ var_.remove(); buborek('bot hiba', 'Most nem sikerült választ adni. Próbáld újra kicsit később!'); })
+      .then(function(){ mezo.disabled = kuld.disabled = false; mezo.focus(); });
+  }
+  urlap.addEventListener('submit', function(e){ e.preventDefault(); kerdez(mezo.value); });
+  lista.addEventListener('click', function(e){ var b = e.target.closest('.chat-javaslat button'); if (b) kerdez(b.textContent); var a = e.target.closest('.chat-forras a'); if (a) ev('chat_forras_kattintas'); });
+})();
 (function(){
   document.querySelectorAll('.szakasz-tobb').forEach(function(b){ b.addEventListener('click', function(){ var r=b.parentElement.querySelector('.szakasz-rejtett'); var ny=!r.hidden; r.hidden=ny; b.setAttribute('aria-expanded', ny?'false':'true'); b.textContent = ny ? b.dataset.cimke : 'Kevesebb'; if(!b.dataset.cimke) b.dataset.cimke=b.textContent; }); b.dataset.cimke=b.textContent; });
   var csoportos = document.querySelector('.csoportos');
@@ -224,7 +257,7 @@
     var kuszob = Math.max(400, window.innerHeight);
     gomb.classList.toggle('lathato', (window.scrollY || document.documentElement.scrollTop) > kuszob);
     var sav = document.querySelector('[data-suti-sav].nyitva');
-    gomb.style.setProperty('--fel-also', sav && !sav.hidden ? (sav.getBoundingClientRect().height + 16) + 'px' : '');
+    document.documentElement.style.setProperty('--fel-also', sav && !sav.hidden ? (sav.getBoundingClientRect().height + 16) + 'px' : '');
   }
   window.addEventListener('scroll', function(){ if (!var_) { var_ = true; setTimeout(allapot, 80); } }, {passive: true});
   window.addEventListener('resize', allapot, {passive: true});
