@@ -97,7 +97,8 @@ module.exports = async (req, res) => {
 
     const id = crypto.randomBytes(8).toString("hex");
     const rekord = { id, nev, weboldal: web, telefon: tel, kulfoldi: !!t.kulfoldi, web_ellenorizve: tart.ellenorizve, web_cim: tart.cim || "",
-      ido: new Date().toISOString(), allapot: "uj", oldal: String(b.oldal || "").slice(0, 200) };
+      ido: new Date().toISOString(), allapot: "uj", oldal: String(b.oldal || "").slice(0, 200),
+      tema: b.tema === "hirfolyam" ? "hirfolyam" : "hirdetes" };
     await kv("SET", P + id, JSON.stringify(rekord), "EX", MEGORZES);
     await kv("ZADD", P + "lista", Date.now(), id);
     await kv("ZREMRANGEBYSCORE", P + "lista", 0, Date.now() - MEGORZES * 1000);
