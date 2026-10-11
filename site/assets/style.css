@@ -884,3 +884,36 @@ html:not(.suti-van) .chat { display: none; }
 .hk.villan { animation: villan 1.6s cubic-bezier(.32,.72,0,1); }
 @keyframes villan { 0%,100% { box-shadow: 0 0 0 0 rgba(255,178,36,0); } 25%,75% { box-shadow: 0 0 0 3px rgba(255,178,36,.9); } }
 @media (max-width: 599px) { .chat-panel { width: 100%; } .hk-test { padding-left: 12px; } }
+
+
+/* ===== „Egykeretes” chat-sablon (2026-10-11), data-sablon="keret". A „Buborékos” sablon a fenti szabályokkal él. ===== */
+.chat[data-sablon="keret"] .chat-panel { width: 480px; }
+.chat[data-sablon="keret"] .chat-uzenetek { position: relative; padding: 12px; }
+.chat[data-sablon="keret"] .ai-sor { display: block; position: relative; padding-top: 14px; }
+.chat[data-sablon="keret"] .ai-ikon { position: absolute; z-index: 2; top: 0; left: -6px; width: 28px; height: 28px; box-shadow: 0 0 0 3px var(--bg-2); }
+.chat[data-sablon="keret"] .ai-ikon svg { width: 16px; height: 16px; }
+.chat[data-sablon="keret"] .chat-b.ai-buborek { width: 100%; padding: 16px 14px 12px; }
+.chat[data-sablon="keret"] .chat-b.en { max-width: 92%; }
+/* Kapcsolódó hírek: egy mérettel kisebb betű, mint a válasz (15 → 14, 14 → 13) */
+.chat[data-sablon="keret"] .hk-fej { font-size: 14px; line-height: 19px; }
+.chat[data-sablon="keret"] .hk-lead, .chat[data-sablon="keret"] .hk-szoveg, .chat[data-sablon="keret"] .hk-link { font-size: 13px; line-height: 19px; }
+.chat[data-sablon="keret"] .hk-datum { font-size: 11px; }
+/* Válogatás korábbi híreinkből: egy keret, soronként elválasztva, kisebb betűvel */
+.kk { gap: 0; background: var(--bg-3); border: 1px solid var(--keret); border-radius: 12px; overflow: hidden; }
+.kk-elem + .kk-elem { border-top: 1px solid var(--keret); }
+.kk-sor { display: flex; align-items: center; gap: 10px; padding: 8px 6px 8px 12px; }
+.kk-cim { flex: 1 1 auto; min-width: 0; font-size: 14px; line-height: 19px; font-weight: 700; color: var(--szoveg); text-decoration: none; }
+.kk-cim:hover { color: var(--kiemelo-szin); }
+.kk-le { flex: 0 0 auto; width: 32px; height: 32px; display: grid; place-items: center; color: var(--kiemelo); background: none; border: 0; border-radius: 8px; cursor: pointer; transition: transform 300ms var(--gorbe); }
+.kk-le:hover { background: var(--bg-2); }
+.kk-le:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 1px; }
+.kk-le svg { width: 18px; height: 18px; }
+.kk-le[aria-expanded="true"] { transform: rotate(180deg); }
+.kk-test { margin: 0; padding: 0 12px 12px 30px; font-size: 14px; line-height: 20px; color: var(--szoveg-2); }
+.kk-elem.nyitva .kk-test { animation: lenyilik 300ms var(--gorbe); }
+.kk-nyil { display: inline-grid; place-items: center; vertical-align: -3px; color: var(--kiemelo); }
+.kk-nyil svg { width: 16px; height: 16px; }
+.kk-nyil:hover { color: var(--kiemelo-szin); }
+.kk-datum { font-size: 12px; color: var(--szoveg-3); white-space: nowrap; }
+@media (max-width: 599px) { .chat[data-sablon="keret"] .chat-panel { width: 100%; } .kk-test { padding-left: 12px; } }
+@media (prefers-reduced-motion: reduce) { .kk-le { transition: none; } .kk-elem.nyitva .kk-test { animation: none; } }
