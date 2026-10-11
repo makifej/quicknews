@@ -112,6 +112,10 @@ module.exports = async (req, res) => {
       }
       if (mi === "hirdeto_allapot_gep" && req.method === "POST") {
         const { id, allapot } = await torzs(req);
+        if (/^[a-f0-9]{16}$/.test(id || "") && allapot === "torol") {  // Heni törölhet bármit a listából
+          await kv("DEL", "qn:hird:" + id); await kv("ZREM", "qn:hird:lista", id);
+          return json(res, 200, { ok: true });
+        }
         if (!/^[a-f0-9]{16}$/.test(id || "") || !["uj", "felkerestem", "ugyfel", "nem"].includes(allapot)) return json(res, 400, { hiba: "Rossz kérés." });
         const v = await kv("GET", "qn:hird:" + id);
         if (!v) return json(res, 404, { hiba: "Nincs ilyen." });
@@ -127,6 +131,10 @@ module.exports = async (req, res) => {
       }
       if (mi === "bekuldes_dontes_gep" && req.method === "POST") {
         const { id, allapot } = await torzs(req);
+        if (/^[a-f0-9]{16}$/.test(id || "") && allapot === "torol") {  // törlés a listából (a már megjelent hír marad az oldalon)
+          await kv("DEL", "qn:bek:" + id); await kv("ZREM", "qn:bek:lista", id); await kv("SREM", "qn:bek:var", id);
+          return json(res, 200, { ok: true });
+        }
         if (!/^[a-f0-9]{16}$/.test(id || "") || !["elfogadva", "elutasitva", "dontesre_var"].includes(allapot)) return json(res, 400, { hiba: "Rossz kérés." });
         const v = await kv("GET", "qn:bek:" + id);
         if (!v) return json(res, 404, { hiba: "Nincs ilyen beküldés." });
@@ -284,6 +292,10 @@ module.exports = async (req, res) => {
     }
     if (mi === "hirdeto_allapot" && req.method === "POST") {
       const { id, allapot } = await torzs(req);
+      if (/^[a-f0-9]{16}$/.test(id || "") && allapot === "torol") {  // Heni törölhet bármit a listából
+        await kv("DEL", "qn:hird:" + id); await kv("ZREM", "qn:hird:lista", id);
+        return json(res, 200, { ok: true });
+      }
       if (!/^[a-f0-9]{16}$/.test(id || "") || !["uj", "felkerestem", "ugyfel", "nem"].includes(allapot)) return json(res, 400, { hiba: "Rossz kérés." });
       const v = await kv("GET", "qn:hird:" + id);
       if (!v) return json(res, 404, { hiba: "Nincs ilyen." });
@@ -300,6 +312,10 @@ module.exports = async (req, res) => {
     if (mi === "bekuldes_dontes" && req.method === "POST") {
       // Heni felülbírálja a moderátor AI döntését: elfogadva -> a Mac átveszi; elutasitva -> kikerül a várólistából
       const { id, allapot } = await torzs(req);
+      if (/^[a-f0-9]{16}$/.test(id || "") && allapot === "torol") {  // törlés a listából (a már megjelent hír marad az oldalon)
+        await kv("DEL", "qn:bek:" + id); await kv("ZREM", "qn:bek:lista", id); await kv("SREM", "qn:bek:var", id);
+        return json(res, 200, { ok: true });
+      }
       if (!/^[a-f0-9]{16}$/.test(id || "") || !["elfogadva", "elutasitva", "dontesre_var"].includes(allapot)) return json(res, 400, { hiba: "Rossz kérés." });
       const v = await kv("GET", "qn:bek:" + id);
       if (!v) return json(res, 404, { hiba: "Nincs ilyen beküldés." });
