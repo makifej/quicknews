@@ -55,6 +55,18 @@ function json(res, kod, adat) {
   res.end(JSON.stringify(adat));
 }
 
+async function kepFeltolt(id, b64) {
+  if (!/^[a-f0-9]{12}$/.test(id || "")) return { hiba: "Rossz azonosító." };
+  if (!b64 || b64.length > 4_000_000) return { hiba: "A kép túl nagy vagy üres (legfeljebb kb. 3 MB)." };
+  const ido = new Date().toISOString();
+  await kv("SET", P + "kep:" + id, b64, "EX", 30 * 86400);
+  const regi = await kv("HGET", P + "kitenni", id);
+  const e = regi ? JSON.parse(regi) : {};
+  e.sajat_kep = { ido, meret: Math.round(b64.length * 0.75) };
+  await kv("HSET", P + "kitenni", id, JSON.stringify(e));
+  return { ok: true, ido };
+}
+
 module.exports = async (req, res) => {
   const url = new URL(req.url, "https://quicknews.hu");
   const mi = url.searchParams.get("mi") || "";
@@ -86,11 +98,19 @@ module.exports = async (req, res) => {
         await kv("SET", P + "kartya:" + fajl, b64, "EX", 60 * 86400);
         return json(res, 200, { ok: true });
       }
+      if (mi === "kep_feltolt" && req.method === "POST") {
+        const { id, b64 } = await torzs(req);
+        return json(res, 200, await kepFeltolt(id, b64));
+      }
+      if (mi === "kep") {
+        const b64 = await kv("GET", P + "kep:" + (url.searchParams.get("id") || ""));
+        return json(res, b64 ? 200 : 404, b64 ? { b64 } : { hiba: "nincs feltöltött kép" });
+      }
       if (mi === "kitenni") {
         if (req.method === "POST") {
           const { id, e } = await torzs(req);
           if (!/^[a-f0-9]{12}$/.test(id || "")) return json(res, 400, { hiba: "rossz azonosító" });
-          if (!e || (!e.facebook && !e.linkedin && !e.hirdetes && !e.kartya)) await kv("HDEL", P + "kitenni", id);
+          if (!e || (!e.facebook && !e.linkedin && !e.hirdetes && !e.kartya && !e.sajat_kep)) await kv("HDEL", P + "kitenni", id);
           else await kv("HSET", P + "kitenni", id, JSON.stringify(e));
           return json(res, 200, { ok: true });
         }
@@ -117,6 +137,7 @@ module.exports = async (req, res) => {
         const e = kit[s.id] || {};
         s.kerve = { facebook: !!e.facebook, linkedin: !!e.linkedin, hirdetes: !!e.hirdetes };
         s.kartya = e.kartya || null;
+        s.sajat_kep = e.sajat_kep || null;
       }
       return json(res, 200, adat);
     }
@@ -126,6 +147,18 @@ module.exports = async (req, res) => {
       if (!b64) { res.statusCode = 404; return res.end("nincs"); }
       res.setHeader("Content-Type", "image/jpeg");
       res.setHeader("Cache-Control", "private, max-age=3600");
+      return res.end(Buffer.from(b64, "base64"));
+    }
+    if (mi === "kep_feltolt" && req.method === "POST") {
+      const { id, b64 } = await torzs(req);
+      const r = await kepFeltolt(id, b64);
+      return json(res, r.hiba ? 400 : 200, r);
+    }
+    if (mi === "kep") {
+      const b64 = await kv("GET", P + "kep:" + (url.searchParams.get("id") || "").replace(/[^a-f0-9]/g, ""));
+      if (!b64) { res.statusCode = 404; return res.end("nincs"); }
+      res.setHeader("Content-Type", "image/jpeg");
+      res.setHeader("Cache-Control", "private, no-store");
       return res.end(Buffer.from(b64, "base64"));
     }
     if (mi === "kijeloles" && req.method === "POST") {
@@ -141,7 +174,7 @@ module.exports = async (req, res) => {
         if (mezo === "kartya_jo") { e.kartya.jo = ertek ? most : null; if (ertek) e.kartya.elutasitva = null; }
         else { e.kartya.elutasitva = ertek ? most : null; if (ertek) e.kartya.jo = null; }
       } else return json(res, 400, { hiba: "Ismeretlen mező." });
-      if (!e.facebook && !e.linkedin && !e.hirdetes && !e.kartya) await kv("HDEL", P + "kitenni", id);
+      if (!e.facebook && !e.linkedin && !e.hirdetes && !e.kartya && !e.sajat_kep) await kv("HDEL", P + "kitenni", id);
       else await kv("HSET", P + "kitenni", id, JSON.stringify(e));
       return json(res, 200, { ok: true });
     }
