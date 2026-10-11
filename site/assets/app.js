@@ -4,7 +4,7 @@
   var dob = document.querySelector('[data-chat]'); if (!dob) return;
   var indit = dob.querySelector('[data-chat-indit]'), panel = dob.querySelector('.chat-panel'), lista = dob.querySelector('[data-chat-uzenetek]');
   var urlap = dob.querySelector('[data-chat-urlap]'), mezo = urlap.querySelector('input'), kuld = urlap.querySelector('button');
-  var TAR = 'qn-chat', all = {nyitva: false, uzenetek: []};
+  var TAR = 'qn-chat', all = {nyitva: false, uzenetek: []}, SABLON = dob.getAttribute('data-sablon') || 'buborek';
   try { all = JSON.parse(sessionStorage.getItem(TAR)) || all; } catch(e){}
   function ment(){ try { sessionStorage.setItem(TAR, JSON.stringify(all)); } catch(e){} }
   function ev(nev, adat){ try { if (window.gtag) gtag('event', nev, adat || {}); } catch(e){} }
@@ -32,6 +32,20 @@
       + '<a class="hk-link" href="'+biztos(f.url)+'">'+IK.lap+'<span>Teljes cikk megnyitása</span>'+IK.nyil+'</a>'
       + (f.datum ? '<small class="hk-datum">'+datum(f.datum)+'</small>' : '') + '</div></li>';
   }
+  // Egykeretes sablon: a korábbi hírek egyetlen keretben; a címre kattintva a cikkhez ugrik, csak a gomb nyit le
+  function ketMondat(f){ var t = String(f.szoveg || f.lead || '').replace(/\s+/g, ' ').trim();
+    // mondatvég: írásjel, utána szóköz és nagybetű (így a „Zero 1.5” vagy a „3.5 Flash” nem vág ketté)
+    var re = /[.!?…]+(?=\s+[A-ZÁÉÍÓÖŐÚÜŰ„"(]|\s*$)/g, m, n = 0, veg = t.length;
+    while ((m = re.exec(t))) { n++; if (n === 2) { veg = m.index + m[0].length; break; } }
+    return t.slice(0, veg).trim(); }
+  function korabbiKeret(l){
+    return l.length ? '<section class="hk-szakasz kk-szakasz"><button type="button" class="hk-szakasz-fej" aria-expanded="true">'+IK.link+'<span>Válogatás korábbi híreinkből</span><span class="hk-le">'+IK.le+'</span></button><ul class="hk-lista kk">'
+      + l.map(function(f){ return '<li class="kk-elem" data-n="'+f.n+'"><div class="kk-sor"><span class="hk-pont" aria-hidden="true"></span>'
+        + '<a class="kk-cim" href="'+biztos(f.url)+'" title="'+biztos(f.lead || f.cim)+'">'+biztos(f.cim)+'</a>'
+        + '<button type="button" class="kk-le" aria-expanded="false" aria-label="Lenyitás: '+biztos(f.cim)+'">'+IK.le+'</button></div>'
+        + '<p class="kk-test" hidden>'+biztos(ketMondat(f))+' <a class="kk-nyil" href="'+biztos(f.url)+'" aria-label="Teljes cikk: '+biztos(f.cim)+'">'+IK.nyil+'</a>'
+        + (f.datum ? ' <small class="kk-datum">'+datum(f.datum)+'</small>' : '') + '</p></li>'; }).join('') + '</ul></section>' : '';
+  }
   function szakasz(cim, l, szam){
     return l.length ? '<section class="hk-szakasz"><button type="button" class="hk-szakasz-fej" aria-expanded="true">'+IK.link+'<span>'+cim+'</span><span class="hk-le">'+IK.le+'</span></button><ul class="hk-lista">'
       + l.map(function(f){ return hirElem(f, szam); }).join('') + '</ul></section>' : '';
@@ -54,7 +68,7 @@
       d.className = 'chat-valasz';
       d.innerHTML = '<div class="ai-sor"><span class="ai-ikon">'+IK.szikra+'</span><div class="chat-b bot ai-buborek">'+torzs+lab+'</div></div>'
         + szakasz('Kapcsolódó hírek', j.forrasok || [], true)
-        + szakasz('Válogatás korábbi híreinkből', j.korabbi || [], false)
+        + (SABLON === 'keret' ? korabbiKeret(j.korabbi || []) : szakasz('Válogatás korábbi híreinkből', j.korabbi || [], false))
         + masok(u.kerdes);
     }
     lista.appendChild(d); return d;
@@ -69,7 +83,9 @@
   fetch('/api/kerdez?mi=nepszeru').then(function(r){ return r.json(); }).then(function(j){
     if (j && j.kerdesek && j.kerdesek.length) { nepszeru = j.kerdesek; all.nepszeru = nepszeru; ment(); javaslatok(); }
   }).catch(function(){});
-  function uj(u){ all.uzenetek.push(u); all.uzenetek = all.uzenetek.slice(-30); ment(); rajzol(u); gorget(); }
+  function uj(u){ all.uzenetek.push(u); all.uzenetek = all.uzenetek.slice(-30); ment(); var d = rajzol(u);
+    // Egykeretes sablon: a kész válasz elejére görgetünk, nem a lista aljára
+    if (SABLON === 'keret' && u.bot) { lista.scrollTop = Math.max(0, d.offsetTop - 8); } else gorget(); }
   if (all.uzenetek.length) { var jav0 = lista.querySelector('.chat-javaslat'); if (jav0) jav0.remove(); all.uzenetek.forEach(rajzol); }
   if (all.nyitva) { nyit(true, true); setTimeout(gorget, 0); }
   function kerdez(q){
@@ -94,6 +110,10 @@
       if (li) { var sz = li.closest('.hk-szakasz'); sz.querySelector('.hk-szakasz-fej').setAttribute('aria-expanded','true'); sz.classList.remove('zarva');
         nyitHir(li, true); li.scrollIntoView({block:'nearest', behavior:'smooth'}); li.classList.remove('villan'); void li.offsetWidth; li.classList.add('villan'); ev('chat_forrasjel'); }
       return; }
+    var kl = e.target.closest('.kk-le');
+    if (kl) { var ny2 = kl.getAttribute('aria-expanded') !== 'true', el = kl.closest('.kk-elem');
+      kl.setAttribute('aria-expanded', ny2 ? 'true' : 'false'); el.querySelector('.kk-test').hidden = !ny2; el.classList.toggle('nyitva', ny2); return; }
+    if (e.target.closest('.kk-cim, .kk-nyil')) { ev('chat_forras_kattintas', {korabbi: true}); return; }
     var hf = e.target.closest('.hk-fej');
     if (hf) { var li2 = hf.closest('.hk'); nyitHir(li2, hf.getAttribute('aria-expanded') !== 'true'); return; }
     var sf = e.target.closest('.hk-szakasz-fej');
