@@ -106,10 +106,10 @@ button.torol:disabled{opacity:.5}
 .kapcs button[aria-pressed=true] i{background:var(--amber);border-color:var(--amber)}
 .kapcs button[aria-pressed=true] i::after{content:"✓"}
 .kapcs button:disabled{cursor:default;opacity:.6}
-.kapcs button.torol{color:#fff;background:#c62828;border-color:#c62828}
-.kapcs button.torol i::after{content:"×";color:#fff;font-size:18px}
-.kapcs button.torol i{border:0}
-.kapcs button.torol:hover{background:#e53935;border-color:#e53935}
+.kapcs button.sor-torol{color:#fff;background:#c62828;border-color:#c62828}
+.kapcs button.sor-torol i::after{content:"×";color:#fff;font-size:18px}
+.kapcs button.sor-torol i{border:0}
+.kapcs button.sor-torol:hover{background:#e53935;border-color:#e53935}
 .kapcs .feltolt{display:flex;align-items:center;gap:8px;font-weight:600;font-size:17px;border:1px dashed var(--halkabb);border-radius:8px;padding:8px 12px;color:var(--halk);cursor:pointer}
 .kapcs .feltolt i{width:20px;height:20px;flex:0 0 auto;font-style:normal;display:grid;place-items:center;color:var(--amber)}
 .kapcs .feltolt i::after{content:"+";font-size:20px;font-weight:700}
@@ -475,7 +475,7 @@ async function btolt(){const L=document.getElementById("b-lista");let d;try{d=aw
  L.innerHTML=t.map(b=>{const dd=new Date(b.ido);const all=b.atveve?"atveve":b.allapot;
   const var_=b.allapot==="dontesre_var"||b.allapot==="atnezes";
   const cimke=b.atveve?"Feldolgozásba került":var_?"Döntésre vár":b.allapot==="elfogadva"?"Elfogadtad":b.kezi?"Elutasítottad":"Elutasítva";
-  const torolG=`<button class="torol" data-bek="${b.id}" data-all="torol"><i></i>Törlés</button>`;
+  const torolG=`<button class="sor-torol" data-bek="${b.id}" data-all="torol"><i></i>Törlés</button>`;
   const gombok=b.atveve?`<div class="kapcs">${torolG}</div>`:`<div class="kapcs"><button aria-pressed="${b.allapot==="elfogadva"}" data-bek="${b.id}" data-all="elfogadva"><i></i>Elfogadom</button><button class="elut" aria-pressed="${b.allapot==="elutasitva"&&!!b.kezi}" data-bek="${b.id}" data-all="elutasitva"><i></i>Elutasítom</button>${torolG}</div>`;
   return `<div class="ah bek-sor ${all} ${var_?"kerve":""}"><div><a class="cim" href="${esc(b.vegso||b.url)}" target="_blank" rel="noopener">${esc(b.cim||b.url)}</a>
    <div class="lead">${esc(b.url)}</div>
@@ -490,7 +490,7 @@ async function htolt(){const L=document.getElementById("h-lista");let d;try{d=aw
   return `<div class="ah bek-sor ${h.allapot==="uj"?"kerve":""}"><div><span class="cim">${esc(h.nev)}</span>
    <div class="lead"><a href="${esc(h.weboldal)}" target="_blank" rel="noopener" style="color:var(--amber)">${esc(h.weboldal)}</a> · <a href="tel:${esc(h.telefon.replace(/[^\d+]/g,""))}" style="color:var(--szoveg);font-weight:700">${esc(h.telefon)}</a></div>
    <div class="cimkek"><span class="cimke ${h.allapot==="uj"?"felk":""}">${HALL[h.allapot]||esc(h.allapot)}</span>${h.kulfoldi?`<span class="cimke">külföldi szám</span>`:""}${h.web_ellenorizve===false?`<span class="cimke ai-nem">⚠ a weboldal nem volt megnyitható</span>`:""}<span class="cimke">${fmt(dd,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span></div></div>
-   <div class="kapcs">${["felkerestem","ugyfel","nem"].map(a=>`<button aria-pressed="${h.allapot===a}" data-hird="${h.id}" data-all="${a}"><i></i>${HALL[a]}</button>`).join("")}<button class="torol" data-hird="${h.id}" data-all="torol"><i></i>Törlés</button></div></div>`}).join("")||`<p class="ures">Még nem érkezett érdeklődő.</p>`;
+   <div class="kapcs">${["felkerestem","ugyfel","nem"].map(a=>`<button aria-pressed="${h.allapot===a}" data-hird="${h.id}" data-all="${a}"><i></i>${HALL[a]}</button>`).join("")}<button class="sor-torol" data-hird="${h.id}" data-all="torol"><i></i>Törlés</button></div></div>`}).join("")||`<p class="ures">Még nem érkezett érdeklődő.</p>`;
  L.querySelectorAll("[data-hird]").forEach(g=>g.onclick=async()=>{if(g.dataset.all==="torol"&&!confirm("Biztosan törlöd ezt az érdeklődőt?"))return;const uj=g.getAttribute("aria-pressed")==="true"?"uj":g.dataset.all;
   try{const r=await lekér(U.hirdAll,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:g.dataset.hird,allapot:uj})});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}htolt()})}
 
