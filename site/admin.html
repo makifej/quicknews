@@ -105,7 +105,11 @@ transition:border-color .3s cubic-bezier(.32,.72,0,1)}
 #belep button{font:700 18px Manrope,sans-serif;color:#131313;background:var(--amber);border-radius:10px;padding:14px;margin-top:8px}
 #belep p{color:var(--hiba);min-height:24px}
 .kartyasor{grid-column:1/-1;display:flex;gap:16px;align-items:center;border-top:1px solid var(--vonal);padding-top:12px}
-.kartyasor img{width:72px;height:90px;object-fit:cover;border-radius:6px}
+.kartyasor img{width:96px;height:120px;object-fit:cover;border-radius:6px}
+.kartyasor.rossz img{opacity:.4}
+.kapcs button.elut[aria-pressed=true]{color:var(--hiba);border-color:var(--hiba)}
+.kapcs button.elut[aria-pressed=true] i{background:var(--hiba);border-color:var(--hiba)}
+.kapcs button.elut[aria-pressed=true] i::after{content:"✕";color:#fff}
 @media (max-width:700px){.ah{grid-template-columns:96px minmax(0,1fr)}.ah .kp{width:96px;height:54px}.kapcs{grid-column:1/-1;flex-direction:row;min-width:0}.kapcs button{flex:1 1 0;padding:8px;font-size:16px;gap:6px}}
 
 /* költség */
@@ -317,7 +321,7 @@ function idozit(m){if(!m)return"időzítve";const d=new Date(/T/.test(m)?m:m.rep
  if(isNaN(d))return"időzítve";return(nk(d)===MA()?"ma ":nk(d)===HOLNAP()?"holnap ":fmt(d,{month:"short",day:"numeric"})+" ")+ora(d)}
 function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
  const kerve=A.sorok.filter(s=>Object.values(s.kerve).some(Boolean));
- const kartyaVar=A.sorok.filter(s=>s.kartya&&s.kartya.fajl&&!s.kartya.jo);
+ const kartyaVar=A.sorok.filter(s=>s.kartya&&s.kartya.fajl&&!s.kartya.jo&&!s.kartya.elutasitva);
  document.getElementById("a-mutatok").innerHTML=
   `<div class="mutato kiemelt"><small>Ajánlott hír</small><b class="num">${A.sorok.length}</b><em>az utóbbi 4 napból</em></div>`+
   `<div class="mutato"><small>Kitételre kérve</small><b class="num">${kerve.length}</b><em>${["facebook","linkedin","hirdetes"].map(f=>FEL[f]+" "+A.sorok.filter(s=>s.kerve[f]).length).join(" · ")}</em></div>`+
@@ -330,9 +334,14 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
    if(a)return `<button class="idoz" disabled><i></i>${FEL[f]}: ${esc(idozit(a.mikor))}</button>`;
    return `<button aria-pressed="${s.kerve[f]}" data-id="${s.id}" data-mi="${f}"><i></i>${FEL[f]}</button>`};
   const d=new Date(s.publikalva);
-  const kartya=s.kartya&&s.kartya.fajl?`<div class="kartyasor"><a href="${U.kartya(s.kartya.fajl)}" target="_blank"><img src="${U.kartya(s.kartya.fajl)}" alt="A hír kártyája"></a>
-   <div style="flex:1"><b>Elkészült a kártya.</b><div class="lead" style="-webkit-line-clamp:3">Nézd meg nagyban (kattints rá), és ha jó, pipáld be. Csak jóváhagyott kártya mehet ki.</div></div>
-   <div class="kapcs"><button aria-pressed="${!!s.kartya.jo}" data-id="${s.id}" data-mi="kartya_jo"><i></i>Kártya jó</button></div></div>`:"";
+  const kt=s.kartya||{};
+  const kszoveg=kt.elutasitva?`<b>Elutasítva.</b><div class="lead" style="-webkit-line-clamp:3">Új kártya készül a cikk eredeti képéből vagy a videójából, és itt jelenik meg újra jóváhagyásra.</div>`
+   :kt.jo?`<b>Jóváhagyva.</b><div class="lead">A következő körben kimegy oda, ahova kérted.</div>`
+   :`<b>Elkészült a kártya.</b><div class="lead" style="-webkit-line-clamp:3">Nézd meg nagyban (kattints rá). Ha jó, pipáld be, ha nem, utasítsd el, és újat csinálok. Csak jóváhagyott kártya mehet ki.</div>`;
+  const kartya=kt.fajl?`<div class="kartyasor ${kt.elutasitva?"rossz":""}"><a href="${U.kartya(kt.fajl)}" target="_blank"><img src="${U.kartya(kt.fajl)}" alt="A hír kártyája"></a>
+   <div style="flex:1">${kszoveg}</div>
+   <div class="kapcs"><button aria-pressed="${!!kt.jo}" data-id="${s.id}" data-mi="kartya_jo"><i></i>Kártya jó</button>
+   <button class="elut" aria-pressed="${!!kt.elutasitva}" data-id="${s.id}" data-mi="kartya_rossz"><i></i>Elutasítom</button></div></div>`:"";
   return `<div class="ah ${k?"kerve":""}"><div class="kp" style="background-image:url('${esc(s.kep)}')"></div>
   <div><a class="cim" href="https://quicknews.hu/hir/${esc(s.slug)}" target="_blank" rel="noopener">${esc(s.cim)}</a><div class="lead">${esc(s.lead)}</div>
   <div class="cimkek">${s.felkapott?`<span class="cimke felk">Feltörekvő</span>`:""}<span class="cimke ${s.fontossag>=5?"fo5":""}">Fontosság ${s.fontossag}</span>
