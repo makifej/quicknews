@@ -72,6 +72,9 @@ transition:border-color .3s cubic-bezier(.32,.72,0,1)}
 .allapot{display:inline-block;margin-top:8px;font-size:16px;font-weight:600;color:var(--halk)}
 .allapot.kov{color:#131313;background:var(--amber);border-radius:999px;padding:2px 10px}
 .allapot.hiba{color:var(--hiba)}
+button.torol{display:inline-block;margin:8px 0 0 12px;font:600 15px Manrope,sans-serif;color:var(--hiba);border:1px solid rgba(255,107,107,.5);border-radius:6px;padding:2px 10px}
+button.torol:hover{background:rgba(255,107,107,.12)}
+button.torol:disabled{opacity:.5}
 .kartya.kint{opacity:.45}
 .kartya.kint:hover{opacity:.8}
 .ures{color:var(--halkabb);padding:24px 20px}
@@ -197,7 +200,8 @@ const ADMIN=!/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
 const U={posztok:ADMIN?"/api/admin?mi=posztok":"/adat.json",koltseg:ADMIN?"/api/admin?mi=koltseg":"/koltseg.json",
  ajanlott:ADMIN?"/api/admin?mi=ajanlott":"/ajanlott.json",kijeloles:ADMIN?"/api/admin?mi=kijeloles":"/kijeloles",
  kartya:f=>ADMIN?"/api/admin?mi=kartya&f="+encodeURIComponent(f):"/kartya/"+encodeURIComponent(f),
- kep:id=>ADMIN?"/api/admin?mi=kep&id="+id:"/kep?id="+id, kepFel:ADMIN?"/api/admin?mi=kep_feltolt":"/kep_feltolt"};
+ kep:id=>ADMIN?"/api/admin?mi=kep&id="+id:"/kep?id="+id, kepFel:ADMIN?"/api/admin?mi=kep_feltolt":"/kep_feltolt",
+ torles:ADMIN?"/api/admin?mi=torles":"/torles"};
 /* a választások (fül, nap, nézet, időszak) megmaradnak frissítés után is */
 const TAR=(k,v)=>{try{if(v===undefined)return JSON.parse(localStorage.getItem("qn-pult-"+k));localStorage.setItem("qn-pult-"+k,JSON.stringify(v))}catch(e){return null}};
 async function lekér(u,opt){const r=await fetch(u,Object.assign({cache:"no-store",credentials:"same-origin"},opt||{}));
@@ -231,7 +235,8 @@ function kartya(s,kov){const d=new Date(s.idopont);let a,cls="";
  if(HIBA(s)){a=`<span class="allapot hiba">Hiba, nem ment ki</span>`}
  else if(KINT(s)){a=`<span class="allapot">✓ Kiment ${ora(new Date(s.kiment))}</span>`;cls="kint"}
  else if(PARK(s)){a=`<span class="allapot">Leállítva</span>`}
- else a=`<span class="allapot ${kov?"kov":""}">${kov?"Következő · ":""}${hatra(d)}</span>`;
+ else if(s.torles_folyamatban) a=`<span class="allapot hiba">Levétel folyamatban, egy percen belül leáll</span>`;
+ else a=`<span class="allapot ${kov?"kov":""}">${kov?"Következő · ":""}${hatra(d)}</span><button class="torol" data-pid="${esc(s.id)}" data-felulet="${esc(s.felulet)}" data-cim="${esc(s.cim)}">Levétel az időzítésből</button>`;
  const cim=s.link?`<a class="cim" href="${esc(s.link)}" target="_blank" rel="noopener">${esc(s.cim)}</a>`:`<span class="cim">${esc(s.cim)}</span>`;
  return `<div class="kartya ${cls}"><div class="ido num">${PARK(s)?"·":ora(d)}</div>
  <div class="kep" style="${s.kep?`background-image:url('${esc(s.kep)}')`:""}"></div><div>${cim}<br>${a}</div></div>`}
@@ -265,6 +270,12 @@ function prajzol(){if(!D)return;
  const elott=hiba.length&&PN===ma?`<div class="hibasav">${hiba.length} poszt nem ment ki: ${hiba.map(s=>esc(s.cim)).join("; ")}</div>`:"";
  T.innerHTML=elott+`<div class="tabla">`+["Facebook","LinkedIn"].map(f=>{const P=L.filter(s=>s.felulet===f);const v=P.filter(VAR).length;
   return `<div class="oszlop"><div class="oszlop-fej"><h2>${f}</h2><span>${P.length?`${P.length} poszt${v?`, ${v} vár`:""}`:""}</span></div>${P.length?P.map(s=>kartya(s,kov&&s.id===kov.id)).join(""):`<p class="ures">Erre a napra nincs ${f}-poszt.</p>`}</div>`}).join("")+`</div>`}
+document.addEventListener("click",async e=>{const b=e.target.closest("button.torol");if(!b)return;
+ if(!confirm(`Leveszed az időzítésből?\n\n${b.dataset.felulet}: ${b.dataset.cim}\n\nNem megy ki. A már kiment posztokhoz ez nem nyúl.`))return;
+ b.disabled=true;b.textContent="Levétel…";
+ try{const r=await lekér(U.torles,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({pid:b.dataset.pid,felulet:b.dataset.felulet,cim:b.dataset.cim})});
+  if(r.hiba){alert(r.hiba)}}catch(err){alert("A levétel nem sikerült.")}
+ ptolt()});
 async function ptolt(){try{D=await lekér(U.posztok)}catch(e){D={hiba:"A helyi szerver nem válaszolt",sorok:[]}}prajzol()}
 
 /* ---------- költség ---------- */
