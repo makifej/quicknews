@@ -2,6 +2,8 @@
 // Env: ADMIN_JELSZO (Heni állítja be), ADMIN_TITOK (a süti aláírása és a Mac gépkulcsa),
 // KV_REST_API_URL + KV_REST_API_TOKEN (a Vercelen bekötött Upstash-tároló adja; a Mac ezeket nem ismeri).
 const crypto = require("crypto");
+let HIREK = [];
+try { HIREK = require("./_hirek.json").hirek || []; } catch (e) { HIREK = []; }
 
 const P = "qn:";
 const SUTI = "qn_admin";
@@ -102,6 +104,15 @@ module.exports = async (req, res) => {
         const { id, b64 } = await torzs(req);
         return json(res, 200, await kepFeltolt(id, b64));
       }
+      if (mi === "kisopor_gep" && req.method === "POST") {
+        const { id, ertek } = await torzs(req);
+        if (!/^[a-f0-9]{12}$/.test(id || "")) return json(res, 400, { hiba: "rossz azonosító" });
+        if (ertek === false) await kv("SREM", P + "kisoport", id); else await kv("SADD", P + "kisoport", id);
+        return json(res, 200, { ok: true });
+      }
+      if (mi === "kisoport") {
+        return json(res, 200, { idk: (await kv("SMEMBERS", P + "kisoport")) || [] });
+      }
       if (mi === "chat_szamlalo_torles" && req.method === "POST") {
         const kulcsok = (await kv("KEYS", "qn:chat:ip:*")) || [];
         for (const k of kulcsok) await kv("DEL", k);
@@ -161,6 +172,22 @@ module.exports = async (req, res) => {
       const k = (await kv("HGETALL", P + "kitenni")) || [];
       const kit = {};
       for (let i = 0; i < k.length; i += 2) kit[k[i]] = JSON.parse(k[i + 1]);
+      const kis = new Set((await kv("SMEMBERS", P + "kisoport")) || []);
+      adat.sorok = (adat.sorok || []).filter((s) => !kis.has(s.id));
+      // ami a gép utolsó pillanatképe óta jelent meg, azt a kitett oldal indexéből azonnal hozzáadjuk
+      const megvan = new Set(adat.sorok.map((s) => s.id));
+      const hatar = Math.max(Date.parse(adat.frissitve || 0) || 0, Date.now() - 96 * 3600e3);
+      for (const h of HIREK) {
+        const t = Date.parse(h.publikalva || "");
+        if (!t || t <= hatar || megvan.has(h.id) || kis.has(h.id)) continue;
+        adat.sorok.push({
+          id: h.id, cim: h.cim, lead: h.lead, slug: (h.url || "").replace(/^\/hir\//, ""),
+          fontossag: h.fontossag, felkapott: false, kategoria: h.kategoria, forras: h.forras,
+          publikalva: h.publikalva, video: !!h.video, kep: "https://quicknews.hu" + (h.kep || ""),
+          pont: (h.fontossag || 3) * 20 + 15, uj: true, allapot: {},
+        });
+      }
+      adat.sorok.sort((a, b) => String(b.publikalva || "").localeCompare(String(a.publikalva || "")));
       for (const s of adat.sorok || []) {
         const e = kit[s.id] || {};
         s.kerve = { facebook: !!e.facebook, linkedin: !!e.linkedin, hirdetes: !!e.hirdetes };
@@ -188,6 +215,12 @@ module.exports = async (req, res) => {
       res.setHeader("Content-Type", "image/jpeg");
       res.setHeader("Cache-Control", "private, no-store");
       return res.end(Buffer.from(b64, "base64"));
+    }
+    if (mi === "kisopor" && req.method === "POST") {
+      const { id, ertek } = await torzs(req);
+      if (!/^[a-f0-9]{12}$/.test(id || "")) return json(res, 400, { hiba: "Rossz azonosító." });
+      if (ertek === false) await kv("SREM", P + "kisoport", id); else await kv("SADD", P + "kisoport", id);
+      return json(res, 200, { ok: true });
     }
     if (mi === "kijeloles" && req.method === "POST") {
       const { id, mi: mezo, ertek } = await torzs(req);
