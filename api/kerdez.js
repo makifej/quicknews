@@ -94,6 +94,7 @@ BIZTONSÁG
 
 HOGYAN VÁLASZOLSZ
 - Magyarul, tegezve, röviden: legfeljebb 5 mondat vagy egy rövid felsorolás.
+- A kapott hírek közül azokat használd, amelyek KÖZVETLENÜL a kérdésre felelnek (például „olcsóbb alternatívák” kérdésre az olcsóbb vagy nyílt modellekről szóló hírek, konkrét számmal); a csak érintőlegesen kapcsolódókat hagyd ki.
 - Csak olyat állítasz, ami a kapott hírekben szerepel. Ha a hírekben nincs válasz, őszintén megmondod, hogy erről nincs hírünk az elmúlt napokból. Nem találsz ki semmit, és nem egészíted ki a saját tudásoddal.
 - Minden állításhoz megadod a hír sorszámát (a "forras" mezőben).
 - Ha a kérdés időre vonatkozik (ma, tegnap, ezen a héten), a hírek dátumát figyelembe veszed. A mai dátum: {MA}.
@@ -164,9 +165,15 @@ module.exports = async (req, res) => {
     if (INJEKCIO.test(q)) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], kivul: true });
     const v = await beagyaz(q);
     const friss = Date.now();
+    // a kérdés tartalmas szavai (5 betűs tővel): a címben vagy a leadben előforduló egyezés pluszpontot ad,
+    // így a rövid kérdésre („olcsóbb GPT alternatívák”) a közvetlenül felelő hírek kerülnek előre
+    const STOP = new Set(["milye", "melyi", "vanna", "volta", "lehet", "hogya", "miért", "mikor", "kérde", "hírek", "hírt ", "újabb", "legfr"]);
+    const tok = [...new Set((q.toLowerCase().match(/[a-záéíóöőúüű0-9][a-záéíóöőúüű0-9.-]{3,}/g) || []).map((w) => w.slice(0, 5)).filter((w) => !STOP.has(w)))];
     const rangsor = INDEX.hirek.map((h) => {
       const kor = (friss - new Date(h.datum.replace(" ", "T") + ":00+02:00").getTime()) / 864e5;
-      return { h, p: hasonlo(v, h.v) + (kor < 2 ? 0.03 : 0) };
+      const szoveg = (h.cim + " " + h.lead).toLowerCase();
+      const egyezes = tok.filter((t) => szoveg.includes(t)).length;
+      return { h, p: hasonlo(v, h.v) + (kor < 2 ? 0.03 : 0) + Math.min(egyezes, 3) * 0.025 };
     }).sort((a, b) => b.p - a.p);
     // időre vonatkozó kérdés: az adott időszak összes híre kerül a modell elé (nem csak a 6 leghasonlóbb)
     const napKulcs = (d) => new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Budapest", year: "numeric", month: "2-digit", day: "2-digit" }).format(d);
@@ -178,7 +185,7 @@ module.exports = async (req, res) => {
     else if (/(^|[^a-záéíóöőúüű])(ma|mai|mára|máig|today)([^a-záéíóöőúüű]|$)/.test(ql)) idoszak = (d) => d === ma;
     else if (/(ezen a|e|a mai|múlt) ?héten|heti|hét(en)?([^a-záéíóöőúüű]|$)|7 nap/.test(ql)) idoszak = (d) => d >= hetHatar;
     const benne = idoszak ? rangsor.filter((x) => idoszak(x.h.datum.slice(0, 10))) : [];
-    const pont = idoszak && benne.length ? (benne.length <= 25 ? benne : benne.slice(0, 15)) : rangsor.slice(0, 6);
+    const pont = idoszak && benne.length ? (benne.length <= 25 ? benne : benne.slice(0, 15)) : rangsor.slice(0, 12);
     const temaKerdes = idoszak && /hír|újdonság|történt|megjelent|jelent meg|bejelent|ai|mesterséges/.test(ql);
     if (!pont.length || (!temaKerdes && hasonlo(v, rangsor[0].h.v) < MIN_HASONLOSAG)) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], kivul: true });
     // pontos hírszámok a quicknews.hu-ról (a Napok oldallal egyezően, Budapest szerinti nap)
