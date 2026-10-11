@@ -937,7 +937,8 @@ html:not(.suti-van) .chat { display: none; }
 /* ===== Hírfolyam-behúzás ajánlata az oldalsávban (2026-10-11) ===== */
 .partner { margin-top: 24px; padding: 20px; background: var(--bg-2); border: 1px solid var(--keret); border-left: 4px solid var(--kiemelo); border-radius: 16px; }
 .partner h2 { margin: 0 0 8px; font-size: 18px; line-height: 25px; font-weight: 800; color: var(--szoveg); text-wrap: balance; }
-.partner p { margin: 0 0 16px; font-size: 15px; line-height: 22px; color: var(--szoveg-2); text-wrap: pretty; }
+.partner p { margin: 0 0 16px; font-size: 15px; line-height: 26px; color: var(--szoveg-2); text-wrap: pretty; }
+.partner-kiemel { font-size: 17px; font-weight: 800; color: var(--szoveg); background: var(--kiemeles-bg); padding: 1px 5px; border-radius: 4px; border-bottom: 2px solid var(--kiemelo); white-space: nowrap; }
 .partner-gomb { display: block; text-align: center; font: 800 16px/22px Manrope, system-ui, sans-serif; color: var(--kiemelo-szoveg); background: var(--kiemelo); border-radius: 10px; padding: 12px 16px; text-decoration: none; }
 .partner-gomb:hover { filter: brightness(1.06); }
 .partner-gomb:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
