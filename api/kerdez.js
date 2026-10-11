@@ -35,6 +35,14 @@ async function torzs(req) {
   try { return JSON.parse(s || "{}"); } catch { return {}; }
 }
 
+// aki be van lépve a quicknews.hu/admin-ra (Heni), arra nem vonatkozik a látogatói korlát
+function adminBelepve(req) {
+  const m = (req.headers.cookie || "").match(/qn_admin=(\d+)\.([a-f0-9]{64})/);
+  if (!m || Number(m[1]) < Date.now() || !process.env.ADMIN_TITOK) return false;
+  const a = Buffer.from(crypto.createHmac("sha256", process.env.ADMIN_TITOK).update(m[1]).digest("hex")), b = Buffer.from(m[2]);
+  return a.length === b.length && crypto.timingSafeEqual(a, b);
+}
+
 function budapestNap() {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Budapest", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
 }
@@ -109,10 +117,11 @@ module.exports = async (req, res) => {
     const lenyomat = crypto.createHash("sha256").update(ip + "|" + (process.env.CHAT_SO || "") + "|" + nap).digest("hex").slice(0, 32);
     const osszes = await kv("INCR", P + "nap:" + nap);
     if (osszes === 1) await kv("EXPIRE", P + "nap:" + nap, 172800);
-    if (osszes > NAPI_OSSZES) return json(res, 429, { hiba: "Mára elfogyott a chatbot napi kérdéskerete. Holnap újra kérdezhetsz!" });
-    const sajat = await kv("INCR", P + "ip:" + lenyomat);
+    if (osszes > NAPI_OSSZES) return json(res, 200, { info: "Mára elfogyott a chatbot napi kérdéskerete, holnap újra kérdezhetsz! Addig a Napok menüben böngészheted a nap összes hírét.", forrasok: [], korabbi: [] });
+    const admin = adminBelepve(req);
+    const sajat = admin ? 0 : await kv("INCR", P + "ip:" + lenyomat);
     if (sajat === 1) await kv("EXPIRE", P + "ip:" + lenyomat, 86400);
-    if (sajat > NAPI_LATOGATO) return json(res, 429, { hiba: `Naponta legfeljebb ${NAPI_LATOGATO} kérdést tehetsz fel. Holnap újra kérdezhetsz!` });
+    if (sajat > NAPI_LATOGATO) return json(res, 200, { info: `Mára elfogyott a ${NAPI_LATOGATO} kérdésed, holnap újra kérdezhetsz! Addig a Napok menüben böngészheted a nap összes hírét.`, forrasok: [], korabbi: [] });
 
     // névtelen napló: csak a kérdés és az idő, 30 napig
     const most = Date.now();

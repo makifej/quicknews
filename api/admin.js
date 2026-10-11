@@ -102,6 +102,11 @@ module.exports = async (req, res) => {
         const { id, b64 } = await torzs(req);
         return json(res, 200, await kepFeltolt(id, b64));
       }
+      if (mi === "chat_szamlalo_torles" && req.method === "POST") {
+        const kulcsok = (await kv("KEYS", "qn:chat:ip:*")) || [];
+        for (const k of kulcsok) await kv("DEL", k);
+        return json(res, 200, { ok: true, torolve: kulcsok.length });
+      }
       if (mi === "torlendo") {
         const k = (await kv("HGETALL", P + "torlendo")) || [];
         const t = {};
