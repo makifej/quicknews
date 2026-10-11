@@ -1,0 +1,39 @@
+{
+  "id": "08a8049c0092",
+  "slug": "az-ai-ugynokok-csapatai-alig-jobb-teljesitmenyt-nyujtanak-de-otszor",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/ai-agent-teams-waste-massive-tokens-for-barely-measurable-quality-gains-research-finds/",
+  "szerzo": "Matthias Bastian",
+  "publikalva": "2026-10-11T15:39:26+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/agent_swarm-1200x670.png"
+  },
+  "cim_eredeti": "AI agent teams waste massive tokens for barely measurable quality gains, research finds",
+  "forrasok": [],
+  "szoveg_eredeti": "AI agent teams deliver almost no better results than single agents, research finds.\n\nEvals company Vals AI tested GPT-6 Sol and Claude Opus 5.5 on the \"Vibe Code Bench,\" both solo and as teams, at two reasoning levels: medium and maximum reasoning effort. The teams cost between 1.8x and 5.1x more than single agents.\n\nOut of four comparisons between teams and solo agents, only one showed a statistically significant improvement: GPT-6 Sol at medium reasoning, where the team scored 7.3 points higher. At maximum reasoning, the team setup gave neither Sol nor Opus 5.5 any real advantage. The results suggest that the extra cost of agent teams isn't worth it in most cases, especially when models are already running at full compute.\n\nVals AI's benchmark shows cost per app versus score on Vibe Code Bench. Arrows point from each model's single agent to its team at the same reasoning effort. Teams cost far more but barely improve scores. | Image: Vals AI[Anthropic saw quality gains shrink as it added more agents in two of its own tests with Opus 5.5. Larger teams reached a given performance level faster, but going from ten to 100 agents only nudged scores up slightly after 24 hours. In separate ProgramBench tests, speed gains came with higher token usage.\n\nFable 5.1 showed stronger quality gains on the Lean theorem proving task above ten agents, but still scored below Opus 5.5 across all tests. On the knowledge base task, Fable's score actually dipped slightly when scaling from 30 to 100 agents.\n\nOpenAI researcher Noam Brown confirmed in the Dwarkesh Podcast that multi-agent systems mainly buy speed, not better quality. Four agents solved tasks twice as fast but also cost twice as much. At 16 agents, the pattern held but grew slightly less efficient.\n\nThe effect depends heavily on the task. Web research and math parallelize well, but writing a novel doesn't, he said. Throwing 10,000 agents at a novel would be just as pointless as throwing 10,000 people at it. Brown acknowledged that scaling to very large numbers of agents remains largely unexplored because the costs are simply too high.\n\nOpenAI developer Eric Provencher recently warned against using agent swarms for exactly this reason. They're most likely wasted money, he argued, because coordination between agents breaks down. He called it the coordination tax.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Az AI-ügynökök csapatai alig jobb teljesítményt nyújtanak, de ötször drágábbak",
+  "lead": "Friss kutatások szerint a több AI-ügynökből álló rendszerek hatalmas zsetonköltséget generálnak, miközben a minőségi javulásuk szinte elhanyagolható.",
+  "osszefoglalo": "A [Vals AI](https://www.vals.ai/) elemzése szerint az AI-ügynökökből álló csapattesztek szinte alig teljesítik felül az egyéni ügynököket, miközben a működtetésük 1,8-szor vagy akár 5,1-szer többe kerül. A GPT-6 Sol és Claude Opus 5.5 modellekkel végzett tesztek során négyből mindössze **egyetlen esetben tapasztaltak** mérhető minőségi javulást a csapatok javára. A maximális gondolkodási kapacitáson járatott modelleknél az ügynökcsapatok semmilyen érdemi előnyt nem hoztak.\n\nAz Anthropic és az OpenAI szakértőinek mérései is megerősítik, hogy az ügynökök számának növelése elsősorban **gyorsaságot hoz a minőség helyett**. Bár 4 ügynök egy feladatot kétszer gyorsabban tud megoldani, mint 1, a zsetonfelhasználás és a költség is duplájára nő. Bizonyos feladatoknál, mint a hálózati kutatás, működik a párhuzamosítás, de az összetettebb folyamatoknál a koordinációs költségek felésztik a nyereséget.",
+  "miert_szamit": "A vállalkozásoknak nem érdemes bonyolult ügynökrajokat építeniük a komplex folyamatokra, mert a párhuzamos ügynökök **feleslegesen növelik az API-költségeket** anélkül, hogy jobb végeredményt adnának.",
+  "cimkek": [
+    "AI ügynökök",
+    "OpenAI",
+    "Anthropic",
+    "API költségek"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 2,
+  "forditva": "2026-10-11T15:48:45+00:00",
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
