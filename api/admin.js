@@ -20,6 +20,24 @@ async function kv(...parancs) {
   return j.result;
 }
 
+// a pultból kért műveletek (szerkesztés, hirdetés indítása, címsorcsere): a Mac 3 percenként hajtja végre őket
+async function muveletFelvesz(b) {
+  const tipus = String(b.tipus || "");
+  let m = null;
+  if (tipus === "szerkeszt" && /^[a-f0-9]{24}$/.test(b.pid || "")) {
+    const mikor = String(b.mikor || "");
+    if (mikor && !/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(mikor)) return [400, { hiba: "Rossz időpont." }];
+    m = { tipus, pid: b.pid, szoveg: String(b.szoveg || "").slice(0, 3000) || null, mikor: mikor || null, cim: String(b.cim || "").slice(0, 200) };
+  } else if ((tipus === "hirdetes_indit" || tipus === "hirdetes_cimsor") && /^[a-f0-9]{12}$/.test(b.azon || "")) {
+    m = { tipus, azon: b.azon, cimsor: tipus === "hirdetes_cimsor" ? String(b.cimsor || "").trim().slice(0, 60) : null };
+    if (tipus === "hirdetes_cimsor" && (m.cimsor || "").length < 3) return [400, { hiba: "Adj meg címsort." }];
+  }
+  if (!m) return [400, { hiba: "Rossz kérés." }];
+  m.kert = new Date().toISOString();
+  await kv("HSET", P + "muveletek", crypto.randomBytes(8).toString("hex"), JSON.stringify(m));
+  return [200, { ok: true }];
+}
+
 function alair(lejar) {
   return crypto.createHmac("sha256", process.env.ADMIN_TITOK).update(String(lejar)).digest("hex");
 }
@@ -208,6 +226,26 @@ module.exports = async (req, res) => {
         for (let i = 0; i < k.length; i += 2) t[k[i]] = JSON.parse(k[i + 1]);
         return json(res, 200, t);
       }
+      if (mi === "muvelet_gep" && req.method === "POST") {
+        const [kod, valasz] = await muveletFelvesz(await torzs(req));
+        return json(res, kod, valasz);
+      }
+      if (mi === "muveletek_gep") {
+        const k = (await kv("HGETALL", P + "muveletek")) || [];
+        const t = {};
+        for (let i = 0; i < k.length; i += 2) t[k[i]] = JSON.parse(k[i + 1]);
+        return json(res, 200, t);
+      }
+      if (mi === "muvelet_kesz" && req.method === "POST") {
+        const { kulcs, eredmeny } = await torzs(req);
+        const v = await kv("HGET", P + "muveletek", String(kulcs || ""));
+        await kv("HDEL", P + "muveletek", String(kulcs || ""));
+        if (v) {
+          const m = JSON.parse(v); m.kesz = new Date().toISOString(); m.eredmeny = String(eredmeny || "").slice(0, 300);
+          await kv("LPUSH", P + "muvelet_naplo", JSON.stringify(m)); await kv("LTRIM", P + "muvelet_naplo", 0, 99);
+        }
+        return json(res, 200, { ok: true });
+      }
       if (mi === "torlendo_kesz" && req.method === "POST") {
         const { pid } = await torzs(req);
         await kv("HDEL", P + "torlendo", String(pid || ""));
@@ -277,6 +315,7 @@ module.exports = async (req, res) => {
         s.kerve = { facebook: !!e.facebook, linkedin: !!e.linkedin, hirdetes: !!e.hirdetes };
         s.kartya = e.kartya || null;
         s.sajat_kep = e.sajat_kep || null;
+        s.jovahagyas = e.jovahagyas || {};
       }
       return json(res, 200, adat);
     }
@@ -348,6 +387,16 @@ module.exports = async (req, res) => {
       if (ertek === false) await kv("SREM", P + "kisoport", id); else await kv("SADD", P + "kisoport", id);
       return json(res, 200, { ok: true });
     }
+    if (mi === "muvelet" && req.method === "POST") {
+      const [kod, valasz] = await muveletFelvesz(await torzs(req));
+      return json(res, kod, valasz);
+    }
+    if (mi === "muveletek") {
+      const k = (await kv("HGETALL", P + "muveletek")) || [];
+      const t = {};
+      for (let i = 0; i < k.length; i += 2) t[k[i]] = JSON.parse(k[i + 1]);
+      return json(res, 200, t);
+    }
     if (mi === "kijeloles" && req.method === "POST") {
       const { id, mi: mezo, ertek } = await torzs(req);
       if (!/^[a-f0-9]{12}$/.test(id || "")) return json(res, 400, { hiba: "Rossz azonosító." });
@@ -356,12 +405,19 @@ module.exports = async (req, res) => {
       const most = new Date().toISOString();
       if (["facebook", "linkedin", "hirdetes"].includes(mezo)) {
         if (ertek) e[mezo] = { kerve: most }; else delete e[mezo];
+      } else if (mezo === "jovahagyas") {
+        // a pipa önmagában nem indít semmit: csak a jóváhagyott felületekhez készül időzített elem (Heni 2026-10-12)
+        const feluletek = ["facebook", "linkedin", "hirdetes"].filter((f) => e[f]);
+        if (ertek) {
+          if (!feluletek.length) return json(res, 400, { hiba: "Előbb pipáld be, hova menjen ki." });
+          e.jovahagyas = { ido: most, feluletek };
+        } else delete e.jovahagyas;
       } else if (mezo === "kartya_jo" || mezo === "kartya_rossz") {
         if (!e.kartya || !e.kartya.fajl) return json(res, 400, { hiba: "Ehhez a hírhez még nincs kártya." });
         if (mezo === "kartya_jo") { e.kartya.jo = ertek ? most : null; if (ertek) e.kartya.elutasitva = null; }
         else { e.kartya.elutasitva = ertek ? most : null; if (ertek) e.kartya.jo = null; }
       } else return json(res, 400, { hiba: "Ismeretlen mező." });
-      if (!e.facebook && !e.linkedin && !e.hirdetes && !e.kartya && !e.sajat_kep) await kv("HDEL", P + "kitenni", id);
+      if (!e.facebook && !e.linkedin && !e.hirdetes && !e.kartya && !e.sajat_kep && !e.jovahagyas) await kv("HDEL", P + "kitenni", id);
       else await kv("HSET", P + "kitenni", id, JSON.stringify(e));
       return json(res, 200, { ok: true });
     }
