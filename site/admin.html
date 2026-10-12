@@ -328,6 +328,9 @@ const usd=v=>"$"+v.toLocaleString("en-US",{minimumFractionDigits:2,maximumFracti
 const ft=v=>K&&K.arfolyam?Math.round(v*K.arfolyam.huf).toLocaleString("hu-HU")+" Ft":usd(v);
 const gnap=k=>new Date(k+"T12:00:00");
 const ganap=k=>fmt(gnap(k),{month:"long",day:"numeric"});
+// a Google-nap kezdete magyar idő szerint (a csendes-óceáni éjfél: nyáron 9:00, az átállási hetekben 8:00 is lehet)
+const gkezd=k=>{const d=new Date(k+"T12:00:00Z");const pt=new Date(d.toLocaleString("en-US",{timeZone:"America/Los_Angeles"})),u=new Date(d.toLocaleString("en-US",{timeZone:"UTC"}));
+ const t=new Date(Date.parse(k+"T00:00:00Z")+(u-pt));return fmt(t,{month:"long",day:"numeric"})+" "+fmt(t,{hour:"2-digit",minute:"2-digit"})};
 function hetkulcs(k){const d=new Date(k+"T12:00:00Z"),w=(d.getUTCDay()+6)%7;d.setUTCDate(d.getUTCDate()-w);return d.toISOString().slice(0,10)}
 const pkulcs=(k,m)=>m==="nap"?k:m==="het"?hetkulcs(k):k.slice(0,7);
 const GMA=()=>new Intl.DateTimeFormat("en-CA",{timeZone:"America/Los_Angeles",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
@@ -350,7 +353,7 @@ function krajzol(){if(!K)return;const T=document.getElementById("k-tart"),H=K.hi
  const mb=becsles(gma);
  document.getElementById("k-mutatok").innerHTML=
   `<div class="mutato kiemelt"><small>Havi keret, ${fmt(new Date(kv.honap+"-15T12:00:00"),{month:"long"})}</small><b class="num">${usd(kv.elkoltve)}</b><em>${usd(kv.plafon)} plafonból · ${ft(kv.elkoltve)}</em></div>`+
-  `<div class="mutato"><small>Ma eddig</small><div class="sor2"><b class="num">${ft(N[gma].osszes)}</b>${mb!=null?`<span class="becs num">≈ ${ft(mb)}<small>becslés</small></span>`:""}</div><em>a Google késve mutatja</em></div>`+
+  `<div class="mutato"><small>Google mai napja</small><div class="sor2"><b class="num">${ft(N[gma].osszes)}</b>${mb!=null?`<span class="becs num">≈ ${ft(mb)}<small>becslés</small></span>`:""}</div><em>${gkezd(gma)} óta (magyar idő) · a Google késve mutatja</em></div>`+
   `<div class="mutato"><small>Elmúlt 7 nap</small><b class="num">${ft(ossz(het,"osszes"))}</b><em>${usd(ossz(het,"osszes"))} · ebből 3.5 Flash ${usd(ossz(het,"flash35"))}</em></div>`+
   `<div class="mutato"><small>Utolsó végleges nap</small><b class="num">${ul?ft(N[ul].osszes):"-"}</b><em>${ul?ganap(ul)+" · "+usd(N[ul].osszes):""}</em></div>`;
  const P={};ks.forEach(k=>{const p=pkulcs(k,KM);(P[p]=P[p]||[]).push(k)});
