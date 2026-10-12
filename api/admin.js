@@ -298,7 +298,9 @@ module.exports = async (req, res) => {
       adat.sorok = (adat.sorok || []).filter((s) => !kis.has(s.id));
       // ami a gép utolsó pillanatképe óta jelent meg, azt a kitett oldal indexéből azonnal hozzáadjuk
       const megvan = new Set(adat.sorok.map((s) => s.id));
-      const hatar = Math.max(Date.parse(adat.frissitve || 0) || 0, Date.now() - 96 * 3600e3);
+      // minden élő hír, ami a pillanatképből hiányzik (a 4 napos ablakon belül), azonnal bekerül: nem csak a pillanatkép
+      // után megjelentek, mert a pillanatkép a gyűjtés ütemétől függően néhány percig a friss híreket még nem látja
+      const hatar = Date.now() - 96 * 3600e3;
       for (const h of HIREK) {
         const t = Date.parse(h.publikalva || "");
         if (!t || t <= hatar || megvan.has(h.id) || kis.has(h.id)) continue;
