@@ -146,7 +146,18 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
           if [ -z "$VERCEL_TOKEN" ]; then echo "nincs Vercel-kulcs, kihagyva"; exit 0; fi
-          npx --yes vercel@63.1.2 deploy --prod --yes --archive=tgz --token "$VERCEL_TOKEN"
+          sajat=$(npx --yes vercel@63.1.2 deploy --prod --yes --archive=tgz --token "$VERCEL_TOKEN" | grep -o 'dpl_[A-Za-z0-9]*' | head -1)
+          echo "élesítve: $sajat"
+          # 2026-10-12: az ellenőrzés és a kiadás között néhány másodperc telik el. Ha ebben az ablakban a gépről
+          # élesítettek (Microsoft-hír képe: 6 mp különbség), a gépi kiadás az újabb, azt kell visszatenni élesre.
+          # Ha a gépi kiadás a miénk UTÁN jött, az már éles, ilyenkor nincs teendő.
+          masik=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" "https://api.vercel.com/v6/deployments?projectId=$VERCEL_PROJECT_ID&teamId=$VERCEL_ORG_ID&target=production&limit=10" \
+            | jq -r --arg s "$sajat" --argjson k "${{ needs.frissit.outputs.kezdet }}" \
+              '(.deployments[] | select(.uid == $s) | .created) as $o | [.deployments[] | select(.created > $k and .created < $o and .state == "READY")] | sort_by(.created) | last | .url // empty')
+          if [ -n "$masik" ]; then
+            echo "A futás közben gépről is élesítettek ($masik): az kerül vissza élesre."
+            npx --yes vercel@63.1.2 promote "https://$masik" --yes --token "$VERCEL_TOKEN"
+          fi
 
   indexnow:
     needs: kiadas
