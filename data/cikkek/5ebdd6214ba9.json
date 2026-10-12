@@ -1,0 +1,44 @@
+{
+  "id": "5ebdd6214ba9",
+  "slug": "szerkezetkesz-webes-adatokat-ad-az-ai-ugynokoknek-a-context-dev",
+  "forras_id": "producthunt",
+  "forras_nev": "Product Hunt",
+  "url": "https://www.producthunt.com/products/context-dev",
+  "szerzo": "Ely",
+  "publikalva": "2026-10-11T19:23:53+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://ph-files.imgix.net/1f01a455-861f-4e5b-8427-793a4fe201d6.png?auto=format&fit=crop&frame=1&h=512&w=1024"
+  },
+  "cim_eredeti": "Scrape Anything by Context.dev",
+  "forrasok": [],
+  "szoveg_eredeti": "Been using it as the web-fetch layer for a coding agent setup instead of maintaining my own scraper/proxy stack. The markdown-cleanup output is genuinely good for feeding pages into an LLM without a bunch of nav/footer junk eating tokens, and the brand/company enrichment endpoints saved me from writing a bunch of one-off logo/favicon scraping code. Typed SDK meant it was a 10 minute integration like they claim, not a \"10 minutes then 2 hours of debugging\" situation.\n\nWould like clearer visibility into what happens when a target site changes its robots.txt or ToS after I've already built a pipeline on it - right now it's not obvious whether that fails loudly on my end or just quietly keeps pulling until something downstream looks wrong. A status/changelog per-domain would help a lot for compliance peace of mind.\n\nLooked at rolling my own with Playwright plus a paid proxy pool, and at a couple of the generic scraping APIs that just hand back raw HTML. Didn't want to own the anti-bot cat and mouse game myself, and the raw-HTML tools still left me writing the markdown cleanup and enrichment logic on top.\n\nI have been super happy with Context.dev its not a perfect product by all means but the top tier support and usually 1-2day turnaround time on requests is pushing it close to being perfect!\n\nFor me right now its mostly brand color extraction being a bit more polished and better at detecting whats primary and what is an accent color.\n\nI never liked the concurrent browser limit of Firecrawl but thought this was just the industry standard until I used Context.dev which does not enforce such a limit. Especially in AI apps where you have lots of concurrency thats a no brainer.\n\nWe’ve been using Context.dev’s APIs for almost half a year, and the experience has been excellent. It’s easy to use, very fast, and consistently reliable, which is exactly what we care about most.\n\nOverall, it’s a fantastic product and I’d highly recommend it. The only improvement I’d love to see is even more features and examples in the docs as the product grows.\n\nWe chose Context.dev because the quality of the results and speed were better for our use case compared to other options we considered.\n\nWeboldal: https://context.dev",
+  "modell": "gemini-3.5-flash",
+  "cim": "Szerkezetkész webes adatokat ad az AI-ügynököknek a Context.dev",
+  "lead": "A Context.dev valós idejű, megtisztított webes adatokkal látja el az AI-alkalmazásokat összetett adatbányász infrastruktúra nélkül.",
+  "osszefoglalo": "A [Context.dev](https://context.dev) egy olyan webes adatgyűjtő szolgáltatás, amely tiszta markdown vagy HTML formátumban teszi hozzáférhetővé a weboldalak tartalmát az AI-modelljeink és -ügynökeink számára. A platform eltávolítja a navigációs és lábléc-elemeket, így jelentősen csökkenti a tokenfogyasztást. A rendszer képes automatikusan kinyerni céges brandadatokat, például logókat, betűtípusokat és színkódokat is.\n\nA fejlesztést **TypeScript, Python és Ruby SDK-k** segítik, így az integráció a legtöbb csapatnak kevesebb mint 10 percet vesz igénybe. Az eszköz megszünteti a megszokott párhuzamos böngészőlimiteket, ami kifejezetten előnyös a nagy egyidejűséggel működő AI-appok esetében. A szolgáltatást már több mint 5000 vállalkozás használja a mindennapi munkafolyamataiban.\n\nAz eszköz közvetlenül elérhető a weboldalán keresztül, ahol a fejlesztők azonnal kipróbálhatják a különböző adatnyerési funkciókat.",
+  "miert_szamit": "Egy AI-alapú alkalmazás vagy munkafolyamat építésekor **nem kell saját webkaparó infrastruktúrát üzemeltetni**, mert a tisztított adatok és brandelemek percek alatt beépíthetők a meglévő rendszerekbe.",
+  "cimkek": [
+    "Context.dev",
+    "adatbányászat",
+    "AI ügynök",
+    "web scraping"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Context.dev",
+    "url": "https://context.dev"
+  },
+  "linkelendo_nevek": [
+    "Context.dev"
+  ],
+  "linkszabaly": 2,
+  "forditva": "2026-10-12T07:34:50+00:00",
+  "megjelent": "2026-10-12T07:34:50+00:00",
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
