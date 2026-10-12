@@ -1,5 +1,41 @@
 [
   {
+    "c": "Megjelent a Falcon-ASR, az emírségi TII új arab beszéd-felismerő AI-modellje",
+    "b": "Az Abu Dhabi-i TII kiadta a 1,6 milliárd paraméteres Falcon-ASR modellt, amely kiemelkedő pontossággal írja át az arab nyelvjárásokat.",
+    "k": "MarkTechPost",
+    "g": "modell",
+    "u": "/hir/megjelent-a-falcon-asr-az-emirsegi-tii-uj-arab-beszed-felismero-ai",
+    "sz": "A Technology Innovation Institute (TII) bemutatta a Falcon-ASR elnevezésű 1,6 milliárd paraméteres beszéd-felismerő modellt. Az eszköz különösen az emírségi és a öböl menti arab nyelvjárások, valamint a modern sztenderd arab pontos átírására fókuszál. Az arab mellett az angol, francia, spanyol és portugál nyelvet is kezeli automatikusan, nyelvi jelölő nélkül.\n\nA modell szószintű időbélyegeket ad vissza, így pontosan összeköti a kimondott szavakat az audioállomány adott pontjával. A TII saját mérései szerint a Falcon-ASR átlagosan 20,92 százalékos szóhiba-arányt (WER) ért el 6 arab tesztkészleten, felülmúlva a korábbi legjobb eredményeket. A modell felkészítéséhez a háttérzajjal, zenei elemekkel és hívásrögzítési effektekkel torzított hanganyagokat is felhasználtak.\n\nAz eszközt egyelőre nem adták ki nyílt kódú modellként, és API sem érhető el hozzá. Jelenleg csak egy demo felületen próbálható ki, amely legfeljebb 60 másodperces és 20 megabájtos hangfájlokat fogad el. A fejlesztők későbbre ígérnek API-hozzáférést és natív alkalmazásokat. Falcon-ASR TII beszédértés mesterséges intelligencia",
+    "d": "okt. 12. 05:16"
+  },
+  {
+    "c": "Multimodális döntési modellt adott ki a Cloudflare",
+    "b": "A Clef-omni egyetlen hívásból értékel szöveget, képet, hangot és videót a Workers AI platformon.",
+    "k": "MarkTechPost",
+    "g": "eszköz",
+    "u": "/hir/multimodalis-dontesi-modellt-adott-ki-a-cloudflare",
+    "sz": "A Cloudflare megjelentette a Clef döntési modellcsalád legújabb nyílt tagját, a Clef-omni-t. Az eszköz a generált szöveg helyett valószínűségeket és strukturált válaszokat ad vissza. A modell egyetlen kéréssel dolgozza fel a szöveget, képeket, hanganyagokat és videókat, így nincs szükség külön átírási vagy feliratozási lépésekre. A teljes infrastruktúrát átültették SGLang alapperemre is, ami duplájára gyorsította a válaszidőket.\n\nA Qwen3-Omni-30B-A3B modellre épülő rendszer 30 milliárd teljes és 3 milliárd aktív paraméterrel működik. A Workers AI platformon 64 000 tokenes kontextust támogat, de a nyílt licencnek köszönhetően saját szerveren (például egyetlen H200-as GPU-n) is futtatható. A tesztek alapján a szándékfelismerési feladatokban kifejezetten erős, míg az összetettebb logikai érvelésben kissé elmarad a csak szöveges változatok mögött.\n\nA Clef-omni használati díja 0,15 dollár 1 millió bemeneti tokenenként a Workers AI-on. Ezzel párhuzamosan a kisebb Clef-flash árát 0,038 dollárra csökkentették, a modell súlyai pedig elérhetők az Apache-2.0 licenc alatt. Cloudflare Clef-omni AI Workers AI",
+    "d": "okt. 12. 01:15"
+  },
+  {
+    "c": "Megjelent a nyílt forráskódú Decision 3.0 modellcsalád",
+    "b": "A vLLM Semantic Router 5 új, képek és szövegek feldolgozására képes modellt adott ki nyílt Apache-2.0 licenc alatt.",
+    "k": "MarkTechPost",
+    "g": "modell",
+    "u": "/hir/megjelent-a-nyilt-forraskodu-decision-3-0-modellcsalad",
+    "sz": "A vLLM Semantic Router csapata megjelentette a Decision 3.0 nyílt forráskódú modellcsaládot, amely 5 különböző méretben érhető el 0,8 milliárdtól 27 milliárd paraméterig. A rendszerek különlegessége, hogy nem szöveget generálnak, hanem egyetlen hívásból valószínűségi értékeket adnak vissza a megadott feleletválasztós, igen-nem vagy skálázott kérdésekre.\n\nA modellek szöveget, JSON-adatokat és képeket is képesek feldolgozni a döntésekhez. A Qwen alapplatformra épülő architektúra segítségével a fejlesztők szövegelemzés és promptolás nélkül kategorizálhatják, szűrhetik vagy irányíthatják a beérkező kéréseket. A reakcióidő kifejezetten gyors, a legkisebb modellnél mindössze 21,7 milliszekundom szöveges bemenet esetén.\n\nMind az 5 nyílt modell elérhető és ingyenesen felhasználható az Apache-2.0 licencnek köszönhetően. A tesztek alapján a 9 milliárd paraméteres d3-flash változat már felülmúlja a korábbi generáció legnagyobb, 27 milliárdos modelljének teljesítményét is. Decision 3.0 vLLM Semantic Router nyílt forráskód multimodális",
+    "d": "okt. 11. 23:43"
+  },
+  {
+    "c": "Saját adatközpont-kapacitásait bővíti az Anthropic",
+    "b": "Többéves megállapodást kötött az IREN felhőszolgáltatóval a Claude fejlesztője az infrastruktúra bővítésére.",
+    "k": "Perplexity Discover",
+    "g": "üzlet",
+    "u": "/hir/sajat-adatkozpont-kapacitasait-boviti-az-anthropic",
+    "sz": "Többéves felhőszerződést kötött az Anthropic az IREN-nel a számítási kapacitások bővítésére. A Claude modellt fejlesztő cég a piacon elérhető adatközponti infrastruktúrák gyors üzembe helyezésére törekszik, és a megállapodás értékét vagy pontos időtartamát egyelőre nem hozták nyilvánosságra.\n\nA bővítés során a vállalat egyre inkább támaszkodik a korábban bitcoinbányászattal foglalkozó, de már AI-felhőszolgáltatásokat nyújtó cégekre, mint az IREN, a Hut 8 vagy a TeraWulf. Ezek a szolgáltatók rendelkeznek a számítási kapacitáshoz elengedhetetlen, nehezen megszerezhető hálózati csatlakozásokkal. Egyetlen 245 megawattos telephely egy hónappal korábbi indítása több mint 1,3 milliárd dolláros bevételtöbbletet hozhat a cégnek.\n\nAz Anthropic a következő évtizedben több mint 500 milliárd dollárt tervez infrastrukturális beruházásokra és felhőkapacitásra fordítani. A meglévő partnerek mellett Európában és Ausztráliában is aktívan keresi az újabb adatközponti lehetőségeket a következő generációs modellek kiszolgálásához. Anthropic Claude adatközpont infrastruktúra",
+    "d": "okt. 11. 23:27"
+  },
+  {
     "c": "Andrej Karpathy szerint hatalmas a szakadék az AI valódi tudása és a köztudat között",
     "b": "A szakember szerint a lakosság 75 százaléka még alig találkozott nyelvi modellekkel, miközben a legújabb rendszerek már hetekig dolgozó ügynökrajokat működtetnek.",
     "k": "Andrej Karpathy (X)",
