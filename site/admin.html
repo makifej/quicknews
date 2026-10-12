@@ -137,6 +137,29 @@ button.torol:disabled{opacity:.5}
 .kartyasor img{width:96px;height:120px;object-fit:cover;border-radius:6px}
 .kartyasor.rossz img{opacity:.4}
 .kapcs button.sopor{color:var(--halk);border-style:dashed}
+.tabla{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (min-width:901px){main{max-width:1400px}.tabla .kartya{grid-template-columns:58px 44px minmax(0,1fr);gap:12px;padding:14px}.tabla .kartya .kep{width:44px;height:55px}.tabla .kartya .ido{font-size:18px;white-space:nowrap}}
+.allapot.kov{display:inline-block}
+.all-jel{display:inline-block;margin:6px 8px 0 0;padding:2px 9px;border-radius:999px;font-size:13px;font-weight:800;color:#131313;background:var(--halk)}
+.all-jel.all-időzítve{background:var(--amber)}.all-jel.all-publikálva{background:#7bd88f}.all-jel.all-sikertelen{background:#ff6b6b}
+.all-jel.all-időzítésrevár{background:#9ec5ff}.all-jel.all-törölve{background:var(--vonal);color:var(--halk)}
+button.szerk,button.hird-indit{display:inline-block;margin:8px 0 0 12px;font:600 15px Manrope,sans-serif;color:var(--amber);border:1px solid var(--amber);border-radius:6px;padding:2px 10px}
+button.hird-indit{color:#131313;background:var(--amber)}
+.szerk-urlap{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.szerk-urlap label{display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--halk)}
+.szerk-urlap textarea,.szerk-urlap input{font:500 15px/21px Manrope,sans-serif;color:var(--szoveg);background:var(--bg);border:1px solid var(--vonal);border-radius:8px;padding:8px 10px}
+.szerk-gombok{display:flex;gap:8px}.szerk-gombok button{font-weight:700;border:1px solid var(--vonal);border-radius:8px;padding:6px 14px}
+.szerk-gombok button[type=submit]{color:#131313;background:var(--amber);border-color:var(--amber)}
+.kapcs button.jova{justify-content:center;font-weight:800;color:#131313;background:var(--amber);border-color:var(--amber)}
+.kapcs button.jova i{display:none}
+.kapcs button.jova:disabled{background:transparent;color:var(--halk);border-color:var(--vonal);opacity:1}
+.kapcs button.jova.kesz{color:var(--amber);border-color:var(--amber)}
+.feldolg{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:10px;font-size:15px;color:var(--halk)}
+.feldolg .elem b{color:var(--szoveg);font-weight:700}
+.feldolg .elem small{color:var(--halkabb)}
+.cimke.kesz{color:#131313;background:#7bd88f}
+.cimke.var{color:#131313;background:var(--amber)}
+.cimke.link{text-decoration:none;color:var(--amber)}
 .kapcs button.sopor i{border:0;width:20px;height:20px}
 .kapcs button.sopor i::after{content:"✕";font-size:16px;color:var(--halk)}
 .kapcs button.sopor:hover{color:var(--szoveg);border-color:var(--halk)}
@@ -151,7 +174,7 @@ button.torol:disabled{opacity:.5}
 .kapcs button.elut[aria-pressed=true]{color:var(--hiba);border-color:var(--hiba)}
 .kapcs button.elut[aria-pressed=true] i{background:var(--hiba);border-color:var(--hiba)}
 .kapcs button.elut[aria-pressed=true] i::after{content:"✕";color:#fff}
-@media (max-width:700px){.ah{grid-template-columns:96px minmax(0,1fr)}.ah .kp{width:96px;height:54px}.kapcs{grid-column:1/-1;flex-direction:row;min-width:0;flex-wrap:wrap}.kapcs .feltolt{flex:1 1 100%;justify-content:center}.kapcs button.sopor{flex:1 1 100%;justify-content:center}.kapcs button{flex:1 1 auto;padding:8px;font-size:16px;gap:6px;white-space:nowrap;justify-content:center}}
+@media (max-width:700px){.ah{grid-template-columns:96px minmax(0,1fr)}.ah .kp{width:96px;height:54px}.kapcs{grid-column:1/-1;flex-direction:row;min-width:0;flex-wrap:wrap}.kapcs .feltolt{flex:1 1 100%;justify-content:center}.kapcs button.sopor{flex:1 1 100%;justify-content:center}.kapcs button.jova{flex:1 1 100%}.kapcs button{flex:1 1 auto;padding:8px;font-size:16px;gap:6px;white-space:nowrap;justify-content:center}}
 
 /* költség */
 .idoszak{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:24px}
@@ -224,7 +247,8 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <section id="p-ajanlott" hidden>
 <div class="mutatok" id="a-mutatok"></div>
 <p class="a-bev">Az utóbbi 4 nap összes híre, ami még nem ment ki Facebookra. Az új hír a kitétel pillanatában megjelenik felül. Pipáld be, mi menjen ki és hova, a kártyát itt hagyhatod jóvá. Amivel nem akarsz foglalkozni, azt söpörd ki: soha többé nem kerül vissza.</p>
-<div class="idoszak"><div class="szeg" role="group" aria-label="Sorrend"><button data-rend="ido" aria-pressed="true">Időrend</button><button data-rend="pont" aria-pressed="false">Fontosság</button></div></div>
+<div class="idoszak"><div class="szeg" role="group" aria-label="Sorrend"><button data-rend="ido" aria-pressed="true">Időrend</button><button data-rend="pont" aria-pressed="false">Fontosság</button></div>
+<div class="szeg" role="group" aria-label="Szűrés"><button data-szur="nyitott" aria-pressed="true">Ajánlott</button><button data-szur="kesz" aria-pressed="false">Feldolgozva</button></div></div>
 <div id="a-lista"></div>
 </section>
 
@@ -244,7 +268,7 @@ const U={posztok:ADMIN?"/api/admin?mi=posztok":"/adat.json",koltseg:ADMIN?"/api/
  ajanlott:ADMIN?"/api/admin?mi=ajanlott":"/ajanlott.json",kijeloles:ADMIN?"/api/admin?mi=kijeloles":"/kijeloles",
  kartya:f=>ADMIN?"/api/admin?mi=kartya&f="+encodeURIComponent(f):"/kartya/"+encodeURIComponent(f),
  kep:id=>ADMIN?"/api/admin?mi=kep&id="+id:"/kep?id="+id, kepFel:ADMIN?"/api/admin?mi=kep_feltolt":"/kep_feltolt",
- torles:ADMIN?"/api/admin?mi=torles":"/torles",bekuldesek:ADMIN?"/api/admin?mi=bekuldesek":"/bekuldesek.json",hirdetok:ADMIN?"/api/admin?mi=hirdetok":"/hirdetok.json",hirdAll:ADMIN?"/api/admin?mi=hirdeto_allapot":"/hirdeto_allapot",bekDontes:ADMIN?"/api/admin?mi=bekuldes_dontes":"/bekuldes_dontes",kisopor:ADMIN?"/api/admin?mi=kisopor":"/kisopor"};
+ torles:ADMIN?"/api/admin?mi=torles":"/torles",bekuldesek:ADMIN?"/api/admin?mi=bekuldesek":"/bekuldesek.json",hirdetok:ADMIN?"/api/admin?mi=hirdetok":"/hirdetok.json",hirdAll:ADMIN?"/api/admin?mi=hirdeto_allapot":"/hirdeto_allapot",bekDontes:ADMIN?"/api/admin?mi=bekuldes_dontes":"/bekuldes_dontes",kisopor:ADMIN?"/api/admin?mi=kisopor":"/kisopor",muvelet:ADMIN?"/api/admin?mi=muvelet":"/muvelet"};
 /* a választások (fül, nap, nézet, időszak) megmaradnak frissítés után is */
 const TAR=(k,v)=>{try{if(v===undefined)return JSON.parse(localStorage.getItem("qn-pult-"+k));localStorage.setItem("qn-pult-"+k,JSON.stringify(v))}catch(e){return null}};
 async function lekér(u,opt){const r=await fetch(u,Object.assign({cache:"no-store",credentials:"same-origin"},opt||{}));
@@ -271,25 +295,55 @@ function hatra(d){const p=Math.round((d-Date.now())/6e4);if(p<1)return"most esed
 let D=null,PN=TAR("PN");
 const HIBA=s=>["failed","error"].includes(s.allapot);
 const KINT=s=>s.allapot==="published";
-const PARK=s=>new Date(s.idopont).getFullYear()>=2030;
+const PARK=s=>s.allapot==="torolve"||new Date(s.idopont).getFullYear()>=2030;
+const VARAK=s=>s.allapot==="varakozik";
+/* a hat állapot (Heni 2026-10-12): Piszkozat, Időzítésre vár, Időzítve, Publikálva, Sikertelen, Törölve */
+const ALLNEV=s=>HIBA(s)?"Sikertelen":KINT(s)?"Publikálva":PARK(s)?"Törölve":VARAK(s)?"Időzítésre vár":s.allapot==="draft"?"Piszkozat":"Időzítve";
 const VAR=s=>!KINT(s)&&!HIBA(s)&&!PARK(s);
 
-function kartya(s,kov){const d=new Date(s.idopont);let a,cls="";
- if(HIBA(s)){a=`<span class="allapot hiba">Hiba, nem ment ki</span>`}
- else if(KINT(s)){a=`<span class="allapot">✓ Kiment ${ora(new Date(s.kiment))}</span>`;cls="kint"}
- else if(PARK(s)){a=`<span class="allapot">Leállítva</span>`}
+function helyiIdo(iso){const d=new Date(iso),p=n=>String(n).padStart(2,"0");return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`}
+function kartya(s,kov){const d=new Date(s.idopont);let a,cls="",tovabb="";
+ const jel=`<span class="all-jel all-${ALLNEV(s).replace(/[^a-zA-Záéíóöőúüű]/g,"").toLowerCase()}">${ALLNEV(s)}</span>`;
+ if(s.felulet==="Hirdetés"){
+  if(s.feldolgozasra)a=`${jel}<span class="allapot">3 percen belül elkészül, szüneteltetve</span>`;
+  else if(VARAK(s)){a=`${jel}<span class="allapot">Elkészült, szüneteltetve. Te indítod.</span><button class="hird-indit" data-azon="${esc(s.azon)}" data-cim="${esc(s.cim)}">Indítás</button><button class="szerk" data-szerk="${esc(s.id)}">Címsor</button>`;
+   tovabb=`<form class="szerk-urlap" data-szerk-urlap="${esc(s.id)}" hidden><label>Címsor (a kártya alatt, legfeljebb 40 karakter ajánlott)<input name="cimsor" maxlength="60" value="${esc(s.cimsor||"")}"></label><div class="szerk-gombok"><button type="submit">Mentés</button><button type="button" data-megse>Mégse</button></div></form>`}
+  else a=`${jel}<span class="allapot">${esc(s.meta_allapot||"")}</span>`;
+  const cimH=`<span class="cim">${esc(s.cim)}</span>${s.cimsor?`<div class="lead">Címsor: ${esc(s.cimsor)}</div>`:""}`;
+  return `<div class="kartya ${KINT(s)?"kint":""}"><div class="ido num">${ora(d)}</div><div class="kep" style="${s.kep?`background-image:url('${esc(s.kep)}')`:""}"></div><div>${cimH}${a}${tovabb}</div></div>`}
+ if(HIBA(s)){a=`${jel}<span class="allapot hiba">nem ment ki</span>`}
+ else if(KINT(s)){a=`${jel}<span class="allapot">${ora(new Date(s.kiment))}</span>`;cls="kint"}
+ else if(PARK(s)){a=`${jel}`}
+ else if(VARAK(s)){a=`${jel}<span class="allapot">3 percen belül időzítem</span>`}
  else if(s.torles_folyamatban) a=`<span class="allapot hiba">Levétel folyamatban, egy percen belül leáll</span>`;
- else a=`<span class="allapot ${kov?"kov":""}">${kov?"Következő · ":""}${hatra(d)}</span><button class="torol" data-pid="${esc(s.id)}" data-felulet="${esc(s.felulet)}" data-cim="${esc(s.cim)}">Levétel az időzítésből</button>`;
+ else{a=`${jel}<span class="allapot ${kov?"kov":""}">${kov?"Következő · ":""}${hatra(d)}</span><button class="szerk" data-szerk="${esc(s.id)}">Szerkesztés</button><button class="torol" data-pid="${esc(s.id)}" data-felulet="${esc(s.felulet)}" data-cim="${esc(s.cim)}">Levétel az időzítésből</button>`;
+  tovabb=`<form class="szerk-urlap" data-szerk-urlap="${esc(s.id)}" hidden><label>Szöveg<textarea name="szoveg" rows="5">${esc(s.szoveg||"")}</textarea></label><label>Időpont<input type="datetime-local" name="mikor" value="${helyiIdo(s.idopont)}"></label><div class="szerk-gombok"><button type="submit">Mentés</button><button type="button" data-megse>Mégse</button></div><p class="lab">A módosítás 3 percen belül kerül át a Flybuiltbe.</p></form>`}
  const cim=s.link?`<a class="cim" href="${esc(s.link)}" target="_blank" rel="noopener">${esc(s.cim)}</a>`:`<span class="cim">${esc(s.cim)}</span>`;
  return `<div class="kartya ${cls}"><div class="ido num">${PARK(s)?"·":ora(d)}</div>
- <div class="kep" style="${s.kep?`background-image:url('${esc(s.kep)}')`:""}"></div><div>${cim}<br>${a}</div></div>`}
+ <div class="kep" style="${s.kep?`background-image:url('${esc(s.kep)}')`:""}"></div><div>${cim}<br>${a}${tovabb}</div></div>`}
+/* szerkesztés, címsorcsere, hirdetés indítása: a kérés a Machez megy, 3 percen belül hajtja végre */
+document.addEventListener("click",e=>{const b=e.target.closest("[data-szerk]");if(b){const f=document.querySelector(`[data-szerk-urlap="${CSS.escape(b.dataset.szerk)}"]`);if(f)f.hidden=!f.hidden;return}
+ const m=e.target.closest("[data-megse]");if(m){m.closest("form").hidden=true}});
+document.addEventListener("submit",async e=>{const f=e.target.closest("[data-szerk-urlap]");if(!f)return;e.preventDefault();
+ const id=f.dataset.szerkUrlap,adat=new FormData(f);let body;
+ if(id.startsWith("hird:"))body={tipus:"hirdetes_cimsor",azon:id.slice(5),cimsor:adat.get("cimsor")};
+ else{const m=adat.get("mikor");body={tipus:"szerkeszt",pid:id,szoveg:adat.get("szoveg"),mikor:m?m.replace("T"," "):null}}
+ const g=f.querySelector("button[type=submit]");g.disabled=true;g.textContent="Küldés…";
+ try{const r=await lekér(U.muvelet,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+  if(r.hiba){alert(r.hiba);g.disabled=false;g.textContent="Mentés";return}
+  f.innerHTML=`<p class="lab" style="color:var(--amber)">Elküldve, 3 percen belül átvezetem.</p>`}catch(err){alert("Nem sikerült elküldeni.");g.disabled=false;g.textContent="Mentés"}});
+document.addEventListener("click",async e=>{const b=e.target.closest("button.hird-indit");if(!b)return;
+ if(!confirm(`Elindítod a hirdetést?\n\n${b.dataset.cim}\n\nA hír- és a követőhirdetés is elindul, a Meta bírálata után kezd futni.`))return;
+ b.disabled=true;b.textContent="Indítás…";
+ try{const r=await lekér(U.muvelet,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({tipus:"hirdetes_indit",azon:b.dataset.azon})});
+  if(r.hiba){alert(r.hiba);b.disabled=false;b.textContent="Indítás";return}b.textContent="Indítás kérve, 3 percen belül elindul"}catch(err){alert("Nem sikerült.");b.disabled=false;b.textContent="Indítás"}});
 
 function prajzol(){if(!D)return;
  document.getElementById("frissult").textContent="Frissítve "+ora(new Date());
  const T=document.getElementById("p-tabla");
  if(D.hiba){T.innerHTML=`<div class="hibasav">${esc(D.hiba)}. A lista most nem ellenőrizhető.</div>`;return}
  const S=D.sorok,ma=MA();
- const kov=S.filter(VAR).sort((a,b)=>a.idopont<b.idopont?-1:1)[0];
+ const kov=S.filter(s=>VAR(s)&&!VARAK(s)&&s.felulet!=="Hirdetés").sort((a,b)=>a.idopont<b.idopont?-1:1)[0];
  const maVar=S.filter(s=>VAR(s)&&nk(new Date(s.idopont))===ma);
  const maKint=S.filter(s=>KINT(s)&&nk(new Date(s.kiment))===ma);
  const hiba=S.filter(HIBA);
@@ -311,8 +365,8 @@ function prajzol(){if(!D)return;
  document.querySelectorAll("#p-napok button").forEach(b=>b.onclick=()=>{PN=b.dataset.nap;TAR("PN",PN);prajzol()});
  const L=(napok[PN]||[]).slice().sort((a,b)=>(a.idopont<b.idopont?-1:1));
  const elott=hiba.length&&PN===ma?`<div class="hibasav">${hiba.length} poszt nem ment ki: ${hiba.map(s=>esc(s.cim)).join("; ")}</div>`:"";
- T.innerHTML=elott+`<div class="tabla">`+["Facebook","LinkedIn"].map(f=>{const P=L.filter(s=>s.felulet===f);const v=P.filter(VAR).length;
-  return `<div class="oszlop"><div class="oszlop-fej"><h2>${f}</h2><span>${P.length?`${P.length} poszt${v?`, ${v} vár`:""}`:""}</span></div>${P.length?P.map(s=>kartya(s,kov&&s.id===kov.id)).join(""):`<p class="ures">Erre a napra nincs ${f}-poszt.</p>`}</div>`}).join("")+`</div>`}
+ T.innerHTML=elott+`<div class="tabla">`+["Facebook","LinkedIn","Hirdetés"].map(f=>{const P=L.filter(s=>s.felulet===f);const v=P.filter(VAR).length;
+  return `<div class="oszlop"><div class="oszlop-fej"><h2>${f}</h2><span>${P.length?`${P.length} poszt${v?`, ${v} vár`:""}`:""}</span></div>${P.length?P.map(s=>kartya(s,kov&&s.id===kov.id)).join(""):`<p class="ures">Erre a napra nincs ${f==="Hirdetés"?"hirdetés":f+"-poszt"}.</p>`}</div>`}).join("")+`</div>`}
 document.addEventListener("click",async e=>{const b=e.target.closest("button.torol");if(!b)return;
  if(!confirm(`Leveszed az időzítésből?\n\n${b.dataset.felulet}: ${b.dataset.cim}\n\nNem megy ki. A már kiment posztokhoz ez nem nyúl.`))return;
  b.disabled=true;b.textContent="Levétel…";
@@ -388,17 +442,17 @@ async function ktolt(){try{K=await lekér(U.koltseg)}catch(e){document.getElemen
 /* ---------- ajánlott ---------- */
 let A=null;
 const FEL={facebook:"Facebook",linkedin:"LinkedIn",hirdetes:"Hirdetés"};
-function idozit(m){if(!m)return"időzítve";const d=new Date(/T/.test(m)?m:m.replace(" ","T")+":00+02:00");
+function idozit(m){if(!m)return"időzítve";const d=new Date(/T/.test(m)?m:m.replace(" ","T")+":00");  /* a nyilvántartás budapesti idő: helyi időként olvasva (télen is jó) */
  if(isNaN(d))return"időzítve";return(nk(d)===MA()?"ma ":nk(d)===HOLNAP()?"holnap ":fmt(d,{month:"short",day:"numeric"})+" ")+ora(d)}
 function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
  const kerve=A.sorok.filter(s=>Object.values(s.kerve).some(Boolean));
  const kartyaVar=A.sorok.filter(s=>s.kartya&&s.kartya.fajl&&!s.kartya.jo&&!s.kartya.elutasitva);
  document.getElementById("a-mutatok").innerHTML=
-  `<div class="mutato kiemelt"><small>Ajánlott hír</small><b class="num">${A.sorok.length}</b><em>${A.sorok.filter(s=>s.uj).length?A.sorok.filter(s=>s.uj).length+" új az utóbbi 6 órában":"az utóbbi 4 napból"}</em></div>`+
+  `<div class="mutato kiemelt"><small>Ajánlott hír</small><b class="num">${A.sorok.filter(s=>!s.feldolgozott).length}</b><em>${A.sorok.filter(s=>s.uj&&!s.feldolgozott).length?A.sorok.filter(s=>s.uj&&!s.feldolgozott).length+" új az utóbbi 6 órában":"az utóbbi 4 napból"}</em></div>`+
   `<div class="mutato" ${kerve.length?`data-ugras=".ah.kerve" role="button" tabindex="0"`:""}><small>Kitételre kérve</small><b class="num">${kerve.length}</b><em>${["facebook","linkedin","hirdetes"].map(f=>FEL[f]+" "+A.sorok.filter(s=>s.kerve[f]).length).join(" · ")}</em></div>`+
   `<div class="mutato ${kartyaVar.length?"riaszt":""}" ${kartyaVar.length?`data-ugras=".kartyasor.var" role="button" tabindex="0"`:""}><small>Kártya vár jóváhagyásra</small><b class="num">${kartyaVar.length}</b><em>${kartyaVar.length?"kattints, odaugrik":"nincs teendő"}</em></div>`+
   `<div class="mutato" ${A.sorok.some(s=>s.felkapott)?`data-ugras=".ah.felk" role="button" tabindex="0"`:""}><small>Feltörekvő</small><b class="num">${A.sorok.filter(s=>s.felkapott).length}</b><em>több forrás is írt róla</em></div>`;
- const sorrend=[...A.sorok].sort(AREND==="pont"?(a,b)=>b.pont-a.pont:(a,b)=>String(b.publikalva).localeCompare(String(a.publikalva)));
+ const sorrend=[...A.sorok].filter(s=>(ASZUR==="kesz")===!!s.feldolgozott).sort(AREND==="pont"?(a,b)=>b.pont-a.pont:(a,b)=>String(b.publikalva).localeCompare(String(a.publikalva)));
  let elozoNap="";
  L.innerHTML=sorrend.map(s=>{const k=Object.values(s.kerve).some(Boolean);
   const nap=nk(new Date(s.publikalva));let fej="";
@@ -409,6 +463,18 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
    if(a)return `<button class="idoz" disabled><i></i>${FEL[f]}: ${esc(idozit(a.mikor))}</button>`;
    return `<button aria-pressed="${s.kerve[f]}" data-id="${s.id}" data-mi="${f}"><i></i>${FEL[f]}</button>`};
   const d=new Date(s.publikalva);
+  // a pipa önmagában nem indít semmit: a „Jóváhagyom” után készülnek el a bepipált felületek elemei
+  const jv=s.jovahagyas||{},jvF=jv.feluletek||[],el=s.elemek||{};
+  const nyitottF=["facebook","linkedin","hirdetes"].filter(f=>s.kerve[f]&&!el[f]&&!(s.allapot||{})[f]);
+  const ujF=nyitottF.filter(f=>!jvF.includes(f));
+  const jova=ujF.length?`<button class="jova" data-jova="${s.id}"><i></i>Jóváhagyom</button>`
+   :nyitottF.length?`<button class="jova kesz" disabled><i></i>Jóváhagyva</button>`
+   :Object.keys(el).length?"":`<button class="jova" disabled title="Előbb pipáld be, hova menjen ki"><i></i>Jóváhagyom</button>`;
+  const elemSor=f=>{const e=el[f]||{};let t;
+   if(f==="hirdetes")t=e.allapot==="PAUSED"?"szüneteltetve, indításra vár":e.allapot==="ACTIVE"?"elindítva":"létrehozva";
+   else t=e.mikor&&/^\d{4}/.test(e.mikor)?"időzítve "+idozit(e.mikor):e.mikor?esc(e.mikor):"időzítve";
+   return `<span class="elem"><b>${FEL[f]}</b> ${t}${e.azonosito?` <small>#${esc(String(e.azonosito).slice(-6))}</small>`:""}</span>`};
+  const feldolg=Object.keys(el).length||jvF.length?`<div class="feldolg ${s.feldolgozott?"kesz":""}"><span class="cimke ${s.feldolgozott?"kesz":"var"}">${s.feldolgozott?"✓ Feldolgozva":"Feldolgozás alatt"}</span>${jv.ido?`<span class="elem">átkerült ${esc(fmt(new Date(jv.ido),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}))}</span>`:""}${Object.keys(el).map(elemSor).join("")}${nyitottF.filter(f=>jvF.includes(f)).map(f=>`<span class="elem"><b>${FEL[f]}</b> 3 percen belül elkészül</span>`).join("")}</div>`:"";
   const kt=s.kartya||{};
   const kszoveg=kt.elutasitva?`<b>Elutasítva.</b><div class="lead" style="-webkit-line-clamp:3">Új kártya készül a cikk eredeti képéből vagy a videójából, és itt jelenik meg újra jóváhagyásra.</div>`
    :kt.jo&&kt.auto?`<b>Eredeti képpel megy ki.</b><div class="lead">Nem töltöttél fel saját képet, ezért nem kell jóváhagynod.</div>`
@@ -424,19 +490,25 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
   return fej+`<div class="ah ${k?"kerve":""} ${s.felkapott?"felk":""}" id="h-${s.id}" data-id="${s.id}"><div class="kp" style="background-image:url('${esc(s.kep)}')"></div>
   <div><a class="cim" href="https://quicknews.hu/hir/${esc(s.slug)}" target="_blank" rel="noopener">${esc(s.cim)}</a><div class="lead">${esc(s.lead)}</div>
   <div class="cimkek">${s.uj?`<span class="cimke uj">Új</span>`:""}${s.felkapott?`<span class="cimke felk">Feltörekvő</span>`:""}<span class="cimke ${s.fontossag>=5?"fo5":""}">Fontosság ${s.fontossag}</span>
-  <span class="cimke">${fmt(d,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span><span class="cimke">${esc(s.forras||"")}</span>${s.video?`<span class="cimke">videó</span>`:""}</div></div>
-  <div class="kapcs">${["facebook","linkedin","hirdetes"].map(gomb).join("")}
+  <span class="cimke">${fmt(d,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span><span class="cimke">${esc(s.forras||"")}</span>${s.video?`<span class="cimke">videó</span>`:""}<a class="cimke link" href="${esc(s.url||"https://quicknews.hu/hir/"+s.slug)}" target="_blank" rel="noopener">Megnyitás ↗</a></div>${feldolg}</div>
+  <div class="kapcs">${["facebook","linkedin","hirdetes"].map(gomb).join("")}${jova}
   <label class="feltolt"><input type="file" accept="image/*" data-id="${s.id}" hidden><i></i>Saját kép</label>
   <button class="sopor" data-sopor="${s.id}" title="Eltűnik, és többé nem ajánlom"><i></i>Kisöpröm</button></div>${skUj?sajat:kartya}</div>`}).join("")||`<p class="ures">Nincs ajánlott hír.</p>`;
  L.querySelectorAll("button[data-mi]").forEach(b=>b.onclick=async()=>{const uj=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",uj);
   try{const r=await lekér(U.kijeloles,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:b.dataset.id,mi:b.dataset.mi,ertek:uj})});
    if(r.hiba){alert(r.hiba);b.setAttribute("aria-pressed",!uj)}}catch(e){b.setAttribute("aria-pressed",!uj)} atolt()});
+ L.querySelectorAll("[data-jova]").forEach(b=>b.onclick=async()=>{b.disabled=true;b.lastChild.textContent="Jóváhagyás…";
+  try{const r=await lekér(U.kijeloles,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:b.dataset.jova,mi:"jovahagyas",ertek:true})});
+   if(r.hiba)alert(r.hiba)}catch(e){alert("A jóváhagyás nem sikerült.")} atolt()});
  L.querySelectorAll("input[type=file]").forEach(i=>i.onchange=()=>kepFeltolt(i));
  L.querySelectorAll("[data-sopor]").forEach(b=>b.onclick=()=>kisopor(b.dataset.sopor));
  L.querySelectorAll(".ah").forEach(huzhato)}
 /* ---------- kisöprés: a hír eltűnik, és többé nem ajánljuk ---------- */
 let AREND="ido";try{AREND=localStorage.getItem("arend")||"ido"}catch(e){}
-function rendGombok(){document.querySelectorAll("[data-rend]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.rend===AREND))}
+function rendGombok(){document.querySelectorAll("[data-rend]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.rend===AREND));
+ document.querySelectorAll("[data-szur]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.szur===ASZUR))}
+let ASZUR="nyitott";try{ASZUR=localStorage.getItem("aszur")==="kesz"?"kesz":"nyitott"}catch(e){}
+document.querySelectorAll("[data-szur]").forEach(b=>b.onclick=()=>{ASZUR=b.dataset.szur;try{localStorage.setItem("aszur",ASZUR)}catch(e){}rendGombok();arajzol()});
 document.querySelectorAll("[data-rend]").forEach(b=>b.onclick=()=>{AREND=b.dataset.rend;try{localStorage.setItem("arend",AREND)}catch(e){}rendGombok();arajzol()});rendGombok();
 let visszaId=null,visszaT=0;
 async function kisopor(id,vissza){const sor=document.getElementById("h-"+id);
