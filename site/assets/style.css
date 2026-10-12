@@ -934,6 +934,12 @@ html:not(.suti-van) .chat { display: none; }
 .hird-uzenet.ok::before { content: "✓ "; color: var(--kiemelo-szin); }
 .hird-uzenet.hiba { color: var(--piros); }
 
+/* ===== Kis kép a vezető sáv jobb oldali címlistájában (2026-10-12) ===== */
+.cimsor-lista li.kepes a { display: grid; grid-template-columns: minmax(0, 1fr) 84px; column-gap: 14px; align-items: start; padding: 10px 0; }
+.cimsor-lista li.kepes a > * { grid-column: 1; }
+.cimsor-lista li.kepes .ckep { grid-column: 2; grid-row: 1 / span 4; width: 84px; height: 60px; object-fit: cover; border-radius: 8px; margin-top: 3px; background: var(--bg-2); }
+@media (max-width: 420px) { .cimsor-lista li.kepes a { grid-template-columns: minmax(0, 1fr) 84px; column-gap: 12px; } .cimsor-lista li.kepes .ckep { width: 84px; height: 56px; } }
+
 /* ===== A hirdetői űrlap fekvő változata (Feltörekvő oldal, 2026-10-12): alacsony, hogy ne nyújtsa meg a lapot ===== */
 .hirdeto-sav { margin-top: 16px; padding: 14px 20px; }
 .hirs-fej { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
