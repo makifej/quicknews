@@ -1,3 +1,12 @@
+// Főoldal, jobb oszlop: a készletből minden betöltéskor véletlenszerűen 3 sima és 2 képes hír, váltakozva
+(function(){
+  var v = document.querySelector('.jobb-vegyes[data-keszlet]'); if (!v) return;
+  var kever = function(t){ for (var i = t.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), x = t[i]; t[i] = t[j]; t[j] = x; } return t; };
+  var sz = kever([].slice.call(v.querySelectorAll('[data-tipus="szoveg"]'))), kp = kever([].slice.call(v.querySelectorAll('[data-tipus="kep"]')));
+  var sor = [sz[0], kp[0], sz[1], kp[1], sz[2]].filter(Boolean);
+  [].forEach.call(v.children, function(el){ el.hidden = true; el.classList.remove('elhagyhato'); });
+  sor.forEach(function(el, i){ el.hidden = false; if (i === 4) el.classList.add('elhagyhato'); v.appendChild(el); });
+})();
 // SEC-001 (2026-10-11): a feed.json mezői külső tartalomból jönnek, innerHTML-be csak escape-elve kerülhetnek
 function qnEsc(t){ return String(t == null ? '' : t).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 function qnSlug(s){ return typeof s === 'string' && /^[a-z0-9-]{1,200}$/.test(s); }
