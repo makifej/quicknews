@@ -1,0 +1,43 @@
+{
+  "id": "7682fde4fed9",
+  "slug": "uj-funkcioval-valtoztathato-dontesi-modelle-250-ai-modell-a-hugging",
+  "forras_id": "linkedin",
+  "forras_nev": "Hugging Face (LinkedIn)",
+  "url": "https://www.linkedin.com/feed/update/urn:li:activity:7515397959090442240/",
+  "szerzo": "Hugging Face",
+  "publikalva": "2026-10-12T13:08:22.789000+00:00",
+  "media": {
+    "tipus": "mp4",
+    "url": "https://dms.licdn.com/playlist/vid/v2/D5605AQExyq2NgUNwwQ/mp4-640p-30fp-crf28/B56aEwOXK8JcBo-/0/1791810443713?e=2147483647&v=beta&t=dyZDokHVTGYSiZiJDdoerMsCly8Ya-39-oWUvbocuMA",
+    "kep": "https://media.licdn.com/dms/image/v2/D5605AQExyq2NgUNwwQ/videocover-high/B56aEwOXK8JcBQ-/0/1791810440448?e=2147483647&v=beta&t=tuk0oBOaLvc4B0kdo6IcbAFMfYkC2Zpa06qCDcdfNHA",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7515397959090442240"
+  },
+  "cim_eredeti": "Fun addition to transformers serve: you can now turn any of the 250 autoregressive (LLM+VLM) model into a JEV-like decis",
+  "forrasok": [],
+  "szoveg_eredeti": "Fun addition to transformers serve: you can now turn any of the 250 autoregressive (LLM+VLM) model into a JEV-like decision model.\n\n/v1/systemone scores a set of decision with the models logits. No need to generate text!\n\nDecision models we see these days sometimes add a head on top of the model: classification, reward, value, etc. You train that head for the decisions you care about, then serve the model with it.\n\nWe take another approach to leverage current architectures for the same purpose. For each question, we turn the possible decisions into answer tokens. For example:\n\nA = billing\nB = technical\nC = sales\n\nWe run the normal autoregressive model, but instead of sampling the next token and continuing generation, we stop after the forward pass.\n\nThen we look only at the logits for A/B/C and softmax over them.\n\nSo the LM itself gives you:\n\nbilling: 0.03\ntechnical: 0.94\nsales: 0.03\n\nCompared to other decision models; this output is not calibrated, meaning logits are not necessarily as interpretable.\n\nWhats great with this is that this also works very well with batching: you can batch many decisions into a single forward pass: routing, scoring, yes/no questions, others.\n\nThis also works with VLMs, which results in great example; which one of these autoregressive VLMs can get the microducks over the finish line the quickest?",
+  "modell": "gemini-3.5-flash",
+  "cim": "Új funkcióval változtatható döntési modellé 250 AI-modell a Hugging Face-en",
+  "lead": "A transformers serve frissítésével szövegkiírás nélkül, közvetlenül értékelhetők a döntési lehetőségek a nyelvi és vizuális modellekben.",
+  "osszefoglalo": "A Hugging Face egy új funkciót adott hozzá a **transformers serve** eszközhöz, amellyel 250 autoregresszív nyelvi (LLM) és vizuális-nyelvi (VLM) modell alakítható át döntéshozatali modellé. A `/v1/systemone` végpont segítségével a rendszer nem generál teljes szöveget, hanem a modell logit értékei alapján közvetlenül pontozza a megadott opciókat.\n\nA megoldás a lehetséges döntéseket választokenekké alakítja (például A = számlázás, B = technikai, C = értékesítés). A modell futtatása után a generálás leáll az első lépésben, és a rendszer kizárólag a megadott opciók valószínűségi értékeit számítja ki. Bár az eredmények nem kalibráltak, a módszer kiemelkedően **jól támogatja a kötegelt feldolgozást** (batching), így egyetlen lépésben több routing vagy értékelési feladat is elvégezhető.\n\nA funkció a vizuális-nyelvi modellekkel is működik, így képalapú döntési és osztályozási feladatokhoz is használható.",
+  "miert_szamit": "A fejlesztéssel **szöveg AI-generálása nélkül, lényegesen gyorsabban és olcsóbban** végezhetők el a kategorizálási, átirányítási és döntési feladatok a meglévő nyelvi modellekkel.",
+  "cimkek": [
+    "Hugging Face",
+    "LLM",
+    "VLM",
+    "transformers serve"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "A videó azt mutatja be, ahogy a különböző vizuális-nyelvi modellek kacsás játékban versenyeznek egymással a döntéshozatali funkció segítségével.",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "transformers serve"
+  ],
+  "linkszabaly": 2,
+  "forditva": "2026-10-12T14:04:33+00:00",
+  "megjelent": "2026-10-12T14:04:33+00:00",
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}

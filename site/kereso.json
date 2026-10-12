@@ -18,6 +18,15 @@
     "d": "okt. 12. 15:11"
   },
   {
+    "c": "Új funkcióval változtatható döntési modellé 250 AI-modell a Hugging Face-en",
+    "b": "A transformers serve frissítésével szövegkiírás nélkül, közvetlenül értékelhetők a döntési lehetőségek a nyelvi és vizuális modellekben.",
+    "k": "Hugging Face (LinkedIn)",
+    "g": "eszköz",
+    "u": "/hir/uj-funkcioval-valtoztathato-dontesi-modelle-250-ai-modell-a-hugging",
+    "sz": "A Hugging Face egy új funkciót adott hozzá a transformers serve eszközhöz, amellyel 250 autoregresszív nyelvi (LLM) és vizuális-nyelvi (VLM) modell alakítható át döntéshozatali modellé. A `/v1/systemone` végpont segítségével a rendszer nem generál teljes szöveget, hanem a modell logit értékei alapján közvetlenül pontozza a megadott opciókat.\n\nA megoldás a lehetséges döntéseket választokenekké alakítja (például A = számlázás, B = technikai, C = értékesítés). A modell futtatása után a generálás leáll az első lépésben, és a rendszer kizárólag a megadott opciók valószínűségi értékeit számítja ki. Bár az eredmények nem kalibráltak, a módszer kiemelkedően jól támogatja a kötegelt feldolgozást (batching), így egyetlen lépésben több routing vagy értékelési feladat is elvégezhető.\n\nA funkció a vizuális-nyelvi modellekkel is működik, így képalapú döntési és osztályozási feladatokhoz is használható. Hugging Face LLM VLM transformers serve",
+    "d": "okt. 12. 15:08"
+  },
+  {
     "c": "Saját AI-chippel csökkenti Nvidia-függőségét a Microsoft",
     "b": "A Microsoft bemutatta a Maia 300 lapkát, amely a cég felhős AI-szolgáltatásainak és saját modelljeinek elsődleges alapja lesz.",
     "k": "The Verge AI",
