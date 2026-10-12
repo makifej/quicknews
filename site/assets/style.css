@@ -936,7 +936,8 @@ html:not(.suti-van) .chat { display: none; }
 
 /* ===== Főoldal, vezető sáv jobb oldala: a nagy kép alatt váltakozva sima címsor és képes sor (2026-10-12) ===== */
 .jobb-vegyes { margin-top: 20px; border-top: 1px solid var(--vonal); }
-.jobb-vegyes > * + * { border-top: 1px solid var(--vonal); }
+.jobb-vegyes > [hidden] { display: none; }
+.jobb-vegyes > :not([hidden]) ~ :not([hidden]) { border-top: 1px solid var(--vonal); }
 .jobb-vegyes .kepsor { padding: 14px 0; }
 .jobb-vegyes .kepsor .hir-sor h3 { font-size: 17px; line-height: 23px; }
 @media (min-width: 901px) and (max-width: 1100px) { .jobb-vegyes .elhagyhato { display: none; } }
