@@ -32,6 +32,7 @@ jobs:
     outputs:
       fut: ${{ steps.ido.outputs.fut }}
       kod: ${{ github.sha }}
+      kezdet: ${{ steps.ido.outputs.kezdet }}
     env:
       TZ: Europe/Budapest
     steps:
@@ -40,6 +41,7 @@ jobs:
         run: |
           ORA=$(date +%H)
           if [ "${{ inputs.kenyszer }}" != "true" ] && { [ "$ORA" -ge 23 ] || [ "$ORA" -lt 8 ]; }; then echo "fut=nem" >> $GITHUB_OUTPUT; else echo "fut=igen" >> $GITHUB_OUTPUT; fi
+          echo "kezdet=$(date +%s)000" >> $GITHUB_OUTPUT
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4
         if: steps.ido.outputs.fut == 'igen'
         with:
@@ -121,9 +123,15 @@ jobs:
         id: kod
         env:
           GH_TOKEN: ${{ github.token }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
           valtozott=$(gh api "repos/${{ github.repository }}/compare/${{ needs.frissit.outputs.kod }}...main" --jq '[.files[]?.filename | select(startswith("build/") or startswith("api/") or . == "vercel.json")] | length' 2>/dev/null || echo 0)
-          if [ "${valtozott:-0}" -gt 0 ]; then echo "Futás közben $valtozott kódfájl változott: ez a kör nem élesít."; echo "mehet=nem" >> $GITHUB_OUTPUT; else echo "mehet=igen" >> $GITHUB_OUTPUT; fi
+          if [ "${valtozott:-0}" -gt 0 ]; then echo "Futás közben $valtozott kódfájl változott: ez a kör nem élesít."; echo "mehet=nem" >> $GITHUB_OUTPUT; exit 0; fi
+          # ha a futás közben valaki (Heni gépéről) élesített, az újabb: ez a kör nem írhatja felül
+          utolso=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" "https://api.vercel.com/v6/deployments?projectId=$VERCEL_PROJECT_ID&teamId=$VERCEL_ORG_ID&target=production&limit=1" | jq -r '.deployments[0].created // 0')
+          if [ "${utolso:-0}" -gt "${{ needs.frissit.outputs.kezdet }}" ]; then echo "A futás közben gépről élesítettek ($utolso): ez a kör nem írja felül."; echo "mehet=nem" >> $GITHUB_OUTPUT; else echo "mehet=igen" >> $GITHUB_OUTPUT; fi
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093  # v4
         if: steps.kod.outputs.mehet == 'igen'
         with:
