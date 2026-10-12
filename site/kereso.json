@@ -1,5 +1,23 @@
 [
   {
+    "c": "A chatelőzmények törlése akár 66 százalékkal növeli az AI-ügynökök hatékonyságát",
+    "b": "A Microsoft Research új módszere törli a beszélgetési előzményeket, de megtartja a munkafájlokat, így az AI nem ragad le a rossz ötleteknél.",
+    "k": "The Decoder",
+    "g": "kutatás",
+    "u": "/hir/a-chatelozmenyek-torlese-akar-66-szazalekkal-noveli-az-ai-ugynokok",
+    "sz": "A Microsoft kutatói kimutatták, hogy a hosszan működő autonóm AI-ügynökök gyakran beragadnak egy-egy lokális megoldási tartományba. A felhalmozódó beszélgetési kontextus korlátozza az eszközt, így plusz számítási kapacitás mellett is beragadhat egy rosszabb teljesítményszintre.\n\nA probléma megoldására a kutatók kidolgozták a Fork-and-Flush eljárást. A folyamat során az ügynök több párhuzamos szálra válik szét, miközben a teljes beszélgetési előzményt törlik, de a munkafelületet, a kódokat és a generált fájlokat megtartják. A tiszta kontextussal induló új szálak így nem ismétlik a korábbi hibás logikai lépéseket.\n\nA tesztek során a módszer azonos számítási keret mellett akár 66 százalékkal jobb eredményt ért el a hagyományos egy szálon futó megoldásokhoz képest. A vizsgálathoz GPT-5.6-terra és GPT-5.5 modelleket használtak a GitHub Copilot CLI-n keresztül. A kontextus rendszeres törlése önmagában, elágaztatás nélkül is 22 százalékos javulást hozott. Microsoft AI ügynök GPT-5.5 GitHub Copilot",
+    "d": "okt. 12. 18:10"
+  },
+  {
+    "c": "Már automatikusan ellenőrzi a kódváltoztatásokat az OpenAI Codex",
+    "b": "A fejlesztői csapatok közvetlenül a GitHubon és a GitLabon végezhetnek kódellenőrzést a Codex segítségével.",
+    "k": "OpenAI (YouTube)",
+    "g": "eszköz",
+    "u": "/hir/mar-automatikusan-ellenorzi-a-kodvaltoztatasokat-az-openai-codex",
+    "sz": "Az OpenAI kódellenőrző funkciót indított a Codexhez, amely egyetlen felületre gyűjti össze a pull requesteket, a felülvizsgálati visszajelzéseket és a kóddal kapcsolatos beszélgetéseket. Az eszköz segít a több tárolón átívelő módosítások és kockázatok áttekintésében, miközben alkalmazza a csapat saját kódolási szabályait.\n\nA rendszer közvetlenül a munkafolyamatban generál megjegyzéseket, így a fejlesztőknek nem kell eszközöket váltaniuk a kódellenőrzés során. A funkció célja a kódátvizsgálati folyamatok felgyorsítása és a hibák kiszűrése még a módosítások véglegesítése előtt.\n\nA GitHub-integráció már mindenki számára elérhető, míg a GitLab-támogatás jelenleg nyilvános előzetes verzióban próbálható ki. OpenAI Codex GitHub GitLab",
+    "d": "okt. 12. 18:00"
+  },
+  {
     "c": "A Microsoft elnöke sürgős és szigorú AI-szabályozást sürget",
     "b": "Brad Smith szerint a tejre és a mosógépekre is szigorúbb előírások vonatkoznak, mint az AI-fejlesztő cégekre.",
     "k": "TechCrunch AI",
