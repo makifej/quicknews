@@ -1,0 +1,43 @@
+{
+  "id": "5c7bfe2fe6b3",
+  "slug": "a-qwengyre-keretrendszerrel-gyorsabb-a-hosszu-feladatu-ai-ugynokok",
+  "forras_id": "x-alibaba-qwen",
+  "forras_nev": "Qwen (X)",
+  "url": "https://x.com/Alibaba_Qwen/status/2109633085658808515",
+  "szerzo": "Qwen (@Alibaba_Qwen)",
+  "publikalva": "2026-10-12T13:11:37+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pbs.twimg.com/media/HUboWdbboAA70KJ.jpg?name=orig",
+    "x_url": "https://x.com/Alibaba_Qwen/status/2109633085658808515"
+  },
+  "cim_eredeti": "Introducing QwenGyre, bringing elastic RL to extreme-long-horizon (XLong) agent training. ✨",
+  "forrasok": [],
+  "szoveg_eredeti": "Introducing QwenGyre, bringing elastic RL to extreme-long-horizon (XLong) agent training. ✨\n\nIt launches with two core designs: 🥳\n- Elastic Scheduler: reallocates GPUs between rollout & training as demand shifts—live executions never interrupted. Up to 1.85× speedup over Colocate, 1.78× over Async.\n- Trajectory Processor: turns branching executions (compaction, sub-agents, retries) into prefix-shared trajectory trees with bounded, deduplicated training samples. Partial progress after timeout still gets scored.\n\nScaled to Qwen3.8-2.4T-A95B with ~700K tokens per rollout, QwenGyre lifts NL2RepoBench from 52.5% to 58.5% in 48 steps, cutting end-to-end training time by ~44% vs Async.\n\n🔗 Read the paper:\nhttps://arxiv.org/abs/2609.33848",
+  "modell": "gemini-3.5-flash",
+  "cim": "A QwenGyre keretrendszerrel gyorsabb a hosszú feladatú AI-ügynökök tanítása",
+  "lead": "Az Alibaba Qwen csapata bemutatta a QwenGyre-t, amely jelentősen felgyorsítja az összetett szoftverfejlesztő AI-ügynökök megerősítéses tanulását.",
+  "osszefoglalo": "Az Alibaba kiadta a [QwenGyre](https://arxiv.org/abs/2609.33848) elnevezésű keretrendszert, amely az úgynevezett rugalmas megerősítéses tanulást (elastic RL) hozza el az extrém hosszú folyamatokat kezelő AI-ügynökök képzésébe. A rendszer dinamikusan osztja meg az erőforrásokat a modellfuttatás és a tanítás között, így a futó feladatok megszakítása nélkül akár **1,85-szörös sebességnövekedést** ér el.\n\nA keretrendszer speciális adatfeldolgozója a megszakadt vagy elágazó folyamatokat is elágazó fává alakítja, így a részleges eredmények alapján is képes pontozni és tanítani a modellt. A **Qwen3.8-2.4T-A95B** modellen végzett tesztek során a rendszer 52,5 százalékról 58,5 százalékra növelte a kódgenerálási hatékonyságot a benchmarkon, miközben **44 százalékkal csökkentette** a teljes képzési időt.\n\nA fejlesztésről szóló tudományos tanulmány már elérhető az arXiv felületén.",
+  "miert_szamit": "A hatékonyabb ügynökképzés révén a jövőben sokkal **pontosabb és gyorsabb kódgeneráló AI-eszközök** állhatnak a szoftverfejlesztők és vállalkozók rendelkezésére.",
+  "cimkek": [
+    "Qwen",
+    "Alibaba",
+    "AI-ügynök",
+    "szoftverfejlesztés"
+  ],
+  "kategoria": "ügynök",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "QwenGyre"
+  ],
+  "linkszabaly": 2,
+  "forditva": "2026-10-12T13:34:42+00:00",
+  "megjelent": "2026-10-12T13:34:42+00:00",
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
