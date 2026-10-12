@@ -934,12 +934,12 @@ html:not(.suti-van) .chat { display: none; }
 .hird-uzenet.ok::before { content: "✓ "; color: var(--kiemelo-szin); }
 .hird-uzenet.hiba { color: var(--piros); }
 
-/* ===== Főoldal, vezető sáv jobb oldala: 2 képes hír egymás mellett, alatta sima címsorok (2026-10-12) ===== */
-.jobb-kepes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; padding: 20px 0 16px; border-top: 1px solid var(--vonal); margin-top: 20px; }
-.jobb-kepes .hir-kicsi h3 { font-size: 17px; line-height: 23px; }
-.jobb-kepes + .cimsor-lista { border-top: 1px solid var(--vonal); }
-@media (min-width: 1025px) and (max-width: 1360px) { .jobb-kepes + .cimsor-lista li:nth-child(n+3) { display: none; } }  /* keskenyebb asztalon a címek többet törnek: egy sorral kevesebb, hogy a jobb oszlop ne nyúljon túl */
-@media (max-width: 420px) { .jobb-kepes { gap: 14px; } .jobb-kepes .hir-kicsi h3 { font-size: 15px; line-height: 21px; } }
+/* ===== Főoldal, vezető sáv jobb oldala: a nagy kép alatt váltakozva sima címsor és képes sor (2026-10-12) ===== */
+.jobb-vegyes { margin-top: 20px; border-top: 1px solid var(--vonal); }
+.jobb-vegyes > * + * { border-top: 1px solid var(--vonal); }
+.jobb-vegyes .kepsor { padding: 14px 0; }
+.jobb-vegyes .kepsor .hir-sor h3 { font-size: 17px; line-height: 23px; }
+@media (min-width: 901px) and (max-width: 1100px) { .jobb-vegyes .elhagyhato { display: none; } }
 
 /* ===== A hirdetői űrlap fekvő változata (Feltörekvő oldal, 2026-10-12): alacsony, hogy ne nyújtsa meg a lapot ===== */
 .hirdeto-sav { margin-top: 16px; padding: 14px 20px; }
