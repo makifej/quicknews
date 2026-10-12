@@ -31,6 +31,7 @@ jobs:
       contents: write
     outputs:
       fut: ${{ steps.ido.outputs.fut }}
+      kod: ${{ github.sha }}
     env:
       TZ: Europe/Budapest
     steps:
@@ -112,12 +113,24 @@ jobs:
     timeout-minutes: 15
     permissions:
       actions: read
+      contents: read
     steps:
+      # 2026-10-12: ha a futás közben újabb kód került fel (a gépről élesített javítás), ez a kör NEM élesít,
+      # különben a régi kóddal renderelt oldal felülírná a gépről kitett újabbat. A következő kör már az új kóddal megy.
+      - name: Újabb kód ellenőrzése
+        id: kod
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          valtozott=$(gh api "repos/${{ github.repository }}/compare/${{ needs.frissit.outputs.kod }}...main" --jq '[.files[]?.filename | select(startswith("build/") or startswith("api/") or . == "vercel.json")] | length' 2>/dev/null || echo 0)
+          if [ "${valtozott:-0}" -gt 0 ]; then echo "Futás közben $valtozott kódfájl változott: ez a kör nem élesít."; echo "mehet=nem" >> $GITHUB_OUTPUT; else echo "mehet=igen" >> $GITHUB_OUTPUT; fi
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093  # v4
+        if: steps.kod.outputs.mehet == 'igen'
         with:
           name: kiadas
           path: kiadas
       - name: Kiadás a Vercelre
+        if: steps.kod.outputs.mehet == 'igen'
         working-directory: kiadas
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
