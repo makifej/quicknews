@@ -515,8 +515,12 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
    <div class="kapcs"><button aria-pressed="${!!kt.jo}" data-id="${s.id}" data-mi="kartya_jo"><i></i>Kártya jó</button>
    <button class="elut" aria-pressed="${!!kt.elutasitva}" data-id="${s.id}" data-mi="kartya_rossz"><i></i>Elutasítom</button></div></div>`:"";
   const sk=s.sajat_kep, skUj=sk&&(!kt.kesz_utc||sk.ido>kt.kesz_utc);
-  const sajat=skUj?`<div class="kartyasor"><a href="${U.kep(s.id)}" target="_blank"><img src="${U.kep(s.id)}" alt="A feltöltött kép"></a>
-   <div style="flex:1"><b>Feltöltötted a saját képed.</b><div class="lead">Ebből készül az új kártya, változtatás nélkül, és itt jelenik meg jóváhagyásra.</div></div></div>`:"";
+  /* saját kép: a kártya néhány percen belül magától elkészül (Heni 2026-10-13); ha nem sikerül, a hibát kiírjuk */
+  const kh=s.kartya_hiba&&sk&&s.kartya_hiba.sk===sk.ido?s.kartya_hiba:null;
+  const skSzoveg=kh?`<b style="color:var(--piros,#ff4d4f)">Nem sikerült elkészíteni a kártyát.</b><div class="lead">${esc(kh.uzenet||"")} ${kh.vegleges?"Három próba után sem ment, kézi javítás kell, szólj Claude-nak.":`Újrapróbálom (${kh.proba}/3).`}</div>`
+   :`<b>Feltöltötted a saját képed.</b><div class="lead">Ebből készül az új kártya, változtatás nélkül, néhány percen belül, és itt jelenik meg jóváhagyásra.</div>`;
+  const sajat=skUj?`<div class="kartyasor ${kh?"rossz":""}"><a href="${U.kep(s.id)}" target="_blank"><img src="${U.kep(s.id)}" alt="A feltöltött kép"></a>
+   <div style="flex:1">${skSzoveg}</div></div>`:"";
   return fej+`<div class="ah ${k?"kerve":""} ${s.felkapott?"felk":""}" id="h-${s.id}" data-id="${s.id}"><div class="kp" style="background-image:url('${esc(s.kep)}')"></div>
   <div><a class="cim" href="https://quicknews.hu/hir/${esc(s.slug)}" target="_blank" rel="noopener">${esc(s.cim)}</a><div class="lead">${esc(s.lead)}</div>
   <div class="cimkek">${s.uj?`<span class="cimke uj">Új</span>`:""}${s.felkapott?`<span class="cimke felk">Feltörekvő</span>`:""}<span class="cimke ${s.fontossag>=5?"fo5":""}">Fontosság ${s.fontossag}</span>
