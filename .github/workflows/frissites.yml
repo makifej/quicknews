@@ -152,11 +152,16 @@ jobs:
           # Most a saját kiadás az indítás időpontjából ismerhető fel, a gépi kiadás pedig bármelyik másik, ami a
           # futás kezdete óta készült: azt tesszük vissza élesre, akár a miénk előtt, akár utána indult.
           elott=$(date +%s%3N)
-          npx --yes vercel@63.1.2 deploy --prod --yes --archive=tgz --token "$VERCEL_TOKEN" 2>&1 | tail -3
+          npx --yes vercel@63.1.2 deploy --prod --yes --archive=tgz --token "$VERCEL_TOKEN" > vercel-kimenet.txt 2>&1 || true
+          tail -3 vercel-kimenet.txt
+          # a saját kiadás a CLI kimenetéből („Production  https://quicknews-….vercel.app”); tartalék: az indítás ideje
+          sajat=$(grep -o 'https://quicknews-[a-z0-9]*-h-novaks-projects\.vercel\.app' vercel-kimenet.txt | head -1 | sed 's#https://##')
           sleep 25  # a futás közben indult gépi kiadás is érjen a READY állapotba
           lista=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" "https://api.vercel.com/v6/deployments?projectId=$VERCEL_PROJECT_ID&teamId=$VERCEL_ORG_ID&target=production&limit=10")
-          sajat=$(echo "$lista" | jq -r --argjson e "$elott" '[.deployments[] | select(.created >= $e - 5000)] | sort_by(.created) | first | .url // empty')
-          echo "élesítve: $sajat"
+          if [ -z "$sajat" ]; then
+            sajat=$(echo "$lista" | jq -r --argjson e "$elott" '[.deployments[] | select(.created >= $e - 5000)] | sort_by(.created) | first | .url // empty')
+          fi
+          echo "élesítve: $sajat (indítás: $elott, legutóbbi kiadás: $(echo "$lista" | jq -r '.deployments[0] | "\(.url) \(.created)"'))"
           masik=$(echo "$lista" | jq -r --arg s "$sajat" --argjson k "${{ needs.frissit.outputs.kezdet }}" \
               '[.deployments[] | select(.url != $s and .created > $k and .state == "READY")] | sort_by(.created) | last | .url // empty')
           eles=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" "https://api.vercel.com/v9/projects/$VERCEL_PROJECT_ID?teamId=$VERCEL_ORG_ID" | jq -r '.targets.production.url // empty')
