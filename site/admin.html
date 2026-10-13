@@ -335,7 +335,7 @@ function kartya(s,kov){const d=new Date(s.idopont);let a,cls="",tovabb="";
  const jel=`<span class="all-jel all-${ALLNEV(s).replace(/[^a-zA-Záéíóöőúüű]/g,"").toLowerCase()}">${ALLNEV(s)}</span>`;
  if(s.felulet==="Hirdetés"){
   if(s.feldolgozasra)a=`${jel}${VAROK(s,"3 percen belül elkészül, szüneteltetve")}`;
-  else if(VARAK(s)){a=`${jel}<span class="allapot">Elkészült, szüneteltetve. Te indítod.</span><button class="hird-indit" data-azon="${esc(s.azon)}" data-cim="${esc(s.cim)}">Indítás</button><button class="szerk" data-szerk="${esc(s.id)}">Címsor</button>`;
+  else if(VARAK(s)){a=`${jel}<span class="allapot">Elkészült, szüneteltetve (3 percen belül indul)</span><button class="hird-indit" data-azon="${esc(s.azon)}" data-cim="${esc(s.cim)}">Indítás</button><button class="szerk" data-szerk="${esc(s.id)}">Címsor</button>`;
    tovabb=`<form class="szerk-urlap" data-szerk-urlap="${esc(s.id)}" hidden><label>Címsor (a kártya alatt, legfeljebb 40 karakter ajánlott)<input name="cimsor" maxlength="60" value="${esc(s.cimsor||"")}"></label><div class="szerk-gombok"><button type="submit">Mentés</button><button type="button" data-megse>Mégse</button></div></form>`}
   else a=`${jel}<span class="allapot">${esc(s.meta_allapot||"")}</span>`;
   const cimH=`<span class="cim">${esc(s.cim)}</span>${s.cimsor?`<div class="lead">Címsor: ${esc(s.cimsor)}</div>`:""}`;
@@ -510,6 +510,7 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
   const feldolg=Object.keys(el).length||jvF.length?`<div class="feldolg ${s.feldolgozott?"kesz":""}"><span class="cimke ${s.feldolgozott?"kesz":"var"}">${s.feldolgozott?"✓ Feldolgozva":"Feldolgozás alatt"}</span>${jv.ido?`<span class="elem">átkerült ${esc(fmt(new Date(jv.ido),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}))}</span>`:""}${Object.keys(el).map(elemSor).join("")}${nyitottF.filter(f=>jvF.includes(f)).map(f=>`<span class="elem"><b>${FEL[f]}</b> ${(s.kiteteli_hiba||{})[f]?`<span style="color:#ff6b6b">két próba után sem sikerült, nézd meg</span>`:(s.kartya||{}).fajl&&!(s.kartya||{}).jo?"a kártya jóváhagyására vár":"3 percen belül elkészül"}</span>`).join("")}</div>`:"";
   const kt=s.kartya||{};
   const kszoveg=kt.elutasitva?`<b>Elutasítva.</b><div class="lead" style="-webkit-line-clamp:3">Új kártya készül a cikk eredeti képéből vagy a videójából, és itt jelenik meg újra jóváhagyásra.</div>`
+   :kt.jo&&kt.auto&&s.sajat_kep?`<b>A saját képeddel megy ki.</b><div class="lead">A kártya a feltöltött képedből készült, nem kell külön jóváhagynod.</div>`
    :kt.jo&&kt.auto?`<b>Eredeti képpel megy ki.</b><div class="lead">Nem töltöttél fel saját képet, ezért nem kell jóváhagynod.</div>`
    :kt.jo?`<b>Jóváhagyva.</b><div class="lead">A következő körben kimegy oda, ahova kérted.</div>`
    :`<b>Elkészült a kártya.</b><div class="lead" style="-webkit-line-clamp:3">Nézd meg nagyban (kattints rá). Ha jó, pipáld be, ha nem, utasítsd el, és újat csinálok. Csak jóváhagyott kártya mehet ki.</div>`;
@@ -521,7 +522,7 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
   /* saját kép: a kártya néhány percen belül magától elkészül (Heni 2026-10-13); ha nem sikerül, a hibát kiírjuk */
   const kh=s.kartya_hiba&&sk&&s.kartya_hiba.sk===sk.ido?s.kartya_hiba:null;
   const skSzoveg=kh?`<b style="color:var(--piros,#ff4d4f)">Nem sikerült elkészíteni a kártyát.</b><div class="lead">${esc(kh.uzenet||"")} ${kh.vegleges?"Három próba után sem ment, kézi javítás kell, szólj Claude-nak.":`Újrapróbálom (${kh.proba}/3).`}</div>`
-   :`<b>Feltöltötted a saját képed.</b><div class="lead">Ebből készül az új kártya, változtatás nélkül, néhány percen belül, és itt jelenik meg jóváhagyásra.</div>`;
+   :`<b>Feltöltötted a saját képed.</b><div class="lead">Ebből készül az új kártya, változtatás nélkül, néhány percen belül, és a bepipált felületekre magától kimegy.</div>`;
   const sajat=skUj?`<div class="kartyasor ${kh?"rossz":""}"><a href="${U.kep(s.id)}" target="_blank"><img src="${U.kep(s.id)}" alt="A feltöltött kép"></a>
    <div style="flex:1">${skSzoveg}</div></div>`:"";
   return fej+`<div class="ah ${k?"kerve":""} ${s.felkapott?"felk":""}" id="h-${s.id}" data-id="${s.id}"><div class="kp" style="background-image:url('${esc(s.kep)}')"></div>
