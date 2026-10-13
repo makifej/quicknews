@@ -352,6 +352,8 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .uj-hirek { position: fixed; left: 16px; bottom: 16px; z-index: 50; display: flex; flex-direction: column; gap: 12px; width: min(400px, calc(100vw - 32px)); pointer-events: none; }
 .uj-kartya { pointer-events: auto; display: grid; grid-template-columns: 96px 1fr auto; gap: 12px; align-items: center; padding: 12px; background: var(--bg-3); border: 1px solid var(--keret-eros); border-radius: 16px; box-shadow: 0 12px 40px var(--arnyek); opacity: 0; transform: translateX(-24px); transition: opacity 700ms var(--gorbe), transform 700ms var(--gorbe); }
 .uj-kartya.bent { opacity: 1; transform: none; }
+/* mobilon nincs felugró új-hír kártya, ott csak a harang jelzi az új híreket (Heni 2026-10-13) */
+@media (max-width: 767px) { .uj-hirek { display: none; } }
 .uj-kartya img { width: 96px; height: 64px; object-fit: cover; border-radius: 8px; }
 .uj-kartya:not(:has(img)) { grid-template-columns: 1fr auto; }
 .uj-kartya .uj-cimke { display: block; font-size: 14px; line-height: 20px; color: var(--kiemelo-szin); font-weight: 600; margin-bottom: 2px; }
