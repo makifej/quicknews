@@ -230,7 +230,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <button role="tab" aria-selected="false" data-ful="bekuldes">Beküldések</button>
 <button role="tab" aria-selected="false" data-ful="hirdetok">Hirdetők</button>
 <button role="tab" aria-selected="false" data-ful="cikkbehuzas">Cikkbehúzás</button>
-<button role="tab" aria-selected="false" data-ful="hirlevel">Hírlevél</button>
+<button role="tab" aria-selected="false" data-ful="hirlevel">Emlékeztető</button>
 <button role="tab" aria-selected="false" data-ful="koltseg">Költség</button></nav>
 <div class="frissult num" id="frissult"></div></div></div>
 
@@ -247,12 +247,12 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <div id="h-lista"></div>
 </section>
 <section id="p-hirlevel" hidden>
-<p class="a-bev">A napi hírlevél feliratkozói. Minden reggel 8-kor kimegy nekik az előző nap legfontosabb híreivel. A címek csak erre a levélre használhatók.</p>
+<p class="a-bev">A napi emlékeztető feliratkozói. Minden reggel 8-kor kimegy nekik az előző nap legfontosabb híreivel. A címek csak erre a levélre használhatók.</p>
 <div class="hl-fej"><div class="hl-szam"><b class="num" id="hl-db">0</b><span>feliratkozó</span></div>
 <div class="kapcs hl-kapcs"><button id="hl-aktiv" aria-pressed="true"><i></i>Reggeli küldés bekapcsolva</button></div></div>
 <p class="hl-cimke">Cím hozzáadása kézzel</p>
 <form class="hl-urlap" id="hl-urlap"><input type="email" id="hl-email" placeholder="nev@pelda.hu" autocomplete="off" required><button type="submit" class="gomb">Hozzáadom</button></form>
-<p class="hl-megj">Csak olyan címet vegyél fel, akinek a tulajdonosa hozzájárult, hogy hírlevelet kapjon.</p>
+<p class="hl-megj">Csak olyan címet vegyél fel, akinek a tulajdonosa hozzájárult, hogy emlékeztetőt kapjon.</p>
 <p class="hl-cimke">Címek, a legfrissebbel elöl</p>
 <div id="hl-lista"></div>
 <div class="hl-gombok"><button class="gomb" id="hl-masol">Címek másolása</button><button class="gomb masod" id="hl-csv">Letöltés CSV-ben</button><button class="gomb masod" id="hl-frissit">Frissítés</button></div>
@@ -612,12 +612,12 @@ async function hltolt(){const L=document.getElementById("hl-lista");let d;try{d=
  L.innerHTML=(d.lista||[]).map(x=>`<div class="hl-sor"><span class="em">${esc(x.email)}</span><span class="ido">${x.ido?fmt(new Date(x.ido),{year:"numeric",month:"short",day:"numeric"}):""}${x.forras==="admin"?" · kézzel":""}</span><button class="sor-torol" data-hlt="${esc(x.email)}">Törlés</button></div>`).join("")||`<p class="ures">Még nincs feliratkozó.</p>`;
  L.querySelectorAll("[data-hlt]").forEach(g=>g.onclick=async()=>{if(!confirm("Biztosan törlöd: "+g.dataset.hlt+"?"))return;await hlmuv({muvelet:"torol",email:g.dataset.hlt})});
  const K=document.getElementById("hl-kiadasok");
- K.innerHTML=(d.kiadasok||[]).map(k=>`<div class="hl-sor"><span class="em">${esc(k.targy||"")}</span><span class="ido">${k.ido?fmt(new Date(k.ido),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):""} · ${k.cimzett||0} címzett · ${k.hirek||0} hír${k.hiba?` · <b style="color:var(--hiba)">${k.hiba} hiba</b>`:""}</span></div>`).join("")||`<p class="ures">Még nem ment ki hírlevél.</p>`;
+ K.innerHTML=(d.kiadasok||[]).map(k=>`<div class="hl-sor"><span class="em">${esc(k.targy||"")}</span><span class="ido">${k.ido?fmt(new Date(k.ido),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):""} · ${k.cimzett||0} címzett · ${k.hirek||0} hír${k.hiba?` · <b style="color:var(--hiba)">${k.hiba} hiba</b>`:""}</span></div>`).join("")||`<p class="ures">Még nem ment ki emlékeztető.</p>`;
  document.getElementById("hl-utolso").href=U.hlUtolso}
 async function hlmuv(b){try{const r=await lekér(U.hlMuvelet,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}hltolt()}
 document.getElementById("hl-urlap").onsubmit=async e=>{e.preventDefault();const i=document.getElementById("hl-email");if(!i.value.trim())return;await hlmuv({muvelet:"hozzaad",email:i.value.trim()});i.value=""};
 document.getElementById("hl-aktiv").onclick=async()=>{const be=document.getElementById("hl-aktiv").getAttribute("aria-pressed")==="true";
- if(be&&!confirm("Kikapcsolod a reggeli hírlevelet? Amíg ki van kapcsolva, nem megy ki levél."))return;await hlmuv({muvelet:"beall",aktiv:!be})};
+ if(be&&!confirm("Kikapcsolod a reggeli emlékeztetőt? Amíg ki van kapcsolva, nem megy ki levél."))return;await hlmuv({muvelet:"beall",aktiv:!be})};
 document.getElementById("hl-frissit").onclick=()=>hltolt();
 document.getElementById("hl-masol").onclick=async()=>{const t=((HL&&HL.lista)||[]).map(x=>x.email).join(", ");try{await navigator.clipboard.writeText(t);alert(((HL&&HL.lista)||[]).length+" cím a vágólapon.")}catch(e){prompt("Másold ki:",t)}};
 document.getElementById("hl-csv").onclick=()=>{const s="email,feliratkozas\n"+((HL&&HL.lista)||[]).map(x=>`${x.email},${x.ido||""}`).join("\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([s],{type:"text/csv"}));a.download="quicknews-hirlevel.csv";a.click()};

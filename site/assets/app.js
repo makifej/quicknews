@@ -543,14 +543,14 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     d.className = 'hl-hatter';
     d.innerHTML = '<div class="hl-ablak" role="dialog" aria-modal="true" aria-labelledby="hl-cim">' +
       '<button type="button" class="hl-zar" aria-label="Bezárás">×</button>' +
-      '<p class="hl-felirat">Napi AI-hírlevél</p>' +
+      '<p class="hl-felirat">Napi AI-emlékeztető</p>' +
       '<h2 id="hl-cim">Lemaradni elég 1 hét.</h2>' +
       '<p class="hl-szoveg">Ennyi idő alatt jön ki egy új modell, és ír át mindent, amit eddig elképzeltél. Összeszedjük neked, ami ebből számít.</p>' +
       '<form class="hl-urlap" novalidate><label class="hl-cimke" for="hl-email-mezo">Hova küldjük?</label>' +
       '<input id="hl-email-mezo" type="email" name="email" placeholder="nev@pelda.hu" autocomplete="email" required>' +
       '<button type="submit">Kérem a napi összefoglalót</button></form>' +
       '<p class="hl-uzenet" role="status" aria-live="polite"></p>' +
-      '<p class="hl-jog">Az e-mail-címedet csak erre a hírlevélre használjuk. <a href="/adatvedelem#hirlevel">Részletek</a></p>' +
+      '<p class="hl-jog">Az e-mail-címedet csak erre az emlékeztetőre használjuk. <a href="/adatvedelem#hirlevel">Részletek</a></p>' +
       '<button type="button" class="hl-most-nem">Most nem</button></div>';
     document.body.appendChild(d);
     var elozo = document.activeElement, mezo = d.querySelector('input'), uz = d.querySelector('.hl-uzenet');
