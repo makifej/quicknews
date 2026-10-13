@@ -83,6 +83,15 @@ button.torol:disabled{opacity:.5}
 .kartya.kint{opacity:.45}
 .kartya.kint:hover{opacity:.8}
 .ures{color:var(--halkabb);padding:24px 20px}
+.hl-fej{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:32px}
+.hl-szam{display:flex;align-items:baseline;gap:12px}.hl-szam b{font-size:72px;line-height:1;font-weight:700}.hl-szam span{color:var(--halk);font-size:20px}
+.hl-cimke{color:var(--amber);font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:32px 0 12px}
+.hl-urlap{display:flex;gap:12px;flex-wrap:wrap}.hl-urlap input{flex:1 1 260px;min-width:0;background:var(--lap);border:1px solid var(--vonal);border-radius:8px;padding:12px 16px;color:var(--szoveg);font-size:17px}
+.hl-megj{color:var(--halkabb);font-size:15px;margin:8px 0 0}
+.hl-sor{display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--vonal)}.hl-sor .em{flex:1;min-width:0;overflow-wrap:anywhere}.hl-sor .ido{color:var(--halk);white-space:nowrap}
+.hl-gombok{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.gomb{background:var(--amber);color:#131313;font-weight:700;border-radius:8px;padding:12px 20px}.gomb.masod{background:none;color:var(--szoveg);border:1px solid var(--vonal)}
+@media (max-width:560px){.hl-szam b{font-size:56px}.hl-sor{flex-wrap:wrap;gap:8px}.hl-sor .ido{order:3}}
 .hibasav{background:#2a1515;color:var(--hiba);border-radius:12px;padding:16px 20px;margin-bottom:24px;font-weight:600}
 .lab{color:var(--halkabb);font-size:16px;margin-top:32px}
 
@@ -221,6 +230,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <button role="tab" aria-selected="false" data-ful="bekuldes">Beküldések</button>
 <button role="tab" aria-selected="false" data-ful="hirdetok">Hirdetők</button>
 <button role="tab" aria-selected="false" data-ful="cikkbehuzas">Cikkbehúzás</button>
+<button role="tab" aria-selected="false" data-ful="hirlevel">Hírlevél</button>
 <button role="tab" aria-selected="false" data-ful="koltseg">Költség</button></nav>
 <div class="frissult num" id="frissult"></div></div></div>
 
@@ -235,6 +245,20 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <section id="p-hirdetok" hidden>
 <p class="a-bev">Az oldalsávos „Hirdess nálunk” űrlapon érdeklődő cégek. Hívd vissza őket, és jelöld, hol tartotok. Az adatokat 1 évig őrizzük.</p>
 <div id="h-lista"></div>
+</section>
+<section id="p-hirlevel" hidden>
+<p class="a-bev">A napi hírlevél feliratkozói. Minden reggel 8-kor kimegy nekik az előző nap legfontosabb híreivel. A címek csak erre a levélre használhatók.</p>
+<div class="hl-fej"><div class="hl-szam"><b class="num" id="hl-db">0</b><span>feliratkozó</span></div>
+<div class="kapcs hl-kapcs"><button id="hl-aktiv" aria-pressed="true"><i></i>Reggeli küldés bekapcsolva</button></div></div>
+<p class="hl-cimke">Cím hozzáadása kézzel</p>
+<form class="hl-urlap" id="hl-urlap"><input type="email" id="hl-email" placeholder="nev@pelda.hu" autocomplete="off" required><button type="submit" class="gomb">Hozzáadom</button></form>
+<p class="hl-megj">Csak olyan címet vegyél fel, akinek a tulajdonosa hozzájárult, hogy hírlevelet kapjon.</p>
+<p class="hl-cimke">Címek, a legfrissebbel elöl</p>
+<div id="hl-lista"></div>
+<div class="hl-gombok"><button class="gomb" id="hl-masol">Címek másolása</button><button class="gomb masod" id="hl-csv">Letöltés CSV-ben</button><button class="gomb masod" id="hl-frissit">Frissítés</button></div>
+<p class="hl-cimke">Kiküldött levelek</p>
+<div id="hl-kiadasok"></div>
+<p class="hl-megj"><a id="hl-utolso" href="#" target="_blank" rel="noopener" style="color:var(--amber)">Az utoljára kiküldött levél megnyitása ↗</a></p>
 </section>
 <section id="p-cikkbehuzas" hidden>
 <p class="a-bev">Akik a „Szeretnéd, hogy behúzzuk a cikkeidet?” dobozból kértek ajánlatot: az RSS-hírfolyamuk vagy API-juk cikkeinek átvételére. Hívd vissza őket, és jelöld, hol tartotok. Az adatokat 1 évig őrizzük.</p>
@@ -268,7 +292,7 @@ const U={posztok:ADMIN?"/api/admin?mi=posztok":"/adat.json",koltseg:ADMIN?"/api/
  ajanlott:ADMIN?"/api/admin?mi=ajanlott":"/ajanlott.json",kijeloles:ADMIN?"/api/admin?mi=kijeloles":"/kijeloles",
  kartya:f=>ADMIN?"/api/admin?mi=kartya&f="+encodeURIComponent(f):"/kartya/"+encodeURIComponent(f),
  kep:id=>ADMIN?"/api/admin?mi=kep&id="+id:"/kep?id="+id, kepFel:ADMIN?"/api/admin?mi=kep_feltolt":"/kep_feltolt",
- torles:ADMIN?"/api/admin?mi=torles":"/torles",bekuldesek:ADMIN?"/api/admin?mi=bekuldesek":"/bekuldesek.json",hirdetok:ADMIN?"/api/admin?mi=hirdetok":"/hirdetok.json",hirdAll:ADMIN?"/api/admin?mi=hirdeto_allapot":"/hirdeto_allapot",bekDontes:ADMIN?"/api/admin?mi=bekuldes_dontes":"/bekuldes_dontes",kisopor:ADMIN?"/api/admin?mi=kisopor":"/kisopor",muvelet:ADMIN?"/api/admin?mi=muvelet":"/muvelet"};
+ torles:ADMIN?"/api/admin?mi=torles":"/torles",bekuldesek:ADMIN?"/api/admin?mi=bekuldesek":"/bekuldesek.json",hirdetok:ADMIN?"/api/admin?mi=hirdetok":"/hirdetok.json",hirdAll:ADMIN?"/api/admin?mi=hirdeto_allapot":"/hirdeto_allapot",bekDontes:ADMIN?"/api/admin?mi=bekuldes_dontes":"/bekuldes_dontes",kisopor:ADMIN?"/api/admin?mi=kisopor":"/kisopor",muvelet:ADMIN?"/api/admin?mi=muvelet":"/muvelet",hirlevel:ADMIN?"/api/admin?mi=hirlevel":"/hirlevel.json",hlMuvelet:ADMIN?"/api/admin?mi=hirlevel_muvelet":"/hirlevel_muvelet",hlUtolso:ADMIN?"/api/admin?mi=hirlevel_utolso":"/hirlevel_utolso"};
 /* a választások (fül, nap, nézet, időszak) megmaradnak frissítés után is */
 const TAR=(k,v)=>{try{if(v===undefined)return JSON.parse(localStorage.getItem("qn-pult-"+k));localStorage.setItem("qn-pult-"+k,JSON.stringify(v))}catch(e){return null}};
 async function lekér(u,opt){const r=await fetch(u,Object.assign({cache:"no-store",credentials:"same-origin"},opt||{}));
@@ -579,6 +603,25 @@ async function htolt(cikk){const L=document.getElementById(cikk?"c-lista":"h-lis
  L.querySelectorAll("[data-hird]").forEach(g=>g.onclick=async()=>{if(g.dataset.all==="torol"&&!confirm("Biztosan törlöd ezt az érdeklődőt?"))return;const uj=g.getAttribute("aria-pressed")==="true"?"uj":g.dataset.all;
   try{const r=await lekér(U.hirdAll,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:g.dataset.hird,allapot:uj})});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}htolt(cikk)})}
 
+/* ---------- hírlevél ---------- */
+let HL=null;
+async function hltolt(){const L=document.getElementById("hl-lista");let d;try{d=await lekér(U.hirlevel)}catch(e){L.innerHTML=`<div class="hibasav">A feliratkozók most nem érhetők el.</div>`;return}
+ if(d.hiba){L.innerHTML=`<div class="hibasav">${esc(d.hiba)}</div>`;return}
+ HL=d;document.getElementById("hl-db").textContent=d.darab||0;
+ const ak=document.getElementById("hl-aktiv"),be=!(d.beall&&d.beall.aktiv===false);ak.setAttribute("aria-pressed",be);ak.lastChild.textContent=be?"Reggeli küldés bekapcsolva":"Reggeli küldés kikapcsolva";
+ L.innerHTML=(d.lista||[]).map(x=>`<div class="hl-sor"><span class="em">${esc(x.email)}</span><span class="ido">${x.ido?fmt(new Date(x.ido),{year:"numeric",month:"short",day:"numeric"}):""}${x.forras==="admin"?" · kézzel":""}</span><button class="sor-torol" data-hlt="${esc(x.email)}">Törlés</button></div>`).join("")||`<p class="ures">Még nincs feliratkozó.</p>`;
+ L.querySelectorAll("[data-hlt]").forEach(g=>g.onclick=async()=>{if(!confirm("Biztosan törlöd: "+g.dataset.hlt+"?"))return;await hlmuv({muvelet:"torol",email:g.dataset.hlt})});
+ const K=document.getElementById("hl-kiadasok");
+ K.innerHTML=(d.kiadasok||[]).map(k=>`<div class="hl-sor"><span class="em">${esc(k.targy||"")}</span><span class="ido">${k.ido?fmt(new Date(k.ido),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):""} · ${k.cimzett||0} címzett · ${k.hirek||0} hír${k.hiba?` · <b style="color:var(--hiba)">${k.hiba} hiba</b>`:""}</span></div>`).join("")||`<p class="ures">Még nem ment ki hírlevél.</p>`;
+ document.getElementById("hl-utolso").href=U.hlUtolso}
+async function hlmuv(b){try{const r=await lekér(U.hlMuvelet,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}hltolt()}
+document.getElementById("hl-urlap").onsubmit=async e=>{e.preventDefault();const i=document.getElementById("hl-email");if(!i.value.trim())return;await hlmuv({muvelet:"hozzaad",email:i.value.trim()});i.value=""};
+document.getElementById("hl-aktiv").onclick=async()=>{const be=document.getElementById("hl-aktiv").getAttribute("aria-pressed")==="true";
+ if(be&&!confirm("Kikapcsolod a reggeli hírlevelet? Amíg ki van kapcsolva, nem megy ki levél."))return;await hlmuv({muvelet:"beall",aktiv:!be})};
+document.getElementById("hl-frissit").onclick=()=>hltolt();
+document.getElementById("hl-masol").onclick=async()=>{const t=((HL&&HL.lista)||[]).map(x=>x.email).join(", ");try{await navigator.clipboard.writeText(t);alert(((HL&&HL.lista)||[]).length+" cím a vágólapon.")}catch(e){prompt("Másold ki:",t)}};
+document.getElementById("hl-csv").onclick=()=>{const s="email,feliratkozas\n"+((HL&&HL.lista)||[]).map(x=>`${x.email},${x.ido||""}`).join("\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([s],{type:"text/csv"}));a.download="quicknews-hirlevel.csv";a.click()};
+
 /* ---------- ugrás a teendőhöz ---------- */
 function ugrik(sel){const el=document.querySelector(sel);if(!el)return;
  el.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"center"});
@@ -588,10 +631,10 @@ document.addEventListener("keydown",e=>{const m=e.target.closest&&e.target.close
 
 /* ---------- fülek ---------- */
 function ful(f){document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===f));try{document.querySelector(`.fulek [data-ful="${f}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
- ["posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
- if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok")htolt();if(f==="cikkbehuzas")htolt(true);try{localStorage.setItem("ful",f)}catch(e){}}
+ ["posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas","hirlevel"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
+ if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok")htolt();if(f==="cikkbehuzas")htolt(true);if(f==="hirlevel")hltolt();try{localStorage.setItem("ful",f)}catch(e){}}
 document.querySelectorAll(".fulek button").forEach(b=>b.onclick=()=>ful(b.dataset.ful));
-try{const f=localStorage.getItem("ful");if(f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok"||f==="cikkbehuzas")ful(f)}catch(e){}
+try{const f=localStorage.getItem("ful");if(f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok"||f==="cikkbehuzas"||f==="hirlevel")ful(f)}catch(e){}
 document.getElementById("k-valaszt");
 ptolt();setInterval(ptolt,60000);setInterval(prajzol,20000);
 setInterval(()=>{if(!document.getElementById("p-koltseg").hidden)ktolt()},300000);

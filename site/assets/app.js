@@ -522,3 +522,59 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     ugro.querySelector('.nap-ugro-uzenet').textContent = 'Ezen a napon nem jelent meg hír.';
   });
 })();
+// Hírlevél-feliratkozó ablak (2026-10-13): csak 20 mp látható, aktív olvasás után (oldalakon át összeadva),
+// és nem jelenik meg újra annak, aki feliratkozott, vagy 14 napon belül bezárta.
+(function(){
+  var be = document.querySelector('meta[name="qn-hirlevel"]'), elonezet = /[?&]hirlevel=elonezet/.test(location.search);
+  if (!be && !elonezet) return;
+  if (/^\/(admin|leiratkozas)/.test(location.pathname)) return;
+  var t = function(k, v){ try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch(e) { return null; } };
+  var s = function(k, v){ try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch(e) { return null; } };
+  if (!elonezet && (t('qn-hl-kesz') || Date.now() - Number(t('qn-hl-zarva') || 0) < 14 * 864e5)) return;
+  var ido = Number(s('qn-hl-ido') || 0), CEL = elonezet ? 2 : 20, kesz = false;
+  var tik = setInterval(function(){
+    if (document.visibilityState !== 'visible' || kesz) return;
+    ido += 1; s('qn-hl-ido', ido);
+    if (ido >= CEL) { kesz = true; clearInterval(tik); nyit(); }
+  }, 1000);
+  function nyit(){
+    var d = document.createElement('div');
+    d.className = 'hl-hatter';
+    d.innerHTML = '<div class="hl-ablak" role="dialog" aria-modal="true" aria-labelledby="hl-cim">' +
+      '<button type="button" class="hl-zar" aria-label="Bezárás">×</button>' +
+      '<p class="hl-felirat">Napi AI-hírlevél</p>' +
+      '<h2 id="hl-cim">A tegnap legfontosabb AI-hírei, minden reggel 8-kor</h2>' +
+      '<p class="hl-szoveg">Egy rövid levél, hogy ne maradj le semmi fontosról. Ingyenes, és egy kattintással leiratkozhatsz.</p>' +
+      '<form class="hl-urlap" novalidate><label class="hl-rejtett" for="hl-email-mezo">E-mail-cím</label>' +
+      '<input id="hl-email-mezo" type="email" name="email" placeholder="nev@pelda.hu" autocomplete="email" required>' +
+      '<button type="submit">Feliratkozom</button></form>' +
+      '<p class="hl-uzenet" role="status" aria-live="polite"></p>' +
+      '<p class="hl-jog">Az e-mail-címedet csak erre a hírlevélre használjuk. <a href="/adatvedelem#hirlevel">Részletek</a></p>' +
+      '<button type="button" class="hl-most-nem">Most nem</button></div>';
+    document.body.appendChild(d);
+    var elozo = document.activeElement, mezo = d.querySelector('input'), uz = d.querySelector('.hl-uzenet');
+    document.documentElement.classList.add('hl-nyitva');
+    requestAnimationFrame(function(){ d.classList.add('bent'); });
+    setTimeout(function(){ try { mezo.focus({preventScroll: true}); } catch(e) {} }, 350);
+    function zar(){ t('qn-hl-zarva', String(Date.now())); d.classList.remove('bent'); document.documentElement.classList.remove('hl-nyitva');
+      setTimeout(function(){ d.remove(); if (elozo && elozo.focus) try { elozo.focus({preventScroll: true}); } catch(e) {} }, 400);
+      document.removeEventListener('keydown', bill); }
+    function bill(e){ if (e.key === 'Escape') zar(); }
+    document.addEventListener('keydown', bill);
+    d.addEventListener('click', function(e){ if (e.target === d) zar(); });
+    d.querySelector('.hl-zar').onclick = zar; d.querySelector('.hl-most-nem').onclick = zar;
+    d.querySelector('form').addEventListener('submit', function(e){
+      e.preventDefault(); var gomb = d.querySelector('form button'); var cim = mezo.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cim)) { uz.textContent = 'Ez a cím nem tűnik érvényesnek.'; uz.className = 'hl-uzenet hiba'; mezo.focus(); return; }
+      gomb.disabled = true; uz.textContent = ''; uz.className = 'hl-uzenet';
+      fetch('/api/hirlevel', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({email: cim, forras: 'popup'})})
+        .then(function(r){ return r.json(); }).then(function(j){
+          if (j.rendben) { t('qn-hl-kesz', '1'); d.querySelector('.hl-ablak').classList.add('sikeres');
+            d.querySelector('form').hidden = true; d.querySelector('.hl-most-nem').textContent = 'Bezárás';
+            uz.textContent = j.uzenet || 'Kész, feliratkoztál.';
+            try { if (window.gtag) gtag('event', 'hirlevel_feliratkozas'); } catch(e) {} }
+          else { uz.textContent = j.uzenet || 'Nem sikerült, próbáld újra.'; uz.className = 'hl-uzenet hiba'; gomb.disabled = false; }
+        }).catch(function(){ uz.textContent = 'Most nem érjük el a szervert, próbáld újra.'; uz.className = 'hl-uzenet hiba'; gomb.disabled = false; });
+    });
+  }
+})();
