@@ -1052,9 +1052,9 @@ html.hl-nyitva { overflow: hidden; }
 .mentett-gomb:hover { background: var(--keret); }
 .mentett-gomb svg { width: 20px; height: 20px; fill: currentColor; }
 .mentett-gomb .mj-teli { display: none; }
-.mentes-cikk { display: inline-flex; align-items: center; gap: 8px; height: 40px; margin-top: 16px; padding: 0 16px; font: inherit; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--szoveg); background: var(--bg-3); border: 1px solid var(--keret); border-radius: 999px; cursor: pointer; transition: background-color 700ms var(--gorbe); }
-.mentes-cikk:hover { background: var(--keret); }
-.mentes-cikk svg { width: 18px; height: 18px; fill: var(--piros); }
+.mentes-cikk { display: inline-flex; align-items: center; gap: 8px; height: 40px; margin-top: 16px; padding: 0 16px; font: inherit; font-size: 14px; line-height: 20px; font-weight: 700; color: #fff; background: var(--piros-cimke); border: 0; border-radius: 999px; cursor: pointer; transition: background-color 700ms var(--gorbe); }
+.mentes-cikk:hover { background: #b3241a; }
+.mentes-cikk svg { width: 18px; height: 18px; fill: #fff; }
 .mentes-jelzo { position: fixed; left: 50%; bottom: 24px; z-index: 10001; width: max-content; max-width: calc(100vw - 32px); padding: 12px 16px; font-size: 14px; line-height: 20px; color: var(--szoveg); background: var(--bg-3); border: 1px solid var(--keret); border-radius: 12px; box-shadow: 0 16px 48px var(--arnyek); opacity: 0; pointer-events: none; transform: translate(-50%, 16px); transition: opacity 400ms var(--gorbe), transform 400ms var(--gorbe); }
 .mentes-jelzo.lathato { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
 .mentes-jelzo a { color: var(--kiemelo-szin); font-weight: 700; }
