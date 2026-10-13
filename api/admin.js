@@ -382,6 +382,7 @@ module.exports = async (req, res) => {
         s.jovahagyas = e.jovahagyas || {};
         s.hirlevel = e.hirlevel || null;
         s.kartya_hiba = e.kartya_hiba || null;
+        s.kiteteli_hiba = e.kiteteli_hiba || null;
       }
       return json(res, 200, adat);
     }
