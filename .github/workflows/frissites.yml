@@ -159,16 +159,25 @@ jobs:
           echo "élesítve: $sajat"
           masik=$(echo "$lista" | jq -r --arg s "$sajat" --argjson k "${{ needs.frissit.outputs.kezdet }}" \
               '[.deployments[] | select(.url != $s and .created > $k and .state == "READY")] | sort_by(.created) | last | .url // empty')
-          if [ -n "$masik" ]; then
+          eles=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" "https://api.vercel.com/v9/projects/$VERCEL_PROJECT_ID?teamId=$VERCEL_ORG_ID" | jq -r '.targets.production.url // empty')
+          echo "éles most: $eles"
+          if [ -z "$sajat" ]; then
+            # a saját kiadás nem jött létre (pl. a Vercel elutasította): nincs mit visszatenni, az éles a gépi marad
+            echo "::warning::a felhős kiadás nem jött létre, az éles változat marad: $eles"
+          elif [ -n "$masik" ] && [ "$masik" != "$eles" ]; then
             echo "A futás közben gépről is élesítettek ($masik): az kerül vissza élesre."
             for i in 1 2 3; do
-              npx --yes vercel@63.1.2 promote "https://$masik" --yes --token "$VERCEL_TOKEN" && break
-              sleep 15
+              # a 409 („már ez az éles”) nem hiba
+              ki=$(npx --yes vercel@63.1.2 promote "https://$masik" --yes --token "$VERCEL_TOKEN" 2>&1) && break
+              echo "$ki" | grep -q "already the current production" && break
+              echo "$ki" | tail -2; sleep 15
             done
             # ellenőrzés: tényleg a gépi kiadás az éles?
             eles=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" "https://api.vercel.com/v9/projects/$VERCEL_PROJECT_ID?teamId=$VERCEL_ORG_ID" | jq -r '.targets.production.url // empty')
             echo "éles most: $eles"
             [ "$eles" = "$masik" ] || { echo "::error::a gépi kiadás visszatevése nem sikerült"; exit 1; }
+          elif [ -n "$masik" ]; then
+            echo "A futás közben gépről is élesítettek ($masik), és már az az éles: nincs teendő."
           fi
 
   indexnow:
