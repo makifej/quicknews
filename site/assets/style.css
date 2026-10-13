@@ -1002,7 +1002,7 @@ html:not(.suti-van) .chat { display: none; }
 
 /* ===== Hírlevél-feliratkozó ablak (2026-10-13): asztalon középen, mobilon alulról felcsúszó lap ===== */
 html.hl-nyitva { overflow: hidden; }
-.hl-hatter { position: fixed; inset: 0; z-index: 200; background: rgba(0, 0, 0, 0); display: flex; align-items: center; justify-content: center; padding: 16px; transition: background 400ms var(--gorbe); }
+.hl-hatter { position: fixed; inset: 0; z-index: 10000; background: rgba(0, 0, 0, 0); display: flex; align-items: center; justify-content: center; padding: 16px; transition: background 400ms var(--gorbe); }
 .hl-hatter.bent { background: rgba(0, 0, 0, 0.6); }
 .hl-ablak { position: relative; width: min(480px, 100%); max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); overflow-y: auto; overscroll-behavior: contain; background: var(--bg-2); border: 1px solid var(--keret); border-radius: 24px; padding: 40px 32px 24px; box-shadow: 0 24px 64px var(--arnyek); opacity: 0; transform: translateY(24px); transition: opacity 500ms var(--gorbe), transform 500ms var(--gorbe); }
 .hl-hatter.bent .hl-ablak { opacity: 1; transform: none; }
@@ -1035,3 +1035,4 @@ html.hl-nyitva { overflow: hidden; }
 .leir-urlap button { min-height: 52px; padding: 0 24px; border-radius: 12px; border: 0; background: var(--kiemelo); color: var(--kiemelo-szoveg); font: inherit; font-weight: 800; cursor: pointer; }
 .leir-uzenet { flex-basis: 100%; margin: 4px 0 0; font-weight: 600; }
 .leir-uzenet:empty { display: none; }
+.hl-egyben { white-space: nowrap; }
