@@ -27,6 +27,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .logo{flex:0 0 auto}
 .fulek button{height:100%;font-weight:600;color:var(--halk);border-bottom:2px solid transparent;margin-bottom:-1px}
 .fulek button[aria-selected=true]{color:var(--szoveg);border-color:var(--amber)}
+.szamjel{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 6px;margin-left:6px;border-radius:999px;background:#d92d20;color:#fff;font-size:12px;line-height:1;font-weight:800;vertical-align:2px;font-variant-numeric:tabular-nums}
 .frissult{margin-left:auto;color:var(--halkabb);font-size:16px;white-space:nowrap}
 
 main{max-width:1200px;margin:0 auto;padding:32px 24px 96px;overflow-wrap:anywhere}
@@ -632,10 +633,24 @@ document.addEventListener("keydown",e=>{const m=e.target.closest&&e.target.close
 /* ---------- fülek ---------- */
 function ful(f){document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===f));try{document.querySelector(`.fulek [data-ful="${f}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
  ["posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas","hirlevel"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
- if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok")htolt();if(f==="cikkbehuzas")htolt(true);if(f==="hirlevel")hltolt();try{localStorage.setItem("ful",f)}catch(e){}}
+ if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok")htolt();if(f==="cikkbehuzas")htolt(true);if(f==="hirlevel")hltolt();try{localStorage.setItem("ful",f)}catch(e){}latta(f);jelvenyek()}
 document.querySelectorAll(".fulek button").forEach(b=>b.onclick=()=>ful(b.dataset.ful));
 try{const f=localStorage.getItem("ful");if(f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok"||f==="cikkbehuzas"||f==="hirlevel")ful(f)}catch(e){}
 document.getElementById("k-valaszt");
-ptolt();setInterval(ptolt,60000);setInterval(prajzol,20000);
+/* ---------- piros számok a fülek mellett (2026-10-13): hány új esemény történt az adott fülön ---------- */
+const LATOTT="qn-latott-";
+function latott(f){try{const v=localStorage.getItem(LATOTT+f);if(v)return v;const most=new Date().toISOString();localStorage.setItem(LATOTT+f,most);return most}catch(e){return new Date().toISOString()}}
+function latta(f){try{localStorage.setItem(LATOTT+f,new Date().toISOString())}catch(e){}}
+function aktivFul(){const b=document.querySelector('.fulek [aria-selected="true"]');return b?b.dataset.ful:"posztok"}
+function jelol(f,n){const b=document.querySelector(`.fulek [data-ful="${f}"]`);if(!b)return;let j=b.querySelector(".szamjel");
+ if(!n||aktivFul()===f){if(j)j.remove();return}if(!j){j=document.createElement("span");j.className="szamjel";b.appendChild(j)}j.textContent=n>99?"99+":n;j.setAttribute("aria-label",n+" új")}
+async function jelvenyek(){const akt=aktivFul();latta(akt);
+ const ujabb=(t,f)=>t&&String(t)>latott(f);
+ try{const d=(D&&D.sorok)?D:await lekér(U.posztok);jelol("posztok",(d.sorok||[]).filter(s=>(s.allapot==="published"&&ujabb(s.kiment,"posztok"))||(s.allapot==="failed"&&ujabb(s.idopont,"posztok"))).length)}catch(e){}
+ try{const d=await lekér(U.ajanlott);jelol("ajanlott",(d.sorok||[]).filter(s=>!s.feldolgozott&&ujabb(new Date(s.publikalva).toISOString(),"ajanlott")).length)}catch(e){}
+ try{const d=await lekér(U.bekuldesek);jelol("bekuldes",(d.tetel||[]).filter(b=>!b.atveve&&(b.allapot==="dontesre_var"||b.allapot==="atnezes")).length)}catch(e){}
+ try{const d=await lekér(U.hirdetok);const t=d.tetel||[];jelol("hirdetok",t.filter(h=>h.tema!=="hirfolyam"&&h.allapot==="uj").length);jelol("cikkbehuzas",t.filter(h=>h.tema==="hirfolyam"&&h.allapot==="uj").length)}catch(e){}
+ try{const d=await lekér(U.hirlevel);jelol("hirlevel",(d.lista||[]).filter(x=>ujabb(x.ido,"hirlevel")).length)}catch(e){}}
+ptolt();setInterval(ptolt,60000);setInterval(prajzol,20000);jelvenyek();setInterval(jelvenyek,60000);
 setInterval(()=>{if(!document.getElementById("p-koltseg").hidden)ktolt()},300000);
 </script></body></html>
