@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="hu"><head><meta charset="utf-8">
+<meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Quicknews pult</title>
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -488,6 +489,10 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
    if(a)return `<button class="idoz" disabled><i></i>${FEL[f]}: ${esc(idozit(a.mikor))}</button>`;
    return `<button aria-pressed="${s.kerve[f]}" data-id="${s.id}" data-mi="${f}"><i></i>${FEL[f]}</button>`};
   const d=new Date(s.publikalva);
+  /* Hírlevél (Heni 2026-10-13): a bepipált hír a következő reggeli emlékeztetőbe mindenképp bekerül, jóváhagyás nélkül */
+  const hl=s.hirlevel||null;
+  const hlGomb=hl&&hl.kiment?`<button class="kint" disabled><i></i>Hírlevél: kiment</button>`
+   :`<button aria-pressed="${!!(hl&&hl.kerve)}" data-id="${s.id}" data-mi="hirlevel" title="Bekerül a következő reggeli emlékeztetőbe"><i></i>Hírlevél</button>`;
   // a pipa önmagában nem indít semmit: a „Jóváhagyom” után készülnek el a bepipált felületek elemei
   const jv=s.jovahagyas||{},jvF=jv.feluletek||[],el=s.elemek||{};
   const nyitottF=["facebook","linkedin","hirdetes"].filter(f=>s.kerve[f]&&!el[f]&&!(s.allapot||{})[f]);
@@ -516,7 +521,7 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
   <div><a class="cim" href="https://quicknews.hu/hir/${esc(s.slug)}" target="_blank" rel="noopener">${esc(s.cim)}</a><div class="lead">${esc(s.lead)}</div>
   <div class="cimkek">${s.uj?`<span class="cimke uj">Új</span>`:""}${s.felkapott?`<span class="cimke felk">Feltörekvő</span>`:""}<span class="cimke ${s.fontossag>=5?"fo5":""}">Fontosság ${s.fontossag}</span>
   <span class="cimke">${fmt(d,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span><span class="cimke">${esc(s.forras||"")}</span>${s.video?`<span class="cimke">videó</span>`:""}<a class="cimke link" href="${esc(s.url||"https://quicknews.hu/hir/"+s.slug)}" target="_blank" rel="noopener">Megnyitás ↗</a></div>${(s.tenyhiba||[]).length?`<div class="hibasav">Tényhiba-gyanú, jóváhagyás előtt nézd meg: ${s.tenyhiba.map(esc).join("; ")}</div>`:""}${feldolg}</div>
-  <div class="kapcs">${["facebook","linkedin","hirdetes"].map(gomb).join("")}${jova}
+  <div class="kapcs">${["facebook","linkedin","hirdetes"].map(gomb).join("")}${hlGomb}${jova}
   <label class="feltolt"><input type="file" accept="image/*" data-id="${s.id}" hidden><i></i>Saját kép</label>
   <button class="sopor" data-sopor="${s.id}" title="Eltűnik, és többé nem ajánlom"><i></i>Kisöpröm</button></div>${skUj?sajat:kartya}</div>`}).join("")||`<p class="ures">Nincs ajánlott hír.</p>`;
  L.querySelectorAll("button[data-mi]").forEach(b=>b.onclick=async()=>{const uj=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",uj);
