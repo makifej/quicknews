@@ -999,3 +999,39 @@ html:not(.suti-van) .chat { display: none; }
 .hird-info[hidden] { display: none; }
 .hird-info b { color: var(--kiemelo-szin); white-space: nowrap; }
 .hird-urlap input[aria-invalid="true"] { border-color: var(--piros); outline: 1px solid var(--piros); }
+
+/* ===== Hírlevél-feliratkozó ablak (2026-10-13): asztalon középen, mobilon alulról felcsúszó lap ===== */
+html.hl-nyitva { overflow: hidden; }
+.hl-hatter { position: fixed; inset: 0; z-index: 200; background: rgba(0, 0, 0, 0); display: flex; align-items: center; justify-content: center; padding: 16px; transition: background 400ms var(--gorbe); }
+.hl-hatter.bent { background: rgba(0, 0, 0, 0.6); }
+.hl-ablak { position: relative; width: min(480px, 100%); max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); overflow-y: auto; overscroll-behavior: contain; background: var(--bg-2); border: 1px solid var(--keret); border-radius: 24px; padding: 40px 32px 24px; box-shadow: 0 24px 64px var(--arnyek); opacity: 0; transform: translateY(24px); transition: opacity 500ms var(--gorbe), transform 500ms var(--gorbe); }
+.hl-hatter.bent .hl-ablak { opacity: 1; transform: none; }
+.hl-zar { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border-radius: 50%; font-size: 28px; line-height: 1; color: var(--szoveg-2); background: none; border: 0; cursor: pointer; }
+.hl-zar:hover, .hl-zar:focus-visible { background: var(--bg-3); color: var(--szoveg); }
+.hl-felirat { margin: 0 0 8px; color: var(--kiemelo-szin); font-weight: 700; font-size: 14px; line-height: 20px; letter-spacing: 0.08em; text-transform: uppercase; }
+.hl-ablak h2 { margin: 0 0 12px; font-size: 30px; line-height: 36px; font-weight: 800; color: var(--szoveg); text-wrap: balance; }
+.hl-szoveg { margin: 0 0 24px; color: var(--szoveg-2); font-size: 17px; line-height: 26px; text-wrap: pretty; }
+.hl-ablak .hl-urlap { display: flex; flex-direction: column; gap: 12px; }
+.hl-ablak input { width: 100%; box-sizing: border-box; min-height: 52px; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--keret-eros); background: var(--bg); color: var(--szoveg); font: inherit; font-size: 17px; }
+.hl-ablak input:focus { outline: 2px solid var(--kiemelo); outline-offset: 1px; border-color: transparent; }
+.hl-ablak .hl-urlap button { min-height: 52px; border-radius: 12px; border: 0; background: var(--kiemelo); color: var(--kiemelo-szoveg); font: inherit; font-weight: 800; font-size: 17px; cursor: pointer; }
+.hl-ablak .hl-urlap button:disabled { opacity: 0.6; cursor: wait; }
+.hl-uzenet { margin: 12px 0 0; min-height: 0; font-weight: 600; color: var(--szoveg); }
+.hl-uzenet:empty { display: none; }
+.hl-uzenet.hiba { color: var(--piros); }
+.hl-ablak.sikeres .hl-uzenet { font-size: 18px; color: var(--kiemelo-szin); }
+.hl-jog { margin: 16px 0 0; font-size: 14px; line-height: 20px; color: var(--szoveg-3); }
+.hl-jog a { color: var(--szoveg-2); }
+.hl-most-nem { display: block; margin: 12px auto 0; padding: 8px 12px; background: none; border: 0; color: var(--szoveg-2); font: inherit; font-size: 15px; text-decoration: underline; cursor: pointer; }
+.hl-rejtett { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (max-width: 599px) {
+  .hl-hatter { align-items: flex-end; padding: 0; }
+  .hl-ablak { width: 100%; border-radius: 24px 24px 0 0; padding: 32px 16px 16px; max-height: 90vh; max-height: 90dvh; transform: translateY(100%); }
+  .hl-ablak h2 { font-size: 24px; line-height: 30px; padding-right: 32px; }
+}
+@media (prefers-reduced-motion: reduce) { .hl-hatter, .hl-ablak { transition: none; } }
+.leir-urlap { display: flex; flex-wrap: wrap; gap: 12px; max-width: 560px; margin-top: 24px; }
+.leir-urlap input { flex: 1 1 260px; min-width: 0; min-height: 52px; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--keret-eros); background: var(--bg-2); color: var(--szoveg); font: inherit; font-size: 17px; }
+.leir-urlap button { min-height: 52px; padding: 0 24px; border-radius: 12px; border: 0; background: var(--kiemelo); color: var(--kiemelo-szoveg); font: inherit; font-weight: 800; cursor: pointer; }
+.leir-uzenet { flex-basis: 100%; margin: 4px 0 0; font-weight: 600; }
+.leir-uzenet:empty { display: none; }

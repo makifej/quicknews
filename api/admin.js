@@ -89,6 +89,37 @@ async function kepFeltolt(id, b64) {
   return { ok: true, ido };
 }
 
+// ---- hírlevél (Heni 2026-10-13): feliratkozók, küldés be/ki, kiadásnapló; a levelet a Mac küldi reggel 8-kor ----
+const HL = "qn:hirlevel";
+const HL_MINTA = /^[^\s@,;:<>()[\]\\"]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/i;
+async function hirlevelAdat() {
+  const k = (await kv("HGETALL", HL)) || [];
+  const lista = [];
+  for (let i = 0; i < k.length; i += 2) {
+    let v = { ido: k[i + 1] };
+    try { const j = JSON.parse(k[i + 1]); if (j && typeof j === "object") v = j; } catch (e) { /* régi alak: csak időpont */ }
+    lista.push({ email: k[i], ido: v.ido || "", forras: v.forras || "" });
+  }
+  lista.sort((a, b) => String(b.ido).localeCompare(String(a.ido)));
+  const beall = JSON.parse((await kv("GET", HL + ":beall")) || '{"aktiv":true}');
+  const kiadasok = ((await kv("LRANGE", HL + ":kiadasok", 0, 29)) || []).map((x) => JSON.parse(x));
+  return { darab: lista.length, lista, beall, kiadasok, ido: new Date().toISOString() };
+}
+async function hirlevelMuvelet(b) {
+  if (b.muvelet === "beall") {
+    await kv("SET", HL + ":beall", JSON.stringify({ aktiv: !!b.aktiv, modositva: new Date().toISOString() }));
+    return [200, { ok: true }];
+  }
+  const email = String(b.email || "").trim().toLowerCase();
+  if (email.length < 6 || email.length > 254 || !HL_MINTA.test(email)) return [400, { hiba: "Ez a cím nem tűnik érvényesnek." }];
+  if (b.muvelet === "torol") { await kv("HDEL", HL, email); return [200, { ok: true }]; }
+  if (b.muvelet === "hozzaad") {
+    const uj = await kv("HSETNX", HL, email, JSON.stringify({ ido: new Date().toISOString(), forras: "admin" }));
+    return [200, { ok: true, uj: Number(uj) }];
+  }
+  return [400, { hiba: "Rossz kérés." }];
+}
+
 module.exports = async (req, res) => {
   const url = new URL(req.url, "https://quicknews.hu");
   const mi = url.searchParams.get("mi") || "";
@@ -137,6 +168,16 @@ module.exports = async (req, res) => {
       if (mi === "kep_feltolt" && req.method === "POST") {
         const { id, b64 } = await torzs(req);
         return json(res, 200, await kepFeltolt(id, b64));
+      }
+      if (mi === "hirlevel_gep") return json(res, 200, await hirlevelAdat());
+      if (mi === "hirlevel_muvelet_gep" && req.method === "POST") { const [k, v] = await hirlevelMuvelet(await torzs(req)); return json(res, k, v); }
+      if (mi === "hirlevel_kiadas_gep" && req.method === "POST") {
+        const { kiadas, html } = await torzs(req);
+        if (!kiadas || typeof kiadas !== "object") return json(res, 400, { hiba: "rossz kérés" });
+        await kv("LPUSH", HL + ":kiadasok", JSON.stringify(kiadas));
+        await kv("LTRIM", HL + ":kiadasok", 0, 59);
+        if (typeof html === "string" && html.length < 400000) await kv("SET", HL + ":utolso", html);
+        return json(res, 200, { ok: true });
       }
       if (mi === "hirdetok_gep") {
         const idk = (await kv("ZREVRANGE", "qn:hird:lista", 0, 199)) || [];
@@ -346,6 +387,15 @@ module.exports = async (req, res) => {
       res.setHeader("Content-Type", "image/jpeg");
       res.setHeader("Cache-Control", "private, no-store");
       return res.end(Buffer.from(b64, "base64"));
+    }
+    if (mi === "hirlevel") return json(res, 200, await hirlevelAdat());
+    if (mi === "hirlevel_muvelet" && req.method === "POST") { const [k, v] = await hirlevelMuvelet(await torzs(req)); return json(res, k, v); }
+    if (mi === "hirlevel_utolso") {
+      const h = await kv("GET", HL + ":utolso");
+      res.statusCode = h ? 200 : 404;
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      res.setHeader("Cache-Control", "no-store");
+      return res.end(h || "<p style='font-family:sans-serif'>Még nem ment ki hírlevél.</p>");
     }
     if (mi === "hirdetok") {
       const idk = (await kv("ZREVRANGE", "qn:hird:lista", 0, 199)) || [];
