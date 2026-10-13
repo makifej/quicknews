@@ -6,6 +6,15 @@
   var sor = [sz[0], kp[0], sz[1], kp[1], sz[2]].filter(Boolean);
   [].forEach.call(v.children, function(el){ el.hidden = true; el.classList.remove('elhagyhato'); });
   sor.forEach(function(el, i){ el.hidden = false; if (i === 4) el.classList.add('elhagyhato'); v.appendChild(el); });
+  // kiegyensúlyozás (2026-10-13): ha a bal oszlop jóval hosszabb, a jobb oszlop a készletből még hírt kap, hogy ne maradjon üres hely
+  var tartalek = [sz[3], kp[2], sz[4], kp[3], sz[5]].filter(Boolean);
+  var bal = document.querySelector('.vezeto-bal');
+  var vege = function(el){ var u = el.lastElementChild; while (u && (u.hidden || !u.getBoundingClientRect().height)) u = u.previousElementSibling; return u ? u.getBoundingClientRect().bottom : 0; };
+  var egyensuly = function(){
+    if (!bal || window.innerWidth <= 900) return;
+    while (tartalek.length && vege(bal) - vege(v) > 90) { var el = tartalek.shift(); el.hidden = false; v.appendChild(el); }
+  };
+  egyensuly(); window.addEventListener('load', egyensuly);
 })();
 // SEC-001 (2026-10-11): a feed.json mezői külső tartalomból jönnek, innerHTML-be csak escape-elve kerülhetnek
 function qnEsc(t){ return String(t == null ? '' : t).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
