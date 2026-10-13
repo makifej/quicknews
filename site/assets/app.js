@@ -579,3 +579,103 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     });
   }
 })();
+// Mentett hírek (Heni 2026-10-13): piros „Elolvasom később” jel a híreken és a cikkoldalon. A lista csak a böngészőben
+// él (localStorage qn-mentett, legfeljebb 200 elem), szerverre nem megy. A /mentett oldal a kereso.json alapján rajzol,
+// így a levett hír (ami már nincs a kereső mutatójában) a mentettek közül is kikerül.
+(function(){
+  var TAR = 'qn-mentett', MAX = 200;
+  var IKON = (document.querySelector('.mentett-gomb svg') || {}).outerHTML || '';
+  var olvas = function(){ try { var l = JSON.parse(localStorage.getItem(TAR) || '[]'); return Array.isArray(l) ? l.filter(function(x){ return x && typeof x.i === 'string'; }) : []; } catch(e) { return []; } };
+  var ir = function(l){ try { localStorage.setItem(TAR, JSON.stringify(l.slice(0, MAX))); return true; } catch(e) { return false; } };
+  var jelzo = null;
+  var jelez = function(html){
+    if (!jelzo) { jelzo = document.createElement('div'); jelzo.className = 'mentes-jelzo'; jelzo.setAttribute('role', 'status'); jelzo.setAttribute('aria-live', 'polite'); document.body.appendChild(jelzo); }
+    jelzo.innerHTML = html; jelzo.classList.add('lathato'); clearTimeout(jelzo._t);
+    jelzo._t = setTimeout(function(){ jelzo.classList.remove('lathato'); }, 3200);
+  };
+  var allapot = function(el, be){
+    el.classList.toggle('mentve', be); el.setAttribute('aria-pressed', be ? 'true' : 'false');
+    var c = be ? 'Kiveszem a mentett hírek közül' : 'Elolvasom később';
+    el.setAttribute('aria-label', c); el.title = c;
+    var sz = el.querySelector('.mj-szoveg'); if (sz) sz.textContent = be ? 'Elmentve' : 'Elolvasom később';
+  };
+  var frissit = function(){
+    var l = olvas(), van = {}; l.forEach(function(x){ van[x.i] = 1; });
+    [].forEach.call(document.querySelectorAll('[data-ment]'), function(el){ allapot(el, !!van[el.getAttribute('data-ment')]); });
+    [].forEach.call(document.querySelectorAll('[data-mentett-jel]'), function(j){ j.textContent = l.length > 99 ? '99+' : l.length; j.hidden = !l.length; });
+  };
+  var valt = function(d){
+    if (!d || !d.i || !/^\/hir\/[a-z0-9-]{1,200}$/.test(d.u || '')) return;
+    var l = olvas(), hol = -1; l.forEach(function(x, j){ if (x.i === d.i) hol = j; });
+    if (hol >= 0) { l.splice(hol, 1); if (ir(l)) jelez('Kivetted a mentett hírek közül.'); }
+    else {
+      l.unshift({i: d.i, u: d.u, c: d.c || '', k: qnKep(d.k || ''), f: d.f || '', t: Date.now(), o: 0});
+      if (!ir(l)) { jelez('A böngésződ most nem engedi a mentést.'); return; }
+      jelez('Elmentve. A <a href="/mentett">Mentett hírek</a> között megtalálod.');
+      try { if (window.gtag) gtag('event', 'hir_mentes'); } catch(e) {}
+    }
+    frissit();
+  };
+  var listabol = function(a){
+    var cim = a.querySelector('h3, strong, .ks-cim'), kep = a.querySelector('img'), f = a.querySelector('.forras');
+    return {i: a.getAttribute('data-hid'), u: a.getAttribute('href'), c: cim ? cim.textContent.trim() : '', k: kep ? kep.getAttribute('src') : '', f: f ? f.textContent.trim() : ''};
+  };
+  // a jel a hír meta-sorába kerül (forrás, dátum), a hírlinken belül; a kattintást a link előtt elkapjuk
+  var felrak = function(){
+    [].forEach.call(document.querySelectorAll('a[data-hid]:not([data-ment-kesz])'), function(a){
+      a.setAttribute('data-ment-kesz', '');
+      if (a.closest('.harang-buborek, .uj-hirek, [data-mentett-oldal]')) return;
+      var hely = a.querySelector('.hmeta') || a.querySelector('.ks-lead') || a.querySelector(':scope > span:last-of-type');
+      if (!hely || !/^[a-z0-9]{6,40}$/.test(a.getAttribute('data-hid') || '')) return;
+      var b = document.createElement('span'); b.className = 'mentes-jel'; b.setAttribute('role', 'button'); b.tabIndex = 0;
+      b.setAttribute('data-ment', a.getAttribute('data-hid')); b.innerHTML = IKON; hely.appendChild(b);
+    });
+    frissit();
+  };
+  document.addEventListener('click', function(ev){
+    var b = ev.target.closest && ev.target.closest('[data-ment]'); if (!b) return;
+    ev.preventDefault(); ev.stopPropagation();
+    if (b.hasAttribute('data-ment-cikk')) valt({i: b.getAttribute('data-ment'), u: b.getAttribute('data-u'), c: b.getAttribute('data-c'), k: b.getAttribute('data-k'), f: b.getAttribute('data-f')});
+    else { var a = b.closest('a[data-hid]'); if (a) valt(listabol(a)); }
+  }, true);
+  document.addEventListener('keydown', function(ev){
+    if (ev.key !== 'Enter' && ev.key !== ' ') return;
+    var b = ev.target.closest && ev.target.closest('.mentes-jel'); if (!b) return;
+    ev.preventDefault(); ev.stopPropagation(); b.click();
+  }, true);
+  window.addEventListener('storage', function(ev){ if (ev.key === TAR) frissit(); });
+  // a cikkoldal megnyitása: ha a hír mentve volt, olvasottnak jelöljük
+  var cikk = document.querySelector('[data-ment-cikk]');
+  if (cikk) { var l0 = olvas(), m = false; l0.forEach(function(x){ if (x.i === cikk.getAttribute('data-ment') && !x.o) { x.o = 1; m = true; } }); if (m) ir(l0); }
+  felrak();
+  var idozito = null;
+  new MutationObserver(function(){ clearTimeout(idozito); idozito = setTimeout(felrak, 120); }).observe(document.body, {childList: true, subtree: true});
+
+  // a /mentett oldal
+  var oldal = document.querySelector('[data-mentett-oldal]'); if (!oldal) return;
+  var ures = function(){ oldal.innerHTML = '<p class="mentett-ures">Még nincs mentett híred. A hírek mellett a piros könyvjelzőre kattintva mentheted el, amit később szeretnél elolvasni.</p>'; };
+  var rajzol = function(lista, elo){
+    if (!lista.length) return ures();
+    oldal.innerHTML = '<ul class="mentett-lista">' + lista.map(function(x){
+      var h = elo[x.i], kep = qnKep(h.p) || qnKep(x.k);
+      return '<li class="mentett-elem' + (x.o ? ' olvasott' : '') + '"><a href="' + qnEsc(h.u) + '">'
+        + (kep ? '<img src="' + qnEsc(kep) + '" alt="" loading="lazy">' : '<span class="me-nincs"></span>')
+        + '<span class="me-torzs"><span class="me-meta"><span class="forras">' + qnEsc(h.k) + '</span><span>' + qnEsc(h.d) + '</span>'
+        + (x.o ? '<span class="me-olvasva">Elolvasva</span>' : '') + '</span><strong>' + qnEsc(h.c) + '</strong><span class="me-lead">' + qnEsc(h.b) + '</span></span></a>'
+        + '<button type="button" class="me-torol" data-torol="' + qnEsc(x.i) + '" aria-label="Kiveszem a mentett hírek közül" title="Kiveszem a mentett hírek közül"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128 50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z"/></svg></button></li>';
+    }).join('') + '</ul>';
+  };
+  oldal.addEventListener('click', function(ev){
+    var t = ev.target.closest('[data-torol]'); if (!t) return;
+    var id = t.getAttribute('data-torol'), l = olvas().filter(function(x){ return x.i !== id; });
+    ir(l); var li = t.closest('li'); if (li) li.remove(); frissit();
+    if (!oldal.querySelector('li')) ures();
+  });
+  var l = olvas(); if (!l.length) return ures();
+  fetch('/kereso.json', {cache: 'no-cache'}).then(function(r){ return r.json(); }).then(function(d){
+    var elo = {}; d.forEach(function(h){ if (h.i && /^\/hir\/[a-z0-9-]{1,200}$/.test(h.u || '')) elo[h.i] = h; });
+    var marad = olvas().filter(function(x){ return elo[x.i]; });
+    if (marad.length !== olvas().length) { ir(marad); frissit(); }
+    rajzol(marad, elo);
+  }).catch(function(){ oldal.innerHTML = '<p class="mentett-ures">Most nem sikerült betölteni a mentett híreidet. Frissítsd az oldalt.</p>'; });
+})();
