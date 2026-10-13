@@ -1091,3 +1091,7 @@ html.hl-nyitva { overflow: hidden; }
 }
 /* keskeny telefonon a Mentett hírek gomb miatt nem fér ki minden: a Facebook-ikon ott a láblécben marad */
 @media (max-width: 460px) { .fejlec-felso .fb-gomb { display: none; } }
+/* a Kipróbálom gomb mellett nagyobb térköz, egy vonalban (Heni 2026-10-13) */
+.kiprobal { vertical-align: middle; }
+.kiprobal + .mentes-cikk { margin: 24px 0 0 32px; vertical-align: middle; }
+@media (max-width: 767px) { .kiprobal + .mentes-cikk { margin: 16px 0 0; } }
