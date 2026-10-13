@@ -354,7 +354,12 @@ module.exports = async (req, res) => {
         const u = /^https:\/\//.test(k) ? k : "https://quicknews.hu" + k;
         try {
           const r = await fetch(u, { headers: { Range: "bytes=0-2047", "User-Agent": "Mozilla/5.0 (Macintosh) quicknews-pult" }, signal: AbortSignal.timeout(3000) });
-          return r.ok && /^image\//i.test(r.headers.get("content-type") || "");
+          if (!r.ok) return false;
+          if (/^image\//i.test(r.headers.get("content-type") || "")) return true;
+          // a típusjelzés nem mindig pontos: a fájl elejéből ismerjük fel a képet
+          const e = new Uint8Array((await r.arrayBuffer()).slice(0, 16));
+          const s = String.fromCharCode(...e);
+          return (e[0] === 0xff && e[1] === 0xd8) || s.startsWith("\x89PNG") || s.startsWith("GIF8") || (s.startsWith("RIFF") && s.slice(8, 12) === "WEBP") || /^ftyp(avif|heic|mif1)/.test(s.slice(4, 12));
         } catch { return false; }
       };
       const jok = new Set((await Promise.all(jeloltek.map(async (h) => ((await kepJo(h.kep)) ? h.id : null)))).filter(Boolean));
