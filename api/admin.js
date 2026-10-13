@@ -296,6 +296,12 @@ module.exports = async (req, res) => {
       for (let i = 0; i < k.length; i += 2) kit[k[i]] = JSON.parse(k[i + 1]);
       const kis = new Set((await kv("SMEMBERS", P + "kisoport")) || []);
       adat.sorok = (adat.sorok || []).filter((s) => !kis.has(s.id));
+      // az oldalról levett hír (duplikátum, nem releváns, törölt) az Ajánlottból is azonnal kikerül, nem csak a következő
+      // pillanatképpel (Heni 2026-10-13: „ha törölsz egy hírt az oldalról, vedd ki onnan is”); az index 14 napot fed le
+      if (HIREK.length) {
+        const elo = new Set(HIREK.map((h) => h.id));
+        adat.sorok = adat.sorok.filter((s) => elo.has(s.id));
+      }
       // ami a gép utolsó pillanatképe óta jelent meg, azt a kitett oldal indexéből azonnal hozzáadjuk
       const megvan = new Set(adat.sorok.map((s) => s.id));
       // minden élő hír, ami a pillanatképből hiányzik (a 4 napos ablakon belül), azonnal bekerül: nem csak a pillanatkép
