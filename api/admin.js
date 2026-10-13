@@ -300,7 +300,7 @@ module.exports = async (req, res) => {
         if (req.method === "POST") {
           const { id, e } = await torzs(req);
           if (!/^[a-f0-9]{12}$/.test(id || "")) return json(res, 400, { hiba: "rossz azonosító" });
-          if (!e || (!e.facebook && !e.linkedin && !e.hirdetes && !e.kartya && !e.sajat_kep)) await kv("HDEL", P + "kitenni", id);
+          if (!e || (!e.facebook && !e.linkedin && !e.hirdetes && !e.kartya && !e.sajat_kep && !e.hirlevel)) await kv("HDEL", P + "kitenni", id);
           else await kv("HSET", P + "kitenni", id, JSON.stringify(e));
           return json(res, 200, { ok: true });
         }
@@ -365,6 +365,7 @@ module.exports = async (req, res) => {
         s.kartya = e.kartya || null;
         s.sajat_kep = e.sajat_kep || null;
         s.jovahagyas = e.jovahagyas || {};
+        s.hirlevel = e.hirlevel || null;
       }
       return json(res, 200, adat);
     }
@@ -470,12 +471,16 @@ module.exports = async (req, res) => {
           if (!feluletek.length) return json(res, 400, { hiba: "Előbb pipáld be, hova menjen ki." });
           e.jovahagyas = { ido: most, feluletek };
         } else delete e.jovahagyas;
+      } else if (mezo === "hirlevel") {
+        // a bepipált hír a következő reggeli emlékeztetőbe mindenképp bekerül (Heni 2026-10-13), jóváhagyás nélkül
+        if (e.hirlevel && e.hirlevel.kiment) return json(res, 400, { hiba: "Ez a hír már kiment az emlékeztetőben." });
+        if (ertek) e.hirlevel = { kerve: most }; else delete e.hirlevel;
       } else if (mezo === "kartya_jo" || mezo === "kartya_rossz") {
         if (!e.kartya || !e.kartya.fajl) return json(res, 400, { hiba: "Ehhez a hírhez még nincs kártya." });
         if (mezo === "kartya_jo") { e.kartya.jo = ertek ? most : null; if (ertek) e.kartya.elutasitva = null; }
         else { e.kartya.elutasitva = ertek ? most : null; if (ertek) e.kartya.jo = null; }
       } else return json(res, 400, { hiba: "Ismeretlen mező." });
-      if (!e.facebook && !e.linkedin && !e.hirdetes && !e.kartya && !e.sajat_kep && !e.jovahagyas) await kv("HDEL", P + "kitenni", id);
+      if (!e.facebook && !e.linkedin && !e.hirdetes && !e.kartya && !e.sajat_kep && !e.jovahagyas && !e.hirlevel) await kv("HDEL", P + "kitenni", id);
       else await kv("HSET", P + "kitenni", id, JSON.stringify(e));
       return json(res, 200, { ok: true });
     }
