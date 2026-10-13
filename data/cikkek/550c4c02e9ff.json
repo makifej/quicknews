@@ -1,0 +1,49 @@
+{
+  "id": "550c4c02e9ff",
+  "slug": "sajat-gepen-futtathato-ugynokmodellt-adott-ki-a-liquid-ai",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b",
+  "szerzo": null,
+  "publikalva": "2026-10-13T17:05:48+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/644249b08443bce4c9890a0f/YxGx9U6yV6_mumklCyMsE.png"
+  },
+  "cim_eredeti": "Run fast, private agents on-device with LFM2.5-24B-A2B",
+  "forrasok": [],
+  "szoveg_eredeti": "How we built a reasoning agent with 2B active parameters Benchmark results Inference speed on CPU and GPU How to use LFM2.5-24B-A2B Use it in your agent harness Get Started with LFM2.5-24B-A2B Citation LFM2.5-24B-A2B is a 24B-parameter reasoning model with just 2B active parameters, built for fast, private agents on-device. It thinks before it answers, calls tools, and works through multi-step tasks inside popular agent harnesses. Because only 2B parameters are active per token, each reasoning token is cheap, so you can run agents continuously on your own hardware.\n\nLFM2.5-24B-A2B builds on LFM2-24B-A2B and keeps its architecture: 40 layers, 64 experts per MoE block with top-4 routing, and the same hybrid of gated short convolutions and GQA. The context window grows from 32K to 131K tokens, and an in-place tokenizer expansion doubles the vocabulary from 65K to 128K tokens for better non-Latin tokenization. Unlike its predecessor, it is a reasoning-only model that produces an explicit chain of thought before its final answer.\n\nPre-training was scaled up from ~17T to ~33T tokens. Mid-training then adds 2T tokens at 32K context, weighted toward reasoning, math, code, instruction following, and multilingual text, and 300B tokens at 131K context, weighted toward long-context data. Tool calls and multi-turn trajectories appear throughout both phases. Post-training turns the base model into an agent in five stages:\n\nWe evaluated LFM2.5-24B-A2B against Qwen3.6-35B-A3B, Gemma-4-26B-A4B-it, and Nemotron-3.5-Lightning on 16 benchmarks covering tool use and agentic workflows, knowledge, instruction following, math, and coding. It is the smallest model in the group, yet it is competitive with MoEs with ~50% more total and active parameters.\n\n*All the models were evaluated with vLLM, using each benchmark's recommended generation parameters.\n\nFor your app, the strengths are tool use and instruction following. LFM2.5-24B-A2B leads or matches the competition on five of the eight tool-use and agentic benchmarks (AutomationBench, BFCLv4, ToolSandbox, LiveClaw, and τ³-Bench Banking), and on AutomationBench it scores more than three times the next-best model. It also leads on all three instruction-following benchmarks. Larger models keep an edge on knowledge-heavy benchmarks like GPQA Diamond, HLE, and AA-Omniscience, and on coding benchmarks like SWE-Bench Verified (OpenCode) and SciCode, so pair LFM2.5-24B-A2B with retrieval or web search for knowledge-heavy workloads.\n\nThese results make LFM2.5-24B-A2B a strong foundation for agents that need to reason, call tools, and run reliably on your device.\n\nLFM2.5-24B-A2B ships with day-one support across the inference ecosystem, including llama.cpp, MLX, vLLM, SGLang, and ONNX.\n\nEdge inference. LFM2.5-24B-A2B is the fastest of the compared MoEs, decoding 184 tokens/s on an M5 Max and 114 tokens/s on a Ryzen AI Max+ 395. That is up to 1.7x faster than the next-best model, while using the least memory.\n\nGPU inference. LFM2.5-24B-A2B is the fastest model in its size class, reaching over 21K output tokens per second at high concurrency on a single B300.\n\nReach for LFM2.5-24B-A2B when you need agents that reason, call tools, and run reliably on your device.\n\nInstall the latest version of transformers (compatible with transformers>=5.0.0):\n\nServe LFM2.5-24B-A2B locally behind any OpenAI-compatible backend, then point your agent harness at it. For example, with Hermes Agent:\n\nThe port depends on your serving backend: llama.cpp and MLX use 8080, vLLM uses 8000, SGLang uses 30000, and LM Studio uses 1234. See the model card for OpenClaw and Pi configs, and our guide for the full setup. Check out our release blog for video examples.\n\nBoth LFM2.5-24B-A2B and LFM2.5-24B-A2B-Base are open-weight and available on Hugging Face today:\n\nIf you use this work, please cite the release blog:",
+  "modell": "gemini-3.5-flash",
+  "cim": "Saját gépen futtatható ügynökmodellt adott ki a Liquid AI",
+  "lead": "A Liquid AI LFM2.5-24B-A2B modellje mindössze 2 milliárd aktív paraméterrel kínál gyors, eszközön belüli gondolkodási és eszközhasználati képességeket.",
+  "osszefoglalo": "A Liquid AI megjelentette az [LFM2.5-24B-A2B](https://liquid.ai/blog/lfm2-5-24b-a2b) nyílt súlyú AI-modelljét, amelyet kifejezetten saját gépen futó, autonóm ügynökök kiszolgálására terveztek. Noha a modell összesen 24 milliárd paraméterből áll, a Mixture-of-Experts architektúrának köszönhetően tokenenként csak **2 milliárd aktív paramétert** használ. A modell a válaszadás előtt lépésről lépésre végiggondolja a feladatot, és támogatja az összetett eszközhasználatot.\n\nAz új verzió kontextusablakát **131 000 tokenre** növelték, a szókincsét pedig 128 000 tokenre bővítették a nem latin írásmódú szövegek hatékonyabb feldolgozása érdekében. A modell kimondottan jól teljesít az utasításkövetési és eszközhasználati teszteken, futtatását pedig a megjelenés napjától támogatja a llama.cpp, az MLX és a vLLM is.\n\nA hordozható számítógépeken és lokális hardvereken elért sebessége kiemelkedő: egy Apple M5 Max chipes gépen **184 token/másodperc** generálására képes. A nyílt súlyú modell ingyenesen letölthető és azonnal beépíthető a népszerű ügynökkeretrendszerekbe.",
+  "miert_szamit": "A helyi eszközön futó ügynökökkel **teljesen privát, felhős előfizetési díjtól mentes** AI-rendszereket építhetsz, amelyek az adatok kiszivárgása nélkül képesek vállalati feladatok és munkafolyamatok automatizálására.",
+  "cimkek": [
+    "Liquid AI",
+    "LFM2.5-24B-A2B",
+    "nyílt forráskód",
+    "AI-ügynök"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "LFM2.5-24B-A2B"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-13T17:20:16+00:00",
+  "megjelent": "2026-10-13T17:20:16+00:00",
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-13T19:21:00+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": []
+  }
+}
