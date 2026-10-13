@@ -533,7 +533,8 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
   if (!elonezet && (t('qn-hl-kesz') || Date.now() - Number(t('qn-hl-zarva') || 0) < 14 * 864e5)) return;
   var ido = Number(s('qn-hl-ido') || 0), CEL = elonezet ? 2 : 20, kesz = false;
   var tik = setInterval(function(){
-    if (document.visibilityState !== 'visible' || kesz) return;
+    // a sütisávra adott válasz előtt nem számol, hogy a két ablak ne kerüljön egymásra
+    if (document.visibilityState !== 'visible' || kesz || !document.documentElement.classList.contains('suti-van')) return;
     ido += 1; s('qn-hl-ido', ido);
     if (ido >= CEL) { kesz = true; clearInterval(tik); nyit(); }
   }, 1000);
@@ -543,18 +544,18 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     d.innerHTML = '<div class="hl-ablak" role="dialog" aria-modal="true" aria-labelledby="hl-cim">' +
       '<button type="button" class="hl-zar" aria-label="Bezárás">×</button>' +
       '<p class="hl-felirat">Napi AI-hírlevél</p>' +
-      '<h2 id="hl-cim">A tegnap legfontosabb AI-hírei, minden reggel 8-kor</h2>' +
-      '<p class="hl-szoveg">Egy rövid levél, hogy ne maradj le semmi fontosról. Ingyenes, és egy kattintással leiratkozhatsz.</p>' +
-      '<form class="hl-urlap" novalidate><label class="hl-rejtett" for="hl-email-mezo">E-mail-cím</label>' +
+      '<h2 id="hl-cim">Lemaradni elég 1 hét.</h2>' +
+      '<p class="hl-szoveg">Ennyi idő alatt jön ki egy új modell, és ír át mindent, amit eddig elképzeltél. Összeszedjük neked, ami ebből számít.</p>' +
+      '<form class="hl-urlap" novalidate><label class="hl-cimke" for="hl-email-mezo">Hova küldjük?</label>' +
       '<input id="hl-email-mezo" type="email" name="email" placeholder="nev@pelda.hu" autocomplete="email" required>' +
-      '<button type="submit">Feliratkozom</button></form>' +
+      '<button type="submit">Kérem a napi összefoglalót</button></form>' +
       '<p class="hl-uzenet" role="status" aria-live="polite"></p>' +
       '<p class="hl-jog">Az e-mail-címedet csak erre a hírlevélre használjuk. <a href="/adatvedelem#hirlevel">Részletek</a></p>' +
       '<button type="button" class="hl-most-nem">Most nem</button></div>';
     document.body.appendChild(d);
     var elozo = document.activeElement, mezo = d.querySelector('input'), uz = d.querySelector('.hl-uzenet');
     document.documentElement.classList.add('hl-nyitva');
-    requestAnimationFrame(function(){ d.classList.add('bent'); });
+    setTimeout(function(){ d.classList.add('bent'); }, 30);
     setTimeout(function(){ try { mezo.focus({preventScroll: true}); } catch(e) {} }, 350);
     function zar(){ t('qn-hl-zarva', String(Date.now())); d.classList.remove('bent'); document.documentElement.classList.remove('hl-nyitva');
       setTimeout(function(){ d.remove(); if (elozo && elozo.focus) try { elozo.focus({preventScroll: true}); } catch(e) {} }, 400);
