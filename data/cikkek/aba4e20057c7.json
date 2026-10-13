@@ -1,0 +1,58 @@
+{
+  "id": "aba4e20057c7",
+  "slug": "az-american-express-keretrendszert-adott-ki-az-ai-vasarlasok-vedelmere",
+  "forras_id": "techcrunch",
+  "forras_nev": "TechCrunch AI",
+  "url": "https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/",
+  "szerzo": "Sarah Perez",
+  "publikalva": "2026-10-13T13:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://techcrunch.com/wp-content/uploads/2026/10/amex-GettyImages-171311164.jpg?resize=1200,800"
+  },
+  "cim_eredeti": "Amex introduces a framework to prevent AI agents from making unauthorized purchases",
+  "forrasok": [],
+  "szoveg_eredeti": "Last day to exhibit your breakthrough to 10,000+ tech leaders at Disrupt is on Oct 2. Book Exhibit Table Now.\n\nDisrupt doors open Oct. 13. Get your pass and bring someone with you at 50% off. REGISTER NOW.\n\nPersonal AI agents are increasingly making transactions on their users’ behalf, but given the nondeterministic nature of large language models, AI bots are prone to doing what they’re not supposed to. Which, in this case, raises the possibility of AI misfiring and making unauthorized transactions.\n\nTo get ahead of this problem, American Express is introducing a new framework designed to capture and authenticate a customer’s purchase intent before an AI agent completes the transaction.\n\nThe idea is that there should be a way to ensure that the customer’s purchase instructions are carried throughout the transaction lifecycle, Amex says, from the purchase to everything that follows.\n\nDubbed the “Intent Intelligence Framework,” the company hopes it will become an industry standard for AI-powered transactions.\n\n“These new transactions will have a consumer, a merchant, and an agent,” explained Amex’s VP of Agentic Partnerships and Strategy, Hannah Bozian, in an interview with TechCrunch. She said the company wanted to ensure that agentic transactions are still “seamless, trusted, and secure, the way our card members expect them to be.”\n\nThis framework’s release follows the company’s April launch of Amex’s Agentic Commerce Experiences, or the ACE Developer Toolkit, which includes a handful of services that now include the intent framework.\n\nAmex said it has not yet seen an increase in disputes because of agentic commerce, but it wanted to be proactive in building this technology as this type of commerce scales. In part, that’s because consumers have signaled they’re open to trying agentic commerce.\n\nIn a recent Amex Trendex report, 66% of surveyed U.S. consumers said they’re likely to use AI agents to research the best price for a product or service, and 61% said they’re likely to use it for a product or service recommendation over the next 12 months, the company told TechCrunch.\n\nTo start, Amex’s new intent framework begins with a Create Intent API, which will capture the customer’s purchase instructions along with other constraints they may have included in their request, like the merchant’s name, maximum budget, and other product preferences. How this intent is collected may vary depending on the AI model involved, but the plan is to make this framework flexible enough to support all agentic commerce models, Bozian said.\n\nThe customer then authenticates their identity and signs off on the intent captured by the agent.\n\nThen an Intent ID, a unique identifier representing the intent, is created, along with a Proof of Intent Token, which includes the customer’s high-level constraints. This token is used to obtain a secure digital payment credential that the agent will use at checkout instead of the customer’s actual credit card number. In doing so, Amex says, the purchase will remain secure while being aligned with what the customer authorized the agent to do.\n\nThis Intent ID and token can also be used in different parts of the transaction process, helping companies to manage areas like fraud prevention and dispute resolution, Amex said.\n\n“Our approach differs from the implementations of others in that it pulls intent earlier into the transaction flow. And this is important because it helps mitigate some risk before the risk occurs,” said Bozian. She offered the example of a customer asking an agent to buy white Nike sneakers in a size 9, but the agent submits a request to purchase shoes from Adidas. In such a case, Amex could prevent the transaction from going through because the agent made a mistake.\n\nBozian also notes that while many agents today ask for customer consent before making a purchase, Amex foresees a future where agents may act much more autonomously in some cases. For instance, a consumer might allow their agent to re-order household staples, like paper towels or toilet paper — categories in which the only real constraint is the price and size, not merchant or brand. In these scenarios, it makes sense to have technology in the loop performing that extra check, to ensure the transactions match the customer’s intent.\n\nHaving a log of what was authorized by which agent and when could also help address fraud on behalf of the agent, she noted.\n\nAmex is already in discussions with partners across the payments ecosystem for implementing ACE, which includes the agentic tokens that contain Amex’s payment credentials, as well as other parts of the developer kit.\n\nThe company said it plans to actively develop ACE further as the agentic commerce ecosystem evolves.\n\nOn October 13 at TechCrunch Disrupt 2026‘s Industry Stage, Amex VP of Agentic Partnerships and Strategy at American Express, Hannah Bozian, will discuss the company’s new”Intent Intelligence Framework” in more detail, and what it means for the world of agentic commerce.\n\nWhen you purchase through links in our articles, we may earn a small commission. This doesn’t affect our editorial independence.\n\nGet 50% off a second passThe Disrupt experience is meant to be shared. Get your pass and bring a colleague, partner, or peer at 50% off. Cover more ground by making connections, building momentum, and discovering what’s next in the startup ecosystem.\n\nElon Musk intensifies attack on Ambani over Starlink India launch delay Jagmeet Singh\n\nBatteries are now cheaper than natural gas turbines used at many data centers Tim De Chant\n\nRemember Orkut? Its founder wants to bring it back Jagmeet Singh\n\nUS bars Microsoft, Adobe, and major IT firms from green card program for skilled foreign workers Aisha Malik\n\nElon Musk questions Ambani’s influence as Starlink India launch stalls Jagmeet Singh\n\nCal AI’s 19-year-old founder just raised $10M for his new AI startup Julie Bort\n\nGoogle releases a new local-first Granola competitor Ivan Mehta",
+  "modell": "gemini-3.5-flash",
+  "cim": "Az American Express keretrendszert adott ki az AI-vásárlások védelmére",
+  "lead": "Az új Intent Intelligence Framework megakadályozza, hogy a vásárlási feladatokkal megbízott AI-ügynökök hibás vagy jogosulatlan rendeléseket adjanak fel.",
+  "osszefoglalo": "Az American Express bemutatta az **Intent Intelligence Framework** nevű technológiát, amely rögzíti és hitelesíti a felhasználó vásárlási szándékát, mielőtt egy AI-ügynök végrehajtaná a tranzakciót. A rendszer a beállított feltételek alapján egy egyedi azonosítót és tokent hoz létre, így a fizetésnél nem az eredeti bankkártyaadatok szerepelnek, és a rendszer azonnal blokkolja a tranzakciót, ha az AI eltér a megadott utasításoktól.\n\nA megoldás az Amex korábban kiadott [ACE Developer Toolkit](https://developer.americanexpress.com/agentic-commerce) fejlesztői csomagjába épül be, amely a digitális fizetési hitelesítő adatokat kezeli. A keretrendszer célja, hogy rugalmasan illeszkedjen a különböző AI-modell architektúrákhoz, és megelőzze a félreértésekből vagy modellek hibáiból eredő téves vásárlásokat.\n\nAz Amex már megkezdte az egyeztetéseket a fizetési ökoszisztéma partnereivel a technológia bevezetéséről. A fejlesztést a teljesen autonóm módon, például háztartási cikkek rendszeres újrarendelésére használt AI-ügynökök terjedésére készítik elő.",
+  "miert_szamit": "A digitális kereskedelemben elinduló AI-ügynökök korában a keretrendszer **garantálja a jogosulatlan és hibás AI-vásárlások kiszűrését**, védve mind a kereskedőket, mind a vásárlókat a téves rendelésektől.",
+  "cimkek": [
+    "American Express",
+    "AI ügynök",
+    "e-kereskedelem",
+    "ACE Developer Toolkit"
+  ],
+  "kategoria": "ügynök",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Intent Intelligence Framework",
+    "ACE Developer Toolkit"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-13T13:04:31+00:00",
+  "megjelent": "2026-10-13T13:04:31+00:00",
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-13T15:04:47+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": [
+      {
+        "lepes": "nem_illo_link_ki",
+        "horgony": "ACE Developer Toolkit",
+        "url": "https://developer.americanexpress.com/agentic-commerce",
+        "ok": "Az oldal letöltött tartalma csak általános fejlesztői főoldal, nem említi kifejezetten az ACE Developer Toolkited."
+      }
+    ],
+    "osszefoglalo": "Az American Express bemutatta az **Intent Intelligence Framework** nevű technológiát, amely rögzíti és hitelesíti a felhasználó vásárlási szándékát, mielőtt egy AI-ügynök végrehajtaná a tranzakciót. A rendszer a beállított feltételek alapján egy egyedi azonosítót és tokent hoz létre, így a fizetésnél nem az eredeti bankkártyaadatok szerepelnek, és a rendszer azonnal blokkolja a tranzakciót, ha az AI eltér a megadott utasításoktól.\n\nA megoldás az Amex korábban kiadott ACE Developer Toolkit fejlesztői csomagjába épül be, amely a digitális fizetési hitelesítő adatokat kezeli. A keretrendszer célja, hogy rugalmasan illeszkedjen a különböző AI-modell architektúrákhoz, és megelőzze a félreértésekből vagy modellek hibáiból eredő téves vásárlásokat.\n\nAz Amex már megkezdte az egyeztetéseket a fizetési ökoszisztéma partnereivel a technológia bevezetéséről. A fejlesztést a teljesen autonóm módon, például háztartási cikkek rendszeres újrarendelésére használt AI-ügynökök terjedésére készítik elő."
+  }
+}
