@@ -185,7 +185,9 @@ test("SEC-010: ugyanarról az IP-ről párhuzamosan küldött szavazatok legfelj
 
 // ---- SEC-001: a kliens escape-segédei ----
 test("SEC-001: a feed.json mezői escape-elve, a kép és a slug csak biztonságos formában", () => {
-  const js = fs.readFileSync(path.join(__dirname, "..", "site", "assets", "app.js"), "utf8").split("\n").slice(0, 4).join("\n");
+  // a három segédfüggvény sorát keressük ki (az app.js elejére később más kód is került)
+  const js = fs.readFileSync(path.join(__dirname, "..", "site", "assets", "app.js"), "utf8").split("\n")
+    .filter((s) => /^function qn(Esc|Slug|Kep)\(/.test(s)).join("\n");
   const { qnEsc, qnSlug, qnKep } = new Function(js + "\nreturn { qnEsc, qnSlug, qnKep };")();
   assert.strictEqual(qnEsc('<img src=x onerror="a">\''), "&lt;img src=x onerror=&quot;a&quot;&gt;&#39;");
   assert.strictEqual(qnKep('x" onerror="alert(1)'), "");
