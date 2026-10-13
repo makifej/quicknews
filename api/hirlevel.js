@@ -107,7 +107,7 @@ module.exports = async (req, res) => {
       }
       await kv("HDEL", KULCS, email);
       if (req.method === "POST") return json(res, 200, { rendben: true });
-      return oldal(res, 200, "Leiratkoztál", "Több hírlevelet nem küldünk erre a címre. Ha meggondolod magad, a hírek oldalán bármikor újra feliratkozhatsz.");
+      return oldal(res, 200, "Leiratkoztál", "Több emlékeztetőt nem küldünk erre a címre. Ha meggondolod magad, a hírek oldalán bármikor újra feliratkozhatsz.");
     }
     if (req.method !== "POST") { res.setHeader("Allow", "POST"); return json(res, 405, { hiba: "nem támogatott metódus" }); }
 
@@ -123,7 +123,7 @@ module.exports = async (req, res) => {
 
     if (b.muvelet === "leiratkozas") {
       await kv("HDEL", KULCS, email);
-      return json(res, 200, { rendben: true, uzenet: "Leiratkoztál. Több hírlevelet nem küldünk erre a címre." });
+      return json(res, 200, { rendben: true, uzenet: "Leiratkoztál. Több emlékeztetőt nem küldünk erre a címre." });
     }
     const allapot = await domainRendben(email.split("@")[1]);
     if (allapot === "eldobhato") return json(res, 400, { rendben: false, uzenet: "Egyszer használatos címre nem tudunk írni. Adj meg egy rendes e-mail-címet." });
