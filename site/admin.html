@@ -153,7 +153,7 @@ button.torol:disabled{opacity:.5}
 .allapot.kov{display:inline-block}
 .all-jel{display:inline-block;margin:6px 8px 0 0;padding:2px 9px;border-radius:999px;font-size:13px;font-weight:800;color:#131313;background:var(--halk)}
 .all-jel.all-időzítve{background:var(--amber)}.all-jel.all-publikálva{background:#7bd88f}.all-jel.all-sikertelen{background:#ff6b6b}
-.all-jel.all-időzítésrevár{background:#9ec5ff}.all-jel.all-törölve{background:var(--vonal);color:var(--halk)}
+.all-jel.all-időzítésrevár{background:#9ec5ff}.all-jel.all-kártyáravár{background:#ffd27a}.all-jel.all-indításravár{background:#ffd27a}.all-jel.all-törölve{background:var(--vonal);color:var(--halk)}
 button.szerk,button.hird-indit{display:inline-block;margin:8px 0 0 12px;font:600 15px Manrope,sans-serif;color:var(--amber);border:1px solid var(--amber);border-radius:6px;padding:2px 10px}
 button.hird-indit{color:#131313;background:var(--amber)}
 .szerk-urlap{display:flex;flex-direction:column;gap:8px;margin-top:10px}
@@ -324,14 +324,17 @@ const KINT=s=>s.allapot==="published";
 const PARK=s=>s.allapot==="torolve"||new Date(s.idopont).getFullYear()>=2030;
 const VARAK=s=>s.allapot==="varakozik";
 /* a hat állapot (Heni 2026-10-12): Piszkozat, Időzítésre vár, Időzítve, Publikálva, Sikertelen, Törölve */
-const ALLNEV=s=>HIBA(s)?"Sikertelen":KINT(s)?"Publikálva":PARK(s)?"Törölve":VARAK(s)?"Időzítésre vár":s.allapot==="draft"?"Piszkozat":"Időzítve";
+const ALLNEV=s=>HIBA(s)||(VARAK(s)&&s.ok==="hiba")?"Sikertelen":KINT(s)?"Publikálva":PARK(s)?"Törölve":VARAK(s)&&s.ok==="kartya"?"Kártyára vár":VARAK(s)&&s.felulet==="Hirdetés"&&!s.feldolgozasra?"Indításra vár":VARAK(s)?"Időzítésre vár":s.allapot==="draft"?"Piszkozat":"Időzítve";
+/* miért vár: a hiba és a kártya-jóváhagyás külön látszik (Heni 2026-10-13: „NINCS OLYAN ELFOGADHATÓ VÉGÁLLAPOT, HOGY IDŐZÍTÉSRE VÁR”) */
+const VAROK=(s,alap)=>s.ok==="hiba"?`<span class="allapot hiba">Két próba után sem sikerült időzíteni. ${esc((s.hiba_uzenet||"").slice(-120))}</span>`
+ :s.ok==="kartya"?`<span class="allapot">A kártya a jóváhagyásodra vár: Ajánlott fül, „Kártya jó”</span>`:`<span class="allapot">${alap}</span>`;
 const VAR=s=>!KINT(s)&&!HIBA(s)&&!PARK(s);
 
 function helyiIdo(iso){const d=new Date(iso),p=n=>String(n).padStart(2,"0");return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`}
 function kartya(s,kov){const d=new Date(s.idopont);let a,cls="",tovabb="";
  const jel=`<span class="all-jel all-${ALLNEV(s).replace(/[^a-zA-Záéíóöőúüű]/g,"").toLowerCase()}">${ALLNEV(s)}</span>`;
  if(s.felulet==="Hirdetés"){
-  if(s.feldolgozasra)a=`${jel}<span class="allapot">3 percen belül elkészül, szüneteltetve</span>`;
+  if(s.feldolgozasra)a=`${jel}${VAROK(s,"3 percen belül elkészül, szüneteltetve")}`;
   else if(VARAK(s)){a=`${jel}<span class="allapot">Elkészült, szüneteltetve. Te indítod.</span><button class="hird-indit" data-azon="${esc(s.azon)}" data-cim="${esc(s.cim)}">Indítás</button><button class="szerk" data-szerk="${esc(s.id)}">Címsor</button>`;
    tovabb=`<form class="szerk-urlap" data-szerk-urlap="${esc(s.id)}" hidden><label>Címsor (a kártya alatt, legfeljebb 40 karakter ajánlott)<input name="cimsor" maxlength="60" value="${esc(s.cimsor||"")}"></label><div class="szerk-gombok"><button type="submit">Mentés</button><button type="button" data-megse>Mégse</button></div></form>`}
   else a=`${jel}<span class="allapot">${esc(s.meta_allapot||"")}</span>`;
@@ -340,7 +343,7 @@ function kartya(s,kov){const d=new Date(s.idopont);let a,cls="",tovabb="";
  if(HIBA(s)){a=`${jel}<span class="allapot hiba">nem ment ki</span>`}
  else if(KINT(s)){a=`${jel}<span class="allapot">${ora(new Date(s.kiment))}</span>`;cls="kint"}
  else if(PARK(s)){a=`${jel}`}
- else if(VARAK(s)){a=`${jel}<span class="allapot">3 percen belül időzítem</span>`}
+ else if(VARAK(s)){a=`${jel}${VAROK(s,"3 percen belül időzítem")}`}
  else if(s.torles_folyamatban) a=`<span class="allapot hiba">Levétel folyamatban, egy percen belül leáll</span>`;
  else{a=`${jel}<span class="allapot ${kov?"kov":""}">${kov?"Következő · ":""}${hatra(d)}</span><button class="szerk" data-szerk="${esc(s.id)}">Szerkesztés</button><button class="torol" data-pid="${esc(s.id)}" data-felulet="${esc(s.felulet)}" data-cim="${esc(s.cim)}">Levétel az időzítésből</button>`;
   tovabb=`<form class="szerk-urlap" data-szerk-urlap="${esc(s.id)}" hidden><label>Szöveg<textarea name="szoveg" rows="5">${esc(s.szoveg||"")}</textarea></label><label>Időpont<input type="datetime-local" name="mikor" value="${helyiIdo(s.idopont)}"></label><div class="szerk-gombok"><button type="submit">Mentés</button><button type="button" data-megse>Mégse</button></div><p class="lab">A módosítás 3 percen belül kerül át a Flybuiltbe.</p></form>`}
@@ -504,7 +507,7 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
    if(f==="hirdetes")t=e.allapot==="PAUSED"?"szüneteltetve, indításra vár":e.allapot==="ACTIVE"?"elindítva":"létrehozva";
    else t=e.mikor&&/^\d{4}/.test(e.mikor)?"időzítve "+idozit(e.mikor):e.mikor?esc(e.mikor):"időzítve";
    return `<span class="elem"><b>${FEL[f]}</b> ${t}${e.azonosito?` <small>#${esc(String(e.azonosito).slice(-6))}</small>`:""}</span>`};
-  const feldolg=Object.keys(el).length||jvF.length?`<div class="feldolg ${s.feldolgozott?"kesz":""}"><span class="cimke ${s.feldolgozott?"kesz":"var"}">${s.feldolgozott?"✓ Feldolgozva":"Feldolgozás alatt"}</span>${jv.ido?`<span class="elem">átkerült ${esc(fmt(new Date(jv.ido),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}))}</span>`:""}${Object.keys(el).map(elemSor).join("")}${nyitottF.filter(f=>jvF.includes(f)).map(f=>`<span class="elem"><b>${FEL[f]}</b> 3 percen belül elkészül</span>`).join("")}</div>`:"";
+  const feldolg=Object.keys(el).length||jvF.length?`<div class="feldolg ${s.feldolgozott?"kesz":""}"><span class="cimke ${s.feldolgozott?"kesz":"var"}">${s.feldolgozott?"✓ Feldolgozva":"Feldolgozás alatt"}</span>${jv.ido?`<span class="elem">átkerült ${esc(fmt(new Date(jv.ido),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}))}</span>`:""}${Object.keys(el).map(elemSor).join("")}${nyitottF.filter(f=>jvF.includes(f)).map(f=>`<span class="elem"><b>${FEL[f]}</b> ${(s.kiteteli_hiba||{})[f]?`<span style="color:#ff6b6b">két próba után sem sikerült, nézd meg</span>`:(s.kartya||{}).fajl&&!(s.kartya||{}).jo?"a kártya jóváhagyására vár":"3 percen belül elkészül"}</span>`).join("")}</div>`:"";
   const kt=s.kartya||{};
   const kszoveg=kt.elutasitva?`<b>Elutasítva.</b><div class="lead" style="-webkit-line-clamp:3">Új kártya készül a cikk eredeti képéből vagy a videójából, és itt jelenik meg újra jóváhagyásra.</div>`
    :kt.jo&&kt.auto?`<b>Eredeti képpel megy ki.</b><div class="lead">Nem töltöttél fel saját képet, ezért nem kell jóváhagynod.</div>`
