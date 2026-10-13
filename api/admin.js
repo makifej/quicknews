@@ -354,7 +354,7 @@ module.exports = async (req, res) => {
         adat.sorok.push({
           id: h.id, cim: h.cim, lead: h.lead, slug: (h.url || "").replace(/^\/hir\//, ""),
           fontossag: h.fontossag, felkapott: false, kategoria: h.kategoria, forras: h.forras,
-          publikalva: h.publikalva, video: !!h.video, kep: "https://quicknews.hu" + (h.kep || ""),
+          publikalva: h.publikalva, video: !!h.video, kep: /^https:\/\//.test(h.kep || "") ? h.kep : "https://quicknews.hu" + (h.kep || ""),
           pont: (h.fontossag || 3) * 20 + 15, uj: true, allapot: {},
         });
       }
