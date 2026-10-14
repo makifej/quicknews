@@ -906,6 +906,9 @@ html:not(.suti-van) .chat { display: none; }
 .sz-jel.neg { color: var(--sz-le); }
 .sz-jel.neg svg { transform: rotate(180deg); }
 .kiemelt-sav .sz-jel { margin-left: 8px; font-size: 14px; }
+/* a pontszám a könyvjelző előtt, a kettő együtt a sor jobb szélén (Heni 2026-10-14) */
+.hmeta > .sz-jel, .cimsor-lista a > span > .sz-jel { margin-left: auto; }
+.hmeta > .sz-jel + .mentes-jel, .cimsor-lista a > span > .sz-jel + .mentes-jel { margin-left: 2px; }
 @media (prefers-reduced-motion: reduce) { .szavaz, .szavaz button { transition: none; } }
 .sz-uzenet { margin: 8px 0 0; font-size: 14px; line-height: 20px; color: var(--szoveg-2); }
 /* a szavazás széles asztali nézetben a „Miért számít” doboz alatt, keskenyebb képernyőn és mobilon a lead alatt */
@@ -1280,8 +1283,10 @@ html.hl-nyitva { overflow: hidden; }
   .pb-pakli-tipp b { font-size: 19px; line-height: 25px; font-weight: 800; }
   .pb-pakli-irany { display: flex; justify-content: space-between; gap: 12px; font-size: 16px; line-height: 22px; font-weight: 800; }
   .pb-pakli-tipp[hidden], .pb-pakli-gombok[hidden] { display: none; }
-  .pb-pakli-be .pb-jelolt, .pb-pakli-be .pb-be .pb-jelolt[data-oldal] { animation: none; transition: transform .35s var(--gorbe); position: relative; z-index: 1; }
-  .pb-pakli-be .pb-huzott .pb-jelolt { transition: none; z-index: 2; }
+  /* a húzás alatt nincs átmenet, különben minden mozdulatot 0,35 mp-ig késleltetve követ és remeg (Heni 2026-10-14) */
+  .pb-pakli-be .pb-jelolt, .pb-pakli-be .pb-be .pb-jelolt[data-oldal] { animation: none; }
+  .pb-pakli-be .pb-jelolt { transition: transform .35s var(--gorbe); position: relative; z-index: 1; will-change: transform; touch-action: pan-y; }
+  .pb-pakli-be .pb-huzott .pb-jelolt, .pb-pakli-be .pb-huzott .pb-jelolt::after { transition: none; z-index: 2; }
   .pb-pakli-be > .pb.pb-huzott { transform: none; }
   .pb-mar { position: absolute; z-index: 6; left: 16px; right: 16px; top: 38%; padding: 18px 16px; border-radius: 14px; background: var(--piros); color: #fff; text-align: center; font-size: 21px; line-height: 27px; font-weight: 800; box-shadow: 0 12px 32px rgba(0, 0, 0, .45); animation: pb-mar-be .3s ease; }
   @keyframes pb-mar-be { from { opacity: 0; transform: scale(.9); } }
