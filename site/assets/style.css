@@ -1218,22 +1218,40 @@ html.hl-nyitva { overflow: hidden; }
 @keyframes pb-villog { 50% { opacity: .25; } }
 @media (prefers-reduced-motion: reduce) { .pb-jelolt, .pb-csik i, .pb-er-sav i, .pb-gomb { transition: none; } }
 @media (max-width: 900px) { .pb-pakli { grid-template-columns: 1fr; } }
-/* mobil: a két jelölt egymás mellett marad, a kép 16:9-ben teljesen látszik */
+/* mobil (Heni 2026-10-14): a két jelölt egymás alatt, nagy, olvasható betűvel, az előnyeikkel és a hír gombjával */
 @media (max-width: 640px) {
-  .pb { padding: 14px; gap: 12px; }
-  .pb-kerdes, .pb-kicsi .pb-kerdes { font-size: 20px; line-height: 26px; }
-  .pb-ellen { gap: 8px; }
-  .pb-vs { width: 32px; height: 32px; font-size: 9px; border-width: 1px; }
-  .pb-test { padding: 10px; gap: 6px; }
-  .pb-test h4 { font-size: 16px; line-height: 21px; }
-  .pb-egy { font-size: 13px; line-height: 18px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-  .pb-tenyek { display: none; }
-  .pb-hir { display: none; }
-  .pb-gomb { font-size: 14px; padding: 9px 10px; }
-  .pb-szaz { font-size: 20px; line-height: 24px; }
+  .pb { padding: 16px; gap: 14px; }
+  .pb-kerdes, .pb-kicsi .pb-kerdes, .pb-sav .pb-kerdes, .pb-doboz .pb-kerdes { font-size: 23px; line-height: 29px; }
+  .pb-zar { font-size: 13px; }
+  .pb-ellen, .pb-kicsi .pb-ellen, .pb-sav .pb-ellen, .pb-doboz .pb-ellen { grid-template-columns: 1fr; gap: 10px; }
+  .pb-vs, .pb-kicsi .pb-vs, .pb-sav .pb-vs, .pb-doboz .pb-vs { justify-self: center; width: 40px; height: 40px; font-size: 11px; margin-block: -2px; }
+  /* fent a kép és a név egymás mellett, alatta teljes szélességben a leírás, az előnyök, a hír gombja és az eredmény */
+  .pb-jelolt { display: grid; grid-template-columns: 132px minmax(0, 1fr); column-gap: 14px; row-gap: 12px; align-items: center; padding: 14px; }
+  .pb-kep { grid-column: 1; grid-row: 1; margin: 0; border-radius: 10px; }
+  .pb .pb-test { display: contents; }
+  .pb .pb-test > * { grid-column: 1 / -1; }
+  .pb .pb-test h4 { grid-column: 2; grid-row: 1; }
+  .pb .pb-hir { justify-self: start; }
+  .pb .pb-test h4 { font-size: 21px; line-height: 26px; }
+  .pb .pb-egy { display: block; font-size: 15px; line-height: 21px; color: var(--szoveg-2); }
+  .pb .pb-tenyek { display: flex; font-size: 15px; line-height: 21px; gap: 8px; }
+  .pb .pb-tenyek li::before { width: 20px; height: 20px; font-size: 12px; }
+  .pb .pb-hir { display: inline-flex; font-size: 15px; padding: 8px 14px; }
+  .pb .pb-gomb { font-size: 16px; padding: 12px 16px; }
+  .pb .pb-szaz { font-size: 30px; line-height: 34px; }
+  .pb .pb-csik { height: 10px; }
+  .pb .pb-db { font-size: 14px; }
+  .pb-vezet { font-size: 12px; top: 8px; left: 8px; }
+  .pb-lab { font-size: 14px; }
   .pb-oldalfej h1 { font-size: 30px; line-height: 36px; }
+  .pb-oldalfej p { font-size: 17px; line-height: 26px; }
   .pb-er { grid-template-columns: 1fr; } .pb-er-meta { text-align: left; white-space: normal; }
-  .pb-jelolt::after { font-size: 12px; top: 10px; }
+  .pb-er h4 { font-size: 18px; line-height: 24px; } .pb-er-nevek { font-size: 16px; }
+  .pb-jelolt::after { font-size: 13px; top: 10px; }
+  /* a húzható paklin minden jelölt mellett ott az irány */
+  .pb-pakli-be .pb-jelolt[data-oldal="a"] .pb-test h4::before { content: "← Balra húzd"; }
+  .pb-pakli-be .pb-jelolt[data-oldal="b"] .pb-test h4::before { content: "Jobbra húzd →"; }
+  .pb-pakli-be .pb-test h4::before { display: block; margin-bottom: 4px; font-size: 12px; line-height: 16px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--kiemelo); }
   /* húzható pakli */
   .pb-pakli.pb-pakli-be { display: grid; grid-template-columns: 1fr; padding-bottom: 24px; }
   .pb-pakli-be > .pb { grid-area: 1 / 1; touch-action: pan-y; user-select: none; -webkit-user-select: none; will-change: transform; transition: transform 450ms var(--gorbe), opacity 450ms; box-shadow: 0 12px 32px rgba(0, 0, 0, .35); }
@@ -1245,7 +1263,11 @@ html.hl-nyitva { overflow: hidden; }
   .pb-pakli-be > .pb-lap-kesz { display: none; }
   .pb-pakli-be .pb-lap-1 .pb-test, .pb-pakli-be .pb-lap-2 .pb-test { visibility: hidden; }
   .pb-pakli-be .pb-gomb { display: none; }
-  .pb-pakli-tipp { margin: 0; text-align: center; color: var(--szoveg-3); font-size: 13px; font-weight: 700; }
+  .pb-pakli-tipp { display: flex; flex-direction: column; gap: 8px; padding: 16px 18px; border-radius: 16px; background: var(--kiemelo); color: var(--kiemelo-szoveg); text-align: center; }
+  .pb-pakli-tipp b { font-size: 19px; line-height: 25px; font-weight: 800; }
+  .pb-pakli-irany { display: flex; justify-content: space-between; gap: 12px; font-size: 16px; line-height: 22px; font-weight: 800; }
+  .pb-pakli-tipp[hidden], .pb-pakli-gombok[hidden] { display: none; }
+  .pb-pakli-irany span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .pb-pakli-gombok { display: flex; justify-content: center; gap: 28px; }
   .pb-pakli-gombok button { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--keret); background: var(--bg-2); color: var(--szoveg); font: inherit; font-size: 22px; cursor: pointer; }
   .pb-pakli-vege { grid-area: 1 / 1; display: flex; flex-direction: column; gap: 8px; text-align: center; padding: 32px 16px; background: var(--bg-2); border: 1px solid var(--vonal); border-radius: var(--sugar); color: var(--szoveg-2); }
