@@ -122,7 +122,8 @@ async function hirlevelAdat() {
   lista.sort((a, b) => String(b.ido).localeCompare(String(a.ido)));
   const beall = JSON.parse((await kv("GET", HL + ":beall")) || '{"aktiv":true}');
   const kiadasok = ((await kv("LRANGE", HL + ":kiadasok", 0, 29)) || []).map((x) => JSON.parse(x));
-  return { darab: lista.length, lista, beall, kiadasok, ido: new Date().toISOString() };
+  const varakozo = Number((await kv("HLEN", HL + ":var")) || 0);
+  return { darab: lista.length, lista, beall, kiadasok, varakozo, ido: new Date().toISOString() };
 }
 async function hirlevelMuvelet(b) {
   if (b.muvelet === "beall") {
@@ -194,6 +195,33 @@ module.exports = async (req, res) => {
         return json(res, 200, await kepFeltolt(id, b64));
       }
       if (mi === "hirlevel_gep") return json(res, 200, await hirlevelAdat());
+      // kétlépcsős fel- és leiratkozás: a Mac lekéri, kinek kell megerősítő levél, és jelöli, ha elküldte
+      if (mi === "hirlevel_megerosites_gep") {
+        const ki = {};
+        for (const [tip, k] of [["fel", HL + ":var"], ["le", HL + ":leir_kert"]]) {
+          const h = (await kv("HGETALL", k)) || [];
+          ki[tip] = [];
+          for (let i = 0; i < h.length; i += 2) {
+            let r = {};
+            try { r = JSON.parse(h[i + 1]); } catch { r = {}; }
+            if (Date.now() - Date.parse(r.ido || 0) > 3 * 864e5) { await kv("HDEL", k, h[i]); continue; } // lejárt kérés
+            if (!r.kuldve) ki[tip].push(h[i]);
+          }
+        }
+        return json(res, 200, ki);
+      }
+      if (mi === "hirlevel_megerosites_kuldve_gep" && req.method === "POST") {
+        const { email, tip } = await torzs(req);
+        const k = tip === "le" ? HL + ":leir_kert" : tip === "fel" ? HL + ":var" : null;
+        if (!k || typeof email !== "string" || !HL_MINTA.test(email)) return json(res, 400, { hiba: "rossz kérés" });
+        const v = await kv("HGET", k, email);
+        if (!v) return json(res, 404, { hiba: "nincs ilyen kérés" });
+        let r = {};
+        try { r = JSON.parse(v); } catch { r = {}; }
+        r.kuldve = new Date().toISOString();
+        await kv("HSET", k, email, JSON.stringify(r));
+        return json(res, 200, { ok: true });
+      }
       if (mi === "hirlevel_muvelet_gep" && req.method === "POST") { const [k, v] = await hirlevelMuvelet(await torzs(req)); return json(res, k, v); }
       if (mi === "hirlevel_kiadas_gep" && req.method === "POST") {
         const { kiadas, html } = await torzs(req);
