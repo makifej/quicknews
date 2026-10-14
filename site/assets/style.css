@@ -166,6 +166,8 @@ strong { font-weight: 600; color: var(--szoveg); }
 .kiprobal svg { flex: none; }
 .egyben { white-space: nowrap; }
 /* kiemelés és link a szövegben: halvány háttér, félkövér; a link borostyán alsó vonallal */
+/* piros háttérrel kiemelt kifejezés (cikk piros_kiemeles mezője, Heni 2026-10-14) */
+.torzs mark.piros-jel { background: var(--piros); color: #fff; padding: 1px 6px; border-radius: 4px; font-weight: 700; }
 .torzs strong, .miert strong { background: var(--kiemeles-bg); padding: 1px 6px; border-radius: 4px; font-weight: 700; color: var(--szoveg); }
 .torzs a.kulso { background: var(--kiemeles-bg); padding: 1px 6px; border-radius: 4px; border-bottom: 2px solid var(--kiemelo); font-weight: 700; color: var(--szoveg); transition: background-color 700ms var(--gorbe); }
 .torzs a.kulso:hover { background: var(--kiemelo); color: var(--kiemelo-szoveg); }
