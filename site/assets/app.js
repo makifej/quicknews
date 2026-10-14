@@ -679,3 +679,238 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     rajzol(marad, elo);
   }).catch(function(){ oldal.innerHTML = '<p class="mentett-ures">Most nem sikerült betölteni a mentett híreidet. Frissítsd az oldalt.</p>'; });
 })();
+// Szavazás: párbajok (Heni 2026-10-14). Minden [data-parbaj] elem egy párbaj; az állás csak a saját szavazat után
+// (vagy a lezárt párbajnál) látszik. Mobilon a Szavazás oldal futó párbajai húzható kártyapakliként jönnek:
+// balra húzva a bal oldali, jobbra húzva a jobb oldali eszközre szavazol.
+(function(){
+  var dobozok = [].slice.call(document.querySelectorAll('[data-parbaj]'));
+  var eredmenyek = [].slice.call(document.querySelectorAll('[data-parbaj-eredm]'));
+  if (!dobozok.length && !eredmenyek.length) return;
+  var nyugodt = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ft = new Intl.NumberFormat('hu-HU');
+  // ugyanaz a névtelen böngészőazonosító, mint a hírszavazásnál; csak az első szavazáskor jön létre
+  var latOlvas = function(){ try { var l = localStorage.getItem('qn-l') || ''; return /^[a-z0-9]{16,40}$/.test(l) ? l : ''; } catch(e) { return ''; } };
+  var lat = function(){ var l = latOlvas(); if (l) return l; var u = ''; for (var i = 0; i < 24; i++) u += 'abcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random() * 36)]; try { localStorage.setItem('qn-l', u); } catch(e) { return ''; } return u; };
+  var ids = [];
+  dobozok.concat(eredmenyek).forEach(function(d){ var id = d.getAttribute('data-parbaj') || d.getAttribute('data-parbaj-eredm'); if (ids.indexOf(id) < 0) ids.push(id); });
+
+  var szamlal = function(el, cel, uto){
+    if (nyugodt) { el.textContent = ft.format(cel) + uto; return; }
+    var t0 = performance.now();
+    var lep = function(t){ var x = Math.min(1, (t - t0) / 900); el.textContent = ft.format(Math.round(cel * (1 - Math.pow(1 - x, 3)))) + uto; if (x < 1) requestAnimationFrame(lep); };
+    requestAnimationFrame(lep);
+  };
+  var szikrak = function(gomb){
+    if (nyugodt || !gomb || !gomb.animate) return;
+    var szulo = gomb.closest('.pb-jelolt'); if (!szulo) return;
+    var r = gomb.getBoundingClientRect(), p = szulo.getBoundingClientRect();
+    for (var i = 0; i < 22; i++) (function(i){
+      var s = document.createElement('span'); s.className = 'pb-szikra';
+      s.style.left = (r.left - p.left + r.width / 2) + 'px'; s.style.top = (r.top - p.top + r.height / 2) + 'px';
+      s.style.background = i % 3 ? 'var(--kiemelo)' : (i % 2 ? 'var(--piros)' : 'var(--szoveg)');
+      szulo.appendChild(s);
+      var sz = Math.random() * Math.PI * 2, t = 50 + Math.random() * 100;
+      s.animate([{ transform: 'translate(-50%,-50%)', opacity: 1 }, { transform: 'translate(' + (Math.cos(sz) * t) + 'px,' + (Math.sin(sz) * t - 30) + 'px) rotate(' + (Math.random() * 360) + 'deg) scale(.4)', opacity: 0 }],
+        { duration: 650 + Math.random() * 450, easing: 'cubic-bezier(.32,.72,0,1)' }).onfinish = function(){ s.remove(); };
+    })(i);
+  };
+
+  // egy párbaj megjelenítése az állással (ha van) és a saját választással
+  var rajzol = function(d, allas, sajat, animal){
+    var st = d.getAttribute('data-allapot');
+    var lathato = !!allas && (sajat || st === 'lezart');
+    d.classList.toggle('pb-voksolt', lathato);
+    var ossz = allas ? allas.a + allas.b : 0;
+    ['a', 'b'].forEach(function(o){
+      var j = d.querySelector('.pb-jelolt[data-oldal="' + o + '"]'); if (!j) return;
+      j.classList.toggle('pb-valasztott', sajat === o);
+      if (!lathato) return;
+      var szaz = ossz ? Math.round(100 * allas[o] / ossz) : 0;
+      j.classList.toggle('pb-vezeto', ossz > 0 && allas[o] >= allas[o === 'a' ? 'b' : 'a']);
+      var sz = j.querySelector('.pb-szaz'), cs = j.querySelector('.pb-csik i'), db = j.querySelector('.pb-db');
+      if (animal) szamlal(sz, szaz, '%'); else sz.textContent = szaz + '%';
+      db.textContent = ft.format(allas[o]) + ' szavazat';
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ cs.style.width = szaz + '%'; }); });
+    });
+    var al = d.querySelector('.pb-allas'), masik = d.querySelector('.pb-masik');
+    if (sajat) {
+      var nev = d.getAttribute('data-' + sajat);
+      if (al) al.textContent = 'A te választásod: ' + nev + ' · ' + ft.format(ossz) + ' szavazat eddig';
+      if (masik && st === 'fut') { masik.hidden = false; masik.setAttribute('data-masik', sajat === 'a' ? 'b' : 'a'); }
+    } else if (al && st === 'lezart' && allas) {
+      al.textContent = ft.format(ossz) + ' szavazat';
+    }
+  };
+  var eredmRajz = function(e, allas){
+    if (!allas) return;
+    var ossz = allas.a + allas.b, pa = ossz ? Math.round(100 * allas.a / ossz) : 0, pb = ossz ? 100 - pa : 0;
+    e.classList.add('pb-er-kesz');
+    e.querySelector('.pb-er-db').textContent = ft.format(ossz);
+    e.querySelector('.pb-er-a').textContent = pa + '%';
+    e.querySelector('.pb-er-b').textContent = pb + '%';
+    var ia = e.querySelector('.pb-er-sav .a'), ib = e.querySelector('.pb-er-sav .b');
+    ia.classList.toggle('vezet', allas.a >= allas.b); ib.classList.toggle('vezet', allas.b > allas.a);
+    var jegy = e.querySelector('.pb-er-jegy'); if (jegy) jegy.textContent = '';
+    var fel = function(){ ia.style.width = 'calc(' + pa + '% - 2px)'; ib.style.width = 'calc(' + pb + '% - 1px)'; };
+    if (window.IntersectionObserver && !nyugodt) {
+      var io = new IntersectionObserver(function(x){ if (x[0].isIntersecting) { fel(); io.disconnect(); } }, { threshold: .3 });
+      io.observe(e); setTimeout(fel, 2500);
+    } else fel();
+  };
+  var allapotok = {};
+  var mindent = function(id, animal){
+    var a = allapotok[id] || {};
+    dobozok.forEach(function(d){ if (d.getAttribute('data-parbaj') === id) rajzol(d, a.allas, a.sajat, animal); });
+    eredmenyek.forEach(function(e){ if (e.getAttribute('data-parbaj-eredm') === id) eredmRajz(e, a.allas); });
+  };
+
+  var mobil = window.matchMedia && matchMedia('(max-width: 640px)');
+  var szavaz = function(d, o, gomb){
+    var id = d.getAttribute('data-parbaj'), l = lat();
+    if (!l) return Promise.resolve(false);
+    if (gomb) szikrak(gomb);
+    return fetch('/api/parbaj', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: id, l: l, valasztas: o }) })
+      .then(function(r){ return r.json(); }).then(function(j){
+        if (j.hiba) {
+          var al = d.querySelector('.pb-allas'); if (al) al.textContent = j.hiba;
+          // mobilon nagy, piros jelzés, ha már szavazott (Heni 2026-10-14)
+          if (j.mar && mobil && mobil.matches) {
+            var regiJel = d.querySelector('.pb-mar'); if (regiJel) regiJel.remove();
+            var jel = document.createElement('div'); jel.className = 'pb-mar'; jel.setAttribute('role', 'alert'); jel.textContent = 'Már szavaztál ebben a párbajban!';
+            d.appendChild(jel); setTimeout(function(){ jel.remove(); }, 2600);
+          }
+          return j.mar ? 'mar' : false;
+        }
+        allapotok[id] = { allas: j.allas, sajat: j.sajat }; mindent(id, true);
+        try { if (window.gtag) gtag('event', 'parbaj_szavazat', { parbaj: id, valasztas: d.getAttribute('data-' + o) }); } catch(e) {}
+        return true;
+      }).catch(function(){ var al = d.querySelector('.pb-allas'); if (al) al.textContent = 'Most nem sikerült, próbáld újra.'; return false; });
+  };
+  dobozok.forEach(function(d){
+    d.addEventListener('click', function(ev){
+      var g = ev.target.closest('[data-valaszt]'); if (g) { ev.preventDefault(); szavaz(d, g.getAttribute('data-valaszt'), g); return; }
+      var m = ev.target.closest('.pb-masik'); if (m) { ev.preventDefault(); szavaz(d, m.getAttribute('data-masik'), null); }
+    });
+  });
+
+  // beúszás: a két jelölt oldalról, középen a VAGY, amikor a párbaj láthatóvá válik
+  if (!nyugodt && window.IntersectionObserver) {
+    var bio = new IntersectionObserver(function(x){ x.forEach(function(b){ if (b.isIntersecting) { b.target.classList.add('pb-be'); bio.unobserve(b.target); } }); }, { threshold: .2 });
+    dobozok.forEach(function(d){ bio.observe(d); });
+  }
+
+  // ---------- mobil pakli a Szavazás oldalon
+  var pakli = document.querySelector('[data-pb-pakli]');
+  // az eredménylista „Szavazok ebben” gombja: mobilon a pakli tetejére hozza a párbajt, máshol odagörget
+  var pakliElore = null;
+  document.addEventListener('click', function(ev){
+    var g = ev.target.closest && ev.target.closest('[data-ugras]'); if (!g) return;
+    var id = g.getAttribute('data-ugras');
+    if (pakliElore && pakliElore(id)) return;
+    var cel = null; dobozok.forEach(function(d){ if (!cel && d.getAttribute('data-parbaj') === id) cel = d; });
+    if (cel) cel.scrollIntoView({behavior: 'auto', block: 'start'});
+  });
+  var pakliIndit = function(){
+    if (!pakli || !mobil || !mobil.matches || pakli.classList.contains('pb-pakli-be')) return;
+    var lapok = [].slice.call(pakli.querySelectorAll('.pb[data-allapot="fut"]'));
+    if (lapok.length < 1) return;
+    // először azok, amelyekre még nem szavazott
+    lapok.sort(function(x, y){ return (allapotok[x.getAttribute('data-parbaj')] || {}).sajat ? 1 : ((allapotok[y.getAttribute('data-parbaj')] || {}).sajat ? -1 : 0); });
+    lapok.forEach(function(l){ pakli.appendChild(l); });
+    pakli.classList.add('pb-pakli-be');
+    // nagy, sárga útmutató (Heni 2026-10-14): mit kell csinálni, és melyik irány melyik eszköz
+    var tipp = document.createElement('div'); tipp.className = 'pb-pakli-tipp';
+    var tippFo = document.createElement('b'); tippFo.textContent = 'Húzd a kártyát balra vagy jobbra: amerre húzod, arra szavazol!';
+    var tippIrany = document.createElement('span'); tippIrany.className = 'pb-pakli-irany';
+    var tippBal = document.createElement('span'), tippJobb = document.createElement('span');
+    tippIrany.append(tippBal, tippJobb); tipp.append(tippFo, tippIrany);
+    var gombok = document.createElement('div'); gombok.className = 'pb-pakli-gombok';
+    gombok.innerHTML = '<button type="button" data-irany="a" aria-label="A bal oldali eszközt választom">←</button><button type="button" data-irany="b" aria-label="A jobb oldali eszközt választom">→</button>';
+    pakli.parentNode.insertBefore(tipp, pakli); pakli.parentNode.insertBefore(gombok, pakli.nextSibling);
+    var sor = [].slice.call(lapok).reverse(); // a tömb vége a legfelső kártya
+    var felso = function(){ return sor.length ? sor[sor.length - 1] : null; };
+    var rendez = function(){
+      lapok.forEach(function(l){ l.classList.remove('pb-lap-0', 'pb-lap-1', 'pb-lap-2', 'pb-lap-el'); l.style.transform = ''; l.style.opacity = ''; });
+      for (var i = 0; i < sor.length; i++) { var mely = sor.length - 1 - i; sor[i].classList.add(mely < 3 ? 'pb-lap-' + mely : 'pb-lap-el'); }
+      var f = felso(); if (f) { tippBal.textContent = '← ' + f.getAttribute('data-a'); tippJobb.textContent = f.getAttribute('data-b') + ' →'; }
+      if (!sor.length) {
+        var v = document.createElement('div'); v.className = 'pb-pakli-vege';
+        v.innerHTML = '<b>Ennyi volt mára</b><span>Minden futó párbajban szavaztál. Lent látod az állást, és jövő héten új párbajok jönnek.</span>';
+        pakli.appendChild(v); gombok.hidden = true; tipp.hidden = true;
+      }
+    };
+    // szavazás után az eredményekhez ugrik, kiemeli a párbaj sorát; ha van még párbaj, egy gombbal vissza lehet menni (Heni 2026-10-14)
+    var vissza = document.createElement('button'); vissza.type = 'button'; vissza.className = 'pb-er-tovabb'; vissza.hidden = true;
+    vissza.textContent = 'Jöhet a következő párbaj ↑';
+    vissza.addEventListener('click', function(){ tipp.scrollIntoView({behavior: 'auto', block: 'start'}); });
+    pakliElore = function(id){
+      var i = -1; sor.forEach(function(l, k){ if (l.getAttribute('data-parbaj') === id) i = k; });
+      if (i < 0) return false;
+      var l = sor.splice(i, 1)[0]; sor.push(l); rendez(); fog();
+      tipp.scrollIntoView({behavior: 'auto', block: 'start'});
+      return true;
+    };
+    var ugrik = function(id){
+      var sorEr = null;
+      eredmenyek.forEach(function(e){ if (e.getAttribute('data-parbaj-eredm') === id) sorEr = e; });
+      var cel = sorEr || document.getElementById('eredmenyek'); if (!cel) return;
+      if (sorEr) {
+        eredmenyek.forEach(function(e){ e.classList.remove('pb-er-friss'); });
+        sorEr.classList.add('pb-er-friss');
+        vissza.hidden = !sor.length; sorEr.parentNode.insertBefore(vissza, sorEr.nextSibling);
+      }
+      cel.scrollIntoView({behavior: 'auto', block: 'center'});
+    };
+    // húzáskor csak az a jelölt mozdul, amelyik felé húzzák: balra a felső (a), jobbra az alsó (b) (Heni 2026-10-14)
+    var jeloltMozgat = function(l, v){
+      var ja = l.querySelector('.pb-jelolt[data-oldal="a"]'), jb = l.querySelector('.pb-jelolt[data-oldal="b"]');
+      var cel = v < 0 ? ja : v > 0 ? jb : null;
+      [ja, jb].forEach(function(j){ if (j && j !== cel) j.style.transform = ''; });
+      if (cel) cel.style.transform = 'translateX(' + v + 'px) rotate(' + (v / 30) + 'deg)';
+    };
+    var pecset0 = function(l){ [].forEach.call(l.querySelectorAll('.pb-jelolt'), function(j){ j.style.setProperty('--pb-pecset', 0); }); };
+    var kidob = function(l, o){
+      var irany = o === 'a' ? -1 : 1; jeloltMozgat(l, 0);
+      szavaz(l, o, null).then(function(ok){
+        if (ok === 'mar') {
+          l.style.transform = ''; pecset0(l);
+          setTimeout(function(){
+            l.style.transform = 'translateX(' + (irany * 120) + '%) rotate(' + (irany * 22) + 'deg)'; l.style.opacity = '0';
+            setTimeout(function(){ var i = sor.indexOf(l); if (i >= 0) sor.splice(i, 1); l.classList.add('pb-lap-kesz'); rendez(); fog(); }, nyugodt ? 50 : 380);
+          }, 2200);
+          return;
+        }
+        if (!ok) { l.style.transform = ''; pecset0(l); return; }
+        l.classList.add('pb-lap-eredm');
+        setTimeout(function(){
+          l.style.transform = 'translateX(' + (irany * 120) + '%) rotate(' + (irany * 22) + 'deg)'; l.style.opacity = '0';
+          setTimeout(function(){ sor.pop(); l.classList.remove('pb-lap-eredm'); l.classList.add('pb-lap-kesz'); rendez(); fog(); ugrik(l.getAttribute('data-parbaj')); }, nyugodt ? 50 : 380);
+        }, nyugodt ? 500 : 1500);
+      });
+    };
+    var fog = function(){
+      var l = felso(); if (!l || l._fog) return; l._fog = 1;
+      var x0 = null, y0 = null, dx = 0, dy = 0, iranyok = null;
+      var pecset = function(v){ ['a', 'b'].forEach(function(o){ var j = l.querySelector('.pb-jelolt[data-oldal="' + o + '"]'); if (j) j.style.setProperty('--pb-pecset', o === 'a' ? Math.max(0, Math.min(1, -v / 80)) : Math.max(0, Math.min(1, v / 80))); }); };
+      l.addEventListener('pointerdown', function(e){ if (felso() !== l || l.classList.contains('pb-lap-eredm') || e.target.closest('a,button')) return; x0 = e.clientX; y0 = e.clientY; dx = dy = 0; iranyok = null; });
+      l.addEventListener('pointermove', function(e){
+        if (x0 === null) return; dx = e.clientX - x0; dy = e.clientY - y0;
+        if (iranyok === null && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) { iranyok = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y'; if (iranyok === 'x') { l.setPointerCapture(e.pointerId); l.classList.add('pb-huzott'); } }
+        if (iranyok !== 'x') return;
+        e.preventDefault(); jeloltMozgat(l, dx); pecset(dx);
+      });
+      var vege = function(){ if (x0 === null) return; x0 = null; l.classList.remove('pb-huzott'); if (iranyok === 'x' && Math.abs(dx) > 80) kidob(l, dx < 0 ? 'a' : 'b'); else { jeloltMozgat(l, 0); pecset(0); } };
+      l.addEventListener('pointerup', vege); l.addEventListener('pointercancel', vege);
+    };
+    gombok.addEventListener('click', function(e){ var b = e.target.closest('[data-irany]'); var l = felso(); if (!b || !l || l.classList.contains('pb-lap-eredm')) return; var o = b.getAttribute('data-irany'); var j = l.querySelector('.pb-jelolt[data-oldal="' + o + '"]'); if (j) j.style.setProperty('--pb-pecset', 1); kidob(l, o); });
+    // akikre már szavazott, azok nem kerülnek a pakliba, hanem lent maradnak
+    sor = sor.filter(function(l){ var s = (allapotok[l.getAttribute('data-parbaj')] || {}).sajat; if (s) { l.classList.add('pb-lap-kesz'); return false; } return true; });
+    rendez(); fog();
+  };
+
+  var l = latOlvas();
+  fetch('/api/parbaj?ids=' + encodeURIComponent(ids.join(',')) + (l ? '&l=' + l : ''), { cache: 'no-store' })
+    .then(function(r){ return r.json(); }).then(function(j){
+      ids.forEach(function(id){ allapotok[id] = { allas: (j.allas || {})[id], sajat: (j.sajat || {})[id] }; mindent(id, false); });
+    }).catch(function(){}).then(pakliIndit);
+})();

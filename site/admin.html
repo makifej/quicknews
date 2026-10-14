@@ -201,6 +201,29 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 .nap-gomb{cursor:pointer}.nap-gomb:hover .nev{color:var(--amber)}
 .ketto{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px;align-items:start}
 .panel{background:var(--lap);border-radius:12px;padding:20px;margin-bottom:24px}
+.alful{margin-bottom:24px}
+/* Statisztika fül (2026-10-14) */
+.st-datum{display:inline-flex;align-items:center;gap:8px;color:var(--halk);font-size:16px;font-weight:600}
+.st-datum input{font:500 16px/22px Manrope,sans-serif;color:var(--szoveg);background:var(--lap);border:1px solid var(--vonal);border-radius:8px;padding:7px 10px;color-scheme:dark}
+.st-jegy{color:var(--halk);font-size:16px}
+.st-racs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.st-racs .panel{margin:0;min-width:0}
+.st-racs .szeles{grid-column:1/-1}
+.st-racs h3{font-size:18px;font-weight:700;margin:0 0 4px}
+.st-racs .jegy{color:var(--halk);font-size:15px;margin:0 0 12px}
+.st-abra svg{display:block;width:100%;height:auto}
+.st-abra text{fill:var(--halk);font:500 11px Manrope,sans-serif}
+.st-jel{display:flex;gap:16px;flex-wrap:wrap;color:var(--halk);font-size:14px;margin-bottom:8px}
+.st-jel i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
+.st-tabla{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums}
+.st-tabla th{text-align:left;color:var(--halk);font-weight:600;border-bottom:1px solid var(--vonal);padding:8px;cursor:pointer;white-space:nowrap;position:sticky;top:0;background:var(--lap)}
+.st-tabla td{border-bottom:1px solid var(--vonal);padding:8px;vertical-align:top}
+.st-tabla .sz{text-align:right}
+.st-tabla .cs{color:var(--halk);font-size:14px}
+.st-dobozk{max-height:520px;overflow:auto}
+.st-pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:13px;font-weight:700;white-space:nowrap;background:var(--lap2);color:var(--halk)}
+.st-pill.fut{background:#7dd3a0;color:#131313}.st-pill.biral{background:#9ec5ff;color:#131313}
+@media (max-width:900px){.st-racs{grid-template-columns:1fr}}
 .panel h2{font-size:16px;font-weight:600;color:var(--halk);margin-bottom:16px}
 .osszeg{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
 .osszeg b{font-size:52px;font-weight:700;letter-spacing:-.03em;line-height:1}
@@ -233,7 +256,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <button role="tab" aria-selected="false" data-ful="hirdetok">Hirdetők</button>
 <button role="tab" aria-selected="false" data-ful="cikkbehuzas">Cikkbehúzás</button>
 <button role="tab" aria-selected="false" data-ful="hirlevel">Emlékeztető</button>
-<button role="tab" aria-selected="false" data-ful="koltseg">Költség</button></nav>
+<button role="tab" aria-selected="false" data-ful="statisztika">Statisztika</button></nav>
 <div class="frissult num" id="frissult"></div></div></div>
 
 <main>
@@ -278,7 +301,21 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <div id="a-lista"></div>
 </section>
 
+<section id="p-statisztika" hidden>
+<div class="szeg alful" role="group" aria-label="Statisztika nézet"><button type="button" data-alful="statisztika">Áttekintés</button><button type="button" data-alful="koltseg">Gemini-költség</button></div>
+<div class="idoszak st-szuro">
+<label class="st-datum">Ettől <input type="date" id="st-tol" aria-label="Ettől"></label>
+<label class="st-datum">Eddig <input type="date" id="st-ig" aria-label="Eddig"></label>
+<div class="szeg" role="group" aria-label="Gyors időszak"><button data-stn="1" aria-pressed="false">Ma</button><button data-stn="7" aria-pressed="false">7 nap</button><button data-stn="14" aria-pressed="true">14 nap</button><button data-stn="30" aria-pressed="false">30 nap</button></div>
+<span class="st-jegy" id="st-jegy"></span>
+</div>
+<div class="mutatok" id="st-mutatok"></div>
+<div class="st-racs" id="st-racs"></div>
+<p class="lab" id="st-lab"></p>
+</section>
+
 <section id="p-koltseg" hidden>
+<div class="szeg alful" role="group" aria-label="Statisztika nézet"><button type="button" data-alful="statisztika">Áttekintés</button><button type="button" data-alful="koltseg">Gemini-költség</button></div>
 <div class="mutatok" id="k-mutatok"></div>
 <div class="idoszak">
 <div class="szeg" role="group" aria-label="Bontás"><button data-m="nap" aria-pressed="true">Nap</button><button data-m="het" aria-pressed="false">Hét</button><button data-m="honap" aria-pressed="false">Hónap</button></div>
@@ -290,7 +327,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 
 <script>
 const ADMIN=!/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-const U={posztok:ADMIN?"/api/admin?mi=posztok":"/adat.json",koltseg:ADMIN?"/api/admin?mi=koltseg":"/koltseg.json",
+const U={statisztika:ADMIN?"/api/admin?mi=statisztika":"/statisztika.json",posztok:ADMIN?"/api/admin?mi=posztok":"/adat.json",koltseg:ADMIN?"/api/admin?mi=koltseg":"/koltseg.json",
  ajanlott:ADMIN?"/api/admin?mi=ajanlott":"/ajanlott.json",kijeloles:ADMIN?"/api/admin?mi=kijeloles":"/kijeloles",
  kartya:f=>ADMIN?"/api/admin?mi=kartya&f="+encodeURIComponent(f):"/kartya/"+encodeURIComponent(f),
  kep:id=>ADMIN?"/api/admin?mi=kep&id="+id:"/kep?id="+id, kepFel:ADMIN?"/api/admin?mi=kep_feltolt":"/kep_feltolt",
@@ -643,12 +680,75 @@ function ugrik(sel){const el=document.querySelector(sel);if(!el)return;
 document.addEventListener("click",e=>{const m=e.target.closest("[data-ugras]");if(m)ugrik(m.dataset.ugras)});
 document.addEventListener("keydown",e=>{const m=e.target.closest&&e.target.closest("[data-ugras]");if(m&&(e.key==="Enter"||e.key===" ")){e.preventDefault();ugrik(m.dataset.ugras)}});
 
+/* ---------- Statisztika (2026-10-14): a „Quicknews pult” dashboard adatai, dátumszűrővel ---------- */
+let ST=null,STREND={k:"koltes",i:-1};
+const stFt=n=>new Intl.NumberFormat("hu-HU").format(Math.round(n||0));
+const stUsd=n=>new Intl.NumberFormat("hu-HU",{style:"currency",currency:"USD",maximumFractionDigits:2}).format(n||0);
+const stNap=s=>new Date(s+"T00:00:00Z").toLocaleDateString("hu-HU",{month:"short",day:"numeric",timeZone:"UTC"});
+const stSZIN=["#ffb224","#9ec5ff","#7dd3a0"];
+async function stolt(){try{ST=await lekér(U.statisztika)}catch(e){ST={hiba:"Nem sikerült betölteni a statisztikát."}}srajz()}
+function stIdo(){const napok=(ST.hirek_napi||[]).map(r=>r.nap);if(!napok.length)return null;
+ const elso=napok[0],utolso=napok[napok.length-1];const v=TAR("stat")||{n:14};let tol,ig;
+ if(v.tol){tol=v.tol;ig=v.ig}else{ig=utolso;tol=napok[Math.max(0,napok.length-v.n)]}
+ if(tol<elso)tol=elso;if(ig>utolso)ig=utolso;if(tol>ig)tol=ig;return{tol,ig,elso,utolso,n:v.tol?null:v.n}}
+const stBenne=(sorok,ip)=>(sorok||[]).filter(r=>r.nap>=ip.tol&&r.nap<=ip.ig);
+const stOssz=(sorok,k)=>sorok.reduce((a,r)=>a+(+r[k]||0),0);
+function stOszlop(sorok,kulcsok,fmt,W=640,H=220){const a=24,f=8;const max=Math.max(1,...sorok.flatMap(r=>kulcsok.map(k=>+r[k]||0)));
+ const lep=Math.pow(10,Math.floor(Math.log10(max)));const fel=Math.ceil(max/lep)*lep;const ticks=[0,fel/2,fel];
+ const b=Math.max(...ticks.map(t=>fmt(t).length))*7+10;const bw=(W-b-4)/Math.max(1,sorok.length);const y=v=>H-a-(H-a-f)*v/fel;
+ let o=`<svg viewBox="0 0 ${W} ${H}" role="img">`;
+ ticks.forEach(t=>{o+=`<line x1="${b}" x2="${W-4}" y1="${y(t)}" y2="${y(t)}" stroke="#272727"/><text x="${b-6}" y="${y(t)+4}" text-anchor="end">${esc(fmt(t))}</text>`});
+ const cimke=Math.max(1,Math.ceil(sorok.length/10));
+ sorok.forEach((r,i)=>{const x0=b+i*bw,iw=bw*.78/kulcsok.length;
+  kulcsok.forEach((k,j)=>{const v=+r[k]||0;o+=`<rect x="${x0+bw*.11+j*iw}" y="${y(v)}" width="${Math.max(1,iw-1)}" height="${Math.max(0,y(0)-y(v))}" rx="3" fill="${stSZIN[j]}"><title>${esc(stNap(r.nap))}: ${esc(fmt(v))}</title></rect>`});
+  if((sorok.length-1-i)%cimke===0)o+=`<text x="${x0+bw/2}" y="${H-6}" text-anchor="middle">${esc(stNap(r.nap))}</text>`});
+ return o+"</svg>"}
+function stSav(sorok,kat){if(!sorok.length)return `<p class="jegy">Nincs adat az időszakban.</p>`;const max=Math.max(...sorok.map(r=>r.db));
+ return sorok.map(r=>`<div style="display:grid;grid-template-columns:minmax(0,11rem) 1fr 3rem;gap:10px;align-items:center;margin:4px 0;font-size:15px"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(r[kat])}">${esc(r[kat])}</span><span style="height:14px;border-radius:4px;background:var(--amber);width:${Math.max(2,100*r.db/max)}%"></span><span style="text-align:right;font-variant-numeric:tabular-nums">${stFt(r.db)}</span></div>`).join("")}
+function stCsop(sorok,ip,kat){const db={};stBenne(sorok,ip).forEach(r=>db[r[kat]]=(db[r[kat]]||0)+(+r.hirek||0));return Object.entries(db).map(([k,v])=>({[kat]:k,db:v})).sort((a,b)=>b.db-a.db)}
+function srajz(){const M=document.getElementById("st-mutatok"),R=document.getElementById("st-racs");
+ if(!ST||ST.hiba){M.innerHTML="";R.innerHTML=`<p class="ures">${esc((ST&&ST.hiba)||"Betöltés…")}</p>`;return}
+ const ip=stIdo();if(!ip){R.innerHTML=`<p class="ures">Még nincs statisztika.</p>`;return}
+ const tolE=document.getElementById("st-tol"),igE=document.getElementById("st-ig");
+ [tolE,igE].forEach(e=>{e.min=ip.elso;e.max=ip.utolso});if(document.activeElement!==tolE)tolE.value=ip.tol;if(document.activeElement!==igE)igE.value=ip.ig;
+ document.querySelectorAll("[data-stn]").forEach(b=>b.setAttribute("aria-pressed",String(ip.n===+b.dataset.stn)));
+ document.getElementById("st-jegy").textContent=`${stNap(ip.tol)} – ${stNap(ip.ig)}`;
+ const hn=stBenne(ST.hirek_napi,ip),hd=stBenne(ST.hirdetes_napi,ip);
+ const koltes=stOssz(hd,"koltes"),katt=stOssz(hd,"kattintas");const eml=(ST.emlekezteto||[])[0]||{},gh=(ST.gemini_havi||[])[0]||{};
+ const t=[["Megjelent hír",stFt(stOssz(hn,"hirek")),"a kiválasztott időszakban"],["Facebook-poszt",stFt(stOssz(hn,"facebook")),"kiment vagy időzítve"],["LinkedIn-poszt",stFt(stOssz(hn,"linkedin")),"kiment vagy időzítve"],["Új hirdetés",stFt(stOssz(hn,"hirdetes")),"hírenként, követő nélkül"],
+  ["Hirdetési költés",stFt(koltes)+" Ft","két Meta-hirdetéssorozat"],["Link-kattintás",stFt(katt),"a cikkre vezető kattintás"],["Kattintási ár",katt?stFt(koltes/katt)+" Ft":"–","költés / kattintás"],["Oldalkövetés",stFt(stOssz(hd,"kovetes")),"a hirdetésekből"],
+  ["Emlékeztető-feliratkozó",stFt(eml.feliratkozok),"küldés: "+(eml.kuldes||"–")],["Gemini, e havi költés",stUsd(gh.elkoltve),`a ${stFt(gh.plafon)} dolláros keretből`]];
+ M.innerHTML=t.map(([c,e,j],i)=>`<div class="mutato ${i===0?"kiemelt":""}"><small>${esc(c)}</small><b class="num">${esc(e)}</b><em>${esc(j)}</em></div>`).join("");
+ const jel=(nevek)=>`<div class="st-jel">${nevek.map((n,i)=>`<span><i style="background:${stSZIN[i]}"></i>${esc(n)}</span>`).join("")}</div>`;
+ const hirdNapi={};stBenne(ST.hirdetesek_napi,ip).forEach(r=>{const o=hirdNapi[r.hirdetes]||(hirdNapi[r.hirdetes]={megjelenes:0,kattintas:0,kovetes:0,koltes:0});["megjelenes","kattintas","kovetes","koltes"].forEach(k=>o[k]+=+r[k]||0)});
+ const info=Object.fromEntries((ST.hirdetesek||[]).map(h=>[h.hirdetes,h]));
+ const sorok=Object.entries(hirdNapi).filter(([,o])=>o.megjelenes||o.koltes).map(([h,o])=>({...(info[h]||{hir:h}),...o,cpc:o.kattintas?o.koltes/o.kattintas:null}))
+  .sort((a,b)=>{const x=a[STREND.k],y=b[STREND.k];return(typeof x==="string"?String(x).localeCompare(String(y),"hu"):((x??-1)-(y??-1)))*STREND.i});
+ const ALL={ACTIVE:["Fut","fut"],PAUSED:["Szüneteltetve",""],PENDING_REVIEW:["Bírálat alatt","biral"],IN_PROCESS:["Feldolgozás","biral"],DISAPPROVED:["Elutasítva",""],CAMPAIGN_PAUSED:["Kampány áll",""],ADSET_PAUSED:["Sorozat áll",""]};
+ const th=(k,c,sz)=>`<th data-stk="${k}" class="${sz?"sz":""}" aria-sort="${STREND.k===k?(STREND.i>0?"ascending":"descending"):"none"}">${c}${STREND.k===k?(STREND.i>0?" ↑":" ↓"):""}</th>`;
+ R.innerHTML=`<div class="panel"><h3>Megjelent hírek naponta</h3><p class="jegy">Budapesti nap szerint. A mai oszlop még nőhet.</p><div class="st-abra">${stOszlop(hn,["hirek"],stFt)}</div></div>
+ <div class="panel"><h3>Kitétel naponta</h3><p class="jegy">A poszt időzített napja, a hirdetés létrehozása szerint.</p>${jel(["Facebook","LinkedIn","Hirdetés"])}<div class="st-abra">${stOszlop(hn,["facebook","linkedin","hirdetes"],stFt)}</div></div>
+ <div class="panel"><h3>Hirdetési költés naponta</h3><p class="jegy">Forintban.</p><div class="st-abra">${stOszlop(hd,["koltes"],stFt)}</div></div>
+ <div class="panel"><h3>Link-kattintás naponta</h3><p class="jegy">A cikkre vezető kattintás.</p><div class="st-abra">${stOszlop(hd.map(r=>({nap:r.nap,k:r.kattintas})),["k"],stFt)}</div></div>
+ <div class="panel"><h3>Legtöbb hírt adó források</h3><p class="jegy">Az időszak első 12 forrása.</p>${stSav(stCsop(ST.forrasok_napi,ip,"forras").slice(0,12),"forras")}</div>
+ <div class="panel"><h3>Hírek rovatonként</h3><p class="jegy">Az időszakban.</p>${stSav(stCsop(ST.rovatok_napi,ip,"rovat"),"rovat")}</div>
+ <div class="panel szeles"><h3>Gemini-költség naponta</h3><p class="jegy">A Google AI Studio szerint, a teljes Gemini API projektre, dollárban. Az utolsó 1-2 nap még nem végleges. Lekérve: ${esc(gh.lekerve||"–")}.</p><div class="st-abra">${stOszlop(stBenne(ST.gemini_napi,ip),["usd"],v=>"$"+(Math.round(v*100)/100),1320,200)}</div></div>
+ <div class="panel szeles"><h3>Hirdetések egyenként</h3><p class="jegy">Az időszakban futott hirdetések. A fejlécre kattintva rendezhető.</p><div class="st-dobozk"><table class="st-tabla"><thead><tr>${th("hir","Hír")}${th("allapot","Állapot")}${th("megjelenes","Megjelenés",1)}${th("kattintas","Kattintás",1)}${th("kovetes","Követés",1)}${th("koltes","Költés, Ft",1)}${th("cpc","Kattintási ár, Ft",1)}</tr></thead><tbody>${
+  sorok.map(r=>{const a=ALL[r.allapot]||[r.allapot||"?",""];return `<tr><td>${esc(r.hir)}${r.cimsor?`<div class="cs">${esc(r.cimsor)}${r.tipus==="követő"?" · követő":""}</div>`:""}</td><td><span class="st-pill ${a[1]}">${esc(a[0])}</span></td><td class="sz">${stFt(r.megjelenes)}</td><td class="sz">${stFt(r.kattintas)}</td><td class="sz">${stFt(r.kovetes)}</td><td class="sz">${stFt(r.koltes)}</td><td class="sz">${r.cpc==null?"–":stFt(r.cpc)}</td></tr>`}).join("")||`<tr><td colspan="7" class="cs">Nem futott hirdetés az időszakban.</td></tr>`}</tbody></table></div></div>`;
+ R.querySelectorAll("[data-stk]").forEach(h=>h.onclick=()=>{const k=h.dataset.stk;STREND={k,i:STREND.k===k?-STREND.i:(k==="hir"||k==="allapot"?1:-1)};srajz()});
+ document.getElementById("st-lab").textContent=`Az adatok frissítve: ${(ST.frissitve||"").replace("T"," ")}. Naponta reggel frissül, a quicknews nyilvántartásaiból és a Meta-fiókból.`}
+document.getElementById("st-tol").addEventListener("change",e=>{if(!e.target.value||!e.target.validity.valid)return;const ip=stIdo();let tol=e.target.value,ig=ip.ig;if(tol>ig)ig=tol;TAR("stat",{tol,ig});srajz()});
+document.getElementById("st-ig").addEventListener("change",e=>{if(!e.target.value||!e.target.validity.valid)return;const ip=stIdo();let ig=e.target.value,tol=ip.tol;if(tol>ig)tol=ig;TAR("stat",{tol,ig});srajz()});
+document.querySelectorAll("[data-stn]").forEach(b=>b.onclick=()=>{TAR("stat",{n:+b.dataset.stn});srajz()});
+
 /* ---------- fülek ---------- */
-function ful(f){document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===f));try{document.querySelector(`.fulek [data-ful="${f}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
- ["posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas","hirlevel"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
+function ful(f){const fo=f==="koltseg"?"statisztika":f;document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===fo));document.querySelectorAll("[data-alful]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.alful===f)));try{document.querySelector(`.fulek [data-ful="${fo}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
+ ["posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas","hirlevel","statisztika"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
+ if(f==="statisztika")stolt();
  if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok")htolt();if(f==="cikkbehuzas")htolt(true);if(f==="hirlevel")hltolt();try{localStorage.setItem("ful",f)}catch(e){}latta(f);jelvenyek()}
 document.querySelectorAll(".fulek button").forEach(b=>b.onclick=()=>ful(b.dataset.ful));
-try{const f=localStorage.getItem("ful");if(f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok"||f==="cikkbehuzas"||f==="hirlevel")ful(f)}catch(e){}
+document.querySelectorAll("[data-alful]").forEach(b=>b.onclick=()=>ful(b.dataset.alful));
+try{const f=localStorage.getItem("ful");if(f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok"||f==="cikkbehuzas"||f==="hirlevel"||f==="statisztika")ful(f)}catch(e){}
 document.getElementById("k-valaszt");
 /* ---------- piros számok a fülek mellett (2026-10-13): hány új esemény történt az adott fülön ---------- */
 const LATOTT="qn-latott-";
