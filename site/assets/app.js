@@ -801,12 +801,40 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
 
   // ---------- mobil pakli a Szavazás oldalon
   var pakli = document.querySelector('[data-pb-pakli]');
+  // asztali lapozó (Heni 2026-10-14): egyszerre egy teljes kártya, nyilakkal és pontokkal; mobilon a pakli dolgozik
+  var lapozoElore = null;
+  var lapozo = document.querySelector('[data-pb-lapozo]');
+  if (lapozo && pakli && !(mobil && mobil.matches)) {
+    var lapokL = [].slice.call(pakli.children).filter(function(x){ return x.classList.contains('pb'); });
+    if (lapokL.length > 1) {
+      lapozo.classList.add('pb-lapozo-be');
+      var aktL = 0, pontok = lapozo.querySelector('.pb-lapozo-pontok');
+      var mutatL = function(i){
+        aktL = (i + lapokL.length) % lapokL.length;
+        lapokL.forEach(function(l, k){ l.classList.toggle('pb-lap-aktiv', k === aktL); });
+        if (pontok) [].forEach.call(pontok.children, function(b, k){ b.classList.toggle('aktiv', k === aktL); b.setAttribute('aria-selected', k === aktL ? 'true' : 'false'); });
+      };
+      if (pontok) lapokL.forEach(function(l, i){
+        var b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'tab');
+        b.setAttribute('aria-label', (i + 1) + '. párbaj: ' + (l.getAttribute('data-a') || '') + ' vagy ' + (l.getAttribute('data-b') || ''));
+        b.addEventListener('click', function(){ mutatL(i); }); pontok.appendChild(b);
+      });
+      [].forEach.call(lapozo.querySelectorAll('[data-lap]'), function(b){ b.addEventListener('click', function(){ mutatL(aktL + Number(b.getAttribute('data-lap'))); }); });
+      lapozoElore = function(id){
+        var i = -1; lapokL.forEach(function(l, k){ if (l.getAttribute('data-parbaj') === id) i = k; });
+        if (i < 0) return false;
+        mutatL(i); lapozo.scrollIntoView({behavior: 'auto', block: 'start'}); return true;
+      };
+      mutatL(0);
+    }
+  }
   // az eredménylista „Szavazok ebben” gombja: mobilon a pakli tetejére hozza a párbajt, máshol odagörget
   var pakliElore = null;
   document.addEventListener('click', function(ev){
     var g = ev.target.closest && ev.target.closest('[data-ugras]'); if (!g) return;
     var id = g.getAttribute('data-ugras');
     if (pakliElore && pakliElore(id)) return;
+    if (lapozoElore && lapozoElore(id)) return;
     var cel = null; dobozok.forEach(function(d){ if (!cel && d.getAttribute('data-parbaj') === id) cel = d; });
     if (cel) cel.scrollIntoView({behavior: 'auto', block: 'start'});
   });
