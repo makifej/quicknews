@@ -540,7 +540,7 @@ module.exports = async (req, res) => {
 };
 
 // SEC-018: a kitételi bejegyzésből csak a várt mezők tárolódnak
-const KITENNI_MEZOK = ["facebook", "linkedin", "hirdetes", "kartya", "sajat_kep", "jovahagyas", "hirlevel", "kartya_hiba", "kiteteli_hiba", "lead", "cimsor", "megj"];
+const KITENNI_MEZOK = ["facebook", "linkedin", "hirdetes", "kartya", "sajat_kep", "jovahagyas", "hirlevel", "kartya_hiba", "kiteteli_hiba", "volt_elutasitva"];
 function kitenniTiszta(e) {
   return Object.fromEntries(KITENNI_MEZOK.filter((k) => k in e).map((k) => [k, e[k]]));
 }
