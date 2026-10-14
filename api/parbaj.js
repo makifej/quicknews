@@ -84,7 +84,7 @@ module.exports = async (req, res) => {
     if ((await kv("SET", zar, "1", "NX", "EX", 5)) !== "OK") return json(res, 429, { hiba: "Egy pillanat, a szavazatod még mentés alatt van." });
     try {
       const gazda = await kv("HGET", ipk, ipl);
-      if (gazda && gazda !== l) return json(res, 409, { hiba: "Erről a hálózatról már szavaztak ebben a párbajban." });
+      if (gazda && gazda !== l) return json(res, 409, { hiba: "Már szavaztál ebben a párbajban!", mar: true });
       const regi = await kv("HGET", P + "l:" + l, id);
       if (regi !== valasztas) {
         await kv("HSET", P + "l:" + l, id, valasztas);

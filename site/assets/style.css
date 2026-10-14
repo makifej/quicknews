@@ -1269,6 +1269,8 @@ html.hl-nyitva { overflow: hidden; }
   .pb-pakli-tipp b { font-size: 19px; line-height: 25px; font-weight: 800; }
   .pb-pakli-irany { display: flex; justify-content: space-between; gap: 12px; font-size: 16px; line-height: 22px; font-weight: 800; }
   .pb-pakli-tipp[hidden], .pb-pakli-gombok[hidden] { display: none; }
+  .pb-mar { position: absolute; z-index: 6; left: 16px; right: 16px; top: 38%; padding: 18px 16px; border-radius: 14px; background: var(--piros); color: #fff; text-align: center; font-size: 21px; line-height: 27px; font-weight: 800; box-shadow: 0 12px 32px rgba(0, 0, 0, .45); animation: pb-mar-be .3s ease; }
+  @keyframes pb-mar-be { from { opacity: 0; transform: scale(.9); } }
   .pb-er.pb-er-friss { border-color: var(--szavazas); box-shadow: 0 0 0 2px var(--szavazas); animation: pb-villog 1.2s ease 2; }
   .pb-er-tovabb { justify-self: stretch; width: 100%; padding: 14px 16px; border: 0; border-radius: 14px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font: inherit; font-size: 17px; font-weight: 800; cursor: pointer; }
   .pb-er-tovabb[hidden] { display: none; }
