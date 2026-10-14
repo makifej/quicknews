@@ -82,6 +82,14 @@ transition:border-color .3s cubic-bezier(.32,.72,0,1)}
 button.torol{display:inline-block;margin:8px 0 0 12px;font:600 15px Manrope,sans-serif;color:var(--hiba);border:1px solid rgba(255,107,107,.5);border-radius:6px;padding:2px 10px}
 button.torol:hover{background:rgba(255,107,107,.12)}
 button.torol:disabled{opacity:.5}
+/* saját megerősítő ablak: a böngésző confirm()-ja letiltható („ne nyisson több ablakot”), és onnantól minden gomb némán semmit nem csinál (Heni 2026-10-14) */
+#kerd-ablak{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:16px}
+#kerd-ablak[hidden]{display:none}
+.kerd-doboz{background:var(--lap2);border:1px solid var(--vonal);border-radius:12px;padding:24px;max-width:440px;width:100%;max-height:90dvh;overflow:auto}
+.kerd-doboz p{margin:0 0 20px;white-space:pre-line;color:var(--szoveg);font:500 16px/1.5 Manrope,sans-serif}
+.kerd-gombok{display:flex;gap:12px;justify-content:flex-end}
+.kerd-gombok button{font:700 15px Manrope,sans-serif;border-radius:8px;padding:8px 16px;border:1px solid var(--vonal);background:var(--lap);color:var(--szoveg);cursor:pointer}
+.kerd-gombok button[data-igen]{background:var(--amber);border-color:var(--amber);color:#131313}
 .kartya.kint{opacity:.45}
 .kartya.kint:hover{opacity:.8}
 .ures{color:var(--halkabb);padding:24px 20px}
@@ -399,7 +407,7 @@ document.addEventListener("submit",async e=>{const f=e.target.closest("[data-sze
   if(r.hiba){alert(r.hiba);g.disabled=false;g.textContent="Mentés";return}
   f.innerHTML=`<p class="lab" style="color:var(--amber)">Elküldve, 3 percen belül átvezetem.</p>`}catch(err){alert("Nem sikerült elküldeni.");g.disabled=false;g.textContent="Mentés"}});
 document.addEventListener("click",async e=>{const b=e.target.closest("button.hird-indit");if(!b)return;
- if(!confirm(`Elindítod a hirdetést?\n\n${b.dataset.cim}\n\nA hír- és a követőhirdetés is elindul, a Meta bírálata után kezd futni.`))return;
+ if(!await kerd(`Elindítod a hirdetést?\n\n${b.dataset.cim}\n\nA hír- és a követőhirdetés is elindul, a Meta bírálata után kezd futni.`))return;
  b.disabled=true;b.textContent="Indítás…";
  try{const r=await lekér(U.muvelet,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({tipus:"hirdetes_indit",azon:b.dataset.azon})});
   if(r.hiba){alert(r.hiba);b.disabled=false;b.textContent="Indítás";return}b.textContent="Indítás kérve, 3 percen belül elindul"}catch(err){alert("Nem sikerült.");b.disabled=false;b.textContent="Indítás"}});
@@ -434,11 +442,17 @@ function prajzol(){if(!D)return;
  T.innerHTML=elott+`<div class="tabla">`+["Facebook","LinkedIn","Hirdetés"].map(f=>{const P=L.filter(s=>s.felulet===f);const v=P.filter(VAR).length;
   return `<div class="oszlop"><div class="oszlop-fej"><h2>${f}</h2><span>${P.length?`${P.length} poszt${v?`, ${v} vár`:""}`:""}</span></div>${P.length?P.map(s=>kartya(s,kov&&s.id===kov.id)).join(""):`<p class="ures">Erre a napra nincs ${f==="Hirdetés"?"hirdetés":f+"-poszt"}.</p>`}</div>`}).join("")+`</div>`}
 document.addEventListener("click",async e=>{const b=e.target.closest("button.torol");if(!b)return;
- if(!confirm(`Leveszed az időzítésből?\n\n${b.dataset.felulet}: ${b.dataset.cim}\n\nNem megy ki. A már kiment posztokhoz ez nem nyúl.`))return;
+ if(!await kerd(`Leveszed az időzítésből?\n\n${b.dataset.felulet}: ${b.dataset.cim}\n\nNem megy ki. A már kiment posztokhoz ez nem nyúl.`))return;
  b.disabled=true;b.textContent="Levétel…";
  try{const r=await lekér(U.torles,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({pid:b.dataset.pid,felulet:b.dataset.felulet,cim:b.dataset.cim})});
   if(r.hiba){alert(r.hiba)}}catch(err){alert("A levétel nem sikerült.")}
  ptolt()});
+function kerd(sz){return new Promise(ok=>{let d=document.getElementById("kerd-ablak");
+ if(!d){d=document.createElement("div");d.id="kerd-ablak";d.hidden=true;d.innerHTML='<div class="kerd-doboz" role="dialog" aria-modal="true"><p></p><div class="kerd-gombok"><button type="button" data-nem>Mégse</button><button type="button" data-igen>Igen</button></div></div>';document.body.appendChild(d)}
+ d.querySelector("p").textContent=sz;d.hidden=false;
+ const v=x=>{d.hidden=true;document.removeEventListener("keydown",bill);ok(x)};const bill=e=>{if(e.key==="Escape")v(false)};
+ d.querySelector("[data-igen]").onclick=()=>v(true);d.querySelector("[data-nem]").onclick=()=>v(false);d.onclick=e=>{if(e.target===d)v(false)};
+ document.addEventListener("keydown",bill);d.querySelector("[data-igen]").focus()})}
 async function ptolt(){try{D=await lekér(U.posztok)}catch(e){D={hiba:"A helyi szerver nem válaszolt",sorok:[]}}prajzol()}
 
 /* ---------- költség ---------- */
@@ -641,7 +655,7 @@ async function btolt(){const L=document.getElementById("b-lista");let d;try{d=aw
    <div class="lead">${esc(b.url)}</div>
    <div class="cimkek"><span class="cimke ${var_?"felk":b.allapot==="elfogadva"&&!b.atveve?"fo5":""}">${cimke}</span>${b.ok?`<span class="cimke ${b.ok!=="elfogadva"?"ai-nem":"ai-igen"}">${b.ok!=="elfogadva"?"⚠ ":""}${BOK[b.ok]||esc(b.ok)}</span>`:""}<span class="cimke">${fmt(dd,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span></div>
    ${b.indok?`<div class="lead ${b.ok&&b.ok!=="elfogadva"?"ai-nem-indok":""}" style="-webkit-line-clamp:3">${esc(b.indok)}</div>`:""}${bekUt(b)}</div>${gombok}</div>`}).join("")||`<p class="ures">Még nem érkezett beküldés.</p>`;
- L.querySelectorAll("[data-bek]").forEach(g=>g.onclick=async()=>{if(g.dataset.all==="torol"&&!confirm("Biztosan törlöd ezt a beküldést a listából?"))return;try{const r=await lekér(U.bekDontes,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:g.dataset.bek,allapot:g.dataset.all})});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}btolt()})}
+ L.querySelectorAll("[data-bek]").forEach(g=>g.onclick=async()=>{if(g.dataset.all==="torol"&&!await kerd("Biztosan törlöd ezt a beküldést a listából?"))return;try{const r=await lekér(U.bekDontes,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:g.dataset.bek,allapot:g.dataset.all})});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}btolt()})}
 /* ---------- hirdetői érdeklődők ---------- */
 const HALL={uj:"Új, hívd vissza",felkerestem:"Felkerestem",ugyfel:"Ügyfél lett",nem:"Nem aktuális"};
 async function htolt(cikk){const L=document.getElementById(cikk?"c-lista":"h-lista");let d;try{d=await lekér(U.hirdetok)}catch(e){L.innerHTML=`<div class="hibasav">Az érdeklődők most nem érhetők el.</div>`;return}
@@ -651,7 +665,7 @@ async function htolt(cikk){const L=document.getElementById(cikk?"c-lista":"h-lis
    <div class="lead"><a href="${esc(h.weboldal)}" target="_blank" rel="noopener" style="color:var(--amber)">${esc(h.weboldal)}</a> · <a href="tel:${esc(h.telefon.replace(/[^\d+]/g,""))}" style="color:var(--szoveg);font-weight:700">${esc(h.telefon)}</a></div>
    <div class="cimkek"><span class="cimke ${h.allapot==="uj"?"felk":""}">${HALL[h.allapot]||esc(h.allapot)}</span>${h.kulfoldi?`<span class="cimke">külföldi szám</span>`:""}${h.web_ellenorizve===false?`<span class="cimke ai-nem">⚠ a weboldal nem volt megnyitható</span>`:""}<span class="cimke">${fmt(dd,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span></div></div>
    <div class="kapcs">${["felkerestem","ugyfel","nem"].map(a=>`<button aria-pressed="${h.allapot===a}" data-hird="${h.id}" data-all="${a}"><i></i>${HALL[a]}</button>`).join("")}<button class="sor-torol" data-hird="${h.id}" data-all="torol"><i></i>Törlés</button></div></div>`}).join("")||`<p class="ures">${cikk?"Még senki nem kért ajánlatot a cikkei behúzására.":"Még nem érkezett érdeklődő."}</p>`;
- L.querySelectorAll("[data-hird]").forEach(g=>g.onclick=async()=>{if(g.dataset.all==="torol"&&!confirm("Biztosan törlöd ezt az érdeklődőt?"))return;const uj=g.getAttribute("aria-pressed")==="true"?"uj":g.dataset.all;
+ L.querySelectorAll("[data-hird]").forEach(g=>g.onclick=async()=>{if(g.dataset.all==="torol"&&!await kerd("Biztosan törlöd ezt az érdeklődőt?"))return;const uj=g.getAttribute("aria-pressed")==="true"?"uj":g.dataset.all;
   try{const r=await lekér(U.hirdAll,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:g.dataset.hird,allapot:uj})});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}htolt(cikk)})}
 
 /* ---------- hírlevél ---------- */
@@ -661,14 +675,14 @@ async function hltolt(){const L=document.getElementById("hl-lista");let d;try{d=
  HL=d;document.getElementById("hl-db").textContent=d.darab||0;
  const ak=document.getElementById("hl-aktiv"),be=!(d.beall&&d.beall.aktiv===false);ak.setAttribute("aria-pressed",be);ak.lastChild.textContent=be?"Reggeli küldés bekapcsolva":"Reggeli küldés kikapcsolva";
  L.innerHTML=(d.lista||[]).map(x=>`<div class="hl-sor"><span class="em">${esc(x.email)}</span><span class="ido">${x.ido?fmt(new Date(x.ido),{year:"numeric",month:"short",day:"numeric"}):""}${x.forras==="admin"?" · kézzel":""}</span><button class="sor-torol" data-hlt="${esc(x.email)}">Törlés</button></div>`).join("")||`<p class="ures">Még nincs feliratkozó.</p>`;
- L.querySelectorAll("[data-hlt]").forEach(g=>g.onclick=async()=>{if(!confirm("Biztosan törlöd: "+g.dataset.hlt+"?"))return;await hlmuv({muvelet:"torol",email:g.dataset.hlt})});
+ L.querySelectorAll("[data-hlt]").forEach(g=>g.onclick=async()=>{if(!await kerd("Biztosan törlöd: "+g.dataset.hlt+"?"))return;await hlmuv({muvelet:"torol",email:g.dataset.hlt})});
  const K=document.getElementById("hl-kiadasok");
  K.innerHTML=(d.kiadasok||[]).map(k=>`<div class="hl-sor"><span class="em">${esc(k.targy||"")}</span><span class="ido">${k.ido?fmt(new Date(k.ido),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):""} · ${k.cimzett||0} címzett · ${k.hirek||0} hír${k.hiba?` · <b style="color:var(--hiba)">${k.hiba} hiba</b>`:""}</span></div>`).join("")||`<p class="ures">Még nem ment ki emlékeztető.</p>`;
  document.getElementById("hl-utolso").href=U.hlUtolso}
 async function hlmuv(b){try{const r=await lekér(U.hlMuvelet,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}hltolt()}
 document.getElementById("hl-urlap").onsubmit=async e=>{e.preventDefault();const i=document.getElementById("hl-email");if(!i.value.trim())return;await hlmuv({muvelet:"hozzaad",email:i.value.trim()});i.value=""};
 document.getElementById("hl-aktiv").onclick=async()=>{const be=document.getElementById("hl-aktiv").getAttribute("aria-pressed")==="true";
- if(be&&!confirm("Kikapcsolod a reggeli emlékeztetőt? Amíg ki van kapcsolva, nem megy ki levél."))return;await hlmuv({muvelet:"beall",aktiv:!be})};
+ if(be&&!await kerd("Kikapcsolod a reggeli emlékeztetőt? Amíg ki van kapcsolva, nem megy ki levél."))return;await hlmuv({muvelet:"beall",aktiv:!be})};
 document.getElementById("hl-frissit").onclick=()=>hltolt();
 document.getElementById("hl-masol").onclick=async()=>{const t=((HL&&HL.lista)||[]).map(x=>x.email).join(", ");try{await navigator.clipboard.writeText(t);alert(((HL&&HL.lista)||[]).length+" cím a vágólapon.")}catch(e){prompt("Másold ki:",t)}};
 document.getElementById("hl-csv").onclick=()=>{const s="email,feliratkozas\n"+((HL&&HL.lista)||[]).map(x=>`${x.email},${x.ido||""}`).join("\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([s],{type:"text/csv"}));a.download="quicknews-hirlevel.csv";a.click()};
