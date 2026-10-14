@@ -6,8 +6,10 @@
 // lenyomata hírenként a szavazó böngészőhöz kötve, 400 napig). Ezen felül óránként legfeljebb 120 szavazás IP-nként.
 const crypto = require("crypto");
 // SEC-023: csak létező hírre lehet szavazni (az index 14 napot fed; régebbi hír pontja csak olvasható)
+// a lista a renderelésből jön (api/_hir_idk.json, minden élesítéskor friss); ha hiányzik, nem tiltunk (fail-open
+// csak a létezés-ellenőrzésre: a többi korlát ugyanúgy él)
 let ELO = null;
-try { ELO = new Set((require("./_hirek.json").hirek || []).map((h) => h.id)); } catch { ELO = null; }
+try { ELO = new Set(require("./_hir_idk.json").idk || []); } catch { ELO = null; }
 
 const P = "qn:sz:";
 const ID = /^[a-f0-9]{12}$/;
