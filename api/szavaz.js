@@ -5,6 +5,9 @@
 // amit visszavonhat vagy megfordíthat. Egy IP-címről hírenként csak egy szavazat élhet (az IP visszafejthetetlen
 // lenyomata hírenként a szavazó böngészőhöz kötve, 400 napig). Ezen felül óránként legfeljebb 120 szavazás IP-nként.
 const crypto = require("crypto");
+// SEC-023: csak létező hírre lehet szavazni (az index 14 napot fed; régebbi hír pontja csak olvasható)
+let ELO = null;
+try { ELO = new Set((require("./_hirek.json").hirek || []).map((h) => h.id)); } catch { ELO = null; }
 
 const P = "qn:sz:";
 const ID = /^[a-f0-9]{12}$/;
@@ -50,6 +53,10 @@ function ipAllando(req) {  // állandó, visszafejthetetlen lenyomat: hírenkén
 }
 
 module.exports = async (req, res) => {
+  // SEC-021: só vagy adattár nélkül nem futunk (különben sózatlan IP-lenyomat készülne, pl. preview környezetben)
+  if (!process.env.CHAT_SO || !process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) return json(res, 503, { hiba: "nincs beállítva" });
+  // SEC-022: csak JSON-törzs (az "egyszerű" text/plain POST preflight nélkül is átmenne idegen oldalról)
+  if (req.method === "POST" && !/^application\/json/i.test(req.headers["content-type"] || "")) return json(res, 415, { hiba: "application/json kell" });
   try {
     const url = new URL(req.url, "https://quicknews.hu");
     if (req.method === "GET") {
@@ -70,6 +77,7 @@ module.exports = async (req, res) => {
     const { id, l, ertek } = await torzs(req);
     const uj = Number(ertek);
     if (!ID.test(id || "") || !LAT.test(l || "") || ![1, -1, 0].includes(uj)) return json(res, 400, { hiba: "Rossz kérés." });
+    if (ELO && !ELO.has(id)) return json(res, 404, { hiba: "Nincs ilyen hír." });
     const kulcs = P + "ip:" + ipLenyomat(req);
     const db = await kv("INCR", kulcs);
     if (db === 1) await kv("EXPIRE", kulcs, 3600);

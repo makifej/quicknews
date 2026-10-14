@@ -54,6 +54,10 @@ const allapot = (p) => { const m = Date.now(); return !p ? "nincs" : m < Date.pa
 const allasBe = async (id) => { const v = (await kv("HMGET", P + "allas:" + id, "a", "b")) || []; return { a: Number(v[0] || 0), b: Number(v[1] || 0) }; };
 
 module.exports = async (req, res) => {
+  // SEC-021: só vagy adattár nélkül nem futunk (különben sózatlan IP-lenyomat készülne, pl. preview környezetben)
+  if (!process.env.CHAT_SO || !process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) return json(res, 503, { hiba: "nincs beállítva" });
+  // SEC-022: csak JSON-törzs (az "egyszerű" text/plain POST preflight nélkül is átmenne idegen oldalról)
+  if (req.method === "POST" && !/^application\/json/i.test(req.headers["content-type"] || "")) return json(res, 415, { hiba: "application/json kell" });
   try {
     const url = new URL(req.url, "https://quicknews.hu");
     const pb = await parbajok();

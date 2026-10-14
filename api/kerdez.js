@@ -49,9 +49,9 @@ function budapestNap() {
 }
 
 async function beagyaz(szoveg) {
-  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${BEAGYAZO}:embedContent?key=${process.env.GEMINI_API_KEY}`, {
+  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${BEAGYAZO}:embedContent`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY },
     body: JSON.stringify({ content: { parts: [{ text: szoveg }] }, taskType: "RETRIEVAL_QUERY", outputDimensionality: 768 }),
   });
   const j = await r.json();
@@ -131,6 +131,10 @@ async function nepszeruek() {
 }
 
 module.exports = async (req, res) => {
+  // SEC-021: só vagy adattár nélkül nem futunk (különben sózatlan IP-lenyomat készülne, pl. preview környezetben)
+  if (!process.env.CHAT_SO || !process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) return json(res, 503, { hiba: "nincs beállítva" });
+  // SEC-022: csak JSON-törzs (az "egyszerű" text/plain POST preflight nélkül is átmenne idegen oldalról)
+  if (req.method === "POST" && !/^application\/json/i.test(req.headers["content-type"] || "")) return json(res, 415, { hiba: "application/json kell" });
   if (req.method === "GET") {
     const url = new URL(req.url, "https://quicknews.hu");
     if (url.searchParams.get("mi") === "nepszeru") {
@@ -199,9 +203,9 @@ module.exports = async (req, res) => {
       Object.entries(napi).sort((a, b) => b[0].localeCompare(a[0])).slice(0, 14).map(([d, n]) => `${d}: ${n}`).join("; ") + ".";
     const hirek = pont.map((x, i) => `[${i + 1}] ${x.h.datum} · ${x.h.kategoria || ""} · ${x.h.forras || ""}\nCím: ${x.h.cim}\nFelvezető: ${x.h.lead}\nRészletek: ${x.h.szoveg}`).join("\n\n");
 
-    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODELL}:generateContent?key=${process.env.GEMINI_API_KEY}`, {
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODELL}:generateContent`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY },
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: UTASITAS.replace("{MA}", nap) }] },
         contents: [{ role: "user", parts: [{ text: `${statisztika}\n\nHírek${idoszak && benne.length > pont.length ? ` (válogatás az időszak ${benne.length} híréből)` : ""}:\n\n${hirek}\n\nKérdés: ${q}` }] }],

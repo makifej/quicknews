@@ -96,7 +96,7 @@ main{max-width:480px}h1{font-size:30px;line-height:36px;margin:0 0 12px}a{color:
 }
 
 module.exports = async (req, res) => {
-  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) return json(res, 503, { hiba: "az adattár nincs beállítva" });
+  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN || !process.env.CHAT_SO) return json(res, 503, { hiba: "az adattár nincs beállítva" });
   const url = new URL(req.url, "https://quicknews.hu");
   try {
     // egy kattintásos leiratkozás a levélből (GET a linkre, POST a levelezők List-Unsubscribe-Post hívására)
@@ -105,11 +105,19 @@ module.exports = async (req, res) => {
       if (!email || !tokenJo(email, url.searchParams.get("t") || "")) {
         return oldal(res, 400, "Ez a link nem érvényes", 'Ha le szeretnél iratkozni, a <a href="/leiratkozas">leiratkozó oldalon</a> megadhatod a címed.');
       }
+      // SEC-024: a GET csak megerősítő gombot mutat (a levelezők előnézete automatikusan megnyitja a linkeket),
+      // a tényleges leiratkozás POST (a gombról, vagy a levelezők List-Unsubscribe-Post hívásából)
+      if (req.method !== "POST") {
+        const akcio = `/api/hirlevel?e=${encodeURIComponent(email)}&t=${encodeURIComponent(url.searchParams.get("t") || "")}`;
+        return oldal(res, 200, "Leiratkozás", `Biztosan leiratkozol a napi hírlevélről (${email.replace(/&/g, "&amp;").replace(/</g, "&lt;")})?</p>` +
+          `<form method="post" action="${akcio}"><button type="submit" style="font:inherit;font-weight:700;padding:12px 20px;border:0;border-radius:10px;background:#ffb224;color:#181818;cursor:pointer">Leiratkozom</button></form><p>`);
+      }
       await kv("HDEL", KULCS, email);
-      if (req.method === "POST") return json(res, 200, { rendben: true });
+      if (/json/i.test(req.headers.accept || "") || /json/i.test(req.headers["content-type"] || "")) return json(res, 200, { rendben: true });
       return oldal(res, 200, "Leiratkoztál", "Több emlékeztetőt nem küldünk erre a címre. Ha meggondolod magad, a hírek oldalán bármikor újra feliratkozhatsz.");
     }
     if (req.method !== "POST") { res.setHeader("Allow", "POST"); return json(res, 405, { hiba: "nem támogatott metódus" }); }
+    if (!/^application\/json/i.test(req.headers["content-type"] || "")) return json(res, 415, { hiba: "application/json kell" });
 
     const b = await torzs(req);
     const email = tisztit(b.email);

@@ -58,7 +58,7 @@ process.env.GEMINI_API_KEY = "teszt";
 
 function keres(modul, { method = "POST", url = "/", body, headers = {} } = {}) {
   const h = require(path.join(API, modul));
-  const req = { method, url, headers: { "x-forwarded-for": "198.51.100.7", ...headers }, body: body === undefined ? {} : body };
+  const req = { method, url, headers: { "x-forwarded-for": "198.51.100.7", ...(method === "POST" ? { "content-type": "application/json" } : {}), ...headers }, body: body === undefined ? {} : body };
   return new Promise((ok) => {
     const fej = {};
     const res = { statusCode: 200, setHeader: (k, v) => { fej[k.toLowerCase()] = v; }, getHeader: (k) => fej[k.toLowerCase()],
@@ -172,7 +172,9 @@ test("SEC-008: egyetlen IP legfeljebb a saját 10 kérdésével terheli a napi g
 // ---- SEC-010: párhuzamos szavazás ----
 test("SEC-010: ugyanarról az IP-ről párhuzamosan küldött szavazatok legfeljebb 1-gyel növelik a pontot", async () => {
   ujKv();
-  const id = "abcdef123456";
+  // SEC-023 óta csak létező hírre lehet szavazni: az index első híre, ha van index
+  let id = "abcdef123456";
+  try { id = require("../api/_hirek.json").hirek[0].id; } catch {}
   const lat = (i) => crypto.createHash("sha256").update("lat" + i).digest("hex").slice(0, 24);
   const ki = await Promise.all(Array.from({ length: 8 }, (_, i) => keres("szavaz.js", { body: { id, l: lat(i), ertek: 1 } })));
   assert.ok(ki.some((r) => r.kod === 200), "legalább egy szavazat átmegy");

@@ -38,17 +38,35 @@ async function muveletFelvesz(b) {
   return [200, { ok: true }];
 }
 
-function alair(lejar) {
-  return crypto.createHmac("sha256", process.env.ADMIN_TITOK).update(String(lejar)).digest("hex");
+// SEC-015: a süti aláírókulcsa az ADMIN_TITOK-ból HKDF-fel származtatott alkulcs, így a Mac gépkulcsának (a nyers
+// ADMIN_TITOK) kiszivárgása önmagában nem ad süti-hamisítást
+function sutiKulcs() {
+  return Buffer.from(crypto.hkdfSync("sha256", process.env.ADMIN_TITOK, "", "qn-suti", 32));
+}
+function alair(lejar, gen) {
+  return crypto.createHmac("sha256", sutiKulcs()).update(`${lejar}|${gen}`).digest("hex");
 }
 
-function belepve(req) {
+// SEC-016: generációszám a KV-ben (qn:admin:gen): kilépéskor nő, és minden korábbi süti azonnal érvénytelen
+async function sutiGen() {
+  return String((await kv("GET", "qn:admin:gen")) || 0);
+}
+
+async function belepve(req) {
   // SEC-012: titok nélkül semmilyen süti nem érvényes (különben üres kulccsal is hamisítható lenne)
   if (!process.env.ADMIN_TITOK) return false;
-  const m = (req.headers.cookie || "").match(new RegExp(`${SUTI}=(\\d+)\\.([a-f0-9]{64})`));
+  const m = (req.headers.cookie || "").match(new RegExp(`${SUTI}=(\\d+)\\.(\\d+)\\.([a-f0-9]{64})`));
   if (!m || Number(m[1]) < Date.now()) return false;
-  const a = Buffer.from(alair(m[1])), b = Buffer.from(m[2]);
+  const gen = await sutiGen();
+  if (m[2] !== gen) return false;
+  const a = Buffer.from(alair(m[1], gen)), b = Buffer.from(m[3]);
   return a.length === b.length && crypto.timingSafeEqual(a, b);
+}
+
+// SEC-017: a feltöltött kép csak JPEG lehet (fájlaláírás), és a kártya mérete is korlátos
+function jpegE(b64) {
+  const b = Buffer.from(String(b64 || "").slice(0, 8), "base64");
+  return b.length >= 3 && b[0] === 0xff && b[1] === 0xd8 && b[2] === 0xff;
 }
 
 function gep(req) {
@@ -80,6 +98,7 @@ function json(res, kod, adat) {
 async function kepFeltolt(id, b64) {
   if (!/^[a-f0-9]{12}$/.test(id || "")) return { hiba: "Rossz azonosító." };
   if (!b64 || b64.length > 4_000_000) return { hiba: "A kép túl nagy vagy üres (legfeljebb kb. 3 MB)." };
+  if (!jpegE(b64)) return { hiba: "Csak JPEG kép tölthető fel." };
   const ido = new Date().toISOString();
   await kv("SET", P + "kep:" + id, b64, "EX", 30 * 86400);
   const regi = await kv("HGET", P + "kitenni", id);
@@ -123,6 +142,8 @@ async function hirlevelMuvelet(b) {
 module.exports = async (req, res) => {
   const url = new URL(req.url, "https://quicknews.hu");
   const mi = url.searchParams.get("mi") || "";
+  // SEC-021: só vagy adattár nélkül nem futunk (különben sózatlan IP-lenyomat készülne, pl. preview környezetben)
+  if (!process.env.CHAT_SO || !process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) return json(res, 503, { hiba: "nincs beállítva" });
   res.setHeader("X-Robots-Tag", "noindex, nofollow");
   try {
     if (mi === "belep" && req.method === "POST") {
@@ -144,11 +165,13 @@ module.exports = async (req, res) => {
         return json(res, 401, { hiba: "Hibás jelszó." });
       }
       await kv("DEL", ipKulcs);
-      const lejar = Date.now() + NAP * 864e5;
-      res.setHeader("Set-Cookie", `${SUTI}=${lejar}.${alair(lejar)}; Path=/; Max-Age=${NAP * 86400}; HttpOnly; Secure; SameSite=Strict`);
+      const lejar = Date.now() + NAP * 864e5, gen = await sutiGen();
+      res.setHeader("Set-Cookie", `${SUTI}=${lejar}.${gen}.${alair(lejar, gen)}; Path=/; Max-Age=${NAP * 86400}; HttpOnly; Secure; SameSite=Strict`);
       return json(res, 200, { ok: true });
     }
     if (mi === "kilep") {
+      // csak érvényes sütivel érvényteleníti a többi munkamenetet is, különben bárki kiléptethetné a tulajdonost
+      if (await belepve(req)) await kv("INCR", "qn:admin:gen");
       res.setHeader("Set-Cookie", `${SUTI}=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Strict`);
       return json(res, 200, { ok: true });
     }
@@ -162,6 +185,7 @@ module.exports = async (req, res) => {
       if (mi === "kartya_feltolt" && req.method === "POST") {
         const { fajl, b64 } = await torzs(req);
         if (!/^[a-f0-9]{12}-v\d+\.jpg$/.test(fajl || "")) return json(res, 400, { hiba: "rossz fájlnév" });
+        if (typeof b64 !== "string" || b64.length > 2_700_000 || !jpegE(b64)) return json(res, 400, { hiba: "csak legfeljebb 2 MB-os JPEG" });
         await kv("SET", P + "kartya:" + fajl, b64, "EX", 60 * 86400);
         return json(res, 200, { ok: true });
       }
@@ -174,7 +198,10 @@ module.exports = async (req, res) => {
       if (mi === "hirlevel_kiadas_gep" && req.method === "POST") {
         const { kiadas, html } = await torzs(req);
         if (!kiadas || typeof kiadas !== "object") return json(res, 400, { hiba: "rossz kérés" });
-        await kv("LPUSH", HL + ":kiadasok", JSON.stringify(kiadas));
+        // SEC-018: csak a várt mezők kerülnek be (mass assignment ellen)
+        const kiadasTiszta = Object.fromEntries(["nap", "ido", "targy", "hirek", "cimzett", "hiba", "hir_idk", "cimek_lenyomat"]
+          .filter((k) => k in kiadas).map((k) => [k, kiadas[k]]));
+        await kv("LPUSH", HL + ":kiadasok", JSON.stringify(kiadasTiszta));
         await kv("LTRIM", HL + ":kiadasok", 0, 59);
         if (typeof html === "string" && html.length < 400000) await kv("SET", HL + ":utolso", html);
         return json(res, 200, { ok: true });
@@ -301,7 +328,7 @@ module.exports = async (req, res) => {
           const { id, e } = await torzs(req);
           if (!/^[a-f0-9]{12}$/.test(id || "")) return json(res, 400, { hiba: "rossz azonosító" });
           if (!e || (!e.facebook && !e.linkedin && !e.hirdetes && !e.kartya && !e.sajat_kep && !e.hirlevel)) await kv("HDEL", P + "kitenni", id);
-          else await kv("HSET", P + "kitenni", id, JSON.stringify(e));
+          else await kv("HSET", P + "kitenni", id, JSON.stringify(kitenniTiszta(e)));
           return json(res, 200, { ok: true });
         }
         const k = (await kv("HGETALL", P + "kitenni")) || [];
@@ -310,7 +337,7 @@ module.exports = async (req, res) => {
         return json(res, 200, kit);
       }
     }
-    if (!belepve(req)) return json(res, 401, { hiba: "Belépés szükséges." });
+    if (!(await belepve(req))) return json(res, 401, { hiba: "Belépés szükséges." });
 
     if (mi === "posztok" || mi === "koltseg" || mi === "statisztika") {
       const v = await kv("GET", P + "pult:" + mi);
@@ -325,6 +352,7 @@ module.exports = async (req, res) => {
     if (mi === "torles" && req.method === "POST") {
       const { pid, felulet, cim } = await torzs(req);
       if (!/^[a-f0-9]{24}$/.test(pid || "")) return json(res, 400, { hiba: "Rossz posztazonosító." });
+      if (!["Facebook", "LinkedIn", "Hirdetés"].includes(felulet)) return json(res, 400, { hiba: "Rossz felület." });
       await kv("HSET", P + "torlendo", pid, JSON.stringify({ kert: new Date().toISOString(), felulet, cim: String(cim || "").slice(0, 200) }));
       return json(res, 200, { ok: true, sorban: true });
     }
@@ -413,6 +441,8 @@ module.exports = async (req, res) => {
       res.statusCode = h ? 200 : 404;
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       res.setHeader("Cache-Control", "no-store");
+      // SEC-019: a tárolt HTML a saját originen jelenik meg, ezért szkript és űrlap nem futhat benne
+      res.setHeader("Content-Security-Policy", "default-src 'none'; img-src https: data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-ancestors 'self'");
       return res.end(h || "<p style='font-family:sans-serif'>Még nem ment ki hírlevél.</p>");
     }
     if (mi === "hirdetok") {
@@ -498,11 +528,19 @@ module.exports = async (req, res) => {
         else { e.kartya.elutasitva = ertek ? most : null; if (ertek) e.kartya.jo = null; }
       } else return json(res, 400, { hiba: "Ismeretlen mező." });
       if (!e.facebook && !e.linkedin && !e.hirdetes && !e.kartya && !e.sajat_kep && !e.jovahagyas && !e.hirlevel) await kv("HDEL", P + "kitenni", id);
-      else await kv("HSET", P + "kitenni", id, JSON.stringify(e));
+      else await kv("HSET", P + "kitenni", id, JSON.stringify(kitenniTiszta(e)));
       return json(res, 200, { ok: true });
     }
     return json(res, 404, { hiba: "Ismeretlen kérés." });
   } catch (err) {
-    return json(res, 500, { hiba: "Szerverhiba: " + String(err.message || err).slice(0, 120) });
+    // SEC-020: belső hibaszöveg nem megy ki, csak a Vercel-naplóba
+    console.error("admin", mi, err && err.message);
+    return json(res, 500, { hiba: "Szerverhiba, nézd meg a Vercel-naplót." });
   }
 };
+
+// SEC-018: a kitételi bejegyzésből csak a várt mezők tárolódnak
+const KITENNI_MEZOK = ["facebook", "linkedin", "hirdetes", "kartya", "sajat_kep", "jovahagyas", "hirlevel", "kartya_hiba", "kiteteli_hiba", "lead", "cimsor", "megj"];
+function kitenniTiszta(e) {
+  return Object.fromEntries(KITENNI_MEZOK.filter((k) => k in e).map((k) => [k, e[k]]));
+}
