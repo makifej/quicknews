@@ -1,5 +1,16 @@
 [
   {
+    "i": "6931a40f791f",
+    "p": "/assets/kep/6931a40f791f.webp",
+    "c": "Szoftverek átültetésére használják a Perplexity Computert",
+    "b": "Egy felhasználó Windows-exkluzív billentyűzetszoftvert fordított át Linuxra a Perplexity Computer segítségével.",
+    "k": "Aravind Srinivas (X)",
+    "g": "eszköz",
+    "u": "/hir/szoftverek-atultetesere-hasznaljak-a-perplexity-computert",
+    "sz": "Aravind Srinivas megosztott egy példát arra, hogyan használják a felhasználók a Perplexity Computert meglévő szoftverek visszafejtésére és más platformokra való átültetésére. Egy felhasználó egy dokumentáció nélküli, kizárólag Windowsra készült mechanikus billentyűzet-alkalmazást portolt át Linuxra.\n\nA Perplexity Computer a felhőalapú homokozójában letöltötte a bináris fájlt, egy headless Ghidra segítségével dekompilálta azt, majd a kapott kód alapján egy natív Rust-alkalmazást épített Linuxra. Az új verzió nemcsak a billentyűzet kezelését vette át, hanem zenei szinkronizációval ellátott 3D-s háttérvilágítást, gombátütemezést, makrókat és profilokat is kapott. Perplexity Computer Linux szoftverfejlesztés Rust",
+    "d": "okt. 14. 17:17"
+  },
+  {
     "i": "dff3ca3360ea",
     "p": "/assets/kep/dff3ca3360ea.webp",
     "c": "Korai hozzáférést hirdetett új eszközéhez a Krea",
@@ -97,6 +108,17 @@
     "u": "/hir/folyamatosan-javitjak-a-muse-wonder-modell-hibait",
     "sz": "Alexandr Wang tájékoztatása szerint a fejlesztőcsapat folyamatosan javítja a Muse Wonder modell bevezetése során felmerült következtetési hibákat. A javítások előrehaladtával az eszköz teljesítménye és stabilitása várhatóan fokozatosan javulni fog.\n\nWang elnézést kért a felhasználóktól a modell használata során tapasztalt ingadozások miatt. Hozzátette, hogy a teljes csapat azon dolgozik, hogy a rendszer működése minél kifogástalanabbá váljon. Muse Wonder AI-modell hibajavítás",
     "d": "okt. 14. 09:25"
+  },
+  {
+    "i": "e181547094b0",
+    "p": "/assets/kep/e181547094b0.webp",
+    "c": "10 000 autonóm AI-ügynököt működtet napokig a Third Moment Research",
+    "b": "A kutatólabor az OpenAI GPT-6-os modelljeire építve hozott létre önfejlesztő AI-ügynököket, amelyek napokon át képesek összetett feladatokon dolgozni.",
+    "k": "OpenAI",
+    "g": "ügynök",
+    "u": "/hir/10-000-autonom-ai-ugynokot-mukodtet-napokig-a-third-moment-research",
+    "sz": "A Third Moment Research olyan rendszert épített, amelyben több ezer autonóm AI-ügynök dolgozik egyidejűleg 36-48 órás kutatási feladatokon. A cég az OpenAI GPT-6 Astra, GPT-6 Sol és GPT-6.1 Sol modelljeit használja, a környezet biztonságát pedig a Daybreak platformmal teszteli. A rendszer a korábbi hibákból automatikusan szintetikus teszthelyzeteket generál, így az ügynökök a használat során folyamatosan fejlődnek.\n\nA gyakorlatban az ügynökök képesek kódalapú szűk keresztmetszetek feltárására, optimális gyorsítótárazás bevezetésére és önálló alügynökök indítására. Egy pénzügyi szimuláció során például egy 3 órás folyamatot 3-5 percre tudtak lecsökkenteni. Ha egy ügynök megakad, egy külső felügyelő architektúra dönt a folyamat újraindításáról, leállításáról vagy emberi felülvizsgálatról.\n\nA vállalat célja, hogy a jövőben több száz ezer együttműködő alügynököt futtasson. Ez a megközelítés lehetővé teszi a kutatási irányok automatikus feltárását, kiszűrve a nem nyilvánvaló összefüggéseket is. OpenAI GPT-6 Third Moment Research AI-ügynök",
+    "d": "okt. 14. 09:00"
   },
   {
     "i": "9d80b2cf583b",
