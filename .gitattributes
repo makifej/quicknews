@@ -9,3 +9,14 @@ CLAUDE.md filter=git-crypt diff=git-crypt
 futtat.sh filter=git-crypt diff=git-crypt
 requirements.txt filter=git-crypt diff=git-crypt
 .gitattributes !filter !diff
+# üzemeltetési adatok, Heni döntése 2026-10-14 (biztonsági audit 6. pont): a felhős futás a kulccsal olvassa
+data/hirdetes_kiment.json filter=git-crypt diff=git-crypt
+data/fb_kiment.json filter=git-crypt diff=git-crypt
+data/li_kiment.json filter=git-crypt diff=git-crypt
+data/fb_jovahagyva.json filter=git-crypt diff=git-crypt
+data/gemini_hivatalos.json filter=git-crypt diff=git-crypt
+data/fohir.json filter=git-crypt diff=git-crypt
+data/kitenni-*.json filter=git-crypt diff=git-crypt
+data/feltoltes/** filter=git-crypt diff=git-crypt
+data/gsc/** filter=git-crypt diff=git-crypt
+data/vektor_hu/** filter=git-crypt diff=git-crypt
