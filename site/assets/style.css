@@ -1212,6 +1212,7 @@ html.hl-nyitva { overflow: hidden; }
   .pb-be .pb-vs { animation: pb-vsbe 700ms 300ms var(--gorbe) both; }
   .pb[data-allapot="fut"] .pb-vs::after { animation: pb-pulzus 2.2s 1.2s ease-out infinite; }
   .pb-elo::before { animation: pb-villog 1.4s ease-in-out infinite; }
+  .pb[data-allapot="fut"] .pb-cimke::before { animation: pb-villog 1.4s ease-in-out infinite; }
 }
 @keyframes pb-bal { from { opacity: 0; transform: translateX(-48px) rotate(-2deg); } to { opacity: 1; transform: none; } }
 @keyframes pb-jobb { from { opacity: 0; transform: translateX(48px) rotate(2deg); } to { opacity: 1; transform: none; } }
