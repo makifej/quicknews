@@ -198,7 +198,7 @@ strong { font-weight: 600; color: var(--szoveg); }
 .szuro button[aria-pressed="true"] { color: var(--kiemelo-szoveg); background: var(--kiemelo); border-color: var(--kiemelo); }
 
 /* csoportosított elrendezés (próba) */
-.csoportos { padding-bottom: 96px; }
+.csoportos { padding-bottom: 40px; }
 .szakasz { padding: 48px 0 0; }
 .szakasz + .szakasz { margin-top: 32px; border-top: 1px solid var(--vonal); }
 .szakasz .folyam { padding-bottom: 24px; }
@@ -258,8 +258,8 @@ strong { font-weight: 600; color: var(--szoveg); }
 
 /* cikkoldal */
 .cikk { max-width: 1600px; margin: 0 auto; padding: 32px 16px 80px; }
-@media (min-width: 768px) { .cikk { padding: 48px 32px 96px; } }
-@media (min-width: 1440px) { .cikk { padding: 64px 48px 96px; } }
+@media (min-width: 768px) { .cikk { padding: 48px 32px 48px; } }
+@media (min-width: 1440px) { .cikk { padding: 64px 48px 48px; } }
 .cikk-fej { max-width: 1100px; }
 .cikk-racs { margin-top: 32px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; }
 .cikk-racs > * { min-width: 0; }
@@ -364,7 +364,7 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .uj-zar:hover { color: var(--szoveg); background: var(--keret); }
 
 /* lábléc */
-.lablec { border-top: 1px solid var(--vonal); padding: 32px 0 112px; color: var(--szoveg-2); font-size: 16px; line-height: 24px; }
+.lablec { border-top: 1px solid var(--vonal); padding: 24px 0 112px; color: var(--szoveg-2); font-size: 16px; line-height: 24px; }
 .lablec .keret { display: flex; flex-direction: column; gap: 8px; }
 @media (min-width: 768px) { .lablec .keret { flex-direction: row; justify-content: space-between; } .lablec a.keszitette { align-self: flex-start; margin-top: 4px; } }
 .lablec a { color: var(--szoveg-2); } .lablec a:hover { color: var(--szoveg); }
@@ -477,7 +477,7 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .mobil-szlogen { display: none; }
 
 /* nyitóblokk */
-.cimlap { padding-top: 32px; padding-bottom: 96px; }
+.cimlap { padding-top: 32px; padding-bottom: 40px; }
 .vezeto { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--vonal); }
 .vezeto-bal, .vezeto-jobb { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
 .hir { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
@@ -525,7 +525,7 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 /* rovatblokkok */
 .rovat { padding: 40px 0; border-bottom: 1px solid var(--vonal); }
 /* az utolsó szakasz alatt nincs vonal, mert ott már a lábléc felső vonala jön (dupla csík volt, Heni 2026-10-14) */
-.rovat:not(:has(~ .rovat)) { border-bottom: 0; }
+.rovat:not(:has(~ .rovat)) { border-bottom: 0; padding-bottom: 8px; }
 .rovat-fej { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 20px; margin-bottom: 24px; }
 .rovat-fej h2 { font-size: 28px; line-height: 34px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.01em; padding-bottom: 4px; border-bottom: 4px solid var(--kiemelo); }
 .rovat-fej h2 a:hover { color: var(--kiemelo-szin); }
@@ -542,7 +542,7 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .rovat-racs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
 .rovat-kis { display: flex; flex-direction: column; gap: 18px; }
 .racs-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 24px; }
-.gyujto { padding-top: 32px; padding-bottom: 96px; }
+.gyujto { padding-top: 32px; padding-bottom: 40px; }
 .gyujto-fej { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 20px; margin-bottom: 32px; }
 .gyujto-fej h1 { font-size: 40px; line-height: 46px; font-weight: 800; text-transform: uppercase; padding-bottom: 6px; border-bottom: 5px solid var(--kiemelo); }
 .gyujto-fej p { color: var(--szoveg-2); font-size: 16px; line-height: 24px; }
@@ -683,7 +683,7 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 @media (prefers-reduced-motion: reduce) { .felk-sor-cimke i { animation: none; } }
 
 /* Jogi oldalak (adatvédelem) */
-.jogi { max-width: 760px; padding-top: 40px; padding-bottom: 96px; }
+.jogi { max-width: 760px; padding-top: 40px; padding-bottom: 40px; }
 .jogi h1 { font-size: 36px; line-height: 44px; font-weight: 800; margin: 0 0 8px; text-wrap: balance; }
 .jogi h2 { font-size: 22px; line-height: 30px; font-weight: 800; margin: 40px 0 12px; text-wrap: balance; }
 .jogi p, .jogi li { font-size: 17px; line-height: 28px; color: var(--szoveg-2); text-wrap: pretty; }
