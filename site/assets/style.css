@@ -364,10 +364,16 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .uj-zar:hover { color: var(--szoveg); background: var(--keret); }
 
 /* lábléc */
-.lablec { border-top: 1px solid var(--vonal); padding: 32px 0 48px; color: var(--szoveg-2); font-size: 16px; line-height: 24px; }
+.lablec { border-top: 1px solid var(--vonal); padding: 32px 0 112px; color: var(--szoveg-2); font-size: 16px; line-height: 24px; }
 .lablec .keret { display: flex; flex-direction: column; gap: 8px; }
-@media (min-width: 768px) { .lablec .keret { flex-direction: row; justify-content: space-between; } }
+@media (min-width: 768px) { .lablec .keret { flex-direction: row; justify-content: space-between; } .lablec a.keszitette { align-self: flex-start; margin-top: 4px; } }
 .lablec a { color: var(--szoveg-2); } .lablec a:hover { color: var(--szoveg); }
+/* készítő: adverr logó a láblécben, halványan, rámutatásra kiemelőszín (a testestudat mintájára, Heni 2026-10-14) */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.lablec a.keszitette { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; margin-top: 8px; color: var(--szoveg-3); font-size: 12px; line-height: 16px; text-decoration: none; transition: color 700ms var(--gorbe); }
+.lablec a.keszitette:hover, .lablec a.keszitette:focus-visible { color: var(--kiemelo-szin); }
+.lablec a.keszitette:focus-visible { outline: 2px solid var(--kiemelo-szin); outline-offset: 4px; border-radius: 2px; }
+.adverr-logo { display: block; height: 15px; width: auto; transform: translateY(1px); }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: 0.01ms !important; }
@@ -1168,7 +1174,9 @@ html.hl-nyitva { overflow: hidden; }
 .pb-szikra { position: absolute; width: 8px; height: 8px; border-radius: 2px; pointer-events: none; z-index: 3; }
 .pb-lab { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; color: var(--szoveg-3); font-size: 13px; }
 .pb-masik { font: inherit; font-size: 13px; color: var(--szoveg-2); background: none; border: 1px solid var(--keret); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
-.pb-mind { color: var(--kiemelo); font-weight: 700; font-size: 14px; text-decoration: none; }
+/* „Minden párbaj”: kiemelt, sárga gomb (Heni 2026-10-14) */
+.pb-mind { display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 999px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font-weight: 800; font-size: 16px; line-height: 20px; text-decoration: none; transition: transform 400ms var(--gorbe); }
+.pb-mind:hover { transform: translateX(3px); }
 .pb-mind::after { content: " →"; }
 /* kis változatok: rács, főoldali sáv, cikk alja */
 .pb-kicsi, .pb-sav, .pb-doboz { padding: 18px; gap: 12px; }
