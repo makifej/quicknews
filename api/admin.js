@@ -155,7 +155,7 @@ module.exports = async (req, res) => {
     if (gep(req)) {
       if (mi === "feltolt" && req.method === "POST") {
         const { kulcs, adat } = await torzs(req);
-        if (!["posztok", "koltseg", "ajanlott"].includes(kulcs)) return json(res, 400, { hiba: "rossz kulcs" });
+        if (!["posztok", "koltseg", "ajanlott", "statisztika"].includes(kulcs)) return json(res, 400, { hiba: "rossz kulcs" });
         await kv("SET", P + "pult:" + kulcs, JSON.stringify(adat));
         return json(res, 200, { ok: true });
       }
@@ -312,7 +312,7 @@ module.exports = async (req, res) => {
     }
     if (!belepve(req)) return json(res, 401, { hiba: "Belépés szükséges." });
 
-    if (mi === "posztok" || mi === "koltseg") {
+    if (mi === "posztok" || mi === "koltseg" || mi === "statisztika") {
       const v = await kv("GET", P + "pult:" + mi);
       const adat = v ? JSON.parse(v) : { hiba: "Még nincs feltöltött adat.", sorok: [] };
       if (mi === "posztok") {
