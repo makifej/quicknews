@@ -152,7 +152,7 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     d.querySelector('.sz-fel').setAttribute('aria-pressed', sajat === 1 ? 'true' : 'false'); d.querySelector('.sz-le').setAttribute('aria-pressed', sajat === -1 ? 'true' : 'false'); }
   function jel(k, pont){ if (!pont) return; var sp = k.querySelectorAll(':scope > span'); var m = k.querySelector('.hmeta') || (k.classList.contains('kiemelt-sav') ? null : sp[sp.length - 1]); var s = document.createElement('span');
     s.className = 'sz-jel ' + (pont > 0 ? 'poz' : 'neg'); s.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 3.5 13H9v7.5h6V13h5.5z"/></svg>' + fmt(pont);
-    s.setAttribute('aria-label', 'Pontszám: ' + pont); (m || k).appendChild(s); }
+    s.setAttribute('aria-label', 'Pontszám: ' + pont); var hova = m || k, mj = hova.querySelector(':scope > .mentes-jel'); if (mj) hova.insertBefore(s, mj); else hova.appendChild(s); }
   if (!ids.length) return;
   for (var c = 0; c < ids.length; c += 150) (function(resz){
     fetch('/api/szavaz?ids=' + resz.join(',') + (dobozok.length && L ? '&l=' + L : '')).then(function(r){ return r.json(); }).then(function(j){
@@ -897,7 +897,7 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
         if (x0 === null) return; dx = e.clientX - x0; dy = e.clientY - y0;
         if (iranyok === null && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) { iranyok = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y'; if (iranyok === 'x') { l.setPointerCapture(e.pointerId); l.classList.add('pb-huzott'); } }
         if (iranyok !== 'x') return;
-        e.preventDefault(); jeloltMozgat(l, dx); pecset(dx);
+        e.preventDefault(); if (!l._raf) l._raf = requestAnimationFrame(function(){ l._raf = 0; if (x0 !== null) { jeloltMozgat(l, dx); pecset(dx); } });
       });
       var vege = function(){ if (x0 === null) return; x0 = null; l.classList.remove('pb-huzott'); if (iranyok === 'x' && Math.abs(dx) > 80) kidob(l, dx < 0 ? 'a' : 'b'); else { jeloltMozgat(l, 0); pecset(0); } };
       l.addEventListener('pointerup', vege); l.addEventListener('pointercancel', vege);
