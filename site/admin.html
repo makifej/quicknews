@@ -255,7 +255,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <button role="tab" aria-selected="false" data-ful="bekuldes">Beküldések</button>
 <button role="tab" aria-selected="false" data-ful="hirdetok">Hirdetők</button>
 <button role="tab" aria-selected="false" data-ful="cikkbehuzas">Cikkbehúzás</button>
-<button role="tab" aria-selected="false" data-ful="hirlevel">Emlékeztető</button>
+<button role="tab" aria-selected="false" data-ful="hirlevel">Hírlevél</button>
 <button role="tab" aria-selected="false" data-ful="statisztika">Statisztika</button></nav>
 <div class="frissult num" id="frissult"></div></div></div>
 
@@ -717,7 +717,7 @@ function srajz(){const M=document.getElementById("st-mutatok"),R=document.getEle
  const koltes=stOssz(hd,"koltes"),katt=stOssz(hd,"kattintas");const eml=(ST.emlekezteto||[])[0]||{},gh=(ST.gemini_havi||[])[0]||{};
  const t=[["Megjelent hír",stFt(stOssz(hn,"hirek")),"a kiválasztott időszakban"],["Facebook-poszt",stFt(stOssz(hn,"facebook")),"kiment vagy időzítve"],["LinkedIn-poszt",stFt(stOssz(hn,"linkedin")),"kiment vagy időzítve"],["Új hirdetés",stFt(stOssz(hn,"hirdetes")),"hírenként, követő nélkül"],
   ["Hirdetési költés",stFt(koltes)+" Ft","két Meta-hirdetéssorozat"],["Link-kattintás",stFt(katt),"a cikkre vezető kattintás"],["Kattintási ár",katt?stFt(koltes/katt)+" Ft":"–","költés / kattintás"],["Oldalkövetés",stFt(stOssz(hd,"kovetes")),"a hirdetésekből"],
-  ["Emlékeztető-feliratkozó",stFt(eml.feliratkozok),"küldés: "+(eml.kuldes||"–")],["Gemini, e havi költés",stUsd(gh.elkoltve),`a ${stFt(gh.plafon)} dolláros keretből`]];
+  ["Hírlevél-feliratkozó",stFt(eml.feliratkozok),"küldés: "+(eml.kuldes||"–")],["Gemini, e havi költés",stUsd(gh.elkoltve),`a ${stFt(gh.plafon)} dolláros keretből`]];
  M.innerHTML=t.map(([c,e,j],i)=>`<div class="mutato ${i===0?"kiemelt":""}"><small>${esc(c)}</small><b class="num">${esc(e)}</b><em>${esc(j)}</em></div>`).join("");
  const jel=(nevek)=>`<div class="st-jel">${nevek.map((n,i)=>`<span><i style="background:${stSZIN[i]}"></i>${esc(n)}</span>`).join("")}</div>`;
  const hirdNapi={};stBenne(ST.hirdetesek_napi,ip).forEach(r=>{const o=hirdNapi[r.hirdetes]||(hirdNapi[r.hirdetes]={megjelenes:0,kattintas:0,kovetes:0,koltes:0});["megjelenes","kattintas","kovetes","koltes"].forEach(k=>o[k]+=+r[k]||0)});
