@@ -1267,6 +1267,9 @@ html.hl-nyitva { overflow: hidden; }
   .pb-pakli-tipp b { font-size: 19px; line-height: 25px; font-weight: 800; }
   .pb-pakli-irany { display: flex; justify-content: space-between; gap: 12px; font-size: 16px; line-height: 22px; font-weight: 800; }
   .pb-pakli-tipp[hidden], .pb-pakli-gombok[hidden] { display: none; }
+  .pb-er.pb-er-friss { border-color: var(--szavazas); box-shadow: 0 0 0 2px var(--szavazas); animation: pb-villog 1.2s ease 2; }
+  .pb-er-tovabb { justify-self: stretch; width: 100%; padding: 14px 16px; border: 0; border-radius: 14px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font: inherit; font-size: 17px; font-weight: 800; cursor: pointer; }
+  .pb-er-tovabb[hidden] { display: none; }
   .pb-pakli-irany span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .pb-pakli-gombok { display: flex; justify-content: center; gap: 28px; }
   .pb-pakli-gombok button { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--keret); background: var(--bg-2); color: var(--szoveg); font: inherit; font-size: 22px; cursor: pointer; }
