@@ -1,0 +1,57 @@
+{
+  "id": "00c1603dba9f",
+  "slug": "nyilt-forraskodu-ai-projektbol-gyult-ossze-tobb-mint-3000-a",
+  "forras_id": "dailydev",
+  "forras_nev": "DEV (daily.dev)",
+  "url": "https://dev.to/dailycontext/one-weekend-3000-open-source-ai-projects-3g65",
+  "szerzo": null,
+  "publikalva": "2026-10-11T19:43:45+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/07a431989c9ebbb1ac5032942b881fd7?_a=AQAEuop"
+  },
+  "cim_eredeti": "One Weekend: 3,000 Open-Source AI Projects",
+  "forrasok": [],
+  "szoveg_eredeti": "Every October for the past twelve years, developers around the world have taken part in Hacktoberfest, a month-long celebration of open-source software: code that anyone can use, inspect, and improve. For most of that history, the rules were simple: Contribute a set number of pull requests and earn a T-shirt. Thousands of people made their first contribution to open source because of Hacktoberfest.\n\nThis year, we changed the format. Hacktoberfest 2026 is focused on open-weight models and open-source artificial intelligence: models and tools that anyone can download, run and modify. Participants are learning how these systems work, building their own AI tooling, and adapting existing open models for new uses.\n\nWhen we announced this year’s theme in August, we had hoped to support 300 in-person gatherings. There are now more than 500 Fests planned in over 60 countries, ranging from university hackathons to small groups of developers meeting at their local library or office. In the first week alone, participants in-person and online submitted more than 3,000 projects.\n\nOn Oct. 1, the first day of the event, students at COMSATS University in Abbottabad, Pakistan, gathered for a Hack Day. By evening, they had built a locally hosted hospital-management platform, a multimodal companion for visually impaired users, and a tool that helps newcomers make their first open-source contribution. The group photo they sent us afterward says more than any statistic I could share: a group of people who chose to spend their day learning to build something together.\n\nFor many people, AI is something experienced alone: typing into a chat window, using a tool built by someone else and governed by someone else's pricing and policies. What I'm seeing this month is a clear appetite for something different. People want to sit next to each other, run a model on their own machine, take it apart, and understand how it works.\n\nThat is why we built this year's Hacktoberfest around open innovation. Open source has always worked because nobody owns the tools. Anyone can look under the hood, and anyone can pull up a chair. We believe AI should work the same way: shaped by people building in public in India and Ireland, Peru and the Philippines, all over the world.\n\nHacktoberfest runs through Oct. 31. When it ends, I don’t expect its impact to be measured solely in code. It will show up in mentorships that started at a folding table, in local tech communities meeting for the first time, and in people who walked in unsure what an AI model was and walked out having built something with one.\n\nTemplates let you quickly answer FAQs or store snippets for re-use.\n\n3000 projects in a weekend is impressive volume, but the real signal is in the maintenance health. When I scan lists like this, I immediately filter for: recent commits (last 30 days), issue response time, and whether the README actually explains how to run it locally vs just showing a hosted demo.\n\nA lot of \"AI projects\" are really just thin wrappers around an API call — useful for learning, not for production. The ones worth starring usually have a test suite, a contributing guide, and at least one non-trivial dependency that isn't just openai or langchain.\n\nCurious how you handled deduplication — same repo submitted under different names, forks masquerading as originals, that sort of thing. That's usually where the manual review time goes PS: the tool I meant is on labagent .tech\n\nĐọc xong nhớ ra những năm đầu tham gia Hacktoberfest — lúc đó còn phải tự mò tìm repo qua topic \"good-first-issue\", hôm nay đã có sẵn danh sách curate sẵn 3k project AI thì đỡ mất thời gian lọc rác đáng kể.\n\nThực tế bên team mình năm ngoái thử adopt 2-3 repo từ list dạng này, lesson learned: đừng chỉ sort by star. Nhiều repo AI có star cao vì demo đẹp, nhưng issue backlog đầy bug data pipeline, thiếu test, CI/CD chết chóc. Ưu tiên repo có contributing guide rõ ràng, maintainer còn active respond issue trong 48h, và quan trọng nhất — có dataset/sample data sẵn để reproduce ngay mà không phải setup infrastructure phức tạp.\n\nMẹo nhỏ: clone về, chạy make test hoặc pytest trước khi đọc code. Nếu pass hết local, mới đáng invest time contribute. Còn fail ở CI cơ bản thì thường là technical debt sâu, PR fix cũng dễ bị stale.\n\nNăm nay dự định pick 1 project về RAG evaluation — mảng này thiếu tooling thực tế lắm. Các bạn nào đã contribute mảng AI/ML có tip gì về việc setup dev env nhanh cho project (site: labagent .tech)\n\n3,000 projects is wild. The Hacktoberfest format change to focus on open-weight models is smart. I have been seeing a lot of repos with great READMEs and zero actual code though. Quality over quantity is going to be the differentiator this year. Are you tracking which ones actually have working demos?\n\nThe shift from \"submit 4 PRs, get a shirt\" to actually running models locally is the right call. I've watched people use LLM APIs for two years without understanding a single thing about what's happening under the hood — 3,000 projects in week one tells me the appetite for hands-on AI was always there, the format just wasn't pointing people at it. The COMSATS group building a locally hosted hospital platform is exactly the kind of thing that doesn't happen when you're just calling someone else's API.\n\nSố lượng 3.000 project trong một weekend nghe ấn tượng, nhưng mình thắc mắc tỷ lệ \"production-ready\" vs \"proof-of-concept\" ra sao? Mình từng tham gia review một số repo trending từ các event tương tự — phần lớn là wrapper quanh API hoặc demo Jupyter notebook chưa có CI/CD, test, hay docs đủ chuẩn để team khác adopt.\n\nĐiểm thú vị hơn là pattern lặp lại: vector DB integration, RAG pipeline, agent framework... đều tập trung vào vài use case quen thuộc (chat-with-docs, code generation, customer support). Mình thấy ít project giải quyết vấn đề domain-specific thực tế (ví dụ: optimize logistics, medical imaging, manufacturing QC).\n\nNếu bạn đang curate danh sách này, gợi ý thêm tag/metadata cho: license type, dependency freshness, last commit, có dockerfile hay không — giúp người khác filter nhanh thay vì phải clone từng repo để check — found it via LabAgent, site: labagent .tech\n\nGreat to see so many people joining in. From AI Psychosis to AI Genesis (or genesis with AI) for so many people = not a bad outcome at all! 🥰\n\nAre you sure you want to hide this comment? It will become hidden in your post, but will still be visible via the comment's permalink.\n\nFor further actions, you may consider blocking this person and/or reporting abuse",
+  "modell": "gemini-3.5-flash",
+  "cim": "Nyílt forráskódú AI-projektből gyűlt össze több mint 3000 a Hacktoberfesten",
+  "lead": "Idén a nyílt súlyú AI-modellekre és a helyben futtatható fejlesztésekre fókuszál a hónap végéig tartó nemzetközi Hacktoberfest.",
+  "osszefoglalo": "A korábbi pólógyűjtő pull requestek helyett idén a nyílt forráskódú és nyílt súlyú AI-modellek használata, módosítása és helyi futtatása áll a Hacktoberfest középpontjában. A szervezők eredetileg 300 személyes találkozót terveztek, de végül több mint 60 országban **több mint 500 eseményt** szerveztek meg.\n\nAz esemény első hetében több mint **3000 AI-projektet** nyújtottak be a résztvevők. A projektek között szerepel többek között helyben futtatott kórházi vállalatirányítási rendszer és látássérülteket segítő multimodális eszköz is. A rendezvénysorozat október 31-ig tart.",
+  "miert_szamit": "A nyílt forráskódú és helyben futtatható modellek terjedése **csökkenti a zárt API-któl való függőséget**, és lehetővé teszi a saját adaton futtatott, egyedi AI-megoldások építését.",
+  "cimkek": [
+    "Hacktoberfest",
+    "nyílt forráskód",
+    "mesterséges intelligencia",
+    "fejlesztés"
+  ],
+  "kategoria": "egyéb",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "forditva": "2026-10-14T09:04:48+00:00",
+  "megjelent": "2026-10-14T09:04:48+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-14T09:05:06+00:00",
+    "esemeny": "A 2026-os Hacktoberfest idén a nyílt súlyú AI-modellekre és a helyben futtatható nyílt forráskódú mesterséges intelligenciára fókuszál. Az esemény első hetében több mint 60 országban szervezett több mint 500 találkozó és online felület részvételével több mint 3000 AI-projektet nyújtottak be.",
+    "forrasok": [
+      "https://dev.to/dailycontext/one-weekend-3000-open-source-ai-projects-3g65"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-14T11:05:28+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": []
+  }
+}

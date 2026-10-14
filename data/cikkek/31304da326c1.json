@@ -1,0 +1,84 @@
+{
+  "id": "31304da326c1",
+  "slug": "mindossze-29-mb-os-ai-modell-teszi-okosabba-a-raspberry-pi-t",
+  "forras_id": "dailydev",
+  "forras_nev": "XDA Developers (daily.dev)",
+  "url": "https://www.xda-developers.com/a-29mb-ai-model-is-the-most-useful-thing-ive-run-on-my-raspberry-pi-5",
+  "szerzo": null,
+  "publikalva": "2026-10-11T19:30:17+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/25d226cb979332cb3fbb24744ff448d6?_a=AQAEuop"
+  },
+  "cim_eredeti": "A 29MB AI model is the most useful thing I've run on my Raspberry Pi 5, and it doesn't need an AI HAT",
+  "forrasok": [],
+  "szoveg_eredeti": "I’ve documented all sorts of wacky AI experiments involving weak hardware here on XDA, with my Raspberry Pi 5 being a common guinea pig for a handful of these projects. To its credit, my tiny tinkering companion manages to deliver decent results with smaller LLMs, with Gemma 4 E2B being my preferred model for simple productivity tasks involving this SBC.\n\nHowever, LLMs with chat interfaces aren’t the only AI models I can run on my weak hardware. Take the Cactus Compute Needle 3, for example. While it needs some tinkering with Python scripts, this slim model barely needs a few MBs to turn my “mere” SBC into an automation beast.\n\nIf you’re wondering how the Needle 3 manages to consume a maximum of 29MB, it’s because this AI model is a lot different from conventional LLMs. Typical large language models require billions of parameters to respond to queries in a chat-like interface. When you combine that with an underpowered system like the Raspberry Pi, it’s no wonder that even something as light as 3-4B models run under 10 tokens/second.\n\nMeanwhile, the Cactus Compute Needle 3 ditches the general chat capabilities altogether. Instead, it focuses on machine level tasks such as calling tools for different services, converting unstructured data into its JSON equivalents, and generating vector spaces from text inputs – and these three jobs let it perform typical AI tasks without the extra computational overhead of typical chatbots. Combine that with the Needle 3’s unique sliceable ladder architecture that lets you choose the subnetworks from 2 to 20 layers depending on the underlying system, and you can see why I love tinkering with this edge LLM on my Raspberry Pi.\n\nFor reference, the SBC I’m testing it on is the Raspberry Pi 5, specifically the 8GB variant. OS-wise, I wanted to use Raspberry Pi OS Lite, but since DietPi has an even smaller footprint, I decided to roll with the latter for this experiment. I initially tried running Needle 3 on my first-gen Raspberry Pi Zero, but since the AI model doesn’t support the outdated ARMv6 architecture, it’d throw errors every time building it on my ancient SBC.\n\nFortunately, setting everything up on my Raspberry Pi 5 was relatively simple. First, I ran the sudo apt install -y python3-venv python3-pip git command to grab the necessary packages. Then, I executed python3 -m venv ~/needle-env to create an isolated Python environment for Needle 3 and switched to it with source ~/needle-env/bin/activate. I also pulled the runtime environment with the pip install cactus-needle command. After a little bit of trial and error, I realized I had to run pip install numpy sentencepiece jax flax cactus-needle requests python-dotenv as well.\n\nWith the rest of the packages installed, the needle build --platform linux-arm64 --layers 20 --out ./pi succeeded without any more problems. For the --layers flag, I decided to go all out and assigned all 20 layers, but I could’ve gone as low as 2 layers if I was working with, say, a weak microcontroller (which I plan to do sometime in the future). But I still had to work out a way to assign some tools to this tiny AI model…\n\nSince I was particularly interested in the tool-calling aspect of Needle 3, I wanted to test it with some self-hosted services. Local smart home automation is one of the use cases mentioned in the official documentation, so I figured I could toss my Home Assistant server into the mix. But before I could write Python code for the tools, I had to pair my Home Assistant instance with Needle 3, which I did by creating a .needle-ha.env file with the following syntax:\n\nIf you’re wondering, the HA_TOKEN value is a long-lived access token that I created on Home Assistant. As for the Python tool-calling file, I used this specific snippet to control a smart_plug entity on my HASS instance:\n\nExecuting this Python script would immediately cause Needle 3 to ask for a prompt, so I wrote a simple command to turn on the smart_plug entity. Sure enough, Needle 3 had no issues understanding my query and the device came back online immediately. As for the performance, my tiny SBC + Needle 3 combo was able to handle the prompt at a decode rate of 280.2 tokens/s and a prefill rate of 996.4 tokens/s, which is amazing for edge AI tasks.\n\nSo far, my Needle 3 can only perform a simple action. But the real fun begins once I start adding more tools to the file. For example, I could add different tools for conventional smart devices, sensor modules, DIY ESP32 IoT products, and even the random FOSS services that Home Assistant recognizes as entities. Heck, I could even ditch the Home Assistant aspect and have it perform analysis tasks on documents, emails, and spreadsheets. Or, I could go into the Docker direction and expose every aspect of a self-hosted workstation to my edge model.\n\nSure, it’d take some time to create the necessary code for all the tools I want to pair with Needle 3. But the incredible performance more than makes up for the extra effort.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Mindössze 29 MB-os AI-modell teszi okosabbá a Raspberry Pi-t",
+  "lead": "A Cactus Compute Needle 3 modellje mindössze 29 MB memóriát fogyaszt, és gépiszintű feladatokra vagy okosotthon-vezérlésre terveztek.",
+  "osszefoglalo": "A Cactus Compute [Needle 3](https://github.com/cactus-compute/needle) nevű AI-modellje a megszokott csevegőfunkciók helyett célzott gépi feladatokra összpontosít. A mindössze **29 MB memóriát** igénylő modell képes eszközök és API-k hívására, strukturálatlan adatok JSON-né alakítására és vektorterek generálására, így nem igényli a megszokott több milliárd paraméteres architektúrát.\n\nA modell különlegessége a **szeletelhető architektúra**, amellyel a hálózat mérete 2 és 20 réteg között állítható az adott hardver teljesítményéhez mérten. Ennek köszönhetően kiegészítő AI-gyorsító kártya nélkül is futtatható kisebb rendszereken, mint a Raspberry Pi 5, ahol a tesztek során több mint **280 token/másodperces** feldolgozási sebességet ért el.\n\nA Needle 3 beállítása Python-környezetet és a **cactus-needle** csomagot igényli. A gyakorlatban jól használható helyi rendszerek, például a Home Assistant okosotthon-vezérlő automatizálására, de alkalmas dokumentumok elemzésére és Docker-környezetek kezelésére is.",
+  "miert_szamit": "A **mikroméretekre optimalizált modellek** lehetővé teszik, hogy a vállalkozások méregdrága felhős infrastruktúra és drága hardverek nélkül, teljesen **helyben és olcsón** futtassanak AI-alapú automatizációkat.",
+  "cimkek": [
+    "Needle 3",
+    "Cactus Compute",
+    "Raspberry Pi",
+    "AI-modell"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bemutato",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Needle 3",
+    "cactus-needle"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-14T09:04:54+00:00",
+  "megjelent": "2026-10-14T09:04:54+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-14T09:04:56+00:00",
+    "esemeny": "Az XDA Developers szerzője tesztelte a Cactus Compute által kiadott, kisméretű Needle 3 AI-modellt egy Raspberry Pi 5 számítógépen, amellyel sikeresen vezérelt okosotthon-eszközt Home Assistant környezetben.",
+    "forrasok": [
+      "https://github.com/cactus-compute/needle",
+      "https://cactuscompute.com/needle3"
+    ],
+    "hibak": [
+      "Az összefoglaló azt állította, hogy a Cactus Compute most adta ki a modellt, de a cikk nem egy vállalati bejelentésről szól, hanem egy technológiai újságíró egyéni tesztjéről és tapasztalatairól.",
+      "A cikkből hiányzott a kötelező beszédes hivatkozás az elsődleges forrásra (Needle 3 / Cactus Compute repository/modellek)."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Mindössze 29 MB-os AI-modell teszi okosabbá a Raspberry Pi-t",
+      "lead": "A Cactus Compute Needle 3 modellje mindössze 29 MB memóriát fogyaszt, és gépiszintű feladatokra vagy okosotthon-vezérlésre terveztek.",
+      "osszefoglalo": "A Cactus Compute kiadta a **Needle 3** nevű AI-modellt, amely a megszokott csevegőfunkciók helyett célzott gépi feladatokra összpontosít. A mindössze **29 MB memóriát** igénylő modell képes eszközök és API-k hívására, strukturálatlan adatok JSON-né alakítására és vektorterek generálására, így nem igényli a megszokott több milliárd paraméteres architektúrát.\n\nA modell különlegessége a **szeletelhető architektúra**, amellyel a hálózat mérete 2 és 20 réteg között állítható az adott hardver teljesítményéhez mérten. Ennek köszönhetően kiegészítő AI-gyorsító kártya nélkül is futtatható kisebb rendszereken, mint a Raspberry Pi 5, ahol a tesztek során több mint **280 token/másodperces** feldolgozási sebességet ért el.\n\nA Needle 3 beállítása Python-környezetet és a **cactus-needle** csomagot igényli. A gyakorlatban jól használható helyi rendszerek, például a Home Assistant okosotthon-vezérlő automatizálására, de alkalmas dokumentumok elemzésére és Docker-környezetek kezelésére is.",
+      "miert_szamit": "A **mikroméretekre optimalizált modellek** lehetővé teszik, hogy a vállalkozások méregdrága felhős infrastruktúra és drága hardverek nélkül, teljesen **helyben és olcsón** futtassanak AI-alapú automatizációkat."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-14T11:05:52+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": [
+      {
+        "lepes": "elvetve",
+        "kif": "cactus-needle",
+        "url": "https://pypi.org/project/cactus-needle/",
+        "ok": "Az oldal nem töltődött le megfelelően (Client Challenge hibaüzenet), így a tartalom alapján nem igazolható az állítás."
+      },
+      {
+        "lepes": "tulajdonitva",
+        "regi": "Ennek köszönhetően kiegészítő AI-gyorsító kártya nélkül is futtatható kisebb rendszereken, mint a Raspberry Pi 5, ahol a tesztek során több mint **280 token/másodperces** feldolgozási sebességet ért el.",
+        "uj": "Az XDA Developers (daily.dev) szerint ennek köszönhetően kiegészítő AI-gyorsító kártya nélkül is futtatható kisebb rendszereken, mint a Raspberry Pi 5, ahol a tesztek során több mint **280 token/másodperces** feldolgozási sebességet ért el."
+      }
+    ],
+    "osszefoglalo": "A Cactus Compute [Needle 3](https://github.com/cactus-compute/needle) nevű AI-modellje a megszokott csevegőfunkciók helyett célzott gépi feladatokra összpontosít. A mindössze **29 MB memóriát** igénylő modell képes eszközök és API-k hívására, strukturálatlan adatok JSON-né alakítására és vektorterek generálására, így nem igényli a megszokott több milliárd paraméteres architektúrát.\n\nA modell különlegessége a **szeletelhető architektúra**, amellyel a hálózat mérete 2 és 20 réteg között állítható az adott hardver teljesítményéhez mérten. Az XDA Developers (daily.dev) szerint ennek köszönhetően kiegészítő AI-gyorsító kártya nélkül is futtatható kisebb rendszereken, mint a Raspberry Pi 5, ahol a tesztek során több mint **280 token/másodperces** feldolgozási sebességet ért el.\n\nA Needle 3 beállítása Python-környezetet és a **cactus-needle** csomagot igényli. A gyakorlatban jól használható helyi rendszerek, például a Home Assistant okosotthon-vezérlő automatizálására, de alkalmas dokumentumok elemzésére és Docker-környezetek kezelésére is."
+  }
+}
