@@ -346,7 +346,7 @@ const TZ="Europe/Budapest";
 const fmt=(d,o)=>new Intl.DateTimeFormat("hu-HU",{timeZone:TZ,...o}).format(d);
 const nk=d=>{const p=new Intl.DateTimeFormat("en-CA",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit"}).format(d);return p};
 const ora=d=>fmt(d,{hour:"2-digit",minute:"2-digit"});
-const esc=s=>(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const esc=s=>(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const MA=()=>nk(new Date()),TEGNAP=()=>nk(new Date(Date.now()-864e5)),HOLNAP=()=>nk(new Date(Date.now()+864e5));
 function napcimke(k){const d=new Date(k+"T12:00:00");if(k===MA())return"Ma";if(k===HOLNAP())return"Holnap";if(k===TEGNAP())return"Tegnap";
  const t=fmt(d,{weekday:"long"});return t[0].toUpperCase()+t.slice(1)}

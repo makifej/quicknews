@@ -140,7 +140,7 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
 (function(){
   // az azonosító csak az első szavazáskor jön létre (adatvédelmi tájékoztató: „Szavazás a hírekre”)
   var L = ''; try { L = localStorage.getItem('qn-l') || ''; if (!/^[a-z0-9]{16,40}$/.test(L)) L = ''; } catch(e){}
-  function azonosito(){ if (L) return L; var u = ''; for (var i = 0; i < 24; i++) u += 'abcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random() * 36)];
+  function azonosito(){ if (L) return L; var u = ''; try { var r = new Uint8Array(16); crypto.getRandomValues(r); for (var i = 0; i < 16; i++) u += (r[i] < 16 ? '0' : '') + r[i].toString(16); } catch(e) { for (var j = 0; j < 24; j++) u += 'abcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random() * 36)]; }
     try { localStorage.setItem('qn-l', u); } catch(e){} L = u; return L; }
   function fmt(n){ var a = Math.abs(n); if (a >= 1000) { var k = (a / 1000).toFixed(a >= 10000 ? 0 : 1).replace('.', ',').replace(',0', ''); return (n < 0 ? '-' : '') + k + 'K'; } return String(n); }
   var dobozok = [].slice.call(document.querySelectorAll('[data-szavaz]'));
@@ -690,7 +690,7 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
   var ft = new Intl.NumberFormat('hu-HU');
   // ugyanaz a névtelen böngészőazonosító, mint a hírszavazásnál; csak az első szavazáskor jön létre
   var latOlvas = function(){ try { var l = localStorage.getItem('qn-l') || ''; return /^[a-z0-9]{16,40}$/.test(l) ? l : ''; } catch(e) { return ''; } };
-  var lat = function(){ var l = latOlvas(); if (l) return l; var u = ''; for (var i = 0; i < 24; i++) u += 'abcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random() * 36)]; try { localStorage.setItem('qn-l', u); } catch(e) { return ''; } return u; };
+  var lat = function(){ var l = latOlvas(); if (l) return l; var u = ''; try { var r = new Uint8Array(16); crypto.getRandomValues(r); for (var i = 0; i < 16; i++) u += (r[i] < 16 ? '0' : '') + r[i].toString(16); } catch(e) { for (var j = 0; j < 24; j++) u += 'abcdefghijklmnopqrstuvwxyz0123456789'[Math.floor(Math.random() * 36)]; } try { localStorage.setItem('qn-l', u); } catch(e) { return ''; } return u; };
   var ids = [];
   dobozok.concat(eredmenyek).forEach(function(d){ var id = d.getAttribute('data-parbaj') || d.getAttribute('data-parbaj-eredm'); if (ids.indexOf(id) < 0) ids.push(id); });
 
