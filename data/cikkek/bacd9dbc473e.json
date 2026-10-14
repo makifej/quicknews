@@ -1,0 +1,65 @@
+{
+  "id": "bacd9dbc473e",
+  "slug": "helyi-katasztrofavedelmi-tervet-keszit-a-tropusi-ciklonokbol-az",
+  "forras_id": "producthunt",
+  "forras_nev": "Product Hunt",
+  "url": "https://www.producthunt.com/products/aurora-lifeline",
+  "szerzo": "Tushar Agarwal",
+  "publikalva": "2026-10-13T17:35:59+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://ph-files.imgix.net/7b4517a3-991c-4134-9226-c7e092be4589.png?auto=format&fit=crop&frame=1&h=512&w=1024"
+  },
+  "cim_eredeti": "AURORA Lifeline",
+  "forrasok": [],
+  "szoveg_eredeti": "Know who a cyclone will cut off, before the roads close\n\n Discussion \n |\n Link\n\nWeboldal: https://aurora-lifeline.web.app/",
+  "modell": "gemini-3.5-flash",
+  "cim": "Helyi katasztrófavédelmi tervet készít a trópusi ciklonokból az AURORA Lifeline",
+  "lead": "Az nyílt forráskódú rendszer automatikusan elemzi az időjárási előrejelzéseket és megjósolja, mely utak válnak járhatatlanná.",
+  "osszefoglalo": "A [AURORA Lifeline](https://aurora-lifeline.web.app/) az hivatalos meteorológiai ciklonértesítőket alakítja át konkrét körzeti akciótervvé. A rendszer megmutatja, hogy mely egészségügyi központok, kórházak és falvak veszítik el a közúti összeköttetésüket, mekkora ennek a valószínűsége, mikor következik be, és mely erőforrásokat kell először biztonságba helyezni.\n\nA folyamat során a **Gemini** dolgozza fel a beérkező meteorológiai bulletin szövegét, miközben több mint 1000 WeatherNext és ECMWF vihar-szimuláció fut le a teljes úthálózaton. A kód automatikusan beilleszti az összes kiszámított adatot a jelentésekbe, amelyeket a hatósági tisztviselők hagynak jóvá.\n\nAz alkalmazás teljes mértékben nyílt forráskódú, és nyilvánosan közzéteszik a rendszer esetleges tévedéseit is a folyamatos fejlesztés érdekében.",
+  "miert_szamit": "A nyílt forráskódú megoldás megmutatja, hogyan lehet az **AI-t kritikus infrastruktúrák védelmére és logisztikai tervezésre** használni valós idejű adatok automatikus feldolgozásával.",
+  "cimkek": [
+    "AURORA Lifeline",
+    "Gemini",
+    "katasztrófavédelem",
+    "időjárás"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bemutato",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "AURORA Lifeline",
+    "url": "https://aurora-lifeline.web.app/"
+  },
+  "linkelendo_nevek": [
+    "AURORA Lifeline"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-14T07:54:20+00:00",
+  "megjelent": "2026-10-14T07:54:20+00:00",
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-14T09:56:50+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": [
+      {
+        "lepes": "link_be",
+        "kif": "dolgozza fel a beérkező meteorológiai bulletin szövegét",
+        "url": "https://github.com/TusharTechs/aurora-lifeline",
+        "mit": "Igazolja, hogy a Gemini modellt használják a meteorológiai bülletének szöveges feldolgozására és az adatok kinyerésére."
+      },
+      {
+        "lepes": "elvetve",
+        "kif": "több mint 1000 WeatherNext és ECMWF vihar-szimuláció",
+        "url": "https://github.com/TusharTechs/aurora-lifeline",
+        "ok": "A megadott szövegrészlet nem említi az 1000 feletti WeatherNext és ECMWF vihar-szimuláció futtatását."
+      }
+    ],
+    "osszefoglalo": "A [AURORA Lifeline](https://aurora-lifeline.web.app/) az hivatalos meteorológiai ciklonértesítőket alakítja át konkrét körzeti akciótervvé. A rendszer megmutatja, hogy mely egészségügyi központok, kórházak és falvak veszítik el a közúti összeköttetésüket, mekkora ennek a valószínűsége, mikor következik be, és mely erőforrásokat kell először biztonságba helyezni.\n\nA folyamat során a **Gemini** [dolgozza fel a beérkező meteorológiai bulletin szövegét](https://github.com/TusharTechs/aurora-lifeline), miközben több mint 1000 WeatherNext és ECMWF vihar-szimuláció fut le a teljes úthálózaton. A kód automatikusan beilleszti az összes kiszámított adatot a jelentésekbe, amelyeket a hatósági tisztviselők hagynak jóvá.\n\nAz alkalmazás teljes mértékben nyílt forráskódú, és nyilvánosan közzéteszik a rendszer esetleges tévedéseit is a folyamatos fejlesztés érdekében."
+  }
+}

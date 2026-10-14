@@ -1,0 +1,52 @@
+{
+  "id": "f54150d5f8c0",
+  "slug": "elindult-a-writerzroom-enterprise-tartalomgyarto-ai-platform",
+  "forras_id": "producthunt",
+  "forras_nev": "Product Hunt",
+  "url": "https://www.producthunt.com/products/writerzroom",
+  "szerzo": "Jason Robinson",
+  "publikalva": "2026-10-14T04:35:22+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://ph-files.imgix.net/f3fa8d5c-6ee2-41bd-b7d3-656710b0f764.png?auto=format&fit=crop&frame=1&h=512&w=1024"
+  },
+  "cim_eredeti": "WriterzRoom",
+  "forrasok": [],
+  "szoveg_eredeti": "100% serverless on Google Cloud: 9 Cloud Run services (4 product, 5 internal ops agents), zero VMs to manage.Hey Product Hunt, I'm Jason, maker of WriterzRoom.Generic AI writers produce text. Regulated teams need drafts a reviewer can sign off on. WriterzRoom runs each request through an 8-agent LangGraph pipeline, constrained by template schema and vertical controls, and held at a mandatory Quality Gate until it passes. Professional and Enterprise plans add a claim-by-claim evidence record.\n\nOur checks are deterministic rules, and a suite of documents with planted defects runs on every pull request: 23 of 23 seeded defects caught, 0 of 13 clean documents blocked. You can check a draft free, no credits needed.\n\nThe video above is an animated walkthrough with illustrative data.How we use Cloud Run:\n\nwriterzroom-backend-api: FastAPI + LangGraph orchestration. Scales with generation and publishing load, and Cloud Run's request timeouts handle long-running agent chains.\n\nwriterzroom-frontend-web: Next.js 15 (1 vCPU / 1 GiB, 1→5 instances, health-checked startup probe), serving writerzroom.com.\n\nwriterzroom-mcp and writerzroom-corpus-mcp: two MCP servers that expose platform tools and the content corpus to the agents.\n\nInternal ops, same stack: five agents (analytics, competitive intel, prospect research, outreach, content pipeline) that I use to run WriterzRoom itself, deployed the same way as the product.\n\nWiring: Cloud Build CI/CD (a regression suite gates every deploy) → Artifact Registry images → Cloud Run. Secret Manager for every credential, a Serverless VPC connector to private Cloud SQL Postgres, per-service IAM service accounts, and Cloud Scheduler for auto-publishing.\n\nWhy Cloud Run: elastic under load, one deploy path for every service, and no servers to patch.\n\nHappy to dig into any of it: how we run LangGraph chains on Cloud Run, the validation layer, or how the services stay wired together. What would you want to see next?\n\nWeboldal: https://www.writerzroom.com",
+  "modell": "gemini-3.5-flash",
+  "cim": "Elindult a WriterzRoom enterprise tartalomgyártó AI-platform",
+  "lead": "A Jason Robinson által fejlesztett WriterzRoom egy 8 ügynökből álló rendszerrel segíti a szigorúan szabályozott vállalati tartalomkészítést.",
+  "osszefoglalo": "Jason Robinson elindította a [WriterzRoom](https://www.writerzroom.com) platformot, amelyet kifejezetten szabályozott vállalati környezetben dolgozó csapatoknak terveztek. A rendszer nem csupán szöveget generál, hanem egy **8 ügynökből álló [LangGraph](https://www.langchain.com/langgraph) folyamaton** küldi át a tervezeteket, amelyeket sablonok, iparági korlátok és egy kötelező minőségellenőrzési kapu szűr meg a véglegesítés előtt.\n\nA Professional és Enterprise csomagokban az eszköz kijelentésről kijelentésre haladva **bizonyítéki nyilvántartást** készít a tények ellenőrzéséhez. A tesztek során a beépített szabályrendszer 23-ból 23 előre elhelyezett hibát észlelt, miközben egyetlen hibátlan dokumentumot sem blokkolt tévesen.\n\nA teljes architektúra szervermentesen fut a [Google Cloud Run](https://cloud.google.com/run) infrastruktúráján. A szoftver alapvető működése ingyenesen, kreditek felhasználása nélkül is kipróbálható egy vázlat ellenőrzésével a weboldalon.",
+  "miert_szamit": "A szabályozott iparágakban dolgozó vállalati marketingesek és szövegírók **automatizált minőségellenőrzéssel és tényellenőrzött vázlatokkal** gyorsíthatják fel a jóváhagyási folyamatokat.",
+  "cimkek": [
+    "WriterzRoom",
+    "tartalomgyártás",
+    "AI-ügynök",
+    "LangGraph"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bemutato",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "WriterzRoom",
+    "url": "https://www.writerzroom.com"
+  },
+  "linkelendo_nevek": [
+    "WriterzRoom",
+    "LangGraph"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-14T07:55:30+00:00",
+  "megjelent": "2026-10-14T07:55:30+00:00",
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-14T09:58:22+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": []
+  }
+}
