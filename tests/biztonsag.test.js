@@ -31,9 +31,6 @@ function kvParancs(c) {
     case "HSET": { const m = h(); for (let i = 0; i < a.length; i += 2) m.set(a[i], a[i + 1]); return 1; }
     case "HSETNX": { const m = h(); if (m.has(a[0])) return 0; m.set(a[0], a[1]); return 1; }
     case "HDEL": return (tar.get(k) || new Map()).delete(a[0]) ? 1 : 0;
-    case "HEXISTS": return (tar.get(k) || new Map()).has(a[0]) ? 1 : 0;
-    case "HLEN": return (tar.get(k) || new Map()).size;
-    case "HGETALL": { const m = tar.get(k) || new Map(); return [...m.entries()].flat(); }
     case "HINCRBY": { const m = h(); const v = Number(m.get(a[0]) || 0) + Number(a[1]); m.set(a[0], String(v)); return v; }
     case "SADD": { if (!tar.has(k)) tar.set(k, new Set()); const s = tar.get(k); const u = !s.has(a[0]); s.add(a[0]); return u ? 1 : 0; }
     case "SREM": { const s = tar.get(k); return s && s.delete(a[0]) ? 1 : 0; }
@@ -65,7 +62,7 @@ function keres(modul, { method = "POST", url = "/", body, headers = {} } = {}) {
   return new Promise((ok) => {
     const fej = {};
     const res = { statusCode: 200, setHeader: (k, v) => { fej[k.toLowerCase()] = v; }, getHeader: (k) => fej[k.toLowerCase()],
-      end: (b) => { let adat = null; try { adat = b ? JSON.parse(b) : null; } catch { adat = { html: String(b) }; } ok({ kod: res.statusCode, fej, adat }); } };
+      end: (b) => ok({ kod: res.statusCode, fej, adat: b ? JSON.parse(b) : null }) };
     h(req, res);
   });
 }
@@ -201,57 +198,4 @@ test("SEC-001: a feed.json mezői escape-elve, a kép és a slug csak biztonság
   assert.strictEqual(qnKep("https://kep.pelda.hu/a.jpg"), "https://kep.pelda.hu/a.jpg");
   assert.ok(!qnSlug('x" onclick="a'));
   assert.ok(qnSlug("dania-humanoid-robotokat-tesztel"));
-});
-
-
-// ---- SEC-032: kétlépcsős hírlevél-feliratkozás és -leiratkozás (Heni 2026-10-14) ----
-function hlToken(email, cel) {
-  return crypto.createHmac("sha256", process.env.HIRLEVEL_TITOK || process.env.ADMIN_TITOK).update(cel + "|" + email).digest("hex").slice(0, 32);
-}
-test("SEC-032: a feliratkozás csak várólistára tesz, élesbe csak a megerősítő link POST-ja visz", async () => {
-  ujKv(); process.env.ADMIN_TITOK = "x".repeat(32);
-  const cim = "olvaso@quicknews.hu";
-  const r = await keres("hirlevel.js", { url: "/api/hirlevel", body: { email: cim, forras: "popup" } });
-  assert.strictEqual(r.kod, 200);
-  assert.ok(!(tar.get("qn:hirlevel") || new Map()).has(cim), "megerősítés nélkül nem kerülhet a listára");
-  assert.ok((tar.get("qn:hirlevel:var") || new Map()).has(cim), "a várólistán kell lennie");
-  // hamis tokennel nem iratkozhat fel
-  const rossz = await keres("hirlevel.js", { url: `/api/hirlevel?f=${encodeURIComponent(cim)}&t=${"0".repeat(32)}` });
-  assert.strictEqual(rossz.kod, 400);
-  // a GET (a levelezők előnézete) nem módosít
-  const t = hlToken(cim, "feliratkozas");
-  await keres("hirlevel.js", { method: "GET", url: `/api/hirlevel?f=${encodeURIComponent(cim)}&t=${t}` });
-  assert.ok(!(tar.get("qn:hirlevel") || new Map()).has(cim), "a GET nem iratkoztathat fel");
-  // a POST véglegesít
-  const ok = await keres("hirlevel.js", { url: `/api/hirlevel?f=${encodeURIComponent(cim)}&t=${t}`, headers: { "content-type": "application/x-www-form-urlencoded" } });
-  assert.strictEqual(ok.kod, 200);
-  assert.ok(tar.get("qn:hirlevel").has(cim), "a megerősítés után a listán van");
-  assert.ok(!tar.get("qn:hirlevel:var").has(cim), "a várólistáról kikerül");
-});
-
-test("SEC-032: a leiratkozó token nem használható feliratkozásra (külön célú tokenek)", async () => {
-  ujKv(); process.env.ADMIN_TITOK = "x".repeat(32);
-  const cim = "masik@quicknews.hu";
-  await keres("hirlevel.js", { url: "/api/hirlevel", body: { email: cim } });
-  const r = await keres("hirlevel.js", { url: `/api/hirlevel?f=${encodeURIComponent(cim)}&t=${hlToken(cim, "leiratkozas")}` });
-  assert.strictEqual(r.kod, 400);
-  assert.ok(!(tar.get("qn:hirlevel") || new Map()).has(cim));
-});
-
-test("SEC-032: a kézi leiratkozás nem töröl azonnal, csak kérést rögzít, és a válasz nem árulja el a tagságot", async () => {
-  ujKv(); process.env.ADMIN_TITOK = "x".repeat(32);
-  const tag = "tag@quicknews.hu", idegen = "idegen@quicknews.hu";
-  tar.set("qn:hirlevel", new Map([[tag, JSON.stringify({ ido: new Date().toISOString() })]]));
-  const a = await keres("hirlevel.js", { url: "/api/hirlevel", body: { email: tag, muvelet: "leiratkozas" } });
-  const b = await keres("hirlevel.js", { url: "/api/hirlevel", body: { email: idegen, muvelet: "leiratkozas" } });
-  assert.deepStrictEqual(a.adat, b.adat, "tagnál és nem tagnál ugyanaz a válasz");
-  assert.ok(tar.get("qn:hirlevel").has(tag), "a tag a megerősítésig a listán marad");
-  assert.ok(tar.get("qn:hirlevel:leir_kert").has(tag), "a kérés rögzítve");
-  assert.ok(!tar.get("qn:hirlevel:leir_kert").has(idegen), "nem tagra nem megy kérés");
-  // a levél leiratkozó linkje GET-re csak gombot mutat, POST-ra töröl
-  const t = hlToken(tag, "leiratkozas");
-  await keres("hirlevel.js", { method: "GET", url: `/api/hirlevel?e=${encodeURIComponent(tag)}&t=${t}` });
-  assert.ok(tar.get("qn:hirlevel").has(tag), "a GET nem iratkoztat le");
-  await keres("hirlevel.js", { url: `/api/hirlevel?e=${encodeURIComponent(tag)}&t=${t}`, headers: { "content-type": "application/x-www-form-urlencoded" } });
-  assert.ok(!tar.get("qn:hirlevel").has(tag), "a POST leiratkoztat");
 });

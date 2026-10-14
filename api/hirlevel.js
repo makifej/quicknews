@@ -1,14 +1,9 @@
 // A napi hírlevél feliratkozása és leiratkozása (Heni 2026-10-13). A testestudat.hu bevált végpontjának mintája.
 //
-// Kétlépcsős (double opt-in) folyamat, Heni 2026-10-14: a feliratkozás és a kézi leiratkozás is csak a címre küldött
-// megerősítő levélben lévő gombbal válik élessé. A levelet a Mac küldi (build/hirlevel_kuld.py --megerositok, a
-// 3 percenként futó kitetel_auto körben).
-// POST /api/hirlevel {email}                         -> feliratkozási kérés (qn:hirlevel:var), megerősítő levél megy
-// GET  /api/hirlevel?f=<cím>&t=<token>               -> a megerősítő levél linkje: „Feliratkozom” gomb (GET nem módosít)
-// POST /api/hirlevel?f=<cím>&t=<token>               -> a feliratkozás véglegesítése
-// POST /api/hirlevel {email, muvelet:"leiratkozas"}  -> leiratkozási kérés a /leiratkozas oldalról, megerősítő levél megy
-// GET  /api/hirlevel?e=<cím>&t=<token>               -> leiratkozó link (levél alja, megerősítő levél): „Leiratkozom” gomb
-// POST /api/hirlevel?e=<cím>&t=<token>               -> a leiratkozás (a gomb, és a levelezők List-Unsubscribe-Post hívása)
+// POST /api/hirlevel {email}                         -> feliratkozás (a felugró ablakból)
+// POST /api/hirlevel {email, muvelet:"leiratkozas"}  -> leiratkozás a /leiratkozas oldalról
+// GET  /api/hirlevel?e=<cím>&t=<token>               -> egy kattintásos leiratkozás a levél aljáról
+// POST /api/hirlevel?e=<cím>&t=<token>               -> ugyanez a levelezők List-Unsubscribe-Post hívásához
 //
 // Adatvédelem: a válasz feliratkozásnál és leiratkozásnál is UGYANAZ, attól függetlenül, hogy a cím szerepelt-e
 // már a listán, így a végponttal nem lehet kitalálni, ki van feliratkozva. A token a cím HMAC-je az ADMIN_TITOK-kal,
@@ -17,9 +12,6 @@ const crypto = require("crypto");
 const dns = require("dns").promises;
 
 const KULCS = "qn:hirlevel";
-const VAR = KULCS + ":var";        // megerősítésre váró feliratkozók: cím -> {ido, forras, kuldve}
-const LEIR = KULCS + ":leir_kert"; // megerősítésre váró leiratkozási kérések: cím -> {ido, kuldve}
-const VAR_NAP = 3;                 // ennyi napig érvényes a megerősítő link
 const KORLAT_ABLAK = 3600; // másodperc
 const KORLAT_DB = 5;       // ennyi beküldés / IP / ablak
 
@@ -43,21 +35,14 @@ function tisztit(nyers) {
   return MINTA.test(e) ? e : "";
 }
 
-// a tokenek kulcsa a HIRLEVEL_TITOK; átmenetileg az ADMIN_TITOK-kal készült (már kiküldött) linkek is érvényesek
-function token(email, cel = "leiratkozas", kulcs = process.env.HIRLEVEL_TITOK || process.env.ADMIN_TITOK || "") {
-  return crypto.createHmac("sha256", kulcs).update(cel + "|" + email).digest("hex").slice(0, 32);
+function token(email) {
+  return crypto.createHmac("sha256", process.env.ADMIN_TITOK || "").update("leiratkozas|" + email).digest("hex").slice(0, 32);
 }
-function tokenJo(email, t, cel = "leiratkozas") {
-  if (typeof t !== "string" || t.length !== 32) return false;
-  return [process.env.HIRLEVEL_TITOK, process.env.ADMIN_TITOK].filter(Boolean).some((k) => {
-    const a = Buffer.from(token(email, cel, k)), b = Buffer.from(t);
-    return a.length === b.length && crypto.timingSafeEqual(a, b);
-  });
+function tokenJo(email, t) {
+  if (!process.env.ADMIN_TITOK || typeof t !== "string" || t.length !== 32) return false;
+  const a = Buffer.from(token(email)), b = Buffer.from(t);
+  return a.length === b.length && crypto.timingSafeEqual(a, b);
 }
-function gombosOldal(res, cim, szoveg, akcio, gomb) {
-  return oldal(res, 200, cim, `${szoveg}</p><form method="post" action="${akcio}"><button type="submit" style="font:inherit;font-weight:700;padding:12px 20px;border:0;border-radius:10px;background:#ffb224;color:#181818;cursor:pointer">${gomb}</button></form><p>`);
-}
-const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 const ELDOBHATO = new Set([
   "mailinator.com", "guerrillamail.com", "guerrillamail.net", "sharklasers.com", "10minutemail.com", "10minutemail.net",
@@ -123,35 +108,13 @@ module.exports = async (req, res) => {
       // SEC-024: a GET csak megerősítő gombot mutat (a levelezők előnézete automatikusan megnyitja a linkeket),
       // a tényleges leiratkozás POST (a gombról, vagy a levelezők List-Unsubscribe-Post hívásából)
       if (req.method !== "POST") {
-        const akcio = esc(`/api/hirlevel?e=${encodeURIComponent(email)}&t=${encodeURIComponent(url.searchParams.get("t") || "")}`);
-        return gombosOldal(res, "Leiratkozás", `Biztosan leiratkozol a napi hírlevélről (${esc(email)})?`, akcio, "Leiratkozom");
+        const akcio = `/api/hirlevel?e=${encodeURIComponent(email)}&t=${encodeURIComponent(url.searchParams.get("t") || "")}`;
+        return oldal(res, 200, "Leiratkozás", `Biztosan leiratkozol a napi hírlevélről (${email.replace(/&/g, "&amp;").replace(/</g, "&lt;")})?</p>` +
+          `<form method="post" action="${akcio}"><button type="submit" style="font:inherit;font-weight:700;padding:12px 20px;border:0;border-radius:10px;background:#ffb224;color:#181818;cursor:pointer">Leiratkozom</button></form><p>`);
       }
       await kv("HDEL", KULCS, email);
-      await kv("HDEL", LEIR, email);
       if (/json/i.test(req.headers.accept || "") || /json/i.test(req.headers["content-type"] || "")) return json(res, 200, { rendben: true });
       return oldal(res, 200, "Leiratkoztál", "Több emlékeztetőt nem küldünk erre a címre. Ha meggondolod magad, a hírek oldalán bármikor újra feliratkozhatsz.");
-    }
-    // a feliratkozás megerősítése a levélből: GET csak gombot mutat, a POST véglegesít
-    if (url.searchParams.has("f")) {
-      const email = tisztit(url.searchParams.get("f") || "");
-      if (!email || !tokenJo(email, url.searchParams.get("t") || "", "feliratkozas")) {
-        return oldal(res, 400, "Ez a link nem érvényes", 'A feliratkozáshoz a <a href="/">hírek oldalán</a> add meg újra a címed.');
-      }
-      const v = await kv("HGET", VAR, email);
-      let rek = null;
-      try { rek = v ? JSON.parse(v) : null; } catch { rek = null; }
-      const bent = await kv("HEXISTS", KULCS, email);
-      if (!bent && (!rek || Date.now() - Date.parse(rek.ido || 0) > VAR_NAP * 864e5)) {
-        return oldal(res, 410, "A link lejárt", 'A megerősítő link 3 napig érvényes. A <a href="/">hírek oldalán</a> add meg újra a címed, és küldünk újat.');
-      }
-      if (req.method !== "POST") {
-        if (bent) return oldal(res, 200, "Már fel vagy iratkozva", "Erre a címre már megy a napi hírlevél, nincs teendőd.");
-        const akcio = esc(`/api/hirlevel?f=${encodeURIComponent(email)}&t=${encodeURIComponent(url.searchParams.get("t") || "")}`);
-        return gombosOldal(res, "Feliratkozás megerősítése", `Megerősíted, hogy a napi AI-hírlevelet a ${esc(email)} címre kéred?`, akcio, "Feliratkozom");
-      }
-      await kv("HSETNX", KULCS, email, JSON.stringify({ ido: new Date().toISOString(), forras: String((rek && rek.forras) || "popup").slice(0, 20), megerositve: new Date().toISOString() }));
-      await kv("HDEL", VAR, email);
-      return oldal(res, 200, "Kész, feliratkoztál", "Köszönjük! A következő reggel 8-kor érkezik az első leveled.");
     }
     if (req.method !== "POST") { res.setHeader("Allow", "POST"); return json(res, 405, { hiba: "nem támogatott metódus" }); }
     if (!/^application\/json/i.test(req.headers["content-type"] || "")) return json(res, 415, { hiba: "application/json kell" });
@@ -167,24 +130,15 @@ module.exports = async (req, res) => {
     if (db > KORLAT_DB) return json(res, 429, { rendben: false, uzenet: "Túl sok próbálkozás. Próbáld később." });
 
     if (b.muvelet === "leiratkozas") {
-      // kétlépcsős: csak a feliratkozott címre megy megerősítő levél; a válasz mindig ugyanaz (nem árulja el, ki van a listán)
-      if (await kv("HEXISTS", KULCS, email)) await kv("HSETNX", LEIR, email, JSON.stringify({ ido: new Date().toISOString() }));
-      return json(res, 200, { rendben: true, uzenet: "Ha ez a cím fel van iratkozva, pár percen belül kapsz rá egy levelet. A benne lévő gombbal iratkozhatsz le." });
+      await kv("HDEL", KULCS, email);
+      return json(res, 200, { rendben: true, uzenet: "Leiratkoztál. Több emlékeztetőt nem küldünk erre a címre." });
     }
     const allapot = await domainRendben(email.split("@")[1]);
     if (allapot === "eldobhato") return json(res, 400, { rendben: false, uzenet: "Egyszer használatos címre nem tudunk írni. Adj meg egy rendes e-mail-címet." });
     if (allapot === "nem") return json(res, 400, { rendben: false, uzenet: "Erre a címre nem lehet levelet küldeni. Nézd meg, nem gépelted-e el." });
-    // kétlépcsős: a cím előbb a várólistára kerül, a megerősítő levelet a Mac küldi; ha már bent van, nem megy levél,
-    // de a válasz ugyanaz (nem árulja el, ki van a listán). A várólistán lévő cím egy órán belül nem kap új levelet.
-    if (!(await kv("HEXISTS", KULCS, email))) {
-      const regi = await kv("HGET", VAR, email);
-      let r = null;
-      try { r = regi ? JSON.parse(regi) : null; } catch { r = null; }
-      if (!r || Date.now() - Date.parse(r.ido || 0) > 3600e3) {
-        await kv("HSET", VAR, email, JSON.stringify({ ido: new Date().toISOString(), forras: String(b.forras || "popup").slice(0, 20) }));
-      }
-    }
-    return json(res, 200, { rendben: true, uzenet: "Majdnem kész! Pár percen belül küldünk egy levelet, a benne lévő gombbal erősítsd meg a feliratkozást." });
+    // ha a cím már bent van, a HSETNX nem írja felül, az eredeti időpont marad
+    await kv("HSETNX", KULCS, email, JSON.stringify({ ido: new Date().toISOString(), forras: String(b.forras || "popup").slice(0, 20) }));
+    return json(res, 200, { rendben: true, uzenet: "Kész, feliratkoztál. A következő reggel 8-kor érkezik az első leveled." });
   } catch (e) {
     return json(res, 502, { hiba: "az adattár nem válaszolt" });
   }
