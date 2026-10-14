@@ -462,6 +462,11 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .fejlec nav.rovatsor a { color: var(--szoveg); }
 .fejlec nav.rovatsor a:hover, .fejlec nav.rovatsor a[aria-current="page"] { color: var(--kiemelo-szin); }
 .fejlec nav.rovatsor { display: block; }
+/* az aktuális menüpont háttérrel kiemelve, a menüpont saját színével (Heni 2026-10-14) */
+.fejlec nav.rovatsor a[aria-current="page"] { background: var(--kiemelo); color: var(--kiemelo-szoveg); border-radius: 8px 8px 0 0; padding-left: 10px; }
+.fejlec nav.rovatsor a.piros[aria-current="page"] { background: var(--piros); color: #fff; }
+.fejlec nav.rovatsor a.lila[aria-current="page"] { background: var(--szavazas); color: var(--bg); }
+@media (max-width: 760px) { .fejlec nav.rovatsor a[aria-current="page"] { padding-left: 8px; } }
 .rovatsor .kitolto { flex: 1 1 auto; border-bottom: 4px solid var(--kiemelo); min-width: 24px; }
 .mobil-szlogen { display: none; }
 
@@ -1107,9 +1112,14 @@ html.hl-nyitva { overflow: hidden; }
 .pb-er-szavaz { width: 100%; margin-top: 4px; padding: 12px 16px; border: 2px solid var(--kiemelo); border-radius: 12px; background: transparent; color: var(--kiemelo); font: inherit; font-size: 16px; font-weight: 800; cursor: pointer; }
 .pb-er-szavaz:hover { background: var(--kiemelo); color: var(--kiemelo-szoveg); }
 .pb { position: relative; background: var(--bg-2); border: 1px solid var(--vonal); border-radius: var(--sugar); padding: 24px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
-.pb-fej { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.pb-fej { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 .pb-cimke { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--piros); }
 .pb-cimke::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--piros); }
+/* „A hét párbaja”: háromszor akkora, piros háttérrel (Heni 2026-10-14) */
+.pb .pb-cimke-het { gap: 12px; padding: 10px 20px 10px 16px; border-radius: 999px; background: var(--piros); color: #fff; font-size: 36px; line-height: 40px; letter-spacing: .04em; white-space: nowrap; }
+.pb-sav .pb-cimke-het { font-size: clamp(26px, 2.6vw, 36px); }
+.pb .pb-cimke-het::before { width: 16px; height: 16px; background: #fff; }
+@media (max-width: 640px) { .pb .pb-cimke-het { font-size: 26px; line-height: 30px; padding: 8px 16px 8px 14px; gap: 10px; } .pb .pb-cimke-het::before { width: 12px; height: 12px; } }
 .pb[data-allapot="hamarosan"] .pb-cimke, .pb[data-allapot="lezart"] .pb-cimke { color: var(--szoveg-2); }
 .pb[data-allapot="hamarosan"] .pb-cimke::before, .pb[data-allapot="lezart"] .pb-cimke::before { background: var(--szoveg-3); }
 .pb-zar { color: var(--szoveg-3); font-size: 13px; line-height: 18px; font-variant-numeric: tabular-nums; }
