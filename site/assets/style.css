@@ -12,7 +12,7 @@
   --piros: #ff4d4f;
   --piros-cimke: #d92d20;
   --piros-izzas: rgba(255, 77, 79, 0.55);
-  --szavazas: #b0f876;
+  --szavazas: #b38cff;
   --keret: #3a3a3a;
   --keret-eros: #4a4a4a;
   --bg-fokusz: #2d2d2d;
@@ -37,7 +37,7 @@
   --piros: #e0281b;
   --piros-cimke: #c4261a;
   --piros-izzas: rgba(224, 40, 27, 0.4);
-  --szavazas: #b0f876;
+  --szavazas: #7a4fd6;
   --keret: #d7d7d3;
   --keret-eros: #bdbdb8;
   --bg-fokusz: #ffffff;
@@ -454,8 +454,8 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .rovatsor a { flex: 0 0 auto; display: block; padding: 10px 10px 8px; font-size: 16px; line-height: 22px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; color: var(--szoveg); border-bottom: 4px solid var(--kiemelo); transition: color 400ms var(--gorbe); }
 .rovatsor a:first-child { padding-left: 0; }
 .rovatsor a.piros, .rovatsor a.piros:hover, .rovatsor a.piros[aria-current="page"] { color: var(--piros); border-bottom-color: var(--piros); }
-/* Szavazás menüpont: saját szín, Heni választása: #b0f876 (2026-10-14) */
-.rovatsor a.zold, .rovatsor a.zold:hover, .rovatsor a.zold[aria-current="page"] { color: var(--szavazas); border-bottom-color: var(--szavazas); }
+/* Szavazás menüpont: saját, lila szín (Heni 2026-10-14) */
+.rovatsor a.lila, .rovatsor a.lila:hover, .rovatsor a.lila[aria-current="page"] { color: var(--szavazas); border-bottom-color: var(--szavazas); }
 .rovatsor a:hover { color: var(--kiemelo-szin); }
 .rovatsor a[aria-current="page"] { color: var(--kiemelo-szin); }
 .fejlec nav.rovatsor a, .fejlec nav.rovatsor a:hover, .fejlec nav.rovatsor a[aria-current="page"] { border-radius: 0; background: none; }
@@ -501,6 +501,9 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .cimsor-lista strong { display: block; font-size: 18px; line-height: 25px; font-weight: 800; letter-spacing: -0.01em; transition: color 400ms var(--gorbe); }
 .cimsor-lista a:hover strong { color: var(--kiemelo-szin); }
 .cimsor-lista span { display: block; margin-top: 2px; font-size: 13px; line-height: 18px; color: var(--szoveg-2); }
+/* a mentés jele a meta-sor jobb végén, egy sorban (2026-10-14: blokkelemként a szövegbe csúszott) */
+.cimsor-lista a > span:last-of-type { display: flex; align-items: center; gap: 6px; }
+.cimsor-lista .mentes-jel { display: inline-grid; margin: -6px -6px -6px auto; }
 
 /* témasáv */
 .temak-sav { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 18px; padding: 20px 0; border-bottom: 1px solid var(--vonal); }
