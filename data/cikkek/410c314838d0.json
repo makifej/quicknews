@@ -1,0 +1,57 @@
+{
+  "id": "410c314838d0",
+  "slug": "a-google-kiadta-a-data-agent-kitet-a-fejlesztoi-ugynokokhoz",
+  "forras_id": "dailydev",
+  "forras_nev": "Google Cloud (daily.dev)",
+  "url": "https://cloud.google.com/blog/products/data-analytics/bringing-you-the-data-agent-kit",
+  "szerzo": null,
+  "publikalva": "2026-10-12T00:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/e38e84d8a0ca3d6bb7269c2703332c95?_a=AQAEuop"
+  },
+  "cim_eredeti": "Bringing you the Data Agent Kit",
+  "forrasok": [],
+  "szoveg_eredeti": "Join our product leaders to architect your agentic future\n\nImagine your compliance team notices that payments are taking longer than expected to clear. They suspect fraud, and you’re the data scientist helping figure out which transactions to investigate first. Assembling that shortlist requires ingesting and cleaning raw transaction logs, training a model on past fraud, scoring new records, and scheduling the pipeline to run daily. Here’s how you can build that workflow end to end with an agent, using the Data Agent Kit inside the Antigravity IDE.\n\nData Agent Kit helps you work with Google Cloud data through a plugin for coding agents or an extension for Visual Studio Code-based IDEs. It brings two significant additions to the workflow:\n\nHelp for your agent: MCP tools connect your agent to data services. Skills are Markdown files that give it instructions and best practices for working with your data stack\n\nTools in your IDE: work with Google’s Agentic Data Cloud, from querying databases to deploying an Airflow pipeline, without leaving your editor\n\nLet’s start with the raw transaction logs in Google Cloud Storage. You can ask the agent to create a notebook that loads them into BigQuery using Spark:\n\nThe agent generates a Jupyter notebook that loads the JSON logs into a BigQuery table named raw_transactions. You can open the notebook, review the code, and run it using a preconfigured Spark Serverless runtime from the IDE.\n\nAfter the notebook runs, you can open the raw_transactions table with the Data Agent Kit. The extension allows you to browse the table and inspect its metadata right from the IDE.\n\nThe records are now in BigQuery, but they aren’t ready for model training yet. First, we’ll handle duplicate and incomplete records, then join the remaining records with info about who sent and received each payment.\n\nLet’s put the cleanup logic into a dbt project so we can run it on each new batch of data. We’ll also test that each transaction appears only once. Prompt the agent:\n\nThe agent generates a dbt project with SQL models for cleaning and enriching the data. Take a look at the generated code to check how it handles duplicates and joins reference tables. Then run dbt build in the terminal. This builds the staging and enriched tables in BigQuery, along with a separate table for records with missing transaction IDs. dbt also runs the uniqueness test.\n\nValidating dbt models in the integrated terminal\n\nWe also keep the is_fraud column, which indicates whether a past transaction was fraudulent. We’ll train the model on records with known labels and use it to score new transactions, where we’re unsure yet whether fraud occurred.\n\nWith the data prepared, let’s ask the agent to create a training notebook using a Random Forest classifier running on Spark Serverless.\n\nReview and run the notebook, then check its evaluation output to see how well the model separates fraudulent transactions from legitimate ones. You can also use the Data Agent Kit extension to verify that the trained model artifacts were saved to Google Cloud Storage.\n\nVerifying the trained model artifacts in Google Cloud Storage\n\nNow we can use the saved model to score transactions that don’t have an is_fraud value yet:\n\nIn this example, the inference notebook scores the unlabeled transactions in BigQuery and sends those with an estimated fraud probability of 50% or higher to the Spanner review queue. The flagged records help the team decide where to investigate, but they still need to determine whether fraud occurred.\n\nLook at how the inference notebook filters and writes flagged records, then run it. Once it finishes, query the Spanner table in the IDE to inspect the results.\n\nQuerying flagged transactions in the Spanner table\n\nThis table is the list we set out to build. The compliance team can now start reviewing transactions, and we have a workflow that gets records from raw logs into the queue.\n\nSo far, we have been kicking off each step ourselves. We can now connect them so the workflow runs automatically each day.\n\nEach day we will load the latest logs, apply the dbt transformations, and score unlabeled transactions using the saved model. We’ll use the Managed Service for Apache Airflow to run these steps in order. Ask the agent:\n\nThe agent generates a YAML pipeline definition and deployment configuration. The pipeline definition sets the schedule and dependencies between steps. Meanwhile, the deployment configuration specifies the Airflow environment where it will run.\n\nData Agent Kit then turns the definition into an Airflow DAG, which you can explore as an interactive graph in the IDE. Open the pipeline under “Orchestration Pipelines” and click a task to inspect it. For notebook tasks, you can follow the link straight back to the code.\n\nWith the Airflow environment configured, click “Run pipeline” in the canvas. Data Agent Kit packages the notebooks and dbt project, deploys the DAG, and triggers a run. Open the pipeline’s execution history to follow its progress. You can also select individual tasks to inspect their status, duration, and logs.\n\nKicking off an Airflow DAG and inspecting the logs\n\nAirflow will run the pipeline every day, taking new batches of data from raw logs to the review queue. The compliance team can now focus on flagged transactions, and you’ve automated the work of getting those records to them!\n\nIf you are ready to try this for yourself, we have designed a codelab that walks you through the full setup so you can build and run this workflow. You can also read our documentation or check out the skills and tools in the open-source repository on GitHub.\n\nData Agent Kit is a set of MCP servers and agent skills that helps data developers run data workflows from their IDEs. It’s available both as an extension for VS Code forks (Antigravity IDE, Cursor) and as a plugin for other tools (Antigravity 2.0, Antigravity CLI, Claude Code, Codex).\n\nBy The Google Cloud Data Analytics, BI, and Database teams • 15-minute read",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Google kiadta a Data Agent Kitet a fejlesztői ügynökökhöz",
+  "lead": "A Google Data Agent Kit segítségével az AI-ügynökök közvetlenül a fejlesztői környezetből érik el a cég adatkezelési szolgáltatásait.",
+  "osszefoglalo": "A Google kiadta a [Data Agent Kit](https://cloud.google.com/products/data-agent-kit?utm_campaign=CDR_0xaea1deef_default_b563520811&utm_medium=external&utm_source=blog) eszközkészletet, amellyel a fejlesztők kódoló AI-ügynököket kapcsolhatnak a Google Cloud adatkezelési rendszereihez. Az új megoldás Visual Studio Code bővítményként és külön plugin formájában is elérhető olyan eszközökhöz, mint a Cursor vagy a Claude Code. A fejlesztők így közvetlenül az editorból kezelhetnek adatbázisokat, és folyamatokat is vezérelhetnek.\n\nA rendszer MCP-szervereket és úgynevezett **skills** fájlokat használ, amelyek útmutatást adnak az ügynöknek a BigQuery, a Cloud Storage vagy az Apache Airflow használatához. A felhasználók természetes nyelvű utasításokkal generáltathatnak Jupyter notebookokat, dbt projekteket vagy YAML alapú adatcsővezetékeket, amelyeket futtatás előtt ellenőrizhetnek a felületen.\n\nA nyílt forráskódú eszközhöz a Google **oktatóanyagot és dokumentációt** is közzétett, a kódtár pedig szabadon elérhető a GitHubon.",
+  "miert_szamit": "A fejlesztők és adatkezelők **természetes nyelvű utasításokkal automatizálhatják** az adatelőkészítési és modelltanítási folyamatokat anélkül, hogy elhagynák a kódmonitort.",
+  "cimkek": [
+    "Google Cloud",
+    "Data Agent Kit",
+    "VS Code",
+    "BigQuery"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Data Agent Kit"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-14T08:50:13+00:00",
+  "megjelent": "2026-10-14T08:50:13+00:00",
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-14T10:51:52+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": [
+      {
+        "lepes": "link_be",
+        "kif": "kódtár pedig szabadon elérhető a GitHubon",
+        "url": "https://github.com/GoogleCloudPlatform/data-agent-kit-plugin",
+        "mit": "A Data Agent Kit hivatalos, nyílt forráskódú GitHub-kódtára."
+      }
+    ],
+    "osszefoglalo": "A Google kiadta a [Data Agent Kit](https://cloud.google.com/products/data-agent-kit?utm_campaign=CDR_0xaea1deef_default_b563520811&utm_medium=external&utm_source=blog) eszközkészletet, amellyel a fejlesztők kódoló AI-ügynököket kapcsolhatnak a Google Cloud adatkezelési rendszereihez. Az új megoldás Visual Studio Code bővítményként és külön plugin formájában is elérhető olyan eszközökhöz, mint a Cursor vagy a Claude Code. A fejlesztők így közvetlenül az editorból kezelhetnek adatbázisokat, és folyamatokat is vezérelhetnek.\n\nA rendszer MCP-szervereket és úgynevezett **skills** fájlokat használ, amelyek útmutatást adnak az ügynöknek a BigQuery, a Cloud Storage vagy az Apache Airflow használatához. A felhasználók természetes nyelvű utasításokkal generáltathatnak Jupyter notebookokat, dbt projekteket vagy YAML alapú adatcsővezetékeket, amelyeket futtatás előtt ellenőrizhetnek a felületen.\n\nA nyílt forráskódú eszközhöz a Google **oktatóanyagot és dokumentációt** is közzétett, a [kódtár pedig szabadon elérhető a GitHubon](https://github.com/GoogleCloudPlatform/data-agent-kit-plugin)."
+  }
+}

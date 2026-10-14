@@ -1,0 +1,58 @@
+{
+  "id": "14c69997e337",
+  "slug": "net-durable-task-mikor-eri-meg-a-tartos-munkafolyamat-kezeles",
+  "forras_id": "dailydev",
+  "forras_nev": ".NET Blog (daily.dev)",
+  "url": "https://devblogs.microsoft.com/dotnet/durable-task-in-the-real-world",
+  "szerzo": null,
+  "publikalva": "2026-10-12T16:30:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/7afa16a8acd14d8765f80b76d7aed3b8?_a=AQAEuop"
+  },
+  "cim_eredeti": "Durable Task in the Real World: What Problems Does It Actually Solve?",
+  "forrasok": [],
+  "szoveg_eredeti": "Five practical examples of when durable execution makes sense, when it doesn’t, and what it means for AI agents.\n\nDurable Task raises an important question:\n\nThis all looks interesting, but what are the actual use cases?\n\nNot how Durable Task works. Not what happens during replay or how the scheduler persists state. But the more practical question: what problems does it actually solve?\n\nWhen should I reach for durable execution instead of regular C#, a queue, a database, or a background worker? And when would adding it just make things more complicated?\n\nThose are fair questions. Rather than walk through another hello world orchestration, I want to look at real situations where things get messy, especially when work takes a long time, depends on external systems, or gets interrupted halfway through. I also want to be clear about what Durable Task does not solve for you.\n\nImagine a background worker creating a customer’s Azure environment. It provisions a network, starts a database deployment, creates storage, and deploys an application. Then the worker disappears. Azure might still be working, but your local variables and continuations are gone. Restarting the method is easy. Figuring out which operations completed and which are safe to repeat is the hard part.\n\nOf course, you could build your own solution with a database, a queue, an outbox, scheduled jobs, and reconciliation logic. Sometimes that’s exactly what you should do. But once you find yourself building a whole system just to remember what happens next and how to resume it, durable orchestration starts to get interesting.\n\nI’ll walk through five examples: invoice approvals, Azure tenant provisioning, subscription payments, breaking news articles arriving through out of order webhooks, and an AI agent investigating an incident. We’ll use the standalone Durable Task .NET SDK v1.26.0 with Durable Task Scheduler (DTS), and I’ll show both the useful parts and the responsibilities that still belong to our application.\n\nA note on the examples: The snippets below are deliberately focused on orchestration boundaries. Application adapters, DTO definitions, registrations, and some helper implementations are omitted. They illustrate the design rather than constituting a compiled, tested sample. In particular, do not infer exactly-once external effects from durable history.\n\nEach example has the same boundary: Durable Task coordinates part of the process, while the application remains authoritative for the external result.\n\nConsider an invoice-processing service. It extracts a document, validates the result, and either posts the invoice, rejects it, or asks a human to review it. A batch may contain eight invoices, only one of which needs approval. The other seven shouldn’t wait for it.\n\nHere’s an ordinary C# implementation of the individual processing path:\n\nThere’s nothing inherently unreliable about this method. OpenInvoiceReviewAsync can persist a review ticket and notification outbox. But when someone approves the invoice tomorrow, another handler must load the right document generation, check the deadline, recover the approved payload, and continue. If the worker dies between extraction and validation, the application must decide whether to extract again or retrieve the saved result.\n\nThat continuation protocol is what Durable Task can express directly.\n\nA bounded batch can start independent child orchestrations:\n\nEight is an application admission limit, not a DTS quota. Larger batches can be paged and subject to tenant/global concurrency limits. A child that completes can post its invoice while another child remains suspended awaiting review. Task.WhenAll waits for every child; it does not undo a sibling’s accounting entry if another child fails.\n\nInside the invoice child, extraction and validation are activities. Once their successful results are recorded in orchestration history, a compatible replay follows the same code path using those recorded results instead of repeating the activities. This is re-execution of orchestrator code against history, not restoration of a suspended CLR stack.\n\nWhen validation requires review, the child can express the wait:\n\nThe timer is durable. No thread is occupied while the invoice waits, and a replacement worker can replay the child to the same pending wait. But the event is only a hint. An authenticated endpoint must atomically commit a single terminal review decision to the application’s review store before signaling the child. ResolveInvoiceReview reads or closes that authoritative ticket, including when the timer fires. If approval was committed just before the deadline but the hint arrived just after it, the stored decision, not notification timing, determines the outcome.\n\nOnly a valid automatic assessment or a committed human approval may proceed to the accounting activity. That activity uses a stable posting key and immutable request fingerprint. If the accounting system accepted the post but the activity’s acknowledgement vanished, the integration must reconcile the same posting identity. Durable history cannot promise exactly-once accounting.\n\nThis is the part I like. Instead of building separate handlers to remember extraction, validation, the review wait, and posting, I can describe the whole process in one place and let Durable Task remember where it got to. I still need to authorize reviewers, persist their decisions, and make accounting submissions safe to repeat. If my existing continuation handlers already do all of that cleanly, I might not need another runtime.\n\nNow consider onboarding a SaaS tenant. A TenantCreated event means the tenant record was accepted, not that its environment is ready. This design provisions a dedicated network, PostgreSQL server, storage with private access, and Container App; then it configures DNS, checks readiness, and activates the tenant.\n\nThe helpers above wrap Bicep/ARM operations and wait for terminal completion or readiness. They’re application abstractions, not Azure SDK methods. The parallel modules own disjoint resources and don’t compete over subnet updates.\n\nBefore adding DTS, ask an uncomfortable question: does ARM already solve this? For a single well-defined deployment, it may. ARM/Bicep already supports dependency ordering, parallel deployment, idempotent reapplication with stable identities, and server-side deployment state. A worker crash doesn’t erase an ARM deployment. Querying it and reapplying the same desired state may be sufficient.\n\nThe wider onboarding process is different. The application must acknowledge the tenant request, report progress, coordinate readiness with activation, survive external approval steps if any, and decide what to do with a partly provisioned environment. That’s where a business-level workflow can add value.\n\nFirst, the API authorizes and durably admits an immutable onboarding request, then returns 202 Accepted, a request ID, and a status URL. Accepted does not mean ready. The application records the tenant, environment, immutable specification, and ownership generation. Reusing the same idempotency key with the same specification returns the existing request; changing the specification is rejected.\n\nThe scheduler handoff is not magically atomic with the application’s database. Save the intent to start in an outbox alongside admission; dispatch it and reconcile the workflow identity. Repeatedly scheduling a new instance is not the same as resuming an existing one.\n\nThe outer orchestration can then express the business dependency:\n\nThe child finishes at resource readiness. Activation is a separate, idempotent application activity that revalidates tenant ownership and actual resource readiness. If activation fails, the outer workflow fails visibly without automatically deleting the resources the child provisioned. Repairing activation is a different problem from rolling back provisioning.\n\nInside the child, stage dependencies form waves: network; database and stora",
+  "modell": "gemini-3.5-flash",
+  "cim": ".NET Durable Task: mikor éri meg a tartós munkafolyamat-kezelés?",
+  "lead": "A Microsoft bemutatta, milyen valós üzleti feladatokra nyújt megoldást a Durable Task keretrendszer, és hol vannak a határai.",
+  "osszefoglalo": "A Microsoft mérnöki elemzése 5 gyakorlati példán keresztül mutatja be a [Durable Task keretrendszer](https://learn.microsoft.com/azure/durable-task/) használatát. A példák között szerepel a számla-jóváhagyás, az Azure-környezetek telepítése, az előfizetői fizetési kísérletek, a híreket feldolgozó CMS-rendszerek és az AI-alapú incidenskezelő ügynökök. A keretrendszer abban segít, hogy a hosszan tartó vagy megszakadó folyamatok automatikusan ott folytatódjanak, ahol félbeszakadtak.\n\nA cikk kiemeli, hogy a Durable Task nem csodaszer: nyomon követi a folyamat állapotát, de nem garantálja a külső rendszerek pontosan egyszeri végrehajtását. A nem determinisztikus műveleteket, mint az **AI-modellhívások**, mindig el kell különíteni az orchestrációs logikától.\n\nA fejlesztők a **[Durable Task .NET SDK](https://github.com/microsoft/durabletask-dotnet) v1.26.0** verzióját használhatják a DTS ütemezővel. A beszámoló előrevetíti a készülő [Durable Agents](https://learn.microsoft.com/azure/durable-task/sdks/durable-agents-microsoft-agent-framework) és Durable Workflows kiegészítőket is a Microsoft Agent Frameworkhöz.",
+  "miert_szamit": "A **hosszabb ideig futó automatizációk** és AI-ügynökök fejlesztésénél nem kell saját komplex állapotkövető rendszert építeni, mert a keretrendszer kezeli az újrapróbálkozásokat és a folyamatok folytatását.",
+  "cimkek": [
+    ".NET",
+    "Durable Task",
+    "Microsoft",
+    "AI ügynök"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Durable Task .NET SDK",
+    "Microsoft Agent Framework"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-14T08:49:59+00:00",
+  "megjelent": "2026-10-14T08:49:59+00:00",
+  "forras_utalas_javitva": "2026-10-14T08:49:59+00:00",
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-14T10:51:35+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": [
+      {
+        "lepes": "elvetve",
+        "kif": "Durable Workflows",
+        "url": "https://devblogs.microsoft.com/dotnet/durable-workflows-in-the-microsoft-agent-framework/",
+        "ok": "gyenge vagy a hír saját forrása"
+      }
+    ]
+  }
+}
