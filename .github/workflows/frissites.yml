@@ -67,6 +67,7 @@ jobs:
         if: steps.ido.outputs.fut == 'igen'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DAILYDEV_TOKEN: ${{ secrets.DAILYDEV_TOKEN }}
         run: |
           python3 build/gyujt.py --nem-tipus x_profil --nem-forras producthunt
           python3 build/fordit.py
