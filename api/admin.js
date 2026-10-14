@@ -1,12 +1,13 @@
 // quicknews.hu/admin háttere: jelszavas belépés, a pult adatai (a Mac tölti fel az Upstash Redisbe), a pipák mentése.
-// Env: ADMIN_JELSZO (Heni állítja be), ADMIN_TITOK (a süti aláírása és a Mac gépkulcsa),
+// Env: ADMIN_JELSZO (Heni állítja be), ADMIN_TITOK (csak a süti aláírása, api/_suti.js), GEP_KULCS (a Mac gépkulcsa),
 // KV_REST_API_URL + KV_REST_API_TOKEN (a Vercelen bekötött Upstash-tároló adja; a Mac ezeket nem ismeri).
 const crypto = require("crypto");
+const suti = require("./_suti.js");
 let HIREK = [];
 try { HIREK = require("./_hirek.json").hirek || []; } catch (e) { HIREK = []; }
 
 const P = "qn:";
-const SUTI = "qn_admin";
+const SUTI = suti.SUTI;
 const NAP = 30;
 
 async function kv(...parancs) {
@@ -38,30 +39,10 @@ async function muveletFelvesz(b) {
   return [200, { ok: true }];
 }
 
-// SEC-015: a süti aláírókulcsa az ADMIN_TITOK-ból HKDF-fel származtatott alkulcs, így a Mac gépkulcsának (a nyers
-// ADMIN_TITOK) kiszivárgása önmagában nem ad süti-hamisítást
-function sutiKulcs() {
-  return Buffer.from(crypto.hkdfSync("sha256", process.env.ADMIN_TITOK, "", "qn-suti", 32));
-}
-function alair(lejar, gen) {
-  return crypto.createHmac("sha256", sutiKulcs()).update(`${lejar}|${gen}`).digest("hex");
-}
-
-// SEC-016: generációszám a KV-ben (qn:admin:gen): kilépéskor nő, és minden korábbi süti azonnal érvénytelen
-async function sutiGen() {
-  return String((await kv("GET", "qn:admin:gen")) || 0);
-}
-
-async function belepve(req) {
-  // SEC-012: titok nélkül semmilyen süti nem érvényes (különben üres kulccsal is hamisítható lenne)
-  if (!process.env.ADMIN_TITOK) return false;
-  const m = (req.headers.cookie || "").match(new RegExp(`${SUTI}=(\\d+)\\.(\\d+)\\.([a-f0-9]{64})`));
-  if (!m || Number(m[1]) < Date.now()) return false;
-  const gen = await sutiGen();
-  if (m[2] !== gen) return false;
-  const a = Buffer.from(alair(m[1], gen)), b = Buffer.from(m[3]);
-  return a.length === b.length && crypto.timingSafeEqual(a, b);
-}
+// a süti kezelése a közös api/_suti.js-ben (SEC-015, SEC-016)
+const alair = suti.alair;
+const sutiGen = () => suti.sutiGen(kv);
+const belepve = (req) => suti.belepve(req, kv);
 
 // SEC-017: a feltöltött kép csak JPEG lehet (fájlaláírás), és a kártya mérete is korlátos
 function jpegE(b64) {
@@ -70,9 +51,12 @@ function jpegE(b64) {
 }
 
 function gep(req) {
-  // a Mac feltöltője: X-Gep-Kulcs = ADMIN_TITOK
+  // a Mac feltöltője: X-Gep-Kulcs = GEP_KULCS (SEC-015: külön titok, nem a süti kulcsa).
+  // ÁTMENETI: a kulcscsere idejére a régi (ADMIN_TITOK) is elfogadott, ha GEP_REGI_IS=1
   const k = req.headers["x-gep-kulcs"] || "";
-  return !!process.env.ADMIN_TITOK && k.length > 20 && egyezik(k, process.env.ADMIN_TITOK);
+  if (k.length <= 20) return false;
+  if (process.env.GEP_KULCS && egyezik(k, process.env.GEP_KULCS)) return true;
+  return process.env.GEP_REGI_IS === "1" && !!process.env.ADMIN_TITOK && egyezik(k, process.env.ADMIN_TITOK);
 }
 
 function egyezik(a, b) {

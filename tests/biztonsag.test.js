@@ -31,6 +31,9 @@ function kvParancs(c) {
     case "HSET": { const m = h(); for (let i = 0; i < a.length; i += 2) m.set(a[i], a[i + 1]); return 1; }
     case "HSETNX": { const m = h(); if (m.has(a[0])) return 0; m.set(a[0], a[1]); return 1; }
     case "HDEL": return (tar.get(k) || new Map()).delete(a[0]) ? 1 : 0;
+    case "HEXISTS": return (tar.get(k) || new Map()).has(a[0]) ? 1 : 0;
+    case "HLEN": return (tar.get(k) || new Map()).size;
+    case "HGETALL": { const m = tar.get(k) || new Map(); return [...m.entries()].flat(); }
     case "HINCRBY": { const m = h(); const v = Number(m.get(a[0]) || 0) + Number(a[1]); m.set(a[0], String(v)); return v; }
     case "SADD": { if (!tar.has(k)) tar.set(k, new Set()); const s = tar.get(k); const u = !s.has(a[0]); s.add(a[0]); return u ? 1 : 0; }
     case "SREM": { const s = tar.get(k); return s && s.delete(a[0]) ? 1 : 0; }
@@ -62,7 +65,7 @@ function keres(modul, { method = "POST", url = "/", body, headers = {} } = {}) {
   return new Promise((ok) => {
     const fej = {};
     const res = { statusCode: 200, setHeader: (k, v) => { fej[k.toLowerCase()] = v; }, getHeader: (k) => fej[k.toLowerCase()],
-      end: (b) => ok({ kod: res.statusCode, fej, adat: b ? JSON.parse(b) : null }) };
+      end: (b) => { let adat = null; try { adat = b ? JSON.parse(b) : null; } catch { adat = { html: String(b) }; } ok({ kod: res.statusCode, fej, adat }); } };
     h(req, res);
   });
 }
@@ -198,4 +201,41 @@ test("SEC-001: a feed.json mezői escape-elve, a kép és a slug csak biztonság
   assert.strictEqual(qnKep("https://kep.pelda.hu/a.jpg"), "https://kep.pelda.hu/a.jpg");
   assert.ok(!qnSlug('x" onclick="a'));
   assert.ok(qnSlug("dania-humanoid-robotokat-tesztel"));
+});
+
+// ---- SEC-015: külön gépkulcs, külön hírlevél-kulcs, közös süti-ellenőrzés ----
+test("SEC-015: a gépkulcs a GEP_KULCS, a süti kulcsa (ADMIN_TITOK) gépkulcsként nem fogadható el", async () => {
+  ujKv(); process.env.ADMIN_TITOK = "a".repeat(40); process.env.GEP_KULCS = "g".repeat(40); delete process.env.GEP_REGI_IS;
+  const jo = await keres("admin.js", { method: "GET", url: "/api/admin?mi=kitenni", headers: { "x-gep-kulcs": "g".repeat(40) } });
+  assert.strictEqual(jo.kod, 200);
+  const regi = await keres("admin.js", { method: "GET", url: "/api/admin?mi=kitenni", headers: { "x-gep-kulcs": "a".repeat(40) } });
+  assert.strictEqual(regi.kod, 401, "az ADMIN_TITOK nem lehet gépkulcs");
+  process.env.GEP_REGI_IS = "1";
+  const atmenet = await keres("admin.js", { method: "GET", url: "/api/admin?mi=kitenni", headers: { "x-gep-kulcs": "a".repeat(40) } });
+  assert.strictEqual(atmenet.kod, 200, "átmenetileg a régi is mehet");
+  delete process.env.GEP_REGI_IS;
+});
+
+test("SEC-015: a hírlevél leiratkozó tokenje a HIRLEVEL_TITOK-kal készül, a régi kulccsal csak átmenetileg érvényes", async () => {
+  ujKv(); process.env.ADMIN_TITOK = "a".repeat(40); process.env.HIRLEVEL_TITOK = "h".repeat(40); process.env.HIRLEVEL_REGI_IS = "0";
+  const cim = "olvaso@quicknews.hu";
+  const tok = (k) => crypto.createHmac("sha256", k).update("leiratkozas|" + cim).digest("hex").slice(0, 32);
+  tar.set("qn:hirlevel", new Map([[cim, "{}"]]));
+  const regi = await keres("hirlevel.js", { method: "GET", url: `/api/hirlevel?e=${encodeURIComponent(cim)}&t=${tok("a".repeat(40))}` });
+  assert.strictEqual(regi.kod, 400, "a régi kulccsal készült token átmenet nélkül nem érvényes");
+  assert.ok(tar.get("qn:hirlevel").has(cim));
+  const uj = await keres("hirlevel.js", { method: "GET", url: `/api/hirlevel?e=${encodeURIComponent(cim)}&t=${tok("h".repeat(40))}` });
+  assert.strictEqual(uj.kod, 200);
+  assert.ok(!tar.get("qn:hirlevel").has(cim), "az új kulccsal leiratkozik");
+});
+
+test("SEC-015: a chat felismeri az új formátumú admin-sütit (közös _suti.js)", async () => {
+  ujKv(); process.env.ADMIN_TITOK = "a".repeat(40);
+  const suti = require(path.join(API, "_suti.js"));
+  const lejar = Date.now() + 86400e3, gen = "0";
+  const kvFn = async (...c) => kvParancs(c);
+  const req = { headers: { cookie: `qn_admin=${lejar}.${gen}.${suti.alair(lejar, gen)}` } };
+  assert.strictEqual(await suti.belepve(req, kvFn), true);
+  const regiForma = { headers: { cookie: `qn_admin=${lejar}.${crypto.createHmac("sha256", "a".repeat(40)).update(String(lejar)).digest("hex")}` } };
+  assert.strictEqual(await suti.belepve(regiForma, kvFn), false, "a régi formátum már nem érvényes");
 });

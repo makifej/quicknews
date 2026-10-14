@@ -35,13 +35,20 @@ function tisztit(nyers) {
   return MINTA.test(e) ? e : "";
 }
 
-function token(email) {
-  return crypto.createHmac("sha256", process.env.ADMIN_TITOK || "").update("leiratkozas|" + email).digest("hex").slice(0, 32);
+// SEC-015: a leiratkozó token kulcsa a HIRLEVEL_TITOK. A 2026-10-14 előtt kiküldött levelek linkjei még az
+// ADMIN_TITOK-kal készültek: ezek 2026. november 15-ig szintén érvényesek (utána magától lejár), vagy ha
+// HIRLEVEL_REGI_IS=1 (tesztekhez és vészhelyzetre).
+const REGI_HIRLEVEL_IG = Date.parse("2026-11-15T00:00:00Z");
+function token(email, kulcs) {
+  return crypto.createHmac("sha256", kulcs).update("leiratkozas|" + email).digest("hex").slice(0, 32);
 }
 function tokenJo(email, t) {
-  if (!process.env.ADMIN_TITOK || typeof t !== "string" || t.length !== 32) return false;
-  const a = Buffer.from(token(email)), b = Buffer.from(t);
-  return a.length === b.length && crypto.timingSafeEqual(a, b);
+  if (typeof t !== "string" || t.length !== 32) return false;
+  const kulcsok = [process.env.HIRLEVEL_TITOK, (process.env.HIRLEVEL_REGI_IS === "1" || (process.env.HIRLEVEL_REGI_IS !== "0" && Date.now() < REGI_HIRLEVEL_IG)) ? process.env.ADMIN_TITOK : null].filter(Boolean);
+  return kulcsok.some((k) => {
+    const a = Buffer.from(token(email, k)), b = Buffer.from(t);
+    return a.length === b.length && crypto.timingSafeEqual(a, b);
+  });
 }
 
 const ELDOBHATO = new Set([

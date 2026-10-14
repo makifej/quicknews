@@ -36,13 +36,10 @@ async function torzs(req) {
   try { return JSON.parse(s || "{}"); } catch { return {}; }
 }
 
-// aki be van lépve a quicknews.hu/admin-ra (Heni), arra nem vonatkozik a látogatói korlát
-function adminBelepve(req) {
-  const m = (req.headers.cookie || "").match(/qn_admin=(\d+)\.([a-f0-9]{64})/);
-  if (!m || Number(m[1]) < Date.now() || !process.env.ADMIN_TITOK) return false;
-  const a = Buffer.from(crypto.createHmac("sha256", process.env.ADMIN_TITOK).update(m[1]).digest("hex")), b = Buffer.from(m[2]);
-  return a.length === b.length && crypto.timingSafeEqual(a, b);
-}
+// aki be van lépve a quicknews.hu/admin-ra (Heni), arra nem vonatkozik a látogatói korlát (a közös api/_suti.js
+// ellenőrzésével: a süti formátuma 2026-10-14 óta <lejárat>.<generáció>.<hmac>)
+const suti = require("./_suti.js");
+const adminBelepve = (req) => suti.belepve(req, kv);
 
 function budapestNap() {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Budapest", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
@@ -156,7 +153,7 @@ module.exports = async (req, res) => {
     const lenyomat = crypto.createHash("sha256").update(ip + "|" + (process.env.CHAT_SO || "") + "|" + nap).digest("hex").slice(0, 32);
     // SEC-008: előbb a látogatói korlát; a napi globális keretbe csak a látogatói korláton belüli kérdés számít,
     // így egyetlen IP nem tudja a többiek elől elfogyasztani
-    const admin = adminBelepve(req);
+    const admin = await adminBelepve(req);
     const sajat = admin ? 0 : await kv("INCR", P + "ip:" + lenyomat);
     if (sajat === 1) await kv("EXPIRE", P + "ip:" + lenyomat, 86400);
     if (sajat > NAPI_LATOGATO) return json(res, 200, { info: `Mára elfogyott a ${NAPI_LATOGATO} kérdésed, holnap újra kérdezhetsz! Addig a Napok menüben böngészheted a nap összes hírét.`, forrasok: [] });
