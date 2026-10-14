@@ -12,7 +12,7 @@
   --piros: #ff4d4f;
   --piros-cimke: #d92d20;
   --piros-izzas: rgba(255, 77, 79, 0.55);
-  --szavazas: #93dcb8;
+  --szavazas: #b0f876;
   --keret: #3a3a3a;
   --keret-eros: #4a4a4a;
   --bg-fokusz: #2d2d2d;
@@ -37,7 +37,7 @@
   --piros: #e0281b;
   --piros-cimke: #c4261a;
   --piros-izzas: rgba(224, 40, 27, 0.4);
-  --szavazas: #5fbf93;
+  --szavazas: #b0f876;
   --keret: #d7d7d3;
   --keret-eros: #bdbdb8;
   --bg-fokusz: #ffffff;
@@ -454,7 +454,7 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .rovatsor a { flex: 0 0 auto; display: block; padding: 10px 10px 8px; font-size: 16px; line-height: 22px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; color: var(--szoveg); border-bottom: 4px solid var(--kiemelo); transition: color 400ms var(--gorbe); }
 .rovatsor a:first-child { padding-left: 0; }
 .rovatsor a.piros, .rovatsor a.piros:hover, .rovatsor a.piros[aria-current="page"] { color: var(--piros); border-bottom-color: var(--piros); }
-/* Szavazás menüpont: saját, lágy pasztellzöld (Heni 2026-10-14) */
+/* Szavazás menüpont: saját szín, Heni választása: #b0f876 (2026-10-14) */
 .rovatsor a.zold, .rovatsor a.zold:hover, .rovatsor a.zold[aria-current="page"] { color: var(--szavazas); border-bottom-color: var(--szavazas); }
 .rovatsor a:hover { color: var(--kiemelo-szin); }
 .rovatsor a[aria-current="page"] { color: var(--kiemelo-szin); }
