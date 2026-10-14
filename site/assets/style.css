@@ -1208,6 +1208,21 @@ html.hl-nyitva { overflow: hidden; }
 .pb-oldalfej p { margin: 0; max-width: 64ch; color: var(--szoveg-2); font-size: 18px; line-height: 28px; }
 .pb-pakli { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .pb-pakli > .pb-nagy { grid-column: 1 / -1; }
+/* Szavazás oldal, asztalon: lapozható teljes kártyák (Heni 2026-10-14); mobilon a húzható pakli marad */
+@media (min-width: 641px) {
+  .pb-lapozo-be .pb-pakli { grid-template-columns: 1fr; }
+  .pb-lapozo-be .pb-pakli > .pb { display: none; }
+  .pb-lapozo-be .pb-pakli > .pb.pb-lap-aktiv { display: flex; animation: pb-lapbe 500ms var(--gorbe); }
+  .pb-lapozo-sav { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 16px; }
+  .pb-lapozo-gomb { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--keret); background: var(--bg-2); color: var(--szoveg); font: inherit; font-size: 22px; line-height: 1; cursor: pointer; transition: border-color 400ms var(--gorbe), color 400ms var(--gorbe); }
+  .pb-lapozo-gomb:hover { border-color: var(--szavazas); color: var(--szavazas); }
+  .pb-lapozo-gomb:focus-visible, .pb-lapozo-pontok button:focus-visible { outline: 2px solid var(--szoveg); outline-offset: 3px; }
+  .pb-lapozo-pontok { display: flex; gap: 10px; }
+  .pb-lapozo-pontok button { width: 12px; height: 12px; padding: 0; border: 0; border-radius: 6px; background: var(--szoveg-3); cursor: pointer; transition: width 400ms var(--gorbe), background-color 400ms var(--gorbe); }
+  .pb-lapozo-pontok button.aktiv { width: 32px; background: var(--szavazas); }
+}
+@media (max-width: 640px) { .pb-lapozo-sav { display: none; } }
+@keyframes pb-lapbe { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
 .pb-racs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; }
 .pb-alcim { margin: 16px 0 0; font-size: 24px; line-height: 30px; font-weight: 800; }
 .pb-ures, .pb-jog { color: var(--szoveg-2); font-size: 15px; line-height: 22px; margin: 0; }
