@@ -1,0 +1,61 @@
+{
+  "id": "613fbd1be09e",
+  "slug": "megjelent-a-hindsight-1-0-nyilt-forraskodu-ai-ugynok-memoriarendszer",
+  "forras_id": "producthunt",
+  "forras_nev": "Product Hunt",
+  "url": "https://www.producthunt.com/products/vectorize",
+  "szerzo": "Chris Bartholomew",
+  "publikalva": "2026-10-13T18:51:23+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://ph-files.imgix.net/48125fe0-8775-4d69-9635-c585691f2a7c.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024"
+  },
+  "cim_eredeti": "Hindsight 1.0 + Memlake",
+  "forrasok": [],
+  "szoveg_eredeti": "Hi all, Chris from Vectorize here. Tomorrow (Oct 14) we're launching Hindsight 1.0, our open-source memory for AI agents, together with Hindsight Memlake, a Rust storage engine for Enterprise customers with very large memory volumes.\n\nBefore launch day, a question for anyone running agents with long-term memory: what broke first as it grew? For us it was recall latency. On one 200k-memory bank, recall on Postgres had crept up to 5.3 s; on Memlake it's 113 ms, and the engine holds 100M memories under 100 ms p99.\n\nCurious whether others hit the same wall or something else entirely: cost, relevance drift, stale facts. Happy to share what we learned, and we'd love to see you at the launch tomorrow.\n\nHi Product Hunt, Chris from Vectorize here.When we launched Hindsight here, the idea was that agents should learn from experience the way people do, not just retrieve documents. After a year in production and #1 results on every dataset of the Agent Memory Benchmark, Hindsight is now 1.0. From here, the API is a promise.The other half of this launch is the part I'm most excited about as the person who runs it: Hindsight Memlake, for Enterprise customers with very large memory volumes. Agent memory only grows, and every recall runs vector, keyword, graph and time search over all of it. So Nicolò and the team built a storage engine for that shape of data, in Rust:• Object storage is the only source of truth: no database, no consensus cluster, no leader• Only two objects ever change, through conditional writes, and the protocols are model-checked in TLA+• 100M memories at under 100 ms p99 on 4 servers, and recall on a 200k-memory bank went from 5.3 s on Postgres to 113 msHat tip to turbopuffer, whose object-storage-first design inspired a lot of this.Try Hindsight open source (MIT, runs on Postgres) or on Hindsight Cloud with free credits. Memlake comes with Hindsight Enterprise, and the full engineering write-up is here: https://hindsight.vectorize.io/b...Happy to answer anything about agent memory, Memlake, or why we didn't just use Postgres.\n\nWeboldal: https://vectorize.io",
+  "modell": "gemini-3.5-flash",
+  "cim": "Megjelent a Hindsight 1.0 nyílt forráskódú AI-ügynök memóriarendszer",
+  "lead": "A Vectorize kiadta a Hindsight 1.0 nyílt forráskódú memóriarendszert és a nagyvállalati Memlake tárolómotort.",
+  "osszefoglalo": "A Vectorize elindította a **Hindsight 1.0** nyílt forráskódú rendszert, amely az AI-ügynökök hosszú távú memóriakezelését segíti. Az eszköz célja, hogy a mesterséges intelligencia az emberi tanuláshoz hasonlóan tapasztalatokból építkezzen ahelyett, hogy csak dokumentumokat kérdezne le.\n\nA kiadás része a kifejezetten nagy adatmennyiségre tervezett [Hindsight Memlake](https://vectorize.io/memlake) Rust alapú tárolómotor is. Az új architektúra a vektoros, kulcsszavas, gráf és időalapú kereséseket egyszerre végzi el, és a tesztek alapján 200 ezer memóriaelem esetén a korábbi 5,3 másodperces válaszidőt 113 milliszekundumra csökkentette.\n\nA Hindsight nyílt forráskódú változata MIT licenc alatt ingyenesen elérhető és Postgres adatbázison fut, míg a Memlake motor a vállalati csomag része. A szolgáltatás a Hindsight Cloud felületén ingyenes kreditekkel is kipróbálható.",
+  "miert_szamit": "Az AI-ügynököket fejlesztő szakemberek **drasztikusan gyorsabb válaszidőt** érhetnek el a hosszú távú memóriát használó rendszereiknél.",
+  "cimkek": [
+    "Hindsight",
+    "Vectorize",
+    "AI ügynök",
+    "Rust"
+  ],
+  "kategoria": "ügynök",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Hindsight Cloud",
+    "url": "https://vectorize.io"
+  },
+  "linkelendo_nevek": [
+    "Hindsight 1.0",
+    "Hindsight Memlake",
+    "Hindsight Cloud"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-14T08:05:18+00:00",
+  "megjelent": "2026-10-14T08:05:18+00:00",
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-14T10:11:02+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": [
+      {
+        "lepes": "link_be",
+        "kif": "Hindsight 1.0",
+        "url": "https://github.com/vectorize-io/hindsight",
+        "mit": "A Hindsight 1.0 nyílt forráskódú AI-ügynök memóriarendszer hivatalos kiadása és forráskódja."
+      }
+    ],
+    "osszefoglalo": "A Vectorize elindította a **[Hindsight 1.0](https://github.com/vectorize-io/hindsight)** nyílt forráskódú rendszert, amely az AI-ügynökök hosszú távú memóriakezelését segíti. Az eszköz célja, hogy a mesterséges intelligencia az emberi tanuláshoz hasonlóan tapasztalatokból építkezzen ahelyett, hogy csak dokumentumokat kérdezne le.\n\nA kiadás része a kifejezetten nagy adatmennyiségre tervezett [Hindsight Memlake](https://vectorize.io/memlake) Rust alapú tárolómotor is. Az új architektúra a vektoros, kulcsszavas, gráf és időalapú kereséseket egyszerre végzi el, és a tesztek alapján 200 ezer memóriaelem esetén a korábbi 5,3 másodperces válaszidőt 113 milliszekundumra csökkentette.\n\nA Hindsight nyílt forráskódú változata MIT licenc alatt ingyenesen elérhető és Postgres adatbázison fut, míg a Memlake motor a vállalati csomag része. A szolgáltatás a Hindsight Cloud felületén ingyenes kreditekkel is kipróbálható."
+  }
+}

@@ -76,14 +76,14 @@
   "szoveg_eredeti": "Az OpenAI korai szakaszú tárgyalásokat folytat a Trail of Bits nevű New York-i szoftverbiztonsági cég megvásárlásáról – írta keddi cikkében a The Information az ügyet ismerő források alapján. Az üzlet tovább bővítené a ChatGPT fejlesztőjének egyre növekvő kiberbiztonsági üzletágát. A lehetséges ügylet értékét nem közölték.\n\nA tárgyalásokat egyik cég sem erősítette meg nyilvánosan. Mivel az egyeztetések még korai szakaszban tartanak, az üzlet nem biztos, hogy létrejön.\n\nA két cég már most is együttműködik. Június 22-én elindították a Patch the Planet nevű nyílt forráskódú biztonsági projektet, amely az OpenAI átfogó, Daybreak nevű kiberbiztonsági kezdeményezésének része. Az OpenAI bejelentése szerint a projekt „a legfejlettebb kiberbiztonsági képességekkel rendelkező modelljeinkkel végzett, mesterséges intelligenciával támogatott biztonsági kutatást ötvözi szakértői emberi felülvizsgálattal, hogy a sebezhetőségeket ne csak azonosítsák, hanem javítani is segítsenek őket.\"\n\nAz OpenAI közlése szerint a Trail of Bits „teljes biztonsági kutatószervezetét\" a projekt első hullámára összpontosította. Mérnökei ellenőrzik a találatokat, javításokat írnak és tesztelnek, valamint egyeztetik a sebezhetőségek közzétételét az egyes projektek karbantartóival. Az első résztvevők között volt a cURL, a Go projekt, a Python, a Sigstore és a pyca/cryptography.\n\nA Trail of Bits a blogján azt írta, hogy már az első héten több száz hibát találtak, és 19 projektben 64 pull requestet és 51 hibajegyet nyitottak. Július 20-án a cég nyilvános irányítópultja 858 jelentett potenciális hibát, 143 beolvasztott javítást és 41 átvizsgálás alatt álló kódbázist mutatott. A cég terepjelentéseket is közzétett az OpenAI eszközeivel végzett munkájáról. Az egyikben azt írta, hogy a GPT-5.5-Cyber egyetlen nap alatt egyedi fuzzing-kampányt épített a zlib tömörítőkönyvtárhoz, ami korábban tapasztalt kutatóknak hetekig tartó munkát jelentett.\n\nA Trail of Bits nyílt forráskódú szoftverek hibáinak felkutatására és javítására specializálódott. Emellett biztonsági auditokat is végzett kriptoprojektek, például a Uniswap, az Aave és a Worldcoin számára. A cég megvásárlásával tapasztalt, emberi biztonsági kutatókból álló csapat érkezne az OpenAI-hoz. Ők azok a szakértők, akik jelenleg az OpenAI mesterséges intelligencia modelljei által jelzett hibákat ellenőrzik és javítják.\n\nA The Information szerint a lépés része annak a törekvésnek, hogy az OpenAI jelentős kiberbiztonsági üzletágat építsen fel. Az MI-modellek ma már gyorsabban találnak szoftverhibákat, mint ahogy a nyílt forráskódú projektek önkéntes karbantartói ki tudnák javítani őket. Az OpenAI szerint a Patch the Planet projektet éppen erre a problémára hozták létre. A cég közlése alapján a projektben biztonsági mérnökök szűrik meg a találatokat, mielőtt azok eljutnának a karbantartókhoz, így a projekt csökkenti a terheiket, „nem növeli” azokat.",
   "modell": "gemini-3.5-flash",
   "cim": "Az OpenAI felvásárolhatja a Trail of Bits kiberbiztonsági céget",
-  "lead": "Tárgyalásokat folytat a Trail of Bits megszerzéséről az OpenAI, hogy saját kiberbiztonsági üzletágát erősítse a nyílt forráskódú szoftverek védelmében.",
-  "osszefoglalo": "Az OpenAI korai tárgyalásokat folytat a New York-i Trail of Bits szoftverbiztonsági cég felvásárlásáról. A megállapodás pénzügyi részletei nem ismertek, és az egyeztetések korai szakasza miatt a tranzakció még nem biztos. A lépéssel az OpenAI tapasztalt kutatócsapattal bővíthetné saját **kiberbiztonsági üzletágát**.\n\nA két vállalat korábban már együttműködött a [Patch the Planet](https://trailofbits.com/patch-the-planet/) nyílt forráskódú kezdeményezésben, amely a [Daybreak](https://openai.com/daybreak/) projekt része. Ebben a Trail of Bits mérnökei az OpenAI modelljei, köztük a **GPT-5.5-Cyber** által talált szoftveres sebezhetőségeket ellenőrzik és javítják olyan projektekben, mint a Python vagy a Go.",
-  "miert_szamit": "Az MI-alapú kódellenőrzés gyorsan fejlődik, a szakértői csapattal megerősített automatizált hibakeresés pedig alapjaiban alakíthatja át a szoftverfejlesztés **biztonsági folyamatait**.",
+  "lead": "A két vállalat tárgyalásokat folytat, az akvizícióval az OpenAI tovább erősítené a kiberbiztonsági üzletágát.",
+  "osszefoglalo": "A The Information információi szerint az OpenAI korai szakaszú tárgyalásokat folytat a Trail of Bits nevű szoftverbiztonsági cég megvásárlásáról. A megállapodást még egyik fél sem erősítette meg, így a felvásárlás nem tekinthető véglegesnek. Az üzlet célja az OpenAI **kiberbiztonsági üzletágának bővítése**.\n\nA két cég már június óta együttműködik a [Patch the Planet](https://openai.com/index/patch-the-planet/) nevű projekten, amely az OpenAI Daybreak kezdeményezésének része. Ennek keretében az MI-modellek által talált szoftverhibákat a Trail of Bits biztonsági mérnökei ellenőrzik és javítják. A tapasztalatok szerint a **GPT-5.5-Cyber modell** 1 nap alatt elvégzett egy olyan feladatot a zlib könyvtárnál, ami korábban hetekig tartott a szakértőknek.\n\nA Trail of Bits csatlakozásával tapasztalt emberi biztonsági kutatók érkeznének az OpenAI-hoz. Ez azért kulcsfontosságú, mert a mesterséges intelligencia ma már gyorsabban talál szoftverhibákat, mint ahogy a fejlesztők és önkéntes karbantartók fel tudják dolgozni őket.",
+  "miert_szamit": "A lépés mutatja, hogy az AI-modellek nemcsak kódot írnak, hanem a **szoftverbiztonsági és hibajavítási folyamatokat** is alapjaiban gyorsítják fel a gyakorlatban.",
   "cimkek": [
     "OpenAI",
-    "kiberbiztonság",
     "Trail of Bits",
-    "szoftverfejlesztés"
+    "kiberbiztonság",
+    "GPT-5.5-Cyber"
   ],
   "kategoria": "üzlet",
   "forras_tipus": "elemzes",
@@ -97,16 +97,29 @@
     "GPT-5.5-Cyber"
   ],
   "linkszabaly": 3,
-  "forditva": "2026-10-14T07:54:09+00:00",
-  "megjelent": "2026-10-14T07:54:09+00:00",
+  "forditva": "2026-10-14T08:06:49+00:00",
+  "megjelent": "2026-10-14T08:06:49+00:00",
   "kiprobal_nezve": true,
   "termeklinkek_nezve": true,
   "linkek_ellenorizve": true,
   "forras_figyelve": true,
   "forras_javaslat": {
-    "ido": "2026-10-14T09:56:31+0200",
+    "ido": "2026-10-14T10:13:36+0200",
     "mod": "figyelo",
     "elmaradt": false,
-    "jelentes": []
+    "jelentes": [
+      {
+        "lepes": "elvetve",
+        "kif": "GPT-5.5-Cyber modell",
+        "url": "https://openai.com/index/daybreak-securing-the-world/",
+        "ok": "HTTP 403"
+      },
+      {
+        "lepes": "elvetve",
+        "kif": "1 nap alatt elvégzett egy olyan feladatot a zlib könyvtárnál",
+        "url": "https://blog.trailofbits.com/2026/07/02/gpt-5-5-cyber-built-a-zlib-fuzzing-lab-in-a-day/",
+        "ok": "HTTP 404"
+      }
+    ]
   }
 }
