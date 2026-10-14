@@ -1,0 +1,53 @@
+{
+  "_leiras": "A Szavazás menü párbajai (Heni 2026-10-14). Minden párbaj két, ugyanarra a feladatra szolgáló eszköz híre. A tények kizárólag a két cikk szövegéből jönnek. nyit/zar: budapesti idő; a nyitás előtt „Hamarosan”, a zárás után lezárt, győztessel.",
+  "parbajok": [
+    {
+      "id": "pb-ugynok-gep",
+      "kerdes": "Melyik AI-ügynököt engednéd a gépedre?",
+      "nyit": "2026-10-14T07:00:00+02:00",
+      "zar": "2026-10-21T08:00:00+02:00",
+      "a": {"cikk": "2832eac5e51d", "nev": "Xiryn", "egy": "Ingyenes, nyílt forráskódú ügynök, amely izolált Docker-környezetben dolgozik a háttérben.", "tenyek": ["Nyílt forráskódú, ingyenes", "Nem kell hozzá fiók", "Telegramról is irányítható"]},
+      "b": {"cikk": "f6161c15dfce", "nev": "Agibot", "egy": "Macen futó, mindig aktív személyi ügynök, Telegramon és Slacken is elérhető.", "tenyek": ["Kockázatos lépés előtt engedélyt kér", "Napi költési limit állítható", "Claude, GPT, Gemini is mehet alá"]}
+    },
+    {
+      "id": "pb-hirdetesgyar",
+      "kerdes": "Melyik gyártsa a következő hirdetésedet?",
+      "nyit": "2026-10-14T07:00:00+02:00",
+      "zar": "2026-10-21T08:00:00+02:00",
+      "a": {"cikk": "6f88033784f2", "nev": "Higgsfield Ads Studio", "egy": "A márkád elemzéséből és a friss trendekből gyárt statikus hirdetéseket.", "tenyek": ["Kutatja a márkádat és a trendeket", "Statikus hirdetésekre szabott", "Ingyen kipróbálható"]},
+      "b": {"cikk": "6d1141c2529c", "nev": "Runway Ads", "egy": "Önálló teljesítménymarketing-motor, amely maga készíti és optimalizálja a hirdetéseket.", "tenyek": ["A Runway mérése: 34%-kal jobb konverzió", "41%-kal kisebb szerzési költség", "Egyelőre csak korai hozzáféréssel"]}
+    },
+    {
+      "id": "pb-kodoloagensek",
+      "kerdes": "Hol futtatnád egyszerre a kódolóügynökeidet?",
+      "nyit": "2026-10-14T07:00:00+02:00",
+      "zar": "2026-10-21T08:00:00+02:00",
+      "a": {"cikk": "d6bf3fefe1e9", "nev": "Farol", "egy": "Ingyenes, nyílt forráskódú macOS-terminál több kódolóügynök párhuzamos futtatására.", "tenyek": ["Minden feladat saját Git worktree-t kap", "Diff, commit és PR az appból", "Ingyenes, nyílt forráskódú"]},
+      "b": {"cikk": "659408cc563c", "nev": "Hypervibe", "egy": "Egyetlen végtelen vizuális táblára gyűjti a párhuzamosan dolgozó kódolóügynököket.", "tenyek": ["Végtelen vizuális tábla", "Indítás, követés, irányítás egy helyen", "Átláthatóbb feladatfelosztás"]}
+    },
+    {
+      "id": "pb-fajlrendezes",
+      "kerdes": "Ki tegyen rendet a fájljaid között?",
+      "nyit": "2026-10-21T08:00:00+02:00",
+      "zar": "2026-10-28T08:00:00+02:00",
+      "a": {"cikk": "1464a8b2a89d", "nev": "Sorted", "egy": "Privát, mesterséges intelligenciával működő fájlrendszerező Macre.", "tenyek": ["Macen fut", "Teljesen privát rendezés", "AI rendszerezi a fájlokat"]},
+      "b": {"cikk": "2ad4c6f33e71", "nev": "The Drive AI", "egy": "Felhőtárhelyeket összekötő AI-ügynök, amely közvetlenül dolgozik a dokumentumokon.", "tenyek": ["Google Drive, OneDrive, Dropbox", "Lépés előtt jóváhagyást kér", "A módosítások visszavonhatók"]}
+    },
+    {
+      "id": "pb-terminal-kodolo",
+      "kerdes": "Melyik terminálos kódolót választanád?",
+      "nyit": "2026-10-21T08:00:00+02:00",
+      "zar": "2026-10-28T08:00:00+02:00",
+      "a": {"cikk": "0834eb1e56a9", "nev": "Reika", "egy": "Parancssoros kódoló asszisztens, helyben futtatott kis modellekhez és gyengébb gépekhez.", "tenyek": ["Helyi, kis modellekre szabva", "16 GB-os M2 MacBook Airen tesztelve", "Felhős modellekkel is megy"]},
+      "b": {"cikk": "4b46c27e8b6f", "nev": "Dropstone CLI", "egy": "Terminálos kódolóügynök, amely a teljes kódalapot átlátja és megjegyzi a javításaidat.", "tenyek": ["Megjegyzi a korábbi javításokat", "Ingyenes alapcsomag", "Fizetős csomag 5 dollártól"]}
+    },
+    {
+      "id": "pb-asztali-asszisztens",
+      "kerdes": "Melyik asztali asszisztens kezelje a gépedet?",
+      "nyit": "2026-10-21T08:00:00+02:00",
+      "zar": "2026-10-28T08:00:00+02:00",
+      "a": {"cikk": "e5d1b19822b0", "nev": "Hark Pro", "egy": "A géped helyett kattint, és egy kis ablakban élőben mutatja, mit csinál.", "tenyek": ["Élőben mutatja a lépéseit", "Az adatokat nem adja el", "Ingyen kipróbálható"]},
+      "b": {"cikk": "582857f0f019", "nev": "OpenPilot", "egy": "Nyílt forráskódú asztali AI-ügynök, bármilyen választott modellel.", "tenyek": ["Nyílt forráskódú", "Bármilyen AI-modellel összeköthető", "A saját gépeden fut"]}
+    }
+  ]
+}
