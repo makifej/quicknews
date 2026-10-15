@@ -573,7 +573,7 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
   /* kompakt mobil rovatsor (Heni 2026-10-15): a .fejlec nav a asztali mérete (18px, 8px 12px) eddig itt is érvényes volt */
   .fejlec nav.rovatsor a, .rovatsor a { font-size: 14px; line-height: 18px; padding: 10px 9px 8px; letter-spacing: 0.01em; white-space: nowrap; border-bottom-width: 3px; }
   .rovatsor .keret { gap: 4px; }
-  .rovatsor .kitolto { border-bottom-width: 3px; }
+  .rovatsor .kitolto { display: none; } /* mobilon nincs vonal a menü végén (Heni 2026-10-15) */
   /* az aktív menüpont háttere mobilon alacsonyabb a sornál (Heni 2026-10-15): a sor mérete nem változik,
      a színes doboz egy álelem, 6 px-rel a sor teteje alatt kezdődik, 2 px-rel az aláhúzás fölött ér véget */
   .fejlec nav.rovatsor a[aria-current="page"] { position: relative; isolation: isolate; background: none; border-radius: 0; }
