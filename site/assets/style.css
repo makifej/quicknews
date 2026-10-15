@@ -480,7 +480,7 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .fejlec nav.rovatsor a.piros[aria-current="page"] { background: var(--piros); color: #fff; }
 .fejlec nav.rovatsor a.lila[aria-current="page"] { background: var(--szavazas); color: var(--bg); }
 @media (max-width: 760px) { .fejlec nav.rovatsor a[aria-current="page"] { padding-left: 8px; } }
-.rovatsor .kitolto { flex: 1 1 auto; border-bottom: 4px solid var(--kiemelo); min-width: 24px; }
+.rovatsor .kitolto { display: none; } /* nincs vonal a menü végén, asztalon sem (Heni 2026-10-15) */
 .mobil-szlogen { display: none; }
 
 /* nyitóblokk */
