@@ -1,0 +1,71 @@
+{
+  "id": "996b33c09ad5",
+  "slug": "a-google-deepmind-ai-ugynoke-gyorsitja-az-uj-antibiotikumok-kutatasat",
+  "forras_id": "deepmind",
+  "forras_nev": "Google DeepMind",
+  "url": "https://deepmind.google/blog/accelerating-antimicrobial-discovery/",
+  "szerzo": null,
+  "publikalva": "2026-10-15T16:08:03+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://lh3.googleusercontent.com/Xgnc_DxAUS2Fs9H2rokxsYwPnnM_KOkPyPtKm7V2C_sjZ7YS4N1-D6lD8wjYIRQoKaiSwHUXB7qmw77m6FCfHLZenWdNymO7B_JLChlB6ied6emR=w528-h297-n-nu-rw-lo"
+  },
+  "cim_eredeti": "Accelerating the search for antimicrobial peptides with Google Antigravity",
+  "forrasok": [],
+  "szoveg_eredeti": "Pengfei Tian, Maxwell L Bileschi, Zoi Tsangalidou, Sukhdeep Singh and Lucy. J. Colwell\n\nNew antibiotics are urgently needed to help with rising levels of antimicrobial resistance, but searching for new therapeutics is often a slow, labor-intensive process. With Google Antigravity, our agentic development platform, this process can now be made easier.\n\nGoogle Antigravity provides an agentic science workbench that empowers biologists to discover, structurally evaluate, and prioritize promising targets quickly, compressing what used to be a fragmented search over multiple databases into a single session. It also helps researchers scan through millions of previously uncharacterized proteins in the UniProt database using ProtNLM, a model that predicts biological function from amino acid sequences.\n\nThis technical walkthrough shows how biologists used Google Antigravity to uncover a novel antimicrobial peptide candidate which has predicted activity against the pathogens involved in respiratory tract infections. The lead identified here is now undergoing wet-lab validation.\n\nRising antimicrobial resistance is one of the most pressing global health crises of our time and could result in an estimated 10 million annual deaths globally by 2050. To prevent this, we urgently need to discover novel therapeutics. Antimicrobial peptides (AMPs), particularly bacteriocins, offer a promising alternative to traditional antibiotics because they have naturally evolved to target fundamental vulnerabilities in competing bacteria, from cell envelopes to essential intracellular machinery, making it difficult for pathogens to develop resistance.\n\nThe exponential growth of genomic and metagenomic sequencing has populated global databases with billions of natural amino acid sequences. This pool of natural data has already produced globally used bacteriocins like Nisin, alongside recent genome-mined breakthroughs such as Darobactin, Dynobactin, and Lariocidin.\n\nMany, however, remain locked within the unannotated \"dark matter\" of protein databases, with their function uncharacterized because they aren’t similar to known proteins. For example, the world's leading public resource of protein sequence and functional information, UniProt, holds millions of sequences with unknown functionality, transferred directly from genome sequencing projects.\n\nTo bridge this gap, Google developed ProtNLM (Protein Natural Language Model), a deep learning model trained to directly read the underlying evolutionary “grammar” of amino acid sequences. This allows the model to predict biological function directly from raw protein sequences, enriching millions of previously unnamed UniProt entries with high-confidence functional labels.\n\nOverview of the ProtNLM pipeline translating raw amino acid sequences into natural-language biological annotations for unreviewed UniProtKB/TrEMBL entries. The functional annotation scope of the system covers protein names, function comments, subcellular locations, and GO terms, in addition to keywords.\n\nScientific discovery is rarely a single step process; finding viable candidate proteins requires human intuition and iteration to incorporate new empirical evidence. Working in Antigravity, the researcher and AI agent begin by setting a focused biological goal: find and computationally validate novel AMPs in Streptococcus pseudopneumoniae. During an interactive, multi-turn session the researcher steers the scientific strategy, deciding which questions to ask and what evidence to collect, while the agent handles the heavy lifting of cross-database orchestration, structural analysis, and literature synthesis.\n\nThe agent queries the database and filters millions of entries down to a handful of candidates worthy of attention. Here, the agent finds a bacteriocin (Uniprot ID: A0A0U0D591) with a length of 97 amino acids from the Lactococcin 972 family.\n\nTo verify the novelty of this discovery, the researcher guides the agent to interrogate the candidate against curated knowledge in Swiss-Prot via the EMBL-EBI NCBI-BLAST service and confirm this peptide has no meaningful sequence homolog among manually reviewed proteins.\n\nThe researcher steers the analysis towards structural evidence. The agent retrieves the candidate’s 3D model from the AlphaFold Protein Structure Database, querying it against experimentally determined structures to identify remote homologs, and superimposing the models to assess similarity. Here, the structural evidence corroborates ProtNLM’s prediction by showing the candidate's fold closely matches an experimentally determined bacteriocin. The structure viewer in Antigravity allows this structural analysis to be seamlessly performed in one place.\n\nReading the biological context around a gene:\n\nThe agent looks beyond the molecule itself to its genomic neighborhood, reasoning over whether the surrounding machinery supports the AMP hypothesis. Inspecting the flanking genes, it spots a revealing pattern: our previously uncharacterized candidate sits at the upstream of a tightly coupled operon, just 6 base pairs ahead of a ABC transporter permease and its potential partner ATP-binding protein, alongside another annotated bacteriocin and an XRE transcriptional regulator. This provides strong contextual evidence that it is part of a working bacteriocin system.\n\nBuilding a mechanistic hypothesis from the literature:\n\nBy reviewing the existing literature, the agent proposes how the molecule might act and what pathogens it might act on. In this case, existing evidence suggests a mechanism of action targeting bacterial cell division, and a predicted potency spectrum spanning several drug-resistant pathogens.\n\nFinally, the agent translates its in silico findings into an actionable bench protocol, spanning protein expression, antimicrobial susceptibility testing, target engagement, and in vitro toxicity testing, bridging the gap from computational prediction to wet-lab experiment. This step is already in motion: this candidate - along with several others discovered through the same pipeline - are now in wet-lab validation, where experimental results will provide the ultimate test of the agent's analysis.\n\nThe candidate we uncover in this walkthrough represents a biologically plausible lead backed by structural and genomic evidence but it still requires wet lab validation. What makes this meaningful is how dramatically it lowers the barrier to everyday biological workflows, turning days of fragmented database triage into a single collaborative session. While this session focused on a narrow amino acid window in Streptococcus pseudopneumoniae, researchers can take the conversation in any direction, such as layering in new filtering criteria, exploring different sequence lengths, or targeting other priority pathogens. By broadening the search from human commensals to environmental microbes and beyond, scientists can guide the agent across UniProt to discover novel AMP candidates at scale.\n\nA protein's 3D structure can help us understand its biological function. Examining a candidate’s predicted fold in space is key. To provide this end-to-end workflow in a single workspace, we are introducing the Biomolecular Structure Viewer, a 3D visualization tool embedded directly into Antigravity.\n\nThe researcher and agent work together over a shared visual state. As the agent retrieves structures from AlphaFold Database or the scientist’s own predictions, it can dynamically drive the viewer. For instance, it can highlight key functional regions to visually explain its hypotheses. Crucially, this awareness flows both ways: actions like highlighting specific residues or pinning notes directly onto a binding pocket are synchronised back to the agent. A researcher can simply mark a region of interest in 3D space and ask, for example, \"How might this β-strand affect Lipid II binding?\", allowing the agent to immediately reason over the exact structural context the scientist is looking at.",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Google DeepMind AI-ügynöke gyorsítja az új antibiotikumok kutatását",
+  "lead": "A Google Antigravity platform összeköti a fehérje-adatbázisokat és a 3D-s szerkezeti elemzést, így napok helyett egyetlen munkafolyamatban azonosít új molekulákat.",
+  "osszefoglalo": "A Google DeepMind bemutatta, hogyan használható a [Google Antigravity](https://antigravity.google/?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content=) nevű AI-ügynökplatform az új antimikrobiális peptidek felfedezésének felgyorsítására. Rendszerük a ProtNLM nyelvi modellt és az AlphaFold adatbázisát ötvözi, amivel a kutatók több millió ismeretlen funkciójú fehérje között kereshetnek potenciális gyógyszerjelölteket. A folyamat a korábbi széttagolt adatbázis-kereséseket egyetlen interaktív felületre sűríti be.\n\nA rendszer nemcsak a fellelhető aminosav-szekvenciákat elemzi, hanem a **Biomolecular Structure Viewer** eszközzel 3D-s szerkezeti vizualizációt is nyújt. A kutató és az AI-ügynök együttműködve tekintheti át a molekuláris környezetet, igazolhatja a szerkezeti hasonlóságokat, és az AI automatikusan javaslatot tesz a laboratóriumi tesztelési protokollokra is.\n\nA demonstráció során a platform segítségével sikerült azonosítani egy légúti kórokozók ellen ígéretes baktériumellenes fehérjejelöltet. A számítógépes úton felfedezett molekula kísérleti, nedves laboratóriumi validációja jelenleg is folyamatban van.",
+  "miert_szamit": "Az AI-ügynökök a kutatás-fejlesztésben a bonyolult, sok adatbázist érintő elemzési feladatokat **néhány órás interaktív munkafolyamattá egyszerűsítik**, ami alapjaiban gyorsítja meg a tudományos és orvosi innovációt.",
+  "cimkek": [
+    "Google DeepMind",
+    "Google Antigravity",
+    "AlphaFold",
+    "egészségügy"
+  ],
+  "kategoria": "ügynök",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Google Antigravity",
+    "ProtNLM",
+    "Biomolecular Structure Viewer"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-15T16:21:12+00:00",
+  "megjelent": "2026-10-15T16:21:12+00:00",
+  "nevelo_javitva": "2026-10-15T16:21:12+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-15T16:21:14+00:00",
+    "esemeny": "A Google DeepMind kutatói a Google Antigravity nevű AI-ügynökplatform és a ProtNLM modell segítségével azonosítottak egy új, légúti fertőzéseket okozó kórokozók ellen ígéretes antimikrobiális peptidjelöltet a UniProt adatbázisban, amelynek nedves laboratóriumi validációja jelenleg is zajlik.",
+    "forrasok": [
+      "https://deepmind.google/blog/accelerating-antimicrobial-discovery/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-15T18:21:45+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": [
+      {
+        "lepes": "nem_illo_link_ki",
+        "horgony": "Google Antigravity",
+        "url": "https://antigravity.google/?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content=",
+        "ok": "Az oldal letöltött tartalma nem jeleníthető meg megfelelően (zagyva/érthetetlen karakterhalmaz), így a hír állítása nem igazolható belőle."
+      }
+    ],
+    "osszefoglalo": "A Google DeepMind bemutatta, hogyan használható a Google Antigravity nevű AI-ügynökplatform az új antimikrobiális peptidek felfedezésének felgyorsítására. Rendszerük a ProtNLM nyelvi modellt és az AlphaFold adatbázisát ötvözi, amivel a kutatók több millió ismeretlen funkciójú fehérje között kereshetnek potenciális gyógyszerjelölteket. A folyamat a korábbi széttagolt adatbázis-kereséseket egyetlen interaktív felületre sűríti be.\n\nA rendszer nemcsak a fellelhető aminosav-szekvenciákat elemzi, hanem a **Biomolecular Structure Viewer** eszközzel 3D-s szerkezeti vizualizációt is nyújt. A kutató és az AI-ügynök együttműködve tekintheti át a molekuláris környezetet, igazolhatja a szerkezeti hasonlóságokat, és az AI automatikusan javaslatot tesz a laboratóriumi tesztelési protokollokra is.\n\nA demonstráció során a platform segítségével sikerült azonosítani egy légúti kórokozók ellen ígéretes baktériumellenes fehérjejelöltet. A számítógépes úton felfedezett molekula kísérleti, nedves laboratóriumi validációja jelenleg is folyamatban van."
+  }
+}
