@@ -44,6 +44,17 @@
     "d": "okt. 15. 12:50"
   },
   {
+    "i": "e3c36d4422c6",
+    "p": "/assets/kep/e3c36d4422c6.webp",
+    "c": "Megjelent az nyílt forráskódú Apertus 1.5 nyelvi modell",
+    "b": "A Swiss AI Initiative kiadta az Apertus 1.5 nyílt súlyozású modellcsaládot kép- és hangfeldolgozással, valamint gondolkodási móddal.",
+    "k": "Hugging Face",
+    "g": "modell",
+    "u": "/hir/megjelent-az-nyilt-forraskodu-apertus-1-5-nyelvi-modell",
+    "sz": "A Swiss AI Initiative megjelentette az Apertus 1.5 nyílt forráskódú nyelvi modellt 8B és 70B paraméteres méretben. Az új verzió a korábbi kiadáshoz képest kép- és hangértelmezési képességet, opcionális gondolkodási módot (thinking mode), négyszer hosszabb kontextusablakot és jobb utasításkövetést kapott. A modellek Apache 2.0 licenc alatt tölthetők le a Hugging Face platformról.\n\nA fejlesztés során a multimodalitást korai fúziós eljárással integrálták: a képek és a hangok közvetlenül diszkrét tokenként lépnek be a modellbe a szöveges adatokkal együtt, külön vizuális enkóder használata nélkül. Ennek köszönhetően a tanítás a csak szöveges feldolgozás sebességével zajlott. A modell képeket és hangot is megért, kimenetként viszont kizárólag szöveget generál.\n\nA teljes kiadás nyitott: a modellsúlyok, a köztes ellenőrzési pontok, a tanítási adatok és a technikai részletek is nyilvánosan elérhetők. A független kiértékelést az EvalEval keretrendszerén keresztül tették transzparenssé, amely illeszkedik az Európai Unió AI Act szabályozásának előírásaihoz is. A modellek API-n keresztül és több felhőszolgáltatónál is elérhetők. Apertus Hugging Face LLM nyílt forráskód",
+    "d": "okt. 15. 11:08"
+  },
+  {
     "i": "e903d90839a8",
     "p": "/assets/kep/e903d90839a8.webp",
     "c": "Megjelent a TypeSafe AI Jev 1.14 döntési modellje",
