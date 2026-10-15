@@ -44,6 +44,17 @@
     "d": "okt. 15. 06:30"
   },
   {
+    "i": "0bf8a99b0606",
+    "p": "/assets/kep/0bf8a99b0606.webp",
+    "c": "Automatikusan kalibrálja az AI-modellek döntéseit a Brussle",
+    "b": "A Brussle folyamatosan finomítja az AI-modellek kimeneteit az adatok változása alapján.",
+    "k": "Product Hunt",
+    "g": "eszköz",
+    "u": "/hir/automatikusan-kalibralja-az-ai-modellek-donteseit-a-brussle",
+    "sz": "A Brussle egy olyan eszköz, amely kalibrálja az AI-modellek döntéseit a felhasználó saját adatai alapján. A rendszer automatikusan újraelemzi és futtatja a folyamatot, amint egy beolvasott adat megváltozik, vagy ha maga a felhasznált modell frissül.\n\nA platform különlegessége, hogy csak akkor alkalmazza a korrekciókat, ha az új beállítás bizonyítottan jobb eredményt ér el a visszatartott tesztadatokon, mint az eredeti modell. Ez segít megelőzni a hibás előrejelzéseket és a modellteljesítmény romlását.\n\nAz eszköz közvetlenül az adatok változását követve finomhangol, így a vállalati folyamatokban használt modellek döntései pontosabbak maradnak. A szolgáltatás részletei és az értékelési funkciók a platform saját weboldalán érhetők el. Brussle AI adatkezelés modellkalibráció",
+    "d": "okt. 15. 06:18"
+  },
+  {
     "i": "d4800ad6519f",
     "p": "/assets/kep/d4800ad6519f.webp",
     "c": "Ebola elleni küzdelemben segít az Anthropic Claude modellje Afrikában",
@@ -363,6 +374,28 @@
     "d": "okt. 14. 18:02"
   },
   {
+    "i": "42b972810618",
+    "p": "/assets/kep/42b972810618.webp",
+    "c": "Elindult a withHuman, az AI-ügynököket ellenőrző biztonsági réteg",
+    "b": "A withHuman szoftvere automatikusan vagy emberi jóváhagyással szűri az AI-ügynökök kockázatos műveleteit.",
+    "k": "Product Hunt",
+    "g": "ügynök",
+    "u": "/hir/elindult-a-withhuman-az-ai-ugynokoket-ellenorzo-biztonsagi-reteg",
+    "sz": "Megjelent a withHuman, amely egy biztonsági és jóváhagyási réteget képez a vállalati AI-ügynökök működésében. Az eszköz még a lefuttatás előtt elfogja az ügynökök eszközhívásait (tool call), majd az előre beállított szabályok alapján automatikusan engedélyezi a rutinműveleteket, vagy továbbítja a kockázatos kéréseket a csapat megfelelő tagjának.\n\nA megoldás az nyílt Agent Approval Protocol (AAP) szabványra épül, így egyetlen szabályrendszerrel kezelhető az összes vállalati AI-ügynök. Kompatibilis többek között a Claude Code és a Codex rendszerekkel, valamint a LangGraph és Pydantic AI keretrendszerekkel épített ügynökökkel is.\n\nA termék nyílt forráskódú verzióban és felhős, hosztolt szolgáltatásként is elérhető a withhuman.ai oldalon. A felhős csomagokhoz a kezdeti időszakban ingyenes próbaidőszakot is kínálnak. AI ügynök withHuman fejlesztés biztonság",
+    "d": "okt. 14. 18:01"
+  },
+  {
+    "i": "677c4eaf7d0b",
+    "p": "/assets/kep/677c4eaf7d0b.webp",
+    "c": "Saját AI-modellel vezérelhető videószerkesztőt adtak ki Macre és Windowsra",
+    "b": "A Rushilo asztali alkalmazásban a Claude Code vagy Codex segítségével, szöveges utasításokkal szerkeszthetők a videók.",
+    "k": "Product Hunt",
+    "g": "eszköz",
+    "u": "/hir/sajat-ai-modellel-vezerelheto-videoszerkesztot-adtak-ki-macre-es",
+    "sz": "A Rushilo egy Macre és Windowsra megjelent videószerkesztő program, amelyet a felhasználó saját AI-modellje vezérel. Az alkalmazás a Claude Code vagy a Codex összekapcsolásával működik: a vágási feladatokat, mint a kivágást, feliratkozást, töltelékszavak törlését vagy a méretezést szöveges utasításokkal lehet megadni. A módosítások egy vizuális idővonalon jelennek meg, így minden lépés visszavonható.\n\nA szoftver nem tartalmaz beépített AI-modellt és kreditrendszert sem, a műveletek a felhasználó saját API-kulcsával vagy előfizetésével futnak. A videofájlok a helyi meghajtón maradnak, a feliratozáshoz pedig a gépen futó Whisper modellt használja a rendszer. A funkciók között szerepel az automatikus nagyítással ellátott képernyőrögzítés Macen, valamint a közvetlen YouTube-feltöltés.\n\nAz alkalmazás egyszeri 99 dolláros áron vásárolható meg, amellyel 3 számítógépen használható. Rushilo Claude Code Codex videószerkesztés",
+    "d": "okt. 14. 17:35"
+  },
+  {
     "i": "6931a40f791f",
     "p": "/assets/kep/6931a40f791f.webp",
     "c": "Szoftverek átültetésére használják a Perplexity Computert",
@@ -427,6 +460,17 @@
     "u": "/hir/mesterseges-intelligenciaval-keszitett-lehallgatoeszkozt-egy-mernok",
     "sz": "Letartóztatták az OpenAI egyik 35 éves mérnökét, aki a vád szerint egy lehallgatóeszközt rejtett el a cég vezetésének tárgyalójába. A szakember egy vakfolton, a televízió USB-csatlakozójába rejtette el a WC-papírba csomagolt rögzítőt. Az OpenAI közlése szerint modellkódokhoz és ügyféladatokhoz nem fértek hozzá, az érintett munkavállalót azonnal elbocsátották, míg az amerikai Igazságügyi Minisztérium vádat emelt ellene.\n\nA vádirat szerint a mérnök egy chatbot segítségével írta meg a kémfelszerelés szoftverét. A felesége fiókjáról olyan utasításokat adott meg az AI-nak, amelyek a folyamatos hangrögzítésre, a Wi-Fi-kapcsolat beállítására, az élő hallgatás javítására és az SD-kártya titkosítására vonatkoztak. A beírt parancsokban még a lefoglalt eszköz egyedi azonosítója is szerepelt.\n\nAz FBI ellenkémkedési ügyként kezeli az esetet. A vádlott bűnössége esetén akár 5 év börtönbüntetésre és 250 000 dolláros bírságra is számíthat. OpenAI kiberbiztonság vibe coding ChatGPT",
     "d": "okt. 14. 14:37"
+  },
+  {
+    "i": "48adaa227a9f",
+    "p": "/assets/kep/48adaa227a9f.webp",
+    "c": "Saját AI Sandboxes környezetet indított a Buddy szoftverfejlesztő platform",
+    "b": "A Buddy új funkciójával az AI-ügynökök közvetlenül kezelhetik a felhős infrastruktúrát és a telepítéseket.",
+    "k": "Product Hunt",
+    "g": "eszköz",
+    "u": "/hir/sajat-ai-sandboxes-kornyezetet-inditott-a-buddy-szoftverfejleszto",
+    "sz": "A Buddy szoftverfejlesztő platform kiadta az AI Sandboxes nevű funkcióját, amely lehetővé teszi alkalmazások és weboldalak azonnali tesztelését, hosztolását és telepítését. A rendszer segítségével a fejlesztők egyetlen felületen kezelhetik a domaineket, futtathatnak teszteket és automatizálhatják a folyamatokat UI, YAML vagy kód segítségével.\n\nA frissítés legfőbb újítása, hogy az AI-ügynökök, mint a Claude Code, a Cursor vagy a Copilot, az MCP csatlakozón vagy parancssori felületen keresztül közvetlenül is irányíthatják a Buddy rendszereit. Ez azt jelenti, hogy a mesterséges intelligencia önállóan képes elvégezni a telepítéseket, kezelni az infrastruktúrát és elemezni a naplófájlokat.\n\nA szolgáltatás használatához regisztrációra vagy bonyolult beállításokra sincs feltétlenül szükség egy élő tesztkörnyezet elindításához. A rendszer bármilyen felhőszolgáltatóval együttműködik. Buddy AI Sandboxes MCP Cursor",
+    "d": "okt. 14. 14:11"
   },
   {
     "i": "a0e0fec2c2b5",
@@ -957,6 +1001,17 @@
     "d": "okt. 13. 17:58"
   },
   {
+    "i": "33a93673c36f",
+    "p": "/assets/kep/33a93673c36f.webp",
+    "c": "AI-ügynökökkel automatizálja a háttérirodát a Lleverage",
+    "b": "A rendszer automatikusan feldolgozza az e-mailekből és PDF-ekből érkező rendeléseket, majd szinkronizálja azokat a meglévő ERP-vel.",
+    "k": "Product Hunt",
+    "g": "ügynök",
+    "u": "/hir/ai-ugynokokkel-automatizalja-a-gyartok-es-nagykereskedok",
+    "sz": "A Lleverage kifejezetten gyártók, nagykereskedők és disztribútorok számára fejlesztett autonóm háttérirodai rendszert. Az AI-ügynökök beolvassák a beérkező megrendeléseket, számlákat és beszerzési dokumentumokat a levelezésekből és PDF-fájlokból, ellenőrzik az adatokat a meglévő ERP-rendszerben, majd rögzítik a hibátlan tételeket.\n\nA megoldás használatához nincs szükség a meglévő vállalatirányítási rendszer cseréjére, mivel a meglévő ERP marad az elsődleges adatforrás. A szoftver kompatibilis a legnépszerűbb rendszerekkel, mint a SAP, Business Central, Exact vagy NetSuite. Az emberi kollégáknak kizárólag a fennmaradó kivételeket és eltéréseket kell jóváhagyniuk, miközben minden folyamatról teljes ellenőrzési napló készül.\n\nA szolgáltatást európai szervereken üzemeltetik, így megfelel az Európai Unió adatvédelmi előírásainak. A platform használatával a háttérirodai csapatok jelentős időt takaríthatnak meg a manuális adatadagolás elhagyásával. Lleverage ERP ügynök automatizálás",
+    "d": "okt. 13. 17:53"
+  },
+  {
     "i": "684644a61ee7",
     "p": "/assets/kep/684644a61ee7-hd2.webp",
     "c": "Saját matricacsomagokat tervezhetünk a ChatGPT Images funkcióval",
@@ -1166,6 +1221,17 @@
     "d": "okt. 13. 09:10"
   },
   {
+    "i": "241febded1ad",
+    "p": "/assets/kep/241febded1ad.webp",
+    "c": "Felhős AI-platformot indított a robotok irányítására a Dreamscale Labs",
+    "b": "A Y Combinator által támogatott cég ultra-alacsony késleltetéssel teszi futtathatóvá a legújabb fizikai AI-modelleket.",
+    "k": "Product Hunt",
+    "g": "eszköz",
+    "u": "/hir/felhos-ai-platformot-inditott-a-robotok-iranyitasara-a-dreamscale-labs",
+    "sz": "A Dreamscale Labs elindította valós idejű felhős inferencia platformját, amelyet kifejezetten robotikai modellekhez terveztek. A megoldás lehetővé teszi a legújabb fizikai AI-modellek, például a VLA és WAM architektúrák futtatását közvetlenül a felhőből, így a fejlesztőknek nem kell drága és korlátozott teljesítményű beépített GPU-kat vásárolniuk a robotokba.\n\nA rendszer 100 ezredmásodperc alatti végpontok közötti késleltetést ér el, ami elengedhetetlen a robotok valós idejű vezérléséhez. A platform kiváltja a modellek folyamatos kvantálását és kicsinyítését, amelyek korábban a képességek romlásához vezettek. A szolgáltatás használatért alapon, fix óradíjas árazással érhető el az AI-fejlesztők és kutatók számára. Dreamscale Labs robotika fizikai AI felhő",
+    "d": "okt. 13. 08:27"
+  },
+  {
     "i": "dabae94d30b1",
     "p": "/assets/kep/dabae94d30b1.webp",
     "c": "Kiugró növekedést hoz az AI-adatközpontok fotonikai igénye a Soitecnek",
@@ -1186,6 +1252,17 @@
     "u": "/hir/sima-szoveges-utasitassal-rendszerezi-a-ceges-fajlokat-a-the-drive-ai",
     "sz": "A The Drive AI egy AI-ügynök, amely a felhőalapú tárhelyeken lévő fájlok kezelését automatizálja. A rendszer összekapcsolható a Google Drive, SharePoint, OneDrive és Dropbox fiókokkal, a felhasználók pedig egyszerű, hétköznapi nyelven megadott utasításokkal kereshetnek, hozhatnak létre vagy módosíthatnak dokumentumokat.\n\nAz eszköz nemcsak fájlokat hoz létre, hanem közvetlenül dolgozik is rajtuk: képes dokumentumokat összefűzni, oldalakat törölni vagy beszúrni, és átszervezni a fájlstrukturát. A munkafolyamatok során az AI előre megmutatja a tervezett lépéseket, megvárja a felhasználó jóváhagyását, a végrehajtott módosítások pedig tetszőlegesen visszavonhatók.\n\nA szolgáltatás közvetlenül a fejlesztő weboldalán keresztül érhető el a felhőtárhelyek integrációjával. The Drive AI Google Drive OneDrive SharePoint",
     "d": "okt. 13. 07:39"
+  },
+  {
+    "i": "0cef2f3b2c70",
+    "p": "/assets/kep/0cef2f3b2c70.webp",
+    "c": "Megjelent a Backdrop, amivel testreszabott AI-munkatársak építhetők",
+    "b": "A Backdrop platformján speciális AI-ügynökök hozhatók létre, amelyek több mint 1500 vállalati eszközzel integrálhatók.",
+    "k": "Product Hunt",
+    "g": "ügynök",
+    "u": "/hir/megjelent-a-backdrop-amivel-testreszabott-ai-munkatarsak-epithetok",
+    "sz": "A Backdrop segítségével a vállalkozások testreszabott AI-munkatársakat hozhatnak létre a különböző meglévő munkafolyamataikhoz. Az ügynökök tanítása képernyőfelvételek megmutatásával is lehetséges, emellett saját készségekkel is felruházhatók. A rendszer közös vállalati kontextust biztosít a csapattagoknak a szigetszerű chatablakok használata helyett.\n\nAz elkészített digitális kollégák több mint 1500 eszközzel kapcsolhatók össze, mint például a Slack, a Google Workspace, az Asana, a HubSpot, a Meta vagy a TikTok. Ez lehetővé teszi, hogy az ügynökök kutassanak, tartalomgyártást végezzenek, koordinálják a feladatokat és nyomon kövessék a folyamatokat a meglévő szoftverekben.\n\nA vállalati biztonság érdekében a platform hozzáférési jogosultságokat és jóváhagyási lépéseket tartalmaz. Az auditálható előzményeknek köszönhetően a felhasználók pontosan nyomon követhetik, hogy az AI-ügynök mit, miért és hogyan hajtott végre. Az eszköz ingyenesen kipróbálható a weboldalukon. Backdrop AI-ügynök automatizáció Slack",
+    "d": "okt. 13. 07:14"
   },
   {
     "i": "4225477b4094",

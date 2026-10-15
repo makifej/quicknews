@@ -1,0 +1,74 @@
+{
+  "id": "2ff011e2a63b",
+  "slug": "a-navige-automatikusan-csokkenti-az-ai-ugynokok-uzemeltetesi",
+  "forras_id": "producthunt",
+  "forras_nev": "Product Hunt",
+  "url": "https://www.producthunt.com/products/navige",
+  "szerzo": "Kate Ramakaieva",
+  "publikalva": "2026-10-14T06:29:41+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://ph-files.imgix.net/bf03af86-5dd5-4acf-b6ca-c405710d06f2.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024"
+  },
+  "cim_eredeti": "Navige",
+  "forrasok": [],
+  "szoveg_eredeti": "Most of what an AI agent does isn’t hard - sorting an email, pulling a date out of a document, picking the next step. But often, it all runs on the most expensive model, because that’s the one written into the code and nobody went back to change it.\n\nThen the bill arrives as one number, and nobody can say which agent spent what.\n\nNavige sits in front of calls routed through it and acts before they run, while the cost can still change. We call this Sufficiency Intelligence: give each task exactly the intelligence it needs.\n\nIt assesses each request and sends suitable ones to a smaller model. Your model is the ceiling: Navige only moves calls down, never up, and keeps yours whenever it’s unsure.\n\nIf the smaller model fumbles a tool call, the call re-runs on your original model, and your agent only sees that answer.\n\nIt records every job: what it cost, what the controls changed and what made the difference. Measured savings and estimates are clearly separated.\n\nOn top of that, you get budgets per team and per job, approval holds for risky actions, a kill switch and an audit trail.\n\nWatchtower is the starting point. Navige watches and shows what it would have done, but changes nothing until you say so.\n\nConnect your Anthropic or AWS Bedrock account and put your real bill next to Navige’s figures, so you can check the numbers instead of trusting a savings claim.\n\nWatchtower is free forever. On paid plans, of the measured savings Navige can show, you keep four parts and we keep one, subject to a $9/month minimum.\n\nWatch your agents for a week. Nothing changes until you decide.\n\nWhich of your agents’ jobs do you suspect is running on a much bigger model than it needs? 👇\n\nWeboldal: https://navige.ai/",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Navige automatikusan csökkenti az AI-ügynökök üzemeltetési költségeit",
+  "lead": "Az új rendszer kisebb modellekre irányítja az egyszerűbb feladatokat, így akár 80 százalékkal is mérsékelheti az ágensek számláit.",
+  "osszefoglalo": "Megjelent a [Navige](https://navige.ai/), amely az úgynevezett Sufficiency Intelligence technológiával csökkenti az AI-ügynökök futtatási költségeit. A rendszer a munkafolyamatok során elemzi az egyes kéréseket, és az egyszerűbb feladatokat automatikusan olcsóbb, kisebb modelleknek adja át. Ha egy kisebb modell elakad, a feladat automatikusan az eredetileg beállított nagy modellen fut le újra.\n\nA platform emellett **gyorsítótárazza a gyakori lekérdezéseket**, lerövidíti a túl méretes eszközválaszokat, és részletes költségkimutatást ad feladatonként. A biztonsági funkciók között megtalálható a csapatonkénti és feladatonkénti büdzsébeállítás, az automatikus leállítási lehetőség, valamint a kockázatos lépések kézi jóváhagyása.\n\nA rendszer Watchtower nevű ingyenes verziója először csak megfigyeli a munkafolyamatokat és megmutatja a várható megtakarítást. A fizetős csomagok a mért megtakarítás 20 százalékáért működnek, legalább havi 9 dolláros alapdíj mellett. A szolgáltatás Anthropic és [AWS Bedrock](https://aws.amazon.com/bedrock/) fiókokkal kapcsolható össze.",
+  "miert_szamit": "A magyar vállalkozások és fejlesztők **jelentősen csökkenthetik az AI-ügynökök tesztelési és üzemeltetési költségeit**, mivel az egyszerűbb rutinleírásokhoz nem kell a legdrágább modelleket fizetniük.",
+  "cimkek": [
+    "Navige",
+    "AI ügynök",
+    "költségcsökkentés",
+    "Anthropic"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Navige",
+    "url": "https://navige.ai/"
+  },
+  "linkelendo_nevek": [
+    "Navige"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-15T07:20:57+00:00",
+  "megjelent": "2026-10-15T07:20:57+00:00",
+  "tenyellenorzes": {
+    "ok": false,
+    "ido": "2026-10-15T07:21:53+00:00",
+    "esemeny": "Kate Ramakaieva bemutatta a Navige nevű eszközt a Product Hunt platformon, amely a 'Sufficiency Intelligence' megközelítéssel csökkenti az AI-ügynökök költségeit úgy, hogy az egyszerűbb feladatokat kisebb modellekre irányítja át.",
+    "forrasok": [
+      "https://www.producthunt.com/products/navige",
+      "https://navige.ai/"
+    ],
+    "hibak": [
+      "A leadben szereplő 'akár 80 százalékkal is mérsékelheti' állítás nem szerepel a forrásanyagban.",
+      "A lead hossza meghaladja a megengedett 160 karakteres korlátot (161 karakter).",
+      "a javított változat sem ment át: A magyar szöveg olyan funkciókat állít tényként (gyorsítótárazás, eszközválaszok lerövidítése), amelyek nem szerepelnek a forrásanyagban.; A magyar cikk nem tartalmazza a kötelező beszédes elsődleges forrás hivatkozást (linket) a szövegben."
+    ],
+    "kereses": [],
+    "javitva": false
+  },
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-15T09:23:35+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": [
+      {
+        "lepes": "elvetve",
+        "kif": "gyorsítótárazza a gyakori lekérdezéseket",
+        "url": "https://navige.ai/docs/how-a-call-is-handled",
+        "ok": "HTTP 404"
+      }
+    ]
+  }
+}

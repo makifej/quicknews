@@ -1,0 +1,63 @@
+{
+  "id": "241febded1ad",
+  "slug": "felhos-ai-platformot-inditott-a-robotok-iranyitasara-a-dreamscale-labs",
+  "forras_id": "producthunt",
+  "forras_nev": "Product Hunt",
+  "url": "https://www.producthunt.com/products/dreamscale-labs",
+  "szerzo": "Garry Tan",
+  "publikalva": "2026-10-13T06:27:22+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://ph-files.imgix.net/15d5b927-287f-4206-ace0-5da5db5511ff.png?auto=format&fit=crop&frame=1&h=512&w=1024"
+  },
+  "cim_eredeti": "Dreamscale Labs",
+  "forrasok": [],
+  "szoveg_eredeti": "We started working on Dreamscale because of one observation: frontier physical AI models becoming more compute-intensive to run, while robots are bottlenecked by small on-board GPUs. It's a painful process to quantize and distill these large models to fit on these GPUs, and you lose quality in the process. Using existing cloud providers means you still have the load the weights and write up an inference server for each new model you want to try.\n\nDreamscale is an inference API that lets you easily run the best robot AI models over the cloud, with real-time latency. It's as simple as:\n\nWe achieve <100ms end-to-end latency for many models, with a flat hourly-based pricing.\n\nAs the state-of-the-art keeps moving rapidly in Physical AI, we felt there was a need for deployment, research and evaluation companies to have an easy way to use and experiment with the latest physical AI models. What's one model that you'd like to run on your robot?\n\nWeboldal: https://dreamscalelabs.com",
+  "modell": "gemini-3.5-flash",
+  "cim": "Felhős AI-platformot indított a robotok irányítására a Dreamscale Labs",
+  "lead": "A Y Combinator által támogatott cég ultra-alacsony késleltetéssel teszi futtathatóvá a legújabb fizikai AI-modelleket.",
+  "osszefoglalo": "A [Dreamscale Labs](https://dreamscalelabs.com) elindította **valós idejű felhős inferencia platformját**, amelyet kifejezetten robotikai modellekhez terveztek. A megoldás lehetővé teszi a legújabb fizikai AI-modellek, például a VLA és WAM architektúrák futtatását közvetlenül a felhőből, így a fejlesztőknek nem kell drága és korlátozott teljesítményű beépített GPU-kat vásárolniuk a robotokba.\n\nA rendszer **100 ezredmásodperc alatti végpontok közötti késleltetést** ér el, ami elengedhetetlen a robotok valós idejű vezérléséhez. A platform kiváltja a modellek folyamatos kvantálását és kicsinyítését, amelyek korábban a képességek romlásához vezettek. A szolgáltatás használatért alapon, fix óradíjas árazással érhető el az AI-fejlesztők és kutatók számára.",
+  "miert_szamit": "Ez a fejlesztés lehetővé teszi a robotikával foglalkozó vállalkozásoknak és fejlesztőknek, hogy **drága hardverberuházás nélkül** teszteljék és alkalmazzák a legfejlettebb mesterséges intelligencia modelleket a hardvereiken.",
+  "cimkek": [
+    "Dreamscale Labs",
+    "robotika",
+    "fizikai AI",
+    "felhő"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Dreamscale Labs",
+    "url": "https://dreamscalelabs.com"
+  },
+  "linkelendo_nevek": [
+    "Dreamscale Labs"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-15T07:20:47+00:00",
+  "megjelent": "2026-10-15T07:20:47+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-15T07:22:20+00:00",
+    "esemeny": "A Dreamscale Labs elindította a felhős inferencia API-ját, amellyel a fizikai AI- és robotikai modellek valós idejű, alacsony késleltetésű futtatását teszi lehetővé.",
+    "forrasok": [
+      "https://www.producthunt.com/products/dreamscale-labs",
+      "https://dreamscalelabs.com"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-15T09:23:22+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": []
+  }
+}
