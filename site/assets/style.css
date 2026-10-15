@@ -136,14 +136,19 @@ strong { font-weight: 600; color: var(--szoveg); }
 .harang-fej { padding: 16px 16px 8px; color: var(--kiemelo-szin); font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
 .harang-buborek ul { margin: 0; padding: 0 0 8px; list-style: none; }
 .harang-buborek li + li { border-top: 1px solid var(--vonal); }
-.harang-buborek a { display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: center; position: relative; padding: 12px 16px 12px 20px; transition: background-color 400ms var(--gorbe); }
-.harang-buborek li.uj a { grid-template-columns: 72px 1fr; }
+/* csengő-sor: fix bélyegkép-oszlop + a maradék teljes szélesség a szövegnek; a bélyegkép cellája kép nélkül is megvan
+   (forrásnév), ezért a cím sosem kerül a keskeny oszlopba, és egy hibás kép sem mozdítja a sort (Heni 2026-10-15) */
+.harang-buborek a { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; align-items: center; position: relative; padding: 12px 16px 12px 20px; transition: background-color 400ms var(--gorbe); }
 .harang-buborek a:hover { background: var(--bg-3); }
-.harang-buborek img { width: 72px; height: 48px; object-fit: cover; border-radius: 8px; }
-.harang-buborek a:not(:has(img)) { grid-template-columns: 1fr; }
+.harang-kep { display: block; width: 72px; height: 48px; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; background: var(--bg-3); flex: 0 0 auto; }
+.harang-kep.nincs { display: grid; place-items: center; overflow: hidden; padding: 0 5px; text-align: center; font-size: 10px; line-height: 12px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--kiemelo-szin); border: 1px solid var(--keret); overflow-wrap: anywhere; }
+.harang-szoveg { display: block; min-width: 0; }
+.harang-buborek a.nincs-kep { grid-template-columns: minmax(0, 1fr); }
 .harang-buborek li.uj a::before { content: ""; position: absolute; top: 50%; left: 7px; width: 7px; height: 7px; margin-top: -3px; border-radius: 50%; background: #c8282e; }
 .harang-forras { display: block; margin-bottom: 2px; color: var(--kiemelo-szin); font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
-.harang-buborek strong { display: block; font-size: 16px; line-height: 22px; font-weight: 700; color: var(--szoveg); }
+.harang-buborek strong { display: block; font-size: 16px; line-height: 22px; font-weight: 700; color: var(--szoveg); word-break: normal; overflow-wrap: break-word; }
+/* nyitott csengőpanel mellett a lebegő „Kérdezz a hírektől!” és a felugró gomb nem takarhat (Heni 2026-10-15) */
+body.harang-nyitva .chat, body.harang-nyitva .fel-gomb { visibility: hidden; }
 .harang-ures { margin: 0; padding: 4px 16px 16px; color: var(--szoveg-2); font-size: 14px; line-height: 20px; }
 
 /* hero */
@@ -565,7 +570,10 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 }
 @media (max-width: 767px) {
   .fejlec-felso .keret { height: 60px; gap: 8px; }
-  .rovatsor a { font-size: 14px; line-height: 20px; padding: 8px 8px 6px; }
+  /* kompakt mobil rovatsor (Heni 2026-10-15): a .fejlec nav a asztali mérete (18px, 8px 12px) eddig itt is érvényes volt */
+  .fejlec nav.rovatsor a, .rovatsor a { font-size: 14px; line-height: 18px; padding: 10px 9px 8px; letter-spacing: 0.01em; white-space: nowrap; border-bottom-width: 3px; }
+  .rovatsor .keret { gap: 4px; }
+  .rovatsor .kitolto { border-bottom-width: 3px; }
   .mobil-szlogen { display: block; padding-top: 16px; }
   .mobil-szlogen p { font-size: 24px; line-height: 32px; font-weight: 800; letter-spacing: -0.01em; }
   .mobil-szlogen span { display: block; margin-top: 4px; font-size: 13px; line-height: 18px; color: var(--szoveg-2); }
@@ -698,8 +706,10 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 
 /* Csengő mobilon: a lenyíló doboz a képernyő két széléhez igazodik, nem a gombhoz (kilógott balra) */
 @media (max-width: 599px) {
+  .harang-buborek strong { font-size: 15px; line-height: 20px; }
+  .harang-buborek a { padding: 10px 12px 10px 18px; gap: 10px; }
   .harang-buborek {
-    position: fixed; left: 16px; right: 16px; width: auto;
+    position: fixed; left: 12px; right: 12px; width: auto; max-width: none; overscroll-behavior: contain;
     top: var(--harang-teto, 72px);
     max-height: calc(100vh - var(--harang-teto, 72px) - 16px);
     max-height: calc(100dvh - var(--harang-teto, 72px) - 16px);
