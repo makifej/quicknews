@@ -1,3 +1,19 @@
+// Jobbra fent (főoldal és rovatoldal): a készlet jelöltjei közül betöltésenként véletlen egy látszik (Heni 2026-10-15)
+(function(){
+  var fo = document.querySelector('[data-jobb-fo]'); if (!fo) return;
+  var lapok = [].slice.call(fo.children); if (lapok.length < 2) return;
+  // nem ugyanaz jön, mint az előző betöltéskor ezen az oldalon (a böngésző megjegyzi, mit mutatott utoljára)
+  var kulcs = 'qn-jobb-fo:' + location.pathname, elozo = null;
+  try { elozo = localStorage.getItem(kulcs); } catch (e) {}
+  var jeloltek = lapok.filter(function(el){ return el.getAttribute('data-hid') !== elozo; });
+  if (!jeloltek.length) jeloltek = lapok;
+  var valasztott = jeloltek[Math.floor(Math.random() * jeloltek.length)];
+  lapok.forEach(function(el){ el.hidden = el !== valasztott; });
+  var hid = valasztott.getAttribute('data-hid') || '';
+  try { localStorage.setItem(kulcs, hid); } catch (e) {}
+  // ugyanaz a hír ne szerepeljen még egyszer lejjebb a lapon
+  if (hid) [].forEach.call(document.querySelectorAll('[data-hid="' + hid + '"]'), function(el){ if (!fo.contains(el)) { var li = el.closest('li'); (li || el).hidden = true; } });
+})();
 // Főoldal, jobb oszlop: a készletből minden betöltéskor véletlenszerűen 3 sima és 2 képes hír, váltakozva
 (function(){
   var v = document.querySelector('.jobb-vegyes[data-keszlet]'); if (!v) return;
@@ -365,13 +381,19 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     var ujak=function(){ return hirek.filter(function(h){ return latott.indexOf(h.id)<0; }); };
     var biztos=qnEsc;
     var jelol=function(){ var db=ujak().length; jel.textContent=db>9?'9+':String(db); jel.hidden=db===0; gomb.setAttribute('aria-label',db?'Új hírek, '+db+' új':'Új hírek'); };
-    var kirajzol=function(){ var ujId=ujak().map(function(h){return h.id;}); var sorok=hirek.filter(function(h){ return qnSlug(h.slug); }).slice(0,20).map(function(h){ var kep=qnKep(h.kep); return '<li'+(ujId.indexOf(h.id)>=0?' class="uj"':'')+'><a href="/hir/'+h.slug+'">'+(kep?'<img src="'+biztos(kep)+'" alt="" loading="lazy">':'')+'<span><span class="harang-forras">'+biztos(h.forras)+(h.ido?' · '+biztos(h.ido):'')+'</span><strong>'+biztos(h.cim)+'</strong></span></a></li>'; }).join('');
+    // Heni 2026-10-15: a bélyegkép cellája mindig megvan (kép nélkül a forrás nevével), így a cím sosem kerül a keskeny
+    // képoszlopba; a be nem töltődő (404, lejárt) kép helyére is a helyőrző kerül, a sor magassága nem változik
+    var kepHiba=function(img){ if(!img||!img.classList||!img.classList.contains('harang-kep')||!img.parentNode) return; var f=img.parentNode.querySelector('.harang-forras'); var sp=document.createElement('span'); sp.className='harang-kep nincs'; sp.setAttribute('aria-hidden','true'); sp.textContent=String(f?f.textContent:'').split(' · ')[0].replace(/\s*\((X|LinkedIn|YouTube)\)\s*$/,'').slice(0,14); img.parentNode.replaceChild(sp,img); };
+    buborek.addEventListener('error',function(ev){ kepHiba(ev.target); },true);
+    var helyorzo=function(h){ return '<span class="harang-kep nincs" aria-hidden="true">'+biztos(String(h.forras||'').replace(/\s*\((X|LinkedIn|YouTube)\)\s*$/,'').slice(0,14))+'</span>'; };
+    var kirajzol=function(){ var ujId=ujak().map(function(h){return h.id;}); var sorok=hirek.filter(function(h){ return qnSlug(h.slug); }).slice(0,20).map(function(h){ var kep=h.fk?'':qnKep(h.kep); return '<li'+(ujId.indexOf(h.id)>=0?' class="uj"':'')+'><a href="/hir/'+h.slug+'">'+(kep?'<img class="harang-kep" src="'+biztos(kep)+'" width="72" height="48" alt="" loading="lazy" decoding="async">':helyorzo(h))+'<span class="harang-szoveg"><span class="harang-forras">'+biztos(h.forras)+(h.ido?' · '+biztos(h.ido):'')+'</span><strong>'+biztos(h.cim)+'</strong></span></a></li>'; }).join('');
       buborek.innerHTML='<div class="harang-fej">Friss hírek</div>'+(sorok?'<ul>'+sorok+'</ul>':'<p class="harang-ures">Most nincs új hír.</p>')+(window.Notification?'<button type="button" class="harang-ertesit">'+(Notification.permission==='granted'?'Értesítés bekapcsolva':'Értesíts az új hírekről')+'</button>':'');
+      [].forEach.call(buborek.querySelectorAll('img.harang-kep'),function(img){ if(img.complete&&img.naturalWidth===0) kepHiba(img); });
       var he=buborek.querySelector('.harang-ertesit'); if(he) he.addEventListener('click',function(ev){ ev.stopPropagation(); Notification.requestPermission().then(function(p){ he.textContent = p==='granted'?'Értesítés bekapcsolva':'Értesítés letiltva a böngészőben'; }); }); };
-    var zar=function(){ buborek.hidden=true; gomb.setAttribute('aria-expanded','false'); document.removeEventListener('keydown',bill); document.removeEventListener('click',kivul); };
+    var zar=function(){ buborek.hidden=true; gomb.setAttribute('aria-expanded','false'); document.body.classList.remove('harang-nyitva'); document.removeEventListener('keydown',bill); document.removeEventListener('click',kivul); };
     function bill(ev){ if(ev.key==='Escape'){ zar(); gomb.focus(); } }
     function kivul(ev){ if(!doboz.contains(ev.target)) zar(); }
-    var nyit=function(){ kirajzol(); buborek.hidden=false; gomb.setAttribute('aria-expanded','true'); latott=hirek.map(function(h){return h.id;}); try{ localStorage.setItem(TAR,JSON.stringify(latott)); }catch(e){} jelol(); setTimeout(function(){ document.addEventListener('keydown',bill); document.addEventListener('click',kivul); },0); };
+    var nyit=function(){ kirajzol(); buborek.hidden=false; gomb.setAttribute('aria-expanded','true'); document.body.classList.add('harang-nyitva'); latott=hirek.map(function(h){return h.id;}); try{ localStorage.setItem(TAR,JSON.stringify(latott)); }catch(e){} jelol(); setTimeout(function(){ document.addEventListener('keydown',bill); document.addEventListener('click',kivul); },0); };
     gomb.addEventListener('click',function(){ if(buborek.hidden) nyit(); else zar(); });
     var betolt=function(){ fetch('/feed.json?t='+Date.now(),{cache:'no-store'}).then(function(r){ return r.json(); }).then(function(d){ hirek=d.hirek||[]; var elo=hirek.map(function(h){return h.id;}); latott=latott.filter(function(i){ return elo.indexOf(i)>=0; }); jelol(); }).catch(function(){}); };
     betolt(); setInterval(betolt,60000);

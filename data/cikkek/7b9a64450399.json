@@ -1,0 +1,66 @@
+{
+  "id": "7b9a64450399",
+  "slug": "ket-ai-ugynokre-bontotta-a-kodellenorzest-az-atlassian",
+  "forras_id": "dailydev",
+  "forras_nev": "Atlassian (daily.dev)",
+  "url": "https://www.atlassian.com/blog/bitbucket/how-we-accelerated-code-review-in-a-large-monorepo-with-two-agents-in-agentic-pipelines",
+  "szerzo": null,
+  "publikalva": "2026-10-14T20:28:07+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/e360365e6b92f264cb2c01ed75ead317?_a=AQAEuop"
+  },
+  "cim_eredeti": "How we accelerated code review in a large monorepo with two agents in Agentic Pipelines",
+  "forrasok": [],
+  "szoveg_eredeti": "Last quarter, our AI reviewer told a developer who was fixing a CSS bug to rethink how their component fetched data. The comment was well written and confidently worded. It was also about code they hadn’t touched.\n\nThat’s what tends to happen when you hand an agent every team’s review guidelines at once. You get comments that could apply to any repository: “Add a test,” “Rename this variable,” “Handle the error.” None of them is exactly wrong but are they worth acting upon ? In a monorepo, an AI review comment is only useful if it cites a rule that applies to the code being changed.\n\nWe ran into this in one of the largest frontend monorepos at Atlassian, shared by many product teams. Each product team keeps its own review guidelines in specific areas (or directory structure) in repository. A human reviewer who owns a specific area knows which document to open for the code they are reviewing. An agent that starts with all of them has to choose the right document and review the code in a single pass, and when it chooses wrong, the comment is about the wrong thing.\n\nThe Jira team fixed this by splitting the job into two steps with Agentic Pipelines. The first agent matches the changed files to the guideline documents that cover them. The second reads that short list, reviews the diff against only those documents, and leaves inline comments. The author and the human reviewer still decide what to change.\n\nA single style guide wouldn’t work in a repository this size. Different teams would have their own styling guidelines and rules for the code in their area. The rules differ by directory, and they’re written that way on purpose. Together, those documents make up “the guidelines,” but for any given pull request, most of them have nothing to say.\n\nTake that CSS fix. Elsewhere in the set, there’s a document about data fetching. It has no bearing on a styling change, but an agent holding both documents will happily write the fetching comment anyway. Now the human reviewer has to work out whether the comment is about the code, or about a document that should never have been opened.\n\nPicking the right documents and reviewing against them are two different jobs, so we gave them to two different agents.\n\nAgentic Pipelines runs one agent per step, which suited this design well. In the first step, the matcher does its work and publishes a file. In the next step, the reviewer starts fresh with the diff and the handful of documents the matcher named.\n\nNone of this works unless each directory’s guidelines are clear and specific. The matcher can route a change to the right document, but it can’t make a vague document useful.\n\nThe matcher reads the pull request through the Bitbucket MCP server that Agentic Pipelines attaches to the step, using the pull request ID that’s already in the environment. It pairs each changed path with the guideline file that covers it and writes that list to tmp/pr-analysis.md. If the Bitbucket pull request tools don’t return a specific file the agent needs (e.g., a guideline document or a changed file), the matcher agent can instead read that file directly from the checked-out copy of the repository.\n\nMost of the prompt is about what the matcher must not do. Point an agent at a pull request and it wants to review it, so if the prompt leaves any room, it will. Leave the wording loose and you can get something worse: an agent that writes a script, adds files, and finishes the step without leaving a single comment. So we tell it exactly when to stop.\n\nWe learned why the $BITBUCKET_PR_ID line matters the hard way. If a sample pull request ID is left anywhere in the instructions, the agent may review that pull request instead of the real one. The ID has to come from the pipeline.\n\nThe reviewer reads tmp/pr-analysis.md, opens only the guideline files it lists, and comments on the diff. We brief it as a principal engineer for that area of the codebase. Each area’s guidelines are local and a little strict, and we want the reviewer’s tone to match.\n\nComments are reserved for critical issues and genuine concerns. Praise, nitpicks, and a walkthrough of what the diff does stay off the pull request, because they’re easy to generate and tedious to clear. The prompt also rules out new files and new commits. The reviewer’s job is done when its comments are on the pull request.\n\nThe hand-off between the two agents is a single pipeline artifact, tmp/pr-analysis.md. The guidelines themselves stay in the repository. When the reviewer step starts, it has the artifact and the checkout, and the only things it needs to read are the diff and the files the artifact names.\n\nHere’s a simplified version of the pipeline:\n\nIf you leave provider unset, the step uses Rovo Dev. If you’re bringing your own account, set provider to claude or codex on the agent. The prompts stay the same.\n\nBoth steps use the read:pullrequest:bitbucket scope. In the public MCP tool table, that’s the scope listed for reading pull request details and for adding inline comments. Check the table before you copy the YAML, and add any scope that a tool you need requires.\n\nBefore you leave the trigger on, run the custom pipeline by hand on a few real pull requests. A destination-branch condition, like the one above, is an easy way to start small.\n\nOn one very large pull request, both steps finished in about seven minutes. That’s a single run, not a benchmark, but the contrast is hard to miss: authors in this repository used to wait up to half a day, sometimes a full day, for a first review pass. The agent doesn’t replace that pass. It catches the obvious guideline misses before a teammate even opens the pull request.\n\nSpeed turned out to be the easy part. Making the comments worth reading took more effort, and a lot of it went into the guideline files rather than the prompts. Vague guidelines produce vague comments, whichever model runs the step, and developers quickly learn to ignore them. The guidelines that worked were the ones that spelled out what that team actually cares about.\n\nThat only happens if someone says when a comment was wrong or useless. We took several passes at the guidelines. The owning team reads the inline comments alongside the pull request author, and edits the guideline file whenever a comment missed something or cited a rule the file never stated. Plan on rewriting your prompts, too, after a month or so of real pull requests. Treat the first version as a draft.\n\nOne more lesson: keep the matcher’s output dull. It should list file paths and guideline names, and nothing else. If the matcher adds its own observations, the reviewer treats them as conclusions that have already been reached.\n\nAnd if the comments aren’t good, the speed doesn’t matter. A seven-minute review that a developer has to dismiss, comment by comment, costs more than it saves. It’s only worth having when each comment is something a thoughtful teammate might have written.\n\nIf your repository has one contributing guide, skip the matcher. It would pick the same document every time. The second agent earns its keep when different directories have different owners, and those owners have already written down how they review.\n\nIf that’s your repository, these are the three things we’d recommend as key learnings to follow:\n\nWrite the guidelines before you write the prompts. Every comment the reviewer leaves traces back to a guideline file. Give each area its own file in the repository, and fill it with the cases that team actually argues about in review, not generic best practice.\n\nGive each agent one job, and let them communicate with artifacts. One agent picks the documents, and the other reviews against them. The moment the matcher starts reviewing, or the reviewer gets every guideline pasted into its prompt, you’re back to one agent holding everything.\n\nRun it by hand first, and keep a person on approval. Try the pipeline on a few real pull requests before you turn on the automated trigger(s). Read the first comm",
+  "modell": "gemini-3.5-flash",
+  "cim": "Két AI-ügynökre bontotta a kódellenőrzést az Atlassian",
+  "lead": "A Jira csapata megosztotta, hogyan gyorsították fel a pull requestek ellenőrzését a Bitbucket új Agentic Pipelines rendszerével.",
+  "osszefoglalo": "Az Atlassian mérnökei a nagy, közös kódraktárukban (monorepo) tapasztalták, hogy ha egyetlen AI-modellkapja meg az összes csapat szabályzatát, irreleváns javítási javaslatokat tesz. Ezért a Bitbucket **Agentic Pipelines** segítségével két külön ügynökre bontották a feladatot.\n\nAz első **szűrő ügynök** összekapcsolja a módosított fájlokat a konkrét csapathoz tartozó útmutatókkal. A második **ellenőrző ügynök** csak ezeket a kiválasztott dokumentumokat olvassa el, és kizárólag a kritikus hibákra tesz közvetlen megjegyzést a kódban. A folyamat mindössze 7 percig tart a korábbi fél-egy napos várakozás helyett.\n\nA tapasztalatok szerint a visszajelzések pontossága nem a modell választásától vagy a promptoktól, hanem a **pontosan megírt csapatútmutatóktól** függ. A rendszer a Bitbucket Cloud béta verziójában érhető el, és [Rovo Dev](https://www.atlassian.com/rovo), Claude vagy Codex modellekkel is működik.",
+  "miert_szamit": "A fejlesztőcsapatok **drasztikusan lecsökkenthetik a kódellenőrzési időt**, ha az AI-ügynököket nem általános feladatokra, hanem célzott feladatmegosztásra és pontos belső dokumentációra építik.",
+  "cimkek": [
+    "Bitbucket",
+    "Atlassian",
+    "kódellenőrzés",
+    "Claude"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "forditva": "2026-10-15T06:06:49+00:00",
+  "megjelent": "2026-10-15T06:06:49+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-15T06:08:14+00:00",
+    "esemeny": "Az Atlassian Jira csapata megosztotta, hogyan gyorsították fel a kódellenőrzést a Bitbucket Agentic Pipelines rendszerében, ahol két külön AI-ügynökre osztották fel a feladatot: egy párosító és egy ellenőrző ügynökre.",
+    "forrasok": [
+      "https://www.atlassian.com/blog/bitbucket/how-we-accelerated-code-review-in-a-large-monorepo-with-two-agents-in-agentic-pipelines"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-15T08:11:26+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": [
+      {
+        "lepes": "nem_illo_link_ki",
+        "horgony": "Rovo Dev",
+        "url": "https://www.atlassian.com/rovo",
+        "ok": "Az oldal az Atlassian Rovo termékről szól általánosságban, de nem említi kifejezetten a Rovo Dev-et, sem a Bitbucket Cloud béta verziójára vonatkozó állítást."
+      }
+    ],
+    "osszefoglalo": "Az Atlassian mérnökei a nagy, közös kódraktárukban (monorepo) tapasztalták, hogy ha egyetlen AI-modellkapja meg az összes csapat szabályzatát, irreleváns javítási javaslatokat tesz. Ezért a Bitbucket **Agentic Pipelines** segítségével két külön ügynökre bontották a feladatot.\n\nAz első **szűrő ügynök** összekapcsolja a módosított fájlokat a konkrét csapathoz tartozó útmutatókkal. A második **ellenőrző ügynök** csak ezeket a kiválasztott dokumentumokat olvassa el, és kizárólag a kritikus hibákra tesz közvetlen megjegyzést a kódban. A folyamat mindössze 7 percig tart a korábbi fél-egy napos várakozás helyett.\n\nA tapasztalatok szerint a visszajelzések pontossága nem a modell választásától vagy a promptoktól, hanem a **pontosan megírt csapatútmutatóktól** függ. A rendszer a Bitbucket Cloud béta verziójában érhető el, és Rovo Dev, Claude vagy Codex modellekkel is működik."
+  }
+}

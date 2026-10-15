@@ -1,0 +1,62 @@
+{
+  "id": "5e1d32ca59ef",
+  "slug": "a-fish-audio-kiadta-a-drama-3-nyilt-sulyu-szovegfelolvaso-ai-modelljet",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/10/14/fish-audio-drama-3-open-weight-tts-model/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-10-14T22:52:17+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-401-2-1-1024x768.png"
+  },
+  "cim_eredeti": "Fish Audio Releases Drama 3, a 35B Open-Weight MoE Text-to-Speech Model",
+  "forrasok": [],
+  "szoveg_eredeti": "This week, Fish Audio released Fish Audio Drama 3 . Drama 3 is a text-to-speech model from Fish Audio that takes plain-language acting direction. It is a 35B mixture-of-experts model with about 3B parameters active per token. The weights are on Hugging Face , and the model is also live in the Fish Audio API . For developers, it is a self-hostable option for scripted dialogue, audiobooks and dubbing.\n\n TL;DR \n\n Size: 35B total parameters, about 3B active per token (8 of 256 experts plus 1 shared). Context length: Not disclosed.\n\n Runs on: 1 NVIDIA GPU with at least 48 GB in FP8. No CPU, Apple MPS or AMD ROCm. Official benchmarks use 1 H200.\n\n Performance: Fish Audio’s highest-scoring model on Artificial Analysis, but still behind several closed APIs on quality Elo.\n\n Best: 95.9% on brands, places and technical terms in Artificial Analysis Pronunciation Robustness.\n\n Worst: 86.3% on exact sequences (codes, paths, emails), its weakest pronunciation category.\n\n Bottom line: \n\n Best: directable, multi-speaker speech with open weights. \n\n Worst: 48 GB GPU floor and a revenue-capped license.\n\n What is Fish Audio Drama 3? \n\n Drama 3 turns a script along with bracketed directions into acted speech. Writers place cues like [barely holding it together] before a line. Paired tags such as <whisper> change only the enclosed words, per the Drama 3 docs . Directions can be written in any language, independent of the spoken line.\n\n The model supports 83 languages . Speaker tags <|speaker:0|> to <|speaker:15|> allow up to 16 characters in 1 request. The API takes 1 voice ID per speaker, so a full scene renders in a single call.\n\n How does the Drama 3 architecture work? \n\n According to the launch post , the backbone starts from the Qwen3.5-35B-A3B language model. It has 40 layers, grouped as 3 Gated DeltaNet layers per 1 gated full-attention layer. Only 1 layer in 4 keeps a KV cache. DeltaNet layers store history in a constant-size state instead.\n\n A new Codebook-MTP decoder replaces the per-frame Fast AR decoder used in S2 . It has 4 shared layers feeding 9 layers, 1 per acoustic codebook. Only codebooks 0 and 1 feed back into the backbone; S2 fed back all 10.\n\n The audio tokenizer is unchanged from S2. It is built on the Descript Audio Codec and outputs 44.1 kHz audio. It runs at about 21.5 frames per second.\n\n Training ran 3 pre-training stages, then instruction tuning, then reinforcement learning. RL used GRPO without a KL penalty and a single learned human-preference reward model.\n\n How does Drama 3 perform on benchmarks? \n\n Fish Audio reports Drama 3 at 93.2% overall on Artificial Analysis Pronunciation Robustness , ranked #1. Its predecessor S2.1 Pro scored 88.1%. Human listeners judge hard English words across 4 categories:\n\n Brands, places, technical terms: 95.9% (S2.1 Pro: 87.3%)\n\n Context-dependent readings: 95.3% (86.1%)\n\n Shorthand such as numbers, dates and units: 93.6% (92.7%)\n\n Exact sequences such as codes, paths and emails: 86.3% (79.4%)\n\n This benchmark tests pronunciation, not emotional delivery. Fish Audio describes emotive quality only qualitatively. On the Artificial Analysis quality leaderboard , ‘Drama 3 Preview’ holds an Elo of 1242. That beats S2.1 Pro at 1190 but trails Eleven v4 Turbo at 1328.\n\n What hardware does Drama 3 need? \n\n The Fish Speech install guide lists at least 48 GB of NVIDIA GPU memory in FP8. CPU, Apple MPS and AMD ROCm are not supported. MoE experts ship in FP8, with the remaining weights in bf16.\n\n The model card reports streaming results on 1 H200. At 1 stream, median time to first audio is 88.9 ms with a real-time factor of 0.131. At 16 streams, throughput reaches 927.6 frames per second. Serving runs through SGLang-Omni , whose fused kernels are validated only on Hopper GPUs.\n\n How do you access Drama 3, and what does it cost? \n\n In the hosted API, set the model header to drama-3 on POST /v1/tts . The docs warn that a missing or misspelled header silently falls back to s2.1-pro . List price is $50 per 1M characters. A $10 launch price runs until November 12, 2026, per the launch post .\n\n The weights use the Fish Audio Community License v1.0 . Research and non-commercial use are free. Commercial use is free under USD 500,000 in annual revenue. Hosting Drama 3 as a third-party API needs a separate license. Products must display ‘Built with Fish Audio.’ Cloning a real voice without consent is prohibited.\n\n Drama 3 vs closest competitors \n\n Feature Fish Audio Drama 3 Fish Audio S2 Pro ElevenLabs Eleven v4 Turbo Qwen-Audio-3.0-TTS-Plus Total size 35B (MoE) 5B (4B Slow AR + 400M Fast AR) Not disclosed Not disclosed Active parameters ~3B Not MoE Not disclosed Not disclosed Weights Open, Community License v1.0 Open, Research License API and apps API (Model Studio) Languages 83 80+ 90+ 8 listed, plus dialects Self-host hardware 48 GB+ NVIDIA, FP8 24 GB+ NVIDIA, or CPU Hosted only Hosted only Latency 88.9 ms TTFA p50, H200 ~100 ms TTFA, H200 ~150 ms median time to first speech Not disclosed AA quality Elo ( source ) 1242 (Preview) 1116 1328 1266 API price per 1M chars $50 list, $10 to Nov 12 $15 $40 $20, Singapore \n\n Key Takeaways \n\n Drama 3 is a 35B MoE TTS model with ~3B active parameters.\n\n Plain-language direction and 16 speakers per request target scripted audio.\n\n 93.2% on AA Pronunciation Robustness; exact sequences lag at 86.3%.\n\n Self-hosting needs 48 GB+ of NVIDIA memory in FP8.\n\n Free commercial use stops at USD 500,000 in annual revenue.\n\n Check out the weights on Hugging Face , the technical report , the GitHub repo and the launch post . All credit goes to the researcher of this project. Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n The post Fish Audio Releases Drama 3, a 35B Open-Weight MoE Text-to-Speech Model appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Fish Audio kiadta a Drama 3 nyílt súlyú szövegfelolvasó AI-modelljét",
+  "lead": "A 35 milliárd paraméteres beszédgeneráló modell szögletes zárójelekbe írt szöveges utasítások alapján adja meg a hangsúlyt és az érzelmeket.",
+  "osszefoglalo": "A Fish Audio bejelentette a [Drama 3](https://huggingface.co/fishaudio/drama-3) szövegfelolvasó modellt, amely természetes nyelvű utasítások alapján képes érzelmeket és színészi játékot vinni a beszélt szövegbe. A felhasználók a mondatok közé szögletes zárójelekben írt jelekkel, például `[közel áll a síráshoz]` vagy `<suttogás>` címkékkel szabályozhatják a megszólalás hangulatát. A **35 milliárd paraméteres** Mixture-of-Experts modell egyetlen kérésben akár 16 különböző beszélőt is fel tud dolgozni, és összesen 83 nyelvet támogat.\n\nA rendszer a Qwen3.5 alapjaira épül, és tokenenként nagyjából 3 milliárd aktív paramétert használ. Az új Codebook-MTP dekódernek köszönhetően a kiejtési pontossága jelentősen javult a korábbi verziókhoz képest, a **márkanevek és szakszavak pontos ejtésében 95,9 százalékos** eredményt ért el a méréseken. Ugyanakkor a számsorok, elérési utak és e-mailek pontos felolvasásában még akadnak hiányosságai.\n\nA Drama 3 nyílt súlyai letölthetők, a helyi futtatáshoz azonban legalább **48 GB VRAM-mal rendelkező NVIDIA videókártyára** van szükség FP8 precizitás mellett. A modell elérhető az API-ban is, ahol a listaár 50 dollár egymillió karakterenként, de 2026. november 12-ig akcióban 10 dollárért érhető el. A nyílt licenc ingyenes kutatási és kereskedelmi használatot engedélyez évi 500 000 dolláros árbevétel alatt.",
+  "miert_szamit": "A magyar fejlesztők és tartalomgyártók **természetesebb hangalapú tartalmakat és audiókönyveket állíthatnak elő**, mivel az utasítások nyelve független a beszéd nyelvétől, a nyílt súlyoknak köszönhetően pedig a saját szervereikre is telepíthetik a rendszert.",
+  "cimkek": [
+    "Fish Audio",
+    "Drama 3",
+    "szövegfelolvasó",
+    "TTS"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Drama 3"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-15T06:06:34+00:00",
+  "megjelent": "2026-10-15T06:06:34+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-15T06:08:59+00:00",
+    "esemeny": "A Fish Audio kiadta a Drama 3 nevű, 35 milliárd paraméteres nyílt súlyú szövegfelolvasó (TTS) modelljét, amely szöveges utasítások alapján irányítható és akár 16 beszélőt is kezel egy kérésben.",
+    "forrasok": [
+      "https://huggingface.co/fishaudio/drama-3",
+      "https://github.com/fishaudio/fish-speech/tree/main/docs/assets/Fish_Audio_Drama_3_Technical_Report.pdf",
+      "https://arxiv.org/abs/2610.18010"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-15T08:11:11+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": []
+  }
+}

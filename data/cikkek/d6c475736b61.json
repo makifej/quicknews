@@ -1,0 +1,84 @@
+{
+  "id": "d6c475736b61",
+  "slug": "mikrokontrollerrel-vezerel-ai-agens-iphone-t-jailbreak-nelkul",
+  "forras_id": "dailydev",
+  "forras_nev": "Hackaday (daily.dev)",
+  "url": "https://hackaday.com/2026/10/14/ai-controls-iphone-via-esp32",
+  "szerzo": null,
+  "publikalva": "2026-10-14T00:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/8bcb1531cf23420d6b76ead0cf41e783?_a=AQAEuop"
+  },
+  "cim_eredeti": "AI Controls IPhone Via ESP32",
+  "forrasok": [],
+  "szoveg_eredeti": "Do you want to get an AI agent to do something to an iPhone? You could try and jailbreak the device and do some heavy software hacking, or… you could grab a microcontroller off the shelf and have it do the hard work. [Henry Yuan] explains how to achieve this with an ESP32.\n\nThe first step is getting an AI agent access to the current state of the phone screen—which [Henry] achieves with AirPlay screen mirroring and UxPlay. A Gstreamer pipeline is then used to feed the screen as a JPEG stream to the AI agent of your choice. Then comes control, which is achieved by an ESP32-S3 acting as a USB-HID device, emulating both USB mouse and keyboard. With iOS AssistiveTouch enabled, this gives the agent control over inputs to the device. From there, it’s up to the AI agent to figure out the actions to make to achieve the desired behavior, which is obviously very use-case specific.\n\nIt might sound a little convoluted, but this approach has benefits. There’s no requirement to have an Apple Developer Account, or XCode, or a Macintosh at all. You can just get your agent tinkering away on the phone without any of that fussy overhead. We’ve featured some other great iPhone hacks of late, as well. Video after the break.\n\nhaving to use a jpg stream as a way to computationally determine what a phone is doing is exactly why I hate phones as computational devices. they’re the anthesis of a real computer that I can own and make do what I want it to. I only use mine for TWO FACTOR AUTHENTICATION — which I also hate, but I don’t get to choose when I need to sign in to get my unemployment check (as a laid off software developer)",
+  "modell": "gemini-3.5-flash",
+  "cim": "Mikrokontrollerrel vezérel AI-ágens iPhone-t jailbreak nélkül",
+  "lead": "Henry Yuan egy ESP32-S3 panellel és AirPlay képernyőtükrözéssel tette lehetővé, hogy egy AI-ágens teljes körűen irányítson egy iPhone-t.",
+  "osszefoglalo": "Henry Yuan egy [ESP32-S3 mikrokontrollert](https://www.espressif.com/en/products/socs/esp32-s3) használt arra, hogy billentyűzetet és egeret szimulálva AI-ágenssel vezéreljen egy iPhone-t. A [nyílt forráskódú megoldáshoz](https://github.com/onehumanbeing/esp32-iphone-agent) nincs szükség jailbreakre, Apple Developer fiókra, Xcode-ra vagy Mac számítógépre.\n\nA rendszer úgy működik, hogy a telefon képernyőjét [AirPlay tükrözéssel](https://support.apple.com/102661) és az [UxPlay](https://github.com/FDH2/UxPlay) eszközzel továbbítja egy Gstreamer csatornán keresztül, amely JPEG-képfolyamként adja át a kijelző tartalmát az AI-nak. A telefonon bekapcsolt iOS AssistiveTouch funkció segítségével az ESP32 panel USB-HID eszközként küldi el a kattintásokat és gombnyomásokat, így a modell tetszőleges műveleteket tud végrehajtani a kijelzőn.\n\nA módszer előnye, hogy a **fejlesztő teljesen megkerüli** az Apple szigorú szoftveres korlátozásait, így az AI-ágens közvetlenül a felhasználói felületen keresztül tud feladatokat elvégezni.",
+  "miert_szamit": "Ez a gyakorlatban megmutatja, hogy **drága fejlesztői eszközök nélkül is automatizálható** bármilyen iOS-applikáció tesztelése vagy használata egy olcsó mikrokontroller segítségével.",
+  "cimkek": [
+    "iPhone",
+    "ESP32",
+    "AI-ágens",
+    "iOS"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bemutato",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "UxPlay"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-15T06:07:57+00:00",
+  "megjelent": "2026-10-15T06:07:57+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-15T06:08:21+00:00",
+    "esemeny": "Henry Yuan kifejlesztett egy nyílt forráskódú rendszert (esp32-iphone-agent), amellyel egy ESP32-S3 mikrokontroller és AirPlay képernyőtükrözés segítségével mesterségesintelligencia-ágensek vezérelhetnek egy iPhone-t iOS-korlátozások megkerülésével, jailbreak és Apple fejlesztői fiók nélkül.",
+    "forrasok": [
+      "https://github.com/onehumanbeing/esp32-iphone-agent",
+      "https://hackaday.com/2026/10/14/ai-controls-iphone-via-esp32"
+    ],
+    "hibak": [
+      "A cikkből hiányzik az elsődleges forrásra (GitHub-projekt) mutató beszédes hivatkozás.",
+      "A szöveg és összefoglaló nem tartalmaz kötelező kiemeléseket minden bekezdésben."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Mikrokontrollerrel vezérel AI-ágens iPhone-t jailbreak nélkül",
+      "lead": "Henry Yuan egy ESP32-S3 panellel és AirPlay képernyőtükrözéssel tette lehetővé, hogy egy AI-ágens teljes körűen irányítson egy iPhone-t.",
+      "osszefoglalo": "Henry Yuan egy **ESP32-S3 mikrokontrollert** használt arra, hogy billentyűzetet és egeret szimulálva AI-ágenssel vezéreljen egy iPhone-t. A megoldáshoz nincs szükség jailbreakre, Apple Developer fiókra, Xcode-ra vagy Mac számítógépre.\n\nA rendszer úgy működik, hogy a telefon képernyőjét **AirPlay tükrözéssel** és az UxPlay eszközzel továbbítja egy Gstreamer csatornán keresztül, amely JPEG-képfolyamként adja át a kijelző tartalmát az AI-nak. A telefonon bekapcsolt iOS AssistiveTouch funkció segítségével az ESP32 panel USB-HID eszközként küldi el a kattintásokat és gombnyomásokat, így a modell tetszőleges műveleteket tud végrehajtani a kijelzőn.\n\nA módszer előnye, hogy a fejlesztő teljesen megkerüli az Apple szigorú szoftveres korlátozásait, így az AI-ágens közvetlenül a felhasználói felületen keresztül tud feladatokat elvégezni.",
+      "miert_szamit": "Ez a gyakorlatban megmutatja, hogy **drága fejlesztői eszközök nélkül is automatizálható** bármilyen iOS-applikáció tesztelése vagy használata egy olcsó mikrokontroller segítségével."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-15T08:12:47+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": [
+      {
+        "lepes": "link_be",
+        "kif": "Gstreamer",
+        "url": "https://gstreamer.freedesktop.org",
+        "mit": "A nyílt forráskódú multimédiás keretrendszer hivatalos oldala."
+      },
+      {
+        "lepes": "elvetve",
+        "kif": "iOS AssistiveTouch",
+        "url": "https://support.apple.com/en-us/102658",
+        "ok": "A hivatkozott Apple Support oldal az iPhone alkatrész- és szervizelőzményeiről szól (Parts and Service History), nem pedig az AssistiveTouch funkcióról."
+      }
+    ],
+    "osszefoglalo": "Henry Yuan egy [ESP32-S3 mikrokontrollert](https://www.espressif.com/en/products/socs/esp32-s3) használt arra, hogy billentyűzetet és egeret szimulálva AI-ágenssel vezéreljen egy iPhone-t. A [nyílt forráskódú megoldáshoz](https://github.com/onehumanbeing/esp32-iphone-agent) nincs szükség jailbreakre, Apple Developer fiókra, Xcode-ra vagy Mac számítógépre.\n\nA rendszer úgy működik, hogy a telefon képernyőjét [AirPlay tükrözéssel](https://support.apple.com/102661) és az [UxPlay](https://github.com/FDH2/UxPlay) eszközzel továbbítja egy [Gstreamer](https://gstreamer.freedesktop.org) csatornán keresztül, amely JPEG-képfolyamként adja át a kijelző tartalmát az AI-nak. A telefonon bekapcsolt iOS AssistiveTouch funkció segítségével az ESP32 panel USB-HID eszközként küldi el a kattintásokat és gombnyomásokat, így a modell tetszőleges műveleteket tud végrehajtani a kijelzőn.\n\nA módszer előnye, hogy a **fejlesztő teljesen megkerüli** az Apple szigorú szoftveres korlátozásait, így az AI-ágens közvetlenül a felhasználói felületen keresztül tud feladatokat elvégezni."
+  }
+}
