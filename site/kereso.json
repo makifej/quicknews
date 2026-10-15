@@ -198,6 +198,17 @@
     "d": "okt. 15."
   },
   {
+    "i": "3733c75a28bf",
+    "p": "/assets/kep/3733c75a28bf.webp",
+    "c": "Megjelent a FLUX.3 Image Klein a Hugging Face Diffusersben",
+    "b": "A Black Forest Labs új modellje szövegből képet generál, referenciaképeket kezel és elrendezésvezérlést is kínál.",
+    "k": "Hugging Face",
+    "g": "modell",
+    "u": "/hir/megjelent-a-flux-3-image-klein-a-hugging-face-diffusersben",
+    "sz": "A Black Forest Labs kiadta a FLUX.3 Image Klein képgeneráló modellt, amely azonnal elérhetővé vált a Hugging Face Diffusers könyvtárában. Az új modell egyetlen architektúrában egyesíti a szövegalapú képgenerálást és a több referenciaképet használó képátalakítást. A rendszer szöveges leírással határozza meg a képelemek elrendezését, ahol a felhasználó pontos koordinátákkal adhatja meg a tárgyak vagy a módosítandó területek helyét.\n\nA FLUX.3 szövegfeldolgozásért felelős komponense a Qwen3-VL modellre épül, és az úgynevezett flow-matching elven működik. A lepárolt kiadás 16 lépésben hoz létre 1024×1024 pixeles képet, míg a finomhangolásra szánt alapmodell 50 lépést használ. A modell bf16, fp8r és nvfp4 kvantált formátumokban is letölthető, a betanításhoz pedig beépített DreamBooth LoRA szkriptek állnak rendelkezésre.\n\nAz eszköz nyílt forráskódú súlyai és a kipróbálásra szolgáló felület a Hugging Face platformján érhetők el. A futtatáshoz szükséges kód a legfrissebb `diffusers` és `transformers` Python-csomagok telepítésével használható. FLUX.3 Black Forest Labs Hugging Face képgenerálás",
+    "d": "okt. 15."
+  },
+  {
     "i": "8c5aa29637e4",
     "p": "/assets/kep/8c5aa29637e4.webp",
     "c": "Nyílt OCR-értékelőkészletet adott ki a Datalab OmniParseBench néven",
