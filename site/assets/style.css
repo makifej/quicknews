@@ -143,6 +143,8 @@ strong { font-weight: 600; color: var(--szoveg); }
 .harang-kep { display: block; width: 72px; height: 48px; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; background: var(--bg-3); flex: 0 0 auto; }
 .harang-kep.nincs { display: grid; place-items: center; overflow: hidden; padding: 0 5px; text-align: center; font-size: 10px; line-height: 12px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--kiemelo-szin); border: 1px solid var(--keret); overflow-wrap: anywhere; }
 .harang-szoveg { display: block; min-width: 0; }
+/* jobbra fent: a készlet rejtett jelöltjei nem foglalnak helyet (a .hir saját display-e ne írja felül a hidden-t) */
+.jobb-fo > [hidden] { display: none !important; }
 .harang-buborek a.nincs-kep { grid-template-columns: minmax(0, 1fr); }
 .harang-buborek li.uj a::before { content: ""; position: absolute; top: 50%; left: 7px; width: 7px; height: 7px; margin-top: -3px; border-radius: 50%; background: #c8282e; }
 .harang-forras { display: block; margin-bottom: 2px; color: var(--kiemelo-szin); font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
