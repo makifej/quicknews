@@ -574,6 +574,14 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
   .fejlec nav.rovatsor a, .rovatsor a { font-size: 14px; line-height: 18px; padding: 10px 9px 8px; letter-spacing: 0.01em; white-space: nowrap; border-bottom-width: 3px; }
   .rovatsor .keret { gap: 4px; }
   .rovatsor .kitolto { border-bottom-width: 3px; }
+  /* az aktív menüpont háttere mobilon alacsonyabb a sornál (Heni 2026-10-15): a sor mérete nem változik,
+     a színes doboz egy álelem, 6 px-rel a sor teteje alatt kezdődik, 2 px-rel az aláhúzás fölött ér véget */
+  .fejlec nav.rovatsor a[aria-current="page"] { position: relative; isolation: isolate; background: none; border-radius: 0; }
+  .fejlec nav.rovatsor a[aria-current="page"]::before { content: ""; position: absolute; z-index: -1; left: 0; right: 0; top: 6px; bottom: 2px; border-radius: 7px; background: var(--kiemelo); }
+  .fejlec nav.rovatsor a.piros[aria-current="page"] { background: none; }
+  .fejlec nav.rovatsor a.piros[aria-current="page"]::before { background: var(--piros); }
+  .fejlec nav.rovatsor a.lila[aria-current="page"] { background: none; }
+  .fejlec nav.rovatsor a.lila[aria-current="page"]::before { background: var(--szavazas); }
   .mobil-szlogen { display: block; padding-top: 16px; }
   .mobil-szlogen p { font-size: 24px; line-height: 32px; font-weight: 800; letter-spacing: -0.01em; }
   .mobil-szlogen span { display: block; margin-top: 4px; font-size: 13px; line-height: 18px; color: var(--szoveg-2); }
