@@ -1,0 +1,73 @@
+{
+  "id": "66fde90e86a7",
+  "slug": "vizualis-magyarazatokat-ad-a-kodolasi-ugynokoknek-a-humanlayer-uj",
+  "forras_id": "dailydev",
+  "forras_nev": "The Art of Simplicity (daily.dev)",
+  "url": "https://bartwullems.blogspot.com/2026/10/getting-visual-explanations-from-your.html",
+  "szerzo": null,
+  "publikalva": "2026-10-15T05:30:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/044b17dd97c69bdcca46fdd308b1c220?_a=AQAEuop"
+  },
+  "cim_eredeti": "Getting visual explanations from your coding agent with the show-me skill",
+  "forrasok": [],
+  "szoveg_eredeti": "Coding agents are good at explaining things. They are also good at explaining them in five verbose paragraphs when a ten-line tree would have done the job. You would almost think that output tokens are free!\n\nRecently I came across the show-me skill from HumanLayer. It’s a small skill with one purpose: when you ask your agent to explain something, it answers with a visual representation instead of a wall of text.\n\nThe whole skill is a short set of instructions. It tells the agent to skip the preamble, keep the prose brief and pick the smallest view that makes the point clear.\n\nSounds simple? Because the idea is indeed. For each kind of explanation, the skill names the view to use:\n\nHere is what that looks like in practice. A call tree for a form submit:\n\nAnd a shallow file tree to explain who owns what:\n\nNothing fancy. But compare that with the paragraph you would normally get back.\n\nThe skill can be installed with the skills CLI:\n\nAfter that you invoke it with a slash command like any other skill:\n\nAs an architect I have to read a lot of code. Most of the time when I’m reviewing code changes, I’m not looking for an explanation. I’m looking for the shape of something: who calls whom, which module owns the state, where a refactor will touch. That is exactly what trees and sequence diagrams are good at, and prose is not.\n\nThe skill also forces the agent to be selective. You don’t get a diagram of everything, just the one that answers your question.\n\nThe skill also covers when to show a full code block instead of a fragment: when most of it is new, when leaving out context would hide ownership or order, or when you need a target shape you can copy. For larger explanations it can also produce a focused HTML page, which the agent opens for you.\n\nRemark: The skill is plain instructions, nothing more. If you disagree with one of its choices (say you prefer ASCII over Mermaid), you can read the SKILL.md and adjust it for your own setup.\n\nIf you regularly ask your agent to explain unfamiliar code, yes. It costs one command to install and it changes the format of every answer you ask for with /show-me.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Vizuális magyarázatokat ad a kódolási ügynököknek a HumanLayer eszköze",
+  "lead": "A show-me bővítménnyel az AI hosszas leírások helyett tömör diagramokkal és struktúrafákkal magyarázza el a kód felépítését.",
+  "osszefoglalo": "A HumanLayer közzétette a **show-me** nevű bővítményt, amely arra utasítja a kódoló AI-ügynököket, hogy a többszörös bekezdésekből álló magyarázatok helyett tömör vizuális elemekkel válaszoljanak. A fejlesztők így felesleges szövegek helyett pszeudokódokat, hívási fákat, komponensfákat vagy Mermaid-diagramokat kapnak a kód felépítéséről.\n\nAz eszköz a **skills CLI** felületen keresztül telepíthető, és a `/show-me` parancssori paranccsal hívható meg. Mivel a bővítmény logikája egyetlen egyszerű `SKILL.md` fájlban található utasításrendszer, a felhasználók testre szabhatják a formátumokat a [HumanLayer nyílt forráskódú bővítménytárában](https://github.com/humanlayer/skills).\n\nA rendszer abban is segít, hogy a modell csak a lényeges összefüggéseket mutassa meg: megadja, mikor érdemes teljes kódblokkot vagy egy különálló, fókuszált **HTML-oldalt** generálni a jobb átláthatóság érdekében.",
+  "miert_szamit": "A kódátvizsgálással foglalkozó fejlesztők **másodpercek alatt átláthatják a kódstruktúrát** és a modulok közötti függőségeket, ami jelentősen felgyorsítja a meglévő rendszerek megértését.",
+  "cimkek": [
+    "HumanLayer",
+    "kódolás",
+    "AI ügynök",
+    "fejlesztés"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bemutato",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "HumanLayer show-me",
+    "url": "https://www.skills.sh/humanlayer/skills/show-me"
+  },
+  "linkelendo_nevek": [
+    "show-me"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-15T06:35:22+00:00",
+  "megjelent": "2026-10-15T06:35:22+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-15T06:35:51+00:00",
+    "esemeny": "Megjelent a HumanLayer show-me nevű bővítménye (skillje), amellyel a kódoló AI-ügynökök hosszas szövegek helyett diagramokkal és struktúrafákkal magyarázzák el a kódot.",
+    "forrasok": [
+      "https://github.com/humanlayer/skills",
+      "https://humanlayer.dev/blog/show-me"
+    ],
+    "hibak": [
+      "Az állítás, miszerint a bővítmény 'falcsontig hatoló szövegek helyett' működik, túlzó kifejezés (az eredeti forrásban 'wall of text' / 'verbose paragraphs' szerepel).",
+      "A meglévő félkövér kiemelések és a kötelező link szerkezete hiányos vagy nem pontosan illeszkedik az elsődleges forráshoz."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Vizuális magyarázatokat ad a kódolási ügynököknek a HumanLayer új eszköze",
+      "lead": "A show-me nevű bővítménnyel a mesterséges intelligencia falcsontig hatoló szövegek helyett diagramokkal és struktúrafákkal magyarázza el a kódot.",
+      "osszefoglalo": "A HumanLayer elkészítette a **show-me** nevű bővítményt, amely arra utasítja a kódoló AI-ügynököket, hogy a hosszas leírások helyett tömör vizuális elemekkel válaszoljanak. A fejlesztők és architekták így felesleges szövegek helyett pszeudokódokat, hívási fákat, komponensfákat vagy Mermaid-diagramokat kapnak válaszul.\n\nAz eszköz a **skills CLI** felületen keresztül telepíthető, és a `/show-me` parancssori paranccsal hívható meg. Mivel a bővítmény logikája egyetlen egyszerű, szerkeszthető `SKILL.md` fájlban található szöveges utasításrendszer, a felhasználók tetszés szerint testre szabhatják a vizuális formátumokat.\n\nA rendszer abban is segít, hogy a modell csak a lényeges összefüggéseket mutassa meg: megadja, mikor érdemes teljes kódblokkot mutató fragmentumot vagy akár egy különálló, fókuszált HTML-oldalt generálni a jobb átláthatóság érdekében.",
+      "miert_szamit": "A kódátvizsgálással foglalkozó fejlesztők **másodpercek alatt átláthatják a kódstruktúrát és a modulok közötti függőségeket**, ami jelentősen felgyorsítja a meglévő rendszerek megértését."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-15T08:36:25+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": []
+  }
+}

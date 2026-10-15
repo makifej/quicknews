@@ -1,0 +1,73 @@
+{
+  "id": "d236ab80f734",
+  "slug": "megjelent-az-opencode-2-0-a-kozos-hatterszolgaltatassal",
+  "forras_id": "dailydev",
+  "forras_nev": "The New Stack (daily.dev)",
+  "url": "https://thenewstack.io/opencode-2-shared-service",
+  "szerzo": null,
+  "publikalva": "2026-10-12T21:11:33+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/25fc43dbaf3bf0a4739a77a29a351788?_a=AQAEuop"
+  },
+  "cim_eredeti": "“A major overhaul”: OpenCode 2.0 puts its terminal, desktop, and web apps on one shared service",
+  "forrasok": [],
+  "szoveg_eredeti": "We’re so glad you’re here. You can expect all the best TNS content to arrive Monday through Friday to keep you on top of the news and at the top of your game.\n\nCheck your inbox for a confirmation email where you can adjust your preferences and even join additional groups.\n\nFollow TNS on your favorite social media networks.\n\nCheck out the latest featured and trending stories while you wait for your first TNS newsletter.\n\nOpenCode 2.0 is getting a formal unpacking today, some three months after its public beta launch. The sizable architectural upgrade introduces a shared background service connecting its terminal, web and desktop interfaces, alongside a rebuilt API, a new embeddable SDK, and support for running subagents and shell commands in the background.\n\nIn a blog post published on Monday, Anomaly, the company behind the open-source coding agent, calls the release a “major overhaul,” adding that it drew on the experiences of “millions of daily users” to build a more adaptable system capable of supporting an expanding range of agent capabilities.\n\nAnomaly has, in fact, been iterating on version 2.0 over the past few months, including publishing a detailed technical account of its revamped plugin architecture and hot-reloading capabilities in September. However, the drawn-out rollout has caused some confusion among developers, with questions about whether version 2.0 was officially stable yet, and complaints about missing release notes, even as updates kept shipping.\n\nMonday’s announcement, alongside the official changelog’s switch to the 2.x series, effectively signals that version 2 is now OpenCode’s main release. In tandem, the company is also offering a broader explanation of the technical decisions behind the upgrade.\n\nBy way of a brief recap, OpenCode’s origins lie in the world of serverless development. Anomaly founders Jay V and Frank Wang previously created Serverless Stack (SST), an open-source framework for building and deploying applications on Amazon Web Services (AWS). Dax Raad, another prominent figure in OpenCode’s development, was also part of the SST team.\n\nSince its 2025 debut, OpenCode has gained a fervent following among developers looking for greater freedom over the AI models powering their coding tools. That became particularly pertinent in January when Anthropic began preventing third-party agents from using Claude Pro and Max subscription credentials, forcing affected developers to find alternative ways of accessing Claude or switch providers.\n\nAs Janakiram MSV reported for The New Stack in May, these restrictions coincided with a surge of interest in OpenCode, which allows developers to switch between competing AI models. Today, the OpenCode GitHub repository has accumulated north of 212,000 stars and almost 30,000 forks.\n\nMore broadly, there are signs of growing commercial interest in this category of coding agents. In July, Anaconda acquired Kilo, another such open-source coding agent that allows developers to choose their preferred AI provider. Interestingly, Kilo had already rebuilt its command-line interface and VS Code extension using OpenCode, demonstrating how the latter was finding a role inside other developer tools.\n\nWith version 2.0, Anomaly has laid out how it has reworked OpenCode’s underlying architecture to accommodate a wider range of use cases. Arguably, the most significant change concerns how the coding agent runs, and how its different interfaces connect to it.\n\nAnomaly says the plumbing for a client/server setup has been in OpenCode from the start, though few beyond power users went out of their way to use it.\n\nWith version 2.0, the server now starts automatically as a single background process on the developer’s machine, allowing OpenCode’s terminal, browser and desktop interfaces to communicate with the same underlying service.\n\nThis means developers can access and manage their coding sessions through different interfaces, while the service handles the underlying execution. Scripts built using OpenCode’s programmatic client can also automatically discover and connect to the local service, making it useful for scheduled tasks, while developers can additionally expose the service to other machines and pair it with external applications.\n\n“Developers can now start a session in OpenCode’s terminal interface, continue working on it through the desktop or web app, and have their own scripts connect to the same underlying service”.\n\nThe long and short of this is that developers can now start a session in OpenCode’s terminal interface, continue working on it through the desktop or web app, and have their own scripts connect to the same underlying service.\n\nThese architectural changes are accompanied by a ground-up redesign of OpenCode’s API, which Anomaly concedes was built piecemeal while the industry was still figuring things out.\n\n“The old API grew haphazardly as we and the world collectively learned what agents are and should be,” the company writes in its blog post. “It was bad.”\n\n“The old API grew haphazardly as we and the world collectively learned what agents are and should be. It was bad.”\n\nAnd so the new API gives the agent greater control over its own environment. For example, it can create a Git worktree for a new task, transfer an existing session into that worktree, or identify and interrupt another session that has become stuck. Developers can also access the API through a new @opencode/client package, which supports standard JavaScript and Effect.\n\nAnother addition is an embeddable SDK, distributed as @opencode/sdk, that allows developers to incorporate OpenCode directly into their own applications. It uses the same underlying code as OpenCode’s CLI, the company notes, enabling developers to create customized versions of the agent for servers or environments such as Cloudflare Durable Objects.\n\nThese implementations can communicate with existing OpenCode clients through its standard server protocol, although Anomaly says the SDK remains under development.\n\nOpenCode 2.0 also changes how agents interact with external tools through the Model Context Protocol (MCP).\n\nA feature dubbed Code Mode allows agents to write JavaScript that calls multiple tools and processes their results within a single execution. Built around a lightweight JavaScript interpreter in the @opencode/codemode package, it converts MCP servers and OpenAPI endpoints into functions that agents can invoke programmatically.\n\nFor example, an agent could retrieve bug reports from GitHub, extract the relevant information and create corresponding issues in Linear, without having to make a separate model round trip for each operation.\n\nThe implications are particularly significant for developers connecting agents to large numbers of external services, where tool definitions can consume substantial portions of a model’s available context. Anomaly is making Code Mode the default for all MCP servers in version 2.0, arguing that it makes extensive integrations more practical.\n\n“This means you can add a thousand of them with minimal context bloat and your agent will discover and compose them to get things done,” the company writes.\n\nMeanwhile, OpenCode is introducing background execution for both subagents and shell commands, allowing developers to continue interacting with the primary agent while other operations are underway.\n\nA developer could, for instance, delegate a code review to a subagent running a different AI model while continuing to work on the main task. Similarly, lengthy shell operations, such as running tests or building an application, can execute asynchronously, with the primary agent receiving a notification when they finish.\n\nDevelopers can also use a keyboard shortcut to move an existing foreground task into the background if it takes longer than expected.\n\nRounding out the release are changes to OpenCode’s plugin architecture. Anomaly says it has implemented more than 80 internal plugins, covering most of the funct",
+  "modell": "gemini-3.5-flash",
+  "cim": "Megjelent az OpenCode 2.0 a közös háttérszolgáltatással",
+  "lead": "Hivatalos főkiadássá vált a nyílt forráskódú OpenCode 2.0, amely egyetlen háttérszolgáltatásra fűzi fel a terminál, a webes és a desktop felületet.",
+  "osszefoglalo": "Megjelent az [OpenCode](https://opencode.ai/) 2.0, amely **közös háttérszolgáltatással** köti össze a terminálos, a webes és az asztali felületet. Ennek köszönhetően a fejlesztők egyetlen elindított munkamenetet több különböző felületről is zökkenőmentesen folytathatnak.\n\nA frissítés teljesen újjáépített API-t és egy beágyazható **SDK-t ad a fejlesztők kezébe**, emellett bevezeti a Code Mode funkciót. Utóbbi lehetővé teszi, hogy az ágens JavaScript-kódot írva egyetlen futtatással több Model Context Protocol (MCP) eszközt is meghívjon.\n\nA rendszer támogatja a subágensek és a héjparancsok **háttérben történő futtatását** is, így a hosszas tesztek vagy kódellenőrzések nem akasztják meg a fejlesztést. Az 1.0-s verzió bővítményei nem kompatibilisek az új rendszerrel, a frissítéshez pedig manuális parancs szükséges.",
+  "miert_szamit": "A fejlesztők **szabadon váltogathatnak a különböző AI-szolgáltatók modellei között**, a háttérben futó ágensekkel pedig jelentős időt spórolhatnak meg a párhuzamos feladatvégzés során.",
+  "cimkek": [
+    "OpenCode",
+    "fejlesztés",
+    "AI ágens",
+    "nyílt forráskód"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "OpenCode",
+    "url": "https://opencode.ai/"
+  },
+  "linkelendo_nevek": [
+    "OpenCode 2.0",
+    "Model Context Protocol"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-15T06:35:50+00:00",
+  "megjelent": "2026-10-15T06:35:50+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-15T06:36:00+00:00",
+    "esemeny": "Hivatalosan is megjelent a nyílt forráskódú OpenCode 2.0 kódolóágens, amely egyetlen közös háttérszolgáltatásra fűzi fel a terminálos, asztali és webes felületeket, emellett új API-t, beágyazható SDK-t, Code Mode-ot és háttérben futó feladatkezelést kínál.",
+    "forrasok": [
+      "https://anoma.ly/notes/opencode-2-0",
+      "https://thenewstack.io/opencode-2-shared-service"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-15T08:36:42+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": [
+      {
+        "lepes": "link_be",
+        "kif": "SDK-t ad a fejlesztők kezébe",
+        "url": "https://opencode.ai/docs/sdk/",
+        "mit": "Hivatalos fejlesztői dokumentáció a beágyazható OpenCode SDK-ról (@opencode/sdk)."
+      }
+    ],
+    "osszefoglalo": "Megjelent az [OpenCode](https://opencode.ai/) 2.0, amely **közös háttérszolgáltatással** köti össze a terminálos, a webes és az asztali felületet. Ennek köszönhetően a fejlesztők egyetlen elindított munkamenetet több különböző felületről is zökkenőmentesen folytathatnak.\n\nA frissítés teljesen újjáépített API-t és egy beágyazható **[SDK-t ad a fejlesztők kezébe](https://opencode.ai/docs/sdk/)**, emellett bevezeti a Code Mode funkciót. Utóbbi lehetővé teszi, hogy az ágens JavaScript-kódot írva egyetlen futtatással több Model Context Protocol (MCP) eszközt is meghívjon.\n\nA rendszer támogatja a subágensek és a héjparancsok **háttérben történő futtatását** is, így a hosszas tesztek vagy kódellenőrzések nem akasztják meg a fejlesztést. Az 1.0-s verzió bővítményei nem kompatibilisek az új rendszerrel, a frissítéshez pedig manuális parancs szükséges."
+  }
+}

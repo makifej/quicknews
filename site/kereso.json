@@ -1,5 +1,16 @@
 [
   {
+    "i": "66fde90e86a7",
+    "p": "/assets/kep/66fde90e86a7.webp",
+    "c": "Vizuális magyarázatokat ad a kódolási ügynököknek a HumanLayer eszköze",
+    "b": "A show-me bővítménnyel az AI hosszas leírások helyett tömör diagramokkal és struktúrafákkal magyarázza el a kód felépítését.",
+    "k": "The Art of Simplicity (daily.dev)",
+    "g": "eszköz",
+    "u": "/hir/vizualis-magyarazatokat-ad-a-kodolasi-ugynokoknek-a-humanlayer-uj",
+    "sz": "A HumanLayer közzétette a show-me nevű bővítményt, amely arra utasítja a kódoló AI-ügynököket, hogy a többszörös bekezdésekből álló magyarázatok helyett tömör vizuális elemekkel válaszoljanak. A fejlesztők így felesleges szövegek helyett pszeudokódokat, hívási fákat, komponensfákat vagy Mermaid-diagramokat kapnak a kód felépítéséről.\n\nAz eszköz a skills CLI felületen keresztül telepíthető, és a `/show-me` parancssori paranccsal hívható meg. Mivel a bővítmény logikája egyetlen egyszerű `SKILL.md` fájlban található utasításrendszer, a felhasználók testre szabhatják a formátumokat a HumanLayer nyílt forráskódú bővítménytárában.\n\nA rendszer abban is segít, hogy a modell csak a lényeges összefüggéseket mutassa meg: megadja, mikor érdemes teljes kódblokkot vagy egy különálló, fókuszált HTML-oldalt generálni a jobb átláthatóság érdekében. HumanLayer kódolás AI ügynök fejlesztés",
+    "d": "okt. 15. 07:30"
+  },
+  {
     "i": "0b6f3915248d",
     "p": "/assets/kep/0b6f3915248d-elonezet.webp",
     "c": "Promóciós élő adást tart a Hugging Face egy nyílt modellről",
@@ -122,7 +133,7 @@
   },
   {
     "i": "76fb4cd1f4e3",
-    "p": "/assets/kep/76fb4cd1f4e3.webp",
+    "p": "/assets/kep/76fb4cd1f4e3-fk1.webp",
     "c": "Beszélgetésben mutatták be a Gemini 4 Argon modellt a fejlesztői",
     "b": "Sergey Brin és a Google vezető fejlesztői egy félórás videóban részletezik a Gemini 4 Argon modell fejlesztését és jövőjét.",
     "k": "Gemini (X)",
@@ -1230,6 +1241,17 @@
     "u": "/hir/az-anthropic-hatekonyabban-vedi-a-claude-ot-a-modellmasolastol",
     "sz": "Az Anthropic jelentős eredményeket ért el a lepárlásos támadások hatékonyságának csökkentésében a Claude modelleknél. A lepárlás során más fejlesztők a Claude válaszait használják fel saját, kisebb és olcsóbb AI-modellek betanítására.\n\nA vállalat új kutatási eredményeiben bemutatja azokat a védelmi mechanizmusokat, amelyekkel nehezebbé teszik a modell képességeinek és tudásának engedély nélküli másolását. A megoldás célja a szellemi tulajdon védelme és a modellek biztonságos használatának megőrzése. Anthropic Claude biztonság kutatás",
     "d": "okt. 13. 01:58"
+  },
+  {
+    "i": "d236ab80f734",
+    "p": "/assets/kep/d236ab80f734.webp",
+    "c": "Megjelent az OpenCode 2.0 a közös háttérszolgáltatással",
+    "b": "Hivatalos főkiadássá vált a nyílt forráskódú OpenCode 2.0, amely egyetlen háttérszolgáltatásra fűzi fel a terminál, a webes és a desktop felületet.",
+    "k": "The New Stack (daily.dev)",
+    "g": "eszköz",
+    "u": "/hir/megjelent-az-opencode-2-0-a-kozos-hatterszolgaltatassal",
+    "sz": "Megjelent az OpenCode 2.0, amely közös háttérszolgáltatással köti össze a terminálos, a webes és az asztali felületet. Ennek köszönhetően a fejlesztők egyetlen elindított munkamenetet több különböző felületről is zökkenőmentesen folytathatnak.\n\nA frissítés teljesen újjáépített API-t és egy beágyazható SDK-t ad a fejlesztők kezébe, emellett bevezeti a Code Mode funkciót. Utóbbi lehetővé teszi, hogy az ágens JavaScript-kódot írva egyetlen futtatással több Model Context Protocol (MCP) eszközt is meghívjon.\n\nA rendszer támogatja a subágensek és a héjparancsok háttérben történő futtatását is, így a hosszas tesztek vagy kódellenőrzések nem akasztják meg a fejlesztést. Az 1.0-s verzió bővítményei nem kompatibilisek az új rendszerrel, a frissítéshez pedig manuális parancs szükséges. OpenCode fejlesztés AI ágens nyílt forráskód",
+    "d": "okt. 12. 23:11"
   },
   {
     "i": "10ee87a7c893",
