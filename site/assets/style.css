@@ -138,11 +138,13 @@ strong { font-weight: 600; color: var(--szoveg); }
 .harang-buborek li + li { border-top: 1px solid var(--vonal); }
 /* gyors mentés a csengő listájából (Heni 2026-10-16): könyvjelző + jel a sor jobb szélén, a linken kívül */
 .harang-buborek li:has(.harang-ment) { position: relative; }
-.harang-buborek li:has(.harang-ment) > a { padding-right: 56px; }
-.harang-ment { position: absolute; top: 50%; right: 12px; display: grid; place-items: center; width: 36px; height: 36px; margin-top: -18px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: var(--piros); cursor: pointer; transition: background-color 400ms var(--gorbe); }
+/* az ikon csak a sárga forrássor magasságában ül, a cím a teljes szélességet kapja (Heni 2026-10-16) */
+.harang-buborek li:has(.harang-ment) .harang-forras { padding-right: 36px; }
+.harang-ment { position: absolute; top: 4px; right: 10px; display: grid; place-items: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: var(--piros); cursor: pointer; transition: background-color 400ms var(--gorbe); }
 .harang-ment:hover { background: var(--bg-3); }
 .harang-ment:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
-.harang-ment svg { width: 20px; height: 20px; fill: currentColor; }
+.harang-ment svg { width: 18px; height: 18px; fill: currentColor; }
+@media (max-width: 599px) { .harang-ment { top: 2px; right: 6px; } }
 /* csengő-sor: fix bélyegkép-oszlop + a maradék teljes szélesség a szövegnek; a bélyegkép cellája kép nélkül is megvan
    (forrásnév), ezért a cím sosem kerül a keskeny oszlopba, és egy hibás kép sem mozdítja a sort (Heni 2026-10-15) */
 .harang-buborek a { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; align-items: center; position: relative; padding: 12px 16px 12px 20px; transition: background-color 400ms var(--gorbe); }
