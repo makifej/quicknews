@@ -353,8 +353,7 @@ module.exports = async (req, res) => {
       // pillanatképpel (Heni 2026-10-13: „ha törölsz egy hírt az oldalról, vedd ki onnan is”); az index 14 napot fed le
       if (HIREK.length) {
         const elo = new Set(HIREK.map((h) => h.id));
-        // Heni kézzel betett, régebbi híre (kezi_be) nincs a 14 napos indexben, mégis maradnia kell
-        adat.sorok = adat.sorok.filter((s) => elo.has(s.id) || s.kezi_be);
+        adat.sorok = adat.sorok.filter((s) => elo.has(s.id));
       }
       // ami a gép utolsó pillanatképe óta jelent meg, azt a kitett oldal indexéből azonnal hozzáadjuk
       const megvan = new Set(adat.sorok.map((s) => s.id));
