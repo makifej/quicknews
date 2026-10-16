@@ -628,7 +628,9 @@ async function kisopor(id,vissza){const sor=document.getElementById("h-"+id);
  toast(`<span>Kisöpörve: ${esc(s.length>60?s.slice(0,58)+"…":s)}</span><button id="visszavon">Visszavonás</button>`);
  document.getElementById("visszavon").onclick=()=>kisopor(id,true)}
 function toast(h){let t=document.getElementById("toast");if(!t){t=document.createElement("div");t.id="toast";t.setAttribute("role","status");document.body.appendChild(t)}
- clearTimeout(visszaT);t.innerHTML=h;t.classList.toggle("lat",!!h);if(h)visszaT=setTimeout(()=>t.classList.remove("lat"),8000)}
+ clearTimeout(visszaT);t.innerHTML=h;t.classList.toggle("lat",!!h);if(h)visszaT=setTimeout(()=>t.classList.remove("lat"),2000);
+ /* legfeljebb 2 másodpercig látszik, és egy koppintással (a Visszavonás gombon kívül) azonnal eltűnik (Heni 2026-10-16) */
+ t.onclick=e=>{if(!e.target.closest("button")){clearTimeout(visszaT);t.classList.remove("lat")}}}
 /* mobilon balra húzva is kisöpörhető */
 function huzhato(el){let x0=null,y0=0,dx=0,irany=null;
  el.addEventListener("touchstart",e=>{if(e.target.closest("button,label,a,input"))return;x0=e.touches[0].clientX;y0=e.touches[0].clientY;dx=0;irany=null},{passive:true});
