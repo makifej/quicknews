@@ -1,0 +1,71 @@
+{
+  "id": "ba4e7337aba2",
+  "slug": "2-8-trillio-tokenes-indiai-nyelvi-adatbazist-ad-ki-az-nvidia",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/nvidia/scaling-indic-pretraining",
+  "szerzo": null,
+  "publikalva": "2026-10-16T01:44:47+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/68d2fec8856b85d927e44d32/x0aObe_0mduBjWFuKBGoV.png"
+  },
+  "cim_eredeti": "Scaling Indic Pretraining: 2.8 Trillion Tokens and an Open Data Generation Pipeline",
+  "forrasok": [],
+  "szoveg_eredeti": "What is in the corpus? From English source documents to Indic training data The twelve-language workflow The ten-language workflow What changed after Indic continued pretraining? Broader Indic capabilities in Nemotron 3.5 Super VL Start building Load the corpus Adapt the generation recipe Scope and limitations Further reading and acknowledgments Native-script data for 22 languages, romanized data for twelve, and a reusable GPU-accelerated pipeline for translation, quality assessment, and repair.\n\nAuthors: AI4Bharat — Mohammed Safi Ur Rahman Khan, Mitesh Khapra, Anoop Kunchukuttan. NVIDIA — Niket Agarwal, Raviraj Joshi, Anusha Kamath, Markus Kliegl, Yev Meyer, Sriharsha Niverty, Kiran Praveen, Utkarsh Vaidya.\n\nWe're excited to introduce Nemotron-pretraining-Indic-v1 approximately 2.8 trillion tokens across 22 Indian languages, releasing soon alongside the open, GPU-accelerated data generation pipeline used to create it. These are the 22 languages listed in India's Constitution: the first languages for 97% of Indians, or nearly 1.2 billion citizens at the 2011 Census. Developed by NVIDIA with IIT Madras, India's premier engineering institute, and its AI4Bharat lab, this release gives model builders a substantial new resource for Indic pretraining. The pipeline captures the full generation recipe, including prompts, LLM workflows, and quality checks, so developers can adapt it to their own source material and generate more data for their needs.\n\nAI4Bharat, IIT Madras' Indian language research lab, builds open-source datasets and models for Indian languages. Its resources, such as Sangraha, an open pretraining corpus for 22 Indian languages, have helped lay the foundation for open Indic language-model research. Our joint open-source release represents a substantial expansion of the open synthetic Indic training data that will be available to the community. It brings a broad mix of curated English material, including mathematics, code, and question-answer content, into Indian languages, giving teams more training material for building models that can explain technical concepts, work through problems, and answer questions in those languages. Every record traces back to a curated source document, and each output is checked against its input, so the synthetic text stays grounded in real information.\n\nMitesh Khapra, who heads AI4Bharat and made the 2025 TIME100 AI list, has named the core problem: Indian language technology trails English because \"we do not have enough data for Indian languages.\" We're answering that call with more data, plus an open recipe for generating more.\n\nThe corpus also accounts for how people write. It includes native-script data for all 22 languages and romanized text for twelve, spanning 34 language-script configurations. Our workflows combine document-level translation, quality assessment, and targeted repair, with checks to preserve content such as equations, tables, and code. This data complements naturally authored Indic text, which remains essential for local knowledge and cultural context.\n\nWe're sharing the open generation recipe so the community can not just reproduce the data but take this work further. Teams can use the corpus directly, adapt the prompts and quality checks, or bring their own source documents to the workflow. By opening up both the data and the process, we aim to make large-scale Indic data generation more accessible and enable more developers to contribute to stronger models across Indian languages.\n\nContinued pretraining for Nemotron 3.5 Super VL added 10 billion Indic tokens, drawn from a twelve-language subset of this corpus and natural Indic text. Our technical report on the model covers the full story. We plan to build on this corpus in future Nemotron models.\n\nFigure 1. The corpus contains 2,601.0 billion native-script tokens and 224.6 billion romanized tokens. Counts use the Gemma-4 tokenizer. Document records include translations and script variants of shared sources; they are not counts of unique English documents.\n\nThe corpus has two groups of language configurations:\n\nHere, native-script describes the writing system: the text is still translated from English. Romanized means Indic-language text written in Latin script, not an English translation. For each of the twelve dual-script languages, romanization covers a subset of the accepted native-script translations.\n\nThis distinction matters when constructing a training mixture. Native and romanized records offer different script exposure, but can express the same underlying content. The token counts describe the retained corpus, including accepted rewrites, rather than a training run's token budget. Counts also depend on the tokenizer used, so corpus inventory and training-token counts should be read separately.\n\nTo build this corpus, we start with documents from 15 Nemotron-CC-v2 subsets, covering web text, question-answer material, mathematics, code, and other specialized content. We use NeMo Data Designer, NVIDIA's open-source framework for generating synthetic data, to run translation, quality checks, and targeted repair. Throughout the workflow, we retain each source identifier so developers can trace an output back to its original document. Clear provenance like this is part of what makes open data practical to audit and build on. Figure 2 shows the workflow for twelve languages.\n\nFigure 2. Four-stage Indic synthetic-data pipeline for twelve languages, implemented using NeMo Data Designer and Gemma-4-31B-it. We translate English documents, assess translation quality, repair low-scoring outputs, and convert a subset of accepted translations into Latin script. The other ten languages use the separate Indic Translate workflow described below.\n\nFor these twelve languages, we translate documents in full so the model can use context across paragraphs, tables, and equations. We selected Gemma-4-31B-it by comparing models on complete documents, checking translation quality and preservation of technical content. Our prompts distinguish prose to translate from content to preserve, including code, equations, URLs, and formatting.\n\nAfter translation, we use the same model to assess each output against its English source. A rubric inspired by Multidimensional Quality Metrics (MQM), an open framework for classifying translation errors by type and severity, covers meaning, fluency, terminology, style, and formatting. We retain only outputs scoring at least 75 out of 100 (a rubric score, not an accuracy percentage). For lower-scoring outputs, we use the assessment feedback to guide repairs, then reassess them against the same threshold. This process recovered 438.4 billion tokens across native-script and romanized data, already included in the corpus total. Sampled human reviews and tests with deliberately introduced errors helped identify omissions and residual English, informing improvements to our prompts and checks.\n\nAccepted native-script translations also provide the starting point for romanized data. We convert a subset into Latin script and check each result against its native-script input. This separates translation from script conversion. In our initial human comparison, this two-step approach produced fewer hallucinated additions and less residual English than generating romanized text directly from English.\n\nFor the other ten languages, we adapt the workflow to address long-document quality and script-stability issues observed in our comparisons. We translate with Indic Translate, a document-level translation model for English and 22 Indian languages from Bodhan AI, a nonprofit center for AI in education incubated at IIT Madras. Gemma-4-31B-it then assesses each translation against its English source. For eight languages, we keep the whole-document approach. For longer Santali documents, we translate overlapping windows and reconstruct the document; for Manipuri, we translate into Bengali script before converting to Meitei Mayek, its native",
+  "modell": "gemini-3.5-flash",
+  "cim": "2,8 trillió tokenes indiai adatbázist ad ki hamarosan az Nvidia",
+  "lead": "Az Nvidia és az AI4Bharat nyílt adatgeneráló rendszert és 22 indiai nyelvű adatbázist jelentett be a **nyelvi modellek** fejlesztéséhez.",
+  "osszefoglalo": "Az Nvidia az IIT Madras kutatóival és az AI4Bharat laborral közösen bejelentette a [Nemotron-pretraining-Indic-v1](https://huggingface.co/blog/nvidia/scaling-indic-pretraining) nevű nyílt adatbázis **közelgő kiadását**, amely mintegy 2,8 trillió tokent tartalmaz India 22 hivatalos nyelvén. A projekt célja a **nyelvi modellek** fejlesztésének felgyorsítása azokon a nyelveken, amelyekhez eddig kevés strukturált digitális tartalom állt rendelkezésre.\n\nA csomag nemcsak az adatbázist, hanem az annak előállításához használt **GPU-gyorsított adatgeneráló rendszert** is tartalmazza. A folyamat angol nyelvű forrásokból készít magas minőségű fordításokat a **NeMo Data Designer** keretrendszer és a Gemma-4-31B-it modell segítségével, miközben automatikusan ellenőrzi és javítja a fordítások minőségét, megőrizve a kódokat és matematikai képleteket.\n\nA feldolgozott anyagok között mind a 22 nyelv saját írásrendszerével készült adatok, valamint 12 nyelv latin betűs változata is megtalálható. Az így létrejött szintetikus adatokat már felhasználták a **Nemotron 3.5 Super VL** modell továbbképzéséhez is.",
+  "miert_szamit": "A nyílt adatgenerálási folyamat mintaként szolgálhat **más ritkább nyelvek adathiányának pótlására**, így a fejlesztők saját specifikus adatbázisokat építhetnek.",
+  "cimkek": [
+    "Nvidia",
+    "LLM",
+    "adatbázis",
+    "Nemotron"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Nemotron-pretraining-Indic-v1",
+    "NeMo Data Designer",
+    "Nemotron 3.5 Super VL"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-16T06:05:49+00:00",
+  "megjelent": "2026-10-16T06:05:49+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-16T06:07:00+00:00",
+    "esemeny": "Az Nvidia, az IIT Madras és annak AI4Bharat kutatóműhelye bejelentette a Nemotron-pretraining-Indic-v1 nevű, mintegy 2,8 trillió tokent tartalmazó szintetikus nyelvi adatbázis és a hozzá tartozó nyílt, GPU-gyorsított adatgeneráló folyamat hamarosan megjelenő kiadását.",
+    "forrasok": [
+      "https://huggingface.co/blog/nvidia/scaling-indic-pretraining"
+    ],
+    "hibak": [
+      "Tényhiba az állapotban: az eredeti bejelentés szerint az adatbázist hamarosan kiadják ('releasing soon'), nem pedig már kiadták ('adott ki / kiadja').",
+      "Hiányzó elsődleges forrás link a magyar szövegben."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "2,8 trillió tokenes indiai nyelvi adatbázist ad ki az Nvidia",
+      "lead": "Az Nvidia és az AI4Bharat nyílt adatgeneráló rendszert és 22 indiai nyelvű adatbázist adott ki a nyelvi modellek fejlesztéséhez.",
+      "osszefoglalo": "Az Nvidia az IIT Madras kutatóival közösen kiadja a **Nemotron-pretraining-Indic-v1** nevű nyílt adatbázist, amely mintegy 2,8 trillió tokent tartalmaz India 22 hivatalos nyelvén. A projekt célja a nyelvi modellek fejlesztésének felgyorsítása azokon a nyelveken, amelyekhez eddig kevés strukturált digitális tartalom állt rendelkezésre.\n\nA csomag nemcsak az adatbázist, hanem az annak előállításához használt **GPU-gyorsított adatgeneráló rendszert** is tartalmazza. A folyamat angol nyelvű forrásokból készít magas minőségű fordításokat a NeMo Data Designer keretrendszer és a Gemma-4-31B-it modell segítségével, miközben automatikusan ellenőrzi és javítja a fordítások minőségét, megőrizve a kódokat és matematikai képleteket.\n\nA feldolgozott anyagok között mind a 22 nyelv saját írásrendszerével készült adatok, valamint 12 nyelv latin betűs változata is megtalálható. Az így létrejött szintetikus adatokat már felhasználták a **Nemotron 3.5 Super VL** modell továbbképzéséhez is.",
+      "miert_szamit": "A nyílt adatgenerálási folyamat mintaként szolgálhat **más ritkább nyelvek adathiányának pótlására**, így a fejlesztők saját specifikus adatbázisokat építhetnek."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-16T08:08:22+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": []
+  }
+}
