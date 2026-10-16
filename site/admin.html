@@ -400,7 +400,7 @@ function kartya(s,kov){const d=new Date(s.idopont);let a,cls="",tovabb="";
  if(HIBA(s)){a=`${jel}<span class="allapot hiba">nem ment ki</span>`}
  else if(KINT(s)){a=`${jel}<span class="allapot">${ora(new Date(s.kiment))}</span>`;cls="kint"}
  else if(PARK(s)){a=`${jel}`}
- else if(VARAK(s)){a=`${jel}${VAROK(s,"3 percen belül időzítem")}`}
+ else if(VARAK(s)){a=`${jel}${VAROK(s,s.felulet==="Csoport"?"Kézi kitétel: Claude teszi ki a csoportba a Diádban, a gép ezt magától nem csinálja":"3 percen belül időzítem")}`}
  else if(s.torles_folyamatban) a=`<span class="allapot hiba">Levétel folyamatban, egy percen belül leáll</span>`;
  else{a=`${jel}<span class="allapot ${kov?"kov":""}">${kov?"Következő · ":""}${hatra(d)}</span><button class="szerk" data-szerk="${esc(s.id)}">Szerkesztés</button><button class="torol" data-pid="${esc(s.id)}" data-felulet="${esc(s.felulet)}" data-cim="${esc(s.cim)}">Levétel az időzítésből</button>`;
   tovabb=`<form class="szerk-urlap" data-szerk-urlap="${esc(s.id)}" hidden><label>Szöveg<textarea name="szoveg" rows="5">${esc(s.szoveg||"")}</textarea></label><label>Időpont<input type="datetime-local" name="mikor" value="${helyiIdo(s.idopont)}"></label><div class="szerk-gombok"><button type="submit">Mentés</button><button type="button" data-megse>Mégse</button></div><p class="lab">A módosítás 3 percen belül kerül át a Flybuiltbe.</p></form>`}
