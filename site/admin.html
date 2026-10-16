@@ -79,7 +79,7 @@ transition:border-color .3s cubic-bezier(.32,.72,0,1)}
 -webkit-box-orient:vertical;overflow:hidden}
 .kartya a.cim:hover{color:var(--amber)}
 .allapot{display:inline-block;margin-top:8px;font-size:16px;font-weight:600;color:var(--halk)}
-.allapot.kov{color:#131313;background:var(--amber);border-radius:999px;padding:2px 10px}
+.allapot.kov{color:#131313;background:var(--amber);border-radius:999px;padding:2px 8px;font-size:12px;font-weight:700;white-space:nowrap}
 .allapot.hiba{color:var(--hiba)}
 button.torol{display:inline-block;margin:8px 0 0 12px;font:600 15px Manrope,sans-serif;color:var(--hiba);border:1px solid rgba(255,107,107,.5);border-radius:6px;padding:2px 10px}
 button.torol:hover{background:rgba(255,107,107,.12)}
@@ -406,7 +406,7 @@ function kartya(s,kov){const d=new Date(s.idopont);let a,cls="",tovabb="";
  else if(PARK(s)){a=`${jel}`}
  else if(VARAK(s)){a=`${jel}${VAROK(s,s.felulet==="Csoport"?"Kézi kitétel: Claude teszi ki a csoportba a Diádban, a gép ezt magától nem csinálja":"3 percen belül időzítem")}`}
  else if(s.torles_folyamatban) a=`<span class="allapot hiba">Levétel folyamatban, egy percen belül leáll</span>`;
- else{a=`${jel}<span class="allapot ${kov?"kov":""}">${kov?"Következő · ":""}${hatra(d)}</span><button class="szerk" data-szerk="${esc(s.id)}">Szerkesztés</button><button class="torol" data-pid="${esc(s.id)}" data-felulet="${esc(s.felulet)}" data-cim="${esc(s.cim)}">Levétel az időzítésből</button>`;
+ else{a=`${jel}${kov?`<span class="allapot kov" title="Következő · ${hatra(d)}">Következő · ${hatra(d).replace(/ múlva$/,"")}</span>`:`<span class="allapot">${hatra(d)}</span>`}<button class="szerk" data-szerk="${esc(s.id)}">Szerkesztés</button><button class="torol" data-pid="${esc(s.id)}" data-felulet="${esc(s.felulet)}" data-cim="${esc(s.cim)}">Levétel az időzítésből</button>`;
   tovabb=`<form class="szerk-urlap" data-szerk-urlap="${esc(s.id)}" hidden><label>Szöveg<textarea name="szoveg" rows="5">${esc(s.szoveg||"")}</textarea></label><label>Időpont<input type="datetime-local" name="mikor" value="${helyiIdo(s.idopont)}"></label><div class="szerk-gombok"><button type="submit">Mentés</button><button type="button" data-megse>Mégse</button></div><p class="lab">A módosítás 3 percen belül kerül át a Flybuiltbe.</p></form>`}
  const cim=s.link?`<a class="cim" href="${esc(s.link)}" target="_blank" rel="noopener">${esc(s.cim)}</a>`:`<span class="cim">${esc(s.cim)}</span>`;
  return `<div class="kartya ${cls}"><div class="ido num">${PARK(s)?"·":ora(d)}</div>
