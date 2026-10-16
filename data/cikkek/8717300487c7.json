@@ -1,0 +1,65 @@
+{
+  "id": "8717300487c7",
+  "slug": "nyilt-forraskodu-eszkozzel-egysegesithetok-az-ai-kodolougynokok",
+  "forras_id": "producthunt",
+  "forras_nev": "Product Hunt",
+  "url": "https://www.producthunt.com/products/tetriz-harness",
+  "szerzo": "Prasanna R",
+  "publikalva": "2026-10-15T11:55:43+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://ph-files.imgix.net/9d6976f4-d87c-4e71-9497-dfe3a276514e.png?auto=format&fit=crop&frame=1&h=512&w=1024"
+  },
+  "cim_eredeti": "Tetriz Harness",
+  "forrasok": [],
+  "szoveg_eredeti": "Hey Product Hunter,Keeping your coding agents' setup current is becoming another job for senior engineers. Every time a new model ships, you tweak your prompts, skills, hooks, and rules. You find a better workflow in Claude Code. You fix a recurring issue in Cursor. You add a security rule after a code review catches something.But which of those changes still hold up? What's quietly broken? And how do you get the good ones onto every engineer's machine?Right now, keeping up takes a platform team, or your best senior engineers pulled off the work they were hired for.So today we're launching Harness Recommendations and Harness Control Plane: two open-source tools that find what your AI coding harness needs and roll it out to your whole team.Harness Recommendations - Checks the rules, skills, hooks and instructions your agents use, including CLAUDE.md, AGENTS.md and MCP config - Flags what's broken or risky: duplicate rules, rules that match no files, permission settings that skip every prompt - Proposes what's missing: new rules, hooks and agents drawn from your team's coding sessions, review feedback and security incidents - Every recommendation comes with evidence, so you decide what to change. It never edits your files.No generic best practices. Recommendations grounded in how your team actually builds.Harness Control Plane- Distributes the changes you approve to people, teams or repos, across Claude Code, Codex, Cursor and Kiro - An agent on each machine installs them and reports back, so you can check who received what - A useful instruction one engineer figures out becomes part of everyone's setupDiscover what makes your setup better. Give it to everyone. Repeat.Earlier this week we launched Agent Desk and Session Intelligence (https://www.producthunt.com/prod...), which show how your agents are configured and how their sessions go. These build on that, so what you learn keeps your agents working well as the work changes.Try it: the quick start scans a sample repo with Go and a local Postgres. No model, no account. Proposing what's missing needs your session and review data plus your own model key. Both are self-hosted and MIT-licensed. How do you keep your team's agent setup current today? Tell us what breaks.\n\nWeboldal: https://github.com/tetriz-ai/tetriz-harness",
+  "modell": "gemini-3.5-flash",
+  "cim": "Nyílt forráskódú eszközzel egységesíthetők az AI-kódolóügynökök beállításai",
+  "lead": "A Tetriz Harness automatikusan felméri és a teljes fejlesztőcsapatra kiterjeszti a Claude Code és Cursor beállításait.",
+  "osszefoglalo": "A Tetriz kiadta a [Tetriz Harness](https://github.com/tetriz-ai/tetriz-harness) nevű nyílt forráskódú eszközét, amely segít naprakészen tartani a fejlesztőcsapatok AI-kódolóügynökeinek szabályait és jogosultságait. A rendszer átvizsgálja a meglévő konfigurációkat, és kiszűri a hibás, duplikált vagy kockázatos beállításokat a CLAUDE.md, AGENTS.md és MCP fájlokban.\n\nA fejlesztők a **Harness Recommendations** funkcióval elemzést kapnak a hiányzó szabályokról a tényleges kódolási munkamenetek alapján, míg a **Harness Control Plane** automatikusan terjeszti el az elfogadott módosításokat a csapattagok gépein. A megoldás támogatja a Claude Code, Codex, Cursor és Kiro eszközöket is.\n\nA szoftver MIT licenc alatt érhető el és saját szerveren futtatható. Az alapvető ellenőrzés modellkulcs és regisztráció nélkül is kipróbálható egy mintakód-tárolón keresztül.",
+  "miert_szamit": "A fejlesztőcsapatok **egyetlen központi felületen terjeszthetik el a jól működő promptokat és biztonsági szabályokat**, így nem kell minden mérnök gépén kézzel frissíteni az AI-eszközök beállításait.",
+  "cimkek": [
+    "Tetriz Harness",
+    "Claude Code",
+    "Cursor",
+    "kódolás"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Tetriz Harness",
+    "url": "https://github.com/tetriz-ai/tetriz-harness"
+  },
+  "linkelendo_nevek": [
+    "Tetriz Harness",
+    "Harness Recommendations",
+    "Harness Control Plane"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-16T12:21:18+00:00",
+  "megjelent": "2026-10-16T12:21:18+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-16T12:21:32+00:00",
+    "esemeny": "Prasanna R bejelentette a Harness Recommendations és Harness Control Plane nevű nyílt forráskódú eszközök megjelenését a Product Hunton, amelyek segítik a fejlesztőcsapatokat az AI-kódolóügynökök (pl. Claude Code, Cursor, Codex, Kiro) konfigurációinak elemzésében és egységes terjesztésében.",
+    "forrasok": [
+      "https://www.producthunt.com/products/tetriz-harness",
+      "https://github.com/tetriz-ai/tetriz-harness"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-16T14:22:47+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": []
+  }
+}

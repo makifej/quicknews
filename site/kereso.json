@@ -88,6 +88,17 @@
     "d": "okt. 16. 03:27"
   },
   {
+    "i": "048077dee378",
+    "p": "/assets/kep/048077dee378.webp",
+    "c": "Minden AI-modell közös memóriát kap a GBrain eszközzel",
+    "b": "A GBrain összeköti a különböző AI-eszközöket, így a ChatGPT, a Claude Code vagy a Cursor közös memóriából dolgozhat.",
+    "k": "Product Hunt",
+    "g": "eszköz",
+    "u": "/hir/minden-ai-modell-kozos-memoriat-kap-a-gbrain-eszkozzel",
+    "sz": "A GBrain egy olyan központi memóriát és fiókintegrációs felületet biztosít, amelyet bármely AI-eszköz elérhet. Ha a felhasználó feljegyez valamit a Claude Code használata közben, ahhoz a ChatGPT is azonnal hozzáfér. A Gmail egyszeri csatlakoztatása után pedig a Cursor is képes keresni benne külön beállítófájlok és API-kulcsok megadása nélkül.\n\nA rendszer memóriája egy sima markdown fájlokból álló mappa, amit a felhasználó bármikor olvashat, javíthat vagy kimenthet. A szolgáltatás működtethető a GBrain saját infrastruktúráján vagy saját szerveren futtatott modellen is, a csapatok számára pedig közös munkaterületet biztosít. GBrain ChatGPT Claude Code Cursor",
+    "d": "okt. 16. 02:51"
+  },
+  {
     "i": "e18fd6e74900",
     "p": "/assets/kep/e18fd6e74900.webp",
     "c": "Weboldalakat és játékokat is épít a Bluesky MI-eszköze",
@@ -385,6 +396,28 @@
     "d": "okt. 15. 14:52"
   },
   {
+    "i": "8717300487c7",
+    "p": "/assets/kep/8717300487c7.webp",
+    "c": "Nyílt forráskódú eszközzel egységesíthetők az AI-kódolóügynökök beállításai",
+    "b": "A Tetriz Harness automatikusan felméri és a teljes fejlesztőcsapatra kiterjeszti a Claude Code és Cursor beállításait.",
+    "k": "Product Hunt",
+    "g": "eszköz",
+    "u": "/hir/nyilt-forraskodu-eszkozzel-egysegesithetok-az-ai-kodolougynokok",
+    "sz": "A Tetriz kiadta a Tetriz Harness nevű nyílt forráskódú eszközét, amely segít naprakészen tartani a fejlesztőcsapatok AI-kódolóügynökeinek szabályait és jogosultságait. A rendszer átvizsgálja a meglévő konfigurációkat, és kiszűri a hibás, duplikált vagy kockázatos beállításokat a CLAUDE.md, AGENTS.md és MCP fájlokban.\n\nA fejlesztők a Harness Recommendations funkcióval elemzést kapnak a hiányzó szabályokról a tényleges kódolási munkamenetek alapján, míg a Harness Control Plane automatikusan terjeszti el az elfogadott módosításokat a csapattagok gépein. A megoldás támogatja a Claude Code, Codex, Cursor és Kiro eszközöket is.\n\nA szoftver MIT licenc alatt érhető el és saját szerveren futtatható. Az alapvető ellenőrzés modellkulcs és regisztráció nélkül is kipróbálható egy mintakód-tárolón keresztül. Tetriz Harness Claude Code Cursor kódolás",
+    "d": "okt. 15. 13:55"
+  },
+  {
+    "i": "754a27c7f606",
+    "p": "/assets/kep/754a27c7f606.webp",
+    "c": "A BOSS Console saját operációs rendszert ad az AI-ügynököknek",
+    "b": "A nyílt forráskódú felület saját böngészőt, terminált és szerkesztőt biztosít az önállóan dolgozó mesterségesintelligencia-ügynököknek.",
+    "k": "Product Hunt",
+    "g": "eszköz",
+    "u": "/hir/a-boss-console-sajat-operacios-rendszert-ad-az-ai-ugynokoknek",
+    "sz": "Megjelent a BOSS Console, egy nyílt forráskódú operációs rendszer, amely dedikált munkakörnyezetet biztosít a folyamatosan futó AI-ügynököknek. Az eszköz saját böngészőt, terminált és fájlszerkesztőt ad az ügynököknek, miközben a felhasználó élőben követheti a feladatokat és bármikor beavatkozhat.\n\nA rendszer összekapcsolható a Model Context Protocol bővítményeivel, így az ügynökök eszköztára tetszőlegesen bővíthető. A felület támogatja a Fluck Agent, a Claude Code, a Codex, a Gemini CLI és az OpenCode használatát is, a háttérben futó munkamenetekhez pedig más eszközről is újra lehet csatlakozni.\n\nA BOSS Console ingyenesen elérhető macOS, Windows és Linux rendszerekre, a forráskódja nyíltan elérhető a GitHubon. BOSS Console AI-ügynök nyílt forráskód fejlesztés",
+    "d": "okt. 15. 13:37"
+  },
+  {
     "i": "71d267a3512e",
     "p": "/assets/kep/71d267a3512e.webp",
     "c": "A CERN és a Mistral közösen fejleszt részecskefizikai AI-modellt",
@@ -484,6 +517,17 @@
     "d": "okt. 15. 06:00"
   },
   {
+    "i": "4b7a47ae03c0",
+    "p": "/assets/kep/4b7a47ae03c0.webp",
+    "c": "Megjelent a Dottr: e-mailben működő AI-ügynök szerződésekhez",
+    "b": "A Dottr e-mailes továbbítás alapján tervezeteket ír, kockázatokat elemöz, majd elküldi és végigköveti a szerződéskötést.",
+    "k": "Product Hunt",
+    "g": "ügynök",
+    "u": "/hir/megjelent-a-dottr-e-mailben-mukodo-ai-ugynok-szerzodesekhez",
+    "sz": "A Dottr egy e-mailben működő AI-szerződéskezelő asszisztens, amely a megküldött levelezések vagy jegyzetek alapján automatikusan elkészíti a szerződéstervezeteket. Az eszköz képes sablonokból dolgozni, és egyszerű nyelvezettel elemzi a megállapodások kockázatait a megadott szabályzatok alapján.\n\nA rendszer automatikusan kiküldi a dokumentumokat aláírásra, és folyamatosan emlékezteti az érintett feleket, amíg a folyamat le nem zárul. Az aláíróknak nem szükséges regisztrációval rendelkezniük a felület használatához.\n\nAz eszköz megőrzi a megkötött megállapodások feltételeit és határidőit, így a felhasználók később e-mailben kérdezhetnek rá a korábbi részletekre. A szolgáltatás ára 1 dollár szerződésenként, előfizetési díjak és felhasználói korlátok nélkül. Dottr szerződés ügynök e-mail",
+    "d": "okt. 15. 04:37"
+  },
+  {
     "i": "f86858c1d849",
     "p": "/assets/kep/f86858c1d849.webp",
     "c": "AI tervezte chipekkel előzné meg a számítási kapacitás krízisét a Ricursive Intelligence",
@@ -548,6 +592,17 @@
     "u": "/hir/nyilt-ocr-ertekelokeszletet-adott-ki-a-datalab-omniparsebench-neven",
     "sz": "A Datalab megjelentette az OmniParseBench nevű nyílt forráskódú benchmarkját, amely dokumentumok szöveges, táblázatos és elrendezési pontosságát méri. A tesztkészlet 2937 oldalon és 92 nyelven végzett 16 288 bináris teszt alapján számítja ki a modellteljesítményt.\n\nA rendszer működése nem igényel hálózati kapcsolatot vagy API-kulcsot az értékeléshez, mert az ellenőrzés nyílt kódú algoritmussal, modellalapú értékelő nélkül történik offline környezetben. A feladatok 5 kategóriára oszlanak, mint a szövegek jelenléte, sorrendje, ismétlődése, a táblázatcellák pozíciója és a blokkok típusa.\n\nA kezdeti mérések alapján a Gemini 3.8 Flash érte el a legmagasabb átlagpontszámot 92,9 százalékkal, míg a második helyen a Datalab saját rendszere végzett 92,7 százalékkal. A kód az Apache 2.0 licenc alatt érhető el Python 3.11 feletti környezetben. OCR Datalab OmniParseBench benchmark",
     "d": "okt. 15. 01:37"
+  },
+  {
+    "i": "f79d527d9cd2",
+    "p": "/assets/kep/f79d527d9cd2.webp",
+    "c": "Biztonságos adatkezelést kínál az AI-ügynököknek az Agent Vault",
+    "b": "Az új eszköz áladatokkal tölti ki az online űrlapokat, a valódi jelszavakat és kártyaszámokat egy védett széfben cseréli ki.",
+    "k": "Product Hunt",
+    "g": "eszköz",
+    "u": "/hir/biztonsagos-adatkezelest-kinal-az-ai-ugynokoknek-az-agent-vault",
+    "sz": "Az Agent Vault segítségével az AI-ügynökök biztonságosan vásárolhatnak és jelentkezhetnek be a felhasználó nevében. A rendszer lényege, hogy az ügynök csak áladatokat és ideiglenes kulcsokat lát, így a tényleges bizalmas adatokhoz soha nem fér hozzá.\n\nA fizetési és bejelentkezési adatok helyettesítése egy teljesen zárt, védett architektúrában történik a háttérben. Ez megakadályozza, hogy az elszabadult vagy eltérített AI-modell hozzáférjen a valódi bankkártyaszámokhoz vagy jelszavakhoz.\n\nA szolgáltatás az agentvault.io weboldalon érhető el az érdeklődők és a fejlesztők számára. Agent Vault AI ügynök adatvédelem kiberbiztonság",
+    "d": "okt. 15. 01:12"
   },
   {
     "i": "d1f8876dacf9",
