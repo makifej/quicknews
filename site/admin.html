@@ -170,6 +170,8 @@ button.torol:disabled{opacity:.5}
 .tabla{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 @media (min-width:901px){main{max-width:1400px}.tabla .kartya{grid-template-columns:58px 44px minmax(0,1fr);gap:12px;padding:14px}.tabla .kartya .kep{width:44px;height:55px}.tabla .kartya .ido{font-size:18px;white-space:nowrap}}
 .allapot.kov{display:inline-block}
+.fon-jel{display:inline-block;margin:6px 8px 0 0;padding:2px 9px;border-radius:999px;font-size:13px;font-weight:800;color:#f4f4f4;background:#3d3d3d}
+.fon-jel.fo5{color:#131313;background:var(--amber)}
 .all-jel{display:inline-block;margin:6px 8px 0 0;padding:2px 9px;border-radius:999px;font-size:13px;font-weight:800;color:#131313;background:var(--halk)}
 .all-jel.all-időzítve{background:var(--amber)}.all-jel.all-publikálva{background:#7bd88f}.all-jel.all-sikertelen{background:#ff6b6b}
 .all-jel.all-időzítésrevár{background:#9ec5ff}.all-jel.all-kártyáravár{background:#ffd27a}.all-jel.all-indításravár{background:#ffd27a}.all-jel.all-törölve{background:var(--vonal);color:var(--halk)}
@@ -391,7 +393,7 @@ const VAR=s=>!KINT(s)&&!HIBA(s)&&!PARK(s);
 
 function helyiIdo(iso){const d=new Date(iso),p=n=>String(n).padStart(2,"0");return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`}
 function kartya(s,kov){const d=new Date(s.idopont);let a,cls="",tovabb="";
- const jel=`<span class="all-jel all-${ALLNEV(s).replace(/[^a-zA-Záéíóöőúüű]/g,"").toLowerCase()}">${ALLNEV(s)}</span>`;
+ const jel=(s.fontossag?`<span class="fon-jel ${s.fontossag>=5?"fo5":""}">Fontosság ${s.fontossag}</span>`:"")+`<span class="all-jel all-${ALLNEV(s).replace(/[^a-zA-Záéíóöőúüű]/g,"").toLowerCase()}">${ALLNEV(s)}</span>`;
  if(s.felulet==="Hirdetés"){
   if(s.feldolgozasra)a=`${jel}${VAROK(s,"3 percen belül elkészül, szüneteltetve")}`;
   else if(VARAK(s)){a=`${jel}<span class="allapot">Elkészült, szüneteltetve (3 percen belül indul)</span><button class="hird-indit" data-azon="${esc(s.azon)}" data-cim="${esc(s.cim)}">Indítás</button><button class="szerk" data-szerk="${esc(s.id)}">Címsor</button>`;
