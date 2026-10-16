@@ -521,7 +521,7 @@ async function ktolt(){try{K=await lekér(U.koltseg)}catch(e){document.getElemen
 
 /* ---------- ajánlott ---------- */
 let A=null;
-const FEL={facebook:"Facebook",linkedin:"LinkedIn",hirdetes:"Hirdetés"};
+const FEL={facebook:"Facebook",linkedin:"LinkedIn",hirdetes:"Hirdetés",csoport:"Csoport"};
 function idozit(m){if(!m)return"időzítve";const d=new Date(/T/.test(m)?m:m.replace(" ","T")+":00");  /* a nyilvántartás budapesti idő: helyi időként olvasva (télen is jó) */
  if(isNaN(d))return"időzítve";return(nk(d)===MA()?"ma ":nk(d)===HOLNAP()?"holnap ":fmt(d,{month:"short",day:"numeric"})+" ")+ora(d)}
 function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
@@ -529,7 +529,7 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
  const kartyaVar=A.sorok.filter(s=>s.kartya&&s.kartya.fajl&&!s.kartya.jo&&!s.kartya.elutasitva);
  document.getElementById("a-mutatok").innerHTML=
   `<div class="mutato kiemelt"><small>Ajánlott hír</small><b class="num">${A.sorok.filter(s=>!s.feldolgozott).length}</b><em>${A.sorok.filter(s=>s.uj&&!s.feldolgozott).length?A.sorok.filter(s=>s.uj&&!s.feldolgozott).length+" új az utóbbi 6 órában":"az utóbbi 4 napból"}</em></div>`+
-  `<div class="mutato" ${kerve.length?`data-ugras=".ah.kerve" role="button" tabindex="0"`:""}><small>Kitételre kérve</small><b class="num">${kerve.length}</b><em>${["facebook","linkedin","hirdetes"].map(f=>FEL[f]+" "+A.sorok.filter(s=>s.kerve[f]).length).join(" · ")}</em></div>`+
+  `<div class="mutato" ${kerve.length?`data-ugras=".ah.kerve" role="button" tabindex="0"`:""}><small>Kitételre kérve</small><b class="num">${kerve.length}</b><em>${["facebook","linkedin","hirdetes","csoport"].map(f=>FEL[f]+" "+A.sorok.filter(s=>s.kerve[f]).length).join(" · ")}</em></div>`+
   `<div class="mutato ${kartyaVar.length?"riaszt":""}" ${kartyaVar.length?`data-ugras=".kartyasor.var" role="button" tabindex="0"`:""}><small>Kártya vár jóváhagyásra</small><b class="num">${kartyaVar.length}</b><em>${kartyaVar.length?"kattints, odaugrik":"nincs teendő"}</em></div>`+
   `<div class="mutato" ${A.sorok.some(s=>s.felkapott)?`data-ugras=".ah.felk" role="button" tabindex="0"`:""}><small>Feltörekvő</small><b class="num">${A.sorok.filter(s=>s.felkapott).length}</b><em>több forrás is írt róla</em></div>`;
  const sorrend=[...A.sorok].filter(s=>(ASZUR==="kesz")===!!s.feldolgozott).sort(AREND==="pont"?(a,b)=>b.pont-a.pont:(a,b)=>String(b.publikalva).localeCompare(String(a.publikalva)));
@@ -549,7 +549,7 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
    :`<button aria-pressed="${!!(hl&&hl.kerve)}" data-id="${s.id}" data-mi="hirlevel" title="Bekerül a következő reggeli emlékeztetőbe"><i></i>Hírlevél</button>`;
   // a pipa önmagában nem indít semmit: a „Jóváhagyom” után készülnek el a bepipált felületek elemei
   const jv=s.jovahagyas||{},jvF=jv.feluletek||[],el=s.elemek||{};
-  const nyitottF=["facebook","linkedin","hirdetes"].filter(f=>s.kerve[f]&&!el[f]&&!(s.allapot||{})[f]);
+  const nyitottF=["facebook","linkedin","hirdetes","csoport"].filter(f=>s.kerve[f]&&!el[f]&&!(s.allapot||{})[f]);
   const ujF=nyitottF.filter(f=>!jvF.includes(f));
   const jova=ujF.length?`<button class="jova" data-jova="${s.id}"><i></i>Jóváhagyom</button>`
    :nyitottF.length?`<button class="jova kesz" disabled><i></i>Jóváhagyva</button>`
@@ -580,7 +580,7 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
   <div><a class="cim" href="https://quicknews.hu/hir/${esc(s.slug)}" target="_blank" rel="noopener">${esc(s.cim)}</a><div class="lead">${esc(s.lead)}</div>
   <div class="cimkek">${s.uj?`<span class="cimke uj">Új</span>`:""}${s.felkapott?`<span class="cimke felk">Feltörekvő</span>`:""}<span class="cimke ${s.fontossag>=5?"fo5":""}">Fontosság ${s.fontossag}</span>
   <span class="cimke">${fmt(d,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span><span class="cimke">${esc(s.forras||"")}</span>${s.video?`<span class="cimke">videó</span>`:""}<a class="cimke link" href="${esc(s.url||"https://quicknews.hu/hir/"+s.slug)}" target="_blank" rel="noopener">Megnyitás ↗</a></div>${(s.tenyhiba||[]).length?`<div class="hibasav">Tényhiba-gyanú, jóváhagyás előtt nézd meg: ${s.tenyhiba.map(esc).join("; ")}</div>`:""}${feldolg}</div>
-  <div class="kapcs">${["facebook","linkedin","hirdetes"].map(gomb).join("")}${hlGomb}${jova}
+  <div class="kapcs">${["facebook","csoport","linkedin","hirdetes"].map(gomb).join("")}${hlGomb}${jova}
   <label class="feltolt"><input type="file" accept="image/*" data-id="${s.id}" hidden><i></i>Saját kép</label>
   <button class="sopor" data-sopor="${s.id}" title="Eltűnik, és többé nem ajánlom"><i></i>Kisöpröm</button></div>${skUj?sajat:kartya}</div>`}).join("")||`<p class="ures">Nincs ajánlott hír.</p>`;
  L.querySelectorAll("button[data-mi]").forEach(b=>b.onclick=async()=>{const uj=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",uj);
