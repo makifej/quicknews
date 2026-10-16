@@ -68,6 +68,8 @@ transition:border-color .3s cubic-bezier(.32,.72,0,1)}
 .oszlop{background:var(--lap);border-radius:12px;overflow:hidden}
 .oszlop-fej{display:flex;justify-content:space-between;align-items:baseline;padding:16px 20px;border-bottom:1px solid var(--vonal)}
 .oszlop-fej h2{font-size:21px;font-weight:700}
+.oszlop-fej h2{display:flex;align-items:center;gap:10px}
+.oszlop-fej h2 svg{width:20px;height:20px;flex:none;color:var(--halk);fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 .oszlop-fej span{color:var(--halk);font-size:16px}
 .kartya{display:grid;grid-template-columns:72px 64px minmax(0,1fr);gap:16px;align-items:center;padding:16px 20px;border-bottom:1px solid var(--vonal)}
 .kartya:last-child{border-bottom:0}
@@ -452,7 +454,7 @@ function prajzol(){if(!D)return;
  const L=(napok[PN]||[]).slice().sort((a,b)=>(a.idopont<b.idopont?-1:1));
  const elott=hiba.length&&PN===ma?`<div class="hibasav">${hiba.length} poszt nem ment ki: ${hiba.map(s=>esc(s.cim)).join("; ")}</div>`:"";
  T.innerHTML=elott+`<div class="tabla">`+["Facebook","Csoport","LinkedIn","Hirdetés"].map(f=>{const P=L.filter(s=>s.felulet===f);const v=P.filter(VAR).length;
-  return `<div class="oszlop"><div class="oszlop-fej"><h2>${f}</h2><span>${P.length?`${P.length} poszt${v?`, ${v} vár`:""}`:""}</span></div>${P.length?P.map(s=>kartya(s,kov&&s.id===kov.id)).join(""):`<p class="ures">Erre a napra nincs ${f==="Hirdetés"?"hirdetés":f==="Csoport"?"csoportposzt":f+"-poszt"}.</p>`}</div>`}).join("")+`</div>`}
+  return `<div class="oszlop"><div class="oszlop-fej"><h2>${ik(f)}${f}</h2><span>${P.length?`${P.length} poszt${v?`, ${v} vár`:""}`:""}</span></div>${P.length?P.map(s=>kartya(s,kov&&s.id===kov.id)).join(""):`<p class="ures">Erre a napra nincs ${f==="Hirdetés"?"hirdetés":f==="Csoport"?"csoportposzt":f+"-poszt"}.</p>`}</div>`}).join("")+`</div>`}
 document.addEventListener("click",async e=>{const b=e.target.closest("button.torol");if(!b)return;
  if(!await kerd(`Leveszed az időzítésből?\n\n${b.dataset.felulet}: ${b.dataset.cim}\n\nNem megy ki. A már kiment posztokhoz ez nem nyúl.`))return;
  b.disabled=true;b.textContent="Levétel…";
@@ -533,6 +535,8 @@ async function ktolt(){try{K=await lekér(U.koltseg)}catch(e){document.getElemen
 
 /* ---------- ajánlott ---------- */
 let A=null;
+const IKON={Facebook:'<path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/>',Csoport:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14a6.5 6.5 0 0 1 3 6"/>',LinkedIn:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.5v.01M12 17v-6.5M12 13.5a2.5 2.5 0 0 1 5 0V17"/>',"Hirdetés":'<path d="M3 10v4a1 1 0 0 0 1 1h3l6 4V5L7 9H4a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6M20 6.5a8 8 0 0 1 0 11"/>'};
+const ik=f=>IKON[f]?`<svg viewBox="0 0 24 24" aria-hidden="true">${IKON[f]}</svg>`:"";
 const FEL={facebook:"Facebook",linkedin:"LinkedIn",hirdetes:"Hirdetés",csoport:"Csoport"};
 function idozit(m){if(!m)return"időzítve";const d=new Date(/T/.test(m)?m:m.replace(" ","T")+":00");  /* a nyilvántartás budapesti idő: helyi időként olvasva (télen is jó) */
  if(isNaN(d))return"időzítve";return(nk(d)===MA()?"ma ":nk(d)===HOLNAP()?"holnap ":fmt(d,{month:"short",day:"numeric"})+" ")+ora(d)}
