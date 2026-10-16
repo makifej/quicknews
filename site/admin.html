@@ -152,6 +152,15 @@ button.torol:disabled{opacity:.5}
 #belep input:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
 #belep button{font:700 18px Manrope,sans-serif;color:#131313;background:var(--amber);border-radius:10px;padding:14px;margin-top:8px}
 #belep p{color:var(--hiba);min-height:24px}
+/* Ajánlott hír (Heni 2026-10-16): a kitételi gombok a hír alatt, egy sorban, keskenyen; a jobb oldali oszlop megszűnt */
+@media (min-width:701px){
+.ah:not(.bek-sor){grid-template-columns:128px minmax(0,1fr);row-gap:12px}
+.ah:not(.bek-sor)>.kapcs{grid-column:2/-1;flex-direction:row;flex-wrap:wrap;align-items:center;min-width:0;gap:6px}
+.ah:not(.bek-sor)>.kapcs button,.ah:not(.bek-sor)>.kapcs .feltolt{font-size:14px;line-height:18px;padding:5px 10px;gap:6px;white-space:nowrap}
+.ah:not(.bek-sor)>.kapcs button i,.ah:not(.bek-sor)>.kapcs .feltolt i{width:16px;height:16px;font-size:12px}
+.ah:not(.bek-sor)>.kapcs .feltolt i::after{font-size:16px}
+.ah:not(.bek-sor)>.kapcs button.jova{padding:5px 14px}
+}
 .kartyasor{grid-column:1/-1;display:flex;gap:16px;align-items:center;border-top:1px solid var(--vonal);padding-top:12px}
 .kartyasor img{width:96px;height:120px;object-fit:cover;border-radius:6px}
 .kartyasor.rossz img{opacity:.4}
