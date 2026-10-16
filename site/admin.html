@@ -190,7 +190,10 @@ button.hird-indit{color:#131313;background:var(--amber)}
 .cimke.link{text-decoration:none;color:var(--amber)}
 .kapcs button.sopor i{border:0;width:20px;height:20px}
 .kapcs button.sopor i::after{content:"✕";font-size:16px;color:var(--halk)}
-.kapcs button.sopor:hover{color:var(--szoveg);border-color:var(--halk)}
+/* Kisöpröm: piros, kiemelt gomb (Heni 2026-10-16) */
+.kapcs button.sopor{color:#fff;background:#c62828;border:1px solid #c62828;font-weight:700}
+.kapcs button.sopor i::after{color:#fff}
+.kapcs button.sopor:hover{color:#fff;background:#e53935;border-color:#e53935}
 .ah{transition:transform .3s cubic-bezier(.32,.72,0,1),opacity .3s cubic-bezier(.32,.72,0,1)}
 .ah.sopor-ki{transform:translateX(-110%);opacity:0;pointer-events:none}
 .cimke.uj{color:#131313;background:#7dd3a0}
