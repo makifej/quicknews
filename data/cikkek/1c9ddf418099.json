@@ -1,0 +1,77 @@
+{
+  "id": "1c9ddf418099",
+  "slug": "megjelent-a-liquid-ai-d1-ultra-multimodalis-dontesi-modellje",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/10/15/liquid-ai-d1-ultra-decision-model/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-10-16T06:26:41+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-401-15-scaled.png"
+  },
+  "cim_eredeti": "Liquid AI Releases d1-ultra: A Multimodal Decision Model That Scores 65 on the AA Decision Index",
+  "forrasok": [],
+  "szoveg_eredeti": "Liquid AI has released d1-ultra , its most capable decision model to date. The Liquid AI d1-ultra decision model reads text, images, or both. It answers typed questions with a probability for each possible answer. It does this in one forward pass and generates no output tokens. For developers, that means classification, routing and scoring calls without paying for generated text. It is available now on the Liquid API at $0.042 per million input tokens.\n\n TL;DR \n\n Size: Parameters and context length not disclosed. Built on a larger open-weight backbone than d1.\n\n Runs on: Hosted Liquid API only. No downloadable weights or quantized variants announced.\n\n Performance: Leads all 8 categories in Liquid’s 112-evaluation suite, per Liquid.\n\n Best: 65 on the Artificial Analysis Decision Index, ranked #1 (Liquid-reported).\n\n Worst: No public per-benchmark breakdown or parameter count yet; claims are vendor-reported.\n\n What is a decision model? \n\n A decision model answers bounded questions with probabilities instead of free text. Liquid’s decision model docs describe 3 question types: \n\n Noul: a yes/no question that returns a probability between 0 and 1.\n\n Choice: one label from a set, with a probability per label.\n\n Score: a probability-weighted position on an ordered rubric.\n\n The docs recommend decision models for routing, moderation, guardrails, triage and LLM-as-judge replacement. They recommend a language model for summarization, chat and code generation.\n\n How does d1-ultra work? \n\n Each request carries a state (the context), optional images , and 1 or more typed questions . The model evaluates every question against the same input in 1 call. The d1 API reference shows responses with output_tokens always at 0.\n\n Liquid AI team states that d1-ultra uses a larger open-weight backbone than d1 , along with heavy Liquid-specific customizations. Combined with Liquid’s decision training pipeline, the gains are largest on knowledge tasks. \n\n Liquid AI team built d1-ultra for messy cases. Its examples include spotting a circuit board defect against a spec. Another is checking a damage claim against the customer’s photo.\n\n How does d1-ultra perform on benchmarks? \n\n Liquid AI compared d1-ultra against its earlier d1 and TypeSafe’s Jev 1.14 across 112 evaluations. According to Liquid AI’s announcement , d1-ultra outperforms Jev 1.14 across all tasks at the same price. \n\n On the independent Artificial Analysis Decision Index , Liquid reports d1-ultra ranks #1 with a score of 65. The index averages 4 evaluations at 25% each: \n\n AA-Omniscience-Decision: knowledge and hallucination\n\n HLE-MultiChoice: reasoning\n\n When2Call: tool calling\n\n WildGuardTest: safety classification\n\n For context, Artificial Analysis’s Oct 13 launch article listed Jev 1.13 first at 58. GLiDE and Microsoft-Decision-1 followed at 54 each.\n\n Comparison: d1-ultra vs other decision models \n\n Feature d1-ultra d1 Jev (TypeSafe) Microsoft-Decision-1 GLiDE (Fastino) Developer Liquid AI Liquid AI TypeSafe AI Microsoft Fastino Labs Parameters Not disclosed Not disclosed Not disclosed Not disclosed Not disclosed Input Text, images Text, images Text Not disclosed Not disclosed Weights API only API only Closed Not disclosed Not disclosed AA Decision Index 65 (Liquid-reported) Not disclosed 58 (v1.13, Oct 13) 54 (Oct 13) 54 (Oct 13) Price $0.042 / 1M input Not disclosed $0.042 / 1M input $31 / 1M tasks (AA) $119 / 1M tasks (AA) Output tokens billed No No No Not disclosed Not disclosed \n\n How do you deploy d1-ultra, and what does it cost? \n\n d1-ultra runs on the Liquid API through the /decisions/v1/systemone endpoint with \"model\": \"d1-ultra\" . Liquid says Vercel AI Gateway and OpenRouter support is coming soon. You can test it first in the d1 Playground .\n\n Billing covers input tokens only. Per Liquid’s pricing notes , images cost 1.5 tokens per 32×32-pixel patch. A 1024×1024 image therefore costs 1,536 tokens. Each question is billed as its own prompt, including its text and all images. So 3 questions on 1 image bill that image 3 times.\n\n The endpoint docs cap requests at 8 images and 10,000 image patches. The full JSON body must stay under 4.5 MB.\n\n Key Takeaways\n\n d1-ultra returns probabilities for text and image decisions with 0 output tokens.\n\n Liquid reports a #1 score of 65 on the Artificial Analysis Decision Index.\n\n It costs $0.042 per 1M input tokens, the same rate as TypeSafe’s Jev.\n\n Liquid claims the lowest calibration error in its tests, useful for routing thresholds.\n\n Size, backbone and weights remain undisclosed; access is API-only.\n\n Check out the official blog post , the decision model docs , and try the d1 Playground . All credit goes to the researcher of this project. Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n The post Liquid AI Releases d1-ultra: A Multimodal Decision Model That Scores 65 on the AA Decision Index appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "Megjelent a Liquid AI d1-ultra multimódális döntési modellje",
+  "lead": "A Liquid AI kiadta a d1-ultra modellt, amely generált szöveg nélkül, pusztán valószínűségi értékekkel válaszol vizuális és szöveges kérdésekre.",
+  "osszefoglalo": "A Liquid AI bemutatta a [d1-ultra](https://liquid.ai/blog/d1-ultra) multimódális döntési modellt [hivatalos bejelentésében](https://www.liquid.ai/blog/d1-ultra), amely a bemeneti szövegek és képek alapján határozott válaszok helyett pontosan kalibrált valószínűségeket ad vissza. A rendszer 1 lefutási lépésben értékel, és nem hoz létre kimeneti tokeneket, így a felhasználóknak nem kell fizetniük a generált válaszszövegekért.\n\nA modell zárt határok közötti feladatokra készült, mint például az automatikus tartalommoderáció, a kérések átirányítása, a hibafelismerés vagy a döntési korlátok beállítása. Használatával kiküszöbölhetők a szöveggeneráló AI-modellekre jellemző felesleges körmondatok és a generálási költségek.\n\nA d1-ultra kizárólag a Liquid API-n keresztül érhető el **1 millió bemeneti tokenenként 0,042 dolláros** áron. A rendszer tesztelésére a fejlesztők számára a [d1 Playground](https://playground.liquid.ai/d1) felülete áll rendelkezésre.",
+  "miert_szamit": "A döntési modell segítségével **generálási költség nélkül** automatizálhatók a képes és szöveges ellenőrzési feladatok, például a hibás termékek szűrése vagy a kárbejelentések képeinek ellenőrzése.",
+  "cimkek": [
+    "Liquid AI",
+    "d1-ultra",
+    "API",
+    "képfeldolgozás"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "d1-ultra",
+    "d1 Playground"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-16T06:49:45+00:00",
+  "megjelent": "2026-10-16T06:49:45+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-16T06:49:46+00:00",
+    "esemeny": "A Liquid AI kiadta a d1-ultra nevű multimódális döntési modelljét, amely szöveges és vizuális bemenetek alapján válaszol kérdésekre generált szöveg nélkül, közvetlenül valószínűségi értékeket adva vissza egyetlen lépésben.",
+    "forrasok": [
+      "https://www.liquid.ai/blog/d1-ultra"
+    ],
+    "hibak": [
+      "Hiányzik az elsődleges forrásra mutató hivatkozás a magyar szövegből."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Megjelent a Liquid AI d1-ultra multimódális döntési modellje",
+      "lead": "A Liquid AI kiadta a d1-ultra modellt, amely generált szöveg nélkül, pusztán valószínűségi értékekkel válaszol vizuális és szöveges kérdésekre.",
+      "osszefoglalo": "A Liquid AI bemutatta a **d1-ultra** multimódális döntési modellt, amely a bemeneti szövegek és képek alapján határozott válaszok helyett pontosan kalibrált valószínűségeket ad vissza. A rendszer 1 lefutási lépésben értékel, és nem hoz létre kimeneti tokeneket, így a felhasználóknak nem kell fizetniük a generált válaszszövegekért.\n\nA modell zárt határok közötti feladatokra készült, mint például az automatikus tartalommoderáció, a kérések átirányítása, a hibafelismerés vagy a döntési korlátok beállítása. Használatával kiküszöbölhetők a szöveggeneráló AI-modellekre jellemző felesleges körmondatok és a generálási költségek.\n\nA d1-ultra kizárólag a Liquid API-n keresztül érhető el **1 millió bemeneti tokenenként 0,042 dolláros** áron. A rendszer tesztelésére a fejlesztők számára a d1 Playground felülete áll rendelkezésre.",
+      "miert_szamit": "A döntési modell segítségével **generálási költség nélkül** automatizálhatók a képes és szöveges ellenőrzési feladatok, például a hibás termékek szűrése vagy a kárbejelentések képeinek ellenőrzése."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-16T08:50:18+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": [
+      {
+        "lepes": "nem_illo_link_ki",
+        "horgony": "d1 Playground",
+        "url": "https://playground.liquid.ai/d1",
+        "ok": "Az URL egy bejelentkezési falra (Sign In) mutat, nem jelenik meg a playground tartalom."
+      }
+    ],
+    "osszefoglalo": "A Liquid AI bemutatta a [d1-ultra](https://liquid.ai/blog/d1-ultra) multimódális döntési modellt [hivatalos bejelentésében](https://www.liquid.ai/blog/d1-ultra), amely a bemeneti szövegek és képek alapján határozott válaszok helyett pontosan kalibrált valószínűségeket ad vissza. A rendszer 1 lefutási lépésben értékel, és nem hoz létre kimeneti tokeneket, így a felhasználóknak nem kell fizetniük a generált válaszszövegekért.\n\nA modell zárt határok közötti feladatokra készült, mint például az automatikus tartalommoderáció, a kérések átirányítása, a hibafelismerés vagy a döntési korlátok beállítása. Használatával kiküszöbölhetők a szöveggeneráló AI-modellekre jellemző felesleges körmondatok és a generálási költségek.\n\nA d1-ultra kizárólag a Liquid API-n keresztül érhető el **1 millió bemeneti tokenenként 0,042 dolláros** áron. A rendszer tesztelésére a fejlesztők számára a d1 Playground felülete áll rendelkezésre."
+  }
+}
