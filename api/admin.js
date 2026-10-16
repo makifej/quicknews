@@ -311,7 +311,7 @@ module.exports = async (req, res) => {
         if (req.method === "POST") {
           const { id, e } = await torzs(req);
           if (!/^[a-f0-9]{12}$/.test(id || "")) return json(res, 400, { hiba: "rossz azonosító" });
-          if (!e || (!e.facebook && !e.linkedin && !e.hirdetes && !e.kartya && !e.sajat_kep && !e.hirlevel)) await kv("HDEL", P + "kitenni", id);
+          if (!e || (!e.facebook && !e.linkedin && !e.hirdetes && !e.csoport && !e.kartya && !e.sajat_kep && !e.hirlevel)) await kv("HDEL", P + "kitenni", id);
           else await kv("HSET", P + "kitenni", id, JSON.stringify(kitenniTiszta(e)));
           return json(res, 200, { ok: true });
         }
@@ -388,7 +388,7 @@ module.exports = async (req, res) => {
       adat.sorok.sort((a, b) => String(b.publikalva || "").localeCompare(String(a.publikalva || "")));
       for (const s of adat.sorok || []) {
         const e = kit[s.id] || {};
-        s.kerve = { facebook: !!e.facebook, linkedin: !!e.linkedin, hirdetes: !!e.hirdetes };
+        s.kerve = { facebook: !!e.facebook, linkedin: !!e.linkedin, hirdetes: !!e.hirdetes, csoport: !!e.csoport };
         s.kartya = e.kartya || null;
         s.sajat_kep = e.sajat_kep || null;
         s.jovahagyas = e.jovahagyas || {};
@@ -493,11 +493,11 @@ module.exports = async (req, res) => {
       const regi = await kv("HGET", P + "kitenni", id);
       const e = regi ? JSON.parse(regi) : {};
       const most = new Date().toISOString();
-      if (["facebook", "linkedin", "hirdetes"].includes(mezo)) {
+      if (["facebook", "linkedin", "hirdetes", "csoport"].includes(mezo)) {
         if (ertek) e[mezo] = { kerve: most }; else delete e[mezo];
       } else if (mezo === "jovahagyas") {
         // a pipa önmagában nem indít semmit: csak a jóváhagyott felületekhez készül időzített elem (Heni 2026-10-12)
-        const feluletek = ["facebook", "linkedin", "hirdetes"].filter((f) => e[f]);
+        const feluletek = ["facebook", "linkedin", "hirdetes", "csoport"].filter((f) => e[f]);
         if (ertek) {
           if (!feluletek.length) return json(res, 400, { hiba: "Előbb pipáld be, hova menjen ki." });
           e.jovahagyas = { ido: most, feluletek };
@@ -511,7 +511,7 @@ module.exports = async (req, res) => {
         if (mezo === "kartya_jo") { e.kartya.jo = ertek ? most : null; if (ertek) e.kartya.elutasitva = null; }
         else { e.kartya.elutasitva = ertek ? most : null; if (ertek) e.kartya.jo = null; }
       } else return json(res, 400, { hiba: "Ismeretlen mező." });
-      if (!e.facebook && !e.linkedin && !e.hirdetes && !e.kartya && !e.sajat_kep && !e.jovahagyas && !e.hirlevel) await kv("HDEL", P + "kitenni", id);
+      if (!e.facebook && !e.linkedin && !e.hirdetes && !e.csoport && !e.kartya && !e.sajat_kep && !e.jovahagyas && !e.hirlevel) await kv("HDEL", P + "kitenni", id);
       else await kv("HSET", P + "kitenni", id, JSON.stringify(kitenniTiszta(e)));
       return json(res, 200, { ok: true });
     }
@@ -524,7 +524,7 @@ module.exports = async (req, res) => {
 };
 
 // SEC-018: a kitételi bejegyzésből csak a várt mezők tárolódnak
-const KITENNI_MEZOK = ["facebook", "linkedin", "hirdetes", "kartya", "sajat_kep", "jovahagyas", "hirlevel", "kartya_hiba", "kiteteli_hiba", "volt_elutasitva"];
+const KITENNI_MEZOK = ["facebook", "linkedin", "hirdetes", "csoport", "kartya", "sajat_kep", "jovahagyas", "hirlevel", "kartya_hiba", "kiteteli_hiba", "volt_elutasitva"];
 function kitenniTiszta(e) {
   return Object.fromEntries(KITENNI_MEZOK.filter((k) => k in e).map((k) => [k, e[k]]));
 }
