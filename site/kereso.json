@@ -1,5 +1,16 @@
 [
   {
+    "i": "161e6aee4130",
+    "p": "/assets/kep/161e6aee4130.webp",
+    "c": "A Claude kevesebb mint 30 perc alatt fejtett meg egy 25 éves NSA-rejtélyt",
+    "b": "Az Anthropic modellje kiderítette, hogyan hozta létre az NSA az elektronikus aláírások alapjául szolgáló kriptográfiai értékeket.",
+    "k": "The Decoder",
+    "g": "kutatás",
+    "u": "/hir/a-claude-kevesebb-mint-30-perc-alatt-fejtett-meg-egy-25-eves-nsa",
+    "sz": "Az Anthropic AI-modellje, a Claude megoldott egy 25 éves kriptográfiai rejtélyt. Az amerikai szabványügyi hivatal (NIST) 2000-ben szabványosította az ECDSA keretrendszert az elliptikus görbés digitális aláírásokhoz. A paraméterek generálásához használt kezdőértékeket az NSA adta meg magyarázat nélkül, ami évtizedekig táplálta a gyanút, hogy hátsó kaput építettek a rendszerbe.\n\nA Claude kevesebb mint 30 perc alatt jött rá a megoldásra. Az Anthropic elemzése szerint a modell azonosította, hogy az értékek az lrand48 elnevezésű C véletlenszám-generátorból származnak, amelyet 1997 májusa és 1998 áprilisa közötti Unix időbélyegzővel inicializáltak. Az AI azért vette észre a mintázatot, mert a generátor csak 31 bitet ad ki, így egyes értékek felső bitjei rendszerszerűen nullák voltak.\n\nA felfedezés alapján jóval kisebb a valószínűsége annak, hogy az NSA szándékosan hátsó kaput hagyott volna a kódokban. Az Anthropic a rejtély megoldásáért járó 36 864 dolláros nyomravezetői díjat az Internet Security Research Group szervezetnek adományozza. Claude Anthropic kriptográfia biztonság",
+    "d": "okt. 17. 16:42"
+  },
+  {
     "i": "c689e899fee9",
     "p": "/assets/kep/c689e899fee9-hd2.webp",
     "c": "Az amerikai AI-szabályozásról tárgyaltak a Runway Summit konferencián",
