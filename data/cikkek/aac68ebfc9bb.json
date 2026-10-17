@@ -1,0 +1,79 @@
+{
+  "id": "aac68ebfc9bb",
+  "slug": "matematikusok-szerint-az-openai-felreertelmezte-sajat-matematikai",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/mathematicians-say-openai-doesnt-understand-its-own-navier-stokes-proof/",
+  "szerzo": "Manuel Uth",
+  "publikalva": "2026-10-17T09:00:26+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/openai_navier.png"
+  },
+  "cim_eredeti": "Mathematicians say OpenAI doesn't understand its own Navier-Stokes proof",
+  "forrasok": [],
+  "szoveg_eredeti": "In early September, the company presented a 166-page potential solution to the Navier-Stokes problem. OpenAI claimed the proof followed the approach of Spanish mathematicians Diego Córdoba and Luis Martínez-Zoroa.\n\nSeveral groups of experts now disagree, Scientific American reports. \"When you go to the details, it is a different approach,\" says mathematician Gonzalo Cao-Labora of EPFL. The similarities are only surface-level, he says.\n\nThe potential proof is written in Lean, a formal verification language that checks every logical step but doesn't make it readable to humans on its own. The Clay Mathematics Institute (CMI) has been reviewing it since its release.Ad\n\nBefore publication, NYU mathematician Tristan Buckmaster accused OpenAI of building on work that he and Anthropic's Levent Alpöge had done with publicly available models. OpenAI denied the claim, saying it never used Buckmaster's data. A definitive answer is probably impossible because language models are black boxes, according to Camillo De Lellis of the Institute for Advanced Study.Ad\n\nIn early October, OpenAI dumped roughly 400 more results that the math community can barely keep up with. Publishing them as a loose collection on GitHub angered many mathematicians, who felt it cheapened their field.\n\nThere's another thing OpenAI doesn't seem to understand about its own work. The company threw a lot of compute at the effort, deploying about 10,000 model instances for roughly 88 hours and 130 billion tokens to develop the potential Navier-Stokes solution. According to OpenAI researcher Noam Brown, nobody actually knows what that massive agent swarm contributed to the result.Ad\n\nBehavior at that scale hasn't been studied because running systematic comparison tests with thousands of agents costs too much. No one has tested how long a single agent would take to solve the same problem, and it's nearly impossible to tell what concrete advantage 10,000 agents offer over 1,000.\n\nBrown puts less than 10 percent of the success down to the multi-agent setup. These systems are new and flashy, he says, so they get a disproportionate share of the credit. What really matters is the base model itself, which can grind through tasks over long periods and run in parallel.Ad\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Matematikusok szerint az OpenAI félreértelmezte saját matematikai bizonyítását",
+  "lead": "Szakértők szerint az OpenAI által közzétett 166 oldalas Navier-Stokes bizonyítás módszertana eltér a cég által leírtaktól.",
+  "osszefoglalo": "A matematikusok szerint az **OpenAI félreértelmezte** a Navier-Stokes-problémára benyújtott 166 oldalas megoldásának módszertanát. A cég eredetileg azt állította, hogy a bizonyítás két spanyol matematikus megközelítését követte, a részleteket vizsgáló szakértők szerint azonban az alkalmazott eljárás csak a felszínen hasonlít erre. A Lean formális ellenőrzőnyelven írt anyagnak jelenleg is zajlik a szakmai felülvizsgálata.\n\nA kutatást komoly adat- és módszertani viták övezik. Nyilvánosságra hozatal előtt kutatók azzal vádolták a céget, hogy mások nyilvános munkájára épített, amit a vállalkozás tagadott. Ráadásul az OpenAI kutatója, Noam Brown elismerte, hogy **nem tudják pontosan**, mekkora szerepe volt a végeredményben a feladatra ráeresztett, 10 000 modellpéldányból álló ágensrendszernek. A hatalmas erőforrás-igény miatt az ilyen méretű ágenshálózatok működését még nem tudták szisztematikusan tesztelni.",
+  "miert_szamit": "A hír jól mutatja, hogy a komplex feladatoknál a **többágenses rendszerek** hatékonysága még a fejlesztők számára sem átlátható, így a hangsúly továbbra is az alapmodell képességein van.",
+  "cimkek": [
+    "OpenAI",
+    "Lean",
+    "kutatás",
+    "matematika"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "forditva": "2026-10-17T09:04:42+00:00",
+  "megjelent": "2026-10-17T09:04:42+00:00",
+  "nevelo_javitva": "2026-10-17T09:04:42+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-17T09:04:45+00:00",
+    "esemeny": "Matematikusok a Scientific American jelentése szerint megállapították, hogy az OpenAI 166 oldalas Navier-Stokes bizonyítása valójában eltér attól a módszertantól, amit a cég állított. Bár az OpenAI eredetileg azt közölte, hogy a modelljük két spanyol matematikus eljárását követte, a részleteket vizsgálva kiderült, hogy a hasonlóság csak felszínes.",
+    "forrasok": [
+      "https://www.scientificamerican.com/article/openais-blockbuster-navier-stokes-proof-isnt-what-we-thought-it-was/",
+      "https://the-decoder.com/mathematicians-say-openai-doesnt-understand-its-own-navier-stokes-proof/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-17T11:05:18+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": [
+      {
+        "lepes": "elvetve",
+        "kif": "166 oldalas megoldásának",
+        "url": "https://openai.com/index/navier-stokes-solution/",
+        "ok": "Az oldalon szerepel a Navier-Stokes megoldás bejelentése, de nem említi, hogy az 166 oldalas lenne, és nem tartalmazza a matematikusok kritikai reakcióját sem az OpenAI félreértelmezéséről."
+      },
+      {
+        "lepes": "elvetve",
+        "kif": "nem tudják pontosan",
+        "url": "https://www.dwarkesh.com/p/noam-brown",
+        "ok": "Bár a szöveg említi a 10 000 ágenst és Noam Brownt, a megadott részletben nem szerepel az az állítás, hogy Brown elismerte volna, nem tudják pontosan, mekkora szerepe volt az ágensrendszernek a végeredményben."
+      },
+      {
+        "lepes": "link_be",
+        "kif": "10 000 modellpéldányból álló ágensrendszernek",
+        "url": "https://openai.com/index/navier-stokes-solution/",
+        "mit": "Az OpenAI hivatalos közlése igazolja, hogy nagyjából 10 000 párhuzamos ágenspéldányt használtak a feladathoz."
+      }
+    ],
+    "osszefoglalo": "A matematikusok szerint az **OpenAI félreértelmezte** a Navier-Stokes-problémára benyújtott 166 oldalas megoldásának módszertanát. A cég eredetileg azt állította, hogy a bizonyítás két spanyol matematikus megközelítését követte, a részleteket vizsgáló szakértők szerint azonban az alkalmazott eljárás csak a felszínen hasonlít erre. A Lean formális ellenőrzőnyelven írt anyagnak jelenleg is zajlik a szakmai felülvizsgálata.\n\nA kutatást komoly adat- és módszertani viták övezik. Nyilvánosságra hozatal előtt kutatók azzal vádolták a céget, hogy mások nyilvános munkájára épített, amit a vállalkozás tagadott. Ráadásul az OpenAI kutatója, Noam Brown elismerte, hogy **nem tudják pontosan**, mekkora szerepe volt a végeredményben a feladatra ráeresztett, [10 000 modellpéldányból álló ágensrendszernek](https://openai.com/index/navier-stokes-solution/). A hatalmas erőforrás-igény miatt az ilyen méretű ágenshálózatok működését még nem tudták szisztematikusan tesztelni."
+  }
+}
