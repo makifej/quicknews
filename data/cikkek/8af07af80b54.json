@@ -1,0 +1,63 @@
+{
+  "id": "8af07af80b54",
+  "slug": "a-macbook-kijelzomelyedesebol-vezerelhetok-az-ai-koder-ugynokok",
+  "forras_id": "producthunt",
+  "forras_nev": "Product Hunt",
+  "url": "https://www.producthunt.com/products/crew-tower",
+  "szerzo": "Said Altan",
+  "publikalva": "2026-10-14T21:15:16+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://ph-files.imgix.net/36be7fd0-89b8-4c2d-b0cb-cdfa33740a3a.png?auto=format&fit=crop&frame=1&h=512&w=1024"
+  },
+  "cim_eredeti": "CrewTower Mod for Claude Code",
+  "forrasok": [],
+  "szoveg_eredeti": "Hey everyone, Said here, the maker of CrewTower.\n\nOn October 1, Claude Code shipped mods. Hooks could already tell an outside app what Claude was doing and answer a permission prompt. They could never talk back. A mod can.\n\nA mod is a small JavaScript or TypeScript file that Claude Code loads into its own process. It gets called on every event (a tool call, a prompt, a turn ending, part of the screen being drawn) and can watch it, rewrite it, or take it over. It can draw panes and buttons, add slash commands, read context numbers directly, and reach outside Claude Code.\n\nThat last part is what I needed. CrewTower lives in the MacBook notch and shows every agent session you run. With a small mod, each Claude card in the notch can now talk to its session:\n\nI've been using Claude Code almost every day, and my problem was that I kept forgetting to answer my agents when they needed me. I'd be doing other work or scrolling on social media, and my sessions would just sit there waiting for input. That was wasting time and tokens, because I could have been getting way more output from them.\n\nSo I built a CrewTower app that lives in the notch area of your screen. It shows all your active agent sessions at a glance: which ones are working, which ones are waiting for your answer, and which ones are done. The moment an agent needs you, you see it right at eye level, no matter what app you're in. No more forgotten sessions, no more dead time between prompts.\n\nWeboldal: https://crewtower.app",
+  "modell": "gemini-3.5-flash",
+  "cim": "A MacBook kijelzőmélyedéséből vezérelhetők az AI-kóder ügynökök",
+  "lead": "Megjelent a CrewTower mod a Claude Code-hoz, amely a MacBook kijelzősávjában mutatja az engedélykéréseket és az AI-ügynökök állapotát.",
+  "osszefoglalo": "A Said Altan által fejlesztett **CrewTower** alkalmazás a MacBook kijelzőmélyedésében (notch) jeleníti meg az aktív AI-kódoló munkameneteket. Az eszköz nyomon követi a Claude Code, Codex, Cursor, Gemini és Qwen rendszereket, kijelezve, hogy melyik ügynök dolgozik, várakozik vagy fejezte be a feladatát.\n\nA Claude Code friss mod-rendszerét kihasználva a [CrewTower Mod for Claude Code](https://crewtower.app/claude-code) közvetlenül a terminálfolyamatból éri el a kontextust. Amikor egy AI-ügynök engedélyt kér egy parancs futtatásához vagy fájl módosításához, az értesítés pontos adatokkal együtt azonnal megjelenik a képernyő tetején.\n\nA felhasználók egyetlen kattintással jóváhagyhatják vagy elutasíthatják a kéréseket anélkül, hogy át kellene váltaniuk a terminál ablakára. Az alkalmazás célja, hogy megszüntesse a háttérben némán várakozó, elfelejtett kódolási munkameneteket. Az eszköz a **crewtower.app** weboldalon érhető el.",
+  "miert_szamit": "A több AI-ügynökkel dolgozó fejletsztők és vállalkozók **időt és zsetont spórolhatnak**, mivel az engedélykérések nem ragadnak be a háttérben futó terminálokban.",
+  "cimkek": [
+    "Claude Code",
+    "macOS",
+    "AI ügynök",
+    "kódolás"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bemutato",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "CrewTower",
+    "url": "https://crewtower.app"
+  },
+  "linkelendo_nevek": [
+    "CrewTower Mod for Claude Code"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-17T08:34:53+00:00",
+  "megjelent": "2026-10-17T08:34:53+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-17T08:34:55+00:00",
+    "esemeny": "Said Altan bemutatta a CrewTower nevű macOS-alkalmazás új modját, amely a Claude Code mod-rendszerét kihasználva a MacBook kijelzőmélyedéséből teszi lehetővé az AI-kódoló ügynökök nyomon követését és vezérlését.",
+    "forrasok": [
+      "https://www.producthunt.com/products/crew-tower",
+      "https://crewtower.app"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true,
+  "forras_figyelve": true,
+  "forras_javaslat": {
+    "ido": "2026-10-17T10:35:17+0200",
+    "mod": "figyelo",
+    "elmaradt": false,
+    "jelentes": []
+  }
+}
