@@ -1,5 +1,16 @@
 [
   {
+    "i": "1b679d22f8a2",
+    "p": "/assets/kep/1b679d22f8a2-elonezet.webp",
+    "c": "Nyílt forráskódúvá vált a StepFun 600 milliárd paraméteres AI-modellje",
+    "b": "Elérhetővé váltak a StepFun új, hosszú kontextusú AI-modelljének kódjai, amely kifejezetten összetett ügynökfeladatokra készült.",
+    "k": "MarkTechPost",
+    "g": "modell",
+    "u": "/hir/nyilt-forraskoduva-valt-a-stepfun-600-milliard-parameteres-ai-modellje",
+    "sz": "A StepFun kiadta a Step 5 Preview nevű, ritka Mixture-of-Experts (MoE) architektúrára épülő modelljének nyílt súlyait a Hugging Face és a ModelScope platformokon. A modell összesen 600 milliárd paraméterrel rendelkezik, de tokenenként csak 27 milliárd aktív, miközben akár 1 millió tokenes kontextusablakot is képes kezelni. A modell FP8 és BF16 formátumban tölthető le, és elsősorban nagy szoftverfejlesztési, dokumentumelemzési és pénzügyi munkafolyamatokhoz tervezték.\n\nFuttatása komoly infrastruktúrát igényel, mivel kifejezetten adatközponti hardverekre lett optimalizálva: a legkisebb támogatott konfigurációhoz is legalább 4 darab B300-as vagy 8 darab H200-as GPU-ra van szükség. A mérések szerint a modell 88,3 százalékos eredményt ér el a hosszú kontextusú logikai feladatoknál (AA-LCR), és a pénzügyi feladatok terén is jól teljesít, de bizonyos terminálalapú teszteken elmarad a riválisoktól.\n\nA fejlesztők számára a saját szerveres futtatás mellett az API-hozzáférés is elérhető, amelynek ára 1 millió bemeneti tokenre 1,00 dollár, míg 1 millió kimeneti tokenre 2,70 dollár. Az API támogatja a kép- és videófeldolgozást, az eszközmeghívásokat (tool calling), valamint a struktúrált JSON-k",
+    "d": "okt. 17. 08:29"
+  },
+  {
     "i": "16bcf9637fd7",
     "p": "/assets/kep/16bcf9637fd7.webp",
     "c": "Katonai célponttá vált adatközpontok lassíthatják az európai MI-fejlesztést",
