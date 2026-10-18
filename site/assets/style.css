@@ -1399,3 +1399,9 @@ body.halloween { background-color: transparent; background-image: radial-gradien
 /* kereső: „Mind a N találat egy oldalon” sor a lenyíló lista alján (Enterre is a találati oldal nyílik) */
 .kereso-mind { display: block; width: 100%; padding: 14px 16px; border: 0; border-top: 1px solid var(--vonal); background: transparent; color: var(--kiemelo-szin); font: inherit; font-size: 15px; font-weight: 700; text-align: left; text-decoration: none; cursor: pointer; box-sizing: border-box; }
 .kereso-mind:hover, .kereso-mind:focus-visible { background: var(--bg-3); }
+/* cikk: Megosztás gomb a mentés mellett */
+.megoszt-cikk { display: inline-flex; align-items: center; gap: 8px; height: 40px; margin: 16px 0 0 12px; padding: 0 16px; font: inherit; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--szoveg); background: transparent; border: 1px solid var(--keret); border-radius: 999px; cursor: pointer; transition: background-color 700ms var(--gorbe); }
+.megoszt-cikk:hover { background: var(--bg-3); }
+.megoszt-cikk:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
+.megoszt-cikk svg { width: 18px; height: 18px; }
+.kiprobal ~ .megoszt-cikk { margin-top: 24px; vertical-align: middle; }
