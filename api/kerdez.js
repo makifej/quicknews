@@ -190,7 +190,8 @@ module.exports = async (req, res) => {
     else if (/(ezen a|e|a mai|múlt) ?héten|heti|hét(en)?([^a-záéíóöőúüű]|$)|7 nap/.test(ql)) idoszak = (d) => d >= hetHatar;
     const benne = idoszak ? rangsor.filter((x) => idoszak(x.h.datum.slice(0, 10))) : [];
     const pont = idoszak && benne.length ? (benne.length <= 25 ? benne : benne.slice(0, 15)) : rangsor.slice(0, 12);
-    const temaKerdes = idoszak && /hír|újdonság|történt|megjelent|jelent meg|bejelent|ai|mesterséges/.test(ql);
+    // az „ai” csak önálló szóként számít (SEC-047: a „mai” szó ne kapcsolja ki a hasonlósági kaput)
+    const temaKerdes = idoszak && /hír|újdonság|történt|megjelent|jelent meg|bejelent|(^|[^a-záéíóöőúüű])ai([^a-záéíóöőúüű]|$)|mesterséges/.test(ql);
     if (!pont.length || (!temaKerdes && hasonlo(v, rangsor[0].h.v) < MIN_HASONLOSAG)) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], kivul: true });
     // pontos hírszámok a quicknews.hu-ról (a Napok oldallal egyezően, Budapest szerinti nap)
     const napi = {};

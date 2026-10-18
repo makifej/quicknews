@@ -120,6 +120,8 @@ async function naplozKuld(e) {
   await kv("LPUSH", P + "elozmeny", JSON.stringify(e));
   await kv("LTRIM", P + "elozmeny", 0, 199);
   if (e.hir_id) await kv("SADD", P + "kiment", kimentKulcs(e));
+  // a megnyitás-számláló csak ténylegesen kiküldött értesítést fogad el (SEC-040)
+  await kv("SADD", P + "pidek", e.id);
   return e;
 }
 
@@ -131,7 +133,12 @@ function ertesites(b, forras) {
   const hir_id = /^[a-f0-9]{12}$/.test(b.hir_id || "") ? b.hir_id : "";
   const kep = /^https:\/\/quicknews\.hu\//.test(b.kep || "") ? String(b.kep).slice(0, 400) : "";
   // koppintásra megnyíló cím (nyereményjáték, bejelentés); hírnél a hír nyílik, ez csak hír nélkül számít
-  const link = /^https:\/\/[^\s"<>]+$/.test(b.link || "") ? String(b.link).slice(0, 400) : "";
+  // csak saját domainre mutató, userinfo nélküli https link (SEC-042: ellopott belépéssel se menjen ki adathalász link)
+  let link = "";
+  try {
+    const u = new URL(String(b.link || ""));
+    if (u.protocol === "https:" && !u.username && !u.password && /(^|\.)(quicknews\.hu|adverr\.hu|adverr\.io)$/.test(u.hostname)) link = u.toString().slice(0, 400);
+  } catch { /* nincs vagy rossz link */ }
   return [{ id: crypto.randomBytes(6).toString("hex"), cim, szoveg, hir_id, kep, link, tema, forras, kert: new Date().toISOString() }, null];
 }
 
@@ -149,11 +156,21 @@ module.exports = async (req, res) => {
       res.statusCode = 200;
       res.setHeader("Content-Type", "image/jpeg");
       res.setHeader("Cache-Control", "public, max-age=2592000, immutable");
+      res.setHeader("Content-Security-Policy", "default-src 'none'; sandbox");
       return res.end(Buffer.from(b64, "base64"));
     }
     if (mi === "megnyitas" && req.method === "POST") {
+      // SEC-040: csak JSON, csak kiküldött értesítés azonosítója, IP-nként óránként legfeljebb 60 jelzés
+      if (!String(req.headers["content-type"] || "").includes("application/json")) return json(res, 415, { hiba: "JSON kell." });
       const b = await torzs(req);
       if (!/^[a-f0-9]{12}$/.test(b.pid || "")) return json(res, 400, { hiba: "Rossz kérés." });
+      const ip = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim() || "?";
+      const ora = Math.floor(Date.now() / 3600000);
+      const ipKulcs = P + "nyit_ip:" + crypto.createHash("sha256").update(`${process.env.CHAT_SO || ""}|${ora}|${ip}`).digest("hex").slice(0, 24);
+      const db = await kv("INCR", ipKulcs);
+      if (db === 1) await kv("EXPIRE", ipKulcs, 3700);
+      if (db > 60) return json(res, 429, { hiba: "Túl sok kérés." });
+      if (!(await kv("SISMEMBER", P + "pidek", b.pid))) return json(res, 200, { ok: false });
       await kv("HINCRBY", P + "megnyitas", b.pid, 1);
       return json(res, 200, { ok: true });
     }
@@ -167,8 +184,10 @@ module.exports = async (req, res) => {
         const lejart = (await kv("ZRANGEBYSCORE", P + "idozitett", 0, Date.now())) || [];
         const ki = [];
         for (const s of lejart) {
-          await kv("ZREM", P + "idozitett", s);
-          ki.push(await naplozKuld(JSON.parse(s)));
+          // csak az küldi ki, amelyik ténylegesen kivette (két párhuzamos hívás ne küldje kétszer); hibánál visszakerül
+          if ((await kv("ZREM", P + "idozitett", s)) !== 1) continue;
+          try { ki.push(await naplozKuld(JSON.parse(s))); }
+          catch (e) { await kv("ZADD", P + "idozitett", Date.now() + 300000, s); throw e; }
         }
         return json(res, 200, { ok: true, kiment: ki.length });
       }
@@ -189,13 +208,16 @@ module.exports = async (req, res) => {
       if (Number(b.fontossag || 0) < kuszob && !b.fohir) return json(res, 200, { ok: false, ok_miert: "küszöb alatt" });
       const [e, hiba] = ertesites(b, "auto");
       if (!e) return json(res, 400, { hiba });
-      if (e.hir_id && (await kv("SISMEMBER", P + "kiment", kimentKulcs(e)))) return json(res, 200, { ok: false, ok_miert: "már kiment" });
-      // napi keret témánként: Kiemelt, rovat és Feltörekvő napiMax, a rovat „minden hír” mindMax
+      // a SADD visszatérési értéke a zár: 0 = már kiment (vagy épp most viszi ki egy párhuzamos hívás)
+      if (e.hir_id && (await kv("SADD", P + "kiment", kimentKulcs(e))) === 0) return json(res, 200, { ok: false, ok_miert: "már kiment" });
+      // napi keret témánként: Kiemelt, rovat és Feltörekvő napiMax, a rovat „minden hír” mindMax; előbb INCR, utána összevetés
       const szamlalo = P + "auto:" + e.tema + ":" + nap;
-      const db = Number((await kv("GET", szamlalo)) || 0);
-      if (db >= (mindE ? beall.mindMax : beall.napiMax)) return json(res, 200, { ok: false, ok_miert: "napi keret elfogyott" });
-      await kv("INCR", szamlalo);
-      await kv("EXPIRE", szamlalo, 3 * 86400);
+      const db = Number(await kv("INCR", szamlalo));
+      if (db === 1) await kv("EXPIRE", szamlalo, 3 * 86400);
+      if (db > (mindE ? beall.mindMax : beall.napiMax)) {
+        if (e.hir_id) await kv("SREM", P + "kiment", kimentKulcs(e));
+        return json(res, 200, { ok: false, ok_miert: "napi keret elfogyott" });
+      }
       if (csendesE(beall, ora)) {
         // csendes órában reggel 7-re időzítjük (PRD 5)
         const reggel = new Date(); reggel.setUTCMinutes(0, 0, 0);
@@ -212,10 +234,9 @@ module.exports = async (req, res) => {
 
     if (mi === "lista") {
       const elozmeny = ((await kv("LRANGE", P + "elozmeny", 0, 99)) || []).map((x) => JSON.parse(x));
-      const nyitas = (await kv("HGETALL", P + "megnyitas")) || [];
-      const ny = {};
-      for (let i = 0; i < nyitas.length; i += 2) ny[nyitas[i]] = Number(nyitas[i + 1]);
-      elozmeny.forEach((e) => (e.megnyitas = ny[e.id] || 0));
+      // csak a megjelenített (legfeljebb 100) értesítés számlálója, nem a teljes hash (SEC-040)
+      const nyitas = elozmeny.length ? (await kv("HMGET", P + "megnyitas", ...elozmeny.map((e) => e.id))) || [] : [];
+      elozmeny.forEach((e, i) => (e.megnyitas = Number(nyitas[i] || 0)));
       const idozitett = ((await kv("ZRANGE", P + "idozitett", 0, -1, "WITHSCORES")) || []).reduce((a, x, i, t) => {
         if (i % 2 === 0) a.push({ ...JSON.parse(x), mikor: new Date(Number(t[i + 1])).toISOString() });
         return a;
@@ -247,12 +268,16 @@ module.exports = async (req, res) => {
     if (mi === "naplo" && req.method === "POST") {
       const eszkoz = String(b.eszkoz || "").slice(0, 80);
       const sorok = (Array.isArray(b.sorok) ? b.sorok : []).slice(0, 200).map((x) => String(x).slice(0, 6000));
+      const be = [];
       for (const s of sorok) {
         let o; try { o = JSON.parse(s); } catch { continue; }
+        if (!o || typeof o !== "object" || Array.isArray(o)) continue;
         o.eszkoz = eszkoz;
-        await kv("LPUSH", P + "naplo", JSON.stringify(o));
+        be.push(JSON.stringify(o));
       }
+      if (be.length) await kv("LPUSH", P + "naplo", ...be);
       await kv("LTRIM", P + "naplo", 0, 4999);
+      await kv("EXPIRE", P + "naplo", 30 * 86400);
       return json(res, 200, { ok: true, db: sorok.length });
     }
     if (mi === "naplo_olvas") {
@@ -266,7 +291,8 @@ module.exports = async (req, res) => {
       if (!/^[A-Za-z0-9+/=]+$/.test(adat) || adat.length < 100) return json(res, 400, { hiba: "Rossz kép." });
       if (adat.length > 900000) return json(res, 413, { hiba: "Túl nagy kép (legfeljebb kb. 650 kB)." });
       const nyers = Buffer.from(adat, "base64");
-      if (nyers[0] !== 0xff || nyers[1] !== 0xd8) return json(res, 400, { hiba: "Csak JPEG kép tölthető fel." });
+      if (nyers[0] !== 0xff || nyers[1] !== 0xd8 || nyers[nyers.length - 2] !== 0xff || nyers[nyers.length - 1] !== 0xd9)
+        return json(res, 400, { hiba: "Csak JPEG kép tölthető fel." });
       const id = crypto.randomBytes(8).toString("hex");
       await kv("SET", P + "kep:" + id, adat, "EX", 60 * 86400);
       return json(res, 200, { ok: true, url: "https://quicknews.hu/api/push?mi=kep&id=" + id });
@@ -285,6 +311,7 @@ module.exports = async (req, res) => {
     }
     return json(res, 404, { hiba: "Ismeretlen művelet." });
   } catch (e) {
-    return json(res, 500, { hiba: String(e.message || e).slice(0, 200) });
+    console.error("push hiba:", e);
+    return json(res, 500, { hiba: "Szerverhiba, próbáld újra." });
   }
 };

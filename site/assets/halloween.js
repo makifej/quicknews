@@ -46,8 +46,17 @@
   function hely(i, meret) {
     var lista = tiltottak();
     w = document.documentElement.clientWidth; h = document.documentElement.scrollHeight;
+    // széles képernyőn a tartalom melletti üres oldalsávok az elsők (a lap tetejétől), különben bárhol, ahol üres a hely
+    var k = document.querySelector('main .keret') || document.querySelector('main');
+    var kb = k ? k.getBoundingClientRect() : { left: 0, right: w };
+    var balSav = kb.left - 16, jobbSav = w - kb.right - 16;
     for (var p = 0; p < 120; p++) {
       var x = koz(4, w - meret - 4), y = fejlec + 40 + (i + r()) * ((h - fejlec - 200) / db);
+      if (p < 60 && (balSav > meret + 24 || jobbSav > meret + 24)) {
+        var bal = balSav > meret + 24 && (jobbSav <= meret + 24 || r() < 0.5);
+        x = bal ? koz(12, balSav - meret - 12) : koz(kb.right + 28, w - meret - 12);
+        if (i === 0) y = fejlec + koz(20, 260);
+      }
       if (szabad(x, y, meret, lista)) return [x, y];
     }
     return null;
