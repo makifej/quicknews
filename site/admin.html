@@ -106,6 +106,23 @@ button.torol:disabled{opacity:.5}
 .hl-gombok{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
 .gomb{background:var(--amber);color:#131313;font-weight:700;border-radius:8px;padding:12px 20px}.gomb.masod{background:none;color:var(--szoveg);border:1px solid var(--vonal)}
 @media (max-width:560px){.hl-szam b{font-size:56px}.hl-sor{flex-wrap:wrap;gap:8px}.hl-sor .ido{order:3}}
+.ap-ketto{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;align-items:start}
+.ap-urlap{display:flex;flex-direction:column;gap:16px}.ap-urlap label,.ap-auto label{display:flex;flex-direction:column;gap:8px;color:var(--halk);font-weight:600;font-size:15px}
+.ap-urlap input,.ap-urlap textarea,.ap-urlap select,.ap-auto input{background:var(--lap);border:1px solid var(--vonal);border-radius:8px;padding:12px 16px;color:var(--szoveg);font:inherit;font-size:17px}
+.ap-urlap small{color:var(--halkabb);font-weight:500}
+.ap-sor{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}.ap-gombok{display:flex;gap:12px;flex-wrap:wrap}
+.ap-hirlista{border:1px solid var(--vonal);border-radius:8px;max-height:280px;overflow:auto;margin-top:-8px}
+.ap-hirlista button{display:block;width:100%;text-align:left;padding:12px 16px;border-bottom:1px solid var(--vonal);color:var(--szoveg)}.ap-hirlista button:hover{background:var(--lap)}
+.ap-hirlista small{display:block;color:var(--halk);font-size:13px}
+.ap-tel{background:#0b0b0b;border-radius:28px;padding:24px 16px;border:1px solid var(--vonal)}
+.ap-ert{background:#2b2b2b;border-radius:20px;padding:12px 16px;color:#f4f4f4}.ap-fej{font-size:13px;color:#bdbdbd;display:flex;gap:8px;align-items:center}
+.ap-ikon{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--amber);color:#131313;font-size:12px}
+.ap-tor{display:flex;gap:12px;margin-top:8px}.ap-tor>div{flex:1;min-width:0}.ap-tor b{display:block;font-size:15px;line-height:20px}.ap-tor p{margin:4px 0 0;font-size:14px;line-height:20px;color:#d6d6d6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ap-tor img{width:56px;height:56px;border-radius:8px;object-fit:cover;flex:0 0 auto}
+.ap-auto{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end}.ap-auto input{width:96px}.ap-ora{display:flex;align-items:center;gap:8px;color:var(--halk)}
+.ap-sor2{display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--vonal)}.ap-sor2 .em{flex:1;min-width:0;overflow-wrap:anywhere}.ap-sor2 .ido{color:var(--halk);white-space:nowrap}
+@media (max-width:900px){.ap-ketto{grid-template-columns:minmax(0,1fr)}.ap-sor{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.ap-sor2{flex-wrap:wrap;gap:8px}}
 .hibasav{background:#2a1515;color:var(--hiba);border-radius:12px;padding:16px 20px;margin-bottom:24px;font-weight:600}
 .lab{color:var(--halkabb);font-size:16px;margin-top:32px}
 
@@ -282,7 +299,8 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <button role="tab" aria-selected="false" data-ful="hirdetok">Hirdetők</button>
 <button role="tab" aria-selected="false" data-ful="cikkbehuzas">Cikkbehúzás</button>
 <button role="tab" aria-selected="false" data-ful="hirlevel">Hírlevél</button>
-<button role="tab" aria-selected="false" data-ful="statisztika">Statisztika</button></nav>
+<button role="tab" aria-selected="false" data-ful="statisztika">Statisztika</button>
+<button role="tab" aria-selected="false" data-ful="app">App</button></nav>
 <div class="frissult num" id="frissult"></div></div></div>
 
 <main>
@@ -296,6 +314,41 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <section id="p-hirdetok" hidden>
 <p class="a-bev">Az oldalsávos „Hirdess nálunk” űrlapon érdeklődő cégek. Hívd vissza őket, és jelöld, hol tartotok. Az adatokat 1 évig őrizzük.</p>
 <div id="h-lista"></div>
+</section>
+<section id="p-app" hidden>
+<p class="a-bev">Az Android-app push-értesítései. Válassz egy hírt vagy írj saját szöveget, nézd meg az előnézetet, és küldd ki most vagy időzítve.</p>
+<div class="hibasav" id="ap-fcm" hidden>Az értesítések küldése még nincs bekötve: ehhez a Firebase-projekt kell. Az időzítés és a beállítások már menthetők.</div>
+<p class="hl-cimke">Új értesítés</p>
+<div class="ap-ketto">
+<form class="ap-urlap" id="ap-urlap">
+<label>Hír (nem kötelező)<input type="search" id="ap-hirkeres" placeholder="Keresés a friss hírek között" autocomplete="off"></label>
+<div id="ap-hirlista" class="ap-hirlista" hidden></div>
+<label>Cím<input id="ap-cim" maxlength="90" required></label>
+<label>Szöveg<textarea id="ap-szoveg" maxlength="240" rows="3"></textarea></label>
+<div class="ap-sor"><label>Kinek<select id="ap-tema">
+<option value="kiemelt">Kiemelt hírek (mindenki, aki kéri)</option><option value="napi">Napi összefoglaló</option>
+<option value="rovat_modell">Rovat: Modellek</option><option value="rovat_eszkoz">Rovat: Eszközök</option><option value="rovat_video">Rovat: Videó</option>
+<option value="rovat_kep">Rovat: Kép</option><option value="rovat_ugynok">Rovat: Ügynökök</option><option value="rovat_uzlet">Rovat: Üzlet</option><option value="rovat_kutatas">Rovat: Kutatás</option>
+</select></label>
+<label>Mikor<input type="datetime-local" id="ap-mikor"><small>Üresen: azonnal</small></label></div>
+<div class="ap-gombok"><button type="submit" class="gomb" id="ap-kuld">Küldés</button><button type="button" class="gomb masod" id="ap-urit">Ürítés</button></div>
+<p class="hl-megj" id="ap-uzenet"></p>
+</form>
+<div class="ap-elonezet" aria-label="Előnézet a telefonon"><div class="ap-tel"><div class="ap-ert"><div class="ap-fej"><span class="ap-ikon">⚡</span>quicknews · most</div>
+<div class="ap-tor"><div><b id="ap-e-cim">Az értesítés címe</b><p id="ap-e-szoveg">Az értesítés szövege</p></div><img id="ap-e-kep" alt="" hidden></div></div></div>
+<p class="hl-megj">Így jelenik meg nagyjából a zárolási képernyőn. Koppintásra a hír nyílik meg az appban.</p></div>
+</div>
+<p class="hl-cimke">Automatikus értesítések</p>
+<div class="ap-auto"><div class="kapcs"><button id="ap-aktiv" aria-pressed="true"><i></i>Automatikus küldés bekapcsolva</button></div>
+<label>Naponta legfeljebb<input type="number" id="ap-max" min="0" max="10"></label>
+<label>Fontosság legalább<input type="number" id="ap-kuszob" min="1" max="5"></label>
+<label>Csendes órák<span class="ap-ora"><input type="number" id="ap-tol" min="0" max="23">-tól<input type="number" id="ap-ig" min="0" max="23">-ig</span></label>
+<button class="gomb masod" id="ap-beall">Mentés</button></div>
+<p class="hl-megj">A beállított fontosságú hírek maguktól kimennek a Kiemelt témára. Csendes órában nem küldünk, az értesítés reggel megy ki. Ugyanarról a hírről soha nem megy ki kétszer.</p>
+<p class="hl-cimke">Időzítve</p>
+<div id="ap-idozitett"></div>
+<p class="hl-cimke">Elküldve</p>
+<div id="ap-elozmeny"></div>
 </section>
 <section id="p-hirlevel" hidden>
 <p class="a-bev">A napi emlékeztető feliratkozói. Minden reggel 8-kor kimegy nekik az előző nap legfontosabb híreivel. A címek csak erre a levélre használhatók.</p>
@@ -357,7 +410,7 @@ const U={statisztika:ADMIN?"/api/admin?mi=statisztika":"/statisztika.json",poszt
  ajanlott:ADMIN?"/api/admin?mi=ajanlott":"/ajanlott.json",kijeloles:ADMIN?"/api/admin?mi=kijeloles":"/kijeloles",
  kartya:f=>ADMIN?"/api/admin?mi=kartya&f="+encodeURIComponent(f):"/kartya/"+encodeURIComponent(f),
  kep:id=>ADMIN?"/api/admin?mi=kep&id="+id:"/kep?id="+id, kepFel:ADMIN?"/api/admin?mi=kep_feltolt":"/kep_feltolt",
- torles:ADMIN?"/api/admin?mi=torles":"/torles",bekuldesek:ADMIN?"/api/admin?mi=bekuldesek":"/bekuldesek.json",hirdetok:ADMIN?"/api/admin?mi=hirdetok":"/hirdetok.json",hirdAll:ADMIN?"/api/admin?mi=hirdeto_allapot":"/hirdeto_allapot",bekDontes:ADMIN?"/api/admin?mi=bekuldes_dontes":"/bekuldes_dontes",kisopor:ADMIN?"/api/admin?mi=kisopor":"/kisopor",muvelet:ADMIN?"/api/admin?mi=muvelet":"/muvelet",hirlevel:ADMIN?"/api/admin?mi=hirlevel":"/hirlevel.json",hlMuvelet:ADMIN?"/api/admin?mi=hirlevel_muvelet":"/hirlevel_muvelet",hlUtolso:ADMIN?"/api/admin?mi=hirlevel_utolso":"/hirlevel_utolso"};
+ torles:ADMIN?"/api/admin?mi=torles":"/torles",bekuldesek:ADMIN?"/api/admin?mi=bekuldesek":"/bekuldesek.json",hirdetok:ADMIN?"/api/admin?mi=hirdetok":"/hirdetok.json",hirdAll:ADMIN?"/api/admin?mi=hirdeto_allapot":"/hirdeto_allapot",bekDontes:ADMIN?"/api/admin?mi=bekuldes_dontes":"/bekuldes_dontes",kisopor:ADMIN?"/api/admin?mi=kisopor":"/kisopor",muvelet:ADMIN?"/api/admin?mi=muvelet":"/muvelet",hirlevel:ADMIN?"/api/admin?mi=hirlevel":"/hirlevel.json",hlMuvelet:ADMIN?"/api/admin?mi=hirlevel_muvelet":"/hirlevel_muvelet",hlUtolso:ADMIN?"/api/admin?mi=hirlevel_utolso":"/hirlevel_utolso",push:ADMIN?"/api/push?mi=lista":"/push.json",pushMuv:mi=>ADMIN?"/api/push?mi="+mi:"/push"};
 /* a választások (fül, nap, nézet, időszak) megmaradnak frissítés után is */
 const TAR=(k,v)=>{try{if(v===undefined)return JSON.parse(localStorage.getItem("qn-pult-"+k));localStorage.setItem("qn-pult-"+k,JSON.stringify(v))}catch(e){return null}};
 async function lekér(u,opt){const r=await fetch(u,Object.assign({cache:"no-store",credentials:"same-origin"},opt||{}));
@@ -778,14 +831,50 @@ document.getElementById("st-tol").addEventListener("change",e=>{if(!e.target.val
 document.getElementById("st-ig").addEventListener("change",e=>{if(!e.target.value||!e.target.validity.valid)return;const ip=stIdo();let ig=e.target.value,tol=ip.tol;if(tol>ig)tol=ig;TAR("stat",{tol,ig});srajz()});
 document.querySelectorAll("[data-stn]").forEach(b=>b.onclick=()=>{TAR("stat",{n:+b.dataset.stn});srajz()});
 
+/* ---------- App: push-értesítések (quicknews-android/docs/PRD.md 6) ---------- */
+const TEMANEV={kiemelt:"Kiemelt",napi:"Napi összefoglaló",rovat_modell:"Modellek",rovat_eszkoz:"Eszközök",rovat_video:"Videó",rovat_kep:"Kép",rovat_ugynok:"Ügynökök",rovat_uzlet:"Üzlet",rovat_kutatas:"Kutatás"};
+let APHIR=null,APVAL=null;
+async function apmuv(mi,b){try{const r=await lekér(U.pushMuv(mi),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(ADMIN?b:Object.assign({mi},b))});return r}catch(e){return{hiba:"Nem sikerült elérni a szervert."}}}
+function apElonezet(){document.getElementById("ap-e-cim").textContent=document.getElementById("ap-cim").value||"Az értesítés címe";
+ document.getElementById("ap-e-szoveg").textContent=document.getElementById("ap-szoveg").value||"Az értesítés szövege";
+ const k=document.getElementById("ap-e-kep");k.hidden=!(APVAL&&APVAL.kep);if(APVAL&&APVAL.kep)k.src=APVAL.kep}
+async function aptolt(){let d;try{d=await lekér(U.push)}catch(e){d={hiba:"Az értesítések most nem érhetők el."}}
+ const I=document.getElementById("ap-idozitett"),E=document.getElementById("ap-elozmeny");
+ if(d.hiba){E.innerHTML=`<div class="hibasav">${esc(d.hiba)}</div>`;I.innerHTML="";return}
+ document.getElementById("ap-fcm").hidden=!!d.fcm;
+ const b=d.beall||{};const ak=document.getElementById("ap-aktiv");ak.setAttribute("aria-pressed",String(b.aktiv!==false));ak.lastChild.textContent=b.aktiv!==false?"Automatikus küldés bekapcsolva":"Automatikus küldés kikapcsolva";
+ document.getElementById("ap-max").value=b.napiMax??3;document.getElementById("ap-kuszob").value=b.kuszob??5;document.getElementById("ap-tol").value=b.csendesTol??22;document.getElementById("ap-ig").value=b.csendesIg??7;
+ const ido=x=>x?fmt(new Date(x),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):"";
+ I.innerHTML=(d.idozitett||[]).map(x=>`<div class="ap-sor2"><span class="em"><b>${esc(x.cim)}</b><br>${esc(x.szoveg||"")}</span><span class="ido">${ido(x.mikor)} · ${esc(TEMANEV[x.tema]||x.tema)}${x.forras==="auto"?" · automatikus":""}</span><button class="sor-torol" data-apv="${esc(x.id)}">Visszavonom</button></div>`).join("")||`<p class="ures">Nincs időzített értesítés.</p>`;
+ I.querySelectorAll("[data-apv]").forEach(g=>g.onclick=async()=>{if(!await kerd("Visszavonod ezt az időzített értesítést?"))return;const r=await apmuv("visszavon",{id:g.dataset.apv});if(r.hiba)alert(r.hiba);aptolt()});
+ E.innerHTML=(d.elozmeny||[]).map(x=>`<div class="ap-sor2"><span class="em"><b>${esc(x.cim)}</b><br>${esc(x.szoveg||"")}</span><span class="ido">${ido(x.kuldve)} · ${esc(TEMANEV[x.tema]||x.tema)}${x.forras==="auto"?" · automatikus":""} · ${x.megnyitas||0} megnyitás</span></div>`).join("")||`<p class="ures">Még nem ment ki értesítés.</p>`}
+async function apHirek(){if(APHIR)return APHIR;const l=[];for(const n of [1,2]){try{const d=await (await fetch("https://quicknews.hu/app/v1/friss-"+n+".json",{cache:"no-store"})).json();l.push(...(d.hirek||[]))}catch(e){}}APHIR=l;return l}
+document.getElementById("ap-hirkeres").addEventListener("input",async e=>{const q=e.target.value.trim().toLowerCase(),L=document.getElementById("ap-hirlista");
+ if(q.length<2){L.hidden=true;return}const l=(await apHirek()).filter(h=>(h.cim+" "+h.lead).toLowerCase().includes(q)).slice(0,12);
+ L.hidden=!l.length;L.innerHTML=l.map((h,i)=>`<button type="button" data-api="${i}">${esc(h.cim)}<small>${esc(h.ido_hu||"")} · ${esc(h.forras||"")}</small></button>`).join("");
+ L.querySelectorAll("[data-api]").forEach(g=>g.onclick=()=>{const h=l[+g.dataset.api];APVAL=h;document.getElementById("ap-cim").value=h.cim.slice(0,90);document.getElementById("ap-szoveg").value=(h.lead||"").slice(0,240);
+  document.getElementById("ap-hirkeres").value=h.cim;L.hidden=true;apElonezet()})});
+["ap-cim","ap-szoveg"].forEach(i=>document.getElementById(i).addEventListener("input",apElonezet));
+document.getElementById("ap-urit").onclick=()=>{APVAL=null;["ap-hirkeres","ap-cim","ap-szoveg","ap-mikor"].forEach(i=>document.getElementById(i).value="");document.getElementById("ap-uzenet").textContent="";apElonezet()};
+document.getElementById("ap-urlap").onsubmit=async e=>{e.preventDefault();const cim=document.getElementById("ap-cim").value.trim(),szoveg=document.getElementById("ap-szoveg").value.trim(),tema=document.getElementById("ap-tema").value,m=document.getElementById("ap-mikor").value;
+ const mikor=m?new Date(m).toISOString():"";
+ if(!await kerd(mikor?`Időzíted ezt az értesítést (${TEMANEV[tema]})?`:`Most kiküldöd ezt az értesítést mindenkinek, aki a(z) ${TEMANEV[tema]} témát kéri?`))return;
+ const r=await apmuv("kuld",{cim,szoveg,tema,mikor,hir_id:APVAL?APVAL.id:"",kep:APVAL?(APVAL.kep||""):""});
+ document.getElementById("ap-uzenet").textContent=r.hiba?r.hiba:(r.idozitve?"Időzítve: "+fmt(new Date(r.idozitve),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):"Kiment.");
+ if(!r.hiba)document.getElementById("ap-urit").click(),document.getElementById("ap-uzenet").textContent=r.idozitve?"Időzítve.":"Kiment.";aptolt()};
+document.getElementById("ap-aktiv").onclick=()=>{const b=document.getElementById("ap-aktiv"),be=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",String(be));b.lastChild.textContent=be?"Automatikus küldés bekapcsolva":"Automatikus küldés kikapcsolva"};
+document.getElementById("ap-beall").onclick=async()=>{const v=i=>document.getElementById(i).value;
+ const r=await apmuv("beall",{aktiv:document.getElementById("ap-aktiv").getAttribute("aria-pressed")==="true",napiMax:v("ap-max"),kuszob:v("ap-kuszob"),csendesTol:v("ap-tol"),csendesIg:v("ap-ig")});
+ alert(r.hiba?r.hiba:"Elmentve.");aptolt()};
+
 /* ---------- fülek ---------- */
 function ful(f){const fo=f==="koltseg"?"statisztika":f;document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===fo));document.querySelectorAll("[data-alful]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.alful===f)));try{document.querySelector(`.fulek [data-ful="${fo}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
- ["posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas","hirlevel","statisztika"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
+ ["posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas","hirlevel","statisztika","app"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
  if(f==="statisztika")stolt();
- if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok")htolt();if(f==="cikkbehuzas")htolt(true);if(f==="hirlevel")hltolt();try{localStorage.setItem("ful",f)}catch(e){}latta(f);jelvenyek()}
+ if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok")htolt();if(f==="cikkbehuzas")htolt(true);if(f==="hirlevel")hltolt();if(f==="app")aptolt();try{localStorage.setItem("ful",f)}catch(e){}latta(f);jelvenyek()}
 document.querySelectorAll(".fulek button").forEach(b=>b.onclick=()=>ful(b.dataset.ful));
 document.querySelectorAll("[data-alful]").forEach(b=>b.onclick=()=>ful(b.dataset.alful));
-try{const f=localStorage.getItem("ful");if(f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok"||f==="cikkbehuzas"||f==="hirlevel"||f==="statisztika")ful(f)}catch(e){}
+try{const f=localStorage.getItem("ful");if(f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok"||f==="cikkbehuzas"||f==="hirlevel"||f==="statisztika"||f==="app")ful(f)}catch(e){}
 document.getElementById("k-valaszt");
 /* ---------- piros számok a fülek mellett (2026-10-13): hány új esemény történt az adott fülön ---------- */
 const LATOTT="qn-latott-";
