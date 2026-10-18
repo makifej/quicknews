@@ -477,7 +477,7 @@ const VAR=s=>!KINT(s)&&!HIBA(s)&&!PARK(s);
 
 function helyiIdo(iso){const d=new Date(iso),p=n=>String(n).padStart(2,"0");return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`}
 function kartya(s,kov){const d=new Date(s.idopont);let a,cls="",tovabb="";
- const jel=(s.fontossag?`<span class="fon-jel ${s.fontossag>=5?"fo5":""}">Fontosság ${s.fontossag}</span>`:"")+`<span class="all-jel all-${ALLNEV(s).replace(/[^a-zA-Záéíóöőúüű]/g,"").toLowerCase()}">${ALLNEV(s)}</span>`;
+ const fon=Number(s.fontossag)|0;const jel=(fon?`<span class="fon-jel ${fon>=5?"fo5":""}">Fontosság ${fon}</span>`:"")+`<span class="all-jel all-${ALLNEV(s).replace(/[^a-zA-Záéíóöőúüű]/g,"").toLowerCase()}">${ALLNEV(s)}</span>`;
  if(s.felulet==="Hirdetés"){
   if(s.feldolgozasra)a=`${jel}${VAROK(s,"3 percen belül elkészül, szüneteltetve")}`;
   else if(VARAK(s)){a=`${jel}<span class="allapot">Elkészült, szüneteltetve (3 percen belül indul)</span><button class="hird-indit" data-azon="${esc(s.azon)}" data-cim="${esc(s.cim)}">Indítás</button><button class="szerk" data-szerk="${esc(s.id)}">Címsor</button>`;
@@ -493,7 +493,7 @@ function kartya(s,kov){const d=new Date(s.idopont);let a,cls="",tovabb="";
  else{a=`${jel}${kov?`<span class="allapot kov" title="Következő · ${hatra(d)}">Következő · ${hatra(d).replace(/ múlva$/,"")}</span>`:`<span class="allapot">${hatra(d)}</span>`}<button class="szerk" data-szerk="${esc(s.id)}">Szerkesztés</button><button class="torol" data-pid="${esc(s.id)}" data-felulet="${esc(s.felulet)}" data-cim="${esc(s.cim)}">Levétel az időzítésből</button>`;
   tovabb=`<form class="szerk-urlap" data-szerk-urlap="${esc(s.id)}" hidden><label>Szöveg<textarea name="szoveg" rows="5">${esc(s.szoveg||"")}</textarea></label><label>Időpont<input type="datetime-local" name="mikor" value="${helyiIdo(s.idopont)}"></label><div class="szerk-gombok"><button type="submit">Mentés</button><button type="button" data-megse>Mégse</button></div><p class="lab">A módosítás 3 percen belül kerül át a Flybuiltbe.</p></form>`}
  const tip=s.szoveg?` data-poszt-szoveg="${esc(s.szoveg)}"`:"";
- const cim=s.link?`<a class="cim" href="${esc(s.link)}" target="_blank" rel="noopener"${tip}>${esc(s.cim)}</a>`:`<span class="cim"${tip}>${esc(s.cim)}</span>`;
+ const cim=/^https?:\/\//.test(s.link||"")?`<a class="cim" href="${esc(s.link)}" target="_blank" rel="noopener"${tip}>${esc(s.cim)}</a>`:`<span class="cim"${tip}>${esc(s.cim)}</span>`;
  return `<div class="kartya ${cls}"><div class="ido num">${PARK(s)?"·":ora(d)}</div>
  <div class="kep" style="${s.kep?`background-image:url('${esc(s.kep)}')`:""}"></div><div>${cim}<br>${a}${tovabb}</div></div>`}
 /* szerkesztés, címsorcsere, hirdetés indítása: a kérés a Machez megy, 3 percen belül hajtja végre */
