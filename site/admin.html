@@ -80,6 +80,12 @@ transition:border-color .3s cubic-bezier(.32,.72,0,1)}
 .kartya a.cim:hover{color:var(--amber)}
 #poszt-tip{position:fixed;z-index:60;max-width:min(420px,calc(100vw - 24px));max-height:min(60vh,520px);overflow:auto;padding:12px 16px;background:var(--lap2);color:var(--szoveg);border:1px solid var(--vonal);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.45);font-size:15px;line-height:22px;white-space:pre-wrap;pointer-events:none}
 #poszt-tip[hidden]{display:none}
+#poszt-lap{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center}#poszt-lap[hidden]{display:none}
+#poszt-lap .pl-doboz{width:min(640px,100%);max-height:75vh;max-height:75dvh;display:flex;flex-direction:column;background:var(--lap2);border:1px solid var(--vonal);border-radius:16px 16px 0 0;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+#poszt-lap .pl-fej{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}#poszt-lap .pl-fej b{font-size:16px}
+#poszt-lap .pl-zar{font:700 15px Manrope,sans-serif;color:#131313;background:var(--amber);border-radius:999px;padding:8px 16px}
+#poszt-lap .pl-szoveg{overflow:auto;overscroll-behavior:contain;white-space:pre-wrap;font-size:16px;line-height:24px;color:var(--szoveg)}
+@media (pointer:coarse){[data-poszt-szoveg]{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}}
 .allapot{display:inline-block;margin-top:8px;font-size:16px;font-weight:600;color:var(--halk)}
 .allapot.kov{color:#131313;background:var(--amber);border-radius:999px;padding:2px 8px;font-size:12px;font-weight:700;white-space:nowrap}
 .allapot.hiba{color:var(--hiba)}
@@ -720,7 +726,7 @@ function huzhato(el){let x0=null,y0=0,dx=0,irany=null;
  el.addEventListener("touchend",()=>{if(x0===null)return;x0=null;
   if(irany==="x"&&dx<-120){kisopor(el.dataset.id)}else{el.style.transform="";el.style.opacity=""}})}
 /* az új hír magától megjelenik: a nyitott Ajánlott fül 2 percenként frissül */
-setInterval(()=>{if(!document.hidden&&!document.getElementById("p-ajanlott").hidden&&!document.querySelector(".feltolt.tolt"))atolt()},120000);
+setInterval(()=>{if(!document.hidden&&!document.getElementById("p-ajanlott").hidden&&!document.querySelector(".feltolt.tolt"))atolt()},30000);
 async function kepFeltolt(inp){const f=inp.files[0];if(!f)return;const lab=inp.closest("label");lab.classList.add("tolt");lab.lastChild.textContent="Feltöltés…";
  try{const kep=await new Promise((ok,hiba)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=hiba;i.src=URL.createObjectURL(f)});
   const max=2400,ar=Math.min(1,max/Math.max(kep.naturalWidth,kep.naturalHeight));
@@ -923,7 +929,13 @@ async function jelvenyek(){const akt=aktivFul();latta(akt);
  try{const d=await lekér(U.bekuldesek);jelol("bekuldes",(d.tetel||[]).filter(b=>!b.atveve&&(b.allapot==="dontesre_var"||b.allapot==="atnezes")).length)}catch(e){}
  try{const d=await lekér(U.hirdetok);const t=d.tetel||[];jelol("hirdetok",t.filter(h=>h.tema!=="hirfolyam"&&h.allapot==="uj").length);jelol("cikkbehuzas",t.filter(h=>h.tema==="hirfolyam"&&h.allapot==="uj").length)}catch(e){}
  try{const d=await lekér(U.hirlevel);jelol("hirlevel",(d.lista||[]).filter(x=>ujabb(x.ido,"hirlevel")).length)}catch(e){}}
-ptolt();setInterval(ptolt,60000);setInterval(prajzol,20000);jelvenyek();setInterval(jelvenyek,60000);
+/* teljes szinkron a gépi pult, a webes pult és az app között (Heni 2026-10-18): a közös adat a felhőben van, ezért ha a
+   lap újra előtérbe kerül (másik ablakból, vagy az appban a pult újra megnyílik), azonnal mindent újratöltünk */
+window.qnFrissit=()=>{ptolt();jelvenyek();if(!document.getElementById("p-ajanlott").hidden&&!document.querySelector(".feltolt.tolt"))atolt();
+ if(!document.getElementById("p-app").hidden)aptolt()};
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)window.qnFrissit()});
+window.addEventListener("focus",()=>window.qnFrissit());
+ptolt();setInterval(ptolt,30000);setInterval(prajzol,20000);jelvenyek();setInterval(jelvenyek,60000);
 setInterval(()=>{if(!document.getElementById("p-koltseg").hidden)ktolt()},300000);
 /* a poszt teljes szövege a cím fölé víve (Heni 2026-10-17: „hadd olvashassam el a teljes poszt szövegét”) */
 (function(){const t=document.createElement("div");t.id="poszt-tip";t.setAttribute("role","tooltip");t.hidden=true;document.body.appendChild(t);
@@ -931,8 +943,24 @@ setInterval(()=>{if(!document.getElementById("p-koltseg").hidden)ktolt()},300000
  const hely=e=>{const r=akt.getBoundingClientRect(),w=t.offsetWidth,h=t.offsetHeight,m=12;
   let x=r.left,y=r.bottom+8;if(x+w>innerWidth-m)x=innerWidth-m-w;if(x<m)x=m;
   if(y+h>innerHeight-m)y=Math.max(m,r.top-8-h);t.style.left=x+"px";t.style.top=y+"px"};
- document.addEventListener("mouseover",e=>{const el=e.target.closest&&e.target.closest("[data-poszt-szoveg]");
+ // egérrel: buborék a cím alatt; érintéssel ez nem működik (a hosszú nyomás egérráhúzásnak látszik), ott alsó lap nyílik
+ document.addEventListener("pointerover",e=>{if(e.pointerType!=="mouse")return;const el=e.target.closest&&e.target.closest("[data-poszt-szoveg]");
   if(el===akt)return;akt=el;if(!el){t.hidden=true;return}
   t.textContent=el.getAttribute("data-poszt-szoveg");t.hidden=false;hely()});
- document.addEventListener("scroll",()=>{if(akt){t.hidden=true;akt=null}},true)})();
+ document.addEventListener("scroll",()=>{if(akt){t.hidden=true;akt=null}},true);
+ /* telefon (és az app): hosszan nyomva a címet alulról felcsúszó lapon a poszt teljes szövege, Bezárás gombbal */
+ const lap=document.createElement("div");lap.id="poszt-lap";lap.hidden=true;lap.setAttribute("role","dialog");lap.setAttribute("aria-label","A poszt teljes szövege");
+ lap.innerHTML='<div class="pl-doboz"><div class="pl-fej"><b>A poszt szövege</b><button type="button" class="pl-zar">Bezárás</button></div><div class="pl-szoveg"></div></div>';
+ document.body.appendChild(lap);
+ const nyit=el=>{t.hidden=true;akt=null;lap.querySelector(".pl-szoveg").textContent=el.getAttribute("data-poszt-szoveg");lap.hidden=false;document.body.style.overflow="hidden"};
+ const zar=()=>{lap.hidden=true;document.body.style.overflow=""};
+ lap.addEventListener("click",e=>{if(e.target===lap||e.target.closest(".pl-zar"))zar()});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!lap.hidden)zar()});
+ let idozito=null,nyitva=false;
+ document.addEventListener("touchstart",e=>{const el=e.target.closest&&e.target.closest("[data-poszt-szoveg]");if(!el)return;nyitva=false;
+  idozito=setTimeout(()=>{nyitva=true;nyit(el)},450)},{passive:true});
+ ["touchend","touchmove","touchcancel"].forEach(ev=>document.addEventListener(ev,()=>{clearTimeout(idozito)},{passive:true}));
+ // a hosszú nyomás után felengedett ujj ne nyissa meg a linket, és a rendszer saját menüje se jöjjön fel
+ document.addEventListener("click",e=>{if(nyitva&&e.target.closest&&e.target.closest("[data-poszt-szoveg]")){e.preventDefault();nyitva=false}},true);
+ document.addEventListener("contextmenu",e=>{if(e.target.closest&&e.target.closest("[data-poszt-szoveg]"))e.preventDefault()})})();
 </script></body></html>
