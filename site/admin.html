@@ -114,6 +114,8 @@ button.torol:disabled{opacity:.5}
 .ap-hirlista{border:1px solid var(--vonal);border-radius:8px;max-height:280px;overflow:auto;margin-top:-8px}
 .ap-hirlista button{display:block;width:100%;text-align:left;padding:12px 16px;border-bottom:1px solid var(--vonal);color:var(--szoveg)}.ap-hirlista button:hover{background:var(--lap)}
 .ap-hirlista small{display:block;color:var(--halk);font-size:13px}
+.ap-kepsor{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}.ap-kepgomb{display:inline-flex!important;align-items:center;gap:8px;border:1px dashed var(--halkabb);border-radius:8px;padding:8px 12px;cursor:pointer;color:var(--szoveg)!important;font-weight:600}
+.ap-kepgomb input{position:absolute;width:1px;height:1px;opacity:0}.ap-kepallapot{color:var(--halk);font-size:14px}
 .ap-tel{background:#0b0b0b;border-radius:28px;padding:24px 16px;border:1px solid var(--vonal)}
 .ap-ert{background:#2b2b2b;border-radius:20px;padding:12px 16px;color:#f4f4f4}.ap-fej{font-size:13px;color:#bdbdbd;display:flex;gap:8px;align-items:center}
 .ap-ikon{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--amber);color:#131313;font-size:12px}
@@ -289,6 +291,18 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 @media (max-width:560px){.sav-bel{padding:0 16px;gap:16px}.logo{font-size:17px}.fulek{gap:14px}.fulek button{font-size:16px}.frissult{display:none}main{padding:24px 16px 80px}
 .mutato{padding:14px 16px}.mutato b{font-size:31px}.kartya{grid-template-columns:48px 48px minmax(0,1fr);gap:12px;padding:14px 16px}
 .kartya .kep{width:48px;height:60px}.kartya .ido{font-size:21px}.osszeg b{font-size:42px}}
+/* telefon (az Android-app admin nézete is ezt használja): az idő ne törjön ketté, az ajánlott kártyán a kép kerüljön a szöveg fölé */
+@media (max-width:560px){.kartya{grid-template-columns:56px 44px minmax(0,1fr)}.kartya .ido{font-size:18px;white-space:nowrap}.kartya .kep{width:44px;height:55px}
+.ah{grid-template-columns:72px minmax(0,1fr);gap:8px 10px;padding:10px;margin-bottom:8px;align-items:start}.ah .kp{width:72px;height:72px;border-radius:6px}
+.ah .cim{font-size:15px;line-height:20px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.ah .lead{display:none}
+.ah .cimkek{gap:4px;margin-top:6px}.ah .cimke{font-size:12px;line-height:16px;padding:2px 6px}.ah .feldolg{font-size:12px;gap:4px 8px;margin-top:6px}
+.ah .kapcs{gap:4px}.ah .kapcs button,.ah .kapcs .feltolt{flex:1 1 auto;font-size:13px;line-height:16px;padding:6px 4px;gap:4px;min-width:0;justify-content:center;white-space:nowrap}
+.ah .kapcs button i{width:14px;height:14px;font-size:11px;border-width:1.5px}.ah .kapcs button.sopor,.ah .kapcs .feltolt,.ah .kapcs button.jova{flex:1 1 auto}
+.ah .kartyasor{gap:8px;padding-top:8px}.ah .kartyasor img{width:48px;height:60px}.ah .kartyasor b{font-size:14px;line-height:18px}.ah .kartyasor .lead{font-size:13px;line-height:18px;margin-top:2px}
+.mutato{min-width:0;overflow:hidden}.mutato *{overflow-wrap:anywhere}.ap-sor2 .ido,.hl-sor .ido{white-space:normal;flex:1 1 100%}}
+/* a kártyasor (kártyakép, szöveg, Kártya jó / Elutasítom) keskeny képernyőn: kép és szöveg egymás mellett, a gombok alattuk teljes szélességben */
+@media (max-width:700px){.kartyasor{flex-wrap:wrap;align-items:flex-start;gap:12px}.kartyasor>div[style]{flex:1 1 0;min-width:0}
+.kartyasor img{width:80px;height:100px}.kartyasor .lead{display:block;-webkit-line-clamp:unset;overflow:visible}.kartyasor .kapcs{flex:1 1 100%;flex-direction:row}.kartyasor .kapcs button{flex:1 1 0}}
 </style></head><body>
 <div class="sav"><div class="sav-bel">
 <div class="logo">quicknews<span>.</span>pult</div>
@@ -325,8 +339,12 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <div id="ap-hirlista" class="ap-hirlista" hidden></div>
 <label>Cím<input id="ap-cim" maxlength="90" required></label>
 <label>Szöveg<textarea id="ap-szoveg" maxlength="240" rows="3"></textarea></label>
+<div class="ap-kepsor"><label class="ap-kepgomb">Kép (nem kötelező)<input type="file" id="ap-kepfajl" accept="image/*"></label>
+<span class="ap-kepallapot" id="ap-kepallapot">Nincs saját kép</span><button type="button" class="sor-torol" id="ap-keptorol" hidden>Kép törlése</button></div>
+<label>Link koppintásra (nem kötelező)<input type="url" id="ap-link" placeholder="https://… például a nyereményjáték oldala" maxlength="400"><small>Ha hírt választottál, koppintásra a hír nyílik meg, a link csak hír nélkül számít.</small></label>
 <div class="ap-sor"><label>Kinek<select id="ap-tema">
-<option value="kiemelt">Kiemelt hírek (mindenki, aki kéri)</option><option value="napi">Napi összefoglaló</option>
+<option value="mindenki">Mindenki, aki telepítette az appot</option><option value="egyeb">Egyéb: nyereményjáték, újdonság, bejelentés</option>
+<option value="kiemelt">Kiemelt hírek (mindenki, aki kéri)</option><option value="napi">Napi összefoglaló</option><option value="feltorekvo">Feltörekvő hírek</option>
 <option value="rovat_modell">Rovat: Modellek</option><option value="rovat_eszkoz">Rovat: Eszközök</option><option value="rovat_video">Rovat: Videó</option>
 <option value="rovat_kep">Rovat: Kép</option><option value="rovat_ugynok">Rovat: Ügynökök</option><option value="rovat_uzlet">Rovat: Üzlet</option><option value="rovat_kutatas">Rovat: Kutatás</option>
 </select></label>
@@ -336,7 +354,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 </form>
 <div class="ap-elonezet" aria-label="Előnézet a telefonon"><div class="ap-tel"><div class="ap-ert"><div class="ap-fej"><span class="ap-ikon">⚡</span>quicknews · most</div>
 <div class="ap-tor"><div><b id="ap-e-cim">Az értesítés címe</b><p id="ap-e-szoveg">Az értesítés szövege</p></div><img id="ap-e-kep" alt="" hidden></div></div></div>
-<p class="hl-megj">Így jelenik meg nagyjából a zárolási képernyőn. Koppintásra a hír nyílik meg az appban.</p></div>
+<p class="hl-megj">Így jelenik meg nagyjából a zárolási képernyőn. Koppintásra a választott hír nyílik meg az appban, hír nélkül a megadott link, link nélkül az app főoldala.</p></div>
 </div>
 <p class="hl-cimke">Automatikus értesítések</p>
 <div class="ap-auto"><div class="kapcs"><button id="ap-aktiv" aria-pressed="true"><i></i>Automatikus küldés bekapcsolva</button></div>
@@ -435,7 +453,10 @@ function hatra(d){const p=Math.round((d-Date.now())/6e4);if(p<1)return"most esed
  const o=Math.floor(p/60),m=p%60;if(o>=24)return Math.floor(o/24)+" nap "+(o%24)+" óra múlva";return(o?o+" óra ":"")+m+" perc múlva"}
 
 /* ---------- posztok ---------- */
-let D=null,PN=TAR("PN");
+let D=null,PN=null,PNGORGETVE=false;  // Heni 2026-10-18: a Posztok fül mindig a mai napon nyíljon
+/* a napsávban a kiválasztott nap a sáv elejére görgetve (csak amíg a fül látszik; a fülváltás újra meghívja) */
+function napsavIgazit(){const sv=document.getElementById("p-napok");const gb=sv&&sv.querySelector('button[aria-pressed="true"]');
+ if(!gb||!sv.getBoundingClientRect().width)return;sv.scrollLeft+=gb.getBoundingClientRect().left-sv.getBoundingClientRect().left;PNGORGETVE=true}
 const HIBA=s=>["failed","error"].includes(s.allapot);
 const KINT=s=>s.allapot==="published";
 const PARK=s=>s.allapot==="torolve"||new Date(s.idopont).getFullYear()>=2030;
@@ -509,7 +530,9 @@ function prajzol(){if(!D)return;
  document.getElementById("p-napok").innerHTML=sorrend.map(k=>{const L=napok[k],v=L.filter(VAR).length,ki=L.filter(KINT).length;
   const al=k==="park"?`${L.length} poszt`:[v?v+" vár":"",ki?ki+" kiment":""].filter(Boolean).join(" · ")||"nincs poszt";
   return `<button aria-pressed="${k===PN}" data-nap="${k}"><b>${k==="park"?"Leállítva":napcimke(k)} <span style="display:inline;color:var(--halk);font-weight:500">${k==="park"?"":napdatum(k)}</span></b><span>${al}</span></button>`}).join("");
- document.querySelectorAll("#p-napok button").forEach(b=>b.onclick=()=>{PN=b.dataset.nap;TAR("PN",PN);prajzol()});
+ document.querySelectorAll("#p-napok button").forEach(b=>b.onclick=()=>{PN=b.dataset.nap;prajzol()});
+ // a napsáv első rajzolásakor a kiválasztott (mai) nap legyen látható a sáv elején, ne a régi napok
+ if(!PNGORGETVE)requestAnimationFrame(napsavIgazit);
  const L=(napok[PN]||[]).slice().sort((a,b)=>(a.idopont<b.idopont?-1:1));
  const elott=hiba.length&&PN===ma?`<div class="hibasav">${hiba.length} poszt nem ment ki: ${hiba.map(s=>esc(s.cim)).join("; ")}</div>`:"";
  T.innerHTML=elott+`<div class="tabla">`+["Facebook","Csoport","LinkedIn","Hirdetés"].map(f=>{const P=L.filter(s=>s.felulet===f);const v=P.filter(VAR).length;
@@ -833,12 +856,20 @@ document.getElementById("st-ig").addEventListener("change",e=>{if(!e.target.valu
 document.querySelectorAll("[data-stn]").forEach(b=>b.onclick=()=>{TAR("stat",{n:+b.dataset.stn});srajz()});
 
 /* ---------- App: push-értesítések (quicknews-android/docs/PRD.md 6) ---------- */
-const TEMANEV={kiemelt:"Kiemelt",napi:"Napi összefoglaló",rovat_modell:"Modellek",rovat_eszkoz:"Eszközök",rovat_video:"Videó",rovat_kep:"Kép",rovat_ugynok:"Ügynökök",rovat_uzlet:"Üzlet",rovat_kutatas:"Kutatás"};
-let APHIR=null,APVAL=null;
+const TEMANEV={mindenki:"Mindenki",egyeb:"Egyéb",feltorekvo:"Feltörekvő",kiemelt:"Kiemelt",napi:"Napi összefoglaló",rovat_modell:"Modellek",rovat_eszkoz:"Eszközök",rovat_video:"Videó",rovat_kep:"Kép",rovat_ugynok:"Ügynökök",rovat_uzlet:"Üzlet",rovat_kutatas:"Kutatás"};
+let APHIR=null,APVAL=null,APKEP="";
+/* saját értesítéskép: a böngészőben 1200 px szélesre kicsinyítve, JPEG-ként megy fel (api/push.js kep_feltolt) */
+function apKepAllapot(t){document.getElementById("ap-kepallapot").textContent=t;document.getElementById("ap-keptorol").hidden=!APKEP;apElonezet()}
+document.getElementById("ap-kepfajl").addEventListener("change",async e=>{const f=e.target.files[0];e.target.value="";if(!f)return;apKepAllapot("Feltöltés…");
+ try{const img=await createImageBitmap(f);const sz=Math.min(1,1200/img.width);const c=document.createElement("canvas");c.width=Math.round(img.width*sz);c.height=Math.round(img.height*sz);
+  c.getContext("2d").drawImage(img,0,0,c.width,c.height);let adat=c.toDataURL("image/jpeg",.84);if(adat.length>880000)adat=c.toDataURL("image/jpeg",.65);
+  const r=await apmuv("kep_feltolt",{adat});if(r.hiba){APKEP="";apKepAllapot(r.hiba);return}APKEP=r.url;apKepAllapot("Saját kép feltöltve ("+c.width+"×"+c.height+")")}
+ catch(err){APKEP="";apKepAllapot("A kép nem olvasható be.")}});
+document.getElementById("ap-keptorol").onclick=()=>{APKEP="";apKepAllapot("Nincs saját kép")};
 async function apmuv(mi,b){try{const r=await lekér(U.pushMuv(mi),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(ADMIN?b:Object.assign({mi},b))});return r}catch(e){return{hiba:"Nem sikerült elérni a szervert."}}}
 function apElonezet(){document.getElementById("ap-e-cim").textContent=document.getElementById("ap-cim").value||"Az értesítés címe";
  document.getElementById("ap-e-szoveg").textContent=document.getElementById("ap-szoveg").value||"Az értesítés szövege";
- const k=document.getElementById("ap-e-kep");k.hidden=!(APVAL&&APVAL.kep);if(APVAL&&APVAL.kep)k.src=APVAL.kep}
+ const k=document.getElementById("ap-e-kep");const kp=APKEP||(APVAL&&APVAL.kep)||"";k.hidden=!kp;if(kp)k.src=kp}
 async function aptolt(){let d;try{d=await lekér(U.push)}catch(e){d={hiba:"Az értesítések most nem érhetők el."}}
  const I=document.getElementById("ap-idozitett"),E=document.getElementById("ap-elozmeny");
  if(d.hiba){E.innerHTML=`<div class="hibasav">${esc(d.hiba)}</div>`;I.innerHTML="";return}
@@ -856,11 +887,12 @@ document.getElementById("ap-hirkeres").addEventListener("input",async e=>{const 
  L.querySelectorAll("[data-api]").forEach(g=>g.onclick=()=>{const h=l[+g.dataset.api];APVAL=h;document.getElementById("ap-cim").value=h.cim.slice(0,90);document.getElementById("ap-szoveg").value=(h.lead||"").slice(0,240);
   document.getElementById("ap-hirkeres").value=h.cim;L.hidden=true;apElonezet()})});
 ["ap-cim","ap-szoveg"].forEach(i=>document.getElementById(i).addEventListener("input",apElonezet));
-document.getElementById("ap-urit").onclick=()=>{APVAL=null;["ap-hirkeres","ap-cim","ap-szoveg","ap-mikor"].forEach(i=>document.getElementById(i).value="");document.getElementById("ap-uzenet").textContent="";apElonezet()};
+document.getElementById("ap-urit").onclick=()=>{APVAL=null;APKEP="";apKepAllapot("Nincs saját kép");["ap-hirkeres","ap-cim","ap-szoveg","ap-mikor","ap-link"].forEach(i=>document.getElementById(i).value="");document.getElementById("ap-uzenet").textContent="";apElonezet()};
 document.getElementById("ap-urlap").onsubmit=async e=>{e.preventDefault();const cim=document.getElementById("ap-cim").value.trim(),szoveg=document.getElementById("ap-szoveg").value.trim(),tema=document.getElementById("ap-tema").value,m=document.getElementById("ap-mikor").value;
  const mikor=m?new Date(m).toISOString():"";
- if(!await kerd(mikor?`Időzíted ezt az értesítést (${TEMANEV[tema]})?`:`Most kiküldöd ezt az értesítést mindenkinek, aki a(z) ${TEMANEV[tema]} témát kéri?`))return;
- const r=await apmuv("kuld",{cim,szoveg,tema,mikor,hir_id:APVAL?APVAL.id:"",kep:APVAL?(APVAL.kep||""):""});
+ const link=document.getElementById("ap-link").value.trim();if(link&&!/^https:\/\//.test(link)){document.getElementById("ap-uzenet").textContent="A link https://-sel kezdődjön.";return}
+ if(!await kerd(mikor?`Időzíted ezt az értesítést (${TEMANEV[tema]})?`:tema==="mindenki"?"Most kiküldöd ezt az értesítést mindenkinek, aki telepítette az appot?":`Most kiküldöd ezt az értesítést mindenkinek, aki a(z) ${TEMANEV[tema]} témát kéri?`))return;
+ const r=await apmuv("kuld",{cim,szoveg,tema,mikor,hir_id:APVAL?APVAL.id:"",kep:APKEP||(APVAL?(APVAL.kep||""):""),link});
  document.getElementById("ap-uzenet").textContent=r.hiba?r.hiba:(r.idozitve?"Időzítve: "+fmt(new Date(r.idozitve),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):"Kiment.");
  if(!r.hiba)document.getElementById("ap-urit").click(),document.getElementById("ap-uzenet").textContent=r.idozitve?"Időzítve.":"Kiment.";aptolt()};
 document.getElementById("ap-aktiv").onclick=()=>{const b=document.getElementById("ap-aktiv"),be=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",String(be));b.lastChild.textContent=be?"Automatikus küldés bekapcsolva":"Automatikus küldés kikapcsolva"};
@@ -869,7 +901,7 @@ document.getElementById("ap-beall").onclick=async()=>{const v=i=>document.getEle
  alert(r.hiba?r.hiba:"Elmentve.");aptolt()};
 
 /* ---------- fülek ---------- */
-function ful(f){const fo=f==="koltseg"?"statisztika":f;document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===fo));document.querySelectorAll("[data-alful]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.alful===f)));try{document.querySelector(`.fulek [data-ful="${fo}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
+function ful(f){const fo=f==="koltseg"?"statisztika":f;if(fo==="posztok"&&!PNGORGETVE)setTimeout(napsavIgazit,50);document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===fo));document.querySelectorAll("[data-alful]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.alful===f)));try{document.querySelector(`.fulek [data-ful="${fo}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
  ["posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas","hirlevel","statisztika","app"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
  if(f==="statisztika")stolt();
  if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok")htolt();if(f==="cikkbehuzas")htolt(true);if(f==="hirlevel")hltolt();if(f==="app")aptolt();try{localStorage.setItem("ful",f)}catch(e){}latta(f);jelvenyek()}
