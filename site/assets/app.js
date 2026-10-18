@@ -356,7 +356,7 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     var kiemel=function(szoveg,kif){ var e=egyszeru(szoveg); var i=e.indexOf(kif); if(i<0) return null; var start=Math.max(0,i-45); return (start>0?'…':'')+biztos(szoveg.slice(start,i))+'<mark>'+biztos(szoveg.slice(i,i+kif.length))+'</mark>'+biztos(szoveg.slice(i+kif.length,i+kif.length+90))+'…'; };
     var nyitva=function(igen){ panel.hidden=!igen; mezo.setAttribute('aria-expanded',igen?'true':'false'); };
     var rajzol=function(talalatok,kif){ kiemeltIndex=-1; if(!kif){ nyitva(false); lista.innerHTML=''; return; } if(!talalatok.length){ lista.innerHTML='<div class="kereso-ures">Erre nincs találat. Próbálj rövidebb szót.</div>'; nyitva(true); return; }
-      lista.innerHTML=talalatok.slice(0,12).map(function(x){ var r=kiemel(x.sz,kif)||kiemel(x.b,kif)||''; return '<a class="kereso-tetel" href="'+qnEsc(x.u)+'" role="option"><span class="kt-meta">'+biztos(x.k)+(x.d?' · '+qnEsc(x.d):'')+'</span><span class="kt-cim">'+kiemelCim(x.c,kif)+'</span>'+(r?'<span class="kt-reszlet">'+r+'</span>':'')+'</a>'; }).join(''); nyitva(true); };
+      lista.innerHTML=talalatok.slice(0,12).map(function(x){ var r=kiemel(x.sz,kif)||kiemel(x.b,kif)||''; return '<a class="kereso-tetel" href="'+qnEsc(x.u)+'" role="option"><span class="kt-meta">'+biztos(x.k)+(x.d?' · '+qnEsc(x.d):'')+'</span><span class="kt-cim">'+kiemelCim(x.c,kif)+'</span>'+(r?'<span class="kt-reszlet">'+r+'</span>':'')+'</a>'; }).join('')+(talalatok.length>12?'<a class="kereso-mind" href="/kereses?q='+encodeURIComponent(mezo.value.trim())+'">Mind a '+talalatok.length+' találat egy oldalon</a>':''); nyitva(true); };
     var keres=function(nyers){ var kif=egyszeru(nyers.trim()); if(torlo) torlo.hidden=!nyers; if(!mutato||kif.length<2){ rajzol([],''); return; } var pont=[]; for(var i=0;i<mutato.length;i++){ var x=mutato[i], p=0; if(x._c.indexOf(kif)>=0) p+=100; if(x._c.indexOf(kif)===0) p+=40; if(x._k.indexOf(kif)>=0) p+=30; if(x._b.indexOf(kif)>=0) p+=20; if(x._sz.indexOf(kif)>=0) p+=10; if(p) pont.push([p,x]); } pont.sort(function(a,b){return b[0]-a[0];}); rajzol(pont.map(function(x){return x[1];}),kif); };
     var urit=function(){ mezo.value=''; if(torlo) torlo.hidden=true; lista.innerHTML=''; nyitva(false); };
     mezo.addEventListener('input',function(){ tolts().then(function(){ keres(mezo.value); }); });
@@ -364,6 +364,8 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     mezo.addEventListener('blur',function(){ setTimeout(function(){ if(!mezo.value&&panel.hidden) doboz.classList.remove('nyitott'); },200); });
     if(torlo) torlo.addEventListener('click',function(){ urit(); mezo.focus(); });
     var sor=doboz.querySelector('.kereso-mezosor'); sor.addEventListener('click',function(e){ if(torlo&&torlo.contains(e.target)) return; doboz.classList.add('nyitott'); setTimeout(function(){ mezo.focus(); },30); });
+    // Enter a mezőben (kijelölt találat nélkül): a találati oldal, az összes találattal (Heni 2026-10-18)
+    mezo.addEventListener('keydown',function(e){ if(e.key!=='Enter'||kiemeltIndex>=0||mezo.value.trim().length<2) return; e.preventDefault(); location.href='/kereses?q='+encodeURIComponent(mezo.value.trim()); });
     document.addEventListener('click',function(e){ if(!panel.hidden&&!doboz.contains(e.target)) nyitva(false); });
     document.addEventListener('keydown',function(e){
       if((e.key==='k'||e.key==='K')&&(e.metaKey||e.ctrlKey)){ e.preventDefault(); mezo.focus(); mezo.select(); return; }
@@ -700,6 +702,33 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     if (marad.length !== olvas().length) { ir(marad); frissit(); }
     rajzol(marad, elo);
   }).catch(function(){ oldal.innerHTML = '<p class="mentett-ures">Most nem sikerült betölteni a mentett híreidet. Frissítsd az oldalt.</p>'; });
+})();
+// Találati oldal (/kereses?q=...): az összes találat a napi oldal kártyáival (Heni 2026-10-18)
+(function(){
+  var oldal = document.querySelector('[data-kereses-oldal]'); if (!oldal) return;
+  var q = (new URLSearchParams(location.search).get('q') || '').trim().slice(0, 100);
+  var cim = document.querySelector('[data-kereses-cim]'), db = document.querySelector('[data-kereses-db]');
+  var mezo = document.getElementById('kereso-mezo'); if (mezo && q) mezo.value = q;
+  var egyszeru = function(t){ return (t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); };
+  var kif = egyszeru(q);
+  if (cim) cim.textContent = q ? 'Találatok erre: „' + q + '”' : 'Keresés';
+  if (kif.length < 2) { oldal.innerHTML = '<p class="mentett-ures">Írj be legalább 2 betűt a fenti keresőbe, és nyomj Entert.</p>'; return; }
+  fetch('/kereso.json', {cache: 'no-cache'}).then(function(r){ return r.json(); }).then(function(d){
+    var pont = [];
+    d.forEach(function(x){ if (!/^\/hir\/[a-z0-9-]{1,200}$/.test(x.u || '')) return;
+      var c = egyszeru(x.c), k = egyszeru(x.k + ' ' + x.g), b = egyszeru(x.b), sz = egyszeru(x.sz), p = 0;
+      if (c.indexOf(kif) >= 0) p += 100; if (c.indexOf(kif) === 0) p += 40; if (k.indexOf(kif) >= 0) p += 30; if (b.indexOf(kif) >= 0) p += 20; if (sz.indexOf(kif) >= 0) p += 10;
+      if (p) pont.push([p, x]); });
+    pont.sort(function(a, b){ return b[0] - a[0]; });
+    if (db) { db.textContent = pont.length + ' hír'; db.hidden = false; }
+    if (!pont.length) { oldal.innerHTML = '<p class="mentett-ures">Erre nincs találat. Próbálj rövidebb szót.</p>'; return; }
+    oldal.innerHTML = '<div class="racs-4">' + pont.map(function(t){ var x = t[1], kep = x.p || '';
+      return '<a class="hir hir-kicsi" href="' + qnEsc(x.u) + '" data-hid="' + qnEsc(x.i) + '">'
+        + (kep ? '<div class="hkep"><img src="' + qnEsc(kep) + '" alt="" loading="lazy"></div>' : '')
+        + '<div class="htorzs"><div class="hmeta"><span class="forras">' + qnEsc(x.k) + '</span>' + (x.d ? '<span>' + qnEsc(x.d) + '</span>' : '')
+        + (x.g ? '<span class="kat">' + qnEsc(x.g) + '</span>' : '') + '</div><h3>' + qnEsc(x.c) + '</h3>' + (x.b ? '<p class="hlead">' + qnEsc(x.b) + '</p>' : '') + '</div></a>';
+    }).join('') + '</div>';
+  }).catch(function(){ oldal.innerHTML = '<p class="mentett-ures">Most nem sikerült betölteni a találatokat. Frissítsd az oldalt.</p>'; });
 })();
 // Szavazás: párbajok (Heni 2026-10-14). Minden [data-parbaj] elem egy párbaj; az állás csak a saját szavazat után
 // (vagy a lezárt párbajnál) látszik. Mobilon a Szavazás oldal futó párbajai húzható kártyapakliként jönnek:
