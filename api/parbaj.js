@@ -4,7 +4,7 @@
 //        hogy a futó párbaj állása ne befolyásolja a szavazást.
 //   POST /api/parbaj {id, l, valasztas: "a"|"b"}   -> {allas: {a, b}, sajat}
 // A látogató ugyanaz a véletlen, névtelen böngészőazonosító, mint a hírszavazásnál (qn-l). Párbajonként egy
-// szavazat, amely átváltható. Egy IP-címről párbajonként egy szavazat (visszafejthetetlen lenyomat, 400 nap), és
+// szavazat, amely leadás után nem módosítható. Egy IP-címről párbajonként egy szavazat (visszafejthetetlen lenyomat, 400 nap), és
 // óránként legfeljebb 120 szavazás IP-nként. A párbajok listáját és időpontjait a kitett /parbajok.json adja.
 const crypto = require("crypto");
 
@@ -90,6 +90,9 @@ module.exports = async (req, res) => {
       const gazda = await kv("HGET", ipk, ipl);
       if (gazda && gazda !== l) return json(res, 409, { hiba: "Már szavaztál ebben a párbajban!", mar: true });
       const regi = await kv("HGET", P + "l:" + l, id);
+      // egy szavazat, nem módosítható (Heni 2026-10-18: „ha valaki szavaz azt zárd le, többször ne szavazhasson”)
+      if ((regi === "a" || regi === "b") && regi !== valasztas)
+        return json(res, 409, { hiba: "Már szavaztál ebben a párbajban.", mar: true, sajat: regi, allas: await allasBe(id) });
       if (regi !== valasztas) {
         await kv("HSET", P + "l:" + l, id, valasztas);
         await kv("EXPIRE", P + "l:" + l, 400 * 86400);
