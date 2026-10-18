@@ -341,7 +341,8 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <p class="hl-cimke">Új értesítés</p>
 <div class="ap-ketto">
 <form class="ap-urlap" id="ap-urlap">
-<label>Hír (nem kötelező)<input type="search" id="ap-hirkeres" placeholder="Keresés a friss hírek között" autocomplete="off"></label>
+<label>Hírhez kötöm (nem kötelező)<input type="search" id="ap-hirkeres" placeholder="Írj be pár szót, és válaszd ki a hírt a listából" autocomplete="off">
+<small id="ap-hirvalaszt">Nincs hír kiválasztva. Ha kiválasztasz egyet, kitölti a címet, a szöveget és a képet, és az értesítésre koppintva az a hír nyílik meg az appban. A beírt szöveg magában nem megy ki.</small></label>
 <div id="ap-hirlista" class="ap-hirlista" hidden></div>
 <label>Cím<input id="ap-cim" maxlength="90" required></label>
 <label>Szöveg<textarea id="ap-szoveg" maxlength="240" rows="3"></textarea></label>
@@ -887,13 +888,18 @@ async function aptolt(){let d;try{d=await lekér(U.push)}catch(e){d={hiba:"Az é
  I.querySelectorAll("[data-apv]").forEach(g=>g.onclick=async()=>{if(!await kerd("Visszavonod ezt az időzített értesítést?"))return;const r=await apmuv("visszavon",{id:g.dataset.apv});if(r.hiba)alert(r.hiba);aptolt()});
  E.innerHTML=(d.elozmeny||[]).map(x=>`<div class="ap-sor2"><span class="em"><b>${esc(x.cim)}</b><br>${esc(x.szoveg||"")}</span><span class="ido">${ido(x.kuldve)} · ${esc(TEMANEV[x.tema]||x.tema)}${x.forras==="auto"?" · automatikus":""} · ${x.megnyitas||0} megnyitás</span></div>`).join("")||`<p class="ures">Még nem ment ki értesítés.</p>`}
 async function apHirek(){if(APHIR)return APHIR;const l=[];for(const n of [1,2]){try{const d=await (await fetch("https://quicknews.hu/app/v1/friss-"+n+".json",{cache:"no-store"})).json();l.push(...(d.hirek||[]))}catch(e){}}APHIR=l;return l}
-document.getElementById("ap-hirkeres").addEventListener("input",async e=>{const q=e.target.value.trim().toLowerCase(),L=document.getElementById("ap-hirlista");
+/* a kiválasztott hír állapota a kereső alatt: látszik, mihez kötődik az értesítés, és hogy a beírt szöveg magában nem megy ki */
+function apHirAllapot(){const el=document.getElementById("ap-hirvalaszt");
+ el.innerHTML=APVAL?`<b style="color:var(--amber)">Kiválasztva:</b> ${esc(APVAL.cim)}. Koppintásra ez a hír nyílik meg. <button type="button" class="sor-torol" id="ap-hirtorol">Leválasztom</button>`
+  :"Nincs hír kiválasztva. Ha kiválasztasz egyet, kitölti a címet, a szöveget és a képet, és az értesítésre koppintva az a hír nyílik meg az appban. A beírt szöveg magában nem megy ki.";
+ const t=document.getElementById("ap-hirtorol");if(t)t.onclick=()=>{APVAL=null;document.getElementById("ap-hirkeres").value="";apHirAllapot();apElonezet()}}
+document.getElementById("ap-hirkeres").addEventListener("input",async e=>{if(APVAL&&e.target.value!==APVAL.cim){APVAL=null;apHirAllapot();apElonezet()}const q=e.target.value.trim().toLowerCase(),L=document.getElementById("ap-hirlista");
  if(q.length<2){L.hidden=true;return}const l=(await apHirek()).filter(h=>(h.cim+" "+h.lead).toLowerCase().includes(q)).slice(0,12);
  L.hidden=!l.length;L.innerHTML=l.map((h,i)=>`<button type="button" data-api="${i}">${esc(h.cim)}<small>${esc(h.ido_hu||"")} · ${esc(h.forras||"")}</small></button>`).join("");
- L.querySelectorAll("[data-api]").forEach(g=>g.onclick=()=>{const h=l[+g.dataset.api];APVAL=h;document.getElementById("ap-cim").value=h.cim.slice(0,90);document.getElementById("ap-szoveg").value=(h.lead||"").slice(0,240);
+ L.querySelectorAll("[data-api]").forEach(g=>g.onclick=()=>{const h=l[+g.dataset.api];APVAL=h;apHirAllapot();document.getElementById("ap-cim").value=h.cim.slice(0,90);document.getElementById("ap-szoveg").value=(h.lead||"").slice(0,240);
   document.getElementById("ap-hirkeres").value=h.cim;L.hidden=true;apElonezet()})});
 ["ap-cim","ap-szoveg"].forEach(i=>document.getElementById(i).addEventListener("input",apElonezet));
-document.getElementById("ap-urit").onclick=()=>{APVAL=null;APKEP="";apKepAllapot("Nincs saját kép");["ap-hirkeres","ap-cim","ap-szoveg","ap-mikor","ap-link"].forEach(i=>document.getElementById(i).value="");document.getElementById("ap-uzenet").textContent="";apElonezet()};
+document.getElementById("ap-urit").onclick=()=>{APVAL=null;setTimeout(apHirAllapot,0);APKEP="";apKepAllapot("Nincs saját kép");["ap-hirkeres","ap-cim","ap-szoveg","ap-mikor","ap-link"].forEach(i=>document.getElementById(i).value="");document.getElementById("ap-uzenet").textContent="";apElonezet()};
 document.getElementById("ap-urlap").onsubmit=async e=>{e.preventDefault();const cim=document.getElementById("ap-cim").value.trim(),szoveg=document.getElementById("ap-szoveg").value.trim(),tema=document.getElementById("ap-tema").value,m=document.getElementById("ap-mikor").value;
  const mikor=m?new Date(m).toISOString():"";
  const link=document.getElementById("ap-link").value.trim();if(link&&!/^https:\/\//.test(link)){document.getElementById("ap-uzenet").textContent="A link https://-sel kezdődjön.";return}
