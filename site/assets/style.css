@@ -1396,7 +1396,6 @@ body.halloween { background-color: transparent; background-image: radial-gradien
 .torzs h3 { font-size: 22px; line-height: 28px; font-weight: 800; letter-spacing: -0.01em; margin: 32px 0 12px; }
 .torzs ol { margin: 0 0 16px; padding-left: 24px; }
 .torzs li { margin-bottom: 12px; padding-left: 4px; }
-/* kereső: találatszám és „Mind a N találat” sor (Enterre az összes találat) */
-.kereso-szam { padding: 12px 16px 4px; font-size: 13px; line-height: 18px; font-weight: 700; color: var(--szoveg-2); }
-.kereso-mind { display: block; width: 100%; padding: 14px 16px; border: 0; border-top: 1px solid var(--vonal); background: transparent; color: var(--kiemelo-szin); font: inherit; font-size: 15px; font-weight: 700; text-align: left; cursor: pointer; }
+/* kereső: „Mind a N találat egy oldalon” sor a lenyíló lista alján (Enterre is a találati oldal nyílik) */
+.kereso-mind { display: block; width: 100%; padding: 14px 16px; border: 0; border-top: 1px solid var(--vonal); background: transparent; color: var(--kiemelo-szin); font: inherit; font-size: 15px; font-weight: 700; text-align: left; text-decoration: none; cursor: pointer; box-sizing: border-box; }
 .kereso-mind:hover, .kereso-mind:focus-visible { background: var(--bg-3); }
