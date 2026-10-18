@@ -16,7 +16,8 @@ const suti = require("./_suti.js");
 
 const P = "qn:push:";
 // rovat_X: a rovat fontos hírei (küszöb-1), rovat_X_mind: a rovat minden híre, feltorekvo: a felkapott hírek
-const TEMAK = /^(kiemelt|napi|feltorekvo|rovat_(modell|eszkoz|video|kep|ugynok|uzlet|kutatas|egyeb)(_mind)?)$/;
+// mindenki: minden telepített app (az app mindig feliratkozik rá); egyeb: nyereményjáték, újdonság, bejelentés (kikapcsolható)
+const TEMAK = /^(mindenki|egyeb|kiemelt|napi|feltorekvo|rovat_(modell|eszkoz|video|kep|ugynok|uzlet|kutatas|egyeb)(_mind)?)$/;
 const ALAP_BEALL = { aktiv: true, napiMax: 3, mindMax: 10, kuszob: 5, csendesTol: 22, csendesIg: 7 };
 
 async function kv(...parancs) {
@@ -91,7 +92,7 @@ async function fcmKuld(e) {
   const fiok = JSON.parse(process.env.FCM_SZOLGALTATAS);
   const token = await fcmToken(fiok);
   // data-üzenet: az app maga rajzolja ki, így a csendes órát és a csatornát ő kezeli
-  const data = { pid: e.id, cim: e.cim, szoveg: e.szoveg, hir_id: e.hir_id || "", kep: e.kep || "", tema: e.tema };
+  const data = { pid: e.id, cim: e.cim, szoveg: e.szoveg, hir_id: e.hir_id || "", kep: e.kep || "", link: e.link || "", tema: e.tema };
   const r = await fetch(`https://fcm.googleapis.com/v1/projects/${fiok.project_id}/messages:send`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
@@ -129,7 +130,9 @@ function ertesites(b, forras) {
   if (cim.length < 3) return [null, "Adj meg címet."];
   const hir_id = /^[a-f0-9]{12}$/.test(b.hir_id || "") ? b.hir_id : "";
   const kep = /^https:\/\/quicknews\.hu\//.test(b.kep || "") ? String(b.kep).slice(0, 400) : "";
-  return [{ id: crypto.randomBytes(6).toString("hex"), cim, szoveg, hir_id, kep, tema, forras, kert: new Date().toISOString() }, null];
+  // koppintásra megnyíló cím (nyereményjáték, bejelentés); hírnél a hír nyílik, ez csak hír nélkül számít
+  const link = /^https:\/\/[^\s"<>]+$/.test(b.link || "") ? String(b.link).slice(0, 400) : "";
+  return [{ id: crypto.randomBytes(6).toString("hex"), cim, szoveg, hir_id, kep, link, tema, forras, kert: new Date().toISOString() }, null];
 }
 
 module.exports = async (req, res) => {
@@ -137,6 +140,17 @@ module.exports = async (req, res) => {
   const mi = String((req.query && req.query.mi) || "");
   const vanFcm = !!process.env.FCM_SZOLGALTATAS;
   try {
+    // a pultból feltöltött értesítéskép nyilvánosan (az app ezt tölti le a kibontott értesítéshez)
+    if (mi === "kep" && req.method === "GET") {
+      const id = String((req.query && req.query.id) || "");
+      if (!/^[a-f0-9]{16}$/.test(id)) return json(res, 400, { hiba: "Rossz kérés." });
+      const b64 = await kv("GET", P + "kep:" + id);
+      if (!b64) return json(res, 404, { hiba: "Nincs ilyen kép." });
+      res.statusCode = 200;
+      res.setHeader("Content-Type", "image/jpeg");
+      res.setHeader("Cache-Control", "public, max-age=2592000, immutable");
+      return res.end(Buffer.from(b64, "base64"));
+    }
     if (mi === "megnyitas" && req.method === "POST") {
       const b = await torzs(req);
       if (!/^[a-f0-9]{12}$/.test(b.pid || "")) return json(res, 400, { hiba: "Rossz kérés." });
@@ -228,6 +242,17 @@ module.exports = async (req, res) => {
       if (!t) return json(res, 404, { hiba: "Nincs ilyen időzített értesítés." });
       await kv("ZREM", P + "idozitett", t);
       return json(res, 200, { ok: true });
+    }
+    if (mi === "kep_feltolt" && req.method === "POST") {
+      // a pult a böngészőben már átméretezte (legfeljebb 1200 px széles JPEG); 60 napig marad meg
+      const adat = String(b.adat || "").replace(/^data:image\/jpeg;base64,/, "");
+      if (!/^[A-Za-z0-9+/=]+$/.test(adat) || adat.length < 100) return json(res, 400, { hiba: "Rossz kép." });
+      if (adat.length > 900000) return json(res, 413, { hiba: "Túl nagy kép (legfeljebb kb. 650 kB)." });
+      const nyers = Buffer.from(adat, "base64");
+      if (nyers[0] !== 0xff || nyers[1] !== 0xd8) return json(res, 400, { hiba: "Csak JPEG kép tölthető fel." });
+      const id = crypto.randomBytes(8).toString("hex");
+      await kv("SET", P + "kep:" + id, adat, "EX", 60 * 86400);
+      return json(res, 200, { ok: true, url: "https://quicknews.hu/api/push?mi=kep&id=" + id });
     }
     if (mi === "kuld") {
       const [e, hiba] = ertesites(b, "kezi");
