@@ -243,6 +243,23 @@ module.exports = async (req, res) => {
       await kv("ZREM", P + "idozitett", t);
       return json(res, 200, { ok: true });
     }
+    // az app naplója (quicknews-android Naplo.kt): csak az admin telefonjáról jön, a pult sütijével; az utolsó 5000 sor
+    if (mi === "naplo" && req.method === "POST") {
+      const eszkoz = String(b.eszkoz || "").slice(0, 80);
+      const sorok = (Array.isArray(b.sorok) ? b.sorok : []).slice(0, 200).map((x) => String(x).slice(0, 6000));
+      for (const s of sorok) {
+        let o; try { o = JSON.parse(s); } catch { continue; }
+        o.eszkoz = eszkoz;
+        await kv("LPUSH", P + "naplo", JSON.stringify(o));
+      }
+      await kv("LTRIM", P + "naplo", 0, 4999);
+      return json(res, 200, { ok: true, db: sorok.length });
+    }
+    if (mi === "naplo_olvas") {
+      const n = Math.max(1, Math.min(2000, parseInt((req.query && req.query.n) || "300", 10) || 300));
+      const l = ((await kv("LRANGE", P + "naplo", 0, n - 1)) || []).map((x) => { try { return JSON.parse(x); } catch { return null; } }).filter(Boolean);
+      return json(res, 200, { ok: true, sorok: l });
+    }
     if (mi === "kep_feltolt" && req.method === "POST") {
       // a pult a böngészőben már átméretezte (legfeljebb 1200 px széles JPEG); 60 napig marad meg
       const adat = String(b.adat || "").replace(/^data:image\/jpeg;base64,/, "");
