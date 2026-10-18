@@ -88,5 +88,11 @@
       "destination": "https://quicknews.hu/$1",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/.well-known/assetlinks.json",
+      "destination": "/app/assetlinks.json"
+    }
   ]
 }
