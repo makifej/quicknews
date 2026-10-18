@@ -105,12 +105,18 @@ async function beallitas() {
   return { ...ALAP_BEALL, ...JSON.parse((await kv("GET", P + "beall")) || "{}") };
 }
 
+// kétszer ugyanarról soha: a Kiemelt (és minden kézi) küldés a hír azonosítóján, az automatikus rovat-értesítés
+// külön kulcson, hogy egy fontos hír a Kiemelt témára és a saját rovatára is kimehessen
+function kimentKulcs(e) {
+  return e.forras === "auto" && e.tema.startsWith("rovat_") ? "r:" + e.hir_id : e.hir_id;
+}
+
 async function naplozKuld(e) {
   e.kuldve = new Date().toISOString();
   e.fcm = await fcmKuld(e);
   await kv("LPUSH", P + "elozmeny", JSON.stringify(e));
   await kv("LTRIM", P + "elozmeny", 0, 199);
-  if (e.hir_id) await kv("SADD", P + "kiment", e.hir_id);
+  if (e.hir_id) await kv("SADD", P + "kiment", kimentKulcs(e));
   return e;
 }
 
@@ -158,20 +164,25 @@ module.exports = async (req, res) => {
         if ((await kv("SET", P + "napi:" + nap, "1", "NX", "EX", 3 * 86400)) !== "OK") return json(res, 200, { ok: false, ok_miert: "ma már kiment" });
         return json(res, 200, { ok: true, kuldve: await naplozKuld(e) });
       }
-      if (Number(b.fontossag || 0) < beall.kuszob && !b.fohir) return json(res, 200, { ok: false, ok_miert: "küszöb alatt" });
-      if (b.hir_id && (await kv("SISMEMBER", P + "kiment", b.hir_id))) return json(res, 200, { ok: false, ok_miert: "már kiment" });
-      const db = Number((await kv("GET", P + "auto:" + nap)) || 0);
-      if (db >= beall.napiMax) return json(res, 200, { ok: false, ok_miert: "napi keret elfogyott" });
+      // rovat-értesítés: a küszöbnél eggyel kisebb fontosságtól (alapból 4), a Kiemelt: a küszöbtől (alapból 5)
+      const rovatE = String(b.tema || "").startsWith("rovat_");
+      const kuszob = rovatE ? Math.max(1, beall.kuszob - 1) : beall.kuszob;
+      if (Number(b.fontossag || 0) < kuszob && !b.fohir) return json(res, 200, { ok: false, ok_miert: "küszöb alatt" });
       const [e, hiba] = ertesites(b, "auto");
       if (!e) return json(res, 400, { hiba });
-      await kv("INCR", P + "auto:" + nap);
-      await kv("EXPIRE", P + "auto:" + nap, 3 * 86400);
+      if (e.hir_id && (await kv("SISMEMBER", P + "kiment", kimentKulcs(e)))) return json(res, 200, { ok: false, ok_miert: "már kiment" });
+      // napi keret témánként: Kiemelt napiMax, egy rovat ugyanennyi
+      const szamlalo = P + "auto:" + e.tema + ":" + nap;
+      const db = Number((await kv("GET", szamlalo)) || 0);
+      if (db >= beall.napiMax) return json(res, 200, { ok: false, ok_miert: "napi keret elfogyott" });
+      await kv("INCR", szamlalo);
+      await kv("EXPIRE", szamlalo, 3 * 86400);
       if (csendesE(beall, ora)) {
         // csendes órában reggel 7-re időzítjük (PRD 5)
         const reggel = new Date(); reggel.setUTCMinutes(0, 0, 0);
         do reggel.setTime(reggel.getTime() + 3600000); while (budapest(reggel).ora !== beall.csendesIg);
         await kv("ZADD", P + "idozitett", reggel.getTime(), JSON.stringify(e));
-        if (e.hir_id) await kv("SADD", P + "kiment", e.hir_id);
+        if (e.hir_id) await kv("SADD", P + "kiment", kimentKulcs(e));
         return json(res, 200, { ok: true, idozitve: reggel.toISOString() });
       }
       return json(res, 200, { ok: true, kuldve: await naplozKuld(e) });
