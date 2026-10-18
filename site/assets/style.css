@@ -1355,3 +1355,16 @@ html.hl-nyitva { overflow: hidden; }
   .pb-pakli-vege { grid-area: 1 / 1; display: flex; flex-direction: column; gap: 8px; text-align: center; padding: 32px 16px; background: var(--bg-2); border: 1px solid var(--vonal); border-radius: var(--sugar); color: var(--szoveg-2); }
   .pb-pakli-vege b { color: var(--szoveg); font-size: 20px; }
 }
+
+/* Ideiglenes halloweenes téma (Heni 2026-10-18). A render.py HALLOWEEN kapcsolója teszi a body-ra a .halloween osztályt;
+   kikapcsolva ez a blokk hatástalan. Narancs kiemelés, tök a logópont helyén, egy denevér a logó mellett. */
+body.halloween { --kiemelo: #ff7518; --kiemelo-szin: #ff8a3d; }
+:root[data-theme="light"] body.halloween { --kiemelo-szin: #b34700; --kiemeles-bg: #ffe6d4; }
+.halloween .logo .pont { width: 21px; height: 20px; margin-top: -3px; border-radius: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 26'%3E%3Cpath d='M13 1.5h2.6l-.8 5.5h-2z' fill='%233e8e41'/%3E%3Cellipse cx='8.5' cy='15.5' rx='7.5' ry='9.5' fill='%23d9590b'/%3E%3Cellipse cx='19.5' cy='15.5' rx='7.5' ry='9.5' fill='%23d9590b'/%3E%3Cellipse cx='14' cy='15.5' rx='7' ry='10.5' fill='%23ff7518'/%3E%3C/svg%3E") center / contain no-repeat; }
+.halloween .logo .nev::after { content: ""; display: inline-block; width: 28px; height: 13px; margin-left: 10px; vertical-align: 0.45em; opacity: 0.9;
+  background: var(--szoveg-2); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 11'%3E%3Cpath d='M0 3C3 1 6 1 8 3h2l.8-1.8.8 1.4h.8l.8-1.4L14 3h2c2-2 5-2 8 0-2 1-3 3-3 5-1.5-1.2-3-1-4 .2-1.2-1.4-2.6-1.2-3.6.4L12 10l-1.4-1.4C9.6 7 8.2 6.8 7 8.2 6 7 4.5 6.8 3 8c0-2-1-4-3-5z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 11'%3E%3Cpath d='M0 3C3 1 6 1 8 3h2l.8-1.8.8 1.4h.8l.8-1.4L14 3h2c2-2 5-2 8 0-2 1-3 3-3 5-1.5-1.2-3-1-4 .2-1.2-1.4-2.6-1.2-3.6.4L12 10l-1.4-1.4C9.6 7 8.2 6.8 7 8.2 6 7 4.5 6.8 3 8c0-2-1-4-3-5z'/%3E%3C/svg%3E") center / contain no-repeat;
+  animation: qn-denever 6s cubic-bezier(0.32, 0.72, 0, 1) infinite alternate; }
+@keyframes qn-denever { from { transform: translateY(0) rotate(-4deg); } to { transform: translateY(-4px) rotate(4deg); } }
+@media (prefers-reduced-motion: reduce) { .halloween .logo .nev::after { animation: none; } }
+@media (max-width: 767px) { .halloween .logo .pont { width: 16px; height: 15px; margin-top: -2px; } .halloween .logo .nev::after { width: 20px; height: 10px; margin-left: 6px; } }
