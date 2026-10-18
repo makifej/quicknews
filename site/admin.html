@@ -81,7 +81,7 @@ transition:border-color .3s cubic-bezier(.32,.72,0,1)}
 #poszt-tip{position:fixed;z-index:60;max-width:min(420px,calc(100vw - 24px));max-height:min(60vh,520px);overflow:auto;padding:12px 16px;background:var(--lap2);color:var(--szoveg);border:1px solid var(--vonal);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.45);font-size:15px;line-height:22px;white-space:pre-wrap;pointer-events:none}
 #poszt-tip[hidden]{display:none}
 #poszt-lap{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center}#poszt-lap[hidden]{display:none}
-#poszt-lap .pl-doboz{width:min(640px,100%);max-height:75vh;max-height:75dvh;display:flex;flex-direction:column;background:var(--lap2);border:1px solid var(--vonal);border-radius:16px 16px 0 0;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+#poszt-lap .pl-doboz{width:min(640px,100%);max-height:75vh;display:flex;flex-direction:column;background:var(--lap2);border:1px solid var(--vonal);border-radius:16px 16px 0 0;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
 #poszt-lap .pl-fej{-webkit-user-select:none;user-select:none;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}#poszt-lap .pl-fej b{font-size:16px}
 #poszt-lap .pl-zar{font:700 15px Manrope,sans-serif;color:#131313;background:var(--amber);border-radius:999px;padding:8px 16px}
 #poszt-lap .pl-szoveg{overflow:auto;overscroll-behavior:contain;white-space:pre-wrap;font-size:16px;line-height:24px;color:var(--szoveg)}
@@ -95,7 +95,7 @@ button.torol:disabled{opacity:.5}
 /* saját megerősítő ablak: a böngésző confirm()-ja letiltható („ne nyisson több ablakot”), és onnantól minden gomb némán semmit nem csinál (Heni 2026-10-14) */
 #kerd-ablak{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:16px}
 #kerd-ablak[hidden]{display:none}
-.kerd-doboz{background:var(--lap2);border:1px solid var(--vonal);border-radius:12px;padding:24px;max-width:440px;width:100%;max-height:90dvh;overflow:auto}
+.kerd-doboz{background:var(--lap2);border:1px solid var(--vonal);border-radius:12px;padding:24px;max-width:440px;width:100%;max-height:90vh;overflow:auto}
 .kerd-doboz p{margin:0 0 20px;white-space:pre-line;color:var(--szoveg);font:500 16px/1.5 Manrope,sans-serif}
 .kerd-gombok{display:flex;gap:12px;justify-content:flex-end}
 .kerd-gombok button{font:700 15px Manrope,sans-serif;border-radius:8px;padding:8px 16px;border:1px solid var(--vonal);background:var(--lap);color:var(--szoveg);cursor:pointer}
@@ -952,7 +952,9 @@ setInterval(()=>{if(!document.getElementById("p-koltseg").hidden)ktolt()},300000
  const lap=document.createElement("div");lap.id="poszt-lap";lap.hidden=true;lap.setAttribute("role","dialog");lap.setAttribute("aria-label","A poszt teljes szövege");
  lap.innerHTML='<div class="pl-doboz"><div class="pl-fej"><b>A poszt szövege</b><button type="button" class="pl-zar">Bezárás</button></div><div class="pl-szoveg"></div></div>';
  document.body.appendChild(lap);
- const nyit=el=>{t.hidden=true;akt=null;lap.querySelector(".pl-szoveg").textContent=el.getAttribute("data-poszt-szoveg");lap.hidden=false;document.body.style.overflow="hidden"};
+ // a magasságot a látható ablakból számoljuk: az Android WebView a dvh-t 0-nak veszi (Heni telefonján mérve, 2026-10-18)
+ const nyit=el=>{t.hidden=true;akt=null;lap.querySelector(".pl-szoveg").textContent=el.getAttribute("data-poszt-szoveg");
+  lap.querySelector(".pl-doboz").style.maxHeight=Math.round((window.visualViewport?visualViewport.height:innerHeight)*.75)+"px";lap.hidden=false;document.body.style.overflow="hidden"};
  const zar=()=>{lap.hidden=true;document.body.style.overflow=""};
  lap.addEventListener("click",e=>{if(e.target===lap||e.target.closest(".pl-zar"))zar()});
  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!lap.hidden)zar()});
