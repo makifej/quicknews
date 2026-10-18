@@ -8,6 +8,7 @@
 //   visszavon   POST  admin: időzített értesítés törlése
 //   beall       POST  admin: automatikus értesítések beállítása
 //   auto_gep    POST  gép: automatikus értesítés egy hírről (napi keret, csendes órák, kétszer soha)
+//   napi_gep    POST  gép: a reggeli összefoglaló a "napi" témára, naponta egyszer
 //   esedekes_gep POST gép: a lejárt időzítettek kiküldése (a felhős kör hívja)
 //   megnyitas   POST  nyilvános, névtelen: az app jelzi, hogy egy értesítést megnyitottak
 const crypto = require("crypto");
@@ -135,7 +136,7 @@ module.exports = async (req, res) => {
       return json(res, 200, { ok: true });
     }
 
-    if (mi === "auto_gep" || mi === "esedekes_gep") {
+    if (mi === "auto_gep" || mi === "esedekes_gep" || mi === "napi_gep") {
       if (!gep(req) || req.method !== "POST") return json(res, 403, { hiba: "Nincs jogosultság." });
       if (!vanFcm) return json(res, 503, { hiba: "Az FCM még nincs bekötve." });
       const beall = await beallitas();
@@ -151,6 +152,12 @@ module.exports = async (req, res) => {
       }
       const b = await torzs(req);
       if (!beall.aktiv) return json(res, 200, { ok: false, ok_miert: "ki van kapcsolva" });
+      if (mi === "napi_gep") {
+        const [e, hiba] = ertesites({ ...b, tema: "napi", hir_id: "" }, "napi");
+        if (!e) return json(res, 400, { hiba });
+        if ((await kv("SET", P + "napi:" + nap, "1", "NX", "EX", 3 * 86400)) !== "OK") return json(res, 200, { ok: false, ok_miert: "ma már kiment" });
+        return json(res, 200, { ok: true, kuldve: await naplozKuld(e) });
+      }
       if (Number(b.fontossag || 0) < beall.kuszob && !b.fohir) return json(res, 200, { ok: false, ok_miert: "küszöb alatt" });
       if (b.hir_id && (await kv("SISMEMBER", P + "kiment", b.hir_id))) return json(res, 200, { ok: false, ok_miert: "már kiment" });
       const db = Number((await kv("GET", P + "auto:" + nap)) || 0);
