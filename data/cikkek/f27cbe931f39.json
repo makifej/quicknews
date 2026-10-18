@@ -1,0 +1,54 @@
+{
+  "id": "f27cbe931f39",
+  "slug": "utmutato-keszult-a-claude-motion-animaciokeszito-funkciojahoz",
+  "forras_id": "kezi",
+  "forras_nev": "Willfrancis",
+  "url": "https://willfrancis.com/how-to-use-claude-motion/",
+  "szerzo": null,
+  "publikalva": "2026-10-14T00:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://willfrancis.com/media/articles/claude-motion/cover.png"
+  },
+  "cim_eredeti": "How to Use Claude Motion: A Simple Guide",
+  "forrasok": [],
+  "szoveg_eredeti": "Claude Motion turns a written brief and your own content into a short animation. You can use it to explain a campaign result, show how a product works or turn a complicated idea into something people can follow.\n\nYou describe what you want, review the animation, ask for changes and download a video. This guide takes you through that process, with prompts you can copy and a simple marketing example to try.\n\nAccess checked on 14 October 2026: Motion is in beta on Claude Team and Enterprise. It is not currently included in Free, Pro or Max. Those plans’ access to other Claude features does not give you Motion. See Anthropic’s plan-by-plan Artifacts guide.\n\nLaunched on 8 October 2026, Motion creates animations from text, charts, shapes and images. Claude writes the code behind them, which makes details such as wording and timing editable. It does not generate realistic footage or AI people. Think animated explainers, rather than filmed scenes. Source: Anthropic’s launch announcement.\n\nFor marketing, useful starting points include:\n\nChoose one message for your first attempt. A whole quarterly report is usually too much for a short video; one finding from it is a much better brief.\n\nAnthropic’s 81-second launch video shows bike-share data becoming a dashboard, then an animation for a team meeting. The Motion section starts around 0:39, with comments and team feedback around 0:53.\n\nOpen Claude in your browser and make sure you are using your organisation’s workspace. Motion is normally enabled on Team; an Enterprise owner needs to enable it. Source: Claude Motion help guide.\n\nIf Motion is missing, ask an owner to check Organization settings → Capabilities → Cloud code execution and file creation, then Organization settings → Artifacts. Artifacts and its Motion template need to be enabled. Enterprise group permissions can also affect access. Source: Artifacts admin guide.\n\nIn a new chat, select Output → Motion, or open Artifacts and choose a Motion template. You can also ask for an animation in chat. Source: Claude Motion help guide.\n\nAnthropic’s launch example also shows the /motion shortcut: type it into the message box and select Motion.\n\nAttach the document, chart, images or notes you want to explain. For a branded video, include your logo, colours and font guidance. Tell Claude the audience, destination and intended duration. Those are the key briefing details in Anthropic’s guidance.\n\nI would start with a 20-second video and three or four scenes. That is a suggested first exercise, rather than a product limit. Use this prompt and replace the square brackets:\n\nAsking for the storyboard first gives you a chance to fix the message before spending time on the animation. Check that the scenes tell a useful story, their durations add up, and the ending gives viewers enough time to read.\n\nAnswer any follow-up questions Claude asks about the look or length. Once the storyboard is right, tell it to build that version. Keep the first attempt simple: clear words, one chart or visual per scene, and consistent colours.\n\nPlay the whole draft, then watch it again on a smaller screen. Check:\n\nYou can request changes in chat or edit directly. Animations are saved in the Artifacts tab. Source: Claude Motion help guide. The official video also demonstrates comments placed on the video, including feedback from colleagues.\n\nBe precise about the problem and what should stay. Try these individually:\n\nThe second prompt is a request for a new layout. Review the result to check that it has actually been recomposed and that nothing important is missing.\n\nChoose Export → MP4 to download the animation. Motion counts towards your normal Claude usage allowance; complex or longer animations use more. Source: Claude Motion help guide.\n\nOpen the downloaded file and watch it from beginning to end before uploading it anywhere. Check the sound as well as the picture, and compare the exported words and numbers with your approved version.\n\nFor feedback inside Claude, open Share and choose the people and access level you need. New artifacts start private. External sharing depends on organisation settings, and recipients of new shared artifacts need a Claude account. An MP4 is often easier when people simply need to watch the finished video. Source: Anthropic’s sharing guide.\n\nAnthropic’s official demo turns bike-share data into an animation for a team meeting. The excerpt below starts at 0:44 and stops at 0:53, showing part of the finished result.\n\nWatch how the animated map directs attention to the bike docks and makes the data easier to follow. For your own video, use movement to reveal the point, then give viewers enough time to read the completed scene. The marketing exercise below gives you a separate brief to practise with your own figures.\n\nHere is a complete brief using made-up practice data, so you can try it without finding a report first. The story is simple: the same ad spend produced more signups, reducing the cost per signup.\n\nThe arithmetic matters: signups rise by 25%, but cost per signup falls by 20%. They are different measures. Also, these figures alone do not tell you why performance improved. Your prompt should prevent the video from turning a comparison into an unsupported success claim.\n\nReplace the brackets and attach the relevant source material. These are starting briefs; check the storyboard before asking Claude to animate them.\n\nYes: that is the workflow in the official launch demo. Once a dashboard reveals something useful, ask Claude to turn that finding into an animation. You can request it from a comment on the relevant chart where the interface offers that option.\n\nCheck the chart’s source and date range before using it. Treat the exported MP4 as a snapshot: exporting a video does not make its numbers update when the dashboard changes.\n\nAnthropic’s current getting-started guide describes short animations, but does not specify a universal maximum duration or promise built-in narration. Check the options available in your workspace before planning a longer or narrated video.\n\nFor a first project, keep it short and check what your workspace offers. If your preview is silent, check the player’s mute control, then check the exported file. If you need narration, plan to record it or add it in an editor, matching the animation’s pacing to the spoken explanation.\n\nFor further production work, Anthropic lists handoffs to Adobe, Descript, HeyGen, Higgsfield, invideo, Luma AI and Runway. Canva and Captions are described as coming soon in the launch announcement. Source: Anthropic. Runway’s own announcement describes adding footage, images and sound, editing scenes and reformatting the animation there.\n\nTake one result from a report you already use. Write the takeaway in one sentence, attach the source and ask for a 20-second storyboard. Approve the words and numbers, build the animation, make one round of specific edits and export it.\n\nThat gives you a useful first video and a brief you can adapt next time. For more help with Claude, see my guides to making Claude’s writing sound more human and Claude Skills for social media managers.\n\nResearch checked on 14 October 2026 against Anthropic’s launch announcement, Motion help guide, Artifacts plan and admin guides, sharing instructions, official launch video and Runway’s announcement. The prompts and fictional campaign exercise above are original examples for this guide.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Útmutató készült a Claude Motion animációkészítő funkciójához",
+  "lead": "Részletes útmutató jelent meg arról, hogyan készíthetők szerkeszthető rövid animációk és prezentációs videók a Claude új funkciójával.",
+  "osszefoglalo": "A [Claude Motion](https://support.claude.com/en/articles/17454997-get-started-with-claude-motion) segítségével a felhasználók írott leírásokból és adatokból **szerkeszthető rövid animációkat** hozhatnak létre. Az eszköz nem valósághű AI-videókat generál, hanem kóddal felépített magyarázó videókat, ahol a szövegek, diagramok és az időzítések utólag is módosíthatók.\n\nA funkció a béta időszakban a Claude Team és Enterprise előfizetők számára érhető el. Az animációk az Artifacts felületen jönnek létre, ahonnan **MP4 formátumban tölthetők le**. A finomhangolás közvetlenül a chatben vagy kézi szerkesztéssel is végezhető. A munka során célszerű először storyboardot kérni a modelltől. A használat a normál Claude-keretet fogyasztja.",
+  "miert_szamit": "A marketingesek és vállalkozók **gyorsan áttekinthető magyarázó videókká alakíthatják az adatsorokat**, ami megkönnyíti az elért eredmények bemutatását és a kampánybeszámolók elkészítését.",
+  "cimkek": [
+    "Claude",
+    "Claude Motion",
+    "Anthropic",
+    "animáció"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bemutato",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Claude Motion"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-18T18:56:21+00:00",
+  "megjelent": "2026-10-18T18:56:21+00:00",
+  "roviditve": "2026-10-18T18:56:21+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-18T18:56:29+00:00",
+    "esemeny": "Will Francis kiadott egy részletes útmutatót a Claude Motion használatáról, amellyel a Team és Enterprise felhasználók írásos leírásokból és adatokból szerkeszthető animációkat és magyarázó videókat hozhatnak létre.",
+    "forrasok": [
+      "https://willfrancis.com/how-to-use-claude-motion/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
