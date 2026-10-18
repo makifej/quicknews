@@ -342,6 +342,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <div class="ap-auto"><div class="kapcs"><button id="ap-aktiv" aria-pressed="true"><i></i>Automatikus küldés bekapcsolva</button></div>
 <label>Naponta legfeljebb<input type="number" id="ap-max" min="0" max="10"></label>
 <label>Fontosság legalább<input type="number" id="ap-kuszob" min="1" max="5"></label>
+<label>Rovat „minden hír”, naponta legfeljebb<input type="number" id="ap-mind" min="0" max="30"></label>
 <label>Csendes órák<span class="ap-ora"><input type="number" id="ap-tol" min="0" max="23">-tól<input type="number" id="ap-ig" min="0" max="23">-ig</span></label>
 <button class="gomb masod" id="ap-beall">Mentés</button></div>
 <p class="hl-megj">A beállított fontosságú hírek maguktól kimennek a Kiemelt témára, az eggyel kisebb fontosságúak a saját rovatuk témájára is. Reggel 8-kor a Napi összefoglaló a nap 3 legfontosabb hírével. A napi keret témánként számít. Csendes órában nem küldünk, az értesítés reggel megy ki. Ugyanarról a hírről egy témára soha nem megy ki kétszer.</p>
@@ -843,7 +844,7 @@ async function aptolt(){let d;try{d=await lekér(U.push)}catch(e){d={hiba:"Az é
  if(d.hiba){E.innerHTML=`<div class="hibasav">${esc(d.hiba)}</div>`;I.innerHTML="";return}
  document.getElementById("ap-fcm").hidden=!!d.fcm;
  const b=d.beall||{};const ak=document.getElementById("ap-aktiv");ak.setAttribute("aria-pressed",String(b.aktiv!==false));ak.lastChild.textContent=b.aktiv!==false?"Automatikus küldés bekapcsolva":"Automatikus küldés kikapcsolva";
- document.getElementById("ap-max").value=b.napiMax??3;document.getElementById("ap-kuszob").value=b.kuszob??5;document.getElementById("ap-tol").value=b.csendesTol??22;document.getElementById("ap-ig").value=b.csendesIg??7;
+ document.getElementById("ap-max").value=b.napiMax??3;document.getElementById("ap-kuszob").value=b.kuszob??5;document.getElementById("ap-mind").value=b.mindMax??10;document.getElementById("ap-tol").value=b.csendesTol??22;document.getElementById("ap-ig").value=b.csendesIg??7;
  const ido=x=>x?fmt(new Date(x),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):"";
  I.innerHTML=(d.idozitett||[]).map(x=>`<div class="ap-sor2"><span class="em"><b>${esc(x.cim)}</b><br>${esc(x.szoveg||"")}</span><span class="ido">${ido(x.mikor)} · ${esc(TEMANEV[x.tema]||x.tema)}${x.forras==="auto"?" · automatikus":""}</span><button class="sor-torol" data-apv="${esc(x.id)}">Visszavonom</button></div>`).join("")||`<p class="ures">Nincs időzített értesítés.</p>`;
  I.querySelectorAll("[data-apv]").forEach(g=>g.onclick=async()=>{if(!await kerd("Visszavonod ezt az időzített értesítést?"))return;const r=await apmuv("visszavon",{id:g.dataset.apv});if(r.hiba)alert(r.hiba);aptolt()});
@@ -864,7 +865,7 @@ document.getElementById("ap-urlap").onsubmit=async e=>{e.preventDefault();const 
  if(!r.hiba)document.getElementById("ap-urit").click(),document.getElementById("ap-uzenet").textContent=r.idozitve?"Időzítve.":"Kiment.";aptolt()};
 document.getElementById("ap-aktiv").onclick=()=>{const b=document.getElementById("ap-aktiv"),be=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",String(be));b.lastChild.textContent=be?"Automatikus küldés bekapcsolva":"Automatikus küldés kikapcsolva"};
 document.getElementById("ap-beall").onclick=async()=>{const v=i=>document.getElementById(i).value;
- const r=await apmuv("beall",{aktiv:document.getElementById("ap-aktiv").getAttribute("aria-pressed")==="true",napiMax:v("ap-max"),kuszob:v("ap-kuszob"),csendesTol:v("ap-tol"),csendesIg:v("ap-ig")});
+ const r=await apmuv("beall",{aktiv:document.getElementById("ap-aktiv").getAttribute("aria-pressed")==="true",napiMax:v("ap-max"),kuszob:v("ap-kuszob"),mindMax:v("ap-mind"),csendesTol:v("ap-tol"),csendesIg:v("ap-ig")});
  alert(r.hiba?r.hiba:"Elmentve.");aptolt()};
 
 /* ---------- fülek ---------- */
