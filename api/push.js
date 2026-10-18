@@ -256,7 +256,7 @@ module.exports = async (req, res) => {
       return json(res, 200, { ok: true, db: sorok.length });
     }
     if (mi === "naplo_olvas") {
-      const n = Math.max(1, Math.min(2000, parseInt((req.query && req.query.n) || "300", 10) || 300));
+      const n = Math.max(1, Math.min(2000, parseInt((req.query && req.query.n) || b.n || "300", 10) || 300));
       const l = ((await kv("LRANGE", P + "naplo", 0, n - 1)) || []).map((x) => { try { return JSON.parse(x); } catch { return null; } }).filter(Boolean);
       return json(res, 200, { ok: true, sorok: l });
     }
