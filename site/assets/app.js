@@ -757,8 +757,9 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     var al = d.querySelector('.pb-allas'), masik = d.querySelector('.pb-masik');
     if (sajat) {
       var nev = d.getAttribute('data-' + sajat);
-      if (al) al.textContent = 'A te választásod: ' + nev + ' · ' + ft.format(ossz) + ' szavazat eddig';
-      if (masik && st === 'fut') { masik.hidden = false; masik.setAttribute('data-masik', sajat === 'a' ? 'b' : 'a'); }
+      // a szavazat lezárva (Heni 2026-10-18): nincs „Mégis a másikat”, csak kiírjuk, hogy már szavazott
+      if (al) al.textContent = 'Már szavaztál: ' + nev + ' · ' + ft.format(ossz) + ' szavazat eddig';
+      if (masik) masik.hidden = true;
     } else if (al && st === 'lezart' && allas) {
       al.textContent = ft.format(ossz) + ' szavazat';
     }

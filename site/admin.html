@@ -82,7 +82,7 @@ transition:border-color .3s cubic-bezier(.32,.72,0,1)}
 #poszt-tip[hidden]{display:none}
 #poszt-lap{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center}#poszt-lap[hidden]{display:none}
 #poszt-lap .pl-doboz{width:min(640px,100%);max-height:75vh;max-height:75dvh;display:flex;flex-direction:column;background:var(--lap2);border:1px solid var(--vonal);border-radius:16px 16px 0 0;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
-#poszt-lap .pl-fej{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}#poszt-lap .pl-fej b{font-size:16px}
+#poszt-lap .pl-fej{-webkit-user-select:none;user-select:none;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}#poszt-lap .pl-fej b{font-size:16px}
 #poszt-lap .pl-zar{font:700 15px Manrope,sans-serif;color:#131313;background:var(--amber);border-radius:999px;padding:8px 16px}
 #poszt-lap .pl-szoveg{overflow:auto;overscroll-behavior:contain;white-space:pre-wrap;font-size:16px;line-height:24px;color:var(--szoveg)}
 @media (pointer:coarse){[data-poszt-szoveg]{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}}
