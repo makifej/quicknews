@@ -1,12 +1,12 @@
-/* Ideiglenes halloweenes szellemek (Heni 2026-10-18): cuki, szálon lógó szellemek, minden betöltéskor más helyen,
-   ott, ahol nincs szöveg, a tartalom fölött lassan himbálózva. A render.py HALLOWEEN kapcsolója tölti be. */
+/* Ideiglenes halloweenes szellemek (Heni 2026-10-18): cuki, szellemek, minden betöltéskor más helyen,
+   csak üres helyen, a hírek területén soha: halványan, véletlen időben bukkannak fel, pulzálnak egy kicsit, aztán máshol tűnnek fel újra. A render.py HALLOWEEN kapcsolója tölti be. */
 (function () {
-  if (!document.body.classList.contains('halloween')) return;
+  // mobilon csak a narancs szín és a tök marad (Heni 2026-10-18)
+  if (!document.body.classList.contains('halloween') || document.documentElement.clientWidth < 768) return;
   var r = Math.random;
   function koz(a, b) { return a + r() * (b - a); }
   var SZELLEM = '<svg viewBox="0 0 100 112" aria-hidden="true">' +
-    '<path class="hw-szal" d="M50 -60V16"/>' +
-    '<path class="hw-test" d="M26 50Q12 46 9 30M74 50Q88 46 91 30" fill="none" stroke-width="10" stroke-linecap="round"/>' +
+        '<path class="hw-test" d="M26 50Q12 46 9 30M74 50Q88 46 91 30" fill="none" stroke-width="10" stroke-linecap="round"/>' +
     '<path class="hw-test" d="M50 14C30 14 22 32 22 52v24c0 14 12 21 24 19 12 8 30 9 46 3-12-6-16-14-16-24V52c0-20-8-38-26-38z"/>' +
     '<ellipse cx="42" cy="40" rx="3.8" ry="5.2" class="hw-arc"/><ellipse cx="58" cy="40" rx="3.8" ry="5.2" class="hw-arc"/>' +
     '<ellipse cx="50" cy="57" rx="4.6" ry="6.4" class="hw-arc"/></svg>';
@@ -18,44 +18,63 @@
   function magassag() { reteg.style.height = document.documentElement.scrollHeight + 'px'; }
   magassag();
 
-  // a szöveg sorainak helye (oldalkoordinátában): a szellem ide nem kerülhet, képre és üres helyre igen
-  var sorok = [], jaro = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
-    acceptNode: function (n) { return /\S/.test(n.nodeValue) && n.parentElement && n.parentElement.offsetParent ? 1 : 3; } });
-  var tart = document.createRange(), sy = window.scrollY, sx = window.scrollX;
-  while (jaro.nextNode()) {
-    tart.selectNodeContents(jaro.currentNode);
-    var rl = tart.getClientRects();
-    for (var k = 0; k < rl.length; k++) sorok.push([rl[k].left + sx, rl[k].top + sy, rl[k].right + sx, rl[k].bottom + sy]);
+  // tiltott terület: minden hír, kép, videó, cím, szöveg és gomb teljes doboza, a fejléc és a lábléc;
+  // minden elhelyezés előtt frissen mérve, mert a később betöltődő képek eltolják a híreket
+  var TILOS = 'header, footer, main a, main img, main video, main picture, main figure, main p, main h1, main h2, main h3, main h4, ' +
+    'main li, main button, main mark, main input, main form, main article, main [class*="hir"], main [class*="pb-"], main [class*="szavaz"]';
+  function tiltottak() {
+    var sy = window.scrollY, sx = window.scrollX, lista = [];
+    document.querySelectorAll(TILOS).forEach(function (e) {
+      var q = e.getBoundingClientRect();
+      if (q.width && q.height) lista.push([q.left + sx, q.top + sy, q.right + sx, q.bottom + sy]);
+    });
+    return lista;
   }
-  function szabad(x, y, m) {
-    for (var k = 0; k < sorok.length; k++) {
-      var q = sorok[k];
-      if (x < q[2] + 10 && x + m > q[0] - 10 && y < q[3] + 10 && y + m * 1.12 > q[1] - 10) return false;
+  function szabad(x, y, m, lista) {
+    for (var k = 0; k < lista.length; k++) {
+      var q = lista[k];
+      if (x < q[2] + 16 && x + m > q[0] - 16 && y < q[3] + 16 && y + m * 1.12 > q[1] - 16) return false;
     }
     return true;
   }
 
   var w = document.documentElement.clientWidth, h = document.documentElement.scrollHeight;
   var fejlec = (document.querySelector('[data-fejlec]') || { offsetHeight: 120 }).offsetHeight;
-  var db = w < 768 ? 3 : 5;
-  for (var i = 0; i < db; i++) {
-    var meret = w < 768 ? koz(40, 54) : koz(50, 72), x, y, jo = false;
-    for (var p = 0; p < 80 && !jo; p++) {
-      x = koz(4, w - meret - 4);
-      y = fejlec + 40 + (i + r()) * ((h - fejlec - 200) / db);
-      jo = szabad(x, y, meret);
+  var db = 5;
+
+  // szabad hely keresése a sávjában; ha nincs, null
+  function hely(i, meret) {
+    var lista = tiltottak();
+    w = document.documentElement.clientWidth; h = document.documentElement.scrollHeight;
+    for (var p = 0; p < 120; p++) {
+      var x = koz(4, w - meret - 4), y = fejlec + 40 + (i + r()) * ((h - fejlec - 200) / db);
+      if (szabad(x, y, meret, lista)) return [x, y];
     }
-    if (!jo) continue;
+    return null;
+  }
+
+  // minden szellem halványan felbukkan, pulzál egy kicsit, eltűnik, és a következő körben máshol jelenik meg
+  // csak a teljes betöltés után (képekkel együtt) helyez el, hogy a mért elrendezés a végleges legyen
+  function indit() { for (var i = 0; i < db; i++) (function (i) {
+    var meret = koz(50, 72), xy = hely(i, meret);
+    if (!xy) return;
     var sz = document.createElement('div');
     sz.className = 'hw-szellem';
     sz.style.width = meret + 'px';
-    sz.style.left = x + 'px';
-    sz.style.top = y + 'px';
-    sz.style.animationDelay = (-koz(0, 6)).toFixed(2) + 's';
-    sz.style.animationDuration = koz(4.5, 7).toFixed(2) + 's';
-    sz.innerHTML = SZELLEM;
-    if (r() < 0.5) sz.firstChild.style.transform = 'scaleX(-1)';
+    sz.style.left = xy[0] + 'px';
+    sz.style.top = xy[1] + 'px';
+    sz.style.animationDuration = koz(8, 13).toFixed(2) + 's';
+    sz.style.animationDelay = koz(0, 9).toFixed(2) + 's';
+    sz.innerHTML = '<div class="hw-himba">' + SZELLEM + '</div>';
+    if (r() < 0.5) sz.querySelector('svg').style.transform = 'scaleX(-1)';
+    sz.addEventListener('animationiteration', function (e) {
+      if (e.target !== sz) return;
+      var uj = hely(i, meret);
+      if (uj) { sz.style.left = uj[0] + 'px'; sz.style.top = uj[1] + 'px'; sz.style.visibility = ''; }
+      else sz.style.visibility = 'hidden'; // ebben a körben nincs szabad hely: nem jelenik meg
+    });
     reteg.appendChild(sz);
-  }
+  })(i); }
+  if (document.readyState === 'complete') indit(); else window.addEventListener('load', indit);
   if ('ResizeObserver' in window) new ResizeObserver(magassag).observe(document.body);
 })();

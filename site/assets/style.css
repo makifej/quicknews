@@ -1376,13 +1376,14 @@ body.halloween { --kiemelo: #ff7518; --kiemelo-szin: #ff8a3d; }
 body.halloween { background-color: transparent; background-image: radial-gradient(ellipse 90% 520px at 50% -120px, rgba(255, 117, 24, 0.16), transparent 70%);
   background-position: center top; background-repeat: no-repeat; }
 .halloween .fejlec { background-image: radial-gradient(ellipse 70% 180% at 50% -60%, rgba(255, 117, 24, 0.14), transparent 70%); }
-/* Szálon lógó szellemek (assets/halloween.js): véletlen helyen, ahol nincs szöveg, a tartalom fölött (nem fog el kattintást), lassan himbálóznak. */
+/* Szellemek (assets/halloween.js): véletlen helyen, ahol nincs szöveg, a tartalom fölött (nem fog el kattintást), halványan, véletlen időben bukkannak fel és pulzálnak. */
 .hw-reteg { position: absolute; top: 0; left: 0; width: 100%; z-index: 5; pointer-events: none; overflow: hidden; }
-.hw-szellem { position: absolute; animation: hw-himba 6s cubic-bezier(0.32, 0.72, 0, 1) infinite alternate; }
+.hw-szellem { position: absolute; opacity: 0; animation: hw-felbukkan 10s cubic-bezier(0.32, 0.72, 0, 1) infinite backwards; }
+.hw-himba { animation: hw-himba 6s cubic-bezier(0.32, 0.72, 0, 1) infinite alternate; }
+@keyframes hw-felbukkan { 0% { opacity: 0; transform: scale(0.9); } 14% { opacity: 0.2; transform: scale(1.05); } 26% { opacity: 0.14; transform: scale(0.97); } 38% { opacity: 0.2; transform: scale(1.05); } 52%, 100% { opacity: 0; transform: scale(0.92); } }
 .hw-szellem svg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35)); }
 .hw-szellem .hw-test { fill: #f2f2f2; stroke: #f2f2f2; }
 .hw-szellem path.hw-test:last-of-type { stroke: none; }
 .hw-szellem .hw-arc { fill: #1f1f1f; }
-.hw-szellem .hw-szal { stroke: #f2f2f2; stroke-opacity: 0.35; stroke-width: 1; fill: none; }
 @keyframes hw-himba { from { transform: translateY(-10px) rotate(-3deg); } to { transform: translateY(8px) rotate(3deg); } }
-@media (prefers-reduced-motion: reduce) { .hw-szellem { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .hw-szellem, .hw-himba { animation: none; } .hw-szellem { opacity: 0.16; } }
