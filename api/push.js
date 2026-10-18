@@ -15,8 +15,9 @@ const crypto = require("crypto");
 const suti = require("./_suti.js");
 
 const P = "qn:push:";
-const TEMAK = /^(kiemelt|napi|rovat_(modell|eszkoz|video|kep|ugynok|uzlet|kutatas|egyeb))$/;
-const ALAP_BEALL = { aktiv: true, napiMax: 3, kuszob: 5, csendesTol: 22, csendesIg: 7 };
+// rovat_X: a rovat fontos hírei (küszöb-1), rovat_X_mind: a rovat minden híre, feltorekvo: a felkapott hírek
+const TEMAK = /^(kiemelt|napi|feltorekvo|rovat_(modell|eszkoz|video|kep|ugynok|uzlet|kutatas|egyeb)(_mind)?)$/;
+const ALAP_BEALL = { aktiv: true, napiMax: 3, mindMax: 10, kuszob: 5, csendesTol: 22, csendesIg: 7 };
 
 async function kv(...parancs) {
   const r = await fetch(process.env.KV_REST_API_URL, {
@@ -108,7 +109,8 @@ async function beallitas() {
 // kétszer ugyanarról soha: a Kiemelt (és minden kézi) küldés a hír azonosítóján, az automatikus rovat-értesítés
 // külön kulcson, hogy egy fontos hír a Kiemelt témára és a saját rovatára is kimehessen
 function kimentKulcs(e) {
-  return e.forras === "auto" && e.tema.startsWith("rovat_") ? "r:" + e.hir_id : e.hir_id;
+  if (e.forras !== "auto" || e.tema === "kiemelt") return e.hir_id;
+  return (/^rovat_[a-z]+$/.test(e.tema) ? "r:" : e.tema + ":") + e.hir_id;
 }
 
 async function naplozKuld(e) {
@@ -164,17 +166,20 @@ module.exports = async (req, res) => {
         if ((await kv("SET", P + "napi:" + nap, "1", "NX", "EX", 3 * 86400)) !== "OK") return json(res, 200, { ok: false, ok_miert: "ma már kiment" });
         return json(res, 200, { ok: true, kuldve: await naplozKuld(e) });
       }
-      // rovat-értesítés: a küszöbnél eggyel kisebb fontosságtól (alapból 4), a Kiemelt: a küszöbtől (alapból 5)
-      const rovatE = String(b.tema || "").startsWith("rovat_");
-      const kuszob = rovatE ? Math.max(1, beall.kuszob - 1) : beall.kuszob;
+      // Kiemelt: a küszöbtől (alapból 5); rovat: eggyel kisebbtől (alapból 4); rovat „minden hír”: küszöb nélkül;
+      // Feltörekvő: csak felkapott hír
+      const tema = String(b.tema || "");
+      const mindE = tema.endsWith("_mind");
+      if (tema === "feltorekvo" && !b.felkapott) return json(res, 200, { ok: false, ok_miert: "nem felkapott" });
+      const kuszob = mindE || tema === "feltorekvo" ? 1 : tema.startsWith("rovat_") ? Math.max(1, beall.kuszob - 1) : beall.kuszob;
       if (Number(b.fontossag || 0) < kuszob && !b.fohir) return json(res, 200, { ok: false, ok_miert: "küszöb alatt" });
       const [e, hiba] = ertesites(b, "auto");
       if (!e) return json(res, 400, { hiba });
       if (e.hir_id && (await kv("SISMEMBER", P + "kiment", kimentKulcs(e)))) return json(res, 200, { ok: false, ok_miert: "már kiment" });
-      // napi keret témánként: Kiemelt napiMax, egy rovat ugyanennyi
+      // napi keret témánként: Kiemelt, rovat és Feltörekvő napiMax, a rovat „minden hír” mindMax
       const szamlalo = P + "auto:" + e.tema + ":" + nap;
       const db = Number((await kv("GET", szamlalo)) || 0);
-      if (db >= beall.napiMax) return json(res, 200, { ok: false, ok_miert: "napi keret elfogyott" });
+      if (db >= (mindE ? beall.mindMax : beall.napiMax)) return json(res, 200, { ok: false, ok_miert: "napi keret elfogyott" });
       await kv("INCR", szamlalo);
       await kv("EXPIRE", szamlalo, 3 * 86400);
       if (csendesE(beall, ora)) {
@@ -209,6 +214,7 @@ module.exports = async (req, res) => {
       const uj = {
         aktiv: !!b.aktiv,
         napiMax: Math.max(0, Math.min(10, parseInt(b.napiMax, 10) || 0)),
+        mindMax: Math.max(0, Math.min(30, parseInt(b.mindMax, 10) || 0)),
         kuszob: Math.max(1, Math.min(5, parseInt(b.kuszob, 10) || 5)),
         csendesTol: Math.max(0, Math.min(23, parseInt(b.csendesTol, 10) || 22)),
         csendesIg: Math.max(0, Math.min(23, parseInt(b.csendesIg, 10) || 7)),
