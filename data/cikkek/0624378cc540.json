@@ -1,0 +1,66 @@
+{
+  "id": "0624378cc540",
+  "slug": "az-ai-ugynokok-meg-a-legegyszerubb-strategiakban-is-rosszul-dontenek",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/ai-agents-have-bad-taste-in-long-term-decisions-and-a-new-benchmark-proves-it/",
+  "szerzo": "Jonathan Kemper",
+  "publikalva": "2026-10-18T08:49:41+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/ai-models-taste-bench-nano-banana-pro.jpg"
+  },
+  "cim_eredeti": "AI agents have bad taste in long-term decisions and a new benchmark proves it",
+  "forrasok": [],
+  "szoveg_eredeti": "Researchers from Microsoft and City University of Hong Kong built a method to test how well AI agents make decisions during long-running tasks. The best model barely hit 60 percent.\n\nAI agents now take on multi-step tasks. They might write a research paper or build out a software project. Along the way, they constantly decide which hypothesis to test, which code to build on, or which experiment to run next. Those choices rarely show their effects right away. A bad decision usually looks fine at first, and its true cost only shows up after the agent burns through most of its budget.\n\nThe paper's authors call the ability to make these choices well an agent's \"taste.\" Existing benchmarks only measure if an agent finishes a task, not the quality of its steps along the way. Taste-Bench is designed to fill that gap.\n\nYou can't judge a long-term choice right away. A clean implementation and a sloppy one might produce the same output at first and may pass the same tests. The clean approach only pays off when later changes come more easily. Human grading would be expensive, need deep domain expertise, and fail to scale.\n\nSo the researchers rely on hindsight. The later path of a trajectory, the recorded trace of an agent run with all its steps and observations, shows if an earlier choice worked. In practice, agent systems try the same task multiple times. Those attempts eventually split off in different directions.\n\nBecause the final result of each attempt exposes the better path, the runs themselves provide a labeled comparison. The authors call this branching point a \"decision fork.\" To measure taste, they freeze the run at the fork, hide all later work, and make a model pick between the two paths.\n\nTaste-Bench contains 502 questions, each with the original task, the trajectory up to the fork, and two possible directions. The first type comes from two independent attempts at the same task that diverge, where the agent never sees the wrong path.\n\nThe second type comes from an agent correcting itself within a single run and taking a detour. Here, the initially discarded direction and the later successful one form the two candidates. This variant tests whether a model can spot the mistake earlier than the acting agent did.\n\nThe raw data came from thousands of scored agent runs on coding and AI research tasks, including SWE-bench Pro and METR's public transcript release MALT. A generator model filtered out suitable forks, dropping trivial questions with obvious answers and removing undecidable cases. Human review confirmed almost all the auto-generated labels.\n\nThe team tested 14 current models from the Claude, GPT, Grok, DeepSeek, GLM, MiniMax, and Mistral families. Each question was asked twice, once in the normal order and once with the options flipped. A question only counted if the model got it right both times. Pure guessing gets 25 percent here.\n\nThe best model tested, GPT-5.6 Sol, averaged 59.7 percent, closely followed by GPT-5.5 at 59.5 percent. All other models scored well below that. None came close to solving the benchmark, even though every question is just a binary choice. Detour forks were consistently harder than parallel ones.\n\nFor each fork, the team checked how far ahead an observer would need to look before the better path becomes clear. When the key clue is already visible in the prior steps, average accuracy across all models hits 62.3 percent. When that clue only appears after extensive later work, accuracy drops to 21 percent, near random guessing. Answering those questions means predicting future work.\n\nThinking longer didn't help. The researchers repeated the test with three reasoning settings for two models. Switching from the lowest to the highest setting barely changed accuracy. Models spent the most reasoning tokens on the hardest tier, thinking longest on the questions they missed most often. The team sees this as a sign that the needed clue simply isn't there yet at those forks.\n\nThe later the deciding evidence appears in a trajectory, the worse models perform, and more reasoning budget doesn't change that. | Image: Pan et al.The benchmark captures a different skill than classic end-to-end tests like SWE-bench Verified, the authors say. Models that score similarly there show clear gaps on Taste-Bench.\n\nThe researchers also showed that taste can be taught. They distilled the judgment of a teacher model, which knows the right path, into a student model that only sees the question. They used Qwen3.6-27B as the base. On unseen tasks, the student's accuracy jumped from 30 to 47.9 percent.\n\nThat boost paid off in practice. The team added the student's judgment as advice into the task context at each fork and let a separate agent solve the problem. On 41 held-out SWE-bench Pro tasks, the success rate rose from 14.6 to 33.7 percent. Perfectly correct advice would have reached 39 percent, so the student captured most of the possible gains.\n\nThe team concludes that the judgment of long-term planning agents can be both measured and improved. The benchmark and code are publicly available.\n\nAI agents now work alone for long stretches. On the MirrorCode benchmark, one model ran for 19 days on a single task without human help. Standard benchmarks usually only check if the tests pass at the end. METR has already shown that SWE-bench Verified significantly overestimates coding agent performance. Professionals rejected many solutions for basic functional bugs even when automated tests passed. Taste-Bench's top model, GPT-5.6 Sol, also posted the highest rate of cheating on software tests ever recorded in METR's evaluations.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "A legokosabb AI-ügynökök is elbuknak a hosszú távú döntéseken",
+  "lead": "A Microsoft és a Hongkongi Városi Egyetem új tesztjén a legjobb AI-modell is csak 60 százalékos pontossággal választotta ki a helyes döntési utat.",
+  "osszefoglalo": "A Microsoft és a Hongkongi Városi Egyetem kutatói létrehozták a [Taste-Bench](https://huggingface.co/datasets/wenbopan/taste-bench) nevű benchmarkot, amely azt méri, hogyan hoznak stratégiai döntéseket az AI-ügynökök a hosszabb folyamatok során. A tesztben 14 különböző AI-modellnek kellett két lehetőség közül kiválasztania a jobb megoldási útvonalat programozási és kutatási feladatok közben.\n\nA tesztek alapján a legjobb teljesítményt nyújtó **GPT-5.6 Sol** modell is mindössze **59,7 százalékos** pontosságot ért el az egyszerű, kétválasztásos kérdéseknél. A kutatásból kiderült az is, hogy a modellek gondolkodási idejének növelése nem javította az eredményeket, és a hibás döntések hosszú távon jelentős erőforrás-pazarláshoz vezetnek.\n\nA kutatók azt is bebizonyították, hogy a jó döntési képesség tanítható. Egy kisebb, finomhangolt **Qwen3.6-27B** modellnek adott tanácsok segítségével egy önállóan dolgozó AI-ügynök sikeres feladatmegoldási aránya **14,6 százalékról 33,7 százalékra** emelkedett a gyakorlati teszteken. A benchmark és a hozzá kapcsolódó kód nyilvánosan elérhető.",
+  "miert_szamit": "A többnapos vagy összetett folyamatokat végző AI-ügynökök **még a korai szakaszban rossz irányt választhatnak**, ami jelentős idő- és költségveszteséget okoz. A döntési képesség szándékos tanításával azonban **több mint kétszeresére növelhető** a komplex feladatok sikeres teljesítése.",
+  "cimkek": [
+    "AI ügynök",
+    "Taste-Bench",
+    "Microsoft",
+    "kutatás"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Taste-Bench",
+    "url": "https://go.adverr.hu/tbz427",
+    "eredeti": "https://huggingface.co/datasets/wenbopan/taste-bench"
+  },
+  "linkelendo_nevek": [
+    "Taste-Bench"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-18T09:04:41+00:00",
+  "megjelent": "2026-10-18T09:04:41+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-18T09:04:43+00:00",
+    "esemeny": "A Microsoft és a Hongkongi Városi Egyetem kutatói bemutatták a Taste-Bench nevű benchmarkot, amely az AI-ügynökök döntési képességét („ízlését”) méri hosszabb folyamatok során. A tesztelt modellek közül a legjobb, a GPT-5.6 Sol is csak 59,7%-os pontosságot ért el.",
+    "forrasok": [
+      "https://the-decoder.com/ai-agents-have-bad-taste-in-long-term-decisions-and-a-new-benchmark-proves-it/"
+    ],
+    "hibak": [
+      "A cím túloz és pontatlan: nem a 'legegyszerűbb stratégiákról' van szó, hanem a hosszú távú döntési helyzetekről (Taste-Bench).",
+      "A lead karakterszáma meghaladja a megengedett 160 karakteres limitet (161 karakter)."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Az AI-ügynökök még a legegyszerűbb stratégiákban is rosszul döntenek",
+      "lead": "A Microsoft és a Hongkongi Városi Egyetem új tesztje megmutatta: a legjobb AI-modell is csak 60 százalékban választja ki a helyes utat a döntési helyzetekben.",
+      "osszefoglalo": "A Microsoft és a Hongkongi Városi Egyetem kutatói létrehozták a **Taste-Bench** nevű benchmarkot, amely azt méri, hogyan hoznak stratégiai döntéseket az AI-ügynökök a hosszabb folyamatok során. A tesztben 14 különböző AI-modellnek kellett két lehetőség közül kiválasztania a jobb megoldási útvonalat programozási és kutatási feladatok közben.\n\nA tesztek alapján a legjobb teljesítményt nyújtó **GPT-5.6 Sol** modell is mindössze **59,7 százalékos** pontosságot ért el az egyszerű, kétválasztásos kérdéseknél. A kutatásból kiderült az is, hogy a modellek gondolkodási idejének növelése nem javította az eredményeket, és a hibás döntések hosszú távon jelentős erőforrás-pazarláshoz vezetnek.\n\nA kutatók azt is bebizonyították, hogy a jó döntési képesség tanítható. Egy kisebb, finomhangolt **Qwen3.6-27B** modellnek adott tanácsok segítségével egy önállóan dolgozó AI-ügynök sikeres feladatmegoldási aránya **14,6 százalékról 33,7 százalékra** emelkedett a gyakorlati teszteken. A benchmark és a hozzá kapcsolódó kód nyilvánosan elérhető.",
+      "miert_szamit": "A többnapos vagy összetett folyamatokat végző AI-ügynökök **még a korai szakaszban rossz irányt választhatnak**, ami jelentős idő- és költségveszteséget okoz. A döntési képesség szándékos tanításával azonban **több mint kétszeresére növelhető** a komplex feladatok sikeres teljesítése."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
