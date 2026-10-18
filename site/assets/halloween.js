@@ -30,14 +30,15 @@
     });
     return lista;
   }
-  // a szellem doboza a „BOO” felirattal együtt: előtte (balra), vagy ha a lap szélén nincs hely, mögötte
-  function szabad(x, y, m, lista) {
-    var x0 = x >= m * 1.2 ? x - m * 1.4 : x, x1 = x >= m * 1.2 ? x + m : x + m * 2.4;
+  // a szellem doboza a „BOO” felirattal együtt; elol = a felirat a szellem előtt (balra), különben mögötte
+  function szabad(x, y, m, lista, elol) {
+    var x0 = elol ? x - m * 1.4 : x, x1 = elol ? x + m : x + m * 2.4;
+    if (x0 < 4 || x1 > w - 4) return false;
     for (var k = 0; k < lista.length; k++) {
       var q = lista[k];
       if (x0 < q[2] + 16 && x1 > q[0] - 16 && y < q[3] + 16 && y + m * 1.12 > q[1] - 16) return false;
     }
-    return x1 < w - 4;
+    return true;
   }
 
   var w = document.documentElement.clientWidth, h = document.documentElement.scrollHeight;
@@ -59,7 +60,9 @@
         x = bal ? koz(12, balSav - meret - 12) : koz(kb.right + 28 + meret * 1.4, w - meret - 12);
         if (i === 0) y = fejlec + koz(20, 260);
       }
-      if (szabad(x, y, meret, lista)) return [x, y];
+      // előbb a szellem elé próbálja a feliratot; ha ott hírre lógna, mögé
+      if (szabad(x, y, meret, lista, true)) return [x, y, true];
+      if (szabad(x, y, meret, lista, false)) return [x, y, false];
     }
     return null;
   }
@@ -76,15 +79,14 @@
     sz.style.top = xy[1] + 'px';
     sz.style.animationDuration = koz(8, 13).toFixed(2) + 's';
     sz.style.animationDelay = koz(0, 9).toFixed(2) + 's';
-    // a szellem előtt egy „BOO”, vastag filces kézírással; ha bal oldalt nincs hely, a szellem mögé kerül
-    var jobbra = xy[0] < meret * 1.2;
-    sz.innerHTML = '<div class="hw-himba">' + SZELLEM + '</div><span class="hw-boo' + (jobbra ? ' hw-boo--jobb' : '') + '">BOO</span>';
+    // a szellem előtt egy „BOO”, vastag filces kézírással; ha ott hírre lógna, a szellem mögé kerül
+    sz.innerHTML = '<div class="hw-himba">' + SZELLEM + '</div><span class="hw-boo' + (xy[2] ? '' : ' hw-boo--jobb') + '">BOO</span>';
     sz.style.setProperty('--boo', (meret * 0.46).toFixed(0) + 'px');
     if (r() < 0.5) sz.querySelector('svg').style.transform = 'scaleX(-1)';
     sz.addEventListener('animationiteration', function (e) {
       if (e.target !== sz) return;
       var uj = hely(i, meret);
-      if (uj) { sz.style.left = uj[0] + 'px'; sz.style.top = uj[1] + 'px'; sz.style.visibility = ''; }
+      if (uj) { sz.style.left = uj[0] + 'px'; sz.style.top = uj[1] + 'px'; sz.style.visibility = ''; sz.lastChild.classList.toggle('hw-boo--jobb', !uj[2]); }
       else sz.style.visibility = 'hidden'; // ebben a körben nincs szabad hely: nem jelenik meg
     });
     reteg.appendChild(sz);
