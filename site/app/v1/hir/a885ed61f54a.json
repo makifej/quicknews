@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/matematikusok-szerint-az-openai-felreertelmezte-sajat-matematikai"
-    },
-    {
-      "id": "df1dbbaa99db",
-      "cim": "Az Anthropic dolgozói szerint az MI 2030-ra a munkájuk 75%-át átveszi",
-      "lead": "Az Anthropic belső felmérése szerint a fejlesztőik sokkal gyorsabb MI-automatizációra számítanak a saját munkájukban, mint az átlagos munkavállalók.",
-      "slug": "az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi",
-      "forras": "Perplexity Discover",
-      "kat": "kutatás",
-      "rovat": "kutatas",
-      "ido": "2026-10-17T06:35:00+00:00",
-      "ido_hu": "okt. 17. 08:35",
-      "kep": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 2. 06:01",
+  "szerzo": "",
+  "cim_eredeti": "AutoSynthData: Generating Training Data for Enterprise Agents",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "What makes a useful agentic task? System specification Agent-facing task Verifier Overview From model failures to a curriculum Generating and scaling tasks Target Multiply Implementation details High-quality synthetic data needs more than generation Sample-level verification and repair Batch-level review Moving the training frontier EnterpriseOps Gym experiments Hybrid Hybrid results ITSM Closing the loop\n\nEnterprises need agents that work well in their own environments. The work they ask these agents to do is shaped by the systems they use, the rules they follow, and the state of their data. A model may be broadly capable and still struggle with a particular environment: a workflow it handles poorly, a combination of tools it misuses, or a constraint it fails to respect. Those are the weaknesses an enterprise needs to improve.\n\nThe difficulty is turning those weaknesses into training data. An individual failure tells us something, but training a model requires many new tasks that exercise the same capability in different situations. Those tasks must also be possible to complete in the environment, resemble work someone would actually request, and have a reliable way to check whether the agent succeeded.\n\nAt ServiceNow CoreAI, we built AutoSynthData to turn those capability gaps into training data. It uses a target model’s failures and a stronger teacher’s successes to decide what the model should learn next, then generates and validates new tasks that exercise those capabilities. As the model improves, the curriculum shifts toward what it still finds difficult. We illustrate the pipeline with EnterpriseOps Gym (Malay et al., 2026), using the released dataset. We begin by describing the environment an agent operates in and what makes a task useful for training.\n\nAn agentic environment defines the world in which an agent operates: the state it can observe and modify, the tools and APIs it can invoke, and the state transitions produced by its actions.\n\nA task is instantiated within this environment. We use the following abstraction:\n\nThe system specification defines the constraints under which the agent operates, including system instructions, environment policies, and, when applicable, task-specific initialization such as a seeded database state or a set of knowledge articles.\n\nThe specification must be compatible with the environment’s tools, state, and supported actions. Its instructions should be clear and avoid arbitrary constraints introduced solely to manufacture difficulty.\n\nThe user prompt specifies what the user wants the agent to accomplish, together with any user-level constraints. A generated task should satisfy three properties.\n\nFeasibility. There should exist at least one trajectory in the current environment that satisfies the user prompt while respecting the system specification. This rules out tasks that depend on unavailable tools, inaccessible knowledge, impossible state transitions, or actions prohibited by policy.\n\nRealism. The user prompt should resemble something a user would plausibly ask in the target environment. The space of executable behaviors is usually much larger than the space of realistic workflows.\n\nDifficulty. For training, the task should expose a weakness of the current agent. Tasks that are already solved reliably provide little new training signal. The useful region is therefore tasks that are feasible and realistic, but not yet consistently solved.\n\nThe verifier determines whether the resulting trajectory successfully completes the task. It should satisfy three properties.\n\nConsistency. It should agree with the user prompt, the system specification, and the task-specific environment state.\n\nSoundness. It should reject trajectories that fail to satisfy the task or violate relevant constraints.\n\nCompleteness. It should accept valid solutions rather than encode one particular reference trajectory.\n\nThese properties matter directly during training. A lax verifier can reward incorrect behavi"
 }

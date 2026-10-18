@@ -91,24 +91,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 15. 07:30",
+  "szerzo": "",
+  "cim_eredeti": "Getting visual explanations from your coding agent with the show-me skill",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Coding agents are good at explaining things. They are also good at explaining them in five verbose paragraphs when a ten-line tree would have done the job. You would almost think that output tokens are free!\n\nRecently I came across the show-me skill from HumanLayer. It’s a small skill with one purpose: when you ask your agent to explain something, it answers with a visual representation instead of a wall of text.\n\nThe whole skill is a short set of instructions. It tells the agent to skip the preamble, keep the prose brief and pick the smallest view that makes the point clear.\n\nSounds simple? Because the idea is indeed. For each kind of explanation, the skill names the view to use:\n\nHere is what that looks like in practice. A call tree for a form submit:\n\nAnd a shallow file tree to explain who owns what:\n\nNothing fancy. But compare that with the paragraph you would normally get back.\n\nThe skill can be installed with the skills CLI:\n\nAfter that you invoke it with a slash command like any other skill:\n\nAs an architect I have to read a lot of code. Most of the time when I’m reviewing code changes, I’m not looking for an explanation. I’m looking for the shape of something: who calls whom, which module owns the state, where a refactor will touch. That is exactly what trees and sequence diagrams are good at, and prose is not.\n\nThe skill also forces the agent to be selective. You don’t get a diagram of everything, just the one that answers your question.\n\nThe skill also covers when to show a full code block instead of a fragment: when most of it is new, when leaving out context would hide ownership or order, or when you need a target shape you can copy. For larger explanations it can also produce a focused HTML page, which the agent opens for you.\n\nRemark: The skill is plain instructions, nothing more. If you disagree with one of its choices (say you prefer ASCII over Mermaid), you can read the SKILL.md and adjust it for your own setup.\n\nIf you regularly ask your agent to explain unfamiliar code, yes. It costs one command to install and it changes the format of every answer you ask for with /show-me."
 }

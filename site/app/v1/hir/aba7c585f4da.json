@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": true,
       "url": "https://quicknews.hu/hir/nyilt-forraskoduva-valt-a-stepfun-600-milliard-parameteres-ai-modellje"
-    },
-    {
-      "id": "5feb71e13bb2",
-      "cim": "Gyorsabb lett a GPT-6 Pro és párhuzamos ügynököket kapott",
-      "lead": "Az OpenAI frissítette a ChatGPT Pro csomagjában elérhető modellt, amely gyorsabb válaszokra és több ügynök egyidejű futtatására képes.",
-      "slug": "gyorsabb-lett-a-gpt-6-pro-es-parhuzamos-ugynokoket-kapott",
-      "forras": "OpenAI (X)",
-      "kat": "modell",
-      "rovat": "modell",
-      "ido": "2026-10-16T20:35:04+00:00",
-      "ido_hu": "okt. 16. 22:35",
-      "kep": "https://quicknews.hu/assets/kep/forras-x-openai.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/forras-x-openai.webp",
-      "video": false,
-      "fontossag": 4,
-      "felkapott": false,
-      "forraskep": true,
-      "url": "https://quicknews.hu/hir/gyorsabb-lett-a-gpt-6-pro-es-parhuzamos-ugynokoket-kapott"
     }
-  ]
+  ],
+  "datum_teljes": "2026. aug. 31. 23:16",
+  "szerzo": "",
+  "cim_eredeti": "Runway News | Introducing Solaris",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Today, we're sharing Solaris: the first model in a new family of AI systems we call Interface World Models. Solaris starts with a question: what happens when an operating system generates apps and websites as you use them?\n\nEvery operating system, from early terminals to Linux and macOS, has dictated what's rendered on screen and what happens when a person or program acts on it. Applications get built on top, and stay fixed until someone pushes an update. Solaris instead renders that layer directly. It's a real-time interactive model that generates the interface itself, frame by frame. Every frame is synthesized as you interact, allowing the interface to respond continuously to your actions.\n\nDesign is more visual than ever, with pixel-perfect mockups and image models that can generate entire screens that are nearly indistinguishable from finished products. But images don’t run like a website or app. Every piece of software built today still requires a translation: the visual design must first be converted into an intermediate representation (e.g. code) before it can do anything.\n\nThat intermediate representation limits what an interface can be, and how it responds to human and agent interaction. Every behavior has to be explicitly defined and implemented ahead of time, so software ships as a lossy compression of the space of possible interactions, frozen before any user arrives. The same translation process also sacrifices visual fidelity. Once a design is reduced to a simplified representation, the interface can respond quickly, but only by giving up much of the richness of the original design.\n\nSolaris handles rendering and interactions jointly, removing many of the tradeoffs we associate with design today. A single world model generates every frame and every response to user input, eliminating the need for an intermediate representation. Because there’s no conversion step, there’s no loss, and the entire frame becomes the interface.\n\nWe think Solaris opens up new ways of building websites, apps and other online interfaces. But it’s also a new way to train agents, in much more dynamic environments. Even the best LLMs today struggle to complete basic computer use tasks, like booking a hotel or ordering groceries. Because text-based models are being trained to use coded interfaces, they tend to learn the specific layout they were trained on, and can’t adapt to a slightly different interface (say, two different hotel websites). By collapsing the space between action and response, Solaris lets agents train against interfaces that are constantly changing, and layouts that may never have existed before.\n\nSolaris brings three new capabilities to software.\n\nFirst, Solaris is entirely visual. When an image becomes the application itself, there is no need for a second implementation step hidden beneath the visuals that a user sees. Imagine browsing a virtual clothing store where the showroom itself is the interface. Using a single image of yourself as a reference, you can pick up a shirt from a rack, drag it onto yourself to try it on or rearrange the display as naturally as you would in a physical store.\n\nSecond, it is alive. Because the application is continuously rendered, it is always evolving rather than waiting for the next user action. Reflections shift with the lighting, and objects respond naturally as they're manipulated. A user can say something as simple as: \"Move the table so I can see how it looks\" or “Change the color of the couch.” The result is software that feels less like navigating through scripted pages and more like interacting with a living environment.\n\nFinally, it is open-ended. Traditional interfaces are limited to the interactions developers anticipated during development, but Solaris can support entirely different behaviors in the same scene, reacting to user interactions in real-time. This flexibility decouples the interface from predefined workflows, instead leaving the capabilities of the driving world "
 }

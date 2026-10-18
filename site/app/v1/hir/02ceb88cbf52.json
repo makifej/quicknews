@@ -91,24 +91,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/szemelyes-penzugyi-asszisztens-funkciot-kapott-a-perplexity"
-    },
-    {
-      "id": "341933c0e9e6",
-      "cim": "4 Gemini 4 Argon ügynök emberi segítség nélkül végigjátszotta a Minecraftot",
-      "lead": "A Google DeepMind AI-ügynökei önállóan programozva és egymással kommunikálva 27 óra alatt győzték le a sárkányt.",
-      "slug": "4-gemini-4-argon-ugynok-emberi-segitseg-nelkul-vegigjatszotta-a",
-      "forras": "Google DeepMind (X)",
-      "kat": "ügynök",
-      "rovat": "ugynok",
-      "ido": "2026-10-16T16:35:24+00:00",
-      "ido_hu": "okt. 16. 18:35",
-      "kep": "https://quicknews.hu/assets/kep/341933c0e9e6-argon.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/341933c0e9e6-argon.webp",
-      "video": false,
-      "fontossag": 4,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/4-gemini-4-argon-ugynok-emberi-segitseg-nelkul-vegigjatszotta-a"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 16. 16:08",
+  "szerzo": "Siddhesh Kulthe",
+  "cim_eredeti": "3AM Super Intelligence",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "We're launching 3AM today: an AI on-call engineer for the systems you can't rewrite. Three things shaped it:\n\nEngineers needed proof, not a guess. Nobody runs a fix on production at 3am because a chatbot sounded confident. So 3AM names a root cause only once a live check against your systems proves it. When it can't prove one, it says so and hands over what it found.\n\nRegulated teams needed it to stay inside. Banks, insurers and telcos can't send production data to someone else's cloud, and their regulators ask where every byte goes. So 3AM runs inside your network with no inbound ports, works fully air-gapped too, and the only thing that ever reaches us is a signed licence check. Literally.\n\nEveryone needed to stay in charge. Nobody wants an AI changing production on its own in the middle of the night. So every fix is rehearsed with a dry run first, then waits for a person's approval in Slack, Symphony, PagerDuty, xMatters or email (you name it). 3AM starts in shadow mode: it watches, proposes fixes and changes nothing. Giving it more autonomy takes two approvers. And every step goes on a hash-chained audit log your auditors can verify.\n\nProof is the point. We test 3AM by breaking a real open-source core banking system, 244,000 lines of ten-year-old Java, on purpose, in 67 different ways. Every number we publish comes from those runs, and zero harmful actions is a release gate, not a target.\n\nIf you or your team is fed up of prod being down at night (or even during the day), 3AM is for you!\n\n🎁 As a bonus, the first 90 days are on us! Try it, tell us where it falls short, and we'll fix it.\n\nNote that 3AM is AI, and in its open alpha stage. We'd love to personally reach out to everyone to collect as much feedback as possible, and improvise further.\n\nWeboldal: https://3am.si"
 }

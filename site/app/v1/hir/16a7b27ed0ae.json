@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/matematikusok-szerint-az-openai-felreertelmezte-sajat-matematikai"
-    },
-    {
-      "id": "df1dbbaa99db",
-      "cim": "Az Anthropic dolgozói szerint az MI 2030-ra a munkájuk 75%-át átveszi",
-      "lead": "Az Anthropic belső felmérése szerint a fejlesztőik sokkal gyorsabb MI-automatizációra számítanak a saját munkájukban, mint az átlagos munkavállalók.",
-      "slug": "az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi",
-      "forras": "Perplexity Discover",
-      "kat": "kutatás",
-      "rovat": "kutatas",
-      "ido": "2026-10-17T06:35:00+00:00",
-      "ido_hu": "okt. 17. 08:35",
-      "kep": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi"
     }
-  ]
+  ],
+  "datum_teljes": "2026. szept. 15. 18:00",
+  "szerzo": "",
+  "cim_eredeti": "Your Agent Aced the Task. Will It Do It Again?",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "The Metric Almost Nobody Reports Why Agents Flip: Sharp Decisions vs. Flat Ones Diagnose, Then Fix Results: Reducing the Gap Without Losing Accuracy The guidelines generalize — they aren't patching one trajectory If You're Shipping an Agent Try It Appendix: Understanding the Metrics Linked artifacts / references Your agent works in rehearsal, but during the live demo, it takes a different path and fails the same task.\n\nThat is embarrassing onstage. In production, it is a reliability problem: a workflow that succeeded once may fail the next time a user makes the same request. For mission-critical work, such as reconciling a financial transaction or checking a contract for an obligation, that can be a showstopper.\n\nMost benchmarks hide this variability behind an average. On AppWorld, a ReAct agent using GPT-4.1 succeeded on 77.4% of runs across five repetitions. But it succeeded in all five runs for only 53.0% of tasks — a 24.4-point consistency gap.\n\nMost benchmarks report the first number. We built a way to measure the second — and improve it.\n\nIn an earlier post, we introduced ALTK-Evolve — a system that turns an agent's own past trajectories into reusable guidelines, distilled automatically and injected back at inference time. It measurably improves task success, but those results only asked the average-case question too. This post introduces consistency guidelines, a new guideline type in altk-evolve built on top of a diagnostic tool we call the Consistency Analyzer, that targets this gap directly.\n\nStandard agent evaluation reports Mean@k: run a benchmark k times, average the pass rate. Often k=3, sometimes just 1. It's the number on every leaderboard, and it's what \"77% accurate\" means in practice.\n\nMean@k answers \"how good is this agent, on average?\" It does not answer the question a real user cares about: will it still be good if I ask this exact question again? For that you need Pass^k: the fraction of tasks where the agent succeeds on all k runs.\n\n⚠️ Pass^k is not Pass@k. The familiar Pass@k is optimistic — it asks whether at least one of k attempts succeeded, the right question when you can verify and retry. Pass^k is its pessimistic mirror image: every attempt must succeed. Same letters, opposite question. Pass^k ≤ Mean@k ≤ Pass@k, always.\n\nA ReAct agent backed by GPT-4.1 posts a Mean@5 of 77.4% — genuinely strong. But Pass^5 is only 53.0%. Nearly a quarter of the benchmark consists of tasks the agent can sometimes solve and sometimes can't, with nothing about the task changing between runs. We call this gap — Mean@k minus Pass^k — the consistency gap.\n\nThis isn't a capability problem you fix with a bigger model. It's an orthogonal axis: an agent can be capable and inconsistent at the same time.\n\nEvery time an LLM agent decides something — which API to call, what argument to pass, whether to retry — that decision comes out of a probability distribution over next tokens. What matters is the shape of that distribution. A sharp one puts most of its mass on a single token: the runners-up are far behind, and the same choice comes out run after run. A flat one spreads comparable mass across several near-tied tokens, and which one wins is close to a coin flip.\n\nThe shape decides how much noise it takes to change the outcome. Sharp distributions are resilient — GPU floating-point non-associativity, request batching, and other platform-side effects nudge the numbers slightly, but nowhere near enough to reorder a clear winner. Flat distributions are vulnerable to exactly that nudge: near-ties may reorder under small perturbations. And because a trajectory chains dozens of decisions, a small per-step chance of flipping compounds into a large chance that some run goes differently. That's where a 24-point gap comes from.\n\nThis is also why the problem survives your decoding settings. Greedy decoding and a fixed seed both govern how a distribution gets turned into a token — they say nothing about the distribution itself. On a host"
 }

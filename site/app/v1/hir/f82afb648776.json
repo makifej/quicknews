@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/matematikusok-szerint-az-openai-felreertelmezte-sajat-matematikai"
-    },
-    {
-      "id": "df1dbbaa99db",
-      "cim": "Az Anthropic dolgozói szerint az MI 2030-ra a munkájuk 75%-át átveszi",
-      "lead": "Az Anthropic belső felmérése szerint a fejlesztőik sokkal gyorsabb MI-automatizációra számítanak a saját munkájukban, mint az átlagos munkavállalók.",
-      "slug": "az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi",
-      "forras": "Perplexity Discover",
-      "kat": "kutatás",
-      "rovat": "kutatas",
-      "ido": "2026-10-17T06:35:00+00:00",
-      "ido_hu": "okt. 17. 08:35",
-      "kep": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi"
     }
-  ]
+  ],
+  "datum_teljes": "2026. szept. 23. 18:06",
+  "szerzo": "",
+  "cim_eredeti": "Claude discovers a novel enzyme system",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "We’re introducing a new life sciences research group and laboratory at Anthropic. Our focus is on fundamental biology research using Claude: exploring datasets of DNA to identify uncharacterized protein families, generating hypotheses at scale, and testing them through experiments in the lab. This post introduces the team behind this work and shares early results in which Claude discovered a novel enzyme system with properties reminiscent of CRISPR, with only high-level direction from our scientists.Many discoveries that have revolutionized biology and medicine started with a scientist noticing something odd in the staggering diversity of molecular machines found in nature. Restriction enzymes, proteins that cut DNA at specific short sequences, were found in bacterial immune systems, where they destroy the DNA of invading viruses. Researchers realized they could use these enzymes to cut DNA at chosen places and splice genes from one organism into another, which launched the biotechnology industry. Taq polymerase, an enzyme that copies DNA at high temperatures, was identified in a bacterium in a Yellowstone hot spring. It became the basis for PCR, the DNA-copying method used in much of modern diagnostics. CRISPR was first noticed as an unusual repeat sequence in the DNA of certain bacteria, and is now the foundation of gene editing-based medicines.In the spring of 2026, we formed a research group to see whether general AI models can systematize and accelerate such discoveries. We believe that this acceleration will come from establishing a new way of doing biology research, in which agents collaborate with humans in every step of the process. Developing this new way of working required that we build our own lab and a single team working on everything from training Claude in biology to running experiments in the lab.\n\nToday, we’re sharing early results from one of our first research programs, in which Claude autonomously discovered a novel enzyme system that is associated with an array of DNA repeats, a pattern reminiscent of CRISPR. Although we don’t yet know its function, the system that Claude discovered has a set of characteristics that have only ever been found together in a handful of other systems, all of which are programmable and perform operations like cutting, copying, and pasting DNA. Beyond CRISPR, which has already transformed science and medicine, several other such systems are now in development as promising tools.\n\nThe system that Claude found is based on a reverse transcriptase (RT), enzymes that copy RNA into DNA. While this underlying RT, found in a jumbo phage, had been identified in previous studies, Claude appears to be the first to notice the system’s defining features—an associated array of non-coding DNA sequences and an additional accessory protein of unknown function.\n\nAfter reviewing the pre-print, Feng Zhang, one of the pioneers of CRISPR genome editing and a professor at MIT and the Broad Institute, said:\n\nWe gave Claude a prompt to search through a massive database of DNA sequences for interesting new examples of RTs. Our involvement was limited to the initial prompt and the lab work, while Claude agents combed through the database, investigated the distinct RT families, and used their own judgment to identify interesting candidates. After 21 hours spent searching this data by roughly 950 agents using 210 million tokens, one of the agents spotted something remarkable: a repeating pattern of DNA sequences that occurs next to the gene for an odd-looking RT. After further analysis and testing in our lab, we recognized that this pattern marked a previously uncharacterized enzyme system found in bacteriophages (the viruses that infect bacteria) that we call array-associated reverse transcriptases (ART).\n\nOur work to understand the primary function of ARTs is ongoing. However, we think it is important to share such findings early, both to demonstrate Claude’s capabilities and to give the broader communi"
 }

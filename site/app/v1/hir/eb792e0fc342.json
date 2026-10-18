@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. szept. 21.",
+  "szerzo": "",
+  "cim_eredeti": "tokenizers v1: encode, decode and scaling, measured",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Results What V1 Is The Split: Bitstreams Instead Of A Regex The Word Cache The Merge Loop Method What This Adds Up To Getting It Progress Towards V1 Release Candidate: Implemented 1.0.0 After 1.0.0 The tokenizer has not historically been the bottleneck within ML workflows. Compute-wise, tokenization is light compared to the heavy modeling happening in the rest of the pipeline. Yet, in some cases, it has rapidly become key to accelerating (or slowing down) your machine learning work.\n\nAs models become faster and workloads scale, that balance begins to shift. Training on massive datasets, serving many concurrent requests, or repeatedly processing long inputs can put enough pressure on the tokenizer that it starves the model of data.\n\nThis is why we have chosen to heavily focus on performance for the upcoming version 1 of tokenizers. Tokenization should be light and should scale with your workflow. Your GPUs should never sit idle waiting for the CPU to complete its tokenization.\n\nIn this article, we look at what makes v1 faster than v0.23, often by tens of times.\n\nThis work was entirely possible thanks to the rest of the ecosystem. Tokenization is a very active area of open source work, and libraries such as gigatoken, tiktoken, kitoken, tokie, fastokens, wordchipper and ai-tokenizer, as well as many others, have each pushed on what a fast tokenizer can be. We read that work, and several of the ideas below reached us because another project showed they were worth trying.\n\nBefore this refactor, tokenizers was nowhere near the performance it could have had, so contributing to it may not have seemed worth it. With this refactor, we hope to make clear that we intend tokenizers to be a library worth contributing to.\n\nWe also thank IBM, NVIDIA, and the ExecuTorch team for contributing patches and helping us test across a wide range of hardware to broaden platform support.\n\nWe showcase results for the release candidate of tokenizers v1 against other widely used alternatives. We go over single-threaded, multi-threaded, scaling across threads, per-model comparison, per-language comparison, latency, decoding throughput, memory heap, as well as crate size.\n\nWe run this from the tokbench repository, and add a command to rerun the benchmarks on your hardware if you would like to do so.\n\nv1 will produce the same token IDs as v0.23. The goal was to preserve the output, the API, the vocabulary and the merge ranks, and improve everything that can be improved. That includes breadth. The library stays general across tokenizer families rather than specialising on BPE, so v1 loads everything v0.23 loaded.\n\nA tokenizer converts text into the list of integers a model reads. tokenizers runs that conversion in four stages. Normalization applies operations such as lowercasing or Unicode normalization to the raw text. Pre-tokenization splits the text into smaller pieces called pre-tokens. The model turns each pre-token into tokens and maps them to IDs in its vocabulary. Post-processing adds any special tokens the model expects.\n\nThe model stage is where most of the work described here happens. Eight of the ten model families measured in this article use byte pair encoding, or BPE. BPE starts from the bytes of a pre-token and repeatedly joins the highest ranked adjacent pair until no ranked pair remains. The ranking is learned when the tokenizer is trained and ships with it, so the same text always produces the same IDs. A merge never crosses a pre-token boundary. The other two families use WordPiece and Unigram, the two other model types the library supports.\n\nThe tokenization pipeline page documents the four stages. Tokenization algorithms documents BPE, WordPiece and Unigram.\n\nEach stage was worked on. These are the changes that mattered:\n\nBPE models use a regular expression to split the input text into smaller, easier to process chunks called pre-tokens. Merges happen inside a pre-token and never across the boundary between two of them, so this split de"
 }

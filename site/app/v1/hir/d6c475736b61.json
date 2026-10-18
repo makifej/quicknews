@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 14.",
+  "szerzo": "",
+  "cim_eredeti": "AI Controls IPhone Via ESP32",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Do you want to get an AI agent to do something to an iPhone? You could try and jailbreak the device and do some heavy software hacking, or… you could grab a microcontroller off the shelf and have it do the hard work. [Henry Yuan] explains how to achieve this with an ESP32.\n\nThe first step is getting an AI agent access to the current state of the phone screen—which [Henry] achieves with AirPlay screen mirroring and UxPlay. A Gstreamer pipeline is then used to feed the screen as a JPEG stream to the AI agent of your choice. Then comes control, which is achieved by an ESP32-S3 acting as a USB-HID device, emulating both USB mouse and keyboard. With iOS AssistiveTouch enabled, this gives the agent control over inputs to the device. From there, it’s up to the AI agent to figure out the actions to make to achieve the desired behavior, which is obviously very use-case specific.\n\nIt might sound a little convoluted, but this approach has benefits. There’s no requirement to have an Apple Developer Account, or XCode, or a Macintosh at all. You can just get your agent tinkering away on the phone without any of that fussy overhead. We’ve featured some other great iPhone hacks of late, as well. Video after the break.\n\nhaving to use a jpg stream as a way to computationally determine what a phone is doing is exactly why I hate phones as computational devices. they’re the anthesis of a real computer that I can own and make do what I want it to. I only use mine for TWO FACTOR AUTHENTICATION — which I also hate, but I don’t get to choose when I need to sign in to get my unemployment check (as a laid off software developer)"
 }

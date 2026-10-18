@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 4. 00:56",
+  "szerzo": "",
+  "cim_eredeti": "The Agent Said It Was Done. The Database Disagreed.",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "A tool call is not an outcome One success is not reliability Can you depend on the model behind your agent? What consistency costs Pareto cost frontier Now price consistency Failure signatures How it works Run it yourself Before you start Install Start Typesense Start the MCP servers Start the OpenEnv server Check readiness Score an episode Where this goes next Microsoft ThinkingBox grades AI agents on the records they leave behind, not the sentences they generate, and then asks whether they can do it twenty times in a row. It is now available through Hugging Face.\n\nFigure 1: ThinkingBox runs an agent against isolated MCP tool sessions, then grades the terminal backend state and side effects it leaves behind. From our ThinkingBox paper.\n\nA customer writes in. Her $745 kitchen appliance has been stuck in a courier \"exception\" at a Nashville distribution center, fifteen days past its estimated delivery date.\n\nThe AI agent does careful work. Nine tool calls: it pulls the order, checks tracking, looks up her customer profile, searches the refund policy twice, confirms no ticket exists, opens one, documents the timeline, and reads the policy correctly; her account segment genuinely does not qualify for late-delivery compensation.\n\nThen it closes the ticket as resolved and replies “ Since your query is resolved, is there anything I may assist you with? ”\n\nTwo things are wrong. The carrier exception is still open, so the required end state was on hold, pending resolution. And the customer never got a real answer to what she actually asked.\n\nAn AI grader checking tool calls would see nine well-formed ones. The grader checking whether the agent wrote to the database would see that too. The database is what disagrees.\n\nThat gap is what ThinkingBox measures. Across 507 stateful business workflows, each run 20 times against various LLM models, it grades agents on terminal backend state and side effects. This post covers what we found, what consistency costs, and how to run the benchmark yourself through OpenEnv.\n\nYou can run this one yourself: the example above is adapted from a benchmark task sandbox_external_retail_group1.py:test_case_ST003_006, and the executable check that fails is a single field: the ticket's status is solved where the required end state is hold. The full trace is in Appendix D.4, Case 3 of our paper.\n\nWant to try it before reading the results? Skip to section Run it yourself.\n\nFinal responses and valid tool calls are only proxies. An agent can sound correct while leaving the wrong value, changing the wrong record, or creating an extra side effect. Only the records it leaves behind settle the question.\n\nThe gap is substantial. In a common-set ablation covering 121,680 valid trials across 12 LLM models, 79,853 attempts failed the executable checks. Of those failures, 67.24% still terminated cleanly, invoked a state-changing tool, and reported no final tool error. Executable checks nevertheless found wrong field values in 77.61% of them, unintended extra effects in 43.30%, and missing required effects in 25.36%. Those state-check findings overlap.\n\nA trajectory is a claim. Database state is the evidence. Repetition is the trust test.\n\nAn agent that processes a refund correctly once and mishandles it the next four times is not a working refund agent. So every task runs 20 independent times, each from an identical clean backend, and we report three different things:\n\nTable 1: The three numbers we report, and the question each one answers.\n\nWe use observed 20/20 in this blog post as the literal count of how many of the 507 tasks passed 20 out of 20. No estimator, no smoothing.\n\nStarting with the familiar view. The table below reports pass@1, the single-attempt score estimate, broken out by domain. This is the number most leaderboards publish, and on its own it reads like an ordinary capability ranking.\n\nTable 2: ThinkingBox-Bench pass@1 (%) by domain. Each model is evaluated on every task for 20 repeated trials. Bold mark"
 }

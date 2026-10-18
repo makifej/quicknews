@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. szept. 10.",
+  "szerzo": "",
+  "cim_eredeti": "Async GRPO with LoRA across HF Jobs: a bucket, a proxy, and no NCCL",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "The architecture: leveraging Hugging Face Jobs and Storage Buckets 🪣 The three Jobs The vLLM replicas The dataset choice: the Sanity set The trainer The proxy Routing rollouts by KV prefix Broadcasting the adapter Full run results Weight sync Routing Where the time goes Reward Chasing the bottleneck ping-pong Reading the dashboard Run 1, r1-dp2: a trainer that cannot keep up Run 2, r1-dp2-tb16k: pack the microbatch Run 3, r1-dp2-tb16k-nockpt: stop recomputing the forward Run 4, r1-dp3-tb16k-nockpt: three replicas, and a surprise Run 5, r1-dp3-inflight384: lift the cap on in-flight requests The scoreboard Try it References TL;DR\n\nLoRA support recently landed in TRL's AsyncGRPOTrainer with PR #7017, and ships with TRL v1.14. The asynchronous trainer can now train an adapter instead of the full model, and it syncs only the LoRA adapter to vLLM. This post covers a real-world project built on top of it, where training and inference no longer share a machine.\n\nLoRA training is particularly suited for RL, as shown in Thinking Machines's blog LoRA Without Regret. They show that LoRA can match full fine-tuning for policy-gradient RL, even with rank 1. This stems from the fact that the advantage function only gives ~O(1) bits of information per episode, so there is not that much to learn from each step, from a total-bits-of-information point of view. A rank-1 adapter has enough capacity to absorb it.\n\nThere is also a systems consequence of LoRA training. A rank-1 adapter for a 1.5B model is a few megabytes, while the full model is around 3 GB. Instead of sending the full policy to the inference workers after every update, we can just send the adapter. vLLM can also keep several adapters loaded at once. Old rollouts finish with the policy they started with, while new rollouts use the latest one.\n\nTRL's AsyncGRPOTrainer already separates training and generation. The trainer and vLLM can run on different machines and at their own speed. This is easy in a single-node or cluster setting where both processes share a filesystem or can form an NCCL group.\n\nWhat we want is to run the same setup with Hugging Face Jobs. Essentially, an HF Job is one container running on one VM. This means that one Job cannot spawn multiple nodes (at least for now) to hold a trainer and a fleet of vLLM servers (we are limited to 8xH200 at most per node). The AsyncGRPOTrainer is built for exactly that kind of scale, so the question became: how far can we get if we drop the requirement that the trainer and the inference servers share a node?\n\nWell, with a full-weight sync, the answer would be \"not far\". Every update would have to move gigabytes between machines, which is what NCCL is for in a dense cluster, but Jobs can't communicate across nodes. There is no shared local disk and obviously no shared localhost. With LoRA, a sync is only a few megabytes. For the filesystem part, HF Jobs provide volumes backed by Storage Buckets! These buckets can then be mounted as a FUSE filesystem in every Job and are enough to work as a shared FS between nodes. No network path between the Jobs is needed at all.\n\nThe new adapter-only sync path in AsyncGRPOTrainer works like this. The trainer does not send tensors to vLLM. Every few optimizer steps, it saves the adapter under <output_dir>/.vllm_lora/trl-policy-v{N}, publishes the directory with an atomic rename, then sends its path to vLLM's /v1/load_lora_adapter endpoint. vLLM loads the files from disk, so the rollout worker can then request model=\"trl-policy-v{N}\".\n\nThis is how runtime adapter loading already works in vLLM. The endpoint takes a path, not tensors, so the trainer and the server are expected to share a filesystem. On a Slurm cluster, that is the network filesystem. On Jobs, we get the same thing by mounting a Storage Bucket as a volume at the same path in every Job, as we mentioned earlier. Under the hood, it uses hf-mount, which exposes the bucket as a POSIX filesystem inside the container:\n\nNothing in TRL or vLLM ha"
 }

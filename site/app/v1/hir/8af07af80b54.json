@@ -91,24 +91,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 14. 23:15",
+  "szerzo": "Said Altan",
+  "cim_eredeti": "CrewTower Mod for Claude Code",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Hey everyone, Said here, the maker of CrewTower.\n\nOn October 1, Claude Code shipped mods. Hooks could already tell an outside app what Claude was doing and answer a permission prompt. They could never talk back. A mod can.\n\nA mod is a small JavaScript or TypeScript file that Claude Code loads into its own process. It gets called on every event (a tool call, a prompt, a turn ending, part of the screen being drawn) and can watch it, rewrite it, or take it over. It can draw panes and buttons, add slash commands, read context numbers directly, and reach outside Claude Code.\n\nThat last part is what I needed. CrewTower lives in the MacBook notch and shows every agent session you run. With a small mod, each Claude card in the notch can now talk to its session:\n\nI've been using Claude Code almost every day, and my problem was that I kept forgetting to answer my agents when they needed me. I'd be doing other work or scrolling on social media, and my sessions would just sit there waiting for input. That was wasting time and tokens, because I could have been getting way more output from them.\n\nSo I built a CrewTower app that lives in the notch area of your screen. It shows all your active agent sessions at a glance: which ones are working, which ones are waiting for your answer, and which ones are done. The moment an agent needs you, you see it right at eye level, no matter what app you're in. No more forgotten sessions, no more dead time between prompts.\n\nWeboldal: https://crewtower.app"
 }

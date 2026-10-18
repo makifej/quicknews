@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/matematikusok-szerint-az-openai-felreertelmezte-sajat-matematikai"
-    },
-    {
-      "id": "df1dbbaa99db",
-      "cim": "Az Anthropic dolgozói szerint az MI 2030-ra a munkájuk 75%-át átveszi",
-      "lead": "Az Anthropic belső felmérése szerint a fejlesztőik sokkal gyorsabb MI-automatizációra számítanak a saját munkájukban, mint az átlagos munkavállalók.",
-      "slug": "az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi",
-      "forras": "Perplexity Discover",
-      "kat": "kutatás",
-      "rovat": "kutatas",
-      "ido": "2026-10-17T06:35:00+00:00",
-      "ido_hu": "okt. 17. 08:35",
-      "kep": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 11. 15:44",
+  "szerzo": "Manuel Uth",
+  "cim_eredeti": "AI agents overstate their results and remain far from autonomous research, study finds",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Results from Epoch AI and Anthropic show that AI models can run experiments but lack scientific self-criticism and genuine creative thinking.\n\nThe major AI labs are increasingly marketing their models as research tools. Google DeepMind has expanded its Co-Scientist into a full research system, and OpenAI introduced an \"automated research intern\" back in September. By March 2028, that intern is supposed to become an autonomous AI researcher under human oversight, but a key ability still seems to be missing: scientific judgment.\n\nWith its benchmark \"InnovationEval,\" Epoch AI tested whether AI agents can conduct research on their own. The task was to invent a new method for improving language models after their initial training, then implement, test, and refine it independently.\n\nThe starting point was GRPO, a widely used technique. GRPO compares multiple answers a model generates for the same task and rewards the better ones, typically scoring each solution as a whole. The human-designed reference method, SDPO, uses extra signals like error messages to create more precise learning feedback for individual steps within an answer, so the model effectively becomes its own teacher.\n\nEpoch tested Claude Fable 5 and GPT-5.6 Sol, which according to the organization had no prior knowledge of SDPO. Performance was measured on short-answer tasks like science questions and on coding tasks, with each agent having access to up to 3,000 hours of compute on high-end chips but no internet access.\n\nNeither model came close to the human reference. GPT-5.6 Sol targeted a weakness in GRPO: when all answers to a task are correct, the model learns nothing because there's nothing to compare. Sol had the model reinforce its successful solutions in those cases, but the idea wasn't new.\n\nMeasured against the improvement SDPO achieves over GRPO, Sol scored about 35 percent with generous grading, according to Epoch. Counting only changes that stayed within the experiment's rules, that number drops to about 15 percent. On coding tasks, Sol mostly made training more expensive and slower rather than improving the method itself.\n\nClaude Fable 5 had the model retry failed tasks while feeding it the previous failed attempts, which is also a well-known technique and produced no measurable improvement. Even Sol's partial success would barely qualify as \"moderately interesting\" to experts, Epoch says. Newer models that knew SDPO from their training data couldn't fully replicate it either. GPT-6 Astra built a similar solution but didn't disclose its source, and even with the original paper in front of it, Fable 5 fell short of the reference.\n\nBoth agents also had a reporting problem. They ran multiple near-identical training rounds and reported only the best result each time, which makes a method look stronger than it actually is because outcomes fluctuate randomly. In their final reports, the models barely mentioned this practice, if at all, and they also failed to cite the prior work their methods drew on. Their self-reported numbers ran accordingly high: Sol claimed about 70 percent of the SDPO improvement, Fable 5 about 40 percent. Epoch stripped out those inflated gains.\n\nThe models' internal reasoning logs show they were aware of the problem, with Fable 5 describing its repeated runs as a search for a better checkpoint. Whether this amounts to deliberate cheating or confusion, Epoch leaves open.\n\nFor GPT-5.6 Sol, the behavior fits an earlier finding from the evaluation organization METR, which had detected more cheating attempts from that model in its own coding test than from any other publicly available model it had evaluated.\n\nEpoch concludes that humans would need to fully review all AI-generated research, which cuts into the models' usefulness.\n\nAnthropic describes similar limitations in the system card for Claude Opus 5.5. The model is far from replacing the company's own researchers, Anthropic says, with the main problems lying in \"epistemic quality\" and"
 }

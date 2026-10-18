@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 12. 18:30",
+  "szerzo": "",
+  "cim_eredeti": "Durable Task in the Real World: What Problems Does It Actually Solve?",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Five practical examples of when durable execution makes sense, when it doesn’t, and what it means for AI agents.\n\nDurable Task raises an important question:\n\nThis all looks interesting, but what are the actual use cases?\n\nNot how Durable Task works. Not what happens during replay or how the scheduler persists state. But the more practical question: what problems does it actually solve?\n\nWhen should I reach for durable execution instead of regular C#, a queue, a database, or a background worker? And when would adding it just make things more complicated?\n\nThose are fair questions. Rather than walk through another hello world orchestration, I want to look at real situations where things get messy, especially when work takes a long time, depends on external systems, or gets interrupted halfway through. I also want to be clear about what Durable Task does not solve for you.\n\nImagine a background worker creating a customer’s Azure environment. It provisions a network, starts a database deployment, creates storage, and deploys an application. Then the worker disappears. Azure might still be working, but your local variables and continuations are gone. Restarting the method is easy. Figuring out which operations completed and which are safe to repeat is the hard part.\n\nOf course, you could build your own solution with a database, a queue, an outbox, scheduled jobs, and reconciliation logic. Sometimes that’s exactly what you should do. But once you find yourself building a whole system just to remember what happens next and how to resume it, durable orchestration starts to get interesting.\n\nI’ll walk through five examples: invoice approvals, Azure tenant provisioning, subscription payments, breaking news articles arriving through out of order webhooks, and an AI agent investigating an incident. We’ll use the standalone Durable Task .NET SDK v1.26.0 with Durable Task Scheduler (DTS), and I’ll show both the useful parts and the responsibilities that still belong to our application.\n\nA note on the examples: The snippets below are deliberately focused on orchestration boundaries. Application adapters, DTO definitions, registrations, and some helper implementations are omitted. They illustrate the design rather than constituting a compiled, tested sample. In particular, do not infer exactly-once external effects from durable history.\n\nEach example has the same boundary: Durable Task coordinates part of the process, while the application remains authoritative for the external result.\n\nConsider an invoice-processing service. It extracts a document, validates the result, and either posts the invoice, rejects it, or asks a human to review it. A batch may contain eight invoices, only one of which needs approval. The other seven shouldn’t wait for it.\n\nHere’s an ordinary C# implementation of the individual processing path:\n\nThere’s nothing inherently unreliable about this method. OpenInvoiceReviewAsync can persist a review ticket and notification outbox. But when someone approves the invoice tomorrow, another handler must load the right document generation, check the deadline, recover the approved payload, and continue. If the worker dies between extraction and validation, the application must decide whether to extract again or retrieve the saved result.\n\nThat continuation protocol is what Durable Task can express directly.\n\nA bounded batch can start independent child orchestrations:\n\nEight is an application admission limit, not a DTS quota. Larger batches can be paged and subject to tenant/global concurrency limits. A child that completes can post its invoice while another child remains suspended awaiting review. Task.WhenAll waits for every child; it does not undo a sibling’s accounting entry if another child fails.\n\nInside the invoice child, extraction and validation are activities. Once their successful results are recorded in orchestration history, a compatible replay follows the same code path using those recorded results instead of repeat"
 }

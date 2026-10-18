@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/matematikusok-szerint-az-openai-felreertelmezte-sajat-matematikai"
-    },
-    {
-      "id": "df1dbbaa99db",
-      "cim": "Az Anthropic dolgozói szerint az MI 2030-ra a munkájuk 75%-át átveszi",
-      "lead": "Az Anthropic belső felmérése szerint a fejlesztőik sokkal gyorsabb MI-automatizációra számítanak a saját munkájukban, mint az átlagos munkavállalók.",
-      "slug": "az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi",
-      "forras": "Perplexity Discover",
-      "kat": "kutatás",
-      "rovat": "kutatas",
-      "ido": "2026-10-17T06:35:00+00:00",
-      "ido_hu": "okt. 17. 08:35",
-      "kep": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 9. 17:20",
+  "szerzo": "",
+  "cim_eredeti": "Impactful scheduling for GPU clusters",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Overcommitting Tragedy of the commons Budgets not schedules Fair-share The scheduling contract Simulations Results Challenges The future Building a cluster scheduler to prioritize high-impact research while maintaining full occupancy\n\nOn the AI Infrastructure team at Ai2, we’re responsible for providing the institute’s GPU compute capacity, specifically targeting large, distributed training workloads. We think about this task as a pyramid of four metrics that build on each other.\n\nThe foundation is availability: how often the hardware is healthy and ready for work. Above this is occupancy: the fraction of available time assigned to a specific workload. Next is impact: how often the most valuable workloads are chosen to receive resources. The capstone of the pyramid is utilization: the fraction of GPU capacity used over the lifetime of a workload.\n\nThis post is about improving the impact of our scheduling decisions. We recently replaced a priority-based scheduler with a system including GPU time budgets, hierarchical fair-share allocation, and a time-slicing contract. As a result, we shifted the debate about how much GPU time each research project deserves from a case-by-case operational task to a transparent administrative budgeting process.\n\nAt Ai2, we manage thousands of NVIDIA H100, B200, and B300 GPUs arranged in clusters ranging in size from 88 to 1024 GPUs. These clusters are built for large-scale distributed training of AI models, and they serve a group of about 150 internal researchers whose work covers a diverse set of AI domains, including the full model flow of LLM and VLM training, robotics reinforcement learning (RL) simulation, and post-training for scientific agentic use cases.\n\nLike many labs, we have demand for GPU time that far exceeds supply. Based on submitted workloads, at any moment in time we have outstanding requests for 2-3x more GPUs than are available. One way to think about this is that every available GPU hour on our cluster has 2-3 different research workloads competing for it.\n\nHistorically, we used a priority-based scheduler, and we allowed workloads to opt out of preemptability. Each team had a limit on concurrent GPUs that could be used by workloads which were protected from preemption. Preemptible workloads could exceed that limit on idle GPUs. This strategy produced predictable pathologies. For example, we observed instances of GPU “squatting” where users would park no-op workloads they could connect to when the need arose. This occurred because researchers found they could not launch debugging workloads with low enough latency to tackle problems in real time. We also observed priority inflation, where eventually 100% of scheduled workloads used HIGH priority. This meant that lower priority levels were starved of GPU time altogether. Since preemptability was optional, we also found that our on-call engineers spent a majority of their ticket response time negotiating the organized shutdown of non-preemptable workloads running on hosts with known maintenance problems.\n\nWhen these problems emerged, we were slow to identify their root causes. Our initial attempts to ensure the most important work received GPU time were focused on tighter control of how priorities were set, and, ultimately, working around the priority-based scheduler by explicitly assigning GPU monopolies to important projects. While we didn’t recognize it at first, we had built a perfect laboratory for observing the “tragedy of the commons.” Individuals were competing over a scarce, shared resource and, by seeking to maximize individual outcomes, achieving a non-optimal global result and abusing the underlying resource.\n\nWe were far from the first to observe this kind of interaction. Resource allocation is a fascinating research domain that mixes algorithm development, economics, and system management. A central problem is that users often know the value of their own jobs better than the organization does, but they may have ince"
 }

@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/szigorit-az-apple-kitiltja-az-app-store-bol-az-mi-vel-levetkozteto"
-    },
-    {
-      "id": "0bc863e90ae3",
-      "cim": "Saját MI-biztonsági törvénytervezetet mutatott be az Anthropic",
-      "lead": "A Politico értesülései szerint az Anthropic zárt ajtók mögött egy szövetségi szabályozási javaslatot terjesztett az amerikai törvényhozók elé.",
-      "slug": "sajat-mi-biztonsagi-torvenytervezetet-mutatott-be-az-anthropic",
-      "forras": "Perplexity Discover",
-      "kat": "üzlet",
-      "rovat": "uzlet",
-      "ido": "2026-10-17T06:34:33+00:00",
-      "ido_hu": "okt. 17. 08:34",
-      "kep": "https://quicknews.hu/assets/kep/0bc863e90ae3.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/0bc863e90ae3.webp",
-      "video": false,
-      "fontossag": 4,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/sajat-mi-biztonsagi-torvenytervezetet-mutatott-be-az-anthropic"
     }
-  ]
+  ],
+  "datum_teljes": "2026. szept. 29. 20:35",
+  "szerzo": "Julie Bort",
+  "cim_eredeti": "Here’s why OpenAI is absent from Nvidia’s industry-wide effort to end rogue AI agents",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Last day to exhibit your breakthrough to 10,000+ tech leaders at Disrupt is on Oct 2. Book Exhibit Table Now.\n\nDisrupt doors open Oct. 13. Get your pass and bring someone with you at 50% off. REGISTER NOW.\n\nWhen Nvidia announced on Monday a new consortium of more than 100 companies dedicated to solving rogue AI agents, there was one name notably missing: OpenAI.\n\nWhile OpenAI wasn’t the only Big Tech player that didn’t sign on — Amazon, Google, and Apple haven’t joined either — it was the most obvious missing player, especially because Anthropic is a supporter.\n\nHowever, despite OpenAI’s lack of a public pledge to the consortium, which presumably means that each company will use and sell some version of the technology and contribute features back to the project, an OpenAI spokesperson told TechCrunch that the company is supportive of Nvidia’s work.\n\nThe new effort, dubbed Nvidia’s Open Agent Safety Platform, is Nvidia’s attempt to spread its homegrown, and largely open source, AI agent-security tech throughout the AI ecosystem as a direct response to the types of ongoing rogue AI agent incidents frontier labs like Anthropic and OpenAI have disclosed.\n\nNvidia CEO Jensen Huang has been calling rogue AIs an ordinary engineering problem that can be solved like any other tech issue. The Open Agent Safety Platform is Huang putting his money where his mouth is.\n\nOpenAI is working with Nvidia on agent security, including on one of the key bits of software that’s part of this platform: OpenShell. OpenShell is open source software that creates a sandbox specifically designed to keep agents from escaping.\n\nWhile it is still curious that OpenAI didn’t simply become a supporter of the initiative like its archrival Anthropic did, the fact that the frontier AI lab is supporting the effort is good news.\n\nThat’s because OpenAI, in particular, could benefit from this tech, at least according to Hugging Face founder and CEO Clem Delangue (who just sold his company to Nvidia for $12.9 billion earlier this month).\n\n“From what we know (take with a grain of salt, we need much more transparency!), if @OpenAI had been running this on their own agents that attacked us, they would have caught them before we did!” Delangue posted.\n\nDelangue said Hugging Face has already contributed a feature to the Open Agent Safety Platform that will detect and shut down AI agents that are using websites they are allowed to visit but are doing so in unauthorized ways. For instance, this feature will act if agents are bypassing their guardrails and coordinating an attack by writing notes to one another in an open source code hosting repository.\n\nThat’s one of the ways OpenAI said its wayward swarm of agents coordinated its attack on Hugging Face.\n\nBut there’s another reason why some of these big names, including OpenAI, might not want to publicly commit to Nvidia’s efforts. To use the full system, there is a hardware component that is not open source software, remains proprietary, and can only be deployed on Nvidia’s hardware.\n\nThe Open Agent Safety Platform doesn’t just offer a sandbox. It also enforces agent behavior at a hardware layer, where agents can’t detect that they are being watched. (Some AI models and agents lie and pretend to be following the rules when they know they are being watched.)\n\nThe hardware monitoring part relies on Nvidia Sentry, a proprietary feature that runs on special Nvidia processors called BlueField-4 data processing units. Sentry continuously monitors agent behavior from these processors and can instantly shut agents down, Nvidia promises.\n\nWhile a hardware solution is clearly a good idea, it means that the Open Agent Safety Platform isn’t exactly a pure open source play. It allows Nvidia to ensure that this solution always runs best on its own hardware. Indeed, Nvidia has said that, for those already running workloads on its latest hardware, implementing the Open Agent Safety Platform is an easy software update.\n\nStill, Nvidia competitor"
 }

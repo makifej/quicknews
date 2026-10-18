@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 14. 22:28",
+  "szerzo": "",
+  "cim_eredeti": "How we accelerated code review in a large monorepo with two agents in Agentic Pipelines",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Last quarter, our AI reviewer told a developer who was fixing a CSS bug to rethink how their component fetched data. The comment was well written and confidently worded. It was also about code they hadn’t touched.\n\nThat’s what tends to happen when you hand an agent every team’s review guidelines at once. You get comments that could apply to any repository: “Add a test,” “Rename this variable,” “Handle the error.” None of them is exactly wrong but are they worth acting upon ? In a monorepo, an AI review comment is only useful if it cites a rule that applies to the code being changed.\n\nWe ran into this in one of the largest frontend monorepos at Atlassian, shared by many product teams. Each product team keeps its own review guidelines in specific areas (or directory structure) in repository. A human reviewer who owns a specific area knows which document to open for the code they are reviewing. An agent that starts with all of them has to choose the right document and review the code in a single pass, and when it chooses wrong, the comment is about the wrong thing.\n\nThe Jira team fixed this by splitting the job into two steps with Agentic Pipelines. The first agent matches the changed files to the guideline documents that cover them. The second reads that short list, reviews the diff against only those documents, and leaves inline comments. The author and the human reviewer still decide what to change.\n\nA single style guide wouldn’t work in a repository this size. Different teams would have their own styling guidelines and rules for the code in their area. The rules differ by directory, and they’re written that way on purpose. Together, those documents make up “the guidelines,” but for any given pull request, most of them have nothing to say.\n\nTake that CSS fix. Elsewhere in the set, there’s a document about data fetching. It has no bearing on a styling change, but an agent holding both documents will happily write the fetching comment anyway. Now the human reviewer has to work out whether the comment is about the code, or about a document that should never have been opened.\n\nPicking the right documents and reviewing against them are two different jobs, so we gave them to two different agents.\n\nAgentic Pipelines runs one agent per step, which suited this design well. In the first step, the matcher does its work and publishes a file. In the next step, the reviewer starts fresh with the diff and the handful of documents the matcher named.\n\nNone of this works unless each directory’s guidelines are clear and specific. The matcher can route a change to the right document, but it can’t make a vague document useful.\n\nThe matcher reads the pull request through the Bitbucket MCP server that Agentic Pipelines attaches to the step, using the pull request ID that’s already in the environment. It pairs each changed path with the guideline file that covers it and writes that list to tmp/pr-analysis.md. If the Bitbucket pull request tools don’t return a specific file the agent needs (e.g., a guideline document or a changed file), the matcher agent can instead read that file directly from the checked-out copy of the repository.\n\nMost of the prompt is about what the matcher must not do. Point an agent at a pull request and it wants to review it, so if the prompt leaves any room, it will. Leave the wording loose and you can get something worse: an agent that writes a script, adds files, and finishes the step without leaving a single comment. So we tell it exactly when to stop.\n\nWe learned why the $BITBUCKET_PR_ID line matters the hard way. If a sample pull request ID is left anywhere in the instructions, the agent may review that pull request instead of the real one. The ID has to come from the pipeline.\n\nThe reviewer reads tmp/pr-analysis.md, opens only the guideline files it lists, and comments on the diff. We brief it as a principal engineer for that area of the codebase. Each area’s guidelines are local and a little strict, and we want the rev"
 }

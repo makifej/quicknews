@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/az-openai-mernoke-ejszakai-ugyeletben-tesztelte-a-chatgpt-vel"
-    },
-    {
-      "id": "a947956c66cb",
-      "cim": "Személyes pénzügyi asszisztens funkciót kapott a Perplexity",
-      "lead": "A Perplexity a Plaid integrációjával teszi lehetővé, hogy a rendszert személyes pénzügyi tanácsadóként használják a felhasználók.",
-      "slug": "szemelyes-penzugyi-asszisztens-funkciot-kapott-a-perplexity",
-      "forras": "Aravind Srinivas (X)",
-      "kat": "ügynök",
-      "rovat": "ugynok",
-      "ido": "2026-10-16T17:22:43+00:00",
-      "ido_hu": "okt. 16. 19:22",
-      "kep": "https://quicknews.hu/assets/kep/a947956c66cb.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/a947956c66cb.webp",
-      "video": true,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/szemelyes-penzugyi-asszisztens-funkciot-kapott-a-perplexity"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 6. 12:00",
+  "szerzo": "",
+  "cim_eredeti": "Advancing computer use with Ironclad",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "How a research collaboration in contracting is helping us train and evaluate AI agents on complex professional work.\n\nWhen we introduced GPT‑6 Astra, we demonstrated how far our models have come in using computers for professional work, from preparing documents to testing websites. Our next goal is to make agents more capable and efficient at using specialized software to solve complex business problems. We’re exploring how to train models to understand a company’s business rules, execute multi-step workflows, and verify that their work meets the original requirements.\n\nTo accelerate this research, we’re partnering directly with a small number of software companies that understand these workflows best. Together, we’re identifying challenging, high-value tasks and turning them into research problems for training and evaluating our models, ultimately making our models more capable and useful in real-world business applications.\n\nOur first partner is Ironclad, a leader in AI contracting. Working closely with Ironclad’s team, we’ve developed tasks that require agents to configure agreements, approvals, and reusable legal terms, and demonstrated progress on these complex workflows. Ironclad’s expertise has been instrumental in defining what success looks like and bringing real customer needs directly into frontier model development. We’re grateful for their partnership and excited to share what we’ve accomplished together.\n\nGPT‑6 Astra is our first frontier model trained on Ironclad tasks. On our research evaluation, its average score was 32% higher than GPT‑5.6 Sol’s, while estimated time per attempt was 48% lower.1\n\nConsider a legal operations team setting up a process for buying software. Finance may need to approve purchases above a certain amount, Security may need to review certain requests, and Legal may need to review nonstandard terms. The person setting up the process has to turn that short list into an intake form, document templates, approval rules, and a record of the final agreement.\n\nAn AI agent doing the same work has to keep those requirements in view as it moves through the software. For example, it must configure Finance approval above the spending threshold and check that requests above and below it follow the right paths. Getting individual steps right is not enough: the finished process must work across the situations it was designed to handle.\n\nIronclad employees and people who use Ironclad at OpenAI helped our researchers identify 11 tasks across legal, commercial, and procurement work. These included tasks like setting up nondisclosure agreements, creating procurement approval processes, and updating a reusable legal clause so that it reflects the jurisdiction a requester selects. We estimate that this work would take an experienced user about 30 to 40 minutes per task, on average.\n\nWe evaluated each task against 8 to 50 criteria, depending on its complexity. This let us see which parts a model got right and where it fell short. Ironclad also provided hosted software environments of their product where the models could practice these tasks. Our researchers developed synthetic training tasks2 around representative workflows and used reinforcement learning to help the models improve through practice and feedback. This combination—tasks selected with people who know the work, detailed criteria, and a place for models to practice—ensures we are improving on real-world tasks that are most important to our customers.\n\nWe compared Astra and GPT‑5.6 Sol using Max reasoning for Astra and High reasoning for Sol, the settings where each model scored highest. Across the 11 research tasks, Astra’s average score was 55.0%, compared with 41.6% for GPT‑5.6 Sol, while estimated average time per attempt fell from 37.0 minutes for Sol to 19.2 minutes for Astra.3 An internal model used in the development of Astra achieved an even stronger 63.7% on these tasks, and we aim to bring these further gains to future models.\n\nAstra me"
 }

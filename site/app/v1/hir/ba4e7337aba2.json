@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/matematikusok-szerint-az-openai-felreertelmezte-sajat-matematikai"
-    },
-    {
-      "id": "df1dbbaa99db",
-      "cim": "Az Anthropic dolgozói szerint az MI 2030-ra a munkájuk 75%-át átveszi",
-      "lead": "Az Anthropic belső felmérése szerint a fejlesztőik sokkal gyorsabb MI-automatizációra számítanak a saját munkájukban, mint az átlagos munkavállalók.",
-      "slug": "az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi",
-      "forras": "Perplexity Discover",
-      "kat": "kutatás",
-      "rovat": "kutatas",
-      "ido": "2026-10-17T06:35:00+00:00",
-      "ido_hu": "okt. 17. 08:35",
-      "kep": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 16. 03:44",
+  "szerzo": "",
+  "cim_eredeti": "Scaling Indic Pretraining: 2.8 Trillion Tokens and an Open Data Generation Pipeline",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "What is in the corpus? From English source documents to Indic training data The twelve-language workflow The ten-language workflow What changed after Indic continued pretraining? Broader Indic capabilities in Nemotron 3.5 Super VL Start building Load the corpus Adapt the generation recipe Scope and limitations Further reading and acknowledgments Native-script data for 22 languages, romanized data for twelve, and a reusable GPU-accelerated pipeline for translation, quality assessment, and repair.\n\nAuthors: AI4Bharat — Mohammed Safi Ur Rahman Khan, Mitesh Khapra, Anoop Kunchukuttan. NVIDIA — Niket Agarwal, Raviraj Joshi, Anusha Kamath, Markus Kliegl, Yev Meyer, Sriharsha Niverty, Kiran Praveen, Utkarsh Vaidya.\n\nWe're excited to introduce Nemotron-pretraining-Indic-v1 approximately 2.8 trillion tokens across 22 Indian languages, releasing soon alongside the open, GPU-accelerated data generation pipeline used to create it. These are the 22 languages listed in India's Constitution: the first languages for 97% of Indians, or nearly 1.2 billion citizens at the 2011 Census. Developed by NVIDIA with IIT Madras, India's premier engineering institute, and its AI4Bharat lab, this release gives model builders a substantial new resource for Indic pretraining. The pipeline captures the full generation recipe, including prompts, LLM workflows, and quality checks, so developers can adapt it to their own source material and generate more data for their needs.\n\nAI4Bharat, IIT Madras' Indian language research lab, builds open-source datasets and models for Indian languages. Its resources, such as Sangraha, an open pretraining corpus for 22 Indian languages, have helped lay the foundation for open Indic language-model research. Our joint open-source release represents a substantial expansion of the open synthetic Indic training data that will be available to the community. It brings a broad mix of curated English material, including mathematics, code, and question-answer content, into Indian languages, giving teams more training material for building models that can explain technical concepts, work through problems, and answer questions in those languages. Every record traces back to a curated source document, and each output is checked against its input, so the synthetic text stays grounded in real information.\n\nMitesh Khapra, who heads AI4Bharat and made the 2025 TIME100 AI list, has named the core problem: Indian language technology trails English because \"we do not have enough data for Indian languages.\" We're answering that call with more data, plus an open recipe for generating more.\n\nThe corpus also accounts for how people write. It includes native-script data for all 22 languages and romanized text for twelve, spanning 34 language-script configurations. Our workflows combine document-level translation, quality assessment, and targeted repair, with checks to preserve content such as equations, tables, and code. This data complements naturally authored Indic text, which remains essential for local knowledge and cultural context.\n\nWe're sharing the open generation recipe so the community can not just reproduce the data but take this work further. Teams can use the corpus directly, adapt the prompts and quality checks, or bring their own source documents to the workflow. By opening up both the data and the process, we aim to make large-scale Indic data generation more accessible and enable more developers to contribute to stronger models across Indian languages.\n\nContinued pretraining for Nemotron 3.5 Super VL added 10 billion Indic tokens, drawn from a twelve-language subset of this corpus and natural Indic text. Our technical report on the model covers the full story. We plan to build on this corpus in future Nemotron models.\n\nFigure 1. The corpus contains 2,601.0 billion native-script tokens and 224.6 billion romanized tokens. Counts use the Gemma-4 tokenizer. Document records include translations and script variants of shared sources; they"
 }

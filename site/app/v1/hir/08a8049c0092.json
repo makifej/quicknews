@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/matematikusok-szerint-az-openai-felreertelmezte-sajat-matematikai"
-    },
-    {
-      "id": "df1dbbaa99db",
-      "cim": "Az Anthropic dolgozói szerint az MI 2030-ra a munkájuk 75%-át átveszi",
-      "lead": "Az Anthropic belső felmérése szerint a fejlesztőik sokkal gyorsabb MI-automatizációra számítanak a saját munkájukban, mint az átlagos munkavállalók.",
-      "slug": "az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi",
-      "forras": "Perplexity Discover",
-      "kat": "kutatás",
-      "rovat": "kutatas",
-      "ido": "2026-10-17T06:35:00+00:00",
-      "ido_hu": "okt. 17. 08:35",
-      "kep": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 11. 17:39",
+  "szerzo": "Matthias Bastian",
+  "cim_eredeti": "AI agent teams waste massive tokens for barely measurable quality gains, research finds",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "AI agent teams deliver almost no better results than single agents, research finds.\n\nEvals company Vals AI tested GPT-6 Sol and Claude Opus 5.5 on the \"Vibe Code Bench,\" both solo and as teams, at two reasoning levels: medium and maximum reasoning effort. The teams cost between 1.8x and 5.1x more than single agents.\n\nOut of four comparisons between teams and solo agents, only one showed a statistically significant improvement: GPT-6 Sol at medium reasoning, where the team scored 7.3 points higher. At maximum reasoning, the team setup gave neither Sol nor Opus 5.5 any real advantage. The results suggest that the extra cost of agent teams isn't worth it in most cases, especially when models are already running at full compute.\n\nVals AI's benchmark shows cost per app versus score on Vibe Code Bench. Arrows point from each model's single agent to its team at the same reasoning effort. Teams cost far more but barely improve scores. | Image: Vals AI[Anthropic saw quality gains shrink as it added more agents in two of its own tests with Opus 5.5. Larger teams reached a given performance level faster, but going from ten to 100 agents only nudged scores up slightly after 24 hours. In separate ProgramBench tests, speed gains came with higher token usage.\n\nFable 5.1 showed stronger quality gains on the Lean theorem proving task above ten agents, but still scored below Opus 5.5 across all tests. On the knowledge base task, Fable's score actually dipped slightly when scaling from 30 to 100 agents.\n\nOpenAI researcher Noam Brown confirmed in the Dwarkesh Podcast that multi-agent systems mainly buy speed, not better quality. Four agents solved tasks twice as fast but also cost twice as much. At 16 agents, the pattern held but grew slightly less efficient.\n\nThe effect depends heavily on the task. Web research and math parallelize well, but writing a novel doesn't, he said. Throwing 10,000 agents at a novel would be just as pointless as throwing 10,000 people at it. Brown acknowledged that scaling to very large numbers of agents remains largely unexplored because the costs are simply too high.\n\nOpenAI developer Eric Provencher recently warned against using agent swarms for exactly this reason. They're most likely wasted money, he argued, because coordination between agents breaks down. He called it the coordination tax.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section."
 }

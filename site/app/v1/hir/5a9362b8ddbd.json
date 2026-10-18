@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
-    },
-    {
-      "id": "47782106be1e",
-      "cim": "Vízszimulációval tesztelték a DeepSeek és az Anthropic AI-modelljeit",
-      "lead": "A Higgsfield platformján hasonlították össze a DeepSeek V4.1 Flash és a Claude Opus 5.5 modellek 3D-s szimulációs képességeit.",
-      "slug": "vizszimulacioval-teszteltek-a-deepseek-es-az-anthropic-ai-modelljeit",
-      "forras": "Higgsfield (X)",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-17T20:04:27+00:00",
-      "ido_hu": "okt. 17. 22:04",
-      "kep": "https://quicknews.hu/assets/kep/47782106be1e.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/47782106be1e.webp",
-      "video": true,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/vizszimulacioval-teszteltek-a-deepseek-es-az-anthropic-ai-modelljeit"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 18. 07:56",
+  "szerzo": "Sana Hassan",
+  "cim_eredeti": "How to Make Zero-Training Tabular Predictions with NVIDIA Structured Data Models",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "In this tutorial, we implement Structured Data Models , NVIDIA’s new library that puts several pretrained foundation models for tables behind one PyTorch interface, and use it to make predictions without training. The library wraps TabICLv2 and KumoTabular for single tables and KumoRelational for whole relational databases, and each of them answers by in-context learning: we hand the model a set of labeled rows and the rows we want predicted, and it returns probabilities or a full predictive distribution in one forward pass. We start with the library’s typed table tensors, compare the two tabular models against trained scikit-learn baselines, reuse an encoded context across many queries, read calibrated prediction intervals off a regression, and scale to twenty classes. We then look at the places where the defaults quietly do the wrong thing: a preprocessing recipe that drops timestamp and text columns and an explainer with two traps in it, before building a small three-table shop database and predicting customer activity from it directly, including the one argument that separates an honest relational model from a leaky one. Check out the Full CODES here .\n\n Copy Code Copied Use a different Browser \n\n import os\nimport sys\nimport time\nimport textwrap\nimport traceback\nimport subprocess\n\nRESULTS = {}\n\ndef banner(title):\n print(\"\\n\" + \"=\" * 78)\n print(title)\n print(\"=\" * 78)\n\ndef section(name):\n def wrap(fn):\n def run(*a, **kw):\n banner(name)\n try:\n out = fn(*a, **kw)\n RESULTS[name] = out if isinstance(out, str) else \"ok\"\n return out\n except Exception as e:\n RESULTS[name] = f\"SKIPPED / FAILED -> {type(e).__name__}: {e}\"\n print(f\"\\n[!] {name} did not complete: {type(e).__name__}: {e}\")\n traceback.print_exc(limit=3)\n return None\n return run\n return wrap\n\nbanner(\"1. Install SDM, and the one wheel URL its own error message gets wrong\")\nsubprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", \"git+https://github.com/NVIDIA/structured-data-models.git@b982fbf4188ea8db17249fe81338723106100b63\"], check=True)\n\nimport torch\n\n# The relational sampler needs pyg-lib on CPU. Its wheels are published per MINOR torch version\n# (torch-2.14.0+cpu.html), but SDM's own ImportError builds the URL from the exact patch version\n# (torch-2.14.1+cpu.html), which is an empty page. Build it from MAJOR.MINOR.0 instead.\nmajor, minor = torch.__version__.split(\"+\")[0].split(\".\")[:2]\nflavour = \"cpu\" if torch.version.cuda is None else \"cu\" + torch.version.cuda.replace(\".\", \"\")\nPYG_INDEX = f\"https://data.pyg.org/whl/torch-{major}.{minor}.0+{flavour}.html\"\nsubprocess.run([sys.executable, \"-m\", \"pip\", \"install\", \"-q\", \"pyg-lib\", \"-f\", PYG_INDEX], check=True)\n\nimport numpy as np\nimport pandas as pd\nimport pyg_lib\nimport sdm\nimport sdm.processing as sp\nfrom sklearn.datasets import load_breast_cancer, load_diabetes, make_classification\nfrom sklearn.ensemble import HistGradientBoostingClassifier, HistGradientBoostingRegressor\nfrom sklearn.linear_model import LogisticRegression, RidgeCV\nfrom sklearn.metrics import roc_auc_score\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.preprocessing import StandardScaler\n\nDEVICE = \"cpu\" # verified end to end on CPU; on a T4 runtime set \"cuda\" for the tabular models\nprint(f\" sdm {sdm.__version__} | torch {torch.__version__} | pyg-lib {pyg_lib.__version__}\"\n f\" | device {DEVICE}\")\nprint(f\" pyg-lib wheels from {PYG_INDEX}\")\nprint(\"\\n One interface over several pretrained structured-data foundation models:\")\nfor name, what, weights in [\n (\"TabICLv2\", \"tabular, in-context learning (ICML '26)\", \"~110 MB per task head, BSD-3\"),\n (\"KumoTabular\", \"tabular, small / medium / large\", \"small ~110 MB, large ~855 MB, OpenMDW\"),\n (\"KumoRelational\", \"multi-table, KumoRFM-2\", \"~120 MB, OpenMDW\"),\n (\"TabFM, TimesFM 3\", \"Google tabular / time series\", \"6.5 GB / 1.3 GB, non-commercial: not used here\"),\n]:\n print(f\" {name:18s} {what:42s} {weights}\")\nprint(\"\\n No model below is trained or fine-tuned. Every prediction is a forward pass that rea"
 }

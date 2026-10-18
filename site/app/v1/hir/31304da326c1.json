@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": true,
       "url": "https://quicknews.hu/hir/nyilt-forraskoduva-valt-a-stepfun-600-milliard-parameteres-ai-modellje"
-    },
-    {
-      "id": "5feb71e13bb2",
-      "cim": "Gyorsabb lett a GPT-6 Pro és párhuzamos ügynököket kapott",
-      "lead": "Az OpenAI frissítette a ChatGPT Pro csomagjában elérhető modellt, amely gyorsabb válaszokra és több ügynök egyidejű futtatására képes.",
-      "slug": "gyorsabb-lett-a-gpt-6-pro-es-parhuzamos-ugynokoket-kapott",
-      "forras": "OpenAI (X)",
-      "kat": "modell",
-      "rovat": "modell",
-      "ido": "2026-10-16T20:35:04+00:00",
-      "ido_hu": "okt. 16. 22:35",
-      "kep": "https://quicknews.hu/assets/kep/forras-x-openai.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/forras-x-openai.webp",
-      "video": false,
-      "fontossag": 4,
-      "felkapott": false,
-      "forraskep": true,
-      "url": "https://quicknews.hu/hir/gyorsabb-lett-a-gpt-6-pro-es-parhuzamos-ugynokoket-kapott"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 11. 21:30",
+  "szerzo": "",
+  "cim_eredeti": "A 29MB AI model is the most useful thing I've run on my Raspberry Pi 5, and it doesn't need an AI HAT",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "I’ve documented all sorts of wacky AI experiments involving weak hardware here on XDA, with my Raspberry Pi 5 being a common guinea pig for a handful of these projects. To its credit, my tiny tinkering companion manages to deliver decent results with smaller LLMs, with Gemma 4 E2B being my preferred model for simple productivity tasks involving this SBC.\n\nHowever, LLMs with chat interfaces aren’t the only AI models I can run on my weak hardware. Take the Cactus Compute Needle 3, for example. While it needs some tinkering with Python scripts, this slim model barely needs a few MBs to turn my “mere” SBC into an automation beast.\n\nIf you’re wondering how the Needle 3 manages to consume a maximum of 29MB, it’s because this AI model is a lot different from conventional LLMs. Typical large language models require billions of parameters to respond to queries in a chat-like interface. When you combine that with an underpowered system like the Raspberry Pi, it’s no wonder that even something as light as 3-4B models run under 10 tokens/second.\n\nMeanwhile, the Cactus Compute Needle 3 ditches the general chat capabilities altogether. Instead, it focuses on machine level tasks such as calling tools for different services, converting unstructured data into its JSON equivalents, and generating vector spaces from text inputs – and these three jobs let it perform typical AI tasks without the extra computational overhead of typical chatbots. Combine that with the Needle 3’s unique sliceable ladder architecture that lets you choose the subnetworks from 2 to 20 layers depending on the underlying system, and you can see why I love tinkering with this edge LLM on my Raspberry Pi.\n\nFor reference, the SBC I’m testing it on is the Raspberry Pi 5, specifically the 8GB variant. OS-wise, I wanted to use Raspberry Pi OS Lite, but since DietPi has an even smaller footprint, I decided to roll with the latter for this experiment. I initially tried running Needle 3 on my first-gen Raspberry Pi Zero, but since the AI model doesn’t support the outdated ARMv6 architecture, it’d throw errors every time building it on my ancient SBC.\n\nFortunately, setting everything up on my Raspberry Pi 5 was relatively simple. First, I ran the sudo apt install -y python3-venv python3-pip git command to grab the necessary packages. Then, I executed python3 -m venv ~/needle-env to create an isolated Python environment for Needle 3 and switched to it with source ~/needle-env/bin/activate. I also pulled the runtime environment with the pip install cactus-needle command. After a little bit of trial and error, I realized I had to run pip install numpy sentencepiece jax flax cactus-needle requests python-dotenv as well.\n\nWith the rest of the packages installed, the needle build --platform linux-arm64 --layers 20 --out ./pi succeeded without any more problems. For the --layers flag, I decided to go all out and assigned all 20 layers, but I could’ve gone as low as 2 layers if I was working with, say, a weak microcontroller (which I plan to do sometime in the future). But I still had to work out a way to assign some tools to this tiny AI model…\n\nSince I was particularly interested in the tool-calling aspect of Needle 3, I wanted to test it with some self-hosted services. Local smart home automation is one of the use cases mentioned in the official documentation, so I figured I could toss my Home Assistant server into the mix. But before I could write Python code for the tools, I had to pair my Home Assistant instance with Needle 3, which I did by creating a .needle-ha.env file with the following syntax:\n\nIf you’re wondering, the HA_TOKEN value is a long-lived access token that I created on Home Assistant. As for the Python tool-calling file, I used this specific snippet to control a smart_plug entity on my HASS instance:\n\nExecuting this Python script would immediately cause Needle 3 to ask for a prompt, so I wrote a simple command to turn on the smart_plug entity. Sure enough, Needle 3 ha"
 }

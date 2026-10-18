@@ -91,24 +91,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 12. 23:11",
+  "szerzo": "",
+  "cim_eredeti": "“A major overhaul”: OpenCode 2.0 puts its terminal, desktop, and web apps on one shared service",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "We’re so glad you’re here. You can expect all the best TNS content to arrive Monday through Friday to keep you on top of the news and at the top of your game.\n\nCheck your inbox for a confirmation email where you can adjust your preferences and even join additional groups.\n\nFollow TNS on your favorite social media networks.\n\nCheck out the latest featured and trending stories while you wait for your first TNS newsletter.\n\nOpenCode 2.0 is getting a formal unpacking today, some three months after its public beta launch. The sizable architectural upgrade introduces a shared background service connecting its terminal, web and desktop interfaces, alongside a rebuilt API, a new embeddable SDK, and support for running subagents and shell commands in the background.\n\nIn a blog post published on Monday, Anomaly, the company behind the open-source coding agent, calls the release a “major overhaul,” adding that it drew on the experiences of “millions of daily users” to build a more adaptable system capable of supporting an expanding range of agent capabilities.\n\nAnomaly has, in fact, been iterating on version 2.0 over the past few months, including publishing a detailed technical account of its revamped plugin architecture and hot-reloading capabilities in September. However, the drawn-out rollout has caused some confusion among developers, with questions about whether version 2.0 was officially stable yet, and complaints about missing release notes, even as updates kept shipping.\n\nMonday’s announcement, alongside the official changelog’s switch to the 2.x series, effectively signals that version 2 is now OpenCode’s main release. In tandem, the company is also offering a broader explanation of the technical decisions behind the upgrade.\n\nBy way of a brief recap, OpenCode’s origins lie in the world of serverless development. Anomaly founders Jay V and Frank Wang previously created Serverless Stack (SST), an open-source framework for building and deploying applications on Amazon Web Services (AWS). Dax Raad, another prominent figure in OpenCode’s development, was also part of the SST team.\n\nSince its 2025 debut, OpenCode has gained a fervent following among developers looking for greater freedom over the AI models powering their coding tools. That became particularly pertinent in January when Anthropic began preventing third-party agents from using Claude Pro and Max subscription credentials, forcing affected developers to find alternative ways of accessing Claude or switch providers.\n\nAs Janakiram MSV reported for The New Stack in May, these restrictions coincided with a surge of interest in OpenCode, which allows developers to switch between competing AI models. Today, the OpenCode GitHub repository has accumulated north of 212,000 stars and almost 30,000 forks.\n\nMore broadly, there are signs of growing commercial interest in this category of coding agents. In July, Anaconda acquired Kilo, another such open-source coding agent that allows developers to choose their preferred AI provider. Interestingly, Kilo had already rebuilt its command-line interface and VS Code extension using OpenCode, demonstrating how the latter was finding a role inside other developer tools.\n\nWith version 2.0, Anomaly has laid out how it has reworked OpenCode’s underlying architecture to accommodate a wider range of use cases. Arguably, the most significant change concerns how the coding agent runs, and how its different interfaces connect to it.\n\nAnomaly says the plumbing for a client/server setup has been in OpenCode from the start, though few beyond power users went out of their way to use it.\n\nWith version 2.0, the server now starts automatically as a single background process on the developer’s machine, allowing OpenCode’s terminal, browser and desktop interfaces to communicate with the same underlying service.\n\nThis means developers can access and manage their coding sessions through different interfaces, while the service handles the underlying execution. S"
 }

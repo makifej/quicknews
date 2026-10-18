@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 14.",
+  "szerzo": "",
+  "cim_eredeti": "What agents mean for Rust (and vice versa) · baby steps",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "As someone who has made a career of programming language design, I definitely have moments of existential dread about the rise of LLMs. I started coding in 5th grade on an x861 that ran at 5MHz, had something like a 5MB hard-disk and 512K of RAM2. Computers were really, really different back then. But honestly, programming wasn’t. For all the advances in IDEs and programming languages and so forth, the basic act of entering code into a file has remained surprisingly constant3 – right up until a few years ago, when everything kinda turned on its head. That’s been exciting and empowering at times4 but also scary and disorienting. Will my skills in programming matter? What about my skills in programming language design (such as they are)? This blog post is my attempt to answer those questions.\n\nSo as not to keep you in suspense, let me just give you the conclusion. In short, yes, I believe there will still be a role for humans in programming. And yes, I think that programming language design is still relevant. And, naturally, I also happen to think Rust is a really good fit for agentic development – but that’s not to say we can’t make it a better fit. And that’s what this post is ultimately about: what makes Rust and agentic development work well, and where we could double down on those strengths.\n\nThis is a kind of “blog post companion version” of a talk I gave this week at REBASE, part of SPLASH. You might also enjoy the slides from the talk I gave at IWACO, IWACO and Rust: hidden links revealed, which was a bit more of a retrospective (no soundtrack for those, though). In any case, this turned out to be a great conference! Jack Huey presented on the Rust Vision Doc and, quite to my surprise, Steve Klabnik and Dorian Scheidt presented “LLMs as Collaborators in Language Specification and Design”, talking about their process in building out Rue. It was fun to see Steve again. On top of that, there was a ton of great research presented at IWACO in particular. I was particularly taken by the work on Reachability Types and Information Borrowing. I also really liked learning about Hylo Lang, particularly their approach to projections. Clever and cool.\n\nRust is popular right now. Very popular:\n\nStratospheric among the breakout languages is TypeScript, cropped from the chart and sitting currently at +1200% growth from the prior year. [..]\n\nThe second most rapid recent growth is in Rust. Meta engineers have written twice as much first-party Rust code so far this year than in the previous 9 years combined.\n\nSome of that is because agents make it very easy to try out new things. And some of that is because Rust has a reputation for being performant and, if it’s just as easy to pick any language, why not pick one that will yield faster execution times?\n\nBut I think Rust is popular for another reason: because Rust happens to be a really good fit for agentic coding6. Of course, I would, wouldn’t I? The point of this post is (1) to argue for why that is and then (2) to discuss what we might change about Rust to make it work even better.\n\nIt seems to me that an effective “software factory” will have three pillars:\n\nNone of these pillars are solved, but some have made more progress than others.\n\nRust is designed to give “good performance by default”, making the idiomatic thing typically also be the fastest thing. But another key part of Rust is that you have the knobs to eke out better performance when you need it. You control when something is stack- or heap-allocated and where pointer indirection occurs. If you want to, you can force the layout of your structs to be done in a particular way, or decide where to introduce boxing into your async stack frames. In the limit, you can put in inline assembly.\n\nIn the past, learning how to “tune the performance knobs” could be a bit of a black art: but agents are making that much easier.7 It turns out that agents are really good at fine-tuning the performance of existing code. For example, people who "
 }

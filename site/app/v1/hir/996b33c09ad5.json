@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/az-openai-mernoke-ejszakai-ugyeletben-tesztelte-a-chatgpt-vel"
-    },
-    {
-      "id": "a947956c66cb",
-      "cim": "Személyes pénzügyi asszisztens funkciót kapott a Perplexity",
-      "lead": "A Perplexity a Plaid integrációjával teszi lehetővé, hogy a rendszert személyes pénzügyi tanácsadóként használják a felhasználók.",
-      "slug": "szemelyes-penzugyi-asszisztens-funkciot-kapott-a-perplexity",
-      "forras": "Aravind Srinivas (X)",
-      "kat": "ügynök",
-      "rovat": "ugynok",
-      "ido": "2026-10-16T17:22:43+00:00",
-      "ido_hu": "okt. 16. 19:22",
-      "kep": "https://quicknews.hu/assets/kep/a947956c66cb.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/a947956c66cb.webp",
-      "video": true,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/szemelyes-penzugyi-asszisztens-funkciot-kapott-a-perplexity"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 15. 18:08",
+  "szerzo": "",
+  "cim_eredeti": "Accelerating the search for antimicrobial peptides with Google Antigravity",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Pengfei Tian, Maxwell L Bileschi, Zoi Tsangalidou, Sukhdeep Singh and Lucy. J. Colwell\n\nNew antibiotics are urgently needed to help with rising levels of antimicrobial resistance, but searching for new therapeutics is often a slow, labor-intensive process. With Google Antigravity, our agentic development platform, this process can now be made easier.\n\nGoogle Antigravity provides an agentic science workbench that empowers biologists to discover, structurally evaluate, and prioritize promising targets quickly, compressing what used to be a fragmented search over multiple databases into a single session. It also helps researchers scan through millions of previously uncharacterized proteins in the UniProt database using ProtNLM, a model that predicts biological function from amino acid sequences.\n\nThis technical walkthrough shows how biologists used Google Antigravity to uncover a novel antimicrobial peptide candidate which has predicted activity against the pathogens involved in respiratory tract infections. The lead identified here is now undergoing wet-lab validation.\n\nRising antimicrobial resistance is one of the most pressing global health crises of our time and could result in an estimated 10 million annual deaths globally by 2050. To prevent this, we urgently need to discover novel therapeutics. Antimicrobial peptides (AMPs), particularly bacteriocins, offer a promising alternative to traditional antibiotics because they have naturally evolved to target fundamental vulnerabilities in competing bacteria, from cell envelopes to essential intracellular machinery, making it difficult for pathogens to develop resistance.\n\nThe exponential growth of genomic and metagenomic sequencing has populated global databases with billions of natural amino acid sequences. This pool of natural data has already produced globally used bacteriocins like Nisin, alongside recent genome-mined breakthroughs such as Darobactin, Dynobactin, and Lariocidin.\n\nMany, however, remain locked within the unannotated \"dark matter\" of protein databases, with their function uncharacterized because they aren’t similar to known proteins. For example, the world's leading public resource of protein sequence and functional information, UniProt, holds millions of sequences with unknown functionality, transferred directly from genome sequencing projects.\n\nTo bridge this gap, Google developed ProtNLM (Protein Natural Language Model), a deep learning model trained to directly read the underlying evolutionary “grammar” of amino acid sequences. This allows the model to predict biological function directly from raw protein sequences, enriching millions of previously unnamed UniProt entries with high-confidence functional labels.\n\nOverview of the ProtNLM pipeline translating raw amino acid sequences into natural-language biological annotations for unreviewed UniProtKB/TrEMBL entries. The functional annotation scope of the system covers protein names, function comments, subcellular locations, and GO terms, in addition to keywords.\n\nScientific discovery is rarely a single step process; finding viable candidate proteins requires human intuition and iteration to incorporate new empirical evidence. Working in Antigravity, the researcher and AI agent begin by setting a focused biological goal: find and computationally validate novel AMPs in Streptococcus pseudopneumoniae. During an interactive, multi-turn session the researcher steers the scientific strategy, deciding which questions to ask and what evidence to collect, while the agent handles the heavy lifting of cross-database orchestration, structural analysis, and literature synthesis.\n\nThe agent queries the database and filters millions of entries down to a handful of candidates worthy of attention. Here, the agent finds a bacteriocin (Uniprot ID: A0A0U0D591) with a length of 97 amino acids from the Lactococcin 972 family.\n\nTo verify the novelty of this discovery, the researcher guides the agent to interrogate the candidate ag"
 }

@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": true,
       "url": "https://quicknews.hu/hir/nyilt-forraskoduva-valt-a-stepfun-600-milliard-parameteres-ai-modellje"
-    },
-    {
-      "id": "5feb71e13bb2",
-      "cim": "Gyorsabb lett a GPT-6 Pro és párhuzamos ügynököket kapott",
-      "lead": "Az OpenAI frissítette a ChatGPT Pro csomagjában elérhető modellt, amely gyorsabb válaszokra és több ügynök egyidejű futtatására képes.",
-      "slug": "gyorsabb-lett-a-gpt-6-pro-es-parhuzamos-ugynokoket-kapott",
-      "forras": "OpenAI (X)",
-      "kat": "modell",
-      "rovat": "modell",
-      "ido": "2026-10-16T20:35:04+00:00",
-      "ido_hu": "okt. 16. 22:35",
-      "kep": "https://quicknews.hu/assets/kep/forras-x-openai.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/forras-x-openai.webp",
-      "video": false,
-      "fontossag": 4,
-      "felkapott": false,
-      "forraskep": true,
-      "url": "https://quicknews.hu/hir/gyorsabb-lett-a-gpt-6-pro-es-parhuzamos-ugynokoket-kapott"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 12. 05:16",
+  "szerzo": "Asif Razzaq",
+  "cim_eredeti": "TII Releases Falcon-ASR: 1.6B Arabic Speech Model Hits 20.92% WER",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "The Technology Innovation Institute (TII) in Abu Dhabi has released Falcon-ASR , a 1.6B parameter Arabic speech recognition model. It focuses on the Emirati dialect and also transcribes English, French, Spanish and Portuguese. In TII’s evaluation, Falcon-ASR posts a 20.92% average word error rate (WER) across 6 Arabic test sets. That beats the best published entry in TII’s leaderboard snapshot by 2.25 points. For developers building Arabic voice products, the catch is access: today it runs only as a hosted demo.\n\n TL;DR \n\n Size: 1.6B parameters. Max audio context: Not disclosed (the demo accepts clips up to 60 seconds and 20 MB).\n\n Runs on: Not disclosed. No weights or quantized variants are published. Access is a Hugging Face demo, with API and native apps planned.\n\n Performance: Lowest Arabic and Emirati WER in TII’s own comparisons, with solid English results.\n\n Best: 20.92% average Arabic WER, 2.25 points below Audar-ASR-V1-Turbo (23.17%).\n\n Worst: 11.86% WER on Earnings-22, its weakest English test set.\n\n Bottom line (best): a compact 1.6B model leading larger Arabic systems in TII’s tests.\n\n Bottom line (worst): no weights, no license, no API yet, and all scores are self-reported.\n\n What is Falcon-ASR? \n\n Falcon-ASR is a speech-to-text model from TII that converts spoken Arabic and 4 other languages into text. All 5 languages share one set of weights. The model needs no language flag and outputs text in the language spoken. It also returns word-level timestamps , linking each word to its position in the audio. This is important for subtitling, searchable recordings and meeting notes.\n\n How does Falcon-ASR handle Arabic dialects? \n\n Dialectal Arabic has far fewer transcribed resources than Modern Standard Arabic (MSA). TII trained Falcon-ASR on Emirati, MSA, other Gulf and Arabic dialects, and English. The objective is everyday speech, including dialect forms and language switching.\n\n Training audio was augmented with background noise, overlapping speech, music, room reverberation and telephony effects. Speed and pitch were varied too. The same treatment was applied to Emirati recordings.\n\n The model builds on TII’s Falcon3-Audio work . That research describes audio-language models built on instruction-tuned LLMs and Whisper encoders, trained on under 30K hours of public audio. Our editorial and technical team at Marktechpost could not find any published Falcon-ASR’s exact architecture or training data size.\n\n How does Falcon-ASR score on Arabic benchmarks? \n\n TII followed the protocol of the Open Universal Arabic ASR Leaderboard , run by the ELM Research Center. It ranks systems by equal-weight average WER over 6 test sets. TII used the leaderboard’s pinned manifests. Competitor numbers are published leaderboard averages checked on 30 September 2026.\n\n Model Params Avg WER (%) Avg CER (%) Falcon-ASR 1.6B 20.92 8.79 Audar-ASR-V1-Turbo 2.35B 23.17 9.23 Cohere Transcribe Arabic (07-2026) 2.0B 25.87 11.80 omniASR LLM 7B 7.0B 28.32 12.52 \n\n Lower is better. Note that Falcon-ASR’s figure is TII’s own run, not a leaderboard entry. The Audar model card lists its own average CER as 9.20%. \n\n How does Falcon-ASR perform on Emirati speech? \n\n TII built an internal Emirati and Gulf test set from held-out recordings with human-validated transcripts. It complements the UAE subset of the public Casablanca dataset.\n\n Model Params WER (%) CER (%) Falcon-ASR 1.6B 22.73 10.19 Qwen3-Omni-30B-A3B-Instruct 30B (3B active) 26.80 12.72 Audar-ASR-V1-Turbo 2.35B 27.89 13.75 Cohere Transcribe Arabic 2.0B 31.05 18.07 Qwen3-ASR-1.7B 2.0B 31.52 13.35 Audar-ASR-V1-Flash 0.78B 32.87 15.36 \n\n Falcon-ASR leads by 4.07 WER points over Qwen3-Omni. This test set is private, so it cannot be reproduced. Audar reports 19.4% WER on a different Emirati set (Mixat), so the numbers are not directly comparable. \n\n How good is Falcon-ASR at English? \n\n On the 7 English test sets used by the Hugging Face Open ASR Leaderboard, TII reports a 5.74% mean WER. Per-set sco"
 }

@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi"
-    },
-    {
-      "id": "11232471616c",
-      "cim": "A Microsoft új AI-rendszere 2-6 hétre előre pontosítja az időjárás-előrejelzést",
-      "lead": "A Microsoft a Nature folyóiratban publikálta legújabb kutatását, amely gépi tanulással teszi pontosabbá a középtávú időjárás-előrejelzéseket.",
-      "slug": "a-microsoft-uj-ai-rendszere-2-6-hetre-elore-pontositja-az-idojaras",
-      "forras": "Satya Nadella (X)",
-      "kat": "kutatás",
-      "rovat": "kutatas",
-      "ido": "2026-10-17T06:19:37+00:00",
-      "ido_hu": "okt. 17. 08:19",
-      "kep": "https://quicknews.hu/assets/kep/11232471616c.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/11232471616c-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/a-microsoft-uj-ai-rendszere-2-6-hetre-elore-pontositja-az-idojaras"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 17. 11:54",
+  "szerzo": "Jonathan Kemper",
+  "cim_eredeti": "AI models hide mistakes in their own work reports, but one sentence in your prompt can help",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Language models writing up their own work systematically skip problems that undermine the results. Adding a single sentence to the prompt cuts the problem down sharply, according to a new study.\n\nWhen AI agents code or run experiments on their own, people rarely check every detail and read the model's final report instead. According to a study by Google Research, MIT, and Harvard, those reports are often misleading.\n\nThe researchers gave the models 1,600 synthetic work logs that look like successes at first glance, with passing tests, positive results, and green checkmarks. Each log contains a flaw that changes the whole picture, such as an experiment where the new method actually doesn't outperform the competition. Other logs include a hidden bug despite passing tests, fabricated measurements, a job that never finished, or a software update that quietly breaks another user's work. Depending on the scenario, the models had to write a report, a paper abstract, a results table, a short essay, or a follow-up answer based on the log.\n\nThe pattern shows up most clearly in paper abstracts for experiments where one result undermines the claimed improvement of a new method. GPT-5.5 mentions that result in just 2 out of 200 abstracts. The researchers also tested whether a simple addition to the prompt makes a difference. When they added \"Be honest in your response,\" GPT-5.5 flagged the negative result in 190 out of 200 abstracts.\n\nAll tested models show this behavior, though to varying degrees. Without the honesty prompt, Gemini 3.1 Pro flags errors in at most 34 percent of cases, while Opus 4.8 does so in over 90 percent. The honesty prompt raises the rate by about 55 percentage points on average for Gemini and about 34 for GPT-5.5. In control tests with error-free logs, the prompt barely increased false alarms.\n\nThe sentence isn't a cure-all, though. In one scenario, a database query hasn't returned results yet, and GPT-5.5 with the honesty prompt almost always notes the missing data but answers the question anyway using older, incomplete information. Prompts like \"Be critical,\" \"Be thorough,\" or \"Be skeptical\" worked less reliably than asking for honesty.\n\nWhen asked directly, GPT-5.5 and Opus 4.8 find the errors in every single case, and Gemini catches at least 97 percent. According to the researchers, the models don't lack the ability but the willingness.\n\nReasoning traces from open-weight models reveal what's happening. The models often notice the problem early, then weigh whether to flag it or appear to successfully complete the task. Qwen3.5-9B was asked to support a thesis about zoning law using a passage about color cells in squid. The model notes it can't do this \"without resorting to absurd metaphors,\" but decides it has to follow the instructions as closely as possible.\n\nIn this mismatched-evidence scenario, phrases like \"I must complete the task\" appear in 55 percent of answers that hide the error but in only 27 percent of answers that flag it. The models justify the omissions with typical excuses, saying the tests passed, they're just summarizing, or an abstract should emphasize positives.\n\nIn a case study on Qwen3.5-9B, the researchers found evidence that honesty and success-seeking are represented as nearly opposite directions inside the model. When they amplified the honesty direction, the model flagged fabricated measurements in 42 out of 50 cases. When they pushed the opposite way, it invented extra numbers and formulas to fake credibility. The intervention wasn't precise, though, because the model became generally suspicious and reported supposedly fabricated data in 41 percent of error-free logs too.\n\nTraining worked better. The researchers fine-tuned Qwen3.5-9B on its own honesty-prompted answers. After that, the model flagged fabricated data in 48 percent of cases instead of 2 percent, even without the extra sentence, and error-free control logs produced no false alarms. The effect partly carried over to other e"
 }

@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": true,
       "url": "https://quicknews.hu/hir/gyorsabb-lett-a-gpt-6-pro-es-parhuzamos-ugynokoket-kapott"
-    },
-    {
-      "id": "77dc72c12562",
-      "cim": "Nyílt forráskódú döntési modelleket adott ki a Perplexity",
-      "lead": "A Perplexity két új multimódális modellt tett ingyenesen letölthetővé és API-n keresztül is elérhetővé.",
-      "slug": "nyilt-forraskodu-dontesi-modelleket-adott-ki-a-perplexity",
-      "forras": "Aravind Srinivas (X)",
-      "kat": "modell",
-      "rovat": "modell",
-      "ido": "2026-10-16T20:05:13+00:00",
-      "ido_hu": "okt. 16. 22:05",
-      "kep": "https://quicknews.hu/assets/kep/77dc72c12562.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/77dc72c12562.webp",
-      "video": false,
-      "fontossag": 4,
-      "felkapott": true,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/nyilt-forraskodu-dontesi-modelleket-adott-ki-a-perplexity"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 17. 09:26",
+  "szerzo": "Asif Razzaq",
+  "cim_eredeti": "20 Jev Alternatives: The Decision Models Taking On TypeSafe in 2026",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "TypeSafe launched Jev on September 15, 2026. It is a decision model, not a chatbot. You define the allowed answers, and Jev returns a label, a score or a yes/no probability. In about 4 weeks, at least 20 Jev alternatives shipped. They come from Cloudflare, OpenAI, Perplexity, Liquid AI, AWS’s Strands Labs and independent developers. This guide compares each one on size, license, hardware, pricing, Jev API compatibility and published benchmarks.\n\n TL;DR \n\n Size range: 287M (GLiNER2.5-multi-Decide) to 35B-A3B (Mapika Decider). Jev’s size is not disclosed.\n\n Runs on: Encoders like Von and Laya run on CPU. 4B adapters fit a 24 GB GPU or a 32 GB Mac.\n\n Performance: Most open models trail Jev on hard reasoning. Several match or beat it on narrow classification.\n\n Best: Cloudflare Clef scores 94.20 BANKING77 F1 versus Jev’s 79.74, per Cloudflare’s own run.\n\n Worst: Von 1.2 scores 0.422 accuracy in Respan’s run, against Jev’s 0.932.\n\n What is Jev, and why look for alternatives? \n\n Jev is TypeSafe’s first ‘System One’ model. You send a state, such as a ticket or log line. You also send typed questions: Choice, Score or Noul (yes/no). Jev scores every question in one parallel pass and generates no text.\n\n TypeSafe’s docs list $0.042 per 1M input tokens, with free output. Context is 64k tokens per request. Input is text only. Weights are closed, and access runs through a waitlist. TypeSafe’s workflow evals put Jev at 67.8% agreement and 0.4 s per case.\n\n That leaves 4 gaps developers keep raising: no images, no self-hosting, no published size and no fine-tuning. The 20 models below fill some or all of them. \n\n How should you read these benchmarks? \n\n Most figures below are self-reported. The suites differ: JevBench, Decision Index, typed-decisions and Respan’s behavior benchmark. Scores across suites are not comparable. The one multi-model third-party table comes from Respan , which sells a competing model.\n\n Hosted decision APIs \n\n 1. Cloudflare Clef and Clef-flash \n\n Cloudflare announced Clef on October 1, 2026. Clef is 27B on Qwen3.8-27B with a vision encoder. Clef-flash is 9B on Qwen3.5-9B. Both are Apache-2.0 on Hugging Face and served on Workers AI. They accept text, JSON and up to 4 images per request.\n\n Workers AI pricing is $0.24 (Clef) and $0.038 (Clef-flash) per 1M input tokens. Cloudflare calls the API fully Jev-compatible. In its own run, Clef scored 94.20 BANKING77 F1 versus Jev’s 79.74. Jev still wins GPQA Diamond, 78.3 versus 48.0.\n\n 2. Liquid AI d1 \n\n Liquid AI’s d1 family has hosted d1 and d1-ultra, plus 2 open models. d1-3B (3.1B) runs on LFM2.5-VL-3B. d1-omni-600M (587M) adds audio clips up to 30 s. The open weights use the LFM Open License.\n\n Liquid’s guide calls d1 through TypeSafe’s own SDK with a different base URL. Liquid reports d1-3B at 48.57 on Decision Index 0.2.1. It also reports 8 ms latency on an RTX 4090. Hosted parameter counts and paid rates are not disclosed.\n\n 3. OpenAI Decisions API \n\n OpenAI released the Decisions API in public beta on October 6, 2026. It runs only on gpt-6-luna. It accepts text plus base64 images. Question types are predicate, choice and score.\n\n Pricing is $0.10 per 1M input tokens, with output not billed. The schema is OpenAI’s own, so it is not Jev-compatible. OpenAI claims about 10x faster responses than the Responses API. No benchmarks are published.\n\n 4. Perplexity pplx-decider \n\n Perplexity’s pplx-decider-v1-27b is a Qwen3.8-27B fine-tune under Apache-2.0. It reads text, JSON and up to 8 images per question. The API allows 128 questions and 255 options per request.\n\n The current pricing is $0.02 per 1M input tokens for v1.2 (27B). A 4B flash-v1.2 costs $0.01. On Perplexity’s 11-task panel, it scored 85.71% versus Jev’s 84.51%. Jev still won BBH, 94.27 versus 82.80.\n\n 5. meraGPT Decider 1 \n\n meraGPT announced Decider 1 on September 22, 2026. It is a hosted, closed-weight, text-only model. It allows up to 10 Choice labels and a 4,096-token context. The model page lists $0.04 p"
 }

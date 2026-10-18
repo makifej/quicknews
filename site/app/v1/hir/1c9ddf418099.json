@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": true,
       "url": "https://quicknews.hu/hir/nyilt-forraskoduva-valt-a-stepfun-600-milliard-parameteres-ai-modellje"
-    },
-    {
-      "id": "5feb71e13bb2",
-      "cim": "Gyorsabb lett a GPT-6 Pro és párhuzamos ügynököket kapott",
-      "lead": "Az OpenAI frissítette a ChatGPT Pro csomagjában elérhető modellt, amely gyorsabb válaszokra és több ügynök egyidejű futtatására képes.",
-      "slug": "gyorsabb-lett-a-gpt-6-pro-es-parhuzamos-ugynokoket-kapott",
-      "forras": "OpenAI (X)",
-      "kat": "modell",
-      "rovat": "modell",
-      "ido": "2026-10-16T20:35:04+00:00",
-      "ido_hu": "okt. 16. 22:35",
-      "kep": "https://quicknews.hu/assets/kep/forras-x-openai.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/forras-x-openai.webp",
-      "video": false,
-      "fontossag": 4,
-      "felkapott": false,
-      "forraskep": true,
-      "url": "https://quicknews.hu/hir/gyorsabb-lett-a-gpt-6-pro-es-parhuzamos-ugynokoket-kapott"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 16. 08:26",
+  "szerzo": "Asif Razzaq",
+  "cim_eredeti": "Liquid AI Releases d1-ultra: A Multimodal Decision Model That Scores 65 on the AA Decision Index",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Liquid AI has released d1-ultra , its most capable decision model to date. The Liquid AI d1-ultra decision model reads text, images, or both. It answers typed questions with a probability for each possible answer. It does this in one forward pass and generates no output tokens. For developers, that means classification, routing and scoring calls without paying for generated text. It is available now on the Liquid API at $0.042 per million input tokens.\n\n TL;DR \n\n Size: Parameters and context length not disclosed. Built on a larger open-weight backbone than d1.\n\n Runs on: Hosted Liquid API only. No downloadable weights or quantized variants announced.\n\n Performance: Leads all 8 categories in Liquid’s 112-evaluation suite, per Liquid.\n\n Best: 65 on the Artificial Analysis Decision Index, ranked #1 (Liquid-reported).\n\n Worst: No public per-benchmark breakdown or parameter count yet; claims are vendor-reported.\n\n What is a decision model? \n\n A decision model answers bounded questions with probabilities instead of free text. Liquid’s decision model docs describe 3 question types: \n\n Noul: a yes/no question that returns a probability between 0 and 1.\n\n Choice: one label from a set, with a probability per label.\n\n Score: a probability-weighted position on an ordered rubric.\n\n The docs recommend decision models for routing, moderation, guardrails, triage and LLM-as-judge replacement. They recommend a language model for summarization, chat and code generation.\n\n How does d1-ultra work? \n\n Each request carries a state (the context), optional images , and 1 or more typed questions . The model evaluates every question against the same input in 1 call. The d1 API reference shows responses with output_tokens always at 0.\n\n Liquid AI team states that d1-ultra uses a larger open-weight backbone than d1 , along with heavy Liquid-specific customizations. Combined with Liquid’s decision training pipeline, the gains are largest on knowledge tasks. \n\n Liquid AI team built d1-ultra for messy cases. Its examples include spotting a circuit board defect against a spec. Another is checking a damage claim against the customer’s photo.\n\n How does d1-ultra perform on benchmarks? \n\n Liquid AI compared d1-ultra against its earlier d1 and TypeSafe’s Jev 1.14 across 112 evaluations. According to Liquid AI’s announcement , d1-ultra outperforms Jev 1.14 across all tasks at the same price. \n\n On the independent Artificial Analysis Decision Index , Liquid reports d1-ultra ranks #1 with a score of 65. The index averages 4 evaluations at 25% each: \n\n AA-Omniscience-Decision: knowledge and hallucination\n\n HLE-MultiChoice: reasoning\n\n When2Call: tool calling\n\n WildGuardTest: safety classification\n\n For context, Artificial Analysis’s Oct 13 launch article listed Jev 1.13 first at 58. GLiDE and Microsoft-Decision-1 followed at 54 each.\n\n Comparison: d1-ultra vs other decision models \n\n Feature d1-ultra d1 Jev (TypeSafe) Microsoft-Decision-1 GLiDE (Fastino) Developer Liquid AI Liquid AI TypeSafe AI Microsoft Fastino Labs Parameters Not disclosed Not disclosed Not disclosed Not disclosed Not disclosed Input Text, images Text, images Text Not disclosed Not disclosed Weights API only API only Closed Not disclosed Not disclosed AA Decision Index 65 (Liquid-reported) Not disclosed 58 (v1.13, Oct 13) 54 (Oct 13) 54 (Oct 13) Price $0.042 / 1M input Not disclosed $0.042 / 1M input $31 / 1M tasks (AA) $119 / 1M tasks (AA) Output tokens billed No No No Not disclosed Not disclosed \n\n How do you deploy d1-ultra, and what does it cost? \n\n d1-ultra runs on the Liquid API through the /decisions/v1/systemone endpoint with \"model\": \"d1-ultra\" . Liquid says Vercel AI Gateway and OpenRouter support is coming soon. You can test it first in the d1 Playground .\n\n Billing covers input tokens only. Per Liquid’s pricing notes , images cost 1.5 tokens per 32×32-pixel patch. A 1024×1024 image therefore costs 1,536 tokens. Each question is billed as its own prompt, including its text and all image"
 }

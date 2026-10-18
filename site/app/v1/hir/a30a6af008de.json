@@ -91,24 +91,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. szept. 28.",
+  "szerzo": "",
+  "cim_eredeti": "Welcome RL Environments to the hub",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Stop building environment registries What shipped Run an environment and inspect its reward Harbor: run a reference solution Verifiers: run a model on the same task OpenEnv: run an agent and inspect its reward NeMo Gym: generate responses and inspect rewards Tag your environment Already on the Hub What comes next Reinforcement Learning environments give new capabilities to agentic AI systems, and they’re a great way to measure and improve performance in your agents. Therefore, Hugging Face Hub now has a special place for RL Environments.\n\nAn environment gives an agent a task, responds to its actions with observations, and scores the outcome. The resulting rewards can measure an agent's performance during evaluation or provide a learning signal during training. For an introduction to this interaction loop, see our blogpost on environments. Within the environment, the agent will perform a set of tasks that are represented as datasets. Therefore, environments can be split into broadly two parts: tasksets and runtimes. In this release, we are focusing on the tasksets.\n\nAn RL environment on the Hub is a dataset repo that shows up in the new RL Environments filter. The Use this dataset button gives you the command to run it in that framework. There is no new repo type, no registry, and no sign-up. There are already environments in Harbor, Verifiers, and NVIDIA NeMo Gym.\n\nEvery RL paper or framework uses its own way to find environments. Custom hubs, runtime registries, independent task datasets, or a GitHub list of tasks with a custom loader. This means that many of the published environments are siloed: if you publish an environment for one framework, users of the other three can’t load it. If you want to train on an environment from another framework or a new paper, you’ll need to port it by hand.\n\nWe think this is the wrong shape. An environment is tasks, tests, containers, and a reward rule, which are data with a runtime on top. The Hub already stores data, versions it, gates it, previews it, and serves it to millions of people. It does not need a second system to hold environments. It needs a way to say \"this data is an environment, and here is how you run it.\"\n\nThe frameworks keep doing what they are good at. The Hub does what it is good at, which is hosting, discovery, and versioning. Nobody has to own the catalogue. In fact, catalogues can run on other platforms too, powered by the hub.\n\nThe dataset repository hosts your environment files. The framework runs them locally or on a supported cloud backend. Hugging Face Jobs can run cloud workloads, and Hugging Face Sandboxes, built on Jobs, provide interactive command execution. The tags describe compatibility and generate loading commands; adding a tag does not start a job or sandbox.\n\nThe RL Environments filter. Go to huggingface.co/datasets?other=rl-environment. Every dataset with the rl-environment tag appears there, whatever framework it works with.\n\nFramework tags. Four environment frameworks are registered as dataset libraries:\n\nEach framework tag puts the framework's icon on the dataset page and adds a generated snippet to Use this dataset.\n\nA dataset can carry more than one framework tag. That is the point. Tags describe compatibility, and compatibility is not exclusive. Each listed framework must support the files in the repository; adding a tag does not convert them.\n\nChoose the example for your framework and run it in a separate Python environment with the prerequisites listed below.\n\nHarbor can load task directories from a Hub repository. The oracle agent runs the task's reference solution, then the verifier scores the result. It does not call a model.\n\nThe viewer shows the task's reward, verifier output, and logs. This checks the task and its reference solution before you try a model agent.\n\nThe Harbor integration of verifiers v1 can run the same task directories in different runtimes, such as Docker. It also supports different harnesses, including a minimal bash "
 }

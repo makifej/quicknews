@@ -91,24 +91,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/az-openai-mernoke-ejszakai-ugyeletben-tesztelte-a-chatgpt-vel"
-    },
-    {
-      "id": "a947956c66cb",
-      "cim": "Személyes pénzügyi asszisztens funkciót kapott a Perplexity",
-      "lead": "A Perplexity a Plaid integrációjával teszi lehetővé, hogy a rendszert személyes pénzügyi tanácsadóként használják a felhasználók.",
-      "slug": "szemelyes-penzugyi-asszisztens-funkciot-kapott-a-perplexity",
-      "forras": "Aravind Srinivas (X)",
-      "kat": "ügynök",
-      "rovat": "ugynok",
-      "ido": "2026-10-16T17:22:43+00:00",
-      "ido_hu": "okt. 16. 19:22",
-      "kep": "https://quicknews.hu/assets/kep/a947956c66cb.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/a947956c66cb.webp",
-      "video": true,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/szemelyes-penzugyi-asszisztens-funkciot-kapott-a-perplexity"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 13. 20:51",
+  "szerzo": "Chris Bartholomew",
+  "cim_eredeti": "Hindsight 1.0 + Memlake",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Hi all, Chris from Vectorize here. Tomorrow (Oct 14) we're launching Hindsight 1.0, our open-source memory for AI agents, together with Hindsight Memlake, a Rust storage engine for Enterprise customers with very large memory volumes.\n\nBefore launch day, a question for anyone running agents with long-term memory: what broke first as it grew? For us it was recall latency. On one 200k-memory bank, recall on Postgres had crept up to 5.3 s; on Memlake it's 113 ms, and the engine holds 100M memories under 100 ms p99.\n\nCurious whether others hit the same wall or something else entirely: cost, relevance drift, stale facts. Happy to share what we learned, and we'd love to see you at the launch tomorrow.\n\nHi Product Hunt, Chris from Vectorize here.When we launched Hindsight here, the idea was that agents should learn from experience the way people do, not just retrieve documents. After a year in production and #1 results on every dataset of the Agent Memory Benchmark, Hindsight is now 1.0. From here, the API is a promise.The other half of this launch is the part I'm most excited about as the person who runs it: Hindsight Memlake, for Enterprise customers with very large memory volumes. Agent memory only grows, and every recall runs vector, keyword, graph and time search over all of it. So Nicolò and the team built a storage engine for that shape of data, in Rust:• Object storage is the only source of truth: no database, no consensus cluster, no leader• Only two objects ever change, through conditional writes, and the protocols are model-checked in TLA+• 100M memories at under 100 ms p99 on 4 servers, and recall on a 200k-memory bank went from 5.3 s on Postgres to 113 msHat tip to turbopuffer, whose object-storage-first design inspired a lot of this.Try Hindsight open source (MIT, runs on Postgres) or on Hindsight Cloud with free credits. Memlake comes with Hindsight Enterprise, and the full engineering write-up is here: https://hindsight.vectorize.io/b...Happy to answer anything about agent memory, Memlake, or why we didn't just use Postgres.\n\nWeboldal: https://vectorize.io"
 }

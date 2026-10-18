@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": true,
       "url": "https://quicknews.hu/hir/nyilt-forraskoduva-valt-a-stepfun-600-milliard-parameteres-ai-modellje"
-    },
-    {
-      "id": "5feb71e13bb2",
-      "cim": "Gyorsabb lett a GPT-6 Pro és párhuzamos ügynököket kapott",
-      "lead": "Az OpenAI frissítette a ChatGPT Pro csomagjában elérhető modellt, amely gyorsabb válaszokra és több ügynök egyidejű futtatására képes.",
-      "slug": "gyorsabb-lett-a-gpt-6-pro-es-parhuzamos-ugynokoket-kapott",
-      "forras": "OpenAI (X)",
-      "kat": "modell",
-      "rovat": "modell",
-      "ido": "2026-10-16T20:35:04+00:00",
-      "ido_hu": "okt. 16. 22:35",
-      "kep": "https://quicknews.hu/assets/kep/forras-x-openai.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/forras-x-openai.webp",
-      "video": false,
-      "fontossag": 4,
-      "felkapott": false,
-      "forraskep": true,
-      "url": "https://quicknews.hu/hir/gyorsabb-lett-a-gpt-6-pro-es-parhuzamos-ugynokoket-kapott"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 13. 10:19",
+  "szerzo": "Michal Sutter",
+  "cim_eredeti": "Z.ai GLM-Legal Beats Claude Fable 5 and Kimi K3 on Harvey LAB",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Z.ai just released GLM-Legal . GLM-Legal is a legal AI model from Z.ai, built on GLM-5.3-Flash and trained for agentic legal work. It targets contract review, evidence analysis and compliance research. The key result is a 19.2% all-pass rate on Harvey’s Legal Agent Benchmark (LAB) . That is nearly 3x its base model’s 6.7%. For developers, the catch is access: the API is application-only for now.\n\n TL;DR \n\n Size: Built on GLM-5.3-Flash, a 320B-total, 18B-active MoE with a 1M-token context and 128K max output. Z.ai lists no separate GLM-Legal parameter count.\n\n Runs on: Z.ai’s hosted API only, by application. No public weights. The base model self-hosts on multi-GPU servers via vLLM or SGLang, with FP8 weights.\n\n Performance: Top-10 on Harvey LAB at a fraction of frontier cost. Within 2.3 points of the LegalBench leader.\n\n Best: 19.17% Harvey LAB task pass rate, #7 of 79 on Vals AI, at $0.15 per test.\n\n Worst: 41.83% on Vals AI’s Legal Research Bench, below its own base model (45.19%).\n\n Bottom line: \n\n Best: frontier-class legal agent scores at about 1/128 the cost of Claude Fable 5. \n\n Worst: gated beta with no price, no weights and slow runs (1h12m per task).\n\n What is GLM-Legal? \n\n GLM-Legal is a domain-specialized version of GLM-5.3-Flash for law firms, in-house counsel and compliance teams. The base is Z.ai’s first natively multimodal GLM-5 model . It has 320B total parameters with 18B active. It mixes sparse and linear attention to cut long-context serving cost. It reads text, images, video and files, and outputs text.\n\n How was GLM-Legal trained? \n\n Training ran in 2 stages: \n\n Mid-training on expanded legal corpora, to strengthen reasoning from facts to rules to conclusions.\n\n Post-training with reinforcement learning across tens of thousands of legal task environments .\n\n The Z.ai team also describes the agent harness co-evolving with the model during post-training. Edge cases in training exposed harness bottlenecks. Harness fixes then exposed the model to more realistic constraints.\n\n How does GLM-Legal score on Harvey’s Legal Agent Benchmark? \n\n Harvey LAB is an open-source benchmark of 1,250 tasks across 24 practice areas . Over 75,000 expert-written rubric criteria grade the work. A task passes only if every criterion passes. Harvey calls this all-pass grading.\n\n Vals AI runs the held-out set with 2 LLM judges and internet disabled . Agents get file tools plus docx , pptx and xlsx skills.\n\n On that leaderboard, GLM-Legal scores 19.17% and ranks #7 of 79. Its base, GLM-5.3-Flash, scores 6.67%. The 12.5-point lift is the core claim, and an independent evaluator reproduced it.\n\n Z.ai’s launch chart shows GLM-Legal ahead of Kimi K3 (12.92%), Claude Fable 5 (11.25%) and GPT-6 Astra (5.42%). Those figures match Vals AI. The chart omits 6 models ranked higher, led by Muse Spark 1.2 at 25.42%.\n\n GLM-Legal also passes 92.5% of individual criteria. Top models sit near 90% to 95% on that measure.\n\n Does GLM-Legal match frontier models on LegalBench? \n\n Roughly. Z.ai claims parity on LegalBench and the Chinese-focused PLawBench without publishing numbers. Vals AI scores GLM-Legal at 86.23% on LegalBench . Claude Fable 5 leads at 88.56% . Kimi K3 scores 86.21% . \n\n How does GLM-Legal compare with Kimi K3, Claude Fable 5 and GPT-6 Astra? \n\n GLM-Legal GLM-5.3-Flash (base) Kimi K3 Claude Fable 5 GPT-6 Astra Developer Z.ai Z.ai Moonshot AI Anthropic OpenAI Total / active params Built on 320B / 18B base 320B / 18B 2.8T / 104B Not disclosed Not disclosed Context window 1M 1M 1M 1M 1M Weights / license No public weights Open, MIT Open, Kimi K3 License Proprietary Proprietary Harvey LAB (task pass) 19.17% 6.67% 12.92% 11.25% 5.42% LegalBench 86.23% 83.93% 86.21% 88.56% Not listed by Vals Legal Research Bench 41.83% 45.19% 46.15% 49.52% 39.42% Cost per Harvey LAB test $0.15 $0.57 $3.83 $19.23 $26.16 Avg Harvey LAB duration 1h12m 52m17s 13m58s 26m53s 24m49s API price (in / out, per 1M tokens) Not published $0.15 / $0.50 $3 / $15 $10 / $5"
 }

@@ -91,24 +91,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/az-openai-mernoke-ejszakai-ugyeletben-tesztelte-a-chatgpt-vel"
-    },
-    {
-      "id": "a947956c66cb",
-      "cim": "Személyes pénzügyi asszisztens funkciót kapott a Perplexity",
-      "lead": "A Perplexity a Plaid integrációjával teszi lehetővé, hogy a rendszert személyes pénzügyi tanácsadóként használják a felhasználók.",
-      "slug": "szemelyes-penzugyi-asszisztens-funkciot-kapott-a-perplexity",
-      "forras": "Aravind Srinivas (X)",
-      "kat": "ügynök",
-      "rovat": "ugynok",
-      "ido": "2026-10-16T17:22:43+00:00",
-      "ido_hu": "okt. 16. 19:22",
-      "kep": "https://quicknews.hu/assets/kep/a947956c66cb.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/a947956c66cb.webp",
-      "video": true,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/szemelyes-penzugyi-asszisztens-funkciot-kapott-a-perplexity"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 8.",
+  "szerzo": "",
+  "cim_eredeti": "The model that didn't exist, so you made it yourself",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "How I prompt ML Intern 1. A model that knows your field 2. A model that draws your character 3. A model that does a new trick 4. A model that fits your device What it cost Make yours Last week, I wanted a small version of the prompt rewriter that ships with Qwen-Image 2.1. The official one is a 9B model that needs about 20 GB of memory and thinks for thousands of tokens before writing a single paragraph. On the Hub, I found only compressed copies of that same 9B model. So I described what I wanted to ML Intern, and the next day I had a 0.8B version that runs on a CPU. It returns valid output 99.7% of the time and uses about a quarter of the teacher's tokens. The compute for the whole project, including having the 9B model label 8,797 example requests, came to USD 16.\n\nOver the course of the next few days, I made five more models the same way. Each one started as a message in HuggingChat with ML-intern switched on, and each one ended as a public model on the Hub with its evaluation in the model card. ML-intern plans the work, asks me for a budget before it spends anything, runs a small test before the real job, then trains, evaluates and publishes on Hugging Face hardware.\n\nThe first message is where I spend my effort. My first prompt, for the citrus model shared below, was about 450 words. By my 6th project it was closer to 2,000, because each project taught me something I wanted in the next one. All seven prompts are on GitHub at yvrjsharma/ml-intern-prompts, exactly as I wrote them.\n\nA prompt starts with the idea in one line and why I want it. Then it names the exact pieces: the dataset, the base model, the training script. Anything I have already checked goes under a heading that literally says \"Verified facts, do not re-derive\", so the agent spends its budget on the work instead of rediscovering what I know. For the camera-angle LoRA that section listed which trainer had just added transparent-image support, and which open GitHub issues made the fallback trainer risky.\n\nTwo lines in the prompt are critical. The first asks for a baseline before any training. For example, the citrus prompt says: \"Also report the base model's zero-shot score on the same metric before training so we can see the gain.\" Without it you get a trained model and no idea whether it is better than what you started with. The second is a smoke test with a check attached. For the image LoRAs I asked for 50 training steps, then a check that the saved weights had actually changed, before paying for the full run.\n\nAt the end of the prompt, I lay out the expected deliverables and limit the cost. I define what belongs in the model card and include a instruction like: \"Cap total spend at USD 12 and ask me before exceeding it.\" Because ML-intern begins every task with zero dollar budget and needs permission before executing paid jobs, this spending limit stays strictly enforced. When you leave out a budget, the agent suggests a couple of paths depending on project size and asks which one you prefer.\n\nYou don't necessarily need all of that on your first attempt. For example, I didn't have the verified-facts section in my citrus brief and ML Intern still produced a model that more than tripled the accuracy of the Qwen3.5-2B model. Let me walk you through 6 things I built with Ml-Intern in just a couple of days.\n\nA general vision model can describe a yellowing citrus leaf. However, telling you whether it is a mite problem or a magnesium deficiency, and the bio and non-bio remedies to treat the plant is very hard. Using Claude, I put together a training dataset merged from three sources hosted by the Project-AgML organization on the Hub. The resulting citrus-disease-vlm-instruct is a dataset containing 3,017 annotated images across 21 distinct pests, illnesses, nutritional gaps, and treatment approaches. ML-intern handled the fine-tuning of Qwen3.5-2B using these examples, making sure to benchmark the foundation model beforehand.\n\nOn the 335 test photos, the base m"
 }

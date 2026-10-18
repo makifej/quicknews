@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 14.",
+  "szerzo": "",
+  "cim_eredeti": "Be the Architect: Intentional AI Engagement for Cybersecurity Engineering",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "TL;DR: How SpecterOps combined deliberate human engagement, model routing, and specialized tools to overhaul Ghostwriter’s user interface for $815.50 in model spend.\n\nDisclosure: SpecterOps participates in OpenAI’s Trusted Access for Cyber and Daybreak programs. Codex is the primary example in this article because it fits our engineering workflow and because of that relationship. The operating principles described here are vendor-neutral and can be applied to other model families and coding agents.\n\nWhen organizations talk about using AI for engineering, the conversation often starts with the model: Which one is most capable? Which one is fastest? Which one is cheapest? Those questions matter, but they come after a more important one: How should people engage with the agent?\n\nOur answer is straightforward: be the architect.\n\nAn agent can take on a substantial amount of labor. You can task an agent to explore a codebase, propose alternative solutions, implement a design, update hundreds of related components, and perform repeatable checks. But you should not transfer ownership of the problem to an agent. The human still sets the direction, establishes what success means, challenges assumptions, and accepts responsibility for the result.\n\nThis is a leadership problem as much as it is a technical one. An AI agent is not a human team member: it does not share responsibility, understand organizational intent, or carry judgment from one situation into another unless that context is made available. Yet, some of the same principles that make delegation effective with people also matter here. Ambiguous direction produces ambiguous work. Missing constraints do not remain empty; the model fills them with a plausible interpretation. Incidental comments may receive more weight than we intended.\n\nConsider a deliberately silly prompt: “Beans. Beans. Beans. Write me a haiku.” The model will almost certainly write a haiku about beans. It has no reason to know the repeated word was an aside, a test, or irrelevant context. The same behavior becomes consequential when the subject is an application architecture, an accessibility requirement, a research hypothesis, or a security control. This is also why long-running chats can start to go off the rails; a comment or correction you made an hour ago for a different task may influence the next task in ways you did not intend.\n\nPrompt engineering, then, is not a search for magic phrasing. The human must begin with problem definition and proceed with deliberate and intentional expansion. Using an agent intentionally means deciding what context matters, what role the agent should play, what decisions remain open, and what evidence will be required before the work is accepted.\n\nAt SpecterOps, we have been formalizing this with a framework called the AI Engagement Model, or AIEM, based on Mark Keith’s data science research at BYU. Its purpose is to make AI a force multiplier while keeping authorship, judgment, and understanding with the person responsible for the work. It begins with a simple premise:\n\n> AI performance is a function of the human, the model, and the workflow.\n\nAIEM follows a recurring loop: Frame, Challenge, Verify, Decide, Produce. We frame the problem and define success. We challenge assumptions and ask for alternatives. We verify claims and behavior. We decide which direction to take. Only then do we ask the agent to implement the work. The loop repeats as new information appears.\n\nOur role changes as we move through that loop. At the beginning of a project, we may act as the Problem Setter. We can ask the agent to become a Creative Expander when we need options or a Critical Challenger when we want to stress test an idea. Once the direction is clear, the agent can shift into an Implementation Assistant. Later, it can help verify the result. We choose the role that fits the state of the work.\n\nThat choice also influences cost. Asking an expensive model to discover our goals, choose a dir"
 }

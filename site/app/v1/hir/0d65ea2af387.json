@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 9. 15:29",
+  "szerzo": "Hugging Face",
+  "cim_eredeti": "TRL v1.15 is out, and it’s an absolute banger of a release for memory-efficient post-training.",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "TRL v1.15 is out, and it’s an absolute banger of a release for memory-efficient post-training.\n\nThe main change: SFT, DPO, KTO, GRPO, RLOO and Distillation now use a fused LM head by default.Instead of materializing the huge [batch, seq, vocab] logits tensor, a Triton kernel computes the token-level quantities we actually need directly.\n\nThe results are quite significant.\n\nOn Gemma 3-1B with a 262k vocabulary, on the same GPU:\n\nDPO: 10k → 59k max sequence length\nKTO: 9k → 63k\nGRPO: 28k → 114k\nRLOO: 23k → 100k\nSFT: 20k → 107k\n\nUp to 6.9x longer sequences, with peak memory at 8k context reduced by 52-82%.\n\nSpeed isn't negatively impacted: training is also up to ~11% faster.\n\nThere’s more in the release too: selective activation checkpointing for SFT, assistant-only loss for vision datasets, better conversation logging, improvements to AsyncGRPO / AsyncDistillation, and a long list of fixes.\n\nI really like optimizations like this: the training API doesn’t need to become more complicated as the implementation underneath gets much better."
 }

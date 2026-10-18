@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 11. 17:47",
+  "szerzo": "",
+  "cim_eredeti": "AI Agent Tool Calling in TypeScript: Runaway Loop Guardrails",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Stay up to date with AI tools, model releases, and developer workflows that matter.\n\nMost LLM SDKs provide no built-in circuit breaker for agent-level tool-calling loops. This tutorial walks through building a provider-agnostic TypeScript agent loop protected by four discrete guardrails: per-tool attempt caps, execution timeouts, a best-effort token budget guard, and an application-side fallback to draft state.\n\nIn April 2026, a developer on Reddit's r/cursor described an agent that got stuck in a loop and ran up more than $2,000 in charges in under two hours while they were away from the keyboard. The agent was not malicious. It kept doing what it was asked, and nothing in the system told it to stop.\n\nThis is the core problem. Most LLM SDKs provide no built-in circuit breaker for agent-level tool-calling loops. (Some newer SDKs, such as OpenAI's Agents SDK, now include configurable turn limits, but this is not yet universal.) The model decides when to stop calling tools, and if the tools keep returning errors or the model keeps hallucinating arguments, the loop continues indefinitely, burning tokens and dollars with every iteration.\n\nThis tutorial walks through building a provider-agnostic TypeScript agent loop protected by four discrete guardrails: per-tool attempt caps, execution timeouts, a best-effort token budget guard, and an application-side fallback to draft state. Prerequisites include working knowledge of TypeScript, comfort with async/await, and familiarity with sending chat-completion requests and handling tool-call responses.\n\nThe canonical agent loop follows a predictable cycle: send a conversation history to the LLM, receive a response that may contain one or more tool calls, execute those tools, append the results back into the conversation, and repeat until the model returns a final text response with no tool calls. This pattern is consistent at a high level across OpenAI, Anthropic, Google, and other providers, though provider message schemas differ. This article uses a normalized abstraction; consult each provider's API reference for exact formats.\n\nNothing bounds the loop by default. The model alone decides when to stop. If a tool consistently returns an error, the model may retry it. If an external API is flaky, the model has no way to distinguish between transient and permanent failure. The loop simply continues.\n\nRetry storms happen when a tool consistently errors and the model keeps retrying the same call with identical or slightly varied arguments. Then there are semantic loops, where the model cycles between two or more tools without converging on an answer, each tool's output triggering a call to the other. The third failure mode is token blowout: each iteration appends tool call results and model responses to the conversation context, inflating the prompt size and cost linearly, even if the loop eventually terminates.\n\nThe code throughout this article relies on a shared set of interfaces. Create a types.ts file with the following definitions:\n\nThe tsconfig.json should enable strict mode and target ES2022 or later to enable modern syntax output. Top-level await requires \"module\": \"Node16\" or \"ES2022\". AbortController is a Node.js runtime API (≥15) independent of target.\n\nNote: If you are building with Vite, esbuild, or a similar bundler, you can use \"moduleResolution\": \"bundler\" instead. For plain tsc compilation, use \"node16\" as shown above.\n\nInstall zod as the schema validation library:\n\nThe LLM client is represented as the generic LLMClient interface defined in types.ts. Readers can swap in OpenAI's openai package, Anthropic's @anthropic-ai/sdk, or any compatible client. The guardrails operate on the response shape, not the provider.\n\nHere is the bare, unguarded loop that the rest of the tutorial will progressively harden:\n\nThis is the structure most tutorials present. It works until it does not.\n\nEach tool is defined with a name, description, a Zod schema for its parameters, and an execute funct"
 }

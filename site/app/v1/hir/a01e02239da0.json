@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": true,
       "url": "https://quicknews.hu/hir/nyilt-forraskoduva-valt-a-stepfun-600-milliard-parameteres-ai-modellje"
-    },
-    {
-      "id": "5feb71e13bb2",
-      "cim": "Gyorsabb lett a GPT-6 Pro és párhuzamos ügynököket kapott",
-      "lead": "Az OpenAI frissítette a ChatGPT Pro csomagjában elérhető modellt, amely gyorsabb válaszokra és több ügynök egyidejű futtatására képes.",
-      "slug": "gyorsabb-lett-a-gpt-6-pro-es-parhuzamos-ugynokoket-kapott",
-      "forras": "OpenAI (X)",
-      "kat": "modell",
-      "rovat": "modell",
-      "ido": "2026-10-16T20:35:04+00:00",
-      "ido_hu": "okt. 16. 22:35",
-      "kep": "https://quicknews.hu/assets/kep/forras-x-openai.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/forras-x-openai.webp",
-      "video": false,
-      "fontossag": 4,
-      "felkapott": false,
-      "forraskep": true,
-      "url": "https://quicknews.hu/hir/gyorsabb-lett-a-gpt-6-pro-es-parhuzamos-ugynokoket-kapott"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 15. 22:34",
+  "szerzo": "",
+  "cim_eredeti": "Granite Switch 4.1: Chat, Decisions, and Speech from One Endpoint",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Granite Libraries: The OG Decision Models Compose and Extend Your Own Granite Switch Model Resources for Getting Started Introduced last spring, the Granite Switch project enables a modular approach to model development. Now Granite Switch 4.1 models, armed with a Decision adapter and the fastest ASR model on the OpenASR leaderboard, can move efficiently between natural-language responses, general and specialized decisions, and speech-to-text tasks—all from one hosted endpoint.\n\nSpecifically, Granite-Switch-4.1-8B and -30B models are configured to include:\n\nAll three of these technologies (along with the underlying base model) are composed into one model, taking up approximately the same amount of VRAM on a GPU as the base model would by itself. That means more capabilities with fewer GPUs.\n\nAnd because the Switch adapters were built as cache-efficient Activated LoRAs, the KV cache created from a base model generation can be reused for any subsequent adapter-based decisions. Combined with our team's recent vLLM contributions to speed up low rank adapter inferencing, as well as a co-located ASR encoder, Granite Switch 4.1 models can switch between a chat request and a decision request and a spoken request, with blazing fast speeds.\n\nGranite-switch-4.1-8b can transcribe audio, generate summaries, screen for harmful content, and test 15+ generic flags—all running on a single endpoint in real time.\n\nDecision models aren’t new. Our previous release of Granite Libraries features a repository of specialized “decision model” adapters and other specialized task adapters that can be composed into custom Granite Switch models. And while Jev and other closed decision models focus on generality, we’ve found that many of our specialized granitelib adapters can outperform generalists on specialized classification tasks.\n\nCompare granitelib adapters with generalist decision models when evaluated on specialized classification tasks.\n\nBecause adapters share the base model's KV cache, adding specialists alongside a generalist decision adapter costs almost nothing. You get broad coverage from the generalist and higher accuracy from specialists on the tasks you care about.\n\nIn a “Race” between Granite-Switch-4.1-30B (frozen base Granite + 4 specialized aLoRAs) and Jev-27B (frozen base Qwen model + 1 generic decision LoRA), Granite-Switch-4.1-30B was able to complete a real world, 5-step RAG workflow much faster than its competitor.\n\nGranite-Switch-4.1-8B and -30B are released with “batteries included”. They are Granite Switch models that we compiled with a predefined set of helpful adapters. But you don’t need to use our version. Anyone can compose their own Granite Switch model, mixing and matching adapters from Granite Libraries to best meet their needs.\n\nMoving forward, we see tremendous opportunity for the community to compose and extend Granite Switch models with custom and third party adapters. We plan to release an Adapter SDK for training adapters in Mellea, along side other tutorials and Granite Switch support. These adapters could be specialized classification adapters to augment decision-based workflows or adapters for specialized language tasks. You could even use custom adapters to teach a 3B parameter version of Granite to play the classic game Doom.\n\nSimilarly to Jev, our custom 3B parameter Granite Switch model made split second decisions to navigate the Doom game, but was able to do so at 60 - 100 decisions / second, compared to Jev’s reported 10 decisions / second.1 Unlike Jev, this Granite Switch model can also narrate and respond to your questions while it is playing.\n\n1 https://typesafe.ai/blog/introducing-system-one-models-and-jev"
 }

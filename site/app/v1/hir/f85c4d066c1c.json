@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": true,
       "url": "https://quicknews.hu/hir/nyilt-forraskoduva-valt-a-stepfun-600-milliard-parameteres-ai-modellje"
-    },
-    {
-      "id": "5feb71e13bb2",
-      "cim": "Gyorsabb lett a GPT-6 Pro és párhuzamos ügynököket kapott",
-      "lead": "Az OpenAI frissítette a ChatGPT Pro csomagjában elérhető modellt, amely gyorsabb válaszokra és több ügynök egyidejű futtatására képes.",
-      "slug": "gyorsabb-lett-a-gpt-6-pro-es-parhuzamos-ugynokoket-kapott",
-      "forras": "OpenAI (X)",
-      "kat": "modell",
-      "rovat": "modell",
-      "ido": "2026-10-16T20:35:04+00:00",
-      "ido_hu": "okt. 16. 22:35",
-      "kep": "https://quicknews.hu/assets/kep/forras-x-openai.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/forras-x-openai.webp",
-      "video": false,
-      "fontossag": 4,
-      "felkapott": false,
-      "forraskep": true,
-      "url": "https://quicknews.hu/hir/gyorsabb-lett-a-gpt-6-pro-es-parhuzamos-ugynokoket-kapott"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 1. 18:49",
+  "szerzo": "Tim Fernholz",
+  "cim_eredeti": "Amazon releases its own Jev clone as decision models flood the web",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Last day to exhibit your breakthrough to 10,000+ tech leaders at Disrupt is on Oct 2. Book Exhibit Table Now.\n\nDisrupt doors open Oct. 13. Get your pass and bring someone with you at 50% off. REGISTER NOW.\n\nAmazon Web Services released an open source decision model inspired by TypeSafe’s Jev, with AI developers increasingly seeking intelligence that is more suited to computer automation than frontier LLMs.\n\nAmazon’s Strands Decider 2B, released the same week OpenAI announced a similar offering, is a high-speed, low-cost way to sort between pre-decided options and deliver a measure of how confident it is in its choice. The model is fully open sourced, available now, and small enough to run locally.\n\nAmazon distinguished engineer Marc Brooker came up with the project after seeing Jev and trying to build his own take on such a model. The homebrew project was successful enough — it briefly reached the top spot on the Jevbench ranking for models of its size — that Amazon engineers cleaned it up and released it as an offering from their Strands Labs, an organization developing new tools and protocols for deploying AI agents.\n\nBrooker says the need for a tool like this emerged in conversations with AWS customers, whose agentic workflows didn’t always require the capability or cost of a fully featured LLM all the time.\n\n“What originally piqued my interest in this class of models was that they make a perfect decider for a workflow step — ‘what is the next thing for me to do here, based on where I am?’” Brooker told TechCrunch. He said it offers customers “a workflow step that can be structured in a way that is more reliable, thanks to the confidence scores, thanks to the closed domain of answers, [and is] lower latency, potentially lower cost.”\n\nLike other decision models, Strands Decider is built on the “torso” of an LLM, in this case Qwen3.5-2B, but instead of generating text, it delivers calibrated choices. TypeSafe named their model Jev after the economist William Stanley Jevons, with hopes of invoking his theory that the falling cost of something — like computer intelligence — can, in fact, increase its demand.\n\nThe fact that dozens of similar models have been produced by researchers since TypeSafe debuted its idea shows the wide interest, but also raises the question of how valuable they can be. Brooker suggests that the challenge will be in optimizing the model’s speedy decision-making without compromising its intelligence.\n\n“There is a very careful balance to be found where you want to push its performance on accuracy and calibration on these kinds of tasks, without degrading its performance on understanding different languages, on having the kind of knowledge it has, which is what makes it general purpose and interesting and useful,” he told TechCrunch.\n\nStill, he doesn’t necessarily expect the frontier labs to dominate the space, especially since, with smaller markets, the cost to build something interesting is in the hundreds or thousands of dollars.\n\nFor their part, TypeSafe executives say they are keeping their heads down and improving future models.\n\n“I get that people think it’s a gold rush, but they might be underestimating the difficulty of making the models actually smart,” CEO and founder Diogo Almeida told TechCrunch, saying that for now, he didn’t see real competition for his company emerging yet.\n\n“The current batch seems more like ML people wanting to implement a cool architecture than a team deeply dedicated to making intelligence useful.”\n\nWhen you purchase through links in our articles, we may earn a small commission. This doesn’t affect our editorial independence.\n\nGet 50% off a second passThe Disrupt experience is meant to be shared. Get your pass and bring a colleague, partner, or peer at 50% off. Cover more ground by making connections, building momentum, and discovering what’s next in the startup ecosystem.\n\nAt 19, founder raises $11M for Ghost, maker of a $3,499 computer for personal AI Dominic-Madori Da"
 }

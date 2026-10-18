@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 12.",
+  "szerzo": "",
+  "cim_eredeti": "Bringing you the Data Agent Kit",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Join our product leaders to architect your agentic future\n\nImagine your compliance team notices that payments are taking longer than expected to clear. They suspect fraud, and you’re the data scientist helping figure out which transactions to investigate first. Assembling that shortlist requires ingesting and cleaning raw transaction logs, training a model on past fraud, scoring new records, and scheduling the pipeline to run daily. Here’s how you can build that workflow end to end with an agent, using the Data Agent Kit inside the Antigravity IDE.\n\nData Agent Kit helps you work with Google Cloud data through a plugin for coding agents or an extension for Visual Studio Code-based IDEs. It brings two significant additions to the workflow:\n\nHelp for your agent: MCP tools connect your agent to data services. Skills are Markdown files that give it instructions and best practices for working with your data stack\n\nTools in your IDE: work with Google’s Agentic Data Cloud, from querying databases to deploying an Airflow pipeline, without leaving your editor\n\nLet’s start with the raw transaction logs in Google Cloud Storage. You can ask the agent to create a notebook that loads them into BigQuery using Spark:\n\nThe agent generates a Jupyter notebook that loads the JSON logs into a BigQuery table named raw_transactions. You can open the notebook, review the code, and run it using a preconfigured Spark Serverless runtime from the IDE.\n\nAfter the notebook runs, you can open the raw_transactions table with the Data Agent Kit. The extension allows you to browse the table and inspect its metadata right from the IDE.\n\nThe records are now in BigQuery, but they aren’t ready for model training yet. First, we’ll handle duplicate and incomplete records, then join the remaining records with info about who sent and received each payment.\n\nLet’s put the cleanup logic into a dbt project so we can run it on each new batch of data. We’ll also test that each transaction appears only once. Prompt the agent:\n\nThe agent generates a dbt project with SQL models for cleaning and enriching the data. Take a look at the generated code to check how it handles duplicates and joins reference tables. Then run dbt build in the terminal. This builds the staging and enriched tables in BigQuery, along with a separate table for records with missing transaction IDs. dbt also runs the uniqueness test.\n\nValidating dbt models in the integrated terminal\n\nWe also keep the is_fraud column, which indicates whether a past transaction was fraudulent. We’ll train the model on records with known labels and use it to score new transactions, where we’re unsure yet whether fraud occurred.\n\nWith the data prepared, let’s ask the agent to create a training notebook using a Random Forest classifier running on Spark Serverless.\n\nReview and run the notebook, then check its evaluation output to see how well the model separates fraudulent transactions from legitimate ones. You can also use the Data Agent Kit extension to verify that the trained model artifacts were saved to Google Cloud Storage.\n\nVerifying the trained model artifacts in Google Cloud Storage\n\nNow we can use the saved model to score transactions that don’t have an is_fraud value yet:\n\nIn this example, the inference notebook scores the unlabeled transactions in BigQuery and sends those with an estimated fraud probability of 50% or higher to the Spanner review queue. The flagged records help the team decide where to investigate, but they still need to determine whether fraud occurred.\n\nLook at how the inference notebook filters and writes flagged records, then run it. Once it finishes, query the Spanner table in the IDE to inspect the results.\n\nQuerying flagged transactions in the Spanner table\n\nThis table is the list we set out to build. The compliance team can now start reviewing transactions, and we have a workflow that gets records from raw logs into the queue.\n\nSo far, we have been kicking off each step ourselves. We can now co"
 }

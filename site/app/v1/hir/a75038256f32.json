@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 14. 10:57",
+  "szerzo": "Asif Razzaq",
+  "cim_eredeti": "9 Best AI Gateways in 2026: Bifrost, Portkey, LiteLLM, Kong and 5 More Ranked",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "An AI gateway is a control layer between your application and model providers. It gives every service one API for many models. It also centralizes routing, retries, failover, caching, budgets and logs. This guide presents the best AI gateways for production teams in 2026.\n\n The market moved fast this year. Palo Alto Networks closed its acquisition of Portkey on May 29. Mintlify acquired Helicone , which now runs in maintenance mode. LiteLLM survived a PyPI supply chain compromise in March. Your gateway choice now carries vendor and security risk, not just feature risk.\n\n TL;DR \n\n Best overall for self-hosted performance: Bifrost. Go binary, Apache 2.0, 11 µs published overhead at 5,000 RPS.\n\n Best open-source gateway with guardrails: Portkey. MIT license, 1,600+ models, now backed by Palo Alto Networks.\n\n Widest adoption: LiteLLM. 53.8K GitHub stars, 100+ providers, Python-first.\n\n Best for API platform teams: Kong AI Gateway. LLM, MCP and A2A traffic in one stack.\n\n Best managed options: Cloudflare (edge, free core), Vercel (zero markup), OpenRouter (model access).\n\n How We Ranked These AI Gateways \n\n We weighted 6 criteria for production use: \n\n Performance evidence: published overhead, and how it was measured.\n\n Coverage: providers and models behind one OpenAI-compatible API.\n\n Governance: virtual keys, budgets, RBAC, audit logs, guardrails.\n\n Deployment: self-hosted, VPC, air-gapped, or managed only.\n\n Cost model: markup, platform fees, free tier limits.\n\n Vendor and supply chain risk: license, ownership changes, security history.\n\n Quick Comparison: 9 Best AI Gateways \n\n Rank Gateway License Deployment Coverage (vendor claim) Published overhead Entry pricing 1 Bifrost Apache 2.0 Self-hosted, VPC, air-gapped 23+ providers 11 µs at 5K RPS Free OSS; Enterprise custom 2 Portkey MIT (gateway) Self-hosted, managed, private cloud 1,600+ models Under 1 ms Free OSS; hosted from $49/mo 3 LiteLLM Open source + commercial license Self-hosted, hosted 100+ providers 8 ms P95 at 1K RPS Free OSS; Enterprise custom 4 Kong AI Gateway Open core Self-hosted, cloud, hybrid Multi-LLM via plugins Not disclosed Free trial; paid plugins 5 TrueFoundry Proprietary VPC, on-prem, air-gapped, SaaS 1,600+ models Under 3 ms internal Free 30K requests/mo 6 Cloudflare AI Gateway Proprietary Managed edge Major providers + Workers AI Not disclosed Core features free 7 Vercel AI Gateway Proprietary Managed Multi-provider, multimodal Not disclosed Zero token markup 8 OpenRouter Proprietary Managed Major labs + open models Not disclosed 5.5% fee on credits 9 Orq.ai Router Proprietary Managed 400+ models, 20+ providers Not disclosed Free tier \n\n 1. Bifrost (Maxim AI) \n\n What it is: Bifrost is an open-source AI gateway written in Go. It exposes 23+ providers through one OpenAI-compatible API. It ships under Apache 2.0 and has 8.7K GitHub stars.\n\n Why it ranks first: it has the strongest published performance numbers of any self-hosted gateway. The README reports 11 µs added latency at 5,000 RPS on a t3.xlarge. On a t3.medium, that figure is 59 µs. Maxim’s benchmark against LiteLLM reports P99 latency of 1.68 s versus 90.72 s at 500 RPS.\n\n Key features: \n\n Automatic fallbacks, weighted load balancing and semantic caching.\n\n Virtual keys with hierarchical budgets and rate limits in the open-source build.\n\n MCP gateway support, plus Code Mode for large tool sets.\n\n Prometheus metrics and OpenTelemetry tracing.\n\n Drop-in endpoints for OpenAI, Anthropic and Google GenAI SDKs.\n\n Best for: high-throughput teams that must self-host inside a VPC or air-gapped network.\n\n 2. Portkey \n\n What it is: Portkey’s AI Gateway is an MIT-licensed gateway with 13K GitHub stars. It claims routing to 1,600+ models, under 1 ms latency and a 122 KB footprint.\n\n Why it ranks here: it pairs strong routing with the deepest built-in guardrail catalog. A Gateway 2.0 pre-release merges Portkey’s enterprise gateway into open source. Palo Alto Networks now owns Portkey and is folding it into Pri"
 }

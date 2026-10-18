@@ -91,24 +91,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 10. 12:38",
+  "szerzo": "Lucas Neves Pereira",
+  "cim_eredeti": "Farol",
+  "parbaj": "pb-kodoloagensek",
+  "video_szoveg": "",
+  "szoveg_eredeti": "separate worktrees solves the file-conflict half of running agents in parallel, but not the half that actually bites me: two tasks that touch the same API contract or shared schema from different worktrees, where neither agent can see the other's change until someone opens both diffs side by side at merge time. does Farol do anything to flag \"these two active tasks touched overlapping files or symbols\" before you're staring at a nasty rebase, or is that still on the human to catch by reading both PRs?\n\n@galdayan Good question, and you're right that worktrees only solve part of it. Farol doesn't flag overlap between tasks yet, so today that's still on you reading both diffs. What does help: the review panel shows everything a session changed since it left main, so comparing two tasks is two clicks, not two PRs side by side. And when a rebase does stop, there's a three-column conflict resolver built in. Next on the roadmap is letting agents see each other's sessions, so one can check what another is changing before it touches a shared schema. Since Farol already tracks each session's changed files, a \"these two tasks touch the same file\" warning could be a natural addition.\n\nWeboldal: https://farol.sh"
 }

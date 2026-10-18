@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/matematikusok-szerint-az-openai-felreertelmezte-sajat-matematikai"
-    },
-    {
-      "id": "df1dbbaa99db",
-      "cim": "Az Anthropic dolgozói szerint az MI 2030-ra a munkájuk 75%-át átveszi",
-      "lead": "Az Anthropic belső felmérése szerint a fejlesztőik sokkal gyorsabb MI-automatizációra számítanak a saját munkájukban, mint az átlagos munkavállalók.",
-      "slug": "az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi",
-      "forras": "Perplexity Discover",
-      "kat": "kutatás",
-      "rovat": "kutatas",
-      "ido": "2026-10-17T06:35:00+00:00",
-      "ido_hu": "okt. 17. 08:35",
-      "kep": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 12. 18:10",
+  "szerzo": "Matthias Bastian",
+  "cim_eredeti": "Clearing chat history helps AI agents find better solutions",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Long-running AI research agents can plateau despite additional compute, a Microsoft Research study finds. Accumulated conversation context can constrain their search, keeping them focused on similar solutions instead of exploring better approaches.\n\nMicrosoft researchers studied what they call \"Autoresearch agents,\" AI systems that repeatedly propose solutions, evaluate them, and refine them based on feedback. Eight independent runs of the same agent on the same task plateaued at significantly different performance levels, with final scores ranging from 68.3 to 100.0. These gaps persisted even with substantially more compute, according to the paper.\n\nThe researchers plotted solutions from all runs on a two-dimensional map that places similar solutions close together, then compared them. Solutions from a single run almost always stayed within a small region of the map. The authors call these regions \"idea basins.\"\n\nThe agents spend a large share of their remaining compute budget refining solutions within a less productive region instead of finding better approaches discovered by other runs. This pattern persists even when the agents periodically compress their conversation histories.\n\nThe proposed method, \"Fork-and-Flush,\" combines two mechanisms. In \"forking,\" the agent splits into K parallel branches, each inheriting the previous workspace and all generated files. In \"flushing,\" each branch loses its entire chat context but keeps the workspace, allowing it to start a fresh conversation and build on prior work.\n\nA branch that keeps the parent process's chat context tends to return to the same idea basin because the previous reasoning steers its next steps. Fresh context restores diversity in the search. The conversation history is lost, but the code, files, and saved results remain in the workspace.\n\nThe researchers tested Fork-and-Flush on 13 long-running tasks, including polyomino packing, job-shop scheduling, and cryptanalysis. The tasks also included compressing a CIFAR classifier and optimizing a VLIW kernel. Individual runs lasted from several hours to over 100 hours. The agents used GPT-5.6-terra and GPT-5.5 through the GitHub Copilot CLI.\n\nOn the same compute budget, Fork-and-Flush achieved a min-max-normalized average score of 0.78, compared to 0.47 for single runs and 0.54 for best-of-4. The paper reports relative gains of 66.0 and 44.4 percent, respectively. The method achieved the highest mean score on 12 of the 13 tasks.\n\nFork-and-Flush also produced more consistent results, with normalized standard deviation falling to 0.16 from 0.26 for single runs. Simply clearing the chat context without branching improved results by 22 percent.\n\nThe researchers also tested whether more capable models avoid idea basins, using MAX-3-SAT problems across three model sizes, Qwen3.5-4B, 9B, and 27B. Variance between runs followed an inverted U-shaped curve, peaking on tasks at the edge of a model's abilities, roughly halfway between random-guessing performance and the reference solver's performance.\n\nThe authors argue that open research problems sit, by definition, at the limits of models' abilities. They expect the variation Fork-and-Flush exploits to persist as models improve, with the boundary simply shifting toward harder problems. The results suggest that regular context resets could remain useful even for frontier research agents.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section."
 }

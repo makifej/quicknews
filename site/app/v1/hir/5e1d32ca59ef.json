@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/modelltanitas-nelkul-tesz-elorejelzeseket-az-nvidia-uj-eszkoze"
-    },
-    {
-      "id": "4f4ae4695b3b",
-      "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-      "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-      "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-18T06:05:00+00:00",
-      "ido_hu": "okt. 18. 08:05",
-      "kep": "https://quicknews.hu/assets/kep/4f4ae4695b3b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/4f4ae4695b3b-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/megjelent-a-voxel51-3-0-multimodalis-adatplatform"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 15. 00:52",
+  "szerzo": "Asif Razzaq",
+  "cim_eredeti": "Fish Audio Releases Drama 3, a 35B Open-Weight MoE Text-to-Speech Model",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "This week, Fish Audio released Fish Audio Drama 3 . Drama 3 is a text-to-speech model from Fish Audio that takes plain-language acting direction. It is a 35B mixture-of-experts model with about 3B parameters active per token. The weights are on Hugging Face , and the model is also live in the Fish Audio API . For developers, it is a self-hostable option for scripted dialogue, audiobooks and dubbing.\n\n TL;DR \n\n Size: 35B total parameters, about 3B active per token (8 of 256 experts plus 1 shared). Context length: Not disclosed.\n\n Runs on: 1 NVIDIA GPU with at least 48 GB in FP8. No CPU, Apple MPS or AMD ROCm. Official benchmarks use 1 H200.\n\n Performance: Fish Audio’s highest-scoring model on Artificial Analysis, but still behind several closed APIs on quality Elo.\n\n Best: 95.9% on brands, places and technical terms in Artificial Analysis Pronunciation Robustness.\n\n Worst: 86.3% on exact sequences (codes, paths, emails), its weakest pronunciation category.\n\n Bottom line: \n\n Best: directable, multi-speaker speech with open weights. \n\n Worst: 48 GB GPU floor and a revenue-capped license.\n\n What is Fish Audio Drama 3? \n\n Drama 3 turns a script along with bracketed directions into acted speech. Writers place cues like [barely holding it together] before a line. Paired tags such as <whisper> change only the enclosed words, per the Drama 3 docs . Directions can be written in any language, independent of the spoken line.\n\n The model supports 83 languages . Speaker tags <|speaker:0|> to <|speaker:15|> allow up to 16 characters in 1 request. The API takes 1 voice ID per speaker, so a full scene renders in a single call.\n\n How does the Drama 3 architecture work? \n\n According to the launch post , the backbone starts from the Qwen3.5-35B-A3B language model. It has 40 layers, grouped as 3 Gated DeltaNet layers per 1 gated full-attention layer. Only 1 layer in 4 keeps a KV cache. DeltaNet layers store history in a constant-size state instead.\n\n A new Codebook-MTP decoder replaces the per-frame Fast AR decoder used in S2 . It has 4 shared layers feeding 9 layers, 1 per acoustic codebook. Only codebooks 0 and 1 feed back into the backbone; S2 fed back all 10.\n\n The audio tokenizer is unchanged from S2. It is built on the Descript Audio Codec and outputs 44.1 kHz audio. It runs at about 21.5 frames per second.\n\n Training ran 3 pre-training stages, then instruction tuning, then reinforcement learning. RL used GRPO without a KL penalty and a single learned human-preference reward model.\n\n How does Drama 3 perform on benchmarks? \n\n Fish Audio reports Drama 3 at 93.2% overall on Artificial Analysis Pronunciation Robustness , ranked #1. Its predecessor S2.1 Pro scored 88.1%. Human listeners judge hard English words across 4 categories:\n\n Brands, places, technical terms: 95.9% (S2.1 Pro: 87.3%)\n\n Context-dependent readings: 95.3% (86.1%)\n\n Shorthand such as numbers, dates and units: 93.6% (92.7%)\n\n Exact sequences such as codes, paths and emails: 86.3% (79.4%)\n\n This benchmark tests pronunciation, not emotional delivery. Fish Audio describes emotive quality only qualitatively. On the Artificial Analysis quality leaderboard , ‘Drama 3 Preview’ holds an Elo of 1242. That beats S2.1 Pro at 1190 but trails Eleven v4 Turbo at 1328.\n\n What hardware does Drama 3 need? \n\n The Fish Speech install guide lists at least 48 GB of NVIDIA GPU memory in FP8. CPU, Apple MPS and AMD ROCm are not supported. MoE experts ship in FP8, with the remaining weights in bf16.\n\n The model card reports streaming results on 1 H200. At 1 stream, median time to first audio is 88.9 ms with a real-time factor of 0.131. At 16 streams, throughput reaches 927.6 frames per second. Serving runs through SGLang-Omni , whose fused kernels are validated only on Hopper GPUs.\n\n How do you access Drama 3, and what does it cost? \n\n In the hosted API, set the model header to drama-3 on POST /v1/tts . The docs warn that a missing or misspelled header silently falls back to s2.1-pro . List price is $"
 }

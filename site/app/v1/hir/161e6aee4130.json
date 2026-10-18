@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi"
-    },
-    {
-      "id": "11232471616c",
-      "cim": "A Microsoft új AI-rendszere 2-6 hétre előre pontosítja az időjárás-előrejelzést",
-      "lead": "A Microsoft a Nature folyóiratban publikálta legújabb kutatását, amely gépi tanulással teszi pontosabbá a középtávú időjárás-előrejelzéseket.",
-      "slug": "a-microsoft-uj-ai-rendszere-2-6-hetre-elore-pontositja-az-idojaras",
-      "forras": "Satya Nadella (X)",
-      "kat": "kutatás",
-      "rovat": "kutatas",
-      "ido": "2026-10-17T06:19:37+00:00",
-      "ido_hu": "okt. 17. 08:19",
-      "kep": "https://quicknews.hu/assets/kep/11232471616c.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/11232471616c-n.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/a-microsoft-uj-ai-rendszere-2-6-hetre-elore-pontositja-az-idojaras"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 17. 16:42",
+  "szerzo": "Matthias Bastian",
+  "cim_eredeti": "Anthropics' Claude cracks a 25-year-old NSA cryptography mystery in under 30 minutes",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "Anthropic's AI Claude has solved a 25-year-old cryptography mystery. NIST standardized several curves in the ECDSA standard, the most widely used framework for elliptic-curve digital signatures, back in 2000. The NSA had supplied the seeds, the starting values used to generate the curve parameters, with zero explanation. No one knew how they were created, and that fueled suspicion of possible backdoors. The mystery even attracted a bounty and amateur sleuthing efforts. The late NSA employee Jerry Solinas had suggested the seeds were a hash of a humorous phrase, but that turned out to be wrong.\n\nClaude cracked it in under 30 minutes. The seeds came from \"lrand48,\" a simple C random number generator, initialized with a Unix timestamp between May 1997 and April 1998. Claude spotted the pattern because \"lrand48\" only outputs 31 bits, and the top bits in some seeds were systematically zero. According to Anthropic, this makes deliberate backdoors less likely. Anthropic is donating the $36,864 bounty to the Internet Security Research Group.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section."
 }

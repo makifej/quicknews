@@ -88,24 +88,12 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/matematikusok-szerint-az-openai-felreertelmezte-sajat-matematikai"
-    },
-    {
-      "id": "df1dbbaa99db",
-      "cim": "Az Anthropic dolgozói szerint az MI 2030-ra a munkájuk 75%-át átveszi",
-      "lead": "Az Anthropic belső felmérése szerint a fejlesztőik sokkal gyorsabb MI-automatizációra számítanak a saját munkájukban, mint az átlagos munkavállalók.",
-      "slug": "az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi",
-      "forras": "Perplexity Discover",
-      "kat": "kutatás",
-      "rovat": "kutatas",
-      "ido": "2026-10-17T06:35:00+00:00",
-      "ido_hu": "okt. 17. 08:35",
-      "kep": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/df1dbbaa99db.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/az-anthropic-dolgozoi-szerint-az-mi-2030-ra-a-munkajuk-75-at-atveszi"
     }
-  ]
+  ],
+  "datum_teljes": "2026. okt. 12. 23:03",
+  "szerzo": "",
+  "cim_eredeti": "What 9,050 AI-Written Scripts Taught Me About Slop",
+  "parbaj": null,
+  "video_szoveg": "",
+  "szoveg_eredeti": "You’ve read way too many versions of this paragraph already. Probably even this week:\n\n“In today’s fast-paced world, AI isn’t just a tool, it’s a paradigm-shifting tapestry. Let’s delve into this transformative realm, where the real magic happens.”\n\nMy team at Towards AI drafts a lot with AI now: videos, courses, books, articles… thousands of them. My team and I use Claude for almost everything, and too often what I have to review sounds exactly like that.\n\nSo since June, I’ve been measuring which models can actually write like me. After 9,050 scripts, the surprise is that these “slop words” are quite easy to fix.\n\nIn June this year, I took ten of my own video scripts, some published and some held back to catch contamination. Four of us spent a month near full-time, about 400 hours, polishing them and turning what makes them work into (as clear and detailed as possible) rubrics.\n\nWe then measure whether a model can regenerate something decent, having access to my voice guide, a storytelling guide, output rules, past examples, the brief, and the research.\n\nWe then have four LLM judges score every draft against my final version and the rubric: one GPT, one Claude, one open model, and Jev as a recent add-on.\n\nWe’ve measured 181 configurations so far, including every thinking level, and plan to measure all upcoming models as well.\n\nBut most importantly, here’s what we learned from building this new benchmark, reviewing thousands of generations, and iterating on the rubrics.\n\nOur top 15 configurations all score above 90 on the slop check, so with a detailed prompt, phrases like the one above are mostly under control.\n\nIf you can’t deal with slop anymore, the cleanest of all models we’ve released out of the 181 is GPT-6 Astra at max effort: 94.9.\n\nStill, be careful: this is just one metric we track. Astra currently ranks 62nd because it doesn’t sound like me: 82 on tone and voice, against 90 for Opus. Claude models altogether hold the top 11 spots.\n\nThe main thing I learned iterating with both models is that cutting a few Claude-isms is a quick edit. Annoying, but it takes one easy edit pass to fix. Rebuilding a voice is not. It requires a lot of mental effort, restructuring the text, changing examples… which currently makes me stick to Claude for writing.\n\nOpus 5.5 at max effort is the best writer we’ve measured, at 90.8 out of 100. At xhigh, it scores 90.0 for $0.69 a script instead of $2.75.\n\nThat’s 4x the price for a score less than 1% higher. I settle on xhigh and keep max for the rare piece where every sentence matters.\n\nGLM-5.3 Flash, an open-weight model, scores 88.2 for 1.5 cents a script. Opus 5.5 at max costs nearly 190 times more for a score about 3% higher.\n\nIt doesn’t only mean generating similar writing with GLM is almost 200 times cheaper. It means that, used right, you can generate BETTER results than Claude for cheaper with an open model.\n\nWe also measured variability between generations. If you generate 10 drafts with GLM and pick the best one, you’ll have extremely similar results to Opus 5.5 and still be 20 times cheaper. If you add a powerful judge with a good rubric and the ability to merge sections from one draft to another to create the best Frankenstein draft possible, it should produce much better results than Opus 5.5 while costing less.\n\nGenerating is cheap now. Picking is the challenge. Spend your money on judging and picking, not on generating.\n\nCompared with the other judges, our GPT judge adds 2.75 points to OpenAI drafts and takes 2.14 off Anthropic’s.\n\nThe DeepSeek judge adds about a point to DeepSeek and Kimi.\n\nThe Claude judge has the smallest tilt, about half the others’, though it still bumps its own lab and surprisingly likes Google even more.\n\nJev is pretty neutral, with a small preference for the Gemini models as well, but not being able to justify its reasoning in the ratings seems to make it less consistent for our tasks, maybe because writing is more of a “system 2” type of judging.\n\nNo j"
 }
