@@ -1387,3 +1387,8 @@ body.halloween { background-color: transparent; background-image: radial-gradien
 .hw-szellem .hw-arc { fill: #1f1f1f; }
 @keyframes hw-himba { from { transform: translateY(-10px) rotate(-3deg); } to { transform: translateY(8px) rotate(3deg); } }
 @media (prefers-reduced-motion: reduce) { .hw-szellem, .hw-himba { animation: none; } .hw-szellem { opacity: 0.16; } }
+/* „BOO” a szellem előtt: vastag filces kézírás, Permanent Marker betű (Apache 2.0, saját szerverről) */
+@font-face { font-family: "Permanent Marker"; src: url("/assets/font/permanent-marker.woff2") format("woff2"); font-display: swap; }
+.hw-boo { position: absolute; right: 100%; top: 18%; margin-right: 6px; font-family: "Permanent Marker", "Manrope", sans-serif; font-size: var(--boo, 28px);
+  line-height: 1; color: #f2f2f2; white-space: nowrap; transform: rotate(-10deg); }
+.hw-boo--jobb { right: auto; left: 100%; margin: 0 0 0 6px; transform: rotate(10deg); }

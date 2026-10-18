@@ -30,12 +30,14 @@
     });
     return lista;
   }
+  // a szellem doboza a „BOO” felirattal együtt: előtte (balra), vagy ha a lap szélén nincs hely, mögötte
   function szabad(x, y, m, lista) {
+    var x0 = x >= m * 1.2 ? x - m * 1.4 : x, x1 = x >= m * 1.2 ? x + m : x + m * 2.4;
     for (var k = 0; k < lista.length; k++) {
       var q = lista[k];
-      if (x < q[2] + 16 && x + m > q[0] - 16 && y < q[3] + 16 && y + m * 1.12 > q[1] - 16) return false;
+      if (x0 < q[2] + 16 && x1 > q[0] - 16 && y < q[3] + 16 && y + m * 1.12 > q[1] - 16) return false;
     }
-    return true;
+    return x1 < w - 4;
   }
 
   var w = document.documentElement.clientWidth, h = document.documentElement.scrollHeight;
@@ -54,7 +56,7 @@
       var x = koz(4, w - meret - 4), y = fejlec + 40 + (i + r()) * ((h - fejlec - 200) / db);
       if (p < 60 && (balSav > meret + 24 || jobbSav > meret + 24)) {
         var bal = balSav > meret + 24 && (jobbSav <= meret + 24 || r() < 0.5);
-        x = bal ? koz(12, balSav - meret - 12) : koz(kb.right + 28, w - meret - 12);
+        x = bal ? koz(12, balSav - meret - 12) : koz(kb.right + 28 + meret * 1.4, w - meret - 12);
         if (i === 0) y = fejlec + koz(20, 260);
       }
       if (szabad(x, y, meret, lista)) return [x, y];
@@ -74,7 +76,10 @@
     sz.style.top = xy[1] + 'px';
     sz.style.animationDuration = koz(8, 13).toFixed(2) + 's';
     sz.style.animationDelay = koz(0, 9).toFixed(2) + 's';
-    sz.innerHTML = '<div class="hw-himba">' + SZELLEM + '</div>';
+    // a szellem előtt egy „BOO”, vastag filces kézírással; ha bal oldalt nincs hely, a szellem mögé kerül
+    var jobbra = xy[0] < meret * 1.2;
+    sz.innerHTML = '<div class="hw-himba">' + SZELLEM + '</div><span class="hw-boo' + (jobbra ? ' hw-boo--jobb' : '') + '">BOO</span>';
+    sz.style.setProperty('--boo', (meret * 0.46).toFixed(0) + 'px');
     if (r() < 0.5) sz.querySelector('svg').style.transform = 'scaleX(-1)';
     sz.addEventListener('animationiteration', function (e) {
       if (e.target !== sz) return;
