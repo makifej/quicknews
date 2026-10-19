@@ -222,12 +222,16 @@ button.hird-indit{color:#131313;background:var(--amber)}
 .kapcs button.sopor i{border:0;width:20px;height:20px}
 .kapcs button.sopor i::after{content:"✕";font-size:16px;color:var(--halk)}
 /* az automatikus válogatás döntése (Heni 2026-10-19) */
+.ah>.auto-dont{grid-column:2/-1}
+@media (max-width:700px){.ah>.auto-dont{grid-column:1/-1}}
 .auto-dont{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:10px 0 2px;padding:8px 12px;border-radius:10px;border:1px solid var(--keret,#3a3a3a);font-size:13px;line-height:18px}
 .auto-dont.megy{border-color:#2fbf71;background:rgba(47,191,113,.12)}
-.auto-dont.semleges{background:rgba(255,255,255,.04)}
+.auto-dont.semleges{border-color:#ffb224;background:rgba(255,178,36,.12)}
 .auto-dont .auto-cimke{font-weight:800}
 .auto-dont.megy .auto-cimke{color:#2fbf71}
-.auto-dont.semleges .auto-cimke{color:var(--szoveg-2,#9b9b9b)}
+.auto-dont.felul{border-color:#b38cff;background:rgba(179,140,255,.12)}
+.auto-dont.felul .auto-cimke{color:#b38cff}
+.auto-dont.semleges .auto-cimke{color:#ffb224}
 .auto-dont .auto-pont{color:var(--szoveg-2,#9b9b9b);font-variant-numeric:tabular-nums}
 .auto-dont .auto-indok{flex-basis:100%;color:var(--szoveg-2,#9b9b9b)}
 /* Kisöpröm: piros, kiemelt gomb (Heni 2026-10-16) */
@@ -662,8 +666,11 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
   const hlGomb=hl&&hl.kiment?`<button class="kint" disabled><i></i>Hírlevél: kiment</button>`
    :`<button aria-pressed="${!!(hl&&hl.kerve)}" data-id="${s.id}" data-mi="hirlevel" title="Bekerül a következő reggeli emlékeztetőbe"><i></i>Hírlevél</button>`;
   // az automatikus válogatás döntése (Heni 2026-10-19): zöld, ha kimegy (és hova), szürke, ha semleges
-  const autoSor=a=>{const v=a.valasztott||[],p=a.pont||{};const NEV={facebook:"Facebook",linkedin:"LinkedIn",csoport:"Csoport",hirdetes:"Hirdetés",hirlevel:"Hírlevél"};
-   return `<div class="auto-dont ${v.length?"megy":"semleges"}"><span class="auto-cimke">${v.length?"Automatika: kimegy · "+v.map(f=>NEV[f]||f).join(", "):"Automatika: semleges, nem megy ki"}</span>
+  // ha Heni maga hagyott jóvá más felületeket, az felülírja az automatikát (Heni 2026-10-19), és a címke ezt mutatja
+  const autoSor=(a,h)=>{const v=a.valasztott||[],p=a.pont||{};const NEV={facebook:"Facebook",linkedin:"LinkedIn",csoport:"Csoport",hirdetes:"Hirdetés",hirlevel:"Hírlevél"};
+   const jv=(h&&h.jovahagyas)||{},sajat=!jv.auto&&(jv.feluletek||[]).length?jv.feluletek:null;
+   const felul=sajat&&sajat.slice().sort().join()!==v.filter(f=>f!=="hirlevel").sort().join();
+   return `<div class="auto-dont ${felul?"felul":v.length?"megy":"semleges"}"><span class="auto-cimke">${felul?"Te felülbíráltad: kimegy · "+sajat.map(f=>NEV[f]||f).join(", "):v.length?"Automatika: kimegy · "+v.map(f=>NEV[f]||f).join(", "):"Automatika: semleges, nem megy ki"}</span>
    <span class="auto-pont">${["facebook","linkedin","csoport","hirdetes","hirlevel"].map(f=>`${NEV[f]} ${p[f]??"-"}`).join(" · ")}</span>${a.indok?`<span class="auto-indok">${esc(a.indok)}</span>`:""}</div>`};
   // a pipa önmagában nem indít semmit: a „Jóváhagyom” után készülnek el a bepipált felületek elemei
   const jv=s.jovahagyas||{},jvF=jv.feluletek||[],el=s.elemek||{};
@@ -697,7 +704,7 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
   return fej+`<div class="ah ${k?"kerve":""} ${s.felkapott?"felk":""}" id="h-${s.id}" data-id="${s.id}"><div class="kp" style="background-image:url('${esc(s.kep)}')"></div>
   <div><a class="cim" href="https://quicknews.hu/hir/${esc(s.slug)}" target="_blank" rel="noopener">${esc(s.cim)}</a><div class="lead">${esc(s.lead)}</div>
   <div class="cimkek">${s.uj?`<span class="cimke uj">Új</span>`:""}${s.felkapott?`<span class="cimke felk">Feltörekvő</span>`:""}<span class="cimke ${s.fontossag>=5?"fo5":""}">Fontosság ${s.fontossag}</span>
-  <span class="cimke">${fmt(d,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span><span class="cimke">${esc(s.forras||"")}</span>${s.video?`<span class="cimke">videó</span>`:""}<a class="cimke link" href="${esc(s.url||"https://quicknews.hu/hir/"+s.slug)}" target="_blank" rel="noopener">Megnyitás ↗</a></div>${(s.tenyhiba||[]).length?`<div class="hibasav">Tényhiba-gyanú, jóváhagyás előtt nézd meg: ${s.tenyhiba.map(esc).join("; ")}</div>`:""}${feldolg}</div>${s.auto?autoSor(s.auto):""}
+  <span class="cimke">${fmt(d,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span><span class="cimke">${esc(s.forras||"")}</span>${s.video?`<span class="cimke">videó</span>`:""}<a class="cimke link" href="${esc(s.url||"https://quicknews.hu/hir/"+s.slug)}" target="_blank" rel="noopener">Megnyitás ↗</a></div>${(s.tenyhiba||[]).length?`<div class="hibasav">Tényhiba-gyanú, jóváhagyás előtt nézd meg: ${s.tenyhiba.map(esc).join("; ")}</div>`:""}${feldolg}</div>${s.auto?autoSor(s.auto,s):""}
   <div class="kapcs">${["facebook","csoport","linkedin","hirdetes"].map(gomb).join("")}${hlGomb}${jova}
   <label class="feltolt"><input type="file" accept="image/*" data-id="${s.id}" hidden><i></i>Saját kép</label>
   <button class="sopor" data-sopor="${s.id}" title="Eltűnik, és többé nem ajánlom"><i></i>Kisöpröm</button></div>${skUj?sajat:kartya}</div>`}).join("")||`<p class="ures">Nincs ajánlott hír.</p>`;
