@@ -1,5 +1,27 @@
 [
   {
+    "i": "071096a57136",
+    "p": "/assets/kep/071096a57136.webp",
+    "c": "Nyílt forráskódúvá tette az NVIDIA a Run:ai platformot",
+    "b": "Az NVIDIA Apache 2.0 licenc alatt közzétette a teljes Run:ai GPU-orkesztrációs platform forráskódját a GitHubon.",
+    "k": "MarkTechPost",
+    "g": "eszköz",
+    "u": "/hir/nyilt-forraskoduva-tette-az-nvidia-a-run-ai-platformot",
+    "sz": "Az NVIDIA nyílt forráskódúvá tette a teljes Run:ai platformot, ami lehetővé teszi a fejlesztőcsapatok számára a GPU-kapacitások beosztását és kezelését fizetős előfizetés nélkül. A megoldás a Kubernetesre épül, és négy önállóan is használható komponensre van osztva, köztük a KAI Scheduler ütemezőre és a CUDA 13.4-alapú GPU-megosztó operátorra.\n\nA rendszer futtatható Kubernetes és OpenShift klasztereken, a helyi fejlesztéshez pedig egy előkészített szkript áll rendelkezésre. Ez hardware-es GPU jelenléte nélkül, 8 szimulált Tesla-A10 GPU-val hoz létre tesztkörnyezetet macOS vagy Linux rendszereken. A platformot emellett egy webes felületen, parancssoron, REST API-n és egy AI-asszisztensekhez tervezett MCP-szerveren keresztül is el lehet érni.\n\nA kiadás nyílt forráskódú közösségi változata nem tartalmazza az NVIDIA vállalati támogatását, de a csomag forráskódból vagy a hivatalos NGC Community Helm chart segítségével is telepíthető. A csomag mellett elérhetővé vált a Model Streamer is, amely akár 3-6-szor gyorsabb modelltöltést tesz lehetővé a GPU-memóriába. NVIDIA Run:ai Kubernetes GPU",
+    "d": "okt. 19. 05:19"
+  },
+  {
+    "i": "24bcfc655b42",
+    "p": "/assets/kep/24bcfc655b42.webp",
+    "c": "Saját szervereken, GPU nélkül futtatható az új Timestral modellsorozat",
+    "b": "A Mistral AI megjelentette a Timestral nevű nyílt súlyú idősor-előrejelző modellcsaládot, amely standard CPU-kon is kiemelkedő pontossággal működik.",
+    "k": "MarkTechPost",
+    "g": "modell",
+    "u": "/hir/sajat-szervereken-gpu-nelkul-futtathato-az-uj-timestral-modellsorozat",
+    "sz": "A Mistral AI bemutatta a Timestral modellsorozatot, amely 4 különböző méretű (5M és 209M paraméter közötti) idősor-előrejelző modellből áll. Az eszközök nyílt súlyokkal, módosított MIT licenc alatt érhetők el, és felhős infrastruktúra helyett normál szerver-CPU-kon is gyorsan futtathatók. A legnagyobb, 209 milliós paraméterszámú modell GPU nélkül mindössze 140 milliszekundum alatt készít előrejelzést.\n\nA rendszer a klasszikus statisztikai eszközökkel szemben nem teszi szükségessé a nulláról való betanítást minden egyes adatsoron, hanem a mintázatokat tartományok között viszi át. A modell támogatja a többváltozós adatokat, a külső tényezőket és az akár 32 768 időlépéses kontextust is. A mérések alapján a nulla mintás előrejelzési teszteken felülmúlja a Google TimesFM-3 modelljét.\n\nA fejlesztők a GitHubon keresztül vagy a Hugging Face felületéről tölthetik le a modelleket Python környezetbe. A cégek a saját adataikra szabott finomhangolást a Mistral Forge felületén végezhetik el, és akár teljesen zárt, helyi infrastruktúrán is üzemeltethetik azt. Mistral Timestral gépi tanulás adat-elemzés",
+    "d": "okt. 19. 03:18"
+  },
+  {
     "i": "a509ece1edb9",
     "p": "/assets/kep/a509ece1edb9.webp",
     "c": "Ingyenessé tette a webes keresést AI-ügynököknek a TinyFish",

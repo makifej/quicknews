@@ -1,7 +1,7 @@
 {
   "cim": "Eszközök",
   "leiras": "Appok, bővítmények, funkciók, amiket ma ki lehet próbálni.",
-  "alcim": "254 hír, fontossági sorrendben",
+  "alcim": "255 hír, fontossági sorrendben",
   "blokkok": [
     {
       "t": "nagy",
@@ -27,6 +27,27 @@
     {
       "t": "kiemelt",
       "h": {
+        "id": "071096a57136",
+        "cim": "Nyílt forráskódúvá tette az NVIDIA a Run:ai platformot",
+        "lead": "Az NVIDIA Apache 2.0 licenc alatt közzétette a teljes Run:ai GPU-orkesztrációs platform forráskódját a GitHubon.",
+        "slug": "nyilt-forraskoduva-tette-az-nvidia-a-run-ai-platformot",
+        "forras": "MarkTechPost",
+        "kat": "eszköz",
+        "rovat": "eszkoz",
+        "ido": "2026-10-19T06:04:27+00:00",
+        "ido_hu": "okt. 19. 08:04",
+        "kep": "https://quicknews.hu/assets/kep/071096a57136.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/071096a57136-n.webp",
+        "video": false,
+        "fontossag": 4,
+        "felkapott": false,
+        "forraskep": false,
+        "url": "https://quicknews.hu/hir/nyilt-forraskoduva-tette-az-nvidia-a-run-ai-platformot"
+      }
+    },
+    {
+      "t": "kiemelt",
+      "h": {
         "id": "a72d1e4da6b0",
         "cim": "Az OpenAI támogatott hozzáférést biztosít az egyetemi laboroknak a GPT-Rosalindhoz",
         "lead": "Elindult a Rosalind Academic Plan, amellyel a kutatólaborok ingyenes vagy támogatott hozzáférést kapnak az OpenAI élettudományi AI-modelljéhez.",
@@ -43,27 +64,6 @@
         "felkapott": false,
         "forraskep": true,
         "url": "https://quicknews.hu/hir/az-openai-tamogatott-hozzaferest-biztosit-az-egyetemi-laboroknak-a"
-      }
-    },
-    {
-      "t": "kiemelt",
-      "h": {
-        "id": "303c8b8be26f",
-        "cim": "Saját, privát AI-alkalmazásokat lehet futtatni Androidon",
-        "lead": "A Google Playen mostantól közzététel nélkül, teljesen privát módon is használhatók a felhasználók által AI-val kódolt saját Android-alkalmazások.",
-        "slug": "sajat-privat-ai-alkalmazasokat-lehet-futtatni-androidon",
-        "forras": "TechCrunch AI",
-        "kat": "eszköz",
-        "rovat": "eszkoz",
-        "ido": "2026-10-13T17:05:12+00:00",
-        "ido_hu": "okt. 13. 19:05",
-        "kep": "https://quicknews.hu/assets/kep/303c8b8be26f.webp",
-        "kep_nagy": "https://quicknews.hu/assets/kep/303c8b8be26f-n.webp",
-        "video": false,
-        "fontossag": 4,
-        "felkapott": false,
-        "forraskep": false,
-        "url": "https://quicknews.hu/hir/sajat-privat-ai-alkalmazasokat-lehet-futtatni-androidon"
       }
     },
     {
@@ -2222,24 +2222,6 @@
           "url": "https://quicknews.hu/hir/automatikus-hangdizajnt-kapott-a-runway-a-mirelo-sfx-2-0"
         },
         {
-          "id": "012aca243af6",
-          "cim": "Saját hangkaraktert kaphatnak a GPT-Live-1 modellel készülő alkalmazások",
-          "lead": "A fejlesztők már promptok segítségével vagy új nemzetközi előbeállításokkal szabhatják személyre a GPT-Live-1 hangját.",
-          "slug": "sajat-hangkaraktert-kaphatnak-a-gpt-live-1-modellel-keszulo",
-          "forras": "OpenAI Devs (X)",
-          "kat": "eszköz",
-          "rovat": "eszkoz",
-          "ido": "2026-10-16T17:22:27+00:00",
-          "ido_hu": "okt. 16. 19:22",
-          "kep": "https://quicknews.hu/assets/kep/012aca243af6.webp",
-          "kep_nagy": "https://quicknews.hu/assets/kep/012aca243af6.webp",
-          "video": true,
-          "fontossag": 3,
-          "felkapott": false,
-          "forraskep": false,
-          "url": "https://quicknews.hu/hir/sajat-hangkaraktert-kaphatnak-a-gpt-live-1-modellel-keszulo"
-        },
-        {
           "id": "1b2cc40dec16",
           "cim": "Az ElevenLabs mesterséges hangot felismerő funkciót adott ki",
           "lead": "Az ElevenAgents már az első másodpercekben azonosítja, hogy ember vagy mesterséges intelligencia beszél a vonal másik végén.",
@@ -2256,6 +2238,24 @@
           "felkapott": false,
           "forraskep": false,
           "url": "https://quicknews.hu/hir/az-elevenlabs-mesterseges-hangot-felismero-funkciot-adott-ki"
+        },
+        {
+          "id": "012aca243af6",
+          "cim": "Saját hangkaraktert kaphatnak a GPT-Live-1 modellel készülő alkalmazások",
+          "lead": "A fejlesztők már promptok segítségével vagy új nemzetközi előbeállításokkal szabhatják személyre a GPT-Live-1 hangját.",
+          "slug": "sajat-hangkaraktert-kaphatnak-a-gpt-live-1-modellel-keszulo",
+          "forras": "OpenAI Devs (X)",
+          "kat": "eszköz",
+          "rovat": "eszkoz",
+          "ido": "2026-10-16T17:22:27+00:00",
+          "ido_hu": "okt. 16. 19:22",
+          "kep": "https://quicknews.hu/assets/kep/012aca243af6.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/012aca243af6.webp",
+          "video": true,
+          "fontossag": 3,
+          "felkapott": false,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/sajat-hangkaraktert-kaphatnak-a-gpt-live-1-modellel-keszulo"
         },
         {
           "id": "784094765075",
@@ -3013,26 +3013,44 @@
       "t": "rovat",
       "cim": "Hardver és helyi AI",
       "link": null,
-      "osszes": 29,
+      "osszes": 30,
       "fo": {
-        "id": "41352b17c918",
-        "cim": "Az Apple bemutatta a Siri AI-val működő 299 dolláros HomeView okoskijelzőt",
-        "lead": "Az Apple piacra dobta a 7 hüvelykes HomeView okosotthon-központot, amely arcfelismeréssel vált a családtagok személyes profiljai között.",
-        "slug": "az-apple-bemutatta-a-siri-ai-val-mukodo-299-dollaros-homeview",
-        "forras": "Perplexity Discover",
+        "id": "303c8b8be26f",
+        "cim": "Saját, privát AI-alkalmazásokat lehet futtatni Androidon",
+        "lead": "A Google Playen mostantól közzététel nélkül, teljesen privát módon is használhatók a felhasználók által AI-val kódolt saját Android-alkalmazások.",
+        "slug": "sajat-privat-ai-alkalmazasokat-lehet-futtatni-androidon",
+        "forras": "TechCrunch AI",
         "kat": "eszköz",
         "rovat": "eszkoz",
-        "ido": "2026-10-13T14:11:52+00:00",
-        "ido_hu": "okt. 13. 16:11",
-        "kep": "https://quicknews.hu/assets/kep/41352b17c918.webp",
-        "kep_nagy": "https://quicknews.hu/assets/kep/41352b17c918.webp",
+        "ido": "2026-10-13T17:05:12+00:00",
+        "ido_hu": "okt. 13. 19:05",
+        "kep": "https://quicknews.hu/assets/kep/303c8b8be26f.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/303c8b8be26f-n.webp",
         "video": false,
         "fontossag": 4,
         "felkapott": false,
         "forraskep": false,
-        "url": "https://quicknews.hu/hir/az-apple-bemutatta-a-siri-ai-val-mukodo-299-dollaros-homeview"
+        "url": "https://quicknews.hu/hir/sajat-privat-ai-alkalmazasokat-lehet-futtatni-androidon"
       },
       "kis": [
+        {
+          "id": "41352b17c918",
+          "cim": "Az Apple bemutatta a Siri AI-val működő 299 dolláros HomeView okoskijelzőt",
+          "lead": "Az Apple piacra dobta a 7 hüvelykes HomeView okosotthon-központot, amely arcfelismeréssel vált a családtagok személyes profiljai között.",
+          "slug": "az-apple-bemutatta-a-siri-ai-val-mukodo-299-dollaros-homeview",
+          "forras": "Perplexity Discover",
+          "kat": "eszköz",
+          "rovat": "eszkoz",
+          "ido": "2026-10-13T14:11:52+00:00",
+          "ido_hu": "okt. 13. 16:11",
+          "kep": "https://quicknews.hu/assets/kep/41352b17c918.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/41352b17c918.webp",
+          "video": false,
+          "fontossag": 4,
+          "felkapott": false,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/az-apple-bemutatta-a-siri-ai-val-mukodo-299-dollaros-homeview"
+        },
         {
           "id": "e0aa7cbd38b7",
           "cim": "Az Amazon szakít a Fire OS-szel: Android-alapú Alexa tabletek jönnek",
@@ -3086,7 +3104,9 @@
           "felkapott": false,
           "forraskep": false,
           "url": "https://quicknews.hu/hir/uj-m6-os-macek-es-hajlithato-iphone-erkezhet-az-apple-tol"
-        },
+        }
+      ],
+      "tobb": [
         {
           "id": "06f502aabc80",
           "cim": "6 millió összehajtható iPhone Duót adhat el az Apple 2026-ban",
@@ -3104,9 +3124,7 @@
           "felkapott": false,
           "forraskep": false,
           "url": "https://quicknews.hu/hir/6-millio-osszehajthato-iphone-duot-adhat-el-az-apple-2026-ban"
-        }
-      ],
-      "tobb": [
+        },
         {
           "id": "689bb40256cf",
           "cim": "Helyi AI-ügynököket hoz Windows PC-re a Portable Computer",

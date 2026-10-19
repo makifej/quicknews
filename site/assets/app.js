@@ -703,6 +703,15 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     rajzol(marad, elo);
   }).catch(function(){ oldal.innerHTML = '<p class="mentett-ures">Most nem sikerült betölteni a mentett híreidet. Frissítsd az oldalt.</p>'; });
 })();
+// Megosztás a cikkoldalon: telefonon a rendszer megosztója, máshol a link a vágólapra kerül (Heni 2026-10-18)
+document.addEventListener('click', function(ev){
+  var g = ev.target.closest && ev.target.closest('[data-megoszt]'); if (!g) return;
+  var url = g.getAttribute('data-url'), cim = g.getAttribute('data-cim'), felirat = g.querySelector('span');
+  var jelez = function(t){ if (!felirat) return; var regi = 'Megosztás'; felirat.textContent = t; setTimeout(function(){ felirat.textContent = regi; }, 2200); };
+  if (navigator.share) { navigator.share({title: cim, url: url}).catch(function(){}); return; }
+  if (navigator.clipboard) navigator.clipboard.writeText(url).then(function(){ jelez('Link kimásolva'); }, function(){ prompt('A hír linkje:', url); });
+  else prompt('A hír linkje:', url);
+});
 // Találati oldal (/kereses?q=...): az összes találat a napi oldal kártyáival (Heni 2026-10-18)
 (function(){
   var oldal = document.querySelector('[data-kereses-oldal]'); if (!oldal) return;

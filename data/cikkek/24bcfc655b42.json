@@ -1,0 +1,56 @@
+{
+  "id": "24bcfc655b42",
+  "slug": "sajat-szervereken-gpu-nelkul-futtathato-az-uj-timestral-modellsorozat",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/10/18/mistral-timestral-time-series-foundation-model/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-10-19T01:18:17+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-454-8-scaled.png"
+  },
+  "cim_eredeti": "Mistral AI Releases Timestral: A 209M Forecasting Model Family That Outperforms Google’s TimesFM-3",
+  "forrasok": [],
+  "szoveg_eredeti": "Mistral AI has released Timestral , its first family of time series foundation models. Timestral is a set of 4 zero-shot forecasting models from Mistral AI, sized from 5M to 209M parameters. The largest checkpoint ranks first among pretrained, zero-shot models on GIFT-Eval, TIME and fev-bench. It does this without a GPU at inference. For developers, this Timestral time series foundation model means probabilistic forecasts on standard server CPUs, with open weights and inference code .\n\n TL;DR \n\n Size: 4 models: 5M, 28M, 123M, 209M parameters (dense). Context up to 32,768 time steps.\n\n Runs on: Standard server CPU, no GPU needed. 209M weights are 837 MB in fp32. GPU optional.\n\n Performance: #1 among zero-shot pretrained models on GIFT-Eval, TIME and fev-bench (Mistral-reported).\n\n Best: fev-bench SQL skill score of 50.39, ahead of TimesFM-3 at 48.99.\n\n Worst: GIFT-Eval MASE of 0.658 leads t0-gamma (0.661) by only 0.003.\n\n What is Timestral? \n\n Timestral is a time series foundation model (TSFM). It is pretrained on a large, diverse corpus, then forecasts zero-shot on data it has never seen. Classical tools like ARIMA fit one series at a time. Deep models like PatchTST usually train from scratch on each dataset. Timestral transfers patterns across domains instead.\n\n Each model outputs 21 quantiles per time step . It forecasts multivariate targets jointly. It accepts past-only, known-future and categorical covariates.\n\n How does Timestral work? \n\n Timestral is a causal, patch-based transformer with time attention and variate attention. The 209M model uses 24 layers and an embedding dimension of 768 . Each patch covers 32 time steps. A single forward pass forecasts up to 1,024 steps. Longer horizons run block by block, feeding each block’s median back as context.\n\n Mistral lists 4 technical contributions : \n\n Decoupled Horizon Forecasting (DHF): Learned forecast tokens read the full history. Observed values stay in context instead of being masked, unlike contiguous patch masking in Toto 2.0 and TimesFM-3.\n\n Covariate-aware attention: Each series is a target, past-only covariate or known-future covariate. Information flows only from covariates to targets, preventing future leakage.\n\n Synthetic-first data: Most training data is synthetic, with trends, seasonality, noise and nonlinear cross-series dependencies.\n\n Two-stage training: Pretraining on synthetic data at context 8,192, then post-training on mixed data with 4x longer context. The loss is pinball loss over 21 quantiles.\n\n How does Timestral perform on benchmarks? \n\n All scores below are zero-shot, from a single checkpoint without ensembling. They come from the Timestral-209M model card .\n\n GIFT-Eval: MASE 0.658, CRPS 0.446 (lower is better).\n\n TIME: MASE 0.626, CRPS 0.522 (lower is better).\n\n fev-bench: SQL skill score 50.39, MASE skill score 39.49 (higher is better).\n\n The size scaling is flat at the top. Timestral-123M scores 0.659 MASE on GIFT-Eval , against 0.658 for 209M. Mistral team states that the 28M model beats Chronos-2 on GIFT-Eval and TIME. Chronos-2 is about 4 times larger.\n\n How fast is Timestral on CPU? \n\n Mistral team tested a standard server CPU with 8 threads. The task: forecast 1 day ahead from 3 weeks of 15-minute history. The 5M model took 10 ms and the 209M model took 140 ms . The 28M model is 5 times faster than 209M. The 123M model lands within 0.2% of the 209M score at three quarters of its latency.\n\n How does Timestral compare with TimesFM-3, Chronos-2 and Toto 2.0? \n\n Feature Timestral-209M TimesFM-3 Chronos-2 Toto-2.0-2.5B Developer Mistral AI Google Research Amazon Datadog Parameters 209M 330M 120M 2.5B Architecture Causal patch transformer, DHF Decoder-only, contiguous patch masking Encoder-only, group attention Decoder-only, contiguous patch masking Max context 32,768 steps Not disclosed 8,192 steps Not disclosed Single-pass horizon 1,024 steps Not disclosed 1,024 steps (max) Not disclosed Quantiles 21 9 Not disclosed 9 Weights licence Modified MIT Non-commercial v1.0 Apache 2.0 Apache 2.0 Weights (fp32) 837 MB Not disclosed Not disclosed 9.1 GB GIFT-Eval MASE / CRPS 0.658 / 0.446 0.667 / 0.456* 0.698 / 0.485* 0.696 / 0.476 TIME MASE / CRPS 0.626 / 0.522 0.640 / 0.536* 0.662 / 0.556* 0.640 / 0.532** fev-bench SQL skill 50.39 48.99* 47.28* 44.42* \n\n * As listed on the Timestral-209M model card . Google and Amazon do not publish matching figures on their own model pages. ** From Datadog’s model card . Mistral’s card lists 0.642 / 0.539. \n\n How can developers deploy Timestral? \n\n Install the package with pip install git+https://github.com/mistralai/timestral.git . It needs Python 3.10+ and torch 2.4+ . Dependencies are PyTorch, NumPy, safetensors and huggingface_hub. Weights download from Hugging Face: 21 MB for 5M, 111 MB for 28M, 490 MB for 123M .\n\n Mistral’s docs list Timestral 1.0 209M as Public Preview . Fine-tuning on proprietary data runs through Mistral Forge . The pipeline can deploy on-prem, in a VPC or air-gapped.\n\n Key Takeaways \n\n 4 sizes, 5M to 209M, all on the accuracy-vs-size Pareto front.\n\n 209M leads GIFT-Eval, TIME and fev-bench among zero-shot models.\n\n CPU-only inference: 10 ms (5M) to 140 ms (209M).\n\n 32,768-step context, 21 quantiles, native covariate support.\n\n Modified MIT weights, unlike TimesFM-3’s non-commercial licence.\n\n Check out the blog post , GitHub repo and model weights on Hugging Face . All credit goes to the researcher of this project. Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n The post Mistral AI Releases Timestral: A 209M Forecasting Model Family That Outperforms Google’s TimesFM-3 appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "Saját szervereken, GPU nélkül futtatható az új Timestral modellsorozat",
+  "lead": "A Mistral AI megjelentette a Timestral nevű nyílt súlyú idősor-előrejelző modellcsaládot, amely standard CPU-kon is kiemelkedő pontossággal működik.",
+  "osszefoglalo": "A Mistral AI bemutatta a **Timestral** modellsorozatot, amely 4 különböző méretű (5M és 209M paraméter közötti) idősor-előrejelző modellből áll. Az eszközök nyílt súlyokkal, módosított MIT licenc alatt érhetők el, és felhős infrastruktúra helyett normál szerver-CPU-kon is gyorsan futtathatók. A legnagyobb, 209 milliós paraméterszámú modell GPU nélkül mindössze 140 milliszekundum alatt készít előrejelzést.\n\nA rendszer a klasszikus statisztikai eszközökkel szemben nem teszi szükségessé a nulláról való betanítást minden egyes adatsoron, hanem a mintázatokat tartományok között viszi át. A modell támogatja a többváltozós adatokat, a külső tényezőket és az akár **32 768 időlépéses kontextust** is. A mérések alapján a nulla mintás előrejelzési teszteken felülmúlja a [Google TimesFM-3](https://research.google/blog/timesfm-3-a-zero-shot-foundation-model-for-multivariate-forecasting/) modelljét.\n\nA fejlesztők a GitHubon keresztül vagy a Hugging Face felületéről tölthetik le a modelleket Python környezetbe. A cégek a saját adataikra szabott finomhangolást a [Mistral Forge](https://mistral.ai/products/forge/) felületén végezhetik el, és akár teljesen zárt, helyi infrastruktúrán is üzemeltethetik azt.",
+  "miert_szamit": "A magyar vállalkozások és elemzők **drága GPU-kapacitás nélkül** készíthetnek pontos üzleti, értékesítési vagy logisztikai előrejelzéseket saját szervereiken, adatvédelmileg zárt környezetben.",
+  "cimkek": [
+    "Mistral",
+    "Timestral",
+    "gépi tanulás",
+    "adat-elemzés"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Timestral",
+    "Mistral Forge"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-19T06:04:38+00:00",
+  "megjelent": "2026-10-19T06:04:38+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-19T06:04:44+00:00",
+    "esemeny": "A Mistral AI kiadta a Timestral nevű, nyílt súlyokkal elérhető idősor-előrejelző modellcsaládját, amely négy tagból áll (5M és 209M paraméter között).",
+    "forrasok": [
+      "https://mistral.ai/news/timestral",
+      "https://github.com/mistralai/timestral",
+      "https://huggingface.co/mistralai/Timestral-209M"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
