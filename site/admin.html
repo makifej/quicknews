@@ -671,7 +671,7 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
    const jv=(h&&h.jovahagyas)||{},sajat=!jv.auto&&(jv.feluletek||[]).length?jv.feluletek:null;
    const felul=sajat&&sajat.slice().sort().join()!==v.filter(f=>f!=="hirlevel").sort().join();
    return `<div class="auto-dont ${felul?"felul":v.length?"megy":"semleges"}"><span class="auto-cimke">${felul?"Te felülbíráltad: kimegy · "+sajat.map(f=>NEV[f]||f).join(", "):v.length?"Automatika: kimegy · "+v.map(f=>NEV[f]||f).join(", "):"Automatika: semleges, nem megy ki"}</span>
-   <span class="auto-pont">${["facebook","linkedin","csoport","hirdetes","hirlevel"].map(f=>`${NEV[f]} ${p[f]??"-"}`).join(" · ")}</span>${a.indok?`<span class="auto-indok">${esc(a.indok)}</span>`:""}</div>`};
+   <span class="auto-pont">${["facebook","linkedin","csoport","hirdetes","hirlevel"].map(f=>`${NEV[f]} ${p[f]??"-"}`).join(" · ")}</span>${a.indok?`<span class="auto-indok">${esc(a.indok)}</span>`:""}${a.nyelv&&a.nyelv.allapot==="javitva"?`<span class="auto-indok">Nyelvileg javítva kitétel előtt: ${esc((a.nyelv.hibak||[]).join("; "))}</span>`:""}${a.nyelv&&["hibas","nincs_valasz"].includes(a.nyelv.allapot)?`<span class="auto-indok">Nem ment ki: a nyelvi ellenőrzés nem tudta biztonságosan javítani.</span>`:""}</div>`};
   // a pipa önmagában nem indít semmit: a „Jóváhagyom” után készülnek el a bepipált felületek elemei
   const jv=s.jovahagyas||{},jvF=jv.feluletek||[],el=s.elemek||{};
   const nyitottF=["facebook","linkedin","hirdetes","csoport"].filter(f=>s.kerve[f]&&!el[f]&&!(s.allapot||{})[f]);
