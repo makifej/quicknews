@@ -139,6 +139,7 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
   alapGomb.addEventListener('click', function(){
     all.uzenetek = []; delete all.gorgetes; ment();
     lista.innerHTML = KEZDO; javaslatok(); lista.scrollTop = 0; alapAllapot(); mezo.value = ''; mezo.focus(); ev('chat_alaphelyzet'); });
+  if (all.vissza && all.vissza === location.pathname) { all.nyitva = true; delete all.vissza; ment(); }
   if (all.nyitva) { nyit(true, true); setTimeout(function(){ if (typeof all.gorgetes === 'number') lista.scrollTop = all.gorgetes; else gorget(); }, 0); }
   function kerdez(q){
     q = (q || '').trim(); if (q.length < 3) return;
@@ -156,7 +157,8 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
   lista.addEventListener('click', function(e){
     if (e.target.closest('.chat-hirpont, .chat-resz')) {
       // mobilon a chat a teljes képernyőt takarja: hírre ugráskor összecsukjuk, hogy a hír látsszon (a beszélgetés megmarad)
-      if (window.matchMedia('(max-width: 767px)').matches) all.nyitva = false;
+      // visszalépéskor (Heni 2026-10-19) ugyanezen az oldalon újra kinyílik, a kérdés és a válasz ott van
+      if (window.matchMedia('(max-width: 767px)').matches) { all.nyitva = false; all.vissza = location.pathname; }
       helyMent(); ev('chat_forras_kattintas', {resz: !!e.target.closest('.chat-resz')}); return; }
     var b = e.target.closest('.chat-javaslat button, .chat-javas'); if (b) { ev('chat_javaslat'); kerdez(b.textContent); } });
 })();
