@@ -1,5 +1,16 @@
 [
   {
+    "i": "5d159da1a64a",
+    "p": "/assets/kep/forras-x-elonmusk.webp",
+    "c": "Elon Musk szerint is biztonságosabb a Grok Bot használata a vásárlásban",
+    "b": "Egy felhasználó szerint a Grok Bot óvatosan és reklámok nélkül vásárol az ember helyett, amit Elon Musk is megerősített.",
+    "k": "Elon Musk (X)",
+    "g": "ügynök",
+    "u": "/hir/elon-musk-egyetert-azzal-hogy-a-grok-bot-biztonsagosabb-a-vasarlasban",
+    "sz": "Egy felhasználó részletesen leírta a Grok Bot vásárlási funkciójával kapcsolatos tapasztalatait. A beszámoló alapján az AI-ügynök korlátozott jogosultságokkal dolgozik, és a drágább vagy fontosabb döntéseknél mindig engedélyt kér a felhasználótól. Az elemzés szerint az eszköz kikerüli a webáruházak figyelmet elterelő reklámjait, összehasonlítja az árakat, és jelentős időt takarít meg.\n\nElon Musk egy szavas válaszban reagált az X-en megjelent bejegyzésre, amivel teljesen egyetértett a leírtakkal. A fejlesztők elkötelezettségét jelzi, hogy amennyiben a bot hibát vétene a vásárlás során, kártalanítják a felhasználót.\n\nAz eszköz a mindennapi feladatok automatizálásával teljesen kiváltja a böngészést és a manuális űrlapkitöltést, miközben a végső döntés mindvégig a vásárló kezében marad. Grok Bot xAI AI-ügynök e-kereskedelem",
+    "d": "okt. 19. 09:02"
+  },
+  {
     "i": "5af64446f121",
     "p": "/assets/kep/forras-x-elonmusk.webp",
     "c": "Elon Musk szerint a szuperintelligens AI bárkit könnyen meggyőz majd",
@@ -42,6 +53,17 @@
     "u": "/hir/sajat-szervereken-gpu-nelkul-futtathato-az-uj-timestral-modellsorozat",
     "sz": "A Mistral AI bemutatta a Timestral modellsorozatot, amely 4 különböző méretű (5M és 209M paraméter közötti) idősor-előrejelző modellből áll. Az eszközök nyílt súlyokkal, módosított MIT licenc alatt érhetők el, és felhős infrastruktúra helyett normál szerver-CPU-kon is gyorsan futtathatók. A legnagyobb, 209 milliós paraméterszámú modell GPU nélkül mindössze 140 milliszekundum alatt készít előrejelzést.\n\nA rendszer a klasszikus statisztikai eszközökkel szemben nem teszi szükségessé a nulláról való betanítást minden egyes adatsoron, hanem a mintázatokat tartományok között viszi át. A modell támogatja a többváltozós adatokat, a külső tényezőket és az akár 32 768 időlépéses kontextust is. A mérések alapján a nulla mintás előrejelzési teszteken felülmúlja a Google TimesFM-3 modelljét.\n\nA fejlesztők a GitHubon keresztül vagy a Hugging Face felületéről tölthetik le a modelleket Python környezetbe. A cégek a saját adataikra szabott finomhangolást a Mistral Forge felületén végezhetik el, és akár teljesen zárt, helyi infrastruktúrán is üzemeltethetik azt. Mistral Timestral gépi tanulás adat-elemzés",
     "d": "okt. 19. 03:18"
+  },
+  {
+    "i": "e00b056f6151",
+    "p": "/assets/kep/e00b056f6151.webp",
+    "c": "Megjelent a Beam, amivel külön ablakban vezérelhetők a másikon futó AI-ügynökök",
+    "b": "A Beam segítségével a másikon futó AI-ügynökök és folyamatok ablakai közvetlenül a saját Mac képernyőjén érhetők el.",
+    "k": "Product Hunt",
+    "g": "eszköz",
+    "u": "/hir/megjelent-a-beam-amivel-kulon-ablakban-vezerelhetok-a-masikon-futo-ai",
+    "sz": "Hiten Shah és csapata kiadta a Beam nevű alkalmazást, amely a különálló Mac gépeken futó appokat, böngészőket és Terminál ablakokat áthozza a használt Mac képernyőjére. Az átvett ablakok saját Dock ikonnal és parancs-Tab jelenléttel rendelkeznek, így pontosan úgy kezelhetők, mint a helyi programok.\n\nA szoftver különösen hasznos fejlécnélküli Mac mini vagy Mac Studio setupoknál, ahol a háttérben folyamatosan AI-ügynökök és helyi modellek futnak. A rendszer támogatja a fájlok mozgatását a gépek között, átviszi az audiót, a kapcsolat pedig titkosított és helyi hálózaton vagy Tailscale-en keresztül működik.\n\nA használathoz Apple silicon architektúra és Sonoma vagy újabb macOS szükséges. Az alkalmazás elérhető, és naponta 20 percig ingyenesen kipróbálható. Beam macOS AI ügynök Apple Silicon",
+    "d": "okt. 18. 21:13"
   },
   {
     "i": "a509ece1edb9",
@@ -130,6 +152,17 @@
     "u": "/hir/az-ai-ugynokok-meg-a-legegyszerubb-strategiakban-is-rosszul-dontenek",
     "sz": "A Microsoft és a Hongkongi Városi Egyetem kutatói létrehozták a Taste-Bench nevű benchmarkot, amely azt méri, hogyan hoznak stratégiai döntéseket az AI-ügynökök a hosszabb folyamatok során. A tesztben 14 különböző AI-modellnek kellett két lehetőség közül kiválasztania a jobb megoldási útvonalat programozási és kutatási feladatok közben.\n\nA tesztek alapján a legjobb teljesítményt nyújtó GPT-5.6 Sol modell is mindössze 59,7 százalékos pontosságot ért el az egyszerű, kétválasztásos kérdéseknél. A kutatásból kiderült az is, hogy a modellek gondolkodási idejének növelése nem javította az eredményeket, és a hibás döntések hosszú távon jelentős erőforrás-pazarláshoz vezetnek.\n\nA kutatók azt is bebizonyították, hogy a jó döntési képesség tanítható. Egy kisebb, finomhangolt Qwen3.6-27B modellnek adott tanácsok segítségével egy önállóan dolgozó AI-ügynök sikeres feladatmegoldási aránya 14,6 százalékról 33,7 százalékra emelkedett a gyakorlati teszteken. A benchmark és a hozzá kapcsolódó kód nyilvánosan elérhető. AI ügynök Taste-Bench Microsoft kutatás",
     "d": "okt. 18. 10:49"
+  },
+  {
+    "i": "1b15909b2f7f",
+    "p": "/assets/kep/1b15909b2f7f.webp",
+    "c": "Asztali AI-számítógépet fejleszt az OwnX helyi modellekhez",
+    "b": "A passzív hűtésű Own 1 saját hardveren futtatna helyi nyelvi modelleket és AI-ügynököket előfizetési díjak nélkül.",
+    "k": "Product Hunt",
+    "g": "eszköz",
+    "u": "/hir/asztali-ai-szamitogepet-mutatott-be-az-ownx-3899-dollarert",
+    "sz": "A fejlesztők Own 1 néven egy olyan ventilátor nélküli, asztali AI-számítógép koncepcióját és specifikációit osztották meg, amely egyszerre 2 helyi nyelvi modellt és 8 AI-ügynököt képes futtatni. Az Own 1 adatai a hivatalos indulásig még változhatnak, a csapat jelenleg a közösség visszajelzéseit gyűjti.\n\nA rendszerben az adatkezelés alapértelmezetten teljesen helyben történik, felhős erőforrásokat vagy külső API-kat csak a felhasználó által beállított szabályok alapján használ a gép. Az ügynökök a beépített x402 protokollon keresztül USDC kriptovalutával fizethetnek is a jóváhagyott modellekért és számítási kapacitásért, amennyiben erre külön keretet és engedélyt kapnak.\n\nA termékhez nem kapcsolódik havidíj vagy tokenalapú fizetési kötelezettség. Az eszköz alternatívát kínálhat a Mac Studio vagy a Strix Halo mini PC rendszerekkel szemben azoknak, akik adatvédelmi okokból helyi modelleket futtatnának. OwnX hardware LLM AI ügynök",
+    "d": "okt. 18. 10:46"
   },
   {
     "i": "dea88befdb7c",
@@ -726,6 +759,17 @@
     "d": "okt. 16. 17:00"
   },
   {
+    "i": "68b8abe01e71",
+    "p": "/assets/kep/68b8abe01e71.webp",
+    "c": "Megjelent a Framefields, a böngészőmentes videógeneráló motor",
+    "b": "A Node.js alatt futó, natív WebGPU-alapú eszközzel az AI-ügynökök és fejlesztők közvetlenül TypeScriptből hozhatnak létre stúdióminőségű videókat.",
+    "k": "Product Hunt",
+    "g": "eszköz",
+    "u": "/hir/megjelent-a-framefields-a-bongeszomentes-videogeneralo-motor",
+    "sz": "Okan Aslankan bemutatta a Framefields nevű programozói videómotort, amely a böngészős megoldások és a böngészőfej nélküli Chromium teljesítménybeli korlátait kiküszöbölve natív WebGPU alapon fut Node.js környezetben. Az eszköz egyetlen npm csomagban egyesíti a mozgógráfikát, a képeffektusokat, a 3D-s renderelést és az audiófeldolgozást.\n\nA rendszer determinisztikus képkocka-órával működik, így a generált tartalom kockáról kockára pontos és reprodukálható. Az AI-ügynökök és a fejlesztők TypeScript-kód segítségével hozhatnak létre kinetikus tipográfiát, Photoshop-szintű 2D kompozíciókat és képeffekteket, valamint mintaszintű hangszinkronizációt.\n\nA szoftver hardveresen gyorsított MP4 formátumban exportálja a végleges videókat, teljesen átlépve a hagyományos videószerkesztő szoftverek és a nehézkes böngészős hátterek erőforrás-igényét. A dokumentáció és a nyílt forráskódú példák már elérhetők. Framefields TypeScript Node.js WebGPU",
+    "d": "okt. 16. 16:58"
+  },
+  {
     "i": "02ceb88cbf52",
     "p": "/assets/kep/02ceb88cbf52.webp",
     "c": "Elindult a 3AM, a vállalati rendszereket felügyelő AI-ügyeletes",
@@ -746,6 +790,17 @@
     "u": "/hir/videobol-videot-alakit-at-ai-val-a-luma-dreamlab-csapata",
     "sz": "A Luma Labs felvételeket készített Themo akciókoreográfusról, majd a rögzített mozgást video-to-video transzformációval új stílusokba és képi világokba ültette át. A munkafolyamat előkészítő tervezéssel indult, a mozgáskövetést követően pedig a generatív modell hozta létre a végső látványt.\n\nA módszer lényege, hogy a valós kaszkadőrmutatványok és mozgások precíz irányítását megtartva teszi lehetővé a jelenetek stílusváltását. A bemutatott anyag a Luma technológiájával készült. Luma videógenerálás video-to-video animáció",
     "d": "okt. 16. 15:00"
+  },
+  {
+    "i": "858c2516fef8",
+    "p": "/assets/kep/858c2516fef8.webp",
+    "c": "Megjelent a Tori AI, a termékismeretre épülő ügyféltámogató ügynök",
+    "b": "A Tori AI a meglévő tartalmaid alapján tanulja meg a termékedet, és válaszol a komplex ügyfélkérdésekre.",
+    "k": "Product Hunt",
+    "g": "ügynök",
+    "u": "/hir/megjelent-a-tori-ai-a-termekismeretre-epulo-ugyfeltamogato-ugynok",
+    "sz": "A Tori AI egy mesterséges intelligenciára épülő ügyféltámogató ügynök, amely a cégek meglévő anyagaiból önállóan tanulja meg a termékek és szolgáltatások részleteit. Ennek köszönhetően a legösszetettebb vásárlói vagy felhasználói kérdésekre is pontos válaszokat tud adni.\n\nA rendszer kezelőfelülete teljesen testreszabható, így zökkenőmentesen illeszthető bármely vállalkozás meglévő arculatához és ügyfélszolgálati folyamataihoz. Az eszköz célja, hogy tehermentesítse az ügyfélszolgálati és customer success csapatokat.\n\nAz új AI-ügynök közvetlenül a szolgáltató hivatalos weboldalán érhető el és próbálható ki. Tori AI ügyfélszolgálat AI-ügynök automatizálás",
+    "d": "okt. 16. 14:24"
   },
   {
     "i": "b0a9b9b221db",

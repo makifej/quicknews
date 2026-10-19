@@ -1,15 +1,9 @@
-// Főhír (főoldal): a nap 3 főhíre közül betöltésenként véletlenszerűen egy, nem ugyanaz, mint az előző betöltéskor (Heni 2026-10-19)
+// Főhír (főoldal): a sorsolást a doboz utáni beágyazott szkript végzi (render.py FO_SORSOLO); itt csak az, hogy a látható
+// főhír lejjebb ne szerepeljen még egyszer
 (function(){
   var fo = document.querySelector('[data-fo-keszlet]'); if (!fo) return;
-  var lapok = [].slice.call(fo.children); if (lapok.length < 2) return;
-  var kulcs = 'qn-fohir', elozo = null;
-  try { elozo = localStorage.getItem(kulcs); } catch (e) {}
-  var jeloltek = lapok.filter(function(el){ return el.getAttribute('data-hid') !== elozo; });
-  if (!jeloltek.length) jeloltek = lapok;
-  var valasztott = jeloltek[Math.floor(Math.random() * jeloltek.length)];
-  lapok.forEach(function(el){ el.hidden = el !== valasztott; el.style.display = el === valasztott ? '' : 'none'; });
-  var hid = valasztott.getAttribute('data-hid') || '';
-  try { localStorage.setItem(kulcs, hid); } catch (e) {}
+  var v = [].slice.call(fo.children).filter(function(el){ return !el.hidden; })[0]; if (!v) return;
+  var hid = v.getAttribute('data-hid') || '';
   if (hid) [].forEach.call(document.querySelectorAll('[data-hid="' + hid + '"]'), function(el){ if (!fo.contains(el)) { var li = el.closest('li'); (li || el).hidden = true; } });
 })();
 // Jobbra fent (főoldal és rovatoldal): a készlet jelöltjei közül betöltésenként véletlen egy látszik (Heni 2026-10-15)
