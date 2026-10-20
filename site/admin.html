@@ -54,7 +54,12 @@ main{max-width:1200px;margin:0 auto;padding:32px 24px 96px;overflow-wrap:anywher
 .villan{animation:villan 1.6s cubic-bezier(.32,.72,0,1)}
 
 /* napválasztó */
-.napok{display:flex;gap:8px;overflow-x:auto;margin-bottom:24px;padding-bottom:4px;scrollbar-width:none}
+.napsav{position:relative;margin-bottom:24px}
+.napsav-nyil{position:absolute;top:0;bottom:4px;z-index:2;width:44px;border:0;cursor:pointer;color:var(--amber);font-size:28px;font-weight:700;line-height:1}
+.napsav-nyil.bal{left:0;background:linear-gradient(90deg,var(--bg) 55%,transparent)}
+.napsav-nyil.jobb{right:0;background:linear-gradient(270deg,var(--bg) 55%,transparent)}
+.napsav-nyil[hidden]{display:none}
+.napok{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;scroll-behavior:smooth}
 .napok::-webkit-scrollbar{display:none}
 .napok button{flex:0 0 auto;text-align:left;background:var(--lap);border:1px solid transparent;border-radius:10px;padding:10px 16px;
 transition:border-color .3s cubic-bezier(.32,.72,0,1)}
@@ -339,7 +344,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <main>
 <section id="p-posztok">
 <div class="mutatok" id="p-mutatok"></div>
-<div class="napok" id="p-napok" role="group" aria-label="Nap"></div>
+<div class="napsav"><button type="button" class="napsav-nyil bal" aria-label="Újabb napok" hidden>‹</button><div class="napok" id="p-napok" role="group" aria-label="Nap"></div><button type="button" class="napsav-nyil jobb" aria-label="Korábbi napok" hidden>›</button></div>
 <div id="p-tabla"></div>
 <p class="lab">Élő adat a Flybuiltből, percenként frissül. A Quicknews.hu Facebook-oldal és a Novák Henriette LinkedIn-profil posztjai.</p>
 </section>
@@ -475,8 +480,15 @@ function hatra(d){const p=Math.round((d-Date.now())/6e4);if(p<1)return"most esed
 /* ---------- posztok ---------- */
 let D=null,PN=null,PNGORGETVE=false;  // Heni 2026-10-18: a Posztok fül mindig a mai napon nyíljon
 /* a napsávban a kiválasztott nap a sáv elejére görgetve (csak amíg a fül látszik; a fülváltás újra meghívja) */
-function napsavIgazit(){const sv=document.getElementById("p-napok");const gb=sv&&sv.querySelector('button[aria-pressed="true"]');
- if(!gb||!sv.getBoundingClientRect().width)return;sv.scrollLeft+=gb.getBoundingClientRect().left-sv.getBoundingClientRect().left;PNGORGETVE=true}
+function napsavIgazit(){const sv=document.getElementById("p-napok");if(sv){sv.scrollLeft=0;PNGORGETVE=true;napsavNyilak()}}
+// lapozó nyilak a napsáv két szélén: csak akkor látszanak, ha arra még van nap
+function napsavNyilak(){const sv=document.getElementById("p-napok");if(!sv)return;const max=sv.scrollWidth-sv.clientWidth-2;
+ const b=document.querySelector(".napsav-nyil.bal"),j=document.querySelector(".napsav-nyil.jobb");
+ if(b)b.hidden=sv.scrollLeft<=2;if(j)j.hidden=sv.scrollLeft>=max}
+document.addEventListener("click",e=>{const n=e.target.closest(".napsav-nyil");if(!n)return;const sv=document.getElementById("p-napok");
+ sv.scrollBy({left:(n.classList.contains("bal")?-1:1)*Math.max(200,sv.clientWidth*0.8),behavior:"smooth"})});
+document.addEventListener("scroll",e=>{if(e.target&&e.target.id==="p-napok")napsavNyilak()},true);
+window.addEventListener("resize",()=>napsavNyilak());
 const HIBA=s=>["failed","error"].includes(s.allapot);
 const KINT=s=>s.allapot==="published";
 const PARK=s=>s.allapot==="torolve"||new Date(s.idopont).getFullYear()>=2030;
@@ -544,15 +556,20 @@ function prajzol(){if(!D)return;
  // napok: ma, holnap és ami utána van; tegnap csak ha van benne valami
  const kulcs=s=>PARK(s)?"park":nk(new Date(KINT(s)&&s.kiment?s.kiment:s.idopont));
  const napok={};S.forEach(s=>{const k=kulcs(s);(napok[k]=napok[k]||[]).push(s)});
- const sorrend=Object.keys(napok).filter(k=>k!=="park").sort();if(napok.park)sorrend.push("park");
- if(!napok[ma])napok[ma]=[],sorrend.splice(sorrend.findIndex(k=>k>ma||k==="park")<0?sorrend.length:sorrend.findIndex(k=>k>ma||k==="park"),0,ma);
+ // Heni 2026-10-20: a Ma mindig az első, mellette jobbra a korábbi napok visszafelé (Tegnap, tegnapelőtt...),
+ // nyilakkal lapozható; a jövő napjai a Ma után, a Leállítva a sáv végén
+ if(!napok[ma])napok[ma]=[];
+ const kk=Object.keys(napok).filter(k=>k!=="park"&&k!==ma);
+ const sorrend=[ma,...kk.filter(k=>k>ma).sort(),...kk.filter(k=>k<ma).sort().reverse(),...(napok.park?["park"]:[])];
  if(!PN||!napok[PN])PN=ma;
- document.getElementById("p-napok").innerHTML=sorrend.map(k=>{const L=napok[k],v=L.filter(VAR).length,ki=L.filter(KINT).length;
+ const NSV=document.getElementById("p-napok"),NSVX=NSV.scrollLeft;  // a percenkénti frissítés ne ugorjon vissza a sáv elejére
+ NSV.innerHTML=sorrend.map(k=>{const L=napok[k],v=L.filter(VAR).length,ki=L.filter(KINT).length;
   const al=k==="park"?`${L.length} poszt`:[v?v+" vár":"",ki?ki+" kiment":""].filter(Boolean).join(" · ")||"nincs poszt";
   return `<button aria-pressed="${k===PN}" data-nap="${k}"><b>${k==="park"?"Leállítva":napcimke(k)} <span style="display:inline;color:var(--halk);font-weight:500">${k==="park"?"":napdatum(k)}</span></b><span>${al}</span></button>`}).join("");
  document.querySelectorAll("#p-napok button").forEach(b=>b.onclick=()=>{PN=b.dataset.nap;prajzol()});
  // a napsáv első rajzolásakor a kiválasztott (mai) nap legyen látható a sáv elején, ne a régi napok
- if(!PNGORGETVE)requestAnimationFrame(napsavIgazit);
+ if(PNGORGETVE)NSV.scrollLeft=NSVX;else{NSV.scrollLeft=0;PNGORGETVE=true}
+ napsavNyilak();
  const L=(napok[PN]||[]).slice().sort((a,b)=>(a.idopont<b.idopont?-1:1));
  const elott=hiba.length&&PN===ma?`<div class="hibasav">${hiba.length} poszt nem ment ki: ${hiba.map(s=>esc(s.cim)).join("; ")}</div>`:"";
  T.innerHTML=elott+`<div class="tabla">`+["Facebook","Csoport","LinkedIn","Hirdetés"].map(f=>{const P=L.filter(s=>s.felulet===f);const v=P.filter(VAR).length;
