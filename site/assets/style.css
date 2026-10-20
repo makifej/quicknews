@@ -1503,3 +1503,13 @@ body.boo-nyitva { overflow: hidden; }
 .megoszt-cikk:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
 .megoszt-cikk svg { width: 18px; height: 18px; }
 .kiprobal ~ .megoszt-cikk { margin-top: 24px; vertical-align: middle; }
+
+/* Google AdSense helyek (render.py ADSENSE_*, Heni 2026-10-20): a saját szponzorált elemekhez illő, visszafogott keret,
+   felül „Hirdetés” jelöléssel; ha a Google nem tölt hirdetést, a hely eltűnik */
+.qn-ad { display: flex; flex-direction: column; gap: 12px; margin: 32px 0; padding: 16px; background: var(--bg-2); border: 1px solid var(--keret); border-radius: 16px; }
+.qn-ad-jel { align-self: flex-start; font-size: 12px; line-height: 18px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--szoveg-2); border: 1px solid var(--keret); border-radius: 999px; padding: 2px 10px; }
+.qn-ad ins.adsbygoogle { min-height: 100px; }
+.qn-ad:has(ins.adsbygoogle[data-ad-status="unfilled"]) { display: none; }
+.qn-ad-cimlap { margin: 40px 0; }
+.qn-ad-oldal { margin: 24px 0; }
+.qn-ad-minta { display: grid; place-items: center; min-height: 250px; border: 1px dashed var(--keret-eros); border-radius: 12px; color: var(--szoveg-2); font-size: 14px; }
