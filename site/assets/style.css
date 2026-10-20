@@ -1393,6 +1393,81 @@ body.halloween { background-color: transparent; background-image: radial-gradien
 .hw-boo { position: absolute; right: 100%; top: 18%; margin-right: 6px; font-family: "Permanent Marker", "Manrope", sans-serif; font-size: var(--boo, 28px);
   line-height: 1; color: #f2f2f2; white-space: nowrap; transform: rotate(-10deg); }
 .hw-boo--jobb { right: auto; left: 100%; margin: 0 0 0 6px; transform: rotate(10deg); }
+/* mobil fejléc (Heni 2026-10-20): a denevér ne foglaljon helyet a logó mellett, különben a jobb szélső ikon kicsúszik a képernyőről */
+@media (max-width: 767px) { .halloween .logo .nev { position: relative; } .halloween .logo .nev::after { position: absolute; right: -4px; top: -11px; margin: 0; } }
+/* mobilon is vannak szellemek (Heni 2026-10-20): a képernyőhöz rögzített rétegen, a tartalom fölött; a koppintás átmegy rajtuk, amíg nem foghatók */
+.hw-reteg--mobil { position: fixed; inset: 0; height: auto; z-index: 940; }
+.hw-reteg--mobil .hw-szellem { animation-name: hw-felbukkan-mobil; }
+@keyframes hw-felbukkan-mobil { 0% { opacity: 0; transform: scale(0.9); } 14% { opacity: 0.34; transform: scale(1.05); } 26% { opacity: 0.26; transform: scale(0.97); } 38% { opacity: 0.34; transform: scale(1.05); } 52%, 100% { opacity: 0; transform: scale(0.92); } }
+/* BOO-vadászat (Heni 2026-10-20, assets/halloween.js): játék közben a szellem jobban látszik, kattintható, és elkapva narancsra vált */
+.boo-jatek .hw-szellem { animation-name: hw-felbukkan-jatek; }
+@keyframes hw-felbukkan-jatek { 0% { opacity: 0; transform: scale(0.9); } 14% { opacity: 0.6; transform: scale(1.06); } 26% { opacity: 0.46; transform: scale(0.97); } 38% { opacity: 0.6; transform: scale(1.06); } 52%, 100% { opacity: 0; transform: scale(0.92); } }
+.hw-szellem.hw-foghato { pointer-events: auto; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.hw-szellem.hw-foghato::before { content: ""; position: absolute; inset: -16px; }
+.hw-szellem.hw-elkapva { pointer-events: auto; animation: hw-elkap 700ms cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+.hw-elkapva .hw-himba { animation: none; }
+.hw-elkapva .hw-test { fill: #ff7518; stroke: #ff7518; }
+.hw-elkapva .hw-boo { color: #ff7518; }
+.hw-elkapva svg { filter: drop-shadow(0 0 18px rgba(255, 117, 24, 0.75)); }
+@keyframes hw-elkap { 0% { opacity: 1; transform: scale(1); } 30% { opacity: 1; transform: scale(1.35) rotate(-6deg); } 100% { opacity: 0; transform: scale(0.4) rotate(8deg); } }
+.boo-szikrak { position: fixed; z-index: 959; width: 0; height: 0; pointer-events: none; }
+.boo-szikrak i { position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; border-radius: 50%; background: #ff7518; animation: boo-szikra 850ms cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+.boo-szikrak i:nth-child(3n) { background: #ffb224; width: 6px; height: 6px; }
+@keyframes boo-szikra { to { transform: translate(var(--dx), var(--dy)) scale(0.2); opacity: 0; } }
+.boo-repulo { position: fixed; z-index: 960; pointer-events: none; filter: drop-shadow(0 0 14px rgba(255, 117, 24, 0.7)); }
+.boo-repulo svg { display: block; width: 100%; height: auto; }
+.boo-repulo path { fill: #ff7518; }
+.boo-repulo .k-arc { fill: #2b1a12; }
+/* számláló a bal alsó sarokban; az új hírek értesítései fölé kerülnek */
+.boo-jatek .uj-hirek { bottom: 80px; }
+.boo-szamlalo { position: fixed; left: 16px; bottom: calc(var(--fel-also, 16px) + env(safe-area-inset-bottom, 0px)); z-index: 945; display: flex; align-items: center; gap: 10px;
+  height: 48px; padding: 0 18px 0 14px; border-radius: 999px; background: var(--bg-2); color: var(--szoveg); border: 1px solid var(--keret-eros);
+  box-shadow: 0 8px 24px var(--arnyek); font: 700 14px/1 Manrope, system-ui, sans-serif; cursor: default; transition: bottom 700ms var(--gorbe), background-color 400ms var(--gorbe); }
+.boo-pontok { display: flex; gap: 4px; }
+.boo-pontok i { display: block; width: 18px; }
+.boo-pontok svg { display: block; width: 100%; height: auto; }
+.boo-pontok path { fill: var(--keret-eros); transition: fill 400ms var(--gorbe); }
+.boo-pontok .k-arc { fill: var(--bg-2); }
+.boo-pontok i.be path { fill: #ff7518; }
+.boo-pontok i.be .k-arc { fill: #2b1a12; }
+.boo-szamlalo--kesz { background: #ff7518; color: #181818; border-color: #ff7518; cursor: pointer; }
+.boo-szamlalo--kesz .boo-pontok i.be path { fill: #181818; }
+.boo-szamlalo--kesz .boo-pontok i.be .k-arc { fill: #ff7518; }
+.boo-ugrik { animation: boo-ugrik 650ms cubic-bezier(0.32, 0.72, 0, 1); }
+@keyframes boo-ugrik { 0% { transform: scale(1); } 30% { transform: scale(1.14); } 100% { transform: scale(1); } }
+body.harang-nyitva .boo-szamlalo { visibility: hidden; }
+.boo-tipp { position: absolute; left: 0; bottom: calc(100% + 10px); padding: 10px 14px; border-radius: 12px; background: #ff7518; color: #181818; font: 800 14px/1.2 Manrope, system-ui, sans-serif;
+  white-space: nowrap; box-shadow: 0 8px 24px var(--arnyek); pointer-events: none; animation: boo-tipp 9s cubic-bezier(0.32, 0.72, 0, 1) 1.5s both; }
+.boo-tipp::after { content: ""; position: absolute; left: 22px; top: 100%; border: 7px solid transparent; border-top-color: #ff7518; }
+@keyframes boo-tipp { 0% { opacity: 0; transform: translateY(8px); } 8%, 88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(8px); visibility: hidden; } }
+@media (max-width: 767px) { .boo-szamlalo { height: 44px; padding: 0 14px 0 12px; gap: 8px; font-size: 13px; } .boo-pontok i { width: 15px; } .boo-pontok { gap: 3px; } .boo-jatek .uj-hirek { bottom: 72px; } .boo-szamlalo--kesz .boo-pontok i:not(:first-child) { display: none; } }
+/* nyereményjáték-ablak */
+body.boo-nyitva { overflow: hidden; }
+.boo-hatter { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0, 0, 0, 0.62); overscroll-behavior: contain; }
+.boo-hatter[hidden] { display: none; }
+.boo-ablak { position: relative; width: 100%; max-width: 440px; max-height: 100%; overflow-y: auto; overscroll-behavior: contain; padding: 32px 24px 16px; text-align: center;
+  background: var(--bg-2); color: var(--szoveg); border: 1px solid var(--keret); border-radius: 24px; box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5); animation: boo-be 700ms cubic-bezier(0.32, 0.72, 0, 1); }
+@keyframes boo-be { from { opacity: 0; transform: translateY(24px) scale(0.96); } }
+.boo-zar { position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; border: 0; background: none; color: var(--szoveg-2); font-size: 28px; line-height: 1; cursor: pointer; }
+.boo-sereg { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
+.boo-sereg svg { width: 36px; height: auto; animation: boo-hop 900ms cubic-bezier(0.32, 0.72, 0, 1) infinite alternate; filter: drop-shadow(0 0 10px rgba(255, 117, 24, 0.45)); }
+.boo-sereg svg:nth-child(2) { animation-delay: 120ms; } .boo-sereg svg:nth-child(3) { animation-delay: 240ms; } .boo-sereg svg:nth-child(4) { animation-delay: 360ms; } .boo-sereg svg:nth-child(5) { animation-delay: 480ms; }
+.boo-sereg path { fill: #ff7518; } .boo-sereg .k-arc { fill: #2b1a12; }
+@keyframes boo-hop { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+.boo-felirat { margin: 0 0 8px; font: 800 12px/1 Manrope, system-ui, sans-serif; letter-spacing: 0.18em; text-transform: uppercase; color: var(--kiemelo-szin); }
+.boo-ablak h2 { margin: 0 0 12px; font: 800 28px/1.15 Manrope, system-ui, sans-serif; letter-spacing: -0.01em; text-wrap: balance; }
+.boo-bev { margin: 0 0 20px; font-size: 16px; line-height: 1.5; color: var(--szoveg-2); text-wrap: pretty; }
+.boo-urlap input[type="email"] { width: 100%; height: 52px; padding: 0 16px; border: 1px solid var(--keret-eros); border-radius: 12px; background: var(--bg); color: var(--szoveg); font: 500 16px Manrope, system-ui, sans-serif; }
+.boo-urlap input[type="email"]:focus { outline: 2px solid var(--kiemelo); outline-offset: 0; border-color: transparent; }
+.boo-jog { display: flex; align-items: flex-start; gap: 10px; margin: 16px 0; text-align: left; font-size: 13px; line-height: 1.45; color: var(--szoveg-2); cursor: pointer; }
+.boo-jog input { flex: 0 0 auto; width: 20px; height: 20px; margin: 0; accent-color: #ff7518; }
+.boo-jog a { color: var(--szoveg); text-decoration: underline; }
+.boo-gomb { width: 100%; height: 52px; border: 0; border-radius: 12px; background: #ff7518; color: #181818; font: 800 16px Manrope, system-ui, sans-serif; cursor: pointer; }
+.boo-gomb:disabled { opacity: 0.6; cursor: default; }
+.boo-uzenet { min-height: 20px; margin: 10px 0 0; font-size: 14px; color: var(--szoveg-2); }
+.boo-uzenet:empty { min-height: 0; margin: 0; }
+.boo-most-nem { margin-top: 4px; padding: 12px; border: 0; background: none; color: var(--szoveg-2); font: 500 14px Manrope, system-ui, sans-serif; text-decoration: underline; cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .boo-sereg svg, .boo-ablak, .boo-ugrik { animation: none; } }
 /* cikktörzs: kérdő alcím és számozott lépéslista (render.py felkover) */
 .torzs h3 { font-size: 22px; line-height: 28px; font-weight: 800; letter-spacing: -0.01em; margin: 32px 0 12px; }
 .torzs ol { margin: 0 0 16px; padding-left: 24px; }

@@ -123,6 +123,25 @@ async function hirlevelMuvelet(b) {
   return [400, { hiba: "Rossz kérés." }];
 }
 
+// ---- BOO-vadászat nyereményjáték (Heni 2026-10-20): a jelentkezők külön listán (api/boo.js) ----
+const BOO = "qn:boo";
+async function booAdat() {
+  const k = (await kv("HGETALL", BOO)) || [];
+  const lista = [];
+  for (let i = 0; i < k.length; i += 2) {
+    let v = {};
+    try { v = JSON.parse(k[i + 1]) || {}; } catch (e) { /* hibás bejegyzés */ }
+    lista.push({ email: k[i], ido: v.ido || "" });
+  }
+  lista.sort((a, b) => String(b.ido).localeCompare(String(a.ido)));
+  return { darab: lista.length, lista, ido: new Date().toISOString() };
+}
+async function booMuvelet(b) {
+  const email = String(b.email || "").trim().toLowerCase();
+  if (b.muvelet === "torol" && email) { await kv("HDEL", BOO, email); return [200, { ok: true }]; }
+  return [400, { hiba: "Rossz kérés." }];
+}
+
 module.exports = async (req, res) => {
   const url = new URL(req.url, "https://quicknews.hu");
   const mi = url.searchParams.get("mi") || "";
@@ -178,6 +197,8 @@ module.exports = async (req, res) => {
         return json(res, 200, await kepFeltolt(id, b64));
       }
       if (mi === "hirlevel_gep") return json(res, 200, await hirlevelAdat());
+      if (mi === "boo_gep") return json(res, 200, await booAdat());
+      if (mi === "boo_muvelet_gep" && req.method === "POST") { const [k, v] = await booMuvelet(await torzs(req)); return json(res, k, v); }
       if (mi === "hirlevel_muvelet_gep" && req.method === "POST") { const [k, v] = await hirlevelMuvelet(await torzs(req)); return json(res, k, v); }
       if (mi === "hirlevel_kiadas_gep" && req.method === "POST") {
         const { kiadas, html } = await torzs(req);
@@ -419,6 +440,8 @@ module.exports = async (req, res) => {
       return res.end(Buffer.from(b64, "base64"));
     }
     if (mi === "hirlevel") return json(res, 200, await hirlevelAdat());
+    if (mi === "boo") return json(res, 200, await booAdat());
+    if (mi === "boo_muvelet" && req.method === "POST") { const [k, v] = await booMuvelet(await torzs(req)); return json(res, k, v); }
     if (mi === "hirlevel_muvelet" && req.method === "POST") { const [k, v] = await hirlevelMuvelet(await torzs(req)); return json(res, k, v); }
     if (mi === "hirlevel_utolso") {
       const h = await kv("GET", HL + ":utolso");

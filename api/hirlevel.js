@@ -146,3 +146,4 @@ module.exports = async (req, res) => {
 };
 module.exports.token = token;
 module.exports.tisztit = tisztit;
+module.exports.domainRendben = domainRendben;
