@@ -136,6 +136,8 @@ button.torol:disabled{opacity:.5}
 .ap-sor2{display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--vonal)}.ap-sor2 .em{flex:1;min-width:0;overflow-wrap:anywhere}.ap-sor2 .ido{color:var(--halk);white-space:nowrap}
 @media (max-width:900px){.ap-ketto{grid-template-columns:minmax(0,1fr)}.ap-sor{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:560px){.ap-sor2{flex-wrap:wrap;gap:8px}}
+.ads-kap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;border:1px solid var(--vonal);border-radius:12px;padding:16px 20px;margin-bottom:24px;max-width:720px}
+.ads-kap b{display:block;font-size:17px}.ads-kap .ads-al{display:block;color:var(--halk);margin-top:4px}.ads-kap .be{color:var(--amber)}.ads-kap button[disabled]{opacity:.6;cursor:wait}
 .hibasav{background:#2a1515;color:var(--hiba);border-radius:12px;padding:16px 20px;margin-bottom:24px;font-weight:600}
 .lab{color:var(--halkabb);font-size:16px;margin-top:32px}
 
@@ -350,6 +352,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 </section>
 
 <section id="p-hirdetok" hidden>
+<div class="ads-kap" id="ads-kap" aria-live="polite"><div><b>Google AdSense</b><span class="ads-al">Állapot betöltése…</span></div></div>
 <p class="a-bev">Az oldalsávos „Hirdess nálunk” űrlapon érdeklődő cégek. Hívd vissza őket, és jelöld, hol tartotok. Az adatokat 1 évig őrizzük.</p>
 <div id="h-lista"></div>
 </section>
@@ -814,6 +817,16 @@ async function btolt(){const L=document.getElementById("b-lista");let d;try{d=aw
  L.querySelectorAll("[data-bek]").forEach(g=>g.onclick=async()=>{if(g.dataset.all==="torol"&&!await kerd("Biztosan törlöd ezt a beküldést a listából?"))return;try{const r=await lekér(U.bekDontes,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:g.dataset.bek,allapot:g.dataset.all})});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}btolt()})}
 /* ---------- hirdetői érdeklődők ---------- */
 const HALL={uj:"Új, hívd vissza",felkerestem:"Felkerestem",ugyfel:"Ügyfél lett",nem:"Nem aktuális"};
+// egygombos AdSense ki/be (csak a gépen futó pultból, mert renderel és élesít)
+function adsrajz(d){const B=document.getElementById("ads-kap");if(d.hiba){B.innerHTML=`<div><b>Google AdSense</b><span class="ads-al">${esc(d.hiba)}</span></div>`;return}
+ const el=d.eles===null||d.eles===undefined?"Az éles oldalt most nem sikerült ellenőrizni.":d.eles?"Az éles oldalon a hirdetések és a Google sütiablaka betöltődik.":"Az éles oldalon nincs Google-hirdetés.";
+ B.innerHTML=`<div><b>Google AdSense: <span class="${d.be?"be":""}">${d.be?"bekapcsolva":"kikapcsolva"}</span></b><span class="ads-al">${el}</span></div><button type="button" class="gomb${d.be?" masod":""}" data-ads="${d.be?"ki":"be"}">${d.be?"Kikapcsolom":"Bekapcsolom"}</button>`}
+async function adstolt(){const B=document.getElementById("ads-kap");if(ADMIN){B.innerHTML=`<div><b>Google AdSense</b><span class="ads-al">A ki- és bekapcsolás a gépen futó pultból megy, mert az oldalt újra kell élesíteni.</span></div>`;return}
+ try{adsrajz(await lekér("/adsense.json"))}catch(e){adsrajz({hiba:"Az AdSense állapota most nem érhető el."})}}
+document.addEventListener("click",async e=>{const g=e.target.closest("[data-ads]");if(!g)return;const be=g.dataset.ads==="be";
+ if(!confirm(be?"Bekapcsolod a Google-hirdetéseket? Az oldal újra élesedik, ez 1-2 perc.":"Kikapcsolod a Google-hirdetéseket? Az oldalról eltűnik minden Google-hirdetés és a Google sütiablaka, a saját sütisáv kérdez újra. Ez 1-2 perc."))return;
+ g.disabled=true;g.textContent="Folyamatban, 1-2 perc…";let r;try{r=await lekér("/adsense",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({be})})}catch(x){r={hiba:"A helyi szerver nem válaszolt."}}
+ if(r.hiba){alert(r.hiba);adstolt();return}if(!r.rendben)alert("Kész, de az éles oldal még nem mutatja az új állapotot. Pár perc múlva frissítsd a pultot.");adstolt()});
 async function htolt(cikk){const L=document.getElementById(cikk?"c-lista":"h-lista");let d;try{d=await lekér(U.hirdetok)}catch(e){L.innerHTML=`<div class="hibasav">Az érdeklődők most nem érhetők el.</div>`;return}
  const t=(d.tetel||[]).filter(h=>(h.tema==="hirfolyam")===!!cikk);
  L.innerHTML=t.map(h=>{const dd=new Date(h.ido);
@@ -982,7 +995,7 @@ document.getElementById("ap-beall").onclick=async()=>{const v=i=>document.getEle
 function ful(f){const fo=f==="koltseg"?"statisztika":f==="boo"?"hirlevel":f;if(fo==="posztok"&&!PNGORGETVE)setTimeout(napsavIgazit,50);document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===fo));document.querySelectorAll("[data-alful]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.alful===f)));try{document.querySelector(`.fulek [data-ful="${fo}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
  ["posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas","hirlevel","boo","statisztika","app"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
  if(f==="statisztika")stolt();
- if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok")htolt();if(f==="cikkbehuzas")htolt(true);if(f==="hirlevel")hltolt();if(f==="boo")bootolt();if(f==="app")aptolt();try{localStorage.setItem("ful",f)}catch(e){}latta(f);jelvenyek()}
+ if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok"){htolt();adstolt()}if(f==="cikkbehuzas")htolt(true);if(f==="hirlevel")hltolt();if(f==="boo")bootolt();if(f==="app")aptolt();try{localStorage.setItem("ful",f)}catch(e){}latta(f);jelvenyek()}
 document.querySelectorAll(".fulek button").forEach(b=>b.onclick=()=>ful(b.dataset.ful));
 document.querySelectorAll("[data-alful]").forEach(b=>b.onclick=()=>ful(b.dataset.alful));
 try{const f=localStorage.getItem("ful");if(f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok"||f==="cikkbehuzas"||f==="hirlevel"||f==="boo"||f==="statisztika"||f==="app")ful(f)}catch(e){}

@@ -510,8 +510,9 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
   if (valasz && (valasz.verzio || 1) < VER) valasz = null;  // régi, csak GA-ra szóló döntés: újra kérdezünk
   function mutat(){ sav.hidden = false; setTimeout(function(){ sav.classList.add('nyitva'); }, 30); }
   function rejt(){ sav.classList.remove('nyitva'); setTimeout(function(){ sav.hidden = true; }, 700); }
-  function ment(meres, hirdetes){
+  function ment(meres, hirdetes, forras){
     valasz = {meres: !!meres, hirdetes: !!hirdetes, ido: new Date().toISOString(), verzio: VER};
+    if (forras) valasz.forras = forras;
     try { localStorage.setItem(TAR, JSON.stringify(valasz)); } catch(e){}
     try { if (window.gtag) gtag('consent', 'update', {analytics_storage: meres ? 'granted' : 'denied'}); } catch(e){}
     if (meres && window.qnGaBetolt) window.qnGaBetolt();
@@ -521,8 +522,32 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     rejt();
   }
   sav.addEventListener('click', function(e){ var g = e.target.closest('[data-suti]'); if (!g) return; var v = g.getAttribute('data-suti'); ment(v !== 'nem', v === 'igen'); });
-  document.addEventListener('click', function(e){ if (e.target.closest('[data-suti-ujra]')) { document.documentElement.classList.remove('suti-van'); mutat(); } });
-  if (valasz) sav.hidden = true; else mutat();
+  // Google hozzájárulás-kezelő (TCF, AdSense mellett): az EGT-ben ez kérdez, a döntését a saját kulcsunkba is átírjuk.
+  // GA: 1. cél (tárolás) + 8. (tartalom mérése); Meta pixel: 1 + 3 + 4 (személyre szabott profil és kiválasztás) + 7 (hirdetésmérés).
+  // Ha a látogató nem az EGT-ből jön, vagy a Google ablaka 4 mp alatt nem jelentkezik (pl. hirdetésblokkoló), a saját sáv kérdez.
+  var tcfAktiv = false;
+  function sajatSav(){ if (tcfAktiv) return; if (valasz && valasz.forras === 'tcf') valasz = null; if (valasz) sav.hidden = true; else mutat(); }
+  if (window.qnTcf) {
+    sav.hidden = true;
+    var vege = Date.now() + 4000;
+    (function var_(){
+      if (typeof window.__tcfapi !== 'function') { if (Date.now() < vege) setTimeout(var_, 150); else sajatSav(); return; }
+      window.__tcfapi('addEventListener', 2, function(tc, ok){
+        if (!ok || !tc) return;
+        if (tc.gdprApplies === false) { sajatSav(); return; }
+        tcfAktiv = true; sav.hidden = true;
+        if (tc.eventStatus !== 'tcloaded' && tc.eventStatus !== 'useractioncomplete') return;
+        var c = (tc.purpose && tc.purpose.consents) || {};
+        ment(!!(c[1] && c[8]), !!(c[1] && c[3] && c[4] && c[7]), 'tcf');
+      });
+    })();
+  }
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('[data-suti-ujra]')) return;
+    if (tcfAktiv) { window.googlefc = window.googlefc || {}; googlefc.callbackQueue = googlefc.callbackQueue || []; googlefc.callbackQueue.push(function(){ googlefc.showRevocationMessage(); }); return; }
+    document.documentElement.classList.remove('suti-van'); mutat();
+  });
+  if (!window.qnTcf) { if (valasz) sav.hidden = true; else mutat(); }
 })();
 
 // a csengő lenyíló dobozának teteje mobilon a fejléc alja (CSS-változóban)
