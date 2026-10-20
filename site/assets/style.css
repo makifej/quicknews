@@ -1502,6 +1502,8 @@ body.boo-nyitva { overflow: hidden; }
 .megoszt-cikk:hover { background: var(--bg-3); }
 .megoszt-cikk:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
 .megoszt-cikk svg { width: 18px; height: 18px; }
+.megoszt-db { display: inline-grid; place-items: center; min-width: 20px; height: 20px; margin-left: 2px; padding: 0 6px; font-size: 12px; line-height: 20px; font-weight: 800; color: var(--kiemelo-szoveg); background: var(--kiemelo); border-radius: 999px; font-variant-numeric: tabular-nums; }
+.megoszt-db[hidden] { display: none; }
 .kiprobal ~ .megoszt-cikk { margin-top: 24px; vertical-align: middle; }
 
 /* Google AdSense helyek (render.py ADSENSE_*, Heni 2026-10-20): a saját szponzorált elemekhez illő, visszafogott keret,
