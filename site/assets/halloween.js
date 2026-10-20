@@ -18,7 +18,9 @@
     if (/[?&]boo=ki\b/.test(location.search)) localStorage.removeItem('qn-boo-elonezet');
     ELONEZET = localStorage.getItem('qn-boo-elonezet') === '1';
   } catch (e) { ELONEZET = /[?&]boo=elonezet\b/.test(location.search); }
-  var JATEK = B.getAttribute('data-boo') === '1' || ELONEZET;
+  // a szabályzat szerint 2026. november 3. 23:59-ig (budapesti idő) lehet játszani; utána a szellemek csak díszek
+  var HATARIDO = Date.parse('2026-11-03T22:59:59Z');
+  var JATEK = (B.getAttribute('data-boo') === '1' && Date.now() <= HATARIDO) || ELONEZET;
   var CEL = 5;
   var TAR = 'qn-boo';
   var all = { db: 0, kesz: false, bekuldve: false };
@@ -141,7 +143,7 @@
       '<p class="boo-bev">Hova írjunk, ha te nyersz?</p>' +
       '<form class="boo-urlap" novalidate><label class="rejtett" for="boo-email">E-mail-cím</label>' +
       '<input id="boo-email" type="email" inputmode="email" autocomplete="email" placeholder="nev@pelda.hu" required>' +
-      '<label class="boo-jog"><input type="checkbox" class="boo-elfogad" required> <span>Elfogadom a <a href="/nyeremenyjatek" target="_blank" rel="noopener">játékszabályzatot</a>.</span></label>' +
+      '<label class="boo-jog"><input type="checkbox" class="boo-elfogad" required> <span>Elfogadom a <a href="/nyeremenyjatek" target="_blank" rel="noopener">játékszabályzatot</a>, és megismertem az <a href="/adatvedelem#nyeremenyjatek" target="_blank" rel="noopener">adatkezelési tájékoztatót</a>.</span></label>' +
       // a hírlevél külön, nem kötelező pipa (Heni 2026-10-20), alapból bejelöletlen; a részvételnek nem feltétele
       '<label class="boo-jog boo-jog--hl"><input type="checkbox" class="boo-hirlevel"> <span>Feliratkozom a quicknews.hu napi hírlevelére is (nem kötelező, bármikor leiratkozhatok).</span></label>' +
       '<button type="submit" class="boo-gomb">Értesítsetek, ha nyertem</button><p class="boo-uzenet" role="status"></p></form>' +
