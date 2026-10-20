@@ -294,12 +294,13 @@
       }, 1200);
     }, 500);
   }
-  // belépő (Heni 2026-10-20): első látogatáskor egy nagy BOO úszik át a képernyőn, és maga után húz egy lebegő
+  // belépő (Heni 2026-10-20), csak asztalon: első látogatáskor egy nagy BOO úszik át a képernyőn, és maga után húz egy lebegő
   // „NYEREMÉNYJÁTÉK!” szalagot; kb. 5 mp, utána eltűnik. Böngészőnként egyszer.
   function repules(utana) {
     var volt = true;
     try { volt = !!localStorage.getItem('qn-boo-repules') && !/[?&]repules=1\b/.test(location.search); } catch (e) {}
-    if (!JATEK || volt || all.kesz || all.bekuldve || !window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { utana(); return; }
+    // csak asztalon (Heni 2026-10-20: „csak desktopon csináld ezt!”)
+    if (MOBIL || !JATEK || volt || all.kesz || all.bekuldve || !window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { utana(); return; }
     try { localStorage.setItem('qn-boo-repules', String(Date.now())); } catch (e) {}
     var r_ = document.createElement('div');
     r_.className = 'boo-repules';
