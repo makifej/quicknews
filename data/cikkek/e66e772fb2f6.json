@@ -1,0 +1,107 @@
+{
+  "id": "e66e772fb2f6",
+  "slug": "a-deepseek-nyilt-forraskoduva-tette-a-deepinfer-inferenciakeretet",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/deepseek-open-sources-ai-engin-uUIe6IDBS5SPSFsqxxRHVg",
+  "szerzo": "Perplexity Discover",
+  "publikalva": "2026-10-20T13:12:44.291381+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--hAYa3ZUY--/t_limit/https://forklog.com/wp-content/uploads/2025-01-28-14.57.54.webp"
+  },
+  "cim_eredeti": "A DeepSeek nyílt forráskódúvá tette MI-motorját, amely szerinte csökkenti az üzemeltetési költségeket",
+  "forrasok": [
+    {
+      "nev": "DeepSeek Unveils Open-Source Tool to Help Cut AI Operating Costs",
+      "url": "https://www.bloomberg.com/news/articles/2026-10-20/deepseek-unveils-open-source-tool-to-help-cut-ai-operating-costs",
+      "domain": null
+    },
+    {
+      "nev": "DeepSeek Opens DeepInfer, Exposing the Engine Running V4.1-Flash | AlphaSignal",
+      "url": "https://alphasignal.ai/news/deepseek-opens-deepinfer-exposing-the-engine-running-v4-1-flash",
+      "domain": null
+    },
+    {
+      "nev": "GitHub - deepseek-ai/DeepInfer: DeepInfer: High-performance, large ...",
+      "url": "https://github.com/deepseek-ai/DeepInfer",
+      "domain": null
+    },
+    {
+      "nev": "DeepSeek on X: \" ️ Also open-sourcing deepseek-recipe Our ...",
+      "url": "https://x.com/deepseek_ai/status/2112476501065286085",
+      "domain": null
+    },
+    {
+      "nev": "DeepSeek",
+      "url": "https://x.com/deepseek_ai/status/2112476496283775135",
+      "domain": null
+    },
+    {
+      "nev": "DeepSeek (@deepseek_ai) on X",
+      "url": "https://x.com/deepseek_ai/status/2112476498598957056",
+      "domain": null
+    },
+    {
+      "nev": "DeepSeek Announces Full Open-Source Release of Internal ...",
+      "url": "https://www.techflowpost.com/en-US/newsletter/140636",
+      "domain": null
+    },
+    {
+      "nev": "DeepSeek Open-Sources DeepInfer, Its Production Inference ...",
+      "url": "https://aiweekly.co/alerts/deepseek-open-sources-deepinfer-its-v41-flash-serving-stack",
+      "domain": null
+    },
+    {
+      "nev": "Ivan Fioravanti - NVIDIA SM100 GPUs",
+      "url": "https://x.com/ivanfioravanti/status/2112484902734119023",
+      "domain": null
+    },
+    {
+      "nev": "【DeepSeek：內部推理框架DeepInfer全面開源】 - 群益期貨",
+      "url": "https://www.capitalfutures.com.tw/zh-tw/financial/breakingnewsarticle?contentid=c26102000729",
+      "domain": null
+    },
+    {
+      "nev": "DeepSeek DeepInfer: Open Engine, 155T Tokens/Day Claim",
+      "url": "https://www.explainx.ai/blog/deepseek-deepinfer-open-source-inference-engine-v4-1-flash-155-trillion-tokens-claimed-vs-verified-2026",
+      "domain": null
+    },
+    {
+      "nev": "DeepSeek 开源推理框架：走向真正普惠的未来http://t.cn ... - 新浪",
+      "url": "https://www.sina.cn/news/detail/5356141472386668.html",
+      "domain": null
+    }
+  ],
+  "szoveg_eredeti": "Október 20-án, kedden a kínai MI-fejlesztő DeepSeek nyílt forráskódúként kiadta a DeepInfert, azt a házon belül fejlesztett szoftvert, amellyel nagy léptékben szolgálja ki a modelljeit. A cég a lépést úgy mutatta be, mint a nagy MI-rendszerek üzemeltetési költségeinek csökkentési lehetőségét. A Bloomberg beszámolója szerint a lépés olcsóbbá és a vállalkozások számára könnyebben futtathatóvá teheti a DeepSeek technológiáját. A DeepInfer olyan szoftver, amely gyorsabbá teszi a cég modelljeinek futtatását, és hatékonyabban használja ki a számítási erőforrásokat.\n\nA DeepSeek közölte, hogy a DeepInfer hajtja a DeepSeek-V4.1-Flash modellt „nagy léptékben, nagy átviteli sebességgel és alacsony késleltetéssel\". Az X-en közzétett bejelentés szerint azért osztja meg az éles üzemben használt szoftvercsomagját, hogy „segítsen a közösségnek csökkenteni a számítási költségeket, mérsékelni az energiafelhasználást, és megfizethetőbbé tenni az MI-t\". A cég hozzátette, hogy a jövőbeli modellek inferenciakódját és a későbbi optimalizálásokat is ugyanebben a tárhelyen (repositoryban) teszi majd közzé.\n\nA GitHub-tárhely szerint a DeepInfer „a nagy teljesítményű inferenciakeretrendszer, amely a DeepSeek nagy léptékű éles szolgáltatásait hajtja\". Az első kiadás offline inferenciát kínál, és támogatja a DeepSeek-V4.1-Flash modellt. A kód Apache 2.0 licenc alatt érhető el. Tartalmazza a DeepSeek egyedi kerneljeit, például a FlashMLA-t, a DeepGEMM-et és a DeepEP-t, valamint a DSpark spekulatív dekódolást, a batch-invariáns inferenciát és a strukturált kimenetet. A keretrendszer a nyílt forráskódú vLLM projektre épül.\n\nA DeepSeek kiadta a deepseek-recipe nevű komponenst is, amely az API-kéréseket modellpromptokká alakítja, és feldolgozza a kimenetet. Megegyezik a DeepSeek hivatalos API-jának feldolgozási logikájával, így az önállóan üzemeltetett telepítések ugyanúgy viselkednek, mint a cég saját szolgáltatása.\n\nA DeepInfer támogatja az Nvidia SM100 GPU-it és a Huawei Ascend 950 NPU-it. Múlt héten a DeepSeek bejelentette, hogy 2026 végéig ugyanezen a Huawei-chipen tervezi előtanítani a modelljeit. A kiadásról szóló kínai médiabeszámolók szerint egyetlen DeepSeek-klaszter naponta 155 billió tokent dolgoz fel. Ezt az adatot független forrás még nem erősítette meg.\n\nA bejelentés három nappal azután érkezett, hogy a DeepSeek frissítette a modellt a V4.1-Flash-1017 verzióra, az API árazása pedig változatlan maradt. A Hualong Securities szerint a DeepSeek gyors frissítései alátámasztják azt a nézetet, hogy Kínában csökkennek a költségek, miközben nő az igény az inferenciaszámítási kapacitásra.\n\nA kiadás nem egy teljes értékű kiszolgálórendszer. A README szerint nem tartalmaz KV-gyorsítótár-rendszert, sem a prefill és a decode szétválasztását, sem pedig a replikák közötti terheléselosztást. Aki éles szolgáltatást szeretne üzemeltetni, annak ezt az infrastruktúrát saját maga kell, hogy felépítse. Ezért a DeepInfer leginkább azoknak a csapatoknak hasznos, amelyek már most is elosztott inferenciarendszereket üzemeltetnek.\n\nA DeepSeek a kínai nyelvű bejelentésében úgy fogalmazott, hogy a kiadástól azt reméli: segít a fejlesztőknek és a vállalatoknak hatékonyan kiépíteni privát és nyilvános felhős megoldásaikat, „hogy az intelligencia alacsonyabb áron juthasson el a társadalom szélesebb köréhez\".",
+  "modell": "gemini-3.5-flash",
+  "cim": "A DeepSeek nyílt forráskódúvá tette a DeepInfer inferenciakeretet",
+  "lead": "A kínai fejlesztő kiadta az éles üzemben használt szoftverét, amely a saját modellek kiszolgálásáért és a számítási költségek csökkentéséért felel.",
+  "osszefoglalo": "A DeepSeek nyílt forráskódúvá tette a **DeepInfer** nevű keretrendszert, amellyel a saját, éles üzemben futó modelljeit szolgálja ki. A szoftver a vLLM projektre épül, Apache 2.0 licenc alatt érhető el, és célja a számítási kapacitás hatékonyabb kihasználása, valamint az energiafelhasználás mérséklése.\n\nA keretrendszer az Nvidia SM100 GPU-k mellett a Huawei Ascend 950 NPU-kat is támogatja. A csomag tartalmazza a **deepseek-recipe** komponenst is, amely biztosítja, hogy a saját szerveren futtatott rendszerek pontosan úgy dolgozzák fel a kéréseket, mint a cég hivatalos API-ja.\n\nA DeepInfer nem tartalmaz teljes körű kiszolgálói infrastruktúrát, mint a KV-gyorsítótárazás vagy a terheléselosztás. A szoftver használatához a fejlesztőknek maguknak kell felépíteniük a kiegészítő rendszereket.",
+  "miert_szamit": "A saját infrastruktúrát üzemeltető cégek **jelentősen csökkenthetik az üzemeltetési költségeket**, ám a teljes kihasználáshoz saját elosztott rendszert kell kiépíteniük.",
+  "cimkek": [
+    "DeepSeek",
+    "DeepInfer",
+    "nyílt forráskód",
+    "Nvidia"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "DeepInfer",
+    "deepseek-recipe"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-20T14:36:10+00:00",
+  "megjelent": "2026-10-20T14:36:10+00:00",
+  "dupla_of": "ae868a7e9e33",
+  "tenyellenorzes": {
+    "ok": null,
+    "allapot": "var",
+    "ido": "2026-10-20T14:36:10+00:00"
+  }
+}
