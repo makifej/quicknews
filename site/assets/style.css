@@ -1511,6 +1511,7 @@ body.boo-nyitva { overflow: hidden; }
 /* a hely csak akkor látszik, ha a Google ténylegesen hirdetést tett bele (data-ad-status="filled"); addig összecsukva,
    de a szélessége megmarad, mert a Google a méretet ebből számolja (display:none mellett nem kérne hirdetést) */
 .qn-ad:has(ins.adsbygoogle):not(:has(ins.adsbygoogle[data-ad-status="filled"])) { height: 0; margin: 0; padding: 0; border: 0; overflow: hidden; }
+html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva (api/adsense.js) */
 .qn-ad-cimlap { margin: 40px 0; }
 .qn-ad-oldal { margin: 24px 0; }
 .qn-ad-minta { display: grid; place-items: center; min-height: 250px; border: 1px dashed var(--keret-eros); border-radius: 12px; color: var(--szoveg-2); font-size: 14px; }

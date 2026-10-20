@@ -142,6 +142,14 @@ async function booMuvelet(b) {
   return [400, { hiba: "Rossz kérés." }];
 }
 
+// ---- Google AdSense futásidejű kapcsoló (Heni 2026-10-20): qn:adsense_ki = "1" -> az oldal nem tölti be a hirdetéseket (api/adsense.js) ----
+async function adsenseAdat() { return { be: (await kv("GET", "qn:adsense_ki")) !== "1" }; }
+async function adsenseKapcsol(b) {
+  if (typeof b.be !== "boolean") return [400, { hiba: "Rossz kérés." }];
+  if (b.be) await kv("DEL", "qn:adsense_ki"); else await kv("SET", "qn:adsense_ki", "1");
+  return [200, await adsenseAdat()];
+}
+
 module.exports = async (req, res) => {
   const url = new URL(req.url, "https://quicknews.hu");
   const mi = url.searchParams.get("mi") || "";
@@ -198,6 +206,8 @@ module.exports = async (req, res) => {
       }
       if (mi === "hirlevel_gep") return json(res, 200, await hirlevelAdat());
       if (mi === "boo_gep") return json(res, 200, await booAdat());
+      if (mi === "adsense_gep") return json(res, 200, await adsenseAdat());
+      if (mi === "adsense_kapcsol_gep" && req.method === "POST") { const [k, v] = await adsenseKapcsol(await torzs(req)); return json(res, k, v); }
       if (mi === "boo_muvelet_gep" && req.method === "POST") { const [k, v] = await booMuvelet(await torzs(req)); return json(res, k, v); }
       if (mi === "hirlevel_muvelet_gep" && req.method === "POST") { const [k, v] = await hirlevelMuvelet(await torzs(req)); return json(res, k, v); }
       if (mi === "hirlevel_kiadas_gep" && req.method === "POST") {
@@ -441,6 +451,8 @@ module.exports = async (req, res) => {
     }
     if (mi === "hirlevel") return json(res, 200, await hirlevelAdat());
     if (mi === "boo") return json(res, 200, await booAdat());
+    if (mi === "adsense") return json(res, 200, await adsenseAdat());
+    if (mi === "adsense_kapcsol" && req.method === "POST") { const [k, v] = await adsenseKapcsol(await torzs(req)); return json(res, k, v); }
     if (mi === "boo_muvelet" && req.method === "POST") { const [k, v] = await booMuvelet(await torzs(req)); return json(res, k, v); }
     if (mi === "hirlevel_muvelet" && req.method === "POST") { const [k, v] = await hirlevelMuvelet(await torzs(req)); return json(res, k, v); }
     if (mi === "hirlevel_utolso") {
