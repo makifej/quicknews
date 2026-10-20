@@ -531,11 +531,14 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     var vege = Date.now() + 4000;
     (function var_(){
       if (typeof window.__tcfapi !== 'function') { if (Date.now() < vege) setTimeout(var_, 150); else sajatSav(); return; }
+      // ha a Google ablaka 5 mp alatt nem jelenik meg és nincs korábbi döntés (pl. a webhely még nincs jóváhagyva), a saját sáv kérdez
+      var tcfOra = setTimeout(function(){ tcfAktiv = false; sajatSav(); }, 5000);
       window.__tcfapi('addEventListener', 2, function(tc, ok){
         if (!ok || !tc) return;
-        if (tc.gdprApplies === false) { sajatSav(); return; }
-        tcfAktiv = true; sav.hidden = true;
-        if (tc.eventStatus !== 'tcloaded' && tc.eventStatus !== 'useractioncomplete') return;
+        if (tc.gdprApplies === false) { clearTimeout(tcfOra); sajatSav(); return; }
+        if (tc.eventStatus !== 'cmpuishown' && tc.eventStatus !== 'tcloaded' && tc.eventStatus !== 'useractioncomplete') return;
+        clearTimeout(tcfOra); tcfAktiv = true; sav.classList.remove('nyitva'); sav.hidden = true;
+        if (tc.eventStatus === 'cmpuishown') return;
         var c = (tc.purpose && tc.purpose.consents) || {};
         ment(!!(c[1] && c[8]), !!(c[1] && c[3] && c[4] && c[7]), 'tcf');
       });

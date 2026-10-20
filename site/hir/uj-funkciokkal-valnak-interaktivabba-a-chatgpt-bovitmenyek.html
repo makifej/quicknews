@@ -31,7 +31,7 @@ var qnSuti=null;try{qnSuti=JSON.parse(localStorage.getItem('qn-suti')||'null');}
 if(qnSuti&&(qnSuti.verzio||1)<2)qnSuti=null;
 gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:(qnSuti&&qnSuti.meres)?'granted':'denied'});
 if(qnSuti)document.documentElement.classList.add('suti-van');
-window.qnTcf=false;
+window.qnTcf=true;
 // AdSense: a pult egygombos kapcsolója (api/adsense.js, Heni 2026-10-20); kikapcsolva se szkript, se hely, se Google-sütiablak
 window.qnAdsP=window.qnTcf?fetch('/api/adsense').then(function(r){return r.json();}).then(function(d){return !!(d&&d.be);}).catch(function(){return false;}):Promise.resolve(false);
 window.qnAdsP.then(function(be){if(!be){document.documentElement.classList.add('qn-ads-ki');return;}var s=document.createElement('script');s.async=true;s.crossOrigin='anonymous';s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4540440470302363';document.head.appendChild(s);});
@@ -63,7 +63,7 @@ window.qnMetaBetolt=function(){if(window.fbq)return;!function(f,b,e,v,n,t,s){if(
 <header class="fejlec" data-fejlec><div class="fejlec-felso"><div class="keret">
   <a class="logo" href="/"><span class="pont"></span><span class="nev">quicknews<span class="hu">.hu</span></span></a>
   <p class="szlogen">AI hírek, hogy <mark>ne maradj le</mark></p>
-  <div class="fejlec-info"><span class="fejdatum">2026. október 20., kedd · frissítve 14:50</span><span class="frissit"><button type="button" class="frissit-gomb" hidden>Frissítés most</button><span class="frissit-allapot" aria-live="polite"></span></span></div>
+  <div class="fejlec-info"><span class="fejdatum">2026. október 20., kedd · frissítve 15:06</span><span class="frissit"><button type="button" class="frissit-gomb" hidden>Frissítés most</button><span class="frissit-allapot" aria-live="polite"></span></span></div>
   <div class="kereso" data-kereso>
     <form class="kereso-mezosor" role="search" onsubmit="return false">
       <svg class="kereso-ikon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72 72.08 72.08 0 0 1-72-72Z"/></svg>
@@ -110,7 +110,7 @@ window.qnMetaBetolt=function(){if(window.fbq)return;!function(f,b,e,v,n,t,s){if(
 With plugin extensions, you can launch plugins from the sidebar, support @ mentions, and add file viewers.
 
 See how in this walkthrough with @coreyching:</div></details>
-      
+      <aside class="qn-ad qn-ad-cikk" aria-label="Hirdetés"><span class="qn-ad-jel">Hirdetés</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4540440470302363" data-ad-slot="4976058645" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></aside>
       
     </div>
     <aside class="cikk-oldal">
@@ -119,7 +119,7 @@ See how in this walkthrough with @coreyching:</div></details>
       <section class="bekuldo" aria-labelledby="bek-cim"><h2 id="bek-cim">Találtál egy új izgalmas AI hírt? Küldd el nekünk!</h2><form class="bek-urlap" data-bekuldo novalidate><label class="rejtett" for="bek-url">A hír linkje</label><input id="bek-url" name="url" type="url" inputmode="url" maxlength="500" autocomplete="off" placeholder="Illeszd be a hír linkjét" required><button type="submit">Beküldöm</button></form><p class="bek-uzenet" role="status" aria-live="polite"></p><p class="bek-jog">Csak AI-témájú hírt teszünk közzé, minden beküldést átnézünk. <a href="/adatvedelem#bekuldes">Részletek</a></p></section>
       <section class="partner" aria-labelledby="partner-cim"><h2 id="partner-cim">Szeretnéd, hogy behúzzuk a cikkeidet?</h2><p>Ha a <b class="partner-kiemel">cégednek</b> vagy a portálodnak van <b class="partner-kiemel">RSS-hírfolyama</b> vagy <b class="partner-kiemel">API-ja</b>, az <b class="partner-kiemel">AI-témájú</b> cikkeidet rendszeresen átvesszük, forrásmegjelöléssel és a saját oldaladra mutató linkkel.</p><a class="partner-gomb" data-partner href="mailto:info@adverr.hu?subject=H%C3%ADrfolyam%20beh%C3%BAz%C3%A1sa%20a%20quicknews.hu-ra">Ajánlatot kérek</a></section>
       <section class="hirdeto" aria-labelledby="hird-cim"><span class="hird-cimke">Hirdess nálunk</span><h2 id="hird-cim">Startupod vagy új AI-alkalmazásod van?</h2><p class="hird-szoveg">Mutasd meg a quicknews.hu olvasóinak! Hagyd itt az elérhetőséged, és felkeresünk egy hirdetési ajánlattal.</p><p class="hird-tema" data-tema-jel hidden>A cikkeid behúzására kérsz ajánlatot.</p><form class="hird-urlap" data-hirdeto novalidate><input type="hidden" name="tema" value=""><label for="hird-nev">Neved</label><input id="hird-nev" name="nev" autocomplete="name" maxlength="80" required><label for="hird-web">Weboldalad</label><input id="hird-web" name="weboldal" type="url" inputmode="url" autocomplete="url" maxlength="200" placeholder="pelda.hu" required><label for="hird-tel">Telefonszámod</label><input id="hird-tel" name="telefon" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" placeholder="+36 30 123 4567" required><p class="hird-info" data-kulfoldi hidden>Külföldi számot nemzetközi formában add meg: + jel, országkód, majd a szám, szóközökkel tagolva is jó. Például: <b>+44 20 7946 0958</b> vagy <b>+49 30 1234 5678</b>.</p><input class="rejtett" name="web2" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Kérem az ajánlatot</button></form><p class="hird-uzenet" role="status" aria-live="polite"></p><p class="bek-jog">Az adataidat csak a visszahíváshoz használjuk. <a href="/adatvedelem#hirdeto">Részletek</a></p></section>
-      
+      <aside class="qn-ad qn-ad-oldal" aria-label="Hirdetés"><span class="qn-ad-jel">Hirdetés</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4540440470302363" data-ad-slot="2349895306" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></aside>
       <div class="forras-sav">
         <a class="eredeti" href="https://x.com/OpenAIDevs/status/2107927072165548276" target="_blank" rel="noopener"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224 104a8 8 0 0 1-16 0V59.32l-66.33 66.34a8 8 0 0 1-11.32-11.32L196.68 48H152a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm-40 24a8 8 0 0 0-8 8v72H48V80h72a8 8 0 0 0 0-16H48a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-72a8 8 0 0 0-8-8Z"/></svg>Az eredeti megnyitása</a>
         <span>Szerző: OpenAI Developers (@OpenAIDevs)</span>
