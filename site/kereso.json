@@ -1,5 +1,27 @@
 [
   {
+    "i": "43ec949a256d",
+    "p": "/assets/kep/43ec949a256d.webp",
+    "c": "Helyben futtathatóvá vált a Perplexity Computer Macen",
+    "b": "A Perplexity Computer teljesen helyi üzemmódban is futtatható Mac számítógépeken, így az adatok nem kerülnek fel a felhőbe.",
+    "k": "Perplexity (LinkedIn)",
+    "g": "eszköz",
+    "u": "/hir/helyben-futtathatova-valt-a-perplexity-computer-macen",
+    "sz": "A Perplexity feltelepíthető rendszere mostantól teljesen helyben fut a támogatott Apple Silicon Macek-en. A funkció közvetlenül fér hozzá a natív Mac-alkalmazásokhoz és a helyi fájlokhoz, így az érzékeny adatok feldolgozásához nem szükséges felhős kapcsolat.\n\nA helyi feladatok végrehajtásáért a PPLX Pro modell felel, amely a Qwen 3.8 finomhangolt változata. Mivel a feladatkezelés és a modell is a gépen fut, a helyi folyamatok nem fogyasztanak Computer-krediteket.\n\nA lehetőség a Pro, Max és Enterprise előfizetők számára érhető el. A zökkenőmentes használathoz a gyártó legalább 36 GB egyesített memóriát javasol. Perplexity Mac adatvédelem Qwen",
+    "d": "okt. 20. 17:47"
+  },
+  {
+    "i": "f906e148585c",
+    "p": "/assets/kep/f906e148585c-elonezet.webp",
+    "c": "Interaktív gőzmozdony-renderert készített a Computer",
+    "b": "A Perplexity fejlesztői fiókja egy 1324 alkatrészből álló, böngészőben futó interaktív gőzmozdony-modellt mutatott be.",
+    "k": "Aravind Srinivas (X)",
+    "g": "eszköz",
+    "u": "/hir/interaktiv-gozmozdony-renderert-keszitett-a-computer",
+    "sz": "A Computer közzétette a Big Boy No. 4014 megnevezésű modellt, amely a világ legnagyobb működő gőzmozdonyának élő, izometrikus SVG-mása. A rendszer saját rendererrel működik, és a hideg kazántól a 60 mérföld/órás sebességig terjedő, 7 lépéses működési folyamatot jeleníti meg.\n\nA modell 1 324 alkatrészből és 15 312 konvex felületből áll, amelyeket az Union Pacific hivatalos adatai alapján építettek fel. A böngészőben futó interaktív animációt Aravind Srinivas is megosztotta. Computer Perplexity SVG interaktív",
+    "d": "okt. 20. 17:35"
+  },
+  {
     "i": "94e7f4f5c0e5",
     "p": "/assets/kep/94e7f4f5c0e5.webp",
     "c": "Az IBM az élre repítette ügyfélszolgálati ágensét modellfrissítés nélkül",
@@ -13,12 +35,12 @@
   {
     "i": "e107e4103a5c",
     "p": "/assets/kep/e107e4103a5c.webp",
-    "c": "Elindult a Hugging Face Agent Manager eszköze",
-    "b": "A Hugging Face megjelentette az Agent Manager rendszert, amellyel több AI-ügynök munkája koordinálható egyetlen felületen.",
+    "c": "Megjelent a Hugging Face Agent Manager rendszere",
+    "b": "A Hugging Face új eszköze segít több AI-ügynök egyidejű felügyeletében és összehangolásában.",
     "k": "Hugging Face (LinkedIn)",
     "g": "ügynök",
-    "u": "/hir/elindult-a-hugging-face-agent-manager-eszkoze",
-    "sz": "A Hugging Face elindította az Agent Manager nevű eszközt, amely megkönnyíti a különböző keretrendszerekben működő AI-ügynökök felügyeletét. A rendszer segítségével többek között a Claude Code, a Codex és az OpenCode alapú ügynökök hangolhatók össze.\n\nA platformon futó ügynökök képesek egymással kommunikálni és önállóan megszervezni a feladatok végrehajtását. A folyamatok megszakítás nélkül futnak a HF Spaces infrastruktúráján, ami leegyszerűsíti a komplex feladatok automatizálását és a munkamenetek kezelését. Hugging Face Agent Manager AI-ügynök Claude Code",
+    "u": "/hir/megjelent-a-hugging-face-agent-manager-rendszere",
+    "sz": "A Hugging Face kiadta az Agent Manager nevű eszközt, amellyel több különböző AI-ügynök működése koordinálható egyetlen felületen. A rendszer támogatja a népszerű fejlesztői keretrendszereket, mint a Claude Code, a Codex vagy az OpenCode.\n\nA felületen az ügynökök képesek egymással kommunikálni és önállóan megszervezni a feladatok felosztását a komplex célok elérése érdekében. A munkamenetek megszakítás nélkül, folyamatosan futnak a Hugging Face Spaces infrastruktúráján.\n\nA megoldás leegyszerűsíti a párhuzamosan futó AI-folyamatok és fejlesztési munkamenetek áttekintését, így a felhasználóknak nem kell külön felületeken követniük az egyes ágensek tevékenységét. Hugging Face Agent Manager AI-ügynök automatizálás",
     "d": "okt. 20. 17:07"
   },
   {
@@ -244,12 +266,12 @@
   {
     "i": "84cd8d44e982",
     "p": "/assets/kep/84cd8d44e982.webp",
-    "c": "Natív TPU-támogatást kapott a Hugging Face a TorchTPU révén",
-    "b": "A Hugging Face integrálta a TorchTPU-t, így a fejlesztők közvetlenül, átalakítás nélkül futtathatják a PyTorch-modelleket a Google TPU-chippjein.",
+    "c": "Natív PyTorch-támogatást kaptak a Google TPU-k a Hugging Face-ben",
+    "b": "A TorchTPU integrációjával a Hugging Face modelljei mostantól közvetlenül, bonyolult átalakítások nélkül futtathatók a Google AI-gyorsítóin.",
     "k": "Hugging Face",
     "g": "eszköz",
-    "u": "/hir/nativ-tpu-tamogatast-kapott-a-hugging-face-a-torchtpu-reven",
-    "sz": "A Hugging Face natív támogatást vezetett be a Google TPU akcelerátoraihoz a TorchTPU segítségével. Korábban a PyTorch-kódok TPU-n való futtatásához külön torch_xla átalakításra vagy JAX használatára volt szükség, ami gyakran bonyolult fordítási és hibakeresési folyamatokat eredményezett.\n\nAz új megoldásnak köszönhetően a TPU mostantól egy közvetlenül elérhető eszközként jelenik meg a PyTorch környezetben. A Transformers és a Diffusers könyvtárak modelljei egyetlen eszközbeállítási paranccsal betölthetők és futtathatók TPU- hardware-en, ráadásul a skálázáshoz chipen keresztüli párhuzamosítást is támogat a rendszer.\n\nA rendszerbe beépített Pallas-alapú kernelek jelentős teljesítménynövekedést biztosítanak. Például nagyobb kötegek feldolgozásánál a tesztek alapján a dekódolási sebesség akár 21,5-szeresére is nőhet a Google Cloud TPU v6e chipeken. Hugging Face TorchTPU Google TPU PyTorch",
+    "u": "/hir/nativ-pytorch-tamogatast-kaptak-a-google-tpu-k-a-hugging-face-ben",
+    "sz": "A Hugging Face bevezette a TorchTPU integrációt, amellyel a Google Tensor Processing Unit (TPU) chipjei natív eszközökként érhetők el a PyTorch keretrendszerben. A fejleszthetőség egyszerűsödött: nincs többé szükség a korábbi torch_xla modulra vagy az Optimum TPU könyvtárra, a modellek a device_map=\"tpu\" paranccsal közvetlenül a TPU-ra küldhetők.\n\nA frissítésnek köszönhetően a Transformers és Diffusers könyvtárak modelljei azonnal futtathatók a Google hardverein. A rendszer támogatja a Pallas-alapú egyedi hardveres kerneleket, a torch.compile fordítót és a multi-chip elosztott tanítást is, amellyel a nagyobb modellek több chip között oszthatók meg.\n\nA mérések szerint a Kernels Hub-ban található TPU-kernelek használatával a nagy nyelvi modellek válaszgenerálása jelentősen felgyorsult: 64-es batch méretnél a Qwen3-30B-A3B modell dekódolása 21,5-szeres, míg a Gemma 4 26B-A4B modellé 12,8-szoros sebességnövekedést ért el egy TPU v6e-8 környezetben. Hugging Face PyTorch TPU Google Cloud",
     "d": "okt. 20."
   },
   {
