@@ -10,7 +10,14 @@
   var r = Math.random;
   function koz(a, b) { return a + r() * (b - a); }
   var MOBIL = document.documentElement.clientWidth < 768;
-  var ELONEZET = /[?&]boo=elonezet\b/.test(location.search);
+  // az előnézet a böngészőben megmarad, így minden oldalon játszható (Heni 2026-10-20: „minden oldalon legyen aktív”);
+  // kikapcsolás: ?boo=ki
+  var ELONEZET = false;
+  try {
+    if (/[?&]boo=elonezet\b/.test(location.search)) localStorage.setItem('qn-boo-elonezet', '1');
+    if (/[?&]boo=ki\b/.test(location.search)) localStorage.removeItem('qn-boo-elonezet');
+    ELONEZET = localStorage.getItem('qn-boo-elonezet') === '1';
+  } catch (e) { ELONEZET = /[?&]boo=elonezet\b/.test(location.search); }
   var JATEK = B.getAttribute('data-boo') === '1' || ELONEZET;
   var CEL = 5;
   var TAR = 'qn-boo';
@@ -258,7 +265,7 @@
   function rajt() {
     szamlaloRajz(false);
     if (!(JATEK && all.kesz)) indit();
-    if (JATEK && all.kesz && !all.bekuldve && ELONEZET) ablak();
+    if (JATEK && all.kesz && !all.bekuldve && /[?&]boo=elonezet\b/.test(location.search)) ablak();
   }
   if (document.readyState === 'complete') rajt(); else window.addEventListener('load', rajt);
   if ('ResizeObserver' in window) new ResizeObserver(magassag).observe(B);
