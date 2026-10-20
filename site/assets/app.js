@@ -527,8 +527,7 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
   // Ha a látogató nem az EGT-ből jön, vagy a Google ablaka 4 mp alatt nem jelentkezik (pl. hirdetésblokkoló), a saját sáv kérdez.
   var tcfAktiv = false;
   function sajatSav(){ if (tcfAktiv) return; if (valasz && valasz.forras === 'tcf') valasz = null; if (valasz) sav.hidden = true; else mutat(); }
-  if (window.qnTcf) {
-    sav.hidden = true;
+  function tcfVar(){
     var vege = Date.now() + 4000;
     (function var_(){
       if (typeof window.__tcfapi !== 'function') { if (Date.now() < vege) setTimeout(var_, 150); else sajatSav(); return; }
@@ -547,7 +546,8 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     if (tcfAktiv) { window.googlefc = window.googlefc || {}; googlefc.callbackQueue = googlefc.callbackQueue || []; googlefc.callbackQueue.push(function(){ googlefc.showRevocationMessage(); }); return; }
     document.documentElement.classList.remove('suti-van'); mutat();
   });
-  if (!window.qnTcf) { if (valasz) sav.hidden = true; else mutat(); }
+  if (window.qnTcf && window.qnAdsP) { sav.hidden = true; window.qnAdsP.then(function(be){ if (be) tcfVar(); else if (valasz) sav.hidden = true; else mutat(); }); }
+  else { if (valasz) sav.hidden = true; else mutat(); }
 })();
 
 // a csengő lenyíló dobozának teteje mobilon a fejléc alja (CSS-változóban)
