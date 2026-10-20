@@ -1,5 +1,16 @@
 [
   {
+    "i": "c1d65e1ed9dd",
+    "p": "/assets/kep/c1d65e1ed9dd.webp",
+    "c": "A Cloudflare kiadta a Clairic nevű adatkinyerő AI-modellt",
+    "b": "A Workers AI platformon megjelent Clairic nyers szövegekből és képekből bányászik ki strukturált adatokat generatív szövegek helyett.",
+    "k": "MarkTechPost",
+    "g": "eszköz",
+    "u": "/hir/a-cloudflare-kiadta-a-clairic-nevu-adatkinyero-ai-modellt",
+    "sz": "A Cloudflare bemutatta a Clairic nevű System One kinyerő modellt, amely a Workers AI felületén érhető el előzetes verzióban. Az eszköz nem generatív választ ad a lekérdezésekre, hanem a dokumentumokból vagy képekből strukturált, típusos adatokat (például számlaösszeget, dátumot vagy azonosítót) olvas ki JSON formátumban, egyetlen feldolgozási lépésben.\n\nA modell 65 536 tokenes kontextusablakkal rendelkezik, és kérésenként legfeljebb 4 képet tud feldolgozni. Minden kiadott értékhez megbízhatósági pontszámot és hiányvalószínűséget csatol, a felismert szövegrészleteknél pedig a pontos karaktereltolást is megadja. A cég mérései szerint az adatkinyerési fázis mindössze 0,46 másodpercet vett igénybe a teszteken.\n\nA szolgáltatás árazása 0,10 dollár 1 millió bemeneti tokenenként, míg a kimeneti tokenekért egyáltalán nem kell fizetni. A modell jelenleg a Cloudflare által hosztolt GPU-kon érhető el a `@cf/cloudflare/clairic` elérhetőségen keresztül, a nyílt súlyok kiadását későbbre ígéri a vállalat. Cloudflare Workers AI Clairic adatkinyerés",
+    "d": "okt. 20. 09:45"
+  },
+  {
     "i": "ceb995537726",
     "p": "/assets/kep/forras-x-elonmusk.webp",
     "c": "Grok-botok hozhatók létre egyszerű utasításokkal az X-en",
