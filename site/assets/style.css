@@ -334,7 +334,7 @@ body.harang-nyitva .chat, body.harang-nyitva .fel-gomb { visibility: hidden; }
 .cikk .torzs p + p { margin-top: 24px; }
 .miert { padding: 24px 16px; border-radius: var(--sugar); background: var(--kiemelo); border: 1px solid var(--kiemelo); color: var(--kiemelo-szoveg); }
 .miert h2 { font-size: 24px; line-height: 32px; color: var(--kiemelo-szoveg); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px; }
-.miert p { font-size: 20px; line-height: 32px; color: var(--kiemelo-szoveg); font-weight: 400; text-wrap: wrap; }  /* a sorok a doboz széléig érjenek (Heni 2026-10-20): a „pretty” kiegyenlítés itt túl korán tört. Sorkizárt NEM lehet. */
+.miert p { font-size: 20px; line-height: 32px; color: var(--kiemelo-szoveg); font-weight: 400; text-wrap: wrap; hyphens: auto; -webkit-hyphens: auto; hyphenate-limit-chars: 7 3 3; }  /* a sorok a doboz széléig érjenek (Heni 2026-10-20): szóelválasztással (Heni kifejezett kérése, csak ebben a dobozban), a „pretty” kiegyenlítés itt túl korán tört. Sorkizárt NEM lehet. */
 .miert p + p { margin-top: 12px; }
 .forras-sav { display: flex; flex-direction: column; gap: 8px; font-size: 16px; line-height: 24px; color: var(--szoveg-2); }
 .forras-sav a.eredeti { display: inline-flex; align-items: center; gap: 8px; color: var(--szoveg); font-weight: 600; width: max-content; }
