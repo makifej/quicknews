@@ -1,5 +1,49 @@
 [
   {
+    "i": "f52190a49967",
+    "p": "/assets/kep/f52190a49967.webp",
+    "c": "Felfüggesztette az asszisztens beszélgetésmegosztását a Meta biztonsági rések miatt",
+    "b": "A Meta leállította a Muse AI-asszisztens megosztási funkcióját, mert a publikus hivatkozások révén bizalmas felhasználói adatok kerültek ki a hálózatba.",
+    "k": "The Verge AI",
+    "g": "eszköz",
+    "u": "/hir/felfuggesztette-az-asszisztens-beszelgetesmegosztasat-a-meta",
+    "sz": "A Meta ideiglenesen felfüggesztette a Muse AI-asszisztens beszélgetésmegosztó funkcióját, miután biztonsági kutatók nyilvánosan elérhetővé vált hivatkozásokat találtak a weben. A Claroc biztonsági cég több mint 6800 Muse-linket azonosított a nyilvános DNS-rekordokon keresztül.\n\nA hiba a hivatkozások szerkezetéből adódott: a rendszer a beszélgetés címéből és egy egyedi azonosítóból képezte a webcímet, ami így visszakereshetővé vált. A kutatók céges pénzügyi adatokat, belső naptárakat és kölcsönkérelmeket is találtak a nyilvánosan hozzáférhetővé vált beszélgetésekben.\n\nA cég közölte, hogy felülvizsgálja a rendszert és átalakítja a linkek generálási módját. Nem ez az első eset az iparágban, korábban a ChatGPT, a Claude és a Grok megosztott beszélgetései is felbukkantak a keresőkben. Meta Muse adatvédelem biztonság",
+    "d": "okt. 20. 20:07"
+  },
+  {
+    "i": "286ddd704e58",
+    "p": "/assets/kep/forras-x-openaidevs.webp",
+    "c": "12 órás prompt-gyorsítótárazás érkezett az OpenAI API-ba",
+    "b": "A fejlesztők ezentúl akár 12 órán át is megőrizhetik a kontextust az OpenAI API-ban, ami jelentősen csökkenti a költségeket.",
+    "k": "OpenAI Devs (X)",
+    "g": "eszköz",
+    "u": "/hir/12-oras-prompt-gyorsitotarazas-erkezett-az-openai-api-ba",
+    "sz": "Az OpenAI bejelentette, hogy az API-ban már 12 órás prompt-gyorsítótárazás (prompt caching) is választható. Ez a lehetőség különösen a folyamatosan működő AI-ügynökök és összetettebb rendszerek számára hasznos, amelyek egész nap újrahasznosítják ugyanazt a kontextust.\n\nA fejlesztők így hosszabb ideig tarthatják gyorsítótárban a megosztott utasításokat, eszközleírásokat és kontextust. Ezáltal a kedvezőbb, gyorsítótárazott bemeneti tarifát fizetik még akkor is, ha a kérések között több óra telt el. OpenAI API prompt caching fejlesztés",
+    "d": "okt. 20. 19:56"
+  },
+  {
+    "i": "a351c49088bd",
+    "p": "/assets/kep/a351c49088bd.webp",
+    "c": "Elon Musk szerint nem csak az áramhiány lassítja az új adatközpontokat",
+    "b": "A hatalmas számítási kapacitások gyors kiépítését az időhiány és a komplex üzemeltetés egyaránt nehezíti.",
+    "k": "Elon Musk (X)",
+    "g": "üzlet",
+    "u": "/hir/elon-musk-szerint-nem-csak-az-aramhiany-lassitja-az-uj-adatkozpontokat",
+    "sz": "Elon Musk reagált egy korábbi Google-alkalmazott elemzésére, amely szerint az adatközpontok kapacitása és az áramellátás jelentik a legfőbb szűk keresztmetszetet az AI-fejlesztésben. Musk hangsúlyozta, hogy az áramhiány emlegetése túlegyszerűsítés, mert a gigantikus számítási kapacitás rendkívül gyors online csatasorba állítása minden szempontból bonyolult. Ha kétszer annyi idő állna rendelkezésre, a folyamat lényegesen egyszerűbb lenne, de az időhiány szorít.\n\nAz idézett szakértői meglátások alapján az AI-modellek használóinál a nyílt forráskódú megoldások egyre inkább felváltják a zárt modelleket az összetett rendszerekben. A növekvő felhasználói igényeket a meglévő amerikai kapacitások nehezen tudják kiszolgálni, a tengerentúli szerverek használata pedig a magas válaszidő miatt sokaknak nem elfogadható alternatíva.\n\nA nagyobb felhőszolgáltatók drágák és hosszú kötelezettségvállalást követelnek meg, míg a kisebb, újabb szolgáltatók hardverei gyakran megbízhatósági problémákkal küzdenek. A szektorban a GPU-k fizikai elérhetőségénél jelenleg sokkal kritikusabb tényező a megfelelő adatközponti infrastruktúra kiépítése. adatközpont GPU Elon Musk mesterséges intelligencia",
+    "d": "okt. 20. 19:56"
+  },
+  {
+    "i": "2fe5cee1050e",
+    "p": "/assets/kep/2fe5cee1050e.webp",
+    "c": "Élen végzett a Perplexity Decider a Vals AI pénzügyi tesztjén",
+    "b": "A Vals AI kiadta a ClaimBench teljesítménymérést, amelyen 15 modell közül a Perplexity Decider V1.2 ért el a legjobb eredményt.",
+    "k": "Aravind Srinivas (X)",
+    "g": "kutatás",
+    "u": "/hir/elen-vegzett-a-perplexity-decider-a-vals-ai-penzugyi-tesztjen",
+    "sz": "A Vals AI nyilvánosságra hozta a ClaimBench elnevezésű új tesztkörnyezetét, amelyet kifejezetten döntési modellek értékelésére terveztek. A felmérés azt vizsgálja, hogy egy-egy AI-modell képes-e pontosan megállapítani, hogy egy adott pénzügyi dokumentum részlete alátámaszt, cáfol vagy egyáltalán nem érint egy konkrét állítást.\n\nA mérés során 15 különböző modellt tettek próbára 1 960 darab, hivatalos pénzügyi jelentésekből (10-K) származó szövegrészlettel és a hozzájuk kapcsolódó állítással. A döntési modellek mezőnyét a Perplexity Decider V1.2 vezeti, amely pareto-optimális teljesítményt nyújtott a feladatok során. Perplexity Vals AI ClaimBench pénzügy",
+    "d": "okt. 20. 19:50"
+  },
+  {
     "i": "965a134066f3",
     "p": "/assets/kep/965a134066f3-fk1.webp",
     "c": "Nyílt forráskódú, eszközön futó beszédgeneráló modellt adott ki a Hugging Face",
