@@ -1436,8 +1436,8 @@ body.halloween { background-color: transparent; background-image: radial-gradien
 .boo-ugrik { animation: boo-ugrik 650ms cubic-bezier(0.32, 0.72, 0, 1); }
 @keyframes boo-ugrik { 0% { transform: scale(1); } 30% { transform: scale(1.14); } 100% { transform: scale(1); } }
 body.harang-nyitva .boo-szamlalo { visibility: hidden; }
-.boo-tipp { position: absolute; left: 0; bottom: calc(100% + 10px); padding: 10px 14px; border-radius: 12px; background: #ff7518; color: #181818; font: 800 14px/1.2 Manrope, system-ui, sans-serif;
-  white-space: nowrap; box-shadow: 0 8px 24px var(--arnyek); pointer-events: none; animation: boo-tipp 9s cubic-bezier(0.32, 0.72, 0, 1) 1.5s both; }
+.boo-tipp { position: absolute; left: 0; bottom: calc(100% + 10px); padding: 10px 14px; border-radius: 12px; background: #ff7518; color: #181818; font: 800 14px/1.3 Manrope, system-ui, sans-serif;
+  white-space: normal; width: max-content; max-width: min(340px, calc(100vw - 32px)); text-align: left; box-shadow: 0 8px 24px var(--arnyek); pointer-events: none; animation: boo-tipp 9s cubic-bezier(0.32, 0.72, 0, 1) 1.5s both; }
 .boo-tipp::after { content: ""; position: absolute; left: 22px; top: 100%; border: 7px solid transparent; border-top-color: #ff7518; }
 @keyframes boo-tipp { 0% { opacity: 0; transform: translateY(8px); } 8%, 88% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(8px); visibility: hidden; } }
 @media (max-width: 767px) { .boo-szamlalo { height: 44px; padding: 0 14px 0 12px; gap: 8px; font-size: 13px; } .boo-pontok i { width: 15px; } .boo-pontok { gap: 3px; } .boo-jatek .uj-hirek { bottom: 72px; } .boo-szamlalo--kesz .boo-pontok i:not(:first-child) { display: none; } }

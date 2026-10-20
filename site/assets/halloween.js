@@ -29,6 +29,11 @@
   // előnézetben a ?uj=1 nulláról kezdi a játékot (teszteléshez)
   if (ELONEZET && /[?&]uj=1\b/.test(location.search)) { all = { db: 0, kesz: false, bekuldve: false }; ment(); }
   if (JATEK) B.classList.add('boo-jatek');
+  // bújócska (Heni 2026-10-20): oldalanként legfeljebb 1 BOO kapható el, és lejjebb kell görgetni érte; a többit más oldalakon kell keresni
+  var OLDAL = location.pathname.replace(/\/+$/, '') || '/';
+  if (!Array.isArray(all.oldalak)) all.oldalak = [];
+  var ITT_MEGVOLT = JATEK && !all.kesz && all.oldalak.indexOf(OLDAL) >= 0;
+  var BUJOCSKA = JATEK && !all.kesz && !ITT_MEGVOLT;
 
   var SZELLEM = '<svg viewBox="0 0 100 112" aria-hidden="true">' +
     '<path class="hw-test" d="M26 50Q12 46 9 30M74 50Q88 46 91 30" fill="none" stroke-width="10" stroke-linecap="round"/>' +
@@ -40,10 +45,10 @@
 
   // asztalon a réteg az oldal koordinátáiban van (a szellem a görgetéssel együtt mozog), mobilon a képernyőhöz rögzített
   var reteg = document.createElement('div');
-  reteg.className = 'hw-reteg' + (MOBIL ? ' hw-reteg--mobil' : '');
+  reteg.className = 'hw-reteg' + (MOBIL && !BUJOCSKA ? ' hw-reteg--mobil' : '');
   reteg.setAttribute('aria-hidden', 'true');
   B.insertBefore(reteg, B.firstChild);
-  function magassag() { if (!MOBIL) reteg.style.height = document.documentElement.scrollHeight + 'px'; }
+  function magassag() { if (!MOBIL || BUJOCSKA) reteg.style.height = document.documentElement.scrollHeight + 'px'; }
   magassag();
 
   // asztali tiltott terület: minden hír, kép, videó, cím, szöveg és gomb teljes doboza, a fejléc és a lábléc
@@ -103,6 +108,25 @@
     var x = bal ? koz(meret * 1.4 + 24, w / 2 - meret) : koz(w / 2, w - meret * 2.4 - 24);
     return [x, koz(fent, lent), bal];
   }
+  // bújócska: a szellem az oldal lejjebb eső részén bújik el (az első képernyőnyin túl, ha az oldal elég hosszú), és ott is marad;
+  // asztalon üres helyet keres, ha nincs, a hírek fölé kerül
+  function helyJatek(meret) {
+    var H = document.documentElement.scrollHeight, vh = window.innerHeight;
+    w = document.documentElement.clientWidth;
+    // legfeljebb kb. 4,5 képernyőnyi görgetésre, hogy megtalálható legyen
+    var also = H > vh * 1.6 ? vh * 0.9 : fejlec + 40, felso = Math.min(H - meret * 1.4 - 160, vh * 4.5);
+    if (felso <= also) { also = fejlec + 40; felso = Math.max(also + 1, H - meret * 1.4 - 40); }
+    if (!MOBIL) {
+      var lista = tiltottak();
+      for (var p = 0; p < 200; p++) {
+        var yy = koz(also, felso), xx = koz(8, w - meret * 2.4 - 8);
+        if (szabad(xx, yy, meret, lista, true)) return [xx, yy, true];
+        if (szabad(xx, yy, meret, lista, false)) return [xx, yy, false];
+      }
+    }
+    var b = r() < 0.5;
+    return [b ? koz(meret * 1.4 + 8, w / 2 - meret / 2) : koz(w / 2 - meret / 2, w - meret * 2.4 - 8), koz(also, felso), b];
+  }
   function hely(bal, meret) { return MOBIL ? helyMobil(bal, meret) : (helyAsztal(bal, meret) || (JATEK ? helyAtfedo(bal, meret) : null)); }
 
   // ---- számláló és nyereményjáték-ablak ----
@@ -123,10 +147,17 @@
       : (MOBIL || all.db ? all.db + '/' + CEL : 'Kapd el az 5 BOO-t!');
     var cimke = all.bekuldve ? 'Benne vagy a sorsolásban' : all.kesz ? 'Megvan mind az 5 BOO, kattints a jelentkezéshez' : all.db + ' BOO elkapva az 5-ből';
     szamlalo.innerHTML = '<span class="boo-pontok">' + pontok + '</span><span class="boo-szoveg">' + szoveg + '</span>' +
-      (!all.db && !all.kesz ? '<span class="boo-tipp">Kapd el az 5 BOO-t, és nyerhetsz!</span>' : '');
+      (!all.db && !all.kesz ? '<span class="boo-tipp">Kapd el az 5 BOO-t, és nyerhetsz! Görgess lejjebb, és nézz körül több oldalon is.</span>' : '');
     szamlalo.setAttribute('aria-label', cimke);
     szamlalo.classList.toggle('boo-szamlalo--kesz', !!all.kesz);
     if (ugrik) { szamlalo.classList.remove('boo-ugrik'); void szamlalo.offsetWidth; szamlalo.classList.add('boo-ugrik'); }
+  }
+
+  // rövid buborék a számláló fölött
+  function tipp(szoveg) {
+    if (!szamlalo) return;
+    var o = szamlalo.querySelector('.boo-tipp'); if (o) o.remove();
+    var t_ = document.createElement('span'); t_.className = 'boo-tipp'; t_.textContent = szoveg; szamlalo.appendChild(t_);
   }
 
   var abl = null;
@@ -195,6 +226,7 @@
     B.appendChild(szikrak);
     setTimeout(function () { szikrak.remove(); }, 1000);
     all.db++; if (all.db >= CEL) { all.db = CEL; all.kesz = true; }
+    if (all.oldalak.indexOf(OLDAL) < 0) all.oldalak.push(OLDAL);
     ment();
     var cel = szamlalo.querySelectorAll('.boo-pontok i')[all.db - 1].getBoundingClientRect();
     var repulo = document.createElement('div');
@@ -210,9 +242,10 @@
     ], { duration: 950, easing: 'cubic-bezier(0.32, 0.72, 0, 1)', delay: 260, fill: 'forwards' });
     anim.onfinish = function () {
       repulo.remove(); szamlaloRajz(true);
+      if (!all.kesz && BUJOCSKA) tipp('Megvan! A következő BOO egy másik oldalon bújt el.');
       if (all.kesz && !all.bekuldve) setTimeout(function () { unnep(); setTimeout(ablak, 900); }, 150);
     };
-    setTimeout(function () { sz.remove(); if (!all.kesz) setTimeout(indit, koz(2500, 6000)); }, 700);
+    setTimeout(function () { sz.remove(); if (!all.kesz && !BUJOCSKA) setTimeout(indit, koz(2500, 6000)); }, 700);
   }
   // az 5. elkapás után narancs szellemek szállnak fel a képernyő aljáról
   function unnep() {
@@ -244,7 +277,9 @@
     sz.style.setProperty('--boo', (meret * 0.46).toFixed(0) + 'px');
     var idozito = null;
     function athelyez() {
-      var uj = hely(bal, meret) || hely(!bal, meret);
+      if (BUJOCSKA && sz.dataset.hely) return; // a bújócskában a szellem a helyén marad, ott bukkan fel újra és újra
+      var uj = BUJOCSKA ? helyJatek(meret) : (hely(bal, meret) || hely(!bal, meret));
+      if (BUJOCSKA && uj) sz.dataset.hely = '1';
       bal = !bal;
       if (!uj) { sz.style.visibility = 'hidden'; return; }
       sz.style.left = uj[0] + 'px'; sz.style.top = uj[1] + 'px'; sz.style.visibility = '';
@@ -320,7 +355,8 @@
   function rajt() {
     repules(bemutato);
     szamlaloRajz(false);
-    if (!(JATEK && all.kesz)) indit();
+    if (!(JATEK && all.kesz) && !ITT_MEGVOLT) indit();
+    if (ITT_MEGVOLT) tipp('Ezen az oldalon már elkaptad a BOO-t. Keresd a következőt egy másik oldalon!');
     if (JATEK && all.kesz && !all.bekuldve && /[?&]boo=elonezet\b/.test(location.search)) ablak();
   }
   if (document.readyState === 'complete') rajt(); else window.addEventListener('load', rajt);
