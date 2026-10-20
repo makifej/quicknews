@@ -751,6 +751,26 @@ document.addEventListener('click', function(ev){
   if (navigator.clipboard) navigator.clipboard.writeText(url).then(function(){ jelez('Link kimásolva'); szamol(); }, function(){ prompt('A hír linkje:', url); });
   else prompt('A hír linkje:', url);
 });
+// „Meghallgatom”: a hír felolvasása; egy lejátszó az oldalon, a két gomb (asztali és mobil) együtt vált (Heni 2026-10-20)
+(function(){
+  var gombok = document.querySelectorAll('[data-hallgat]'); if (!gombok.length) return;
+  var hang = null;
+  var ido = function(s){ s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); };
+  var rajz = function(){
+    var megy = hang && !hang.paused, maradt = hang && isFinite(hang.duration) ? hang.duration - hang.currentTime : null;
+    gombok.forEach(function(g){
+      g.setAttribute('aria-pressed', megy ? 'true' : 'false');
+      var sz = g.querySelector('.hg-szoveg'); if (sz) sz.textContent = megy ? ('Szünet' + (maradt != null ? ' · ' + ido(maradt) : '')) : (hang && hang.currentTime > 0 && !hang.ended ? 'Folytatom' : 'Meghallgatom');
+      g.style.setProperty('--hg', hang && isFinite(hang.duration) && hang.duration ? (hang.currentTime / hang.duration * 100).toFixed(1) + '%' : '0%');
+    });
+  };
+  gombok.forEach(function(g){ g.addEventListener('click', function(){
+    if (!hang) { hang = new Audio(g.getAttribute('data-src')); hang.preload = 'auto';
+      ['play', 'pause', 'timeupdate', 'ended', 'loadedmetadata'].forEach(function(t){ hang.addEventListener(t, rajz); });
+      hang.addEventListener('ended', function(){ hang.currentTime = 0; rajz(); }); }
+    if (hang.paused) hang.play().catch(function(){}); else hang.pause();
+  }); });
+})();
 // Megosztásszámláló (Heni 2026-10-20, api/megoszt.js): a gombon kis szám mutatja, hányan osztották meg a hírt.
 // Egy böngészőből hírenként egyszer számít (qn-megosztva a helyi tárolóban); személyes adat nem megy a szerverre.
 (function(){
