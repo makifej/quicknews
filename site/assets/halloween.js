@@ -18,8 +18,8 @@
     if (/[?&]boo=ki\b/.test(location.search)) localStorage.removeItem('qn-boo-elonezet');
     ELONEZET = localStorage.getItem('qn-boo-elonezet') === '1';
   } catch (e) { ELONEZET = /[?&]boo=elonezet\b/.test(location.search); }
-  // a szabályzat szerint 2026. november 3. 23:59-ig (budapesti idő) lehet játszani; utána a szellemek csak díszek
-  var HATARIDO = Date.parse('2026-11-03T22:59:59Z');
+  // a szabályzat szerint 2026. november 9. 23:59-ig (budapesti idő) lehet játszani; utána a szellemek csak díszek
+  var HATARIDO = Date.parse('2026-11-09T22:59:59Z');
   var JATEK = (B.getAttribute('data-boo') === '1' && Date.now() <= HATARIDO) || ELONEZET;
   var CEL = 5;
   var TAR = 'qn-boo';

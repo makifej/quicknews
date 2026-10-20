@@ -13,8 +13,8 @@ const KULCS = "qn:boo";
 const HL = "qn:hirlevel";
 const KORLAT_ABLAK = 3600;
 const KORLAT_DB = 5;
-// a játékszabályzat szerint 2026. november 3. 23:59-ig (budapesti idő, CET = UTC+1) lehet jelentkezni
-const HATARIDO = Date.parse("2026-11-03T22:59:59Z");
+// a játékszabályzat szerint 2026. november 9. 23:59-ig (budapesti idő, CET = UTC+1) lehet jelentkezni
+const HATARIDO = Date.parse("2026-11-09T22:59:59Z");
 
 async function kv(...parancs) {
   const r = await fetch(process.env.KV_REST_API_URL, {
@@ -47,7 +47,7 @@ function honnan(req) {
 module.exports = async (req, res) => {
   if (req.method !== "POST") { res.setHeader("Allow", "POST"); return json(res, 405, { hiba: "nem támogatott metódus" }); }
   if (process.env.BOO_JATEK !== "1") return json(res, 403, { rendben: false, uzenet: "A nyereményjáték még nem indult el. Hamarosan!" });
-  if (Date.now() > HATARIDO) return json(res, 403, { rendben: false, uzenet: "A jelentkezési határidő november 3-án lejárt. Köszönjük, hogy játszottál!" });
+  if (Date.now() > HATARIDO) return json(res, 403, { rendben: false, uzenet: "A jelentkezési határidő november 9-én lejárt. Köszönjük, hogy játszottál!" });
   if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN || !process.env.CHAT_SO) return json(res, 503, { hiba: "az adattár nincs beállítva" });
   if (!/^application\/json/i.test(req.headers["content-type"] || "")) return json(res, 415, { hiba: "application/json kell" });
   try {
