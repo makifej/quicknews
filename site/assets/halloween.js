@@ -265,7 +265,37 @@
     sz.addEventListener('click', function (e) { if (sz.classList.contains('hw-elkapva')) { e.preventDefault(); e.stopPropagation(); } });
     reteg.appendChild(sz);
   }
+  // bemutató ablak (Heni 2026-10-20): böngészőnként egyszer, a sütisávra adott válasz után, amíg a játékos még nem gyűjtötte össze az 5-öt
+  function bemutato() {
+    if (!JATEK || all.kesz || all.bekuldve || /^\/nyeremenyjatek/.test(location.pathname)) return;
+    try { if (localStorage.getItem('qn-boo-bemutato') && !/[?&]bemutato=1\b/.test(location.search)) return; } catch (e) { return; }
+    var var_ = setInterval(function () {
+      if (!document.documentElement.classList.contains('suti-van') || B.classList.contains('boo-nyitva') || document.querySelector('.hl-ablak:not([hidden])')) return;
+      clearInterval(var_);
+      setTimeout(function () {
+        if (B.classList.contains('boo-nyitva')) return;
+        var h = document.createElement('div');
+        h.className = 'boo-hatter';
+        h.innerHTML = '<div class="boo-ablak boo-ablak--bemutato" role="dialog" aria-modal="true" aria-labelledby="boo-bem-cim">' +
+          '<button type="button" class="boo-zar" aria-label="Bezárás">×</button>' +
+          '<div class="boo-sereg boo-sereg--bemutato">' + KIS + KIS + KIS + KIS + KIS + '</div>' +
+          '<h2 id="boo-bem-cim">Kapd el a <span class="boo-egyben">BOO-kat</span> és <span class="boo-nyerj">NYERJ!</span></h2>' +
+          '<p class="boo-bev">Gyűjts össze 5 szellemet! HAJRÁ!</p>' +
+          '<button type="button" class="boo-gomb">Kezdem!</button>' +
+          '<a class="boo-reszletek" href="/nyeremenyjatek">A nyereményjáték részletei</a></div>';
+        B.appendChild(h);
+        B.classList.add('boo-nyitva');
+        try { localStorage.setItem('qn-boo-bemutato', String(Date.now())); } catch (e) {}
+        function zar2() { h.remove(); B.classList.remove('boo-nyitva'); }
+        h.querySelector('.boo-zar').onclick = zar2;
+        h.querySelector('.boo-gomb').onclick = zar2;
+        h.addEventListener('click', function (e) { if (e.target === h) zar2(); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && h.isConnected) zar2(); });
+      }, 1200);
+    }, 500);
+  }
   function rajt() {
+    bemutato();
     szamlaloRajz(false);
     if (!(JATEK && all.kesz)) indit();
     if (JATEK && all.kesz && !all.bekuldve && /[?&]boo=elonezet\b/.test(location.search)) ablak();

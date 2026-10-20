@@ -1468,6 +1468,17 @@ body.boo-nyitva { overflow: hidden; }
 .boo-uzenet { min-height: 20px; margin: 10px 0 0; font-size: 14px; color: var(--szoveg-2); }
 .boo-uzenet:empty { min-height: 0; margin: 0; }
 .boo-most-nem { margin-top: 4px; padding: 12px; border: 0; background: none; color: var(--szoveg-2); font: 500 14px Manrope, system-ui, sans-serif; text-decoration: underline; cursor: pointer; }
+/* bemutató ablak: fehér szellemek, a középső narancs, és egy kicsit nagyobb, játékos cím */
+.boo-sereg--bemutato path { fill: #f2f2f2; } .boo-sereg--bemutato .k-arc { fill: #1f1f1f; }
+.boo-sereg--bemutato svg { filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4)); }
+.boo-sereg--bemutato svg:nth-child(3) path { fill: #ff7518; } .boo-sereg--bemutato svg:nth-child(3) .k-arc { fill: #2b1a12; }
+.boo-sereg--bemutato svg:nth-child(3) { filter: drop-shadow(0 0 14px rgba(255, 117, 24, 0.6)); }
+.boo-ablak--bemutato { padding-top: 40px; }
+.boo-ablak--bemutato h2 { font-size: 30px; }
+.boo-nyerj { color: #ff7518; white-space: nowrap; }
+.boo-egyben { white-space: nowrap; }
+.boo-ablak--bemutato .boo-bev { font-size: 18px; color: var(--szoveg); font-weight: 600; }
+.boo-reszletek { display: inline-block; margin-top: 12px; padding: 8px; color: var(--szoveg-2); font-size: 14px; text-decoration: underline; }
 @media (prefers-reduced-motion: reduce) { .boo-sereg svg, .boo-ablak, .boo-ugrik { animation: none; } }
 /* cikktörzs: kérdő alcím és számozott lépéslista (render.py felkover) */
 .torzs h3 { font-size: 22px; line-height: 28px; font-weight: 800; letter-spacing: -0.01em; margin: 32px 0 12px; }
