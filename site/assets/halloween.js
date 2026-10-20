@@ -32,7 +32,12 @@
   // bújócska (Heni 2026-10-20): oldalanként legfeljebb 1 BOO kapható el, és lejjebb kell görgetni érte; a többit más oldalakon kell keresni
   var OLDAL = location.pathname.replace(/\/+$/, '') || '/';
   if (!Array.isArray(all.oldalak)) all.oldalak = [];
-  var ITT_MEGVOLT = JATEK && !all.kesz && all.oldalak.indexOf(OLDAL) >= 0;
+  // asztalon (Heni 2026-10-20): oldalanként 2 BOO, az első azonnal a lap tetején, a második kicsit lejjebb; mobilon marad az 1
+  var LIMIT = MOBIL ? 1 : 2;
+  if (!all.asztal || typeof all.asztal !== 'object') all.asztal = {};
+  if (!MOBIL && all.oldalak.indexOf(OLDAL) >= 0 && !(OLDAL in all.asztal)) all.asztal[OLDAL] = 1;
+  function ittDb() { return MOBIL ? (all.oldalak.indexOf(OLDAL) >= 0 ? 1 : 0) : (all.asztal[OLDAL] || 0); }
+  var ITT_MEGVOLT = JATEK && !all.kesz && ittDb() >= LIMIT;
   var BUJOCSKA = JATEK && !all.kesz && !ITT_MEGVOLT;
   // cikkoldalon (Heni 2026-10-20) a szellem azonnal, a látható részen jelenik meg: nekünk jó, ha a látogató cikket olvas
   var CIKK = /^\/hir\//.test(OLDAL);
@@ -112,9 +117,32 @@
   }
   // bújócska: a szellem az oldal lejjebb eső részén bújik el (az első képernyőnyin túl, ha az oldal elég hosszú), és ott is marad;
   // asztalon üres helyet keres, ha nincs, a hírek fölé kerül
+  // asztali bújócska: az első BOO a képernyő éppen látható részén; a második kicsit lejjebb, a főoldalon
+  // a Claude és Anthropic blokk vagy A hét párbaja táján (amelyik előbb jön), máshol kb. egy képernyőnyivel lejjebb
+  function helyAsztalJatek(meret) {
+    var H = document.documentElement.scrollHeight, vh = window.innerHeight;
+    if (ittDb() === 0) { var u = helyAsztal(r() < 0.5, meret) || helyAsztal(r() < 0.5, meret) || helyAtfedo(r() < 0.5, meret); if (u) return u; }
+    var also = window.scrollY + vh * 0.85, felso = window.scrollY + vh * 1.8;
+    if (OLDAL === '/' || OLDAL === '/index.html') {
+      var cl = document.querySelector('a[href="/ceg/claude"]'), jel = [document.querySelector('.pb-fooldal'), cl && (cl.closest('section') || cl)], legf = null;
+      jel.forEach(function (e) { if (e) { var q = e.getBoundingClientRect(); if (q.height && (!legf || q.top < legf.top)) legf = q; } });
+      if (legf) { also = legf.top + window.scrollY - 40; felso = also + Math.min(legf.height, 420); }
+    }
+    felso = Math.min(felso, H - meret * 1.4 - 40);
+    if (felso <= also) also = Math.max(fejlec + 40, felso - 200);
+    var lista = tiltottak();
+    for (var p = 0; p < 200; p++) {
+      var yy = koz(also, felso), xx = koz(8, w - meret * 2.4 - 8);
+      if (szabad(xx, yy, meret, lista, true)) return [xx, yy, true];
+      if (szabad(xx, yy, meret, lista, false)) return [xx, yy, false];
+    }
+    var b = r() < 0.5;
+    return [b ? koz(meret * 1.4 + 8, w / 2 - meret / 2) : koz(w / 2 - meret / 2, w - meret * 2.4 - 8), koz(also, felso), b];
+  }
   function helyJatek(meret) {
     var H = document.documentElement.scrollHeight, vh = window.innerHeight;
     w = document.documentElement.clientWidth;
+    if (!MOBIL) return helyAsztalJatek(meret);
     if (CIKK) {
       // cikkoldalon a képernyő éppen látható részén, a fejléc alatt, görgetés nélkül
       var fent = window.scrollY + Math.max(fejlec - window.scrollY, 0) + 24, lent = window.scrollY + vh - meret * 1.3 - 110;
@@ -156,7 +184,7 @@
       : (MOBIL || all.db ? all.db + '/' + CEL : 'Kapd el az 5 BOO-t!');
     var cimke = all.bekuldve ? 'Benne vagy a sorsolásban' : all.kesz ? 'Megvan mind az 5 BOO, kattints a jelentkezéshez' : all.db + ' BOO elkapva az 5-ből';
     szamlalo.innerHTML = '<span class="boo-pontok">' + pontok + '</span><span class="boo-szoveg">' + szoveg + '</span>' +
-      (!all.db && !all.kesz ? '<span class="boo-tipp">Kapd el az 5 BOO-t, és nyerhetsz!' + (CIKK ? '' : ' Görgess lejjebb, és nézz körül több oldalon is.') + '</span>' : '');
+      (!all.db && !all.kesz ? '<span class="boo-tipp">Kapd el az 5 BOO-t, és nyerhetsz!' + (CIKK ? '' : MOBIL ? ' Görgess lejjebb, és nézz körül több oldalon is.' : ' Oldalanként 2 bújt el, nézz körül több oldalon is.') + '</span>' : '');
     szamlalo.setAttribute('aria-label', cimke);
     szamlalo.classList.toggle('boo-szamlalo--kesz', !!all.kesz);
     if (ugrik) { szamlalo.classList.remove('boo-ugrik'); void szamlalo.offsetWidth; szamlalo.classList.add('boo-ugrik'); }
@@ -236,6 +264,7 @@
     setTimeout(function () { szikrak.remove(); }, 1000);
     all.db++; if (all.db >= CEL) { all.db = CEL; all.kesz = true; }
     if (all.oldalak.indexOf(OLDAL) < 0) all.oldalak.push(OLDAL);
+    if (!MOBIL) all.asztal[OLDAL] = (all.asztal[OLDAL] || 0) + 1;
     ment();
     var cel = szamlalo.querySelectorAll('.boo-pontok i')[all.db - 1].getBoundingClientRect();
     var repulo = document.createElement('div');
@@ -251,10 +280,11 @@
     ], { duration: 950, easing: 'cubic-bezier(0.32, 0.72, 0, 1)', delay: 260, fill: 'forwards' });
     anim.onfinish = function () {
       repulo.remove(); szamlaloRajz(true);
-      if (!all.kesz && BUJOCSKA) tipp('Megvan! A következő BOO egy másik oldalon bújt el.');
+      if (!all.kesz && BUJOCSKA) tipp(ittDb() < LIMIT ? 'Megvan! Görgess egy kicsit lejjebb, ott bújik a következő BOO.'
+        : LIMIT > 1 ? 'Megvan! Ezen az oldalon már nincs több BOO, keresd a következőt egy másik oldalon!' : 'Megvan! A következő BOO egy másik oldalon bújt el.');
       if (all.kesz && !all.bekuldve) setTimeout(function () { unnep(); setTimeout(ablak, 900); }, 150);
     };
-    setTimeout(function () { sz.remove(); if (!all.kesz && !BUJOCSKA) setTimeout(indit, koz(2500, 6000)); }, 700);
+    setTimeout(function () { sz.remove(); if (!all.kesz && (!BUJOCSKA || ittDb() < LIMIT)) setTimeout(indit, BUJOCSKA ? 600 : koz(2500, 6000)); }, 700);
   }
   // az 5. elkapás után narancs szellemek szállnak fel a képernyő aljáról
   function unnep() {
@@ -278,10 +308,10 @@
     var meret = MOBIL ? koz(52, 64) : koz(54, 70);
     var sz = document.createElement('div');
     sz.className = 'hw-szellem';
-    var dur = koz(9, 12);
+    var dur = MOBIL ? koz(9, 12) : koz(6, 8);  // asztalon sűrűbben bukkan fel (Heni 2026-10-20)
     sz.style.width = meret + 'px';
     sz.style.animationDuration = dur.toFixed(2) + 's';
-    sz.style.animationDelay = (BUJOCSKA && CIKK ? 0.5 : koz(1, 4)).toFixed(2) + 's';
+    sz.style.animationDelay = (BUJOCSKA && (CIKK || !MOBIL) ? 0.5 : koz(1, 4)).toFixed(2) + 's';
     sz.innerHTML = '<div class="hw-himba">' + SZELLEM + '</div><span class="hw-boo">BOO</span>';
     sz.style.setProperty('--boo', (meret * 0.46).toFixed(0) + 'px');
     var idozito = null;
@@ -365,7 +395,7 @@
     repules(bemutato);
     szamlaloRajz(false);
     if (!(JATEK && all.kesz) && !ITT_MEGVOLT) indit();
-    if (ITT_MEGVOLT) tipp('Ezen az oldalon már elkaptad a BOO-t. Keresd a következőt egy másik oldalon!');
+    if (ITT_MEGVOLT) tipp(LIMIT > 1 ? 'Ezen az oldalon már elkaptad a BOO-kat. Keresd a következőt egy másik oldalon!' : 'Ezen az oldalon már elkaptad a BOO-t. Keresd a következőt egy másik oldalon!');
     if (JATEK && all.kesz && !all.bekuldve && /[?&]boo=elonezet\b/.test(location.search)) ablak();
   }
   if (document.readyState === 'complete') rajt(); else window.addEventListener('load', rajt);
