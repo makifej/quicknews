@@ -1,5 +1,16 @@
 [
   {
+    "i": "94e7f4f5c0e5",
+    "p": "/assets/kep/94e7f4f5c0e5.webp",
+    "c": "Az IBM az élre repítette ügyfélszolgálati ágensét modellfrissítés nélkül",
+    "b": "Az ALTK-Evolve eljárás tanult szabályokkal növeli az AI-ágensek pontosságát anélkül, hogy belenyúlna a modellek súlyaiba.",
+    "k": "Hugging Face",
+    "g": "kutatás",
+    "u": "/hir/az-ibm-az-elre-repitette-ugyfelszolgalati-agenset-modellfrissites",
+    "sz": "Az IBM Research kifejlesztette az ALTK-Evolve módszert, amely tanult memória segítségével javítja az AI-ügyfélszolgálati ágensek megbízhatóságát. A rendszer kielemzi az ágens korábbi sikeres és hibás lépéseit, majd ezekből rövid, használható viselkedési szabályokat állít össze. Ezeket az irányelveket a rendszer promptjához csatolva az ágens anélkül válik hatékonyabbá, hogy a nyelvi modell súlyait frissíteni kellene.\n\nA tesztek során egy GPT-4.1-es alapprogramra épülő ágens a tanult szabályoknak köszönhetően 67,5 százalékos Pass^4 eredményt ért el a τ²-bench retail mérésén. Ez felülmúlta a korábbi mezőnyt, miközben a beszélgetések hossza és a válaszlépések száma nem növekedett. Az eljárást a közzétett adatok szerint a legújabb, erősebb GPT-5.5 modellen tesztelve is hasonlóan jelentős teljesítménynövekedést tapasztaltak.\n\nA módszer előnye, hogy a magasabb beviteli tokenköltség a gyakorlatban promtsor-gyorsítótárazással (prompt caching) jelentősen csökkenthető. Így az ágensek gyorsabb válaszidővel és pontosabb szabálykövetéssel tudják kezelni a komplex ügyfélszolgálati folyamatokat. IBM AI ágens GPT-4.1 ügyfélszolgálat",
+    "d": "okt. 20. 17:19"
+  },
+  {
     "i": "b011d9853619",
     "p": "/assets/kep/b011d9853619.webp",
     "c": "A Gemini 4 Argon interaktív 3D-s periódusos rendszert épített",
@@ -12,7 +23,7 @@
   },
   {
     "i": "5b5f3744dde2",
-    "p": "/assets/kep/5b5f3744dde2-elonezet.webp",
+    "p": "/assets/kep/5b5f3744dde2-fk1.webp",
     "c": "Megjelent az Eleven Realtime beszédből beszéd hangmodell",
     "b": "Az ElevenLabs új modelljei fél másodperces válaszidővel és kiemelkedő pontossággal működtetnek intelligens hangalapú ügynököket.",
     "k": "ElevenLabs (LinkedIn)",
