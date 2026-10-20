@@ -303,7 +303,8 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     if (akt.kat!=='mind' || akt.forras!=='mind') alkalmaz();
   }
   var fr = document.querySelector('.frissit');
-  if (fr) {
+  // A frissítőgomb csak a Macen futó helyi szerverrel működik; élesben nem kérdezünk rá, mert a 404 hibát ír a konzolba.
+  if (fr && /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
     var gomb = fr.querySelector('.frissit-gomb'), all = fr.querySelector('.frissit-allapot'), idozito = null;
     function allapot(){
       return fetch('/frissit/allapot', {cache:'no-store'}).then(function(r){ if(!r.ok) throw 0; return r.json(); });
