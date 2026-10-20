@@ -1,6 +1,6 @@
 {
   "id": "965a134066f3",
-  "cim": "Nyílt forráskódú, eszközön futó beszédgeneráló modellt adott ki a Hugging Face",
+  "cim": "Nyílt forráskódú, eszközön futó beszédgeneráló modellt adott ki a Gradium",
   "lead": "A Phonon nevű text-to-speech modellcsalád közvetlenül telefonokon és számítógépeken futtatható felhős kapcsolat nélkül.",
   "slug": "nyilt-forraskodu-eszkozon-futo-beszedgeneralo-modellt-adott-ki-a",
   "forras": "Hugging Face (LinkedIn)",
@@ -15,11 +15,12 @@
   "felkapott": false,
   "forraskep": false,
   "url": "https://quicknews.hu/hir/nyilt-forraskodu-eszkozon-futo-beszedgeneralo-modellt-adott-ki-a",
-  "osszefoglalo": "A Hugging Face nyílt forráskóddal tette közzé a [Phonon](https://github.com/fermionresearch/phonon) nevű text-to-speech modellcsaládot, amelynek tagjai 50 millió paraméter alatti mérettel rendelkeznek. A Phonon-31m modell [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) licenc alatt érhető el, és közvetlenül a felhasználói eszközök hardverén képes valós időben, természetes hangzású beszédet generálni öt különböző nyelven.\n\nA fejlesztés a [Kyutai Pocket TTS](https://github.com/kyutai-labs/pocket-tts) kutatására épül, és már a megjelenés napján széles körű platformtámogatást kapott. Az Arm és Qualcomm processzorokra optimalizált modell [Apple Silicon](https://developer.apple.com/documentation/apple-silicon) chipeken MLX-Audio segítségével, míg az **Ollama** és az [LM Studio](https://lmstudio.ai) rendszereiben beépítve, teljesen helyi adatfeldolgozással működik.\n\nA Phonon súlyai és kódja elérhető a Hugging Face Hub felületén, emellett integrálták többek között a Daily Pipecat és a Modal rendszereibe is, lehetővé téve a helyi alapon futó hangalapú ügynökök és játékon belüli karakterek fejlesztését.",
+  "osszefoglalo": "A Gradium nyílt forráskóddal tette közzé a [Phonon](https://gradium.ai/blog/release-phonon-open-weight) nevű text-to-speech modellcsaládot, amelynek tagjai 50 millió paraméter alatti mérettel rendelkeznek, a modellek súlyai a Hugging Face-en érhetők el. A Phonon-31m modell [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) licenc alatt érhető el, és közvetlenül a felhasználói eszközök hardverén képes valós időben, természetes hangzású angol beszédet generálni. A nagyobb, 40 millió paraméteres változatok öt nyelven beszélnek: angolul, franciául, németül, spanyolul és portugálul.\n\nA fejlesztés a [Kyutai Pocket TTS](https://github.com/kyutai-labs/pocket-tts) kutatására épül, és már a megjelenés napján széles körű platformtámogatást kapott. Az Arm és Qualcomm processzorokra optimalizált modell [Apple Silicon](https://developer.apple.com/documentation/apple-silicon) chipeken MLX-Audio segítségével, míg az **Ollama** és az [LM Studio](https://lmstudio.ai) rendszereiben beépítve, teljesen helyi adatfeldolgozással működik.\n\nA Phonon súlyai és kódja elérhető a Hugging Face Hub felületén, emellett integrálták többek között a Daily Pipecat és a Modal rendszereibe is, lehetővé téve a helyi alapon futó hangalapú ügynökök és játékon belüli karakterek fejlesztését.",
   "miert_szamit": "A helyben futó beszédgenerálás révén **szerver- és API-költségek nélkül** fejleszthetők teljesen privát, internetkapcsolatot nem igénylő hangalapú alkalmazások és interaktív funkciók.",
   "publikalva": "2026-10-20T16:52:21.315000+00:00",
   "forras_url": "https://www.linkedin.com/feed/update/urn:li:activity:7518353427278786560/",
   "cimkek": [
+    "Gradium",
     "Hugging Face",
     "Phonon",
     "text-to-speech",
@@ -36,6 +37,24 @@
     "x_url": null
   },
   "kapcsolodo": [
+    {
+      "id": "4eb9f7080b11",
+      "cim": "Az NVIDIA bemutatta a Cosmos3-H-Dreams sebészeti AI-szimulátort",
+      "lead": "Az NVIDIA valós idejű, akcióvezérelt generatív modellt adott ki klinikai műtétek és sebészeti robotok szimulálására.",
+      "slug": "az-nvidia-bemutatta-a-cosmos3-h-dreams-sebeszeti-ai-szimulatort",
+      "forras": "Hugging Face",
+      "kat": "modell",
+      "rovat": "modell",
+      "ido": "2026-10-20T18:35:22+00:00",
+      "ido_hu": "okt. 20. 20:35",
+      "kep": "https://quicknews.hu/assets/kep/4eb9f7080b11.webp",
+      "kep_nagy": "https://quicknews.hu/assets/kep/4eb9f7080b11-n.webp",
+      "video": false,
+      "fontossag": 3,
+      "felkapott": false,
+      "forraskep": false,
+      "url": "https://quicknews.hu/hir/az-nvidia-bemutatta-a-cosmos3-h-dreams-sebeszeti-ai-szimulatort"
+    },
     {
       "id": "5de49ff7f818",
       "cim": "Elindult a Voxtral 3 és a Mistral új hangalapú ügynök API-ja",
@@ -71,24 +90,6 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/a-gemini-4-argon-interaktiv-3d-s-periodusos-rendszert-epitett"
-    },
-    {
-      "id": "208dc20e81cf",
-      "cim": "1,45 milliárd dollárra értékelik a fizikai AI-t fejlesztő Eka Roboticst",
-      "lead": "Az Eka Robotics új típusú fizikai AI-modellje az erőérzékelésre építve minden eddiginél finomabban és gyorsabban mozgat tárgyakat.",
-      "slug": "1-45-milliard-dollarra-ertekelik-a-fizikai-ai-t-fejleszto-eka",
-      "forras": "TechCrunch AI",
-      "kat": "modell",
-      "rovat": "modell",
-      "ido": "2026-10-20T13:05:44+00:00",
-      "ido_hu": "okt. 20. 15:05",
-      "kep": "https://quicknews.hu/assets/kep/208dc20e81cf.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/208dc20e81cf-n.webp",
-      "video": false,
-      "fontossag": 4,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/1-45-milliard-dollarra-ertekelik-a-fizikai-ai-t-fejleszto-eka"
     }
   ],
   "datum_teljes": "2026. okt. 20. 18:52",

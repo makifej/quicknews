@@ -1,5 +1,38 @@
 [
   {
+    "i": "00fd373ccb7b",
+    "p": "/assets/kep/00fd373ccb7b.webp",
+    "c": "A Runway csatlakozott a Claude Marketplace-hez",
+    "b": "A vállalati ügyfelek már az Anthropic keretük terhére is vásárolhatnak Runway Creative előfizetést.",
+    "k": "Runway (X)",
+    "g": "üzlet",
+    "u": "/hir/a-runway-csatlakozott-a-claude-marketplace-hez",
+    "sz": "A Runway elérhetővé vált a Claude Marketplace felületén. A lépésnek köszönhetően azok a vállalati csapatok, amelyek már rendelkeznek Anthropic kerettel, ennek a büdzsének egy részét közvetlenül a Runway Creative szolgáltatásaira is fordíthatják.\n\nA megállapodás lehetővé teszi a videó-, kép- és hanggenerálási funkciók összevont finanszírozását, így a cégek egyetlen közös költségvetésből gazdálkodhatják ki a nyelvi és a kreatív AI-eszközök használatát.\n\nAz opció a közös vállalati előfizetéssel rendelkező szervezetek számára érhető el az Anthropic rendszerén keresztül. Runway Claude Anthropic videógenerálás",
+    "d": "okt. 20. 20:20"
+  },
+  {
+    "i": "4eb9f7080b11",
+    "p": "/assets/kep/4eb9f7080b11.webp",
+    "c": "Az NVIDIA bemutatta a Cosmos3-H-Dreams sebészeti AI-szimulátort",
+    "b": "Az NVIDIA valós idejű, akcióvezérelt generatív modellt adott ki klinikai műtétek és sebészeti robotok szimulálására.",
+    "k": "Hugging Face",
+    "g": "modell",
+    "u": "/hir/az-nvidia-bemutatta-a-cosmos3-h-dreams-sebeszeti-ai-szimulatort",
+    "sz": "Az NVIDIA kiadta a Cosmos3-H-Dreams elnevezésű generatív világmodelljét, amely klinikai műtétek valós idejű, interaktív szimulációjára képes. A rendszer nem fizikai modellezést használ, hanem a videókból és a robot kinematikai adataiból tanulja meg a szövetek deformációját és a műszerek mozgását.\n\nA CMR Surgical Versius platform epehólyag-eltávolítási felvételein betanított modell FlashDreams gyorsítókönyvtárral fut, így egyetlen NVIDIA RTX PRO 6000 GPU-n is képes valós időben reagálni az irányításra. A fejlesztők 4 lépéses és 2 lépéses verziót is elérhetővé tettek a vizuális minőség és a generálási sebőség egyensúlyozásához.\n\nA nyílt forráskódú recept segítségével a kutatók saját videóikra és robotrendszereikre is adaptálhatják a modellt. A Cosmos3-H-Dreams egyelőre kutatási eszköz, nem klinikailag validált orvosi rendszer. NVIDIA robotika Cosmos3 szimuláció",
+    "d": "okt. 20. 20:17"
+  },
+  {
+    "i": "161a4dc6775c",
+    "p": "/assets/kep/161a4dc6775c.webp",
+    "c": "Az OpenAI felvásárolta az Orchestra Bio platformot",
+    "b": "Az OpenAI akvizícióval erősíti az élettudományi kutatásokat segítő Rosalind modellcsaládját és eszközrendszerét.",
+    "k": "OpenAI (X)",
+    "g": "üzlet",
+    "u": "/hir/az-openai-felvasarolta-az-orchestra-bio-platformot",
+    "sz": "Az OpenAI felvásárolta az Orchestra Bio platformot, amely a gyógyszerfejlesztés komplex folyamatainak koordinálásában segíti a biofarma csapatokat.\n\nA felvásárolt technológiát és csapatot az OpenAI az élettudományi kutatásokra tervezett Rosalind AI-modelljeibe és eszközeibe építi be. A fejlesztés célja a gyógyszerfejlesztési műveletek egyszerűsítése és az új kezelések piacra jutásának felgyorsítása. OpenAI Orchestra Bio Rosalind egészségügy",
+    "d": "okt. 20. 20:10"
+  },
+  {
     "i": "f52190a49967",
     "p": "/assets/kep/f52190a49967.webp",
     "c": "Felfüggesztette az asszisztens beszélgetésmegosztását a Meta biztonsági rések miatt",
@@ -46,12 +79,12 @@
   {
     "i": "965a134066f3",
     "p": "/assets/kep/965a134066f3-fk1.webp",
-    "c": "Nyílt forráskódú, eszközön futó beszédgeneráló modellt adott ki a Hugging Face",
+    "c": "Nyílt forráskódú, eszközön futó beszédgeneráló modellt adott ki a Gradium",
     "b": "A Phonon nevű text-to-speech modellcsalád közvetlenül telefonokon és számítógépeken futtatható felhős kapcsolat nélkül.",
     "k": "Hugging Face (LinkedIn)",
     "g": "modell",
     "u": "/hir/nyilt-forraskodu-eszkozon-futo-beszedgeneralo-modellt-adott-ki-a",
-    "sz": "A Hugging Face nyílt forráskóddal tette közzé a Phonon nevű text-to-speech modellcsaládot, amelynek tagjai 50 millió paraméter alatti mérettel rendelkeznek. A Phonon-31m modell Apache 2.0 licenc alatt érhető el, és közvetlenül a felhasználói eszközök hardverén képes valós időben, természetes hangzású beszédet generálni öt különböző nyelven.\n\nA fejlesztés a Kyutai Pocket TTS kutatására épül, és már a megjelenés napján széles körű platformtámogatást kapott. Az Arm és Qualcomm processzorokra optimalizált modell Apple Silicon chipeken MLX-Audio segítségével, míg az Ollama és az LM Studio rendszereiben beépítve, teljesen helyi adatfeldolgozással működik.\n\nA Phonon súlyai és kódja elérhető a Hugging Face Hub felületén, emellett integrálták többek között a Daily Pipecat és a Modal rendszereibe is, lehetővé téve a helyi alapon futó hangalapú ügynökök és játékon belüli karakterek fejlesztését. Hugging Face Phonon text-to-speech Ollama",
+    "sz": "A Gradium nyílt forráskóddal tette közzé a Phonon nevű text-to-speech modellcsaládot, amelynek tagjai 50 millió paraméter alatti mérettel rendelkeznek, a modellek súlyai a Hugging Face-en érhetők el. A Phonon-31m modell Apache 2.0 licenc alatt érhető el, és közvetlenül a felhasználói eszközök hardverén képes valós időben, természetes hangzású angol beszédet generálni. A nagyobb, 40 millió paraméteres változatok öt nyelven beszélnek: angolul, franciául, németül, spanyolul és portugálul.\n\nA fejlesztés a Kyutai Pocket TTS kutatására épül, és már a megjelenés napján széles körű platformtámogatást kapott. Az Arm és Qualcomm processzorokra optimalizált modell Apple Silicon chipeken MLX-Audio segítségével, míg az Ollama és az LM Studio rendszereiben beépítve, teljesen helyi adatfeldolgozással működik.\n\nA Phonon súlyai és kódja elérhető a Hugging Face Hub felületén, emellett integrálták többek között a Daily Pipecat és a Modal rendszereibe is, lehetővé téve a helyi alapon futó hangalapú ügynökök és játékon belüli karakterek fejlesztését. Gradium Hugging Face Phonon text-to-speech Ollama",
     "d": "okt. 20. 18:52"
   },
   {
