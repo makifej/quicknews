@@ -395,6 +395,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <div id="ap-elozmeny"></div>
 </section>
 <section id="p-hirlevel" hidden>
+<div class="szeg alful" role="group" aria-label="Hírlevél nézet"><button type="button" data-alful="hirlevel">Hírlevél</button><button type="button" data-alful="boo">Nyereményjáték</button></div>
 <p class="a-bev">A napi emlékeztető feliratkozói. Minden reggel 8-kor kimegy nekik az előző nap legfontosabb híreivel. A címek csak erre a levélre használhatók.</p>
 <div class="hl-fej"><div class="hl-szam"><b class="num" id="hl-db">0</b><span>feliratkozó</span></div>
 <div class="kapcs hl-kapcs"><button id="hl-aktiv" aria-pressed="true"><i></i>Reggeli küldés bekapcsolva</button></div></div>
@@ -407,7 +408,9 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <p class="hl-cimke">Kiküldött levelek</p>
 <div id="hl-kiadasok"></div>
 <p class="hl-megj"><a id="hl-utolso" href="#" target="_blank" rel="noopener" style="color:var(--amber)">Az utoljára kiküldött levél megnyitása ↗</a></p>
-<h2 class="hl-cimke" style="margin-top:40px;font-size:15px">Nyereményjáték (BOO-vadászat)</h2>
+</section>
+<section id="p-boo" hidden>
+<div class="szeg alful" role="group" aria-label="Hírlevél nézet"><button type="button" data-alful="hirlevel">Hírlevél</button><button type="button" data-alful="boo">Nyereményjáték</button></div>
 <p class="a-bev">A BOO-vadászat jelentkezői: akik elkapták mind az 5 szellemet, és megadták, hova írjunk, ha nyernek. Ez külön lista. Aki a jelentkezéskor bepipálta, a hírlevélre is feliratkozott, ezt a sor végén látod.</p>
 <div class="hl-fej"><div class="hl-szam"><b class="num" id="boo-db">0</b><span>jelentkező</span></div></div>
 <div class="hl-gombok"><button class="gomb" id="boo-sorsol">Nyertes sorsolása</button></div>
@@ -415,7 +418,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <p class="hl-cimke">Jelentkezők, a legfrissebbel elöl</p>
 <div id="boo-lista"></div>
 <div class="hl-gombok"><button class="gomb" id="boo-masol">Címek másolása</button><button class="gomb masod" id="boo-csv">Letöltés CSV-ben</button><button class="gomb masod" id="boo-frissit">Frissítés</button></div>
-<p class="hl-megj">Amíg a játékszabályzat nincs jóváhagyva, a játék csak előnézetben megy, jelentkezést nem fogad: <a href="https://quicknews.hu/?boo=elonezet&uj=1" target="_blank" rel="noopener" style="color:var(--amber)">játék kipróbálása ↗</a></p>
+<p class="hl-megj">A jelentkezés november 9-én 23:59-ig tart, a sorsolás november 10-én lesz. <a href="https://quicknews.hu/nyeremenyjatek" target="_blank" rel="noopener" style="color:var(--amber)">Játékszabályzat ↗</a></p>
 </section>
 <section id="p-cikkbehuzas" hidden>
 <p class="a-bev">Akik a „Szeretnéd, hogy behúzzuk a cikkeidet?” dobozból kértek ajánlatot: az RSS-hírfolyamuk vagy API-juk cikkeinek átvételére. Hívd vissza őket, és jelöld, hol tartotok. Az adatokat 1 évig őrizzük.</p>
@@ -976,13 +979,13 @@ document.getElementById("ap-beall").onclick=async()=>{const v=i=>document.getEle
  alert(r.hiba?r.hiba:"Elmentve.");aptolt()};
 
 /* ---------- fülek ---------- */
-function ful(f){const fo=f==="koltseg"?"statisztika":f;if(fo==="posztok"&&!PNGORGETVE)setTimeout(napsavIgazit,50);document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===fo));document.querySelectorAll("[data-alful]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.alful===f)));try{document.querySelector(`.fulek [data-ful="${fo}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
- ["posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas","hirlevel","statisztika","app"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
+function ful(f){const fo=f==="koltseg"?"statisztika":f==="boo"?"hirlevel":f;if(fo==="posztok"&&!PNGORGETVE)setTimeout(napsavIgazit,50);document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===fo));document.querySelectorAll("[data-alful]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.alful===f)));try{document.querySelector(`.fulek [data-ful="${fo}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
+ ["posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas","hirlevel","boo","statisztika","app"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
  if(f==="statisztika")stolt();
- if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok")htolt();if(f==="cikkbehuzas")htolt(true);if(f==="hirlevel"){hltolt();bootolt()}if(f==="app")aptolt();try{localStorage.setItem("ful",f)}catch(e){}latta(f);jelvenyek()}
+ if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok")htolt();if(f==="cikkbehuzas")htolt(true);if(f==="hirlevel")hltolt();if(f==="boo")bootolt();if(f==="app")aptolt();try{localStorage.setItem("ful",f)}catch(e){}latta(f);jelvenyek()}
 document.querySelectorAll(".fulek button").forEach(b=>b.onclick=()=>ful(b.dataset.ful));
 document.querySelectorAll("[data-alful]").forEach(b=>b.onclick=()=>ful(b.dataset.alful));
-try{const f=localStorage.getItem("ful");if(f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok"||f==="cikkbehuzas"||f==="hirlevel"||f==="statisztika"||f==="app")ful(f)}catch(e){}
+try{const f=localStorage.getItem("ful");if(f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok"||f==="cikkbehuzas"||f==="hirlevel"||f==="boo"||f==="statisztika"||f==="app")ful(f)}catch(e){}
 document.getElementById("k-valaszt");
 /* ---------- piros számok a fülek mellett (2026-10-13): hány új esemény történt az adott fülön ---------- */
 const LATOTT="qn-latott-";
