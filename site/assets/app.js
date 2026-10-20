@@ -44,6 +44,14 @@
 function qnEsc(t){ return String(t == null ? '' : t).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 function qnSlug(s){ return typeof s === 'string' && /^[a-z0-9-]{1,200}$/.test(s); }
 function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.test(k) || /^https:\/\/[^\s"'<>]+$/.test(k))) ? k : ''; }
+// mobilon (Heni 2026-10-20) a „Kérdezz!” gomb görgetéskor kerek ikonná húzódik össze, és pár másodpercenként megnő; fent újra kinyílik
+(function(){
+  var dob = document.querySelector('[data-chat]'); if (!dob) return;
+  var var_ = false;
+  var nez = function(){ var_ = false; dob.classList.toggle('osszecsukva', window.scrollY > 120); };
+  window.addEventListener('scroll', function(){ if (!var_) { var_ = true; requestAnimationFrame(nez); } }, {passive: true});
+  nez();
+})();
 // qn-chat: „Kérdezz a hírektől!” (api/kerdez). A beszélgetés a böngészőfül munkamenetében megmarad
 // (sessionStorage): oldalról oldalra viszi, a fül bezárásával törlődik.
 (function(){
