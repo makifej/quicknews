@@ -868,6 +868,19 @@ html:not(.suti-van) .chat { display: none; }
   .chat-indit { height: 44px; padding: 0 14px 0 12px; font-size: 14px; gap: 6px; }
   .chat-indit svg { width: 18px; height: 18px; }
 }
+/* „Kérdezz!” gomb mobilon (Heni 2026-10-20, mint az appban): alacsonyabb, rövid felirat, AI-szikra ikon; görgetéskor
+   kerek ikonná húzódik össze (.osszecsukva), és pár másodpercenként maga a gomb nő meg egy pillanatra */
+.ci-szikra, .ci-rovid { display: none; }
+@media (max-width: 767px) {
+  .chat-indit { height: 40px; padding: 0 14px 0 12px; font-size: 14px; gap: 6px; transition: padding 400ms var(--gorbe), gap 400ms var(--gorbe), transform 400ms var(--gorbe); }
+  .chat-indit .ci-buborek, .chat-indit .ci-hosszu { display: none; }
+  .chat-indit .ci-szikra { display: block; width: 20px; height: 20px; }
+  .chat-indit .ci-rovid { display: inline-block; max-width: 90px; overflow: hidden; white-space: nowrap; transition: max-width 400ms var(--gorbe), opacity 300ms var(--gorbe); }
+  .chat.osszecsukva .chat-indit { padding: 0 10px; gap: 0; animation: ci-pulzus 3.2s var(--gorbe) infinite; }
+  .chat.osszecsukva .chat-indit .ci-rovid { max-width: 0; opacity: 0; }
+}
+@keyframes ci-pulzus { 0%, 20%, 100% { transform: scale(1); } 8% { transform: scale(1.14); } }
+@media (prefers-reduced-motion: reduce) { .chat.osszecsukva .chat-indit { animation: none; } }
 
 /* ===== chat válasz: a minta szerinti felépítés ===== */
 .chat-panel { width: 420px; }
