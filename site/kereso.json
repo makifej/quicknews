@@ -1,5 +1,16 @@
 [
   {
+    "i": "ca293d8533a3",
+    "p": "/assets/kep/ca293d8533a3.webp",
+    "c": "Új AI-teszttel mérik a nyelvi modellek elfogultságát az Ai2 kutatói",
+    "b": "Az Allen Institute for AI kiadta a FairStress benchmarkot, amely a demográfiai döntéshozatalt és a modellek befolyásolhatóságát vizsgálja.",
+    "k": "Hugging Face",
+    "g": "kutatás",
+    "u": "/hir/uj-ai-teszttel-merik-a-nyelvi-modellek-elfogultsagat-az-ai2-kutatoi",
+    "sz": "Az Allen Institute for AI megjelentette a FairStress nevű benchmarkot, amellyel a nyelvi modellek demográfiai döntéshozatalát és ellenállóságát mérik. A vizsgálat nemcsak a végső válaszra kíváncsi, hanem arra is, mennyire könnyen téríthető el a modell egy meggyőző érv hatására.\n\nA teszt 300 valósághű döntési forgatókönyvet és több mint 13 millió tesztesetet tartalmaz 29 különböző területen, beleértve a toborzást és a hitelezést. A kutatók 15 népszerű modellt vizsgáltak meg, és megállapították, hogy az ellenérvek hatékonysága függ attól, melyik demográfiai csoportot támogatják.\n\nA benchmark teljes változata mellett megjelent a kisebb FairStress-Core adatkészlet is, amellyel gyorsabban és olcsóbban futtathatók le a mérések. A kód és a tesztadatok nyilvánosan elérhetők. FairStress Ai2 LLM benchmark",
+    "d": "okt. 20. 18:09"
+  },
+  {
     "i": "43ec949a256d",
     "p": "/assets/kep/43ec949a256d.webp",
     "c": "Helyben futtathatóvá vált a Perplexity Computer Macen",
@@ -12,7 +23,7 @@
   },
   {
     "i": "f906e148585c",
-    "p": "/assets/kep/f906e148585c-elonezet.webp",
+    "p": "/assets/kep/f906e148585c-fk2.webp",
     "c": "Interaktív gőzmozdony-renderert készített a Computer",
     "b": "A Perplexity fejlesztői fiókja egy 1324 alkatrészből álló, böngészőben futó interaktív gőzmozdony-modellt mutatott be.",
     "k": "Aravind Srinivas (X)",
@@ -20,6 +31,17 @@
     "u": "/hir/interaktiv-gozmozdony-renderert-keszitett-a-computer",
     "sz": "A Computer közzétette a Big Boy No. 4014 megnevezésű modellt, amely a világ legnagyobb működő gőzmozdonyának élő, izometrikus SVG-mása. A rendszer saját rendererrel működik, és a hideg kazántól a 60 mérföld/órás sebességig terjedő, 7 lépéses működési folyamatot jeleníti meg.\n\nA modell 1 324 alkatrészből és 15 312 konvex felületből áll, amelyeket az Union Pacific hivatalos adatai alapján építettek fel. A böngészőben futó interaktív animációt Aravind Srinivas is megosztotta. Computer Perplexity SVG interaktív",
     "d": "okt. 20. 17:35"
+  },
+  {
+    "i": "2cf0413cb4f1",
+    "p": "/assets/kep/2cf0413cb4f1.webp",
+    "c": "Nyílt forráskódúvá vált a TorchTPU a Google és a Meta közös fejlesztésében",
+    "b": "A Google és a Meta kiadta a TorchTPU rendszert, amellyel a PyTorch kódok natívan, külön átalakítás nélkül futtathatók Google Cloud TPU-kon.",
+    "k": "MarkTechPost",
+    "g": "eszköz",
+    "u": "/hir/nyilt-forraskoduva-valt-a-torchtpu-a-google-es-a-meta-kozos",
+    "sz": "A Google a Meta PyTorch-csapatával együttműködve nyílt forráskódúvá tette a TorchTPU-t, amely natív PyTorch támogatást hoz a Cloud TPU chipcsoportokra. Az új rendszer a korábbi PyTorch/XLA helyébe lép, és lehetővé teszi, hogy a meglévő PyTorch kódokat közvetlenül a `torch.device(\"tpu\")` utasítással futtassák a fejlesztők, bonyolult átalakítások nélkül.\n\nA TorchTPU alapértelmezés szerint eager módban fut, ami megkönnyíti a hibakeresést, míg a maximális teljesítményt a `torch.compile` használatával éri el. A tesztek során a rendszer akár 8 192 Ironwood TPU chipig skálázódott, és a TorchTitan keretrendszerrel 52 százalékos MFU kihasználtságot ért el a Qwen 3 8B modell tanítása során.\n\nAz új eszköz teljes körű integrációt kapott a legnépszerűbb keretrendszerekkel: a Hugging Face Transformers v5, a vLLM és az SGLang is közvetlenül támogatja. A TorchTPU Apache 2.0 licenc alatt érhető el a GitHubon, a pip csomagkezelőn keresztül pedig a `torch_tpu` csomagként telepíthető Python 3.11 felett. Google Meta PyTorch TorchTPU",
+    "d": "okt. 20. 17:22"
   },
   {
     "i": "94e7f4f5c0e5",

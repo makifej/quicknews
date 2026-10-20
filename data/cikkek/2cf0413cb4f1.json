@@ -1,0 +1,55 @@
+{
+  "id": "2cf0413cb4f1",
+  "slug": "nyilt-forraskoduva-valt-a-torchtpu-a-google-es-a-meta-kozos",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/10/20/google-torchtpu-open-source-native-pytorch-tpu/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-10-20T15:22:03+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-454-16-scaled.png"
+  },
+  "cim_eredeti": "Google Open-Sources TorchTPU, a Native PyTorch Backend for Cloud TPUs",
+  "forrasok": [],
+  "szoveg_eredeti": "Google has open-sourced TorchTPU , a native PyTorch backend for Cloud TPUs. It was co-developed with the PyTorch team at Meta and announced at PyTorch Conference 2026 on October 20, 2026. Existing PyTorch code targets a TPU through a standard torch.device(\"tpu\") . TPUs now sit beside GPUs and CPUs as a native PyTorch device. Google team states that TorchTPU replaces PyTorch/XLA and recommends it for all new workloads.\n\n TL;DR \n\n Size: A software stack, not a model. 4 open repos: TorchTPU, vLLM-TorchTPU, SGLang-TorchTPU, TorchTitan. TorchTPU is v0.2.0 on PyPI , Python 3.11+, Apache 2.0.\n\n Runs on: Google Cloud TPUs. Tested on generations from v5e , scaled to 8,192 Ironwood (TPU7x) chips. Serving supports FP8, MXFP4 and NVFP4 checkpoints.\n\n Performance: Eager mode for debugging, torch.compile for production-level throughput.\n\n Best: 52% MFU training Qwen 3 8B with TorchTitan on Ironwood (self-reported).\n\n Worst: Out-of-box eager took 11.49s per step in a fine-tuning case, versus 2.78s fully tuned.\n\n What is TorchTPU? \n\n TorchTPU is an open-source PyTorch backend from Google and Meta that runs PyTorch models natively on TPUs. It plugs in through PyTorch’s PrivateUse1 interface . Tensors are ordinary PyTorch tensors, with no subclasses or wrappers. It runs one process per device and preserves tensor views and in-place mutations.\n\n The predecessor, PyTorch/XLA, recorded lazy-tensor graphs. Developers often added code to mark compilable regions. PyTorch/XLA also only supported pure SPMD code . TorchTPU also handles divergent MPMD execution.\n\n How does TorchTPU execute PyTorch code? \n\n TorchTPU ships 3 eager modes : \n\n Strict (default): dispatches each operator asynchronously with standard PyTorch semantics.\n\n Debug: runs synchronously with tensor bounds checking.\n\n DeferAndFuse: fuses runs of eager operators to cut HBM traffic. The TorchTPU paper says it can be 50% or more faster than Strict.\n\n For peak speed, torch.compile(backend=\"tpu\") captures the graph with TorchDynamo. It lowers through StableHLO to OpenXLA, which emits TPU machine code. Compiled executables are cached across processes, hosts and job restarts.\n\n Custom Pallas kernels are callable as standard PyTorch functions. Prebuilt Tokamax kernels and Helion tile kernels also work.\n\n Distribution uses the tpu_dist process group. It supports DDP, FSDP2 and DTensor, along with a topology-aware mesh for TPU interconnects.\n\n How fast is TorchTPU? \n\n All figures below are self-reported by Google and partners. \n\n Training scale: TorchTitan reached up to 52% MFU on Qwen 3 8B . Google reports near-linear scaling up to 8,192 Ironwood TPUs.\n\n Tuning ladder: In a TorchTitan fine-tuning case, step time fell from 11.49s to 2.78s. DeferAndFuse alone gave 1.15x. Full torch.compile gave 3.80x .\n\n Model coverage: Google continuously tests about 5,000 Hugging Face models in eager and compiled modes.\n\n Fleet serving: Zenteiq grew daily output from 1.47B to 5.97B tokens per 1,000 TPU v6e chips. That gain came from llm-d routing on GKE, not TorchTPU alone.\n\n What integrations ship with TorchTPU? \n\n Hugging Face: Transformers v5 deploys to TPU with device_map=\"tpu\" . Diffusers supports eager, torch.compile and tensor parallelism.\n\n vLLM-TorchTPU : built with Inferact. Keeps upstream schedulers and API servers, with custom Pallas kernels.\n\n SGLang-TorchTPU : built with RadixArk. Keeps RadixAttention prefix reuse.\n\n Serving features: FP8 KV caches, FP8, MXFP4 and NVFP4 checkpoints. Speculative decoding includes MTP and EAGLE-3.\n\n TorchTitan : recipes for Llama 3 70B/405B, Qwen 3 8B/32B, Qwen 3 235B MoE and FLUX.1 12B.\n\n Also: llm-d 1.0, Ray, TorchRec, VeRL (preview) and LiteRT-Torch for on-device export.\n\n How does TorchTPU compare with PyTorch/XLA, TorchNeuron and JAX? \n\n Feature TorchTPU ( repo ) PyTorch/XLA ( repo ) TorchNeuron ( AWS docs ) JAX on TPU ( Google docs ) Vendor Google + Meta Google / PyTorch AWS Google Hardware Cloud TPU (v5e and later tested) Cloud TPU Trainium 2, Trainium 3 Cloud TPU PyTorch device tpu xla neuron Not PyTorch Backend mechanism PrivateUse1 Lazy-tensor graph recording PrivateUse1 Not applicable Default execution Eager (Strict, Debug, DeferAndFuse) Lazy tensors Eager plus torch.compile Not disclosed Compile path TorchDynamo to StableHLO to XLA XLA Neuron Compiler XLA Distributed APIs DDP, FSDP2, DTensor, SPMD and MPMD Pure SPMD only FSDP, DTensor, DDP, TP Not disclosed Custom kernels Pallas, Tokamax, Helion Not disclosed NKI Pallas vLLM / SGLang serving vLLM-TorchTPU, SGLang-TorchTPU Not disclosed vLLM Neuron vLLM-JAX, SGLang-JAX Status Open source, v0.2.0 Being replaced by TorchTPU Public beta (Neuron 2.33) Maintained License Apache 2.0 Not disclosed Not disclosed Not disclosed \n\n How do you install TorchTPU? \n\n Install the package on a TPU VM, then pick the tpu device: \n\n Copy Code Copied Use a different Browser \n\n # pip install torch_tpu\nimport torch\ndevice = torch.device(\"tpu\")\nx = torch.randn((4, 4), device=device) \n\n The repo’s README pins torch_tpu==0.2.0 with the CPU PyTorch wheel index. Without it, pip pulls the CUDA build of torch . Full guides live at torchtpu.readthedocs.io .\n\n Key Takeaways \n\n TorchTPU is open source under Apache 2.0, co-built with Meta.\n\n It replaces PyTorch/XLA with eager-first, PrivateUse1-based execution.\n\n torch.compile(backend=\"tpu\") lowers through StableHLO and XLA.\n\n TorchTitan hit 52% MFU on Qwen 3 8B, scaling to 8,192 Ironwood chips.\n\n vLLM, SGLang and Hugging Face now run on TPU through standard PyTorch.\n\n Check out the GitHub repo , paper , docs and Google Cloud announcement . All credit goes to the researcher of this project. Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n The post Google Open-Sources TorchTPU, a Native PyTorch Backend for Cloud TPUs appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "Nyílt forráskódúvá vált a TorchTPU a Google és a Meta közös fejlesztésében",
+  "lead": "A Google és a Meta kiadta a TorchTPU rendszert, amellyel a PyTorch kódok natívan, külön átalakítás nélkül futtathatók Google Cloud TPU-kon.",
+  "osszefoglalo": "A Google a Meta PyTorch-csapatával együttműködve **nyílt forráskódúvá tette a TorchTPU-t**, amely natív PyTorch támogatást hoz a Cloud TPU chipcsoportokra. Az új rendszer a korábbi PyTorch/XLA helyébe lép, és lehetővé teszi, hogy a meglévő PyTorch kódokat közvetlenül a `torch.device(\"tpu\")` utasítással futtassák a fejlesztők, bonyolult átalakítások nélkül.\n\nA TorchTPU alapértelmezés szerint **eager módban fut**, ami megkönnyíti a hibakeresést, míg a maximális teljesítményt a `torch.compile` használatával éri el. A tesztek során a rendszer akár 8 192 [Ironwood TPU](https://cloud.google.com/tpu/docs/tpu7x) chipig skálázódott, és a [TorchTitan](https://github.com/pytorch/torchtitan) keretrendszerrel 52 százalékos MFU kihasználtságot ért el a Qwen 3 8B modell tanítása során.\n\nAz új eszköz teljes körű integrációt kapott a legnépszerűbb keretrendszerekkel: a Hugging Face Transformers v5, a vLLM és az SGLang is közvetlenül támogatja. A TorchTPU **Apache 2.0 licenc alatt érhető el** a GitHubon, a pip csomagkezelőn keresztül pedig a `torch_tpu` csomagként telepíthető Python 3.11 felett.",
+  "miert_szamit": "A magyar AI-fejlesztők és cégek mostantól **könnyebben és olcsóbban válthatnak Google TPU hardverekre**, mert a PyTorch-alapú modelljeiket kódátírás nélkül, azonnal futtathatják és skálázhatják Cloud TPU-kon.",
+  "cimkek": [
+    "Google",
+    "Meta",
+    "PyTorch",
+    "TorchTPU"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "TorchTPU",
+    "TorchTitan"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-20T16:20:11+00:00",
+  "megjelent": "2026-10-20T16:20:11+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-20T16:20:35+00:00",
+    "esemeny": "A Google a Meta PyTorch-csapatával együttműködve nyílt forráskódúvá tette a TorchTPU rendszert, amellyel a PyTorch-kódok natívan futtathatók Google Cloud TPU-kon.",
+    "forrasok": [
+      "https://cloud.google.com/blog/products/ai-machine-learning/torchtpu-is-now-open-source-run-native-pytorch-on-tpus",
+      "https://github.com/google-pytorch/torch_tpu"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
