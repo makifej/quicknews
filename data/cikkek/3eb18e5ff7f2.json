@@ -1,0 +1,57 @@
+{
+  "id": "3eb18e5ff7f2",
+  "slug": "megjelent-a-pytorch-2-15-jelentos-teljesitmenynovekedes-apple-silicon",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/mps-pytorch-2-15",
+  "szerzo": null,
+  "publikalva": "2026-10-20T00:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://huggingface.co/blog/assets/mps-pytorch-2-15/thumbnail.png"
+  },
+  "cim_eredeti": "MPS in PyTorch 2.15",
+  "forrasok": [],
+  "szoveg_eredeti": "TL;DR What this means for you Contents Getting started FP8 comes to MPS Faster language-model decoding Linear layers Mixture-of-experts layers Linear algebra gets a boost Complex-valued computations Small matrices and larger solves Convolutions, padding, and training Softmax and reductions A much smaller memory footprint for video decoding More control with MPS streams More operations work on MPS A sneak peek at PyTorch 2.16 Faster LLM decoding Attention runs entirely on Metal More MPSGraph to Metal migrations A smaller install Wrapping up What's next for us If you run models on your Mac or use MPS as your primary acceleration tool for computing, there's plenty to look forward to in PyTorch 2.15! FP8 arrives on MPS, language-model decoding gets faster paths through linear layers and softmax and new Metal kernels tackle some surprisingly expensive parts of audio, video and training workloads.\n\nA quick word about who we are: we're the PyTorch team at Hugging Face. We contribute across PyTorch, and one of our focus areas is the MPS backend, where the goal is to make your Mac a first-class place to run and train PyTorch models. At the start of 2026, running even small models on MPS often meant working around unsupported operations, performance cliffs and unexpected memory growth. So we run real models from the Hugging Face Hub across language, image and video, find where MPS falls short and fix it upstream in PyTorch, more and more often by replacing MPSGraph with dedicated Metal kernels. Much of this post is the result of that work, done together with the PyTorch maintainers and community contributors.\n\nIf you run models on a Mac with transformers, diffusers or tools like ComfyUI, here's what 2.15 changes in practice:\n\nYou'll need an Apple silicon Mac with macOS 15 or later and Python 3.11 or later (see the 2.15 compatibility matrix). If your OS is too old or no Metal GPU is available, the MPS availability check now tells you why.\n\nTo try the release candidate in a separate environment:\n\nFP8 gives you another way to save memory on your Mac. PyTorch 2.15 adds torch.float8_e4m3fn tensors on MPS: one byte per value, half the storage of FP16 or BF16.\n\nYou can multiply these tensors with F.scaled_mm, which supports both tensorwise and rowwise scaling. Here's a small example with one scale per tensor:\n\nEvery LLM has a prefill phase and a decode phase. During decode, each new token goes through the model as a single row, so the big matrix multiplications turn into matrix-vector products. PyTorch 2.15 speeds up both kinds of layers that dominate this step: dense linear layers and mixture-of-experts layers.\n\nMPS has had GEMV kernels for torch.mm since 2.14, but F.linear still went through MPSGraph. PyTorch 2.15 connects them to F.linear, so the common [1, 1, hidden_size] decoding input uses them directly, with eligible bias additions fused in. Across 96 BF16 layer shapes from real models, that's a 1.23× geometric-mean speedup. The biggest wins land on small projections, such as the gates in MoE models, where the old path left most of the memory bandwidth unused. Large layers and LM heads were already close to bandwidth-bound, so they stay near 1×.\n\nA mixture-of-experts layer sends different numbers of tokens to each expert. Grouped matmul handles those uneven groups in a single operation, and 2.15 gives MPS a native implementation.\n\nIn 2.14, grouped matmul copied the group offsets to the CPU and looped over the groups. The new Metal kernels read the offsets directly on the GPU, using Metal Performance Primitives where available and a separate Metal path elsewhere. Small groups, the common case during decoding, get their own kernel as well.\n\nFor example, 64 tokens can be split into groups of 16, 32, and 16:\n\nThe decoding kernel shows up directly in token throughput. On an M3 Ultra with torch.compile, MoE models generate about 1.3× more tokens per second:\n\nWorking with complex tensors gets easier. complex64 LU factorization, LU solve and triangular solve now run on MPS, which also unlocks the operations and gradients built on them, such as complex determinants. Here's a small system solved directly on the GPU:\n\nSmall matrices get fast kernels too. For camera geometry and image transformations, batches of FP32 matrices up to 4 × 4 are inverted in a single Metal kernel that combines factorization and solving. Larger problems get attention as well: QR uses blocked updates, and triangular solves turn much of their work into efficient matrix multiplication.\n\nGated DeltaNet workloads get a dedicated fast path for batches of 16 × 16, 32 × 32 and 64 × 64 FP32 triangular systems with at least eight right-hand sides.\n\nSVD is also more robust at numerical extremes. It now correctly handles very small singular values, very large or very small input magnitudes and basis completion with full_matrices=True, which in turn makes pseudoinverse and least-squares results more reliable.\n\nAudio models, video decoders and training loops have their own expensive operations. This release gives several of them new paths through Metal:\n\nToken sampling gets faster in 2.15 as well. softmax and log_softmax now run on dedicated Metal kernels, and large vocabularies benefit the most: an FP32 softmax over a [1, 128256] row of logits drops from 57 µs to 7 µs, about 8× faster than the MPSGraph version. The speedup holds across other common vocabulary sizes:\n\nOne of the most striking results in this release comes from the constant-padding change. The VAE decode in Wan-AI/Wan2.2-TI2V-5B-Diffusers makes 8,764 padding calls over a full 28-tile decode. With padding on Metal, peak driver memory drops from about 270 GiB to 8 GiB:\n\nYou can now pick which MPS stream runs your work, directly from Python. torch.mps.Stream and the torch.mps.stream context manager provide the interface, and Tensor.record_stream lets the allocator track a tensor's use on another stream.\n\nHere's a small example that sends work to a separate stream and synchronizes before reading the result:\n\nSeveral more operations now run on MPS: torch.frexp, torch.logspace, torch.take and Tensor.put_, torch.heaviside, torch.special.laguerre_polynomial_l and unsigned-integer comparisons. logspace doesn't yet support integer or boolean outputs with more than one element.\n\nAttention gets a correctness fix too: the MPS math implementation of scaled dot-product attention now handles batch and head broadcasting correctly.\n\nWork on 2.16 is already well underway. Some of the changes below have landed on main and are available in the nightlies; others are still in review, so details may change before the release.\n\nOnce a model's decode path no longer contains any MPSGraph ops, the GPU only starts on a token after the CPU has finished encoding all of its kernels. PyTorch 2.16 commits the command buffer every 16 kernels, so the GPU gets to work while the CPU is still encoding the rest. For compiled BF16 decoding at a 2048-token context:\n\nScaled dot-product attention is dropping MPSGraph completely: every shape will run on Metal kernels, with dedicated vector kernels for decoding and Metal Performance Primitives for half-precision prefill on newer macOS versions. The shapes that used to fall back to MPSGraph benefit the most. On an M5 Pro, decoding with grouped-query attention (32 query heads, 8 KV heads, head dim 80, 4K context) drops from 465 µs to 65 µs, and a 4K × 4K prefill with head dim 40 goes from 42 ms to 6 ms.\n\nThe move away from MPSGraph continues. Batch norm forward and backward are in progress, while MSE loss (up to 12× faster on small inputs), std_mean and var_mean (up to 4× faster) and bincount have already landed. bincount is the most dramatic: when most values fall into a single bin, counting 4 million integers used to take 6.8 seconds and now takes half a millisecond.\n\nBundled shaders will build for Metal 3.1 by default, with Metal 4 versions compiled only for the kernels that need them. That shrinks libtorch_cpu.dylib by about 25%, fro",
+  "modell": "gemini-3.5-flash",
+  "cim": "Megjelent a PyTorch 2.15: jelentős teljesítménynövekedés Apple Silicon Mac gépeken",
+  "lead": "A PyTorch 2.15 az FP8 támogatásával és egyedi Metal-kernellel akár nyolcszorosára gyorsítja a nyelvi modellek működését Apple Silicon chipeken.",
+  "osszefoglalo": "A Hugging Face és a PyTorch fejlesztőcsapata kiadta a [PyTorch 2.15](https://github.com/huggingface/blog/blob/main/mps-pytorch-2-15.md)-ös verzióját, amely **nagymértékben optimalizálja az Apple Silicon Mac gépek MPS-backendjét**. Az új verzió elhozza az FP8 adatformátum támogatását (torch.float8_e4m3fn), ami felére csökkenti a memóriahasználatot a korábbi FP16 vagy BF16 formátumokhoz képest.\n\nA frissítés legfontosabb eleme, hogy az MPSGraph rendszert több területen is **egyedi Metal-kérnelekre cserélték**. Ennek köszönhetően a nyelvi modellek válaszadási fázisa, a softmax műveletek és a kétértelmű mátrixszorzások lényegesen gyorsabbak lettek. Például a nagy szókészletet használó token-mintavételezés a korábbiidők töredékére csökkent, a Mixture-of-Experts (MoE) modellek pedig átlagosan 1,3-szer több tokent generálnak másodpercenként.\n\nA rendszer a memóriakezelés terén is komoly előrelépést mutat: a videódekódolási és generálási munkafolyamatoknál, mint például a Wan2.2 videómodell futtatásakor, az **új Metal alapú padding eljárással a memóriahasználat 270 GiB-ról 8 GiB-ra esett vissza**. Emellett a fejlesztők már manuálisan is kezelhetik az MPS-adatfolyamokat (MPS streams) közvetlenül Python kódból. A használathoz macOS 15 és Python 3.11 vagy újabb verzió szükséges.",
+  "miert_szamit": "A Mac-en dolgozó fejlesztők és kreatív szakemberek **lényegesen gyorsabban és hatékonyabban futtathatnak lokális nyelvi modelleket**, valamint kép- és videógeneráló eszközöket a memóriakorlátok drasztikus csökkenésének köszönhetően.",
+  "cimkek": [
+    "PyTorch",
+    "Apple",
+    "macOS",
+    "Hugging Face"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "PyTorch 2.15"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-20T11:19:52+00:00",
+  "megjelent": "2026-10-20T11:19:52+00:00",
+  "tenyellenorzes": {
+    "ok": false,
+    "ido": "2026-10-20T11:19:54+00:00",
+    "esemeny": null,
+    "forrasok": [],
+    "hibak": [
+      "a javított változat hibás vagy hiányos",
+      "üres cim",
+      "üres lead",
+      "üres osszefoglalo",
+      "üres miert_szamit"
+    ],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
