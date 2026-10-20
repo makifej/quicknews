@@ -294,8 +294,30 @@
       }, 1200);
     }, 500);
   }
+  // belépő (Heni 2026-10-20): első látogatáskor egy nagy BOO úszik át a képernyőn, és maga után húz egy lebegő
+  // „NYEREMÉNYJÁTÉK!” szalagot; kb. 5 mp, utána eltűnik. Böngészőnként egyszer.
+  function repules(utana) {
+    var volt = true;
+    try { volt = !!localStorage.getItem('qn-boo-repules') && !/[?&]repules=1\b/.test(location.search); } catch (e) {}
+    if (!JATEK || volt || all.kesz || all.bekuldve || !window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { utana(); return; }
+    try { localStorage.setItem('qn-boo-repules', String(Date.now())); } catch (e) {}
+    var r_ = document.createElement('div');
+    r_.className = 'boo-repules';
+    r_.setAttribute('aria-hidden', 'true');
+    r_.innerHTML = '<div class="boo-szalag"><span>NYEREMÉNYJÁTÉK!</span></div><i class="boo-kotel"></i><div class="boo-nagy">' + SZELLEM + '</div>';
+    B.appendChild(r_);
+    var vw = window.innerWidth, sz = r_.getBoundingClientRect().width, kozep = (vw - sz) / 2;
+    r_.style.top = Math.round(window.innerHeight * (MOBIL ? 0.3 : 0.26)) + 'px';
+    var a = r_.animate([
+      { transform: 'translateX(' + (-sz - 20) + 'px)' },
+      { transform: 'translateX(' + kozep + 'px)', offset: 0.32 },
+      { transform: 'translateX(' + (kozep + Math.min(40, vw * 0.04)) + 'px)', offset: 0.66 },
+      { transform: 'translateX(' + (vw + 20) + 'px)' }
+    ], { duration: 5000, easing: 'cubic-bezier(0.45, 0, 0.55, 1)', fill: 'forwards' });
+    a.onfinish = function () { r_.remove(); utana(); };
+  }
   function rajt() {
-    bemutato();
+    repules(bemutato);
     szamlaloRajz(false);
     if (!(JATEK && all.kesz)) indit();
     if (JATEK && all.kesz && !all.bekuldve && /[?&]boo=elonezet\b/.test(location.search)) ablak();

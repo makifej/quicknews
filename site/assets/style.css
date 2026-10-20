@@ -1468,6 +1468,16 @@ body.boo-nyitva { overflow: hidden; }
 .boo-uzenet { min-height: 20px; margin: 10px 0 0; font-size: 14px; color: var(--szoveg-2); }
 .boo-uzenet:empty { min-height: 0; margin: 0; }
 .boo-most-nem { margin-top: 4px; padding: 12px; border: 0; background: none; color: var(--szoveg-2); font: 500 14px Manrope, system-ui, sans-serif; text-decoration: underline; cursor: pointer; }
+/* belépő repülés: nagy szellem lebegő „NYEREMÉNYJÁTÉK!” szalaggal */
+.boo-repules { position: fixed; left: 0; z-index: 990; display: flex; align-items: center; pointer-events: none; will-change: transform; }
+.boo-nagy { width: 150px; flex: 0 0 auto; animation: hw-himba 1.6s cubic-bezier(0.32, 0.72, 0, 1) infinite alternate; }
+.boo-nagy svg { display: block; width: 100%; height: auto; overflow: visible; transform: scaleX(-1); filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45)); }
+.boo-nagy .hw-test { fill: #f4f4f2; stroke: #f4f4f2; } .boo-nagy path.hw-test:last-of-type { stroke: none; } .boo-nagy .hw-arc { fill: #1f1f1f; }
+.boo-kotel { display: block; width: 44px; height: 3px; margin: 0 -6px 0 -2px; border-radius: 2px; background: #f4f4f2; opacity: 0.85; transform: rotate(-8deg); }
+.boo-szalag { position: relative; padding: 14px 30px 14px 44px; background: #ff7518; color: #181818; font: 400 34px/1 "Permanent Marker", Manrope, sans-serif; white-space: nowrap;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 18px 50%); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4); transform-origin: 100% 50%; animation: boo-lobog 900ms ease-in-out infinite alternate; }
+@keyframes boo-lobog { from { transform: rotate(-3deg) skewY(-2deg); } to { transform: rotate(2deg) skewY(2deg); } }
+@media (max-width: 767px) { .boo-nagy { width: 80px; } .boo-szalag { font-size: 19px; padding: 9px 14px 9px 26px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 11px 50%); } .boo-kotel { width: 22px; } }
 /* bemutató ablak: fehér szellemek, a középső narancs, és egy kicsit nagyobb, játékos cím */
 .boo-sereg--bemutato path { fill: #f2f2f2; } .boo-sereg--bemutato .k-arc { fill: #1f1f1f; }
 .boo-sereg--bemutato svg { filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4)); }
