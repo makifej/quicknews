@@ -1,0 +1,54 @@
+{
+  "id": "2596ff929aee",
+  "slug": "megjelent-az-anylanguagemodel-1-0-az-apple-platformjaira",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/anylanguagemodel-1-0",
+  "szerzo": null,
+  "publikalva": "2026-10-20T00:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://huggingface.co/blog/assets/anylanguagemodel-1-0/banner.png"
+  },
+  "cim_eredeti": "AnyLanguageModel 1.0: One Year of Local Models on Apple Platforms",
+  "forrasok": [],
+  "szoveg_eredeti": "A drop-in compatible API Hosted models, too Open-weight models got better Upgrading to 1.0 What's next Links Last November, we introduced AnyLanguageModel on this blog: a drop-in replacement for Apple's Foundation Models framework that lets you choose the model and provider your app uses. We heard from app developers who were curious about local models but weren't always sure how to get started. They also wanted to avoid the added complexity of supporting multiple inference providers. AnyLanguageModel grew out of that feedback.\n\nLocal and hosted inference each have their strengths, and both have a role in building this new generation of intelligent apps. A shared API makes it easier to choose the right model for each task.\n\nA year and dozens of releases later, AnyLanguageModel 1.0 is out, along with swift-huggingface 1.0 and swift-xet 1.0.\n\nThe core idea of AnyLanguageModel remains the same: use the Foundation Models API with the model that fits your app. To get started, change your import statement:\n\nThe same session code then works with the system model, with open-weight models through llama.cpp, MLX, and Core ML, and with the hosted providers below.\n\nOver the past year, we've added several major features:\n\nOn OS 27, AnyLanguageModel also works with any model that conforms to Foundation Models' LanguageModel protocol, including Core AI models.\n\nAlongside AnyLanguageModel, we've built out swift-huggingface and swift-xet to bring accelerated model downloads from the Hub to Swift apps.\n\nSupport for hosted models expanded this year, too. AnyLanguageModel now supports:\n\nWith Inference Providers, you can use open-weight models that are too big to run on the device with the same session code:\n\nHosted providers get the same features as local models: guided generation, tool calling with streaming, and token usage on responses.\n\nReasoning is now part of the transcript too. When you switch providers, reasoning blocks are automatically omitted from requests if the new provider can't replay them.\n\nAPI keys come from a closure instead of a string, so your app can fetch short-lived tokens from your own server. The README explains when to let people bring their own keys and when to route requests through a proxy.\n\nAnyLanguageModel also runs on Linux, so the same code can work on a server.\n\nWhile we've made local models easier to use, the models themselves have become more capable, making the small ones a good place to start. Here are some of the most downloaded models on the Hub right now:\n\nThe first two fit on an iPhone, and Qwen3.8 27B runs on a Mac with 32 GB of memory or more. Selecting the MLX model takes one line:\n\nAnd if you have four maxed-out Mac Studios handy, GLM-5.3 from Z.ai takes about 1.5 TB in BF16. For the rest of us, it's available through Inference Providers.\n\nIf you're upgrading an existing app, see the migration guidance in the AnyLanguageModel, swift-huggingface, and swift-xet release notes for help updating your code.\n\nCommunity feedback and contributions have shaped several of our major features. Thank you to everyone who contributed for helping make AnyLanguageModel more useful to app developers.\n\nLanguage models have proven to be a powerful tool for building intelligence into products. They're also one of many kinds of models developers can put to work. We're excited to bring the same approach to more capabilities: familiar Swift APIs with a choice of models running on the device. Coming soon: models that decide, and models that listen.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Megjelent az AnyLanguageModel 1.0 az Apple platformjaira",
+  "lead": "Elérhetővé vált az AnyLanguageModel 1.0, amely egyetlen közös Swift API-val teszi lehetővé a helyi és felhős nyelvi modellek futtatását Apple rendszereken.",
+  "osszefoglalo": "Egy év fejlesztés után kiadták az **AnyLanguageModel 1.0** keretrendszert, amely az Apple Foundation Models felületének közvetlen helyettesítőjeként működik. A fejlesztők mindössze a kódbeli importálás megváltoztatásával válthatnak a rendszer saját modellje, helyi nyílt kódú modellek, valamint felhős szolgáltatók között.\n\nA keretrendszer mostantól támogatja az **MLX, llama.cpp és Core ML** futtatókörnyezeteket, továbbá Linux rendszereken is működik. A felhős integrációk segítségével az eszközön nem elférő nagyobb modellek is elérhetők, támogatva az eszközhasználatot, a strukturált válaszgenerálást és a gondolkodási folyamatok kezelését.\n\nAz AnyLanguageModel 1.0 mellett megjelent a **swift-huggingface 1.0** és a **swift-xet 1.0** is, amelyek a modellek gyorsabb letöltését teszik lehetővé a Hugging Face Hubról iOS és macOS alkalmazásokba.",
+  "miert_szamit": "Az Apple-re fejlett AI-funkciókat építő fejlesztők **egyetlen kódalappal** használhatnak helyi és felhős modelleket, kiküszöbölve a különálló integrációk bonyolultságát.",
+  "cimkek": [
+    "AnyLanguageModel",
+    "Apple",
+    "Swift",
+    "iOS"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "AnyLanguageModel",
+    "swift-huggingface",
+    "swift-xet"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-20T12:50:11+00:00",
+  "megjelent": "2026-10-20T12:50:11+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-20T12:50:13+00:00",
+    "esemeny": "A Hugging Face kiadta az AnyLanguageModel 1.0-s verzióját, valamint a kapcsolódó swift-huggingface 1.0 és swift-xet 1.0 csomagokat az Apple platformjaira.",
+    "forrasok": [
+      "https://huggingface.co/blog/anylanguagemodel-1-0"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}
