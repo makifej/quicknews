@@ -746,10 +746,29 @@ document.addEventListener('click', function(ev){
   var g = ev.target.closest && ev.target.closest('[data-megoszt]'); if (!g) return;
   var url = g.getAttribute('data-url'), cim = g.getAttribute('data-cim'), felirat = g.querySelector('span');
   var jelez = function(t){ if (!felirat) return; var regi = 'Megosztás'; felirat.textContent = t; setTimeout(function(){ felirat.textContent = regi; }, 2200); };
-  if (navigator.share) { navigator.share({title: cim, url: url}).catch(function(){}); return; }
-  if (navigator.clipboard) navigator.clipboard.writeText(url).then(function(){ jelez('Link kimásolva'); }, function(){ prompt('A hír linkje:', url); });
+  var szamol = function(){ window.qnMegosztva && window.qnMegosztva(g); };
+  if (navigator.share) { navigator.share({title: cim, url: url}).then(szamol, function(){}); return; }
+  if (navigator.clipboard) navigator.clipboard.writeText(url).then(function(){ jelez('Link kimásolva'); szamol(); }, function(){ prompt('A hír linkje:', url); });
   else prompt('A hír linkje:', url);
 });
+// Megosztásszámláló (Heni 2026-10-20, api/megoszt.js): a gombon kis szám mutatja, hányan osztották meg a hírt.
+// Egy böngészőből hírenként egyszer számít (qn-megosztva a helyi tárolóban); személyes adat nem megy a szerverre.
+(function(){
+  var gombok = document.querySelectorAll('[data-megoszt][data-id]'); if (!gombok.length) return;
+  var rajz = function(g, n){ var d = g.querySelector('[data-megoszt-db]'); if (!d) return; n = Number(n) || 0; d.textContent = n > 999 ? (Math.floor(n / 100) / 10).toFixed(1).replace('.', ',') + 'e' : String(n); d.hidden = !n; g.setAttribute('aria-label', 'Megosztás' + (n ? ', eddig ' + n + ' megosztás' : '')); };
+  var ids = []; gombok.forEach(function(g){ ids.push(g.getAttribute('data-id')); });
+  fetch('/api/megoszt?ids=' + encodeURIComponent(ids.join(',')), {cache: 'no-store'}).then(function(r){ return r.json(); }).then(function(d){
+    gombok.forEach(function(g){ rajz(g, (d.db || {})[g.getAttribute('data-id')]); });
+  }).catch(function(){});
+  window.qnMegosztva = function(g){
+    var id = g.getAttribute('data-id'), volt = []; try { volt = JSON.parse(localStorage.getItem('qn-megosztva') || '[]'); } catch(e){}
+    if (!Array.isArray(volt)) volt = [];
+    if (volt.indexOf(id) >= 0) return;
+    volt.push(id); try { localStorage.setItem('qn-megosztva', JSON.stringify(volt.slice(-500))); } catch(e){}
+    fetch('/api/megoszt', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({id: id})})
+      .then(function(r){ return r.json(); }).then(function(d){ if (d && d.db) rajz(g, d.db); }).catch(function(){});
+  };
+})();
 // Találati oldal (/kereses?q=...): az összes találat a napi oldal kártyáival (Heni 2026-10-18)
 (function(){
   var oldal = document.querySelector('[data-kereses-oldal]'); if (!oldal) return;

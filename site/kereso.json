@@ -11,6 +11,17 @@
     "d": "okt. 20. 17:19"
   },
   {
+    "i": "e107e4103a5c",
+    "p": "/assets/kep/e107e4103a5c.webp",
+    "c": "Elindult a Hugging Face Agent Manager eszköze",
+    "b": "A Hugging Face megjelentette az Agent Manager rendszert, amellyel több AI-ügynök munkája koordinálható egyetlen felületen.",
+    "k": "Hugging Face (LinkedIn)",
+    "g": "ügynök",
+    "u": "/hir/elindult-a-hugging-face-agent-manager-eszkoze",
+    "sz": "A Hugging Face elindította az Agent Manager nevű eszközt, amely megkönnyíti a különböző keretrendszerekben működő AI-ügynökök felügyeletét. A rendszer segítségével többek között a Claude Code, a Codex és az OpenCode alapú ügynökök hangolhatók össze.\n\nA platformon futó ügynökök képesek egymással kommunikálni és önállóan megszervezni a feladatok végrehajtását. A folyamatok megszakítás nélkül futnak a HF Spaces infrastruktúráján, ami leegyszerűsíti a komplex feladatok automatizálását és a munkamenetek kezelését. Hugging Face Agent Manager AI-ügynök Claude Code",
+    "d": "okt. 20. 17:07"
+  },
+  {
     "i": "b011d9853619",
     "p": "/assets/kep/b011d9853619.webp",
     "c": "A Gemini 4 Argon interaktív 3D-s periódusos rendszert épített",
@@ -229,6 +240,17 @@
     "u": "/hir/elindult-a-drex-max-a-nace-ai-uj-dontesi-modellje",
     "sz": "A Nace AI kiadta a Drex Max multimodális döntési modellt, amelyet kifejezetten számítógépes és böngészős AI-ügynökök támogatására terveztek. Az eszköz nem generál szöveget, hanem a megadott opciók alapján valószínűségi eloszlást ad vissza egyetlen API-hívással, bemeneti szövegek és legfeljebb 8 kép elemzése után.\n\nA cég mérései szerint a modell 67,59-es pontszámot ért el a Decision Index 0.3.2 teszten, ami meghaladja a versenytársak teljesítményét. A képernyőképeken alapuló döntéshozatal medián válaszideje 174 milliszekundum, a modell pedig minden átméretezett képet elfogad.\n\nA Drex Max kizárólag a Nace Console felhős API-ján keresztül érhető el, nyílt súlyú verzió nélkül. Az árazás 1 millió bemeneti tokenenként 0,06 dollár, míg a kimeneti tokenekért nem számítanak fel díjat a Nace hivatalos felületén. Nace AI Drex Max AI ügynök multimodális",
     "d": "okt. 20. 02:03"
+  },
+  {
+    "i": "84cd8d44e982",
+    "p": "/assets/kep/84cd8d44e982.webp",
+    "c": "Natív TPU-támogatást kapott a Hugging Face a TorchTPU révén",
+    "b": "A Hugging Face integrálta a TorchTPU-t, így a fejlesztők közvetlenül, átalakítás nélkül futtathatják a PyTorch-modelleket a Google TPU-chippjein.",
+    "k": "Hugging Face",
+    "g": "eszköz",
+    "u": "/hir/nativ-tpu-tamogatast-kapott-a-hugging-face-a-torchtpu-reven",
+    "sz": "A Hugging Face natív támogatást vezetett be a Google TPU akcelerátoraihoz a TorchTPU segítségével. Korábban a PyTorch-kódok TPU-n való futtatásához külön torch_xla átalakításra vagy JAX használatára volt szükség, ami gyakran bonyolult fordítási és hibakeresési folyamatokat eredményezett.\n\nAz új megoldásnak köszönhetően a TPU mostantól egy közvetlenül elérhető eszközként jelenik meg a PyTorch környezetben. A Transformers és a Diffusers könyvtárak modelljei egyetlen eszközbeállítási paranccsal betölthetők és futtathatók TPU- hardware-en, ráadásul a skálázáshoz chipen keresztüli párhuzamosítást is támogat a rendszer.\n\nA rendszerbe beépített Pallas-alapú kernelek jelentős teljesítménynövekedést biztosítanak. Például nagyobb kötegek feldolgozásánál a tesztek alapján a dekódolási sebesség akár 21,5-szeresére is nőhet a Google Cloud TPU v6e chipeken. Hugging Face TorchTPU Google TPU PyTorch",
+    "d": "okt. 20."
   },
   {
     "i": "2596ff929aee",

@@ -1,0 +1,55 @@
+{
+  "id": "84cd8d44e982",
+  "slug": "nativ-tpu-tamogatast-kapott-a-hugging-face-a-torchtpu-reven",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/hf-torchtpu",
+  "szerzo": null,
+  "publikalva": "2026-10-20T00:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://huggingface.co/blog/assets/hf-torchtpu/thumbnail.png"
+  },
+  "cim_eredeti": "Hugging Face ❤️ TorchTPU: TPUs, Natively",
+  "forrasok": [],
+  "szoveg_eredeti": "Wait, what's a TPU? 🤔 The old way Enter TorchTPU 🚀 Your favourite libraries, now on TPU Transformers Images? Videos? Diffusers paints them on TPUs 🎨 Kernels We test it so you don't have to 🧪 Get started If you ever tried to run PyTorch on a TPU, you probably ported your code to torch_xla, or you ended up having to learn JAX. With TorchTPU, a native PyTorch backend, TPU is now just another device. It opens up native support of TPU in the Hugging Face ecosystem. Transformers, Diffusers and Kernels run natively on TPU. Pick a model from the Hub, send it to \"tpu\", and you're done.\n\nTPU stands for Tensor Processing Unit. TPUs are Google's own AI accelerators. They are chips built for one job: the matrix math that neural networks spend most of their time on. Google has been designing them for about ten years, and uses them to train and serve its own models, including Gemini.\n\nTPUs are available on Google Cloud, from a single chip up to pods of thousands of chips. They shine when you need a lot of compute, for training or for serving at scale.\n\nThe catch has always been software. The TPU stack grew up around TensorFlow and JAX, and PyTorch users had to work harder to get in.\n\nUntil now, running PyTorch on TPUs meant going through PyTorch/XLA (torch_xla). It worked, but it had its quirks. Tensors were lazy (the tensors, not you), so your code didn't always run when you thought it did. Small changes could trigger graph recompilations, and debugging was hard to reason about.\n\nTo make life easier, we built Optimum TPU. It gave Hugging Face models inference and training support on TPUs. Now that TorchTPU brings native support, Optimum TPU is not required anymore to run Hugging Face models with Transformers and Diffusers.\n\nTorchTPU adds TPU as a new backend to PyTorch. You write regular PyTorch code. It comes with Pallas kernels tuned for TPUs, support for distributed training, and a torch.compile integration for when you want more speed. Installing it on a TPU VM takes one command:\n\nThe extra index gives you the CPU build of torch. Without it, pip pulls the much bigger CUDA build, which you don't need on a TPU.\n\nTransformers v5 was built around one idea: be the source of truth for model definitions, so they can run anywhere. \"Anywhere\" now includes TPUs. To load a model on a TPU, pass device_map=\"tpu\". That's it.\n\nThe model runs in eager mode by default. You can also use torch.compile for better performance, or run it in a distributed setup.\n\nTPU is now a first-class device in Diffusers. For prototyping or debugging, eager mode only needs pipe.to(\"tpu\"). For deployment, compiled mode adds one compile call. Your pipelines and code stay the same, and there's no TPU fork to maintain.\n\nThe first call compiles, and every call after that with the same image size reuses the graph.\n\nModels too big for one chip? Pass a TensorParallelConfig to from_pretrained and the transformer is sharded across chips as it loads, so the full model never has to fit in one place. Many popular pipelines support it out of the box, and the ones that don't are just a tp_plan away. The Diffusers TPU guide has the full recipe.\n\nHere are some examples run on a Cloud TPU v6e-4:\n\nTP=4 (each model split across four chips) · bf16 · batch 1\n\nThe Kernels Hub has ready-to-use TPU kernels. Load one with the Kernels library and give your model a speed boost.\n\nTPU kernels are written in Pallas, which gives you low-level control over the hardware. You can also bring in kernels from the Tokamax library. Here is a ragged-dot kernel from Tokamax plugged into a Mixture-of-Experts model:\n\nThe bigger the batch, the bigger the win. At batch size 64, decoding is 21.5× faster on Qwen3-30B-A3B and 12.8× faster on Gemma 4 26B-A4B.\n\nDecode throughput on a TPU v6e-8, Hub kernel vs. the default implementation.\n\nWe're continuously improving TPU support in transformers by running the library test suite. We are working to add a nightly CI on TPU and make the results available in the (transformers dashboard)[https://huggingface.co/spaces/transformers-community/transformers-ci-dashboard].\n\nThe Transformers CI dashboard, with TPU results next to other accelerators. Work in progress!\n\nIt's not all green yet, and we're fine with that. Of the tests that run on TPU, 96.5% pass. Every failure we find becomes a small repro script and an issue on the TorchTPU repo. So far we have reported 34 issues, and 19 are already fixed. Running on TPU also caught a few bugs in Transformers itself, like in StaticCache and the Qwen3 tensor-parallel plans. We fixed those upstream.\n\nIf something breaks on TPU, we want to find out before you do.\n\nTPUs are no longer a side quest for PyTorch users. Install TorchTPU, grab a model from the Hub, and send it to \"tpu\".\n\nWe can't wait to see what you build 🤗. If you hit a problem, open an issue and tell us about it.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Natív TPU-támogatást kapott a Hugging Face a TorchTPU révén",
+  "lead": "A Hugging Face integrálta a TorchTPU-t, így a fejlesztők közvetlenül, átalakítás nélkül futtathatják a PyTorch-modelleket a Google TPU-chippjein.",
+  "osszefoglalo": "A Hugging Face natív támogatást vezetett be a Google TPU akcelerátoraihoz a [TorchTPU](https://github.com/google-pytorch/torch_tpu) segítségével. Korábban a PyTorch-kódok TPU-n való futtatásához külön torch_xla átalakításra vagy JAX használatára volt szükség, ami gyakran bonyolult fordítási és hibakeresési folyamatokat eredményezett.\n\nAz új megoldásnak köszönhetően a TPU mostantól egy közvetlenül elérhető eszközként jelenik meg a PyTorch környezetben. A [Transformers](https://huggingface.co/docs/transformers) és a [Diffusers](https://huggingface.co/docs/diffusers) könyvtárak modelljei **egyetlen eszközbeállítási paranccsal** betölthetők és futtathatók TPU- hardware-en, ráadásul a skálázáshoz chipen keresztüli párhuzamosítást is támogat a rendszer.\n\nA rendszerbe beépített Pallas-alapú kernelek jelentős teljesítménynövekedést biztosítanak. Például nagyobb kötegek feldolgozásánál a tesztek alapján a dekódolási sebesség **akár 21,5-szeresére is nőhet** a Google Cloud TPU v6e chipeken.",
+  "miert_szamit": "A fejlesztők és cégek **jelentősen csökkenthetik az infrastruktúra-költségeket**, mivel a Hugging Face modelljeit átalakítás nélkül, olcsóbb és hatékonyabb Google Cloud TPU-kon is futtathatják Nvidia GPU-k helyett.",
+  "cimkek": [
+    "Hugging Face",
+    "TorchTPU",
+    "Google TPU",
+    "PyTorch"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "TorchTPU",
+    "Transformers",
+    "Diffusers"
+  ],
+  "linkszabaly": 3,
+  "forditva": "2026-10-20T15:49:49+00:00",
+  "megjelent": "2026-10-20T15:49:49+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-20T15:50:04+00:00",
+    "esemeny": "A Hugging Face a TorchTPU segítségével natív Google TPU-támogatást vezetett be az ökoszisztémájában (Transformers, Diffusers és Kernels), így a fejlesztők közvetlenül, átalakítás nélkül futtathatják PyTorch-modelleiket TPU hardvereken.",
+    "forrasok": [
+      "https://huggingface.co/blog/hf-torchtpu"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
