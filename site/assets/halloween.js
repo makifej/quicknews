@@ -141,8 +141,9 @@
       '<p class="boo-bev">Hova írjunk, ha te nyersz?</p>' +
       '<form class="boo-urlap" novalidate><label class="rejtett" for="boo-email">E-mail-cím</label>' +
       '<input id="boo-email" type="email" inputmode="email" autocomplete="email" placeholder="nev@pelda.hu" required>' +
-      '<label class="boo-jog"><input type="checkbox" required> <span>Elfogadom a <a href="/nyeremenyjatek" target="_blank" rel="noopener">játékszabályzatot</a>. ' +
-      'Tudomásul veszem, hogy a jelentkezéssel a quicknews.hu napi hírlevelére is feliratkozom, amiről bármikor leiratkozhatok.</span></label>' +
+      '<label class="boo-jog"><input type="checkbox" class="boo-elfogad" required> <span>Elfogadom a <a href="/nyeremenyjatek" target="_blank" rel="noopener">játékszabályzatot</a>.</span></label>' +
+      // a hírlevél külön, nem kötelező pipa (Heni 2026-10-20), alapból bejelöletlen; a részvételnek nem feltétele
+      '<label class="boo-jog boo-jog--hl"><input type="checkbox" class="boo-hirlevel"> <span>Feliratkozom a quicknews.hu napi hírlevelére is (nem kötelező, bármikor leiratkozhatok).</span></label>' +
       '<button type="submit" class="boo-gomb">Értesítsetek, ha nyertem</button><p class="boo-uzenet" role="status"></p></form>' +
       '<button type="button" class="boo-most-nem">Most nem</button></div>';
     B.appendChild(abl);
@@ -154,17 +155,17 @@
     var urlap = abl.querySelector('form'), uz = abl.querySelector('.boo-uzenet'), gomb = abl.querySelector('.boo-gomb');
     urlap.onsubmit = function (e) {
       e.preventDefault();
-      var email = abl.querySelector('#boo-email').value.trim(), elf = abl.querySelector('.boo-jog input').checked;
+      var email = abl.querySelector('#boo-email').value.trim(), elf = abl.querySelector('.boo-elfogad').checked, hl = abl.querySelector('.boo-hirlevel').checked;
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { uz.textContent = 'Írj be egy érvényes e-mail-címet.'; return; }
       if (!elf) { uz.textContent = 'A részvételhez fogadd el a játékszabályzatot.'; return; }
       gomb.disabled = true; uz.textContent = 'Küldés…';
-      fetch('/api/boo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, elfogad: true, db: all.db }) })
+      fetch('/api/boo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, elfogad: true, hirlevel: hl, db: all.db }) })
         .then(function (v) { return v.json().then(function (j) { return [v.ok, j]; }); })
         .then(function (x) {
           if (x[0] && x[1].rendben) {
             all.bekuldve = true; ment(); szamlaloRajz(true);
-            // a hírlevélre is feliratkozott, ezért a hírlevél-ablak többé ne kérje (render.py: qn-hl-kesz)
-            try { localStorage.setItem('qn-hl-kesz', '1'); } catch (e2) {}
+            // ha a hírlevélre is feliratkozott, a hírlevél-ablak többé ne kérje (render.py: qn-hl-kesz)
+            if (hl) { try { localStorage.setItem('qn-hl-kesz', '1'); } catch (e2) {} }
             abl.querySelector('.boo-ablak').innerHTML = '<div class="boo-sereg">' + KIS + KIS + KIS + KIS + KIS + '</div>' +
               '<p class="boo-felirat">Nyereményjáték</p><h2>Benne vagy a sorsolásban!</h2><p class="boo-bev">' + (x[1].uzenet || 'Ha te nyersz, erre a címre írunk.') + '</p>' +
               '<button type="button" class="boo-gomb">Vissza a hírekhez</button>';

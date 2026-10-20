@@ -2,9 +2,9 @@
 //
 // POST /api/boo {email, elfogad:true, db}
 //
-// A jelentkezők KÜLÖN listán vannak (Upstash qn:boo hash: cím -> {ido}), Heni kérésére. A játékszabályzat szerint a jelentkező
-// a napi hírlevélre is feliratkozik, ezért ugyanaz a cím a qn:hirlevel listára is felkerül (forras: "boo"); ha már ott volt,
-// az eredeti feliratkozása marad. Amíg a BOO_JATEK környezeti változó nem "1", a végpont nem fogad jelentkezést.
+// A jelentkezők KÜLÖN listán vannak (Upstash qn:boo hash: cím -> {ido, hirlevel}), Heni kérésére. A hírlevél külön, nem kötelező
+// pipa (Heni 2026-10-20): csak akkor kerül a cím a qn:hirlevel listára is (forras: "boo"), ha a játékos bepipálta; ha már ott
+// volt, az eredeti feliratkozása marad. Amíg a BOO_JATEK környezeti változó nem "1", a végpont nem fogad jelentkezést.
 // A válasz akkor is ugyanaz, ha a cím már jelentkezett, így a végponttal nem lehet kitalálni, ki játszik.
 const crypto = require("crypto");
 const { tisztit, domainRendben } = require("./hirlevel.js");
@@ -64,9 +64,10 @@ module.exports = async (req, res) => {
     if (allapot === "nem") return json(res, 400, { rendben: false, uzenet: "Erre a címre nem lehet levelet küldeni. Nézd meg, nem gépelted-e el." });
 
     const ido = new Date().toISOString();
-    await kv("HSETNX", KULCS, email, JSON.stringify({ ido }));
-    await kv("HSETNX", HL, email, JSON.stringify({ ido, forras: "boo" }));
-    return json(res, 200, { rendben: true, uzenet: "Ha te nyersz, erre a címre írunk. Addig minden reggel 8-kor megkapod a napi AI-híreket is." });
+    const hirlevel = b.hirlevel === true;
+    await kv("HSETNX", KULCS, email, JSON.stringify({ ido, hirlevel }));
+    if (hirlevel) await kv("HSETNX", HL, email, JSON.stringify({ ido, forras: "boo" }));
+    return json(res, 200, { rendben: true, uzenet: hirlevel ? "Ha te nyersz, erre a címre írunk. Addig minden reggel 8-kor megkapod a napi AI-híreket is." : "Ha te nyersz, erre a címre írunk." });
   } catch (e) {
     return json(res, 502, { hiba: "az adattár nem válaszolt" });
   }

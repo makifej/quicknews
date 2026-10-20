@@ -1462,6 +1462,7 @@ body.boo-nyitva { overflow: hidden; }
 .boo-jog { display: flex; align-items: flex-start; gap: 10px; margin: 16px 0; text-align: left; font-size: 13px; line-height: 1.45; color: var(--szoveg-2); cursor: pointer; }
 .boo-jog input { flex: 0 0 auto; width: 20px; height: 20px; margin: 0; accent-color: #ff7518; }
 .boo-jog a { color: var(--szoveg); text-decoration: underline; }
+.boo-jog--hl { margin-top: -4px; }
 .boo-gomb { width: 100%; height: 52px; border: 0; border-radius: 12px; background: #ff7518; color: #181818; font: 800 16px Manrope, system-ui, sans-serif; cursor: pointer; }
 .boo-gomb:disabled { opacity: 0.6; cursor: default; }
 .boo-uzenet { min-height: 20px; margin: 10px 0 0; font-size: 14px; color: var(--szoveg-2); }

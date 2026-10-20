@@ -131,7 +131,7 @@ async function booAdat() {
   for (let i = 0; i < k.length; i += 2) {
     let v = {};
     try { v = JSON.parse(k[i + 1]) || {}; } catch (e) { /* hibás bejegyzés */ }
-    lista.push({ email: k[i], ido: v.ido || "" });
+    lista.push({ email: k[i], ido: v.ido || "", hirlevel: !!v.hirlevel });
   }
   lista.sort((a, b) => String(b.ido).localeCompare(String(a.ido)));
   return { darab: lista.length, lista, ido: new Date().toISOString() };
