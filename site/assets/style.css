@@ -1504,6 +1504,18 @@ body.boo-nyitva { overflow: hidden; }
 .megoszt-cikk svg { width: 18px; height: 18px; }
 .megoszt-db { display: inline-grid; place-items: center; min-width: 20px; height: 20px; margin-left: 2px; padding: 0 6px; font-size: 12px; line-height: 20px; font-weight: 800; color: var(--kiemelo-szoveg); background: var(--kiemelo); border-radius: 999px; font-variant-numeric: tabular-nums; }
 .megoszt-db[hidden] { display: none; }
+/* „Meghallgatom” gomb: asztalon a Megosztás mellett, mobilon a szavazó mellett; a kitöltés a lejátszás állását mutatja */
+.hallgat { --hg: 0%; display: inline-flex; align-items: center; gap: 8px; height: 40px; margin: 16px 0 0 12px; padding: 0 16px; font: inherit; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--kiemelo-szoveg); background: linear-gradient(90deg, rgba(0, 0, 0, .16) var(--hg), transparent var(--hg)), var(--kiemelo); border: 0; border-radius: 999px; cursor: pointer; vertical-align: top; font-variant-numeric: tabular-nums; transition: filter 400ms var(--gorbe); }
+.hallgat:hover { filter: brightness(1.06); }
+.hallgat:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
+.hallgat svg { width: 16px; height: 16px; flex: none; }
+.hallgat .hg-szunet, .hallgat[aria-pressed="true"] .hg-lejatsz { display: none; }
+.hallgat[aria-pressed="true"] .hg-szunet { display: block; }
+.kiprobal ~ .hallgat { margin-top: 24px; vertical-align: middle; }
+@media (max-width: 1279px) { .szavaz-fej:has(.hallgat) { display: flex; flex-wrap: wrap; align-items: center; gap: 0 8px; } }
+.szavaz-fej .hallgat { margin-left: 0; }
+.hallgat--mobil { display: none; }
+@media (max-width: 767px) { .hallgat--asztal { display: none; } .hallgat--mobil { display: inline-flex; } }
 .kiprobal ~ .megoszt-cikk { margin-top: 24px; vertical-align: middle; }
 
 /* Google AdSense helyek (render.py ADSENSE_*, Heni 2026-10-20): a saját szponzorált elemekhez illő, visszafogott keret,
