@@ -1,0 +1,75 @@
+{
+  "id": "38715d90bd30",
+  "slug": "az-nvidia-kiadta-a-kumo-forecast-idosor-elorejelzo-ai-modelljet",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/nvidia/kumo-forecast",
+  "szerzo": null,
+  "publikalva": "2026-10-21T12:51:24+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/660f5683b710b57b115a5483/pFl0vhvFrc-oZjk5qE8_0.png"
+  },
+  "cim_eredeti": "NVIDIA Kumo Forecast Combines Pretrained Time-Series Representations with Historical Pattern Retrieval and Interpretability",
+  "forrasok": [],
+  "szoveg_eredeti": "NVIDIA Kumo Forecast (formerly known as NV-Tesseract Forecasting) is a multi-variate time-series forecasting model that combines a pretrained Transformer backbone with Domain-Aware Representation and Retrieval (DARR), a context-enhanced forecasting mode that blends direct model predictions with patterns retrieved from historical data. This includes interpretability of the results. Built on the MOMENT-1-large backbone, Kumo Forecast uses an approximately 340-million-parameter base encoder plus a trainable forecasting head.\n\nThe library provides a DataFrame-first API, configurable forecast horizons, optional historical context for retrieval, and an interpretability framework that produces horizon-specific explanations without modifying the underlying forecaster.\n\nKumo-Forecast is available under Apache 2.0 license.\n\nModel code: NVIDIA/Kumo-TS Model weights: nvidia/Kumo-Forecast\n\nA forecasting system can draw on two different sources of information: representations learned during pretraining and historical observations available for the current application. Kumo-Forecast brings these together through a pretrained forecasting model and an optional retrieval pathway over historical context.\n\nIn its direct forecasting path, Kumo-Forecast uses a MOMENT-based Transformer and a trained forecasting head to predict future values. In Domain Aware Representation and Retrieval (DARR) mode, it also retrieves related patterns from historical data using a nearest-neighbor approach and combines that information with the direct forecast.\n\nThis creates a distinction between the model’s input window and its retrieval context. The input window supplies recent observations for the forecast; a separate historical DataFrame can supply additional context for pattern retrieval. Developers can adjust how strongly the final prediction relies on each pathway through the library’s configuration options.\n\nFurther information on DARR mode can be found in this published paper, Memory-Augmented Forecasting: Scalability and Generalization Across Temporal Domains\n\nKumo-Forecast combines four main components: a pretrained temporal encoder, a trainable forecasting head, historical-pattern retrieval mechanism and an interpretability framework.\n\nPretrained Temporal Representations: The model uses the MOMENT-1-large Transformer encoder as its backbone. The architecture keeps encoder and embedder weights frozen while training the forecasting head, separating the pretrained representation model from the task-specific prediction layer.\n\nDirect Forecasting: The forecasting head maps the model’s representations to future values for the requested horizon. For horizons beyond the model’s native capability, there is support for autoregressive extension. This distinguishes a directly generated forecast from a longer forecast that extends predictions recursively.\n\nDomain-Aware Representation and Retrieval: DARR augments direct forecasting with k-nearest-neighbor retrieval from historical context data. This process combines direct forecasts with historical-pattern retrieval, while the SDK accepts the historical context through a separate context_df argument.\n\nInterpretability: Kumo-Forecasting also includes a model-agnostic interpretability framework. When enabled, it produces an explanation bundle containing lag and feature attributions per forecast horizon, semantic-flow diagnostics, trajectory-stability diagnostics, and optional embedding Integrated Gradients.These outputs accompany the forecast rather than requiring a different forecasting architecture.\n\nFurther details on interpretability can be found in this paper, NVExplain: Explaining Time Series Forecasting with Latent Trajectory Analysis and Structure-Preserving Surrogates\n\nData must be numeric, temporal data. Supported input sequence lengths include 256, 512, 1024, and 2048 observations. Inputs consist of a timestamp column and one or more numeric value columns, represented as a pandas DataFrame or a CSV/JSON input. When leveraging DARR mode, the dimensions of the context must be similar to the context of the input.\n\nThe Factory Operations (FOX) Blueprint includes Early Access to the Predictive Maintenance module which leverages Kumo Anomaly and Kumo Forecast. It analyzes real-time data to predict future anomalies. Your browser does not support the video tag.\n\nPlease click on the image below to access the session from GTC San Jose 2026\n\nFor an application-specific evaluation, compare the direct and retrieval-enhanced configurations on the same held-out forecasting windows. Validate forecast quality across the intended horizons and operating conditions, consistent with NVIDIA’s requirement for use-case-specific testing\n\nModel code: NVIDIA/Kumo-TS Model weights: nvidia/Kumo-Forecast\n\nThe Kumo-TS repository additionally provides an example for fine-tuning Kumo-Forecast on a user-supplied CSV. Developers therefore have both a pretrained inference workflow and a documented starting point for adapting the model to their own data.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Az NVIDIA kiadta a Kumo Forecast idősor-előrejelző AI-modelljét",
+  "lead": "Nyílt forráskóddal jelent meg az NVIDIA Kumo Forecast modellje, amely a korábbi adatminták visszakeresésével teszi pontosabbá és értelmezhetővé az előrejelzéseket.",
+  "osszefoglalo": "Az NVIDIA kiadta a [Kumo Forecast](https://huggingface.co/nvidia/Kumo-Forecast) nevű, többváltozós idősor-előrejelző AI-modelljét. A rendszer a [MOMENT-1-large](https://huggingface.co/AutonLab/MOMENT-1-large) Transformer alapmodellre épül, és 340 millió paraméteres kódolóval állítja elő az előrejelzéseket. A nyílt forráskódú eszköz közvetlenül hasznosítható üzleti, logisztikai és ipari adatsorok elemzésére.\n\nA modell különlegessége a **DARR technológia**, amely a közvetlen jövőbeli becsléseket ötvözi a korábbi adatokból kiválasztott hasonló mintázatokkal. A rendszer emellett beépített értelmezési funkciót is kínál: a felhasználók pontos visszajelzést kapnak arról, hogy mely korábbi adatok és tényezők befolyásolták a konkrét előrejelzést.\n\nAz eszköz [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) licenc alatt jelent meg, így a kód és a modellsúlyok is **szabadon felhasználhatók**. A fejlesztők a GitHubon és a Hugging Face felületén érhetik el az architektúrát, amely finomhangolási útmutatót is tartalmaz a saját adatsorok használatához.",
+  "miert_szamit": "Az elemzők és adatkutatók **pontosabb üzleti és értékesítési előrejelzéseket** készíthetnek, miközben a döntéshozók számára is világosan el tudják magyarázni a becslések mögötti tényezőket.",
+  "cimkek": [
+    "NVIDIA",
+    "Kumo Forecast",
+    "idősor",
+    "előrejelzés"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Kumo Forecast",
+    "MOMENT-1-large"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 82,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 92,
+      "aktualitas": 98,
+      "kozossegi": 64
+    },
+    "elofeszures": 92,
+    "tanult": 71,
+    "indok": "Kifejezetten technikai, megbízható fejlesztési hír az Nvidia új idősor-előrejelző modelljéről.",
+    "tema": "nvidia kumo forecast model",
+    "cim_hu": "Az Nvidia bemutatta a Kumo Forecast idősor-előrejelző AI-modelljét",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-21T13:03:40+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-21T13:05:51+00:00",
+  "megjelent": "2026-10-21T13:05:51+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-21T13:05:54+00:00",
+    "esemeny": "Az NVIDIA kiadta az Apache 2.0 licenc alatt elérhető Kumo Forecast nevű, nyílt forráskódú többváltozós idősor-előrejelző AI-modelljét és annak kódját.",
+    "forrasok": [
+      "https://huggingface.co/blog/nvidia/kumo-forecast"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
