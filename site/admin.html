@@ -267,7 +267,7 @@ button.hird-indit{color:#131313;background:var(--amber)}
 .pr-szurok{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px}
 .pr-naplo{margin-top:40px}.pr-naplo summary{cursor:pointer;font-weight:700;color:var(--halk);font-size:18px}
 .pr-naplo li{list-style:none;padding:10px 0;border-bottom:1px solid var(--vonal);font-size:15px;color:var(--halk)}.pr-naplo li b{color:var(--szoveg);font-weight:600}
-@media (max-width:700px){.pr-szurok{gap:8px}.pr-szurok .szeg{display:grid;width:100%}.pr-szurok .szeg[aria-label="Állapot"]{grid-template-columns:auto auto auto auto}.pr-szurok .szeg[aria-label="Állapot"] button{padding:7px 6px;font-size:14px}.pr-szurok .szeg[aria-label="Prioritás"]{grid-template-columns:auto auto auto auto auto}.pr-szurok .szeg[aria-label="Prioritás"] button{padding:7px 6px;font-size:14px}.pr-szurok .szeg[aria-label="Sorrend"]{grid-template-columns:repeat(2,minmax(0,1fr))}.pr-szurok .szeg button{text-align:center}.pr-szurok .szeg button{padding:7px 11px;font-size:15px}.pr-sor{grid-template-columns:64px minmax(0,1fr)!important}.pr-pont{font-size:26px}.pr-tomeg.aktiv{top:56px}.pr-tomeg{flex-wrap:nowrap}.pr-tomeg .gomb{flex:1 1 0;padding:8px 6px;font-size:14px;white-space:nowrap}}
+@media (max-width:700px){#pr-mutatok{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-bottom:16px}#pr-mutatok .mutato{padding:8px 6px 10px;border-radius:10px}#pr-mutatok .mutato small{font-size:11px;letter-spacing:-.01em;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}#pr-mutatok .mutato b{font-size:22px}#pr-mutatok .mutato em{display:none}.pr-szurok{gap:8px}.pr-szurok .szeg{display:grid;width:100%}.pr-szurok .szeg[aria-label="Állapot"]{grid-template-columns:auto auto auto auto}.pr-szurok .szeg[aria-label="Állapot"] button{padding:7px 6px;font-size:14px}.pr-szurok .szeg[aria-label="Prioritás"]{grid-template-columns:auto auto auto auto auto}.pr-szurok .szeg[aria-label="Prioritás"] button{padding:7px 6px;font-size:14px}.pr-szurok .szeg[aria-label="Sorrend"]{grid-template-columns:repeat(2,minmax(0,1fr))}.pr-szurok .szeg button{text-align:center}.pr-szurok .szeg button{padding:7px 11px;font-size:15px}.pr-sor{grid-template-columns:64px minmax(0,1fr)!important}.pr-pont{font-size:26px}.pr-tomeg.aktiv{top:56px}.pr-tomeg{flex-wrap:nowrap}.pr-tomeg .gomb{flex:1 1 0;padding:8px 6px;font-size:14px;white-space:nowrap}}
 .ah.sopor-ki{transform:translateX(-110%);opacity:0;pointer-events:none}
 .cimke.uj{color:#131313;background:#7dd3a0}
 .napfej{font-size:20px;font-weight:700;color:var(--halk);margin:24px 0 12px;text-transform:capitalize}
@@ -1051,7 +1051,7 @@ function prrajzol(){if(!PR)return;const L=document.getElementById("pr-lista");co
   `<div class="mutato kiemelt"><small>Függőben</small><b class="num">${fug.length}</b><em>P1 ${db("P1")} · P2 ${db("P2")} · P3 ${db("P3")}</em></div>`+
   `<div class="mutato"><small>Jóváhagyva</small><b class="num">${jo.length}</b><em>ebből kint ${jo.filter(s=>s.kint).length}</em></div>`+
   `<div class="mutato"><small>Elutasítva</small><b class="num">${el.length}</b><em>gépi ${el.filter(s=>s.auto).length} · általad ${el.filter(s=>!s.auto).length}</em></div>`+
-  `<div class="mutato"><small>Utolsó frissítés</small><b class="num">${PR.frissult?ora(new Date(PR.frissult)):"-"}</b><em>utóbbi ${PR.napok||7} nap</em></div>`;
+  `<div class="mutato"><small>Frissítve</small><b class="num">${PR.frissult?ora(new Date(PR.frissult)):"-"}</b><em>utóbbi ${PR.napok||7} nap</em></div>`;
  let lista=S.filter(s=>(PRALL==="mind"||s.allapot===PRALL)&&(PRSZINT==="mind"||(PRSZINT==="X"?s.szint==="X":s.szint_tenyleges===PRSZINT)));
  lista.sort(PRREND==="pont"?(a,b)=>(b.pont||0)-(a.pont||0)||String(b.beerkezett).localeCompare(String(a.beerkezett)):(a,b)=>String(b.beerkezett).localeCompare(String(a.beerkezett)));
  for(const id of [...PRKIJ])if(!lista.some(s=>s.id===id))PRKIJ.delete(id);
@@ -1063,7 +1063,7 @@ function prrajzol(){if(!PR)return;const L=document.getElementById("pr-lista");co
   const cimL=s.kint?`https://quicknews.hu/hir/${s.slug}`:s.url;
   const resz=PRRESZ.filter(([k])=>r[k]!==undefined).map(([k,n])=>`${n} ${r[k]}`).join(" · ");
   const te=s.tenyellenorzes==="ok"?`<span class="cimke kesz">Tényellenőrizve</span>`:s.tenyellenorzes==="hiba"?`<span class="cimke felk">Ténybeli hiba</span>`:s.tenyellenorzes==="var"?`<span class="cimke">Tényellenőrzésre vár</span>`:"";
-  return `<div class="ah pr-sor ${s.allapot}"><div class="pr-bal"><b class="pr-pont num">${s.pont??"-"}</b><span class="pr-szint ${sz}">${sz==="X"?"40 alatt":sz}</span>
+  return `<div class="ah pr-sor ${s.allapot}"><div class="pr-bal"><b class="pr-pont num">${s.pont??"-"}</b><span class="pr-szint ${sz}">${s.dupla_of?"Dupla":sz==="X"?"40 alatt":sz}</span>
    <input type="checkbox" aria-label="Kijelölés" data-prkij="${s.id}" ${PRKIJ.has(s.id)?"checked":""}></div>
    <div><a class="cim" href="${esc(cimL)}" target="_blank" rel="noopener">${esc(s.cim||s.cim_eredeti||s.id)}</a>
    ${s.forditva&&s.cim_eredeti?`<div class="pr-ered">${esc(s.cim_eredeti)}</div>`:""}
