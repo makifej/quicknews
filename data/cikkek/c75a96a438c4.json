@@ -1,0 +1,76 @@
+{
+  "id": "c75a96a438c4",
+  "slug": "a-google-deepmind-ai-ja-uj-rejtett-matematikai-problemakat-fedezett",
+  "forras_id": "linkedin",
+  "forras_nev": "Google DeepMind (LinkedIn)",
+  "url": "https://www.linkedin.com/feed/update/urn:li:activity:7518689914323050498/",
+  "szerzo": "Google DeepMind",
+  "publikalva": "2026-10-21T15:09:26.078000+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.licdn.com/dms/image/v2/D4E22AQGQzLQtFM6onA/feedshare-shrink_800/B4EaFe.XVcIAAc-/0/1792594769633?e=2147483647&v=beta&t=I4qwyPxm0kLIVN2Z9P2C9GKo1Z0pdTOOnu5kX21HCig",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7518689914323050498"
+  },
+  "cim_eredeti": "Over the past year, the Discovery team at Google DeepMind , in a project led by student researcher Marco Dos Santos , ha",
+  "forrasok": [],
+  "szoveg_eredeti": "Over the past year, the Discovery team at Google DeepMind , in a project led by student researcher Marco Dos Santos , has made new discoveries in one of the most beautiful open problems at the edge of computation: Finding the 6th Busy Beaver (BB) number.\n\nWhile most AI math systems solve human-generated problems, like theorems, this work tackles a different aspect of mathematical creativity: Discovering hidden problems.\n\nFor years, the BB Community has pursued one of theoretical computer science’s most captivating collaborative quests: Finding the simplest programs that run the longest before halting. Because determining whether these programs ever stop is uncomputable, no universal algorithm can solve it, meaning new mathematical techniques need to be found and invented to make progress.\n\nIn this way, the BB challenge serves as an open ended domain for mathematical creativity and, in particular, a generator of hard math problems called Cryptids. These are tiny programs whose halting behavior is governed by and equivalent to deep, unsolved math problems in number theory, similar to the Collatz or Goldbach conjectures. Historically, the BB community had recognized ~20 Cryptids in BB(6).\n\nBuilding on their work, Marco built a pipeline powered by Gemini 4 Argon that:\n\n1️⃣ Simulates raw Turing machine traces to compress recurring patterns.\n2️⃣ Conjectures mathematical transition rules & runs synthetic experiments to test edge cases.\n3️⃣ Proves the equivalence formally in Lean 4.\n\nUsing this pipeline, Marco and the team discovered 20 new potential Cryptids and verified 33 more machines previously studied in the BB community. All the proofs were open sourced and shared in the community discord channel and we hope that they will help the community to make progress towards resolving BB(6). We also contributed related halting/non-halting proofs directly to the community GitHub repository.\n\nFinding these Cryptids shows hidden links between simple programs and number theory, and helps mathematicians map the limits of computation. I'm also excited about Gemini 4 Argon's ability to help researchers both solve hard problems and accelerate scientific discoveries, of which Busy Beaver is just one example.\n\nWork led by our student researcher Marco Dos Santos with paper contributions from Vivek Veeriah , Alexander Havrilla , Andrew Bolt, Goran Žužić , Satinder Singh, and myself and additional contributions from Hussain M. , Maxence Faldor , Moritz Firsching and Petar Sirkovic.\n\nRead more about it in our paper: https://lnkd.in/eD7DCSrm \n\nIf you want to learn more, these are useful resources:\n📐Lean 4 Repo: https://lnkd.in/e_tFFere \n👾Cryptids Wiki: https://lnkd.in/ePd--Bf2 \n🦫Busy Beaver Challenge Wiki: https://lnkd.in/eHkfgMwf \n🏆Beaver Math Olympiad: https://lnkd.in/epStd9Fk \n💻BB(6) coq github: https://lnkd.in/eETGgcqh",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Google DeepMind AI-ja új rejtett matematikai problémákat fedezett fel",
+  "lead": "A Gemini 4 Argon modell segítségével a kutatók áttörést értek el a kiszámíthatóság elméletének egyik leghíresebb nyitott kérdésében.",
+  "osszefoglalo": "A Google DeepMind kutatócsapata a **Gemini 4 Argon** modellt hívta segítségül, hogy előrelépést érjen el a hatodik Busy Beaver szám, vagyis a BB(6) meghatározásában. A feladat lényege olyan egyszerű programok azonosítása, amelyek a lehető leghosszabb ideig futnak leállás előtt. Mivel a leállási probléma univerzális algoritmussal nem oldható meg, a kutatók új matematikai módszereket alkottak a feladat megközelítésére.\n\nA Marco Dos Santos által vezetett projektben egy olyan automatizált rendszert építettek ki, amely szimulálja a Turing-gépek működését, matematikai átmeneti szabályokra tesz javaslatot, majd ezeket [Lean 4](https://lean-lang.org) formális bizonyítónyelvben igazolja. A folyamat során 20 új, úgynevezett Kriptidet fedeztek fel, amelyek olyan apró programok, melyek működése mély, megoldatlan számelméleti problémákhoz kapcsolódik.\n\nA kutatók emellett 33 korábban vizsgált gép működését is igazolták, a formalizált bizonyításokat pedig nyílt forráskódként megosztották a közösséggel. Az eredmények segítik a matematikusokat a számítási kapacitások és a számelmélet közötti rejtett összefüggések feltérképezésében.",
+  "miert_szamit": "Ez a kutatás megmutatja, hogy az AI nemcsak a meglévő feladatok megoldásában, hanem **új matematikai problémák felfedezésében** és formális igazolásában is közvetlen segítséget nyújt a tudományos munkában.",
+  "cimkek": [
+    "Google DeepMind",
+    "Gemini 4 Argon",
+    "Lean 4",
+    "kutatás"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "bemutato",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 82,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 92,
+      "aktualitas": 98,
+      "kozossegi": 63
+    },
+    "elofeszures": 89,
+    "tanult": 53,
+    "indok": "A Google DeepMind kutatói új áttörést értek el az elméleti számítástudomány egyik híres nyitott problémájában.",
+    "tema": "google deepmind busy beaver",
+    "cim_hu": "A Google DeepMind új matematikai felfedezést tett a Busy Beaver probléma kutatásában",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-21T16:03:49+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-21T16:05:44+00:00",
+  "megjelent": "2026-10-21T16:05:44+00:00",
+  "tenyellenorzes": {
+    "ok": false,
+    "ido": "2026-10-21T16:05:46+00:00",
+    "esemeny": "A Google DeepMind kutatói a Gemini 4 Argon segítségével 20 új matematikai problémát (Kriptidet) fedeztek fel és 33 gépet igazoltak a hatodik Busy Beaver szám, a BB(6) kutatása során.",
+    "forrasok": [
+      "https://www.linkedin.com/feed/update/urn:li:activity:7518689914323050498/"
+    ],
+    "hibak": [
+      "A leadben a kiszámíthatóság elmélete kifejezés szerepel, ami nem felel meg a megadott megfogalmazásnak vagy pontatlan, emellett a harmadik bekezdésből hiányzik a kötelező félkövér kiemelés.",
+      "a javított változat sem ment át: Az összefoglaló utolsó bekezdése nem tartalmaz kötelező félkövér [szöveg](url) linket a megadott elsődleges forrásra."
+    ],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
