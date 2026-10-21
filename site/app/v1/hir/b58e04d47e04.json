@@ -15,6 +15,7 @@
   "felkapott": false,
   "forraskep": false,
   "url": "https://quicknews.hu/hir/ai-agensek-elszabadulasa-ellen-automatalis-vedokorlatok-typescriptben",
+  "jova": false,
   "osszefoglalo": "Egy r/cursor Reddit-bejegyzésben számolt be egy fejlesztő arról, hogy az AI-ágense **több mint 2000 dolláros költséget** generált mindössze két óra alatt, mert beragadt egy hibás eszközhívási ciklusba. Mivel a legtöbb LLM SDK nem tartalmaz beépített megszakítót az ágensszintű ciklusokra, a modell automatikusan újrapróbálkozik a hibát dobó eszközökkel, ami végtelen tokenfogyasztáshoz vezet.\n\nA probléma kezelésére a SitePoint egy szolgáltatófüggetlen **TypeScript-alapú védelmi rendszert** mutat be, amely négy különálló korlátot alkalmaz. A rendszer eszközönkénti próbálkozási korlátot, futási időkorlátot (timeout), folyamatosan számolt dolláralapú tokenköltség-keretet, valamint egy alkalmazásszintű tervezetállapot-mentést (DraftResult) használ a részleges eredmények megőrzésére.\n\nA megvalósítás Zod-alapú sémaellenőrzést használ a hallucinált argumentumok kiszűrésére, és tetszőleges LLM-klienssel (OpenAI, Anthropic, Google) kombinálható. A megközelítés lényege, hogy hiba esetén az ágens nem egyszerűen leáll, hanem elmenti az eddigi beszélgetési előzményeket és eszközválaszokat a későbbi emberi ellenőrzéshez.",
   "miert_szamit": "Az AI-ágenseket fejlesztők és üzemeltetők **megelőzhetik a váratlan és extrém magas API-számlákat**, miközben stabilabbá és biztonságosabbá tehetik az automatizált munkafolyamatokat.",
   "publikalva": "2026-10-11T15:47:00.788000+00:00",
@@ -52,7 +53,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/automatikusan-reprodukalja-a-szoftverhibakat-a-triage-by-chodeberg"
+      "url": "https://quicknews.hu/hir/automatikusan-reprodukalja-a-szoftverhibakat-a-triage-by-chodeberg",
+      "jova": false
     },
     {
       "id": "ca1db03317ee",
@@ -70,7 +72,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/autonom-ai-platform-indult-az-epitoipari-projektmenedzsment"
+      "url": "https://quicknews.hu/hir/autonom-ai-platform-indult-az-epitoipari-projektmenedzsment",
+      "jova": false
     },
     {
       "id": "93332f4122d0",
@@ -88,7 +91,8 @@
       "fontossag": 4,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/uj-agens-architekturat-es-modellvalasztot-kapott-a-notion-ai"
+      "url": "https://quicknews.hu/hir/uj-agens-architekturat-es-modellvalasztot-kapott-a-notion-ai",
+      "jova": false
     }
   ],
   "datum_teljes": "2026. okt. 11. 17:47",

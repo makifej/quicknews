@@ -15,6 +15,7 @@
   "felkapott": false,
   "forraskep": false,
   "url": "https://quicknews.hu/hir/ket-ai-ugynokre-bontotta-a-kodellenorzest-az-atlassian",
+  "jova": false,
   "osszefoglalo": "Az Atlassian mérnökei a nagy, közös kódraktárukban (monorepo) tapasztalták, hogy ha egyetlen AI-modellkapja meg az összes csapat szabályzatát, irreleváns javítási javaslatokat tesz. Ezért a Bitbucket **Agentic Pipelines** segítségével két külön ügynökre bontották a feladatot.\n\nAz első **szűrő ügynök** összekapcsolja a módosított fájlokat a konkrét csapathoz tartozó útmutatókkal. A második **ellenőrző ügynök** csak ezeket a kiválasztott dokumentumokat olvassa el, és kizárólag a kritikus hibákra tesz közvetlen megjegyzést a kódban. A folyamat mindössze 7 percig tart a korábbi fél-egy napos várakozás helyett.\n\nA tapasztalatok szerint a visszajelzések pontossága nem a modell választásától vagy a promptoktól, hanem a **pontosan megírt csapatútmutatóktól** függ. A rendszer a Bitbucket Cloud béta verziójában érhető el, és [Rovo Dev](https://www.atlassian.com/rovo), Claude vagy Codex modellekkel is működik.",
   "miert_szamit": "A fejlesztőcsapatok **drasztikusan lecsökkenthetik a kódellenőrzési időt**, ha az AI-ügynököket nem általános feladatokra, hanem célzott feladatmegosztásra és pontos belső dokumentációra építik.",
   "publikalva": "2026-10-14T20:28:07+00:00",
@@ -52,7 +53,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/automatikusan-reprodukalja-a-szoftverhibakat-a-triage-by-chodeberg"
+      "url": "https://quicknews.hu/hir/automatikusan-reprodukalja-a-szoftverhibakat-a-triage-by-chodeberg",
+      "jova": false
     },
     {
       "id": "ca1db03317ee",
@@ -70,7 +72,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/autonom-ai-platform-indult-az-epitoipari-projektmenedzsment"
+      "url": "https://quicknews.hu/hir/autonom-ai-platform-indult-az-epitoipari-projektmenedzsment",
+      "jova": false
     },
     {
       "id": "93332f4122d0",
@@ -88,7 +91,8 @@
       "fontossag": 4,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/uj-agens-architekturat-es-modellvalasztot-kapott-a-notion-ai"
+      "url": "https://quicknews.hu/hir/uj-agens-architekturat-es-modellvalasztot-kapott-a-notion-ai",
+      "jova": false
     }
   ],
   "datum_teljes": "2026. okt. 14. 22:28",

@@ -15,6 +15,7 @@
   "felkapott": false,
   "forraskep": false,
   "url": "https://quicknews.hu/hir/az-ibm-az-elre-repitette-ugyfelszolgalati-agenset-modellfrissites",
+  "jova": false,
   "osszefoglalo": "Az **IBM Research kifejlesztette az [ALTK-Evolve](https://github.com/AgentToolkit/altk-evolve) módszert**, amely tanult memória segítségével javítja az AI-ügyfélszolgálati ágensek megbízhatóságát. A rendszer kielemzi az ágens korábbi sikeres és hibás lépéseit, majd ezekből rövid, használható viselkedési szabályokat állít össze. Ezeket az irányelveket a rendszer promptjához csatolva az ágens anélkül válik hatékonyabbá, hogy a nyelvi modell súlyait frissíteni kellene.\n\nA tesztek során egy **GPT-4.1-es alapprogramra épülő ágens** a tanult szabályoknak köszönhetően 67,5 százalékos Pass^4 eredményt ért el a τ²-bench retail mérésén. Ez felülmúlta a korábbi mezőnyt, miközben a beszélgetések hossza és a válaszlépések száma nem növekedett. Az eljárást a közzétett adatok szerint a legújabb, erősebb GPT-5.5 modellen tesztelve is hasonlóan jelentős teljesítménynövekedést tapasztaltak.\n\nA módszer előnye, hogy a magasabb beviteli tokenköltség a gyakorlatban promtsor-gyorsítótárazással (prompt caching) jelentősen csökkenthető. Így az ágensek gyorsabb válaszidővel és pontosabb szabálykövetéssel tudják kezelni a komplex ügyfélszolgálati folyamatokat.",
   "miert_szamit": "Az AI-ágensek **szabályalapú prompt-memóriával** történő okosítása drága finomhangolás vagy újabb modellekre váltás nélkül is jelentősen növeli az üzleti folyamatok megbízhatóságát.",
   "publikalva": "2026-10-20T15:19:48+00:00",
@@ -52,7 +53,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/delkelet-azsia-digitalis-gazdasaga-eleri-a-368-milliard-dollart-2026"
+      "url": "https://quicknews.hu/hir/delkelet-azsia-digitalis-gazdasaga-eleri-a-368-milliard-dollart-2026",
+      "jova": false
     },
     {
       "id": "2fe5cee1050e",
@@ -70,7 +72,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/elen-vegzett-a-perplexity-decider-a-vals-ai-penzugyi-tesztjen"
+      "url": "https://quicknews.hu/hir/elen-vegzett-a-perplexity-decider-a-vals-ai-penzugyi-tesztjen",
+      "jova": false
     },
     {
       "id": "c19367f5cb0d",
@@ -88,7 +91,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/skorpiomereg-elleni-feherjeket-tervezett-a-claude"
+      "url": "https://quicknews.hu/hir/skorpiomereg-elleni-feherjeket-tervezett-a-claude",
+      "jova": false
     }
   ],
   "datum_teljes": "2026. okt. 20. 17:19",

@@ -15,6 +15,7 @@
   "felkapott": false,
   "forraskep": false,
   "url": "https://quicknews.hu/hir/a-chatelozmenyek-torlese-akar-66-szazalekkal-noveli-az-ai-ugynokok",
+  "jova": false,
   "osszefoglalo": "A Microsoft Research kutatói szerint az órákig, akár napokig önállóan dolgozó AI-ügynökök **egy idő után beragadnak egy-egy megoldási irányba**, és ezen több számítási kapacitás sem segít. Ugyanazt az ügynököt 8-szor futtatták ugyanazon a feladaton, és a végeredmények 68,3 és 100 pont között szóródtak. A gyengébb futások akkor sem érték utol a jobbakat, amikor több gépidőt kaptak.\n\nAz ok az ügynök saját munkaelőzménye. Munka közben gyűlnek benne a korábbi ötletei, próbálkozásai és a rájuk kapott visszajelzések, és ezek **újra és újra ugyanazokhoz a megoldásokhoz terelik vissza**. A kutatók ezeket a zsákutcákat ötletmedencéknek nevezik. Az sem segít, ha az ügynök időnként tömöríti az előzményét.\n\nFontos: **nem a mi ChatGPT- vagy Claude-beszélgetéseinkről van szó.** Az ügynök a háttérben, feladatmegoldás közben gyűjti ezt az előzményt, a kutatás ennek a törlését vizsgálta.\n\nA megoldás a **[Fork-and-Flush](https://arxiv.org/abs/2610.07447)** eljárás, amely két lépésből áll. Az ügynök több párhuzamos szálra válik szét, és minden szál elfelejti a korábbi gondolatmenetet, de megkapja a munkafelületet, a kódot és az addig elkészült fájlokat. Így **a munka eredménye megmarad, a beidegződött gondolatmenet viszont nem**, és a szálak újra többféle irányba indulnak el.\n\nA módszert 13 hosszú feladaton tesztelték, köztük alakzatpakolási, gyártásütemezési és kódfejtési problémán, egy-egy futás néhány órától több mint 100 óráig tartott. Azonos számítási keret mellett **a Fork-and-Flush átlagosan 66%-kal jobb eredményt ért el, mint az egy szálon futó ügynök**, és 44%-kal jobbat, mint ha 4 független futásból a legjobbat választották volna. A 13 feladatból 12-ben ez lett a legjobb, és az eredményei is kiegyensúlyozottabbak voltak.\n\nMennyit ér ebből maga a felejtés? Ha az ügynök szálakra bontás nélkül, csak rendszeresen törölte a munkaelőzményét, az is **22%-os javulást hozott**. A 66% tehát **a párhuzamos szálak és a felejtés együttes eredménye**.\n\nA kísérletekben GPT-5.6-terra és GPT-5.5 modellek dolgoztak a [GitHub Copilot CLI](https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-cli)-n keresztül. A nagyobb modellek sem nőnek ki a jelenségből: a Qwen3.5 4, 9 és 27 milliárd paraméteres változatain az látszott, hogy **a futások akkor szóródnak a legjobban, amikor a feladat a modell képességeinek határán van**. Mivel a nyitott kutatási kérdések éppen ilyenek, a kutatók szerint a rendszeres újrakezdés a legerősebb ügynököknél is hasznos maradhat.",
   "miert_szamit": "Ha AI-ügynököt futtatsz hosszú, önálló feladaton, például kódoláson vagy kutatáson, és az egy idő után ugyanazokat a megoldásokat ismételgeti, **indítsd újra tiszta előzménnyel a meglévő fájlokból**, vagy futtass párhuzamosan több ilyen szálat. A hétköznapi chatelésre ez nem vonatkozik.",
   "publikalva": "2026-10-12T16:10:00+00:00",
@@ -52,7 +53,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/delkelet-azsia-digitalis-gazdasaga-eleri-a-368-milliard-dollart-2026"
+      "url": "https://quicknews.hu/hir/delkelet-azsia-digitalis-gazdasaga-eleri-a-368-milliard-dollart-2026",
+      "jova": false
     },
     {
       "id": "2fe5cee1050e",
@@ -70,7 +72,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/elen-vegzett-a-perplexity-decider-a-vals-ai-penzugyi-tesztjen"
+      "url": "https://quicknews.hu/hir/elen-vegzett-a-perplexity-decider-a-vals-ai-penzugyi-tesztjen",
+      "jova": false
     },
     {
       "id": "c19367f5cb0d",
@@ -88,7 +91,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/skorpiomereg-elleni-feherjeket-tervezett-a-claude"
+      "url": "https://quicknews.hu/hir/skorpiomereg-elleni-feherjeket-tervezett-a-claude",
+      "jova": false
     }
   ],
   "datum_teljes": "2026. okt. 12. 18:10",

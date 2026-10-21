@@ -15,6 +15,7 @@
   "felkapott": false,
   "forraskep": false,
   "url": "https://quicknews.hu/hir/sajat-szervereken-gpu-nelkul-futtathato-az-uj-timestral-modellsorozat",
+  "jova": false,
   "osszefoglalo": "A Mistral AI bemutatta a **Timestral** modellsorozatot, amely 4 különböző méretű (5M és 209M paraméter közötti) idősor-előrejelző modellből áll. Az eszközök nyílt súlyokkal, módosított MIT licenc alatt érhetők el, és felhős infrastruktúra helyett normál szerver-CPU-kon is gyorsan futtathatók. A legnagyobb, 209 milliós paraméterszámú modell GPU nélkül mindössze 140 milliszekundum alatt készít előrejelzést.\n\nA rendszer a klasszikus statisztikai eszközökkel szemben nem teszi szükségessé a nulláról való betanítást minden egyes adatsoron, hanem a mintázatokat tartományok között viszi át. A modell támogatja a többváltozós adatokat, a külső tényezőket és az akár **32 768 időlépéses kontextust** is. A mérések alapján a nulla mintás előrejelzési teszteken felülmúlja a [Google TimesFM-3](https://research.google/blog/timesfm-3-a-zero-shot-foundation-model-for-multivariate-forecasting/) modelljét.\n\nA fejlesztők a GitHubon keresztül vagy a Hugging Face felületéről tölthetik le a modelleket Python környezetbe. A cégek a saját adataikra szabott finomhangolást a [Mistral Forge](https://mistral.ai/products/forge/) felületén végezhetik el, és akár teljesen zárt, helyi infrastruktúrán is üzemeltethetik azt.",
   "miert_szamit": "A magyar vállalkozások és elemzők **drága GPU-kapacitás nélkül** készíthetnek pontos üzleti, értékesítési vagy logisztikai előrejelzéseket saját szervereiken, adatvédelmileg zárt környezetben.",
   "publikalva": "2026-10-19T01:18:17+00:00",
@@ -52,7 +53,8 @@
       "fontossag": 4,
       "felkapott": false,
       "forraskep": true,
-      "url": "https://quicknews.hu/hir/a-google-25-billio-tokent-dolgozott-fel-a-gemini-4-argon-rajtja-utan"
+      "url": "https://quicknews.hu/hir/a-google-25-billio-tokent-dolgozott-fel-a-gemini-4-argon-rajtja-utan",
+      "jova": false
     },
     {
       "id": "4eb9f7080b11",
@@ -70,7 +72,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/az-nvidia-bemutatta-a-cosmos3-h-dreams-sebeszeti-ai-szimulatort"
+      "url": "https://quicknews.hu/hir/az-nvidia-bemutatta-a-cosmos3-h-dreams-sebeszeti-ai-szimulatort",
+      "jova": false
     },
     {
       "id": "965a134066f3",
@@ -88,7 +91,8 @@
       "fontossag": 4,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/nyilt-forraskodu-eszkozon-futo-beszedgeneralo-modellt-adott-ki-a"
+      "url": "https://quicknews.hu/hir/nyilt-forraskodu-eszkozon-futo-beszedgeneralo-modellt-adott-ki-a",
+      "jova": false
     }
   ],
   "datum_teljes": "2026. okt. 19. 03:18",

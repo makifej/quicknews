@@ -15,6 +15,7 @@
   "felkapott": false,
   "forraskep": false,
   "url": "https://quicknews.hu/hir/sajat-gepen-futtathato-ugynokmodellt-adott-ki-a-liquid-ai",
+  "jova": false,
   "osszefoglalo": "A Liquid AI megjelentette az [LFM2.5-24B-A2B](https://liquid.ai/blog/lfm2-5-24b-a2b) nyílt súlyú AI-modelljét, amelyet kifejezetten saját gépen futó, autonóm ügynökök kiszolgálására terveztek. Noha a modell összesen 24 milliárd paraméterből áll, a Mixture-of-Experts architektúrának köszönhetően tokenenként csak **2 milliárd aktív paramétert** használ. A modell a válaszadás előtt lépésről lépésre végiggondolja a feladatot, és támogatja az összetett eszközhasználatot.\n\nAz új verzió kontextusablakát **131 000 tokenre** növelték, a szókincsét pedig 128 000 tokenre bővítették a nem latin írásmódú szövegek hatékonyabb feldolgozása érdekében. A modell kimondottan jól teljesít az utasításkövetési és eszközhasználati teszteken, futtatását pedig a megjelenés napjától támogatja a llama.cpp, az MLX és a vLLM is.\n\nA hordozható számítógépeken és lokális hardvereken elért sebessége kiemelkedő: egy Apple M5 Max chipes gépen **184 token/másodperc** generálására képes. A nyílt súlyú modell ingyenesen letölthető és azonnal beépíthető a népszerű ügynökkeretrendszerekbe.",
   "miert_szamit": "A helyi eszközön futó ügynökökkel **teljesen privát, felhős előfizetési díjtól mentes** AI-rendszereket építhetsz, amelyek az adatok kiszivárgása nélkül képesek vállalati feladatok és munkafolyamatok automatizálására.",
   "publikalva": "2026-10-13T17:05:48+00:00",
@@ -52,7 +53,8 @@
       "fontossag": 4,
       "felkapott": false,
       "forraskep": true,
-      "url": "https://quicknews.hu/hir/a-google-25-billio-tokent-dolgozott-fel-a-gemini-4-argon-rajtja-utan"
+      "url": "https://quicknews.hu/hir/a-google-25-billio-tokent-dolgozott-fel-a-gemini-4-argon-rajtja-utan",
+      "jova": false
     },
     {
       "id": "4eb9f7080b11",
@@ -70,7 +72,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/az-nvidia-bemutatta-a-cosmos3-h-dreams-sebeszeti-ai-szimulatort"
+      "url": "https://quicknews.hu/hir/az-nvidia-bemutatta-a-cosmos3-h-dreams-sebeszeti-ai-szimulatort",
+      "jova": false
     },
     {
       "id": "965a134066f3",
@@ -88,7 +91,8 @@
       "fontossag": 4,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/nyilt-forraskodu-eszkozon-futo-beszedgeneralo-modellt-adott-ki-a"
+      "url": "https://quicknews.hu/hir/nyilt-forraskodu-eszkozon-futo-beszedgeneralo-modellt-adott-ki-a",
+      "jova": false
     }
   ],
   "datum_teljes": "2026. okt. 13. 19:05",

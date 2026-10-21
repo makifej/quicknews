@@ -15,6 +15,7 @@
   "felkapott": false,
   "forraskep": false,
   "url": "https://quicknews.hu/hir/nativ-pytorch-tamogatast-kaptak-a-google-tpu-k-a-hugging-face-ben",
+  "jova": false,
   "osszefoglalo": "A Hugging Face bevezette a [TorchTPU](https://github.com/google-pytorch/torch_tpu) integrációt, amellyel a [Google Tensor Processing Unit](https://cloud.google.com/tpu) (TPU) chipjei natív eszközökként érhetők el a PyTorch keretrendszerben. A fejleszthetőség egyszerűsödött: nincs többé szükség a korábbi torch_xla modulra vagy az [Optimum TPU](https://github.com/huggingface/optimum-tpu) könyvtárra, a modellek a device_map=\"tpu\" paranccsal közvetlenül a TPU-ra küldhetők.\n\nA frissítésnek köszönhetően a [Transformers](https://huggingface.co/docs/transformers) és [Diffusers](https://huggingface.co/docs/diffusers) könyvtárak modelljei azonnal futtathatók a Google hardverein. A rendszer támogatja a Pallas-alapú egyedi hardveres kerneleket, a torch.compile fordítót és a multi-chip elosztott tanítást is, amellyel a nagyobb modellek több chip között oszthatók meg.\n\nA mérések szerint a Kernels Hub-ban található TPU-kernelek használatával a nagy nyelvi modellek válaszgenerálása jelentősen felgyorsult: 64-es batch méretnél a Qwen3-30B-A3B modell dekódolása 21,5-szeres, míg a Gemma 4 26B-A4B modellé 12,8-szoros sebességnövekedést ért el egy TPU v6e-8 környezetben.",
   "miert_szamit": "A felhőben dolgozó fejlesztők és kutatók mostantól **sokkal egyszerűbben és olcsóbban futtathatnak PyTorch modelleket** a Google Cloud TPU-in, kikerülve a drágább GPU-kapacitások miatti szűk keresztmetszeteket.",
   "publikalva": "2026-10-20T00:00:00+00:00",
@@ -52,7 +53,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/automatikusan-reprodukalja-a-szoftverhibakat-a-triage-by-chodeberg"
+      "url": "https://quicknews.hu/hir/automatikusan-reprodukalja-a-szoftverhibakat-a-triage-by-chodeberg",
+      "jova": false
     },
     {
       "id": "ca1db03317ee",
@@ -70,7 +72,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/autonom-ai-platform-indult-az-epitoipari-projektmenedzsment"
+      "url": "https://quicknews.hu/hir/autonom-ai-platform-indult-az-epitoipari-projektmenedzsment",
+      "jova": false
     },
     {
       "id": "93332f4122d0",
@@ -88,7 +91,8 @@
       "fontossag": 4,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/uj-agens-architekturat-es-modellvalasztot-kapott-a-notion-ai"
+      "url": "https://quicknews.hu/hir/uj-agens-architekturat-es-modellvalasztot-kapott-a-notion-ai",
+      "jova": false
     }
   ],
   "datum_teljes": "2026. okt. 20.",

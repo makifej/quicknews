@@ -246,6 +246,27 @@ button.hird-indit{color:#131313;background:var(--amber)}
 .kapcs button.sopor i::after{color:#fff}
 .kapcs button.sopor:hover{color:#fff;background:#e53935;border-color:#e53935}
 .ah{transition:transform .3s cubic-bezier(.32,.72,0,1),opacity .3s cubic-bezier(.32,.72,0,1)}
+/* Beérkező hírek priorizálása (Heni 2026-10-21) */
+.pr-sor{grid-template-columns:88px minmax(0,1fr)!important;align-items:start}
+.pr-sor>.kapcs{grid-column:2/-1}
+.pr-bal{display:flex;flex-direction:column;align-items:center;gap:8px}
+.pr-pont{font-size:32px;font-weight:800;line-height:1}
+.pr-szint{font-size:14px;font-weight:800;border-radius:999px;padding:2px 10px;color:#131313;background:var(--halk)}
+.pr-szint.P1{background:#d92d20;color:#fff}.pr-szint.P2{background:var(--amber)}.pr-szint.P3{background:#5e5e5e;color:#ededed}.pr-szint.X{background:var(--vonal);color:var(--halk)}
+.pr-bal input{width:22px;height:22px;accent-color:var(--amber)}
+.pr-ered{font-size:15px;color:var(--halkabb);margin-top:2px}
+.pr-indok{color:var(--szoveg);font-size:16px;margin-top:8px}
+.pr-resz{font-size:14px;color:var(--halk);margin-top:6px;font-variant-numeric:tabular-nums}
+.pr-ut{font-size:15px;margin-top:8px;color:var(--amber);font-weight:600}.pr-ut.kesz{color:#7bd88f}
+.pr-sor.jovahagyva{outline:1px solid #7bd88f}.pr-sor.elutasitva{opacity:.6}
+.pr-sor select{font:600 14px Manrope,sans-serif;color:var(--szoveg);background:var(--lap2);border:1px solid var(--vonal);border-radius:8px;padding:5px 8px}
+.pr-tomeg{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--bg);padding:12px 0;margin-bottom:8px}
+.pr-tomeg.aktiv{position:sticky;top:64px;z-index:4}
+.pr-tomeg .gomb{font-size:15px;padding:8px 14px}.pr-tomeg .gomb:disabled{opacity:.35;cursor:default}
+.pr-szurok{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+.pr-naplo{margin-top:40px}.pr-naplo summary{cursor:pointer;font-weight:700;color:var(--halk);font-size:18px}
+.pr-naplo li{list-style:none;padding:10px 0;border-bottom:1px solid var(--vonal);font-size:15px;color:var(--halk)}.pr-naplo li b{color:var(--szoveg);font-weight:600}
+@media (max-width:700px){.pr-sor{grid-template-columns:64px minmax(0,1fr)!important}.pr-pont{font-size:26px}.pr-tomeg.aktiv{top:56px}.pr-tomeg{flex-wrap:nowrap}.pr-tomeg .gomb{flex:1 1 0;padding:8px 6px;font-size:14px;white-space:nowrap}}
 .ah.sopor-ki{transform:translateX(-110%);opacity:0;pointer-events:none}
 .cimke.uj{color:#131313;background:#7dd3a0}
 .napfej{font-size:20px;font-weight:700;color:var(--halk);margin:24px 0 12px;text-transform:capitalize}
@@ -333,8 +354,8 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <div class="sav"><div class="sav-bel">
 <div class="logo">quicknews<span>.</span>pult</div>
 <nav class="fulek" role="tablist">
-<button role="tab" aria-selected="true" data-ful="posztok">Posztok</button>
-<button role="tab" aria-selected="false" data-ful="ajanlott">Ajánlott</button>
+<button role="tab" aria-selected="false" data-ful="prioritas" title="Beérkező hírek priorizálása">Beérkező</button>
+<button role="tab" aria-selected="true" data-ful="posztok" title="Posztok és ajánlott">Posztok</button>
 <button role="tab" aria-selected="false" data-ful="bekuldes">Beküldések</button>
 <button role="tab" aria-selected="false" data-ful="hirdetok">Hirdetők</button>
 <button role="tab" aria-selected="false" data-ful="cikkbehuzas">Cikkbehúzás</button>
@@ -344,7 +365,19 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <div class="frissult num" id="frissult"></div></div></div>
 
 <main>
+<section id="p-prioritas" hidden>
+<div class="mutatok" id="pr-mutatok"></div>
+<p class="a-bev">A szerkesztőségi előszűrő: minden beérkező hír pontszámot (0-100) és szintet kap, és <b>semmi nem jelenik meg az oldalon, az appban, a hírlevélben és a közösségi felületeken a jóváhagyásod nélkül</b>. A P1 és P2 hír már le van fordítva; a P3 és az elutasított hír csak akkor fordul le, ha jóváhagyod. A főhír csak jóváhagyott P1 vagy P2 lehet.</p>
+<div class="pr-szurok">
+<div class="szeg" role="group" aria-label="Állapot"><button data-prall="fuggo">Függőben</button><button data-prall="jovahagyva">Jóváhagyott</button><button data-prall="elutasitva">Elutasított</button><button data-prall="mind">Mind</button></div>
+<div class="szeg" role="group" aria-label="Prioritás"><button data-prszint="mind">Mind</button><button data-prszint="P1">P1</button><button data-prszint="P2">P2</button><button data-prszint="P3">P3</button><button data-prszint="X">40 alatt</button></div>
+<div class="szeg" role="group" aria-label="Sorrend"><button data-prrend="pont">Pontszám</button><button data-prrend="ido">Beérkezés</button></div></div>
+<div class="pr-tomeg" id="pr-tomeg"></div>
+<div id="pr-lista"></div>
+<details class="pr-naplo" id="pr-naplo"><summary>Jóváhagyási előzmények</summary><ul id="pr-naplo-lista"></ul></details>
+</section>
 <section id="p-posztok">
+<div class="szeg alful" role="group" aria-label="Posztok és ajánlott nézet"><button type="button" data-alful="ajanlott">Ajánlott</button><button type="button" data-alful="posztok">Időzítve, kint</button></div>
 <div class="mutatok" id="p-mutatok"></div>
 <div class="napsav"><button type="button" class="napsav-nyil bal" aria-label="Újabb napok" hidden>‹</button><div class="napok" id="p-napok" role="group" aria-label="Nap"></div><button type="button" class="napsav-nyil jobb" aria-label="Korábbi napok" hidden>›</button></div>
 <div id="p-tabla"></div>
@@ -432,6 +465,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <div id="b-lista"></div>
 </section>
 <section id="p-ajanlott" hidden>
+<div class="szeg alful" role="group" aria-label="Posztok és ajánlott nézet"><button type="button" data-alful="ajanlott">Ajánlott</button><button type="button" data-alful="posztok">Időzítve, kint</button></div>
 <div class="mutatok" id="a-mutatok"></div>
 <p class="a-bev">Az utóbbi 4 nap összes híre, ami még nem ment ki Facebookra. Az új hír a kitétel pillanatában megjelenik felül. Pipáld be, mi menjen ki és hova, a kártyát itt hagyhatod jóvá. Amivel nem akarsz foglalkozni, azt söpörd ki: soha többé nem kerül vissza.</p>
 <div class="idoszak"><div class="szeg" role="group" aria-label="Sorrend"><button data-rend="ido" aria-pressed="true">Időrend</button><button data-rend="pont" aria-pressed="false">Fontosság</button></div>
@@ -466,7 +500,7 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <script>
 const ADMIN=!/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
 const U={statisztika:ADMIN?"/api/admin?mi=statisztika":"/statisztika.json",posztok:ADMIN?"/api/admin?mi=posztok":"/adat.json",koltseg:ADMIN?"/api/admin?mi=koltseg":"/koltseg.json",
- ajanlott:ADMIN?"/api/admin?mi=ajanlott":"/ajanlott.json",kijeloles:ADMIN?"/api/admin?mi=kijeloles":"/kijeloles",
+ ajanlott:ADMIN?"/api/admin?mi=ajanlott":"/ajanlott.json",prioritas:ADMIN?"/api/admin?mi=prioritas":"/prioritas.json",prDontes:ADMIN?"/api/admin?mi=prioritas_dontes":"/prioritas_dontes",kijeloles:ADMIN?"/api/admin?mi=kijeloles":"/kijeloles",
  kartya:f=>ADMIN?"/api/admin?mi=kartya&f="+encodeURIComponent(f):"/kartya/"+encodeURIComponent(f),
  kep:id=>ADMIN?"/api/admin?mi=kep&id="+id:"/kep?id="+id, kepFel:ADMIN?"/api/admin?mi=kep_feltolt":"/kep_feltolt",
  torles:ADMIN?"/api/admin?mi=torles":"/torles",bekuldesek:ADMIN?"/api/admin?mi=bekuldesek":"/bekuldesek.json",hirdetok:ADMIN?"/api/admin?mi=hirdetok":"/hirdetok.json",hirdAll:ADMIN?"/api/admin?mi=hirdeto_allapot":"/hirdeto_allapot",bekDontes:ADMIN?"/api/admin?mi=bekuldes_dontes":"/bekuldes_dontes",kisopor:ADMIN?"/api/admin?mi=kisopor":"/kisopor",muvelet:ADMIN?"/api/admin?mi=muvelet":"/muvelet",hirlevel:ADMIN?"/api/admin?mi=hirlevel":"/hirlevel.json",hlMuvelet:ADMIN?"/api/admin?mi=hirlevel_muvelet":"/hirlevel_muvelet",hlUtolso:ADMIN?"/api/admin?mi=hirlevel_utolso":"/hirlevel_utolso",boo:ADMIN?"/api/admin?mi=boo":"/boo.json",booMuvelet:ADMIN?"/api/admin?mi=boo_muvelet":"/boo_muvelet",push:ADMIN?"/api/push?mi=lista":"/push.json",pushMuv:mi=>ADMIN?"/api/push?mi="+mi:"/push"};
@@ -989,14 +1023,80 @@ document.getElementById("ap-beall").onclick=async()=>{const v=i=>document.getEle
  const r=await apmuv("beall",{aktiv:document.getElementById("ap-aktiv").getAttribute("aria-pressed")==="true",napiMax:v("ap-max"),kuszob:v("ap-kuszob"),mindMax:v("ap-mind"),csendesTol:v("ap-tol"),csendesIg:v("ap-ig")});
  alert(r.hiba?r.hiba:"Elmentve.");aptolt()};
 
+/* ---------- beérkező hírek priorizálása (Heni 2026-10-21) ---------- */
+let PR=null,PRALL=TAR("pr-all")||"fuggo",PRSZINT=TAR("pr-szint")||"mind",PRREND=TAR("pr-rend")||"pont";const PRKIJ=new Set();
+const PRALLNEV={fuggo:"Függőben",jovahagyva:"Jóváhagyva",elutasitva:"Elutasítva"};
+const PRRESZ=[["hatas","Hatás"],["hirertek","Hírérték"],["hitelesseg","Hitelesség"],["egyediseg","Egyediség"],["aktualitas","Aktualitás"],["kozossegi","Közösségi"]];
+async function prtolt(){try{PR=await lekér(U.prioritas)}catch(e){document.getElementById("pr-lista").innerHTML=`<div class="hibasav">A beérkező hírek most nem érhetők el.</div>`;return}prrajzol()}
+function prUt(s){
+ if(s.allapot!=="jovahagyva")return "";
+ if(s.kint)return `<div class="pr-ut kesz">✓ Kint van: <a href="https://quicknews.hu/hir/${esc(s.slug)}" target="_blank" rel="noopener" style="color:inherit">megnyitom ↗</a></div>`;
+ if(!s.forditva)return `<div class="pr-ut">⏳ Jóváhagytad. A gép most lefordítja és ellenőrzi, néhány percen belül kint lesz.</div>`;
+ if(s.tenyellenorzes==="var")return `<div class="pr-ut">⏳ Jóváhagytad, a tényellenőrzés után jelenik meg.</div>`;
+ if(s.tenyellenorzes==="hiba")return `<div class="pr-ut" style="color:var(--hiba)">⚠ Jóváhagytad, de a tényellenőrzés hibát talált benne, ezért nem jelenik meg.</div>`;
+ return `<div class="pr-ut">⏳ Jóváhagytad, a következő élesítéssel kikerül (néhány perc).</div>`}
+function prrajzol(){if(!PR)return;const L=document.getElementById("pr-lista");const S=PR.sorok||[];
+ document.querySelectorAll("[data-prall]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.prall===PRALL)));
+ document.querySelectorAll("[data-prszint]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.prszint===PRSZINT)));
+ document.querySelectorAll("[data-prrend]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.prrend===PRREND)));
+ const fug=S.filter(s=>s.allapot==="fuggo"),db=sz=>fug.filter(s=>s.szint_tenyleges===sz).length;
+ const jo=S.filter(s=>s.allapot==="jovahagyva"),el=S.filter(s=>s.allapot==="elutasitva");
+ document.getElementById("pr-mutatok").innerHTML=
+  `<div class="mutato kiemelt"><small>Jóváhagyásra vár</small><b class="num">${fug.length}</b><em>P1 ${db("P1")} · P2 ${db("P2")} · P3 ${db("P3")}</em></div>`+
+  `<div class="mutato"><small>Jóváhagyva</small><b class="num">${jo.length}</b><em>ebből kint ${jo.filter(s=>s.kint).length}</em></div>`+
+  `<div class="mutato"><small>Elutasítva</small><b class="num">${el.length}</b><em>gépi ${el.filter(s=>s.auto).length} · általad ${el.filter(s=>!s.auto).length}</em></div>`+
+  `<div class="mutato"><small>Utolsó frissítés</small><b class="num">${PR.frissult?ora(new Date(PR.frissult)):"-"}</b><em>az utóbbi ${PR.napok||7} nap hírei</em></div>`;
+ let lista=S.filter(s=>(PRALL==="mind"||s.allapot===PRALL)&&(PRSZINT==="mind"||(PRSZINT==="X"?s.szint==="X":s.szint_tenyleges===PRSZINT)));
+ lista.sort(PRREND==="pont"?(a,b)=>(b.pont||0)-(a.pont||0)||String(b.beerkezett).localeCompare(String(a.beerkezett)):(a,b)=>String(b.beerkezett).localeCompare(String(a.beerkezett)));
+ for(const id of [...PRKIJ])if(!lista.some(s=>s.id===id))PRKIJ.delete(id);
+ const n=PRKIJ.size;
+ const tm=document.getElementById("pr-tomeg");tm.classList.toggle("aktiv",n>0);
+ tm.innerHTML=lista.length?`<button class="gomb masod" id="pr-mind">${n===lista.length?"Kijelölés törlése":"Mind ("+lista.length+")"}</button>`+
+  `<button class="gomb" id="pr-tjo" ${n?"":"disabled"} title="A kijelölt hírek jóváhagyása">Jóváhagyás${n?" ("+n+")":""}</button><button class="gomb masod" id="pr-tel" ${n?"":"disabled"} title="A kijelölt hírek elutasítása">Elutasítás${n?" ("+n+")":""}</button>`:"";
+ L.innerHTML=lista.map(s=>{const sz=s.szint_tenyleges||s.szint;const r=s.reszpont||{};
+  const cimL=s.kint?`https://quicknews.hu/hir/${s.slug}`:s.url;
+  const resz=PRRESZ.filter(([k])=>r[k]!==undefined).map(([k,n])=>`${n} ${r[k]}`).join(" · ");
+  const te=s.tenyellenorzes==="ok"?`<span class="cimke kesz">Tényellenőrizve</span>`:s.tenyellenorzes==="hiba"?`<span class="cimke felk">Ténybeli hiba</span>`:s.tenyellenorzes==="var"?`<span class="cimke">Tényellenőrzésre vár</span>`:"";
+  return `<div class="ah pr-sor ${s.allapot}"><div class="pr-bal"><b class="pr-pont num">${s.pont??"-"}</b><span class="pr-szint ${sz}">${sz==="X"?"40 alatt":sz}</span>
+   <input type="checkbox" aria-label="Kijelölés" data-prkij="${s.id}" ${PRKIJ.has(s.id)?"checked":""}></div>
+   <div><a class="cim" href="${esc(cimL)}" target="_blank" rel="noopener">${esc(s.cim||s.cim_eredeti||s.id)}</a>
+   ${s.forditva&&s.cim_eredeti?`<div class="pr-ered">${esc(s.cim_eredeti)}</div>`:""}
+   ${s.lead?`<div class="lead">${esc(s.lead)}</div>`:s.szoveg?`<div class="lead">${esc(s.szoveg)}</div>`:""}
+   <div class="cimkek"><span class="cimke ${s.allapot==="fuggo"?"var":s.allapot==="jovahagyva"?"kesz":""}">${PRALLNEV[s.allapot]||esc(s.allapot)}${s.auto?" (gépi)":""}</span>
+    <span class="cimke">${esc(s.forras||"")}</span><span class="cimke">${s.beerkezett?fmt(new Date(s.beerkezett),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):""}</span>
+    ${s.szint_kezi?`<span class="cimke">Kézi szint (gépi: ${s.szint==="X"?"40 alatt":s.szint})</span>`:""}${s.forditva?"":`<span class="cimke">Még nincs lefordítva</span>`}${te}${s.ai===false?`<span class="cimke">Csak gépi pontozás</span>`:""}</div>
+   ${s.indok?`<div class="pr-indok">${esc(s.indok)}</div>`:""}
+   ${s.klaszter_cim?`<div class="pr-resz">Ugyanerről már van hír: ${esc(s.klaszter_cim)}</div>`:""}
+   ${resz?`<div class="pr-resz">${resz}</div>`:""}${prUt(s)}</div>
+   <div class="kapcs"><button class="jova" aria-pressed="${s.allapot==="jovahagyva"}" data-prd="${s.id}" data-all="jovahagyva"><i></i>${s.allapot==="jovahagyva"?"Jóváhagyva":"Jóváhagyom"}</button>
+    <button class="elut" aria-pressed="${s.allapot==="elutasitva"&&!s.auto}" data-prd="${s.id}" data-all="elutasitva"><i></i>${s.allapot==="elutasitva"&&!s.auto?"Elutasítva":"Elutasítom"}</button>
+    ${s.allapot!=="fuggo"?`<button data-prd="${s.id}" data-all="fuggo"><i></i>Vissza függőbe</button>`:""}
+    <label class="pr-szintval">Prioritás <select data-prszintval="${s.id}" aria-label="Prioritás kézi módosítása"><option value="">Gépi (${s.szint==="X"?"40 alatt":s.szint})</option>${["P1","P2","P3"].map(x=>`<option value="${x}" ${s.szint_kezi===x?"selected":""}>${x}</option>`).join("")}</select></label></div></div>`}).join("")||`<p class="ures">${PRALL==="fuggo"?"Nincs jóváhagyásra váró hír.":"Nincs ilyen hír."}</p>`;
+ const cim=id=>{const s=S.find(x=>x.id===id);return s?(s.cim||s.cim_eredeti||""):""};
+ const kuld=async(idk,adat)=>{try{const cimek={};idk.forEach(i=>cimek[i]=cim(i));const r=await lekér(U.prDontes,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({idk,cimek,...adat})});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}PRKIJ.clear();await prtolt();jelvenyek()};
+ L.querySelectorAll("[data-prd]").forEach(g=>g.onclick=()=>kuld([g.dataset.prd],{allapot:g.dataset.all}));
+ L.querySelectorAll("[data-prszintval]").forEach(g=>g.onchange=()=>kuld([g.dataset.prszintval],{szint:g.value||null}));
+ L.querySelectorAll("[data-prkij]").forEach(g=>g.onchange=()=>{g.checked?PRKIJ.add(g.dataset.prkij):PRKIJ.delete(g.dataset.prkij);prrajzol()});
+ const m=document.getElementById("pr-mind");if(m)m.onclick=()=>{if(PRKIJ.size===lista.length)PRKIJ.clear();else lista.forEach(s=>PRKIJ.add(s.id));prrajzol()};
+ const tj=document.getElementById("pr-tjo");if(tj)tj.onclick=async()=>{if(!PRKIJ.size)return;if(await kerd(`Biztosan jóváhagyod a kijelölt ${PRKIJ.size} hírt? Mind megjelenik az oldalon.`))kuld([...PRKIJ],{allapot:"jovahagyva"})};
+ const te=document.getElementById("pr-tel");if(te)te.onclick=async()=>{if(!PRKIJ.size)return;if(await kerd(`Biztosan elutasítod a kijelölt ${PRKIJ.size} hírt?`))kuld([...PRKIJ],{allapot:"elutasitva"})};
+ const NV={jovahagyva:"jóváhagyva",elutasitva:"elutasítva",fuggo:"függő"};
+ document.getElementById("pr-naplo-lista").innerHTML=(PR.naplo||[]).map(x=>`<li>${fmt(new Date(x.ido),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})} · <b>${esc(x.cim||x.id)}</b><br>${NV[x.elozo]||esc(x.elozo)} → ${NV[x.allapot]||esc(x.allapot)}${x.szint!==x.elozo_szint?` · prioritás: ${esc(x.elozo_szint||"gépi")} → ${esc(x.szint||"gépi")}`:""}${x.tomeges?" · tömeges":""} · ${esc(x.ki||"")}</li>`).join("")||`<li>Még nincs döntés.</li>`}
+document.querySelectorAll("[data-prall]").forEach(b=>b.onclick=()=>{PRALL=b.dataset.prall;TAR("pr-all",PRALL);PRKIJ.clear();prrajzol()});
+document.querySelectorAll("[data-prszint]").forEach(b=>b.onclick=()=>{PRSZINT=b.dataset.prszint;TAR("pr-szint",PRSZINT);PRKIJ.clear();prrajzol()});
+document.querySelectorAll("[data-prrend]").forEach(b=>b.onclick=()=>{PRREND=b.dataset.prrend;TAR("pr-rend",PRREND);prrajzol()});
+setInterval(()=>{if(!document.getElementById("p-prioritas").hidden&&!PRKIJ.size)prtolt()},60000);
+
 /* ---------- fülek ---------- */
-function ful(f){const fo=f==="koltseg"?"statisztika":f==="boo"?"hirlevel":f;if(fo==="posztok"&&!PNGORGETVE)setTimeout(napsavIgazit,50);document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===fo));document.querySelectorAll("[data-alful]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.alful===f)));try{document.querySelector(`.fulek [data-ful="${fo}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
- ["posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas","hirlevel","boo","statisztika","app"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
+function ful(f){const fo=f==="koltseg"?"statisztika":f==="boo"?"hirlevel":f==="ajanlott"?"posztok":f;if(fo==="posztok"&&!PNGORGETVE)setTimeout(napsavIgazit,50);document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===fo));document.querySelectorAll("[data-alful]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.alful===f)));try{document.querySelector(`.fulek [data-ful="${fo}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
+ ["prioritas","posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas","hirlevel","boo","statisztika","app"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
+ if(f==="prioritas")prtolt();
  if(f==="statisztika")stolt();
  if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok"){htolt();adstolt()}if(f==="cikkbehuzas")htolt(true);if(f==="hirlevel")hltolt();if(f==="boo")bootolt();if(f==="app")aptolt();try{localStorage.setItem("ful",f)}catch(e){}latta(f);jelvenyek()}
 document.querySelectorAll(".fulek button").forEach(b=>b.onclick=()=>ful(b.dataset.ful));
 document.querySelectorAll("[data-alful]").forEach(b=>b.onclick=()=>ful(b.dataset.alful));
-try{const f=localStorage.getItem("ful");if(f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok"||f==="cikkbehuzas"||f==="hirlevel"||f==="boo"||f==="statisztika"||f==="app")ful(f)}catch(e){}
+try{const f=location.hash==="#prioritas"?"prioritas":localStorage.getItem("ful");if(f==="prioritas"||f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok"||f==="cikkbehuzas"||f==="hirlevel"||f==="boo"||f==="statisztika"||f==="app")ful(f);else ful("posztok")}catch(e){ful("posztok")}
+window.addEventListener("hashchange",()=>{if(location.hash==="#prioritas")ful("prioritas")});
 document.getElementById("k-valaszt");
 /* ---------- piros számok a fülek mellett (2026-10-13): hány új esemény történt az adott fülön ---------- */
 const LATOTT="qn-latott-";
@@ -1007,14 +1107,19 @@ function jelol(f,n){const b=document.querySelector(`.fulek [data-ful="${f}"]`);i
  if(!n||aktivFul()===f){if(j)j.remove();return}if(!j){j=document.createElement("span");j.className="szamjel";b.appendChild(j)}j.textContent=n>99?"99+":n;j.setAttribute("aria-label",n+" új")}
 async function jelvenyek(){const akt=aktivFul();latta(akt);
  const ujabb=(t,f)=>t&&String(t)>latott(f);
- try{const d=(D&&D.sorok)?D:await lekér(U.posztok);jelol("posztok",(d.sorok||[]).filter(s=>(s.allapot==="published"&&ujabb(s.kiment,"posztok"))||(s.allapot==="failed"&&ujabb(s.idopont,"posztok"))).length)}catch(e){}
- try{const d=await lekér(U.ajanlott);jelol("ajanlott",(d.sorok||[]).filter(s=>!s.feldolgozott&&ujabb(new Date(s.publikalva).toISOString(),"ajanlott")).length)}catch(e){}
+ let pdb=0;
+ try{const d=(D&&D.sorok)?D:await lekér(U.posztok);pdb+=(d.sorok||[]).filter(s=>(s.allapot==="published"&&ujabb(s.kiment,"posztok"))||(s.allapot==="failed"&&ujabb(s.idopont,"posztok"))).length}catch(e){}
+ try{const d=await lekér(U.ajanlott);pdb+=(d.sorok||[]).filter(s=>!s.feldolgozott&&ujabb(new Date(s.publikalva).toISOString(),"posztok")).length}catch(e){}
+ jelol("posztok",pdb);
+ /* a priorizálásnál a szám a jóváhagyásra váró hírek száma (nem csak az újak): addig marad, amíg döntesz róluk */
+ try{const d=await lekér(U.prioritas);const n=(d.sorok||[]).filter(s=>s.allapot==="fuggo").length;const b=document.querySelector('.fulek [data-ful="prioritas"]');let j=b.querySelector(".szamjel");
+  if(!n){if(j)j.remove()}else{if(!j){j=document.createElement("span");j.className="szamjel";b.appendChild(j)}j.textContent=n>99?"99+":n;j.setAttribute("aria-label",n+" jóváhagyásra vár")}}catch(e){}
  try{const d=await lekér(U.bekuldesek);jelol("bekuldes",(d.tetel||[]).filter(b=>!b.atveve&&(b.allapot==="dontesre_var"||b.allapot==="atnezes")).length)}catch(e){}
  try{const d=await lekér(U.hirdetok);const t=d.tetel||[];jelol("hirdetok",t.filter(h=>h.tema!=="hirfolyam"&&h.allapot==="uj").length);jelol("cikkbehuzas",t.filter(h=>h.tema==="hirfolyam"&&h.allapot==="uj").length)}catch(e){}
  try{const d=await lekér(U.hirlevel);jelol("hirlevel",(d.lista||[]).filter(x=>ujabb(x.ido,"hirlevel")).length)}catch(e){}}
 /* teljes szinkron a gépi pult, a webes pult és az app között (Heni 2026-10-18): a közös adat a felhőben van, ezért ha a
    lap újra előtérbe kerül (másik ablakból, vagy az appban a pult újra megnyílik), azonnal mindent újratöltünk */
-window.qnFrissit=()=>{ptolt();jelvenyek();if(!document.getElementById("p-ajanlott").hidden&&!document.querySelector(".feltolt.tolt"))atolt();
+window.qnFrissit=()=>{ptolt();jelvenyek();if(!document.getElementById("p-prioritas").hidden&&!PRKIJ.size)prtolt();if(!document.getElementById("p-ajanlott").hidden&&!document.querySelector(".feltolt.tolt"))atolt();
  if(!document.getElementById("p-app").hidden)aptolt()};
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)window.qnFrissit()});
 window.addEventListener("focus",()=>window.qnFrissit());

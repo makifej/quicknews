@@ -15,6 +15,7 @@
   "felkapott": false,
   "forraskep": false,
   "url": "https://quicknews.hu/hir/sokkal-hatekonyabba-tehetok-az-ai-ugynokok-egy-uj-modszerrel",
+  "jova": false,
   "osszefoglalo": "A Hugging Face csapata bemutatta a több környezetet lefedő megerősítéses tanulásról szóló útmutatóját és eszköztárát. A fejlesztők rámutattak, hogy ugyanaz a modell az egyik tesztkörnyezetben 62 százalékos, míg a másikban mindössze 33 százalékos eredményt ér el. A probléma megoldására egy olyan **köztes proxy szervert** hoztak létre, amely négy elterjedt API-formátumot kezel, így a meglévő kódok módosítása nélkül rögzíti a tanításhoz szükséges adatokat.\n\nA módszerrel a LiquidAI LFM2.5-2.6B modellje 42 százalékról 54 százalékra javította a teljesítményét, miközben 31 százalékkal kevesebb eszközhívásra volt szüksége a feladatok megoldásához. A kísérletek azt is bizonyították, hogy a nagyobb modellek másolása helyett a **gyakorlati megerősítéses tanulás** hozza a legjobb eredményeket.\n\nA projekt minden eleme teljesen nyílt forrású, így a [FineEnvs](https://huggingface.co/spaces/FineEnvs/multi-harness-rl) oldalon elérhető a rögzítő proxy, a tréner, a feladatok, a tanítási kódok és 7 előre betanított modell is. Ezzel a megoldással mostantól bárki hatékonyabb és rugalmasabb AI-ügynököket fejleszthet.",
   "miert_szamit": "Az AI-ügynököket használó vállalkozások **sokkal stabilabb és olcsóbb automatizációkat** kapnak, amelyek nem omlanak össze a környezet változásakor. A kevesebb felesleges művelet közvetlenül **csökkenti az API-költségeket** és gyorsítja a feladatok elvégzését.",
   "publikalva": "2026-10-02T14:51:01+00:00",
@@ -56,7 +57,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/delkelet-azsia-digitalis-gazdasaga-eleri-a-368-milliard-dollart-2026"
+      "url": "https://quicknews.hu/hir/delkelet-azsia-digitalis-gazdasaga-eleri-a-368-milliard-dollart-2026",
+      "jova": false
     },
     {
       "id": "2fe5cee1050e",
@@ -74,7 +76,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/elen-vegzett-a-perplexity-decider-a-vals-ai-penzugyi-tesztjen"
+      "url": "https://quicknews.hu/hir/elen-vegzett-a-perplexity-decider-a-vals-ai-penzugyi-tesztjen",
+      "jova": false
     },
     {
       "id": "c19367f5cb0d",
@@ -92,7 +95,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/skorpiomereg-elleni-feherjeket-tervezett-a-claude"
+      "url": "https://quicknews.hu/hir/skorpiomereg-elleni-feherjeket-tervezett-a-claude",
+      "jova": false
     }
   ],
   "datum_teljes": "2026. okt. 2. 16:51",

@@ -15,6 +15,7 @@
   "felkapott": false,
   "forraskep": false,
   "url": "https://quicknews.hu/hir/felere-csokkenti-az-ai-ugynokok-varatlan-hibait-az-ibm-uj-eszkoze",
+  "jova": false,
   "osszefoglalo": "Az AI-ügynökök gyakran kiszámíthatatlanok: előfordul, hogy egy feladatot egyszer hibátlanul megoldanak, legközelebb viszont elbuknak rajta. Az **IBM Research** kutatói szerint ezt a bizonytalanságot a nyelvi modellek döntési pontjainál fellépő apró ingadozások okozzák. A probléma megoldására fejlesztették ki az [ALTK-Evolve](https://github.com/AgentToolkit/altk-evolve) rendszer új, konzisztenciát javító funkcióját.\n\nA rendszer lelke a **Consistency Analyzer** nevű diagnosztikai eszköz, amely elemzi az ügynök korábbi munkafolyamatait. Kiszűri azokat a lépéseket, ahol a modell bizonytalan volt, majd ezekből automatikusan általános működési irányelveket generál. Az így kapott útmutatók segítségével az ügynök a következő futtatáskor már magabiztosan és azonos módon hozza meg a döntéseket.\n\nA tesztek során a módszer **felére csökkentette a konzisztencia-szakadékot**, miközben az átlagos pontosság is javult. Az ügynökök megbízhatósága 53 százalékról 69 százalékra ugrott, ami különösen a közepes és nehéz feladatoknál hozott látványos javulást.",
   "miert_szamit": "Ha a jövőben AI-ügynökökre bízod a munkafolyamataidat, nem kell tartanod attól, hogy a rendszer **véletlenszerűen elrontja a korábban már működő feladatokat**. Ez a technológia biztosítja, hogy az automatizált kampányok vagy adatfeldolgozások **minden alkalommal ugyanazt a megbízható eredményt** hozzák.",
   "publikalva": "2026-09-15T16:00:44+00:00",
@@ -52,7 +53,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/delkelet-azsia-digitalis-gazdasaga-eleri-a-368-milliard-dollart-2026"
+      "url": "https://quicknews.hu/hir/delkelet-azsia-digitalis-gazdasaga-eleri-a-368-milliard-dollart-2026",
+      "jova": false
     },
     {
       "id": "2fe5cee1050e",
@@ -70,7 +72,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/elen-vegzett-a-perplexity-decider-a-vals-ai-penzugyi-tesztjen"
+      "url": "https://quicknews.hu/hir/elen-vegzett-a-perplexity-decider-a-vals-ai-penzugyi-tesztjen",
+      "jova": false
     },
     {
       "id": "c19367f5cb0d",
@@ -88,7 +91,8 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/skorpiomereg-elleni-feherjeket-tervezett-a-claude"
+      "url": "https://quicknews.hu/hir/skorpiomereg-elleni-feherjeket-tervezett-a-claude",
+      "jova": false
     }
   ],
   "datum_teljes": "2026. szept. 15. 18:00",
