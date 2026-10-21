@@ -1,0 +1,84 @@
+{
+  "id": "9b35c0bfb2f0",
+  "slug": "az-ibm-megjelentette-a-granite-speech-5-0-nyilt-forraskodu",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/ibm-granite/granite-speech-5",
+  "szerzo": null,
+  "publikalva": "2026-10-21T14:58:18+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/653fb52cbfd890805461d691/M_JJyIOBOWVzHXdy7CVVG.png"
+  },
+  "cim_eredeti": "Granite Speech 5.0: Transcribe, Translate, and Attribute more Accurately and Faster",
+  "forrasok": [],
+  "szoveg_eredeti": "We're excited to share three updates to IBM's Granite Speech collection: a new speech-language model, granite-speech-5.0-2b, and revised versions of two models the community already uses, granite-speech-5.0-470m-turboctc and granite-speech-4.1-2b-plus. Together they cover the full range of enterprise speech work: transcription and translation with high accuracy, extremely fast transcription at the edge, and recordings where who spoke, and when, matter as much as what was said.\n\ngranite-speech-5.0-2b is the successor to granite-speech-4.1-2b at the same parameter count. It transcribes English, French, German, Spanish, Portuguese, and Japanese, and translates to and from English in those languages, plus English to Italian and Mandarin. It was trained on 390,000 hours of public audio, plus synthetic data built for Japanese ASR, keyword biasing, and translation.\n\nThe model ships under Apache 2.0 with support in Transformers, vLLM, llama.cpp, and mlx-audio for Apple Silicon.\n\nChart 1: granite-speech-5.0-2b ranks #2 among top open-weight ASR models on average English WER (5.06%). Lower is better. Results are unofficial, as of 15 October 2026, and averaged over the Open ASR Leaderboard’s public English short-form test sets.\n\nWhen we introduced Turbo CTC in August, it was an English-only, 470M-parameter encoder built for speed. This revision keeps that footprint and adds the three things users asked for most:\n\nIt's also faster. By compiling a single Conformer block and reusing its graph across the stack, we cut warmup time and pushed Turbo CTC to 19,870 RTFx on the Open ASR Leaderboard, up from roughly 12,600 RTFx at launch: about 1.6x faster, at the same accuracy level.\n\nChart 2: Average WER vs. RTFx on the Open ASR Leaderboard (English short-form, 9 public test sets, as of October 2026). Lower WER and higher RTFx are better; RTFx is on a log scale.\n\nThe updated granite-speech-4.1-2b-plus is tuned for the recordings enterprises actually have: meetings, support calls, and interviews with several speakers running long. It keeps the 4.1 name because the architecture, prompt format, and API are unchanged, so it's a drop-in replacement for the current model with improved weights. This revision improves four areas:\n\nTable 1: All metrics are error rates, so lower is better. For more detailed results, see the model card.\n\nNot sure which model to pick? Start here:\n\nThese models are all released under an Apache 2.0 license with native support in Transformers. Full evaluation results, architecture details, training data, and usage examples are on each model card. We recommend pairing them with Granite Guardian for production deployments that need additional risk detection.\n\nGive them a try and let us know what you think!",
+  "modell": "gemini-3.5-flash",
+  "cim": "Az IBM megjelentette a Granite Speech 5.0 nyílt forráskódú beszédmodelleket",
+  "lead": "Az IBM kiadta a nyílt forráskódú Granite Speech modellcsalád legújabb tagjait, amelyek gyorsabb és pontosabb átírást tesznek lehetővé.",
+  "osszefoglalo": "Az IBM három új és frissített beszédmodellt mutatott be a Hugging Face felületén, amelyek között megtalálható a [granite-speech-5.0-2b](https://huggingface.co/ibm-granite/granite-speech-5.0-2b) nyelvi modell. Az új verzió több nyelven végzi az audiók átírását és fordítását, köztük angol, francia, német, spanyol, portugál és japán nyelven. A 2 milliárd paraméteres modellt 390 000 órányi nyilvános hanganyagon és szintetikus adatokon képezték ki.\n\nA frissített [granite-speech-5.0-470m-turboctc](https://huggingface.co/ibm-granite/granite-speech-5.0-470m-turboctc) modell az előző változathoz képest 1,6-szer gyorsabbá vált, így szinte azonnali átírást biztosít. A hosszú vállalati hanganyagokra, megbeszélésekre és interjúkra optimalizált [granite-speech-4.1-2b-plus](https://huggingface.co/ibm-granite/granite-speech-4.1-2b-plus) pedig a beszélők pontosabb beazonosításában és az időbélyegek kezelésében nyújt jobb teljesítményt.\n\nMindhárom modell elérhető az [Apache 2.0 licenc](https://www.apache.org/licenses/LICENSE-2.0) alatt, így szabadon és ingyenesen használható, beépíthető saját rendszerekbe. A modelleket a népszerű Transformers, vLLM, llama.cpp és mlx-audio keretrendszerek egyaránt támogatják.",
+  "miert_szamit": "A nyílt licencű modellekkel a fejlesztők és vállalkozások **saját szerverükön futtathatnak rendkívül gyors és pontos beszédátíró rendszereket**, adatvédelmi és használati díj nélkül.",
+  "cimkek": [
+    "IBM",
+    "Granite Speech",
+    "beszédátírás",
+    "nyílt forráskód"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "granite-speech-5.0-2b",
+    "granite-speech-5.0-470m-turboctc",
+    "granite-speech-4.1-2b-plus"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 68,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 65,
+      "egyediseg": 85,
+      "hitelesseg": 90,
+      "aktualitas": 100,
+      "kozossegi": 50
+    },
+    "elofeszures": 89,
+    "tanult": 50,
+    "indok": "Az IBM kiadta a Granite Speech 5.0 beszédalapú AI-modelljeit, ami hasznos, de rétegtermék.",
+    "tema": "ibm granite speech models",
+    "cim_hu": "Új beszédértő és fordító AI-modelleket adott ki az IBM",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-21T15:03:51+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-21T15:06:41+00:00",
+  "megjelent": "2026-10-21T15:06:41+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-21T15:06:51+00:00",
+    "esemeny": "Az IBM három új, illetve frissített beszédmodellt mutatott be a Granite Speech gyűjteményében, köztük a 2 milliárd paraméteres granite-speech-5.0-2b modellt, a felgyorsított granite-speech-5.0-470m-turboctc-t és a céges felvételekre hangolt granite-speech-4.1-2b-plus modellt.",
+    "forrasok": [
+      "https://huggingface.co/blog/ibm-granite/granite-speech-5"
+    ],
+    "hibak": [
+      "Az összefoglalóból hiányzott az elsődleges forrásra mutató kötelező hivatkozás."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Az IBM megjelentette a Granite Speech 5.0 nyílt forráskódú beszédmodelleket",
+      "lead": "Az IBM kiadta a nyílt forráskódú Granite Speech modellcsalád legújabb tagjait, amelyek gyorsabb és pontosabb átírást tesznek lehetővé.",
+      "osszefoglalo": "Az IBM három új és frissített beszédmodellt mutatott be, amelyek között megtalálható a **granite-speech-5.0-2b** nyelvi modell. Az új verzió több nyelven végzi az audiók átírását és fordítását, köztük angol, francia, német, spanyol, portugál és japán nyelven. A 2 milliárd paraméteres modellt 390 000 órányi nyilvános hanganyagon és szintetikus adatokon képezték ki.\n\nA frissített **granite-speech-5.0-470m-turboctc** modell az előző változathoz képest 1,6-szer gyorsabbá vált, így szinte azonnali átírást biztosít. A hosszú vállalati hanganyagokra, megbeszélésekre és interjúkra optimalizált **granite-speech-4.1-2b-plus** pedig a beszélők pontosabb beazonosításában és az időbélyegek kezelésében nyújt jobb teljesítményt.\n\nMindhárom modell elérhető az **Apache 2.0 licenc** alatt, így szabadon és ingyenesen használható, beépíthető saját rendszerekbe. A modelleket a népszerű Transformers, vLLM, llama.cpp és mlx-audio keretrendszerek egyaránt támogatják.",
+      "miert_szamit": "A nyílt licencű modellekkel a fejlesztők és vállalkozások **saját szerverükön futtathatnak rendkívül gyors és pontos beszédátíró rendszereket**, adatvédelmi és használati díj nélkül."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
