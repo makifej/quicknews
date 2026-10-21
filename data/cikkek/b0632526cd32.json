@@ -1,0 +1,76 @@
+{
+  "id": "b0632526cd32",
+  "slug": "az-nvidia-uj-kereso-es-dokumentumfeldolgozo-ai-modelleket-adott-ki",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/nvidia/nemotron-retriever-world-class-agentic-retrieval",
+  "szerzo": null,
+  "publikalva": "2026-10-21T10:41:36+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/697fa5ae089a7f9330c5078f/ts2ZQ_szDimxNKk58saCn.png"
+  },
+  "cim_eredeti": "NVIDIA Nemotron 3.5 Embed, Rerank, and Parse: Advancing Agents with World-Class Retrieval Models",
+  "forrasok": [],
+  "szoveg_eredeti": "An agent’s answers depend on the evidence it can retrieve. When that evidence is incomplete or irrelevant, the agent will repeat searches and inspect additional documents, consuming more inference tokens before completing the task. Better retrieval can help agents reach grounded answers with fewer wasted tokens. At enterprise scale, that waste leads to massive inefficiencies. Agents need the right retrieval models and systems to reach insights faster.\n\nToday, we are expanding the Nemotron Retriever collection with new open, commercially available models for embedding, reranking, and document extraction. The new models include Nemotron 3.5 Embed 8B BF16, 1B BF16, 1B NVFP4, Nemotron 3.5 Rerank 8B BF16, and Nemotron 3.5 Parse at 631M parameters.\n\nTogether, these state-of-the-art models bring multimodal retrieval, relevance ranking, and document processing to enterprise agent workflows.\n\nRetrieval quality affects both the answers an agent produces and the LLM inference cost. Relevant evidence can help the agent answer a question or better decide its next step, and reranking improves the quality of evidence that enters its context.\n\nConsider an agent asked to identify products at risk of stockouts next quarter and explain why. It must combine demand forecasts in charts, inventory levels in tables, and supplier lead times in reports, then reason about whether replenishment will arrive before inventory runs out. Completing the task requires finding the relevant evidence across documents and using it together in the analysis.\n\nTo understand how retrieval affects the agent’s ability to combine evidence and complete a task, we evaluated Nemotron 3.5 Embed and Rerank across ViDoRe v3, BRIGHT, and BrowseComp-Plus. ViDoRe v3 uses combined text and image inputs, while BRIGHT and BrowseComp-Plus use text-only inputs. In this pipeline, an agent queries the corpus using a search tool, inspects the evidence, and refines its next search attempt to find the most relevant information to a given query. The experiments below vary how the search tool is implemented: embedding only, embedding plus reranking, and with different models for each. The LLM powering the agent, tools, task set, corpus, and execution policy remain fixed while the retrieval configuration changes. We measure the agent's ability to find the relevant information for each task and total agent inference tokens per task, including input and output tokens across all turns.\n\nFigure 1. End-to-end task success versus total agent inference tokens per task across retrieval configurations.\n\nBehind these agent successes are Nemotron 3.5 Embed and Nemotron 3.5 Rerank, which retrieve evidence across text and images and prioritize it for the agent’s context. Nemotron 3.5 Embed builds on the previous generation’s Nemotron 3 Embed text embedding models to retrieve evidence from document images, including tables, charts, infographics, datasheets, and schematics. This allows applications to search information conveyed by visual content alongside document text.\n\nThe four models provide different options for retrieval and second-stage ranking:\n\nTable 1. Nemotron 3.5 Embed and Nemotron 3.5 Rerank model capabilities and use cases across various sizes and variants.\n\nOn ViDoRe v3.1, Nemotron 3.5 Embed 8B BF16 achieves 61.17 nDCG@10, ranking first among dense retrieval models. This is an 8.94-point improvement over the 52.23 score achieved by the Llama Nemotron Embed VL 1B model. The 1B model brings most of this visual retrieval quality into a smaller model. Distilled from the 8B teacher, Nemotron 3.5 Embed 1B BF16 scores 58.38 nDCG@10, retaining 95.4% of the teacher’s score.\n\nFigure 2. Nemotron 3.5 Embed 8B BF16 ranked first among dense retrieval models on the ViDoRe v3.1 leaderboard as of 10/20/2026.\n\nWe also compare the models with Qwen3-VL-Embedding, EmbeddingGemma-2, and the previous-generation NVIDIA model across ViDoRe v3, Korean ViDoRe and MIRACL Vision. The chart below reports retrieval accuracy for image-only and combined image-and-text inputs.\n\nFigure 3. Text and visual retrieval performance of Nemotron 3.5 Embed compared with prior-generation models and selected baselines.\n\nThe multilingual results show how the models retrieve evidence across different language settings. On MIRACL Vision, the 8B model achieves 72.6 nDCG@10, exceeding Qwen3-VL-Embedding-8B by 4.3 points. We also evaluate the models on KoViDoRe; both Nemotron 3.5 Embed 8B and 1B outperform the Qwen baselines when using combined image and text inputs.\n\nEmbedding models make large collections searchable by representing content as vectors. After retrieval returns a candidate set, Nemotron 3.5 Rerank 8B BF16 evaluates each candidate against the query to refine the ordering across text and image inputs. By distinguishing broadly related content from evidence that directly answers the question, the reranker helps agents use their context budget more effectively and focus on information needed to complete the task. For agentic retrieval systems, surfacing the strongest evidence earlier can reduce distracting context and help agents produce more grounded, efficient responses.\n\nIn collaboration with the MTEB team, we are launching the ViDoRe v3.1 reranking leaderboard to benchmark rerankers on document retrieval across image-only, text-only, and combined image-and-text inputs. Nemotron 3.5 Rerank 8B BF16 achieves 60.49 nDCG@10 with combined image-and-text inputs compared with Qwen-3-VL-Reranker-8B’s 59.17.\n\nFigure 4. Nemotron-3.5-Rerank-8B-BF16 ranked first on ViDoRe v3.1 Reranking leaderboard as of 10/20/2026.\n\nFigure 5. Text and visual reranker performance of Nemotron 3.5 Rerank 8B compared with Qwen 3 VL Reranker 8B. Both models reranked the top 50 candidates retrieved by the Nemotron 3.5 Embed 1B model.\n\nRetrieval quality is only part of the equation for production agentic systems. As document collections and query volumes grow, teams must balance accuracy, throughput, and infrastructure requirements.\n\nNemotron 3.5 Embed 1B NVFP4 provides an optimized deployment option for high-throughput multimodal retrieval. On NVIDIA GB200, it delivers 27.1% higher throughput compared with the 1B BF16 model, increasing from 101.3 to 128.8 documents per second while retaining 99.85% of its retrieval accuracy on ViDoRe v3 with combined image and text inputs. As Figure 6 shows, the NVFP4 model offers a strong accuracy-throughput tradeoff for teams scaling retrieval across production workloads.\n\nThis deployment flexibility complements domain-specific customization: teams can select the data type of model weights that fits their infrastructure, then adapt the embedding and reranking models to their own terminology, documents, and retrieval tasks.\n\nFigure 6. ViDoRe V3 retrieval accuracy versus serving efficiency, comparing Nemotron 3.5 Embed with selected smaller open embedding baselines.\n\nNVIDIA NIM provides a high-performance deployment path for Nemotron 3.5 Embed. In testing on an NVIDIA RTX PRO 6000 Blackwell Server Edition, NIM delivered 6,031 query requests per second—approximately 2.9× the throughput of a comparable vLLM configuration at 2,099 requests per second—while maintaining comparable passage-processing throughput. This optimized serving stack helps enterprises scale retrieval workloads with production-ready deployment and support.\n\nFigure 7. Nemotron 3.5 Embed NIM serving performance compared with the vLLM checkpoint on NVIDIA RTX PRO 6000 Blackwell Server Edition GPUs.\n\nEnterprise agents often search documents containing specialized terminology and company-specific information that general-purpose retrieval models may not fully capture. Fine-tuning allows teams to adapt Nemotron 3.5 Embed and Rerank using their own documents, queries, and relevance labels to their specific domains and use cases.\n\nThe Nemotron multimodal embedding fine-tuning recipe combines synthetic data generation, hard-negative mining, fine-tuning with NVIDIA NeMo AutoModel, and evaluatio",
+  "modell": "gemini-3.5-flash",
+  "cim": "Az NVIDIA új kereső- és dokumentumfeldolgozó AI-modelleket adott ki",
+  "lead": "A Nemotron 3.5 sorozat új nyílt modelljei hatékonyabbá teszik az AI-ügynökök információkeresését.",
+  "osszefoglalo": "Az NVIDIA kibővítette a **Nemotron Retriever** kollekcióját, és kiadta a keresést, átrendezést, valamint dokumentum-feldolgozást segítő nyílt modelljeit. Az új család tagjai a Nemotron 3.5 Embed (8B és 1B méretben), a Nemotron 3.5 Rerank (8B), valamint a 631 millió paraméteres Nemotron 3.5 Parse. A modellek ingyenesen és üzleti célra is elérhetők.\n\nAz új eszközök nemcsak a szöveges tartalmakban, hanem az összetett dokumentumok vizuális elemeiben (táblázatokban, grafikonokban, ábrákban) is képesent **multimodális keresést** végezni. Az átrendező (rerank) modell pontosítja a találatok sorrendjét, így az AI-ügynökök kevesebb felesleges adatot dolgoznak fel, ami közvetlenül csökkenti a működtetési költségeket.\n\nA mérések szerint a Nemotron 3.5 Embed 8B az első helyet érte el a ViDoRe v3.1 teljesítménymérési listán a sűrű keresőmodellek között. Az optimalizált 1B NVFP4 változat pedig **27,1 százalékkal nagyobb átviteli sebességet** biztosít az NVIDIA GB200 hardvereken, miközben pontosságának 99,85 százalékát megtartja.",
+  "miert_szamit": "Az üzleti adatokra épülő AI-asszisztensek és RAG-rendszerek **pontosabb válaszokat adnak és kevesebb zsetont (tokent) fogyasztanak**, ha a céges dokumentumok képi elemeiből és táblázataiból is képesek közvetlenül információt kiszűrni.",
+  "cimkek": [
+    "NVIDIA",
+    "Nemotron",
+    "RAG",
+    "keresés"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Nemotron-3.5-Embed-8B-BF16 a Hugging Face-en",
+    "url": "https://go.adverr.hu/urQWUK",
+    "eredeti": "https://huggingface.co/nvidia/Nemotron-3.5-Embed-8B-BF16"
+  },
+  "linkelendo_nevek": [
+    "Nemotron 3.5 Parse"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 80,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 90,
+      "hitelesseg": 92,
+      "aktualitas": 98,
+      "kozossegi": 61
+    },
+    "elofeszures": 92,
+    "tanult": 55,
+    "indok": "A Nvidia új kereső- és adatfeldolgozó modelljei jelentősen növelhetik az MI-ügynökök hatékonyságát.",
+    "tema": "nvidia nemotron retrieval models",
+    "cim_hu": "Új keresési modellekkel teszi hatékonyabbá az MI-ügynököket a Nvidia",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-21T10:48:44+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-21T10:50:35+00:00",
+  "megjelent": "2026-10-21T10:50:35+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-21T10:50:50+00:00",
+    "esemeny": "Az NVIDIA kiadta a nyílt, üzletileg is felhasználható Nemotron 3.5 kereső-, átrendező- és dokumentum-feldolgozó AI-modelljeit (Nemotron 3.5 Embed, Rerank és Parse).",
+    "forrasok": [
+      "https://huggingface.co/blog/nvidia/nemotron-retriever-world-class-agentic-retrieval"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "termeklinkek_nezve": true
+}
