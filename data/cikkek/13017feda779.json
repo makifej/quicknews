@@ -1,0 +1,79 @@
+{
+  "id": "13017feda779",
+  "slug": "szimulacioban-tanithato-es-fizikai-robotra-ultetheto-a-microduck",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/nvidia/microduck-isaac-lab-sim-to-real",
+  "szerzo": null,
+  "publikalva": "2026-10-21T17:58:42+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/681174fc4119e4ecc91f7f0c/XANlxAAdvzv1pVoIurSzD.png"
+  },
+  "cim_eredeti": "Train in Simulation, Deploy on a Real Robot: Microduck with Isaac Lab 3.0",
+  "forrasok": [],
+  "szoveg_eredeti": "This post was written in collaboration with Antoine Pirrone, Augustin Crampette, Matthieu Lapeyre, Coralie Deplanne, Anne-Charlotte Passanisi, and Thomas Wolf.\n\nMicroduck is a newly released affordable open-source bipedal robot by Pollen Robotics and Hugging Face. And now you can train Microduck to walk with Isaac Lab and Newton. Test the policy, export it as ONNX, and deploy it on the real robot. Share it on the Hugging Face Hub or validate it for competition in Microduck Arena, then explore more advanced tasks with NVIDIA Isaac Lab.\n\nA walking policy trained in simulation must also handle the friction, delays, and mechanical play of real robot servos.. NVIDIA Isaac Lab is an open-source framework for training policies across thousands of GPU-parallel simulations. With Newton, actuator modeling, and domain randomization, developers can prepare policies for real hardware. Microduck brings this workflow to life: train a walking policy in simulation, export it as ONNX, and deploy it on a real biped robot.\n\nThis tutorial walks you through training and evaluating Microduck with Isaac Lab and Newton, then exporting the policy for deployment. From there, you can share your model on the Hugging Face Hub, test its compatibility and compete in Microduck Arena, or put it to work on your own Microduck. Walking is the starting point—with linked examples to help you explore more of Isaac Lab 3.0.\n\nFor the simulation and training portion, you’ll need:\n\nA Linux workstation with a supported NVIDIA GPU and driver. See requirements.\n\nIts onboard robot software is installed and working.\n\nA supported control interface, such as a paired gamepad.\n\nOn Linux with a supported NVIDIA GPU and driver, install uv (skip the first two lines if it is already available), clone Isaac Lab, and install its dependencies:\n\nConfirm that the Microduck tasks and presets are available:\n\nIsaac Lab already provides Microduck’s robot model, scene, observations, actions, rewards, and domain randomization. Start with the flat-walking task; the rough variant adds stairs, slopes, and uneven terrain.\n\nFigure 2. Microduck environments side by side: flat terrain (left) and uneven terrain (right).\n\nThe policy takes 61 observation values and outputs 14 joint-positions. Keep the observation order, normalization, and action scaling consistent when exporting and deploying. See the Microduck task configuration for the full observations, rewards, and simulation settings.\n\nIsaac Lab accelerates Microduck locomotion training by running simulated environments in parallel on the GPU. Isaac Lab can also run distributed training across GPUs, for instance training with 16 GPUs to speed-up the training and increase robustness. In this configuration, we can reach up to 1.25M steps per seconds with rough terrain and backlash enabled.\n\nIn this tutorial, we use Newton with the MJWarp solver and Newton-based Better Actuator Models (BAM) to model servo response, together with the backlash preset to turn position targets into realistic servo torques by modelling the firmware controller, motor electrical limits, friction and delay. To allow the policy to transfer from simulation, we make use of domain randomization. On each duck we randomize the mass/centre of mass, ground friction, joint inertia, encoder offsets, battery voltage/sag and command latency. We also vary terrain and apply pushes; as well as backlash independently per joint to represent uneven wear.\n\nBacklash is the mechanical play in a gearbox, when a joint changes direction, the transmission can move slightly before engaging. Modeling this effect and varying it across joints during training exposes the policy to differences it may encounter on the real robot.\n\nWe used the rough terrain for deployment but alternatively you can train the flat terrain environment with this command:\n\nTo deploy a Microduck walking policy on the physical robot, export it to ONNX after evaluating it in simulation. Isaac Lab’s RSL-RL playback workflow automatically exports both TorchScript (policy.pt) and ONNX (policy.onnx) files. Use policy.onnx with Microduck’s onboard runtime, keeping the observation order, normalization, and action scaling consistent with training.\n\nRun the latest checkpoint in the Newton visualizer:\n\nReplace latest with the path to a specific checkpoint.\n\nFigure 4. Microducks execute a walking policy across uneven terrain in simulation.\n\nFor deployment we will be using the policy for the rough-terrain environment. The current RSL-RL playback implementation exports both TorchScript and ONNX files to an exported directory associated with the selected run:\n\nMicroduck’s onboard runtime loads ONNX policies. Use policy.onnx for the hardware handoff. The automatic export is implemented in Isaac Lab’s RSL-RL playback backend.\n\nCompare it in Microduck Arena, a Hugging Face Space for testing compatible policies on shared challenges and comparing leaderboard results. Arena accepts models with 61 observation values, 14 action values, and a maximum size of 64 MiB. Follow the submission guide to check compatibility and enter a challenge.\n\nRun it on the real Microduck. After checking the observation and action interface from section 4, use the ONNX file with the robot’s onboard runtime; section 6 covers transfer to hardware.\n\nShare it on the Hugging Face Hub. Upload your policy so others can discover and download it. We recommend adding a short model card explaining how to use it. You can also include the training configuration to help others reproduce your results.\n\nAfter validating the policy in simulation and checking its interface (section 4), deploy policy.onnx to a configured Microduck:\n\nFollow the Microduck policy-loading guide for runtime setup and behavior. Figure 5 demonstrates the deployed policy’s robustness to falls: Microduck recovers its footing and resumes walking after being knocked over.\n\nFigure 5. Real Microduck walking with the locomotion policy trained in Isaac Lab.\n\nIsaac Lab 3.0 unlocks GPU-parallel robot learning across locomotion, dexterous manipulation, and vision-based tasks, with extensible environments and configurable physics and rendering backends. Explore these examples and tools:\n\nMore complex locomotion: Adapt Microduck’s rough-terrain task for stairs, slopes, and uneven ground, with a curriculum that increases terrain difficulty.\n\nPerception and navigation tasks: Extend Microduck’s walking policy with head-camera depth and robot-state observations to explore perception-based tasks in simulation. The GIF below shows ramp traversal. Explore camera-based observations in the Kuka–Allegro examples for vision-enabled manipulation.\n\nDexterous manipulation: Try the Kuka–Allegro lift and reorient tasks to train an arm and multi-fingered hand to manipulate objects.\n\nCustom environments: Use the project generator to build your own task, then add simulation-ready (SimReady) assets from SimReady Central Library, and tailor observations and rewards to new challenges.\n\nFigure 7. Parallel training in NVIDIA Isaac Lab lets simulated Microducks practice traversing different ramps and platforms, while learning to maintain balance and avoid falls\n\nFigure 8. Microduck perception task in simulation, with an external view above and RGB, depth, and segmentation views below.\n\nStart with the Microduck task in Isaac Lab, train your first walking policy, and share the exported ONNX model on the Hugging Face Hub. Validate it in Microduck Arena, enter a challenge, and see how your policy compares. Then build on what you learn—try rougher terrain, add perception, or create your own task.\n\nMicroduck home page (ordering, quick start, installation)\n\nMicroduck training environments and configuration\n\nMicroduck Arena and ONNX submission guide\n\nMicroduck robot software and deployment guide\n\nThis workflow builds on Pollen Robotics’ Microduck hardware and software, the original Microduck reinforcement-learning project, BAM actuator modeling work, and the Isaac Lab and Newton inte",
+  "modell": "gemini-3.5-flash",
+  "cim": "Szimulációban tanítható és fizikai robotra ültethető a Microduck",
+  "lead": "Az NVIDIA, a Pollen Robotics és a Hugging Face közös fejlesztésével szimulált környezetben képezhető a kétlábú Microduck robot járási modellje.",
+  "osszefoglalo": "A Pollen Robotics és a Hugging Face által kiadott [Microduck](https://pollen-robotics.com/microduck/) egy nyílt forráskódú, megfizethető kétlábú robot. Az NVIDIA Isaac Lab 3.0 és a Newton fizikai szimulációs keretrendszer segítségével a fejlesztők GPU-n párhuzamosított környezetben taníthatják meg a robotot járni, majd az elkészült modellt ONNX formátumban exportálva közvetlenül a fizikai hardverre telepíthetik.\n\nA szimulációs oktatás során **domain randomizációt** és specifikus aktuátormodellezést alkalmaznak, így a modell felkészül a valós fizikai kihívásokra. A rendszer figyelembe veszi a szervómotorok késleltetését, a súrlódást, a váltó mechanikai holtjátékát (backlash), valamint a talaj egyenetlenségeit és a külső lökésrohamokat is.\n\nAz elkészült modellek megoszthatók a Hugging Face Hubon, és a **Microduck Arena** virtuális kihívásaiban is összemérhetők. A tanítási munkafolyamat a sima felületi járástól a nehéz terepen és emelkedőkön való haladásig terjed.",
+  "miert_szamit": "A nyílt forráskódú szimulációs és hardveres platform lehetővé teszi a fejlesztőknek, hogy **drága fizikai tesztkörnyezet nélkül** fejlesszenek és validáljanak komplex robotikai algoritmusokat.",
+  "cimkek": [
+    "Microduck",
+    "NVIDIA",
+    "Hugging Face",
+    "robotika"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Microduck",
+    "url": "https://pollen-robotics.com/microduck/"
+  },
+  "linkelendo_nevek": [
+    "Microduck",
+    "Isaac Lab",
+    "Microduck Arena"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 79,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 70,
+      "hirertek": 75,
+      "egyediseg": 95,
+      "hitelesseg": 90,
+      "aktualitas": 98,
+      "kozossegi": 78
+    },
+    "elofeszures": 100,
+    "tanult": 74,
+    "indok": "A Hugging Face és a Pollen Robotics nyílt forráskódú kétlábú robotjának szimulációs képzése izgalmas technológiai előrelépés.",
+    "tema": "huggingface open source robotics",
+    "cim_hu": "Nyílt forráskódú kétlábú robotot képezhetünk szimulációban a Hugging Face új eszközével",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-21T18:03:36+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-21T18:05:20+00:00",
+  "megjelent": "2026-10-21T18:05:20+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-21T18:05:22+00:00",
+    "esemeny": "A Pollen Robotics és a Hugging Face által fejlesztett Microduck nyílt forráskódú kétlábú robot mostantól az NVIDIA Isaac Lab 3.0 és Newton keretrendszerek segítségével tanítható szimulációban, a betanított járási modell pedig ONNX formátumban exportálva fizikai robotra ültethető.",
+    "forrasok": [
+      "https://huggingface.co/blog/nvidia/microduck-isaac-lab-sim-to-real"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
