@@ -150,6 +150,64 @@ async function adsenseKapcsol(b) {
   return [200, await adsenseAdat()];
 }
 
+// ---------- Beérkező hírek priorizálása (Heni 2026-10-21) ----------
+// A Mac pillanatképet tölt fel a pontozott hírekről (qn:pult:prioritas), Heni döntései élőben a qn:jovahagyas hash-be
+// mennek ({id: {allapot, szint, ido}}), a Mac 3 percenként data/jovahagyas.json-ba szinkronizálja őket, és csak a
+// "jovahagyva" állapotú hír jelenhet meg bárhol. Az előzmények a qn:jovahagyas:naplo listában (a legfrissebb elöl).
+const JOVA_ALLAPOT = ["jovahagyva", "elutasitva", "fuggo"];
+const JOVA_SZINT = ["P1", "P2", "P3"];
+
+async function jovahagyasok() {
+  const k = (await kv("HGETALL", P + "jovahagyas")) || [];
+  const d = {};
+  for (let i = 0; i < k.length; i += 2) { try { d[k[i]] = JSON.parse(k[i + 1]); } catch { /* sérült sor */ } }
+  return d;
+}
+
+async function prioritasAdat() {
+  const v = await kv("GET", P + "pult:prioritas");
+  const adat = v ? JSON.parse(v) : { sorok: [], hiba: "Még nincs feltöltött adat." };
+  const dont = await jovahagyasok();
+  for (const s of adat.sorok || []) {
+    const d = dont[s.id];
+    if (d) { s.allapot = d.allapot || s.allapot; s.szint_kezi = JOVA_SZINT.includes(d.szint) ? d.szint : null; s.dontes_ido = d.ido || null; }
+    s.szint_tenyleges = s.szint_kezi || s.szint;
+  }
+  adat.naplo = ((await kv("LRANGE", P + "jovahagyas:naplo", 0, 149)) || []).map((x) => { try { return JSON.parse(x); } catch { return null; } }).filter(Boolean);
+  return adat;
+}
+
+// a függőben lévő, Heni döntésére váró hírek száma (az app piros jelzéséhez)
+async function fuggoDb() {
+  const adat = await prioritasAdat();
+  const f = (adat.sorok || []).filter((s) => s.allapot === "fuggo");
+  const db = { P1: 0, P2: 0, P3: 0 };
+  for (const s of f) if (db[s.szint_tenyleges] !== undefined) db[s.szint_tenyleges]++;
+  const legujabb = f.reduce((m, s) => (String(s.beerkezett || "") > m ? String(s.beerkezett) : m), "");
+  return { db: f.length, ...db, legujabb, frissult: adat.frissult || null };
+}
+
+async function prioritasDontes(b, ki) {
+  const idk = Array.isArray(b.idk) ? b.idk : (b.id ? [b.id] : []);
+  if (!idk.length || idk.length > 200 || !idk.every((x) => /^[a-f0-9]{12}$/.test(String(x)))) return [400, { hiba: "Rossz hírazonosító." }];
+  const allapot = b.allapot === undefined || b.allapot === null ? null : String(b.allapot);
+  const szint = b.szint === undefined ? undefined : (b.szint === null || b.szint === "" ? null : String(b.szint));
+  if (allapot !== null && !JOVA_ALLAPOT.includes(allapot)) return [400, { hiba: "Rossz állapot." }];
+  if (szint !== undefined && szint !== null && !JOVA_SZINT.includes(szint)) return [400, { hiba: "Rossz prioritás." }];
+  if (allapot === null && szint === undefined) return [400, { hiba: "Nincs mit menteni." }];
+  const cimek = b.cimek && typeof b.cimek === "object" ? b.cimek : {};
+  const most = new Date().toISOString();
+  for (const id of idk) {
+    const regi = JSON.parse((await kv("HGET", P + "jovahagyas", id)) || "{}");
+    const uj = { allapot: allapot || regi.allapot || "fuggo", szint: szint === undefined ? (regi.szint || null) : szint, ido: most, ki };
+    await kv("HSET", P + "jovahagyas", id, JSON.stringify(uj));
+    await kv("LPUSH", P + "jovahagyas:naplo", JSON.stringify({ ido: most, id, cim: String(cimek[id] || "").slice(0, 160),
+      allapot: uj.allapot, elozo: regi.allapot || "fuggo", szint: uj.szint, elozo_szint: regi.szint || null, ki, tomeges: idk.length > 1 }));
+  }
+  await kv("LTRIM", P + "jovahagyas:naplo", 0, 1999);
+  return [200, { ok: true, db: idk.length }];
+}
+
 module.exports = async (req, res) => {
   const url = new URL(req.url, "https://quicknews.hu");
   const mi = url.searchParams.get("mi") || "";
@@ -181,15 +239,16 @@ module.exports = async (req, res) => {
       return json(res, 200, { ok: true });
     }
     if (mi === "kilep") {
-      // csak érvényes sütivel érvényteleníti a többi munkamenetet is, különben bárki kiléptethetné a tulajdonost
-      if (await belepve(req)) await kv("INCR", "qn:admin:gen");
+      // csak érvényes sütivel érvényteleníti a többi munkamenetet is, különben bárki kiléptethetné a tulajdonost;
+      // kilépéskor az admin-értesítést kapó eszközök listája is törlődik (újra belépve az app újra jelentkezik)
+      if (await belepve(req)) { await kv("INCR", "qn:admin:gen"); await kv("DEL", "qn:push:admin_tokenek"); }
       res.setHeader("Set-Cookie", `${SUTI}=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Strict`);
       return json(res, 200, { ok: true });
     }
     if (gep(req)) {
       if (mi === "feltolt" && req.method === "POST") {
         const { kulcs, adat } = await torzs(req);
-        if (!["posztok", "koltseg", "ajanlott", "statisztika"].includes(kulcs)) return json(res, 400, { hiba: "rossz kulcs" });
+        if (!["posztok", "koltseg", "ajanlott", "statisztika", "prioritas"].includes(kulcs)) return json(res, 400, { hiba: "rossz kulcs" });
         await kv("SET", P + "pult:" + kulcs, JSON.stringify(adat));
         return json(res, 200, { ok: true });
       }
@@ -205,6 +264,9 @@ module.exports = async (req, res) => {
         return json(res, 200, await kepFeltolt(id, b64));
       }
       if (mi === "hirlevel_gep") return json(res, 200, await hirlevelAdat());
+      if (mi === "jovahagyasok_gep") return json(res, 200, { dontesek: await jovahagyasok() });
+      if (mi === "prioritas_gep") return json(res, 200, await prioritasAdat());
+      if (mi === "prioritas_dontes_gep" && req.method === "POST") { const [k, v] = await prioritasDontes(await torzs(req), "Heni (gépi pult)"); return json(res, k, v); }
       if (mi === "boo_gep") return json(res, 200, await booAdat());
       if (mi === "adsense_gep") return json(res, 200, await adsenseAdat());
       if (mi === "adsense_kapcsol_gep" && req.method === "POST") { const [k, v] = await adsenseKapcsol(await torzs(req)); return json(res, k, v); }
@@ -450,6 +512,16 @@ module.exports = async (req, res) => {
       return res.end(Buffer.from(b64, "base64"));
     }
     if (mi === "hirlevel") return json(res, 200, await hirlevelAdat());
+    if (mi === "prioritas") return json(res, 200, await prioritasAdat());
+    if (mi === "fuggo") return json(res, 200, await fuggoDb());
+    if (mi === "prioritas_dontes" && req.method === "POST") { const [k, v] = await prioritasDontes(await torzs(req), "Heni"); return json(res, k, v); }
+    if (mi === "admin_eszkoz" && req.method === "POST") {
+      // az app (belépett admin) FCM-eszköztokenje: csak ide megy a jóváhagyásra váró hírek értesítése
+      const { token } = await torzs(req);
+      if (!/^[A-Za-z0-9_:\-]{100,300}$/.test(String(token || ""))) return json(res, 400, { hiba: "Rossz eszköztoken." });
+      await kv("SADD", "qn:push:admin_tokenek", token);
+      return json(res, 200, { ok: true });
+    }
     if (mi === "boo") return json(res, 200, await booAdat());
     if (mi === "adsense") return json(res, 200, await adsenseAdat());
     if (mi === "adsense_kapcsol" && req.method === "POST") { const [k, v] = await adsenseKapcsol(await torzs(req)); return json(res, k, v); }

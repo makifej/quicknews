@@ -103,6 +103,29 @@ async function fcmKuld(e) {
   return j.name;
 }
 
+// Admin-értesítés (Heni 2026-10-21): a jóváhagyásra váró hírekről, kizárólag a belépett admin eszközeire (eszköztoken,
+// nem téma, így más felhasználó nem iratkozhat fel rá). A tokeneket az app a pult sütijével jelenti be (api/admin.js
+// mi=admin_eszkoz); kilépéskor a lista törlődik. Az érvénytelenné vált tokent itt kivesszük.
+async function adminKuld(e) {
+  const fiok = JSON.parse(process.env.FCM_SZOLGALTATAS);
+  const token = await fcmToken(fiok);
+  const tokenek = (await kv("SMEMBERS", "qn:push:admin_tokenek")) || [];
+  let ok = 0;
+  for (const t of tokenek) {
+    const data = { pid: e.id, cim: e.cim, szoveg: e.szoveg, hir_id: "", kep: "", link: "", tema: "admin", db: String(e.db || 0) };
+    const r = await fetch(`https://fcm.googleapis.com/v1/projects/${fiok.project_id}/messages:send`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ message: { token: t, data, android: { priority: "high", ttl: "21600s" } } }),
+    });
+    if (r.ok) { ok++; continue; }
+    const j = await r.json().catch(() => ({}));
+    const kod = JSON.stringify(j.error || {});
+    if (r.status === 404 || /UNREGISTERED|INVALID_ARGUMENT/.test(kod)) await kv("SREM", "qn:push:admin_tokenek", t);
+  }
+  return { eszkoz: tokenek.length, ok };
+}
+
 async function beallitas() {
   return { ...ALAP_BEALL, ...JSON.parse((await kv("GET", P + "beall")) || "{}") };
 }
@@ -175,6 +198,19 @@ module.exports = async (req, res) => {
       return json(res, 200, { ok: true });
     }
 
+    if (mi === "admin_gep") {
+      // a Mac jelzi az új, jóváhagyásra váró híreket; egy köteg = egy értesítés (a kétszer-küldést a kulcs zárja ki)
+      if (!gep(req) || req.method !== "POST") return json(res, 403, { hiba: "Nincs jogosultság." });
+      if (!vanFcm) return json(res, 503, { hiba: "Az FCM még nincs bekötve." });
+      const b = await torzs(req);
+      const kulcs = String(b.kulcs || "");
+      if (!/^[a-f0-9]{12,64}$/.test(kulcs)) return json(res, 400, { hiba: "Rossz kulcs." });
+      if ((await kv("SET", P + "admin_kuldve:" + kulcs, "1", "NX", "EX", 7 * 86400)) !== "OK") return json(res, 200, { ok: false, ok_miert: "már kiment" });
+      const e = { id: crypto.randomBytes(6).toString("hex"), cim: tiszta(b.cim, 90) || "Új hírek jóváhagyásra várnak",
+                  szoveg: tiszta(b.szoveg, 240), db: Math.max(0, Math.min(999, Number(b.db) || 0)) };
+      try { return json(res, 200, { ok: true, ...(await adminKuld(e)) }); }
+      catch (err) { await kv("DEL", P + "admin_kuldve:" + kulcs); throw err; }
+    }
     if (mi === "auto_gep" || mi === "esedekes_gep" || mi === "napi_gep") {
       if (!gep(req) || req.method !== "POST") return json(res, 403, { hiba: "Nincs jogosultság." });
       if (!vanFcm) return json(res, 503, { hiba: "Az FCM még nincs bekötve." });
