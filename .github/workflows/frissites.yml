@@ -73,6 +73,8 @@ jobs:
           python3 build/gyujt.py --nem-tipus x_profil --nem-forras producthunt
           python3 build/fordit.py
           python3 build/tenyellenor.py
+          # Heni pultbeli döntései: a jóváhagyott hír a Mac nélkül is lefordul és kikerül (render előtt)
+          python3 build/jovahagyas_atvetel.py || echo "jóváhagyás-átvétel kihagyva"
           # a jóváhagyásra váró hírek jelzése Heninek a felhőből is, hogy ne a Mac ébrenlétén múljon
           python3 build/admin_jelzes.py || echo "admin-jelzés kihagyva"
           python3 build/kiprobal_potlo.py --ir
