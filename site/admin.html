@@ -275,7 +275,24 @@ button.hird-indit{color:#131313;background:var(--amber)}
 .pr-tomeg.aktiv{position:sticky;top:64px;z-index:4}
 .pr-tomeg .gomb{font-size:15px;padding:8px 14px}.pr-tomeg .gomb:disabled{opacity:.35;cursor:default}
 .pr-szurok{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px}
-.pr-naplo{margin-top:40px}.pr-naplo summary{cursor:pointer;font-weight:700;color:var(--halk);font-size:18px}
+.pr-naplo{margin-top:40px}
+/* Tendencia: Heni döntései szintenként és forrásonként (Heni 2026-10-21; „vastagabb betűvel, vastagabb csíkokkal”) */
+.pr-tab{width:100%;border-collapse:collapse;margin:8px 0 40px;font-variant-numeric:tabular-nums;table-layout:fixed}
+.pr-tab th,.pr-tab td{padding:14px 10px;border-bottom:1px solid var(--vonal);text-align:right;white-space:nowrap}
+.pr-tab th{color:var(--szoveg);font-weight:700;font-size:15px;border-bottom:2px solid var(--vonal)}
+.pr-tab td{font-size:20px;font-weight:800;color:var(--szoveg)}
+.pr-tab th:first-child,.pr-tab td:first-child{text-align:left;white-space:nowrap;width:24%}
+.pr-tab td:first-child{font-size:18px;font-weight:700}
+.pr-tab td.jo{color:#7bd88f}.pr-tab td.rossz{color:var(--hiba)}
+.pr-tab th:last-child,.pr-tab td:last-child{width:26%}
+.pr-arany{display:inline-block;min-width:52px;font-size:20px;font-weight:800}
+.pr-savg{display:inline-block;vertical-align:middle;width:140px;height:12px;border-radius:6px;background:#333;margin-left:12px;overflow:hidden}
+.pr-savg i{display:block;height:100%;background:#7bd88f;border-radius:6px}
+#pr-tendencia .a-bev{font-size:17px;color:var(--szoveg)}
+#pr-tendencia .hl-cimke{font-size:15px}
+.pr-tab .rovid{display:none}
+@media (max-width:700px){.pr-tab th,.pr-tab td{padding:10px 4px}.pr-tab th{font-size:14px}.pr-tab td{font-size:17px}.pr-tab td:first-child{font-size:15px}.pr-arany{font-size:17px;min-width:0}.pr-savg{display:none}.pr-tab .hosszu{display:none}.pr-tab .rovid{display:inline}
+.pr-tab td:first-child{max-width:120px;overflow:hidden;text-overflow:ellipsis}}.pr-naplo summary{cursor:pointer;font-weight:700;color:var(--halk);font-size:18px}
 .pr-naplo li{list-style:none;padding:10px 0;border-bottom:1px solid var(--vonal);font-size:15px;color:var(--halk)}.pr-naplo li b{color:var(--szoveg);font-weight:600}
 @media (max-width:700px){#pr-mutatok{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-bottom:16px}#pr-mutatok .mutato{padding:8px 6px 10px;border-radius:10px}#pr-mutatok .mutato small{font-size:11px;letter-spacing:-.01em;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal}#pr-mutatok .mutato b{font-size:22px}#pr-mutatok .mutato em{display:none}.pr-szurok{gap:8px}.pr-szurok .szeg{display:grid;width:100%}.pr-szurok .szeg[aria-label="Állapot"]{grid-template-columns:auto auto auto auto}.pr-szurok .szeg[aria-label="Állapot"] button{padding:7px 6px;font-size:14px}.pr-szurok .szeg[aria-label="Prioritás"]{grid-template-columns:auto auto auto auto auto}.pr-szurok .szeg[aria-label="Prioritás"] button{padding:7px 6px;font-size:14px}.pr-szurok .szeg[aria-label="Sorrend"]{grid-template-columns:repeat(2,minmax(0,1fr))}.pr-szurok .szeg button{text-align:center}.pr-szurok .szeg button{padding:7px 11px;font-size:15px}.pr-sor{grid-template-columns:64px minmax(0,1fr)!important}.pr-pont{font-size:26px}.pr-tomeg.aktiv{top:56px}.pr-tomeg{flex-wrap:nowrap}.pr-tomeg .gomb{flex:1 1 0;padding:8px 6px;font-size:14px;white-space:nowrap}}
 .ah.sopor-ki{transform:translateX(-110%);opacity:0;pointer-events:none}
@@ -381,6 +398,9 @@ if(/quicknews-android-admin/.test(navigator.userAgent))document.documentElement.
 
 <main>
 <section id="p-prioritas" hidden>
+<div class="szeg alful" role="group" aria-label="Beérkező nézet"><button type="button" data-prnezet="hirek">Hírek</button><button type="button" data-prnezet="tendencia">Tendencia</button></div>
+<div id="pr-tendencia" hidden></div>
+<div id="pr-hirek">
 <div class="mutatok" id="pr-mutatok"></div>
 
 <div class="pr-szurok">
@@ -391,6 +411,7 @@ if(/quicknews-android-admin/.test(navigator.userAgent))document.documentElement.
 <div id="pr-lista"></div>
 <details class="pr-naplo" id="pr-naplo"><summary>Jóváhagyási előzmények</summary><ul id="pr-naplo-lista"></ul></details>
 <details class="pr-naplo"><summary>Hogyan működik?</summary><p class="a-bev" style="margin-top:12px"><b>Semmi nem jelenik meg a jóváhagyásod nélkül.</b> A P1 és P2 hír már le van fordítva, a P3 és a 40 pont alatti csak jóváhagyás után fordul le. Főhír csak jóváhagyott P1 vagy P2 lehet.</p></details>
+</div>
 </section>
 <section id="p-posztok">
 <div class="szeg alful" role="group" aria-label="Posztok és ajánlott nézet"><button type="button" data-alful="ajanlott">Ajánlott</button><button type="button" data-alful="posztok">Időzítve, kint</button></div>
@@ -1040,10 +1061,27 @@ document.getElementById("ap-beall").onclick=async()=>{const v=i=>document.getEle
  alert(r.hiba?r.hiba:"Elmentve.");aptolt()};
 
 /* ---------- beérkező hírek priorizálása (Heni 2026-10-21) ---------- */
+let PRNEZET=TAR("pr-nezet")||"hirek";
+function prNezet(){document.querySelectorAll("[data-prnezet]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.prnezet===PRNEZET)));
+ document.getElementById("pr-hirek").hidden=PRNEZET!=="hirek";document.getElementById("pr-tendencia").hidden=PRNEZET!=="tendencia";if(PRNEZET==="tendencia")prTendencia()}
+/* a tendencia mindig az aktuális döntésekből számol (a lista frissítésével együtt frissül) */
+function prTendencia(){if(!PR)return;const S=PR.sorok||[];
+ const tabla=(cim,kulcs,nevek)=>{const g={};for(const s of S){const k=kulcs(s);if(!k)continue;const e=g[k]||(g[k]={jo:0,rossz:0,gepi:0,fuggo:0});
+   if(s.allapot==="jovahagyva")e.jo++;else if(s.allapot==="elutasitva")(s.auto?e.gepi++:e.rossz++);else e.fuggo++}
+  const sorok=Object.entries(g).sort((a,b)=>(nevek?nevek.indexOf(a[0])-nevek.indexOf(b[0]):0)||((b[1].jo+b[1].rossz)-(a[1].jo+a[1].rossz)));
+  return `<p class="hl-cimke">${cim}</p><table class="pr-tab"><thead><tr><th></th><th><span class="hosszu">Jóváhagyva</span><span class="rovid">✓</span></th><th><span class="hosszu">Elutasítva</span><span class="rovid">✕</span></th><th>Függő</th><th><span class="hosszu">Gépi elutasítás</span><span class="rovid">Gépi</span></th><th><span class="hosszu">Arány</span><span class="rovid">%</span></th></tr></thead><tbody>`+
+   sorok.map(([k,e])=>{const d=e.jo+e.rossz,a=d?Math.round(e.jo/d*100):null;
+    return `<tr><td>${esc(k)}</td><td class="jo">${e.jo}</td><td class="rossz">${e.rossz}</td><td>${e.fuggo}</td><td>${e.gepi}</td><td><span class="pr-arany">${a===null?"-":a+"%"}</span>${a===null?"":`<span class="pr-savg"><i style="width:${a}%"></i></span>`}</td></tr>`}).join("")+`</tbody></table>`};
+ const SZN={P1:"P1",P2:"P2",P3:"P3",X:"40 alatt"};
+ document.getElementById("pr-tendencia").innerHTML=
+  `<p class="a-bev">Az utóbbi ${PR.napok||7} nap hírei. ✓ jóváhagytad, ✕ elutasítottad, Gépi: a gép utasította el. Az arány a te döntéseidből számol. Frissítve: ${PR.frissult?ora(new Date(PR.frissult)):"-"}.</p>`+
+  tabla("A gép szintje szerint",s=>SZN[s.szint]||s.szint,["P1","P2","P3","40 alatt"])+
+  tabla("Gyűjtő csatorna szerint",s=>s.csatorna||s.forras_id||s.forras)}
+document.querySelectorAll("[data-prnezet]").forEach(b=>b.onclick=()=>{PRNEZET=b.dataset.prnezet;TAR("pr-nezet",PRNEZET);prNezet()});
 let PR=null,PRALL=TAR("pr-all")||"fuggo",PRSZINT=TAR("pr-szint")||"mind",PRREND=TAR("pr-rend")||"pont";const PRKIJ=new Set();
 const PRALLNEV={fuggo:"Függőben",jovahagyva:"Jóváhagyva",elutasitva:"Elutasítva"};
 const PRRESZ=[["hatas","Hatás"],["hirertek","Hírérték"],["hitelesseg","Hitelesség"],["egyediseg","Egyediség"],["aktualitas","Aktualitás"],["kozossegi","Közösségi"]];
-async function prtolt(){try{PR=await lekér(U.prioritas)}catch(e){document.getElementById("pr-lista").innerHTML=`<div class="hibasav">A beérkező hírek most nem érhetők el.</div>`;return}prrajzol()}
+async function prtolt(){try{PR=await lekér(U.prioritas)}catch(e){document.getElementById("pr-lista").innerHTML=`<div class="hibasav">A beérkező hírek most nem érhetők el.</div>`;return}prrajzol();prNezet()}
 function prUt(s){
  if(s.allapot!=="jovahagyva")return "";
  if(s.kint)return `<div class="pr-ut kesz">✓ Kint van: <a href="https://quicknews.hu/hir/${esc(s.slug)}" target="_blank" rel="noopener" style="color:inherit">megnyitom ↗</a></div>`;
