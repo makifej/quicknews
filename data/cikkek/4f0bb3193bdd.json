@@ -19,8 +19,15 @@
   "media": {
     "tipus": "mp4",
     "url": "https://dms.licdn.com/playlist/vid/v2/D4E05AQH8vEDnGWQNXQ/mp4-720p-30fp-crf28/B4EaFe3t3PIYB8-/0/1792593044571?e=2147483647&v=beta&t=6dbJscb4FGKD42lORTN5WB08qj_rjj7nQdSzfwtJQDw",
-    "kep": "https://media.licdn.com/dms/image/v2/D4E05AQH8vEDnGWQNXQ/videocover-high/B4EaFe3t3PIYBM-/0/1792593029819?e=2147483647&v=beta&t=CUQW_bTM570UTpluae_wOzmZ5EWiwQL4_jq6o2xXoQE",
-    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7518723253385740290"
+    "kep": "/assets/kep/4f0bb3193bdd-fk1.webp",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7518723253385740290",
+    "kep_eredeti": "https://media.licdn.com/dms/image/v2/D4E05AQH8vEDnGWQNXQ/videocover-high/B4EaFe3t3PIYBM-/0/1792593029819?e=2147483647&v=beta&t=CUQW_bTM570UTpluae_wOzmZ5EWiwQL4_jq6o2xXoQE",
+    "og": "/assets/og/4f0bb3193bdd-fk1.jpg",
+    "borito_videokocka": {
+      "mp": 11.76,
+      "ido": "2026-10-21T22:33:50+00:00"
+    },
+    "rogzitett": true
   },
   "cim_eredeti": "🤗 transformers serve now speaks 🔊",
   "szoveg_eredeti": "🤗 transformers serve now speaks 🔊\n\nWe just added an OpenAI-compatible `/v1/audio/speech` endpoint to transformers serve, and we couldn't have picked a better model to launch it with than Phonon, Gradium brand-new on-device TTS: tiny, fast and multilingual.\n\nTest it with:\ntransformers serve gradium/phonon-40m-en\n\nPhonon isn't alone. transformers serve supports:\n• voice cloning from a reference clip\n• streaming, to hear the audio as it's generated\n• instructions, to steer tone and style\n\nAnd we tested it with VibeVoice, Higgs Audio V2 and Phonon. Any TTS model in transformers should work. If yours doesn't, open an issue and we'll add it!\n\nHuge kudos to Eustache Le Bihan for the day-0 transformers integration, and Gradium team for open-sourcing their models. Phonon-31m is Apache 2.0 !",
