@@ -1,0 +1,48 @@
+{
+  "id": "1dd354d60175",
+  "slug": "the-php-foundation-says-its-rce-patches-are-limited-to-php-8-2-and",
+  "forras_id": "techmeme",
+  "forras_nev": "Wired",
+  "url": "https://www.wired.com/story/this-is-not-a-drill-2-php-vulnerabilities-are-setting-the-internet-on-fire/",
+  "publikalva": "2026-10-21T17:05:01+00:00",
+  "cim": "The PHP Foundation says its RCE patches are limited to PHP 8.2 and newer, leaving legacy deployments dependent on third-party vendors (Wired)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.wired.com/photos/6ad8c3fad8fc6a7c8e751dc0/191:100/w_1280,c_limit/102126-PHP.jpg"
+  },
+  "cim_eredeti": "The PHP Foundation says its RCE patches are limited to PHP 8.2 and newer, leaving legacy deployments dependent on third-party vendors (Wired)",
+  "szoveg_eredeti": "Internet security and web administration teams around the world are scrambling to prevent widespread disaster. On Wednesday, the developers behind the much-used PHP programming language released emergency security updates designed to fix critical flaws that could be exploited to allow attackers to gain dangerous remote control of victim systems.\n\nThe PHP Foundation detailed the two critical vulnerabilities—CVE-2026-109618 and CVE-2026-109619—which impact “all PHP installations serving web requests” going back to PHP version 5, released in July 2004. However, only PHP 8.2 and newer are still supported and will receive patches, according to the alert. The PHP Foundation noted, though, that some PHP distributions and third-party vendors still produce legacy fixes. The caveat is significant, because ubiquitous and foundational web layers like PHP can persist forgotten and un-updated in historic internet infrastructure.\n\n“There are no complete mitigations, updating is the only safe choice,” the PHP Foundation wrote in its advisories. Security experts warn of the potential dire consequences of overlooking unpatched systems.\n\n“This is not a drill,” says Lukasz Olejnik, an independent security consultant and visiting senior research fellow at King’s College London. Since its development in the 1990s, PHP has evolved into an essential scripting language for web development and is used across vast swaths of the internet in websites and software. Everything from publishing systems like WordPress and Drupal to e-commerce platforms like Adobe’s Magento are built on PHP.\n\nOlejnik likens the widespread use of the programming language to critical infrastructure.\n\n“The impact is enormous,” he says of PHP’s security flaws, adding that millions of systems could be impacted. “Especially if attackers would turn to exploiting these vulnerabilities fast. Worst case is wormable malware affecting big chunks of the internet.”\n\nThe overriding fear for security teams and developers is that malicious hackers could quickly jump upon the vulnerabilities and begin exploiting deployments before they are fixed. Internet infrastructure company Cloudflare reported it was “seeing early attacks emerging” before the PHP Foundation had detailed the vulnerabilities and released fixes. “We expect mass attacks to start within 15 minutes of the release,” security firm Sansec wrote ahead of the fixes, which were released just before 10 am ET on Wednesday.\n\n“Most of the web runs on PHP and this bug is in a file upload interface that’s like a front door with no lock,” says longtime security and compliance consultant Davi Ottenheimer. “An attacker does not need to know which site they are hitting or even the actual software it runs. They send one crafted upload to any server they can find, and that is the entire attack.”\n\nAhead of the updated versions of PHP becoming available, some organizations took their websites offline as a precautionary measure. Multiple sites belonging to the Finnish government, including the National Land Survey, were inaccessible, according to reports. French government websites and the Port of Rotterdam’s website were also offline, according to Reuters.\n\n“Everybody should patch immediately, exploitation may happen very fast and at a scale,” says Olejnik. “AI makes exploiting such vulnerabilities of immediate importance. Like, indeed, a minute or so.”\n\nSecurity company Wiz, which is owned by Google, claimed its researchers discovered the vulnerabilities in PHP partially using AI tools, while OpenAI and security firm Calif also say they independently discovered the issues and worked together. Dubbing an exploitation demonstration php2shell , the Wiz researchers write that in some cases the vulnerabilities can be exploited “fairly easily.”\n\n“The vulnerabilities can allow unauthenticated attackers to execute code on affected servers or read sensitive process memory,” Wiz writes in its research. “That memory may contain passwords, authentication tokens, API keys and certificates belonging to other requests or the server itself.”\n\nDetails of the upcoming vulnerabilities first appeared from the maintainers behind PHP on October 20. In a short post on the PHP website, the PHP Foundation wrote it was giving “advance notice” of the security flaws and upcoming release of the fixes. While omitting specific details about the vulnerabilities or the versions impacted, it said both flaws are considered to have a “critical” 9.2 score out of 10 on the Common Vulnerability Scoring System (CVSS).\n\n“We reserve the right to release earlier should details of either vulnerability become public, or should evidence of active exploitation appear in the wild,” the security warning on the PHP site said ahead of Wednesday’s release. According to reports from Bleeping Computer and Ars Technica, some details about the vulnerabilities may have leaked before they were due to officially be published.\n\nThe early warning from the PHP Foundation may have given some developers, security teams, and companies enough of a heads up to start preparing to update systems using PHP. Ahead of the details being published, warnings from the EU’s Computer Emergency Response Team (EU-CERT) and Australia's cybersecurity agency said IT teams should be prepared to update their systems as soon as possible, with the potential for websites to be taken offline while fixes are applied.\n\nSimilarly, the UK’s National Cyber Security Center (NCSC), published an alert saying organizations should “prepare for immediate updating of systems” using PHP. “Where immediate remediation is not feasible, organizations should consider taking the system offline until it can be fully mitigated,” the agency wrote online.\n\nThe NCSC advises that organizations and businesses should identify systems running PHP across their tech infrastructure. There should be a particular focus on systems using PHP that are connected to the internet, including monitoring them for any potential exploitation. The next step is applying PHP updates as they are available and monitoring for updates from software companies as they may use PHP within their apps or services.\n\n“If you find signs of compromise, isolate the system, preserve your web server and PHP logs, and report it to your local FBI field office,” Brett Leatherman, the FBI’s cyber assistant director posted online. “Those reports help us identify the actors involved and warn other organizations before they become victims.”",
+  "begyujtve": "2026-10-21T17:12:15.220916+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 60,
+      "egyediseg": 90,
+      "hitelesseg": 86,
+      "aktualitas": 98,
+      "kozossegi": 50
+    },
+    "elofeszures": 94,
+    "tanult": 65,
+    "indok": "Ez egy PHP webes sérülékenységi hír, nincs köze a mesterséges intelligenciához.",
+    "tema": "php rce security patch",
+    "cim_hu": "Kritikus biztonsági javítás érkezett a PHP-hoz, de a régi rendszerek védtelenek maradnak",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-21T17:12:25+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-21T17:14:19+00:00"
+}
