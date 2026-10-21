@@ -136,17 +136,45 @@ test("admin-értesítés: csak a bejelentett admin eszközre megy, egyszer, az �
   for (const t of [jo, rossz]) assert.strictEqual((await keres("admin.js", { url: "/api/admin?mi=admin_eszkoz", headers: s, body: { token: t } })).kod, 200);
   // gépkulcs nélkül nem küldhető
   assert.ok([401, 403].includes((await keres("push.js", { url: "/api/push?mi=admin_gep", body: { kulcs: "a".repeat(24), cim: "x" } })).kod));
-  const r = await keres("push.js", { url: "/api/push?mi=admin_gep", headers: GEP, body: { kulcs: "a".repeat(24), cim: "2 új hír jóváhagyásra vár", szoveg: "P1 91: Első", db: 2 } });
+  const sorok = [{ id: ID1, szint: "P1", pont: 91, cim: "Első", ora: 0.2 }, { id: ID2, szint: "P3", pont: 50, cim: "Második", ora: 0.1 }];
+  const r = await keres("push.js", { url: "/api/push?mi=admin_gep", headers: GEP, body: { sorok } });
   assert.strictEqual(r.kod, 200);
   assert.strictEqual(r.adat.eszkoz, 2);
   assert.strictEqual(r.adat.ok, 1);
+  assert.strictEqual(r.adat.uj, 2);
   const kuldes = kulso.filter((x) => x.url.includes("fcm.googleapis.com")).map((x) => JSON.parse(x.opt.body).message);
   assert.ok(kuldes.every((m) => m.token && !m.topic), "csak eszköztokenre megy, témára soha");
   assert.ok(kuldes.every((m) => m.data.tema === "admin"));
+  assert.match(kuldes[0].data.cim, /2 új hír jóváhagyásra vár, ebből 1 P1/);
   assert.deepStrictEqual([...tar.get("qn:push:admin_tokenek")], [jo]);
-  const ujra = await keres("push.js", { url: "/api/push?mi=admin_gep", headers: GEP, body: { kulcs: "a".repeat(24), cim: "x" } });
-  assert.strictEqual(ujra.adat.ok, false, "ugyanaz a köteg kétszer nem megy ki");
+  // ugyanazokról a hírekről másodszor (a Macről vagy a felhőből) nem szól; friss hír mellett nem jön emlékeztető sem
+  const ujra = await keres("push.js", { url: "/api/push?mi=admin_gep", headers: GEP, body: { sorok } });
+  assert.strictEqual(ujra.adat.ok, false, "ugyanazok a hírek kétszer nem mennek ki");
+  // az eldöntött hír nem számít függőnek, az új hír egyedül megy ki
+  tar.set("qn:jovahagyas", new Map([[ID1, JSON.stringify({ allapot: "jovahagyva" })]]));
+  const harmadik = await keres("push.js", { url: "/api/push?mi=admin_gep", headers: GEP, body: { sorok: [...sorok, { id: ID3, szint: "P2", pont: 70, cim: "Harmadik", ora: 0 }] } });
+  assert.strictEqual(harmadik.adat.uj, 1);
+  assert.strictEqual(harmadik.adat.fuggo, 2);
   // kilépéskor az admin eszközök listája törlődik
   await keres("admin.js", { url: "/api/admin?mi=kilep", headers: s });
   assert.strictEqual(tar.has("qn:push:admin_tokenek"), false);
+});
+
+test("admin-emlékeztető: régóta váró P1/P2 hírre 2 óránként egyszer, a P3 miatt nem", async () => {
+  ujKv(); const s = await belep();
+  await keres("admin.js", { url: "/api/admin?mi=admin_eszkoz", headers: s, body: { token: "j" + "A".repeat(150) } });
+  const regi = [{ id: ID1, szint: "P1", pont: 91, cim: "Első", ora: 3 }];
+  for (const x of regi) tar.set("qn:push:admin_jel:" + x.id, "1");  // már jelezve volt
+  const ora = Number(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Budapest", hour: "numeric", hourCycle: "h23" }).format(new Date()));
+  const r = await keres("push.js", { url: "/api/push?mi=admin_gep", headers: GEP, body: { sorok: regi } });
+  if (ora >= 8 && ora < 23) {
+    assert.strictEqual(r.adat.emlekezteto, true);
+    const m = kulso.filter((x) => x.url.includes("fcm.googleapis.com")).map((x) => JSON.parse(x.opt.body).message).pop();
+    assert.match(m.data.cim, /1 hír vár még a jóváhagyásodra/);
+    const ujra = await keres("push.js", { url: "/api/push?mi=admin_gep", headers: GEP, body: { sorok: regi } });
+    assert.strictEqual(ujra.adat.ok_miert, "nemrég emlékeztetett");
+  } else assert.strictEqual(r.adat.ok, false, "éjjel nincs emlékeztető");
+  tar.delete("qn:push:admin_emlek");
+  const p3 = await keres("push.js", { url: "/api/push?mi=admin_gep", headers: GEP, body: { sorok: [{ id: ID2, szint: "P3", pont: 50, cim: "x", ora: 5 }].map((x) => (tar.set("qn:push:admin_jel:" + x.id, "1"), x)) } });
+  assert.strictEqual(p3.adat.ok, false, "P3 miatt nincs emlékeztető");
 });

@@ -68,10 +68,13 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DAILYDEV_TOKEN: ${{ secrets.DAILYDEV_TOKEN }}
+          GEP_KULCS: ${{ secrets.GEP_KULCS }}
         run: |
           python3 build/gyujt.py --nem-tipus x_profil --nem-forras producthunt
           python3 build/fordit.py
           python3 build/tenyellenor.py
+          # a jóváhagyásra váró hírek jelzése Heninek a felhőből is, hogy ne a Mac ébrenlétén múljon
+          python3 build/admin_jelzes.py || echo "admin-jelzés kihagyva"
           python3 build/kiprobal_potlo.py --ir
           python3 build/termek_linkelo.py --ir
           python3 build/entitas_link.py

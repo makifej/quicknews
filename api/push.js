@@ -199,17 +199,45 @@ module.exports = async (req, res) => {
     }
 
     if (mi === "admin_gep") {
-      // a Mac jelzi az új, jóváhagyásra váró híreket; egy köteg = egy értesítés (a kétszer-küldést a kulcs zárja ki)
+      // a jóváhagyásra váró hírek jelzése Heni eszközeire. Két forrás hívja (a felhős negyedórás kör és a Mac 3 perces
+      // köre), ezért a kétszer-küldést itt, hírenként zárjuk ki: ugyanarról a hírről egyszer szól, akárki jelzi.
+      // Ha új hír nincs, de P1 vagy P2 hír 2 óránál régebben vár, 2 óránként emlékeztet (éjjel nem).
       if (!gep(req) || req.method !== "POST") return json(res, 403, { hiba: "Nincs jogosultság." });
       if (!vanFcm) return json(res, 503, { hiba: "Az FCM még nincs bekötve." });
       const b = await torzs(req);
-      const kulcs = String(b.kulcs || "");
-      if (!/^[a-f0-9]{12,64}$/.test(kulcs)) return json(res, 400, { hiba: "Rossz kulcs." });
-      if ((await kv("SET", P + "admin_kuldve:" + kulcs, "1", "NX", "EX", 7 * 86400)) !== "OK") return json(res, 200, { ok: false, ok_miert: "már kiment" });
-      const e = { id: crypto.randomBytes(6).toString("hex"), cim: tiszta(b.cim, 90) || "Új hírek jóváhagyásra várnak",
-                  szoveg: tiszta(b.szoveg, 240), db: Math.max(0, Math.min(999, Number(b.db) || 0)) };
-      try { return json(res, 200, { ok: true, ...(await adminKuld(e)) }); }
-      catch (err) { await kv("DEL", P + "admin_kuldve:" + kulcs); throw err; }
+      if (!Array.isArray(b.sorok)) return json(res, 400, { hiba: "Hiányzik a sorok lista." });
+      const dont = (await kv("HGETALL", "qn:jovahagyas")) || [];
+      const eldontve = new Set();
+      for (let i = 0; i < dont.length; i += 2) {
+        try { if (JSON.parse(dont[i + 1]).allapot !== "fuggo") eldontve.add(dont[i]); } catch { /* sérült sor */ }
+      }
+      const fuggo = b.sorok.slice(0, 300)
+        .filter((s) => s && /^[a-f0-9]{12}$/.test(String(s.id)) && /^P[123]$/.test(String(s.szint)) && !eldontve.has(s.id))
+        .map((s) => ({ id: s.id, szint: s.szint, pont: Math.round(Number(s.pont) || 0), cim: tiszta(s.cim, 80), ora: Number(s.ora) || 0 }))
+        .sort((a, c) => c.pont - a.pont);
+      const uj = [];
+      for (const s of fuggo) if ((await kv("SET", P + "admin_jel:" + s.id, "1", "NX", "EX", 14 * 86400)) === "OK") uj.push(s);
+      // átálláskor a már jelzett hírek megjelölése küldés nélkül, hogy ne jöjjenek újra
+      if (b.csak_jelol === true) return json(res, 200, { ok: false, ok_miert: "megjelölve", uj: uj.length });
+      const sor = (x) => x.slice(0, 3).map((s) => `${s.szint} ${s.pont}: ${s.cim}`).join(" · ");
+      let e;
+      if (uj.length) {
+        const p1 = uj.filter((s) => s.szint === "P1").length;
+        e = { cim: `${uj.length} új hír jóváhagyásra vár` + (p1 ? `, ebből ${p1} P1` : ""), szoveg: sor(uj) };
+      } else {
+        const regi = fuggo.filter((s) => s.szint !== "P3" && s.ora >= 2);
+        const ora = Number(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Budapest", hour: "numeric", hourCycle: "h23" }).format(new Date()));
+        if (!regi.length || ora < 8 || ora >= 23) return json(res, 200, { ok: false, ok_miert: "nincs új", fuggo: fuggo.length });
+        if ((await kv("SET", P + "admin_emlek", "1", "NX", "EX", 2 * 3600)) !== "OK") return json(res, 200, { ok: false, ok_miert: "nemrég emlékeztetett", fuggo: fuggo.length });
+        e = { cim: `${fuggo.length} hír vár még a jóváhagyásodra`, szoveg: sor(regi), emlek: true };
+      }
+      e = { ...e, id: crypto.randomBytes(6).toString("hex"), cim: tiszta(e.cim, 90), szoveg: tiszta(e.szoveg, 240), db: fuggo.length };
+      try { return json(res, 200, { ok: true, uj: uj.length, emlekezteto: !!e.emlek, fuggo: fuggo.length, ...(await adminKuld(e)) }); }
+      catch (err) {
+        for (const s of uj) await kv("DEL", P + "admin_jel:" + s.id);
+        if (e.emlek) await kv("DEL", P + "admin_emlek");
+        throw err;
+      }
     }
     if (mi === "auto_gep" || mi === "esedekes_gep" || mi === "napi_gep") {
       if (!gep(req) || req.method !== "POST") return json(res, 403, { hiba: "Nincs jogosultság." });
