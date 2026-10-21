@@ -259,7 +259,17 @@ button.hird-indit{color:#131313;background:var(--amber)}
 .pr-indok{color:var(--szoveg);font-size:16px;margin-top:8px}
 .pr-resz{font-size:14px;color:var(--halk);margin-top:6px;font-variant-numeric:tabular-nums}
 .pr-ut{font-size:15px;margin-top:8px;color:var(--amber);font-weight:600}.pr-ut.kesz{color:#7bd88f}
-.pr-sor.jovahagyva{outline:1px solid #7bd88f}.pr-sor.elutasitva{opacity:.6}
+.pr-sor.jovahagyva{outline:1px solid #7bd88f}
+/* azonnali visszajelzés a döntésre (Heni 2026-10-21): a gomb rögtön átvált, a sor felvillan, majd kicsúszik a listából */
+.pr-sor .kapcs button.pr-kesz{background:#7bd88f;border-color:#7bd88f;color:#131313}
+/* az Elutasítom a Beérkezőben ugyanaz a teli piros gomb, mint a Kisöpröm (Heni 2026-10-21) */
+.pr-sor .kapcs button.elut.pr-kesz,.pr-sor .kapcs button.elut[aria-pressed=true]{background:#8e1c1c;border-color:#8e1c1c;color:#fff}
+.pr-sor.pr-villan{animation:prVillan .7s cubic-bezier(.32,.72,0,1)}
+.pr-sor.pr-villan.pr-elut{animation-name:prVillanP}
+@keyframes prVillan{0%{box-shadow:0 0 0 0 rgba(123,216,143,.9)}100%{box-shadow:0 0 0 14px rgba(123,216,143,0)}}
+@keyframes prVillanP{0%{box-shadow:0 0 0 0 rgba(255,107,107,.9)}100%{box-shadow:0 0 0 14px rgba(255,107,107,0)}}
+.pr-sor.pr-ki{transform:translateX(110%);opacity:0;max-height:0;margin:0;padding-top:0;padding-bottom:0;overflow:hidden;transition:transform .5s cubic-bezier(.32,.72,0,1),opacity .5s,max-height .5s .25s,margin .5s .25s,padding .5s .25s}
+@media (prefers-reduced-motion:reduce){.pr-sor.pr-villan{animation:none}.pr-sor.pr-ki{transition:none}}.pr-sor.elutasitva{opacity:.6}
 .pr-sor select{font:600 14px Manrope,sans-serif;color:var(--szoveg);background:var(--lap2);border:1px solid var(--vonal);border-radius:8px;padding:5px 8px}
 .pr-tomeg{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--bg);padding:12px 0;margin-bottom:8px}
 .pr-tomeg.aktiv{position:sticky;top:64px;z-index:4}
@@ -1066,7 +1076,7 @@ function prrajzol(){if(!PR)return;const L=document.getElementById("pr-lista");co
   return `<div class="ah pr-sor ${s.allapot}"><div class="pr-bal"><b class="pr-pont num">${s.pont??"-"}</b><span class="pr-szint ${sz}">${s.dupla_of?"Dupla":sz==="X"?"40 alatt":sz}</span>
    <input type="checkbox" aria-label="Kijelölés" data-prkij="${s.id}" ${PRKIJ.has(s.id)?"checked":""}></div>
    <div><a class="cim" href="${esc(cimL)}" target="_blank" rel="noopener">${esc(s.cim||s.cim_eredeti||s.id)}</a>
-   ${s.forditva&&s.cim_eredeti?`<div class="pr-ered">${esc(s.cim_eredeti)}</div>`:""}
+   ${s.cim_eredeti&&s.cim_eredeti!==s.cim?`<div class="pr-ered">${esc(s.cim_eredeti)}</div>`:""}
    ${s.lead?`<div class="lead">${esc(s.lead)}</div>`:s.szoveg?`<div class="lead">${esc(s.szoveg)}</div>`:""}
    <div class="cimkek"><span class="cimke ${s.allapot==="fuggo"?"var":s.allapot==="jovahagyva"?"kesz":""}">${PRALLNEV[s.allapot]||esc(s.allapot)}${s.auto?" (gépi)":""}</span>
     <span class="cimke">${esc(s.forras||"")}</span><span class="cimke">${s.beerkezett?fmt(new Date(s.beerkezett),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):""}</span>
@@ -1075,12 +1085,24 @@ function prrajzol(){if(!PR)return;const L=document.getElementById("pr-lista");co
    ${s.klaszter_cim?`<div class="pr-resz">Ugyanerről már van hír: ${esc(s.klaszter_cim)}</div>`:""}
    ${resz?`<div class="pr-resz">${resz}</div>`:""}${prUt(s)}</div>
    <div class="kapcs"><button class="jova" aria-pressed="${s.allapot==="jovahagyva"}" data-prd="${s.id}" data-all="jovahagyva"><i></i>${s.allapot==="jovahagyva"?"Jóváhagyva":"Jóváhagyom"}</button>
-    <button class="elut" aria-pressed="${s.allapot==="elutasitva"&&!s.auto}" data-prd="${s.id}" data-all="elutasitva"><i></i>${s.allapot==="elutasitva"&&!s.auto?"Elutasítva":"Elutasítom"}</button>
+    <button class="elut sopor" aria-pressed="${s.allapot==="elutasitva"&&!s.auto}" data-prd="${s.id}" data-all="elutasitva"><i></i>${s.allapot==="elutasitva"&&!s.auto?"Elutasítva":"Elutasítom"}</button>
     ${s.allapot!=="fuggo"?`<button data-prd="${s.id}" data-all="fuggo"><i></i>Vissza függőbe</button>`:""}
     <label class="pr-szintval">Prioritás <select data-prszintval="${s.id}" aria-label="Prioritás kézi módosítása"><option value="">Gépi (${s.szint==="X"?"40 alatt":s.szint})</option>${["P1","P2","P3"].map(x=>`<option value="${x}" ${s.szint_kezi===x?"selected":""}>${x}</option>`).join("")}</select></label></div></div>`}).join("")||`<p class="ures">${PRALL==="fuggo"?"Nincs jóváhagyásra váró hír.":"Nincs ilyen hír."}</p>`;
  const cim=id=>{const s=S.find(x=>x.id===id);return s?(s.cim||s.cim_eredeti||""):""};
  const kuld=async(idk,adat)=>{try{const cimek={};idk.forEach(i=>cimek[i]=cim(i));const r=await lekér(U.prDontes,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({idk,cimek,...adat})});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}PRKIJ.clear();await prtolt();jelvenyek()};
- L.querySelectorAll("[data-prd]").forEach(g=>g.onclick=()=>kuld([g.dataset.prd],{allapot:g.dataset.all}));
+ L.querySelectorAll("[data-prd]").forEach(g=>g.onclick=async()=>{
+  const sor=g.closest(".pr-sor"),all=g.dataset.all,id=g.dataset.prd;if(sor.dataset.folyik)return;sor.dataset.folyik="1";
+  // azonnal: a gomb átvált, a sor felvillan (mielőtt a szerver válaszol)
+  sor.querySelectorAll("[data-prd]").forEach(b=>b.disabled=true);
+  if(all!=="fuggo"){g.classList.add("pr-kesz");g.lastChild.textContent=all==="jovahagyva"?"✓ Jóváhagyva":"Elutasítva";
+   sor.classList.toggle("pr-elut",all==="elutasitva");sor.classList.remove("pr-villan");void sor.offsetWidth;sor.classList.add("pr-villan")}
+  let ok=false;try{const r=await lekér(U.prDontes,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({idk:[id],cimek:{[id]:cim(id)},allapot:all})});ok=!r.hiba;if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}
+  if(!ok){delete sor.dataset.folyik;return prrajzol()}
+  const c=cim(id);toast(all==="jovahagyva"?`<span>✓ Jóváhagyva: <b>${esc(c.slice(0,60))}</b></span>`:all==="elutasitva"?`<span>✕ Elutasítva: <b>${esc(c.slice(0,60))}</b></span>`:`<span>Visszakerült a függők közé</span>`);
+  // a jelenlegi szűrőbe már nem illő sor kicsúszik, utána frissül a lista
+  if(PRALL!=="mind"&&PRALL!==all){await new Promise(k=>setTimeout(k,450));sor.classList.add("pr-ki");await new Promise(k=>setTimeout(k,650))}
+  const s0=(PR.sorok||[]).find(x=>x.id===id);if(s0)s0.allapot=all;
+  prtolt();jelvenyek()});
  L.querySelectorAll("[data-prszintval]").forEach(g=>g.onchange=()=>kuld([g.dataset.prszintval],{szint:g.value||null}));
  L.querySelectorAll("[data-prkij]").forEach(g=>g.onchange=()=>{g.checked?PRKIJ.add(g.dataset.prkij):PRKIJ.delete(g.dataset.prkij);prrajzol()});
  const m=document.getElementById("pr-mind");if(m)m.onclick=()=>{if(PRKIJ.size===lista.length)PRKIJ.clear();else lista.forEach(s=>PRKIJ.add(s.id));prrajzol()};
