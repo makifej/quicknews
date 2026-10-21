@@ -200,6 +200,9 @@ async function prioritasDontes(b, ki) {
   for (const id of idk) {
     const regi = JSON.parse((await kv("HGET", P + "jovahagyas", id)) || "{}");
     const uj = { allapot: allapot || regi.allapot || "fuggo", szint: szint === undefined ? (regi.szint || null) : szint, ido: most, ki };
+    // a megjelenés ideje: az első jóváhagyás pillanata (a csengő, a Napok és az app értesítései ehhez igazodnak);
+    // egy későbbi szintmódosítás nem teszi újra „friss” hírré
+    uj.jovahagyva_ido = uj.allapot === "jovahagyva" ? (regi.allapot === "jovahagyva" && regi.jovahagyva_ido ? regi.jovahagyva_ido : most) : null;
     await kv("HSET", P + "jovahagyas", id, JSON.stringify(uj));
     await kv("LPUSH", P + "jovahagyas:naplo", JSON.stringify({ ido: most, id, cim: String(cimek[id] || "").slice(0, 160),
       allapot: uj.allapot, elozo: regi.allapot || "fuggo", szint: uj.szint, elozo_szint: regi.szint || null, ki, tomeges: idk.length > 1 }));
