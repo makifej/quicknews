@@ -1,0 +1,78 @@
+{
+  "id": "99ae24e773f8",
+  "slug": "ingyenes-3d-konyvtarat-inditott-az-nvidia-es-a-hugging-face",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/nvidia/simready-central-assets-robotics-ai-factories",
+  "szerzo": null,
+  "publikalva": "2026-10-21T10:59:42+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/6abfe9e7d7cf09a9b38ef308/3wax5pSyzdQK6EWPgxhmR.png"
+  },
+  "cim_eredeti": "Announcing SimReady Central: An Open Library of Simulation-Ready 3D Assets for Robotics and AI Factories",
+  "forrasok": [],
+  "szoveg_eredeti": "Building robotics simulations and high-fidelity AI factory digital twins takes more than 3D models. Developers often need to add properties such as collision geometry, mass, and friction. SimReady assets are 3D models that come prepared with the properties required for simulation workflows, reducing that manual work.\n\nSimReady Central Library brings together more than 2,000 simulation-ready (SimReady) OpenUSD assets on Hugging Face, giving developers a free, ungated starting point for physical AI training environments and AI factory digital twins. The library includes a variety of infrastructure and equipment assets from robot arms and grippers to warehouse equipment, racks, and cooling infrastructure. Developers can check which capabilities each asset supports, then combine assets from different suppliers into a scene.\n\nEquipment manufacturers (OEMs) can now prepare and validate assets against SimReady requirements and use SimReady Central Library to reach developers and allow their end customers to test and simulate scenarios faster and accelerate decision making. This enables industries to build simulations around their products while managing their own Hugging Face datasets.\n\nWe’ll cover what makes an asset SimReady and how OEMs contribute to SimReady Central Library, then show how developers can use those assets to build a robotic pick-and-place scenario and compare AI factory layouts.\n\nSimReady assets are OpenUSD assets prepared with the properties required for simulation workflows. A detailed 3D model, such as CAD, is a useful starting point. Simulation requires additional information about how that object should be interpreted and used.\n\nFor a robot manipulation task, that might include the object’s mass, collision geometry, and friction properties. For AI factory workflows, it might include equipment geometry and the electrical or thermal metadata required by the application.\n\nOpenUSD is an open, extensible framework for describing and composing 3D scenes. Using those scenes to train and evaluate autonomous machines also requires information about physical behavior, collisions, and sensor interactions.\n\nSimReady Foundation provides specifications, profiles, and validation tools that make these requirements explicit. A profile defines the logical grouping of features and capabilities an asset needs for a particular use case.\n\nFigure 1. SimReady Foundation defines asset representation requirements for specific simulation use cases, while developer libraries help prepare and validate OpenUSD assets against those requirements.\n\nDepending on the asset and profile, those features can include:\n\nFor the requirements associated with each simulation use case, see the SimReady Foundation requirements and profiles. Developers should select assets from SimReady Central whose profiles match their workflow needs and compose them into an OpenUSD scene.\n\nOEMs can turn their CAD equipment models into SimReady assets for developers building simulations around their products. SimReady Central Library makes those assets discoverable on Hugging Face, helping manufacturers reach teams building robotics simulations and AI factory digital twins.\n\nFor AI factory OEMs like Vertiv, the library provides a path to distribute assets such as warehouse equipment racks, server racks, cooling equipment, and supporting infrastructure for AI factory digital twins. Developers and frontier agents can incorporate these assets into AI factory digital twins reusing the geometry and properties specified by their SimReady profiles.\n\nFor robotics OEMs like Comau, FANUC, Franka Robotics, Robotiq, Standard Bots, and Universal Robots, the library makes robot arms and grippers discoverable by teams building training and evaluation environments. Developers can combine these assets with industrial equipment to build warehouse and factory scenarios.\n\nFor simulation asset providers like Palatial the library features the NVIDIA Robotics 1K Dataset released in collaboration with NVIDIA Robotics, alongside complex articulated assets generated from text, images, scans, datasheets, and CAD. Developers can build assets and scenes for robot training and evaluation.\n\nFor OEMs like LG Electronics (LGE) that develop robots for the home alongside the appliances they work with, the library provides a path to share assets such as refrigerators and dishwashers. Developers can use assets informed by LGE’s experience in both appliances and robotics to build household simulation environments for robot training, evaluation, and synthetic data generation.\n\nFor AI-assisted CAD providers like ForgeCAD, the library makes articulated robotics props with high-quality textures available, which developers can use to build environments for robot perception and manipulation training, as well as synthetic data generation.\n\nTo contribute, OEMs can use the SimReady Central submission skill to validate assets against the relevant SimReady profiles, package them, and submit them for inclusion in the library.\n\nFigure 2. OEMs prepare and validate OpenUSD assets against SimReady profiles and then submit the asset to SimReady Central. Developers and AI agents discover assets in the library and use them to build simulation environments.\n\nSimReady Central gives robotics and industrial developers a reusable starting point for robot workcells, industrial environments, and AI factory digital twins. Developers and AI agents can find assets in SimReady Central that meet the profiles required by their workflows and compose them into OpenUSD environments.\n\nDevelopers can use SimReady assets to populate training environments with objects and obstacles, then vary their placement to evaluate robot behaviors. These environments can support projects such as Microduck, an open-source robot from Hugging Face and Pollen Robotics.\n\nFigure 3. Asset datasets connect through SimReady Central on Hugging Face, using its USD search service to support Isaac workflows, SimReady Central library search, and AI agent workflows.\n\nNVIDIA USD Search powers natural-language search in SimReady Central Library, helping developers and AI agents find assets across participating datasets. Hugging Face has also integrated USD Search into their platform search with indexed USD properties and simulation metadata, helping agents discover SimReady assets suited to their physical AI simulation tasks.\n\nAI-assisted authoring adds another way to build with those assets. Developers can use frontier models like OpenAI’s GPT-6 Astra combined with asset search and scene-authoring tools to build environments using SimReady Central Library. Given task requirements and spatial constraints, Astra can help find suitable assets, write code to assemble a scene, and create scenario variations.\n\nOEMs can also use Astra to help prepare and refine OpenUSD assets against SimReady Foundation requirements before validating and submitting them to the library.\n\nFor example, a developer building a robotic pick-and-place scenario could start with this prompt:\n\nUsing SimReady assets from SimReady Central on Hugging Face, create a basic warehouse pick-and-place scenario in Isaac Sim using PhysX.\n\nUse the nvidia-simready-central.hf.space to find a FANUC robotic arm, a compatible Robotiq gripper, and suitable warehouse assets. Generate the Python code to assemble the scene and configure the pick-and-place task. Render a .mov preview so I can review the results.\n\nInclude the scripts, asset versions, and runtime versions so I can reproduce the scenario.\n\nIn this workflow, we expect Astra to do the following:\n\nFigure 4. A robotic pick-and-place workcell assembled from SimReady assets illustrates how AI-assisted scene authoring can turn developer requirements into a simulation scenario for review and refinement in Isaac Sim.\n\nThe same approach can support an ISV (independent software vendor) building an AI factory digital twin. The task shifts from robot interactions to equipment placement: arranging ra",
+  "modell": "gemini-3.5-flash",
+  "cim": "Ingyenes 3D-könyvtárat indított az Nvidia és a Hugging Face",
+  "lead": "A SimReady Central több mint 2000 szimulációra kész OpenUSD modellt kínál a robotikai és ipari AI-fejlesztések felgyorsítására.",
+  "osszefoglalo": "Az Nvidia a Hugging Face platformján tette elérhetővé a [SimReady Central](https://nvidia.github.io/simready-foundation/latest/) könyvtárat, amely több mint 2000 ingyenes, nyílt hozzáférésű 3D-s modellt tartalmaz. Az OpenUSD formátumú elemek nemcsak látványos CAD-modellek, hanem tartalmazzák a fizikai szimulációkhoz szükséges adatokat is, mint a tömeg, az ütközési geometria vagy a súrlódás.\n\nA gyűjteményben ipari robotkarok, megfogók, raktári berendezések és adatközponti hűtőrendszerek egyaránt megtalálhatók. A gyártók közvetlenül tölthetik fel ellenőrzött anyagaikat, míg a fejlesztők és az **AI-ügynökök természetes nyelvi kereséssel** állíthatnak össze összetett virtuális munkatereket.\n\nA könyvtár célja a fizikai AI-modell képzésének és az ipari digitális ikrek építésének egyszerűsítése, megszüntetve a fizikai tulajdonságok manuális beállításából adódó pluszmunkát.",
+  "miert_szamit": "A robotikával és ipari digitalizációval foglalkozó fejlesztők **kész fizikai tulajdonságokkal rendelkező 3D-modelleket** kapnak, amivel heteket spórolhatnak meg a szimulációs környezetek megépítésénél.",
+  "cimkek": [
+    "Nvidia",
+    "Hugging Face",
+    "OpenUSD",
+    "robotika"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "SimReady Central",
+    "url": "https://go.adverr.hu/9i4PD3",
+    "eredeti": "https://nvidia.github.io/simready-foundation/latest/"
+  },
+  "linkelendo_nevek": [
+    "SimReady Central"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 75,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 95,
+      "hitelesseg": 92,
+      "aktualitas": 99,
+      "kozossegi": 50
+    },
+    "elofeszures": 93,
+    "tanult": 36,
+    "indok": "Hasznos fejlesztői nyílt könyvtár robotikai szimulációkhoz és digitális ikrekhez.",
+    "tema": "simready robotics 3d assets",
+    "cim_hu": "Ingyenes 3D modelltárat indított a Hugging Face a robotikai fejlesztőknek",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-21T11:04:25+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-21T11:06:32+00:00",
+  "megjelent": "2026-10-21T11:06:32+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-21T11:06:38+00:00",
+    "esemeny": "Az Nvidia és a Hugging Face elindította a SimReady Central nevű nyílt könyvtárat a Hugging Face platformján, amely több mint 2000 szimulációra kész OpenUSD 3D-modellt kínál robotikai és ipari AI-fejlesztésekhez.",
+    "forrasok": [
+      "https://huggingface.co/blog/nvidia/simready-central-assets-robotics-ai-factories"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
