@@ -22,6 +22,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .sav-bel{max-width:1200px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;gap:32px}
 .logo{font-weight:700;font-size:21px;letter-spacing:-.01em;white-space:nowrap}
 .logo span{color:var(--amber)}
+.app-ban .logo{display:none}.app-ban .sav-bel{gap:0}
 .fulek{display:flex;gap:24px;height:100%;min-width:0;overflow-x:auto;scrollbar-width:none}
 .fulek::-webkit-scrollbar{display:none}
 .fulek button{flex:0 0 auto;white-space:nowrap}
@@ -266,7 +267,7 @@ button.hird-indit{color:#131313;background:var(--amber)}
 .pr-szurok{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px}
 .pr-naplo{margin-top:40px}.pr-naplo summary{cursor:pointer;font-weight:700;color:var(--halk);font-size:18px}
 .pr-naplo li{list-style:none;padding:10px 0;border-bottom:1px solid var(--vonal);font-size:15px;color:var(--halk)}.pr-naplo li b{color:var(--szoveg);font-weight:600}
-@media (max-width:700px){.pr-sor{grid-template-columns:64px minmax(0,1fr)!important}.pr-pont{font-size:26px}.pr-tomeg.aktiv{top:56px}.pr-tomeg{flex-wrap:nowrap}.pr-tomeg .gomb{flex:1 1 0;padding:8px 6px;font-size:14px;white-space:nowrap}}
+@media (max-width:700px){.pr-szurok{gap:8px}.pr-szurok .szeg{display:grid;width:100%}.pr-szurok .szeg[aria-label="Állapot"]{grid-template-columns:auto auto auto auto}.pr-szurok .szeg[aria-label="Állapot"] button{padding:7px 6px;font-size:14px}.pr-szurok .szeg[aria-label="Prioritás"]{grid-template-columns:auto auto auto auto auto}.pr-szurok .szeg[aria-label="Prioritás"] button{padding:7px 6px;font-size:14px}.pr-szurok .szeg[aria-label="Sorrend"]{grid-template-columns:repeat(2,minmax(0,1fr))}.pr-szurok .szeg button{text-align:center}.pr-szurok .szeg button{padding:7px 11px;font-size:15px}.pr-sor{grid-template-columns:64px minmax(0,1fr)!important}.pr-pont{font-size:26px}.pr-tomeg.aktiv{top:56px}.pr-tomeg{flex-wrap:nowrap}.pr-tomeg .gomb{flex:1 1 0;padding:8px 6px;font-size:14px;white-space:nowrap}}
 .ah.sopor-ki{transform:translateX(-110%);opacity:0;pointer-events:none}
 .cimke.uj{color:#131313;background:#7dd3a0}
 .napfej{font-size:20px;font-weight:700;color:var(--halk);margin:24px 0 12px;text-transform:capitalize}
@@ -282,7 +283,9 @@ button.hird-indit{color:#131313;background:var(--amber)}
 /* költség */
 .idoszak{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:24px}
 .szeg{display:inline-flex;background:var(--lap);border-radius:10px;padding:4px}
-.szeg button{padding:8px 16px;border-radius:7px;font-weight:600;color:var(--halk)}
+.szeg button{padding:8px 16px;border-radius:7px;font-weight:600;color:var(--halk);white-space:nowrap}
+/* a szegmensgomb felirata soha nem törik ketté; ha nem fér ki, a gombok kerülnek új sorba (Heni 2026-10-21) */
+.szeg{flex-wrap:wrap;max-width:100%}
 .szeg button[aria-pressed=true]{background:var(--lap2);color:var(--szoveg)}
 .valaszto{position:relative;min-width:0;max-width:100%;flex:1 1 280px}
 .valaszto select{appearance:none;-webkit-appearance:none;font:600 18px Manrope,sans-serif;color:var(--szoveg);background:var(--lap);
@@ -353,6 +356,8 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 </style></head><body>
 <div class="sav"><div class="sav-bel">
 <div class="logo">quicknews<span>.</span>pult</div>
+<script>/* az appban a fejléc már kiírja, hogy Admin pult: ott a logó helyét a fülek kapják (Heni 2026-10-21) */
+if(/quicknews-android-admin/.test(navigator.userAgent))document.documentElement.classList.add("app-ban");</script>
 <nav class="fulek" role="tablist">
 <button role="tab" aria-selected="false" data-ful="prioritas" title="Beérkező hírek priorizálása">Beérkező</button>
 <button role="tab" aria-selected="true" data-ful="posztok" title="Posztok és ajánlott">Posztok</button>
@@ -367,14 +372,15 @@ border-bottom:2px solid var(--halk);transform:translateY(-70%) rotate(45deg);poi
 <main>
 <section id="p-prioritas" hidden>
 <div class="mutatok" id="pr-mutatok"></div>
-<p class="a-bev">A szerkesztőségi előszűrő: minden beérkező hír pontszámot (0-100) és szintet kap, és <b>semmi nem jelenik meg az oldalon, az appban, a hírlevélben és a közösségi felületeken a jóváhagyásod nélkül</b>. A P1 és P2 hír már le van fordítva; a P3 és az elutasított hír csak akkor fordul le, ha jóváhagyod. A főhír csak jóváhagyott P1 vagy P2 lehet.</p>
+
 <div class="pr-szurok">
-<div class="szeg" role="group" aria-label="Állapot"><button data-prall="fuggo">Függőben</button><button data-prall="jovahagyva">Jóváhagyott</button><button data-prall="elutasitva">Elutasított</button><button data-prall="mind">Mind</button></div>
+<div class="szeg" role="group" aria-label="Állapot"><button data-prall="fuggo">Függő</button><button data-prall="jovahagyva">Jóváhagyva</button><button data-prall="elutasitva">Elutasítva</button><button data-prall="mind">Mind</button></div>
 <div class="szeg" role="group" aria-label="Prioritás"><button data-prszint="mind">Mind</button><button data-prszint="P1">P1</button><button data-prszint="P2">P2</button><button data-prszint="P3">P3</button><button data-prszint="X">40 alatt</button></div>
 <div class="szeg" role="group" aria-label="Sorrend"><button data-prrend="pont">Pontszám</button><button data-prrend="ido">Beérkezés</button></div></div>
 <div class="pr-tomeg" id="pr-tomeg"></div>
 <div id="pr-lista"></div>
 <details class="pr-naplo" id="pr-naplo"><summary>Jóváhagyási előzmények</summary><ul id="pr-naplo-lista"></ul></details>
+<details class="pr-naplo"><summary>Hogyan működik?</summary><p class="a-bev" style="margin-top:12px"><b>Semmi nem jelenik meg a jóváhagyásod nélkül.</b> A P1 és P2 hír már le van fordítva, a P3 és a 40 pont alatti csak jóváhagyás után fordul le. Főhír csak jóváhagyott P1 vagy P2 lehet.</p></details>
 </section>
 <section id="p-posztok">
 <div class="szeg alful" role="group" aria-label="Posztok és ajánlott nézet"><button type="button" data-alful="ajanlott">Ajánlott</button><button type="button" data-alful="posztok">Időzítve, kint</button></div>
@@ -1042,10 +1048,10 @@ function prrajzol(){if(!PR)return;const L=document.getElementById("pr-lista");co
  const fug=S.filter(s=>s.allapot==="fuggo"),db=sz=>fug.filter(s=>s.szint_tenyleges===sz).length;
  const jo=S.filter(s=>s.allapot==="jovahagyva"),el=S.filter(s=>s.allapot==="elutasitva");
  document.getElementById("pr-mutatok").innerHTML=
-  `<div class="mutato kiemelt"><small>Jóváhagyásra vár</small><b class="num">${fug.length}</b><em>P1 ${db("P1")} · P2 ${db("P2")} · P3 ${db("P3")}</em></div>`+
+  `<div class="mutato kiemelt"><small>Függőben</small><b class="num">${fug.length}</b><em>P1 ${db("P1")} · P2 ${db("P2")} · P3 ${db("P3")}</em></div>`+
   `<div class="mutato"><small>Jóváhagyva</small><b class="num">${jo.length}</b><em>ebből kint ${jo.filter(s=>s.kint).length}</em></div>`+
   `<div class="mutato"><small>Elutasítva</small><b class="num">${el.length}</b><em>gépi ${el.filter(s=>s.auto).length} · általad ${el.filter(s=>!s.auto).length}</em></div>`+
-  `<div class="mutato"><small>Utolsó frissítés</small><b class="num">${PR.frissult?ora(new Date(PR.frissult)):"-"}</b><em>az utóbbi ${PR.napok||7} nap hírei</em></div>`;
+  `<div class="mutato"><small>Utolsó frissítés</small><b class="num">${PR.frissult?ora(new Date(PR.frissult)):"-"}</b><em>utóbbi ${PR.napok||7} nap</em></div>`;
  let lista=S.filter(s=>(PRALL==="mind"||s.allapot===PRALL)&&(PRSZINT==="mind"||(PRSZINT==="X"?s.szint==="X":s.szint_tenyleges===PRSZINT)));
  lista.sort(PRREND==="pont"?(a,b)=>(b.pont||0)-(a.pont||0)||String(b.beerkezett).localeCompare(String(a.beerkezett)):(a,b)=>String(b.beerkezett).localeCompare(String(a.beerkezett)));
  for(const id of [...PRKIJ])if(!lista.some(s=>s.id===id))PRKIJ.delete(id);
