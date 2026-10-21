@@ -1,0 +1,48 @@
+{
+  "id": "7914882f7add",
+  "slug": "surgossegi-javitasok-a-php-kritikus-php2shell-hibaira",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/php-issues-emergency-patches-f-P_aOeC5mQyKeDvVFPAj_EQ",
+  "publikalva": "2026-10-21T15:13:07.062920+00:00",
+  "cim": "Sürgősségi javítások a PHP kritikus PHP2Shell hibáira",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/upload/t_limit/v1792595627/url_uploads/PHP_qln19t.jpg"
+  },
+  "cim_eredeti": "Sürgősségi javítások a PHP kritikus PHP2Shell hibáira",
+  "szoveg_eredeti": "Október 21-én, szerdán a PHP fejlesztői soron kívüli biztonsági frissítéseket adtak ki a nyelv alapvető motorjának két kritikus hibájához. A két hibát együtt PHP2Shell néven emlegetik, és segítségükkel a felhasználói fiókkal nem rendelkező támadók is kódot futtathatnak webszervereken. A BleepingComputer beszámolója szerint a javított verziók a PHP 8.5.12, 8.4.27, 8.3.36 és 8.2.35. A hibák azonosítója CVE-2026-109618 és CVE-2026-109619, mindkettő 9,2-es besorolást kapott a CVSS v4.0 skálán. A The Hacker News szerint a PHP nagyjából 14:00-kor (UTC) adta ki a frissítéseket, egy nappal azután, hogy a részletek kiszivárogtak a tervezett, október 22-i nyilvánosságra hozatal előtt.\n\nA tét azért nagy, mert a hibák magában a futtatókörnyezetben vannak, nem egyes alkalmazásokban. A Wiz Research, amely az egyik hibát feltáró csapat volt, közölte, hogy a világ weboldalainak nagyjából 70%-át PHP működteti. Az elmúlt évtized minden PHP-verziója, egészen az 5.4-esig visszamenően, legalább az egyik hibát tartalmazza.\n\nA Reuters beszámolója szerint hollandiai és finnországi kormányzati szervek óvintézkedésként offline állapotba helyezték weboldalaikat. Európai, ausztráliai, japán és brit kiberbiztonsági hatóságok arra szólították fel a PHP-felhasználókat, hogy azonnal frissítsenek, vagy vegyék le webhelyeiket a hálózatról. A holland kiberbiztonsági hivatal saját weboldalát is leállította. A BBC szerint ugyanígy tett a holland parlament alsóháza, a Tweede Kamer, valamint a Nemzeti Közegészségügyi és Környezetvédelmi Intézet (RIVM) is. A brit Nemzeti Kiberbiztonsági Központ (NCSC) azt tanácsolta, hogy „ha az azonnali javítás nem megoldható, a szervezetek fontolják meg a rendszer offline üzemmódba helyezését\".\n\nA javítások megjelenése előtt Dane Knecht, a Cloudflare technológiai igazgatója így nyilatkozott: „Már most látjuk az első támadások megjelenését\", a cég tűzfalszabályait pedig „csupán ideiglenes megoldásnak\" nevezte. Sikeres behatolást egyelőre nem igazoltak. A watchTowr 11:26-os (UTC) állapot szerint nem észlelt kihasználást a gyakorlatban.\n\nA hibák érintik a PHP-FPM-et, az Apache-ot mod_php-vel, a php-cgi-t, a FrankenPHP-t és a LiteSpeedet. A PHP csapata szerint a mod_php jelenti a legnagyobb kockázatot, mivel egy bemutatott exploit hitelesítés nélküli kéréssel is kiváltható, „még az alkalmazáskód futása előtt\". A 8.1-es és az annál régebbi verziók támogatása megszűnt, ezekhez nem jelenik meg hivatalos kiadás. A hibák súlyossága miatt azonban a PHP csapata minimális forráskód-backportokat tett közzé a 7.4-es, a 8.0-s és a 8.1-es verzióhoz. A támadók a worker memóriáját is kiolvashatják, amelyben jelszavak, API-kulcsok és tanúsítványok lehetnek. Egy alkalmazás, például a WordPress frissítése nem frissíti az alatta futó PHP-futtatókörnyezetet.\n\nA hibákat a Wiz, a Calif és az OpenAI Codex Security csapata találta meg. A The Hacker News szerint a szóban forgó kód több mint egy évtizede a PHP része volt. A Wiz a PHP2Shellt a Heartbleedhez és a Log4Shellhez hasonlította. Közölték, hogy a élvonalbeli MI-modellek „jelentősen csökkentették\" azt a belépési küszöböt, amely egy régóta fennálló sérülékenységből működő exploitot kovácsol. A kiadás előtt Gina Peter Banyard, a PHP egyik fő fejlesztője arra figyelmeztetett, hogy „az egyetlen megoldás a PHP javítása, illetve frissítése.\"",
+  "begyujtve": "2026-10-21T16:17:58.037800+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 20,
+      "hirertek": 50,
+      "egyediseg": 95,
+      "hitelesseg": 75,
+      "aktualitas": 90,
+      "kozossegi": 29
+    },
+    "elofeszures": 78,
+    "tanult": 50,
+    "indok": "A hír kritikus PHP biztonsági hibákról szól, nem kapcsolódik mesterséges intelligenciához.",
+    "tema": "php security patch vulnerability",
+    "cim_hu": "Sürgősségi biztonsági frissítések érkeztek a PHP kritikus hibáira",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-21T16:19:40+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-21T16:21:47+00:00"
+}
