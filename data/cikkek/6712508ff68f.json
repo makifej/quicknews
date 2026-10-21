@@ -1,0 +1,76 @@
+{
+  "id": "6712508ff68f",
+  "slug": "modszertani-attores-a-feherjetervezesben-az-nvidia-uj-modelljevel",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/nvidia/rfd4-proteina-protein-design",
+  "szerzo": null,
+  "publikalva": "2026-10-21T12:39:49+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/68e5e230a2d6efaced5e52c6/vcAe5AO-gbRCzmdLiW9A_.png"
+  },
+  "cim_eredeti": "Protein Design with RFD4-Proteina and Hugging Face Spaces",
+  "forrasok": [],
+  "szoveg_eredeti": "Protein design starts with setting a goal: a target to bind, a molecule to recognize, or an arrangement of atoms to preserve. Turning that goal into a design has usually meant splitting up the workflow across models that each handle one modality or one stage and reassembling the pieces afterward. Information is lost at every handoff.\n\nRFD4-Proteina is a BioNeMo open model for programmable protein design, co-developed by NVIDIA and the University of Washington's Institute for Protein Design. It brings protein sequence and all-atom structure generation into one model, reducing the handoffs between separate backbone, sequence, and all-atom structure design models. It can generate proteins in molecular contexts that include other proteins, small molecules, nucleic acids, glycans, metal ions, and modified amino acids (e.g., a phosphorylated residue on a target protein).\n\nRFD4-Proteina pairs a flow-matching model with an autoencoder. The autoencoder represents each standard or modified amino acid, sugar, DNA, or RNA nucleotide as an anchor-atom coordinate (for amino acids, the alpha carbon) and a learned latent vector encoding its chemical identity and local geometry. The flow model generates anchor coordinates and latent vectors together, and the decoder expands them into all-atom 3D structures and sequences. This lets the model generate sequences and structures together around a supplied constraint: the target a binder must engage, or the catalytic motif a protein must contain.\n\nYou can run the model in your browser before installing anything, in either of two Hugging Face Spaces: the dedicated RFD4-Proteina Space, which runs on dedicated GPUs, and the ZeroGPU Space, which runs on shared capacity. Start with a supplied example, inspect a target and its generated designs, and save the input and output for further work.\n\nFrom October 21 to November 4, 2026, NVIDIA is sponsoring free access to the dedicated RFD4-Proteina Space, which runs on NVIDIA RTX PRO 6000 GPUs. Try it on your own design problems, including the protein design competition sponsored by Anthropic and Adaptyv.\n\nTry RFD4-Proteina • Explore the RFD4-Proteina model\n\nFigure 1. Inspect the annotated design input\n\nThe built-in PD-L1 example shows the target and its design annotations before generation. The expandable binder segment is part of the input specification.\n\nOpen the dedicated RFD4-Proteina Space and choose a supplied example. Both Spaces run AtomWorks Studio, a browser-based viewer and annotation editor for molecular inputs that also runs standalone.\n\nEvery design starts from a design context: at minimum, a protein structure (the target) you want to design binders against, a region where the binder should bind, and the specific residues or atoms you want the design process to engage. Those engagement points are called hotspots, and they are marked on the target atoms themselves.\n\nWith the context defined, generate a single design using the example's default settings. The design appears in the interactive viewer when generation finishes. Locate the designed protein and supplied target and check that the designed protein contacts the marked target hotspots.\n\nYou can also download the generated designs, the annotated target, and their complexes in CIF file format. This will let you compare this first design against the runs you will do next.\n\nNote the seed number that was used. This gives you a baseline for the comparison below.\n\nFigure 2. PD-L1 target and generated binder\n\nThe target is teal, and the three conditioned hotspot residues are highlighted in light green. Generated from the model-repository example input: one sample using medium thinking. This is a computational result; experimental validation would be needed to confirm binding.\n\nWith one design in hand, change the generation settings to learn how each affects the resulting designs. Start with the seed: holding the input and everything else fixed, a new seed generates a different sample from the same design space, and those binders will usually look quite different from your first set. From there, try the other generation settings, such as the thinking setting (see the next section to learn more).\n\nDownload the generated binders, the annotated target, and the binder-target complexes to validate designs in silico with your own tools. The files are annotated CIFs that carry the design context with them, so you can reload everything in a later session. From there you can predict developability properties from the generated sequence or structure, such as thermal stability or aggregation potential, to decide which designs are worth experimental characterization.\n\nAfter the sponsored window closes on November 4, 2026, the dedicated Space stops being free, but the ZeroGPU Space remains free to use. It runs the same interface on shared capacity, subject to Hugging Face account quotas.\n\nRFD4-Proteina introduces a thinking setting for protein design, similar to how LLMs can refine their answers. The thinking setting (low, medium [default], high) determines how much the model refines each design while generating it. Additional refinement increases the likelihood of high-quality designs that pass in silico filters, but also increases the compute required per design.\n\nIn a design benchmark across 24 protein-binding targets, RFD4-Proteina at high thinking produced 76.40 structurally distinct designs per GPU-hour that met the defined computational criteria*, compared with 13.24 for Proteina-Complexa, the second-strongest method in the benchmark.\n\n*Structure prediction model refold: binder pTM ≥ 0.80, minimum interface PAE ≤ 1.5 Å, target-aligned binder backbone RMSD ≤ 2.5 Å\n\nBeyond refining a single design, the model can reason across multiple designs during generation: comparing designs against computational criteria, ranking and filtering them, and generating new designs based on the ones that pass the criteria.\n\nReward-guided search is a separate option in the generation workflow. It scores designs with external evaluators, such as a structure prediction model or a physics-based energy calculator, to guide exploration toward properties you define: interface area, hydrogen bonding, or ligand binding energy. Check the documentation for the generation settings supported by your workflow.\n\nFor programmatic generation, begin with the quickstart. It provides installation steps, a pinned checkpoint, annotated inputs, and generation commands. The documented runtime requires Linux x86_64, Python 3.12, a supported NVIDIA GPU, and a CUDA 13-compatible driver. Check yours with nvidia-smi before installing: both routes below are CUDA 13 builds, and they install cleanly on a CUDA 12 driver before failing on the first GPU call. The project also ships a CUDA 12 build, which pairs the all-cuda12 extra with a cu126 PyTorch; see the documentation for the native and container instructions.\n\nUse the PD-L1 code example to continue with the same type of task. Keep the original annotated conditioning input and follow the instructions for your chosen implementation; native model bundles and Diffusers-format checkpoints are laid out differently.\n\nRecord the input, the model and software revisions, the seed, the sampling settings, and the hardware alongside each result. Generation is stochastic, and without those five things a promising design can be hard to reproduce.\n\nEverything below starts from an annotated CIF and runs the same PD-L1 binder task. The design task is specified in the CIF file, so the command line, native Python, and the Diffusers library all consume the same annotated input, though they expose different sampling controls and can produce different designs.\n\nClone the repository for the full workflow:\n\nmake setup asks which structure-prediction environments to build. To skip those questions, run bash setup.sh --skip-search-envs instead; the make target passes no arguments through. Either way, setup prints an export DATA_PATH=... line at the end",
+  "modell": "gemini-3.5-flash",
+  "cim": "Módszertani áttörés a fehérjetervezésben az NVIDIA új modelljével",
+  "lead": "Az NVIDIA és a Washingtoni Egyetem kiadta az RFD4-Proteina nyílt AI-modellt, amellyel a fehérjék szekvenciája és 3D szerkezete egyszerre tervezhető meg.",
+  "osszefoglalo": "Az NVIDIA és a Washingtoni Egyetem Institute for Protein Design intézete közösen fejlesztette ki az [RFD4-Proteina](https://huggingface.co/nvidia/RFD4-Proteina) nevű nyílt modellt. Az eszköz a fehérjetervezést teszi hatékonyabbá azáltal, hogy a szekvencia és a teljes atomi 3D szerkezet generálását egyetlen modellben egyesíti, csökkentve a különálló folyamatok közötti információvesztést. A modell képes más fehérjék, DNS, RNS és kismolekulák környezetében is fehérjéket tervezni.\n\nA rendszer bevezeti a gondolkodási fokozatokat (alacsony, közepes, magas), amelyek a nyelvi modellhez hasonlóan finomítják az eredményeket. Tesztek alapján a legmagasabb fokozaton a modell óránként **76,4 structurally distinct** (szerkezetileg eltérő) sikeres tervezést tud felmutatni GPU-óránként, ami lényegesen meghaladja a korábbi módszerek teljesítményét.\n\nA fejlesztés közvetlenül kipróbálható böngészőből a Hugging Face Spaces felületén. A felhasználók ingyenesen tesztelhetik a rendszert a **ZeroGPU Space** segítségével, míg a dedikált RTX PRO 6000 GPU-s felület 2026. november 4-ig érhető el díjmentesen. A programozói használathoz Linux, Python 3.12, valamint CUDA 13 támogatású NVIDIA GPU szükséges.",
+  "miert_szamit": "Az új nyílt modell radikálisan **leegyszerűsíti a biológiai és gyógyszerészeti kutatásokat**, mivel böngészőből, kódolás nélkül is elérhetővé teszi a komplex fehérjeszerkezetek szimulációját és tervezését.",
+  "cimkek": [
+    "NVIDIA",
+    "RFD4-Proteina",
+    "Hugging Face",
+    "fehérjetervezés"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "RFD4-Proteina",
+    "ZeroGPU Space"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 73,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 70,
+      "egyediseg": 90,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 50
+    },
+    "elofeszures": 89,
+    "tanult": 50,
+    "indok": "Az NVIDIA és az UW közös nyílt fehérjetervező AI-modellje jelentős előrelépés a biológiai kutatásokban.",
+    "tema": "rfd4 proteina ai protein",
+    "cim_hu": "Új nyílt AI-modell forradalmasíthatja a fehérjetervezést az NVIDIA és az UW együttműködésével",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-21T12:48:42+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-21T12:50:44+00:00",
+  "megjelent": "2026-10-21T12:50:44+00:00",
+  "nevelo_javitva": "2026-10-21T12:50:44+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-21T12:50:48+00:00",
+    "esemeny": "Az NVIDIA és a Washingtoni Egyetem Institute for Protein Design intézete kiadta az RFD4-Proteina nevű nyílt modellt a fehérjék szekvenciájának és 3D szerkezetének együttes megtervezésére.",
+    "forrasok": [
+      "https://huggingface.co/blog/nvidia/rfd4-proteina-protein-design"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
