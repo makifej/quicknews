@@ -40,6 +40,24 @@
   },
   "kapcsolodo": [
     {
+      "id": "a84b6a7bee5c",
+      "cim": "A GPT-6.1-re épülő Terminal X 88,6%-ban leköveti a senior befektetőket",
+      "lead": "A Terminal X a GPT-6.1 Sol modellt használja a befektetési elemzések ellenőrzésére, 30 százalékkal alacsonyabb lekérdezési költség mellett.",
+      "slug": "az-openai-modeljeire-epulo-terminal-x-88-6-szazalekban-lekoveti-a",
+      "forras": "OpenAI",
+      "kat": "eszköz",
+      "rovat": "eszkoz",
+      "ido": "2026-10-21T06:07:05+00:00",
+      "ido_hu": "okt. 21. 08:07",
+      "kep": "https://quicknews.hu/assets/kep/a84b6a7bee5c.webp",
+      "kep_nagy": "https://quicknews.hu/assets/kep/a84b6a7bee5c-n.webp",
+      "video": false,
+      "fontossag": 4,
+      "felkapott": false,
+      "forraskep": false,
+      "url": "https://quicknews.hu/hir/az-openai-modeljeire-epulo-terminal-x-88-6-szazalekban-lekoveti-a"
+    },
+    {
       "id": "f52190a49967",
       "cim": "Felfüggesztette az asszisztens beszélgetésmegosztását a Meta biztonsági rések miatt",
       "lead": "A Meta leállította a Muse AI-asszisztens megosztási funkcióját, mert a publikus hivatkozások révén bizalmas felhasználói adatok kerültek ki a hálózatba.",
@@ -74,24 +92,6 @@
       "felkapott": false,
       "forraskep": true,
       "url": "https://quicknews.hu/hir/12-oras-prompt-gyorsitotarazas-erkezett-az-openai-api-ba"
-    },
-    {
-      "id": "2cf0413cb4f1",
-      "cim": "Nyílt forráskódúvá vált a TorchTPU a Google és a Meta közös fejlesztésében",
-      "lead": "A Google és a Meta kiadta a TorchTPU rendszert, amellyel a PyTorch kódok natívan, külön átalakítás nélkül futtathatók Google Cloud TPU-kon.",
-      "slug": "nyilt-forraskoduva-valt-a-torchtpu-a-google-es-a-meta-kozos",
-      "forras": "MarkTechPost",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-20T16:20:11+00:00",
-      "ido_hu": "okt. 20. 18:20",
-      "kep": "https://quicknews.hu/assets/kep/2cf0413cb4f1.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/2cf0413cb4f1-n.webp",
-      "video": false,
-      "fontossag": 4,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/nyilt-forraskoduva-valt-a-torchtpu-a-google-es-a-meta-kozos"
     }
   ],
   "datum_teljes": "2026. okt. 7. 05:36",
@@ -99,7 +99,7 @@
   "hang": null,
   "hang_mp": 0,
   "cim_eredeti": "Reika",
-  "parbaj": null,
+  "parbaj": "pb-terminal-kodolo",
   "video_szoveg": "",
   "szoveg_eredeti": "Reika was a project I never intended to make public because it was part of my own personal local AI stack. But as I worked on it to make it usable as a daily driver, I thought it would be nice to make it public for others to see and use.\n\nI initially built it to see how much I could get the harness to make small models, especially at low quantization and context to not feel terrible to use. So while Reika doesn't solve the intelligence side, it tries to solve the overall experience when using small models at the absolute scale.\n\nA lot of the testing and pain came through working on my M2 MacBook Air 16GB trying to run models like Qwen3.6 35B A3B and Qwen3.8 27B all day in agentic coding, maxing out the RAM and limits of my own machine. So the base of Reika comes from a legitimate source of truth."
 }
