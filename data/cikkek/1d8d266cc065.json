@@ -1,0 +1,75 @@
+{
+  "id": "1d8d266cc065",
+  "slug": "mindenki-szamara-elerhetove-valt-az-openai-decisions-api-rendszere",
+  "forras_id": "techcrunch",
+  "forras_nev": "TechCrunch AI",
+  "url": "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/",
+  "szerzo": "Tim Fernholz",
+  "publikalva": "2026-10-22T19:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://techcrunch.com/wp-content/uploads/2026/10/Screenshot-2026-10-22-at-12.17.11-PM-1.png?resize=1200,988"
+  },
+  "cim_eredeti": "OpenAI makes its Jev competitor widely available as decision model competition heats up",
+  "forrasok": [],
+  "szoveg_eredeti": "Buy One Founder Summit Ticket, Get a Second for Free. Register now.\n\nDisrupt doors open Oct. 13. Get your pass and bring someone with you at 50% off. REGISTER NOW.\n\nOpenAI made its Decisions API model widely available to users for the first time, entering the market for fast, cheap intelligence that recently made TypeSafe, a startup founded by a former researcher at the frontier lab, a $7.6 billion company.\n\nTypeSafe’s Jev model created a category for deep learning models that act as super classifiers: Given a set of options, they can quickly make choices and offer a confidence rating in their decision. Software developers quickly found that these decision or System One models could replace LLMs in a variety of workflows, operating more quickly and a at dramatically lower cost.\n\nNikunj Handa, the product lead for OpenAI’s APIs, told TechCrunch that his colleagues saw Jev and said “wow, we we have like a million use cases for this.” Handa’s team sprinted to offer their own version: Rather than building a specifically calibrated decision model, the team took ChatGPT Luna and reconfigured it to speed up the inference and lower the cost.\n\n“The big unlock with Decisions API has been the speed, shrinking things from one to three seconds to 100, 120, 180 milliseconds,” Handa said. “In the future, we may sort of like have specific training to make our models like even better in these ways. But right now, it’s just plain old Luna that gets the job done.”\n\nAnnounced at the company’s developer day on September 29, the Decisions API became available to all customers on Thursday. OpenAI added new voice and visual modalities to the public version, and worked to ensure lower latency in regions around the world by targeting its inference resources geographically.\n\nIn initial trials with customers like Box, Datadog, Ramp, and Speak, engineers used the API to replace OpenAI’s LLMs with higher throughput. Andrew Hsu, the CTO at Speak, which builds AI language tutors, said the Decisions API allowed the company to cut the time between actions from 1.4 seconds to .13 seconds. OpenAI also used the product to improve their Dots voice assistant’s responsiveness.\n\nStill, it’s not clear exactly what makes a good decision model, other than “it works for you” — optimization across intelligence, cost, calibration, and speed seems to differ by workload. TypeSafe CEO Diogo Almeida distrusts benchmarks and urges people to trial the models in their own work, but even TypeSafe released its own rankings last week alongside the release of its latest Jev model.\n\nPublic benchmarks like the AIM System One Index and the Artificial Analysis Decision Index tend to favor D1 Ultra, a new decision model that Liquid released last week, and Base Lab’s Elephant-1. The latest Jev model remains competitive on both indices, in seventh and third, with OpenAI’s Decision Model falling eighth and fourteenth, respectively. However, TypeSafe’s offerings are, for now, the most widely-queried on OpenRouter.\n\nThe most fun Jev benchmark, however, is JevMan, a benchmark where decision models play PacMan; the latest Jev model tops that ranking. Felix Wunderlich, the chief growth officer at Opper AI, which built the benchmark, said the classic game “is an interesting test because of its nonstop stream of quick, high-stakes decisions. At every junction the model must decide where to go in a few hundred milliseconds.”\n\nWhere OpenAI’s arguably more capable model may have an advantage is in multi-modality—for image classification, “Luna is extremely powerful and has been showing better calibrations,” Handa told TechCrunch, adding that OpenAI customers want the Decisions API to be more flexible about using images as outputs as well.\n\nHanda also saw further increases in speed enabling new use cases: “Can we get this to something like you know 60 milliseconds, and then you could imagine like an API like call like for every single frame in like a video?”\n\nAs these offerings get faster and cheaper, we can expect them to live up to Jev’s namesake, an economist who predicted that a cheap commodity only gets more ubiquitous. Or, as Handa puts it, “the crazy set of use cases” that were hiding in plain sight until the decision models revealed them.\n\nWhen you purchase through links in our articles, we may earn a small commission. This doesn’t affect our editorial independence.\n\nBuy One Pass, Get a Second FreeCover more ground at TechCrunch’s ultimate founder bootcamp of the year by bringing your co-founder or partner for freeBook before the BOGO deal expires\n\nAirbnb limits chores for guests, sparking backlash from hosts Lauren Forristal\n\nTesla starts Optimus robot production in California as profit falls 43% Kirsten Korosec Sean O'Kane\n\nThe internet is having a very bad cybersecurity day Sarah Perez\n\nPeople are using AI to make their smart TVs dumb again Sarah Perez\n\nAnthropic says its workforce has become less junior and is spending more time in meetings Anthony Ha\n\nReplit makes OpenAI its default over Anthropic, CEO says Kirsten Korosec Lucas Ropek Rebecca Bellan\n\nMark Wahlberg wants to take on the longevity-startup crowd with an affordable gym concept Connie Loizos",
+  "modell": "gemini-3.5-flash",
+  "cim": "Mindenki számára elérhetővé vált az OpenAI Decisions API rendszere",
+  "lead": "Az OpenAI széles körben hozzáférhetővé tette a kifejezetten gyors és olcsó döntéshozatalra optimalizált Decisions API modellt.",
+  "osszefoglalo": "Az OpenAI elérhetővé tette a [Decisions API](https://openai.com/index/decisions-api/) nevű megoldását, amellyel a gyors és alacsony költségű adatbeállítási piacon versenyzik. A fejlesztés alapja a **ChatGPT Luna** átalakított változata, amely az összetett nyelvi modellekhez képest jelentősen gyorsabb válaszidőt biztosít. A rendszer a korábbi 1-3 másodperces várakozási időt akár 100-180 milliszekundumra csökkenti.\n\nA döntési modellek rendkívül gyorsan képesek opciók közül választani és megbízhatósági értékelést adni. Az OpenAI új változata már **hang és vizuális bemeneteket** is kezel, így képosztályozási feladatoknál is kiemelkedő pontosságot nyújt. A tesztelő partnercégek a munkafolyamatok folyamatosságának növelésére és a hívások közötti késleltetés drasztikus csökkentésére használják az eszközöket.",
+  "miert_szamit": "A marketingesek és fejlesztők az összetett nyelvi modellek helyett sokkal **olcsóbban és gyorsabban** automatizálhatják a besorolási és döntési folyamatokat.",
+  "cimkek": [
+    "OpenAI",
+    "Decisions API",
+    "ChatGPT Luna",
+    "API"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Decisions API",
+    "ChatGPT Luna"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 86,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 88,
+      "egyediseg": 90,
+      "hitelesseg": 86,
+      "aktualitas": 98,
+      "kozossegi": 73
+    },
+    "elofeszures": 68,
+    "tanult": 55,
+    "indok": "Az OpenAI új döntési modell API-ja közvetlen piaci versenyhelyzetet teremt egy nagyra értékelt startup termékével",
+    "tema": "openai decisions api launch",
+    "cim_hu": "Mindenki számára elérhetővé vált az OpenAI új döntéshozatali AI-modellje",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T19:33:16+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-22T19:35:36+00:00",
+  "megjelent": "2026-10-22T19:35:36+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-22T19:35:43+00:00",
+    "esemeny": "Az OpenAI széles körben hozzáférhetővé tette a fejlesztők számára a Decisions API modellt, amellyel a gyors és olcsó döntéshozatali piacon lép fel a TypeSafe Jev nevű modelljével szemben.",
+    "forrasok": [
+      "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}

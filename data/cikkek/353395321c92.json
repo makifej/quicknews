@@ -1,0 +1,48 @@
+{
+  "id": "353395321c92",
+  "slug": "deploy-ai-in-a-hipaa-eligible-environment-with-amazon-quick",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/deploy-ai-in-a-hipaa-eligible-environment-with-amazon-quick/",
+  "publikalva": "2026-10-22T17:48:22+00:00",
+  "cim": "Deploy AI in a HIPAA-eligible environment with Amazon Quick",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 46 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/10/20/ML-21609-featured-image.png"
+  },
+  "cim_eredeti": "Deploy AI in a HIPAA-eligible environment with Amazon Quick",
+  "szoveg_eredeti": "Healthcare organizations want the same thing from AI that every other business wants: faster answers, less manual work, and insights that reach decision-makers in time to act on them. However, what makes the healthcare industry different is that the data is uniquely complex, deeply contextual, and strictly regulated. So this post starts with a few definitions to set the foundation for everything that follows.\n\nProtected Health Information (PHI) is any information that identifies a person and relates to their health, care, or payment for care, such as a medical note, a claim, or a member ID. When software touches PHI, it falls under the Health Insurance Portability and Accountability Act (HIPAA), the federal law that governs how PHI data is accessed, secured, and audited.\n\nAgentic AI changes what it means for software to “touch PHI.” A traditional analytics tool reads data and returns a response. An agentic workspace like Amazon Quick might go further. For example, its chat agents work across both unstructured content, such as clinical notes and appeals letters, and structured data, such as claims and member records. Agents might retrieve data from both unstructured and structured sources, call other systems through connectors, and complete multi-step tasks on a user’s behalf. Connectors are pre-built integrations that let Amazon Quick securely read from and take action in your external systems, such as Slack, Microsoft Outlook, Salesforce, Atlassian Jira, and Microsoft SharePoint. You can also add your own custom tools through Model Context Protocol (MCP). Only connectors authorized within your organization are visible. When a chat agent can both read and act on PHI, you need sufficient governance: deterministic guardrails, a behavioral audit trail of what the agent did, and clear accountability for actions taken without a person in the loop. To support that governance, Amazon Quick exposes ACL-aware retrieval, chat and feedback logging, and controls over what each chat agent is allowed to do.\n\nAmazon Quick is a HIPAA-eligible service. This eligibility applies across the Amazon Quick web, desktop, and mobile clients, subject to the shared responsibility model and your configuration. This post, however, focuses on the capabilities of the Amazon Quick web version, which you access through your browser.\n\nIn this post, we start with the foundations: who HIPAA applies to and the difference between HIPAA-eligible and HIPAA-compliant. We then introduce Amazon Quick as a platform and the two data flows for PHI (unstructured and structured). From there, we cover what Amazon Quick provides for regulated environments and what it doesn’t, walk through a fictional health plan (AnyCompany) deployment, and distill the best practices and irreversible decisions you should make up front. We close with a step-by-step implementation guide, a conclusion, and resources for deeper reading.\n\nHIPAA reaches further than hospitals and clinics. Under the law, two categories of organizations carry obligations, and most AI projects touch both.\n\nCovered entities and business associates must both sign a business associate addendum (BAA) before PHI changes hands. After you accept the AWS BAA through AWS Artifact, AWS acts as your business associate for that specific AWS account, and only when you use HIPAA-eligible services like Amazon Quick to process PHI within it. The addendum doesn’t extend to your other accounts, to PHI placed in services that are not HIPAA-eligible, or to how you configure the service. Those remain your responsibility. Always review and confirm the current AWS BAA terms and your obligations with your own legal and compliance teams.\n\nWhile HIPAA eligible is an AWS designation, HIPAA compliant is a property of your entire environment. HIPAA eligible means AWS has assessed the service and permits you to use it to process, store, and transmit PHI under a signed AWS BAA. Amazon Quick is a HIPAA-eligible service, and third-party auditors assess it under AWS compliance programs including HIPAA, FedRAMP, PCI DSS, SOC, and ISO. No official HIPAA certification exists for AWS as a cloud service, and AWS itself is not “HIPAA eligible.”\n\nAmazon Quick eligibility serves only as a building block. That alone doesn’t make your application and environment HIPAA compliant. You still need to sign the BAA, classify your data, configure the controls correctly, and own the administrative and physical safeguards HIPAA requires, including workforce training, risk analysis, and breach procedures that AWS doesn’t perform for you. An eligible service such as Amazon Quick, a signed BAA, correct configuration, governance, and your own safeguards is what produces a HIPAA-compliant deployment. Amazon Quick being eligible means you can build a compliant workflow on it. It doesn’t mean that turning it on makes you automatically compliant.\n\nAmazon Quick is often introduced through its chat agents, but HIPAA eligibility applies to the entire workspace, not to a single feature, so a platform-level view matters for compliance. All capabilities in Amazon Quick are assembled from the following building blocks:\n\nOn top of those building blocks sit the features. The What it draws on column matters for compliance, because it shows which building blocks, and therefore which data paths, each feature draws on.\n\nNote: SPICE is the in-memory query engine of Amazon Quick Sight. A SPICE dataset uses the account default customer managed key at creation, and to import an existing dataset onto a new default key you must perform a full refresh. If your data includes PHI, include SPICE in your encryption strategy (protect it with your customer managed AWS Key Management Service (KMS) key if you use one) and in your data-minimization decisions about what to import, such as querying live or loading a de-identified extract instead.\n\nThe same eligibility, BAA, encryption, access control, and audit posture extend across every feature. But as noted at the start, PHI reaches Amazon Quick through two paths, and each is secured differently. The unstructured path runs through knowledge bases, where the documents are controlled by document-level ACLs and evaluated at query time. The structured path runs through Amazon Quick Sight reading your databases and data lakes, where row and column access is controlled by row-level and column-level security. These two data flows carry PHI differently and, as the following section shows, controls are enforced differently in each path.\n\nAmazon Quick is HIPAA eligible, and we outline what that means in practice.\n\nAmazon Quick is a fully managed service. AWS operates the underlying infrastructure and is responsible for security of the cloud, verified by third-party auditors as laid out in the AWS Shared Responsibility Model.\n\nAmazon Quick encrypts data at rest by default and supports encryption for data in transit.\n\nAmazon Quick doesn’t use your customer data to train or improve the underlying large language models (LLMs).\n\nAmazon Quick supports role-based access control (RBAC) and single sign-on (SSO) through AWS IAM Identity Center, Microsoft Active Directory, and SAML 2.0 identity providers. For business intelligence (BI) workloads, you can supplement this with row-level and column-level security and run-as roles to limit data access at query time. With these capabilities, you can enforce unique user identification and least privilege.\n\nAmazon Quick emits several distinct signals. They aren’t interchangeable, and confusing them is a common audit gap.\n\nBecause chat logs and feedback can contain PHI, apply CloudWatch Logs data-protection masking, and confirm that a given signal actually covers the event you intend to track before you rely on it for compliance.\n\nThat Amazon Quick is an eligible service is useful because it maps each feature to a specific HIPAA safeguard, as shown in the following table:\n\nWhile Amazon Quick offers the preceding controls, this section addresses what Amazo",
+  "begyujtve": "2026-10-22T19:33:11.422509+00:00",
+  "prioritas": {
+    "pont": 46,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 40,
+      "egyediseg": 75,
+      "hitelesseg": 72,
+      "aktualitas": 90,
+      "kozossegi": 41
+    },
+    "elofeszures": 78,
+    "tanult": 50,
+    "indok": "Vállalati AWS és egészségügyi megfelelőségi útmutató, ami inkább technikai jellegű PR-anyag Forrás-tapasztalat: -7.",
+    "tema": "aws amazon quick hipaa",
+    "cim_hu": "Egészségügyi AI-rendszerek bevezetése HIPAA-megfelelő környezetben az AWS-en",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T19:33:16+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-22T19:35:42+00:00"
+}
