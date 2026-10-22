@@ -1,0 +1,74 @@
+{
+  "id": "8f3f9e0b2ae3",
+  "slug": "a-liquid-ai-bemutatta-a-ripl-ultra-gyors-ai-futtatomotorjat",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/10/22/liquid-ai-ripl-real-time-inference-engine/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-10-22T17:33:25+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-454-27-scaled.png"
+  },
+  "cim_eredeti": "Liquid AI Launches RIPL, a Real-Time Inference Engine for Sub-50 ms LFMs",
+  "forrasok": [],
+  "szoveg_eredeti": "Liquid AI just announced Liquid RIPL , short for Real-time Inference Pipeline. RIPL is a low-latency engine that serves Liquid Foundation Models (LFMs) inside a live request path. It returns complete generated responses end-to-end in under 50 ms. It also claims that latency holds while traffic arrives continuously at peak load. For developers, the message is simple. Swap gradient-boosted trees for a generative model, and keep the latency budget.\n\n TL;DR \n\n Engine : Serves LFM2.5 models from 230M to 2.6B parameters\n\n Runs on: Enterprise deployments on NVIDIA H100, H200, B200 and RTX PRO 6000 GPUs. Benchmarks used a single B200.\n\n Performance: 5.6 to 28.4x lower p95 latency than Qwen3.5 on vLLM, per Liquid’s own tests.\n\n Best: LFM2.5-1.2B hit 155.8 ms p95 vs 4,431 ms for Qwen3.5-0.8B, a 28.4x gap (256 in, 128 out).\n\n Worst: LFM2.5-2.6B gained only 5.6x (449.1 ms vs 2,499 ms). Sub-50 ms fails on longer requests.\n\n What problem does Liquid RIPL solve? \n\n Most serving stacks target large batches and long agentic jobs. A few seconds per request is acceptable there. Search ranking, fraud checks and payment authorization need answers in milliseconds. Liquid AI argues teams default to classical models for these paths because LLM serving is too slow. RIPL is built to remove that trade-off.\n\n How does RIPL work? \n\n Liquid AI describes RIPL as optimizing the full path, from request arrival to completed response. In several workloads, Liquid AI plots the same model, LFM2.5-350M, on vLLM and on RIPL. RIPL’s p95 line sits well below the vLLM line in each case. That isolates part of the gain to the engine, not just the model architecture.\n\n The LFM2.5 models themselves are hybrids. LFM2.5-1.2B-Instruct has 16 layers: 10 double-gated convolution blocks and 6 GQA blocks. LFM2.5-2.6B has 30 layers: 22 convolution blocks and 8 GQA blocks.\n\n RIPL benchmarks: how fast is it vs vLLM? \n\n Liquid measured p95 end-to-end latency under open-loop Poisson arrivals on one B200. LFMs ran on RIPL. Baselines, including MiniCPM5 and Granite 4.2, ran on vLLM.\n\n Workload Load LFM2.5 on RIPL (p95) Qwen3.5 on vLLM (p95) Gap 1B class, 32 in → 32 out 1,000 req/s 34.6 ms (1.2B) 498 ms (0.8B) 14.4x 1B class, 256 in → 128 out 400 req/s 155.8 ms (1.2B) 4,431 ms (0.8B) 28.4x 2B class, 32 in → 32 out 1,000 req/s 76.4 ms (2.6B) 586.8 ms (2B) 7.7x 2B class, 256 in → 128 out 300 req/s 449.1 ms (2.6B) 2,499 ms (2B) 5.6x \n\n Source: Liquid AI blog, Figure 2 . Sealf-reported. \n\n Liquid AI also mapped 6 real-time workloads against fixed budgets: \n\n Adtech query rewriting: 32 in, 32 out, 50 ms budget, LFM2.5-350M.\n\n Search intent classification: 128 in, 1 out, 20 ms budget.\n\n Search reranking: 1k in, 1 out, 30 ms budget.\n\n Payments risk scoring: 512 in, 16 out, 50 ms budget, LFM2.5-1.2B.\n\n Credit decisioning: 8k in, 64 out, 150 ms budget.\n\n Image alt text: 512×512 image and 64 tokens in, 16 out, 100 ms budget, LFM2.5-VL-450M .\n\n -->\n\n Competitor Comparison \n\n Feature LFM2.5-1.2B on RIPL Qwen3.5-0.8B on vLLM LFM2.5-2.6B on RIPL Qwen3.5-2B on vLLM Parameters 1.17B 0.8B 2.69B 2B Context 32,768 262,144 131,072 262,144 License (weights) LFM Open License v1.0 Apache 2.0 LFM Open License v1.0 Apache 2.0 Modality Text Text, image, video Text Text, image, video Default mode Instruct Non-thinking Always reasons Non-thinking Serving engine RIPL (enterprise) vLLM (open source) RIPL (enterprise) vLLM (open source) p95, 32→32 34.6 ms 498 ms 76.4 ms 586.8 ms p95, 256→128 155.8 ms 4,431 ms 449.1 ms 2,499 ms \n\n Is RIPL used in production? \n\n Yes, according to Liquid AI. Shopify is deploying LFMs across latency-sensitive commerce workloads. In search enhancement, LFMs run with sub-20 ms inference on production traffic. According to Liquid AI’s blog, they use about 50% fewer parameters than alternatives and deliver 2 to 10x faster inference. \n\n Key Takeaways \n\n RIPL is Liquid AI’s engine for LLMs inside live request paths.\n\n Liquid claims 5.6 to 28.4x lower p95 latency than Qwen3.5 on vLLM.\n\n Same-model tests (LFM2.5-350M) show RIPL itself beats vLLM.\n\n Shopify runs LFMs at sub-20 ms in production search.\n\n Enterprise-only, closed, and all figures are self-reported.\n\n Check out the RIPL announcement , try the latency calculator , and see the LFM2.5 model cards .. All credit goes to the researcher of this project. Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Liquid AI Launches RIPL, a Real-Time Inference Engine for Sub-50 ms LFMs appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Liquid AI bemutatta a RIPL ultra-gyors AI-futtatómotorját",
+  "lead": "A Liquid AI RIPL motorja 50 milliszekundum alatti válaszidővel teszi lehetővé a nyelvi modellek használatát a valós idejű rendszerekben.",
+  "osszefoglalo": "A Liquid AI kiadta a [RIPL](https://liquid.ai/blog/low-latency) (Real-time Inference Pipeline) nevű futtatómotorját, amelyet a saját Liquid Foundation Models (LFM) modelljeihez tervezett. Az eszköz célja, hogy a generatív AI-modelleket beépíthetővé tegye a millimásodperces válaszidőt igénylő folyamatokba, például a keresési rangsorolásba vagy a csalásszűrésbe.\n\nA vállalati tesztek alapján a RIPL 5,6 és 28,4-szeres közötti alacsonyabb p95 késleltetést ér el a vLLM rendszeren futtatott Qwen3.5 modellekhez képest egyetlen NVIDIA B200 GPU-n. Kisebb kéréseknél az **LFM2.5-1.2B modell 34,6 milliszekundumos válaszidőt** ért el.\n\nA rendszert már élesben használja a **Shopify a keresési folyamatok fejlesztésére**, ahol 20 milliszekundum alatti késleltetést ér el vele. A RIPL vállalati licenc keretében érhető el NVIDIA H100, H200, B200 és RTX PRO 6000 videókártyákon.",
+  "miert_szamit": "A fejlesztők végre kiválthatják a klasszikus gépi tanulási modelleket generatív AI-val a **valós idejű tranzakciókban és keresőkben** anélkül, hogy a rendszer lassulna.",
+  "cimkek": [
+    "Liquid AI",
+    "RIPL",
+    "LFM2.5",
+    "LLM"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "RIPL"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 81,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 80,
+      "hirertek": 85,
+      "egyediseg": 85,
+      "hitelesseg": 76,
+      "aktualitas": 98,
+      "kozossegi": 61
+    },
+    "elofeszures": 84,
+    "tanult": 39,
+    "indok": "Jelentős technológiai áttörés a Liquid AI-tól: valósidejű, 50 ms alatti válaszidejű inferencia-motor.",
+    "tema": "liquid ai ripl engine",
+    "cim_hu": "A Liquid AI bemutatta a RIPL-t, az 50 milliszekundum alatti válaszidejű AI-motort",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T18:19:04+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-22T18:21:32+00:00",
+  "megjelent": "2026-10-22T18:21:32+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-22T18:22:27+00:00",
+    "esemeny": "A Liquid AI bejelentette a RIPL (Real-time Inference Pipeline) nevű alacsony késleltetésű futtatómotorját, amelyet a Liquid Foundation Models (LFM) modellek valós idejű futtatására terveztek.",
+    "forrasok": [
+      "https://www.marktechpost.com/2026/10/22/liquid-ai-ripl-real-time-inference-engine/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
