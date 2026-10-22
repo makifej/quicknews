@@ -1,17 +1,17 @@
 {
   "verzio": 1,
-  "frissitve": "2026-10-22T07:09:21.285447+00:00",
+  "frissitve": "2026-10-22T07:17:29.787498+00:00",
   "lapmeret": 30,
   "friss_oldalak": 29,
-  "osszes": 848,
-  "legujabb": "604a7c7db2e8",
+  "osszes": 855,
+  "legujabb": "af7187244b50",
   "rovatok": [
     {
       "kulcs": "modell",
       "slug": "modell",
       "nev": "Modellek",
       "leiras": "Új és frissített AI-modellek, kiadások, képességek.",
-      "db": 98,
+      "db": 99,
       "oldalak": 4
     },
     {
@@ -43,7 +43,7 @@
       "slug": "ugynok",
       "nev": "Ügynökök",
       "leiras": "Önállóan dolgozó AI-ügynökök és automatizálás.",
-      "db": 91,
+      "db": 92,
       "oldalak": 4
     },
     {
@@ -51,7 +51,7 @@
       "slug": "uzlet",
       "nev": "Üzlet",
       "leiras": "Cégek, pénz, partnerségek, piac.",
-      "db": 184,
+      "db": 187,
       "oldalak": 7
     },
     {
@@ -59,7 +59,7 @@
       "slug": "kutatas",
       "nev": "Kutatás",
       "leiras": "Kutatási eredmények, tanulmányok, nyílt modellek.",
-      "db": 79,
+      "db": 80,
       "oldalak": 3
     },
     {
@@ -67,30 +67,49 @@
       "slug": "egyeb",
       "nev": "Egyéb",
       "leiras": "Minden más, ami AI.",
-      "db": 29,
+      "db": 30,
       "oldalak": 1
     }
   ],
   "fohir": {
-    "id": "7b372721ed9b",
-    "cim": "Valós idejű, kétnyelvű hívásfordítást adott ki az ElevenLabs",
-    "lead": "A vállalat új eszköze automatikusan felismeri a beszélők nyelvét, és azonnal fordítja a telefonbeszélgetéseket.",
-    "slug": "valos-ideju-ketnyelvu-hivasforditast-adott-ki-az-elevenlabs",
-    "forras": "ElevenLabs (LinkedIn)",
-    "kat": "eszköz",
-    "rovat": "eszkoz",
-    "ido": "2026-10-21T22:57:45.757Z",
-    "ido_hu": "okt. 22. 00:57",
-    "kep": "https://quicknews.hu/assets/kep/7b372721ed9b.webp",
-    "kep_nagy": "https://quicknews.hu/assets/kep/7b372721ed9b.webp",
+    "id": "b4342dbc9589",
+    "cim": "Interaktív 3D-s emberi anatómiát épít a Gemini 4 Argon",
+    "lead": "Három nyílt forráskódú adatbázis összekapcsolásával jeleníti meg az emberi testet a Google DeepMind új modellje.",
+    "slug": "interaktiv-3d-s-emberi-anatomiat-epit-a-gemini-4-argon",
+    "forras": "Google DeepMind (X)",
+    "kat": "modell",
+    "rovat": "modell",
+    "ido": "2026-10-22T07:16:03.504Z",
+    "ido_hu": "okt. 22. 09:16",
+    "kep": "https://quicknews.hu/assets/kep/b4342dbc9589.webp",
+    "kep_nagy": "https://quicknews.hu/assets/kep/b4342dbc9589.webp",
     "video": true,
     "fontossag": 4,
     "felkapott": false,
     "forraskep": false,
-    "url": "https://quicknews.hu/hir/valos-ideju-ketnyelvu-hivasforditast-adott-ki-az-elevenlabs",
+    "url": "https://quicknews.hu/hir/interaktiv-3d-s-emberi-anatomiat-epit-a-gemini-4-argon",
     "jova": true
   },
   "felkapott": [
+    {
+      "id": "7ee8d60e8c50",
+      "cim": "Új tréningmódszert mutatott be az Nvidia és a Perplexity",
+      "lead": "A JOLT eljárás hatékonyabbá teszi a nyelvi modellek megerősítéses tanulását, kevesebb számítási kapacitás használatával.",
+      "slug": "uj-treningmodszert-mutatott-be-az-nvidia-es-a-perplexity",
+      "forras": "MarkTechPost",
+      "kat": "kutatás",
+      "rovat": "kutatas",
+      "ido": "2026-10-22T07:16:08.302Z",
+      "ido_hu": "okt. 22. 09:16",
+      "kep": "https://quicknews.hu/assets/kep/7ee8d60e8c50.webp",
+      "kep_nagy": "https://quicknews.hu/assets/kep/7ee8d60e8c50-n.webp",
+      "video": false,
+      "fontossag": 3,
+      "felkapott": true,
+      "forraskep": false,
+      "url": "https://quicknews.hu/hir/uj-treningmodszert-mutatott-be-az-nvidia-es-a-perplexity",
+      "jova": true
+    },
     {
       "id": "bd67fb97886a",
       "cim": "64,6 milliárd dolláros árbevételt ért el a Meta a negyedévben",
@@ -450,25 +469,6 @@
       "felkapott": true,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/az-amazon-nyilt-forraskoduva-tette-a-torchneuront-a-trainium-chipekhez",
-      "jova": false
-    },
-    {
-      "id": "be6f11b0f82b",
-      "cim": "Összemérték a MiniMax H3 és a Claude Opus 5.5 képességeit a 3D-s animációban",
-      "lead": "Egy összehasonlító videóban a tollak részletességét, a megvilágítást és a mélységélességet vizsgálták a szárnyak mozgása közben.",
-      "slug": "osszemertek-a-minimax-h3-es-a-claude-opus-5-5-kepessegeit-a-3d-s",
-      "forras": "Higgsfield (X)",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-10-19T17:49:57+00:00",
-      "ido_hu": "okt. 19. 19:49",
-      "kep": "https://quicknews.hu/assets/kep/be6f11b0f82b.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/be6f11b0f82b.webp",
-      "video": true,
-      "fontossag": 3,
-      "felkapott": true,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/osszemertek-a-minimax-h3-es-a-claude-opus-5-5-kepessegeit-a-3d-s",
       "jova": false
     }
   ]
