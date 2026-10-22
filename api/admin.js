@@ -269,6 +269,14 @@ module.exports = async (req, res) => {
       if (mi === "hirlevel_gep") return json(res, 200, await hirlevelAdat());
       if (mi === "jovahagyasok_gep") return json(res, 200, { dontesek: await jovahagyasok() });
       if (mi === "prioritas_gep") return json(res, 200, await prioritasAdat());
+      if (mi === "pult_frissult_gep") {
+        // a pult pillanatképeinek kora: a felhős kör ebből látja, hogy a Mac frissen tartja-e a Flybuilt-függő listákat
+        const ki = {};
+        for (const k of ["posztok", "ajanlott", "prioritas", "koltseg"]) {
+          try { const v = JSON.parse((await kv("GET", P + "pult:" + k)) || "null"); ki[k] = v ? (v.frissitve || v.frissult || null) : null; } catch { ki[k] = null; }
+        }
+        return json(res, 200, ki);
+      }
       if (mi === "prioritas_dontes_gep" && req.method === "POST") { const [k, v] = await prioritasDontes(await torzs(req), "Heni (gépi pult)"); return json(res, k, v); }
       if (mi === "boo_gep") return json(res, 200, await booAdat());
       if (mi === "adsense_gep") return json(res, 200, await adsenseAdat());

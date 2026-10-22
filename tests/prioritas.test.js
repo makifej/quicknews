@@ -178,3 +178,13 @@ test("admin-emlékeztető: régóta váró P1/P2 hírre 2 óránként egyszer, a
   const p3 = await keres("push.js", { url: "/api/push?mi=admin_gep", headers: GEP, body: { sorok: [{ id: ID2, szint: "P3", pont: 50, cim: "x", ora: 5 }].map((x) => (tar.set("qn:push:admin_jel:" + x.id, "1"), x)) } });
   assert.strictEqual(p3.adat.ok, false, "P3 miatt nincs emlékeztető");
 });
+
+test("pult-pillanatképek kora: csak gépkulccsal, a felhős kör ebből dönt az Ajánlott felülírásáról", async () => {
+  ujKv();
+  tar.set("qn:pult:posztok", JSON.stringify({ frissitve: "2026-10-22T06:40:00+00:00", sorok: [] }));
+  tar.set("qn:pult:prioritas", JSON.stringify({ frissult: "2026-10-22T06:48:30+00:00", sorok: [] }));
+  assert.strictEqual((await keres("admin.js", { method: "GET", url: "/api/admin?mi=pult_frissult_gep" })).kod, 401);
+  const r = await keres("admin.js", { method: "GET", url: "/api/admin?mi=pult_frissult_gep", headers: GEP });
+  assert.strictEqual(r.kod, 200);
+  assert.deepStrictEqual(r.adat, { posztok: "2026-10-22T06:40:00+00:00", ajanlott: null, prioritas: "2026-10-22T06:48:30+00:00", koltseg: null });
+});
