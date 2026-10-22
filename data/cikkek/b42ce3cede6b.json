@@ -1,0 +1,48 @@
+{
+  "id": "b42ce3cede6b",
+  "slug": "az-amazon-szerint-a-php2shell-sebezhetosegeket-mar-szeles-korben",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/amazon-says-php2shell-flaws-no-p9tfouD7TuCdyKvK53peKA",
+  "publikalva": "2026-10-22T02:32:31.873346+00:00",
+  "cim": "Az Amazon szerint a PHP2Shell-sebezhetőségeket már széles körben kihasználják",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--dR1LW7iu--/t_limit/https://www.bleepstatic.com/content/hl-images/2026/10/21/PHP.jpg"
+  },
+  "cim_eredeti": "Az Amazon szerint a PHP2Shell-sebezhetőségeket már széles körben kihasználják",
+  "szoveg_eredeti": "Október 21-én, szerdán európai kormányzati, iskolai és kórházi weboldalak sora vált elérhetetlenné. Az üzemeltetők versenyt futottak az idővel, hogy megvédjék szervereiket a PHP két kritikus hibájától. A PHP a web jelentős részének hátterében álló programozási nyelv. Egyes amerikai szervezetek szintén leállították oldalaikat. A CVE-2026-109618 és a CVE-2026-109619 jelű hibákat együtt „PHP2Shell” néven emlegetik. Mindkettő 9,2-es értékelést kapott a 10-es skálán, és bármelyikkel bejelentkezés nélkül lehet kódot futtatni a szerveren.\n\nA PHP fejlesztői szerdán, nagyjából 13:30-kor (UTC) adták ki a javításokat a 8.5.12, 8.4.27, 8.3.36 és 8.2.35 verzióban. A kiadás egy nappal korábban érkezett a tervezettnél, mert kiszivárogtak az azonosítók.\n\nHollandiában számos szervezet a Nemzeti Kiberbiztonsági Központ példáját követve offline állapotba helyezte nyilvános oldalait. Közéjük tartozott a rotterdami kikötő, az Overheid.nl kormányzati portál és számos kórház weboldala. A finn állami informatikai központ, a Valtori leállította a kormányzati webszolgáltatásokat. A német szövetségi informatikai szolgáltató, valamint a francia belügyminisztérium, amely a prefektúrák oldalait üzemelteti, óvintézkedésként levett oldalakat a hálózatról. A belga külügyminisztérium ugyanígy járt el. Dániában a Kombit önkormányzati informatikai vállalat több szolgáltatást is leállított, köztük az iskolák országos kommunikációs platformját. A Wikipedia, a 4chan és a DeviantArt működésében szintén zavarok léptek fel.\n\nAz NSA, az FBI és a CISA egyaránt arra szólította fel a szervezeteket, hogy azonnal frissítsenek, vagy kapcsolják le rendszereiket a hálózatról. A CERT-EU, az ENISA és az Europol közös közleményben arra kérte a szervezeteket, hogy a sebezhető alkalmazásokat a javítások telepítéséig különítsék el.\n\nAz OpenAI közölte, hogy egy koalíció élén két hónapot töltött a hibák kezelésével. „az elmúlt idők egyik legnagyobb hatású biztonsági problémájának” nevezte őket, és azt mondta, hogy úgy tűnik, az MI előbb találta meg a hibákat, mint a támadók. A Calif nevű biztonsági csoport egy OpenAI-modell segítségével talált egy hibát, a Google tulajdonában lévő Wiz pedig tőle függetlenül, szintén MI-vel fedezte fel a sebezhetőségeket. A Wiz szerint a hiba nagyjából 20 évig rejtőzött a PHP-ben, mert a kihasználásához olyan lépéssorozatra volt szükség, amely „az emberi kutatók számára gyakorlatilag elérhető lehetőségek határán” volt.\n\nA nap elején a Cloudflare technológiai igazgatója azt mondta, hogy a cég „az első támadások megjelenését látja\". A Cloudflare később több ezer kihasználási kísérletet jelentő csúcsokról számolt be. Szerda este az Amazon Threat Intelligence közölte, hogy a PHP2Shell „mostanra széles körben támadják a gyakorlatban\". Azt is jelezte, hogy egy október 17-i kísérlet arra utal, hogy az egyik támadó már korán tudhatott a sebezhetőségekről. A CISA szerdán azt közölte, hogy nem észlelt kihasználást.\n\n„Nem maga az alapul szolgáló kód változott meg, hanem az, hogy képesek lettek megtalálni ezeket a gyenge pontokat, és működő exploitokká alakítani őket\" – mondta Ismael Valenzuela, az Arctic Wolf munkatársa.",
+  "begyujtve": "2026-10-22T09:31:59.011614+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 50,
+      "egyediseg": 40,
+      "hitelesseg": 72,
+      "aktualitas": 84,
+      "kozossegi": 48
+    },
+    "elofeszures": 86,
+    "tanult": 82,
+    "indok": "Hagyományos kiberbiztonsági fenyegetés és szerveroldali sebezhetőség AI vonatkozás nélkül.",
+    "tema": "php2shell exploits amazon warning",
+    "cim_hu": "Az Amazon szerint már tömegesen használják ki a PHP2Shell sebezhetőségeket",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T09:33:46+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-22T09:36:17+00:00"
+}

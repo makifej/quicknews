@@ -1,0 +1,48 @@
+{
+  "id": "2cf92ab17133",
+  "slug": "a-php-foundation-beismerte-szerkezeti-hiba-miatt-kesett-a-javitas",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/php-foundation-admits-structur-FQi3DZ57R_..p3f_v8rTlQ",
+  "publikalva": "2026-10-22T01:52:25.515661+00:00",
+  "cim": "A PHP Foundation beismerte: „szerkezeti hiba\" miatt késett a javítás",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--GLRCRhXe--/t_limit/https://image.hkstandard.com.hk/f/1200p0/0x0/100/none/579dc46cf4a5b37edf9f8e41d6b4d92d/2026-10/2026-10-21T143600Z_919413811_RC2Q7OASR047_RTRMADP_3_CYBERSECURITY-PHP.JPG"
+  },
+  "cim_eredeti": "A PHP Foundation beismerte: „szerkezeti hiba\" miatt késett a javítás",
+  "szoveg_eredeti": "A PHP Foundation közölte, hogy a PHP programozási nyelv két kritikus sebezhetősége közül az egyik javításának késése „szerkezeti hiba volt\". A beismerés szerdán, október 21-én hangzott el, miután megjelentek a vészhelyzeti javítócsomagok, a világ kormányai pedig elővigyázatosságból offline állapotba helyeztek weboldalakat – számolt be a Reuters a The Standardon keresztül. Az alapítvány szerint egy kutató 2024-ben találta meg az egyik hiba első jeleit, de akkor nem sikerült konkrét támadási módot találni rá, és más, egyértelműbb hatású problémák élveztek elsőbbséget.\n\nAz LWN által részletesen idézett blogbejegyzésében az alapítvány elmondta, hogy biztonsági csapata több, egymással versengő javítást is kidolgozott. Mindegyiknek megvolt az ára: az egyik megtörte a visszafelé kompatibilitást, a másik új szolgáltatásmegtagadásos (DoS) kockázatot teremtett, a harmadikhoz pedig számos külső fejlesztésű bővítményen kellett volna módosítani. A csapat konszenzussal döntött, és az alapítvány szerint „tartott attól, hogy a rossz választás következményeit kell viselnie\". Mivel nem ismertek olyan utat, amellyel távoli kódfuttatás lehetett volna elérni, és a motort jól ismerő néhány core fejlesztőnek rengeteg más feladata is volt, a munka „hónapokon át újra meg újra elakadt, majd újraindult\". „Nem fogunk úgy tenni, mintha másképp lenne: a késedelem szerkezeti hiba volt, amelyet egyaránt okozott a biztonsági csapat döntéshozatali folyamata és erőforráshiánya\" – írta az alapítvány.\n\nA kérdés augusztus 11-én vált ismét sürgőssé. Aznap a Calif biztonsági cég és az OpenAI egymástól függetlenül ugyanazt a kiváltó okot jelentette, a Calif pedig bemutatta, hogy feltételek nélkül képes távolról kódot futtatni – írta a Cointelegraph. Az alapítvány közlése szerint azóta a biztonsági döntéseket konszenzus helyett többségi szavazással hozzák, és két újabb mérnököt vettek fel. A The Next Web beszámolója szerint azt is kérte a PHP-ra támaszkodó vállalatoktól és kormányoktól, hogy segítsenek finanszírozni a biztonsági munkát. A kiadást egy nappal előrehozták, miután a sérülékenységi azonosítók kiszivárogtak az internetre, az alapítvány pedig bírálta a Chainguardot, mert az a koordinált kiadás előtt közzétette a javított image-eket.\n\nA PHP2Shell becenéven emlegetett hibákat CVE-2026-109618 és CVE-2026-109619 azonosítóval tartják nyilván. A javítást a PHP 8.5.12, 8.4.27, 8.3.36 és 8.2.35 verziója tartalmazza, és minden olyan PHP-telepítés potenciálisan érintett, amely webes kéréseket szolgál ki – számolt be a The Register. Az amerikai, brit, kanadai, ausztrál és európai uniós kiberbiztonsági ügynökségek arra kérték a weboldalak üzemeltetőit, hogy a frissítésig kapcsolják le az oldalaikat a hálózatról – írta a Cybersecurity Dive. Brian Krebs biztonsági újságíró becslése szerint a weboldalak közel 70 százalékának szüksége van a frissítésre.\n\nHollandia leállította a digitális személyazonosító szolgáltatását. A finn állami informatikai szolgáltató, a Valtori lekapcsolta a nyilvános webes szolgáltatásokat, Franciaország pedig átmenetileg elérhetetlenné tette a prefektúrák weboldalait – tudósított a Cointelegraph. A Wikimedia Foundation szintén leállított néhány háttérszolgáltatást. A Coinbase közölte, hogy nem talált kitett PHP-példányokat.\n\nAz amerikai Kiberbiztonsági és Infrastruktúra-biztonsági Ügynökség (CISA) a figyelmeztetése közzétételekor azt közölte, hogy „nem észlelt kihasználást ezekkel a sebezhetőségekkel kapcsolatban\". Arra azonban figyelmeztetett, hogy javítás nélkül „kockázatot jelentenek a szervezetekre nézve\" – írta a Reuters.",
+  "begyujtve": "2026-10-22T09:31:59.011898+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 60,
+      "egyediseg": 40,
+      "hitelesseg": 72,
+      "aktualitas": 84,
+      "kozossegi": 38
+    },
+    "elofeszures": 78,
+    "tanult": 50,
+    "indok": "Hagyományos kiberbiztonsági és szoftverhiba hír, nem kapcsolódik mesterséges intelligenciához.",
+    "tema": "php foundation vulnerability flaw",
+    "cim_hu": "Szerkezeti hiba miatt késhetett a kritikus PHP javítás a fejlesztők szerint",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T09:33:46+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-22T09:35:45+00:00"
+}
