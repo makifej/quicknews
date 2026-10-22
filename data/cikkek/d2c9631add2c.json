@@ -1,0 +1,48 @@
+{
+  "id": "d2c9631add2c",
+  "slug": "enterprises-dont-need-artificial-general-intelligence-they-need",
+  "forras_id": "google-news-ai",
+  "forras_nev": "CIO",
+  "url": "https://www.cio.com/article/4238580/enterprises-dont-need-artificial-general-intelligence-they-need-artificial-specific-intelligence.html",
+  "publikalva": "2026-10-22T11:03:36+00:00",
+  "cim": "Enterprises don’t need artificial general intelligence. They need artificial specific intelligence",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 47 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.cio.com/wp-content/uploads/2026/10/4238580-0-88690200-1792666989-CIOs-business-AI-failures-shutterstock_2693235001.jpg?quality=50&strip=all&w=1024"
+  },
+  "cim_eredeti": "Enterprises don’t need artificial general intelligence. They need artificial specific intelligence",
+  "szoveg_eredeti": "MIT’s finding that 95% of enterprise AI pilots fail to show measurable profit has been quoted at length, and the conclusions drawn from it are always the same: the models aren’t good enough yet, or enterprises don’t know how to use them. I don’t think either holds up. The problem starts earlier, with whose definition of success you’re measuring against, and I’ll come back to what to do about that.\n\nI looked at this in my book Transform!. Bain surveyed over a thousand companies and found that only 5% of digital transformations achieved or exceeded expectations. 75% settled for dilution of value and mediocre performance. 20% failed outright. That was before ChatGPT existed. So whether it’s B2B software or a large language model does not really matter – what seems to go wrong every time, regardless of the technology, is that organizations are deploying tools whose benchmarks were never aligned with their actual enterprise requirements.\n\nIn the digital transformation world, misalignment sometimes came from the supplier side: vendor objectives didn’t match client needs, partly because the vendor’s definition of success was follow-on work, which rarely served the client.\n\nNow the misalignment comes from the AI labs, and this time it is not so much an incentive problem that a better contract can fix but a limitation that is built into the tool. OpenAI and Anthropic are building towards artificial general intelligence, where “general” is the operative word. They offer enormous reasoning horsepower, but the benchmarks used to assess their performance don’t accurately represent the inside of a real business. Their models are crystallized, frozen at the moment they’re trained. The cost to retrain an enormous model is, well, equally enormous. The model never learns your business as it works. It knows the public record of the world, but that does not include your enterprise: the deep domain knowledge that runs it, much of which never gets documented. It starts every task knowing only what you hand it. And most things a business actually cares about are very specific: a particular use case, a specific workflow, the number the CFO has to report at month-end. It’s why a model can top every benchmark out there and still deliver limited measurable value. What’s missing is the specificity, and no amount of extra horsepower makes much difference in this respect.\n\nEvery approach to fixing this – RAG, fine-tuning – has notable limitations. What’s actually needed is a model that controls the context fed to the LLM and learns the organization as it operates. Until that exists, enterprises have to work with what they have.\n\nThe starting point is simple: if the labs’ definition of success is different from yours, how do you make sure your pilots don’t join the 95%? Here are three things I would do.\n\nStart with why. What do your board, your team and your leaders want from AI, and what role do you expect it to play? The answer influences what “good” looks like for your stakeholders. Furthermore, if you pick a project where the outcome cannot be measured, you cannot show value.\n\nThen pick the right pilot. Not the hardest or the easiest, but the one that looks like something that you would eventually want to scale. If the workflow you want to automate has messy data, unwritten rules or needs three different sign-offs, put all those constraints into the pilot itself. That means confronting complexity early, because it is usually the hard stuff that derails programs, not the easy stuff. Doing the easy stuff first is probably why so many of these pilots are struggling: they prove something that didn’t matter in the first place.\n\nThe state of the art for closing the specificity gap is what has become known as a harness. You re-inject the relevant context into every prompt and put guardrails around each workflow. The discipline is called context engineering. It is a real step up from buying licenses and hoping for the best: getting the prompt right at the outset improves accuracy and cuts the tokens you use on your way to actual results.\n\nBut a harness is static; it doesn’t learn the enterprise. As conditions change, the harness or the context has to be amended by hand, which usually means a human in the loop monitoring inputs and outputs, even for relatively straightforward tasks. That undermines much of the value agentic AI is supposed to deliver.\n\nSo, a harness is a good place to start, but it only goes so far. GenAI is probabilistic: give a model the same prompt twice and it will not give you the same answer twice. Almost everything in your organization, by contrast, was built for humans, who at least try to behave deterministically. An incorrect output from a model is not a bug; it is a signal that the context needs modifying, ideally dynamically and automatically, until the machine gets it right. Therefore, you need a loop: context goes in, output comes out, you evaluate it against a framework you have set, and the context is refined before it goes back into the machine. That is what turns a static process into something that continually improves. Experimentation has to happen inside that loop, and stakeholders have to see what it produces early and often, so you know where the model falls short before there is real money committed.\n\nAn agent needs context in the way a trained, experienced SME has it and a new graduate does not. The problem is that most knowledge in most organizations is tacit. Enterprise information isn’t just data in the sense of bits and bytes you can put in a spreadsheet and feed to the machine. A lot of it is in people’s heads, and sometimes the deepest expertise is in the heads of a handful of people.\n\nI saw a large financial markets data business try to shortcut this: they needed new data models built out of what a few long-serving experts knew, so they interviewed them, recorded the interviews and fed the transcripts into Copilot. It didn’t work very well. Knowledge is hard to capture and validate that way.\n\nWhat does work is actually older than AI: build a small team that combines deep domain knowledge with technical capability and place the technologists next to the people who do the job, even part-time. The gaps in your enterprise information show when the expert sees the model’s output and says, “that’s wrong, because” not when you interview them. McKinsey’s Kate Smaje made the point recently that every successful AI implementation sits on top of a successful people transformation. In 25 years of working with organizations as diverse as Deutsche Bank, Shell, BP and Anglo American, I can stand by that.\n\nThis isn’t an argument against using rented intelligence from the leading AI labs. The horsepower they offer is real and you should use it as appropriate. But those labs are attempting to create artificial general intelligence, while business managers have a business to run. Current models fall short of that need, which is part of why it is so hard to get out of “pilot mode.” The specificity you need to guide that horsepower is probably somewhere in your organization already. The challenge is to give the model the context it needs to do the job even better, and in doing so, free users from drudgery, reduce key-person dependence, and accelerate business growth wherever possible.",
+  "begyujtve": "2026-10-22T11:32:57.000909+00:00",
+  "prioritas": {
+    "pont": 47,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 40,
+      "egyediseg": 80,
+      "hitelesseg": 65,
+      "aktualitas": 95,
+      "kozossegi": 37
+    },
+    "elofeszures": 69,
+    "tanult": 2,
+    "indok": "Véleménycikk a vállalati AI-projekt bukásokról és a célzott AI fontosságáról, korlátozott újdonságértékkel. Forrás-tapasztalat: -7.",
+    "tema": "enterprise ai vs agi",
+    "cim_hu": "A vállalatoknak nem általános, hanem specifikus mesterséges intelligenciára van szükségük",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T11:33:04+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-22T11:35:27+00:00"
+}

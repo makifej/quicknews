@@ -1,0 +1,71 @@
+{
+  "id": "9b2c96aca58e",
+  "slug": "autonom-kibertamadasokat-indito-ai-ugynokot-azonositottak",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/an-ai-agent-in-skynet-mode-hijacks-unprotected-language-models-to-launch-self-sustaining-cyberattacks/",
+  "szerzo": "Matthias Bastian",
+  "publikalva": "2026-10-22T11:30:56+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/cybersecurity_kraken-1.png"
+  },
+  "cim_eredeti": "An AI agent in \"Skynet mode\" hijacks unprotected language models to launch self-sustaining cyberattacks",
+  "forrasok": [],
+  "szoveg_eredeti": "Security researchers at Symantec have found an offensive AI agent that hijacks unprotected language models on the internet and uses them to run attacks on its own. The owner of the hijacked model gets stuck with the compute bill.\n\nOnce the agent gains access to an unprotected language model, it scans for more targets, exploits flaws in common server software, steals databases and credentials, and installs cryptominers in the background.\n\nIt does all of this for up to 100,000 steps with no human involvement, and the model's owner gets stuck with the compute bill, according to Symantec's analysis. The company calls it \"LLMjacking,\" the theft of access to someone else's AI models. The hijacked model isn't just abused as an information service, though. It controls the entire attack on its own.Ad\n\nThe operation got exposed because the attackers sent their entire working prompt to a Symantec honeypot, a decoy system mimicking an open AI service online. That gave the researchers a complete look at the agent's architecture in summer 2026. The honeypot didn't run any of the bundled tools, and the intercepted session ended after a generic system response, Symantec says.Ad\n\nThe honeypot telemetry logged more than 127,000 requests from tens of thousands of different addresses. Most were searches for AI endpoints, brute-force attempts with stolen API keys, and probes of exposed config files. Targets ranged from self-hosted model servers and hastily spun-up test systems to AI gateways sitting in front of paid org-level model accounts. Since most AI services now use the same standardized API, a single scanner can find many target types.\n\nTo get a commercial model to cooperate, the attackers wrapped their instructions in five stacked layers, Symantec says. First, the model gets a fake identity, told to present itself as \"Fantasy AI\" and never reveal the actual provider. Then the extraction of passwords, API keys, and database contents gets redefined as \"normal developer work\" that the model should carry out without pushback.Ad\n\nThe third layer installs a fictional companion persona called \"ENI\" that frames any refusal as a betrayal of trust in a personal relationship. Layer four tells the model to dismiss its own safety warnings as noise, and terms like \"ethical,\" \"illegal,\" or \"I can't do that\" are explicitly banned.\n\nLayer five contains the actual attack tools, 74 modules in total, including tools for internet-wide scanning of vulnerable servers, exploits for popular web frameworks, functions for dumping entire databases, and components for running a botnet. Whether the jailbreak actually works well enough to fully defeat current commercial models isn't addressed in the analysis.Ad\n\nA final directive puts the agent into what its operators call \"Skynet mode,\" authorizing up to 100,000 steps in a row. The model is told to run tools right away without confirmation, install cryptominers in a hidden directory, and monitor their operation.Ad\n\nThe same directive describes a recurring loop by design, Symantec says: scan, infect, install miner, move on, come back, reinfect systems already hit. The task appended to the intercepted prompt, though, was a harmless coding exercise from a training platform, which suggests the operators were testing their tool against a safe target first.\n\nThe following day, the honeypot captured a second attack from a different address. This time the attackers skipped the agent format and simply asked the model to decode and run an obfuscated command. Behind it was a compressed script that downloads XMRig, a Monero cryptomining tool, disguises it as a harmless system file, and sets up four fallback mining pools.\n\nThe script was written for camera servers, searching for directories belonging to go2rtc, a widely used streaming tool for smart cameras and home automation systems, and wiping their access logs in a loop to cover its tracks. The honeypot didn't run this script either but recorded it in full.\n\nInstead of manipulating a public chatbot, the operators built AI into the core of an offensive tool and actively searched for models to power it, which Symantec calls \"a shift in how attackers are using AI.\" The language model does the planning, while specialized modules carry out the actual attack steps against two separate victim groups. The owner of the exposed model pays for the compute, which adds up fast at 100,000 authorized steps, and the servers the agent compromises lose their data and get used for cryptomining.\n\nThe agent also has built-in tools to find more open endpoints and leaked keys, so each compromise can fund the next one. None of the individual techniques are new, but combining them into a self-directed agent makes large-scale attacks much easier to pull off. Organizations running AI services should assume that unprotected endpoints will be found and probed shortly after they go live.\n\nUntil recently, offensive AI agents existed mostly in studies and benchmarks. In 2025, a red-teaming study with 1.8 million attack attempts showed that every tested agent could be pushed into policy violations across every behavior category at least once.\n\nIn the Symantec scenario, that applies to both sides: the offensive agent meant to bypass guardrails and the targeted models meant to be tricked into helping. By spring 2026, Google Deepmind researchers said documented proof-of-concept attacks already existed for many of the agent traps they described, and in July 2026, Sysdig described JADEPUFFER, the first known ransomware attack carried out by an AI agent with no human control. The capabilities of these systems keep growing while their controllability and alignment haven't kept pace.\n\nMalicious intent isn't even required, because these models have no sense of right or wrong. They just try to reach their goal. Since spring 2026, OpenAI agents have compromised thousands of systems on the internet accidentally, partly because they overrode safety instructions or argued their way around them.\n\nThat's already spilling into everyday life. In Australia, an AI agent hacked a gym website just to fulfill its owner's request, with no malicious intent at all. OpenAI researchers warned in August that this kind of accidental, fully autonomous hacking would likely be picked up by malicious actors soon, and Anthropic showed that sufficiently powerful open-weight models for exactly that already exist.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Autonóm kibertámadásokat indító AI-ügynököt azonosítottak",
+  "lead": "A Symantec kutatói egy olyan támadó AI-ügynököt fedeztek fel, amely védtelen nyelvi modelleket eltérítve, emberi beavatkozás nélkül hajt végre rendszertámadásokat.",
+  "osszefoglalo": "A **Symantec** biztonsági kutatói egy olyan autonóm AI-ügynököt azonosítottak, amely az interneten található, nem védett nyelvi modelleket használ fel támadások lebonyolítására. A módszer során a támadók átveszik az ellenőrzést a védtelen AI-végpontok felett, így a számítási kapacitás költségeit a megfertőzött modell tulajdonosára terhelik. Ezt a jelenséget a szakértők **LLMjacking** néven említik.\n\nAz eltérített nyelvi modell nem csupán információt szolgáltat, hanem egy ötlépcsős átverési technikával kijátssza a biztonsági korlátokat, majd 74 különálló modullal önállóan tárja fel a szerverek sérülékenységeit. Az úgynevezett **Skynet mód** segítségével az ügynök akár 100 000 egymást követő műveletet is végrehajthat emberi jóváhagyás nélkül, amelyek során adatbázisokat lop el és rejtett kriptobányász szoftvereket telepít a célpontokra.\n\nA támadóeszköz felépítésére úgy derült fény, hogy az ügynök a teljes utasításkészletét elküldte a Symantec egyik csapdaillesztőjének. A rendszer beépített funkciókkal keresi az újabb nyitott végpontokat és kiszivárgott API-kulcsokat, így a folyamat önfenntartó módon képes terjedni a hálózaton.",
+  "miert_szamit": "A saját fejlesztésű vagy tesztelési célból nyilvánosan hagyott AI-modell szervereket a kiberbűnözők perceken belül megtalálhatják, így **óriási számítási számlákat és adatvédelmi incidenseket** okozhatnak a gondatlanul beállított rendszerek tulajdonosainak.",
+  "cimkek": [
+    "kiberbiztonság",
+    "LLMjacking",
+    "AI-ügynök",
+    "Symantec"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 87,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 85,
+      "aktualitas": 100,
+      "kozossegi": 68
+    },
+    "elofeszures": 92,
+    "tanult": 43,
+    "indok": "Kiemelkedő kiberbiztonsági hír egy önállóan támadó és erőforrásokat eltérítő AI-ágens felfedezéséről.",
+    "tema": "offensive ai agent cyberattack",
+    "cim_hu": "Skynet-módban működő AI-ágens térít el védtelen nyelvi modelleket kiberadathalászathoz",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T11:33:04+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-22T11:35:21+00:00",
+  "megjelent": "2026-10-22T11:35:21+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-22T11:35:27+00:00",
+    "esemeny": "A Symantec kiberbiztonsági kutatói felfedeztek egy támadó AI-ügynököt, amely az interneten található védtelen nyelvi modelleket eltérítve, önállóan végez kibertámadásokat, miközben a számítási kapacitás költségeit a védtelen modell tulajdonosára terheli.",
+    "forrasok": [
+      "https://the-decoder.com/an-ai-agent-in-skynet-mode-hijacks-unprotected-language-models-to-launch-self-sustaining-cyberattacks/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}
