@@ -1,0 +1,49 @@
+{
+  "id": "a44413dccf00",
+  "slug": "recursive-releases-flint-an-open-weight-40b-moe-local-coding-model",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/10/21/recursive-flint-local-coding-model/",
+  "publikalva": "2026-10-21T22:39:41+00:00",
+  "cim": "Recursive Releases Flint, an Open-Weight 40B MoE Local Coding Model for Agents with 2.5B Active Params",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "duplikátum: 5bfc4a4f8215",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-454-20-scaled.png"
+  },
+  "cim_eredeti": "Recursive Releases Flint, an Open-Weight 40B MoE Local Coding Model for Agents with 2.5B Active Params",
+  "szoveg_eredeti": "Recursive Superintelligence has released Flint , its first model. The Recursive Flint local coding model is a mixture-of-experts (MoE) model with 40B total and 2.5B active parameters. Recursive team states that its Eureka Machine, an automated research system, helped build nearly every part of the stack. The weights are on Hugging Face under Apache 2.0.\n\n TL;DR \n\n Size: 39.8B total, about 2.5B active per token. Context: 262,144 tokens documented on the model card; the blog cites up to 512k.\n\n Runs on: 48 GB Apple Silicon Macs (M4 Pro, M5 Pro, M5 Max) or 48 GB NVIDIA GPUs. 4-bit weights take about 23 GB.\n\n Performance: Tops Recursive’s chart among MoE models under 50B on agentic coding. Trails the strongest dense models.\n\n Best: IFEval 95.1%. SWE-bench Verified 74.2%.\n\n Worst: Terminal-Bench 2.1 at 54.9%, versus 73.0% for dense Qwen 3.8.\n\n What is Recursive Flint? \n\n Flint is a decoder-only MoE Transformer for coding agents. The model investigates codebases, fixes bugs, implements features and writes tests. It is text-only and supports reasoning and OpenAI-compatible tool calls. \n\n Introducing Flint, @Recursive_SI ’s first model: a fast local coding model built with our automated research system, the Eureka Machine.\n\n• Best-in-class fast local coding\n• Up to 2x faster than comparable models: 125+ tokens/sec on a MacBook Pro, 150+ on RTX Spark\n• Built from… pic.twitter.com/ufg2xScSGw \n— Richard Socher (@RichardSocher) October 21, 2026 \n\n How does Flint’s architecture work? \n\n Flint has 49 layers: 2 dense layers, then 47 MoE layers. Each MoE layer has 256 routed experts. A router selects 6 per token, plus 1 always-active shared expert.\n\n Attention mixes 2 types. 35 layers use a 513-token sliding window. 14 layers use full attention with no positional encoding. There are 32 query heads and 4 key/value heads.\n\n The 2.5B active figure includes the output head. The active body alone is about 2.2B parameters.\n\n How did the Eureka Machine build Flint? \n\n The Eureka Machine proposes ideas, implements them, tests them and picks what to try next. \n\n Recursive highlights 3 contributions: \n\n Architecture: It started from a 35B-total, 3B-active baseline. It searched expert configurations and widths, landing on 40B total and 2.5B active.\n\n Quantization: It quantized the output layer (lm_head) to 4 bits, against common practice. An offline distillation stage, with the 16-bit model as teacher, recovered accuracy. This nearly halved training steps versus a quantization-aware training baseline. The NVFP4 model scores within 0.7 points of the 16-bit model.\n\n Kernels: It wrote specialized kernels for low-bit projections, MoE operations, attention and prompt processing. On M4 and M5 chips, a Metal megakernel fuses the entire decode forward pass.\n\n How does Flint perform on coding benchmarks? \n\n All scores below are self-reported by Recursive. Sampling used temperature 1.0, top-p 0.95 and top-k 20.\n\n Benchmark Flint BF16 Flint NVFP4 Terminal-Bench 2.1 54.9% 53.7% SWE-bench Pro v2 89.7% 88.5% SWE-bench Verified 74.2% 74.1% LiveCodeBench v6 80.3% 80.8% IFBench 89.2% 88.1% IFEval 95.1% 94.6% \n\n Terminal-Bench used the Terminus 2 harness. Solutions found through web retrieval counted as failures. SWE-bench runs used mini-swe-agent with no internet access. Agentic scores average pass@1 over at least 5 attempts.\n\n In Recursive’s chart, Qwen3.6 scores 73.4% on SWE-bench Verified. Dense Qwen 3.8 scores 73.0% on Terminal-Bench 2.1, well above Flint.\n\n Recursive’s own comparison chart (scores in %, † measured by Recursive, others developer-reported): \n\n Model Terminal-Bench 2.1 SWE-bench Pro v2† SWE-bench Verified LiveCodeBench v6 IFBench IFEval Flint BF16 54.9 89.7 74.2 80.3 89.2 95.1 Flint NVFP4 53.7 88.5 74.1 80.8 88.1 94.6 Qwen 3.5 (MoE) 38.7 68.6 69.2 74.6 70.2 91.9 Qwen 3.6 (MoE) 44.9 73.8 73.4 80.4 67.9 89.6 Laguna XS 2.1 (MoE) 24.7† 38.6 70.9 49.5† 34.4† 73.7† Qwen 3.8 (dense) 73.0 94.9 75.6† 90.3 79.5 94.6† Muse Glimmer (dense) 51.7 86.0 76.0 63.5† 77.0 94.7† Gemma 4 (dense) 43.4 61.7 66.6 80.0 76.0 94.6 \n\n How does Flint compare with Qwen3.6, Laguna XS 2.1 and Gemma 4? \n\n Competitor figures below come from each developer’s own model card, not Recursive’s chart.\n\n Feature Recursive Flint Qwen3.6-35B-A3B Laguna XS 2.1 Gemma 4 31B Developer Recursive Qwen (Alibaba) Poolside Google DeepMind Total params 39.8B 35B 33B 30.7B Active params ~2.5B 3B 3B 30.7B (dense) Context 262,144 (blog: up to 512k) 262,144 native, up to 1,010,000 262,144 256K Modality Text Text + image Text Text + image License Apache 2.0 Apache 2.0 OpenMDW-1.1 Apache 2.0 Local hardware 48 GB Mac or GPU Not disclosed Mac with 36 GB RAM Consumer GPUs, workstations SWE-bench Verified 74.2% 73.4% 70.9% Not disclosed Terminal-Bench 54.9% (v2.1) 51.5% (v2.0) 37.5% (v2.0) Not disclosed LiveCodeBench v6 80.3% 80.4% Not disclosed 80.0% SWE-bench Pro 89.7% (v2) 49.5% (public) 47.6% (public) Not disclosed \n\n How fast is Flint, and what hardware does it need? \n\n Recursive reports more than 125 tokens per second on an M4 Pro MacBook Pro. It reports more than 150 tokens per second on a 64 GB NVIDIA RTX Spark. Both are short-context figures, up to 2x faster than comparable models. It also claims Flint runs more than 5x faster than dense 25-40B models with similar coding scores.\n\n There are 3 local options: \n\n Apple Silicon: Flint INT4 MLX weights take about 22.6 GB. The rec engine needs an M4 Pro, M5 Pro or M5 Max with 48 GB memory. It reports 1.4 to 2.6x the throughput of llama.cpp on an M4 Pro.\n\n NVIDIA: The NVFP4 GGUF file is 22.9 GB. Recursive recommends at least 48 GB of GPU memory.\n\n Server: The 80 GB BF16 checkpoint needs 1 B300 or H200 GPU per replica.\n\n Flint also works with llama.cpp, Ollama, Unsloth, LM Studio, vLLM and SGLang. \n\n Key Takeaways \n\n Flint is a 40B MoE coding model with only 2.5B active parameters.\n\n It scores 74.2% on SWE-bench Verified and 54.9% on Terminal-Bench 2.1.\n\n 4-bit weights run in about 23 GB on a 48 GB Mac or GPU.\n\n Recursive’s Eureka Machine helped design the architecture, quantization and kernels.\n\n SWE-bench Pro v2 scores are Recursive-measured and not comparable to public SWE-Bench Pro.\n\n Check out the technical details , model weights and rec engine on GitHub . All credit goes to the researcher of this project. Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n The post Recursive Releases Flint, an Open-Weight 40B MoE Local Coding Model for Agents with 2.5B Active Params appeared first on MarkTechPost .",
+  "begyujtve": "2026-10-22T06:03:04.316650+00:00",
+  "prioritas": {
+    "pont": 46,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 30,
+      "egyediseg": 80,
+      "hitelesseg": 71,
+      "aktualitas": 92,
+      "kozossegi": 42
+    },
+    "elofeszures": 86,
+    "tanult": 46,
+    "indok": "Duplikátum: 5bfc4a4f8215",
+    "tema": "recursive flint coding model",
+    "cim_hu": "Új nyílt kódoló modellt adott ki a Recursive",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T06:03:56+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-22T06:07:18+00:00",
+  "dupla_of": "5bfc4a4f8215"
+}

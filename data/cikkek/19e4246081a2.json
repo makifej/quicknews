@@ -1,0 +1,48 @@
+{
+  "id": "19e4246081a2",
+  "slug": "aws-analysts-claim-that-at-least-one-actor-started-to-exploit-the",
+  "forras_id": "techmeme",
+  "forras_nev": "Wired",
+  "url": "https://www.wired.com/story/hackers-exploited-the-php-vulnerabilities-days-before-they-were-patched/",
+  "publikalva": "2026-10-22T02:50:01+00:00",
+  "cim": "AWS analysts claim that at least one actor started to exploit the PHP2Shell bugs on October 17, four days prior to the vulnerabilities' public disclosure (Lily Hay Newman/Wired)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.wired.com/photos/6ad9723edb7d4e16032f01fc/191:100/w_1280,c_limit/Security_HackersExploitingPHPBugsinAmazon.jpg"
+  },
+  "cim_eredeti": "AWS analysts claim that at least one actor started to exploit the PHP2Shell bugs on October 17, four days prior to the vulnerabilities' public disclosure (Lily Hay Newman/Wired)",
+  "szoveg_eredeti": "The internet’s mad scramble on Wednesday to patch a pair of critical vulnerabilities in PHP, a widely used web scripting language, was already too late to stop every attack, newly released details reveal.\n\nWednesday’s release of fixes for two critical vulnerabilities in PHP caused administrators and security staff to race to identify and patch vulnerable websites and apps, while attackers inevitably reverse engineered the fixes to learn how to exploit the flaws. Some governments and other groups even proactively took key websites down in anticipation of the release, so they wouldn't be targeted before they could apply the patches.\n\nBut in addition to detecting such active exploitation on Wednesday, research published Wednesday evening by Amazon Web Services indicates that at least one actor had started attempting to exploit the bugs—known collectively as PHP2Shell—on October 17, four days before Wednesday's public revelations.\n\nAWS analysts spotted the October 17 exploitation on Wednesday while looking back at activity on one of their so-called honeypots, or intentionally vulnerable web servers or other digital lures that help researchers study attack methods and trends. The attempt came from an IP address that AWS says is linked to a “commercial anonymization network,” in other words a proxy network or VPN.\n\n“While the vulnerability was under embargo, the targeting of a honeypot from an anonymized IP address suggests the activity was conducted by a threat actor, though it remains unclear how the actor acquired exploit information prior to disclosure,” CJ Moses, AWS's chief information security officer, wrote in the research post.\n\nProof-of-concept exploits for PHP2Shell began emerging publicly on Wednesday, with some seeming to appear hours before the public disclosure at 10 am ET. In the hours leading up to the disclosure, AWS researchers say their honeypots were hit with multiple exploitation attempts anonymized using various providers and seemingly with various attack goals, likely indicating multiple different actors. “Technical analysis is ongoing, and it’s unclear if any of these attempts would have succeeded in real-world systems,” Moses wrote. He added that “PHP2Shell is now being broadly exploited in the wild.”\n\nThe PHP Foundation did not immediately respond to WIRED's request for comment.\n\nThough it is unclear how the exploitation on October 17 happened or where it came from, AWS emphasizes that the findings underscore how coordinated vulnerability disclosure must evolve and speed up given global access to AI tools that can accelerate vulnerability analysis and allow less technically proficient actors to quickly develop new exploits.\n\n“The time from patch to working exploit is shrinking for structural reasons,” Moses wrote. “In the past, most exploitation we observed came after a public proof of concept was released. A small number of capable actors built exploits, and everyone else waited for them. That dependency is weakening. AI-assisted analysis makes it cheaper to turn a patch diff or advisory into a working exploit. As a result, more actors can act within hours or even minutes once technical details of a vulnerability are disclosed.”",
+  "begyujtve": "2026-10-22T06:03:05.517325+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 40,
+      "hitelesseg": 86,
+      "aktualitas": 98,
+      "kozossegi": 43
+    },
+    "elofeszures": 87,
+    "tanult": 17,
+    "indok": "Kiberbiztonsági hír egy kritikus PHP sérülékenységről, de nem közvetlenül AI-fókuszú",
+    "tema": "php2shell vulnerability exploit aws",
+    "cim_hu": "Már a hivatalos javítás előtt elkezdték kihasználni a súlyos PHP2Shell sérülékenységet",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T06:03:56+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-22T06:05:27+00:00"
+}

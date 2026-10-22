@@ -1,0 +1,71 @@
+{
+  "id": "2ed22a61b2f1",
+  "slug": "egysegesiti-a-biztonsagi-szabalyait-az-openai-a-partnereinel",
+  "forras_id": "openai",
+  "forras_nev": "OpenAI",
+  "url": "https://openai.com/index/broad-access-through-consistent-standards",
+  "szerzo": null,
+  "publikalva": "2026-10-21T21:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://images.ctfassets.net/kftzwdyauwt9/7hrvP09oiCE5WV3cXxae4u/7154e71ae6c6e9d4c8306c4d1843e5bf/broad-access-through-consistent-standards-social.png?w=1600&h=900&fit=fill"
+  },
+  "cim_eredeti": "Broad access through consistent standards",
+  "forrasok": [],
+  "szoveg_eredeti": "Over the past few months, we’ve worked with customers and partners to align safety policies across services that provide our models. We’re also updating our Usage Policies to make those requirements clearer and easier for developers to follow.\n\nModels such as GPT‑6 Astra expand what developers and businesses can build. As those capabilities grow, we’re working to keep safeguards effective and consistently applied across the services that offer our models.\n\nBefore deploying a model, we evaluate its capabilities and risks, train it to follow safety requirements, and test whether its safeguards hold up when people deliberately try to bypass them. As we describe in our approach to safety and alignment, we combine safeguards designed to reinforce one another.\n\nAfter deployment, we monitor for potential abuse and investigate concerns. To mitigate cyber misuse, for example, we train models to refuse harmful requests and use systems that look for suspicious patterns across interactions to decide how to respond. Trusted access programs provide another layer of protection and set eligibility requirements and conditions for access to our most powerful capabilities.\n\nSome safeguards are built into the model and others depend on the systems and people around it. Both need to be effective whether people access our models directly or through a partner.\n\nDevelopers and businesses should be able to choose where they access our models, with consistent safeguards across those services. We developed policies to align our safeguards across providers and are working with each of our partners to ensure their implementation meets or exceeds our safety standards. These policies apply whether people access our models directly through OpenAI, partners that host them, or through reseller partners.\n\nThese policies require partners that provide access to OpenAI models to maintain safeguards consistent with our own, investigate potential violations, and take appropriate action when concerns are identified. That includes coordinating on enforcement so that restrictions remain effective across services providing access to our models.\n\nPutting this into practice means accounting for how different services work and how customers use them. Our work with customers and partners on Private Safety Processing is one example of how we can develop effective safeguards while giving customers greater choice and control over their sensitive data.\n\nWe’re also updating our Usage Policies, effective November 20, 2026, to clarify the rules for safe model development and sensitive uses of AI. The updated Usage Policies build on that work by requiring services that provide direct access to our models such as model routers or AI gateways to get our review and approval before offering that access.\n\nWe’ll keep explaining what’s allowed, what’s restricted, and how customers and partners can ask questions or resolve compliance concerns.\n\nAs our models become more capable, we’ll keep improving how we detect, investigate, and respond to misuse. Customers can face misuse through their end users, compromised accounts, or leaked API keys and we work with them to understand and address those problems.\n\nWe’re also working with customers to introduce SafetyIDs, which customers can provide to help us distinguish between individual end users in an investigation without OpenAI learning those users’ identities. With SafetyIDs, we can respond to potential misuse more precisely while reducing disruption to others.\n\nWe base enforcement decisions on documented conduct and risk, apply our rules consistently, and respond in proportion to the circumstances. When we restrict access, we revisit those restrictions if meaningful changes in conduct, commitments, or safeguards address the concerns behind our decision.\n\nWe want more people to benefit from AI. Clear rules and consistent safeguards should make it easier for developers and businesses to build, compete, and choose the services that work best for them.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Egységesíti a biztonsági szabályait az OpenAI a partnereinél",
+  "lead": "Az OpenAI frissíti a használati feltételeit és szigorítja a partnereinél alkalmazott biztonsági normákat.",
+  "osszefoglalo": "Az OpenAI bejelentette, hogy összehangolja a biztonsági szabályait a modelljeit kínáló értékesítési és tárhelypartnerekkel. Az intézkedés célja, hogy a felhasználók és a fejlesztők ugyanazokkal a **biztonsági korlátokkal** találkozzanak, függetlenül attól, hogy közvetlenül az OpenAI-on vagy harmadik fél szolgáltatásán keresztül érik el a modelleket.\n\nA cég frissíti a használati feltételeit is, amelyek 2026. november 20-án lépnek életbe. Az új szabályok értelmében a modellekhez közvetlen hozzáférést biztosító rendszereknek, mint például a **modellrouting-szolgáltatásoknak és AI-gatewayeknek**, előzetes felülvizsgálaton és jóváhagyáson kell átesniük az OpenAI-nál.\n\nEzen felül bevezetik a **SafetyID azonosítókat**, amelyek segítségével az OpenAI úgy tudja megkülönböztetni a végfelhasználókat egy esetleges visszaélési vizsgálat során, hogy közben nem ismeri meg a személyazonosságukat. Ez lehetővé teszi a pontosabb korlátozást a teljes fiók blokkolása helyett.",
+  "miert_szamit": "A fejlesztőknek és vállalkozásoknak érdemes felkészülniük arra, hogy a modell-routerek és harmadik féltől származó AI-szolgáltatások **szigorúbb jóváhagyási folyamaton** esnek át, ami befolyásolhatja az API-integrációkat és az adatkezelési folyamatokat.",
+  "cimkek": [
+    "OpenAI",
+    "API",
+    "biztonság",
+    "fejlesztés"
+  ],
+  "kategoria": "üzlet",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 80,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 80,
+      "hirertek": 75,
+      "egyediseg": 90,
+      "hitelesseg": 92,
+      "aktualitas": 90,
+      "kozossegi": 62
+    },
+    "elofeszures": 88,
+    "tanult": 50,
+    "indok": "Hivatalos szabályzati frissítés az OpenAI részéről a modelljeik biztonságos használatáról",
+    "tema": "openai usage policy update",
+    "cim_hu": "Egységesíti és tisztázza modelljeinek használati feltételeit az OpenAI",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T06:03:56+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-22T06:05:54+00:00",
+  "megjelent": "2026-10-22T06:05:54+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-22T06:07:57+00:00",
+    "esemeny": "Az OpenAI frissítette a használati feltételeit és egységes biztonsági normákat határozott meg a modelljeit kínáló partnerek számára, emellett bevezeti a SafetyID azonosítókat a pontosabb visszaélés-szűrés érdekében.",
+    "forrasok": [
+      "https://openai.com/index/broad-access-through-consistent-standards"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}

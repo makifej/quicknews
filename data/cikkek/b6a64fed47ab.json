@@ -1,0 +1,48 @@
+{
+  "id": "b6a64fed47ab",
+  "slug": "adaptive-agentic-intelligence-framework-using-strands-agents",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/adaptive-agentic-intelligence-framework-using-strands-agents/",
+  "publikalva": "2026-10-21T21:23:26+00:00",
+  "cim": "Adaptive agentic intelligence framework using Strands Agents",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 45 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/10/20/ML-19699-featured-image.png"
+  },
+  "cim_eredeti": "Adaptive agentic intelligence framework using Strands Agents",
+  "szoveg_eredeti": "Organizations building AI agents face a common challenge: Every request, whether a routine status check or complex analysis, typically gets routed to a single large, expensive model. This one-size-fits-all approach can drive up API costs, introduce unpredictable latency, and remove the possibility of offline operation. Even routine queries that could resolve locally end up requiring a full network round-trip to a cloud-hosted large language model (LLM).\n\nThe Adaptive Agentic Intelligence Framework (AAIF), built with Strands Agents, takes a different approach. Instead of routing all requests to a single large model, AAIF uses small language models (SLMs) to handle routine tasks locally. More complex requests are routed to cloud-hosted models through Amazon Bedrock. This approach builds on the research position from Belcak et al. at NVIDIA. They argue that small language models are “sufficiently powerful, inherently more suitable, and necessarily more economical for many invocations in agentic systems.” Built on Strands Agents, the framework demonstrates how intelligent model orchestration can help reduce costs while maintaining low latency for local operations.\n\nIn this post, we walk through the key components of AAIF using Strands Agents with local SLMs through Ollama and cloud models through Amazon Bedrock. We use an Internet of Things (IoT) monitoring scenario as a reference implementation.\n\nAAIF organizes AI processing into three layers, each optimized for different task types, as Figure 1 shows:\n\nFigure 1: The three AAIF processing layers for smart orchestration, local processing, and cloud processing\n\nFigure 1 shows the complete AAIF system architecture. At the center sits the Strands agent, which connects to an Ollama runtime hosting both the 1B-parameter orchestrator model and the vision model. The agent exposes three tools: get_device_telemetry for local sensor data retrieval, analyze_camera_feed for on-device vision processing through llama3.2-vision, and get_expert_insights which calls Amazon Bedrock through boto3 for complex analysis. Incoming user requests flow through the SLM orchestrator, which classifies each request and dispatches it to either a local tool or the cloud endpoint based on task complexity.\n\nFigure 2: Complete AAIF system architecture showing the Strands agent, Ollama runtime, tool integrations, and Amazon Bedrock connectivity\n\nThe framework adapts to your deployment constraints rather than requiring you to restructure your infrastructure around it. This architecture runs on edge devices like a Raspberry Pi with 8 GB of memory, in full cloud deployments where all inference hits Amazon Bedrock, or in hybrid configurations that combine local speed with cloud reasoning. The flexibility comes from separating the routing logic (the SLM orchestrator) from the processing tools, which you can swap or reconfigure independently depending on available hardware and network connectivity.\n\nFor this walkthrough, you should have the following prerequisites:\n\nCreate a project directory and start the Ollama server:\n\nCreate a file called aaif_agent.py and add the following components.\n\nStrands Agents uses the @tool decorator to define capabilities that agents can invoke. Start by creating tools for local processing.\n\nThe first tool retrieves device telemetry data. In a production environment, this would connect to actual IoT sensors. For this walkthrough, it uses simulated device data:\n\nThe second tool performs vision analysis using a local SLM. The llama3.2-vision model runs entirely on local hardware, which means sensitive camera feeds don’t leave the device:\n\nFor complex analysis that requires broader reasoning, create a tool that calls Amazon Bedrock. This tool is invoked only when the orchestrator determines that local models can’t handle the request:\n\nThe core of AAIF is the Strands agent configuration. The agent uses a local SLM (llama3.2:1b) as its orchestrator. Strands Agents supports multiple model providers, and here we use the Ollama provider to run the orchestrator locally:\n\nThe SLM-powered orchestrator analyzes each request and routes it to the appropriate tool without hardcoded keyword matching. The routing happens through the model’s understanding of the request:\n\nTable 1: Request, routing, and latency estimates for local compared to cloud inference\n\nWith the agent configured, you can interact with it directly:\n\nThe agent automatically classifies each request and routes it to the appropriate processing layer. No explicit routing rules are needed.\n\nThe AAIF architecture adapts to different infrastructure requirements by changing the model configuration:\n\nWhen your workload runs entirely in the cloud and no edge hardware is available, replace the Ollama model configuration with Amazon Bedrock for all processing. This routes every request through managed cloud inference, giving you auto scaling without requiring local GPU resources. Teams with reliable low-latency connectivity and no data residency constraints benefit most from this configuration:\n\nThe hybrid configuration keeps the local SLM orchestrator intact while adding cloud models for requests that exceed local model capabilities. This is the default AAIF configuration shown in this walkthrough. It suits environments where most requests are routine enough to resolve locally, but some require the broader reasoning of a larger model. Cost savings can come from the roughly 80 percent of traffic that doesn’t hit a paid API endpoint.\n\nFor environments that are fully air-gapped or have strict data sovereignty requirements, replace the cloud tool with a larger local model and run all processing on-device. A 3B-parameter model running on hardware with adequate memory can handle moderately complex tasks that the 1B orchestrator would otherwise escalate. The trade-off is reduced reasoning depth on the hardest queries, but the benefit is data not leaving the premises:\n\nThe implementation in this post uses local tool calls defined directly in the agent code. For production deployments with multiple agents sharing tools across services, expose these tools as Model Context Protocol (MCP) servers. MCP provides a standardized interface for tool discovery and invocation, so you can centralize tool management and reuse tools across different agents and environments. In Figure 3, we show how to convert AAIF tools into MCP servers for distributed, centralized tool calling.\n\nIn the distributed configuration as shown in Figure 3, Device 1 acts as the orchestrating hub, running the Strands agent with the SLM router and a local telemetry tool. It connects through the MCP protocol to Device 2, which runs an edge vision processing server with llama3.2-vision. Device 3 serves as a cloud analytics gateway connected to Amazon Bedrock. From the orchestrator’s perspective, all remote tools appear as local function calls because the MCP transport layer handles serialization and network communication transparently.\n\nFigure 3: Distributed intelligence with MCP servers\n\nTo avoid incurring future charges, complete the following cleanup steps:\n\nWe showed how to build cost-effective AI agents using the Adaptive Agentic Intelligence Framework with Strands Agents. By routing routine requests to local SLMs and reserving cloud models on Amazon Bedrock for complex analysis, AAIF can help reduce API costs while maintaining low latency for routine operations.\n\nBefore you run this pattern in production, add responsible AI controls to the cloud inference path, since those requests carry tool outputs, retrieved data, and user input. You can attach Amazon Bedrock Guardrails to the Strands BedrockModel with a guardrail ID and version. It then applies content filters for harmful categories, prompt injection filters, and contextual grounding checks that block responses not supported by the source data. To apply the same policies to the local SLM tier, call the standalone ApplyGuardrail API on its inputs and outputs. Thi",
+  "begyujtve": "2026-10-22T06:03:23.396831+00:00",
+  "prioritas": {
+    "pont": 45,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 40,
+      "egyediseg": 75,
+      "hitelesseg": 75,
+      "aktualitas": 90,
+      "kozossegi": 29
+    },
+    "elofeszures": 81,
+    "tanult": 19,
+    "indok": "Technikai architektúra leírás és PR-jellegű keretrendszer az AWS-től. Forrás-tapasztalat: -7.",
+    "tema": "aws strands agents framework",
+    "cim_hu": "Új architektúrával csökkentené az MI-agensek költségeit az AWS",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T06:03:56+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-22T06:07:24+00:00"
+}

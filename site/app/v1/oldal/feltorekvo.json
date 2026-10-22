@@ -1,7 +1,7 @@
 {
   "cim": "Feltörekvő",
   "leiras": "Amiről most több forrás is ír, és amit az olvasók a legtöbbre tartanak. A legtöbb szavazatot kapott hír kerül legfelülre.",
-  "alcim": "231 hír, népszerűség szerint",
+  "alcim": "232 hír, népszerűség szerint",
   "blokkok": [
     {
       "t": "nagy",
@@ -264,7 +264,7 @@
           "kep_nagy": "https://quicknews.hu/assets/kep/27efbd794215-hd2.webp",
           "video": true,
           "fontossag": 4,
-          "felkapott": true,
+          "felkapott": false,
           "forraskep": false,
           "url": "https://quicknews.hu/hir/elindult-az-uj-chatgpt-voice-felulet-a-gpt-live-modellnek-koszonhetoen",
           "jova": false
@@ -2014,7 +2014,7 @@
       "t": "rovat",
       "cim": "Üzlet",
       "link": null,
-      "osszes": 53,
+      "osszes": 54,
       "fo": {
         "id": "f6847395ddf4",
         "cim": "870 millió dolláros befektetést kapott a Jev MI-modell fejlesztője",
@@ -2948,6 +2948,25 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/jeff-bezos-az-urbe-telepitene-az-ai-adatkozpontokat",
           "jova": false
+        },
+        {
+          "id": "bd67fb97886a",
+          "cim": "64,6 milliárd dolláros árbevételt ért el a Meta a negyedévben",
+          "lead": "A Meta 26 százalékkal növelte bevételeit 2026 harmadik negyedévében, miközben elindította új Muse AI-modelljeit és tovább növelte az infrastruktúra-beruházásokat.",
+          "slug": "64-6-milliard-dollaros-arbevetelt-ert-el-a-meta-a-negyedevben",
+          "forras": "Meta",
+          "kat": "üzlet",
+          "rovat": "uzlet",
+          "ido": "2026-10-21T22:55:58.127Z",
+          "ido_hu": "okt. 22. 00:55",
+          "kep": "https://quicknews.hu/assets/kep/bd67fb97886a.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/bd67fb97886a.webp",
+          "video": false,
+          "fontossag": 4,
+          "felkapott": true,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/64-6-milliard-dollaros-arbevetelt-ert-el-a-meta-a-negyedevben",
+          "jova": true
         },
         {
           "id": "6de9a0a5fcf0",
@@ -4020,7 +4039,7 @@
       "t": "rovat",
       "cim": "Kép",
       "link": null,
-      "osszes": 7,
+      "osszes": 6,
       "fo": {
         "id": "5e5b3a11272f",
         "cim": "Professzionális portrékat generálhatunk a ChatGPT segítségével",
@@ -4080,25 +4099,6 @@
           "jova": false
         },
         {
-          "id": "450811c6c71b",
-          "cim": "Feleannyiba kerülnek a képek a Google új Nano Banana 2.1 modelljével",
-          "lead": "A Google kiadta a Nano Banana 2.1 képmodellt, amely olcsóbb generálást és jobb szövegírást ígér.",
-          "slug": "feleannyiba-kerulnek-a-kepek-a-google-uj-nano-banana-2-1-modelljevel",
-          "forras": "Perplexity Discover",
-          "kat": "kép",
-          "rovat": "kep",
-          "ido": "2026-10-07T00:26:30.020344+00:00",
-          "ido_hu": "okt. 7. 02:26",
-          "kep": "https://quicknews.hu/assets/kep/450811c6c71b.webp",
-          "kep_nagy": "https://quicknews.hu/assets/kep/450811c6c71b.webp",
-          "video": false,
-          "fontossag": 4,
-          "felkapott": false,
-          "forraskep": false,
-          "url": "https://quicknews.hu/hir/feleannyiba-kerulnek-a-kepek-a-google-uj-nano-banana-2-1-modelljevel",
-          "jova": false
-        },
-        {
           "id": "1ca7b81866e2",
           "cim": "Több mint 4 perces Grok Imagine-videót osztott meg Elon Musk",
           "lead": "A videót Lala (@keepgoingAnnie) készítette a Grok Imagine-nel, Elon Musk pedig „Made with @Grok @Imagine” felirattal osztotta tovább.",
@@ -4116,9 +4116,7 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/grok-imagine-funkcioval-keszult-kepet-mutatott-be-elon-musk",
           "jova": false
-        }
-      ],
-      "tobb": [
+        },
         {
           "id": "684644a61ee7",
           "cim": "Saját matricacsomagokat tervezhetünk a ChatGPT Images funkcióval",
@@ -4137,7 +4135,9 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/sajat-matricacsomagokat-tervezhetunk-a-chatgpt-images-funkcioval",
           "jova": false
-        },
+        }
+      ],
+      "tobb": [
         {
           "id": "9df77af4f5ff",
           "cim": "Új gondolkodó módot tesztel a Midjourney az Alpha oldalon",
@@ -4420,7 +4420,7 @@
       "t": "rovat",
       "cim": "Egyéb",
       "link": null,
-      "osszes": 3,
+      "osszes": 4,
       "fo": {
         "id": "4403441de910",
         "cim": "Elon Musk egy korábbi OpenAI-modell teljesítményét méltató posztot osztott meg",
@@ -4478,6 +4478,25 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/mesterseges-intelligencia-es-diplomacia-a-megosztott-vilagban",
           "jova": false
+        },
+        {
+          "id": "f1abe8c64829",
+          "cim": "A GPT-5.6 Sol segítségével találtak rá a weboldalak 70 százalékát érintő sebezhetőségre",
+          "lead": "Kritikus memóriakezelési hibát fedeztek fel a PHP-ban egy AI-modell segítségével, amely a világ weboldalainak jelentős részét veszélyezteti.",
+          "slug": "a-gpt-5-6-sol-segitsegevel-talaltak-ra-a-weboldalak-70-szazalekat",
+          "forras": "Wall Street Journal",
+          "kat": "egyéb",
+          "rovat": "egyeb",
+          "ido": "2026-10-21T22:55:05.971Z",
+          "ido_hu": "okt. 22. 00:55",
+          "kep": "https://quicknews.hu/assets/kep/f1abe8c64829-elonezet.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/f1abe8c64829-elonezet.webp",
+          "video": false,
+          "fontossag": 4,
+          "felkapott": true,
+          "forraskep": true,
+          "url": "https://quicknews.hu/hir/a-gpt-5-6-sol-segitsegevel-talaltak-ra-a-weboldalak-70-szazalekat",
+          "jova": true
         }
       ],
       "tobb": []

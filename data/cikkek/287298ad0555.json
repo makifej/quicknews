@@ -1,0 +1,48 @@
+{
+  "id": "287298ad0555",
+  "slug": "how-u-s-hunger-connects-leaders-and-data-using-amazon-quick",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/how-u-s-hunger-connects-leaders-and-data-using-amazon-quick/",
+  "publikalva": "2026-10-21T19:19:50+00:00",
+  "cim": "How U.S. Hunger connects leaders and data using Amazon Quick",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/10/21/ML-22201-featured-image.png"
+  },
+  "cim_eredeti": "How U.S. Hunger connects leaders and data using Amazon Quick",
+  "szoveg_eredeti": "For U.S. Hunger, feeding families takes more than delivering food to them. It takes understanding the people behind each request, the pressures they face, and the business that makes the mission possible. That means connecting information across the organization. Its mission is to feed families today and unite them to a healthier tomorrow.\n\nU.S. Hunger reports delivering more than 250 million meals. Its work has reached 59 countries historically and is now concentrated primarily in the United States. The organization reports approximately 500 percent growth over four years, compared with only 15–20 percent headcount growth. For a lean team at that scale, every hour and every decision matters.\n\nWith Amazon Quick, U.S. Hunger can explore organizational data directly, colleagues can work from shared definitions, and leaders can examine financial information alongside the circumstances families report. U.S. Hunger’s experience shows how those capabilities fit into the daily work of a lean nonprofit.\n\nRick Whitted spent 30 years in banking before making the leap to lead U.S. Hunger. His connection to food insecurity, however, began long before that career change.\n\nWhen Rick and his wife were in their mid-twenties, he left his career to start a business. They lost everything. Even though he went to work every day, they relied on help from family to get by. He remembers coming home to find a pantry box on the table, left by aunts or grandparents. Seeing that box broke him.\n\nMore than 20 years later, when the board chair asked him to consider leading U.S. Hunger, his wife reminded him of those days, when their own family needed help putting food on the table. To her, leading U.S. Hunger was a chance to help families going through what they had experienced themselves. Rick cried, called the chair back, and accepted.\n\n“The families we serve today, their stories are my story.”\n\n— Rick Whitted, President and CEO, U.S. Hunger\n\nMore than six years into the role, that personal connection remains at the heart of Rick’s leadership.\n\nU.S. Hunger first learned about Quick through an AWS Social Entrepreneur Accelerator event led by Kat Esser. Rick saw an opportunity to explore the organization’s data directly, following questions as they arose without asking the technology team for a new data pull each time.\n\nChief technology officer (CTO) Ezekiel Brooks helped make that possible by giving Rick access to core datasets from Full Cart, U.S. Hunger’s food-assistance program. Full Cart delivers donor-funded food directly to households in need. Quick gave Rick room to explore the information at his own pace and ask follow-up questions. The organization’s data became his sandbox.\n\nThe data comes from Impact Manager, U.S. Hunger’s proprietary cloud-based data platform supporting its food-assistance work. Quick pulls data from SQL Server into its in-memory engine, SPICE, through scheduled refresh jobs at 2 AM ET each night. The technology team and a colleague working with research data prepare the datasets and provide definitions to help Rick interpret the information.\n\nFigure 1: U.S. Hunger refreshes SQL Server data into SPICE at 2 AM ET each night for analysis in Amazon Quick\n\nDirect exploration was the starting point, but the moment when everything clicked came with a different discovery: Quick Spaces.\n\nFor Rick, Spaces changed the role Quick could play in the organization. A Space gives colleagues a shared place to work with documents, definitions, and analyses relevant to a particular area of the business.\n\nThat matters when leaders need to understand one another’s work and make decisions together. Shared definitions of key performance indicators (KPIs) help them agree on what a measure means. Financial documents and planning tools provide context for discussions about the organization’s resources. Rick sees this as his a-ha moment: using Quick to help the leadership team run the organization together.\n\n“Quick provides a live connection to how leadership thinks through problems. I can pick up where our CEO left off in a financial model or see how he’s framing a KPI, without scheduling another meeting.”\n\n— Sarah Aranguibel, Chief of Staff, U.S. Hunger\n\nThe leadership team brings together a shared document of KPIs, developed over more than a year while working across NetSuite, Salesforce, Impact Manager, and its payroll system. The document records definitions, where measures come from, and goals. Rick also uses Quick to develop definitions for client tiers and shares them in the same Space.\n\n“With all the knowledge and data we have, Space reduces as much noise as possible and narrows my discussion.”\n\n— Rick Whitted, President and CEO, U.S. Hunger\n\nSelecting the Space relevant to a question keeps the conversation focused on the right documents. The financial Space is shared with the CTO, chief operating officer (COO), and finance leadership, giving colleagues access to the tools and business context behind an analysis.\n\nTogether, these materials show colleagues what the organization measures and the business logic behind it.\n\nU.S. Hunger has given 17 colleagues access to Quick across its executive leadership, technology team, Full Cart program, Finance, Compliance, and supporting functions. For its CEO, chat is the primary day-to-day artificial intelligence (AI) workspace, and Spaces is the capability he uses most.\n\nUsing a Space containing Salesforce call reports, Rick is drafting instructions for the technology team: which measures to include, where the data comes from, and what each measure means. In Quick, he can comment directly on the generated draft and regenerate it with multiple changes incorporated. He can review and refine the instructions alongside the source reports, without spending time moving documents and comments between Word and chat.\n\nAfter completion, the instructions will guide reporting improvements for the member-engagement team, helping the program’s operational leaders and COO monitor the team’s work.\n\nU.S. Hunger uses Amazon Quick Research to investigate current events, inform communications, and connect policy questions with its survey data. The CEO is also exploring how that data could serve a wider audience. With the version history in Quick Research, he can revisit earlier versions as he refines an investigation.\n\nUnderstanding food insecurity requires information about who is struggling and the circumstances behind that struggle. In September 2025, the U.S. Department of Agriculture (USDA) announced that it would end future Household Food Security Reports. With that longstanding reporting series ending, access to other sources of evidence becomes especially important.\n\nU.S. Hunger wants to make the information it collects available beyond its own organization. It envisions a national hunger-data resource where researchers and the public can explore the experiences of families seeking assistance. Alongside that access, the organization plans an enterprise offering that companies can purchase, helping fund its mission.\n\nAs Rick puts it, the goal is for “the very data we’re using to help people” to become “the flywheel that feeds the very people we’re trying to help.”\n\nThe national dashboard brings food insecurity together with income, education, health, and social needs. Filters help leaders examine different populations and use those findings in conversations with prospective partners about why families need help.\n\nFor financial planning, Rick uses a Space containing audits, cash-flow information, and board budget views. A debt-service calculator and nonprofit financial-health worksheet help him share his banking experience with the COO. The financial documents provide context for drafting audit footnotes.\n\nWith over a decade of financial documents available in the Space, Rick can ask Quick to compare patterns over time and explore questions about current operations. His familiarity with the source material helps him check the answers and cha",
+  "begyujtve": "2026-10-22T06:03:24.926294+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 15,
+      "hirertek": 20,
+      "egyediseg": 90,
+      "hitelesseg": 70,
+      "aktualitas": 77,
+      "kozossegi": 26
+    },
+    "elofeszures": 76,
+    "tanult": 43,
+    "indok": "Vállalati PR esettanulmány adatvizualizációról, mesterséges intelligencia jelenléte nélkül",
+    "tema": "aws quicksight case study",
+    "cim_hu": "Az US Hunger az Amazon QuickSight segítségével köti össze adatait",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T06:03:56+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-22T06:05:47+00:00"
+}
