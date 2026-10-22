@@ -1,0 +1,73 @@
+{
+  "id": "7ee8d60e8c50",
+  "slug": "uj-treningmodszert-mutatott-be-az-nvidia-es-a-perplexity",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/10/21/perplexity-jolt-joint-on-policy-learning-teaching/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-10-22T04:56:31+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-454-23-scaled.png"
+  },
+  "cim_eredeti": "Perplexity and NVIDIA Researchers Introduce JOLT: a Joint Teacher-Student Reinforcement Learning Method",
+  "forrasok": [],
+  "szoveg_eredeti": "Perplexity , along with NVIDIA team, has introduced JOLT, a new post-training method for language models. JOLT stands for Joint On-policy Learning and Teaching . It trains a single model in 2 roles. The teacher sees privileged information; the student does not. The key change is that the teacher is trained too, so its feedback stays usable. On MATH, JOLT matched GRPO’s accuracy with 6.5x fewer processed training tokens. For teams running RL post-training, that is a direct compute question.\n\n TL;DR \n\n What it is: a post-training method.\n\n Size: tested on Qwen3-0.6B, Qwen3-4B-Instruct, Qwen3-8B, Qwen3-30B-A3B-Instruct and DeepSeek-V2-Lite.\n\n Runs on: 1 shared model plays both roles, so no separate teacher model. Training hardware: Not disclosed.\n\n Performance: JOLT+ posts the highest mean score in every setting tested against GRPO, OPSD and π-Distill.\n\n Best: AppWorld state-test pass rate of 72.09% with JOLT+, vs 62.20% for GRPO (+9.9 points).\n\n Worst: JOLT without student reward scores 51.92% on AppWorld, below GRPO.\n\n What is Perplexity JOLT? \n\n JOLT is a self-distillation method from Perplexity and NVIDIA that trains one model as teacher and student. It builds on On-Policy Self-Distillation (OPSD) .\n\n Why does RL post-training need a better teacher? \n\n Outcome-reward RL, such as GRPO , gives one reward per attempt. That signal is sparse. It does not say which tokens helped. On long agentic tasks, successes are rare, so learning is slow.\n\n On-Policy Distillation fixes sparsity by having a stronger teacher score each student token. OPSD removes the separate teacher. The same model becomes the teacher when given privileged context, such as a verified solution.\n\n The research team argues this is not enough. A teacher holding the answer can take shortcuts the student cannot follow. Its guidance may sit beyond the student’s reach. In the paper, OPSD’s teacher-student disagreement grows during MATH training.\n\n How does JOLT work? \n\n JOLT trains both roles of one shared model at the same time: \n\n Teacher: gets privileged information. It learns from outcome rewards, plus a KL penalty that keeps it close to the student.\n\n Student: sees only the task. It learns from the teacher’s token-level distillation signal on its own attempts.\n\n On-policy: each role learns from trajectories generated under its own context.\n\n JOLT+: adds the student’s own outcome reward to the student update.\n\n The research stands in the center on a ‘reward-consistent’ teacher. Its distillation update should point the same way as the student’s reward gradient. The ideal teacher favors high-advantage actions while staying near the student’s policy. \n\n How does JOLT perform on benchmarks? \n\n The research team tested 5 settings, each with a different base model and type of privileged information: \n\n GSM8K: DeepSeek-V2-Lite; teacher gets the verified answer.\n\n MATH: Qwen3-0.6B; teacher gets worked reference solutions.\n\n LiveCodeBench v6: Qwen3-8B on 131 problems; teacher gets a passing sibling solution or execution feedback.\n\n AppWorld: Qwen3-4B-Instruct; teacher gets summaries of past attempts.\n\n Terminal-Bench 2.1: Qwen3-30B-A3B-Instruct trained on TMax ; teacher gets private verifier files.\n\n JOLT+ had the highest mean score in every setting. Against GRPO, the strongest baseline, it gained 1.5 points on GSM8K. It also gained 4.2 on MATH, 3.0 on LCBv6 and 9.9 on AppWorld. On Terminal-Bench 2.1 , JOLT+ reached 10.96% pass@1 and 34.83% pass@32. GRPO scored 8.25% and 30.34%.\n\n Even plain JOLT, with no student reward, beat GRPO on MATH: 72.14% versus 68.36%.\n\n How much training compute does JOLT save? \n\n On MATH, the research team fit accuracy curves against training-token budgets. At 63.44% accuracy, GRPO’s checkpoint used 8.40M processed training tokens. JOLT’s fitted curve needed 1.30M, a 6.5x reduction. Counting completion tokens only, the gap widens to about 13x. Across 55% to 65% accuracy targets, savings range from 4.3x to 7.4x on processed tokens.\n\n JOLT also levels off higher. It plateaus near 72%, against about 70% for GRPO and 62% for OPSD.\n\n How does JOLT compare with GRPO, OPSD and π-Distill? \n\n All scores below come from Perplexity’s own runs in the JOLT paper , with hyperparameters tuned per method. Method descriptions link to each method’s own paper.\n\n Feature JOLT JOLT+ GRPO OPSD π-Distill Separate teacher model No No No teacher No (self-teacher) No (shared model) Teacher is trained Yes (reward + KL to student) Yes (reward + KL to student) Not applicable No Yes (KL-regularized) Student signal Dense distillation, on-policy Distillation + outcome reward Group-relative outcome reward Dense distillation, on-policy Off-policy, teacher trajectories MATH, Qwen3-0.6B (%) 72.14 ± 0.90 72.59 ± 1.17 68.36 ± 3.73 61.20 ± 2.10 42.25 ± 1.10 LCBv6, Qwen3-8B (%) 47.64 ± 1.10 49.08 ± 0.41 46.13 ± 1.83 45.34 ± 1.50 38.23 ± 1.72 AppWorld, Qwen3-4B (%) 51.92 ± 5.30 72.09 ± 6.01 62.20 ± 2.83 29.49 ± 2.48 59.85 ± 2.97 Terminal-Bench 2.1 pass@1 (%) 6.56 10.96 8.25 2.82 4.99 Terminal-Bench 2.1 pass@32 (%) 25.69 34.83 30.34 16.90 22.31 Code Not yet released Not yet released Not disclosed GitHub Not disclosed \n\n Terminal-Bench base model: 5.18% pass@1, 22.81% pass@32. \n\n Key Takeaways \n\n 1 model plays teacher and student, and the teacher is trained too.\n\n 6.5x fewer processed tokens than GRPO at matched MATH accuracy.\n\n JOLT+ beats GRPO by 9.9 points on AppWorld.\n\n Plain JOLT still trails GRPO on AppWorld and Terminal-Bench.\n\n Check out the paper on arXiv and the Perplexity research blog post . All credit goes to the researcher of this project. Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Perplexity and NVIDIA Researchers Introduce JOLT: a Joint Teacher-Student Reinforcement Learning Method appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "Új tréningmódszert mutatott be az Nvidia és a Perplexity",
+  "lead": "A JOLT eljárás hatékonyabbá teszi a nyelvi modellek megerősítéses tanulását, kevesebb számítási kapacitás használatával.",
+  "osszefoglalo": "A Perplexity és az Nvidia kutatói bemutatták a JOLT nevű eljárást, amely a nyelvi modellek utólagos finomhangolását végzi. A módszer lényege, hogy egyetlen modell tölti be a tanár és a diák szerepét is. A tanár szerepben lévő modell hozzáfér plusz információkhoz, például a helyes válaszhoz, és ez alapján ad pontos visszajelzést a diák szerepben lévő modellnek.\n\nA kutatók szerint az eljárás kulcsa, hogy a tanár modellt is folyamatosan képezik a folyamat során, így a diák és a tanár nem távolodik el egymástól. A tesztek során a MATH mérésen a JOLT a **módszerként használt GRPO pontosságát 6,5-szer kevesebb feldolgozott tokenből** érte el.\n\nAz összetettebb, ágens alapú AppWorld teszten a JOLT frissített változata (JOLT+) **72,09 százalékos sikert ért el**, míg a GRPO korábban 62,20 százalékot teljesített. A fejlesztés forráskódját a kutatók még nem tették közzé.",
+  "miert_szamit": "A hatékonyabb tanítási módszerek **jelentősen csökkenthetik az új AI-modellek tréningköltségét és számítási igényét**, ami gyorsabb fejlesztési ciklusokat tesz lehetővé a piacon.",
+  "cimkek": [
+    "Nvidia",
+    "Perplexity",
+    "JOLT",
+    "gépi tanulás"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "JOLT"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 80,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 76,
+      "aktualitas": 98,
+      "kozossegi": 59
+    },
+    "elofeszures": 86,
+    "tanult": 58,
+    "indok": "Jelentős hatékonyságnövelő RL módszer a Perplexity és az Nvidia kutatóitól.",
+    "tema": "perplexity nvidia jolt rl",
+    "cim_hu": "Hatékonyabb MI-betanítást ért el a Perplexity és az Nvidia a JOLT módszerrel",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T06:48:10+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-22T06:50:01+00:00",
+  "megjelent": "2026-10-22T06:50:01+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-22T06:50:05+00:00",
+    "esemeny": "A Perplexity és az Nvidia kutatói bemutatták a JOLT nevű új utótanítási (post-training) módszert, amely egyetlen modellt tanít egyszerre tanár és diák szerepben, jelentős számítási kapacitást megtakarítva.",
+    "forrasok": [
+      "https://www.marktechpost.com/2026/10/21/perplexity-jolt-joint-on-policy-learning-teaching/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}
