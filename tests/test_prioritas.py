@@ -152,3 +152,49 @@ class Jovahagyas(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class EgyForras(unittest.TestCase):
+    """2026-10-22: a Beérkező lista, a számláló és a jelzés ugyanabból az adatból készül. Korábban a lista a Mac
+    pillanatképéből jött, a jelzés a felhő friss adatából, és 2 hír „eltűnt”: a jelzés szólt, a lista nem mutatta."""
+
+    def setUp(self):
+        import shutil
+        self.mappa = tempfile.mkdtemp()
+        os.makedirs(os.path.join(self.mappa, "data", "cikkek"))
+        self.regi = kozos.JOVAHAGYAS_UT
+        kozos.JOVAHAGYAS_UT = os.path.join(self.mappa, "data", "jovahagyas.json")
+        kozos._jovahagyas_cache["mtime"] = None
+        import posztsor
+        self.ps = posztsor
+        self.ps_gyoker = posztsor.GYOKER
+        posztsor.GYOKER = self.mappa
+        self.shutil = shutil
+
+    def tearDown(self):
+        kozos.JOVAHAGYAS_UT = self.regi
+        kozos._jovahagyas_cache["mtime"] = None
+        self.ps.GYOKER = self.ps_gyoker
+        self.shutil.rmtree(self.mappa, ignore_errors=True)
+
+    def cikk(self, azon, szint, pont, **kw):
+        c = {"id": azon, "forras_id": "openai", "forras_nev": "OpenAI", "cim_eredeti": "x " + azon, "megjelent": most(1),
+             "jovahagyas_kell": True, "prioritas": {"szint": szint, "pont": pont, "cim_hu": "Magyar " + azon}, **kw}
+        json.dump(c, open(os.path.join(self.mappa, "data", "cikkek", azon + ".json"), "w"))
+
+    def test_lista_szamlalo_jelzes_egyezik(self):
+        import admin_jelzes
+        self.cikk("a" * 12, "P2", 70)
+        self.cikk("b" * 12, "P3", 45)
+        self.cikk("c" * 12, "X", 20)  # 40 alatti: gépileg elutasítva, nem vár döntésre
+        self.cikk("d" * 12, "P1", 90, dupla_of="a" * 12)  # duplikátum: nem jelenik meg
+        with open(kozos.JOVAHAGYAS_UT, "w") as f:
+            json.dump({"b" * 12: {"allapot": "elutasitva"}}, f)
+        kozos._jovahagyas_cache["mtime"] = None
+        lista = self.ps.prioritas(napok=2)["sorok"]
+        fuggo_lista = {s["id"] for s in lista if s["allapot"] == "fuggo"}
+        self.assertEqual(fuggo_lista, {"a" * 12})
+        self.assertEqual({s["id"] for s in lista}, {"a" * 12, "b" * 12, "c" * 12})
+        jelzes = admin_jelzes.fuggo_sorok(napok=2)
+        self.assertEqual({s["id"] for s in jelzes}, fuggo_lista, "a jelzés pontosan a lista függő tételeiről szól")
+        self.assertEqual(jelzes[0]["cim"], "Magyar " + "a" * 12)
