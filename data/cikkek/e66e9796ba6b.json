@@ -1,0 +1,75 @@
+{
+  "id": "e66e9796ba6b",
+  "slug": "terkepre-tette-a-fold-erdotipusait-a-google-deepmind-mesterseges",
+  "forras_id": "deepmind",
+  "forras_nev": "Google DeepMind",
+  "url": "https://deepmind.google/blog/beyond-tree-cover-mapping-the-worlds-forest-types/",
+  "szerzo": null,
+  "publikalva": "2026-10-22T14:30:24+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://lh3.googleusercontent.com/Et3g0tNB_bC00f6cP94Y40QbqshCvf7_fg_gRVfZQoeVSc3Hn9g6jIenf1udZdACY4x-wpY_5tyy_LznFSlu0yhGCqfxKos6QFRRj4lad_hQHOBV8Q=w528-h297-n-nu-rw-lo"
+  },
+  "cim_eredeti": "Beyond tree cover: mapping the world’s forest types",
+  "forrasok": [],
+  "szoveg_eredeti": "A new 10-meter resolution map shows which of the world's forests are natural, planted, or farmed, and how they are changing over time\n\nProtecting the planet's forests starts with a simple question: what type of forest are we looking at? From space, an old-growth rainforest, a eucalyptus plantation, and an oil palm estate can look like the same patch of green. But they hold very different amounts of carbon and biodiversity. Telling them apart, and knowing how each patch has changed over time, shows us where conservation is working and where natural forests are being converted into plantations and farms.\n\nToday, Google DeepMind and Google Research, together with the World Resources Institute (WRI) and the International Institute for Applied Systems Analysis (IIASA), are releasing Forest Typology (ForTy) 2020, a global map that categorizes every 10-by-10-meter patch of land on Earth into six distinct forest and land-use types, a key baseline for the EU's deforestation regulation. Alongside it, we're sharing an early time series that tracks how these forests changed each year from 2017 to 2025, including where natural forests were replaced by plantations or farms. For the first time, users can see at 10-meter detail worldwide, year by year, not just where forest was lost, but what replaced it: a timber plantation, a tree-crop farm or other land.\n\nAll forests store carbon and, together, forests are home to most of the world's land-based plant and animal species. But a forest’s ecological value also depends on its history: a primary forest that has never been cleared holds far more carbon and biodiversity than a single-species timber plantation that is harvested every decade or two.\n\nMost global maps only indicate whether trees are present. That's a challenge for those trying to protect natural forests. The European Union's regulation on deforestation-free products (EUDR), for example, requires that products like coffee, cocoa or palm oil do not originate from land that was forest in 2020 and has since been converted to agriculture. Similarly, wood products, such as furniture, must also be free of forest degradation: they can't come from primary forests that have since been converted into plantation or planted forests, or from naturally regenerating forests that have since been converted into plantation forests. As a result, companies and regulators need to know not just where trees are, but what kind of forest they form (primary or regrowing, planted or plantation, forest or farm) and what replaces that forest after a harvest.\n\nLast year, we jointly released Natural Forests of the World 2020, a 10-meter resolution global map that separated natural forests from all other tree cover. It offered a starting point to help companies and regulators implement the EU Deforestation Regulation, and to support commodity producers in meeting their commitments not to convert natural forest. That map answered one question for every patch of land: was it natural forest in 2020 or not? ForTy goes further, showing what kind of forest is there, from primary forest to timber plantation to tree crops, and, with the new time series, how that changes each year.\n\nSpecifically, ForTy sorts land into six categories based on definitions from the UN Food and Agriculture Organization (FAO):\n\nThe Forest Typology map for 2020. Each color shows the most common forest or land type in each square kilometer. Explore it at 10-meter detail in our Earth Engine app.\n\nTraining our ForTy model was challenging because these categories depend in part on how land is used, not just how it looks. To teach our model the difference, we built a large-scale collection of forest-type examples with about 1.7 million labeled locations drawn from expert surveys, national and regional datasets, and targeted reviews of places where the model struggled. The model uses a custom architecture designed for the challenges of remote sensing data, and takes as a key input AlphaEarth Foundations embeddings, data-compact summaries of years of satellite observations for each 10-meter pixel, so it can spot subtle clues like planting patterns, growth cycles and harvest rhythms.\n\nFrom above, the five forest and tree-crop classes can look alike. ForTy is able to identify the subtle differences in structure and seasonal patterns that set them apart, accurately categorizing them in a global map database. Imagery © Google Earth, Maxar Technologies, Airbus.\n\nA map is only useful if people can trust it. So, with IIASA and WRI, we validated ForTy against more than 9,000 randomly chosen sites around the world. At each site, two trained experts studied high-resolution imagery and years of satellite records to determine which type of land was really there. ForTy picked the right forest type 90% of the time, and told forest apart from non-forest land 95% of the time, outperforming other global forest maps.\n\nBeyond accuracy, we know that global conservation is not one-size-fits-all. Instead of giving a yes-or-no label for a specific patch of land, ForTy provides a probability score for each class, enabling users to adapt the classification to regional contexts and application-specific precision trade-offs. For example, a company assessing deforestation risk under EUDR might set a strict threshold, only accepting pixels the model is highly certain about to avoid regulatory risks. Meanwhile, a researcher estimating total forest extent might use the full spectrum of probabilities to get a fuller picture of the potential landscape.\n\nA map of a single year is a useful baseline, but forests change. Our new early-release time series applies a similar approach to every year from 2017 to 2025. It shows not only where forests disappear and where they grow back, but also what kind of change happened: a natural forest turned into a timber plantation, for example, or abandoned land slowly regenerating into forest.\n\nThis differentiation matters because some of the most important changes are hard to see from space. When a natural forest is logged and replanted as a plantation, the land soon looks green again, so standard tree-cover maps might not pick up the change. ForTy's time series makes these hidden changes visible, both losses and gains.\n\nThe Forest Typology 2020 map [described in Scientific Data] and the new time series are now freely available on Google Earth Engine under an open license. We hope governments, companies, conservation groups and scientists will use them to help build deforestation-free supply chains, direct forest finance where it’s needed, and protect the natural forests that matter most. Over the coming months, we'll keep improving the time series with our partners and users, and we'd love to hear how you use it. ForTy is part of our portfolio of research on AI for Nature, which includes mapping the drivers of forest loss, forecasting deforestation risk, modelling global species distributions, and monitoring biodiversity in the field. FortTy is also the latest addition to Google Earth AI, Google’s collection of geospatial models and datasets designed to help tackle the planet's most critical environmental challenges.\n\nThis work was co-developed by Google DeepMind and Google Research, with the World Resources Institute and the International Institute for Applied Systems Analysis. We'd like to thank our co-authors Anton Raichuk, Peter Potapov, Myroslava Lesiv, Matthew Overlan, Mélanie Rey, Ravindran Rajakumar, Michelangelo Conserva, Radost Stanimirova, Michelle Sims, Sarah Carter, Elizabeth Goldman, Yuchang Jiang, Linus Scheibenreif, Ivelina Georgieva, Maria Shchepashchenko, Steffen Fritz, Nicholas Clinton, Dan Morris and Drew Purves, as well as the trusted testers who helped improved the map.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Térképre tette a Föld erdőtípusait a Google DeepMind mesterséges intelligenciája",
+  "lead": "A Google kiadta a ForTy 2020 globális erdőtérképet, amely 10 méteres felbontásban különíti el a természetes erdőket a fatermesztő ültetvényektől.",
+  "osszefoglalo": "A Google DeepMind a Google Research-csel, a World Resources Institute-tal és az IIASA-val közösen kiadta a [Forest Typology](https://github.com/google-deepmind/forest_typology) 2020 (ForTy) nevű globális térképet. A modell a Föld minden **10-szer 10 méteres területét 6 erdő- és földhasználati kategóriába sorolja**, így pontosan megkülönbözteti az őserdőket, az újrasarjadó erdőket és a gazdasági faültetvényeket.\n\nA rendszer betanításához mintegy **1,7 millió felcímkézett helyszínt használtak fel**, az [AlphaEarth Foundations](https://deepmind.google/discover/blog/alphaearth-foundations-helps-map-our-planet-in-unprecedented-detail/) műholdas beágyazásaira támaszkodva. A vizsgálatok alapján az eszköz 90 százalékos pontossággal azonosítja a helyes erdőtípust, és 95 százalékos pontossággal különbözteti meg az erdőt a nem erdő jellegű területektől.\n\nA kiadott adatbázis tartalmaz egy 2017 és 2025 közötti idősoros elemzést is, amely nyomon követi a területek évenkénti változását. Az adatok és az alkalmazás ingyenesen elérhetők a **Google Earth Engine felületén**.",
+  "miert_szamit": "Az uniós erdőirtási rendeletnek (EUDR) való megfelelésben és a fenntarthatósági auditokban **pontos bizonyítékot ad arra**, hogy egy beszállítói lánc termékei nem kiirtott természetes erdők helyéről származnak.",
+  "cimkek": [
+    "Google DeepMind",
+    "Google Research",
+    "Google Earth Engine",
+    "ForTy"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Forest Typology",
+    "Google Earth Engine"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 87,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 94,
+      "aktualitas": 100,
+      "kozossegi": 62
+    },
+    "elofeszures": 89,
+    "tanult": 50,
+    "indok": "A Google DeepMind új 10 méteres felbontású térképe áttörést jelent a világ erdőtípusainak elkülönítésében.",
+    "tema": "deepmind forest mapping ai",
+    "cim_hu": "A Google DeepMind új AI térképe példátlan pontossággal különíti el a világ erdőtípusait",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T14:33:23+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-22T14:35:44+00:00",
+  "megjelent": "2026-10-22T14:35:44+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-22T14:35:46+00:00",
+    "esemeny": "A Google DeepMind a Google Research-csel, a WRI-vel és az IIASA-val közösen kiadta a Forest Typology 2020 (ForTy) globális erdőtérképet és egy 2017–2025 közötti idősoros adatbázist, amely 10 méteres felbontásban 6 kategóriába sorolja a Föld erdőit és földhasználati típusait.",
+    "forrasok": [
+      "https://deepmind.google/blog/beyond-tree-cover-mapping-the-worlds-forest-types/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
