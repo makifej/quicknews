@@ -1,0 +1,81 @@
+{
+  "id": "abcdba70c9e2",
+  "slug": "harmadik-feltol-szarmazo-alkalmazasokhoz-kapcsolja-ai-agenseit-az-epic",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Fierce Healthcare",
+  "url": "https://www.fiercehealthcare.com/ai-and-machine-learning/epic-launches-connectors-link-its-ai-tools-third-party-apps",
+  "szerzo": null,
+  "publikalva": "2026-10-21T12:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://qtxasset.com/quartz/qcloud5/media/image/gettyimages-2252942172.jpg?VersionId=PIkDSHpkZMht7aoWCjEDCYzNHszlNXYe"
+  },
+  "cim_eredeti": "Epic launches Connectors to link its AI tools with third-party apps",
+  "forrasok": [],
+  "szoveg_eredeti": "Epic launched a new capability that lets its artificial intelligence agents access information and perform tasks in third-party applications.\n\nThrough \"Connectors,\" developers can connect their apps to Epic's AI tools—patient-facing AI assistant Emmie; clinician AI assistant Art and Penny, the company's revenue cycle and operations AI. Connectors will also work with custom AI that healthcare organizations create in Agent Factory, the company announced Wednesday morning ahead of its Open@Epic conference.\n\nAs one example, Epic said a Connector can pull arrival time from an ambulance app so a hospital emergency department can prepare for the patient. A hospitalized patient could ask Emmie for a meal, and Emmie could place the order directly in the hospital’s dietary management app.\n\n\"The goal is to take what is sometimes a fragmented experience today, where patients, clinicians and healthcare system staff need to be going between multiple different systems or gathering data from multiple different places and bringing that experience together,\" Johnston Thayer, vice president of health informatics at Epic, told Fierce Healthcare in an interview. \"Similar to other types of integrations in the past, where data needs to flow between systems, this represents capabilities that bring those same types of connections to the AI and agentic space.\"\n\nEmmie could use a Connector to bring hospital wayfinding instructions to the patient, Thayer noted. \"For the surgical team, Epic could check a medical equipment app to find information about assistive device availability and help the care team bring together the devices needed for the patient’s recovery.”\n\nEpic's Agent Factory, which officially debuted at its User Group Meeting in August, is a platform for building, running and monitoring AI agents that can reason and act across workflows. Agent Factory launched with over 100 pre-built AI features that organizations can shape with their own local policies, clinical protocols and guidelines, Epic executives said.\n\nEpic's AI assistants already retrieve information from within the EHR, but with the development of the Connectors capabilities, Epic is positioning its Agent Factory and its AI assistants as an orchestration layer that can coordinate workflows across systems, including third-party apps. Epic's AI tools also can use several Connectors to complete a multi-step workflow across multiple applications, Thayer said.\n\nThayer points to one use case in which Epic's Emmie helps arrange a follow-up appointment for an older adult who doesn't have access to transportation. As the AI agent considers transportation options, it also pulls information about the weather forecast for that day. Or, the agent could gather relevant information from other healthcare systems.\n\nEpic already integrates with outside capabilities through API-based interfaces, and Connectors extends that work to agentic AI, Thayer said.\n\nHe compared assistive AI to lane-assist technology and agentic AI to a driverless car. Assistive AI helps people perform familiar tasks, but autonomous agents need tools designed specifically for how they operate. \"Agents and software can still show up and work through some of the same processes that people do, clicking the same buttons, going through the same processes. But it's actually not the best way for them to operate,\" Thayer said.\n\nEpic’s Connectors provide purpose-built infrastructure so agents can work more effectively across software applications, he noted.\n\nHealthcare organizations will be able to find developer-created Connectors on Epic Showroom starting in March 2027, the company said.\n\nThe goal is to keep Connectors open and standards-based, Thayer noted. The company will initially use the Model Context Protocol (MCP) as the standard for building Connectors.\n\n\"There may be a different preferred standard in the future. The goal is to use some of those existing standards so that folks know how to develop according to those specs, and where we don't have to be the ones who decide what's valuable,\" he said.\n\nEpic aims for third-party developers to build capabilities and individual health systems to determine which ones meet their needs, Thayer said.\n\nBefore enabling a Connector, healthcare organizations can review what it can do, what information it can read, and what it can change.\n\n\"Permissions are all handled at the health system level,\" Thayer said. That review process includes health systems' \"security, legal and compliance teams taking a look at what type of information will be flowing across, confirm that it is a safe and appropriate use of details to be pulling in, and all of that is in control of each health system,\" he noted. \"There are not situations where that information starts flowing without their teams having the chance to take a look and approve it,\" he added.\n\nEpic will charge developers to distribute their connectors through Epic Showroom, though Epic did not disclose pricing.\n\n\"There is some work that goes into it from our teams, just in terms of standing up the infrastructure to make those connections available and respond,\" Thayer said. \"We want it to be something that represents a value-add both ways, where it makes sense for them to be connecting and making that information available. There are some costs for the infrastructure work that we do, but that will be information available to any participating vendor that would like to list in the Showroom,\" he added.\n\nEpic's persona-based agents—Emmie, Art and Penny—are strictly governed by human-in-the-loop (HITL) design, human-established protocols and localized health system governance, according to the company.\n\n\"We have thousands of test cases and evaluations that we run on a regular basis to ensure that Emmie is performing safely and within the specified guardrails that we have put in place,\" Thayer said.\n\nConnectors won’t give these AI copilots new autonomous capabilities, and the agents will continue to operate within established guardrails even when connectors bring in information from third-party apps, he asserted.\n\n\"When we're looking at agentic AI, and especially as it gets closer to autonomous AI, it's really important that we put in place the right safeguards to prevent these things from doing the unexpected or something that might not be safe,\" Thayer said.\n\n\"The types of things that Emmie can do, such as helping to book an appointment or direct you to a place in MyChart, are things that we have worked with the community to determine are safe at this point in time. There will not be new autonomous actions taken as a result of these capabilities. It's really about how do we bring together more of the information to better inform the work that is already being done,\" he added.\n\nEpic plans to begin testing the Connectors capabilities with some health system partners by the end of the year.\n\nFor health tech companies and app developers, Epic's Connectors could bring third-party capabilities directly into AI-powered workflows.\n\n\"From coverage to prior authorization to claims management, we see enormous potential to reduce administrative complexity, accelerate the flow of information, and help healthcare teams focus more of their time on patients,\" said Russ Thomas, chief executive officer of Availity, a real-time health information network, in a statement.\n\nGozio Health sees the potential to integrate its wayfinding capabilities into Emmie to create \"frictionless\" visits for patients, Joshua Titus, the company's CEO, said.\n\nDerrek Seif, chief strategy and product officer at VPL, said the integration of VPLRx, a pharmacy prescription software platform, with Epic's AI tools would give care teams real-time medication delivery information, helping patients know when their medications will arrive.\n\nHealth systems executives said they are interested in app connectors that can link Art with existing document management systems, Thayer noted. Health systems are also interested in using Co",
+  "modell": "gemini-3.5-flash",
+  "cim": "Harmadik féltől származó alkalmazásokhoz kapcsolja AI-ágenseit az Epic",
+  "lead": "A Connectors nevű új funkcióval az Epic egészségügyi AI-asszisztensei külső szoftverekből is képesek adatokat gyűjteni és feladatokat végrehajtani.",
+  "osszefoglalo": "Az Epic bejelentette a [Connectors](https://www.epic.com/newsroom/introducing-connectors-a-new-way-for-apps-to-communicate-with-epic/) nevű fejlesztést, amely lehetővé teszi AI-asszisztenseinek ([Emmie](https://www.epic.com/software/concepts/emmie/), Art és [Penny](https://www.epic.com/software/concepts/penny/)), valamint az Agent Factory platformon épített egyedi ágenseknek, hogy külső alkalmazásokhoz csatlakozzanak. A fejlesztők a nyílt [Model Context Protocol (MCP)](https://modelcontextprotocol.io) szabványra építve köthetik be saját szoftvereiket az Epic rendszerébe.\n\nA rendszer segítségével az AI-ágensek összetett, több lépésből álló munkafolyamatokat koordinálhatnak. Például a pácienseknek segítő Emmie közvetlenül rendelhet ételt a kórház élelmezési appjából, vagy ellenőrizheti a mentő érkezési idejét. A klinikai munkát segítő Art és a pénzügyi folyamatokat kezelő Penny szintén hozzáférhet külső dokumentumkezelőkhöz vagy gyógyszerkövető rendszerekhez.\n\nA fejlesztők által készített csatlakozók az **Epic Showroom** felületén lesznek elérhetők 2027 márciusától. Az egyes egészségügyi intézmények biztonsági és jogi csapatai minden csatlakozó engedélyezése előtt külön felülvizsgálhatják a hozzáférési jogosultságokat. A tesztelés a kiemelt partnerekkel még az idei év vége előtt elindul.",
+  "miert_szamit": "Az MCP szabványra épülő Connectors jó példa arra, hogyan válik az **AI-ágensek összekapcsolása** iparági alapkövetelménnyé a komplex szoftverrendszerekben. A fejlesztőknek érdemes követniük a nyílt MCP protokoll terjedését, mert a jövőben a vállalati AI-eszközök ezen keresztül kommunikálnak majd a külső adatforrásokkal.",
+  "cimkek": [
+    "Epic",
+    "MCP",
+    "egészségügy",
+    "AI-ágens"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Connectors",
+    "Emmie",
+    "Art",
+    "Penny",
+    "Agent Factory",
+    "Epic Showroom",
+    "Model Context Protocol"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 70,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 78,
+      "kozossegi": 53
+    },
+    "elofeszures": 79,
+    "tanult": 28,
+    "indok": "Az egészségügyi szoftveróriás Epic fontos integrációs lépést tett az MI-ágensei és külső alkalmazások között. Forrás-tapasztalat: -7.",
+    "tema": "epic healthcare ai connectors",
+    "cim_hu": "Az Epic összeköti egészségügyi MI-ágenseit a külső alkalmazásokkal",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T06:18:12+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-22T06:20:07+00:00",
+  "megjelent": "2026-10-22T06:20:07+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-22T06:20:09+00:00",
+    "esemeny": "Az Epic bejelentette a Connectors nevű fejlesztését, amely a Model Context Protocol (MCP) nyílt szabványra építve teszi lehetővé, hogy egészségügyi AI-asszisztensei (Emmie, Art, Penny) és az Agent Factory-ban épített egyedi ágensei harmadik féltől származó alkalmazásokhoz kapcsolódjanak és azokban feladatokat hajtsanak végre.",
+    "forrasok": [
+      "https://www.fiercehealthcare.com/ai-and-machine-learning/epic-launches-connectors-link-its-ai-tools-third-party-apps",
+      "https://www.epic.com/news/introducing-connectors-a-new-way-for-apps-to-communicate-with-epic"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
