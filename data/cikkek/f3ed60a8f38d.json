@@ -1,0 +1,48 @@
+{
+  "id": "f3ed60a8f38d",
+  "slug": "agentic-cleanslop",
+  "forras_id": "producthunt",
+  "forras_nev": "Product Hunt",
+  "url": "https://www.producthunt.com/products/cleanslop",
+  "publikalva": "2026-10-22T06:28:58+00:00",
+  "cim": "Agentic CleanSlop",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 56 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://ph-files.imgix.net/e3120733-3cb3-4279-b0ac-1fd149d4b345.png?auto=format&fit=crop&frame=1&h=512&w=1024"
+  },
+  "cim_eredeti": "Agentic CleanSlop",
+  "szoveg_eredeti": "Last week we launched @CleanSlop - this week it got a proper front door :)Check it out and do leave your feedback here\n\nHey Product Hunt 👋 Swaroop here, one of the two people building CleanSlop.\n\nA month ago we launched CleanSlop here: a second look at the app you built with AI, telling you in plain English what could break once real people use it, and what to fix first.\n\nOne thing kept bugging us: you'd build in Claude Code, Codex or Cursor, then have to leave your agent for our website to sign up, run a scan and read the report. The blocker was authentication. An agent can sign up for things, but a service can't tell whether a real, accountable person is behind it, or who that person is.\n\nThat changed with Link Agent Identity, Stripe's new identity product for agents, and we're one of the first companies to integrate it! Your agent presents Link's attestation that a real person stands behind it, along with their Link-verified email, right from the CLI. No form, no password, no trip to a website.\n\nSo today, CleanSlop is fully agentic. You paste one line into your agent:\n\nAuthenticates you with Link, through that attestation. Nothing to approve.. No sign-up form, no password.\n\nScans the folder you're in. Every finding is reviewed against your code before you see it, so you get a short list, not 200 warnings.\n\nFixes what's worth fixing, then rescans to check the fixes held.\n\nPayments go through Link too. When you run out of scans, your agent offers a credit pack or a monthly plan, and you approve it in Link. Your agent never sees your card, and that approval is the only time you touch anything.\n\nIt works in coding agents like Claude Code, Codex and Cursor, and in the new personal agents such as Grok Bot and Muse.\n\nTypeScript/Node.js apps, sharpest on Next.js + Supabase.\n\nLink identity in the US and Canada for now.\n\nAnywhere else, your agent can sign in with GitHub instead.\n\n🎁 Exclusively for Product Hunt: tell your agent:\n\nWe'd love to hear where it gets confusing or where your agent gets stuck. We're here all day 🙏\n\nWeboldal: https://cleanslop.com",
+  "begyujtve": "2026-10-22T08:41:02.503381+00:00",
+  "prioritas": {
+    "pont": 56,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 50,
+      "egyediseg": 85,
+      "hitelesseg": 68,
+      "aktualitas": 92,
+      "kozossegi": 50
+    },
+    "elofeszures": 85,
+    "tanult": 50,
+    "indok": "Kisebb fejlesztői eszköz frissítése és promóciója a Product Hunt platformon",
+    "tema": "cleanslop ai code audit",
+    "cim_hu": "Frissítést kapott a kódoló agenstámogató CleanSlop fejlesztői eszköz",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T08:48:33+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-22T08:51:14+00:00"
+}
