@@ -1,0 +1,72 @@
+{
+  "id": "e106504eaece",
+  "slug": "sulyos-adatvedelmi-hianyossagok-derultek-ki-az-eiliko-ai-okosfigurarol",
+  "forras_id": "the-verge-ai",
+  "forras_nev": "The Verge AI",
+  "url": "https://www.theverge.com/news/1015824/eiliko-energize-lab-statement-on-robot-hack-breach",
+  "szerzo": "Sean Hollister",
+  "publikalva": "2026-10-22T11:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://platform.theverge.com/wp-content/uploads/sites/2/2026/10/eiliko-verge-sean-012.jpg?quality=90&strip=all&crop=0%2C3.4689741459833%2C100%2C93.062051708033&w=1200"
+  },
+  "cim_eredeti": "Eiliko maker says it&#8217;s hiring an ‘&#8217;independent security firm’ after Verge report on its insecure robots",
+  "forrasok": [],
+  "szoveg_eredeti": "‘We know that words alone will not earn that trust back.’\n\n‘We know that words alone will not earn that trust back.’\n\nEiliko, a cute robot charm you can hang on your bag with built-in AI conversations, turned out to be a security nightmare. It told owners that “your secrets are safe with me,” but hackers could easily read complete transcripts of everything we told the toy, and that was just the beginning. The Verge and security researcher Sammy Azdoufal spent over a month trying to get in contact with the company, including emails to Energize Lab CEO and founder Shaw Yeung. Nobody would answer our questions.\n\nNow, the company is finally breaking its silence, though its response leaves something to be desired.\n\n“We have confirmed the core issues identified in your reporting and are addressing each of them,” Energize Lab told The Verge in an unsigned statement from a generic email address. The company says it will hire an independent security firm to fully review all of its systems, and has set up a dedicated security@energizelab.com contact email.\n\nThe company also claims that as of Wednesday, it has “closed all external access to our backend systems” and “disabled the interface that allowed a robot’s responses to be modified remotely.”\n\nEnergize Labs is also pledging to “no longer store conversation records or the user profiles generated from them,” and says it will delete the conversation records, user profiles, and “avatar images” it has already stored.\n\nNotably, the company isn’t promising to get rid of data collection for good. “The long-term memory and custom avatar features will not return until that review confirms they are secure,” it writes, suggesting that Energize Lab does plan to store some personal information once its systems are hardened.\n\nEven more notably, Energize Labs’ systems are not yet secure. With Azdoufal’s help, I can confirm that as of the company’s email, it was still storing audio recordings and photos of its customers at unsecured public web addresses with no protection whatsoever. If I gave you a link (which I won’t) you could click and immediately be looking at an owner’s face.\n\nAzdoufal also tells me he still has full SSH access to these robots, and that he can still theoretically read transcripts and modify the toy’s behavior. So when Energize Lab says it has “closed all external access,” that doesn’t seem to be accurate.\n\n“We know that words alone will not earn that trust back,” Energize Lab tells The Verge. “We intend to earn it through what we do in the coming weeks, and we will keep you informed as we go.” That sounds like a good plan, because some of today’s words still don’t ring true.\n\nHere is Energize Lab’s full unsigned statement to The Verge:\n\nWe sincerely apologize to you and to Mr. Azdoufal for not responding over the past month. This was our failure: After receiving the relevant information, we failed to sync with the technical team in a timely manner, and the subsequent troubleshooting also took some time. We have now set up a dedicated security inbox, security@energizelab.com, which is staffed and monitored.\n\nWe thank you and Mr. Azdoufal for bringing these issues to our attention. We have confirmed the core issues identified in your reporting and are addressing each of them.\n\nClosed all external access to our backend systems and rotated all access credentials;\n\nDisabled the interface that allowed a robot’s responses to be modified remotely;\n\nTaken the long-term memory feature offline. We no longer store conversation records or the user profiles generated from them;\n\nTaken the custom avatar feature offline. The app now offers built-in avatars only.\n\nWe will delete stored conversation records, user profiles, avatar images, and related content.\n\nWe are engaging an independent security firm to conduct a full review of our systems. The long-term memory and custom avatar features will not return until that review confirms they are secure. We will share an update on our progress once the review is completed.\n\nWe started Energize Lab because we wanted to build small robots that bring a little joy into people’s lives. That idea only works if people can trust what is inside them, and we let them down. We know that words alone will not earn that trust back. We intend to earn it through what we do in the coming weeks, and we will keep you informed as we go.\n\nA free daily digest of the news that matters most.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Súlyos adatvédelmi hiányosságok derültek ki az Eiliko AI-okosfiguráról",
+  "lead": "Feltörhetővé váltak az Eiliko táskadísz AI-robotjai, az Energize Lab külső biztonsági cég bevonásával igyekszik elhárítani a problémákat.",
+  "osszefoglalo": "A táskákra akasztható, AI-alapú beszélgetésekre képes **Eiliko robotok adatbiztonsági rendszere** nem nyújtott megfelelő védelmet a felhasználók számára. Bár a szerkezet azt ígérte a tulajdonosoknak, hogy a titkaik biztonságban vannak, független kutatók elérték a beszélgetések teljes leiratait, valamint a felhasználók képeit és hanganyagait is. A hibákra válaszul a gyártó leállította a külső hozzáféréseket, és megkezdte a sebezhetőségek javítását.\n\nA gyártó **Energize Lab felfüggesztette a hosszú távú memória és a custom avatar funkciókat**, valamint ígéretet tett a korábban tárolt beszélgetési előzmények, felhasználói profilok és feltöltött képek törlésére. A vállalat független kiberbiztonsági céget bíz meg a teljes infrastruktúra átvilágítására, a leállított funkciókat pedig csak a rendszer teljes védelmének igazolása után kapcsolják vissza.\n\nA feltárt hiányosságok miatt a gyártó biztonsági e-mail címet hozott létre a visszajelzések fogadására. A javítási munkálatok jelenleg is zajlanak, a külső audit lezárásáig a személyre szabott funkciók nem lesznek elérhetők a felhasználók számára.",
+  "miert_szamit": "A fizikai AI-eszközök és okoskütyük bevezetésénél **a személyes adatok védelme és a biztonsági audit** nem elhanyagolható lépés, mivel egy sérülékeny rendszer azonnali bizalomvesztéshez és adatvédelmi incidenshez vezet.",
+  "cimkek": [
+    "Eiliko",
+    "Energize Lab",
+    "adatvédelem",
+    "kiberbiztonság"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 69,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 70,
+      "egyediseg": 85,
+      "hitelesseg": 84,
+      "aktualitas": 95,
+      "kozossegi": 53
+    },
+    "elofeszures": 84,
+    "tanult": 34,
+    "indok": "Kereskedelmi AI játék kiberbiztonsági incidense és a gyártó reakciója",
+    "tema": "eiliko robot security flaw",
+    "cim_hu": "Független biztonsági céget bérel fel az Eiliko gyártója a veszélyes AI játék robotja miatt",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T11:18:04+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-22T11:20:31+00:00",
+  "megjelent": "2026-10-22T11:20:31+00:00",
+  "nevelo_javitva": "2026-10-22T11:20:31+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-22T11:20:36+00:00",
+    "esemeny": "A The Verge cikke és Sammy Azdoufal biztonsági kutató feltárása után az Eiliko robotokat gyártó Energize Lab elismerte a súlyos biztonsági hibákat, leállított egyes funkciókat, és független biztonsági céget bérel fel a rendszerei átvilágítására.",
+    "forrasok": [
+      "https://www.theverge.com/news/1015824/eiliko-energize-lab-statement-on-robot-hack-breach"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}
