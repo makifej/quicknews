@@ -1,0 +1,48 @@
+{
+  "id": "3ae319b9fc91",
+  "slug": "a-palo-alto-szerint-a-pan-os-minden-verzioja-erintett-a-php2shell",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/palo-alto-says-all-pan-os-vers-dLmM1lgjQburE5DCMNlqyA",
+  "publikalva": "2026-10-22T13:17:50.573284+00:00",
+  "cim": "A Palo Alto szerint a PAN-OS minden verziója érintett a PHP2Shell sebezhetőségben",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/upload/t_limit/v1792676050/url_uploads/108148465-1747799421188-gettyimages-2012746933-jh_coders2_0074_stuqh3.jpg"
+  },
+  "cim_eredeti": "A Palo Alto szerint a PAN-OS minden verziója érintett a PHP2Shell sebezhetőségben",
+  "szoveg_eredeti": "Európai és japán kormányok szerdán, október 21-én offline állapotba helyezték weboldalaikat, miután nyilvánosságra került két kritikus PHP-sebezhetőség, amelyeket együttesen PHP2Shell néven ismernek. A PHP az a szerveroldali nyelv, amely a háttérnyelvük alapján azonosítható weboldalak nagyjából 70%-át működteti. Az amerikai hatóságok azt kérték a szervezetektől, hogy azonnal telepítsék a javításokat, vagy válasszák le azokat a rendszereket, amelyeket nem tudnak biztosítani. Időközben a Palo Alto Networks megerősítette, hogy a PAN-OS és a Panorama minden verziója érintett, és javított kiadás még nem áll rendelkezésre.\n\nA CVE-2026-109618 és a CVE-2026-109619 azonosítójú sebezhetőség egyaránt 9,2-es pontszámot kapott. Segítségükkel a támadó bejelentkezés nélkül futtathat kódot egy szerveren. A nyilvánosságra hozatalt október 22-re tervezték, de a részletek október 20-án kiszivárogtak az internetre, ezért a PHP projekt egy nappal korábban kiadta a javításokat a 8.5.12, 8.4.27, 8.3.36 és 8.2.35 verzióban.\n\nNémetországban, Franciaországban, Belgiumban, Hollandiában, Finnországban és Csehországban átmenetileg elérhetetlenné váltak kormányzati weboldalak. Japán felfüggesztette a pénzügyi és az egészségügyi minisztériumának egyes webes szolgáltatásait, a Mitsubishi UFJ Financial Group pedig elővigyázatosságból szüneteltetett néhány online szolgáltatást. Az NSA, az FBI és a CISA közölte: ha a rendszereket nem lehet gyorsan megvédeni, le kell választani őket a hálózatról. A CISA a cikk megjelenésekor azt közölte, hogy „nem észlelt kihasználást\". Az FBI arra kérte a szervezeteket, hogy mérjék fel, hol fut náluk PHP, az internet felől elérhető rendszerekkel és a PHP-t tartalmazó termékekkel kezdve.\n\nA Cloudflare közölte, hogy az ingyenes és a fizetős webalkalmazás-tűzfalcsomagjait használó ügyfelei október 21-én, UTC szerint hajnali 3:02-től alapértelmezetten védelmet kapnak, vagyis nagyjából kilenc órával a nyilvános közzététel előtt. Technológiai igazgatója, Dane Knecht ideiglenesnek nevezte a szabályokat, a rendszergazdákat pedig arra kérte, telepítsék a PHP frissítéseit.\n\nA Palo Alto magasra értékeli a PAN-OS-t érintő kockázatot, és szerinte a legnagyobb veszély akkor áll fenn, ha egy felügyeleti felület az internet felől is fogad kapcsolatokat. A javítások megjelenéséig azt javasolja, hogy korlátozzák a hozzáférést megbízható belső IP-címekre, és használják a cég fenyegetésmegelőző szignatúráit. A Fortinet még 12 termékét vizsgálja, további 12-t – köztük a FortiOS-t – pedig már érintetlennek nyilvánított. A Cisco 31 terméket és felhőszolgáltatást ellenőriz, egyiknél sem erősítette meg egyelőre a sérülékenységet, és közlése szerint kerülőmegoldás nincs.\n\nA Calif és a Wiz kutatói mesterségesintelligencia-modellek segítségével találták meg a hibákat. A Palo Alto Unit 42 csapata több mint 22,6 millió, az internetről elérhető példányt számlált össze, amelyek sebezhetők lehetnek. Biztonsági cégek, köztük a Hadrian és a Patchstack, mostanra azt jelentik, hogy a csalirendszereken túl is kihasználják a hibákat, hivatalos szervek azonban ezt még nem erősítették meg. A VulnCheck szerint a nyilvánosan elérhető proof-of-concept exploitoknak csak egy maroknyija használja a helyes mechanizmust. A PHP Foundation ügyvezető igazgatója, Elizabeth Barron a CNBC-nek azt mondta, hogy nincs „bizonyíték működő exploitokra\". Matt Suiche, a Tolmo kutatója nem értett egyet: szerinte a csapata egy napnál rövidebb idő alatt készített működő exploitot.",
+  "begyujtve": "2026-10-22T15:32:16.225936+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 92,
+      "kozossegi": 48
+    },
+    "elofeszures": 83,
+    "tanult": 82,
+    "indok": "Klasszikus webes és szoftveres PHP sebezhetőségi ügy, nem kapcsolódik az AI-hoz.",
+    "tema": "php zero day vulnerability",
+    "cim_hu": "PAN-OS rendszereket is érint a kritikus PHP2Shell sebezhetőség a Palo Alto szerint",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T15:33:58+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-22T15:33:59+00:00"
+}
