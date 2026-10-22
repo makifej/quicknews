@@ -1,0 +1,48 @@
+{
+  "id": "ca0b003abd80",
+  "slug": "a-cloudflare-tobb-millio-php2shell-kihasznalasi-kiserletet-eszlelt",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/cloudflare-sees-millions-of-ph-Xv7cf_e6RXWx.IdrKJhA4Q",
+  "publikalva": "2026-10-22T10:02:28.723723+00:00",
+  "cim": "A Cloudflare több millió PHP2Shell-kihasználási kísérletet észlelt",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--pxFrChhc--/t_limit/https://imageio.forbes.com/specials-images/imageserve/5eb47134858c030006c60b52/0x0.jpg%3Fformat%3Djpg%26crop%3D3999%2C2251%2Cx0%2Cy205%2Csafe%26height%3D900%26width%3D1600%26fit%3Dbounds"
+  },
+  "cim_eredeti": "A Cloudflare több millió PHP2Shell-kihasználási kísérletet észlelt",
+  "szoveg_eredeti": "A Cloudflare gyors támadáshullámot észlelt azután, hogy nyilvánosságra kerültek a PHP programozási nyelv kritikus sebezhetőségei. Matthew Prince vezérigazgató szerint a kísérletek száma néhány óra alatt ezrekről milliókra ugrott. Európában és Ázsiában kormányzati weboldalak kapcsoltak le óvintézkedésként, miközben a rendszergazdák sietve telepítették a szerdán, október 21-én kiadott sürgősségi javításokat.\n\n„A nyilvános bejelentés előtti 10 órában a @Cloudflare teljes hálózatán több ezer kísérletet láttunk a kihasználására. Ez a bejelentés utáni 45 percben több tízezerre, 2 órán belül több százezerre ugrott, most pedig már milliós a szám” – írta Prince az X-en. A Reuters beszámolója szerint szerda késő este tette közzé a bejegyzést. Prince azt is elmondta, hogy a Cloudflare egy új típusú webalkalmazás-tűzfalat fejlesztett ki a támadások kivédésére, és ezt minden ügyfelének ingyenesen bekapcsolta.\n\nA két sebezhetőséget, a CVE-2026-109618-at és a CVE-2026-109619-et együttesen PHP2Shell néven ismerik. Súlyosságuk mindkettőnél 9,2 a 10-ből, és hitelesítés nélküli, távoli kódfuttatást tesznek lehetővé. A javítások a PHP 8.5.12, 8.4.27, 8.3.36 és 8.2.35 verziókban érkeztek meg a SecurityWeek szerint. A hibák gyakorlatilag az összes PHP-kiadást érintik egészen az 5.4-es verzióig visszamenőleg. A PHP előrehozta a kiadást, miután a részletek egy nappal korábban kiszivárogtak az internetre – számolt be a Notebookcheck. Az NSA figyelmeztetett, hogy a támadók a hibák kihasználásával átvehetik az irányítást a webszerverek felett, adatokat lophatnak, vagy mélyebbre hatolhatnak a hálózatokba.\n\nNéhány támadás még a nyilvánosságra hozatal előtt megkezdődött. CJ Moses, az Amazon biztonsági vezetője elmondta, hogy a cég csaliszervereit már október 17-én célba vették, amikor a hibákra még tartott a zárolás. Szerinte a PHP2Shell-t „most már széles körben kihasználják a gyakorlatban\".\n\nFinnország kormányzati weboldalát részben letiltották. Az Independent beszámolója szerint az Oxford City Council, a City of Edinburgh Council és az Egyesült Királyság Költségvetési Felelősségi Hivatala (Office for Budget Responsibility) is offline állapotba helyezte az oldalát. Nagy-Britannia Nemzeti Kiberbiztonsági Központja (NCSC) azt javasolta azoknak a szervezeteknek, amelyek nem tudnak azonnal frissíteni, hogy fontolják meg weboldalaik leállítását. Japánban a Mitsubishi UFJ Financial Group felfüggesztette egyes internetes szolgáltatásait, a Pénzügyminisztérium pedig a Reuters szerint szüneteltette néhány weboldali tartalmát. Szanae Takaicsi miniszterelnök arra szólított fel minden oldaltulajdonost, hogy ellenőrizzék, használnak-e PHP-t.\n\nA Calif nevű biztonsági cég augusztusban fedezte fel a hibákat, miközben részt vett az OpenAI egyik programjában, amely mesterséges intelligencia modellekkel keres és javít ki sebezhetőségeket – számolt be a Cybernews. Az OpenAI „az utóbbi évek egyik legnagyobb hatású biztonsági problémájának\" nevezte az esetet, és hangsúlyozta, hogy az MI a támadóknak is segíthet, nem csak a védekezőknek – írta a The Independent.\n\nCiaran Martin, az NCSC (Nemzeti Kiberbiztonsági Központ) korábbi vezetője arra figyelmeztetett, hogy az ellopott adatok a jövőben csalásokhoz vezethetnek. „Az efféle átverések és csalások egyszerűen felpörögnek\" – mondta.",
+  "begyujtve": "2026-10-22T13:02:11.754876+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 70,
+      "egyediseg": 80,
+      "hitelesseg": 75,
+      "aktualitas": 95,
+      "kozossegi": 51
+    },
+    "elofeszures": 81,
+    "tanult": 67,
+    "indok": "Hagyományos kiberbiztonsági hír webszerveres sebezhetőségekről és támadásokról, MI-szál nélkül.",
+    "tema": "cloudflare php security vulnerability",
+    "cim_hu": "Támadási hullám indult a PHP újonnan felfedezett biztonsági rései ellen",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T13:04:01+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-22T13:06:24+00:00"
+}
