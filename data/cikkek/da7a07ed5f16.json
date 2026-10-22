@@ -1,0 +1,75 @@
+{
+  "id": "da7a07ed5f16",
+  "slug": "biztonsagos-mikro-virtualis-gepeket-kapnak-a-google-ai-ugynokei",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/googles-agent-compute-engine-gives-every-gemini-agent-its-own-hardware-isolated-micro-virtual-machine/",
+  "szerzo": "Matthias Bastian",
+  "publikalva": "2026-10-22T17:50:09+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/06/google_logo_wall-2.png"
+  },
+  "cim_eredeti": "Google's Agent Compute Engine gives every Gemini agent its own hardware-isolated micro virtual machine",
+  "forrasok": [],
+  "szoveg_eredeti": "Google announced Agent Compute Engine, a service that gives each AI agent its own isolated virtual machine. The service already powers Gemini and will open for preview in the coming months. Every agent runs inside a microVM secured by Google's Titanium chip, the company says. When an agent idles, its VM pauses automatically and frees up the machine for others. Shared memory between VMs cuts what each one costs to run. VMs are a pretty huge cost factor when providing agentic systems, so Google is going after efficiency here.\n\nThis is also behind the open-sourced Agent Substrate, a Kubernetes runtime. Google says it can fit ten times as many agents on a single server. In a test with 200,000 agents, suspend and resume took less than 500 milliseconds, according to Google. On the oversight side, Google is adding token tracking, model routing, and support for third-party identity providers like Ping Identity and SailPoint. Those controls will extend to Cloud Run, GKE, and managed endpoints.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Biztonságos mikro-virtuális gépeket kapnak a Google AI-ügynökei",
+  "lead": "A Google bemutatta az Agent Compute Engine rendszert, amely elkülönített futtatási környezetet és alacsonyabb működési költségeket biztosít az AI-ügynököknek.",
+  "osszefoglalo": "A Google bejelentette az [Agent Compute Engine](https://cloud.google.com/blog/products/compute/introducing-agent-compute-engine-and-expanding-agent-governance) elnevezésű szolgáltatást, amely minden egyes mesterségesintelligencia-ügynöknek különálló, hardveresen izolált virtuális gépet biztosít. A rendszer a Google Titanium chipjére épülő microVM-eket használja, és már most ez működteti a Gemini ügynökeit. Amikor egy ügynök tétlen, a virtuális gép automatikusan szünetelteti a működését, az osztható memória pedig jelentősen csökkenti az üzemeltetési költségeket.\n\nA megoldás alapját a nyílt forráskódú [Agent Substrate](https://cloud.google.com/blog/products/containers-kubernetes/agent-substrate-available-on-gke) Kubernetes-futtatókörnyezet adja, amellyel a Google állítása szerint tízszer több ügynök futtatható egyetlen szerveren. Egy 200 000 ügynökkel végzett teszt során a rendszerek felfüggesztése és újraindítása kevesebb mint 500 milliszekundumot vett igénybe. A vállalati felügyeletet emellett tokennyomon-követéssel, modellirányítással és külső azonosítószolgáltatók támogatásával is bővítik.\n\nA szolgáltatás nyilvános előnézeti változata a következő hónapokban válik elérhetővé a felhasználók számára.",
+  "miert_szamit": "A nagyobb léptékű AI-automatizációkat építő cégek számára ez **akár tizedére csökkentheti az ügynökök infrastruktúra-költségeit**, miközben szigorúbb adatbiztonsági és felügyeleti feltételeket garantál.",
+  "cimkek": [
+    "Google",
+    "Gemini",
+    "Agent Compute Engine",
+    "Agent Substrate"
+  ],
+  "kategoria": "ügynök",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Agent Compute Engine",
+    "Agent Substrate"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 86,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 77
+    },
+    "elofeszures": 100,
+    "tanult": 79,
+    "indok": "Kritikus infrastruktúra-fejlesztés a Google-től az ágensalapú rendszerek költség- és biztonsági problémáira.",
+    "tema": "google agent compute engine gemini",
+    "cim_hu": "Isolált mikromagokkal teszi olcsóbbá és biztonságosabbá az AI-ágenseket a Google",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-22T18:04:10+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-22T18:07:05+00:00",
+  "megjelent": "2026-10-22T18:07:05+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-22T18:07:21+00:00",
+    "esemeny": "A Google bejelentette az Agent Compute Engine nevű új felhőszolgáltatását, amely minden AI-ügynöknek különálló, Titanium chip által védett mikro-virtuális gépet (microVM) biztosít a biztonságos és költséghatékony futtatáshoz.",
+    "forrasok": [
+      "https://cloud.google.com/blog/products/compute/introducing-agent-compute-engine"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
