@@ -4,25 +4,36 @@
   "forras_id": "google-news-ai",
   "forras_nev": "2 Minute Medicine",
   "url": "https://www.2minutemedicine.com/artificial-intelligence-ai-model-demonstrates-potential-for-guiding-selective-deployment-of-structural-heart-disease-screening-using-electrocardiograms/",
+  "szerzo": null,
   "publikalva": "2026-10-21T15:03:25+00:00",
-  "cim": "An artificial intelligence model demonstrates the potential for improving the efficiency of structural heart disease screening using electrocardiograms",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 41 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://www.2minutemedicine.com/wp-content/uploads/2mm-social/82342/ehr-guided-targeting-of-ai-ecg-screening-may-reduc-wide-1e91a10f97.jpg"
   },
   "cim_eredeti": "An artificial intelligence model demonstrates the potential for improving the efficiency of structural heart disease screening using electrocardiograms",
+  "forrasok": [],
   "szoveg_eredeti": "1. An artificial intelligence model combined electronic health records and electrocardiograms to select and screen suitable patients for structural heart diseases.\n\n2. In a retrospective evaluation, the AI model reduced false positives and improved precision and sensitivity across multiple patient cohorts.\n\nStudy Rundown: Artificial intelligence (AI) has the potential to scale up the detection of structural heart disease (SHD) using routine electrocardiograms (ECGs), a technique known as AI-ECG. However, evidence remains limited on how best to integrate these tools into clinical care and minimize unnecessary testing. Oikonomou and colleagues developed TARGET-AI to determine whether electronic health records (EHRs) could guide more selective deployment of AI-ECG screening. TARGET-AI combines a model that analyzes patient histories and an ECG model trained using paired echocardiography reports. Researchers then compared targeted screening with TARGET-AI identifying suitable screening candidates against screening all patients with available ECGs. The study found that TARGET-AI improved the balance between precision and sensitivity across 26 structural heart disease labels while reducing false positive results. Similar improvements were observed in community participants and hospitalized patients. While the study demonstrated that pre-selecting screening candidates with an AI model may improve the efficiency of AI-based cardiac screening, prospective evaluation remains necessary to examine whether this approach improves patient outcomes.\n\nRelevant Reading: Application of artificial intelligence to the electrocardiogram\n\nIn-Depth [retrospective cohort study]: TARGET-AI was developed using 754,533 ECG-echocardiogram pairs from 159,322 adults. It combined an AI model trained to analyze EHRs and summarize clinical events before each ECG, and another model that was trained on relationships between ECG tracings and echocardiography reports. Temporal screening validation included 5,198 patients whose first known echocardiogram occurred within 90 days after an ECG, and external evaluation included 33,518 UK Biobank participants with cardiac magnetic resonance imaging and 3,628 MIMIC-IV patients. The outcomes included discrimination, sensitivity, F1 scores, and false-positive counts. Within the temporal screening cohort, discrimination of SHD achieved an area under the receiver operating characteristic curve (AUROC) of 0.90 for left ventricular systolic dysfunction, and an AUROC of 0.85 for severe aortic stenosis. Across the 26 SHD labels in screening validation, targeted deployment increased F1 scores by a median of 0.25 (range: 0.09-0.75) and reduced false positives by a median of 303 per label (range: -715 to -77). Median F1 improvements were 0.20 (range: 0.05-0.33) in the UK Biobank database and 0.13 (range: 0.08-0.06) in the MIMIC-IV database. While demonstrating potential, this study was limited by its retrospective evaluation and omission of unstructured clinical notes during patient history review. Nonetheless, this study provides evidence that an AI model like TARGET-AI may improve the efficiency of AI-ECG screening for SHD and reduce unnecessary testing.\n\nCitation: Oikonomou EK, Batinica B, Dhingra LS, Aminorroaya A, Coppi A, Khera R. TARGET-AI: A Foundational Approach for the Targeted Deployment of Artificial Intelligence Electrocardiography in the Electronic Health Record. NEJM AI. 2026 Jan 22;3(2). doi: 10.1056/aioa2500588.\n\n© 2026 2 Minute Medicine, Inc. All rights reserved. No part of this article may be reproduced, distributed or transmitted in any form or by any means without the prior written permission of 2 Minute Medicine, Inc. To license this content, contact 2 Minute Medicine, Inc. This article is for informational and educational purposes only; it is not medical advice and does not replace the judgment of a qualified healthcare professional.Image: © 2 Minute Medicine\n\nThen $4.99/month. Manage renewal in your account.\n\nSearch by name or NPI number, live from the CMS NPI Registry.\n\n2 Minute Medicine® is an award winning, physician-run, expert medical media company. Our content is curated, written and edited by practicing health professionals who have clinical and scientific expertise in their field of reporting. Our editorial management team is comprised of highly-trained MD physicians. Join numerous brands, companies, and hospitals who trust our licensed content.\n\nRead more great content and get access to EvidencePulse™ and HypeCheck™ AI.\n\nRead more great content and get access to EvidencePulse™ and HypeCheck™ AI.\n\nThen $4.99/month. Manage renewal in your account.\n\n© 2026 2 Minute Medicine, Inc. - Physician-written medical news.",
-  "begyujtve": "2026-10-21T15:48:42.553905+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "Új AI-modell szűri ki a felesleges szívvizsgálatokat",
+  "lead": "A TARGET-AI nevű modell az elektronikus kórelőzmények és az EKG kombinálásával pontosabbá teszi a strukturális szívbetegségek szűrését.",
+  "osszefoglalo": "A kutatók kifejlesztették a TARGET-AI nevű rendszert, amely az elektronikus egészségügyi nyilvántartások és a szokásos EKG-adatok közös elemzésével választja ki a szűrésre legalkalmasabb betegeket. A modell a betegutak előzetes kiértékelésével segít meghatározni, hogy kinél indokolt az AI-alapú EKG-vizsgálat elvégzése.\n\nA több mint 150 000 felnőtt adataival végzett tesztelés során a célzott szűrés **jelentősen csökkentette a téves pozitív eredmények számát**, miközben javította a felismerés pontosságát 26 különböző strukturális szívbetegségnél. A módszer a lakossági szűréseken és a kórházi ellátásban is hatékonynak bizonyult.\n\nA visszamenőleges vizsgálatok alapján a TARGET-AI hatékonyan csökkenti a felesleges orvosi teszteket, de a klinikai alkalmazás előtt még elengedhetetlen a jövőbeli, éles környezetben történő tesztelés.",
+  "miert_szamit": "Az egységes adatelemzéssel kiegészített AI-szűrés **csökkenti az egészségügyi adminisztrációt és a felesleges vizsgálatok költségeit**, így az orvosi kapacitások a valóban veszélyeztetett betegekre összpontosíthatók.",
+  "cimkek": [
+    "TARGET-AI",
+    "egészségügy",
+    "EKG",
+    "diagnosztika"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "TARGET-AI"
+  ],
+  "linkszabaly": 3,
   "prioritas": {
     "pont": 41,
     "szint": "P3",
@@ -44,5 +55,17 @@
     "ido": "2026-10-21T15:48:54+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-21T15:50:48+00:00"
+  "forditva": "2026-10-22T01:41:38+00:00",
+  "megjelent": "2026-10-21T23:00:29.180Z",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-22T01:46:31+00:00",
+    "esemeny": "A kutatók kifejlesztették a TARGET-AI nevű mesterséges intelligencia rendszert, amely az elektronikus kórelőzmények és EKG-adatok kombinálásával hatékonyabban választja ki a strukturális szívbetegségek szűrésére alkalmas betegeket. A visszamenőleges felmérés szerint a célzott szűréssel jelentősen csökkenthető a téves pozitív találatok száma.",
+    "forrasok": [
+      "https://www.2minutemedicine.com/artificial-intelligence-ai-model-demonstrates-potential-for-guiding-selective-deployment-of-structural-heart-disease-screening-using-electrocardiograms/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  }
 }
