@@ -14,15 +14,15 @@
   "forrasok": [],
   "szoveg_eredeti": "Researchers at the University of Pittsburgh have designed an artificial intelligence model they believe will help make breast cancer imaging AI more trustworthy.\n\nThe model uses a deep neural network that has been trained to estimate uncertainty alongside its diagnostic predictions. Unlike conventional AI systems that primarily aim to produce accurate predictions, the new approach also estimates how reliable a prediction may be for an individual patient. Experts involved in its development believe the model could help radiologists identify cases when an AI-generated result may need a second look.\n\nResearchers designed the method, called uncertainty-weighted learning, to be able to integrate uncertainty directly into the model’s training process. The system generates two scores—a prediction and an associated uncertainty score; this allows it to flag cases when specific factors of the model's output may be less dependable.\n\nShandong Wu, PhD, a professor of radiology at the University of Pittsburgh School of Medicine, spearheaded the work, with contributions from doctoral student Jiren Li and research assistant professor Dooman Arefan, PhD. The team used the Bridges-2 supercomputer at the Pittsburgh Supercomputing Center to train and evaluate the models. Testing of the approach thus far has been promising, indicating that similar models have real potential for improving diagnostic confidence in AI predictions.\n\n“I’m trying to develop effective AI models or methodology that can make AI ... development easier, make breast cancer diagnosis more accurate, [and] make this model and medical imaging AI models in general, more trustworthy and thus more clinically useful,” Wu said in a news release on the team’s work.\n\nIn the future, Pitt researchers hope to extend uncertainty-based methods beyond mammography to AI systems that combine medical images with other patient data. This would also support a more tailored collaboration between clinicians and AI tools, with the level of human review informed by the model’s estimated confidence scores.\n\nHowever, their work is still in the early stages and represents just one step toward more reliable clinical AI. Further validation is needed to establish how well the uncertainty estimates perform across different patient populations and imaging settings, and whether using them in clinical care improves diagnostic decisions without disrupting workflows.\n\nIn addition to her background in journalism, Hannah also has patient-facing experience in clinical settings, having spent more than 12 years working as a registered rad tech. She began covering the medical imaging industry for Innovate Healthcare in 2021.",
   "modell": "gemini-3.5-flash",
-  "cim": "Új AI-modell értékeli a mellekről készült diagnosztikai képek megbízhatóságát",
-  "lead": "A Pittsburghi Egyetem kutatói olyan rendszert fejlesztettek ki, amely a diagnózis mellett a saját döntésének bizonytalanságát is méri.",
-  "osszefoglalo": "A Pittsburghi Egyetem kutatói egy olyan mély neurális hálózatot terveztek, amely a diagnosztikai jóslatok mellett a **bizonytalansági pontszámot** is kiszámítja. Ez a megközelítés lehetővé teszi, hogy a rendszer külön jelezze azokat az eseteket, ahol az eredmény kevésbé tekinthető megbízhatónak.\n\nAz uncertainty-weighted learning nevű eljárás közvetlenül a modell tanítási folyamatába építi be a bizonytalanság mérését. A fejlesztést irányító Shandong Wu professzor szerint a módszer segít a radiológusoknak felismerni azokat a képeket, ahol **másodlagos orvosi ellenőrzésre** van szükség.\n\nA tesztelést a Pittsburgh Supercomputing Center Bridges-2 szuperszámítógépén végezték. A fejlesztés még korai szakaszban jár, így a gyakorlati klinikai alkalmazás előtt további validációra van szükség különböző betegcsoportokon.",
-  "miert_szamit": "A bizonytalanságmérés beépítése az orvosi AI-rendszerekbe pontosabb diagnózist tesz lehetővé, és **csökkenti a téves döntések kockázatát** az egészségügyi munkafolyamatokban.",
+  "cim": "Új AI-modell méri saját megbízhatóságát a mellrákszűrésben",
+  "lead": "A Pittsburghi Egyetem kutatói olyan algoritmust fejlesztettek, amely diagnózis mellett bizonytalansági pontszámot is ad.",
+  "osszefoglalo": "A Pittsburghi Egyetem kutatócsoportja Shandong Wu vezetésével olyan AI-modellt fejlesztett ki, amely a mellrák diagnosztizálása során **becsüli saját jóslatainak bizonytalanságát**. A hagyományos rendszerekkel ellentétben az **uncertainty-weighted learning** eljárás közvetlenül a modell tanítási folyamatába építi be ezt a mérést.\n\nA rendszer két külön értéket generál: egy diagnosztikai jóslatot és egy bizonytalansági pontszámot. Ez a megközelítés lehetővé teszi, hogy az algoritmus **automatikusan megjelölje a kétes eseteket**, jelezve a radiológusoknak, ha egy eredmény alaposabb orvosi ellenőrzést igényel.\n\nA módszer egyelőre korai fázisban van, a kutatók a [Pittsburgh Supercomputing Center Bridges-2](https://www.psc.edu/resources/bridges-2/) szuperszámítógépét használták a teszteléshez. A jövőben a technológiát más orvosi képalkotó eljárásokra és betegadatok kombinálására is szeretnék kiterjeszteni.",
+  "miert_szamit": "Az AI-modell **pontossági korlátainak átlátható jelzésével** hatékonyabbá válhat az ember és a gép együttműködése az egészségügyi elemzéseknél.",
   "cimkek": [
-    "radiológia",
-    "egészségügy",
     "kutatás",
-    "Pittsburghi Egyetem"
+    "egészségügy",
+    "medicina",
+    "AI-modell"
   ],
   "kategoria": "kutatás",
   "forras_tipus": "elemzes",
@@ -30,7 +30,9 @@
   "video_szoveg": "",
   "relevans": true,
   "kiprobalhato": null,
-  "linkelendo_nevek": [],
+  "linkelendo_nevek": [
+    "uncertainty-weighted learning"
+  ],
   "linkszabaly": 3,
   "prioritas": {
     "pont": 63,
@@ -53,17 +55,21 @@
     "ido": "2026-10-22T06:33:13+00:00"
   },
   "jovahagyas_kell": true,
-  "forditva": "2026-10-22T07:22:08+00:00",
+  "forditva": "2026-10-22T07:25:27+00:00",
   "megjelent": "2026-10-22T07:17:46.243Z",
+  "nevelo_javitva": "2026-10-22T07:25:27+00:00",
   "tenyellenorzes": {
     "ok": true,
-    "ido": "2026-10-22T07:22:10+00:00",
-    "esemeny": "A Pittsburghi Egyetem kutatói Shandong Wu vezetésével egy olyan AI-modellt fejlesztettek ki, amely a mellrák-diagnosztika során a jóslatai mellett egy bizonytalansági pontszámot is megad, így segítve a radiológusokat a megbízhatatlanabb eredmények felismerésében.",
+    "ido": "2026-10-22T07:25:30+00:00",
+    "esemeny": "A Pittsburghi Egyetem kutatói Shandong Wu vezetésével olyan mesterségesintelligencia-módszert fejlesztettek ki, amely a mellrák-diagnosztikában a jóslat mellett a saját bizonytalanságát is becsli, segítve a radiológusokat a kétes esetek kiszűrésében.",
     "forrasok": [
       "https://radiologybusiness.com/topics/artificial-intelligence/artificial-intelligence-checks-trustworthiness-breast-cancer-ai-models"
     ],
     "hibak": [],
     "kereses": [],
     "javitva": false
-  }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
 }
