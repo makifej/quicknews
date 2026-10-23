@@ -205,6 +205,15 @@ module.exports = async (req, res) => {
       if (!gep(req) || req.method !== "POST") return json(res, 403, { hiba: "Nincs jogosultság." });
       if (!vanFcm) return json(res, 503, { hiba: "Az FCM még nincs bekötve." });
       const b = await torzs(req);
+      if (typeof b.riasztas === "string" && b.riasztas.trim()) {
+        // üzemi riasztás Heninek (pl. a gépi kitétel 30 perce nem tud frissülni); ugyanaz a riasztás 6 óránként egyszer
+        const szoveg = tiszta(b.riasztas, 240);
+        const kulcs = crypto.createHash("sha1").update(szoveg).digest("hex").slice(0, 24);
+        if ((await kv("SET", P + "admin_riaszt:" + kulcs, "1", "NX", "EX", 6 * 3600)) !== "OK") return json(res, 200, { ok: false, ok_miert: "nemrég szólt" });
+        const e = { id: crypto.randomBytes(6).toString("hex"), cim: tiszta(b.cim || "quicknews: beavatkozás kell", 90), szoveg, db: 0 };
+        try { return json(res, 200, { ok: true, riasztas: true, ...(await adminKuld(e)) }); }
+        catch (err) { await kv("DEL", P + "admin_riaszt:" + kulcs); throw err; }
+      }
       if (!Array.isArray(b.sorok)) return json(res, 400, { hiba: "Hiányzik a sorok lista." });
       const dont = (await kv("HGETALL", "qn:jovahagyas")) || [];
       const eldontve = new Set();

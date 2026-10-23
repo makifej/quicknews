@@ -188,3 +188,18 @@ test("pult-pillanatképek kora: csak gépkulccsal, a felhős kör ebből dönt a
   assert.strictEqual(r.kod, 200);
   assert.deepStrictEqual(r.adat, { posztok: "2026-10-22T06:40:00+00:00", ajanlott: null, prioritas: "2026-10-22T06:48:30+00:00", koltseg: null });
 });
+
+test("üzemi riasztás: csak gépkulccsal, ugyanaz 6 óránként egyszer", async () => {
+  ujKv(); process.env.FCM_SZOLGALTATAS = JSON.stringify({ client_email: "a@b", project_id: "p", private_key: require("crypto").generateKeyPairSync("rsa", { modulusLength: 1024 }).privateKey.export({ type: "pkcs8", format: "pem" }) });
+  const s = await belep();
+  await keres("admin.js", { url: "/api/admin?mi=admin_eszkoz", headers: s, body: { token: "j" + "A".repeat(150) } });
+  assert.ok([401, 403].includes((await keres("push.js", { url: "/api/push?mi=admin_gep", body: { riasztas: "x" } })).kod));
+  const r = await keres("push.js", { url: "/api/push?mi=admin_gep", headers: GEP, body: { cim: "quicknews: a gépi kitétel elakadt", riasztas: "A Mac 30 perce nem tud frissülni." } });
+  assert.strictEqual(r.adat.riasztas, true);
+  assert.strictEqual(r.adat.ok, 1);
+  const m = kulso.filter((x) => x.url.includes("fcm.googleapis.com")).map((x) => JSON.parse(x.opt.body).message).pop();
+  assert.strictEqual(m.data.tema, "admin");
+  assert.match(m.data.cim, /elakadt/);
+  const ujra = await keres("push.js", { url: "/api/push?mi=admin_gep", headers: GEP, body: { riasztas: "A Mac 30 perce nem tud frissülni." } });
+  assert.strictEqual(ujra.adat.ok_miert, "nemrég szólt");
+});
