@@ -1,0 +1,74 @@
+{
+  "id": "1360bd8eb5a8",
+  "slug": "a-claude-dal-igazoltak-tobb-mint-100-szoftverkonyvtar-biztonsagat",
+  "forras_id": "techmeme",
+  "forras_nev": "Anthropic",
+  "url": "https://www.anthropic.com/research/formal-verification",
+  "szerzo": null,
+  "publikalva": "2026-10-23T09:15:03+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www-cdn.anthropic.com/images/4zrzovbb/website/80cf520cb540989c3643907f004b2514ec4d01f1-1200x630.jpg"
+  },
+  "cim_eredeti": "Anthropic says it partnered with Theorem to use Claude to formally prove security properties at the assembly level across 100+ real-world open-source libraries (Anthropic)",
+  "forrasok": [],
+  "szoveg_eredeti": "Keane Lucas, Aengus Lynch, Luna Tong, Luke Champine, Zygi Straznickas, Dino Distefano, Harshikaa AgrawalEvyatar Ben Asher, Ava Howell, Sami Jawhar, Chris Rohlf, Nickolai ZeldovichNicholas Carlini, Rajashree Agrawal, Jason Gross\n\nMost software is riddled with bugs, which AI can now easily find and exploit. The standard defenses against cyberattacks are no longer sufficient: we need ways to prove that code is free of bugs. Formal software verification could provide this guarantee, but it has historically required years of expert effort, making it impractical for most real-world projects. In a collaboration with Theorem, however, we show this is no longer the case: LLMs can now produce formal proofs at large scale, enabling new software development workflows that include proven security guarantees. Using Claude, we proved security properties at the assembly code level (RISC-V) in over 100 real-world open-source software libraries. To our knowledge, this represents the first large-scale effort to use AI to apply formal verification to production software at the assembly code level. While writing the proofs, Claude also discovered bugs that had eluded detection for years, despite trillions of test runs. As model capabilities continue to improve, we expect formal verification to become an essential part of secure software development.\n\nEven mature, heavily tested software contains bugs, and LLMs are increasingly adept at finding them. The Linux kernel—one of the most well-tested pieces of software today, deployed on billions of devices worldwide—recently had over 1,000 vulnerabilities disclosed. With frontier models becoming more capable of chaining seemingly benign bugs into critical exploits, we need techniques that can detect and fix these bugs before they can be exploited in the wild.\n\nIdeally, such techniques could find and patch all bugs, and then provide some proof that there are no more to be found. Formal verification is one way to do this. In formal verification, developers translate their code into a mathematical model, then try to prove that it always follows some defined set of security rules. If they fail to prove this, that means there could be a bug in the code that would violate a rule, and the nature of the failure implies what the bug might be. Repeating this process (after eliminating the cause of failure each time) will ultimately yield proof that the code is devoid of any bug that would violate those rules.\n\nHowever, formal verification isn’t easy. Proofs can be many times larger than the original code, and writing them requires significant effort and a niche, highly specialized skill set. For instance, it took two person-years to implement the seL4 operating system kernel, but 20 person-years to formally verify it. Accordingly, formal verification has been practical only in truly mission-critical applications, such as Airbus’s avionics code.\n\nBut LLMs are making it far easier. Frontier models can now produce correctness proofs for real-world software fully autonomously. To demonstrate this, we asked Claude to prove useful security properties across 123 open-source libraries, including showing that some of their executable artifacts can never crash under certain conditions. Specifically, Claude proved that these programs will always exit normally without triggering memory-safety errors or failing assertions, for every input less than 64 MB and every modeled Linux operating system (OS) response and memory layout, under certain assumptions (namely that the program runs as a single-threaded static binary with a fixed memory budget on a RISC-V1 CPU using Linux OS). This is still far away from fixing all possible bugs, but it does get us much closer than before and provides a roadmap toward that end.\n\nWe’re publishing a subset of these proofs so that anyone can verify and reuse them, along with the RISC-V and OS semantics. Theorem, our collaborator on this project, is also offering to run the same pipeline for other open-source projects, and is publishing a Claude skill to help developers get started with verifying their own code.\n\nFormal verification is a broad field with many methodologies. Below, we also describe our initial explorations using other formal verification methods to accelerate other security or software development tasks, such as assessing the security of the zlib compression algorithm, proving behavioral equivalence of a Python interpreter written in Rust, and rooting out long-standing bugs in critical software.\n\nThe road ahead for formal verification is promising. The cost of writing proofs is falling as models become more intelligent. Moreover, as more code is formalized and methods of achieving security guarantees become more standardized, the ability to reuse or modify proofs across codebases will amortize the cost. We encourage all developers to explore formal verification with LLMs—especially those who previously tried it with less capable models and found it didn’t work.\n\nIn the rest of this post, we cover our formal verification experiments in more detail.\n\nTo prove that a piece of software is correct, we must first state what “correct” even means. Correctness is defined by the specification (spec). In some programs, there is a clear way to formally specify the program’s intended behavior. For example, a PNG decoder takes a sequence of bytes and (following RFC 2083) decodes these bytes into the corresponding image. But for most programs, things aren’t so straightforward. What would it mean for a text editor or a web browser to be “correct”? The difficulty of obtaining a comprehensive and unambiguous spec is a significant obstacle to verifying software at a larger scale.\n\nTo address this for the code in the open-source libraries that we sought to prove, we take the approach of automatically converting their preexisting compilable test suites into a spec by encoding the rule “this test suite always passes,” using a general model of what it means to execute any RISC-V-compiled binary on Linux. Historically, proving such specs was intractable, given the inherent complexity of writing a proof that can encompass and make an argument over all possible behaviors and interactions of tens of thousands of assembly instructions over any input (and the fact that proofs tend to be extremely large as a result). This is where today’s LLMs come in: churning through millions of lines of code in pursuit of a well-defined goal is a task that LLMs are extremely well suited for.\n\nFor this project, we started with fuzz tests. In these tests, developers write an entry point2 into their code that takes inputs, such that any input that causes a crash is a bug the authors care about. Then the fuzzer, a testing engine, generates enormous numbers of semirandom and mutated inputs at the entry point to try to find a bug (visualized in Figure 1). The longer a fuzzer runs, the more bugs it can find. But this is inherently a brute-force process, with no guarantee of exercising every possible code path, regardless of how many inputs you try.\n\nTo find all the bugs that would’ve been surfaced by a fuzz test, we turned the fuzz test into a spec defined over the compiled RISC-V instructions. The spec says that the fuzz test won’t crash for any input less than 64 MB.3 If Claude can prove this spec, the fuzz test on RISC-V becomes superfluous: fuzzing that entry point will never find any bugs.\n\nWe did this for hundreds of projects in Google’s OSS-Fuzz initiative, which provides continuous fuzz testing for qualifying open-source projects. OSS-Fuzz contains thousands of developer-authored entry points that look for broken code properties by crashing (for example, on a failed assertion). OSS-Fuzz automatically instruments C and C++ programs with AddressSanitizer4 (ASan), causing them to crash whenever memory is accessed improperly (which is a leading cause of software vulnerabilities). Broad-spectrum specifications like memory safety apply to almost all s",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Claude-dal igazolták több mint 100 szoftverkönyvtár biztonságát",
+  "lead": "Az Anthropic a Claude segítségével gépi kód szintjén végezett matematikai garanciát nyújtó biztonsági ellenőrzést 123 nyílt forráskódú könyvtáron.",
+  "osszefoglalo": "Az Anthropic a [Theorem](https://theorem.dev/) csapatával együttműködve a Claude AI-modell segítségével **matematikailag igazolta** több mint 100 nyílt forráskódú szoftverkönyvtár biztonsági tulajdonságait. A formális verifikációnak nevezett eljárást most alkalmazták először ekkora léptékben, alacsony szintű gépi kód (RISC-V) szintjén.\n\nA formális ellenőrzés során a kódot matematikai modellé alakítják, majd bebizonyítják, hogy az semmilyen bemenet esetén nem szegi meg a biztonsági szabályokat. A Claude 123 projektben igazolta a memóriabiztonságot és a lefagyásmentes működést, a bizonyítások megírása közben pedig **évek óta rejtőző hibákat** is felfedezett a kódokban.\n\nA hagyományosan rendkívül drága és szakértőigényes folyamatot a nyelvi modellek automatizálhatóvá teszik. A partnerek közzétettek egy Claude-bővítményt, amellyel a fejlesztők saját kódjaikon is kipróbálhatják a formális ellenőrzést.",
+  "miert_szamit": "A szoftverfejlesztők és kiberbiztonsági szakemberek ezentúl **nagyságrendekkel gyorsabban és olcsóbban** garantálhatják kódjaik kritikus hibáktól mentes működését az AI-alapú matematikai bizonyítással.",
+  "cimkek": [
+    "Anthropic",
+    "Claude",
+    "szoftverfejlesztés",
+    "kiberbiztonság"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Theorem"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 83,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 82,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 88,
+      "aktualitas": 99,
+      "kozossegi": 51
+    },
+    "elofeszures": 89,
+    "tanult": 22,
+    "indok": "Az Anthropic és a Theorem áttörést ért el a kódok matematikai biztonsági igazolásában a Claude segítségével. Forrás-tapasztalat: +1.",
+    "tema": "anthropic claude formal verification",
+    "cim_hu": "Az Anthropic a Claude-dal igazolja több mint 100 nyílt forráskódú könyvtár matematikai biztonságát",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-23T09:18:20+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-23T09:20:49+00:00",
+  "megjelent": "2026-10-23T09:20:49+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-23T09:20:53+00:00",
+    "esemeny": "Az Anthropic a Theorem kutatóműhellyel együttműködve a Claude AI segítségével 123 nyílt forráskódú szoftverkönyvtár alacsony szintű (RISC-V gépi kódú) biztonsági tulajdonságait igazolta formális verifikációval.",
+    "forrasok": [
+      "https://www.anthropic.com/research/formal-verification"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
