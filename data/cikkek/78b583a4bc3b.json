@@ -1,0 +1,70 @@
+{
+  "id": "78b583a4bc3b",
+  "slug": "nyilt-forraskodu-dns-modellt-adott-ki-a-hugging-face-carbon-x-neven",
+  "forras_id": "x-clementdelangue",
+  "forras_nev": "Clément Delangue (X)",
+  "url": "https://x.com/ClementDelangue/status/2113264393756545449",
+  "szerzo": "clem 🤗 (@ClementDelangue)",
+  "publikalva": "2026-10-22T13:41:08+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pbs.twimg.com/media/HVPOfkEWAAAiUCS.jpg?name=orig",
+    "x_url": "https://x.com/ClementDelangue/status/2113264393756545449"
+  },
+  "cim_eredeti": "Frontier labs are advancing the capabilities in AI for biology but preventing the good guys (scientists, academia, non-p",
+  "forrasok": [],
+  "szoveg_eredeti": "Frontier labs are advancing the capabilities in AI for biology but preventing the good guys (scientists, academia, non-profits, health agencies,...) to use, study and understand it with widespread but shallow guardrails that the bad guys are bypassing easily (blocked me to proofread this tweet for example 😅). \n\nThis will automatically create massive assymetry and risks in the coming years, just like in cybersecurity, especially now that frontier labs are building wet labs (HF cybersecurity scenario for biology when?).\n\nThis is why we created Carbon-X, the best open-source DNA model by midtraining Qwen3-14B on 300B tokens of DNA, English and interleaved data.  We also used a hybrid tokenizer that tokenizes English with BPE and DNA with a 6-mer tokenizer.\n\nAs a result, Carbon-X outperforms all open language models we evaluated on five benchmarks of DNA understanding and generation. This is a 27-point improvement over Qwen3-14B, showing how much a  language model can gain from DNA training. It is also API frontier level at 1,800x less cost than GPT 6.1 Sol!\n\nWe hope Carbon-X helps researchers explore DNA in new ways. Releasing it openly means anyone can study its capabilities, limitations, and risks. Let's make the AI biology frontier open-source to make it safe and impactful for the whole world (not just a few companies).\n\nApache 2.0 Model on @huggingface: https://huggingface.co/HuggingFaceBio/Carbon-X",
+  "modell": "gemini-3.5-flash",
+  "cim": "Nyílt forráskódú DNS-modellt adott ki a Hugging Face Carbon-X néven",
+  "lead": "A Hugging Face megjelentette a Carbon-X nyílt DNS-modellt, amely a Qwen3-14B alapjaira építve teszi elérhetővé a biológiai kutatást.",
+  "osszefoglalo": "Clément Delangue, a Hugging Face társalapítója és vezérigazgatója bejelentette a **Carbon-X** nevű nyílt forráskódú DNS-modellt. Az eszközt a Qwen3-14B alapjain, 300 milliárd tokennyi DNS-, angol és kevert adaton tréningezték újra, hogy segítse a kutatók és tudósok munkáját. A modell fejlesztése során egy hibrid tokenizálót használtak, amely az angol szöveget BPE-vel, a DNS-szekvenciákat pedig 6-mer tokenizálóval dolgozza fel.\n\nA tesztek alapján a **Carbon-X** felülmúlta az összes értékelt nyílt nyelvi modellt a DNS-megértési és -generálási feladatokban, ami 27 pontos javulást jelent az alapmodellhez képest. A fejlesztők célja, hogy a mesterséges intelligencia biológiai alkalmazásai ne csak néhány nagy cég zárt rendszereiben legyenek elérhetők, hanem a teljes tudományos közösség számára nyitottan és biztonságosan tanulmányozhatók maradjanak.\n\nA modell **Apache 2.0** licenc alatt azonnal ingyenesen letölthető és tanulmányozható a Hugging Face felületén.",
+  "miert_szamit": "A nyílt forráskódú biológiai modellek megjelenése **drasztikusan lecsökkenti a kutatás-fejlesztési költségeket**, így a kisebb laborok és fejlesztők is hozzáférhetnek a csúcskategóriás DNS-elemző AI-képességekhez.",
+  "cimkek": [
+    "Carbon-X",
+    "Hugging Face",
+    "Qwen3",
+    "DNS"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Carbon-X",
+    "url": "https://huggingface.co/HuggingFaceBio/Carbon-X"
+  },
+  "linkelendo_nevek": [
+    "Carbon-X"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 69,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 70,
+      "egyediseg": 85,
+      "hitelesseg": 78,
+      "aktualitas": 80,
+      "kozossegi": 40
+    },
+    "elofeszures": 73,
+    "tanult": 11,
+    "indok": "Hugging Face vezérigazgatója felhívja a figyelmet a biológiai MI kutatások korlátozásainak kockázataira.",
+    "tema": "ai safety biology research",
+    "cim_hu": "A Hugging Face vezére szerint túl szigorúak a biológiai MI biztonsági korlátjai",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-23T08:18:54+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-23T08:22:41+00:00",
+  "megjelent": "2026-10-23T08:22:41+00:00",
+  "dupla_of": "ddf7f86b51c1",
+  "tenyellenorzes": {
+    "ok": null,
+    "allapot": "var",
+    "ido": "2026-10-23T08:22:41+00:00"
+  }
+}
