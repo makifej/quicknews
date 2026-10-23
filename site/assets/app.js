@@ -673,7 +673,9 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
   var frissit = function(){
     var l = olvas(), van = {}; l.forEach(function(x){ van[x.i] = 1; });
     [].forEach.call(document.querySelectorAll('[data-ment]'), function(el){ allapot(el, !!van[el.getAttribute('data-ment')]); });
-    [].forEach.call(document.querySelectorAll('[data-mentett-jel]'), function(j){ j.textContent = l.length > 99 ? '99+' : l.length; j.hidden = !l.length; });
+    // a piros szám csak az olvasatlan mentett híreket számolja (Heni 2026-10-23: elolvasásra csökkenjen, ahogy a lista is kiszürkül)
+    var db = l.filter(function(x){ return !x.o; }).length;
+    [].forEach.call(document.querySelectorAll('[data-mentett-jel]'), function(j){ j.textContent = db > 99 ? '99+' : db; j.hidden = !db; });
   };
   var valt = function(d){
     if (!d || !d.i || !/^\/hir\/[a-z0-9-]{1,200}$/.test(d.u || '')) return;
@@ -717,7 +719,9 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
   window.addEventListener('storage', function(ev){ if (ev.key === TAR) frissit(); });
   // a cikkoldal megnyitása: ha a hír mentve volt, olvasottnak jelöljük
   var cikk = document.querySelector('[data-ment-cikk]');
-  if (cikk) { var l0 = olvas(), m = false; l0.forEach(function(x){ if (x.i === cikk.getAttribute('data-ment') && !x.o) { x.o = 1; m = true; } }); if (m) ir(l0); }
+  if (cikk) { var l0 = olvas(), m = false; l0.forEach(function(x){ if (x.i === cikk.getAttribute('data-ment') && !x.o) { x.o = 1; m = true; } }); if (m && ir(l0)) frissit(); }
+  // visszalépéskor a böngésző a gyorsítótárból hozza vissza az előző oldalt: a számot akkor is frissíteni kell
+  window.addEventListener('pageshow', function(ev){ if (ev.persisted) frissit(); });
   felrak();
   var idozito = null;
   new MutationObserver(function(){ clearTimeout(idozito); idozito = setTimeout(felrak, 120); }).observe(document.body, {childList: true, subtree: true});
