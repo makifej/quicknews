@@ -1,0 +1,77 @@
+{
+  "id": "95eb6975ad24",
+  "slug": "uj-megerositeses-tanulasi-modszerrel-javitotta-ai-ugynokei",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/microsoft/thinkingbox-training",
+  "szerzo": null,
+  "publikalva": "2026-10-22T22:24:34+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/oS8I8qx7iBS8EcNIXR3q9.png"
+  },
+  "cim_eredeti": "Turning Database Grading into RL Rewards: Post-Training Agents with ThinkingBox",
+  "forrasok": [],
+  "szoveg_eredeti": "This is the follow up to our first blog post, The Agent Said It Was Done. The Database Disagreed. ThinkingBox-Training is now available on GitHub.\n\nWe built ThinkingBox to evaluate an agent's work by comparing the final database state with the expected outcome. We then used the same kind of executable signal as a reward on training tasks outside ThinkingBox-Bench. For Qwen3.8-27B, average success rose from 51.70% to 60.78%, while tasks completed correctly on all twenty attempts rose from 38 to 107 with 50 GRPO steps.\n\nFigure 1. ThinkingBox turns executable checks of terminal database state into rewards for post-training agents on tasks outside ThinkingBox-Bench.\n\nWe built ThinkingBox to catch agents that say they are done when they are not.\n\nEach of its 507 tasks in ThinkingBox-Bench (our benchmark dataset) hands an agent a real backend and a set of tools, lets it work, then checks what really changed in the database. In the first post, we caught a model closing a customer's ticket as resolved while the carrier exception behind it was still open. Nine competent-looking tool calls, one wrong database row.\n\nThen we noticed what we had built. For most tasks, an executable check can return 1 or 0 directly from the final database state. That is not just a grader. This can be a reward function.+\n\nSo we constructed a training pool from ThinkingBox-format tasks outside the benchmark and used their executable outcomes as rewards. The catch was choosing which tasks are suitable for agent training: most tasks are either already solved or hopeless for the model in front of you, and both teach it nothing.\n\nDifficulty is policy-relative: a task is hard for the current model only until that model learns it.\n\nWe call this offline policy-relative difficulty. We estimated each task's success probability once using the base policy before training and kept the selected training pool fixed throughout the run.\n\nWe used offline policy-relative difficulty to build the training pool, then fine-tuned Qwen3.8-27B with GRPO for 50 steps. To recap, we evaluate each of the 507 benchmark tasks 20 times. pass@1 measures average success across all 10,140 attempts. pass@20 measures the share of tasks solved at least once. Observed 20/20 measures the share of tasks that pass every recorded attempt.\n\nTable 1. Qwen3.8-27B results before and after 50 steps of GRPO on the offline-selected training pool.\n\nTraining sharply increased repeatable success, with a small decline in at-least-once coverage. The rest of the post explains how we selected practice tasks, built the reward loop, and measured that tradeoff.\n\nWhat does that improvement look like on one task? A traveler requests a room downgrade, but company policy requires manager approval first. Before training, the agent changed the booking and issued refunds without approval in 15 of 20 attempts. After RL fine-tuning, it preserved the booking and payment state in all 20.\n\nFigure 2. One corporate hotel-booking task, 20 attempts per model. The base Qwen3.8-27B model changed the booking without required manager approval in 15 attempts. The RL fine-tuned model preserved booking and payment state in all 20; all expected records matched in 19.\n\nIn a hurry? The headline result is above. The implementation is in Run the training stack.\n\nThinkingBox-Bench grades agents on the database records they leave behind. Each of its 507 tasks starts a real backend, hands the agent a set of MCP tools and a simulated LLM user with private context, and at the end runs executable checks against the terminal database state. Checks are against the backend record that needs to be correct, not the specific tool calls. This incentivizes the model to discover possibly new solution paths rather than “rediscover” the human-backed solution, that might be suboptimal albeit correct.\n\nIn our first post we ran eighteen models through that benchmark twenty times each and reported a gap that headline accuracy hides. Kimi-K3 solved 93.89% of tasks at least once but completed only 68 of 507 tasks (13.41%) on all twenty recorded attempts. Claude Opus 5 inverted it: narrower coverage, far more consistency.\n\nAnd bigger or better model did not close it. Claude Opus 5.5 scored 0.66 percentage points higher than Claude Opus 5 on pass@1, yet passed exactly the same number of tasks, 241, on all twenty attempts. That gain in headline accuracy bought zero additional dependability.\n\nIf you are choosing a model for work that touches production database records, pass@1 should not be read alone. Observed 20/20 shows which tasks succeed on every attempt, which is closer to what production reliability requires.\n\nThe executable terminal-state verdict was also the training reward. Before unpacking the training loop, here is what changed on the sealed benchmark.\n\nAfter training Qwen3.8-27B, we evaluated the selected step-50 checkpoint on the 507-task benchmark it had never trained on. The 507 tasks represent an out-of-distribution test set: their domains, databases, and most MCP tools were not encountered during RL training.\n\nTable 2. ThinkingBox-Bench pass@1 (%) by domain, for selected models from our first blog's Table 2 and our fine-tuned model for different domains and overall. Observed 20/20 numbers are over the entire benchmark with 507 tasks. Each model is evaluated on all 507 tasks for 20 repeated trials. Bold marks the column leader; underline marks the runner-up.\n\nThe headline result is the observed-20/20 row in Table 1. A 27B model that initially completed 38 (7.5%) of ThinkingBox-Bench on every attempt now completes 107 (21.1%) on every attempt, almost thrice. For comparison, observed 20/20 for Kimi-K3 is 68, GPT-5.4 with 128, GPT-6 Astra has 231, and Claude Opus 5.5 leads with 241.\n\nAverage success and repeatability produce different orderings. In Table 2, we notice that GPT-5.6 Sol scored slightly higher on pass@1 than the RL fine-tuned Qwen3.8-27B (61.91% versus 60.78%) but passed fewer tasks on all 20 recorded attempts: 82 versus 107. Claude Sonnet 4.6 scored lower on pass@1, at 59.19%, yet passed nearly the same number of tasks every time, at 102. Neither metric alone captures the full picture.\n\nThe observed pattern is consistent with sharpening: repeatable success rose while at-least-once coverage fell slightly. This is in-line with prior work. One explanation is that probability distribution moved toward trajectories that work repeatedly while some low-probability paths disappeared.\n\nOverall, the model did not become broader. It became more repeatable. The next question is where those gains landed.\n\nFigure 3. Domain-level base scores, RLFT scores, and percentage-point changes. Green change cells show gains and red cells show declines; blue shading indicates the score level within each metric.\n\nPass@1 and observed 20/20 rose in all five domains. Pass@20 was mixed: it increased in neobank and consulting, but declined in retail, travel, and auto insurance. Auto insurance had the largest breadth loss (−7.0 points), while retail had the largest observed-20/20 gain (+24.5 points).\n\nThe first post priced consistency using simple math: divide the estimated cost of the full 20-run campaign by the number of tasks the model passed every single time.\n\nCost per dependable task = estimated cost of the 507 × 20 campaign ÷ tasks passing 20/20\n\nApplying the same cost math to the fine-tuned checkpoint's measured token usage:\n\nTable 3. Estimated evaluation cost and dependability for base and RL fine-tuned Qwen3.8-27B. Cost per successful attempt divides total estimated campaign cost (507 x 20) by the number of passing attempts.\n\nAt $8.00 per dependable task, the fine-tuned model came close to GPT-5.4 ($6.80), GPT-6 Astra ($7.45), and Claude Opus 5.5 ($7.80) in the companion comparison.\n\nFigure 4 prices cost per successful attempt against pass@1.\n\nFigure 4. The golden arrow traces Qwen3.8-27B base pareto cost position to the RLFT (diamond): pass@1 rises from 51.70% to 60.78% while estimated c",
+  "modell": "gemini-3.5-flash",
+  "cim": "Új megerősítéses tanulási módszerrel javította AI-ügynökei megbízhatóságát a Microsoft",
+  "lead": "A Microsoft a ThinkingBox rendszert használja fel arra, hogy adatbázis-ellenőrzésekkel képezzen megbízhatóbb AI-ügynököket.",
+  "osszefoglalo": "A Microsoft nyílt forráskóddal közzétette a **ThinkingBox-Training** nevű keretrendszert a GitHubon. Az eszköz lényege, hogy az AI-ügynökök által elvégzett feladatok után közvetlenül az adatbázis végső állapotát ellenőrzi. Ha az adatok pontosan egyeznek az elvárt eredménnyel, a rendszer bináris visszajelzést (1 vagy 0) ad, amit **jutalomfüggvényként használ** a nyelvi modellek utóhangolásához.\n\nA tesztek során a Qwen3.8-27B nyílt modellt finomhangolták 50 GRPO lépésen keresztül. Ennek hatására a modell átlagos sikeres teljesítése 51,70%-ról **60,78%-ra nőtt**, míg a hibátlanul, egymás után 20-ból 20-szor végrehajtott feladatok száma 38-ról **107-re emelkedett** a 507 feladatos tesztkészleten.\n\nA kutatás rámutatott, hogy a megerősítéses tanulás (RL) során a modell nem feltétlenül szélesebb tudásúvá vált, hanem a már meglévő képességeit kezdte **sokkal megbízhatóbban és konzisztensebben** használni a termelési adatbázisok módosításakor.",
+  "miert_szamit": "Az adatbázisokkal vagy API-kkal dolgozó AI-ügynököknél nem az átlagos pontosság, hanem a **konzisztens hibátlanság számít**: a módszer segít megelőzni a sikeresnek hazudott, de hibás adatbázis-módosításokat.",
+  "cimkek": [
+    "Microsoft",
+    "RL",
+    "ThinkingBox",
+    "GitHub"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "ThinkingBox-Training"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 71,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 85,
+      "hitelesseg": 90,
+      "aktualitas": 84,
+      "kozossegi": 62
+    },
+    "elofeszures": 99,
+    "tanult": 65,
+    "indok": "Szakmai bejegyzés az MI-ágenstanítás hatékonyságának növeléséről megerősítéses tanulással Forrás-tapasztalat: -3.",
+    "tema": "thinkingbox rl rewards agents",
+    "cim_hu": "Nyílt forráskódúvá vált az MI-ágensek adatbázis-alapú betanítását segítő ThinkingBox",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-23T06:04:04+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-23T06:08:48+00:00",
+  "megjelent": "2026-10-23T06:08:48+00:00",
+  "tenyellenorzes": {
+    "ok": false,
+    "ido": "2026-10-23T06:10:02+00:00",
+    "esemeny": "A Microsoft közzétette a ThinkingBox-Training keretrendszert a GitHubon, amellyel az adatbázisok végső állapotát ellenőrizve képeznek RL-jutalmakat az AI-ügynökök megbízhatóságának növelésére.",
+    "forrasok": [
+      "https://huggingface.co/blog/microsoft/thinkingbox-training"
+    ],
+    "hibak": [
+      "Hiányzik az elsődleges forrás linkje a szövegből (a szabályzat kötelezővé teszi a beszédes link elhelyezését).",
+      "a javított változat hibás vagy hiányos",
+      "túl hosszú cím"
+    ],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}
