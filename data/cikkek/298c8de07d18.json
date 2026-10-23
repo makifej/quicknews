@@ -1,0 +1,79 @@
+{
+  "id": "298c8de07d18",
+  "slug": "az-openai-12-szeresere-gyorsitotta-a-chatgpt-adatolvasasat",
+  "forras_id": "openai",
+  "forras_nev": "OpenAI",
+  "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two",
+  "szerzo": null,
+  "publikalva": "2026-10-23T17:00:00+00:00",
+  "media": {
+    "tipus": "nincs"
+  },
+  "cim_eredeti": "Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)",
+  "forrasok": [],
+  "szoveg_eredeti": "Learn how OpenAI scaled Habitat with reliable multi-tenancy, global caching, and Azure Cosmos DB to deliver 12× faster reads for ChatGPT.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Az OpenAI 12-szeresére gyorsította a ChatGPT adatolvasását",
+  "lead": "A cég egy technikai elemzésben mutatta be, miként skálázta a Habitat nevű belső tárolórendszerét 1 milliárd felhasználóra.",
+  "osszefoglalo": "Az OpenAI közzétette a **Habitat adatbázis-rendszer** skálázásáról szóló [elemzésének második részét](https://openai.com/index/scaling-storage-one-billion-users-part-two). Az architektúra frissítésével, többfelhasználós kiszolgálással, globális gyorsítótárazással és az [Azure Cosmos DB](https://azure.microsoft.com/en-us/products/cosmos-db/) használatával sikeresen felkészítették az infrastruktúrát a **több mint 1 milliárd ChatGPT-felhasználó** kiszolgálására.\n\nA fejlesztések hatására a rendszer az adatlekérdezéseket és adatolvasásokat **12-szer gyorsabban** végzi el. A frissített háttérarchitektúra jobb megbízhatóságot és **stabilabb működést** biztosít a nagy terhelésű időszakokban is.",
+  "miert_szamit": "A háttérrendszer teljesítményének és sebességének növekedése **közvetlenül csökkenti a ChatGPT válaszidejét**, ami [folyamatosabb munkavégzést](https://openai.com/index/scaling-storage-one-billion-users-part-two) tesz lehetővé a napi használat során.",
+  "cimkek": [
+    "OpenAI",
+    "ChatGPT",
+    "adatbázis",
+    "infrastruktúra"
+  ],
+  "kategoria": "üzlet",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 70,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 70,
+      "egyediseg": 90,
+      "hitelesseg": 92,
+      "aktualitas": 98,
+      "kozossegi": 66
+    },
+    "elofeszures": 93,
+    "tanult": 75,
+    "indok": "Technikai mélyfúrás az OpenAI infrastruktúrájáról, ami több mint egymilliárd ChatGPT-felhasználót szolgál ki. Forrás-tapasztalat: -5.",
+    "tema": "openai chatgpt storage scaling",
+    "cim_hu": "Így skálázta az OpenAI az adattárolást az egymilliárdos ChatGPT-felhasználótábor mögött",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-23T16:18:24+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-23T16:20:48+00:00",
+  "megjelent": "2026-10-23T16:20:48+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-23T16:20:55+00:00",
+    "esemeny": "Az OpenAI közzétette belső tárolórendszere, a Habitat skálázásáról szóló technikai cikkének második részét, amely bemutatja, hogyan értek el 12-szeres olvasási sebességnövekedést a több mint 1 milliárd ChatGPT-felhasználó kiszolgálása érdekében.",
+    "forrasok": [
+      "https://openai.com/index/scaling-storage-one-billion-users-part-two"
+    ],
+    "hibak": [
+      "Hiányoznak a kötelező hivatkozások (linkek) a szövegből a megadott elsődleges forrásra."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Az OpenAI 12-szeresére gyorsította a ChatGPT adatolvasását",
+      "lead": "A cég egy technikai elemzésben mutatta be, miként skálázta a Habitat nevű belső tárolórendszerét 1 milliárd felhasználóra.",
+      "osszefoglalo": "Az OpenAI közzétette a **Habitat adatbázis-rendszer** skálázásáról szóló elemzésének második részét. Az architektúra frissítésével, többfelhasználós kiszolgálással, globális gyorsítótárazással és az Azure Cosmos DB használatával sikeresen felkészítették az infrastruktúrát a **több mint 1 milliárd ChatGPT-felhasználó** kiszolgálására.\n\nA fejlesztések hatására a rendszer az adatlekérdezéseket és adatolvasásokat **12-szer gyorsabban** végzi el. A frissített háttérarchitektúra jobb megbízhatóságot és stabilabb működést biztosít a nagy terhelésű időszakokban is.",
+      "miert_szamit": "A háttérrendszer teljesítményének és sebességének növekedése **közvetlenül csökkenti a ChatGPT válaszidejét**, ami folyamatosabb munkavégzést tesz lehetővé a napi használat során."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
