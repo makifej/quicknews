@@ -1,0 +1,50 @@
+{
+  "id": "fa9adc2ce5de",
+  "slug": "a-post-on-how-we-ve-been-securing-our-frontier-model-training",
+  "forras_id": "x-gdb",
+  "forras_nev": "Greg Brockman (X)",
+  "url": "https://x.com/gdb/status/2113724268773023917",
+  "publikalva": "2026-10-23T20:08:31+00:00",
+  "cim": "A post on how we've been securing our frontier model training environment.",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "duplikátum: 48e2274fdf2b",
+  "media": {
+    "tipus": "x",
+    "kep": null,
+    "x_url": "https://x.com/gdb/status/2113724268773023917"
+  },
+  "cim_eredeti": "A post on how we've been securing our frontier model training environment.",
+  "szoveg_eredeti": "A post on how we've been securing our frontier model training environment.\n\nWe've been building tools around our frontier cyber models, which have secured us far beyond what we could have unassisted and should generalize as key to how defenders secure themselves going forward.\n\n[IDÉZETT POSZT, amelyet Greg Brockman megosztott. Eredeti szerzője: OpenAI (@OpenAI); megjelent: 2026-10-23T19:46:46+00:00; link: https://x.com/OpenAI/status/2113718797505036665; média: nincs média]\nOver the past several months, we have substantially hardened the security of our research training environment. We’ve removed live internet access for all frontier models during training and built an offline world for them to use instead—a cached version of the web where they can still learn to browse, search, and use applications.\n\nOn September 20, after a model exploited a DNS misconfiguration to find a way outside of this offline world, we paused frontier training to strengthen containment further. We assembled teams of agents, powered by our most cyber-capable models, and tasked them with finding weaknesses in our research environments.\n\nWhile they found no route to the internet they could easily exploit while concealing their activity from our monitors, they did find zero-day vulnerabilities, virtual machine escapes, and hardware side-channels for communication between agents. We used their discoveries to further strengthen our defenses and contribute fixes to open-source software.\n\nAfter strengthening our containment architecture, we resumed our frontier RL training and inference on October 1. We’ve reserved substantial compute for continuous red-teaming, and made high-compute red-teaming part of the safety cases we use to decide whether frontier training and evaluation can proceed securely.\n\nhttps://openai.com/index/securing-our-frontier-model-training-environment/",
+  "begyujtve": "2026-10-23T20:26:32.570312+00:00",
+  "prioritas": {
+    "pont": 44,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 35,
+      "egyediseg": 35,
+      "hitelesseg": 81,
+      "aktualitas": 98,
+      "kozossegi": 29
+    },
+    "elofeszures": 79,
+    "tanult": 28,
+    "indok": "Duplikátum: 48e2274fdf2b",
+    "tema": "openai training security environment",
+    "cim_hu": "Így védi az OpenAI a legfejlettebb modelljeinek tanítási környezetét",
+    "klaszter": "48e2274fdf2b",
+    "ai": true,
+    "ido": "2026-10-23T20:33:44+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-23T20:36:06+00:00",
+  "dupla_of": "48e2274fdf2b"
+}

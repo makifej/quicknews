@@ -1191,7 +1191,7 @@ async function jelvenyek(){const akt=aktivFul();latta(akt);
  try{const d=await lekér(U.ajanlott);pdb+=(d.sorok||[]).filter(s=>!s.feldolgozott&&ujabb(new Date(s.publikalva).toISOString(),"posztok")).length}catch(e){}
  jelol("posztok",pdb);
  /* a priorizálásnál a szám a jóváhagyásra váró hírek száma (nem csak az újak): addig marad, amíg döntesz róluk */
- try{const d=await lekér(U.prioritas);const n=(d.sorok||[]).filter(s=>s.allapot==="fuggo").length;const b=document.querySelector('.fulek [data-ful="prioritas"]');let j=b.querySelector(".szamjel");
+ try{const n=ADMIN?((await lekér("/api/admin?mi=fuggo")).db||0):((await lekér(U.prioritas)).sorok||[]).filter(s=>s.allapot==="fuggo").length;const b=document.querySelector('.fulek [data-ful="prioritas"]');let j=b.querySelector(".szamjel");
   if(!n){if(j)j.remove()}else{if(!j){j=document.createElement("span");j.className="szamjel";b.appendChild(j)}j.textContent=n>99?"99+":n;j.setAttribute("aria-label",n+" jóváhagyásra vár")}}catch(e){}
  try{const d=await lekér(U.bekuldesek);jelol("bekuldes",(d.tetel||[]).filter(b=>!b.atveve&&(b.allapot==="dontesre_var"||b.allapot==="atnezes")).length)}catch(e){}
  try{const d=await lekér(U.hirdetok);const t=d.tetel||[];jelol("hirdetok",t.filter(h=>h.tema!=="hirfolyam"&&h.allapot==="uj").length);jelol("cikkbehuzas",t.filter(h=>h.tema==="hirfolyam"&&h.allapot==="uj").length)}catch(e){}
