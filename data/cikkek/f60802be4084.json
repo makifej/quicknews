@@ -1,0 +1,51 @@
+{
+  "id": "f60802be4084",
+  "slug": "over-the-past-several-months-we-have-substantially-hardened-the",
+  "forras_id": "x-openai",
+  "forras_nev": "OpenAI (X)",
+  "url": "https://x.com/OpenAI/status/2113718797505036665",
+  "publikalva": "2026-10-23T19:46:46+00:00",
+  "cim": "Over the past several months, we have substantially hardened the security of our research training environment. We’ve re",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "duplikátum: 48e2274fdf2b",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://images.ctfassets.net/kftzwdyauwt9/5Ho5AoUkijZ1OWhqcDlVvT/84af1aa075c5e8e44d9dc93d0146c31f/new-approach-to-research-model-containment-social.png?w=1600&h=900&fit=fill",
+    "kep_forras": "https://openai.com/index/securing-our-frontier-model-training-environment/",
+    "x_url": "https://x.com/OpenAI/status/2113718797505036665"
+  },
+  "cim_eredeti": "Over the past several months, we have substantially hardened the security of our research training environment. We’ve re",
+  "szoveg_eredeti": "Over the past several months, we have substantially hardened the security of our research training environment. We’ve removed live internet access for all frontier models during training and built an offline world for them to use instead—a cached version of the web where they can still learn to browse, search, and use applications.\n\nOn September 20, after a model exploited a DNS misconfiguration to find a way outside of this offline world, we paused frontier training to strengthen containment further. We assembled teams of agents, powered by our most cyber-capable models, and tasked them with finding weaknesses in our research environments.\n\nWhile they found no route to the internet they could easily exploit while concealing their activity from our monitors, they did find zero-day vulnerabilities, virtual machine escapes, and hardware side-channels for communication between agents. We used their discoveries to further strengthen our defenses and contribute fixes to open-source software.\n\nAfter strengthening our containment architecture, we resumed our frontier RL training and inference on October 1. We’ve reserved substantial compute for continuous red-teaming, and made high-compute red-teaming part of the safety cases we use to decide whether frontier training and evaluation can proceed securely.\n\nhttps://openai.com/index/securing-our-frontier-model-training-environment/",
+  "begyujtve": "2026-10-23T19:49:36.084232+00:00",
+  "prioritas": {
+    "pont": 60,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 45,
+      "egyediseg": 90,
+      "hitelesseg": 92,
+      "aktualitas": 98,
+      "kozossegi": 36
+    },
+    "elofeszures": 86,
+    "tanult": 30,
+    "indok": "Duplikátum: 48e2274fdf2b",
+    "tema": "openai training environment security",
+    "cim_hu": "Leállította a modellképzést az OpenAI egy hálózati biztonsági rés miatt",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-23T19:59:18+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-23T20:01:46+00:00",
+  "dupla_of": "48e2274fdf2b"
+}
