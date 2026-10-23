@@ -1,0 +1,48 @@
+{
+  "id": "6430909168b5",
+  "slug": "does-your-model-run-on-aws-trainium-look-it-up",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/torch-neuronx-model-support",
+  "publikalva": "2026-10-23T00:00:00+00:00",
+  "cim": "Does Your Model Run on AWS Trainium? Look It Up",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 55 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://huggingface.co/blog/assets/torch-neuronx-model-support/thumbnail.jpg"
+  },
+  "cim_eredeti": "Does Your Model Run on AWS Trainium? Look It Up",
+  "szoveg_eredeti": "In a previous post, we introduced TorchNeuron, the native PyTorch backend for AWS Trainium (the torch-neuronx package). With it, Transformers runs its own modeling code on Trainium, as it does on any other device, so any Transformers model on the Hub may run. Which ones actually do?\n\nThe torch-neuronx model support Space answers that question for the most popular models on the Hub. It tells you whether a model runs unmodified on Trainium, and gives you the script to run it yourself.\n\nThe Space opens on the Selected view: our own selection of models picked among the top models on the Hub by downloads and by trending score. Each row gives the result, the number of Trainium cores the model is sharded over, the wall time of the run (compilation included) and the peak device memory.\n\nTo look up a given model, switch to the Trending or Downloads view and type part of its name. These views follow the Hub's own rankings, one task at a time, whether a model was tested or not. When a model was left out on purpose, the Space tells you why (most of the time it was not prioritized, sometimes it is truly incompatible). You can also pick the versions of the Neuron compiler (neuronx-cc) and of Transformers to look at.\n\nAt the time of writing, only Transformers models are tested, and our selection is limited to text-generation and image-text-to-text models. We plan to expand to diffusers, sentence transformers, and other transformers tasks.\n\nSelect a model to see how to run it. The Space lists the Neuron stack the model was tested on, the packages to install on top of it, and the run.py script that ran. The script follows the recipe of the TorchNeuron announcement: it loads the model with from_pretrained, sharded when it needs to be, then generates with a static cache and torch.compile(backend=\"neuron\").\n\nOn a Trainium2 (trn2) instance with that stack, for example in the AWS Neuron Deep Learning Container, install the packages, then run:\n\nNo need for torchrun: the script launches its own torch.distributed ranks when the model is sharded.\n\nA first run starts by compiling the model's graphs. To skip that step, copy the graphs the same compiler built during the test, from the public NEFF cache bucket. The Space gives you the command, with the right compiler version:\n\nEach test loads the model on a trn2 instance, sharded over the smallest number of Trainium cores that can hold its weights. Most models are sharded with tensor parallelism. Mixture-of-experts models without a tensor-parallel plan use expert parallelism only. The test then generates 32 tokens and checks them. On a single core, the tokens are compared with those of a CPU run of the same checkpoint. When the model is sharded, a small judge model checks that the text is fluent English.\n\nAt the time of writing, only models that fit on 4 Trainium2 devices are tested, which means 16 cores at most. A PASS says nothing about throughput, or about longer generations.\n\nEverything the Space shows comes from the public aws-neuron/torch-neuronx-model-support dataset, with one Parquet file per pair of neuronx-cc and library versions.\n\nEach row holds a model's result, the error when it failed, the versions of the whole stack and the run.py that ran. You can query it directly:\n\nThe dataset card gives the exact meaning of each result.\n\nNext time you wonder whether a model runs on Trainium, look it up.",
+  "begyujtve": "2026-10-23T13:16:27.750686+00:00",
+  "prioritas": {
+    "pont": 55,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 50,
+      "egyediseg": 85,
+      "hitelesseg": 90,
+      "aktualitas": 86,
+      "kozossegi": 46
+    },
+    "elofeszures": 91,
+    "tanult": 56,
+    "indok": "Technikai jellegű bejelentés az AWS Trainium támogatásról a Hugging Face-en, ami főleg a fejlesztőknek hasznos. Forrás-tapasztalat: -4.",
+    "tema": "aws trainium huggingface support",
+    "cim_hu": "Megnézhető, hogy mely Hugging Face modellek futnak AWS Trainium chipeken",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-23T13:18:38+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-23T13:20:52+00:00"
+}
