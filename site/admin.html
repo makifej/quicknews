@@ -290,6 +290,8 @@ button.hird-indit{color:#131313;background:var(--amber)}
 .pr-savg i{display:block;height:100%;background:#7bd88f;border-radius:6px}
 #pr-tendencia .a-bev{font-size:17px;color:var(--szoveg)}
 #pr-tendencia .hl-cimke{font-size:15px}
+.pr-rendgomb{all:unset;cursor:pointer;font:inherit;color:inherit;white-space:nowrap}
+.pr-rendgomb:focus-visible{outline:2px solid var(--szoveg);outline-offset:2px;border-radius:4px}
 .pr-tab .rovid{display:none}
 @media (max-width:700px){.pr-tab th,.pr-tab td{padding:10px 4px}.pr-tab th{font-size:14px}.pr-tab td{font-size:17px}.pr-tab td:first-child{font-size:15px}.pr-arany{font-size:17px;min-width:0}.pr-savg{display:none}.pr-tab .hosszu{display:none}.pr-tab .rovid{display:inline}
 .pr-tab td:first-child{max-width:120px;overflow:hidden;text-overflow:ellipsis}}.pr-naplo summary{cursor:pointer;font-weight:700;color:var(--halk);font-size:18px}
@@ -1068,15 +1070,26 @@ function prNezet(){document.querySelectorAll("[data-prnezet]").forEach(b=>b.setA
 function prTendencia(){if(!PR)return;const S=PR.sorok||[];
  const tabla=(cim,kulcs,nevek)=>{const g={};for(const s of S){const k=kulcs(s);if(!k)continue;const e=g[k]||(g[k]={jo:0,rossz:0,gepi:0,fuggo:0});
    if(s.allapot==="jovahagyva")e.jo++;else if(s.allapot==="elutasitva")(s.auto?e.gepi++:e.rossz++);else e.fuggo++}
-  const sorok=Object.entries(g).sort((a,b)=>(nevek?nevek.indexOf(a[0])-nevek.indexOf(b[0]):0)||((b[1].jo+b[1].rossz)-(a[1].jo+a[1].rossz)));
-  return `<p class="hl-cimke">${cim}</p><table class="pr-tab"><thead><tr><th></th><th><span class="hosszu">Jóváhagyva</span><span class="rovid">✓</span></th><th><span class="hosszu">Elutasítva</span><span class="rovid">✕</span></th><th>Függő</th><th><span class="hosszu">Gépi elutasítás</span><span class="rovid">Gépi</span></th><th><span class="hosszu">Arány</span><span class="rovid">%</span></th></tr></thead><tbody>`+
+  const db=e=>e.jo+e.rossz,ar=e=>db(e)?e.jo/db(e):null;
+  /* Heni 2026-10-23: arány szerint is sorba rendezhető; a döntés nélküli sor (nincs arány) mindig a végére kerül, egyenlő aránynál a több döntés előrébb */
+  const alap=(a,b)=>(nevek?nevek.indexOf(a[0])-nevek.indexOf(b[0]):0)||(db(b[1])-db(a[1]));
+  const arany=(a,b)=>{const x=ar(a[1]),y=ar(b[1]);if(x===null||y===null)return x===null&&y===null?alap(a,b):x===null?1:-1;
+   return (PRTREND==="arany_fel"?x-y:y-x)||(db(b[1])-db(a[1]))};
+  const sorok=Object.entries(g).sort(PRTREND==="alap"?alap:arany);
+  return `<p class="hl-cimke">${cim}</p><table class="pr-tab"><thead><tr><th></th><th><span class="hosszu">Jóváhagyva</span><span class="rovid">✓</span></th><th><span class="hosszu">Elutasítva</span><span class="rovid">✕</span></th><th>Függő</th><th><span class="hosszu">Gépi elutasítás</span><span class="rovid">Gépi</span></th><th><button type="button" class="pr-rendgomb" data-prtrend-fej aria-label="Rendezés arány szerint"><span class="hosszu">Arány</span><span class="rovid">%</span> ${PRTREND==="arany_le"?"↓":PRTREND==="arany_fel"?"↑":"↕"}</button></th></tr></thead><tbody>`+
    sorok.map(([k,e])=>{const d=e.jo+e.rossz,a=d?Math.round(e.jo/d*100):null;
     return `<tr><td>${esc(k)}</td><td class="jo">${e.jo}</td><td class="rossz">${e.rossz}</td><td>${e.fuggo}</td><td>${e.gepi}</td><td><span class="pr-arany">${a===null?"-":a+"%"}</span>${a===null?"":`<span class="pr-savg"><i style="width:${a}%"></i></span>`}</td></tr>`}).join("")+`</tbody></table>`};
  const SZN={P1:"P1",P2:"P2",P3:"P3",X:"40 alatt"};
  document.getElementById("pr-tendencia").innerHTML=
+  `<div class="szeg alful" role="group" aria-label="Tendencia sorrendje"><button type="button" data-prtrend="alap" aria-pressed="${PRTREND==="alap"}">Alap</button><button type="button" data-prtrend="arany_le" aria-pressed="${PRTREND==="arany_le"}">Arány ↓</button><button type="button" data-prtrend="arany_fel" aria-pressed="${PRTREND==="arany_fel"}">Arány ↑</button></div>`+
   `<p class="a-bev">Az utóbbi ${PR.napok||7} nap hírei. ✓ jóváhagytad, ✕ elutasítottad, Gépi: a gép utasította el. Az arány a te döntéseidből számol. Frissítve: ${PR.frissult?ora(new Date(PR.frissult)):"-"}.</p>`+
   tabla("A gép szintje szerint",s=>SZN[s.szint]||s.szint,["P1","P2","P3","40 alatt"])+
-  tabla("Gyűjtő csatorna szerint",s=>s.csatorna||s.forras_id||s.forras)}
+  tabla("Gyűjtő csatorna szerint",s=>s.csatorna||s.forras_id||s.forras);
+ const allit=v=>{PRTREND=v;TAR("pr-trend",v);prTendencia()};
+ document.querySelectorAll("#pr-tendencia [data-prtrend]").forEach(b=>b.onclick=()=>allit(b.dataset.prtrend));
+ /* a fejlécre koppintva: csökkenő, növekvő, alap, körbe */
+ document.querySelectorAll("#pr-tendencia [data-prtrend-fej]").forEach(b=>b.onclick=()=>allit(PRTREND==="arany_le"?"arany_fel":PRTREND==="arany_fel"?"alap":"arany_le"))}
+let PRTREND=["alap","arany_le","arany_fel"].includes(TAR("pr-trend"))?TAR("pr-trend"):"alap";
 document.querySelectorAll("[data-prnezet]").forEach(b=>b.onclick=()=>{PRNEZET=b.dataset.prnezet;TAR("pr-nezet",PRNEZET);prNezet()});
 let PR=null,PRALL=TAR("pr-all")||"fuggo",PRSZINT=TAR("pr-szint")||"mind",PRREND=TAR("pr-rend")||"pont";const PRKIJ=new Set();
 const PRALLNEV={fuggo:"Függőben",jovahagyva:"Jóváhagyva",elutasitva:"Elutasítva"};
