@@ -181,8 +181,8 @@ test("admin-emlékeztető: régóta váró P1/P2 hírre 2 óránként egyszer, a
 
 test("pult-pillanatképek kora: csak gépkulccsal, a felhős kör ebből dönt az Ajánlott felülírásáról", async () => {
   ujKv();
-  tar.set("qn:pult:posztok", JSON.stringify({ frissitve: "2026-10-22T06:40:00+00:00", sorok: [] }));
-  tar.set("qn:pult:prioritas", JSON.stringify({ frissult: "2026-10-22T06:48:30+00:00", sorok: [] }));
+  tar.set("qn:pult:posztok:ido", "2026-10-22T06:40:00+00:00");
+  tar.set("qn:pult:prioritas:ido", "2026-10-22T06:48:30+00:00");
   assert.strictEqual((await keres("admin.js", { method: "GET", url: "/api/admin?mi=pult_frissult_gep" })).kod, 401);
   const r = await keres("admin.js", { method: "GET", url: "/api/admin?mi=pult_frissult_gep", headers: GEP });
   assert.strictEqual(r.kod, 200);
@@ -202,4 +202,32 @@ test("üzemi riasztás: csak gépkulccsal, ugyanaz 6 óránként egyszer", async
   assert.match(m.data.cim, /elakadt/);
   const ujra = await keres("push.js", { url: "/api/push?mi=admin_gep", headers: GEP, body: { riasztas: "A Mac 30 perce nem tud frissülni." } });
   assert.strictEqual(ujra.adat.ok_miert, "nemrég szólt");
+});
+
+test("Upstash-forgalom: a változatlan pillanatkép csak érintés, a számláló a kis kivonatból számol, a lista a friss időt mutatja", async () => {
+  ujKv();
+  const s = await belep();
+  const adat = { frissult: "2026-10-23T10:00:00+00:00", napok: 7, sorok: [
+    { id: ID1, szint: "P1", pont: 91, allapot: "fuggo", beerkezett: "2026-10-23T09:00:00+00:00" },
+    { id: ID2, szint: "P3", pont: 50, allapot: "fuggo", beerkezett: "2026-10-23T09:30:00+00:00" },
+    { id: ID3, szint: "X", pont: 22, allapot: "elutasitva", beerkezett: "2026-10-23T08:00:00+00:00" } ] };
+  const h = "a".repeat(64);
+  assert.strictEqual((await keres("admin.js", { url: "/api/admin?mi=feltolt", headers: GEP, body: { kulcs: "prioritas", adat, hash: h } })).kod, 200);
+  const hs = await keres("admin.js", { method: "GET", url: "/api/admin?mi=pult_hash_gep", headers: GEP });
+  assert.strictEqual(hs.adat.prioritas, h);
+  assert.strictEqual(JSON.parse(tar.get("qn:pult:prioritas:fuggo")).length, 2, "a kivonatban csak a függők");
+  // döntés után a számláló a kivonatból és az élő döntésekből számol
+  await keres("admin.js", { url: "/api/admin?mi=prioritas_dontes", headers: s, body: { idk: [ID1], allapot: "jovahagyva" } });
+  const f = await keres("admin.js", { method: "GET", url: "/api/admin?mi=fuggo", headers: s });
+  assert.deepStrictEqual([f.adat.db, f.adat.P1, f.adat.P3], [1, 0, 1]);
+  // érintés: a tartalom marad, az idő friss lesz, a lista ezt mutatja
+  tar.set("qn:pult:prioritas:ido", "2026-10-23T09:00:00+00:00");
+  assert.strictEqual((await keres("admin.js", { url: "/api/admin?mi=pult_erintes_gep", headers: GEP, body: { kulcs: "prioritas" } })).kod, 200);
+  const ido = tar.get("qn:pult:prioritas:ido");
+  assert.ok(ido > "2026-10-23T10:00:00", "az érintés frissítette az időt");
+  const l = await keres("admin.js", { method: "GET", url: "/api/admin?mi=prioritas", headers: s });
+  assert.strictEqual(l.adat.frissult, ido);
+  assert.strictEqual(l.adat.sorok.length, 3);
+  assert.strictEqual((await keres("admin.js", { url: "/api/admin?mi=pult_erintes_gep", headers: GEP, body: { kulcs: "x" } })).kod, 400);
+  assert.strictEqual((await keres("admin.js", { method: "GET", url: "/api/admin?mi=pult_hash_gep" })).kod, 401);
 });

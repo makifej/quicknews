@@ -164,9 +164,23 @@ async function jovahagyasok() {
   return d;
 }
 
+const PULT_KULCSOK = ["posztok", "koltseg", "ajanlott", "statisztika", "prioritas"];
+async function pultIdo(kulcs) { await kv("SET", P + "pult:" + kulcs + ":ido", new Date().toISOString()); }
+// a változatlanul hagyott pillanatkép is a legutóbbi ellenőrzés idejét mutassa („Frissítve: …”)
+async function frissIdo(kulcs, adat) {
+  const ido = await kv("GET", P + "pult:" + kulcs + ":ido");
+  if (!ido || !adat || adat.hiba) return adat;
+  for (const m of ["frissult", "frissitve"]) if (m in adat && String(adat[m] || "") < ido) adat[m] = ido;
+  return adat;
+}
+// a jóváhagyásra váró tételek kis kivonata a számlálóhoz (az app 2 percenként, a pult percenként kéri)
+function fuggoKivonat(adat) {
+  return (adat.sorok || []).filter((s) => s.allapot === "fuggo").map((s) => ({ id: s.id, szint: s.szint, beerkezett: s.beerkezett || "" }));
+}
+
 async function prioritasAdat() {
   const v = await kv("GET", P + "pult:prioritas");
-  const adat = v ? JSON.parse(v) : { sorok: [], hiba: "Még nincs feltöltött adat." };
+  const adat = await frissIdo("prioritas", v ? JSON.parse(v) : { sorok: [], hiba: "Még nincs feltöltött adat." });
   const dont = await jovahagyasok();
   for (const s of adat.sorok || []) {
     const d = dont[s.id];
@@ -179,6 +193,22 @@ async function prioritasAdat() {
 
 // a függőben lévő, Heni döntésére váró hírek száma (az app piros jelzéséhez)
 async function fuggoDb() {
+  // a kis kivonatból számol (ugyanaz a forrás, mint a lista: a feltöltött pillanatkép + Heni élő döntései)
+  const kiv = await kv("GET", P + "pult:prioritas:fuggo");
+  if (!kiv) return fuggoDbTeljes();
+  const dont = await jovahagyasok();
+  const f = [];
+  for (const s of JSON.parse(kiv)) {
+    const d = dont[s.id];
+    if (d && d.allapot && d.allapot !== "fuggo") continue;
+    f.push({ ...s, szint_tenyleges: (d && JOVA_SZINT.includes(d.szint)) ? d.szint : s.szint });
+  }
+  const db = { P1: 0, P2: 0, P3: 0 };
+  for (const s of f) if (db[s.szint_tenyleges] !== undefined) db[s.szint_tenyleges]++;
+  const legujabb = f.reduce((m, s) => (String(s.beerkezett || "") > m ? String(s.beerkezett) : m), "");
+  return { db: f.length, ...db, legujabb, frissult: (await kv("GET", P + "pult:prioritas:ido")) || null };
+}
+async function fuggoDbTeljes() {
   const adat = await prioritasAdat();
   const f = (adat.sorok || []).filter((s) => s.allapot === "fuggo");
   const db = { P1: 0, P2: 0, P3: 0 };
@@ -250,9 +280,25 @@ module.exports = async (req, res) => {
     }
     if (gep(req)) {
       if (mi === "feltolt" && req.method === "POST") {
-        const { kulcs, adat } = await torzs(req);
+        const { kulcs, adat, hash } = await torzs(req);
         if (!["posztok", "koltseg", "ajanlott", "statisztika", "prioritas"].includes(kulcs)) return json(res, 400, { hiba: "rossz kulcs" });
         await kv("SET", P + "pult:" + kulcs, JSON.stringify(adat));
+        await pultIdo(kulcs);
+        if (typeof hash === "string" && /^[a-f0-9]{16,64}$/.test(hash)) await kv("SET", P + "pult:" + kulcs + ":hash", hash);
+        if (kulcs === "prioritas") await kv("SET", P + "pult:prioritas:fuggo", JSON.stringify(fuggoKivonat(adat)));
+        return json(res, 200, { ok: true });
+      }
+      // Upstash-forgalom (2026-10-23): a változatlan pillanatképet a gép nem tölti fel újra, csak az idejét frissíti,
+      // ehhez előbb lekéri a tárolt lenyomatokat (néhány bájt a 0,3-0,9 MB-os csomagok helyett)
+      if (mi === "pult_hash_gep") {
+        const ki = {};
+        for (const k of PULT_KULCSOK) ki[k] = (await kv("GET", P + "pult:" + k + ":hash")) || null;
+        return json(res, 200, ki);
+      }
+      if (mi === "pult_erintes_gep" && req.method === "POST") {
+        const { kulcs } = await torzs(req);
+        if (!PULT_KULCSOK.includes(kulcs)) return json(res, 400, { hiba: "rossz kulcs" });
+        await pultIdo(kulcs);
         return json(res, 200, { ok: true });
       }
       if (mi === "kartya_feltolt" && req.method === "POST") {
@@ -272,9 +318,7 @@ module.exports = async (req, res) => {
       if (mi === "pult_frissult_gep") {
         // a pult pillanatképeinek kora: a felhős kör ebből látja, hogy a Mac frissen tartja-e a Flybuilt-függő listákat
         const ki = {};
-        for (const k of ["posztok", "ajanlott", "prioritas", "koltseg"]) {
-          try { const v = JSON.parse((await kv("GET", P + "pult:" + k)) || "null"); ki[k] = v ? (v.frissitve || v.frissult || null) : null; } catch { ki[k] = null; }
-        }
+        for (const k of ["posztok", "ajanlott", "prioritas", "koltseg"]) ki[k] = (await kv("GET", P + "pult:" + k + ":ido")) || null;
         return json(res, 200, ki);
       }
       if (mi === "prioritas_dontes_gep" && req.method === "POST") { const [k, v] = await prioritasDontes(await torzs(req), "Heni (gépi pult)"); return json(res, k, v); }
@@ -429,7 +473,7 @@ module.exports = async (req, res) => {
 
     if (mi === "posztok" || mi === "koltseg" || mi === "statisztika") {
       const v = await kv("GET", P + "pult:" + mi);
-      const adat = v ? JSON.parse(v) : { hiba: "Még nincs feltöltött adat.", sorok: [] };
+      const adat = await frissIdo(mi, v ? JSON.parse(v) : { hiba: "Még nincs feltöltött adat.", sorok: [] });
       if (mi === "posztok") {
         const k = (await kv("HGETALL", P + "torlendo")) || [];
         const t = new Set(k.filter((_, i) => i % 2 === 0));
@@ -446,7 +490,7 @@ module.exports = async (req, res) => {
     }
     if (mi === "ajanlott") {
       const v = await kv("GET", P + "pult:ajanlott");
-      const adat = v ? JSON.parse(v) : { sorok: [] };
+      const adat = await frissIdo("ajanlott", v ? JSON.parse(v) : { sorok: [] });
       // a pipák élőben jönnek, nem a (negyedóránként frissülő) pillanatképből
       const k = (await kv("HGETALL", P + "kitenni")) || [];
       const kit = {};
