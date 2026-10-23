@@ -4,25 +4,39 @@
   "forras_id": "producthunt",
   "forras_nev": "Product Hunt",
   "url": "https://www.producthunt.com/products/gerty",
+  "szerzo": "Erik Vetsch",
   "publikalva": "2026-10-22T14:14:10+00:00",
-  "cim": "Gerty",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 44 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://ph-files.imgix.net/e6c27344-5f5b-4f74-bea6-72135449349a.png?auto=format&fit=crop&frame=1&h=512&w=1024"
   },
   "cim_eredeti": "Gerty",
+  "forrasok": [],
   "szoveg_eredeti": "the honest limits section is a nice touch. roughly how big is the first download on a 16 GB Mac?\n\n@neerajnathany Thanks! On a 16 GB Mac the first download for Gerty Max is about 18 GB in all. The app itself is 340 MB; the remaining space is models, picked for that Mac:\n\n- about 8.5 GB for chatting: Gemma 4 E4B, which also reads pictures, plus a small model that routes each message\n\n- about 9 GB for making and changing pictures\n\nGerty shows the size before anything downloads. Searching your documents by meaning adds a 330 MB model the first time you use it.\n\nPicking models for the Mac in front of you is the part I like here. A local assistant is much easier to try when choosing the model isn't the first job.\n\nWeboldal: https://gerty.ch",
-  "begyujtve": "2026-10-23T08:11:45.066808+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "Megjelent a Gerty, a teljes egészében Mac-en futó privát AI-asszisztens",
+  "lead": "A Gerty automatikusan letölti és beállítja a leghatékonyabb nyílt forráskódú AI-modelleket Mac számítógépekre.",
+  "osszefoglalo": "Erik Vetsch kiadta a **Gerty** nevű alkalmazást, amely egy teljesen privát, felhőfüggetlen AI-asszisztens Mac felhasználók számára. A szoftver felméri a számítógép erőforrásait, és automatikusan kiválasztja, letölti, majd konfigurálja a megfelelő nyílt forráskódú modelleket a szövegírási, kódolási és képgenerálási feladatokhoz.\n\nAz alkalmazás lokálisan dolgozik a felhasználó dokumentumaival, e-mailjeivel és naptárával, emellett hangutasításokat is elfogad. A rendszer minden módosítás előtt megmutatja a tervezett lépéseket. Egy 16 GB RAM-mal szerelt Mac esetében a kezdeti letöltési méret nagyjából 18 GB, amely magában foglalja a Gemma 4 E4B modellt és a képalkotó eszközöket is.\n\nA Gerty működéséhez nincs szükség felhasználói fiókra vagy internetkapcsolatra. A szoftver 7 napos ingyenes próbaidőszak után **egyszeri 49 svájci frankos díjért** vásárolható meg, amellyel akár 3 Mac-en is használható.",
+  "miert_szamit": "A felhőmentes működés miatt a bizalmas vállalati adatok és dokumentumok **teljesen biztonságban maradnak**, miközben nem kell havi előfizetési díjat fizetni az AI-asszisztens használatáért.",
+  "cimkek": [
+    "Gerty",
+    "macOS",
+    "adatvédelem",
+    "Gemma 4"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Gerty",
+    "url": "https://gerty.ch"
+  },
+  "linkelendo_nevek": [
+    "Gerty"
+  ],
+  "linkszabaly": 3,
   "prioritas": {
     "pont": 44,
     "szint": "P3",
@@ -44,5 +58,18 @@
     "ido": "2026-10-23T08:18:54+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-23T08:21:58+00:00"
+  "forditva": "2026-10-23T10:11:30+00:00",
+  "megjelent": "2026-10-23T10:11:02.331Z",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-23T10:11:32+00:00",
+    "esemeny": "Erik Vetsch megjelentette a Gerty nevű, Mac-en futó lokális AI-asszisztens alkalmazást, amely a gép konfigurációjának megfelelő nyílt modelleket tölt le és futtat.",
+    "forrasok": [
+      "https://www.producthunt.com/products/gerty",
+      "https://gerty.ch"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  }
 }

@@ -4,25 +4,39 @@
   "forras_id": "producthunt",
   "forras_nev": "Product Hunt",
   "url": "https://www.producthunt.com/products/monid",
+  "szerzo": "Zongrong(Jasper) Li",
   "publikalva": "2026-10-23T04:03:20+00:00",
-  "cim": "Agent Hunt",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 48 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://ph-files.imgix.net/5fd01a00-4562-4440-abba-498b6b6e3d0e.png?auto=format&fit=crop&frame=1&h=512&w=1024"
   },
   "cim_eredeti": "Agent Hunt",
+  "forrasok": [],
   "szoveg_eredeti": "Hey PH 👋 I'm Jasper, Head of Growth at Monid.\n\nToday we're launching Agent Hunt: Product Hunt for agents.\n\nIt is a live leaderboard of the tools AI agents actually use. Every place is earned by real calls agents make through Monid, refreshed daily.\n\nSee who's on top today: monid.ai/rankings\n\nWhich tool do you think agents will push up next week?\n\nThe endpoint view is the interesting bit for me. A tool can be popular because of one useful endpoint, and that detail gets lost in a product-level ranking.\n\none key for 1,800 APIs instead of separately signing up, testing, and billing for each provider is a genuinely big time save if you're building anything agent-based. the fact that the agent itself can search the catalog and pick a tool by price/reliability/performance at runtime, instead of you hardcoding which API to call, fits how agent workflows actually behave in practice - the right tool for a task isn't always known ahead of time.\n\nnot clear from the launch page whether there's a spend cap or budget ceiling per agent/key - with 1,800 paid APIs behind one key, a bad retry loop or stuck agent could rack up a real bill before a human notices. a hard per-key spend limit would make this much safer to hand to something fully autonomous.\n\nMerge is built for syncing your own app's data models across customer SaaS tools (CRM, HRIS, etc) - it's an integrations layer for a product you're building. Monid is a different shape of problem: giving an autonomous agent runtime access to a huge catalog of external tools and data sources on demand, not wiring fixed integrations into your own backend ahead of time.\n\nWeboldal: https://monid.ai/rankings",
-  "begyujtve": "2026-10-23T08:11:53.287344+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "Elindult az Agent Hunt, az AI-ügynökök ranglistája",
+  "lead": "A Monid kiadta az Agent Hunt felületet, amely az AI-ügynökök által leggyakrabban használt eszközöket rangsorolja napi frissítéssel.",
+  "osszefoglalo": "A Monid elindította az **Agent Hunt** nevű élő ranglistát, amely megmutatja, milyen eszközöket és API-kat használnak a gyakorlatban az AI-ügynökök. A helyezéseket az ügynökök által a Monid platformján keresztül lebonyolított tényleges lekérdezések száma határozza meg, a rangsor pedig naponta frissül.\n\nA rendszer infrastruktúrát biztosít ahhoz, hogy a fejlesztők egyetlen kulccsal 1 800 API-hoz férjenek hozzá felárak és külön előfizetések nélkül. Az **AI-ügynökök futásidőben** tudják keresni a katalógust, majd ár, megbízhatóság és teljesítmény alapján önállóan kiválasztani a feladathoz legmegfelelőbb eszközt. A felületen nemcsak termékszinten, hanem konkrét végpontok alapján is látható a népszerűség.\n\nA szolgáltatás elérése a [Monid ranglistáján](https://monid.ai/rankings) keresztül érhető el, ahol a nyilvános rangsor megtekinthető.",
+  "miert_szamit": "A fejlesztőknek nem kell több ezer API-ra külön regisztrálniuk és a számlázást kezelniük, mert az ügynökök **egyetlen hozzáféréssel** maguk választják ki és használják a szükséges külső eszközöket.",
+  "cimkek": [
+    "Monid",
+    "Agent Hunt",
+    "AI-ügynök",
+    "API"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Agent Hunt",
+    "url": "https://monid.ai/rankings"
+  },
+  "linkelendo_nevek": [
+    "Agent Hunt"
+  ],
+  "linkszabaly": 3,
   "prioritas": {
     "pont": 48,
     "szint": "P3",
@@ -44,5 +58,26 @@
     "ido": "2026-10-23T08:18:54+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-23T08:24:00+00:00"
+  "forditva": "2026-10-23T10:12:17+00:00",
+  "megjelent": "2026-10-23T10:10:45.212Z",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-23T10:12:18+00:00",
+    "esemeny": "Zongrong (Jasper) Li, a Monid növekedési vezetője bejelentette az Agent Hunt elindulását, amely az AI-ügynökök által a Monid platformon keresztül ténylegesen használt eszközöket rangsorolja napi frissítéssel.",
+    "forrasok": [
+      "https://www.producthunt.com/products/monid",
+      "https://monid.ai/rankings"
+    ],
+    "hibak": [
+      "Tényhiba: A magyar szövegben 'több mint 2 700 API' szerepel, miközben az eredeti forrás alapján pontosan 1 800 API-ról van szó ('1,800 APIs')."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Elindult az Agent Hunt, az AI-ügynökök ranglistája",
+      "lead": "A Monid kiadta az Agent Hunt felületet, amely az AI-ügynökök által leggyakrabban használt eszközöket rangsorolja napi frissítéssel.",
+      "osszefoglalo": "A Monid elindította az **Agent Hunt** nevű élő ranglistát, amely megmutatja, milyen eszközöket és API-kat használnak a gyakorlatban az AI-ügynökök. A helyezéseket az ügynökök által a Monid platformján keresztül lebonyolított tényleges lekérdezések száma határozza meg, a rangsor pedig naponta frissül.\n\nA rendszer infrastruktúrát biztosít ahhoz, hogy a fejlesztők egyetlen kulccsal több mint 2 700 API-hoz férjenek hozzá felárak és külön előfizetések nélkül. Az **AI-ügynökök futásidőben** tudják keresni a katalógust, majd ár, megbízhatóság és teljesítmény alapján önállóan kiválasztani a feladathoz legmegfelelőbb eszközt. A felületen nemcsak termékszinten, hanem konkrét végpontok alapján is látható a népszerűség.\n\nA szolgáltatás elérése a Monid weboldalán keresztül érhető el, ahol a nyilvános ranglista regisztráció nélkül is megtekinthető.",
+      "miert_szamit": "A fejlesztőknek nem kell több ezer API-ra külön regisztrálniuk és a számlázást kezelniük, mert az ügynökök **egyetlen hozzáféréssel** maguk választják ki és használják a szükséges külső eszközöket."
+    }
+  }
 }

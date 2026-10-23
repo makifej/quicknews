@@ -4,25 +4,39 @@
   "forras_id": "producthunt",
   "forras_nev": "Product Hunt",
   "url": "https://www.producthunt.com/products/dots-phone",
+  "szerzo": "Gabe",
   "publikalva": "2026-10-21T00:32:17+00:00",
-  "cim": "Dots Phone",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 55 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://ph-files.imgix.net/bbc2cdf6-a08a-4835-8eb7-651ec14a8486.png?auto=format&fit=crop&frame=1&h=512&w=1024"
   },
   "cim_eredeti": "Dots Phone",
+  "forrasok": [],
   "szoveg_eredeti": "Hi Product Hunt — I’m Gabe, the maker of Dots Phone, an independent phone-calling plugin for OpenAI Dots.\n\nSome errands still end with “you’ll need to call us.” Dots Phone is for those conversations: checking a delivery, following up with customer service, or getting an answer that isn’t available online.\n\nTell Dots what you need and what it may agree to. Dots gathers the details, saves a brief, and uses Dots Phone to make the call. If a question needs missing information, Codex can look it up through the apps you allow. Dots then reports the result and anything that still needs your attention.\n\nWatch the 60-second demo: https://phone.gabea.nyc/demo/\n\nIt’s an actual recording using fictional order details and an owned automated test recipient. Dots reads the order confirmation before dialing, navigates the IVR and returns the reviewed answer.\n\nThis is an open-source, self-hosted experimental preview for technical early adopters, with a setup guide Codex can help you follow. I’d love to hear what you’d want it to call about and where setup could be easier.\n\nDots Phone is an independent, self-hosted project, not affiliated with or endorsed by OpenAI or Twilio. Results aren’t guaranteed; review important results. You’re responsible for connected-account charges, including when a call fails. Usage and responsibilities: https://phone.gabea.nyc/usage/\n\nWeboldal: https://phone.gabea.nyc",
-  "begyujtve": "2026-10-23T08:11:50.626883+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "Automatikus telefonhívásokat indít az új Dots Phone bővítmény",
+  "lead": "A nyílt forráskódú bővítmény segítségével felhívhatjuk az ügyfélszolgálatokat vagy elintézhetünk hivatalos ügyeket.",
+  "osszefoglalo": "A [Dots Phone](https://phone.gabea.nyc) egy független, nyílt forráskódú bővítmény az OpenAI Dots rendszeréhez, amelyet Gabe fejlesztett. Az eszköz célja, hogy elintézze azokat a feladatokat, amelyeket csak telefonon keresztül lehet megoldani, mint például egy csomagkézbesítés ellenőrzése vagy az ügyfélszolgálatok megkeresése.\n\nA rendszernek meg kell adni a feladatot és a kereteket, amit elfogadhat. A nyílt forráskódú eszköz előkészíti a hívást, bejárja az automata menürendszereket, és megválaszolja a kérdéseket. Ha hiányzó adatra van szüksége, a Codex segítségével kikeresi azt az **engedélyezett alkalmazásokból**, végül összefoglalót készít az eredményről.\n\nEz egy **saját szerverre telepíthető** kísérleti eszköz, amelynek használatához saját OpenAI- és Twilio-fiókra van szükség. A hívások költségeit és a rendszer beállítását a felhasználónak kell kezelnie.",
+  "miert_szamit": "A **telefonos ügyintézések automatizálásával** jelentős időt takaríthatnak meg a felhasználók, miközben a rendszer csak a fontos döntéseket hagyja az emberre.",
+  "cimkek": [
+    "OpenAI",
+    "Twilio",
+    "ügyfélszolgálat",
+    "automatizáció"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bemutato",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Dots Phone",
+    "url": "https://phone.gabea.nyc"
+  },
+  "linkelendo_nevek": [
+    "Dots Phone"
+  ],
+  "linkszabaly": 3,
   "prioritas": {
     "pont": 55,
     "szint": "P3",
@@ -44,5 +58,27 @@
     "ido": "2026-10-23T08:18:54+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-23T08:21:37+00:00"
+  "forditva": "2026-10-23T10:12:52+00:00",
+  "megjelent": "2026-10-23T10:09:52.747Z",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-23T10:12:54+00:00",
+    "esemeny": "Gabe bemutatta a Dots Phone nevű nyílt forráskódú, saját szerveren futtatható bővítményt az OpenAI Dots rendszeréhez, amely képes automatikusan telefonhívásokat lebonyolítani ügyintézés céljából.",
+    "forrasok": [
+      "https://www.producthunt.com/products/dots-phone",
+      "https://phone.gabea.nyc"
+    ],
+    "hibak": [
+      "Hiányoznak a kötelező linkek a magyar szövegből (az elsődleges forrásra mutató beszédes link hiányzik).",
+      "A miért számít szekcióban tévesen 'telefonkönyvelések' szerepel a telefonos ügyintézések/hívások helyett."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "A Dots Phone segítségével kezdeményezhetünk automatikus telefonhívásokat",
+      "lead": "A nyílt forráskódú bővítmény segítségével felhívhatjuk az ügyfélszolgálatokat vagy elintézhetünk hivatalos ügyeket.",
+      "osszefoglalo": "A **Dots Phone** egy független, nyílt forráskódú bővítmény az OpenAI Dots rendszeréhez, amelyet Gabe fejlesztett. Az eszköz célja, hogy elintézze azokat a feladatokat, amelyeket csak telefonon keresztül lehet megoldani, mint például egy csomagkézbesítés ellenőrzése vagy az ügyfélszolgálatok megkeresése.\n\nA rendszernek meg kell adni a feladatot és a kereteket, amit elfogadhat. A nyílt forráskódú eszköz előkészíti a hívást, bejárja az automata menürendszereket, és megválaszolja a kérdéseket. Ha hiányzó adatra van szüksége, a Codex segítségével kikeresi azt az engedélyezett alkalmazásokból, végül összefoglalót készít az eredményről.\n\nEz egy **saját szerverre telepíthető** kísérleti eszköz, amelynek használatához saját OpenAI- és Twilio-fiókra van szükség. A hívások költségeit és a rendszer beállítását a felhasználónak kell kezelnie.",
+      "miert_szamit": "A **telefonkönyvelések és ügyfélszolgálati egyeztetések automatizálásával** jelentős időt takaríthatnak meg a vállalkozók, miközben a rendszer csak a fontos döntéseket hagyja az emberre."
+    }
+  }
 }
