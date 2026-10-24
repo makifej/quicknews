@@ -1,11 +1,21 @@
 {
   "id": "a530c06e3ebb",
-  "slug": "a-meta-muse-wonder-modelljei-vezetik-a-lisanbench-teljesitmenytesztjet",
+  "slug": "muse-wonder-full-and-muse-wonder-are-sota-on-lisanbench",
   "forras_id": "x-alexandr_wang",
   "forras_nev": "Alexandr Wang (X)",
   "url": "https://x.com/alexandr_wang/status/2113996699681313135",
-  "szerzo": "Alexandr Wang (@alexandr_wang)",
   "publikalva": "2026-10-24T14:11:04+00:00",
+  "cim": "muse wonder full and muse wonder are sota on lisanbench",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 58 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://pbs.twimg.com/media/HVY3396XEAEfett.jpg?name=orig",
@@ -14,65 +24,28 @@
     "eredeti_url": "https://x.com/scaling01/status/2113953224537370714"
   },
   "cim_eredeti": "muse wonder full and muse wonder are sota on lisanbench",
-  "forrasok": [],
   "szoveg_eredeti": "muse wonder full and muse wonder are sota on lisanbench\n\n[IDÉZETT POSZT, amelyet Alexandr Wang megosztott. Eredeti szerzője: Lisan al Gaib (@scaling01); megjelent: 2026-10-24T11:18:18+00:00; link: https://x.com/scaling01/status/2113953224537370714; média: 4 kép]\nAd - Meta provided free access to Muse Wonder models. The tests and conclusions are my own.\n\nThis is a massive update for LisanBench:\n- I finally bit the bullet and tested multiple reasoning levels. We now have some sweet sweet data.\n\n - Muse Wonder Full and Muse Wonder perform extremely well on LisanBench and have crazy scaling and very even spacing between reasoning efforts. Just based on scores both Muse models with max reasoning effort rank #1 and #2. However, they are still slightly less efficient than Anthropic's Opus 5.5\n\n - DeepSeek-V4.1-Flash 1017 is also very impressive and on the perf-cost frontier together with Haiku 5.5.\n\n - Notably Gemini 4 Argon low and medium, as well as Sonnet 5.5 low and medium produce no reasoning tokens and respond instantly, but still score high.\nGemini 4 Argon low takes the #1 spot on the non-thinking leaderboard (it's a dirty looper).\n\n - Interestingly GPT-6.1-Sol, and GPT-6 models perform poorly as they are not good at following the edit-distance one rule. Argon high shows similar behavior.\nFor GPT models I think the reason could be related to their very terse reasoning style. But since I haven't seen Gemini 4 Argon's raw reasoning I'm not super confident in that theory. Another explanation could be that it's related to dirty loopers.\n\n- When scoring the models without the edit-distance one rule (all the other rules still active) the ranking changes completely:\n1. GPT 6 Astra medium:    56,140    (+659%)\n2. Gemini 4 Argon high:     51,312    (+579%)\n3. GPT 6.1 Sol medium:     49,887   (+731%)\n\n - The worst offenders in terms of cheating are Gemini 4 Argon and DeepSeek V4.1 Flash 1017.\nGemini exposes an entirely new bug in the scorer using non-ASCII characters and DeepSeek has multiple longer chains with up to 64 consecutive two-letter words. When I deliberately RL-hillclimbed LisanBench I saw the same behavior of collapsing word lengths.\nAnthropic models also seem very optimized for this game, but in less obvious ways. They keep reusing the same long chains across multiple different starting words.\n\n- The minimum cost of reaching 2000, 5000 and 10000 LisanBench points has declined by 22-25% per month or halving every 2.4-2.8 months",
-  "modell": "gemini-3.5-flash",
-  "cim": "A Meta Muse Wonder modelljei vezetik a LisanBench teljesítménytesztjét",
-  "lead": "Lisan al Gaib tesztje alapján a Meta Muse Wonder modelljei érték el a legmagasabb pontszámot a LisanBench benchmarkon.",
-  "osszefoglalo": "Lisan al Gaib közzétette a **[LisanBench](https://github.com/voice-from-the-outer-world/lisan-bench) teljesítményteszt legújabb eredményeit**, amelyben több AI-modell gondolkodási szintjét és hatékonyságát vizsgálta. A mérések alapján a Meta Muse Wonder Full és Muse Wonder modelljei maximális gondolkodási beállítás mellett az **első két helyet szerezték meg** a toplistán.\n\nAz eredmények szerint a Muse modellek kiegyensúlyozottan skálázódnak a gondolkodási kapacitás növelésével, hatékonyságban azonban az Anthropic Opus 5.5 még mindig kissé megelőzi őket. A tesztből az is kiderült, hogy a nyelvi modellek tesztelésének költsége havonta mintegy **22-25 százalékkal csökken** a megadott pontszámok eléréséhez.",
-  "miert_szamit": "A teszt megmutatja, hogy a **Meta új gondolkodó modelljei** a legösszetettebb feladatoknál is felveszik a versenyt a piacvezető megoldásokkal, ami a jövőben költséghatékonyabb AI-eszközöket eredményezhet.",
-  "cimkek": [
-    "Meta",
-    "Muse Wonder",
-    "LisanBench",
-    "AI benchmark"
-  ],
-  "kategoria": "kutatás",
-  "forras_tipus": "elemzes",
-  "fontossag": 3,
-  "video_szoveg": "",
-  "relevans": true,
-  "kiprobalhato": null,
-  "linkelendo_nevek": [
-    "LisanBench"
-  ],
-  "linkszabaly": 3,
+  "begyujtve": "2026-10-24T14:15:02.381979+00:00",
   "prioritas": {
-    "pont": 70,
-    "szint": "P2",
+    "pont": 58,
+    "szint": "P3",
     "reszpont": {
-      "hatas": 65,
-      "hirertek": 60,
-      "egyediseg": 95,
-      "hitelesseg": 78,
-      "aktualitas": 98,
-      "kozossegi": 58
+      "hatas": 50,
+      "hirertek": 45,
+      "egyediseg": 85,
+      "hitelesseg": 71,
+      "aktualitas": 95,
+      "kozossegi": 49
     },
     "elofeszures": 87,
     "tanult": 62,
-    "indok": "A Meta Muse Wonder modelljei élre törtek a LisanBench teszten, ami szakmai szempontból figyelemreméltó teljesítmény.",
-    "tema": "meta muse wonder benchmark",
-    "cim_hu": "A Meta Muse Wonder modelljei csúcsot döntöttek a LisanBench mérésein",
+    "indok": "Technikai jellegű benchmark-eredmény megosztása a Muse Wonder modellekről, ami korábban elutasított témára hajaz.",
+    "tema": "muse wonder lisanbench benchmark",
+    "cim_hu": "A Meta Muse Wonder modelljei élre törtek a LisanBench tesztjein",
     "klaszter": null,
     "ai": true,
-    "ido": "2026-10-24T14:30:47+00:00"
+    "ido": "2026-10-24T14:39:35+00:00"
   },
   "jovahagyas_kell": true,
-  "forditva": "2026-10-24T14:33:13+00:00",
-  "megjelent": "2026-10-24T14:33:13+00:00",
-  "tenyellenorzes": {
-    "ok": true,
-    "ido": "2026-10-24T14:33:15+00:00",
-    "esemeny": "Lisan al Gaib frissítette a LisanBench benchmark eredményeit, ahol a Meta által biztosított Muse Wonder Full és Muse Wonder modellek érték el a legmagasabb pontszámot. Alexandr Wang megosztotta a teszt eredményeit.",
-    "forrasok": [
-      "https://x.com/alexandr_wang/status/2113996699681313135",
-      "https://x.com/scaling01/status/2113953224537370714"
-    ],
-    "hibak": [],
-    "kereses": [],
-    "javitva": false
-  },
-  "kiprobal_nezve": true,
-  "termeklinkek_nezve": true,
-  "linkek_ellenorizve": true
+  "megjelent": "2026-10-24T14:41:51+00:00"
 }
