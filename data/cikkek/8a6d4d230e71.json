@@ -1,0 +1,76 @@
+{
+  "id": "8a6d4d230e71",
+  "slug": "a-kodolo-ai-ugynokok-keretrendszere-nem-noveli-a-teljesitmenyt-csak-a",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/fancy-harnesses-make-coding-agents-more-expensive-but-not-better-study-finds/",
+  "szerzo": "Jonathan Kemper",
+  "publikalva": "2026-10-24T09:21:39+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/harness-buys-tokens-nano-banana-pro.jpg"
+  },
+  "cim_eredeti": "Fancy harnesses make coding agents more expensive but not better, study finds",
+  "forrasok": [],
+  "szoveg_eredeti": "Makers tout score gains from new agent harnesses like Claude Code or OpenCode. A study finds that claim doesn't hold up. Swapping harnesses barely moves results more than running the same setup twice, but costs can triple.\n\nA coding agent pairs a language model with a harness, the system prompt, tools, and context management that make the model work inside a code repository. New harnesses ship every day, and leaderboards mix them freely, but two researchers at Shandong University measured how much the harness actually matters when you hold the model constant. The paper's title gives away the answer: \"What does a harness buy? Mostly tokens.\"\n\nPrevious studies report gaps of more than 20 points between harnesses, but those numbers almost always come from a single run, according to the authors. Pure reruns of the same setup already vary by up to six points on SWE-bench Verified. Zhipu AI, for example, advertises its own harness with a 2.4-point lead over Claude Code, a margin that falls well within that noise range. Harnesses are also often wired into the benchmark differently, making comparisons even less reliable.\n\nLiu and Han ran five models through three harnesses in their shipped versions: Claude Code, OpenCode, and mini-SWE-agent. mini-SWE-agent gives the model only a Bash tool and skips context management. Claude Code and OpenCode offer specialized file and search tools, long system prompts, and automatic history compression.\n\nThe models were Qwen3.6, Qwen3.8, Deepseek-V4-Flash, GLM-5.3-Flash, and HY4-Preview. Claude Opus 5 ran as a reference only in Claude Code. Tests used the 45 hardest tasks from SWE-bench Verified plus a pool of 447 more. Several setups ran twice to measure noise.\n\nAll runs happened offline. In early tests with web access, 71 percent of Deepseek and Qwen model attempts pulled the correct fix straight from GitHub instead of solving the task themselves. Claude models almost never did this. The researchers discarded those results and don't claim any maker trained on the test data, but the pattern was strong enough that they cut off web access for all remaining runs.\n\nOn the larger pool of 447 tasks, Claude Code and mini-SWE-agent, the heaviest and lightest harnesses, sit less than two points apart for both tested models. Within a five-point band, they're statistically equivalent.\n\nThe researchers expected the biggest harness effect on the 45 hardest tasks. Instead, harnesses differ by two to five solved tasks per model, and a simple rerun of the same setup shifts the count by up to three. Sometimes mini-SWE-agent leads, sometimes Claude Code does.\n\nThe flip rates tell the same story. Between two reruns, the median outcome changes on 13 percent of tasks. Between two different harnesses, it's also 13 percent. Swapping models pushes that to 22 percent. Which tasks a given harness wins changes from run to run, matching a coin flip. The harness gap behaves like a \"fresh draw of the same noise,\" the authors write.\n\nThese small samples also limit what any comparison can detect. With 45 tasks, even a 13-point gap shows up only half the time. With 447 tasks, gaps of about five points become reliably detectable. Zhipu's claimed 2.4-point advantage falls below both thresholds, and so do many other advertised improvements.\n\nThe only measurable harness effect is a steady deficit for OpenCode. On the large task pool, it trails the other two by up to nine points. About half of that gap traces back to an output limit. When a model exceeds this limit mid-step during reasoning, Claude Code prompts it to keep going. OpenCode lets the step end there, and the attempt usually fails.\n\nAdding a Claude Code-style continuation prompt to OpenCode didn't help, because the same task rarely triggers the same overflow on a retry. For the rest of the gap, the authors have no explanation, only an observation: under OpenCode, models stop working much sooner. On locally run models, OpenCode also had a much tighter time limit than Claude Code, which the authors flag as an uncontrolled variable.\n\nmini-SWE-agent runs into the context window because it lacks context management, mostly on tasks where the other harnesses also fail. OpenCode's search tools try to download a binary file on first use and break when offline.\n\nWith the same model, same tasks, and same price list, a single task can cost up to three times more depending on the harness. Tool outputs barely explain the gap. All three harnesses return similar amounts of text per call.\n\nThe real difference comes from the system prompt and tool descriptions. They get resent with every step and run about 16,600 tokens for Claude Code, roughly 7,000 for OpenCode, and under 1,000 for mini-SWE-agent. Claude Code also keeps the model's reasoning output in the conversation history, based on the researchers' reverse engineering.\n\nAfter that first call, context grows at similar rates across all harnesses. The system prompt size sets the baseline cost, and the number of steps multiplies it. Which factor dominates depends on the model: With GLM-5.3-Flash, Claude Code costs nearly twice as much as mini-SWE-agent. With Deepseek-V4-Flash, mini-SWE-agent needs so many extra steps that the two end up even. Lower prices for cached tokens dampen the gaps but don't change the ranking.\n\nDeepseek's own harness scores no better with its own model than the other harnesses do, but costs the most. Claude Opus 5 delivered identical results even after the researchers removed tools from Claude Code. A year-old version solves a similar number of tasks at less than half the cost, because Extended Thinking wasn't on by default back then.\n\nThinking was the only case where the harness choice actually changed the outcome. Without thinking, mini-SWE-agent with Qwen3.6 drops eleven points, while Claude Code and OpenCode stay within noise. HY4-Preview also loses eleven points in Claude Code without thinking. How much an agent depends on reasoning seems tied to the specific model-harness combination. The authors admit their test grid is too small to explain why.\n\nThe study relies mainly on one benchmark. A small cross-check on Terminal-Bench 2.1 shows the same pattern. The closed-source top model, Opus 5, ran only in Claude Code. A harness buys \" fewer ways to lose a task, and a bill, not pass rate,\" the authors conclude. They recommend publishing a rerun of the same setup alongside every harness comparison. That's the only way to tell how much of a measured difference is just noise. Data and analysis scripts are available on GitHub.\n\nMore effort in the harness rarely pays off in other studies, either. In one, a simple Markdown file beat a complex skill system for AI coding agents. An earlier study already showed that the choice of framework can nearly triple costs for the same model. Harness design gets a lot of attention as a result. Nvidia recently cut nearly half its token costs for coding agents through better agent steering.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "A kódoló AI-ügynökök keretrendszere nem növeli a teljesítményt, csak a költséget",
+  "lead": "Egy új kutatás szerint a kódoló AI-ügynökök keretrendszereinek cseréje alig befolyásolja a feladatmegoldási arányt, a Token-költségeket viszont megháromszorozhatja.",
+  "osszefoglalo": "A Santung Egyetem kutatói átfogó tesztben vizsgálták meg a kódoló AI-ügynökök úgynevezett keretrendszereit, mint a Claude Code, az [OpenCode](https://github.com/anomalyco/opencode) és a [mini-SWE-agent](https://github.com/SWE-agent/mini-swe-agent). Az eredmények alapján a keretrendszerek cseréje **alig változtat a sikeresen megoldott feladatok arányán**, a mért különbségek túlnyomó része csupán mérésmódszertani zaj. A korábban hangoztatott teljesítménynövekedések jórészben abból adódtak, hogy ugyanannak a rendszernek az újrafuttatása is akár 6 százalékpontos ingadozást mutathat.\n\nA keretrendszer megválasztása a pontosságot alig, a pénztárcát viszont annál inkább érinti: a tesztelt feladatok ára **akár a háromszorosára is emelkedhet** a választott keretrendszertől függően. A költségkülönbséget elsősorban a minden egyes lépésnél újra elküldött rendszerelemzések és eszközleírások okozzák. Míg a Claude Code rendszerelemzése körülbelül 16 600 tokent fogyaszt lépésenként, addig a mini-SWE-agent kevesebb mint 1 000 tokenből gazdálkodik.\n\nA kutatók megállapították, hogy a bonyolultabb ügynökstruktúrák és összetett eszközök helyett a hatékonyságot elsősorban a mögöttes modell képességei határozzák meg. Egyedül a gondolkodási folyamatok (thinking mode) hiánya okozott érdemi teljesítményromlást egyes modelleknél, míg maga az ügynök-keretrendszer főleg csak a hibalehetőségek számát és a számla összegét növelte.",
+  "miert_szamit": "A fejlesztőknek és cégeknek nem érdemes drága, komplex ügynök-keretrendszerekre váltaniuk a jobb kódolási eredmények reményében: **az egyszerűbb keretrendszerekkel lényegesen alacsonyabb tokenköltség mellett érhető el ugyanaz a teljesítmény**.",
+  "cimkek": [
+    "AI kódolás",
+    "Claude Code",
+    "OpenCode",
+    "SWE-bench Verified"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Claude Code",
+    "OpenCode",
+    "mini-SWE-agent"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 82,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 80,
+      "aktualitas": 98,
+      "kozossegi": 75
+    },
+    "elofeszures": 96,
+    "tanult": 83,
+    "indok": "Fontos kutatás, ami megkérdőjelezi a drága AI kódoló ágensek hatékonyságát.",
+    "tema": "ai coding agent study",
+    "cim_hu": "Egy kutatás szerint a drága AI kódoló ágensek nem működnek jobban a hagyományosaknál",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-24T09:34:51+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-24T09:37:17+00:00",
+  "megjelent": "2026-10-24T09:37:17+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-24T09:37:19+00:00",
+    "esemeny": "A Santung Egyetem kutatói kimutatták, hogy a kódoló AI-ügynökök keretrendszereinek (harness) cseréje alig befolyásolja a teljesítményt, miközben a tokenköltségeket akár megháromszorozhatja.",
+    "forrasok": [
+      "https://the-decoder.com/fancy-harnesses-make-coding-agents-more-expensive-but-not-better-study-finds/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
