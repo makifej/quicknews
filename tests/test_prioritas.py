@@ -198,3 +198,15 @@ class EgyForras(unittest.TestCase):
         jelzes = admin_jelzes.fuggo_sorok(napok=2)
         self.assertEqual({s["id"] for s in jelzes}, fuggo_lista, "a jelzés pontosan a lista függő tételeiről szól")
         self.assertEqual(jelzes[0]["cim"], "Magyar " + "a" * 12)
+
+
+class ArazasTenyellenorzes(unittest.TestCase):
+    """2026-10-24, sideOS.ai: az ár- és ingyenesség-állítás mindig keresést és hivatalos oldalt kap."""
+
+    def test_arazas_felismerese(self):
+        import tenyellenor as t
+        self.assertTrue(t.arazas_szerepel({"osszefoglalo": "és előfizetési díj nélkül érhető el."}))
+        self.assertTrue(t.arazas_szerepel({"lead": "Ingyenesen kipróbálható"}))
+        self.assertTrue(t.arazas_szerepel({"osszefoglalo": "egyszeri 89 dolláros licenc"}))
+        self.assertFalse(t.arazas_szerepel({"osszefoglalo": "Már elérhető a modell, a kutatók szerint gyorsabb."}))
+        self.assertFalse(t.kell_kereses({"fontossag": 2, "lead": "ingyenes"}), "a fizetős keresés szabálya nem változott")
