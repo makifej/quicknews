@@ -102,7 +102,7 @@ jobs:
             git add -A data site
             GIT_EDITOR=true git rebase --continue || { git rebase --abort; return 1; }
           }
-          for i in 1 2 3; do git push && break || { rebase; sleep 5; }; done
+          for i in 1 2 3 4; do git push && break || { sleep $((i*15)); rebase; }; done  # átmeneti hálózati hibánál (2026-10-24: DNS) visszavárakozással
           git push  # ha 3 próbából sem ment fel, a futás jogosan bukjon el
       - name: A kész oldal csomagolása a kiadáshoz (csak a kiszolgált fájlok, titok nélkül)
         if: steps.ido.outputs.fut == 'igen'
