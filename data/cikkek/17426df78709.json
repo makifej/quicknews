@@ -1,0 +1,87 @@
+{
+  "id": "17426df78709",
+  "slug": "sulyos-kiberbiztonsagi-hibat-talalt-az-openai-a-brotli-konyvtarban",
+  "forras_id": "x-gdb",
+  "forras_nev": "Greg Brockman (X)",
+  "url": "https://x.com/gdb/status/2113773790207283353",
+  "szerzo": "Greg Brockman (@gdb)",
+  "publikalva": "2026-10-23T23:25:18+00:00",
+  "media": {
+    "tipus": "x",
+    "kep": null,
+    "x_url": "https://x.com/gdb/status/2113773790207283353"
+  },
+  "cim_eredeti": "we've found and have been working on disclosure for a remote code execution in a widely-deployed compression library.",
+  "forrasok": [],
+  "szoveg_eredeti": "we've found and have been working on disclosure for a remote code execution in a widely-deployed compression library.\n\nit's both an impactful issue and an example that shows how complicated it can be to coordinate patching, since it's integrated into a lot of downstream software:\n\n[IDÉZETT POSZT, amelyet Greg Brockman megosztott. Eredeti szerzője: OpenAI (@OpenAI); megjelent: 2026-10-23T22:55:45+00:00; link: https://x.com/OpenAI/status/2113766354386084338; média: nincs média]\nDuring this red-teaming exercise, we also found a vulnerability that allows for unauthenticated remote code execution in Brotli, a widely-deployed compression library included in many pieces of software such as Node.js, Bun, and Envoy.\n\nThe flaw could let an attacker run their own code on affected systems by sending or replying with malicious compressed data, without any need to create a user account. That is, an unpatched server that accepts compressed input could be taken over by a malicious client, and an unpatched client that accepts compressed input (such as “curl --compressed”) could be taken over by a malicious server.\n\nThis root cause issue was actually fixed in the Brotli source code in February, but it wasn’t known at the time that it gave rise to a security vulnerability and there was no more recent release of Brotli. Since Brotli is built into other software, any software which includes this library needs to take the update too, followed by the users of that software. We disclosed the vulnerability to Brotli and other downstream projects such as Node.js, which released or are currently releasing security updates, and Brotli cut new release versions and published a CVE.\n\nMore details on the patch and mitigations below:\nhttps://patchtheplanet.org/brotli",
+  "modell": "gemini-3.5-flash",
+  "cim": "Súlyos kiberbiztonsági hibát talált az OpenAI a Brotli könyvtárban",
+  "lead": "A népszerű **tömörítési könyvtárban** azonosított sérülékenység távoli kódfuttatást tett lehetővé fiókazonosítás nélkül.",
+  "osszefoglalo": "Az OpenAI biztonsági csapata egy kritikus sérülékenységet azonosított a **[Brotli](https://github.com/google/brotli) tömörítési könyvtárban**, amelyet széles körben használnak olyan rendszerekben, mint a Node.js, a Bun vagy az Envoy. A hiba lehetővé tette, hogy a támadók kártékony tömörített adatok küldésével átvegyék az ellenőrzést az érintett szerverek felett.\n\nA probléma gyökerét a Brotli forráskódjában már februárban javították, azonban akkor még nem tudták, hogy a hiba biztonsági kockázatot jelent. Mivel a könyvtárat számos szoftverbe beépítették, a javítást minden kapcsolódó projektnek és szoftvernek külön is integrálnia kell.\n\nAz OpenAI **tájékoztatása szerint** értesítették a Brotli fejlesztőit és a kapcsolódó projektek csapatait. A biztonsági frissítések kiadása már megkezdődött, a fejlesztők számára pedig közzétették a **hivatalos CVE-jelentést** és a [javítási útmutatót](https://patchtheplanet.org/brotli).",
+  "miert_szamit": "A webes fejlesztéssel foglalkozó szakembereknek és üzemeltetőknek **haladéktalanul frissíteniük kell** az érintett keretrendszereket a távoli kódfuttatásos támadások kivédésére.",
+  "cimkek": [
+    "OpenAI",
+    "kiberbiztonság",
+    "Brotli",
+    "Node.js"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Brotli"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 77,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 85,
+      "egyediseg": 45,
+      "hitelesseg": 84,
+      "aktualitas": 88,
+      "kozossegi": 67
+    },
+    "elofeszures": 82,
+    "tanult": 54,
+    "indok": "Az OpenAI red-teaming során talált súlyos sebezhetőség fontos biztonsági hír.",
+    "tema": "openai brotli vulnerability cybersecurity",
+    "cim_hu": "Az OpenAI súlyos biztonsági rést talált egy elterjedt tömörítési könyvtárban",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-24T08:33:58+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-24T08:36:48+00:00",
+  "megjelent": "2026-10-24T08:36:48+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-24T08:37:47+00:00",
+    "esemeny": "Az OpenAI biztonsági csapata egy távoli kódfuttatást lehetővé tevő sérülékenységet azonosított a széles körben használt Brotli tömörítési könyvtárban, és erről az OpenAI hivatalos X-fiókjában számolt be, amit Greg Brockman is továbbosztott.",
+    "forrasok": [
+      "https://x.com/gdb/status/2113773790207283353",
+      "https://x.com/OpenAI/status/2113766354386084338",
+      "https://patchtheplanet.org/brotli"
+    ],
+    "hibak": [
+      "Hiányzik az elsődleges forrásra mutató hivatkozás a magyar szövegből.",
+      "A lead karakterszáma a hivatkozásokkal együtt meghaladja a megengedett 160 karakteres korlátot (110 volt, de az összetartozás ellenőrzendő), az eredetinél erősebb és pontosabb fogalmazáshoz szükséges az 'akár' kifejezés vagy a távoli kódfuttatás pontosítása, illetve a leadből hiányzik a kötelező félkövér kiemelés.",
+      "Minden bekezdésben kötelező a félkövér kiemelés és az elsődleges forrás belinkése beszédes link szöveggel."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Súlyos kiberbiztonsági hibát talált az OpenAI a Brotli könyvtárban",
+      "lead": "A népszerű tömörítési fájlban azonosított sérülékenység távoli kódfuttatást tette lehetővé fiókazonosítás nélkül.",
+      "osszefoglalo": "Az OpenAI biztonsági csapata egy kritikus sérülékenységet azonosított a **Brotli tömörítési könyvtárban**, amelyet széles körben használnak olyan rendszerekben, mint a Node.js, a Bun vagy az Envoy. A hiba lehetővé tette, hogy a támadók kártékony tömörített adatok küldésével átvegyék az ellenőrzést az érintett szerverek felett.\n\nA probléma gyökerét a Brotli forráskódjában már februárban javították, azonban akkor még nem tudták, hogy a hiba biztonsági kockázatot jelent. Mivel a könyvtárat számos szoftverbe beépítették, a javítást minden kapcsolódó projektnek és szoftvernek külön is integrálnia kell.\n\nAz OpenAI értesítette a Brotli fejlesztőit és a kapcsolódó projektek csapatait. A biztonsági frissítések kiadása már megkezdődött, a fejlesztők számára pedig közzétették a **hivatalos CVE-jelentést** és a javítási útmutatót.",
+      "miert_szamit": "A webes fejlesztéssel foglalkozó szakembereknek és üzemeltetőknek **haladéktalanul frissíteniük kell** az érintett keretrendszereket a távoli kódfuttatásos támadások kivédésére."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
