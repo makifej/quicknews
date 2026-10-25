@@ -12,6 +12,8 @@
 :root{--bg:#131313;--lap:#1a1a1a;--lap2:#202020;--vonal:#272727;--szoveg:#ededed;--halk:#8c8c8c;--halkabb:#5e5e5e;
 --amber:#ffb224;--hiba:#ff6b6b}
 *{box-sizing:border-box;margin:0;padding:0}
+/* görgetősáv sehol (Heni 2026-10-25: „azt a csúnya oldalvonalat vedd ki mindenhonnan”); a görgetés megmarad */
+*{scrollbar-width:none;-ms-overflow-style:none}*::-webkit-scrollbar{display:none;width:0;height:0}
 html{background:var(--bg)}
 body{background:var(--bg);color:var(--szoveg);font:400 18px/1.5 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
@@ -116,6 +118,35 @@ button.torol:disabled{opacity:.5}
 .hl-megj{color:var(--halkabb);font-size:15px;margin:8px 0 0}
 .hl-sor{display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--vonal)}.hl-sor .em{flex:1;min-width:0;overflow-wrap:anywhere}.hl-sor .ido{color:var(--halk);white-space:nowrap}
 .hl-gombok{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+/* hírlevél-lista sok címre (Heni 2026-10-25): keresés, forrásszűrő, sűrű sorok, lapozás 30-asával */
+.hl-statok{display:flex;gap:8px;flex-wrap:wrap;margin:-16px 0 32px}
+.hl-stat{background:var(--lap);border-radius:8px;padding:8px 12px;color:var(--halk);font-size:15px}.hl-stat b{color:var(--szoveg);font-weight:700}
+.hl-eszkoz{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.hl-eszkoz input{flex:1 1 260px;min-width:0;background:var(--lap);border:1px solid var(--vonal);border-radius:8px;padding:12px 16px;color:var(--szoveg);font-size:16px}
+.hl-forrasok{display:inline-flex;background:var(--lap);border-radius:10px;padding:4px;flex-wrap:wrap}
+.hl-forrasok button{padding:8px 12px;border-radius:7px;font-weight:600;color:var(--halk);white-space:nowrap;font-size:15px}
+.hl-forrasok button[aria-pressed=true]{background:var(--lap2);color:var(--szoveg)}
+.hl-forrasok button small{color:var(--halkabb);font-weight:600;margin-left:4px}
+.hl-uj{margin-top:16px;padding:16px;background:var(--lap);border-radius:12px}.hl-uj .hl-urlap input{background:var(--bg)}
+.hl-talalat{color:var(--halk);font-size:14px;margin:24px 0 8px}
+.hl-tabla .hl-sor{display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;gap:16px;align-items:center;padding:8px 0;font-size:16px}
+.hl-tabla .hl-sor .forras{color:var(--halk);font-size:13px;background:var(--lap);border-radius:6px;padding:2px 8px;white-space:nowrap}
+.hl-tabla .hl-sor .ido{font-size:14px;font-variant-numeric:tabular-nums}
+.hl-tabla .hl-sor .sor-torol{font-size:14px;color:var(--halk)}.hl-tabla .hl-sor .sor-torol:hover{color:var(--hiba)}
+.hl-tabla mark{background:none;color:var(--amber)}
+.hl-tovabb{margin-top:16px;width:100%}
+/* a lista saját dobozában görget, a lap nem nyúlik vele (Heni 2026-10-25: „ha 100 feliratkozó lesz, ugyanúgy lenyomja lefelé”) */
+.hl-racs{margin-top:24px}
+.hl-doboz{margin-top:16px;background:var(--lap);border-radius:12px;overflow:hidden}
+.hl-doboz .hl-talalat{margin:0;padding:12px 16px;border-bottom:1px solid var(--vonal)}
+.hl-doboz .hl-tabla{max-height:480px;max-height:min(480px,55vh);max-height:min(480px,55dvh);overflow-y:auto;overscroll-behavior:contain;padding:0 16px}
+.hl-doboz .hl-tabla .hl-sor:last-child{border-bottom:0}
+.hl-doboz .ures{padding:16px 0}
+.hl-doboz .hl-tabla .hl-sor .forras{background:var(--lap2)}
+.hl-kiadasok{max-height:420px;overflow-y:auto;overscroll-behavior:contain}
+.hl-kiadasok .hl-sor{flex-wrap:wrap;gap:4px 16px;padding:10px 0}.hl-kiadasok .hl-sor .ido{flex-basis:100%;white-space:normal;font-size:14px}
+@media (min-width:1100px){.hl-racs{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:48px;align-items:start}.hl-jobb .hl-cimke{margin-top:0}}
+@media (max-width:560px){.hl-tabla .hl-sor{grid-template-columns:auto minmax(0,1fr) auto;row-gap:4px;column-gap:12px}.hl-tabla .hl-sor .em{grid-column:1/-1}.hl-tabla .hl-sor .meta{display:flex;gap:8px;align-items:center}.hl-tabla .hl-sor .ido{order:0;flex:none;white-space:nowrap;justify-self:end}.hl-statok{margin-top:-8px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.hl-stat{font-size:13px;padding:8px}.hl-stat b{display:block;font-size:18px}}
 .gomb{background:var(--amber);color:#131313;font-weight:700;border-radius:8px;padding:12px 20px}.gomb.masod{background:none;color:var(--szoveg);border:1px solid var(--vonal)}
 @media (max-width:560px){.hl-szam b{font-size:56px}.hl-sor{flex-wrap:wrap;gap:8px}.hl-sor .ido{order:3}}
 .ap-ketto{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;align-items:start}
@@ -474,15 +505,22 @@ if(/quicknews-android-admin/.test(navigator.userAgent))document.documentElement.
 <p class="a-bev">A napi emlékeztető feliratkozói. Minden reggel 8-kor kimegy nekik az előző nap legfontosabb híreivel. A címek csak erre a levélre használhatók.</p>
 <div class="hl-fej"><div class="hl-szam"><b class="num" id="hl-db">0</b><span>feliratkozó</span></div>
 <div class="kapcs hl-kapcs"><button id="hl-aktiv" aria-pressed="true"><i></i>Reggeli küldés bekapcsolva</button></div></div>
-<p class="hl-cimke">Cím hozzáadása kézzel</p>
-<form class="hl-urlap" id="hl-urlap"><input type="email" id="hl-email" placeholder="nev@pelda.hu" autocomplete="off" required><button type="submit" class="gomb">Hozzáadom</button></form>
-<p class="hl-megj">Csak olyan címet vegyél fel, akinek a tulajdonosa hozzájárult, hogy emlékeztetőt kapjon.</p>
-<p class="hl-cimke">Címek, a legfrissebbel elöl</p>
-<div id="hl-lista"></div>
+<div class="hl-statok" id="hl-statok"></div>
+<div class="hl-racs"><div class="hl-bal">
+<div class="hl-eszkoz"><input type="search" id="hl-keres" placeholder="Keresés a címek között" autocomplete="off" aria-label="Keresés a feliratkozók között">
+<div class="hl-forrasok" role="group" aria-label="Honnan iratkozott fel" id="hl-forrasok"></div>
+<button type="button" class="gomb masod" id="hl-uj-gomb" aria-expanded="false" aria-controls="hl-uj">Cím hozzáadása</button></div>
+<div id="hl-uj" class="hl-uj" hidden><form class="hl-urlap" id="hl-urlap"><input type="email" id="hl-email" placeholder="nev@pelda.hu" autocomplete="off" required><button type="submit" class="gomb">Hozzáadom</button></form>
+<p class="hl-megj">Csak olyan címet vegyél fel, akinek a tulajdonosa hozzájárult, hogy emlékeztetőt kapjon.</p></div>
+<div class="hl-doboz"><p class="hl-talalat" id="hl-talalat" aria-live="polite"></p>
+<div id="hl-lista" class="hl-tabla" tabindex="0" aria-label="Feliratkozók listája"></div></div>
+<button type="button" class="gomb masod hl-tovabb" id="hl-tovabb" hidden></button>
 <div class="hl-gombok"><button class="gomb" id="hl-masol">Címek másolása</button><button class="gomb masod" id="hl-csv">Letöltés CSV-ben</button><button class="gomb masod" id="hl-frissit">Frissítés</button></div>
+</div><div class="hl-jobb">
 <p class="hl-cimke">Kiküldött levelek</p>
-<div id="hl-kiadasok"></div>
+<div id="hl-kiadasok" class="hl-kiadasok"></div>
 <p class="hl-megj"><a id="hl-utolso" href="#" target="_blank" rel="noopener" style="color:var(--amber)">Az utoljára kiküldött levél megnyitása ↗</a></p>
+</div></div>
 </section>
 <section id="p-boo" hidden>
 <div class="szeg alful" role="group" aria-label="Hírlevél nézet"><button type="button" data-alful="hirlevel">Hírlevél</button><button type="button" data-alful="boo">Nyereményjáték</button></div>
@@ -916,11 +954,31 @@ async function hltolt(){const L=document.getElementById("hl-lista");let d;try{d=
  if(d.hiba){L.innerHTML=`<div class="hibasav">${esc(d.hiba)}</div>`;return}
  HL=d;document.getElementById("hl-db").textContent=d.darab||0;
  const ak=document.getElementById("hl-aktiv"),be=!(d.beall&&d.beall.aktiv===false);ak.setAttribute("aria-pressed",be);ak.lastChild.textContent=be?"Reggeli küldés bekapcsolva":"Reggeli küldés kikapcsolva";
- L.innerHTML=(d.lista||[]).map(x=>`<div class="hl-sor"><span class="em">${esc(x.email)}</span><span class="ido">${x.ido?fmt(new Date(x.ido),{year:"numeric",month:"short",day:"numeric"}):""}${x.forras==="admin"?" · kézzel":""}</span><button class="sor-torol" data-hlt="${esc(x.email)}">Törlés</button></div>`).join("")||`<p class="ures">Még nincs feliratkozó.</p>`;
- L.querySelectorAll("[data-hlt]").forEach(g=>g.onclick=async()=>{if(!await kerd("Biztosan törlöd: "+g.dataset.hlt+"?"))return;await hlmuv({muvelet:"torol",email:g.dataset.hlt})});
+  hlStat(d.lista||[]);hlRajzol();
  const K=document.getElementById("hl-kiadasok");
  K.innerHTML=(d.kiadasok||[]).map(k=>`<div class="hl-sor"><span class="em">${esc(k.targy||"")}</span><span class="ido">${k.ido?fmt(new Date(k.ido),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):""} · ${k.cimzett||0} címzett · ${k.hirek||0} hír${k.hiba?` · <b style="color:var(--hiba)">${k.hiba} hiba</b>`:""}</span></div>`).join("")||`<p class="ures">Még nem ment ki emlékeztető.</p>`;
  document.getElementById("hl-utolso").href=U.hlUtolso}
+const HLFORRAS={popup:"felugró ablak",admin:"kézzel",boo:"nyereményjáték"};
+const hlForras=f=>HLFORRAS[f||"popup"]||f;
+let HLQ="",HLF="",HLN=Infinity;
+function hlStat(l){const most=Date.now(),nap=864e5,db=n=>l.filter(x=>x.ido&&most-new Date(x.ido)<n*nap).length;
+ document.getElementById("hl-statok").innerHTML=`<span class="hl-stat"><b>+${db(1)}</b> 24 óra alatt</span><span class="hl-stat"><b>+${db(7)}</b> 7 nap alatt</span><span class="hl-stat"><b>+${db(30)}</b> 30 nap alatt</span>`;
+ const dbf={};l.forEach(x=>{const k=x.forras||"popup";dbf[k]=(dbf[k]||0)+1});
+ const F=document.getElementById("hl-forrasok");
+ F.innerHTML=[["","Mind",l.length],...Object.entries(dbf).sort((a,b)=>b[1]-a[1]).map(([k,n])=>[k,hlForras(k),n])].map(([k,n,c])=>`<button type="button" data-hlf="${esc(k)}" aria-pressed="${k===HLF}">${esc(n.charAt(0).toUpperCase()+n.slice(1))}<small>${c}</small></button>`).join("");
+ F.hidden=Object.keys(dbf).length<2;
+ F.querySelectorAll("[data-hlf]").forEach(g=>g.onclick=()=>{HLF=g.dataset.hlf;F.querySelectorAll("[data-hlf]").forEach(x=>x.setAttribute("aria-pressed",x===g));hlRajzol()})}
+function hlRajzol(){const L=document.getElementById("hl-lista"),T=document.getElementById("hl-talalat"),B=document.getElementById("hl-tovabb");
+ const q=HLQ.trim().toLowerCase(),osszes=(HL&&HL.lista)||[];
+ const l=osszes.filter(x=>(!HLF||(x.forras||"popup")===HLF)&&(!q||x.email.includes(q)));
+ const jel=e=>{if(!q)return esc(e);const i=e.indexOf(q);return i<0?esc(e):esc(e.slice(0,i))+"<mark>"+esc(e.slice(i,i+q.length))+"</mark>"+esc(e.slice(i+q.length))};
+ T.textContent=!osszes.length?"":(q||HLF)?`${l.length} találat`:`${osszes.length} cím, a legfrissebbel elöl`;
+ L.innerHTML=l.slice(0,HLN).map(x=>`<div class="hl-sor"><span class="em">${jel(x.email)}</span><span class="meta"><span class="forras">${esc(hlForras(x.forras))}</span></span><span class="ido">${x.ido?fmt(new Date(x.ido),{year:"numeric",month:"short",day:"numeric"}):""}</span><button class="sor-torol" data-hlt="${esc(x.email)}">Törlés</button></div>`).join("")||`<p class="ures">${osszes.length?"Nincs ilyen cím.":"Még nincs feliratkozó."}</p>`;
+ L.querySelectorAll("[data-hlt]").forEach(g=>g.onclick=async()=>{if(!await kerd("Biztosan törlöd: "+g.dataset.hlt+"?"))return;await hlmuv({muvelet:"torol",email:g.dataset.hlt})});
+ const marad=l.length-HLN;B.hidden=marad<=0;B.textContent=`Még ${Math.min(30,marad)} cím (összesen ${l.length})`}
+document.getElementById("hl-keres").oninput=e=>{HLQ=e.target.value;hlRajzol()};
+document.getElementById("hl-tovabb").onclick=()=>{HLN+=30;hlRajzol()};
+document.getElementById("hl-uj-gomb").onclick=()=>{const u=document.getElementById("hl-uj"),g=document.getElementById("hl-uj-gomb");u.hidden=!u.hidden;g.setAttribute("aria-expanded",!u.hidden);if(!u.hidden)document.getElementById("hl-email").focus()};
 async function hlmuv(b){try{const r=await lekér(U.hlMuvelet,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)});if(r.hiba)alert(r.hiba)}catch(e){alert("Nem sikerült menteni.")}hltolt()}
 document.getElementById("hl-urlap").onsubmit=async e=>{e.preventDefault();const i=document.getElementById("hl-email");if(!i.value.trim())return;await hlmuv({muvelet:"hozzaad",email:i.value.trim()});i.value=""};
 document.getElementById("hl-aktiv").onclick=async()=>{const be=document.getElementById("hl-aktiv").getAttribute("aria-pressed")==="true";
