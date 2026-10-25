@@ -1,5 +1,16 @@
 [
   {
+    "i": "99c99157c7fa",
+    "p": "/assets/kep/99c99157c7fa.webp",
+    "c": "Veszélyben a kiadók az AI Overviews miatt, jelentősen esik a keresési forgalom",
+    "b": "A Google AI-alapú keresési funkciói drasztikusan csökkentették a híroldalak látogatottságát, ami radikális stratégiaváltásra kényszeríti az online kiadókat.",
+    "k": "The Verge AI",
+    "g": "üzlet",
+    "u": "/hir/googles-ai-search-changes-upended-online-publishing",
+    "sz": "A Google által bevezetett AI Overviews és az AI Mode közvetlenül a találati lista tetején jelenítik meg a webes tartalomból generált összefoglalókat. Ennek következtében a felhasználók sokkal ritkábban kattintanak át a forrásoldalakra. Az elemzések szerint egyes kiadóknál a kattintási arány akár 89 százalékkal is visszaesett, miközben olyan nagy lapok, mint a The New York Times vagy a The Washington Post is folyamatos forgalomcsökkenésről számolnak be.\n\nA helyzetre válaszul több kiadó pert indított a techóriás ellen, míg mások hírlevelekkel, közösségi médiával és fizetős előfizetői modellekkel próbálják pótolni a kieső elérést. A Google jelenleg olyan licencelési és fizetési programokat tesztel, amelyekkel kompenzálná a tartalomgyártókat az AI-válaszokhoz felhasznált cikkekért. Google AI Overviews SEO tartalomgyártás",
+    "d": "okt. 25. 13:00"
+  },
+  {
     "i": "44ca99664dde",
     "p": "/assets/kep/44ca99664dde.webp",
     "c": "Az Nvidia nyílt forrásúvá tette a Flora videófeliratozó rendszert",
@@ -9,6 +20,17 @@
     "u": "/hir/az-nvidia-nyilt-forrasuva-tette-a-flora-videofeliratozo-rendszert",
     "sz": "Az Nvidia GEAR kutatólaboratóriuma kiadta a Flora nevű nyílt adatkezelő rendszert, ami a robotok tanításához szükséges videók automatikus szöveges annotálását végzi. A rendszer 3 különálló, finomhangolt Qwen3.5 modellből áll, amelyek külön felosztják a videókat akcióidőszakokra, leírják a történéseket, és értékelik a feladatok sikerességét.\n\nA tesztek alapján a Flora 1 órányi videó feldolgozását körülbelül 72 centes áron végzi el, miközben a hibás robotikai lépések felismerésében jóval megbízhatóbb, mint a piacon lévő zárt modellek. A rendszer fő erőssége az időbeli precizitás és a részlegesen teljesített feladatok pontosabb pontozása, bár a hosszabb leírások pontosságában néha elmarad a legnagyobb modellektől.\n\nA Flora modellek már elérhetők a Hugging Face platformján, és az Nvidia a saját GR00T robotikai modelljeinek tanításánál is ezt a struktúrát használja az adatok feldolgozására. Nvidia Flora robotika videógenerálás",
     "d": "okt. 25. 11:08"
+  },
+  {
+    "i": "3dc66c706e99",
+    "p": "/assets/kep/3dc66c706e99.webp",
+    "c": "Elon Musk a SpaceX és a Tesla egyesítését vizsgálja",
+    "b": "Különbizottságok alakultak a SpaceX és a Tesla esetleges összeolvadásának elemzésére egy 3,5 billió dolláros ügylet keretében.",
+    "k": "IndulgExpress",
+    "g": "üzlet",
+    "u": "/hir/elon-musk-a-spacex-es-a-tesla-egyesiteset-vizsgalja",
+    "sz": "Elon Musk kezdeményezésére független igazgatókból álló bizottságok vizsgálják a SpaceX és a Tesla egyesítésének lehetőségét. Az ügylet célja a rakétagyártás, a műholdas internet, a mesterséges intelligencia, az elektromos autók és a robotika egyetlen vállalati struktúrába terelése.\n\nMusk szerint a lépés szorosan kapcsolódik a szuperintelligencia és a robotika fejlesztéséhez, valamint a chiptervezési és adatközponti erőforrások egyesítéséhez. Ugyanakkor hangsúlyozta, hogy az összeolvadás egyáltalán nem biztos, mivel a tranzakcióhoz a Tesla összes részvényesének többségi jóváhagyása szükséges, ami komoly akadályt jelent.\n\nA SpaceX korábban felvásárolta a Grok chatbotot fejlesztő xAI-t, így a vállalategyesítés a teljes AI-infrastruktúrát is érintené. Egyelőre sem a feltételekről nem született megállapodás, sem a részvényesi szavazás időpontja nem ismert. Tesla SpaceX xAI Elon Musk",
+    "d": "okt. 25. 11:01"
   },
   {
     "i": "7241bd68f025",
@@ -31,6 +53,17 @@
     "u": "/hir/az-anthropic-szerint-egyetlen-ai-ugynok-jobb-mint-a-sok-alugynok",
     "sz": "Az Anthropic tapasztalatai szerint a vállalati fejlesztésekben a rugalmasan betöltött környezettel működő, egyetlen fő AI-ügynök jobb minőséget, alacsonyabb költséget és kisebb várakozási időt ér el, mint a sok különálló alügynökből álló rendszerek. A modern modellek már önállóan is képesek kezelni a komplex folyamatokat, így nincs szükség bonyolult, egymásra épülő feldolgozó láncokra.\n\nEgyes mérésekben az egyetlen ügynökre épülő architektúra mintegy kétszer gyorsabban futott, mint a sok alügynökből álló változat. A túl sok különálló alügynök használata elmoshatja a márkaképet, megnöveli a válaszidőt, és a csapattagok által módosított szabályok miatt egymásnak ellentmondó utasításokhoz vezethet. Az alügynökök megtartása csak akkor indokolt, ha párhuzamos feladatvégzésre van szükség, vagy ha egyetlen ügynök már nem tud megfelelően választani a túl sok eszköz közül.\n\nAz átálláshoz az Anthropic kiadott egy útmutatót és lépésről lépésre követhető mintákat a fejlesztők számára. A cég azt javasolja, hogy a vállalatok kis központi csapattal tartsák kézben a rendszert, a háttértudást pedig kereshető eszközökkel vagy feladatspecifikus képességekkel tegyék elérhetővé az ügynök számára. A fej",
     "d": "okt. 25. 10:12"
+  },
+  {
+    "i": "e2397ee899f2",
+    "p": "/assets/kep/e2397ee899f2.webp",
+    "c": "AI kérdőjelezi meg a világ legdrágább festményének eredetiségét",
+    "b": "Egy brazil AI elemzése szerint 81 százalék az esélye annak, hogy a Salvator Mundi festményt nem Leonardo da Vinci, hanem tanítványa készítette.",
+    "k": "Наша Ніва",
+    "g": "kutatás",
+    "u": "/hir/mesterseges-intelligencia-kerdojelezi-meg-a-vilag-legdragabb",
+    "sz": "A Luminari nevű brazil mesterségesintelligencia-rendszer elemzése alapján 81 százalékos valószínűséggel nem maga Leonardo da Vinci, hanem tanítványa, Giovanni Antonio Boltraffio festette a Salvator Mundi című képet. A műalkotás 2017-ben rekordösszegért, 450,3 millió dollárért kelt el a Christie’s árverésén, vásárlója a feltételezések szerint Mohamed bin Szalmán szaúdi trónörökös.\n\nA művészettörténészek és AI-szakértők óvatosságra intenek az eredményekkel kapcsolatban. Wolfgang Reuter vállalkozó szerint a 81 százalékos érték csak közvetett indikátornak tekinthető, míg Frank Zöllner művészettörténész kiemelte, hogy az AI hasznos segítség, de egymagában nem tud végleg eldönteni szerzőségi vitákat.\n\nA festmény története rendkívül kalandos, hiszen 2005-ben egy súlyosan sérült állapotú vászonként mindössze 1175 dollárért kelt el egy New York-i aukción. A restaurálást követően tulajdonították a képet a reneszánsz mesternek, a mostani digitális vizsgálat viszont ismét felszínre hozta a kételyeket. Luminari képzőszelem művészet képelemzés",
+    "d": "okt. 25. 08:59"
   },
   {
     "i": "c3917e71d16f",
