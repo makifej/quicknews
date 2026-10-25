@@ -1,0 +1,74 @@
+{
+  "id": "db66727afb7f",
+  "slug": "nyilt-forraskodu-biztonsagi-bovitmenyt-adott-ki-a-cognition",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/10/24/cognition-devin-vulnerability-fixes-plugin-php2shell-nodejs-gitlab/",
+  "szerzo": "Michal Sutter",
+  "publikalva": "2026-10-25T02:59:08+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-454-37-scaled.png"
+  },
+  "cim_eredeti": "Cognition Open-Sources an Agent Plugin that Helps Secure Systems against Recent Cybersecurity Threats",
+  "forrasok": [],
+  "szoveg_eredeti": "Cognition has released the Devin Vulnerability Fixes plugin , a free, open-source set of agent skills. It targets three critical remote code execution (RCE) advisories. They cover PHP2Shell , the Node.js October 21, 2026 security release and a CVSS 10.0 self-managed GitLab bug . The skills run in Devin and in any coding agent that reads SKILL.md files . Cognition packaged the remediation workflow it used internally . Developers can do inventory, approve, patch, test, then ship 1 pull request per repository.\n\n TL;DR \n\n Size: Three skills ( fix-php-vuln , fix-node-vuln , fix-gitlab-vuln ), MIT license.\n\n Runs on: Devin, Claude Code, Codex, Cursor, Factory Droid, GitHub Copilot, Gemini CLI, OpenCode and Windsurf. Needs git, a shell, Docker and registry access. The npx skills install needs Node.js 22.20 or later.\n\n Performance: No remediation benchmark or fix-rate number is published for the plugin.\n\n Best: Covers the week’s most severe bug, GitLab CVE-2026-110264, rated CVSS 10.0.\n\n Worst: Validation is only as strong as your tests. Managed runtimes, appliances and Electron apps are flagged, not patched.\n\n What is the Devin Vulnerability Fixes plugin? \n\n The Devin Vulnerability Fixes plugin is a set of three Agent Skills from Cognition. They find and patch vulnerable PHP, Node.js and self-managed GitLab deployments. The source is on GitHub under the MIT license. Cognition’s product page lists it as free and open source.\n\n Which vulnerabilities does it fix? \n\n PHP2Shell (CVE-2026-109618, CVE-2026-109619) : PHP rates both flaws CVSS v4.0 9.2 . The first corrupts memory after an out-of-memory condition. The second lets stale global state from one request reach the next. PHP says every web-serving setup is at risk , with mod_php rated highest risk. Fixed versions are 8.2.35, 8.3.36, 8.4.27 and 8.5.12. PHP 8.1 and older get no releases, only source backports for 7.4, 8.0 and 8.1.\n\n Node.js October 2026 release : It fixes 10 CVEs, 4 rated High . The lead bug, CVE-2026-111497, is a Brotli decoder out-of-bounds write that can enable RCE. Fixed versions are 22.23.4, 24.22.1 and 26.12.1. Node.js 20 and older are end-of-life and get no fix.\n\n GitLab CVE-2026-110264 : An integer overflow in the regular expression compiler allows unauthenticated code execution . It affects GitLab CE/EE from 7.0 onward and scores CVSS 10.0. GitLab.com and GitLab Dedicated are already patched.\n\n How does the plugin work? \n\n Every skill follows the same five-step shape : \n\n Read-only inventory : The agent scans Dockerfiles, base images, distro packages, CI, Helm, Terraform, Packer, Lambda and config management.\n\n Approval gate : Nothing changes until you pick repos. Riskier minor or major upgrades are called out first.\n\n Verified target : Every tag, digest, package version and checksum is confirmed against the official source before editing.\n\n Test before and after : The suite runs on the current version, then inside the new production image. Regressions stop the run.\n\n One PR per repo : Each PR carries versions, test results, runtime diffs, a risk label and a rollback plan.\n\n The skills also encode known patching traps. Debian and Ubuntu backport fixes without changing upstream versions, so php -v can mislead. Ubuntu 24.04’s fixed package is 8.3.6-0ubuntu0.24.04.13 . Digest-pinned images need a new digest. Changing Composer’s require.php patches nothing.\n\n How do you install and run it? \n\n In Devin, open Customize, then Plugins, then Browse Marketplace, and search for Vulnerability Fixes. The Devin CLI uses devin plugins install CognitionAI/devin-marketplace#plugins/devin-vuln-fixes . For other agents, run npx skills add CognitionAI/devin-vuln-fixes . Claude Code users can add the marketplace and run /plugin install vuln-fixes@cognition-skills .\n\n Then ask in plain language, such as ‘Please fix my PHP vulnerability.’ Slash commands also work: /fix-php-vuln , /fix-node-vuln and /fix-gitlab-vuln .\n\n How does it compare with Dependabot, Copilot Autofix and Snyk Agent Fix? \n\n Feature Devin Vulnerability Fixes Dependabot security updates GitHub Copilot Autofix Snyk Agent Fix What it fixes PHP, Node.js and self-managed GitLab versions for 3 advisories Vulnerable dependencies with an available patch, plus GitHub Actions Code scanning alerts Snyk Code findings Where it edits Dockerfiles, images, distro packages, CI, Helm, Terraform, config management Manifest and lock files Code suggestions in the repo Local-file code fixes; no complex inter-file logic Approval before edits Yes, read-only inventory first No: opens PRs automatically once enabled Not disclosed User clicks “Generate AI fix” and reviews Validation Tests before and after inside the new production image Compatibility scores from public CI runs Not disclosed Retests fix with the Snyk Code engine Runs where Any agent that reads SKILL.md GitHub GitHub Snyk web UI and IDE plugins License MIT, open source Not disclosed Not disclosed Not disclosed Cost Free Available for all GitHub repositories Free on public repos; private repos need GitHub Code Security Requires Snyk Code; price not disclosed \n\n These tools solve adjacent problems. Dependabot and the code-fix agents work on application dependencies and source code. Cognition’s plugin targets the runtime layer: base images, OS packages and infrastructure-as-code.\n\n Key Takeaways \n\n Three MIT-licensed skills patch PHP2Shell, Node.js and GitLab CVE-2026-110264.\n\n Read-only inventory and an approval gate come before any edit.\n\n Tests run before and after inside the new production image.\n\n Works across Devin, Claude Code, Codex, Cursor and other SKILL.md agents.\n\n No published fix-rate benchmark; results depend on your test coverage.\n\n Check out the GitHub repo , the Cognition blog post and the plugin page . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Cognition Open-Sources an Agent Plugin that Helps Secure Systems against Recent Cybersecurity Threats appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "Nyílt forráskódú biztonsági bővítményt adott ki a Cognition",
+  "lead": "A Devin Vulnerability Fixes segítségével az AI-ügynökök automatikusan azonosítják és javítják a kritikus PHP-, Node.js- és GitLab-sebezhetőségeket.",
+  "osszefoglalo": "A Cognition ingyenesen hozzáférhetővé tette a [Devin Vulnerability Fixes](https://devin.ai/vulnerability-fixes) bővítményt, amely három nyílt forráskódú képességet tartalmaz a legutóbbi súlyos biztonsági hibák elhárítására. A megoldás képes feltérképezni és frissíteni a veszélyeztetett PHP, Node.js és saját üzemeltetésű GitLab rendszereket. Az eszköz az ellenőrzést követően repónként egyetlen módosítási kérelmet készít elő.\n\nA rendszer nem nyúl közvetlenül a kódhoz felhatalmazás nélkül. Először **olvasási joggal leltárt készít** a Docker-fájlokról és a konfigurációkról, majd jóváhagyást kér a fejlesztőtől. A frissítések előtt és után is lefutnak az automatikus tesztek, így a hiba javítása garantáltan nem töri meg a meglévő működést.\n\nA bővítmény nemcsak a Devinnel működik, hanem **minden SKILL.md fájlokat támogató AI-ügynökkel**, beleértve a Claude Code, Cursor vagy GitHub Copilot rendszereket is. Telepítése a megfelelő csomagkezelőkön vagy parancssoron keresztül percek alatt elvégezhető.",
+  "miert_szamit": "A fejlesztőcsapatok és vállalkozások **automatizálhatják az infrastruktúra-szintű biztonsági javításokat**, amivel óráknyi manuális tesztelést és rendszerfrissítést takaríthatnak meg.",
+  "cimkek": [
+    "Devin",
+    "Cognition",
+    "kiberbiztonság",
+    "fejlesztés"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Devin Vulnerability Fixes"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 67,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 85,
+      "hitelesseg": 76,
+      "aktualitas": 92,
+      "kozossegi": 59
+    },
+    "elofeszures": 90,
+    "tanult": 50,
+    "indok": "Gyakorlati hasznosságú nyílt forráskódú AI ágens bővítmény kiberbiztonsági javításokhoz. Forrás-tapasztalat: -6.",
+    "tema": "cognition devin security plugin open source",
+    "cim_hu": "Nyílt biztonsági bővítményt tett közzé a Cognition a kódoló AI ágensekhez",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-25T07:04:17+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-25T07:07:14+00:00",
+  "megjelent": "2026-10-25T07:07:14+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-25T07:07:38+00:00",
+    "esemeny": "A Cognition kiadta a Devin Vulnerability Fixes nyílt forráskódú bővítményt, amely segít az AI-ügynököknek javítani a kritikus PHP-, Node.js- és GitLab-sebezhetőségeket.",
+    "forrasok": [
+      "https://www.marktechpost.com/2026/10/24/cognition-devin-vulnerability-fixes-plugin-php2shell-nodejs-gitlab/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}

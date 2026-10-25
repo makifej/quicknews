@@ -1,0 +1,75 @@
+{
+  "id": "32d6e56da960",
+  "slug": "megjelent-az-nyilt-forraskodu-okostelefon-ugynok-az-openmobile-2",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/openmobile-2-proves-open-source-smartphone-agents-can-rival-proprietary-models/",
+  "szerzo": "Jonathan Kemper",
+  "publikalva": "2026-10-25T06:55:22+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/open-mobile-2-smartphone-app-training-nano-banana-pro.jpg"
+  },
+  "cim_eredeti": "OpenMobile-2 proves open-source smartphone agents can rival proprietary models",
+  "forrasok": [],
+  "szoveg_eredeti": "More data alone doesn't make smartphone agents better. With the same amount of data, what matters most is how many different apps an agent trains on.\n\nAI agents that operate apps on their own learn mainly through practice, but the data they need is mostly locked up at big companies. Open models lag behind as a result, write researchers from Nanjing University, AI company SenseTime, and several other universities.\n\nOpenMobile-2 is their attempt to close that gap. They're releasing two agent models built on Qwen3.5 with 9 billion and Qwen3.6 with 27 billion parameters, along with the full training environment, data, and instructions to reproduce everything. The authors say their model ranks near the top among current smartphone agents.Ad\n\nTraining on real apps is painful because logins, real purchases, and no way to reset state make the process expensive and hard to repeat. So the researchers rebuilt 35 apps popular mainly in China, including Taobao, JD, DiDi, and Meituan, plus globally used services like Slack and Google Drive. Combined with existing simulations and apps running in an Android emulator, the practice ground covers more than 110 applications.Ad\n\nHuman reviewers compared the rebuilt apps to the originals and kept refining until workflows and interfaces matched. Orders, budgets, and travel plans persist across sessions, and data can pass between apps via the clipboard. Every simulation resets to its starting state automatically, while the agent only sees screenshots and has no access to internal app data, mimicking how a person would actually use them.\n\nFrom this setup, the team generated about 11,600 example workflows and more than 2,000 practice tasks with automated success checks. Google's Gemini 3.1 Pro served as the teacher model that produced the examples, which means OpenMobile-2 is effectively learning from a closed system.Ad\n\nBoth models show clear gains on established benchmarks. On AndroidWorld, the larger model jumps from 67.1 to 79.9 points, while the smaller one goes from 54.3 to 74. The predecessor OpenMobile-1 scored 64.7 on the same test. On the harder MobileWorld benchmark, which covers longer tasks spanning multiple apps, the larger model improves from 35.9 to 50.4 points.\n\nThe biggest jump shows up on real Android devices, where the larger model climbs from 31.9 to 59.6 points on SPA-Bench. The researchers say that's the best score among open models.Ad\n\nTraining environment diversity matters more than sheer data volume here. The researchers held the amount of data constant and only increased the number of apps the agent practiced on, which pushed the success rate on unseen apps from 60.7 to 67.5 percent. With the same data budget, app variety beats extra examples from a handful of apps.Ad\n\nReinforcement learning on top brought only limited gains, mainly in environments that resembled the training setup. On AndroidWorld, the larger model actually scored slightly worse afterward, landing at 79.9 instead of 80.8 points.\n\nAn experimental part of the study goes beyond tapping and swiping. More than 50 of the simulated apps offer direct commands like \"add to cart\" so the agent can skip navigating through menus, and the agent freely switches between both approaches depending on what's available.\n\nOn its own, though, this doesn't help much because the models tend to ignore the shortcuts without targeted training. Once they've been trained on them, the agents use them well, solving up to 10.3 percentage points more tasks while needing about five fewer steps. The researchers say this ability also transfers to tools the models never encountered during training.\n\nDuring the later reinforcement learning phase, tool use got a bonus factor whenever a run included at least one direct command, though the reward still depended on whether the task was actually completed. Penalties kicked in when the agent reported a success that wasn't real. These interfaces only exist in the simulated apps for now, and the researchers call the approach experimental themselves.\n\nSome results come from a custom benchmark the team built with 215 tasks, nearly half of which span multiple apps. Task completion isn't judged by a language model but by a program that compares the app's stored data before and after each run. The authors also checked for overlap between training and test tasks and found only minor similarities.\n\nMicrosoft Research had already classified API agents as more reliable and GUI agents as more flexible in a 2025 study, pointing to mobile apps as a typical case where external interfaces don't exist. Oppo takes a different route with its open agent X-OmniClaw, which runs on real devices and replays previously shown paths in apps like Taobao or Meituan via deeplinks instead of clicking through menus again. Among closed models, Google has built smartphone control directly into Gemini 3.5 Flash.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Megjelent a nyílt forráskódú okostelefon-ügynök, az OpenMobile-2",
+  "lead": "A Nancsingi Egyetem és a SenseTime kutatói kiadták a nyílt forráskódú okostelefon-ügynökök fejlesztését segítő OpenMobile-2 rendszert.",
+  "osszefoglalo": "A Nancsingi Egyetem és a SenseTime kutatói bemutatták az [OpenMobile-2](https://os-copilot.github.io/OpenMobile2-Home/) nevű nyílt forráskódú fejlesztést, amely okostelefonos AI-ügynökök tanítására szolgál. A kutatók közzétették a Qwen3.5 és Qwen3.6 modellekre épülő, 9 milliárd és 27 milliárd paraméteres ágenseket, valamint a teljes oktatási környezetet is. A rendszerben több mint 110 alkalmazást szimulálnak, ami lehetővé teszi az ágensek hatékony gyakorlását.\n\nA tesztelési eredmények szerint a nagyobb modell 31,9 pontról **59,6 pontra növelte** a teljesítményét a valós Android-eszközökön végzett SPA-Bench mérésen. A kutatás rávilágított arra, hogy a tanítás során használt alkalmazások változatossága sokkal fontosabb az ügynökök sikere szempontjából, mint a puszta adatmennyiség.\n\nA fejlesztők a szimulált alkalmazásokban közvetlen parancsokat is biztosítottak az AI számára, így az képes átugrani a menükben való manuális navigációt. A képzési környezet, a modellek és a kapcsolódó adatok mind teljesen nyíltan hozzáférhetők a fejlesztők számára.",
+  "miert_szamit": "A nyílt forráskódú okostelefonos ágensek fejlődése elősegíti, hogy **automatikusan vezérelhetővé váljanak a mobilalkalmazások**, ami jelentősen megkönnyítheti az appok közötti feladatok automatizálását.",
+  "cimkek": [
+    "OpenMobile-2",
+    "Android",
+    "AI-ügynök",
+    "nyílt forráskód"
+  ],
+  "kategoria": "ügynök",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "OpenMobile-2"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 78,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 70,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 82,
+      "aktualitas": 98,
+      "kozossegi": 66
+    },
+    "elofeszures": 92,
+    "tanult": 59,
+    "indok": "Jelentős nyílt forráskódú okostelefonos AI ágens modell megjelenése kínai kutatóktól. Forrás-tapasztalat: -2.",
+    "tema": "openmobile-2 open source smartphone agent",
+    "cim_hu": "Megérkezett az OpenMobile-2: nyílt AI ágensek a zárt modellek nyomában",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-25T07:04:17+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-25T07:06:29+00:00",
+  "megjelent": "2026-10-25T07:06:29+00:00",
+  "nevelo_javitva": "2026-10-25T07:06:29+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-25T07:07:33+00:00",
+    "esemeny": "A Nancsingi Egyetem és a SenseTime kutatói kiadták az OpenMobile-2 rendszert, amely nyílt forráskódú okostelefonos AI-ügynökök tanítására szolgál 9 milliárd és 27 milliárd paraméteres modellekkel és egy több mint 110 alkalmazást tartalmazó szimulációs környezettel.",
+    "forrasok": [
+      "https://the-decoder.com/openmobile-2-proves-open-source-smartphone-agents-can-rival-proprietary-models/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}

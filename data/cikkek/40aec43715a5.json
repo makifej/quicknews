@@ -1,0 +1,76 @@
+{
+  "id": "40aec43715a5",
+  "slug": "a-microsoft-nyilt-forraskoduva-tette-a-1024-ai-ugynokot-kezelo-agensh",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/10/24/microsoft-agensh-multi-agent-harness-1024-agents/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-10-25T03:32:59+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/1WP-BLOG-BANNER-454-1-scaled.png"
+  },
+  "cim_eredeti": "Microsoft Open-Sources Agensh: A Multi-Agent Harness for 1,024 Agents",
+  "forrasok": [],
+  "szoveg_eredeti": "Microsoft Research has open-sourced Agensh , a decentralized harness for large teams of coding agents. The Agensh multi-agent harness removes the central orchestrator that most agent frameworks depend on. Every worker picks its own sub-task, shares findings and merges code into a common Git repo. On ProgramBench, the team scaled the setup from 1 agent to 1,024 agents. \n\n TL;DR \n\n A Harness : Tested from 1 to 1,024 agents. Each worker gets a 272,000-token input and 128,000-token output limit.\n\n Runs on: Linux with Docker Compose. Single node by default (8 workers). The 1,024-agent run used 16 nodes, 64 agents each. Workers have a 64 GiB memory ceiling.\n\n Performance: more agents raised scores on all 5 hardest ProgramBench tasks, and reached them sooner.\n\n Best: 79.59% pandoc pass rate with 32 agents on GPT-6.1-sol. GPT-5.6-sol hit 55.06% with 1,024 agents.\n\n Worst: the 5-task mean reached only 28.78% at 128 agents. Going from 1 to 8 agents added 1.37 points.\n\n What is Agensh? \n\n Agensh is a multi-agent harness from Microsoft Research that coordinates many LLM agents without a lead agent. \n\n The target problem is the orchestrator ceiling. In orchestrator-worker designs, a lead agent plans, assigns and merges all work. The research paper cites Claude Code agent teams, Codex sub-agents, Copilot fleet and Kimi Agent Swarm as examples. Agensh lets the workers do that coordination themselves.\n\n How does the Agensh cooperation loop work? \n\n Each worker runs the same 5-step loop, concurrently and asynchronously: \n\n Gather context: read the goal, peer progress, messages and findings.\n\n Claim a sub-task: post a CLAIM, then settle overlaps by direct message.\n\n Take action: work locally with tools and post useful findings early.\n\n Verify results: check the work against the sub-task’s acceptance criteria.\n\n Merge progress: merge into the shared repo, post an update, then repeat.\n\n Three services connect the workers. Gitea hosts the shared workspace, with branches, PRs and merge conflicts. Mattermost carries a team channel plus direct messages for urgent collisions. A shared context board, adapted from DeLM , stores typed notes: OBSERVED, FACT, FAIL, CLAIM and PATCH_SUMMARY.\n\n The loop lives in the prompt, not in runtime code. Every worker gets the same prompt except its ID. Agensh sits on top of a single-agent harness. The experiments used GitHub Copilot CLI . The research paper states thin adapters can connect other harnesses, such as Claude Code.\n\n How well does Agensh scale on ProgramBench? \n\n Microsoft team tested the 5 hardest ProgramBench tasks: FFmpeg, gromacs, pandoc, PHP-src and ctags. Agents rebuild each program from its observed behavior. They work offline, within 6 hours. Reference repos range from 2,767 files (pandoc) to 26,266 files (PHP-src).\n\n With GPT-5.6-sol at high reasoning effort, the mean final test-pass rate moved as follows: \n\n 1 agent: 19.31%\n\n 8 agents: 20.68%\n\n 32 agents: 26.52%\n\n 128 agents: 28.78%\n\n That is a 9.47-point gain, about 49% relative. On pandoc alone, scores were 33.89% (1), 41.75% (8), 43.11% (32), 50.94% (128) and 55.06% (1,024).\n\n Speed improved too: on pandoc, 128 agents passed 30% at the 30-minute checkpoint. 32 and 8 agents needed 60 and 90 minutes.\n\n The README adds a newer model. With GPT-6.1-sol, pandoc rose from 56.19% (1 agent) to 79.59% (32 agents). That is a 41.64% relative gain. These GPT-6.1-sol figures are not in the v1 paper.\n\n What behaviors emerged as the team grew? \n\n The research team traced worker trajectories at each scale: \n\n 8 agents: peers agreed on interfaces and resolved overlapping claims themselves.\n\n 32 agents: peers reviewed shared work; one approval was withdrawn after a counterexample.\n\n 128 agents: workers reused trusted reviewers and standardized an integration protocol.\n\n 1,024 agents: several workers acted as integrators, and peers recovered failed work.\n\n None of these roles was hard-coded.\n\n How does Agensh compare with other multi-agent harnesses? \n\n Feature Agensh Claude Code agent teams Kimi Agent Swarm Copilot CLI /fleet Coordination No orchestrator; peers self-claim work Fixed lead session coordinates teammates Orchestrator decomposes tasks Copilot assigns parts to subagents Agents shown 1,024 tested No hard limit; 3 to 5 recommended Up to 100 sub-agents Not disclosed Shared state Gitea repo + shared context board Shared task list with file locking Not disclosed Plan from plan mode Messaging Mattermost channel + direct messages Mailbox messages between teammates Not disclosed Not disclosed Models Model agnostic; tested GPT-5.6-sol, GPT-6.1-sol Claude models Kimi K2.5 Not disclosed Speed claim 30% on pandoc at 30 min (128 agents) Not disclosed 4.5x faster than sequential (self-reported) Not disclosed Availability Open source, MIT In Claude Code; experimental, off by default Top-tier subscribers, research preview In Copilot CLI \n\n How do you run Agensh? \n\n The release includes a single-node Docker Compose team and a single-agent baseline. Both use native Copilot ACP sessions. You need Linux with Docker Engine, Compose v2, systemd, cgroup v2 and Python 3.11+. Defaults are 8 workers, 6 hours per task and gpt-5.6-sol at high effort. You also need ProgramBench (v1.2.5 was validated) and a model API token. Full steps sit in the reproduction guide .\n\n Key Takeaways \n\n Agensh coordinates up to 1,024 agents with no central orchestrator.\n\n Workers self-claim tasks via Gitea, Mattermost and a shared findings board.\n\n 128 agents lifted the 5-task ProgramBench mean from 19.31% to 28.78%.\n\n GPT-6.1-sol with 32 agents hit 79.59% on pandoc.\n\n Code is MIT licensed, but token cost is not disclosed.\n\n Check out the Paper , GitHub Repo and Project Page . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Microsoft Open-Sources Agensh: A Multi-Agent Harness for 1,024 Agents appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Microsoft nyílt forráskódúvá tette a 1024 AI-ügynököt kezelő Agensh-t",
+  "lead": "Központi vezérlő nélkül, önszerveződő módon tud egyidejűleg akár több mint ezer fejlesztői AI-ügynök együttműködni a Microsoft új keretrendszerében.",
+  "osszefoglalo": "A Microsoft Research kiadta az [Agensh](https://github.com/microsoft/Agensh) névre keresztelt nyílt forráskódú keretrendszert, amely lehetővé teszi nagyszámú szoftverfejlesztő AI-ügynök összehangolt munkáját. A megoldás szakít a megszokott architektúrával, és **kihagyja a központi irányító ügynököt**, így a munkatársak önállóan osztják fel a feladatokat egy közös Git tároló, üzenetküldő és feljegyzési felület segítségével.\n\nA rendszerben minden ügynök egy 5 lépésből álló ciklust követ: felméri a helyzetet, felvesz egy részfeladatot, elvégzi a munkát, ellenőrzi az eredményt, majd összefűzi a kódot. Atesztek során a tesztelt **1024 ügynökből álló csapat** hatékonyabban és gyorsabban oldott meg komplex programozási feladatokat, mint a kisebb létszámú felállások, ráadásul olyan spontán szerepek alakultak ki, mint a felülvizsgáló vagy az integrátor.\n\nAz MIT licenc alatt megjelent kód Linux környezetben, [Docker Compose](https://docs.docker.com/compose/) segítségével futtatható. A futtatáshoz a **ProgramBench** keretrendszerre és egy kompatibilis modell API-kulcsára van szükség.",
+  "miert_szamit": "A fejlesztőcsapatok számára ez a megközelítés megmutatja, hogyan lehet **szűk keresztmetszetek nélkül skálázni** a komplex AI-fejlesztési feladatokat, ahol a központi koordinátorok korlátai már nem akadályozzák a többszereplős rendszerek hatékonyságát.",
+  "cimkek": [
+    "Microsoft",
+    "Agensh",
+    "fejlesztés",
+    "nyílt forráskód"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Agensh",
+    "ProgramBench"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 76,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 78,
+      "aktualitas": 95,
+      "kozossegi": 75
+    },
+    "elofeszures": 85,
+    "tanult": 75,
+    "indok": "Technikailag fontos open-source keretrendszer bejelentése a Microsoft részéről több mint ezer kódoló ágensre. Forrás-tapasztalat: -6.",
+    "tema": "microsoft open source agensh multi-agent",
+    "cim_hu": "Nyílt forráskódúvá tette a Microsoft az 1024 kódoló ágenst kezelő Agensh rendszert",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-25T07:04:17+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-25T07:06:40+00:00",
+  "megjelent": "2026-10-25T07:06:40+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-25T07:07:44+00:00",
+    "esemeny": "A Microsoft Research nyílt forráskódúvá tette a GitHubon az Agensh nevű keretrendszert, amely központi irányító nélkül képes akár 1024 AI-fejlesztőügynök összehangolt szoftverfejlesztési munkáját koordinálni.",
+    "forrasok": [
+      "https://github.com/microsoft/Agensh",
+      "https://arxiv.org/abs/2609.26781"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
