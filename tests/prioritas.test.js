@@ -231,3 +231,14 @@ test("Upstash-forgalom: a változatlan pillanatkép csak érintés, a számlál�
   assert.strictEqual((await keres("admin.js", { url: "/api/admin?mi=pult_erintes_gep", headers: GEP, body: { kulcs: "x" } })).kod, 400);
   assert.strictEqual((await keres("admin.js", { method: "GET", url: "/api/admin?mi=pult_hash_gep" })).kod, 401);
 });
+
+test("jóváhagyás: a korábban kisöpört hír visszakerül az Ajánlottba, az utólagos kisöprés marad", async () => {
+  ujKv(); pillanatkep();
+  const s = await belep();
+  tar.set("qn:kisoport", new Set([ID1, ID2]));
+  await keres("admin.js", { url: "/api/admin?mi=prioritas_dontes", headers: s, body: { idk: [ID1], allapot: "jovahagyva" } });
+  assert.deepStrictEqual([...tar.get("qn:kisoport")], [ID2], "a jóváhagyott kikerült a kisöpörtek közül");
+  await keres("admin.js", { url: "/api/admin?mi=kisopor", headers: s, body: { id: ID1, ertek: true } });
+  await keres("admin.js", { url: "/api/admin?mi=prioritas_dontes", headers: s, body: { idk: [ID1], szint: "P2" } });
+  assert.ok(tar.get("qn:kisoport").has(ID1), "a jóváhagyás utáni kisöprés nem vész el egy szintmódosítástól");
+});

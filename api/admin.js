@@ -234,6 +234,9 @@ async function prioritasDontes(b, ki) {
     // egy későbbi szintmódosítás nem teszi újra „friss” hírré
     uj.jovahagyva_ido = uj.allapot === "jovahagyva" ? (regi.allapot === "jovahagyva" && regi.jovahagyva_ido ? regi.jovahagyva_ido : most) : null;
     await kv("HSET", P + "jovahagyas", id, JSON.stringify(uj));
+    // Heni 2026-10-25: „ami jóvá van hagyva a Beérkezőben, az mind kerüljön át az Ajánlottba”. Egy korábbi kisöprés
+    // (Ajánlott, balra húzás) ne rejtse el az újonnan jóváhagyott hírt; ha utána söpri ki, az marad érvényben.
+    if (uj.allapot === "jovahagyva" && regi.allapot !== "jovahagyva") await kv("SREM", P + "kisoport", id);
     await kv("LPUSH", P + "jovahagyas:naplo", JSON.stringify({ ido: most, id, cim: String(cimek[id] || "").slice(0, 160),
       allapot: uj.allapot, elozo: regi.allapot || "fuggo", szint: uj.szint, elozo_szint: regi.szint || null, ki, tomeges: idk.length > 1 }));
   }
