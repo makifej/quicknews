@@ -512,7 +512,11 @@ module.exports = async (req, res) => {
       // után megjelentek, mert a pillanatkép a gyűjtés ütemétől függően néhány percig a friss híreket még nem látja
       const hatar = Date.now() - 96 * 3600e3;
       // NINCS BORÍTÓKÉP, NINCS AJÁNLOTT CIKK (Heni 2026-10-13): csak betölthető képpel kerülhet be
-      const jeloltek = HIREK.filter((h) => { const t = Date.parse(h.publikalva || ""); return t && t > hatar && !megvan.has(h.id) && !kis.has(h.id) && h.kep; });
+      // Heni 2026-10-25: az Ajánlottba CSAK a Beérkezőben jóváhagyott hír kerülhet
+      const jova = await jovahagyasok();
+      const jovaE = (id) => (jova[id] || {}).allapot === "jovahagyva";
+      adat.sorok = adat.sorok.filter((s) => jovaE(s.id));
+      const jeloltek = HIREK.filter((h) => { const t = Date.parse(h.publikalva || ""); return t && t > hatar && !megvan.has(h.id) && !kis.has(h.id) && h.kep && jovaE(h.id); });
       const kepJo = async (k) => {
         const u = /^https:\/\//.test(k) ? k : "https://quicknews.hu" + k;
         try {
@@ -528,7 +532,7 @@ module.exports = async (req, res) => {
       const jok = new Set((await Promise.all(jeloltek.map(async (h) => ((await kepJo(h.kep)) ? h.id : null)))).filter(Boolean));
       for (const h of HIREK) {
         const t = Date.parse(h.publikalva || "");
-        if (!t || t <= hatar || megvan.has(h.id) || kis.has(h.id) || !jok.has(h.id)) continue;
+        if (!t || t <= hatar || megvan.has(h.id) || kis.has(h.id) || !jok.has(h.id) || !jovaE(h.id)) continue;
         adat.sorok.push({
           id: h.id, cim: h.cim, lead: h.lead, slug: (h.url || "").replace(/^\/hir\//, ""),
           fontossag: h.fontossag, felkapott: false, kategoria: h.kategoria, forras: h.forras,
