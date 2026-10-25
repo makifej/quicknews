@@ -20,7 +20,7 @@
   "szoveg_eredeti": "Ideogram Vector vs Nano Banana Pro in a recolor test.\n\nIn vector, every element is its own shape, so only the tram changes color. \n\nMade with Higgsfield.",
   "modell": "gemini-3.5-flash",
   "cim": "Az Ideogram Vector és a Nano Banana Pro újraszínezési tesztje",
-  "lead": "A Higgsfield egy összehasonlító videóban mutatta meg az Ideogram Vector és a Nano Banana Pro modellek közötti átméretezési és újraszínezési különbségeket.",
+  "lead": "A Higgsfield egy összehasonlító videóban mutatta meg az Ideogram Vector és a Nano Banana Pro modellek közötti újraszínezési különbségeket.",
   "osszefoglalo": "A Higgsfield közzétett egy tesztet, amelyben az **[Ideogram](https://ideogram.ai) Vector** és a **Nano Banana Pro** teljesítményét hasonlították össze egy villamos újraszínezése során. A teszt megmutatja a vektorgrafikus és a raszteralapú AI-modell közötti alapvető működési eltérést.\n\nA vektorgrafikus megközelítésnél minden elem külön alakzatként létezik, így az újraszínezési feladat során **kizárólag a villamos színe változik meg**, míg a környezet sértetlen marad. A raszteralapú modell ezzel szemben a teljes kép Pixeleit módosíthatja a folyamat során.",
   "miert_szamit": "A vektoralapú AI-generálás lehetővé teszi a **grafikai elemek precíz, elkülönített módosítását**, ami jelentősen megkönnyíti a tiszta és professzionális arculati anyagok készítését.",
   "cimkek": [
@@ -67,18 +67,23 @@
   "forditva": "2026-10-23T10:12:28+00:00",
   "megjelent": "2026-10-23T10:10:55.332Z",
   "tenyellenorzes": {
-    "ok": false,
-    "ido": "2026-10-23T10:12:29+00:00",
-    "esemeny": "A Higgsfield megosztott egy videós tesztet, amelyben az Ideogram Vector és a Nano Banana Pro modellek újraszínezési képességeit hasonlították össze egy villamoson.",
+    "ok": true,
+    "ido": "2026-10-25T09:42:31+00:00",
+    "esemeny": "A Higgsfield közzétett egy videót, amelyben az Ideogram Vector és a Nano Banana Pro modellek újraszínezési (recolor) képességeit hasonlították össze egy villamoson.",
     "forrasok": [
       "https://x.com/higgsfield_ai/status/2113495163767259612"
     ],
     "hibak": [
-      "A lead tévesen átméretezési különbségekről is ír, miközben a forrásban kizárólag újraszínezési tesztről (recolor test) van szó.",
-      "a javított változat sem ment át: Hiányzik a kötelező elsődleges forrás linkje a szövegből.; A szövegben hibás kis/nagybetűs írásmód szerepel ('Pixeleit')."
+      "A lead tévesen 'átméretezési' különbségeket említ, míg a forrás kizárólag újraszínezési (recolor) tesztről szól."
     ],
     "kereses": [],
-    "javitva": false
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Az Ideogram Vector és a Nano Banana Pro újraszínezési tesztje",
+      "lead": "A Higgsfield egy összehasonlító videóban mutatta meg az Ideogram Vector és a Nano Banana Pro modellek közötti átméretezési és újraszínezési különbségeket.",
+      "osszefoglalo": "A Higgsfield közzétett egy tesztet, amelyben az **[Ideogram](https://ideogram.ai) Vector** és a **Nano Banana Pro** teljesítményét hasonlították össze egy villamos újraszínezése során. A teszt megmutatja a vektorgrafikus és a raszteralapú AI-modell közötti alapvető működési eltérést.\n\nA vektorgrafikus megközelítésnél minden elem külön alakzatként létezik, így az újraszínezési feladat során **kizárólag a villamos színe változik meg**, míg a környezet sértetlen marad. A raszteralapú modell ezzel szemben a teljes kép Pixeleit módosíthatja a folyamat során.",
+      "miert_szamit": "A vektoralapú AI-generálás lehetővé teszi a **grafikai elemek precíz, elkülönített módosítását**, ami jelentősen megkönnyíti a tiszta és professzionális arculati anyagok készítését."
+    }
   },
   "kiprobal_nezve": true,
   "termeklinkek_nezve": true,
