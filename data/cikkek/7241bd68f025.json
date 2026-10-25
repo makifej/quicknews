@@ -1,0 +1,74 @@
+{
+  "id": "7241bd68f025",
+  "slug": "mar-2027-re-varja-az-onfejleszto-mesterseges-intelligenciat-az",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/anthropic-co-founder-jack-clark-moves-his-prediction-for-self-improving-ai-forward-to-2027/",
+  "szerzo": "Manuel Uth",
+  "publikalva": "2026-10-25T09:37:46+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/tasteval_and_rsi.png"
+  },
+  "cim_eredeti": "Anthropic co-founder Jack Clark moves his prediction for self-improving AI forward to 2027",
+  "forrasok": [],
+  "szoveg_eredeti": "A new benchmark called TasteVal measures how well AI systems design experiments on their own and interpret the results. The findings show an unusually steep improvement curve.\n\nThat capability has roughly doubled every three months since December 2025, according to Anthropic co-founder Jack Clark. The research lab P-Zero Research calls it \"research taste,\" meaning the ability to pick the right experiments and draw the right conclusions from them. The best model tested outperformed a comparison group of 24 human experts at a fraction of the cost.\n\nClark co-founded Anthropic and writes the Import AI newsletter. Based on the numbers, he now believes recursive self-improvement (RSI), where AI systems develop their own successors, could become possible as early as 2027. He had previously expected 2028.\n\nThe benchmark doesn't prove that AI systems are already improving themselves, since it only captures a narrow slice of scientific work. But it does show where the debate is heading, away from raw model performance and toward the question of how much independent research work language models can actually take on.\n\nP-Zero Research defines research taste as three abilities: identifying which research questions are worth pursuing, designing experiments to answer them, and correctly interpreting the results. TasteVal only tests the last two. Choosing the most promising research direction is often considered the core of scientific intuition, but in TasteVal that decision is already made for the model.\n\nEach of the eight tasks specifies a fixed research goal from AI model development, along with a measurable score. The tasks cover areas like training data selection, pretraining and fine-tuning language models, training on human preferences, and defending against adversarial prompts.\n\nThe model decides which experiment to run next and uses the results to guide its following step. To keep coding skill from skewing the outcome, a fixed coding agent runs all experiments on a single Nvidia H100 GPU. Each run ends after 40 GPU-hours of compute or 120 hours of wall-clock time.\n\nThe human baseline came from 24 experts who had recently worked at places like OpenAI, Google DeepMind, Nvidia, and Microsoft Research. They tackled the same tasks, with at least two people on each one. The best human attempt per task served as the benchmark.\n\nTo make research taste quantifiable, P-Zero Research translates it into compute efficiency. The reasoning is that experiment compute is scarce in AI research, so picking the right experiments and reading their results correctly means fewer runs and more progress on the same budget.\n\nThe lab draws on its \"AI Futures Model,\" which predicts that experiment compute becomes the biggest bottleneck once coding is automated. So TasteVal measures how much compute a model needs to match the experts' scores. A model that gets there with half the compute has twice the research taste by this definition. P-Zero Research calls this ratio the compute multiplier.\n\nThe top model, Anthropic's Opus 5.5, hit a compute multiplier of 2.3, reaching expert-level scores with less than half the compute. The statistical range runs from 1.15 to 4.37, though. At the low end, the model would barely lead. A single run cost roughly one-thirtieth of what an expert attempt cost on average.\n\nAcross several model generations, the compute multiplier has roughly doubled every three months since December 2025. The uncertainty is large here too, with the reported doubling time ranging from 1.7 to 5.0 months.\n\nIn prior years, model research taste grew much more slowly. The curve only steepened around the turn of 2025 into 2026. Whether that's a lasting trend can't be determined from a single benchmark, and the authors themselves admit their results may overstate \"how quickly research taste is improving.\" The tasks can be checked quickly and cheaply, which is the kind of task AI labs find easiest to optimize for. The comparison group also didn't include any top-tier researchers.\n\nClark has long called creativity the key factor in how fast AI systems can improve themselves. Earlier this year, he wrote that models hadn't shown this ability at any groundbreaking scale. He now points to progress in mathematical breakthroughs and benchmarks like TasteVal as signs that this is changing.\n\nIn a long essay in May, Clark had offered more cautious numbers. He put the odds of a system that independently trains a stronger successor at roughly 60 percent by the end of 2028 and 30 percent by 2027. That forecast comes from someone who co-founded the company whose model tops the benchmark, which adds a layer of bias to the prediction.\n\nTasteVal matters because it measures the exact capability that skeptics had flagged as a barrier to a major AI breakthrough. AI researcher Herbie Bradley pushed back on Clark's May essay, arguing that while models could plausibly take over the work of junior researchers, more demanding skills like research taste, creativity, and coherent long-term research planning were nowhere in sight.\n\nWhen it comes to planning and evaluating experiments, TasteVal pushes against that assessment, though it says nothing about choosing a long-term research agenda.\n\nHow wide the practical gap remains shows up in a study on AI development using AI agents led by a team at Fudan University. The researchers analyzed the development of their own model and found that AI agents contributed up to 55 percent of methodology proposals, but humans still made over 85 percent of the final decisions. The authors noted it remains unclear how AI can generate diverse research directions and assess their value before results are in, and that's exactly the kind of decision TasteVal takes off the models' plate.\n\nThe benchmark arrives in the middle of a debate the major AI labs kicked off themselves. In June, Anthropic wrote that recursive self-improvement hasn't been achieved yet but \"could come sooner than most institutions are prepared for\" Anthropic CEO Dario Amodei now calls for a controlled slowdown in AI development, while OpenAI acknowledges that fully autonomous RSI isn't happening yet and says it should only be pursued if human oversight is guaranteed.\n\nTasteVal shifts what counts as progress. For a long time, the focus was on how well models solve well-defined tasks like math problems or coding challenges, but now the question is increasingly whether they can make the decisions that push research forward.\n\nIf the trend P-Zero Research measured holds up in other tests, the implications cut both ways. AI development would get faster and cheaper, but at the same time a growing share of the research would become harder for humans to verify, because models would be planning and evaluating their own experiments.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Már 2027-re várja az önfejlesztő mesterséges intelligenciát az Anthropic társalapítója",
+  "lead": "A P-Zero Research új mérései szerint az AI-modellek kísérletezési képességei 3 havonta megduplázódnak, ami felgyorsíthatja az áttörést.",
+  "osszefoglalo": "A P-Zero Research közzétette a **TasteVal** nevű tesztet, amely azt méri, mennyire képesek a nyelvi modellek önállóan kísérleteket tervezni és az eredményeket értékelni. Az új felmérés szerint az Anthropic társalapítója, Jack Clark 2027-re módosította az önfejlesztő AI érkezésére vonatkozó becslését, mivel ez a kísérletezési hatékonyság 2025 decembere óta negyedévente nagyjából megduplázódik.\n\nA tesztek során az **Opus 5.5** modell kevesebb mint feleakkor számítási kapacitásból érte el a 24 emberi szakértőből álló kontrollcsoport eredményeit. A feladatok során a modelleknek rögzített kutatási célok mellett kellett eldönteniük a következő kísérleti lépéseket, miközben a kódolást egy külön ágens futtatta Nvidia H100-as hardveren.\n\nA TasteVal ugyanakkor nem fedi le a teljes tudományos folyamatot: a modellek készen kapták a kutatási irányokat, így a hosszú távú stratégiai döntéseket és a kutatási témák kiválasztását a teszt nem vizsgálta. Emellett a Fudan Egyetem kapcsolódó elemzése rámutatott, hogy bár a fejlesztési javaslatok több mint felét már AI-ágensek teszik meg, a végleges döntések 85 százaléka továbbra is az emberi kutatók kezében van.",
+  "miert_szamit": "A kutatási folyamatok automatizálása **jelentősen lecsökkentheti a szoftveres és AI-eszközök fejlesztési költségét**, ami gyorsabb termékfrissítéseket eredményezhet a piaci felhasználóknak.",
+  "cimkek": [
+    "Anthropic",
+    "TasteVal",
+    "kutatás",
+    "P-Zero Research"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "TasteVal",
+    "P-Zero Research"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 85,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 82,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 85,
+      "aktualitas": 99,
+      "kozossegi": 74
+    },
+    "elofeszures": 88,
+    "tanult": 52,
+    "indok": "Iparági vezető fontos előrejelzése az önfejlesztő AI-ról egy új mérés alapján.",
+    "tema": "anthropic self improving ai 2027",
+    "cim_hu": "Az Anthropic társalapítója szerint már 2027-re megérkezhet az önfejlesztő mesterséges intelligencia",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-25T09:48:53+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-25T09:51:30+00:00",
+  "megjelent": "2026-10-25T09:51:30+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-25T09:51:32+00:00",
+    "esemeny": "Jack Clark, az Anthropic társalapítója a P-Zero Research új TasteVal benchmark-eredményeire hivatkozva 2028-ról 2027-re hozta előre az önfejlesztő AI (rekurzív önfejlesztés) lehetőségére vonatkozó becslését.",
+    "forrasok": [
+      "https://arxiv.org/abs/2610.06824"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}

@@ -844,13 +844,15 @@ function toast(h){let t=document.getElementById("toast");if(!t){t=document.creat
  /* legfeljebb 2 másodpercig látszik, és egy koppintással (a Visszavonás gombon kívül) azonnal eltűnik (Heni 2026-10-16) */
  t.onclick=e=>{if(!e.target.closest("button")){clearTimeout(visszaT);t.classList.remove("lat")}}}
 /* mobilon balra húzva is kisöpörhető */
-function huzhato(el){let x0=null,y0=0,dx=0,irany=null;
+/* 2026-10-25: az appban (WebView) a vízszintes húzás véletlenül is kisöpört hírt (görgetés, lapozás közben), ott ki van
+   kapcsolva; máshol csak egyértelműen vízszintes, a sor szélességének legalább 45%-át kitevő húzás söpör ki */
+function huzhato(el){if(/quicknews-android-admin/.test(navigator.userAgent))return;let x0=null,y0=0,dx=0,irany=null;
  el.addEventListener("touchstart",e=>{if(e.target.closest("button,label,a,input"))return;x0=e.touches[0].clientX;y0=e.touches[0].clientY;dx=0;irany=null},{passive:true});
  el.addEventListener("touchmove",e=>{if(x0===null)return;const mx=e.touches[0].clientX-x0,my=e.touches[0].clientY-y0;
-  if(!irany)irany=Math.abs(mx)>Math.abs(my)+6?"x":(Math.abs(my)>6?"y":null);if(irany!=="x")return;
+  if(!irany)irany=Math.abs(mx)>2.5*Math.abs(my)+10?"x":(Math.abs(my)>6?"y":null);if(irany!=="x")return;
   dx=Math.min(0,mx);el.style.transform=`translateX(${dx}px)`;el.style.opacity=1+dx/400},{passive:true});
  el.addEventListener("touchend",()=>{if(x0===null)return;x0=null;
-  if(irany==="x"&&dx<-120){kisopor(el.dataset.id)}else{el.style.transform="";el.style.opacity=""}})}
+  if(irany==="x"&&dx<-Math.max(160,el.offsetWidth*0.45)){kisopor(el.dataset.id)}else{el.style.transform="";el.style.opacity=""}})}
 /* az új hír magától megjelenik: a nyitott Ajánlott fül 2 percenként frissül */
 setInterval(()=>{if(!document.hidden&&!document.getElementById("p-ajanlott").hidden&&!document.querySelector(".feltolt.tolt"))atolt()},30000);
 async function kepFeltolt(inp){const f=inp.files[0];if(!f)return;const lab=inp.closest("label");lab.classList.add("tolt");lab.lastChild.textContent="Feltöltés…";
