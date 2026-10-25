@@ -1129,7 +1129,6 @@ function prrajzol(){if(!PR)return;const L=document.getElementById("pr-lista");co
   return `<div class="ah pr-sor ${s.allapot}"><div class="pr-bal"><b class="pr-pont num">${s.pont??"-"}</b><span class="pr-szint ${sz}">${s.dupla_of?"Dupla":sz==="X"?"40 alatt":sz}</span>
    <input type="checkbox" aria-label="Kijelölés" data-prkij="${s.id}" ${PRKIJ.has(s.id)?"checked":""}></div>
    <div><a class="cim" href="${esc(cimL)}" target="_blank" rel="noopener">${esc(s.cim||s.cim_eredeti||s.id)}</a>
-   ${s.cim_eredeti&&s.cim_eredeti!==s.cim?`<div class="pr-ered">${esc(s.cim_eredeti)}</div>`:""}
    ${s.lead?`<div class="lead">${esc(s.lead)}</div>`:s.szoveg?`<div class="lead">${esc(s.szoveg)}</div>`:""}
    <div class="cimkek"><span class="cimke ${s.allapot==="fuggo"?"var":s.allapot==="jovahagyva"?"kesz":""}">${PRALLNEV[s.allapot]||esc(s.allapot)}${s.auto?" (gépi)":""}</span>
     <span class="cimke">${esc(s.forras||"")}</span><span class="cimke">${s.beerkezett?fmt(new Date(s.beerkezett),{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):""}</span>
