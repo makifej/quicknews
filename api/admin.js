@@ -532,7 +532,8 @@ module.exports = async (req, res) => {
       const jok = new Set((await Promise.all(jeloltek.map(async (h) => ((await kepJo(h.kep)) ? h.id : null)))).filter(Boolean));
       for (const h of HIREK) {
         const t = Date.parse(h.publikalva || "");
-        if (!t || t <= hatar || megvan.has(h.id) || kis.has(h.id) || !jok.has(h.id) || !jovaE(h.id)) continue;
+        // a pillanatkép szándékosan kihagyott hírét (rossz borító) nem tesszük vissza feldolgozatlanként (2026-10-26)
+        if (!t || t <= hatar || megvan.has(h.id) || kis.has(h.id) || !jok.has(h.id) || !jovaE(h.id) || (adat.kep_nelkul || []).includes(h.id)) continue;
         adat.sorok.push({
           id: h.id, cim: h.cim, lead: h.lead, slug: (h.url || "").replace(/^\/hir\//, ""),
           fontossag: h.fontossag, felkapott: false, kategoria: h.kategoria, forras: h.forras,
