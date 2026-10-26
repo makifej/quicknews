@@ -1,0 +1,84 @@
+{
+  "id": "abf358191721",
+  "slug": "atalakitja-az-audiomodellek-elofeldolgozasat-a-hugging-face",
+  "forras_id": "linkedin",
+  "forras_nev": "Hugging Face (LinkedIn)",
+  "url": "https://www.linkedin.com/feed/update/urn:li:activity:7520487074567729152/",
+  "szerzo": "Hugging Face",
+  "publikalva": "2026-10-26T14:10:42.470000+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.licdn.com/dms/image/v2/D5622AQFbgy51OUBs1w/feedshare-shrink_800/B56aF4jEl9JkAc-/0/1793023822468?e=2147483647&v=beta&t=IbZmvtCoA3UJh7tmNrqGh9f6IJ7KXCz76wYm18qFoCc",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7520487074567729152"
+  },
+  "cim_eredeti": "One of the biggest changes in the history of 🤗 Transformers audio is in the works, spearheaded by Eustache Le Bihan .",
+  "forrasok": [],
+  "szoveg_eredeti": "One of the biggest changes in the history of 🤗 Transformers audio is in the works, spearheaded by Eustache Le Bihan . \n\nWe’re rebuilding essentially the entire audio preprocessing stack.\n\nThe goal is to move away from every model carrying its own `FeatureExtractor` implementation, and towards a common `AudioProcessor` architecture where models describe their frontend, while shared backends handle the actual computation.\n\nThe stack currently covers ~30 audio frontends and 62 model mappings across Whisper, Wav2Vec2, Parakeet, SeamlessM4T, Qwen, Gemma, codecs, TTS models,and many others.\n\nA big part of the work is making backends explicit:\n\n`backend=\"torch\"` → native PyTorch preprocessing (usually super fast!!)\n`backend=\"numpy\"` → portable NumPy preprocessing\n\nThat means audio preprocessing can increasingly live in the same framework as the model itself, while still keeping compatibility with the numerical behavior existing checkpoints expect.\n\nIt also gives us a much better foundation for what comes next: new hardware backends, faster kernels, compilation, and optimizations that can benefit many audio models at once instead of being implemented model by model.\n\n~30 frontends migrated. \n62 model mappings. \nOne common preprocessing architecture.\n\nThe new entrypoint, common for all architectures:\n\n`AutoAudioProcessor.from_pretrained(...)`\n\nAudio in Transformers is about to get a much stronger foundation!\n\n🎧🎧🎧",
+  "modell": "gemini-3.5-flash",
+  "cim": "Átalakítja az audiómodellek előfeldolgozását a Hugging Face",
+  "lead": "Eustache Le Bihan vezetésével teljesen újragondolják a Transformers könyvtár hangfeldolgozási architektúráját.",
+  "osszefoglalo": "A **Hugging Face átépíti a Transformers könyvtár** teljes audió előfeldolgozási rendszerét. A fejlesztés célja, hogy az egyedi FeatureExtractor megvalósítások helyett egy közös **AudioProcessor** architektúrára álljanak át, ahol a modellek leírják a saját frontendjüket, míg a tényleges számításokat megosztott backendek végzik.\n\nAz új struktúra jelenleg körülbelül 30 audió frontendet és 62 modellfüggvényt fed le, többek között a Whisper, Wav2Vec2 és Qwen modelleknél. A hátterek kifejezetté tételével a **native PyTorch preprocessing** gyorsabb működést biztosít, miközben megmarad a hordozható NumPy opció is.\n\nAz egységesítés révén az új hardveres felületek, a gyorsabb hardveres funkciók és az optimalizációk egyszerre váhatnak elérhetővé több modell számára. Az új architektúra egységes belépési pontja az AutoAudioProcessor.from_pretrained függvény lett.",
+  "miert_szamit": "A magyar fejlesztők és AI-szakemberek számára a közös architektúra **gyorsabb és egyszerűbben integrálható** hangfeldolgozási folyamatokat tesz lehetővé.",
+  "cimkek": [
+    "Hugging Face",
+    "Transformers",
+    "audió",
+    "Python"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "AutoAudioProcessor"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 72,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 80,
+      "egyediseg": 85,
+      "hitelesseg": 92,
+      "aktualitas": 95,
+      "kozossegi": 57
+    },
+    "elofeszures": 89,
+    "tanult": 53,
+    "indok": "Fontos technikai fejlesztés a népszerű Transformers könyvtárban, de főleg a fejlesztőket érinti. Forrás-tapasztalat: -4.",
+    "tema": "hugging face transformers audio architecture",
+    "cim_hu": "Mérföldkőhöz érkezett a Hugging Face Transformers hangfeldolgozó rendszere",
+    "lead_hu": "A Hugging Face átalakítja a Transformers könyvtár teljes hangfeldolgozó architektúráját, egy új, közös AudioProcessor struktúrára váltva.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-26T14:34:38+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-26T14:38:11+00:00",
+  "megjelent": "2026-10-26T14:38:11+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-26T14:38:22+00:00",
+    "esemeny": "A Hugging Face átalakítja a Transformers könyvtár audió előfeldolgozási architektúráját, Eustache Le Bihan vezetésével egy közös AudioProcessor struktúrára váltva.",
+    "forrasok": [
+      "https://www.linkedin.com/feed/update/urn:li:activity:7520487074567729152/"
+    ],
+    "hibak": [
+      "Az összefoglalóból hiányzik a kötelező beszédes hivatkozás (link) az elsődleges forrásra."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Átalakítja az audiómodellek előfeldolgozását a Hugging Face",
+      "lead": "Eustache Le Bihan vezetésével teljesen újragondolják a Transformers könyvtár hangfeldolgozási architektúráját.",
+      "osszefoglalo": "A Hugging Face átépíti a Transformers könyvtár teljes audió előfeldolgozási rendszerét. A fejlesztés célja, hogy az egyedi FeatureExtractor megvalósítások helyett egy közös **AudioProcessor** architektúrára álljanak át, ahol a modellek leírják a saját frontendjüket, míg a tényleges számításokat megosztott backendek végzik.\n\nAz új struktúra jelenleg körülbelül 30 audió frontendet és 62 modellfüggvényt fed le, többek között a Whisper, Wav2Vec2 és Qwen modelleknél. A hátterek kifejezetté tételével a **native PyTorch preprocessing** gyorsabb működést biztosít, miközben megmarad a hordozható NumPy opció is.\n\nAz egységesítés révén az új hardveres felületek, a gyorsabb hardveres funkciók és az optimalizációk egyszerre váhatnak elérhetővé több modell számára. Az új architektúra egységes belépési pontja az AutoAudioProcessor.from_pretrained függvény lett.",
+      "miert_szamit": "A magyar fejlesztők és AI-szakemberek számára a közös architektúra **gyorsabb és egyszerűbben integrálható** hangfeldolgozási folyamatokat tesz lehetővé."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}

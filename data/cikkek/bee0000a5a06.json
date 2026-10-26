@@ -1,0 +1,50 @@
+{
+  "id": "bee0000a5a06",
+  "slug": "csu-uses-artificial-intelligence-to-improve-hail-forecasting",
+  "forras_id": "google-news-ai",
+  "forras_nev": "The Fence Post",
+  "url": "https://www.thefencepost.com/news/csu-uses-artificial-intelligence-to-improve-hail-forecasting/",
+  "publikalva": "2026-10-26T14:22:53+00:00",
+  "cim": "CSU uses artificial intelligence to improve hail forecasting",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "duplikátum: 099d9f961768",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://swiftmedia.s3.amazonaws.com/mountain.swiftcom.com/images/sites/12/2026/10/21145404/Hail-RFP-102626-1024x683.jpg"
+  },
+  "cim_eredeti": "CSU uses artificial intelligence to improve hail forecasting",
+  "szoveg_eredeti": "Atmospheric and radar scientists at Colorado State University are developing a novel forecasting system that relies on artificial intelligence to better detect the approach of destructive hailstorms known for shredding crops, ruining roofing and denting vehicles — thus impacting safety, livelihoods and insurance costs.\n\nCurrent forecasting models often do not provide hail warnings more than 30 minutes in advance, leaving little time to prepare. By contrast, CSU researchers aim to provide hail forecasts several hours or even days in advance in Colorado and Wyoming.\n\nTheir project, funded by the National Science Foundation, links a short-term “nowcasting” model recently developed with AI industry leader NVIDIA to an existing CSU machine learning model for longer-term storm prediction. The combination is expected to deliver accurate forecasts both further in advance and as storms rapidly evolve.\n\n“We are working with AI to combine regional data from our radar systems with nine years of historic weather observations from across the whole U.S. to make a new forecasting tool,” said Kristen Rasmussen, an associate professor of atmospheric science who is helping to lead the project. “These are new technologies and AI approaches that have not been tested extensively or together yet, but we are well positioned to lead work developing them due to our university’s extensive history with radar and severe-weather research.”\n\nThe work is especially important as homeowners’ insurance costs climb, due to in part to increased risks from hail and other natural hazards.\n\nFunding for the project comes through the Advanced Sensing and Computation for Environmental Decision-making (ASCEND) Engine in Colorado and Wyoming. The ASCEND Engine works with researchers, start-ups, and public and private partners to develop and deploy technologies to address regional challenges, including severe weather. The effort launched in 2023 with support and participation from research institutions, federal labs and industry in the two states, with a total 10-year federal award of up to $160 million.\n\nHail forms when strong winds carry raindrops high up in the atmosphere, where they freeze and then return to Earth, potentially causing damage or injury. Because of elevation, Colorado and the region are a hail hotspot, and storms have wrought billions in damage to homes, agriculture and businesses. That has prompted insurance agencies to raise rates across the state — even in areas that are not traditionally hail prone — to try and re-balance risk and account for potential changes to historic patterns that may eventually come with climate change.\n\n“The window of these big hail events is expanding earlier into spring and later into fall. At the same time, we are seeing an increase in both intensity and frequency,” Rasmussen said. “A warmer future climate may also change how and where precipitation falls or how it reaches the ground as either damaging hail or simple rain.”\n\nIn June 2023, Rasmussen saw a storm develop near Morrison, Colo., and recognized a hail core forming. She hoped forecasters were working to warn a crowd at Red Rocks Park and Amphitheatre. But when the storm arrived over the venue, golf-ball-sized hail injured nearly 100 people.\n\nStorms like that are currently hard to predict more than 30 to 60 minutes in advance. That is largely because forecasts rely on disparate radar systems and modeling tools that require at least some level of human skill to integrate into a full, actionable picture of the situation at hand for communities to respond to.\n\nRasmussen has worked with partners to extend these short-term forecasts and thinks AI could improve the process and accuracy of predictions.\n\nShe recently began working with fellow CSU faculty member V. “Chandra” Chandrasekar to further develop a project he led with AI industry leader NVIDIA. In it, Chandra’s team trained and deployed Hail-StormScope, a specialized version of NVIDIA Earth-2’s StormScope architecture, that can generate detailed hailstorm forecasts with a two- to three-hour lead time. That model was trained on high-resolution, multi-radar composites and forms the backbone of the short-term modeling half of the work in the NSF ASCEND funded project.\n\nChandra is a University Distinguished Professor in the Department of Electrical and Computer Engineering. He also manages the CSU regional radar systems that provide underlying data for the entire project. He said NVIDIA’s foundational architecture is flexible enough that it can integrate diverse weather observations, such as different radar bandwidths and types, with existing numerical weather prediction models and additional satellite data to generate an accurate prediction much faster than a human could.\n\n“While we are focused on the Colorado and Wyoming area for this project, the system we developed with NVIDIA and partners in the Cooperative Institute for Research in the Atmosphere is highly adaptable to different regions, resolutions and weather scenarios,” he said. “The model can also now learn from further real-time observations we will add over time and continue to improve.”\n\nThe other half of the NSF ASCEND project is led by Russ Schumacher, a professor in the Department of Atmospheric Science. For years, his team has been developing machine learning techniques to aid in forecasting. While the NVIDIA project considers a short window specific to the region, Schumacher’s models consider what may happen across the whole country in a one- to eight-day window by studying details from past severe weather events.Machine learning is an approach to using artificial intelligence in which computers learn from large datasets to identify important patterns and then extrapolate to make predictions. The model Schumacher and his team developed uses a comprehensive dataset of past destructive storms across the U.S. over a nine-year period. The system prioritizes key factors including temperature and windspeed that likely contributed in the runup to their formation and intensification. Their model, called Colorado State University-Machine Learning Probabilities , considers those past observations and compares the associated storm ingredients to information from a simulated severe-storm environment as well as human-made forecasts about what may happen. By quickly comparing that information, the system can develop medium-range probability predictions to then guide real world human forecasting.\n\nThe machine learning model was originally sponsored by NOAA’s Joint Technology Transfer Initiative for heavy rain prediction. Recent work has focused on developing an understanding of which atmospheric inputs are the most important to the model’s ultimate predictive capabilities. Pinpointing the role of those specific variables will not only help to improve the overall model’s ability but should also build trust from human forecasters who can then better see how the system arrived at its conclusions.\n\nSchumacher said a challenge in the NSF ASCEND project was bringing together the short-term “nowcasts” that are composed of high-quality region-specific observations with his historic, ingredients-based approach for the entire country in the CSU-MLP model.\n\n“The machine learning architecture is very different. Our existing system is largely trying to assess the chance that severe hail will occur — which is a yes or no decision — whereas the NVIDIA model is trying to predict the full evolution of the storms,” he said. “Part of the work as this project goes on will be to decide whether to merge these two approaches into a single system, or to instead focus on how users would digest and use the different types of information provided as part of their process.”\n\nThe next step in the NSF ASCEND project will happen in spring 2027. That is when the CSU team plans to install RM60 sensors, recently released by industry leader Vaisala, that can measure accumulation, intensity, precipitation type and drop si",
+  "begyujtve": "2026-10-26T14:34:23.829406+00:00",
+  "prioritas": {
+    "pont": 61,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 70,
+      "egyediseg": 80,
+      "hitelesseg": 72,
+      "aktualitas": 90,
+      "kozossegi": 39
+    },
+    "elofeszures": 73,
+    "tanult": 14,
+    "indok": "Duplikátum: 099d9f961768",
+    "tema": "ai hail forecasting csu",
+    "cim_hu": "Mesterséges intelligenciával teszik pontosabbá a jégverés-előrejelzést",
+    "lead_hu": "A Colorado Állami Egyetem kutatói olyan AI-alapú előrejelző rendszert fejlesztenek, amely a korábbinál jóval hamarabb képes jelezni a pusztító jégesőket.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-26T14:34:38+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-26T14:38:14+00:00",
+  "dupla_of": "099d9f961768"
+}
