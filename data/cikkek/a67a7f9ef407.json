@@ -1,0 +1,49 @@
+{
+  "id": "a67a7f9ef407",
+  "slug": "vibeide",
+  "forras_id": "producthunt",
+  "forras_nev": "Product Hunt",
+  "url": "https://www.producthunt.com/products/vibeide",
+  "publikalva": "2026-10-25T21:30:48+00:00",
+  "cim": "VibeiDE",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 49 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://ph-files.imgix.net/b49b2a79-31fa-4e7a-9d23-fc868e0963ef.png?auto=format&fit=crop&frame=1&h=512&w=1024"
+  },
+  "cim_eredeti": "VibeiDE",
+  "szoveg_eredeti": "Over the last year my job moved from writing code to reviewing code that agents write. Running Claude Code, Codex and OpenCode across several projects, I kept losing track of what I had asked where and which tasks were actually finished. So I built VibeiDE for my own daily work.\n\nWhy it's different: most tools help you start more agents. But starting agents is the easy part. The bottleneck in software development has shifted from writing code to validating it, and that is what VibeiDE is built for.\n\nHow I work with it: I click through my app, and every time I spot something, I launch a new task in a sentence and keep going. Each task gets its own terminal and a fresh CLI session, started automatically. I don't have to remember anything, because when a task finishes it waits for my review, and then I either mark it done or send a follow-up. No more sitting and waiting on one or two terminals, and no more guessing which tab holds what. It's a ridiculously simple idea, and ridiculously effective.\n\n- Project queues: you set the max parallel tasks per provider, and a task starts as soon as its provider has a free slot.\n\n- Fresh session per task: every task keeps its session, so you can resume it or follow up any time.\n\n- Review before done: a finished task waits for you. Mark it done, or send a follow-up in the same session.\n\n- Git your way: run tasks on one branch, or give each task its own worktree.\n\n- Terminal or chat: watch a task in its original CLI terminal, or switch to a clean chat view of the same session.\n\n- Plan council: one agent drafts a plan, another reviews it before any code is written.\n\n- Grid or Office: watch your agents as a grid of terminals, or in a 3D studio with a desk per agent.\n\n- Private by design: end-to-end encrypted phone control, and voice input that runs locally on your computer.\n\nIn the last 30 days I spent 386 hours in VibeiDE, ran up to 14 agents in parallel, and got my first paying customer before this launch.\n\nIt uses your own CLIs and provider accounts and does not bypass provider limits. Runs on macOS and Windows, Linux is experimental. Free 14-day trial, no card. Launch prices ($7.99/month, $79/year or $249 lifetime) last until January 1.\n\n- Company Mode 2.0: tackles the next bottleneck, several people generating code fast in the same project.\n\n- Voice agent: full voice control of VibeiDE.\n\n- MCP server: agents can create new tasks and control VibeiDE themselves.\n\n- Built-in browser: so you never have to leave the app.\n\n- Agency mode: a marketing harness, so solo builders can keep up with marketing too.\n\nI put a lot of myself into this, so I'd love your honest feedback: what do you like, what don't you, and what's still missing in your multi-agent setup?\n\nWeboldal: https://vibeide.dev/?utm_source=producthunt\\u0026utm_medium=referral\\u0026utm_campaign=launch",
+  "begyujtve": "2026-10-26T07:03:29.978091+00:00",
+  "prioritas": {
+    "pont": 49,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 45,
+      "egyediseg": 65,
+      "hitelesseg": 65,
+      "aktualitas": 88,
+      "kozossegi": 50
+    },
+    "elofeszures": 81,
+    "tanult": 50,
+    "indok": "Szoftverfejlesztési munkafolyamat-eszköz több AI ágens felügyeletére. Forrás-tapasztalat: -2.",
+    "tema": "ai agent development ide",
+    "cim_hu": "Megjelent a VibeiDE az AI-ágensek által írt kódok ellenőrzésére",
+    "lead_hu": "Az új fejlesztői környezet segít átlátni és validálni a párhuzamosan futó kódgeneráló AI-ágensek munkáját.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-26T07:18:51+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-26T07:21:36+00:00"
+}

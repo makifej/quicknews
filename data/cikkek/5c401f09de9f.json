@@ -1,0 +1,83 @@
+{
+  "id": "5c401f09de9f",
+  "slug": "11-uj-kozossegi-fejlesztest-kapott-a-minimax-nyilt-h3-videomodellje",
+  "forras_id": "x-minimax",
+  "forras_nev": "MiniMax (X)",
+  "url": "https://x.com/MiniMax_AI/status/2114504329499660419",
+  "szerzo": "MiniMax (official) (@MiniMax_AI)",
+  "publikalva": "2026-10-25T23:48:12+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pbs.twimg.com/media/HVg6ectaMAAYqox.jpg?name=orig",
+    "x_url": "https://x.com/MiniMax_AI/status/2114504329499660419"
+  },
+  "cim_eredeti": "More reference control. Fewer denoising steps. More places to run H3.",
+  "forrasok": [],
+  "szoveg_eredeti": "More reference control. Fewer denoising steps. More places to run H3.\n\nThe latest community contributions span 8-step reference-conditioned video + audio, 4-step distillation, sparse attention, and reference-token compression - alongside serving and workflow integrations across GPU servers, TPUs, and Apple Silicon.\n\nWhat matters is what this enables: more affordable experimentation, finer creative control, and more choices about where and how video generation runs. Open models become more useful when the community can improve the methods, adapt the runtime, and build workflows around them.\n\nCredit to @haoailab @yisun0618 @lanfeng491270 @guocheng_qian @Alissonerdx @ddalcu @tazmannner @HaochengXiUCB @huggingface @Jhuaplin, and the PTD, DMAD, SparkH3, TorchTPU and FlashML teams - including Zhengming Yu and zechengtang on GitHub.\n\n11 additions to the H3 ecosystem index. Thank you to everyone building, testing, and sharing.\n\nhttps://github.com/MiniMax-AI/awesome-minimax-h3-integration\n\n[IDÉZETT POSZT, amelyet MiniMax (official) megosztott. Eredeti szerzője: MiniMax (official) (@MiniMax_AI); megjelent: 2026-09-14T06:14:43+00:00; link: https://x.com/MiniMax_AI/status/2099381310733328784; média: 2 kép]\nOpen weights. Shared progress. MiniMax H3 is moving fast.\n\nWe built H3 for video generation with native stereo audio and multimodal reference control. The open-source community is making that capability faster, more accessible, and easier to build on.\n\nRecent highlights:\n\n• FastH3 — FastVideo, Nuva Lab and NVIDIA: 4-step distillation, now running on DGX Spark and Apple Silicon.\n\n• Sol-H3 — NVIDIA’s SANA team: 15 seconds of 768p video + audio in 6.6 seconds on 8×B300, in the team’s warm-inference benchmark.*\n\n• VDN — Haocheng Xi and the OpenVDN team: rethinking attention for faster H3 inference, with weights, training and inference code released.\n\n• PDD — NVIDIA’s distillation method, brought to H3 by Alibaba PAI as 8-step Acc-LoRAs, now supported in ComfyUI.\n\n• LightX2V — 4- and 8-step Turbo LoRAs, with workflows for text, image and reference-conditioned video + audio.\n\nBehind every release are people training, optimizing, quantizing, testing and sharing. Special thanks to:\n@haoailab @nuvalab @NVIDIAAI @xieenze_jr @HaochengXiUCB @ArashVahdat @julberner @LightX2V @ComfyUI\nAnd to the individual contributors pushing the work forward:\n@haozhangml @cxlcl1 @lawrence_cjs @yitongli165665 @haopengl33 @songhan_mit @shanasaimoe\n\nThank you for building with H3 and helping make it faster, more accessible, and more useful for the community. Powerful models go further when we build together. Keep pushing H3. Excited to see what comes next. 🚀\n\nExplore the ecosystem: https://github.com/MiniMax-AI/awesome-minimax-h3-integration",
+  "modell": "gemini-3.5-flash",
+  "cim": "11 új közösségi fejlesztést kapott a MiniMax nyílt H3 videómodellje",
+  "lead": "A fejlesztői közösség gyorsabbá és könnyebben futtathatóvá tette a MiniMax H3 videógeneráló modellt Apple Silicon és TPU platformokon.",
+  "osszefoglalo": "Újabb 11 közösségi kiegészítéssel bővült a **MiniMax H3** videó- és hanggeneráló modell ökoszisztémája. A frissítések között szerepel a 4 lépéses lepárlás, a 8 lépéses referenciavezérelt videó- és hanggenerálás, valamint a referencia-tokenek tömörítése.\n\nA fejlesztések célja, hogy a modell kevesebb számítási lépésből, olcsóbban és finomabb kreatív kontrollal működjön. A H3 így már nemcsak GPU-szervereken, hanem Apple Silicon chipeken és TPU architektúrákon is hatékonyabban futtatható.\n\nA bővítmények és az integrációk a projekt [GitHub-tárolójában](https://github.com/MiniMax-AI/awesome-minimax-h3-integration) érhetők el a közösség számára.",
+  "miert_szamit": "A gyorsított és kevesebb erőforrást igénylő modellek révén a tartalomgyártók **olcsóbban és gyorsabban generálhatnak videókat**, akár saját Mac számítógépükön is.",
+  "cimkek": [
+    "MiniMax",
+    "videógenerálás",
+    "nyílt forráskód",
+    "GitHub"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 71,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 65,
+      "egyediseg": 85,
+      "hitelesseg": 88,
+      "aktualitas": 86,
+      "kozossegi": 58
+    },
+    "elofeszures": 90,
+    "tanult": 62,
+    "indok": "Technikai jellegű nyílt forráskódú fejlesztések a MiniMax videógeneráló modelljének optimalizálására.",
+    "tema": "minimax ai video optimization",
+    "cim_hu": "Gyorsabb és költséghatékonyabb lett a MiniMax videógeneráló modellje",
+    "lead_hu": "A nyílt közösségi fejlesztéseknek köszönhetően kevesebb lépéssel és jobb referencia-vezérléssel futtatható a MiniMax videómodellje.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-26T07:18:51+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-26T07:21:14+00:00",
+  "megjelent": "2026-10-26T07:21:14+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-26T07:21:48+00:00",
+    "esemeny": "A MiniMax bejelentette, hogy 11 új közösségi fejlesztéssel és integrációval bővült a nyílt forráskódú H3 videó- és hanggeneráló modelljük ökoszisztémája.",
+    "forrasok": [
+      "https://x.com/MiniMax_AI/status/2114504329499660419",
+      "https://github.com/MiniMax-AI/awesome-minimax-h3-integration"
+    ],
+    "hibak": [
+      "A cikkből hiányzik a kötelező elsődleges forrás linkje (a GitHub-tároló hivatkozása)."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "11 új közösségi fejlesztést kapott a MiniMax nyílt H3 videómodellje",
+      "lead": "A fejlesztői közösség gyorsabbá és könnyebben futtathatóvá tette a MiniMax H3 videógeneráló modellt Apple Silicon és TPU platformokon.",
+      "osszefoglalo": "Újabb 11 közösségi kiegészítéssel bővült a **MiniMax H3** videó- és hanggeneráló modell ökoszisztémája. A frissítések között szerepel a 4 lépéses lepárlás, a 8 lépéses referenciavezérelt videó- és hanggenerálás, valamint a referencia-tokenek tömörítése.\n\nA fejlesztések célja, hogy a modell kevesebb számítási lépésből, olcsóbban és finomabb kreatív kontrollal működjön. A H3 így már nemcsak GPU-szervereken, hanem Apple Silicon chipeken és TPU architektúrákon is hatékonyabban futtatható.\n\nA bővítmények és az integrációk a projekt **GitHub-tárolójában** érhetők el a közösség számára.",
+      "miert_szamit": "A gyorsított és kevesebb erőforrást igénylő modellek révén a tartalomgyártók **olcsóbban és gyorsabban generálhatnak videókat**, akár saját Mac számítógépükön is."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
