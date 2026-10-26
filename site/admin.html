@@ -139,7 +139,9 @@ button.torol:disabled{opacity:.5}
 .hl-racs{margin-top:24px}
 .hl-doboz{margin-top:16px;background:var(--lap);border-radius:12px;overflow:hidden}
 .hl-doboz .hl-talalat{margin:0;padding:12px 16px;border-bottom:1px solid var(--vonal)}
-.hl-doboz .hl-tabla{max-height:480px;max-height:min(480px,55vh);max-height:min(480px,55dvh);overflow-y:auto;overscroll-behavior:contain;padding:0 16px}
+.hl-doboz .hl-tabla{max-height:480px;overflow-y:auto;overscroll-behavior:contain;padding:0 16px}
+/* 2026-10-25: a képernyő-magasságból (vh/dvh) számolt méretet az Android-app WebView-ja nullának vette, a címek eltűntek; ezért fix pixel */
+@media (max-width:560px){.hl-doboz .hl-tabla{max-height:360px}}
 .hl-doboz .hl-tabla .hl-sor:last-child{border-bottom:0}
 .hl-doboz .ures{padding:16px 0}
 .hl-doboz .hl-tabla .hl-sor .forras{background:var(--lap2)}
