@@ -1,0 +1,72 @@
+{
+  "id": "f2e696280f6d",
+  "slug": "kutatok-szerint-a-tulzott-kodolasi-es-matematikai-oktatas-miatt",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/researchers-find-six-patterns-that-make-ai-text-so-exhausting-to-read/",
+  "szerzo": "Matthias Bastian",
+  "publikalva": "2026-10-26T17:50:15+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/language_letters-1200x670.png"
+  },
+  "cim_eredeti": "Researchers find six patterns that make AI text so exhausting to read",
+  "forrasok": [],
+  "szoveg_eredeti": "A study from New York University and the University of Texas at Austin shows that frontier language models systematically overuse linguistic patterns that make their output harder to read.\n\nAnyone who regularly works with ChatGPT, Claude, or other language models knows the feeling. The answers are often factually correct, but reading them feels like work, full of nested sentences, odd word combinations, and metaphors no human would ever use.\n\nA study by researchers at New York University and the University of Texas at Austin backs that up with data. The team had 14 language models produce text in casual conversation, coding sessions, and argumentative essays. The lineup included Claude, GPT-5.6, GLM-5, Kimi K2.5, and smaller open-source models like Llama and Olmo. In total, the researchers analyzed 120 conversations, 45 coding sessions, and 980 essays, then compared them against human-written text from movie subtitles, StackExchange, and student essays.\n\nAI models overuse unusual word combinations that rarely show up in human writing, like \"reader-patience budget,\" and they place related parts of a sentence far apart in ways that tax working memory. Claude Opus 5 generated \"A cat who can always get up and away is a much calmer cat,\" where the subject and the main predicate are separated by a long clause.\n\nShortened references with a dropped connector are common too. Instead of \"the book that the professor wrote,\" the models write \"the book the professor wrote,\" saving one word but creating brief confusion about how the parts fit together. Stacked nouns like \"horror movie soundtrack generator\" force readers to figure out on their own which word modifies which.\n\nThe models turn nouns into verbs where humans wouldn't. Claude Fable 5 wrote \"calendar it,\" where a human would say \"put it in the calendar.\" They apply animate verbs to inanimate subjects, too. Claude Opus 5 produced \"The whole conversation is eating its own tail,\" even though a conversation doesn't have a tail and can't eat. Readers can figure out what's meant, but it takes an extra beat.\n\nLlama and the Olmo base model come closest to human text. Within the Olmo family, scores rise steadily from the base model through the instruct variant to the reasoning model Olmo Think, which hits frontier-level numbers, pointing to post-training as the likely cause. Claude Opus 5.5 beats its predecessor Opus 5 in 19 out of 21 comparisons, suggesting that targeted finetuning can improve readability.\n\nHuman language balances ease of production with ease of understanding, but modern language models are trained increasingly on tasks like math, code, and logical reasoning, where correctness gets rewarded and clarity doesn't, the researchers say.\n\nThe shift from RLHF (Reinforcement Learning from Human Feedback) to RLVR (Reinforcement Learning with Verifiable Rewards) removes humans from the feedback loop entirely, the researchers argue, and models develop a kind of \"dialect\" that works well for compressing information and solving complex problems but poorly for human readers.\n\nAs a proof of concept, the researchers trained a smaller language model with a penalty term that rewarded shorter answers. Under certain training conditions, the model favored shorter phrasings almost without exception, regardless of context, and even generalized that preference to sentence patterns it had never encountered during training. Humans, by contrast, chose between shorter and longer variants depending on the situation.\n\nA similar explanation comes from inside the industry. Anthropic employee Jackson Kernion, who works on Claude fine-tuning, recently explained why Opus 4.6 was the last good \"writing model\" from Anthropic. Optimizing newer models for math, code, and technical explanations aimed at other AI models pushed Claude toward a style that works well for AI but reads as too dense and unnatural for humans. Kernion called it an adaptation to \"LLM psychology.\" With Opus 5.5, Anthropic pushed back for the first time, addressing sentence clarity and overloaded blocks of information, and as the study shows, successfully so.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Kutatók szerint a túlzott kódolási és matematikai oktatás miatt fárasztó az AI-szöveg",
+  "lead": "Egy új kutatás rávilágított, miért nehézkes a nagy nyelvi modellek által generált szövegek olvasása.",
+  "osszefoglalo": "A New York University és az University of Texas kutatási eredményei szerint a vezető nyelvi modellek **rendszeresen túlbonyolított nyelvi szerkezeteket** használnak. A tesztek során 14 modellt, köztük a Claude és a GPT legújabb változatait vizsgálták meg kötetlen beszélgetésekben, kódolási feladatokban és esszékben. Az eredmények alapján a mesterséges intelligencia gyakran választ szokatlan szókapcsolatokat, zsúfolt főnévi csoportokat és indokolatlanul hosszú tagmondatokat, ami fárasztja az emberi agyat.\n\nA jelenség okát a modellek képzésében találták meg a szakértők. Az AI rendszereket egyre inkább **matematikai és kódolási feladatokra optimálják**, ahol a logikai helyesség a fő szempont, míg a szöveg olvashatósága és közérthetősége háttérbe szorul. A megerősítéses tanulási módszerek átalakulása miatt a modellek egy sajátos, információtömörítő belső nyelvezetet fejlesztettek ki, amely az emberi olvasó számára kifejezetten nehezen emészthető.\n\nÉrdekesség, hogy a kisebb nyelvi modellek és a nyílt forráskódú alapprojektek írásmódja áll a legközelebb a természetes emberi szövegekhez. A kutatás szerint a célzott finomhangolás segíthet a problémán: a legújabb frissítésekben már látszanak a kifejezetten **olvashatóságra fókuszáló finomhangolások** első eredményei.",
+  "miert_szamit": "Ha marketing- vagy szövegírási feladatokra használsz AI-t, **mindig érdemes átfogalmaznod a kimenetet**, mert a nyers modellválaszok fárasztják a célközönséget. A kódolásra és logikára élesített modellek hajlamosak a túl tömör, nehezen olvasható megfogalmazásokra.",
+  "cimkek": [
+    "LLM",
+    "kutatás",
+    "Claude",
+    "ChatGPT"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 77,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 80,
+      "egyediseg": 85,
+      "hitelesseg": 85,
+      "aktualitas": 98,
+      "kozossegi": 79
+    },
+    "elofeszures": 92,
+    "tanult": 71,
+    "indok": "Gyakorlati és kifejezetten érdekes kutatási eredmény arról, miért fárasztó a nyelvi modellek által írt szövegek olvasása. Forrás-tapasztalat: +1.",
+    "tema": "ai text readability study",
+    "cim_hu": "Kutatók azonosították azt a hat mintát, ami miatt fárasztó az AI által írt szövegek olvasása",
+    "lead_hu": "A New York-i Egyetem és a Texasi Egyetem közös kutatása szerint a legújabb nyelvi modellek szisztematikusan túlbonyolított nyelvi szerkezeteket használnak, ami megnehezíti a megértésüket.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-26T18:04:08+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-26T18:07:24+00:00",
+  "megjelent": "2026-10-26T18:07:24+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-26T18:07:33+00:00",
+    "esemeny": "A New York-i Egyetem és a Texasi Egyetem kutatói kimutatták, hogy a vezető nyelvi modellek a kódolásra és matematikára való optimalizálás miatt olyan nyelvi mintázatokat használnak, amelyek fárasztóvá és nehezen olvashatóvá teszik a generált szövegeket az emberek számára.",
+    "forrasok": [
+      "https://the-decoder.com/researchers-find-six-patterns-that-make-ai-text-so-exhausting-to-read/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}
