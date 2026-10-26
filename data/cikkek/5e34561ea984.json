@@ -1,0 +1,49 @@
+{
+  "id": "5e34561ea984",
+  "slug": "microsoft-and-others-push-out-emergency-patches-for-a-critical-flaw",
+  "forras_id": "techmeme",
+  "forras_nev": "BleepingComputer",
+  "url": "https://www.bleepingcomputer.com/news/security/critical-http2shell-brotli-vulnerability-triggers-emergency-patches/",
+  "publikalva": "2026-10-26T16:45:00+00:00",
+  "cim": "Microsoft and others push out emergency patches for a critical flaw in Brotli, the C decoder library built into Node.js, that could allow remote code execution (Bill Toulas/BleepingComputer)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.bleepstatic.com/content/hl-images/2026/10/26/broccoli.jpg"
+  },
+  "cim_eredeti": "Microsoft and others push out emergency patches for a critical flaw in Brotli, the C decoder library built into Node.js, that could allow remote code execution (Bill Toulas/BleepingComputer)",
+  "szoveg_eredeti": "A critical flaw dubbed 'HTTP2Shell' in Brotli, the C decoder library built into Node.js, could allow attackers to corrupt memory and access sensitive data.\n\nThe security issue is tracked as CVE-2026-111497 and is also known as “Broccoli2Shell” and “Node2Shell.” It affects Brotli versions 1.0.3 through 1.0.9, 1.1.0, and 1.2.0.\n\nThe vulnerability has been reported under several names because it was initially identified in Node.js before researchers found that the same flaw in the Brotli decoder could affect software across multiple ecosystems.\n\nThe name HTTP2Shell reflects its impact on HTTP clients and servers, although the vulnerability is not specific to HTTP/2 and can affect other applications that decompress attacker-controlled Brotli data.\n\nApart from Node.js, potentially affected software includes Python HTTP clients such as urllib3[brotli], requests, httpx, and aiohttp[speedups], when configured with a vulnerable Brotli decoder, as well as other applications and tools that use vulnerable Brotli implementations.\n\nOn Sunday, Microsoft pushed an emergency security update to address the issue in .NET, warning that successful exploitation allows privilege escalation on systems with a vulnerable .NET version.\n\nBrotli is an open-source project developed and maintained by Google for lossless data compression. It shrinks files so they can be transmitted faster without affecting the original data.\n\nThe Node2Shell vulnerability is a buffer overflow that lets a specially crafted Brotli-compressed stream trigger an invalid block switch that the decoder treats as valid and misinterprets as a request for more input.\n\nBy continuing to append input bytes to an internal eight-byte buffer, the writing extends beyond its bounds, corrupting nearby memory.\n\n“An invalid block switch was reported as a temporary need for more input instead of a permanent format error, so the streaming decoder kept appending input bytes to an eight-byte internal buffer,” Node.js explains in an advisory.\n\nAn attacker can exploit it by getting an application to decompress malicious data, such as by serving a compressed HTTP response to an application fetching a URL, or by sending a compressed request directly to a server.\n\nNode.js says that this can crash the process, expose memory, and enable remote code execution (RCE)\n\nA recent report from cybersecurity company Imperva confirms that exploiting the CVE-2026-111497 Node2Shell vulnerability can lead to RCE.\n\nThe upstream Brotli fixes were first committed to the project’s source code in February, but Node.js and Google released stable fixes for users on October 21, followed by a public disclosure the next day. PyPI packages containing the fixes became available on October 23.\n\nProof-of-concept (PoC) exploits for Node2Shell have been published, but there are no reports of malicious exploitation in the wild. Nevertheless, users should prioritize applying the available security updates.\n\nAfter updating, administrators must restart affected processes, and affected container images must be rebuilt and redeployed.\n\nA dedicated online portal tracking the flaw's impact also warns that updating the system Brotli library does not address the risk in Node.js deployments or other apps that use their own bundled copy of the library.\n\nAlso, blocking inbound Brotli requests still leaves the malicious HTTP-response route exposed.\n\nIf updating immediately is not possible, the recommendation is to remove Brotli support from Python applications and block incoming Brotli-compressed requests at their proxy or firewall level.\n\nOverall prevention scores can hide what happens after initial access. Once attackers are using valid credentials, prevention drops sharply.\n\nThe Blue Report 2026 measures defenses technique by technique across 338 million simulations run in customer production environments.\n\nMicrosoft releases emergency .NET patches for critical Brotli flaw\n\nPHP shares mitigation for new RCE vulnerability with no patch\n\nHPE patches eight max severity RCE and auth bypass AOS flaws\n\nGitLab warns of new max severity code execution vulnerability\n\nPHP ships emergency patches for critical PHP2Shell flaws",
+  "begyujtve": "2026-10-26T16:48:39.502928+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 70,
+      "egyediseg": 100,
+      "hitelesseg": 86,
+      "aktualitas": 100,
+      "kozossegi": 48
+    },
+    "elofeszures": 88,
+    "tanult": 60,
+    "indok": "Általános kiberbiztonsági hiba és szoftverjavítás, amely nem kapcsolódik mesterséges intelligenciához.",
+    "tema": "node.js brotli security flaw",
+    "cim_hu": "Kritikus biztonsági rést javít a Microsoft a Node.js-be épített Brotli könyvtárban",
+    "lead_hu": "Sürgős biztonsági frissítéseket adtak ki a Brotli C-dekóder könyvtárban talált súlyos sérülékenység miatt, amely lehetővé teheti a távoli kódfuttatást.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-26T16:48:52+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-26T16:51:37+00:00"
+}
