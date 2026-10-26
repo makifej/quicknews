@@ -1,28 +1,44 @@
 {
   "id": "7404ffda9036",
-  "slug": "seedance-2-5-vs-minimax-h3-tested-side-by-side-2026",
+  "slug": "egymasnak-eresztettek-a-seedance-2-5-es-a-minimax-h3-videomodelleket",
   "forras_id": "krea",
   "forras_nev": "Krea",
   "url": "https://www.krea.ai/blog/seedance-2-5-vs-minimax-h3",
+  "szerzo": "The Krea Team",
   "publikalva": "2026-10-26T00:00:00+00:00",
-  "cim": "Seedance 2.5 vs MiniMax H3: Tested Side by Side (2026)",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 56 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://s.krea.ai/seedance25-blog/seedance-2-5-vs-minimax-h3.webp"
   },
   "cim_eredeti": "Seedance 2.5 vs MiniMax H3: Tested Side by Side (2026)",
+  "forrasok": [],
   "szoveg_eredeti": "Seedance 2.5 and MiniMax H3 are two of the newest reference-driven video models on Krea. Both take a start and end frame, accept image, video and audio references, and generate audio in the same pass. Where they split is length, reference capacity and price: Seedance 2.5 runs one take up to 30 seconds with up to 50 references, while the H3 family stops at 15 seconds with up to 15 references but costs far less per second, especially H3 Max.\n\nIn our matched tests, both models spoke a scripted line word for word. Seedance 2.5 followed a directional action prompt that H3 Max did not, and gave the more cinematic speaking shot. H3 Max gave a busier, documentary-style frame at a fraction of the cost.\n\nIn October 2026 we ran the same two prompts through Seedance 2.5 (720p) and MiniMax H3 Max (768p) on Krea, at 8 seconds, 16:9, with the same seed. We switched prompt rewriting off on both models (Seedance prompt enhancement off, H3 Max prompt expansion set to disabled), so each model saw exactly the prompt below. Each prompt ran once, so treat the results as a snapshot, not a benchmark: any video model varies from run to run.\n\nWe checked dialogue by transcribing each clip with Whisper, and measured the loudness of each delivered audio mix with ffmpeg. H3 caps at 15 seconds, so our 20-second one-take test only appears in the Seedance 2.5 vs Wan 3.0 comparison.\n\nCompute-unit (CU) figures are approximate and come from Krea’s billing rates. The generate button in Krea always shows the exact cost before you commit.\n\nGenerate up to 30 seconds in one take, with native audio and up to 50 references.\n\nThe first prompt asks for a scripted line to camera, then a physical beat with fire:\n\nBoth models got the dialogue right. Whisper transcribed both clips as “30 years, same pan, same recipe,” with no dropped or invented words.\n\nSeedance 2.5 reads the prompt as a portrait. The camera sits low behind the wok, the vendor looks straight down the lens, and the background falls away into hanging bulbs and drifting steam. It is the more cinematic frame of the two. It also skips the fire: the shot ends on a big noodle toss toward camera, but no flames rise from the wok.\n\nH3 Max reads the same prompt as documentary coverage. It frames the whole stall, with signage, other vendors, scooters and customers behind him. The vendor mostly looks down at his work rather than into the lens, and the fire arrives as a small flame at the very end rather than the high toss the prompt describes.\n\nOn audio, the Seedance mix measured -23.4 LUFS against -25.2 LUFS for H3 Max, close enough that neither is meaningfully louder. Seedance’s clip took 3 minutes 57 seconds to render on Krea.\n\nVerdict: Seedance 2.5, on look and direct address. Neither model fully delivered the fire beat, and if you want a busy, lived-in establishing frame, H3 Max’s take is arguably the more useful one.\n\nThe second prompt tests motion that has to travel in a specific direction, a weak spot for most video models:\n\nSeedance 2.5 kept the geography. The rider enters from frame-left, ollies across the stairs, lands with a puff of dust and grit, and rides out to frame-right, all in low golden-hour sun. The flaw is framing: the camera sits so low that the rider’s head and upper body leave the top of the frame for part of the clip.\n\nH3 Max landed a clean trick in good golden-hour light, but not the one we described. The rider starts at the top of the stairs, comes toward the camera, ollies down the set and rides toward the lens. It is a perfectly usable skate shot, just not this prompt.\n\nLoudness: -19.9 LUFS for Seedance and -22.7 LUFS for H3 Max. Seedance rendered in 4 minutes 24 seconds.\n\nVerdict: Seedance 2.5. When a shot has to move a subject from one side of the frame to the other, Seedance followed the direction and H3 Max didn’t. If you only need “a skater does a trick,” either model gets there.\n\nSeedance 2.5 accepts any duration from 4 to 30 seconds. Every H3 variant accepts 5 to 15 seconds.\n\nThat gap matters for anything built as one continuous moment: a 20-second product reveal, a walk-and-talk, a full UGC ad read. On H3 those become two clips and a cut. On Seedance 2.5 they stay in one generation, so lighting, wardrobe and camera path carry through without a seam. In our 20-second test against Wan 3.0, Seedance held a three-beat scene as one take with zero detected cuts.\n\nIf your edit is already built from short shots, the ceiling barely matters. Most social cuts and inserts live under 15 seconds, and both families cover that range.\n\nMiniMax describes H3 as a 2K model, so it renders at a higher base resolution than either alternative. H3 Max and Seedance 2.5 both top out at 1080p, with cheaper lower tiers (768p for H3 Max, 720p for Seedance 2.5) and a 480p tier for drafts. Our H3 Max clips at the 768p tier came back at 1344×768.\n\nFor 4K delivery on any of them, generate at the highest tier you need and run the clip through Krea’s video upscaler.\n\nThis is the widest gap in the comparison. Seedance 2.5 takes up to 30 image, 10 video and 10 audio references, 50 in total. H3 and H3 Max take 9 images, 3 videos (capped at 15 seconds of combined reference footage) and 3 audio files.\n\nOn base H3, the first five reference images are included in the price and each one after that adds roughly 30 CU, so a full set of nine costs a little more than a lightly referenced clip.\n\nBoth families cover the same core shapes, including 21:9 ultrawide and 9:16 vertical. Base H3 adds an adaptive option that follows the shape of your start frame.\n\nSeedance 2.5 adds workflow tools H3 does not list:\n\nH3 Max answers with its own prompt expansion, in four strengths from off to quality. We ran it with expansion disabled so both models saw the same text; with expansion on, H3 Max rewrites your prompt before generating, which can change how literally it follows direction. Base H3 accepts prompts up to 7,000 characters, useful for dense, shot-by-shot direction.\n\nApproximate Krea compute-unit costs per second of output:\n\nOur two 8-second test clips put that into numbers. Each Seedance 2.5 clip at 720p cost about 1,370 CU; each H3 Max clip at 768p cost about 330 CU. That’s roughly four H3 Max attempts for the price of one Seedance take.\n\nThat makes the H3 family the natural place to explore ideas in volume, and Seedance 2.5 the place to spend on a hero take. For a full breakdown of Seedance 2.5 pricing, see what a Seedance 2.5 video actually costs.\n\nFull specs live on the MiniMax H3 and MiniMax H3 Max model pages.\n\nA practical workflow is to explore with H3 Max Turbo or H3 Max, then move the winning idea to Seedance 2.5 when it needs a longer take, more references or tighter motion direction. All of these models run in the same Krea video workspace, so switching costs nothing but a click.\n\nCompare Seedance 2.5 and MiniMax H3 on Krea\n\nBoth model families sit in one video workspace, so you can run the same prompt through each in minutes.",
-  "begyujtve": "2026-10-26T21:31:57.524742+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "Egymásnak eresztették a Seedance 2.5 és a MiniMax H3 videómodelleket",
+  "lead": "A Krea összehasonlította a két legújabb AI-videógenerátort, megvizsgálva a mozgáskövetést, a szájszinkront, a hosszúságot és az árakat.",
+  "osszefoglalo": "A Krea részletes tesztben hasonlította össze a platformján elérhető két új videómodellt, a **Seedance 2.5-öt** és a **MiniMax H3 Maxot**. A [Krea tesztjei](https://www.krea.ai/blog/seedance-2-5-vs-minimax-h3) során mindkét eszköz képes volt a pontos szájszinkronra a megadott szövegek alapján, a vizuális stílusban és a mozgási utasítások követésében viszont eltérések mutatkoztak.\n\nA **Seedance 2.5** jobban követte a konkrét mozgási és kamerairányokat, moziszerűbb látványt nyújtott, és akár **30 másodperces** snitteket is tud generálni egyetlen menetben, legfeljebb 50 referenciatartalom felhasználásával. Ezzel szemben a **MiniMax H3 Max** dokumentaristább képi világot hozott létre, a hossza legfeljebb 15 másodperc lehet, a referenciafájlok száma pedig 15-ben lett korlátozva.\n\nA két modell közötti legjelentősebb eltérés az árban van: a MiniMax H3 Max generálási költsége a tesztek alapján **negyede a Seedance 2.5-nek**. A Krea mindkét modellt elérhetővé tette a saját videós munkaterületén.",
+  "miert_szamit": "A gyakorlatban a **MiniMax H3 Max** a költséghatékony ötletelésre és a rövid közösségimédia-videókra való, míg a [Seedance 2.5 elemzés](https://www.krea.ai/blog/seedance-2-5-vs-minimax-h3) szerint a **Seedance 2.5-re** a hosszabb, pontos mozgásirányítást és sok vizuális referenciát igénylő fő jeleneteknél érdemes váltani.",
+  "cimkek": [
+    "Seedance 2.5",
+    "MiniMax H3",
+    "Krea",
+    "videógenerálás"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bemutato",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Krea",
+    "url": "https://www.krea.ai"
+  },
+  "linkelendo_nevek": [
+    "Seedance 2.5",
+    "MiniMax H3 Max",
+    "MiniMax H3"
+  ],
+  "linkszabaly": 3,
   "prioritas": {
     "pont": 56,
     "szint": "P3",
@@ -45,5 +61,25 @@
     "ido": "2026-10-26T21:34:04+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-26T21:37:01+00:00"
+  "forditva": "2026-10-26T22:05:33+00:00",
+  "megjelent": "2026-10-26T22:05:21.114Z",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-26T22:05:35+00:00",
+    "esemeny": "A Krea csapata egymás mellett tesztelte a platformján elérhető Seedance 2.5 és MiniMax H3 Max AI-videómodelleket, összehasonlítva a mozgáskövetést, az audiógenerálást, a kapacitást és a generálási költségeket.",
+    "forrasok": [
+      "https://www.krea.ai/blog/seedance-2-5-vs-minimax-h3"
+    ],
+    "hibak": [
+      "Hiányoznak a kötelező szöveges hivatkozások (linkek) az elsődleges forrásra a magyar cikkből."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Egymásnak eresztették a Seedance 2.5 és a MiniMax H3 videómodelleket",
+      "lead": "A Krea összehasonlította a két legújabb AI-videógenerátort, megvizsgálva a mozgáskövetést, a szájszinkront, a hosszúságot és az árakat.",
+      "osszefoglalo": "A Krea részletes tesztben hasonlította össze a platformján elérhető két új videómodellt, a **Seedance 2.5-öt** és a **MiniMax H3 Maxot**. A tesztek során mindkét eszköz képes volt a pontos szájszinkronra a megadott szövegek alapján, a vizuális stílusban és a mozgási utasítások követésében viszont eltérések mutattak meg.\n\nA **Seedance 2.5** jobban követte a konkrét mozgási és kamerairányokat, moziszerűbb látványt nyújtott, és akár **30 másodperces** snitteket is tud generálni egyetlen menetben, legfeljebb 50 referenciatartalom felhasználásával. Ezzel szemben a **MiniMax H3 Max** dokumentaristább képi világot hozott létre, a hossza legfeljebb 15 másodperc lehet, a referenciafájlok száma pedig 15-ben lett korlátozva.\n\nA két modell közötti legjelentősebb eltérés az árban van: a MiniMax H3 Max generálási költsége a tesztek alapján **negyede a Seedance 2.5-nek**. A Krea mindkét modellt elérhetővé tette a saját videós munkaterületén.",
+      "miert_szamit": "A gyakorlatban a **MiniMax H3 Max** a költséghatékony ötletelésre és a rövid közösségimédia-videókra való, míg a **Seedance 2.5-re** a hosszabb, pontos mozgásirányítást és sok vizuális referenciát igénylő fő jeleneteknél érdemes váltani."
+    }
+  }
 }

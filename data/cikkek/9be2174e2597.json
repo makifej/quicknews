@@ -1,28 +1,40 @@
 {
   "id": "9be2174e2597",
-  "slug": "seedance-2-5-vs-wan-3-0-30-second-ai-video-tested",
+  "slug": "egymasnak-eresztettek-a-seedance-2-5-es-wan-3-0-videomodelleket",
   "forras_id": "krea",
   "forras_nev": "Krea",
   "url": "https://www.krea.ai/blog/seedance-2-5-vs-wan-3-0",
+  "szerzo": "The Krea Team",
   "publikalva": "2026-10-26T00:00:00+00:00",
-  "cim": "Seedance 2.5 vs Wan 3.0: 30-Second AI Video, Tested",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 62 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://s.krea.ai/seedance25-blog/seedance-2-5-vs-wan-3-0.webp"
   },
   "cim_eredeti": "Seedance 2.5 vs Wan 3.0: 30-Second AI Video, Tested",
+  "forrasok": [],
   "szoveg_eredeti": "Seedance 2.5 from ByteDance and Wan 3.0 from Alibaba are two of the models on Krea that reach a full 30 seconds in one generation, both with native audio and image, video and audio references. On paper they look close. Seedance 2.5 accepts several times more references and adds a 21:9 ultrawide frame. Wan 3.0 costs about a third less per second, goes down to 2-second clips and lets you switch audio off.\n\nIn our matched tests the split was clear. Wan 3.0 hit the most literal, dramatic version of a prompt (big flames, a high canal reveal) and rendered faster. Seedance 2.5 followed a directed action path that Wan ignored, and was the only one to deliver a 20-second “no cuts” prompt as a true single take.\n\nIn October 2026 we ran three prompts through Seedance 2.5 and Wan 3.0 on Krea at 720p, 16:9, with the same seed: an 8-second speaking shot, an 8-second action shot and a 20-second three-beat one-take. We switched prompt rewriting off on both (Seedance prompt enhancement off, Wan prompt expansion off) and left Wan’s audio on, so each model saw exactly the prompt below. Each prompt ran once, so treat the results as a snapshot, not a benchmark.\n\nWe checked dialogue by transcribing each clip with Whisper, used ffmpeg scene detection to count cuts, and measured the integrated loudness of each delivered audio mix. Render times are Krea job times from submit to finished file.\n\nCompute-unit (CU) figures are approximate, taken from Krea’s billing rates. The generate button shows the exact cost before every run.\n\nOne take up to 30 seconds, native audio, and up to 50 references in a single generation.\n\nThe first prompt asks for a scripted line to camera, then a physical beat with flames:\n\nBoth models got the line exactly right. Whisper transcribed both clips as “30 years, same pan, same recipe.”\n\nSeedance 2.5 makes it a portrait. The camera sits low behind the wok, the vendor looks straight down the lens, and the background dissolves into hanging bulbs and steam. It reads as the more composed, cinematic frame. But it skips the fire: the clip ends on a big noodle toss toward the camera with no flames.\n\nWan 3.0 plays it brighter and more literally. The vendor smiles into camera, delivers the line, and in the second half the wok erupts in tall, dramatic flames, exactly as written. It is the closer match to the prompt, set in a busier, well-lit night market.\n\nThe audio mixes are very different. Wan’s measured -13.1 LUFS, about 10 dB louder than Seedance’s -23.4 LUFS. Wan’s track lands hot and upfront; Seedance’s sits back like a film mix. Neither is “better” by that number alone, but expect to turn Wan down in an edit. Wan rendered in 2 minutes 6 seconds, Seedance in 3 minutes 57 seconds.\n\nVerdict: Wan 3.0 on prompt fidelity, since it’s the only one that delivered the flames. Seedance 2.5 on look, if you prefer its moodier, direct-address framing.\n\nThe second prompt asks for a subject to travel a specific path across the frame:\n\nSeedance 2.5 followed the geography. The rider enters from frame-left, ollies across the stairs, lands in a puff of dust and grit, and rides out to frame-right in low golden-hour sun. Its weakness is framing: the camera sits so low that the rider’s head and torso leave the top of the frame for part of the clip.\n\nWan 3.0 delivered a clean, energetic trick, but a different shot. The rider comes toward the camera from the top of the stairs, ollies down the set and lands very close to the lens, in bright late-afternoon light rather than golden hour.\n\nLoudness again split: Wan at -10.9 LUFS, Seedance at -19.9 LUFS. Wan rendered in 2 minutes 19 seconds, Seedance in 4 minutes 24 seconds.\n\nVerdict: Seedance 2.5. When direction and screen geography matter, as in match cuts, product travel or choreography, Seedance did what was asked and Wan didn’t. Wan’s clip is still a strong skate shot if the direction doesn’t matter to you.\n\nBoth models can run to 30 seconds, so we gave them a 20-second, three-beat scene and asked for no cuts:\n\nSeedance 2.5 delivered a true single take. Scene detection found zero cuts across all 20 seconds. All three beats land in order: the narrow street, the turn past the canal and moored boats, then the bakery, where she leans the bike on the wall, walks in and the camera ends on the warm window. Two misses: the camera trails behind her instead of riding beside her, and the “crane rise” is a gentle reveal rather than a real lift.\n\nWan 3.0 hit every beat too, and its middle section is the more spectacular of the two: a high, clear view down the canal over the houseboats, which reads much more like the crane move we asked for. Its ending also lands well, showing her inside the bakery through the glass. But scene detection found a hard cut at 13.6 seconds, straight from the canal view to the bakery exterior, so it isn’t the one-take the prompt specified.\n\nSeedance’s mix measured a quiet -32.8 LUFS, Wan’s -18.4 LUFS. The 20-second renders took 6 minutes 3 seconds on Seedance and 6 minutes 45 seconds on Wan, the only test where Seedance finished first.\n\nVerdict: Seedance 2.5 if the shot must be continuous, since that’s the whole point of a 30-second model. Wan 3.0 if you care more about a dramatic reveal and can live with an edit point.\n\nBoth models reach 30 seconds, which puts them in a small group of video models that can hold a full ad read or a multi-beat scene in one generation. Seedance 2.5 starts at 4 seconds. Wan 3.0 starts at 2, which is handy for very short loops, stingers and transitions where you don’t want to pay for footage you will trim.\n\nReference capacity is the clearest spec gap. Seedance 2.5 accepts up to 30 image references, Wan 3.0 up to 10. Video and audio references are 10 each on Seedance 2.5 and 5 each on Wan 3.0.\n\nBoth cover 16:9, 4:3, 1:1, 3:4 and 9:16. Seedance 2.5 adds 21:9 for cinematic ultrawide frames. Wan 3.0 adds an adaptive option that follows the shape of your start frame, so you don’t have to match the ratio by hand.\n\nIf you need a letterboxed, film-style frame natively, Seedance 2.5 is the only one of the two that renders it. Seedance 2.5 can also reframe an existing clip to a new shape after generation.\n\nSeedance 2.5 always generates audio in the same pass as the picture. Wan 3.0 also generates audio by default but lets you switch it off, useful when you plan to score the edit yourself. In all three of our tests, Wan’s delivered mix was between 9 and 14 dB louder than Seedance’s, so budget for a level pass if you cut the two together.\n\nOn the prompt side, Wan 3.0 has a built-in prompt expansion toggle that is on by default, and accepts prompts up to 5,000 characters. We turned it off for these tests. Left on, it rewrites your prompt before generating, which can help short ideas but loosen precise direction. Seedance 2.5 offers Krea’s prompt enhancement as an API option. Either way, describing the shot like a director (subject, action, camera, light, sound) gets better results than a list of keywords. Our Seedance 2.5 prompt guide covers the structure.\n\nApproximate Krea compute units per second of output:\n\nIn our tests, each 8-second 720p clip cost about 1,370 CU on Seedance 2.5 and about 890 CU on Wan 3.0. The 20-second take cost about 3,420 CU on Seedance and 2,220 CU on Wan. The gap widens at 1080p, where Wan 3.0 costs roughly half as much per second.\n\nSeedance 2.5 claws some of that back with draft mode: a 480p preview billed at the 480p rate lets you check motion and blocking before committing to the full-quality render. For the full cost breakdown, see Seedance 2.5 pricing: what a video costs.\n\nWan 3.0 Prime is a faster Wan 3.0 variant. It keeps the 30-second ceiling, native audio and image, video and audio references, and runs from 2 seconds up. Its billable length counts any reference video seconds on top of the output, so check the cost preview when you feed it footage. We didn’t include Prime in these tests.\n\nBoth models run side by side in the Krea video workspace, and Wan 3.0’s spec",
-  "begyujtve": "2026-10-26T21:31:57.524827+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "Egymásnak eresztették a Seedance 2.5 és Wan 3.0 videómodelleket",
+  "lead": "A Krea összehasonlította a ByteDance és az Alibaba 30 másodperces AI-videógeneráló modelljeit.",
+  "osszefoglalo": "A Krea egymás mellett tesztelte a ByteDance-féle **Seedance 2.5** és az Alibaba-féle **Wan 3.0** videómodellt. Mindkét modell képes akár 30 másodperces, hanggal ellátott videók előállítására egyetlen generálással. A próbatesztek során a Wan 3.0 gyorsabban renderelt és pontosabban követte a vizuális effektekre vonatkozó utasításokat, míg a Seedance 2.5 jobban tartotta magát a megadott mozgási irányokhoz és a vágás nélküli jelenetekhez.\n\nA specifikációk terén is jelentős az eltérés. A Seedance 2.5 legfeljebb **30 képreferencia** megadását teszi lehetővé, támogatja a 21:9-es szélesvásznú formátumot, és kínál egy alacsony felbontású próbalehetőséget a végső generálás előtt. A Wan 3.0 ezzel szemben harmadával olcsóbb másodpercenként, akár 2 másodperces klipeket is készít, és a generált hang kikapcsolható benne.\n\nA tesztekben a Wan 3.0 hangkimenete átlagosan 9-14 decibellel volt hangosabb a Seedance-nél. A generálási árak tekintetében a Wan 3.0 jelentős előnyben van, főleg 1080p felbontásnál, ahol nagyjából féláron működik a konkurenciához képest.",
+  "miert_szamit": "A 30 másodperces, vágás nélküli generálás megkönnyíti a **hosszabb reklámok és jelenetek** előállítását. Az olcsóbb Wan 3.0 a költségérzékeny projekteknél, míg a Seedance 2.5 a szigorúbb rendezői utasításoknál nyújt jobb alternatívát.",
+  "cimkek": [
+    "Seedance 2.5",
+    "Wan 3.0",
+    "videógenerálás",
+    "Krea"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Seedance 2.5",
+    "Wan 3.0"
+  ],
+  "linkszabaly": 3,
   "prioritas": {
     "pont": 62,
     "szint": "P3",
@@ -45,5 +57,17 @@
     "ido": "2026-10-26T21:34:04+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-26T21:37:07+00:00"
+  "forditva": "2026-10-26T22:05:50+00:00",
+  "megjelent": "2026-10-26T22:05:15.797Z",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-26T22:05:53+00:00",
+    "esemeny": "A Krea csapata összehasonlító tesztet végzett a ByteDance által fejlesztett Seedance 2.5 és az Alibaba által fejlesztett Wan 3.0 videógeneráló AI-modellek között, megvizsgálva azok teljesítményét, specifikációit és árazását.",
+    "forrasok": [
+      "https://www.krea.ai/blog/seedance-2-5-vs-wan-3-0"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  }
 }
