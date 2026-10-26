@@ -1,0 +1,74 @@
+{
+  "id": "2737842b39d8",
+  "slug": "megjelent-a-drex-for-search-a-nace-ai-uj-keresoretege-ai-ugynokoknek",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/10/26/nace-ai-drex-for-search-ai-agents/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-10-26T15:32:33+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-1215-scaled.png"
+  },
+  "cim_eredeti": "Nace AI Releases Drex for Search for AI Agents: 92.05% on BrowseComp-Plus With 12.6 Search Calls",
+  "forrasok": [],
+  "szoveg_eredeti": "Nace AI has released Drex for Search , which brings its Drex decision models to document search. Drex for Search is a retrieval layer that helps people and agents find evidence. Coding agents such as Claude Code, Codex, Cursor and OpenCode call it through CLI, SDKs, MCP or REST. In Nace’s evaluation, it scores 92.05% on BrowseComp-Plus with GPT-5, using 12.6 search calls per question.\n\n TL;DR \n\n Size: a hosted search system built to search over 1M+ files. It pairs with an answering model such as GPT-5, Gemini 3.5 Flash or Qwen 27B.\n\n Runs on: Nace’s managed cloud, a dedicated cloud, your own AWS or Azure account, or on-prem and air-gapped.\n\n Performance: ranked #1 or #2 on 3 of 4 public leaderboards, per Nace.\n\n Best: 77.5% R@1 on VisDocAgentBench, 10 points above Claude Opus 5 (67.5%).\n\n What did Nace AI release? \n\n Nace AI frames search as a series of decisions. Drex for Search applies its Drex models to those decisions. Drex scores given options with a calibrated probability each, in 1 forward pass. That makes it cheap enough for every agent step.\n\n The release targets classic RAG, which Nace sums up as chunk, embed, top-k, hope.\n\n The pipeline breaks in 3 cases: \n\n the answer sits in a table on page 23\n\n the answer needs 2 hops across files\n\n the answer is inside a scanned PDF\n\n How does Drex for Search work inside an agent? \n\n Nace describes 3 steps: \n\n Classify: Before any search runs, Drex decides if the question needs a quick lookup or an agent. The agent route reads documents and queries tables.\n\n Squeeze: Drex walks the workspace level by level: folder, file, section, page. Inside a sheet, it narrows to table and column. Each level keeps only what can hold the answer.\n\n Answer: Only the kept pages and tables reach the LLM. The answer cites the file and page.\n\n Depth is fixed, so Nace says a million files take as many steps as a thousand.\n\n How much does it help coding agents? \n\n Nace AI tested 9 agent and model pairs on OfficeQA Pro , a 133-question benchmark over U.S. Treasury Bulletins. Key highlights: 6% more answers right, 62% fewer steps, 56% fewer tokens, and 2.3x faster.\n\n Harness Model Accuracy as shipped Accuracy with Drex for Search Agent turns as shipped Agent turns with Drex for Search Gemini CLI Gemini 3.1 Pro 54.9% 61.7% 22.9 10.4 Codex GPT-6 sol 66.2% 70.7% 14.3 8.6 Hermes Agent Opus 5.5 64.3% 68.4% 8.5 3.7 Hermes Agent Qwen3.8-27B 56.4% 60.2% 20.1 6.5 Claude Code Opus 5.5 66.5% 69.9% 18.5 9.1 pi Opus 5.5 65.4% 68.4% 7.7 3.7 OpenCode Qwen3.8-27B 51.1% 53.4% 23.7 10.0 pi Qwen3.8-27B 43.6% 45.9% 24.3 11.1 Codex GPT-6 luna 54.9% 53.4% 16.8 11.3 \n\n What does a workspace include? \n\n Files: PDFs and scans, xlsx, csv and Parquet, mp3 and mp4, docx, pptx, md, json and txt.\n\n Citations: every answer names the file and the page, row or minute it came from.\n\n Workspaces: isolated, with their own index and knowledge graph, and shareable with invited members.\n\n Storage: upload files or folders, or keep workspaces in your own S3 bucket or Azure Blob container.\n\n Zero retention: available with your own storage.\n\n Domains: Tax, M&A, SEC 10-K, Contracts, or your own.\n\n How does it perform on BrowseComp-Plus? \n\n BrowseComp-Plus asks a deep-research agent 830 multi-hop questions over about 100K fixed web documents. With GPT-5, Nace AI reports: \n\n 92.05% accuracy , #2 of 86 entries on the leaderboard .\n\n 12.61 search calls per question, 16.6x fewer than the only entry ahead (209.27 calls).\n\n 87.32% in a single pass with 8.93 search calls, the best of any entry under 10 calls.\n\n +20.4 points over the Qwen3-Embed-8B baseline, with the same GPT-5 model.\n\n How does it score on document benchmarks? \n\n On VisDocAgentBench , an agent finds 1 target page among 2,375 arXiv pages. Drex for Search scores 77.5% R@1 with an open-weight Qwen 27B planner. The best published agent, Claude Opus 5, scores 67.5%. R@1 is 97.5% on direct questions, 77.5% on one bridge, and 57.5% on two.\n\n On MADQA , agents answer over 800 PDFs and cite pages. Nace reports 94.7% accuracy with Gemini 3.5 Flash and a page-attribution F1 of 88.2. Its effort calibration (Kuiper) is 6.66. Nace ranks it #1, based on the leaderboard as read on October 20. With open-weight Qwen 27B, Nace reports 93.4%.\n\n On EnterpriseRAG-Bench , with 500,000+ internal company documents, Nace reports an overall score of 88.22, which it ranks #3. That is 27.2 points above OpenAI File Search (61.03).\n\n How does it compare with the best published results? \n\n Ranks and scores are as published by Nace AI , from leaderboards read October 20, 2026.\n\n Benchmark (Drex rank, per Nace) System Organization Answer model Score BrowseComp-Plus , accuracy and search calls per question (#2 of 86) Hybrid Qwen2-7B + Reason-ModernColBERT AI21 Labs GPT-5 95.18%, 209.27 calls Drex for Search Nace AI GPT-5 92.05%, 12.61 calls Mixedbread Search (v3) Mixedbread GPT-5 90.48%, 11.53 calls Reason-ModernColBERT LightOn GPT-5 87.59%, 13.27 calls VisDocAgentBench , R@1 (#1) Drex for Search Nace AI Qwen 27B (planner) 77.5% Tool-using agent Anthropic Claude Opus 5 67.5% Tool-using agent Anthropic Claude Fable 5 62.5% Tool-using agent OpenAI GPT-5.6-sol 61.67% MADQA , accuracy (#1) Drex for Search Nace AI Gemini 3.5 Flash 94.7% Agentic RAG Progress Software Gemini 3.5 Flash + 3.6 Flash 94.3% Agentic Search Mixedbread Gemini 3.5 Flash 93.4% PPLX Embed 2 RAG Perplexity Gemini 3.5 Flash 92.1% File Search OpenAI GPT-5 49.6% EnterpriseRAG-Bench , overall score (#3 of 31) Flexor.ai Flexor.ai GPT-6.1 Sol 91.48 CDL Causal Dynamics Lab Not listed 90.91 Drex for Search Nace AI Not listed 88.22 Mixedbread Mixedbread Claude Opus 5 86.58 OpenAI File Search OpenAI Managed product 61.03 Azure AI Search Microsoft Managed product 48.42 Vertex AI Search Google Managed product 41.87 \n\n How can developers get access? \n\n Drex for Search runs in the Nace API Console , with 4 ways in on one key: \n\n CLI: nace-cli on PyPI.\n\n SDKs: nace-sdk for Python and nace-sdk for TypeScript.\n\n MCP: nace-mcp , for Claude Code, Codex, Cursor or OpenCode.\n\n REST: an OpenAPI spec .\n\n Key Takeaways \n\n Drex for Search gives agents cited pages and tables, not top-k chunks.\n\n 92.05% on BrowseComp-Plus with 16.6x fewer search calls than the only entry ahead.\n\n 77.5% R@1 on VisDocAgentBench, 10 points above Claude Opus 5.\n\n On OfficeQA Pro, agent turns fell for all 9 harness and model pairs Nace tested.\n\n Check out the Drex for Search page , API Console , Docs and Hugging Face . \n\n Thanks to the Nace AI team for the thought leadership / resources for this article. This article is sponsored by Nace AI. \n\n The post Nace AI Releases Drex for Search for AI Agents: 92.05% on BrowseComp-Plus With 12.6 Search Calls appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "Megjelent a Drex for Search: a Nace AI új keresőrétege AI-ügynököknek",
+  "lead": "A Nace AI kiadta a Drex for Search eszközt, amely a döntési modelljeivel hatékonyabbá és gyorsabbá teszi a dokumentumkeresést az AI-ügynökök számára.",
+  "osszefoglalo": "A Nace AI bejelentette a **Drex for Search** nevű felhős keresőrendszert, amit kifejezetten AI-ügynökök és fejlesztői eszközök dokumentumkeresésének támogatására terveztek. A rendszer nem a hagyományos darabolásos technológiát használja, hanem döntési modellek segítségével, szintenként szűkíti le a mappák, fájlok és táblázatok tartalmát. A megoldás CLI-n, Python és TypeScript SDK-kon, MCP-n, valamint REST API-n keresztül is integrálható olyan eszközökbe, mint a Claude Code vagy a Cursor.\n\nA cég mérései szerint az új keresőréteg használatával az AI-ügynökök **lényegesen kevesebb lépésből** találnak meg összetett válaszokat. Az OfficeQA Pro teszteken a tesztelt ügynök- és modellpárosok átlagosan 62 százalékkal kevesebb lépést tettek meg, 56 százalékkal kevesebb tokent fogyasztottak és 2,3-szer gyorsabban futottak le. A BrowseComp-Plus mérésen 92,05 százalékos pontosságot értek el GPT-5 modell használatával, kérdésenként mindössze 12,6 keresési hívással.\n\nA Drex for Search kezeli a PDF-eket, beolvasott dokumentumokat, táblázatokat és audiofájlokat is. A válaszokhoz mindig **pontos forrásmegjelölést** ad fájl, oldal vagy sorszám szerint. A szolgáltatás elindítható a Nace kezelt felhőjében, saját AWS vagy Azure fiókban, illetve helyi, internettől elzárt infrastruktúrán is.",
+  "miert_szamit": "A fejlesztők és vállalati rendszereket építők **lényegesen alacsonyabb tokenköltséggel és gyorsabb válaszidővel** futtathatnak dokumentumkezelő AI-ügynököket. A pontos forrásmegjelölés miatt a jogi, pénzügyi vagy elemzői területeken dolgozó vállalkozások megbízhatóbban kereshetnek több ezer belső fájlban.",
+  "cimkek": [
+    "Nace AI",
+    "Drex for Search",
+    "RAG",
+    "AI ügynök"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Drex for Search"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 65,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 75,
+      "egyediseg": 90,
+      "hitelesseg": 74,
+      "aktualitas": 95,
+      "kozossegi": 46
+    },
+    "elofeszures": 89,
+    "tanult": 41,
+    "indok": "Fejlesztőknek és AI-ágenseknek szánt specifikus keresőeszköz bejelentése jó teszteredményekkel. Forrás-tapasztalat: -6.",
+    "tema": "nace ai drex search",
+    "cim_hu": "A Nace AI kiadta a Drex for Search eszközt az AI-ágensek keresési folyamataihoz",
+    "lead_hu": "A Nace AI bemutatta a Drex for Search rendszert, amely dokumentumok közötti gyors adatkereséssel segíti a kódoló és adatgyűjtő AI-ágensek munkáját.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-26T16:04:02+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-26T16:07:03+00:00",
+  "megjelent": "2026-10-26T16:07:03+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-26T16:07:14+00:00",
+    "esemeny": "A Nace AI kiadta a Drex for Search nevű keresőréteget AI-ügynökök számára, amely a cég saját döntési modelljeivel teszi pontosabbá és erőforrás-hatékonyabbá a dokumentumkeresést.",
+    "forrasok": [
+      "https://www.marktechpost.com/2026/10/26/nace-ai-drex-for-search-ai-agents/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}
