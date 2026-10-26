@@ -1,0 +1,49 @@
+{
+  "id": "68813a787c98",
+  "slug": "seedance-2-5-draft-mode-extend-reframe-and-1080p-guide",
+  "forras_id": "krea",
+  "forras_nev": "Krea",
+  "url": "https://www.krea.ai/blog/seedance-2-5-draft-mode-extend-reframe-guide",
+  "publikalva": "2026-10-26T00:00:00+00:00",
+  "cim": "Seedance 2.5 Draft Mode, Extend, Reframe and 1080p Guide",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 45 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://s.krea.ai/seedance25-blog/seedance-2-5-draft-mode-extend-reframe-guide.webp"
+  },
+  "cim_eredeti": "Seedance 2.5 Draft Mode, Extend, Reframe and 1080p Guide",
+  "szoveg_eredeti": "Text-to-video is only part of Seedance 2.5. On Krea it has four more workflows: draft mode for cheap 480p previews you can turn into full 1080p renders, extension to continue a clip, reframe to change a video’s aspect ratio, and video editing to change part of an existing clip from a text instruction. This guide covers how each one works, what it costs, and when to use it.\n\nFirst, a correction. Early coverage of Seedance 2.5, including our own pre-launch post, said it outputs native 4K. It doesn’t. Seedance 2.5 renders at 480p, 720p or 1080p. For 4K, render at 1080p and upscale, as covered below.\n\nPreview your shot at 480p, then render the keeper at 1080p, all in Krea Video.\n\nA long Seedance 2.5 take is expensive to get wrong. A 30-second clip at 1080p uses roughly 12,600 compute units (CU). If the camera move or the beat timing is off, you’ve paid for a render you won’t use.\n\nDraft mode exists to prevent that. With draft on, Seedance 2.5 renders a fast 480p version of your prompt, billed at the 480p rate of about 76 CU per second. You check the parts that usually fail: structure, motion, timing, whether the cuts land, and whether the action reads. Then you decide.\n\nWhen a draft works, you promote it. The final pass doesn’t re-roll from scratch. It regenerates the same task at 1080p, using the draft’s prompt, references, seed, duration, aspect ratio and audio settings. You get a higher-resolution version of what you approved, not a new random take.\n\nAt 5 seconds a draft costs about 380 CU, against about 2,100 CU for a 5-second 1080p render. For a 30-second clip it’s about 2,300 CU against about 12,600 CU. If it takes three tries to get the motion right, drafting first means paying the 1080p price once instead of three times.\n\nUse draft mode for anything over 10 seconds, multi-shot timelines, and complex camera moves. It isn’t worth it for a 4-second product spin you could just render at 720p.\n\nTo see what a draft actually tells you, we ran one 5-second product prompt three ways on Krea in October 2026: as a 480p draft, as a full 720p render and as a full 1080p render. All three used the same prompt, the same seed (777), 16:9 and no references:\n\nRender time is measured from job submission to completion on Krea for a single run each, so treat it as an indication, not a benchmark.\n\nWhat the draft caught. All three versions framed the shot the same way: a tight macro on the lower half of the bottle sitting on the wet stone, with the top of the bottle out of frame. Our “macro, 100mm” wording cropped harder than we meant. The 480p draft shows that problem just as clearly as the 1080p render. It cost under a fifth of the credits and took about a quarter of the time of the 1080p render. That’s the draft’s job: catch framing, lighting and composition mistakes before you pay full price. The orbit we asked for is subtle in all three, which the draft also shows.\n\nWhat it didn’t do. The same seed did not give an identical shot at each resolution. The droplets, the facets and the tone of the liquid differ between the three clips. So re-rolling a draft’s prompt and seed at a higher resolution isn’t a reliable way to keep a take you like. In the Krea Video app, promote the draft instead. Promoting re-renders that exact draft task at 1080p rather than starting a new generation. (Our test ran the three versions as separate jobs through the API, which is why they differ.)\n\nFix, then draft again. For this shot the next step would be a second draft with a wider instruction, such as “full bottle in frame, product centered, 85mm”, before spending 1080p credits.\n\nExtension takes an existing video and keeps going. You write what happens next, and Seedance 2.5 continues from the source with the same lighting, characters and camera language.\n\nThe output keeps the source video’s aspect ratio. Because a source video is attached, the job is billed for the input seconds plus the output seconds at the lower reference-video rate. On Krea the charge is based on the length actually delivered.\n\nReframe runs in Krea’s Premiere Pro, After Effects and DaVinci Resolve plugins, and through the Krea API.\n\nReframing turns a 16:9 clip into 9:16 for Reels, or a square into 21:9 ultrawide, without cropping off the subject. Krea pads your source video to the target aspect ratio with solid bars, then asks Seedance 2.5 to fill them with matching content. The original frame stays in place and the model extends the scene around it.\n\nReframe works best when the edges of the frame are simple and continuous, such as sky, walls, landscape or a studio backdrop. If something important crosses the edge of the frame, like a hand reaching out of shot, check the result closely.\n\nSeedance 2.5 supports six aspect ratios: 16:9, 4:3, 1:1, 3:4, 9:16 and 21:9.\n\nAttach a video as a reference and describe a change: “Replace the product in @Video1 with @Image1,” “Remove the text from this video,” “Change only the jacket to red.” Seedance 2.5 recognizes this as an edit.\n\nFor edits, the output length and aspect ratio follow the input video. Any duration or ratio you set is ignored, not rejected. A 9-second source gives you a 9-second edit. Krea handles this automatically, so you can leave the controls as they are.\n\nThese are for generations without a reference video. Jobs with a reference video bill input plus output seconds at a lower per-second rate. Krea shows the exact cost before you generate.\n\nIf you need native 4K straight from the model, choose a model that renders it, such as Veo 3.1. Our Seedance 2.5 vs Veo 3.1 comparison covers that trade-off. Note that the comparison was written before Seedance 2.5 added 1080p on Krea.\n\nSeedance 2.5 and Krea's video upscaler run in the same workspace, from first draft to 4K delivery.",
+  "begyujtve": "2026-10-26T21:31:57.524471+00:00",
+  "prioritas": {
+    "pont": 45,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 30,
+      "egyediseg": 50,
+      "hitelesseg": 88,
+      "aktualitas": 78,
+      "kozossegi": 53
+    },
+    "elofeszures": 86,
+    "tanult": 79,
+    "indok": "Termék-útmutató és funkcióismertető a Krea felületén elérhető Seedance 2.5-höz, mérsékelt hírértékkel.",
+    "tema": "seedance video model guide",
+    "cim_hu": "Így használhatók a Seedance 2.5 új videógenerálási funkciói a Kreán",
+    "lead_hu": "A Krea részletes útmutatót tett közzé a ByteDance-féle Seedance 2.5 videómodell előnézeti, videóhosszabbítási és átméretezési munkafolyamatairól.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-26T21:34:04+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-26T21:36:55+00:00"
+}

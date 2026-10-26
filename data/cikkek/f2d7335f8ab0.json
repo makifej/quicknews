@@ -1,0 +1,49 @@
+{
+  "id": "f2d7335f8ab0",
+  "slug": "seedance-2-5-prompt-guide-how-to-write-prompts-that-work",
+  "forras_id": "krea",
+  "forras_nev": "Krea",
+  "url": "https://www.krea.ai/blog/seedance-2-5-prompt-guide",
+  "publikalva": "2026-10-26T00:00:00+00:00",
+  "cim": "Seedance 2.5 Prompt Guide: How to Write Prompts That Work",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 37 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://s.krea.ai/seedance25-blog/seedance-2-5-prompt-guide.webp"
+  },
+  "cim_eredeti": "Seedance 2.5 Prompt Guide: How to Write Prompts That Work",
+  "szoveg_eredeti": "A good Seedance 2.5 prompt reads like a shot list, not a caption. Start with the subject and the scene. Then describe the action as beats, give each beat a camera move, set the light and style, and finish with the sounds you want. Seedance 2.5 generates one take of 4 to 30 seconds with native audio, and it takes up to 50 references: 30 images, 10 videos and 10 audio files. Prompts that use that length and those references get far better results than one-line descriptions.\n\nThis guide covers how to structure a prompt. If you want finished prompts to copy, see 10 Best Seedance 2.5 Prompts for Cinematic AI Videos and 10 Best Seedance 2.5 Examples + Prompts.\n\nOpen Seedance 2.5 in Krea Video, paste a prompt, and pick a length from 4 to 30 seconds.\n\nTo show what structure actually buys you, we ran the same idea through Seedance 2.5 twice in October 2026, both at 8 seconds, 720p, 16:9 and the same seed, with Krea’s prompt rewriting off.\n\nSeedance 2.5 still made a moody clip, but every decision was its own. It opens on her feet in the puddles, tilts up her dark coat to her face, and has her walk toward the camera down an empty wet road with city lights blurred behind her. It’s dark and generic: no umbrella, no stop, no moment that makes the shot about anything.\n\nThe structured version fills in the formula:\n\nAlmost everything we specified is on screen: the charcoal coat, the clear umbrella, pink neon reflected in the wet street, the bus shelter, the stop, the look up at the rain, and a finish in a medium close-up. One detail slipped. She tilts the umbrella back rather than fully lowering it.\n\nThe weak prompt isn’t “wrong.” It’s just a roll of the dice. The structured prompt turns the same eight seconds into the shot you planned. That’s the whole case for the formula below.\n\nKrea’s Seedance prompting guide uses this order:\n\nYou don’t need every slot for every shot. A single product rotation can be one sentence. A 30-second story needs most of them. The order matters because it matches how the model builds the clip: it locks who and where first, then adds motion and camera on top, then audio and style.\n\nName the subject and describe what makes it recognizable, such as clothing, materials or age. Then place it somewhere specific. “A baker in a linen apron in a wood-fired bakery at dawn” gives the model much more to hold than “a baker.”\n\nAction is where most prompts fail. “The hero attacks” leaves the model to guess. Describe the trajectory: the start pose, the direction, the distance, how long it takes and the end pose.\n\nDescribe what the motion causes, too: dust kicked up, fabric reacting, liquid splashing. Physical detail makes motion read as real.\n\nHere’s the rule in a real test. We asked for this:\n\nThe prompt names a start (frame-left), a path (toward and over the stairs), a distance (three meters), a physical consequence (grit spraying from the wheels) and an end (riding out frame-right). Seedance 2.5 followed that path. When we ran the same prompt through MiniMax H3 Max and Wan 3.0, both had the rider come toward the camera instead. One flaw: the low 24mm framing crops the rider’s head and torso in parts of the clip. If you want the full body in frame, say so (“full body in frame throughout”).\n\nUse standard camera vocabulary. Seedance responds to it:\n\nSpecify shot size (extreme close-up, medium, wide) and, for more control, lens (35mm, 50mm, 85mm). For one-take or POV shots, also say what the camera must not do. Write “no cuts, no zoom, never breaking the viewpoint,” because otherwise the model tends to cut between angles.\n\nFor clips of 10 seconds or more, give each segment a time range:\n\nSeedance 2.5 reliably delivers about three strongly distinct beats per generation. If you ask for five or six beats with a long final hold, it tends to do the first few well and then drift through the rest. To get more beats, keep each one under about 2.5 seconds, stage each fully (time range, shot size, lens, one move, a named transition), and end with a constraint like “no long static holds, keep cutting.” Beats left unstaged with only “HARD CUT” between them usually come out as soft morphs rather than real cuts.\n\nTime ranges also work for a single continuous take. This 20-second prompt asks for three beats and no cuts:\n\nAll three beats land in order: the narrow street, the canal with its moored boats, then the bakery, where she leans the bike on the wall, walks in, and the clip ends on the warm window. Scene detection (ffmpeg, threshold 0.3) found zero cuts, so “one-take, no cuts” held for the full 20 seconds. Two instructions came out softer than written: the camera trails behind her instead of riding beside her, and the “crane rise” is a gentle reveal rather than a big lift. If a camera move matters, give it its own beat and a size (“rises five meters overhead”).\n\nAudio is generated in the same pass as the picture. Write it on its own line: ambience, specific sound effects tied to actions, music direction, and any spoken lines in quotes. If you want a quiet, natural scene, say “no music, only natural diegetic sound.” Otherwise the model may add a generic score.\n\nPut style last unless it’s the point of the shot. “Cinematic, film grain, shallow depth of field” or “documentary tone” is enough for most shots. For non-photoreal looks such as stop-motion, gouache or charcoal, put the style first and add hard negatives (“NOT 3D, NO motion blur, NO morphing”) to override the model’s default smooth look.\n\nWords like slow, gentle, soft and dreamy tend to push the whole clip into slow motion. For realtime motion, use smooth, steady, fluid, controlled or natural realtime. If you do want slow motion, limit it to one moment: “RAMPS TO SLOW MOTION as the glass shatters… SNAPS BACK to realtime as he lands.”\n\nSeedance 2.5 refers to uploaded files as @Image1, @Video1, @Audio1 and so on. Upload the files in Krea first. The prompt then tells the model what each file is for:\n\nNever write just “reference @Video1.” Say what to take from it: the camera, the action, the rhythm or the effects. On long prompts, list every asset’s role again at the end (“STYLE @Image1, CHARACTER @Image2, ENVIRONMENT @Image3”) so the roles don’t fade partway through the clip.\n\nOne rule in Krea: a fixed last frame and reference images don’t mix. To guarantee the exact first and last frame, use a start and end frame with no reference images. To anchor details such as a character or product, use a start frame plus reference images and no end frame. Keep the end frame within plausible story time of the start, like a hand closing around a cup, not day turning into night.\n\nThe two clips below are from Krea’s Seedance 2.5 prompt gallery, shown with their exact prompts. The notes show where each part of the formula appears.\n\nOpens on a tight overhead shot of hands kneading dough on a flour-dusted wooden board in a dim Bangkok kitchen. Smash cut to a wok erupting in flames as garlic and chili hit hot oil, camera shaking slightly from the blast. Cut to a slow push-in on the finished pad thai being plated, steam curling upward. Reverse shot of a customer’s face lit by the food stall’s bare bulb, taking the first bite. Ambient night market noise throughout — sizzling, chatter, distant music, motorbike engines.\n\nWhy it works: there are four beats, each with its own shot size and camera behavior (overhead, a shaking reaction to the blast, a push-in, a reverse shot). Each beat has one physical event: kneading, the flame burst, steam, the first bite. The transitions are named (“smash cut,” “cut to”), and the audio is a single closing line that runs under every beat.\n\nAlarm clock hits 6:30, camera starts on the glowing digits and pulls back through a sunlit Brooklyn apartment. Continuous Steadicam shot follows a man’s hand turning off the alarm, panning to his feet touching hardwood floor, tracking him to the kitchen where he pours coffee. The camera drifts to the window — hard cut to the same window from outside, pulling back",
+  "begyujtve": "2026-10-26T21:31:57.524638+00:00",
+  "prioritas": {
+    "pont": 37,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 25,
+      "hirertek": 20,
+      "egyediseg": 40,
+      "hitelesseg": 88,
+      "aktualitas": 78,
+      "kozossegi": 52
+    },
+    "elofeszures": 86,
+    "tanult": 77,
+    "indok": "Promptírási tippek egy adott videómodellhez, szerkesztői tartalom, nem hír.",
+    "tema": "seedance video model guide",
+    "cim_hu": "Hogyan írjunk hatékony utasításokat a Seedance 2.5 videómodellhez?",
+    "lead_hu": "A jó eredmény eléréséhez a beállításokat, kamera-mozgásokat és a hangokat kell részletezni az egyetlen mondatos leírások helyett.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-26T21:34:04+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-26T21:37:07+00:00"
+}

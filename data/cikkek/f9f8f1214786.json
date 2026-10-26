@@ -1,0 +1,49 @@
+{
+  "id": "f9f8f1214786",
+  "slug": "seedance-2-5-pricing-what-each-video-costs-2026",
+  "forras_id": "krea",
+  "forras_nev": "Krea",
+  "url": "https://www.krea.ai/blog/seedance-2-5-pricing-cost-per-video",
+  "publikalva": "2026-10-26T00:00:00+00:00",
+  "cim": "Seedance 2.5 Pricing: What Each Video Costs (2026)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 32 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://s.krea.ai/seedance25-blog/seedance-2-5-pricing-cost-per-video.webp"
+  },
+  "cim_eredeti": "Seedance 2.5 Pricing: What Each Video Costs (2026)",
+  "szoveg_eredeti": "On Krea, Seedance 2.5 is billed per second of video, and the per-second rate depends on resolution. A 5-second clip costs 856 compute units (CU) at 720p, about 380 CU at 480p and about 2,106 CU at 1080p. A full 30-second take ranges from about 2,282 CU at 480p to about 12,636 CU at 1080p. Video references bill at a lower per-second rate, but they count the reference footage’s length as well as the output’s. Draft mode is billed at the 480p rate.\n\nBelow are the full cost tables, the rules behind them, and how to keep the cost per finished clip down.\n\nThe generate button in Krea shows the compute-unit cost for your settings before you commit.\n\nSeedance 2.5 is available on Krea’s Pro plan and above, and every generation spends compute units from your plan. Monthly allowances and plan prices are on the Krea pricing page. There’s a bit more on plan access in Is Seedance 2.5 Free?\n\nTwo settings set the cost of a standard clip (text-to-video, image-to-video, or image and audio references):\n\nAspect ratio (16:9, 4:3, 1:1, 3:4, 9:16 or 21:9), image references, audio references, and start and end frames don’t change the per-second rate. Native audio is always generated and costs nothing extra.\n\nThe figures below are approximate and rounded to whole CU. They assume no video references. The generate button in Krea always shows the exact figure for your settings.\n\nThe cost scales linearly. A 30-second take costs six times as much as a 5-second take at the same resolution, so it only pays off when you actually need one continuous shot of that length. For longer pieces built from several shots, it’s often cheaper to generate each beat at its own length.\n\nTo see what the tables look like in practice, we ran one 5-second product prompt through Seedance 2.5 on Krea three times in October 2026: as a 480p draft, at 720p and at 1080p, all with the same seed and no references.\n\nThese are single runs, not a benchmark. Render times depend on load, and every generation varies.\n\nHere’s what some other clips from our October 2026 tests cost at 720p with no video references:\n\nThe 20-second one-take is the more interesting number. Building the same piece from three separate 8-second clips would cost about 4,110 CU and add two cuts you’d need to hide. When a sequence really does need to be continuous, one long take is the cheaper route. When it doesn’t, short clips at exactly the length you need are cheaper.\n\nWhen you add one or more reference videos, for example to extend, reframe or edit an existing clip or to copy its motion, Seedance 2.5 switches to a different billing rule. The reference footage’s seconds count alongside the output’s, at a lower per-second rate:\n\nExample: a 10-second output at 720p that uses a 5-second reference clip bills about 15 seconds × 102.4 ≈ 1,536 CU. The same 10-second clip without a video reference costs about 1,712 CU.\n\nFor jobs with video references, the price Krea shows before you generate is an estimate. The final charge is reconciled against the provider’s reported usage after the job finishes. Image and audio references never change the rate.\n\nDraft mode generates a fast 480p preview of your prompt and bills at the 480p rate, whatever resolution you have selected. When a draft looks right, Krea regenerates that same task at full quality, so you pay the higher rate only for a shot you’ve already checked.\n\nFor a 10-second shot, that works out as follows:\n\nA rejected 1080p take costs about 4,212 CU, so even one bad prompt caught at the draft stage pays for the draft several times over. The full workflow is in Seedance 2.5 Draft Mode, Extend and Reframe.\n\nAt matching 480p and 720p settings, Seedance 2.5 costs less on Krea than Seedance 2.0, in both standard and video-reference jobs. 1080p is billed on its own, higher tier, so compare costs there in the Krea generate panel. Seedance 2.5 also allows longer takes (up to 30 seconds), more references (up to 50) and draft mode. For a deeper look at quality differences, see Seedance 2.5 vs Seedance 2.0.\n\nIf you’re comparing Seedance 2.5 against other models, Seedance 2.5 vs MiniMax H3 and Seedance 2.5 vs Wan 3.0 cover their limits and costs side by side.\n\nSeedance 2.5 is also available through the Krea API at the video/bytedance/seedance-2-5 endpoint. API usage is billed per second of output, with the rate set by resolution, following the same structure as the tables above. Current API rates are on the Krea pricing page. The Seedance 2.5 API guide covers request parameters and code examples, including the draft flag, which bills at the 480p rate.\n\nPick a resolution and duration in Krea Video and see the exact compute-unit cost before you generate.",
+  "begyujtve": "2026-10-26T21:31:57.524559+00:00",
+  "prioritas": {
+    "pont": 32,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 20,
+      "hirertek": 15,
+      "egyediseg": 30,
+      "hitelesseg": 90,
+      "aktualitas": 78,
+      "kozossegi": 43
+    },
+    "elofeszures": 89,
+    "tanult": 78,
+    "indok": "Részletes számítási egység és árazási lebontás a Krea felületén, kifejezetten PR/dokumentáció jellegű.",
+    "tema": "seedance video model guide",
+    "cim_hu": "Kiderült, mennyibe kerül a videógenerálás a Seedance 2.5-tel",
+    "lead_hu": "A Krea közzétette a részletes árazási táblázatot, amely szerint a generálás költsége a felbontástól és a videó hosszától függően változik.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-26T21:34:04+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-26T21:37:07+00:00"
+}

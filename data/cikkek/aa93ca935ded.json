@@ -1,0 +1,49 @@
+{
+  "id": "aa93ca935ded",
+  "slug": "how-to-use-seedance-2-5-step-by-step-tutorial-2026",
+  "forras_id": "krea",
+  "forras_nev": "Krea",
+  "url": "https://www.krea.ai/blog/how-to-use-seedance-2-5",
+  "publikalva": "2026-10-26T00:00:00+00:00",
+  "cim": "How to Use Seedance 2.5: Step-by-Step Tutorial (2026)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 37 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://s.krea.ai/seedance25-blog/how-to-use-seedance-2-5.webp"
+  },
+  "cim_eredeti": "How to Use Seedance 2.5: Step-by-Step Tutorial (2026)",
+  "szoveg_eredeti": "Seedance 2.5 is ByteDance’s most advanced video model: one take up to 30 seconds, native audio on every clip, and up to 50 image, video and audio references. You can use it in the browser on Krea with no setup, or call it through the Krea API. This tutorial walks through a full generation on Krea, from picking an input mode to downloading a finished, upscaled clip.\n\nBefore you start: Seedance 2.5 on Krea is available on the Pro plan and above. See Krea pricing for plan details, or read is Seedance 2.5 free? if you are deciding whether to upgrade.\n\nGenerate up to 30 seconds with native audio, start and end frames, and up to 50 references.\n\nSeedance 2.5 is a hosted model. ByteDance serves it through its own apps and API, and through platforms that license it. On Krea there are two ways in:\n\nThe rest of this guide uses the browser.\n\nSeedance 2.5 accepts four kinds of input, and you can combine them.\n\nA good default for product and character work is a start frame plus a few image references. Start frames can come from any image model on Krea, so you can design the frame and animate it in the same workspace.\n\nHere’s the start-frame path end to end, as we ran it on Krea in October 2026. First we generated the frame with Nano Banana Pro on Krea: a red 1960s convertible parked on a cliffside coastal road at golden hour, with no people in shot.\n\nThen we gave Seedance 2.5 that image as the start frame, at 8 seconds, 720p and 16:9, with this prompt:\n\nThe clip took 2 minutes 45 seconds to render. It does what the prompt asks in order: the headlights come on, the car pulls away kicking up dust from the shoulder, and the camera rises to show the coastline as the car shrinks down the road. The car’s shape and color and the warm evening light carry straight over from the start frame, which is why a start frame is the most reliable way to lock a look.\n\nOne practical note: Krea’s Seedance guidance warns that uploaded images and videos showing realistic human faces are blocked. Start frames with people work best as stylized or non-photoreal images, or use a character reference instead. Our example frame avoids the issue by having no people in it.\n\nDescribe the shot, not a list of keywords. A reliable structure:\n\nHere is a prompt from the Seedance 2.5 prompt gallery that follows that structure:\n\nA model in a flowing red silk dress drifts weightlessly underwater in a turquoise cenote, sunlight beams piercing from the surface above, fabric billowing in slow motion, bubbles trailing upward, ethereal ambient soundtrack with muffled water sounds.\n\nIf you only have a rough idea, write it out as a full brief first: subject, action, camera, lighting, sound. On the API, the enhance_prompt option has Krea rewrite a short prompt into a fuller Seedance-style brief before generating. For a deeper breakdown, read the Seedance 2.5 prompt guide.\n\nCost scales with duration and resolution. On Krea, Seedance 2.5 costs roughly 76 compute units per second at 480p, 171 at 720p and 421 at 1080p, so a 5-second 720p clip is about 856 CU. The generate button shows the exact cost before you commit. The full breakdown is in Seedance 2.5 pricing.\n\nLong, high-resolution takes are the expensive ones, so check the idea before paying for it. Turn on draft mode to render a fast 480p preview billed at the 480p rate. Watch it for motion, blocking, timing and audio. If it works, render the full-quality version. If not, change the prompt and draft again.\n\nIn our tests the savings were real on both cost and time. A 5-second product shot took 1 minute 10 seconds as a 480p draft (about 380 CU), compared with 2 minutes 24 seconds at 720p (856 CU) and 4 minutes 30 seconds at 1080p (about 2,106 CU). The draft was enough to spot that our “macro, 100mm” wording cropped the bottle too tightly. The full test is in the draft mode guide.\n\nThis habit matters most on 20- to 30-second clips at 1080p, where one full render costs several times more than a draft. More on draft mode, extend and reframe in the Seedance 2.5 draft mode guide.\n\nHit generate. When the clip finishes, review it with sound on, since audio is part of the output. Seedance 2.5 is strong on prompt adherence, but any video model varies between runs, so it often pays to generate a second take of a promising prompt and pick the best one.\n\nIf a take is close but not right, change one thing at a time: the camera move, a single action beat, or one reference. Changing everything at once makes it hard to tell what helped.\n\nOnce you have a take you like, you don’t have to start over to change it:\n\nSeedance 2.5 renders up to 1080p. For a 4K master, run your final clip through Krea’s video upscaler. Upscaling only the take you keep is far cheaper than rendering every attempt at a higher resolution.\n\nDownload the finished clip from Krea and drop it into your editor. If you edit in Premiere Pro or After Effects, Krea’s plugins let you generate and place shots without leaving the timeline.\n\nOpen Seedance 2.5 on Krea, draft at 480p, then render and upscale the take you keep.",
+  "begyujtve": "2026-10-26T21:31:57.524267+00:00",
+  "prioritas": {
+    "pont": 37,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 25,
+      "hirertek": 20,
+      "egyediseg": 40,
+      "hitelesseg": 90,
+      "aktualitas": 78,
+      "kozossegi": 50
+    },
+    "elofeszures": 87,
+    "tanult": 81,
+    "indok": "Lépésről lépésre követhető használati útmutató, ami nem minősül friss hírelemnek.",
+    "tema": "seedance video model guide",
+    "cim_hu": "Útmutató a ByteDance legújabb Seedance 2.5 videómodelljének használatához",
+    "lead_hu": "A Krea bemutatja, hogyan hozhatók létre 30 másodperces, saját hanggal rendelkező videók a ByteDance legújabb AI-modelljével.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-26T21:34:04+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-26T21:37:07+00:00"
+}
