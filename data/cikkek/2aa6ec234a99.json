@@ -1,0 +1,49 @@
+{
+  "id": "2aa6ec234a99",
+  "slug": "artificial-intelligence-at-massmutual-two-use-cases",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Emerj Artificial Intelligence Research",
+  "url": "https://emerj.com/artificial-intelligence-at-massmutual-two-use-cases/",
+  "publikalva": "2026-10-26T20:37:11+00:00",
+  "cim": "Artificial Intelligence at MassMutual – Two Use Cases",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 40 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://emerj.com/wp-content/uploads/2026/10/Ed_Header-Image_AI-at-MassMutual-11.png"
+  },
+  "cim_eredeti": "Artificial Intelligence at MassMutual – Two Use Cases",
+  "szoveg_eredeti": "Massachusetts Mutual Life Insurance Company (MassMutual) is a mutual life insurer serving more than 4 million policyowners and customers. For 2025, the company reported record statutory operating earnings of $3.9 billion, total adjusted capital of $34.4 billion, and nearly $1.1 trillion in life insurance protection in force.\n\nThe company’s 2025 annual report attributes its generative and agentic AI work to a decade of technology investment. It reports that 51% of the company uses broad-based generative AI productivity tools, saving an estimated 237,000 hours in 2025.\n\nFor executives, MassMutual’s scale highlights the challenge of improving service speed and operational efficiency while maintaining accuracy and control over financial risk.\n\nThis article examines two internal AI use cases at MassMutual:\n\nWe begin by examining how MassMutual applies generative AI to the questions its service representatives and financial professionals handle every day.\n\nLife insurance policies can remain in force for decades, leaving service representatives and financial professionals answering questions about contracts written under older product terms. MassMutual built a generative AI assistant to help employees retrieve policy information, including information about policies issued decades earlier, Fortune reported in February 2025.\n\nThe business problem is the time spent finding that information and escalating questions to the contact center. Giving employees a way to query policy material can shorten the path from a client’s question to an answer.\n\nIn a November 2024 company blog, Adam Fox, then head of distribution technology and data science, described generative AI initiatives aimed at improving customer service and productivity to help financial professionals serve policyowners.\n\nThe assistant runs on a cloud-based data platform that MassMutual CIO Sears Merritt’s team spent 36 months building to collect, store, and organize company data. Fortune describes an interface similar to ChatGPT through which employees can ask questions. The preparation of company information was therefore a substantial part of the implementation.\n\nThe assistant shifts policy-information searches toward employee self-service, helping representatives and advisors answer questions faster while retaining responsibility for what reaches the client:\n\nEmployees must complete formal training before accessing the generative AI tools. That training covers the technology’s capabilities, limitations, and tendency to make mistakes. Access therefore depends on preparation to use and assess the output.\n\nMassMutual’s video below places virtual assistance within its broader support for financial advisors. It describes day-and-night assistance and the use of operational data to provide insights.\n\nThe company’s published governance practices add detail to the human-review requirement. Its 2024 annual report describes data transparency, privacy protections, human review of AI-initiated decisions, and continued monitoring of automated decisions.\n\nMassMutual’s AI systems disclosure also assigns responsibilities throughout a system’s life cycle and describes model reviews prioritized according to risk. These are company-wide controls; the disclosure does not explain how individual answers from the policy assistant are checked.\n\nFor leaders introducing a similar tool, the practical step is to define who checks uncertain answers, when a question returns to a specialist, and how errors are recorded before expanding access. Faster retrieval creates value only if employees can recognize when the answer needs further review.\n\nIn February 2025, Fortune reported that the assistant had reduced response time by 10% and that financial advisors were placing approximately 5% fewer calls to the contact center, indicating improvements in service speed and advisor self-service.\n\nThe two measures address different parts of the workflow: response time captures how quickly questions are handled, while call volume indicates whether advisors need less assistance from the contact center.\n\nAt the time of Fortune’s report, the assistant had been built and deployed in parts of the business within nine months. The tools were internal, and Merritt described a cautious approach to putting AI directly in front of policyholders.\n\nMassMutual’s 2025 annual report confirms continued investment in AI tools supporting financial professionals and customer experience, alongside employee training.\n\nTraditional life insurance underwriting can involve a physical examination, blood work, urine analysis, and a manual assessment of an applicant’s risk. The National Association of Insurance Commissioners notes that issuing a policy can take months, creating an obstacle for people seeking coverage.\n\nA faster process still has to estimate mortality risk accurately enough to price each policy and manage risk across the insurer’s portfolio. For MassMutual, the workflow change was to use a machine learning model and business rules to evaluate eligible applications, with underwriters reviewing exceptions.\n\nMassMutual’s data scientists documented this approach in a peer-reviewed paper presented at the 2019 Innovative Applications of Artificial Intelligence conference. The paper describes a mortality model underpinning the MassMutual Mortality Score (M3S) and LifeScore360.\n\nThe historical model provides detailed evidence about implementation and results. MassMutual’s current disclosures describe the underwriting programs available today, but do not establish whether those programs use the same model or a replacement.\n\nThe authors emphasized collaboration with actuaries, medical doctors, underwriters, and reinsurers. For leaders automating a regulated decision, the practical lesson is to involve the people responsible for assessing and managing risk before setting the model’s decision boundaries.\n\nThe team trained the model on roughly 908,000 historical applications from 1999 to 2014 that included lab testing. The dataset covered 9.16 million exposure years and approximately 15,700 observed deaths. Much of the questionnaire data first had to be digitized from paper archives.\n\nThe model’s inputs depended on which applicant records could be linked to mortality outcomes, making historical data coverage a constraint on what the team could use:\n\nThe model uses a machine learning method called a random survival forest to estimate mortality risk over 10 years from nearly 60 inputs. It converts that estimate into a life score from 0 to 100, with higher scores indicating lower relative risk within groups defined by five-year age bands, sex, and smoking status.\n\nThe life score ranks applicants against others in the same age, sex, and smoking group. Two applicants with the same score can therefore have different mortality risks if they belong to different groups. For underwriting leaders, this distinction matters when setting offer thresholds: the score supports comparison within a defined group, while business rules and exception review determine how that assessment translates into an offer.\n\nFor eligible applications, the system combines mortality scoring with business rules to determine which cases can proceed and which require an underwriter’s review:\n\nUnderwriters therefore review exceptions instead of manually assessing every eligible file. The model supports the decision within a wider process that retains business rules and human review.\n\nMassMutual began with a 1,000-case pilot running alongside human underwriters. It then automated best-class offers for policies up to $1 million for applicants aged 17 to 40, expanded to $3 million and ages up to 59, and subsequently included all standard-and-above risk classes.\n\nAt the time of publication, the authors reported that algorithmic underwriting applied to 90% of applications within those parameters.\n\nThe rollout offers a practical rule for leaders: expand automation in stages, comparing decisions against an esta",
+  "begyujtve": "2026-10-26T20:48:44.077635+00:00",
+  "prioritas": {
+    "pont": 40,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 30,
+      "egyediseg": 80,
+      "hitelesseg": 72,
+      "aktualitas": 92,
+      "kozossegi": 27
+    },
+    "elofeszures": 84,
+    "tanult": 30,
+    "indok": "Vállalati esettanulmány és PR jellegű beszámoló a MassMutual AI használatáról, alacsony közvetlen hírértékkel. Forrás-tapasztalat: -6.",
+    "tema": "massmutual ai adoption enterprise",
+    "cim_hu": "A MassMutual közzétette legújabb mesterségesintelligencia-esettanulmányát",
+    "lead_hu": "A MassMutual biztosítóvállalat közzétette a generatív és ágens alapú mesterséges intelligencia belső használatáról szóló beszámolóját. A cég dolgozóinak több mint fele alkalmaz már valamilyen AI-eszközt.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-26T20:49:04+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-26T20:51:49+00:00"
+}
