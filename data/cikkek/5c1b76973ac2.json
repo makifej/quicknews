@@ -1,0 +1,85 @@
+{
+  "id": "5c1b76973ac2",
+  "slug": "nyilt-forraskoduva-tette-a-baidu-a-tobb-szaz-oldalas-ocr-modelljet",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/10/26/baidu-unlimited-ocr-2-open-source-long-document-ocr/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-10-27T05:26:36+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-090-scaled.png"
+  },
+  "cim_eredeti": "Baidu Open-Sources Unlimited OCR 2 for Hundred-Page Document Parsing",
+  "forrasok": [],
+  "szoveg_eredeti": "Baidu has released Unlimited OCR 2 , an open-source OCR model built for very long documents. The 3B model parses books, filings and reports of hundreds of pages in one request. Its core change is SR-SWA, a sparse attention scheme that keeps per-step decoding cost nearly flat. Weights ship under the MIT license , with code on GitHub .\n\n TL;DR \n\n Size: 3.34B parameters . Active parameters not disclosed. Max position length 131,072 tokens.\n\n Runs on: 1 CUDA GPU in BF16. Baidu tested on an NVIDIA A800-80GB. BF16 weights total about 6.7 GB. \n\n Performance: first place on both multi-page benchmarks Baidu tested, against 9 other models (self-reported).\n\n Best: 77.1 overall on MarathonDocBench (hundreds of pages). The next model, Kimi-K3, scores 33.7.\n\n Worst: 48.2 on heading hierarchy (TEDS) on MarathonDocBench, its lowest sub-score.\n\n What is Unlimited OCR 2? \n\n Unlimited OCR 2 is a 3B vision-language model from Baidu that turns ordered page images into structured text. Output covers text, tables, formulas, figures, headings and reading order. It succeeds Unlimited-OCR , released in June 2026 to push DeepSeek-OCR further.\n\n The config keeps a DeepSeek-OCR style layout. A SAM ViT-B plus CLIP-L encoder feeds a 12-layer mixture-of-experts decoder. Each token routes to 6 of 64 experts, plus 2 shared experts. The DeepSeek-OCR paper describes this decoder as DeepSeek3B-MoE-A570M. Baidu does not state an active count for version 2. In multi-page mode, each page costs 273 image tokens.\n\n How does SR-SWA work? \n\n Full attention cost grows quadratically with sequence length. During decoding, each new token scans a longer KV cache. At 273 image tokens per page, 100 pages add 27,300 input tokens before any output.\n\n SR-SWA stands for Sparse Reference Sliding Window Attention. It compresses text-visual attention into a fixed set of working references. Baidu’s model card gives 512 tokens as the example size. The config pairs a 128-token local window with top-16 selection over 32-token blocks. That is 16 blocks of 32 tokens, matching the 512-token budget.\n\n This keeps per-step latency and memory nearly constant as documents grow. It calls the result ‘unlimited-horizon’ parsing within a finite context window. Image encoding and total runtime still rise with page count.\n\n How does it score on MPDocBench and MarathonDocBench? \n\n Baidu team tests on MPDocBench, with dozens of pages per document, and MarathonDocBench, with hundreds. MPDocBench-Parse is a public benchmark of 433 documents and 3,246 pages. We could not find a public MarathonDocBench release.\n\n Per Baidu’s leaderboard chart , Unlimited OCR 2 scores 84.6 on MPDocBench. Qwen3.8-Max follows at 78.3, then Qwen-3.8-Flash-Next at 77.4. On MarathonDocBench it scores 77.1. Kimi-K3 is next at 33.7, then Gemini-3.8-Flash at 28.6.\n\n The drop between benchmarks is the real story. Qwen3.8-Max falls from 78.3 to 22.9 on hundred-page documents. Unlimited OCR 2 falls 7.5 points. Its predecessor, Unlimited-OCR, scores 0.0 on MarathonDocBench.\n\n Sub-scores (MPDocBench / MarathonDocBench): \n\n Text: 94.8 / 89.6\n\n Formula: 89.4 / 87.9\n\n Reading order: 92.3 / 85.3\n\n Tables: 87.8 / 74.8\n\n Heading hierarchy: 60.1 / 48.2\n\n Single-metric margins on MPDocBench are thin. Qwen3.8-Max scores 94.3 on text and 89.2 on formulas. All figures are self-reported and appear only in a chart image.\n\n Comparison with other open OCR models \n\n Unlimited OCR 2 Unlimited-OCR DeepSeek-OCR-2 PaddleOCR-VL-1.6 Developer Baidu Baidu DeepSeek Baidu PaddlePaddle Parameters 3.34B 3.34B 3.39B 0.96B Active parameters Not disclosed Not disclosed Not disclosed Not disclosed License MIT MIT Apache 2.0 Apache 2.0 Paper / release Oct 2026 ( report ) Jun 2026 ( arXiv ) Jan 2026 ( arXiv ) Jun 2026 ( arXiv ) Long-document mechanism SR-SWA, 512-token reference set Multi-page infer_multi , no SR-SWA Not disclosed Not disclosed MPDocBench overall 84.6 (Baidu) 61.9 (Baidu) Not reported Not reported MarathonDocBench overall 77.1 (Baidu) 0.0 (Baidu) Not reported Not reported Serving Transformers, custom SGLang Transformers, vLLM , SGLang Transformers, SGLang PaddleOCR, Transformers \n\n Parameter counts and licenses from each model’s Hugging Face page. Benchmark scores from Baidu’s chart . \n\n How do you run Unlimited OCR 2? \n\n The model card lists Transformers for quick tests and SGLang for serving. In Transformers, infer handles 1 page with dynamic tiling, called gundam mode. infer_multi parses every page of a document in 1 request, so the model keeps cross-page context. Loading requires trust_remote_code=True , which runs Python code from the repo.\n\n SGLang serving uses a customized wheel from Baidu, not upstream SGLang. Baidu’s example schedules 10 pages per window and reuses the previous window’s KV tail. Smaller windows cut peak memory but weaken cross-page merging. Baidu warns a default bias setting can trigger a 462 MiB allocation and run out of memory.\n\n Key Takeaways \n\n Unlimited OCR 2 is a 3.34B, MIT-licensed OCR model from Baidu.\n\n SR-SWA caps attention at a fixed 512-token reference set.\n\n It scores 77.1 on MarathonDocBench, against 33.7 for the next model.\n\n Heading hierarchy is the weak spot, at 48.2 on long documents.\n\n All benchmark numbers are Baidu’s own.\n\n Check out the model card , the technical report and the GitHub repo . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Baidu Open-Sources Unlimited OCR 2 for Hundred-Page Document Parsing appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "Nyílt forráskódúvá tette a Baidu a több száz oldalas OCR-modelljét",
+  "lead": "A Baidu kiadta az Unlimited OCR 2 modellt, amely egyetlen kérésben dolgoz fel akár több száz oldalas dokumentumokat is.",
+  "osszefoglalo": "A Baidu kiadta a nyílt forráskódú [Unlimited OCR 2](https://github.com/baidu/Unlimited-OCR) modellt, amely kifejezetten a rendkívül terjedelmes dokumentumok feldolgozására készült. A 3,34 milliárd paraméteres architektúra képes könyveket, beszámolókat és jelentéseket egyetlen kérésben strukturált szöveggé, táblázatokká, képletekké és ábrákká alakítani.\n\nA fejlesztés kulcsa az **SR-SWA** néven azonosított figyelemmodell, amely egy fix méretű munkacímkére tömöríti a vizuális szöveges információkat. Ez a megoldás lehetővé teszi, hogy a memóriahasználat és a feldolgozási idő lépésenkénti növekedése csaknem **változatlan maradjon** a dokumentumok hosszának növekedésével is.\n\nA súlyok az MIT licenc alatt érhetők el a **Baidu fejlesztői közleményében**. A futtatásához egy CUDA-képes videókártya szükséges, a kiszolgáláshoz pedig a Transformers vagy a testreszabott [SGLang](https://github.com/sgl-project/sglang) keretrendszer használható.",
+  "miert_szamit": "A több száz oldalas dokumentumok elemzését és **strukturált adatkinyerését** lényegesen olcsóbban és gyorsabban lehet elvégezni saját infrastruktúrán a [nyílt forráskódú OCR-modell](https://www.marktechpost.com/2026/10/26/baidu-unlimited-ocr-2-open-source-long-document-ocr/) segítségével.",
+  "cimkek": [
+    "Baidu",
+    "OCR",
+    "nyílt forráskód",
+    "dokumentumfeldolgozás"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Unlimited OCR 2"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 68,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 90,
+      "hitelesseg": 76,
+      "aktualitas": 98,
+      "kozossegi": 58
+    },
+    "elofeszures": 88,
+    "tanult": 48,
+    "indok": "Hasznos open-source modellmegjelenés a Baidutól nagyon hosszú dokumentumok feldolgozására. Forrás-tapasztalat: -6.",
+    "tema": "baidu unlimited ocr 2 release",
+    "cim_hu": "Több száz oldalas dokumentumokhoz adott ki nyílt OCR-modellt a Baidu",
+    "lead_hu": "A Baidu nyílt forráskódúvá tette az Unlimited OCR 2 modellt, amely képes könyvek és terjedelmes jelentések szövegét feldolgozni egyetlen kérésen belül.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-27T07:05:17+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-27T07:09:13+00:00",
+  "megjelent": "2026-10-27T07:09:13+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-27T07:10:47+00:00",
+    "esemeny": "A Baidu nyílt forráskódúvá tette az Unlimited OCR 2 nevű, 3,34 milliárd paraméteres vizuális-nyelvi modelljét MIT licenc alatt az terjedelmes dokumentumok feldolgozására.",
+    "forrasok": [
+      "https://www.marktechpost.com/2026/10/26/baidu-unlimited-ocr-2-open-source-long-document-ocr/"
+    ],
+    "hibak": [
+      "A szövegben '8 GB VRAM' szerepel, míg a forrás szerint a súlyok maguk kb. 6,7 GB-osak (BF16), és a Baidu 80 GB-os NVIDIA A800 GPU-n tesztelte a modellt (1 CUDA GPU in BF16). 8 GB VRAM futtatási követelményként hibás állítás.",
+      "Az elnevezés elgépelt: 'SR-SWA elnevezése azonosított' szerepel 'SR-SWA néven azonosított' helyett.",
+      "A 'miért számít' részből hiányzik a kötelező félkövér kiemelés és a beszédes link az elsődleges forrásra."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Nyílt forráskódúvá tette a Baidu a több száz oldalas OCR-modelljét",
+      "lead": "A Baidu kiadta az Unlimited OCR 2 modellt, amely egyetlen kérésben dolgoz fel akár több száz oldalas dokumentumokat is.",
+      "osszefoglalo": "A Baidu kiadta a nyílt forráskódú **Unlimited OCR 2** modellt, amely kifejezetten a rendkívül terjedelmes dokumentumok feldolgozására készült. A 3,34 milliárd paraméteres architektúra képes könyveket, beszámolókat és jelentéseket egyetlen kérésben strukturált szöveggé, táblázatokká, képletekké és ábrákká alakítani.\n\nA fejlesztés kulcsa az SR-SWA elnevezése azonosított figyelemmodell, amely egy fix méretű munkacímkére tömöríti a vizuális szöveges információkat. Ez a megoldás lehetővé teszi, hogy a memóriahasználat és a feldolgozási idő lépésenkénti növekedése csaknem **változatlan maradjon** a dokumentumok hosszának növekedésével is.\n\nA súlyok az MIT licenc alatt érhetők el a GitHub platformján. A futtatáshoz egy legalább 8 GB VRAM-mal rendelkező videókártya szükséges, a kiszolgáláshoz pedig a Transformers vagy a testreszabott **SGLang** keretrendszer használható.",
+      "miert_szamit": "A több száz oldalas PDF-ek elemzését és strukturált adatkinyerését **lényegesen olcsóbban és gyorsabban** lehet elvégezni saját infrastruktúrán, jogi vagy pénzügyi dokumentumok feldolgozásakor."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}

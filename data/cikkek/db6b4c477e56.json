@@ -1,0 +1,49 @@
+{
+  "id": "db6b4c477e56",
+  "slug": "microsoft-patches-a-severe-flaw-in-its-android-authenticator-app-that",
+  "forras_id": "techmeme",
+  "forras_nev": "Cyber Security News",
+  "url": "https://cybersecuritynews.com/microsoft-authenticator-flaw/",
+  "publikalva": "2026-10-27T05:30:01+00:00",
+  "cim": "Microsoft patches a severe flaw in its Android Authenticator app that could let untrusted apps impersonate Microsoft apps and obtain delegated account tokens (Abinaya/Cyber Security News)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "http://cybersecuritynews.com/wp-content/uploads/2026/10/Microsoft-Authenticator-Flaw-Lets-Malicious-Android-Apps-Steal-Account-Tokens-With-Zero-Permissions.webp"
+  },
+  "cim_eredeti": "Microsoft patches a severe flaw in its Android Authenticator app that could let untrusted apps impersonate Microsoft apps and obtain delegated account tokens (Abinaya/Cyber Security News)",
+  "szoveg_eredeti": "Microsoft patched high-severity flaw CVE-2026-80097 (CVSS 8.6) in Authenticator for Android, allowing malicious apps with no declared permissions to steal work account access tokens due to improper authentication in its broker component.\n\nMicrosoft classified the flaw as a local elevation-of-privilege vulnerability. The issue affected Android devices with Microsoft Authenticator installed and a signed-in work account.\n\nEnclave researchers found that an untrusted app could pretend to be a trusted Microsoft application, such as Microsoft Teams, and ask Authenticator to issue delegated tokens for that identity.\n\nThe request did not need user approval, account credentials, or Android permissions beyond being installed on the device. At the center of the bug was an exported Android activity named com.microsoft.identity.client.AccountChooserActivity.\n\nOther apps can start exported activities on the same device. In this case, the activity accepted a broker request from the calling app. It returned the authentication result after processing it.\n\nThe key problem was how Authenticator verified the requesting application. The broker request included the claimed app package name, client ID, redirect URI, requested scopes, and even a caller UID value.\n\nEnclave researchers reported that the malicious application could supply these fields rather than having them tied to the app that actually launched the request.\n\nAuthenticator did perform a signature-related redirect URI validation. However, the check focused on the app identity claimed in the request.\n\nIf the attacker claimed to be Teams, the vulnerable logic checked whether the redirect URI matched the real installed Teams package. Because Teams was legitimately installed, the attacker could build a valid redirect URI from its public package signature and pass the check.\n\nIn short, the app verified whether the claimed identity looked valid, but did not confirm that the real caller was the app it claimed to be. The vulnerable activity could identify the package that launched it, according to the research. However, it did not use that information to control trust.\n\nSuccessful requests returned token data through the activity result bundle. The tokens could include access tokens, refresh tokens, ID tokens, and client information.\n\nDepending on the impersonated Microsoft client and requested permissions, the impact could extend to Microsoft Graph resources such as mailboxes, calendars, OneDrive files, SharePoint content, and Teams-related services.\n\nThe researchers demonstrated the risk by impersonating multiple Microsoft apps. A Teams identity requesting Microsoft Graph access could receive delegated permissions that let it read and write mail, send messages, access files, and modify calendars. This flaw is especially important for organizations that use Android devices to access Microsoft 365 workloads.\n\nMicrosoft fixed the issue in Microsoft Authenticator for Android version 6.2606.4246, which was released in July 2026. Organizations and individual users should update the app through Google Play as soon as possible and verify that managed devices are running a current release.\n\nMicrosoft’s advisory describes the issue as improper authentication that could let an unauthorized local attacker elevate privileges.\n\nThe flaw also highlights why mobile identity brokers must validate the real calling application, including its package identity, UID, and signing certificate, rather than relying on app-controlled values in an intent.\n\nThe incident highlights Microsoft’s ongoing efforts to protect Entra credentials on rooted Android and jailbroken iOS devices, where malware and weakened security controls increase enterprise identity risks.\n\nOrganizations should review mobile application controls, enforce timely app updates through MDM or EMM platforms, and restrict sideloaded applications where possible.\n\nSecurity teams should also monitor unusual Microsoft Graph activity, unexpected consent behavior, and token use from unfamiliar Android devices. Microsoft’s official CVE-2026-80097 advisory should be used for ongoing remediation guidance.\n\nUpdate defenses against new malware as soon as it appears. Integrate TI Feeds with data from 16K SOCs.",
+  "begyujtve": "2026-10-27T07:04:04.522502+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 65,
+      "egyediseg": 95,
+      "hitelesseg": 86,
+      "aktualitas": 98,
+      "kozossegi": 48
+    },
+    "elofeszures": 89,
+    "tanult": 67,
+    "indok": "Szoftveres biztonsági javítás az Android Authenticatorhoz, AI szempontból nem releváns.",
+    "tema": "microsoft android authenticator vulnerability patch",
+    "cim_hu": "Súlyos biztonsági rést foltozott a Microsoft az androidos Authenticator alkalmazásban",
+    "lead_hu": "A Microsoft javította az Authenticator app azon sérülékenységét, amellyel kártékony alkalmazások engedély nélkül férhettek hozzá munkahelyi fiókok tokenjeihez.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-27T07:05:17+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-27T07:10:01+00:00"
+}

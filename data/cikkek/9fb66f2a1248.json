@@ -1,0 +1,49 @@
+{
+  "id": "9fb66f2a1248",
+  "slug": "kutato-megerositette-a-php2shell-hibakat-mar-eles-tamadasokban",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/researcher-confirms-php2shell-Rp5UAbFgRV6syWLVu61N9A",
+  "publikalva": "2026-10-26T16:22:34.857114+00:00",
+  "cim": "Kutató megerősítette: a PHP2Shell-hibákat már éles támadásokban kihasználják",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--D51yXaFr--/t_limit/https://www.securityweek.com/wp-content/uploads/2026/10/php-exploit-code.webp"
+  },
+  "cim_eredeti": "Kutató megerősítette: a PHP2Shell-hibákat már éles támadásokban kihasználják",
+  "szoveg_eredeti": "A támadók a PHP2Shell sérülékenységeit kihasználva futtattak shell-parancsokat csalétek-szervereken. A tevékenységet észlelő kutató megerősített távoli kódfuttatásként (RCE) jellemezte az esetet, ami túlmutat a korábban jelentett szkennelésen és összeomlásokon. A biztonsági cégek már azelőtt is milliós nagyságrendben rögzítettek kihasználási kísérleteket, hogy a hibák a múlt héten nyilvánosságra kerültek, de egyik sem igazolta, hogy a kód ténylegesen le is futott – számolt be a SecurityWeek.\n\nAdel Karimi, a Perplexity kutatója olyan honeypotokat üzemeltet, amelyek hétköznapi, PHP-alapú oldalakat szolgálnak ki. A rendszerek PHP 8.4.26-ot futtatnak Apache mod_php alatt, egyetlen workerrel. Az első jelentés alig több mint 26 órát ölelt fel: 30 memóriahiba (out-of-memory) és 11 workerösszeomlás szerepelt benne, kódfuttatás nélkül. Október 24-én azonban az érzékelők három honeypoton összesen 35 shellt rögzítettek. A SecurityWeek szerint az egyik IP-cím három, egy másik pedig 32 shellt hozott létre.\n\nA támadók négylépcsős HTTP-kérésláncot használtak. Az első kérések kimerítették a PHP memóriáját, a következők memóriatartalmat szivárogtattak ki, az utolsó pedig shell-parancsot futtatott. A forgalom szorosan egyezett a CVE-2026-109618 azonosítójú sérülékenységhez készült nyilvános proof-of-concept exploittal, második lépcsős payloadot pedig nem töltöttek le. „Ez már megerősített RCE használható memóriakiszivárogtatással, nem csupán egy összeomlás, amelyet gyanús folyamat követ” – mondta Karimi. Hozzátette, hogy a shell-parancs nagyjából 1,6 ezredmásodperccel az utolsó kérés után futott le.\n\nKarimi figyelmeztetett, hogy az általa használt környezet „szándékosan kedvező”, így nem mutatja meg, mennyire megbízható az exploit más konfigurációkon. Marcus Hutchins, az Expel kutatója szerint ez „messze a legjobb minőségű megerősítése a PHP2Shell vadonbeli kihasználásának, amellyel eddig találkoztam”. Október 26-án reggel a CISA még nem vette fel a sérülékenységeket az ismerten kihasznált sérülékenységek (Known Exploited Vulnerabilities) katalógusába.\n\nMindkét hiba 9,2-es besorolást kapott a CVSS 4.0 szerint, és hitelesítés nélküli támadók is kódot futtathatnak velük: a PHP belső memóriáját megsérthetik, amikor a kérés feldolgozása meghiúsul. A Beazley Security szerint a PHP október 21-én javította őket a 8.5.12, 8.4.27, 8.3.36 és 8.2.35 verzióban. A kiadást egy nappal előrehozták, miután a CVE-azonosítók kiszivárogtak a Hacker Newsra. Az Amazon október 17-én, vagyis a nyilvánosságra hozatal előtt négy nappal már rögzített egy kihasználási kísérletet. Október 23-án több mint 34,4 millió PHP-szolgáltatást még mindig sérülékenynek értékeltek.\n\nA Wiz és a Calif kutatói augusztusban találták meg a hibákat az OpenAI és a Google MI-modelljeivel – számolt be a CNBC. Az MI által felfedezett sérülékenységek hullámát „fekete októbernek” nevezték el, és egyes szervezetek a javítás idejére offline állapotba helyezték a weboldalaikat. A befektetők arra számítanak, hogy az eset növeli a kiberbiztonsági kiadásokat. Az Okta, a Palo Alto Networks és a CrowdStrike részvényei a múlt héten megugrottak – írta a Zacks a The Globe and Mailen keresztül. Az Arctic Wolf ugyanakkor úgy látja, hogy „viszonylag kevés bizonyíték utal megbízható, nagy léptékű kihasználásra”.",
+  "begyujtve": "2026-10-27T07:02:28.625273+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 65,
+      "egyediseg": 95,
+      "hitelesseg": 72,
+      "aktualitas": 84,
+      "kozossegi": 44
+    },
+    "elofeszures": 76,
+    "tanult": 50,
+    "indok": "Általános kiberbiztonsági hír a PHP2Shell sérülékenységekről, nincs köze a mesterséges intelligenciához.",
+    "tema": "php2shell vulnerability rce exploit",
+    "cim_hu": "Már éles támadásokban használják ki a PHP2Shell sérülékenységeit",
+    "lead_hu": "Biztonsági kutatók megerősítették, hogy a támadók már élesben futtatnak távoli kódokat a PHP2Shell hiányosságait kihasználva.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-27T07:05:17+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-27T07:09:45+00:00"
+}
