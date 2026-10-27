@@ -1,0 +1,76 @@
+{
+  "id": "cac2f27240b1",
+  "slug": "az-alphago-elvet-hasznalna-az-ai-halucinaciok-megszuntetesere-a-metis",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/former-deepmind-researcher-thinks-alphagos-playbook-can-cure-ai-hallucinations/",
+  "szerzo": "Jonathan Kemper",
+  "publikalva": "2026-10-27T13:55:24+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/metis-reasoning-07-reasoning-illustration.jpg"
+  },
+  "cim_eredeti": "Former Deepmind researcher thinks AlphaGo's playbook can cure AI hallucinations",
+  "forrasok": [],
+  "szoveg_eredeti": "Former Deepmind researcher Thore Graepel wants to build AI systems that track what they know and check every conclusion against evidence. Larger language models won't fix this problem, his team says.\n\nThore Graepel believes the same idea that let AlphaGo beat Go professional Lee Sedol in 2016 can make AI systems more reliable, including in robots. The former Deepmind researcher founded Metis Reasoning and laid out the approach at Nvidia's GTC conference in Berlin, where the chipmaker has been expanding its platform for robotics and physical AI with the goal of turning robotics' data problem into a compute problem.\n\nToday's language models amount to just AlphaGo's prediction network, which suggested possible moves, according to Metis. AlphaGo paired that network with a systematic search through game sequences and found the famous Move 37, a move the network would have given a human player roughly a one-in-ten-thousand chance of making. Metis wants to bring that kind of search to general reasoning.Ad\n\nDoing so requires what the company's paper calls an explicit knowledge ledger, comparable to the game board. Similar ideas already exist: Microsoft's GraphRAG organizes knowledge outside model weights in a knowledge graph, and Google's AlphaGeometry2 pairs a language model with a symbolic engine that verifies mathematical proofs. Metis wants to extend those principles to open questions in the real world.Ad\n\nIts knowledge ledger records what is known, how confident the system is, and which questions remain open. A separate module checks new entries against calculations, formal proofs, or empirical evidence, and when an assumption falls away, every conclusion that depended on it gets re-evaluated. A \"move\" can be a question, an experiment, or a challenge to an existing assumption; the system picks whichever one reduces uncertainty about the original question the most, ultimately delivering either an answer or a justified abstention.\n\nAs in AlphaGo, two neural networks suggest and evaluate moves, trained on logged prior investigations but unable to override the verification rules. Metis says the setup should produce fewer hallucinations, explanations with source citations, and knowledge that can be changed or deleted without retraining. Because reasoning breaks into small steps, the approach could also favor smaller models running on edge devices and in robots.Ad\n\nMore data and compute improve language models but don't solve the technology's fundamental problems, according to Metis: the models fabricate answers, their reasoning chains can't be verified, and their knowledge is locked inside the weights. Hallucinations come from the training process itself, the paper argues, because models learn to produce plausible text rather than true text, and even the chains of thought in today's reasoning models often fail to show how an answer was actually reached.\n\nThat, the paper says, is why AI has had so little economic impact so far. When an agent acts on behalf of a company, errors are hard to trace back to their source and wrong knowledge can't be removed from the model. AI took off in software engineering because code is easy to test and roll back, but in medicine, finance, chip design, and robotics, the paper argues, AI needs to be verifiable from the ground up.Ad\n\nThe white paper describes only a research program, with no working system, no benchmarks, and no comparisons with current reasoning models. The team acknowledges that the real world, unlike Go, provides only partial information, that evidence can be expensive to obtain, and that some questions simply have no answer. The biggest open question is how a verified knowledge ledger would take shape in messy domains beyond textbook examples, given that symbolic AI systems once failed precisely because all their knowledge had to be entered by hand.Ad\n\nGraepel earned his PhD in machine learning in Berlin in 2001, according to his website. At Microsoft Research he helped build TrueSkill, the matchmaking system behind Xbox Live. He then moved to Deepmind, where he worked on AlphaGo, AlphaZero, and MuZero. After a stint at Altos Labs he most recently served on Google Deepmind's post-AGI team, which he left over the summer. He also holds the machine learning chair at University College London. According to Bloomberg, Graepel is raising a low tens-of-millions round for Metis, with a follow-on of several hundred million dollars at a higher valuation already in the works.\n\nHe's the latest architect of Deepmind's best-known breakthroughs to build something outside Google. Former colleague David Silver founded Ineffable Intelligence and closed the largest seed round of any European startup. Tim Rocktäschel co-founded Recursive, now valued at $4.65 billion. Others are going straight to competitors. According to the Financial Times, Deepmind dissolved the team behind AlphaFold, and Nobel laureate John Jumper left for Anthropic with two colleagues. CNBC traces the talent drain partly to limited internal access to Google's TPU chips and bureaucracy, while Deepmind itself is losing its independence and founder Demis Hassabis has stepped back from day-to-day operations.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Az AlphaGo elvét használná az AI halucinációk megszüntetésére a Metis Reasoning",
+  "lead": "A DeepMind korábbi kutatója a sakk- és gó-AI keretrendszerével tenné megbízhatóvá a nyelvi modellek válaszait.",
+  "osszefoglalo": "Thore Graepel, a DeepMind korábbi kutatója megalapította a Metis Reasoning céget, amely az AlphaGo keresési elvét ültetné át az általános AI-következtetésbe. A megközelítés lényege egy **külső tudásnyilvántartás**, amelyben a rendszer minden megállapítást ellenőrizhető bizonyítékokhoz köt, így a téves információk automatikusan kiszűrhetők. A módszerrel a modell válaszai forrásmegjelölést kapnak, és az információk újratanítás nélkül is módosíthatók.\n\nA rendszer a komplex feladatokat apró, ellenőrizhető lépésekre bontja, amit egy különálló modul igazol számítások vagy adatok alapján. Mivel a következtetési folyamat nem a modell súlyaiba rejtve zajlik, a megoldás a **kisebb méretű modelleknek** is lehetővé teheti a pontos működést. Ez a felépítés kifejezetten az olyan területeken lehet hasznos, mint a robotika, a pénzügy vagy az orvostudomány, ahol az AI-hibák súlyos következményekkel járnak.\n\nA Metis Reasoning jelenleg egy **kutatási koncepciót** vázolt fel, működő rendszer és mérések egyelőre nem állnak rendelkezésre. Graepel, aki korábban az AlphaGo és az AlphaZero fejlesztésében is részt vett, jelenleg befektetői tőkét gyűjt a projekt megvalósításához. A kutatók elismerték, hogy a valós élet bizonytalan adatait lényegesen nehezebb ilyen strukturált keretbe foglalni, mint egy szabályozott táblajátékot.",
+  "miert_szamit": "A megközelítés elterjedésével a vállalati AI-ügynökök **visszakövethető és törölhető tudásbázissal** működhetnének, ami megszüntetheti a kitalált tényeken alapuló üzleti hibákat.",
+  "cimkek": [
+    "Metis Reasoning",
+    "AlphaGo",
+    "DeepMind",
+    "halucináció"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 82,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 90,
+      "hitelesseg": 85,
+      "aktualitas": 99,
+      "kozossegi": 72
+    },
+    "elofeszures": 88,
+    "tanult": 68,
+    "indok": "Egykori DeepMind kutato szakmailag izgalmas megközelitese az AI hallucinaciok felszamolasara Forrás-tapasztalat: +1.",
+    "tema": "alphago reasoning hallucination reduction",
+    "cim_hu": "Az AlphaGo módszerével szüntetné meg az AI hallucinációit egy kutató",
+    "lead_hu": "Thore Graepel, a DeepMind korábbi kutatója a logikai érvelésen alapuló AlphaGo stratégiájával tenné megbízhatóbbá a nyelvi modelljeit.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-27T14:05:04+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-27T14:08:26+00:00",
+  "megjelent": "2026-10-27T14:08:26+00:00",
+  "tenyellenorzes": {
+    "ok": false,
+    "ido": "2026-10-27T14:08:32+00:00",
+    "esemeny": "Thore Graepel, a DeepMind korábbi kutatója megalapította a Metis Reasoning nevű céget, és közzétett egy tanulmányt/koncepciót, amely szerint az AlphaGo keresési elvét és egy külső tudásnyilvántartást (knowledge ledger) felhasználva megszüntethetők az AI-hallucinációk.",
+    "forrasok": [
+      "https://the-decoder.com/former-deepmind-researcher-thinks-alphagos-playbook-can-cure-ai-hallucinations/"
+    ],
+    "hibak": [
+      "A címben elírás található: 'halucinációk' a helyes 'hallucinációk' helyett.",
+      "A szövegből hiányzik az elsődleges forrásra/tanulmányra mutató beszédes link.",
+      "a javított változat sem ment át: A cikkben szereplő link harmadlagos forrásra (The Decoder cikkére) mutat az elsődleges fehér könyv/forrás helyett, illetve hiányzik a kötelező félkövér kiemelés a leadből."
+    ],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}
