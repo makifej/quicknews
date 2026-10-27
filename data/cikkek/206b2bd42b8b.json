@@ -1,0 +1,49 @@
+{
+  "id": "206b2bd42b8b",
+  "slug": "openradview",
+  "forras_id": "producthunt",
+  "forras_nev": "Product Hunt",
+  "url": "https://www.producthunt.com/products/openradview",
+  "publikalva": "2026-10-26T17:57:31+00:00",
+  "cim": "OpenRadView",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://ph-files.imgix.net/f4a194fa-08e3-409f-bb08-dd2259dbc75b.png?auto=format&fit=crop&frame=1&h=512&w=1024"
+  },
+  "cim_eredeti": "OpenRadView",
+  "szoveg_eredeti": "I lost my mother recently. She is the reason I started experimenting with this.After a CT, MRI or X-ray, a radiologist reads the images and you get a written report. The images often come home too, on a CD or as a zip. Many discs include a viewer, but it usually runs only on Windows, so on a Mac you're left with files you can't open. OpenRadView is for people who want to see their own images anyway.\n\nPoint it at the disc, the zip or a folder, and it opens the DICOM or NIfTI files on your computer. You get linked axial, coronal and sagittal views, oblique planes, experimental 3D, and distance and angle measurements. No account, no telemetry, no upload. It's free, open source, and written in Rust with egui and wgpu, so images render on the GPU: Metal acceleration on Apple Silicon, and it works on Windows and Linux with a dedicated GPU too.\n\nThere's no AI inside. If you want, an agent you already use, or a local model, can connect over MCP and ask to see a view. Nothing is shared until you allow it, and the agent's replies can be wrong.\n\nIt's a personal research project, not certified medical software. If something feels wrong, see a doctor and keep asking questions. Ask a clinician to interpret your scans.It's an app I hope you never need.\n\nSite: openradview.comSource: github.com/gyorgysh/openradview\n\nWeboldal: https://openradview.com",
+  "begyujtve": "2026-10-27T07:12:57.998984+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 40,
+      "egyediseg": 85,
+      "hitelesseg": 70,
+      "aktualitas": 68,
+      "kozossegi": 41
+    },
+    "elofeszures": 76,
+    "tanult": 50,
+    "indok": "Hasznos nyílt orvosi képnézegető szoftver, de nem tartalmaz AI-funkciókat.",
+    "tema": "openradview dicom viewer mac",
+    "cim_hu": "Megjelent az OpenRadView ingyenes orvosi képnézegető szoftver",
+    "lead_hu": "A nyílt forráskódú OpenRadView segítségével a betegek könnyedén megnyithatják a CT, MRI és röntgen fájlokat Mac és egyéb rendszereken.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-27T07:19:43+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-27T07:22:55+00:00"
+}
