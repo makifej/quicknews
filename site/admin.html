@@ -42,7 +42,7 @@ main{max-width:1200px;margin:0 auto;padding:32px 24px 96px;overflow-wrap:anywher
 .mutato{background:var(--lap);border-radius:12px;padding:16px 20px;min-width:0}
 .mutato small{display:block;color:var(--halk);font-size:16px;font-weight:600;margin-bottom:8px}
 .mutato b{display:block;font-size:39px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
-.mutato em{display:block;font-style:normal;color:var(--halk);font-size:16px;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mutato em{display:block;font-style:normal;color:var(--halk);font-size:16px;margin-top:4px}
 .mutato.kiemelt b{color:var(--amber)}
 .becs{display:inline-flex;align-items:baseline;gap:6px;color:var(--amber);font-weight:700;white-space:nowrap}
 .becs small{display:inline;margin:0;color:var(--amber);opacity:.75;font-size:16px;font-weight:600}
@@ -235,8 +235,9 @@ button.torol:disabled{opacity:.5}
 .kartyasor img{width:96px;height:120px;object-fit:cover;border-radius:6px}
 .kartyasor.rossz img{opacity:.4}
 .kapcs button.sopor{color:var(--halk);border-style:dashed}
-.tabla{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-@media (min-width:901px){main{max-width:1400px}.tabla .kartya{grid-template-columns:58px 44px minmax(0,1fr);gap:12px;padding:14px}.tabla .kartya .kep{width:44px;height:55px}.tabla .kartya .ido{font-size:18px;white-space:nowrap}}
+.tabla{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+@media (min-width:901px) and (max-width:1279px){.tabla{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:901px){main{max-width:1640px}.tabla .kartya{grid-template-columns:58px 44px minmax(0,1fr);gap:12px;padding:14px}.tabla .kartya .kep{width:44px;height:55px}.tabla .kartya .ido{font-size:18px;white-space:nowrap}}
 .allapot.kov{display:inline-block}
 .fon-jel{display:inline-block;margin:6px 8px 0 0;padding:2px 9px;border-radius:999px;font-size:13px;font-weight:800;color:#f4f4f4;background:#3d3d3d}
 .fon-jel.fo5{color:#131313;background:var(--amber)}
@@ -678,9 +679,9 @@ function prajzol(){if(!D)return;
  const holnap=S.filter(s=>VAR(s)&&nk(new Date(s.idopont))===HOLNAP());
  document.getElementById("p-mutatok").innerHTML=
   `<div class="mutato kiemelt"><small>Következő</small><b class="num">${kov?ora(new Date(kov.idopont)):"Nincs"}</b><em>${kov?kov.felulet+" · "+hatra(new Date(kov.idopont)):"nincs várakozó poszt"}</em></div>`+
-  `<div class="mutato"><small>Ma még vár</small><b class="num">${maVar.length}</b><em>${["Facebook","LinkedIn"].map(f=>f+" "+maVar.filter(s=>s.felulet===f).length).join(" · ")}</em></div>`+
-  `<div class="mutato"><small>Ma kiment</small><b class="num">${maKint.length}</b><em>${["Facebook","Csoport","LinkedIn"].map(f=>f+" "+maKint.filter(s=>s.felulet===f).length).join(" · ")}</em></div>`+
-  `<div class="mutato ${hiba.length?"riaszt":""}" ${hiba.length?`data-ugras="#p-tabla .hibasav" role="button" tabindex="0"`:""}><small>${hiba.length?"Hibás poszt":"Holnapra időzítve"}</small><b class="num">${hiba.length||holnap.length}</b><em>${hiba.length?"nézd meg lent":["Facebook","LinkedIn"].map(f=>f+" "+holnap.filter(s=>s.felulet===f).length).join(" · ")}</em></div>`;
+  `<div class="mutato"><small>Ma még vár</small><b class="num">${maVar.length}</b><em>${["Facebook","Threads","LinkedIn"].map(f=>f+" "+maVar.filter(s=>s.felulet===f).length).join(" · ")}</em></div>`+
+  `<div class="mutato"><small>Ma kiment</small><b class="num">${maKint.length}</b><em>${["Facebook","Csoport","Threads","LinkedIn"].map(f=>f+" "+maKint.filter(s=>s.felulet===f).length).join(" · ")}</em></div>`+
+  `<div class="mutato ${hiba.length?"riaszt":""}" ${hiba.length?`data-ugras="#p-tabla .hibasav" role="button" tabindex="0"`:""}><small>${hiba.length?"Hibás poszt":"Holnapra időzítve"}</small><b class="num">${hiba.length||holnap.length}</b><em>${hiba.length?"nézd meg lent":["Facebook","Threads","LinkedIn"].map(f=>f+" "+holnap.filter(s=>s.felulet===f).length).join(" · ")}</em></div>`;
  // napok: ma, holnap és ami utána van; tegnap csak ha van benne valami
  const kulcs=s=>PARK(s)?"park":nk(new Date(KINT(s)&&s.kiment?s.kiment:s.idopont));
  const napok={};S.forEach(s=>{const k=kulcs(s);(napok[k]=napok[k]||[]).push(s)});
@@ -700,7 +701,7 @@ function prajzol(){if(!D)return;
  napsavNyilak();
  const L=(napok[PN]||[]).slice().sort((a,b)=>(a.idopont<b.idopont?-1:1));
  const elott=hiba.length&&PN===ma?`<div class="hibasav">${hiba.length} poszt nem ment ki: ${hiba.map(s=>esc(s.cim)).join("; ")}</div>`:"";
- T.innerHTML=elott+`<div class="tabla">`+["Facebook","Csoport","LinkedIn","Hirdetés"].map(f=>{const P=L.filter(s=>s.felulet===f);const v=P.filter(VAR).length;
+ T.innerHTML=elott+`<div class="tabla">`+["Facebook","Csoport","Threads","LinkedIn","Hirdetés"].map(f=>{const P=L.filter(s=>s.felulet===f);const v=P.filter(VAR).length;
   return `<div class="oszlop"><div class="oszlop-fej"><h2>${ik(f)}${f}</h2><span>${P.length?`${P.length} poszt${v?`, ${v} vár`:""}`:""}</span></div>${P.length?P.map(s=>kartya(s,kov&&s.id===kov.id)).join(""):`<p class="ures">Erre a napra nincs ${f==="Hirdetés"?"hirdetés":f==="Csoport"?"csoportposzt":f+"-poszt"}.</p>`}</div>`}).join("")+`</div>`}
 document.addEventListener("click",async e=>{const b=e.target.closest("button.torol");if(!b)return;
  if(!await kerd(`Leveszed az időzítésből?\n\n${b.dataset.felulet}: ${b.dataset.cim}\n\nNem megy ki. A már kiment posztokhoz ez nem nyúl.`))return;
