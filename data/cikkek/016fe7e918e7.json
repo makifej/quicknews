@@ -1,0 +1,83 @@
+{
+  "id": "016fe7e918e7",
+  "slug": "10-millios-kontextusablakkal-mutatkozott-be-a-mirendil-fern-0-1",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/10/27/mirendil-fern-10m-token-context-model/",
+  "szerzo": "Michal Sutter",
+  "publikalva": "2026-10-27T12:57:46+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-090-2-scaled.png"
+  },
+  "cim_eredeti": "Mirendil Launches Fern 0.1, Its First Model, With 10M-Token Context",
+  "forrasok": [],
+  "szoveg_eredeti": "Mirendil has released Fern , its first AI model. Mirendil Fern is a from-scratch coding model with a context window of up to 10M tokens. Mirendil explains how that equals about 23 MB of code, or roughly half a million lines. That is a codebase on the scale of Megatron-LM, held in context at once. Fern 0.1 is the first version, built from Mirendil-Base after a short round of post-training. For developers, its like, you load a whole repo, a full training log or days of agent traces at once.\n\n TL;DR \n\n Size: 0.1 to 0.5T parameters (exact count and active params not disclosed); context up to 10M tokens.\n\n Runs on: Hosted early access only; no open weights or quantized builds announced.\n\n Performance: Strong long-context retrieval, mid-pack agentic coding versus open-weight models, well behind frontier models.\n\n Best: 100% on RULER single-needle retrieval at every length from 32K to 10M tokens (base model).\n\n Worst: 6.1% on Terminal Bench 4.0, versus 66.4% for Claude Opus 5.5 in Mirendil’s own table.\n\n What is Mirendil Fern? \n\n Fern is a language model from Mirendil , an AI R&D lab. \n\n Fern is aimed at AI R&D work, not general chat. Mirendil lists 6 target uses: \n\n Working across larger codebases\n\n Agentic coding that runs commands until tests pass\n\n Research code: training loops, data pipelines and evaluations\n\n Debugging training runs from long logs and stack traces\n\n Reading full agent or training traces end to end\n\n Auditing pretraining shards for duplicates, contamination and junk\n\n How was Fern built? \n\n Fern sits on Mirendil-Base , which Mirendil says one researcher pretrained in 3.5 months. Total compute was under $10M, including experiments, agent token spend and data processing. AI agents wrote over 99% of the code. The researcher chose what to try and when to intervene.\n\n Training data came only from public sources: GitHub, public code, web pages and public datasets. Mirendil says it used no distillation, no synthetic data and no licensed data. The code was written from scratch on PyTorch and JAX.\n\n Fern is the smallest of 3 planned models. Mirendil-Base-Large (0.5 to 2T parameters) is over 80% through pretraining. Mirendil-Base-XL (2 to 10T) is over 20% through.\n\n Does longer context actually help? \n\n Mirendil tested next-token prediction on its own repositories, concatenated into a 42.9 MB stream. It measured cross-entropy in bits per byte, where lower is better. Window sizes here are measured in bytes, not tokens.\n\n Fern’s loss fell from 0.246 at a 32K-byte window to 0.155 at 16M and 23M bytes. The other models were scored up to about 1M tokens, their advertised limit. At a 1M-byte window, Kimi-K3 scored 0.140 and Fern 0.165. So Fern is not the best predictor at equal context. Its advantage is that the curve keeps going past where others stop.\n\n How does Fern score on RULER? \n\n RULER is a standard long-context benchmark. Mirendil ran 5 RULER tasks on Mirendil-Base, the pre-post-training model. It used greedy decoding, thinking off and exact string matching.\n\n RULER task 32K 1M 4M 10M Single needle 100 100 100 100 Multi-key retrieval 100 98 98 90 Multi-key, all needles 100 100 100 100 Variable tracking 100 95 75 100 Multi-hop QA (HotpotQA) 65 65 60 45 \n\n Retrieval holds up well. Multi-hop reasoning drops to 45% at 10M. Each 10M cell uses only 20 examples, versus 100 elsewhere. Mirendil says broader long-context results are coming.\n\n How does Fern 0.1 do on agentic benchmarks? \n\n Mirendil compared Fern 0.1 with open-weight and frontier models. Scores for other models come from model cards, leaderboards or Mirendil’s own runs.\n\n Benchmark (pass %) Fern 0.1 Kimi-K3 GLM-5.3 Claude Opus 5.5 DeepSWE v1.1 44.2 67.3 66.9 74.2 Terminal Bench 4.0 6.1 12.6 41.9 66.4 SWE Atlas QnA 53.2 66.1 59.4 66.4 SWE-Pro v2 Hard 76.5 88.2 84.3 100.0 SWE-Bench Verified 73.4 93.4 95.4 98.2 \n\n Fern 0.1 beats Inkling and Nemotron 3 Ultra on 4 of 5 tests. It ties Beam on SWE-Pro v2 Hard at 76.5. It trails Beam on SWE-Bench Verified, 73.4 versus 81.6. Every frontier and large open model in the table leads it.\n\n How does Fern compare with similar models? \n\n Feature Fern 0.1 Kimi-K3 GLM-5.3 Developer Mirendil Moonshot AI Z.ai Total params 0.1 to 0.5T 2.8T 753B Active params Not disclosed 104B ~40B Context Up to 10M tokens 1,048,576 tokens 1,048,576 tokens Input Text, code Text, image, video Text License Not disclosed Kimi K3 License GLM-5.3 License Weights Not released Open Open Access Early access request Open weights, APIs Open weights, APIs SWE-Bench Verified* 73.4 93.4 95.4 Bits per byte at 1M bytes* 0.165 0.140 0.170 \n\n *Figures from Mirendil’s announcement charts. \n\n Key Takeaways \n\n Fern 0.1 supports up to 10M tokens, about 23 MB of code.\n\n Bits per byte keeps falling to 0.155 at a 23M-byte window.\n\n RULER single needle stays at 100% from 32K to 10M tokens.\n\n Agentic coding lags: 6.1% on Terminal Bench 4.0.\n\n Base model built by 1 researcher plus agents for under $10M.\n\n Check out the Fern announcement , the Mirendil-Base pretraining post , and request early access . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Mirendil Launches Fern 0.1, Its First Model, With 10M-Token Context appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "10 milliós kontextusablakkal mutatkozott be a Mirendil Fern 0.1",
+  "lead": "A Mirendil kiadta első AI-modelljét, amely 10 millió tokenes kontextusával teljes kódbázisok és hosszú naplók egyidejű elemzésére képes.",
+  "osszefoglalo": "A Mirendil AI-kutatólabor megjelentette a [Fern 0.1](https://mirendil.com/news/introducing-fern/) nevű kódolási és kutatási modelljét. Az eszköz legfőbb újdonsága a **10 millió tokenes kontextusablak**, ami nagyjából 23 MB kód, azaz félmillió sor egyidejű feldolgozását teszi lehetővé. Ez a gyakorlatban azt jelenti, hogy teljes adattárakat, naplófájlokat és ügynökfüggvény-nyomkövetéseket lehet egyetlen kérésként betölteni.\n\nA modell alapját képező Mirendil-Base-t egyetlen kutató képezte ki 3,5 hónap alatt, kevesebb mint 10 millió dolláros költségvetésből. A fejlesztés során a kódok több mint 99 százalékát AI-ügynökök írták. A mérések alapján a modell a hosszú szöveges lekérdezéseknél hibátlanul teljesít, viszont az összetett ügynökalapú feladatok végrehajtásában még elmarad a vezető piaci modellektől.\n\nA Fern 0.1 nyílt súlyokkal egyelőre nem érhető el, a hozzáférés korai tesztelési kérelmen keresztül igényelhető. A Mirendil már dolgozik a nagyobb, 0,5, 2 trillió paraméteres Base-Large, valamint a még erősebb Base-XL változatokon is.",
+  "miert_szamit": "A **10 millió tokenes kontextusablak** elméletileg kiváltja a részekre bontott kódbeolvasást, így összetett hibakereséseknél vagy nagy projektek átvilágításánál **egyetlen lépésben elemezhető a teljes rendszer**.",
+  "cimkek": [
+    "Mirendil",
+    "Fern 0.1",
+    "kódolás",
+    "kontextusablak"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Fern 0.1",
+    "Mirendil-Base"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 75,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 74,
+      "aktualitas": 99,
+      "kozossegi": 71
+    },
+    "elofeszures": 88,
+    "tanult": 57,
+    "indok": "Új kódolási AI modell jelent meg extrém nagy, 10 milliós kontextusablakkal. Forrás-tapasztalat: -7.",
+    "tema": "mirendil fern context window",
+    "cim_hu": "Megjelent a Mirendil Fern 0.1, a 10 milliós kontextusablakkal rendelkező kódolómodell",
+    "lead_hu": "A Mirendil kiadta első AI-modelljét, a Fern 0.1-et, amely akár 10 millió tokenes kontextusablak kezelésére is képes. Ez lehetővé teszi egész kódalapok vagy többnapos ágensnaplók egyidejű betöltését.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-27T13:19:23+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-27T13:22:08+00:00",
+  "megjelent": "2026-10-27T13:22:08+00:00",
+  "nevelo_javitva": "2026-10-27T13:22:08+00:00",
+  "tenyellenorzes": {
+    "ok": false,
+    "ido": "2026-10-27T13:22:18+00:00",
+    "esemeny": "A Mirendil AI-kutatólabor kiadta első modelljét, a Fern 0.1-et, amely akár 10 millió tokenes kontextusablakkal rendelkezik. A modellt egyetlen kutató fejlesztette ki AI-ügynökök segítségével, kevesebb mint 10 millió dolláros költségvetésből.",
+    "forrasok": [
+      "https://www.marktechpost.com/2026/10/27/mirendil-fern-10m-token-context-model/"
+    ],
+    "hibak": [
+      "Az összefoglalóban a '0,5–2 trillió paraméteres' megfogalmazás hibás fordítása az angol '0.5 to 2T parameters' kifejezésnek (a 'trillion' magyarul billió, nem trillió).",
+      "Az összefoglalóban a '0,5, 2 trillió' gépelési hibát is tartalmaz és téves számnévvel említi a milliárd/billió nagyságrendet.",
+      "A szövegben nincs belinkelve az elsődleges forrás.",
+      "a javított változat hibás vagy hiányos",
+      "gondolatjel a(z) osszefoglalo mezőben"
+    ],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}

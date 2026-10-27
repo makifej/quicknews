@@ -1,0 +1,49 @@
+{
+  "id": "5f82c7fa7a2d",
+  "slug": "no-signal-no-problem-smaller-models-bring-more-ai-capabilities-on",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Computerworld",
+  "url": "https://www.computerworld.com/article/4239203/no-signal-no-problem-smaller-models-bring-more-ai-capabilities-on-device.html",
+  "publikalva": "2026-10-27T10:38:13+00:00",
+  "cim": "No signal, no problem: Smaller models bring more AI capabilities on-device",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 50 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.computerworld.com/wp-content/uploads/2026/10/4239203-0-89742800-1793097330-QVAC-1200x800_resize.png?w=1024"
+  },
+  "cim_eredeti": "No signal, no problem: Smaller models bring more AI capabilities on-device",
+  "szoveg_eredeti": "When OpenAI’s GPT-3 was released in 2020, at 175 billion parameters, it was the largest language model the world had ever seen. In the years that followed, frontier AI systems exploded in size, with today’s largest models clocking in at well over a trillion parameters. But there is a countercurrent of AI research moving in the opposite direction, with pioneers like Tether building a new generation of smaller AI models.\n\nRequiring a fraction of the computing power of their heavyweight cousins, this emerging field of lightweight models is driving a shift toward more on-device AI, with a growing range of applications now able to run locally, rather than relying on the cloud.\n\nAt around four billion parameters, even the largest among Tether’s suite of compact models is tiny compared to frontier AI systems, while others are small enough to run on a basic smartphone, without requiring an internet connection once downloaded.\n\nAs AI labs have pursued larger context windows, more sophisticated reasoning, and multimodal capabilities, model sizes have increased significantly in recent years, to the extent that parameter count, cluster size, and megawatt consumption are often framed as proxies for performance.\n\nThis narrative assumes that bigger is always better, and for a while, it was. Research has demonstrated the existence of scaling laws: predictable mathematical relationships showing that increasing model parameters, training data, and compute power led directly to superior performance and emergent capabilities. To build more intelligent systems, frontier AI developers simply had to throw more resources at the challenge.\n\nThe problem is that brute force AI scaling offers diminishing returns. And while global data center capacity is expanding rapidly, the supply of human-generated training data that fueled language model growth until now is increasingly depleted.\n\nMoreover, reducing cross-entropy loss (what scaling laws actually measure) was never a direct stand-in for advances in AI capability. In reality, the greatest leaps in performance have usually come from better training data, new techniques and innovative designs. And in an age of runaway AI investment, gigawatt-scale data centers and multi-billion dollar cloud budgets, researchers are growing skeptical of the notion that scale will remain such a key lever for progress.\n\nWhile a small number of powerhouse AI labs remain locked in a battle for frontier dominance, some of the most exciting developments are happening elsewhere.\n\nFor instance, Tether’s compact models span various domains, including medical reasoning (MedPsy), translation (TranslatePsy), and visual processing (VisionPsy).\n\nIn each case, the company has proven that lightweight, specialized models can routinely outperform larger generalist ones on specific tasks, all while running smoothly on off-the-shelf consumer hardware.\n\nTo fit more intelligence into a smaller container, Tether’s QVAC research team has focused on data curation and compression techniques like quantization.\n\nMost recently, the team released Genesis III, expanding the corpus of synthetic training data from previous generations to include 191 billion tokens spanning 19 STEM domains. In contrast to the giant libraries of web-scraped data used to train the first wave of LLMs, Genesis datasets are highly specialized. Think of them as educational textbooks, complete with correct and incorrect examples, and reasoning steps to help AI models develop expertise in a specific area.\n\nAs well as curating high-quality training data, Tether uses a compression technique known as quantization to make its models run more efficiently. Unlike distillation, which reduces the number of parameters in a model, quantization swaps high-precision weights for leaner, low-bit ones that take up less memory.\n\nWithin the open-source AI movement, 8-bit and 4-bit models have become the default for many projects. At the cutting edge of on-device AI development, even single-bit models can now deliver impressive results.\n\nBringing AI to consumer devices isn’t just about shrinking the underlying models. QVAC also provides a modular toolkit to help developers build full applications, with each component optimized for the kind of hardware found in smartphones and personal computers.\n\nFor example, the QVAC SDK integrates TurboQuant, an open-source memory compression tool that reduces the size of AI models’ Key-Value (KV) cache by up to 80 percent.\n\nBeyond reducing inference needs, the latest addition to the software development kit, TurboVec, targets data retrieval, another area where memory and compute capacity define the limits of on-device applications.\n\nWhen AI workloads exceed the limits of a single device, the same SDK update introduced clustered inference, letting developers pool the resources of multiple machines. Thanks to these advances, powerful capabilities that were once the preserve of cloud-hosted AI can now run seamlessly at your desk or in your pocket.\n\nAt a time of diminishing returns from brute-force scaling and mounting frustration with the status quo, there has never been a better time to discover what’s possible with Tether’s small models.",
+  "begyujtve": "2026-10-27T13:19:14.127747+00:00",
+  "prioritas": {
+    "pont": 50,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 40,
+      "egyediseg": 90,
+      "hitelesseg": 70,
+      "aktualitas": 88,
+      "kozossegi": 54
+    },
+    "elofeszures": 89,
+    "tanult": 59,
+    "indok": "Általános elemző cikk a kis méretű, eszközön futó AI-modellek terjedéséről. Forrás-tapasztalat: -6.",
+    "tema": "slm on-device ai",
+    "cim_hu": "Egyre fontosabbá válnak a közvetlenül az eszközökön futó kisebb AI-modellek",
+    "lead_hu": "A gigantikus nyelvi modellek mellett egyre erősebb az az irányzat, amely a kisebb, kevesebb erőforrást igénylő AI-modellek fejlesztésére fókuszál. Ezek netkapcsolat nélkül, helyben is hatékonyan működnek.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-27T13:19:23+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-27T13:22:18+00:00"
+}
