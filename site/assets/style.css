@@ -1546,3 +1546,16 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 /* görgetősáv sehol (Heni 2026-10-25); a görgetés megmarad */
 * { scrollbar-width: none; -ms-overflow-style: none; }
 *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+
+/* Videós összehasonlítás a cikk alatt (2026-10-27): tesztenként a klipek egymás mellett, mobilon egymás alatt */
+.cikk .osszevetes { margin: 48px 0 0; }
+.cikk .osszevetes h2 { font-size: 30px; line-height: 36px; font-weight: 700; margin: 0 0 24px; }
+.cikk .ov-teszt + .ov-teszt { margin-top: 40px; }
+.cikk .ov-teszt h3 { font-size: 20px; line-height: 28px; font-weight: 700; margin: 0 0 8px; }
+.cikk .ov-teszt p { font-size: 18px; line-height: 28px; color: var(--szoveg-2); margin: 0 0 16px; }
+.cikk .ov-racs { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 640px) { .cikk .ov-racs { grid-template-columns: 1fr 1fr; } }
+.cikk .ov-klip { margin: 0; }
+.cikk .ov-klip video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--bg-3); border: 1px solid var(--vonal); border-radius: var(--sugar); }
+.cikk .ov-klip figcaption { margin-top: 8px; font-size: 16px; line-height: 24px; font-weight: 700; color: var(--szoveg); }
+.cikk .ov-klip figcaption::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--kiemelo); margin-right: 8px; vertical-align: middle; }

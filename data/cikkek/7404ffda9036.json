@@ -83,5 +83,39 @@
     }
   },
   "termeklinkek_nezve": true,
-  "linkek_ellenorizve": true
+  "linkek_ellenorizve": true,
+  "osszevetes": [
+    {
+      "cim": "1. teszt: beszéd a kamerába, utána lángoló wok",
+      "leiras": "Mindkét modell pontosan kimondta a szöveget. A Seedance 2.5 moziszerűbb, portrészerű képet adott, de a lángok kimaradtak belőle. A MiniMax H3 Max tágabb, dokumentarista képet adott a teljes standdal, a láng csak a végén, kicsiben jelenik meg.",
+      "klipek": [
+        {
+          "nev": "Seedance 2.5",
+          "url": "https://s.krea.ai/seedance25-blog/seedance-vendor.mp4",
+          "poszter": "/assets/kep/ov-krea-seedance-vendor.webp"
+        },
+        {
+          "nev": "MiniMax H3 Max",
+          "url": "https://s.krea.ai/seedance25-blog/h3max-vendor.mp4",
+          "poszter": "/assets/kep/ov-krea-h3max-vendor.webp"
+        }
+      ]
+    },
+    {
+      "cim": "2. teszt: irányított mozgás, gördeszkás ugrás a lépcső fölött",
+      "leiras": "A Seedance 2.5 tartotta a megadott, balról jobbra haladó útvonalat, de a túl alacsony kamera miatt a gördeszkás feje egy időre kilóg a képből. A MiniMax H3 Max tiszta trükköt hozott, csak nem a kért irányba: a gördeszkás a kamera felé ugrat le a lépcsőn.",
+      "klipek": [
+        {
+          "nev": "Seedance 2.5",
+          "url": "https://s.krea.ai/seedance25-blog/seedance-skate.mp4",
+          "poszter": "/assets/kep/ov-krea-seedance-skate.webp"
+        },
+        {
+          "nev": "MiniMax H3 Max",
+          "url": "https://s.krea.ai/seedance25-blog/h3max-skate.mp4",
+          "poszter": "/assets/kep/ov-krea-h3max-skate.webp"
+        }
+      ]
+    }
+  ]
 }

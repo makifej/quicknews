@@ -75,5 +75,55 @@
   },
   "kiprobal_nezve": true,
   "termeklinkek_nezve": true,
-  "linkek_ellenorizve": true
+  "linkek_ellenorizve": true,
+  "osszevetes": [
+    {
+      "cim": "1. teszt: beszéd a kamerába, utána lángoló wok",
+      "leiras": "Mindkét modell pontosan kimondta a szöveget. A Seedance 2.5 hangulatosabb, moziszerűbb képet adott, de a lángok kimaradtak belőle. A Wan 3.0 a leírást szó szerint követte: a jelenet második felében magas lángok csapnak fel a wokból.",
+      "klipek": [
+        {
+          "nev": "Seedance 2.5",
+          "url": "https://s.krea.ai/seedance25-blog/seedance-vendor.mp4",
+          "poszter": "/assets/kep/ov-krea-seedance-vendor.webp"
+        },
+        {
+          "nev": "Wan 3.0",
+          "url": "https://s.krea.ai/seedance25-blog/wan30-vendor.mp4",
+          "poszter": "/assets/kep/ov-krea-wan30-vendor.webp"
+        }
+      ]
+    },
+    {
+      "cim": "2. teszt: irányított mozgás, gördeszkás ugrás a lépcső fölött",
+      "leiras": "A Seedance 2.5 követte a balról jobbra haladó útvonalat, de a túl alacsony kamera miatt a gördeszkás feje egy időre kilóg a képből. A Wan 3.0 látványos, de más trükköt adott: a gördeszkás a kamera felé ugrat le a lépcsőn.",
+      "klipek": [
+        {
+          "nev": "Seedance 2.5",
+          "url": "https://s.krea.ai/seedance25-blog/seedance-skate.mp4",
+          "poszter": "/assets/kep/ov-krea-seedance-skate.webp"
+        },
+        {
+          "nev": "Wan 3.0",
+          "url": "https://s.krea.ai/seedance25-blog/wan30-skate.mp4",
+          "poszter": "/assets/kep/ov-krea-wan30-skate.webp"
+        }
+      ]
+    },
+    {
+      "cim": "3. teszt: 20 másodperces jelenet vágás nélkül",
+      "leiras": "Sárga esőkabátos nő biciklizik a hajnali, esős utcán, átmegy egy csatornahídon, végül bemegy egy pékségbe. A Seedance 2.5 valóban egyetlen, vágás nélküli snittet adott. A Wan 3.0 látványosabb képet hozott a csatornáról, de 13,6 másodpercnél vágás került bele.",
+      "klipek": [
+        {
+          "nev": "Seedance 2.5",
+          "url": "https://s.krea.ai/seedance25-blog/seedance-bike-20s-compressed.mp4",
+          "poszter": "/assets/kep/ov-krea-seedance-bike-20s-compressed.webp"
+        },
+        {
+          "nev": "Wan 3.0",
+          "url": "https://s.krea.ai/seedance25-blog/wan30-bike-20s-compressed.mp4",
+          "poszter": "/assets/kep/ov-krea-wan30-bike-20s-compressed.webp"
+        }
+      ]
+    }
+  ]
 }
