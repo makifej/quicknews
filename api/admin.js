@@ -167,6 +167,15 @@ async function jovahagyasok() {
 const PULT_KULCSOK = ["posztok", "koltseg", "ajanlott", "statisztika", "prioritas"];
 async function pultIdo(kulcs) { await kv("SET", P + "pult:" + kulcs + ":ido", new Date().toISOString()); }
 // a változatlanul hagyott pillanatkép is a legutóbbi ellenőrzés idejét mutassa („Frissítve: …”)
+// Upstash-forgalom (2026-10-27, a 10 GB-os havi keret elfogyott): a pult percenként a teljes pillanatképet kérte
+// (a Beérkező 1,2 MB). A változásjel kis kulcsokból áll; ha a kliens a nála lévővel egyezőt küld, nem olvassuk a nagyot.
+async function valtozasJel(kulcs) {
+  const ido = (await kv("GET", P + "pult:" + kulcs + ":ido")) || "";
+  let tobb = "";
+  if (kulcs === "posztok") tobb = String((await kv("HLEN", P + "torlendo")) || 0);
+  if (kulcs === "prioritas") tobb = crypto.createHash("sha1").update(String((await kv("LINDEX", P + "jovahagyas:naplo", 0)) || "")).digest("hex").slice(0, 12);
+  return ido + "|" + tobb;
+}
 async function frissIdo(kulcs, adat) {
   const ido = await kv("GET", P + "pult:" + kulcs + ":ido");
   if (!ido || !adat || adat.hiba) return adat;
@@ -474,6 +483,10 @@ module.exports = async (req, res) => {
     }
     if (!(await belepve(req))) return json(res, 401, { hiba: "Belépés szükséges." });
 
+    if ((mi === "posztok" || mi === "prioritas") && url.searchParams.get("jel")) {
+      const jel = await valtozasJel(mi);
+      if (jel === url.searchParams.get("jel")) return json(res, 200, { valtozatlan: true, jel });
+    }
     if (mi === "posztok" || mi === "koltseg" || mi === "statisztika") {
       const v = await kv("GET", P + "pult:" + mi);
       const adat = await frissIdo(mi, v ? JSON.parse(v) : { hiba: "Még nincs feltöltött adat.", sorok: [] });
@@ -481,6 +494,7 @@ module.exports = async (req, res) => {
         const k = (await kv("HGETALL", P + "torlendo")) || [];
         const t = new Set(k.filter((_, i) => i % 2 === 0));
         for (const s of adat.sorok || []) if (t.has(s.id)) s.torles_folyamatban = true;
+        adat.jel = await valtozasJel("posztok");
       }
       return json(res, 200, adat);
     }
@@ -575,7 +589,7 @@ module.exports = async (req, res) => {
       return res.end(Buffer.from(b64, "base64"));
     }
     if (mi === "hirlevel") return json(res, 200, await hirlevelAdat());
-    if (mi === "prioritas") return json(res, 200, await prioritasAdat());
+    if (mi === "prioritas") { const adat = await prioritasAdat(); adat.jel = await valtozasJel("prioritas"); return json(res, 200, adat); }
     if (mi === "fuggo") return json(res, 200, await fuggoDb());
     if (mi === "prioritas_dontes" && req.method === "POST") { const [k, v] = await prioritasDontes(await torzs(req), "Heni"); return json(res, k, v); }
     if (mi === "admin_eszkoz" && req.method === "POST") {
