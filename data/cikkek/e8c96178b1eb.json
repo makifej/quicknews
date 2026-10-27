@@ -1,0 +1,49 @@
+{
+  "id": "e8c96178b1eb",
+  "slug": "contextgem-1-0",
+  "forras_id": "producthunt",
+  "forras_nev": "Product Hunt",
+  "url": "https://www.producthunt.com/products/contextgem",
+  "publikalva": "2026-10-27T04:48:43+00:00",
+  "cim": "ContextGem 1.0",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 45 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://ph-files.imgix.net/280be161-ac7e-433f-82c9-57d9ac0b7845.png?auto=format&fit=crop&frame=1&h=512&w=1024"
+  },
+  "cim_eredeti": "ContextGem 1.0",
+  "szoveg_eredeti": "Hi Product Hunt! I'm Sergii, and I build ContextGem.\n\nContextGem launched here in April 2025, at version 0.2. It has since reached 1.0, and enough has changed to show it to you again.\n\nReliable extraction from documents usually means writing prompts, designing validation models, mapping the output back to the source and tracking usage across models. With ContextGem, you describe what you need from a document in plain words, and it does that work. It generates the prompts, validates the output into typed values, and traces every fact to the paragraph or sentence it came from, with a justification if you ask for one.\n\nDecision models next to LLMs. A decision model answers closed questions (yes or no, one of your labels, a level of a scale) with the probability of each possible answer, and writes no text. It is fast and low-cost for the questions you ask in volume, and you set the threshold.\n\nThe right model for each question. A model group sends the open questions to an LLM and the closed ones to a decision model, and any model can fall back on others.\n\nYour files as they are. With Docling, ContextGem starts from PDF (scanned too), Office files, email, images, audio, video and more. Table rows keep their column headers, and the items from paged files come back with their page numbers.\n\nAgentic workflows. Extract the metadata of documents as they arrive, call an extraction from an agent's tool, or let a decision model choose the next step.\n\nCloud or local. LLMs through LiteLLM (OpenAI, Anthropic, Google, Ollama, LM Studio and more), and decision models from TypeSafe, OpenAI, Microsoft Foundry or your own server.\n\nContextGem reads one document in depth, every paragraph of it. It does not search across a corpus, which RAG frameworks do better.\n\nI'd love your feedback. Which questions about your documents would you give to a decision model rather than an LLM? And what is missing for your use case?\n\nGitHub: https://github.com/shcherbak-ai/contextgem\n\nWeboldal: https://github.com/shcherbak-ai/contextgem",
+  "begyujtve": "2026-10-27T09:54:12.100591+00:00",
+  "prioritas": {
+    "pont": 45,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 35,
+      "egyediseg": 85,
+      "hitelesseg": 62,
+      "aktualitas": 90,
+      "kozossegi": 38
+    },
+    "elofeszures": 86,
+    "tanult": 50,
+    "indok": "A ContextGem 1.0 egy kis fejlesztői eszköz frissítése, alacsony általános hírértékkel. Forrás-tapasztalat: -2.",
+    "tema": "contextgem document extraction tool",
+    "cim_hu": "Megjelent a ContextGem 1.0 dokumentum-feldolgozó AI-eszköz",
+    "lead_hu": "A ContextGem elérte az 1.0-s verziót, amely automatikus promptgenerálással és validációval segíti az adatkinyerést a dokumentumokból.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-27T10:04:30+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-27T10:07:36+00:00"
+}
