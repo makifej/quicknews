@@ -1,0 +1,49 @@
+{
+  "id": "f6f0b21aa3e6",
+  "slug": "gpt-6-1-terra",
+  "forras_id": "producthunt",
+  "forras_nev": "Product Hunt",
+  "url": "https://www.producthunt.com/products/openai",
+  "publikalva": "2026-10-26T23:33:48+00:00",
+  "cim": "GPT-6.1 Terra",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 38 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://ph-files.imgix.net/b80651d8-f8de-4045-9a27-cb6afb6abac0.jpeg?auto=format&fit=crop&frame=1&h=512&w=1024"
+  },
+  "cim_eredeti": "GPT-6.1 Terra",
+  "szoveg_eredeti": "OpenAI just dropped GPT-5.6, their largest model yet, and we're teaming up with them to get it into makers' hands.\n\nHere's the deal:- Build something with Sol, Terra, or Luna- Schedule your launch on Product Hunt for July 23\n\n- The top products walk away with $10k in OpenAI credits\n\nOver 400 products launched for OpenAI Day. Five walked away with $10K in OpenAI credits, all built on GPT-5.6.\n\nTeable 3.0 Point it at any system, migrate the data, get working AI workflows and custom apps out the other end.\n\nI often hear that LinkedIn is starting to be cringe, becoming a second Facebook, but let s be honest: it s still a career platform. A little cringe, but it still is.\n\nOn the other hand, Sam Altman introduced a new ambition OpenAI Jobs Platform an AI-powered hiring platform, expected to launch by mid-2026.\n\nOpenAI just shipped a new Terra model built for fast, capable computer use, and they say it matches GPT-6 Astra on Agents' Last Exam at one tenth the price per token while finishing tasks over three times faster. It reads what's on screen, takes action across apps and writes more naturally than GPT-5.6 Terra. OpenAI posted a short look at it on X here: https://x.com/OpenAI/status/2114780711664398349\n\n**Computer use** is the part I'm most excited about. A model that can look at a screen, understand it and click through real apps at this speed and price makes it practical to hand off the repetitive work that fills a normal day, like entering invoices into accounting software or filling out forms.\n\n**Visual reasoning** is the other one I'd test first. OpenAI says it nearly matches their top models on MMMU Pro, which matters for things like reading technical drawings, matching product photos to a catalog or reviewing video shot by shot.\n\n**Factuality** also took a real jump. OpenAI says the error rate on their hardest internal prompts fell from 53.6% to 16.7% at low reasoning effort, which is exactly what you want from a model you plan to run at high volume.\n\nFor builders, it's already live in the API as gpt-6.1-terra, and API prices are 50% lower than GPT-5.6 Terra.\n\nYou can try it in ChatGPT Work and Codex right now: https://chatgpt.com\n\nGive it a spin and let the team know what you create with GPT-6.1 Terra 🚀\n\nThe quality jump is real — outputs feel more intent-aware and less like prompt guessing• Speed + reliability makes it usable for daily, production-level workflows, not just demos• The ecosystem effect is huge: devs, creators, and teams can all build on the same foundation• It’s one of the few AI products that keeps improving without increasing cognitive load\n\nWhat’s most impressive is how OpenAI continues to turn cutting-edge research into something immediately practical. Curious what you’re most excited to unlock next with this release\n\n• More transparency and control around model behavior and updates, especially for teams using it in production• Clearer guidance on best practices across different use cases (dev, design, marketing, ops)• Better long-term memory / project-level context to reduce re-explaining complex systems• More predictable pricing and usage limits as capabilities continue to expand\n\nStill an incredible product — these improvements would make it even easier to rely on at scale.\n\nWe chose OpenAI because it consistently strikes the best balance between capability, reliability, and developer experience. The models are strong across reasoning, multimodality, and real-world tasks, but what really stands out is how quickly those advances become usable products.\n\nBeyond model quality, the ecosystem matters: stable APIs, clear documentation, and a fast-moving community make it easier to go from prototype to production. Compared to alternatives, OpenAI feels less like a single model and more like a long-term platform we can confidently build on.\n\nI use Codex as a second-opinion auditor on top of Claude Code, not as the primary builder. Claude writes the code, Codex reviews the reasoning catches edge cases Claude missed, flags assumptions, sometimes spots a cleaner approach.\n\nThe two-model loop has measurably improved the quality of what ships, especially on anything involving auth, payments, or migrations where one wrong assumption is expensive.\n\nPricing adds up fast when you're running it alongside another paid model for solo founders the combined bill is the main blocker. Would also love a \"diff-only review\" mode where Codex only audits the lines that changed, instead of re-reading context every call.\n\nSmaller token footprint = more affordable as a daily-driver auditor.\n\nActively enforced just running Claude alone for months (cheaper, simpler) and tried Cursor's multi-model setup. Settled on Codex specifically because its reasoning style is different enough from Claude's that it actually catches things rather than agreeing with whatever Claude said.\n\nTwo models trained on similar data give you one opinion twice Codex gives you a genuinely independent read.\n\nI run GPT alongside Claude in FetchSandbox's generation pipeline — parsing OpenAPI specs, discovering realistic workflows, sanity-checking output across 60+ APIs. Where GPT earns its place is breadth and reliability: it's seen every API convention under the sun, and its structured output (function calling / JSON mode) parses cleanly every time — which matters when you're generating at volume and can't babysit each result. It's the dependable workhorse: fast, consistent, and it just works. For a solo founder shipping a lot, that consistency is gold.\n\nMain friction is scaling headroom — rate limits and the tier ramp can bite when a batch job spikes, so I've had to build retries/backoff around occasional latency. Smoother burst handling for high-volume generation jobs would help. Model version churn is the other one: pinning a version and migrating on deprecation adds overhead. Minor next to how much it just works, though.\n\nI run GPT alongside Claude in FetchSandbox's generation pipeline — parsing OpenAPI specs, discovering realistic workflows, sanity-checking output across 60+ APIs. Where GPT earns its place is breadth and reliability: it's seen every API convention under the sun, and its structured output (function calling / JSON mode) parses cleanly every time — which matters when you're generating at volume and can't babysit each result. It's the dependable workhorse: fast, consistent, and it just works. For a solo founder shipping a lot, that consistency is gold.\n\nWeboldal: https://openai.com",
+  "begyujtve": "2026-10-27T16:08:12.511855+00:00",
+  "prioritas": {
+    "pont": 38,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 25,
+      "hirertek": 20,
+      "egyediseg": 80,
+      "hitelesseg": 48,
+      "aktualitas": 58,
+      "kozossegi": 45
+    },
+    "elofeszures": 85,
+    "tanult": 60,
+    "indok": "Zavaros és elavult hírcímek keveréke egy korábbi Product Hunt hackathon promócióról.",
+    "tema": "product hunt openai hackathon",
+    "cim_hu": "Product Hunt fejlesztői versenyt hirdettek OpenAI modellek használatával",
+    "lead_hu": "A Product Hunt és az OpenAI közös fejlesztői felhívásban jutalmazta a legújabb nyelvi modellekre épülő alkalmazásokat és munkafolyamatokat.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-27T16:19:57+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-27T16:23:43+00:00"
+}
