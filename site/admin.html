@@ -715,7 +715,9 @@ function kerd(sz){return new Promise(ok=>{let d=document.getElementById("kerd-ab
  const v=x=>{d.hidden=true;document.removeEventListener("keydown",bill);ok(x)};const bill=e=>{if(e.key==="Escape")v(false)};
  d.querySelector("[data-igen]").onclick=()=>v(true);d.querySelector("[data-nem]").onclick=()=>v(false);d.onclick=e=>{if(e.target===d)v(false)};
  document.addEventListener("keydown",bill);d.querySelector("[data-igen]").focus()})}
-async function ptolt(){try{D=await lekér(U.posztok)}catch(e){D={hiba:"A helyi szerver nem válaszolt",sorok:[]}}prajzol()}
+/* Upstash-forgalom (2026-10-27): ha a nálunk lévő adat jele egyezik a szerverével, a szerver nem küldi újra a nagy csomagot */
+async function feltetelesen(url,elozo){if(!ADMIN||!elozo||!elozo.jel)return lekér(url);const d=await lekér(url+"&jel="+encodeURIComponent(elozo.jel));return d&&d.valtozatlan?elozo:d}
+async function ptolt(){try{D=await feltetelesen(U.posztok,D)}catch(e){D={hiba:"A helyi szerver nem válaszolt",sorok:[]}}prajzol()}
 
 /* ---------- költség ---------- */
 let K=null,KM=TAR("KM")||"nap",KP=TAR("KP");
@@ -782,7 +784,7 @@ async function ktolt(){try{K=await lekér(U.koltseg)}catch(e){document.getElemen
 
 
 /* ---------- ajánlott ---------- */
-let A=null;
+let A=null,ATOLT=0;  // ATOLT: az Ajánlott utolsó letöltése (a jelvény 5 percen belül nem kéri újra)
 const IKON={Threads:'<circle cx="12" cy="12" r="3.5"/><path d="M15.5 12v1.5a2.5 2.5 0 0 0 5 0V12a8.5 8.5 0 1 0-3.4 6.8"/>',Facebook:'<path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/>',Csoport:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14a6.5 6.5 0 0 1 3 6"/>',LinkedIn:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.5v.01M12 17v-6.5M12 13.5a2.5 2.5 0 0 1 5 0V17"/>',"Hirdetés":'<path d="M3 10v4a1 1 0 0 0 1 1h3l6 4V5L7 9H4a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6M20 6.5a8 8 0 0 1 0 11"/>'};
 const ik=f=>IKON[f]?`<svg viewBox="0 0 24 24" aria-hidden="true">${IKON[f]}</svg>`:"";
 const FEL={facebook:"Facebook",linkedin:"LinkedIn",hirdetes:"Hirdetés",csoport:"Csoport",threads:"Threads"};
@@ -905,7 +907,7 @@ async function kepFeltolt(inp){const f=inp.files[0];if(!f)return;const lab=inp.c
   const r=await lekér(U.kepFel,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id:inp.dataset.id,b64})});
   if(r.hiba)alert(r.hiba)}catch(e){alert("A kép feltöltése nem sikerült.")}
  atolt()}
-async function atolt(){try{A=await lekér(U.ajanlott)}catch(e){document.getElementById("a-lista").innerHTML=`<div class="hibasav">Az ajánlólista most nem érhető el.</div>`;return}arajzol()}
+async function atolt(){try{A=await lekér(U.ajanlott);ATOLT=Date.now()}catch(e){document.getElementById("a-lista").innerHTML=`<div class="hibasav">Az ajánlólista most nem érhető el.</div>`;return}arajzol()}
 
 /* ---------- beküldések ---------- */
 const BOK={elfogadva:"AI: elfogadható",tiltott:"AI: tiltott tartalom",nem_ai:"AI: nem AI-témájú",nem_hiteles:"AI: nem hiteles forrás",nem_olvashato:"AI: nem nyitható meg",ai_hiba:"AI: nem futott le"};
@@ -1157,7 +1159,7 @@ document.querySelectorAll("[data-prnezet]").forEach(b=>b.onclick=()=>{PRNEZET=b.
 let PR=null,PRALL=TAR("pr-all")||"fuggo",PRSZINT=TAR("pr-szint")||"mind",PRREND=TAR("pr-rend")||"pont";const PRKIJ=new Set();
 const PRALLNEV={fuggo:"Függőben",jovahagyva:"Jóváhagyva",elutasitva:"Elutasítva"};
 const PRRESZ=[["hatas","Hatás"],["hirertek","Hírérték"],["hitelesseg","Hitelesség"],["egyediseg","Egyediség"],["aktualitas","Aktualitás"],["kozossegi","Közösségi"]];
-async function prtolt(){try{PR=await lekér(U.prioritas)}catch(e){document.getElementById("pr-lista").innerHTML=`<div class="hibasav">A beérkező hírek most nem érhetők el.</div>`;return}prrajzol();prNezet()}
+async function prtolt(){try{PR=await feltetelesen(U.prioritas,PR)}catch(e){document.getElementById("pr-lista").innerHTML=`<div class="hibasav">A beérkező hírek most nem érhetők el.</div>`;return}prrajzol();prNezet()}
 function prUt(s){
  if(s.allapot!=="jovahagyva")return "";
  if(s.kint)return `<div class="pr-ut kesz">✓ Kint van: <a href="https://quicknews.hu/hir/${esc(s.slug)}" target="_blank" rel="noopener" style="color:inherit">megnyitom ↗</a></div>`;
@@ -1226,7 +1228,7 @@ function prrajzol(){if(!PR)return;const L=document.getElementById("pr-lista");co
 document.querySelectorAll("[data-prall]").forEach(b=>b.onclick=()=>{PRALL=b.dataset.prall;TAR("pr-all",PRALL);PRKIJ.clear();prrajzol()});
 document.querySelectorAll("[data-prszint]").forEach(b=>b.onclick=()=>{PRSZINT=b.dataset.prszint;TAR("pr-szint",PRSZINT);PRKIJ.clear();prrajzol()});
 document.querySelectorAll("[data-prrend]").forEach(b=>b.onclick=()=>{PRREND=b.dataset.prrend;TAR("pr-rend",PRREND);prrajzol()});
-setInterval(()=>{if(!document.getElementById("p-prioritas").hidden&&!PRKIJ.size)prtolt()},60000);
+setInterval(()=>{if(!document.hidden&&!document.getElementById("p-prioritas").hidden&&!PRKIJ.size)prtolt()},60000);
 
 /* ---------- fülek ---------- */
 function ful(f){const fo=f==="koltseg"?"statisztika":f==="boo"?"hirlevel":f==="ajanlott"?"posztok":f;if(fo==="posztok"&&!PNGORGETVE)setTimeout(napsavIgazit,50);document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===fo));document.querySelectorAll("[data-alful]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.alful===f)));try{document.querySelector(`.fulek [data-ful="${fo}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
@@ -1250,7 +1252,7 @@ async function jelvenyek(){const akt=aktivFul();latta(akt);
  const ujabb=(t,f)=>t&&String(t)>latott(f);
  let pdb=0;
  try{const d=(D&&D.sorok)?D:await lekér(U.posztok);pdb+=(d.sorok||[]).filter(s=>(s.allapot==="published"&&ujabb(s.kiment,"posztok"))||(s.allapot==="failed"&&ujabb(s.idopont,"posztok"))).length}catch(e){}
- try{const d=await lekér(U.ajanlott);pdb+=(d.sorok||[]).filter(s=>!s.feldolgozott&&ujabb(new Date(s.publikalva).toISOString(),"posztok")).length}catch(e){}
+ try{if(!A||Date.now()-ATOLT>300000){A=await lekér(U.ajanlott);ATOLT=Date.now()}const d=A;pdb+=(d.sorok||[]).filter(s=>!s.feldolgozott&&ujabb(new Date(s.publikalva).toISOString(),"posztok")).length}catch(e){}
  jelol("posztok",pdb);
  /* a priorizálásnál a szám a jóváhagyásra váró hírek száma (nem csak az újak): addig marad, amíg döntesz róluk */
  try{const n=ADMIN?((await lekér("/api/admin?mi=fuggo")).db||0):((await lekér(U.prioritas)).sorok||[]).filter(s=>s.allapot==="fuggo").length;const b=document.querySelector('.fulek [data-ful="prioritas"]');let j=b.querySelector(".szamjel");
@@ -1264,7 +1266,7 @@ window.qnFrissit=()=>{ptolt();jelvenyek();if(!document.getElementById("p-priorit
  if(!document.getElementById("p-app").hidden)aptolt()};
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)window.qnFrissit()});
 window.addEventListener("focus",()=>window.qnFrissit());
-ptolt();setInterval(ptolt,30000);setInterval(prajzol,20000);jelvenyek();setInterval(jelvenyek,60000);
+ptolt();setInterval(()=>{if(!document.hidden)ptolt()},30000);setInterval(prajzol,20000);jelvenyek();setInterval(()=>{if(!document.hidden)jelvenyek()},60000);
 setInterval(()=>{if(!document.getElementById("p-koltseg").hidden)ktolt()},300000);
 /* a poszt teljes szövege a cím fölé víve (Heni 2026-10-17: „hadd olvashassam el a teljes poszt szövegét”) */
 (function(){const t=document.createElement("div");t.id="poszt-tip";t.setAttribute("role","tooltip");t.hidden=true;document.body.appendChild(t);
