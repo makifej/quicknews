@@ -1,28 +1,42 @@
 {
   "id": "b04daec36fea",
-  "slug": "pulsedev",
+  "slug": "a-pulsedev-segitsegevel-kattintassal-adhatunk-ui-hibajavitasi",
   "forras_id": "producthunt",
   "forras_nev": "Product Hunt",
   "url": "https://www.producthunt.com/products/pulsedev",
+  "szerzo": "Perlat Kociaj",
   "publikalva": "2026-10-26T22:47:46+00:00",
-  "cim": "PulseDev",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 49 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://ph-files.imgix.net/b65acb59-3f4d-45ea-a247-309514062bc0.png?auto=format&fit=crop&frame=1&h=512&w=1024"
   },
   "cim_eredeti": "PulseDev",
+  "forrasok": [],
   "szoveg_eredeti": "“The button below the second pricing card. No, the other one.”\n\nWhen you’re building a website with a coding agent, you can see what needs changing: a button that doesn’t line up, a heading that wraps awkwardly, or spacing that feels off. But getting that change made means turning what you see into a text prompt.\n\nYou explain where the element is. Open DevTools. Copy a selector or take a screenshot. Find the component. Switch to the terminal, paste everything in, and hope you’ve given the agent enough context. Then go back to the browser to check the result.\n\nFor a small visual change, explaining the task can feel like more work than the change itself. And when there are several things to fix, you repeat that process for each one.\n\nI was already looking at the bug. I just wanted to click it.\n\nThat’s why I built PulseDev: to give your coding agent the context behind the element you’re pointing at, alongside your instructions.\n\nFrom “which button?” to “make this button taller”Click the element on your local site and describe what you want changed. PulseDev attaches the selected element’s context, including its selector and styles. The Vite plugin adds source mapping where supported, helping the agent locate the relevant code.\n\nYou still decide what the change should be. PulseDev handles the handoff from the page to your agent.\n\nOpen your local site in your browser and click an element. Shift-click to select more than one.\n\nDescribe the change: “Match this button’s height to the one beside it.”\n\nSend it to Claude Code, Codex, Gemini CLI or OpenCode and follow the agent’s activity beside the page.\n\nReview the proposed diff in your browser. Approve or reject it in review mode, or enable auto-apply when you want it.\n\nBuilt for the tools you already usePulseDev works with your own browser, local project and installed coding agent. Add the widget with a script tag, or use the Vite plugin for source mapping where supported. Your agent’s usual usage limits and provider charges still apply.\n\nIt’s for the UI work that adds up: adjusting spacing, matching styles between elements, changing copy, and polishing the details before you ship.\n\nFree for one project on macOS. Pro unlocks unlimited projects. Subscribe before November 3, 2026 for $12/month and keep that rate. New subscriptions are $18/month from November 3. No promo code needed.\n\nI’d love to hear about your workflow- Think about the last UI change you asked a coding agent to make. What was harder: explaining which element you meant, or getting the change right?- How do you share UI context today—screenshots, selectors, file paths, or descriptions?- What would you need to see before trusting the proposed change?- After trying PulseDev, where did you still have to explain yourself?\n\nWeboldal: https://pulsedev.app",
-  "begyujtve": "2026-10-27T07:12:57.097422+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "A PulseDev segítségével kattintással adhatunk UI-hibajavítási utasítást az AI-nak",
+  "lead": "A fejlesztők közvetlenül a böngészőben bökhetnek rá a módosítandó elemre, az eszköz pedig továbbítja a kontextust a kódoló ügynöknek.",
+  "osszefoglalo": "Perlat Kociaj kiadta a **PulseDev** nevű eszközt, amely leegyszerűsíti a weboldalak felületi hibáinak javítását AI-alapú kódoló ügynökökkel. A fejlesztőknek nem kell többé képernyőképekkel és kódmintákkal magyarázniuk a hibákat: elég a helyi tesztkörnyezetben futó oldalon a megfelelő elemre kattintaniuk, és élőszóval vagy szöveggel leírniuk a kívánt módosítást.\n\nA PulseDev automatikusan csatolja a kiválasztott elem kontextusát, beleértve annak szelektorát és stílusait, valamint a támogatott esetekben forráskód-feltérképezést is biztosít. A rendszer együttműködik a **Claude Code, Codex, Gemini CLI és OpenCode** eszközökkel. A felhasználó élőben követheti a kódolási folyamatot, a javasolt módosítási eltérést (diff) pedig közvetlenül a böngészőben hagyhatja jóvá vagy utasíthatja el.\n\nA munkafolyamatot megkönnyítő eszköz egy projektre ingyenesen használható macOS rendszeren. A korlátlan projekt-hozzáférést biztosító Pro csomag előfizetési díja 12 dollár havonta a megadott akció keretében. A használathoz a fejlesztők saját meglévő előfizetései és API-keretei érvényesek. A hivatalos weboldal a **pulsedev.app** címen érhető el.",
+  "miert_szamit": "A webes fejlesztők és dizájnerek **jelentős időt spórolhatnak meg** az apróbb dizájn- és elrendezési hibák javításánál, mert nem kell a DevTools használatával és kódhivatkozások másolásával vesződniük.",
+  "cimkek": [
+    "PulseDev",
+    "Claude Code",
+    "fejlesztés",
+    "webfejlesztés"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bemutato",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "PulseDev",
+    "url": "https://pulsedev.app"
+  },
+  "linkelendo_nevek": [
+    "PulseDev"
+  ],
+  "linkszabaly": 3,
   "prioritas": {
     "pont": 49,
     "szint": "P3",
@@ -45,5 +59,18 @@
     "ido": "2026-10-27T07:19:43+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-27T07:23:25+00:00"
+  "forditva": "2026-10-27T07:41:38+00:00",
+  "megjelent": "2026-10-27T07:41:15.721Z",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-27T07:41:39+00:00",
+    "esemeny": "Perlat Kociaj kiadta a PulseDev nevű macOS-eszközt, amellyel a fejlesztők a helyi weboldal elemeire kattintva adhatnak utasításokat és szelektor-kontextust az AI-kódolóügynököknek (Claude Code, Codex, Gemini CLI, OpenCode).",
+    "forrasok": [
+      "https://www.producthunt.com/products/pulsedev",
+      "https://pulsedev.app"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  }
 }
