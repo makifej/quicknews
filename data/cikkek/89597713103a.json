@@ -1,0 +1,49 @@
+{
+  "id": "89597713103a",
+  "slug": "announcing-soci-indexed-images-for-faster-sagemaker-ai-jobs",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/announcing-soci-indexed-images-for-faster-sagemaker-ai-jobs/",
+  "publikalva": "2026-10-27T17:00:39+00:00",
+  "cim": "Announcing SOCI-indexed images for faster SageMaker AI jobs",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 52 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/10/23/ML-21882-featured-image-4.png"
+  },
+  "cim_eredeti": "Announcing SOCI-indexed images for faster SageMaker AI jobs",
+  "szoveg_eredeti": "Every minute your deep learning container image spends downloading is a minute you pay for and a minute your team waits. Container image download is pure overhead: billable job time that produces no model progress. For modern deep learning images, that overhead is several minutes on every single job. Today, we’re excited to announce Seekable OCI (SOCI) indexing for Amazon SageMaker AI Training and Amazon SageMaker AI processing jobs, which takes full container image download off the critical path of every job.\n\nWith SOCI indexing, SageMaker AI lazy-loads your container image. It fetches only the files needed to start the container and streams the rest in the background as your code runs, so your job begins in seconds instead of minutes. You adopt it by pointing to a pre-indexed AWS Deep Learning Container (DLC) or adding an index to your own image. Neither approach requires changes to your job definition, entry point, or data channels. The result is faster job starts, lower job cost, and more time spent building models rather than waiting on infrastructure.\n\nSOCI-indexed images start Amazon SageMaker AI training containers in seconds, with no impact on training performance. As we show in the What we measured section, this reduced GPU idle time during image pulls by up to 90 percent in our benchmarks.\n\nThis post shows how to adopt SOCI indexing: what it is, the results we measured, and how to turn it on for your own jobs.\n\nSageMaker AI training and processing jobs run inside container images stored in Amazon Elastic Container Registry (Amazon ECR). Before a job can execute your code, the service downloads the entire image to the instance. It decompresses and writes every layer to disk.\n\nFor small images this takes seconds. But deep learning images routinely exceed 10 GB or more. That download adds minutes to every job, and you pay for it as job time. The impact is largest exactly where iteration speed matters most: hyperparameter tuning sweeps for hundreds of jobs, quick experiments, and short processing jobs, where image download can dominate total runtime.\n\nSeekable OCI (SOCI) is an open source technology that lazy loads container images. Instead of downloading the whole image before starting, the runtime uses a SOCI index to fetch only the files needed to launch the container immediately. It then streams the rest in the background as your code accesses it.\n\nA SOCI index is metadata that maps every file inside your image. You store it in Amazon ECR as an OCI-compliant artifact linked to your original image. Because the index is a separate artifact, your image digest and any existing signatures remain valid.\n\nWhen you create a training or processing job, SageMaker AI checks whether the image you specified has a SOCI index and behaves accordingly:\n\nBecause jobs always fall back to a standard download when needed, adding a SOCI index never prevents your job from running. You only gain faster startup. You never risk breaking an existing workflow.\n\nWe pulled the same container images two ways on real SageMaker AI training jobs: standard download and SOCI-indexed lazy loading. We then ran full training jobs from both to measure the effect on training speed.\n\nThe following chart compares container image download time for a standard Docker pull against SOCI lazy loading across eight image sizes, from 1.8 GB to 35.4 GB.\n\nEach image size shows two bars. The Docker download time bar (blue) grows steadily with image size, from 48 seconds at 1.8 GB to 7 minutes 17 seconds at 35.4 GB.\n\nA speedup label above each pair shows the ratio of Docker time to SOCI time. Speedups range from approximately 10x for the smallest image to over 35x for the largest.\n\nFigure 1: Container image download time, standard Docker pull compared to SOCI lazy loading, across eight image sizes\n\nStandard download time grows with image size because every file is decompressed and written. Lazy loading stayed at 3–11 seconds regardless of size, an 8x–46x improvement. The bigger the image, the more minutes you save.\n\nRunning the 13.2 GB image across 13 instance type/size combinations, standard download ranged from 3 min 16 s to 4 min 20 s, while lazy loading held at 6-8 s. That is about 34x faster on every configuration. You don’t need to change instance type or size to benefit.\n\nFigure 2: Download time for a 13.2 GB image across 13 instance type and size combinations\n\nWe ran two kinds of full training jobs from the Docker-pulled and from the SOCI-indexed image and compared every epoch:\n\nThe following chart breaks job startup into image download time and first training epoch time, comparing a standard Docker pull with a SOCI-indexed image across GPU and CPU configurations for both workloads.\n\nFigure 3: Job startup split into image download time and first training epoch time, standard Docker pull compared to a SOCI-indexed image\n\nThese numbers are from the two workloads described earlier. The first-epoch cost depends on your image and what your code touches at startup:\n\nYou can adopt SOCI indexing two ways: use a pre-indexed AWS Deep Learning Container or create an index for your own custom image.\n\nAWS publishes SOCI-indexed variants of several popular Deep Learning Containers, identified by the -soci suffix on the image tag:\n\nPre-indexed variants are available for PyTorch Training, TensorFlow Training, vLLM, and SGLang, including arm64 variants for some frameworks. To adopt lazy loading, update the image tag in your job definition to the -soci variant. Browse the full list in the AWS Deep Learning Containers Gallery.\n\nNote: If you build your own image FROM a DLC base image, you must create a SOCI index for your final image. The index from the base image does not carry forward to derived images.\n\nTo index a custom image, you need a Linux host (such as an Amazon Elastic Compute Cloud (Amazon EC2) instance running Amazon Linux 2023) with containerd, the SOCI snapshotter, and either Finch or nerdctl installed.\n\nThis creates two artifacts in your repository: the SOCI index and an OCI-compliant image index manifest linking your image to the index. Your original image and its digest remain unchanged.\n\nTo generate indexes automatically on every push, deploy the CFN ECR SOCI Index Builder. It uses an Amazon EventBridge rule to detect Amazon ECR image push events and build the index. No changes to your build pipeline are required.\n\nReference your SOCI-indexed image exactly as you would any other image. No API changes are needed. Only the tag differs.\n\nBefore launching, confirm your tag resolves to an indexed image:\n\nLook for a child manifest whose artifactType begins with application/vnd.amazon.soci.index. alongside your platform manifest. If it isn’t there, the tag does not point to an indexed image.\n\nWith SOCI indexing, you can minimize container image download time from your SageMaker AI training and processing jobs. Add a SOCI index to your images, or switch to a pre-indexed AWS Deep Learning Container. Either way, you cut startup time from minutes to seconds, reduce total job cost, and accelerate your machine learning (ML) iteration cycle. And your existing job definitions, API calls, and data pipelines stay exactly the same.\n\nTo learn more about Amazon SageMaker AI and start using SOCI indexing, explore the following resources:\n\nFaster container startup is only one image tag away. Try it on your next SageMaker AI job and see the difference.",
+  "begyujtve": "2026-10-27T19:50:27.869025+00:00",
+  "prioritas": {
+    "pont": 52,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 50,
+      "egyediseg": 90,
+      "hitelesseg": 78,
+      "aktualitas": 95,
+      "kozossegi": 31
+    },
+    "elofeszures": 81,
+    "tanult": 41,
+    "indok": "Hasznos felhőalapú fejlesztői frissítés az AWS SageMakerhez de alacsony a széles körű hírértéke. Forrás-tapasztalat: -6.",
+    "tema": "aws sagemaker soci indexing",
+    "cim_hu": "Gyorsabbak lesznek az Amazon SageMaker AI betöltési idői az új SOCI indexeléssel",
+    "lead_hu": "Az Amazon Web Services bejelentette a Seekable OCI indexelés támogatását a SageMaker AI képzési és feldolgozási feladataihoz.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-27T19:50:35+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-27T19:53:25+00:00"
+}
