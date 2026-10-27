@@ -1,0 +1,49 @@
+{
+  "id": "beaa9b255949",
+  "slug": "fix-evaluation-bias-to-unlock-better-models-on-amazon-bedrock",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/fix-evaluation-bias-to-unlock-better-models-on-amazon-bedrock/",
+  "publikalva": "2026-10-27T16:53:02+00:00",
+  "cim": "Fix evaluation bias to unlock better models on Amazon Bedrock",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 46 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/10/26/ML-21124-featured-image.png"
+  },
+  "cim_eredeti": "Fix evaluation bias to unlock better models on Amazon Bedrock",
+  "szoveg_eredeti": "This post was co-authored with Khaled Thabit, Meriem Boughrara, and Mohamed Desouky from Property Finder.\n\nThe engineering team at Property Finder, a digital real estate application, discovered that 96.8 percent of their evaluation labels had been inherited directly from a single model’s predictions rather than verified by human experts. Their ground truth was systematically skewed toward the incumbent model, making every alternative appear to underperform. The labels also had errors, but the bias was what blocked objective model comparison. They uncovered this when migrating their vision AI workload to a more cost-effective option on Amazon Bedrock.\n\nProperty Finder processes tens of thousands of property images every day across the Middle East and North Africa (MENA). Their system evaluates 11 quality attributes per image. These cover watermark detection, room classification, furnishing status, photo quality, and construction indicators. That’s thousands of new property listings with an average of 15 images each. All need quality assessment before going live.\n\nProperty Finder needed a more cost-effective option. But measured against those labels, any alternative was at a disadvantage.\n\nThe hardest part was not finding a better model. It was discovering that their evaluation methodology itself was the blocker.\n\nIn this post, we share how Property Finder identified evaluation bias, built unbiased ground truth, and applied evolutionary prompt optimization to select the right model on Amazon Bedrock, achieving higher accuracy at 86 percent lower cost. We walk through the methodology and iteration examples, with lessons you can apply to your own workloads.\n\nThe following figure illustrates the prompt optimization loop that Property Finder and the AWS Generative AI Innovation Center team used to iteratively improve classification accuracy on Amazon Bedrock.\n\nFigure 1: Prompt optimization loop architecture\n\nThe diagram shows the iterative prompt optimization cycle. A property image is processed by Amazon Bedrock, which outputs the predicted attributes in JSON format. During optimization, these predictions are scored with Micro F1 against the 256-image expert-annotated development set. Error analysis then inspects failed images and identifies visual patterns, which inform the next prompt version. The loop ran from v0 to v27. AI assistants helped refine the prompts, and later versions used automated optimization.\n\nMany teams encounter this scenario. You want to compare vision models, so you build an evaluation dataset. The most common way to get labels is to run your current model and treat its outputs as ground truth. The model has been running in production and nobody complained, so the labels must be good enough.\n\nBut this creates a circular evaluation where any alternative gets judged by how closely it matches the incumbent’s behavior, not by actual correctness.\n\nProperty Finder’s evaluation dataset had exactly this problem. Of their labeled samples, 96.8 percent came directly from the predictions of the existing vision language model (VLM) rather than independent human verification. Any alternative model was structurally disadvantaged before a single image was even processed.\n\nHidden errors confirmed the severity. Watermark text extraction had character-level mistakes marked as correct, including hallucinated brand names and missing characters. Photo classification forced single labels onto images containing multiple room types.\n\nIn the remaining 3.2 percent of human-labeled samples, annotators had introduced categories outside the original specification, like Office appearing where no such label existed in the prompt. A model comparison loses validity when the answer key was written by the model you are trying to replace.\n\nTo break the cycle, you need human experts with real domain knowledge doing fresh annotations independently. No reference to previous model outputs. No access to what the incumbent predicted.\n\nProperty Finder’s team hand-annotated 356 UAE images and a separate set of Egypt images. The team selected these from unlabeled production listings across representative industry segments. This post reports results on the UAE images. The Egypt images served as a cross-regional check on 230 images and are not reported here. The first 256 UAE images to be annotated formed the development set for tuning. The evaluation set for the final model comparison uses all 356, adding 100 images annotated after the development runs. A set of 356 images is roughly sufficient to detect moderate differences between models. Rare classes within individual attributes have fewer examples, so smaller differences on those attributes might not be detectable.\n\nA strategy and analytics expert annotated all images. They brought specialized knowledge of real estate listing quality standards. The AWS Generative AI Innovation Center team conducted systematic quality reviews through dedicated clarification sessions. Those reviews settled ambiguous cases and kept the labeling consistent across the dataset.\n\nReal estate images frequently show multiple rooms through doorways or display overlapping quality characteristics. The switch from single-label to multi-label classification alleviated a major source of artificial ambiguity.\n\nA hallway photo showing a bedroom through a doorway is genuinely both. After you allow multiple labels, you measure what the model gets right rather than penalizing it for reasonable secondary predictions.\n\nA hybrid approach could complement this methodology: models from different families surface candidate labels and disagreements, and human experts adjudicate every case, so no model output is used directly as a label. This would reduce the annotation burden for future dataset expansion.\n\nMicro F1 served as the primary metric because it weights each prediction equally, which matches the business goal of overall label correctness. Macro F1 was reported alongside it because Micro F1 is dominated by frequent classes and can hide weak performance on rare attributes. Per-label precision and recall helped identify specific failure modes. Per-sample intersection over union (IoU) measured how closely each image’s predicted labels overlapped the expert’s labels. The nine single-label attributes, such as rotation or watermark detection, have one right answer per image. The AWS team also scored them with exact-match accuracy, the share of images where the answer matches the expert label.\n\nWith unbiased evaluation in place, you can start improving. You cannot improve what you cannot measure correctly.\n\nThe optimization follows a loop analogous to reinforcement learning. Think of each prompt version as an agent, the Micro F1 score as the reward signal, and error analysis as the gradient for improvement. The idea resembles GEPA (Genetic-Pareto reflective prompt evolution), where you mutate prompt components, evaluate fitness, select survivors, and iterate. In this engagement, the AWS team refined most versions from error analysis, with AI assistants reviewing failed images and proposing changes.\n\nMIPROv2, an automated prompt optimization framework from the DSPy library, complemented this manual process for the photo classification task in v27.\n\nThe first prompt (v0) used generic classification instructions, simplified here for illustration:\n\n“Classify this image into one of the following categories: Living Room, Kitchen, Bedroom, Bathroom…”\n\nProprietary model A, Property Finder’s production baseline, scored a Micro F1 of 0.55 on the 256-image development set. It used v22, a prompt tuned for its model family. Scores before v21 used the earlier single-label setup and aren’t directly comparable.\n\nThe AWS team tested early versions on several candidate models and added structured output formatting and attribute-specific definitions.\n\nThe most instructive fix came from image-level error analysis. In the early single-label versions, the model consistently classified",
+  "begyujtve": "2026-10-27T17:19:28.339223+00:00",
+  "prioritas": {
+    "pont": 46,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 40,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 99,
+      "kozossegi": 38
+    },
+    "elofeszures": 79,
+    "tanult": 51,
+    "indok": "Műszaki jellegű esettanulmány az AWS blogjáról, alacsony széles körű hírértékkel. Forrás-tapasztalat: -6.",
+    "tema": "aws bedrock model evaluation bias",
+    "cim_hu": "Így szüntethető meg az értékelési torzítás az Amazon Bedrock modelleknél",
+    "lead_hu": "A Property Finder mérnökei rávilágítottak arra, hogy az adathalmazok automatikus felcímkézése hogyan torzíthatja a mesterségesintelligencia-modellek teljesítményének mérését.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-27T17:19:39+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-27T17:22:52+00:00"
+}
