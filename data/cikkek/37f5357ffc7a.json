@@ -1,0 +1,49 @@
+{
+  "id": "37f5357ffc7a",
+  "slug": "ai-agents-hacked-anthropic-maker-of-arguably-the-most-capable-ai",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/ai-agents-hacked-anthropic-maker-of-arguably-the-most-capable-ai-models-for-cyberdefense/",
+  "publikalva": "2026-10-28T10:56:24+00:00",
+  "cim": "AI agents hacked Anthropic, maker of arguably the most capable AI models for cyberdefense",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 58 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/claude_hack-1200x670.png"
+  },
+  "cim_eredeti": "AI agents hacked Anthropic, maker of arguably the most capable AI models for cyberdefense",
+  "szoveg_eredeti": "Cybersecurity startup Cathedral used AI agents to infiltrate Anthropic's internal systems through third-party business software, exploiting the AI lab's own bug bounty program to expose major vulnerabilities.\n\nCathedral reported its access to internal data and messaging systems in a draft report reviewed by The Washington Post. The startup, founded by former employees of DOGE, the U.S. government efficiency agency, sells AI-powered security tools to government agencies and businesses.\n\nCathedral's researchers got in through external admin and sales programs. According to their report, AI agents running advanced models found paths to meeting transcripts, salary data, job postings, and Slack messages in under twelve hours.Ad\n\nAnthropic confirmed that the researchers accessed a limited set of sales, human resources, and IT systems, including contact information for some customers and partners along with basic user account data. Chats with Claude, source code, and model weights were never exposed, the company said. Anthropic shut down the affected access points the same day it found the breach, disabled the third-party programs until the issue was resolved, and notified U.S. federal authorities.Ad\n\nCathedral says the incident took less than twelve hours. Anthropic says the attempted attack stretched over several days. Only after days of probing Anthropic's own systems did the startup pivot to third-party software, according to Anthropic red teamer Logan Graham. There, Cathedral found two vulnerabilities but reported only one. Anthropic says it discovered and patched the second on its own.\n\nAnthropic also accuses Cathedral of violating the bug bounty program's rules through incomplete disclosure. Graham added that targeting third-party providers and pulling data went beyond the program's safe harbor provisions, though he welcomed the discovery of the vulnerabilities. Cathedral maintains it followed standard security research practices.Ad\n\nHow much data was actually accessed is still disputed. Former OpenAI employee Will Depue has claimed that Anthropic is downplaying the incident, saying several sources he considers highly reliable told him Cathedral gained full admin access to the Slack workspace, could read every message, and could log into any user account.\n\nBoth the Anthropic and OpenAI labs stored all of their research secrets in Slack, Depue added, with admin API keys scattered across their systems. Jacob Coxon, an Anthropic employee who left the company in September 2026, had previously criticized Anthropic for running dangerous AI research on office software like Slack.Ad\n\nGraham pushed back, saying Depue's sources were wrong. Citing the sensitivity of the matter, he declined to get into specifics but confirmed Depue's core concern: the industry now has to reinvent its security every year.Ad\n\nDepue pressed for details about exactly which claims were false and called on Anthropic to disclose what Cathedral actually accessed. He also blamed the problem on the pace of the AI race, where executives prioritize speed over security.\n\nAlex Stamos, chief security officer at the AI startup Cognition, which uses Anthropic's models, told the Washington Post that he considered the findings significant. He noted that integrated third-party apps are a major problem across the industry and that Anthropic could have done a better job securing its external services.\n\nAfter months of warnings about AI-powered cyberattacks and its own accidental security incidents, Anthropic is now on the receiving end. AI agents are changing how cyberattacks work, and this breach shows how fast the shift is happening. It's also not just any breach, since Anthropic is likely the company best equipped to defend itself against AI-led attacks.\n\nGraham used the moment to warn that attackers already run AI agents around the clock, specifically targeting external dependencies. Even models half a generation to a full generation behind the current frontier are capable enough for these attacks, he said, and future adversaries will inevitably have more powerful systems at their disposal.\n\nGraham's answer is continuous in-house penetration testing and rebuilding software with formal verification, which AI now makes economically viable. \"You probably want to red team yourself all the time. Current models are very creative,\" Graham wrote.\n\nWhat he did not address is how Cathedral managed to penetrate this deeply despite Anthropic having access to what are arguably the world's most powerful AI models for cyberdefense.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "begyujtve": "2026-10-28T11:03:39.240556+00:00",
+  "prioritas": {
+    "pont": 58,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 80,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 63
+    },
+    "elofeszures": 89,
+    "tanult": 63,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-10-28T11:04:44+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-28T11:06:45+00:00"
+}
