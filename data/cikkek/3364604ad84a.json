@@ -1,0 +1,49 @@
+{
+  "id": "3364604ad84a",
+  "slug": "distributed-training-with-ray-train-dlcs-and-efa-on-eks",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/distributed-training-with-ray-train-dlcs-and-efa-on-eks/",
+  "publikalva": "2026-10-28T18:19:54+00:00",
+  "cim": "Distributed training with Ray Train DLCs and EFA on EKS",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 51 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/10/19/ML-22002-featured-image.png"
+  },
+  "cim_eredeti": "Distributed training with Ray Train DLCs and EFA on EKS",
+  "szoveg_eredeti": "What usually stops PyTorch training from scaling out to a cluster is the container, not the model code. Every container needs the same CUDA runtime, a PyTorch build compiled against it, NCCL (NVIDIA Collective Communications Library), the Elastic Fabric Adapter (EFA) userspace libraries, the AWS OFI NCCL plugin that connects NCCL to EFA, and a Ray version the cluster operator agrees with. Building that image and rebuilding it each time one of those pieces moves is a project of its own, and it has nothing to do with the model you set out to train. The Ray Train Deep Learning Container (DLC) is that image, built by AWS. AWS assembles the stack, tests it as one unit, publishes it in Amazon Elastic Container Registry (Amazon ECR) Public and keeps it patched.\n\nFigure 1: One EKS cluster with a control plane managed by AWS, a CPU system node (m7i.xlarge) running the KubeRay operator and Ray head, and two EFA-enabled g6.12xlarge nodes in one Availability Zone. KubeRay builds it from one RayCluster manifest, Ray Train places eight workers, one per GPU, and inter-node collectives cross over EFA.\n\nRay runs a job across machines as a single cluster with two roles. The Ray head coordinates and runs the global control store that tracks cluster state, the dashboard and job server you submit jobs to. Ray worker nodes supply the GPUs and run the training processes. Each worker joins the cluster by connecting to the head’s address when it starts. On Kubernetes, each of these is a pod. Kubernetes has no built-in idea of a Ray cluster, so something must create the head and worker pods, start Ray in the right role in each, point the workers at the head, and replace pods that fail. KubeRay does this. It’s an open source Kubernetes operator that adds a RayCluster resource: you describe a head group and a worker group in one manifest, and KubeRay builds and maintains the cluster from it.\n\nA single tagged image runs as both the Ray head and the Ray workers, whether KubeRay starts it on Amazon Elastic Kubernetes Service (Amazon EKS) or you start it yourself on Amazon Elastic Compute Cloud (Amazon EC2). What you add is configuration: which instances, how many GPUs each pod gets, which network transport NCCL uses, and which extra Python packages a job needs. All of it is set from outside the image.\n\nThis post walks through a sample that uses the DLC exactly as published to fine-tune Qwen2.5-1.5B with PyTorch Fully Sharded Data Parallel (FSDP) across eight NVIDIA L4 GPUs on two g6.12xlarge instances. The training code is one function, the cluster is one RayCluster manifest plus a file of variables, and no image is built at any point. Because the DLC already carries the EFA stack, collectives between the two instances run over the EFA as soon as the pods request it. The entire solution is in this sample repository, and it uses the same KubeRay-on-EKS foundation as our multi-node Ray Serve walkthrough.\n\nThe Ray Train DLC is the PyTorch training image with Ray’s training libraries on top. The tag this sample pulls, public.ecr.aws/deep-learning-containers/ray:train-ml-cuda-v1.1, replaces a build that would otherwise look like this:\n\nThe networking row is the one most teams would least like to own. A mismatch there doesn’t produce an error. NCCL drops to TCP sockets, and the job runs to completion at a fraction of the speed. In the DLC, those libraries are built and tested together, and AWS gates each release on multi-node EFA and multi-node KubeRay training tests, which are exactly the paths this sample uses.\n\nA few more properties remove work that you would otherwise do per cluster:\n\nEverything that differs between one training job and the next is set around the image. The sample uses each of these mechanisms:\n\nPackages per job. The image ships the HuggingFace training stack, so this sample’s job needs nothing added. When an experiment does need a library the image does not carry, Ray installs it for that job at submit time through runtime_env and the image is unchanged. No new image, no new tag.\n\nTransport per job. The image defaults to FI_PROVIDER=efa, and its NCCL configuration excludes the loopback and Docker bridge interfaces. On EKS you point NCCL_SOCKET_IFNAME at the pod’s eth0. The sample sets all four networking variables in the manifest anyway, so the behavior is visible in one file and doesn’t depend on image defaults. Because these are plain environment variables, a single job can override them through its runtime_env.\n\nVersions you choose. The sample pins train-ml-cuda-v1.1, the current minor release, so a cluster is reproducible from one run to the next. The vX.Y tags move with security rebuilds. The fully qualified vX.Y.Z tags stay frozen at the original release build, so pin a digest when you need a byte-identical run. The same image is also available from private ECR URIs.\n\nFigure 2: The sample’s cluster. Every pod runs the same Ray Train DLC from Amazon ECR Public. The CPU system node runs the KubeRay operator and a Ray head with no GPUs. Each EFA-enabled g6.12xlarge, both in one Availability Zone, runs a single four-GPU Ray worker pod.\n\nAll nodes sit in private subnets of one virtual private cloud (VPC) and reach the internet only through a NAT Gateway, which is how every node pulls the DLC from Amazon ECR Public and how workers download model weights from Hugging Face. One m7i.xlarge forms the system node group, hosting kube-system add-ons, the KubeRay operator and the Ray head. The head runs the job server on port 8265 and Ray’s control store on 6379, and it advertises no GPUs, so no training work lands on it. Jobs are submitted from inside the head pod with kubectl exec, through the EKS API, so port 8265 is never exposed outside the cluster.\n\nTraining runs on two g6.12xlarge instances, each with four NVIDIA L4 GPUs, 48 vCPUs, 192 GiB of memory, 40 Gbps of networking and one EFA interface. Each runs one Ray worker pod that claims all four GPUs and the EFA interface, and Ray Train places four workers in each pod: ranks 0–3 on one instance, 4–7 on the other. Because EFA traffic doesn’t cross Availability Zones, the scripts place both instances in a single zone that has been checked to offer g6.12xlarge.\n\nThe DLC provides the stack. Ray Train provides the part that would otherwise be launcher code. Multi-node PyTorch normally means starting a process per GPU on every host and giving each one its rank, the world size and a rendezvous address. With Ray Train you write the training loop as a function and pass it to TorchTrainer with a ScalingConfig. Ray starts one worker per GPU wherever the cluster has GPUs, forms the torch.distributed process group, and runs your function on each worker.\n\nThis sample asks Ray Train for FSDP, which splits the model’s weights, gradients and optimizer state across all eight GPUs rather than copying them to each one. Qwen2.5-1.5B in bfloat16 needs about 12 GB for those four tensors. Sharded eight ways, each L4 GPU holds roughly 1.5 GB. The price is communication: FSDP gathers each layer’s weights before using it and reduce-scatters gradients afterwards, so the whole model crosses between ranks on every step. Between the two instances, that traffic is what the DLC’s EFA stack carries.\n\nYou must have the following in place before you start:\n\nA quick way to confirm that the CLI is pointed at the account that you expect:\n\ncode/train.py is the whole job, and it contains nothing specific to the container, the cluster or the network. Ray runs train_func once per GPU. It asks Ray for its rank, loads the model, hands it to prepare_model for FSDP, and runs an ordinary PyTorch loop:\n\ncode/train.py — the per-GPU function (abridged)\n\nThe driver joins the running cluster, counts its GPUs and starts the trainer. Because the worker count comes from the cluster, the same script runs unchanged on one node or many:\n\nThe batches are random token IDs so that the run depends on nothing but the cluster. The sample is judged on whether real FSDP collectives",
+  "begyujtve": "2026-10-28T19:15:42.990813+00:00",
+  "prioritas": {
+    "pont": 51,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 50,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 88,
+      "kozossegi": 52
+    },
+    "elofeszures": 84,
+    "tanult": 86,
+    "indok": "Nagyon specifikus felhős AI infrastruktúra útmutató mérnököknek Forrás-tapasztalat: -7.",
+    "tema": "aws ray train eks",
+    "cim_hu": "Elosztott AI-modell tanítás Ray Train és EFA segítségével AWS EKS környezetben",
+    "lead_hu": "Az Amazon Web Services részletes technikai útmutatót tett közzé a PyTorch modellek skálázott tanításának egyszerűsítésére Kubernetes alapon.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-28T19:16:05+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-28T19:19:05+00:00"
+}
