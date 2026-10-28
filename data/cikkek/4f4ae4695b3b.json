@@ -1,56 +1,56 @@
 {
-  "id": "4f4ae4695b3b",
-  "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
-  "forras_id": "marktechpost",
-  "forras_nev": "MarkTechPost",
-  "url": "https://www.marktechpost.com/2026/10/17/voxel51-3-0-physical-ai-data-platform/",
-  "szerzo": "Asif Razzaq",
-  "publikalva": "2026-10-18T04:06:33+00:00",
-  "media": {
-    "tipus": "kep",
-    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-454-4-scaled.png"
-  },
-  "cim_eredeti": "Meet Voxel51 3.0: A Unified Multimodal Data Platform for Physical AI",
-  "forrasok": [],
-  "szoveg_eredeti": "Voxel51 has released Voxel51 3.0 , a very important update to its data platform. Voxel51 3.0 is an end-to-end multimodal data platform that puts search, curation, annotation and evaluation in one system. It targets teams training models on sensor data from robots, vehicles and factories. The release adds Voxel51 Agent, a data provenance layer and free self-service access . \n\n TL;DR \n\n Scale: Voxel51 Agent ships with 45+ MCP tools, 80+ operators and 18 open-source skills.\n\n Runs on: Hosted web app at app.voxel51.com, or self-hosted in cloud, hybrid, on-prem and air-gapped setups. No local GPU requirement disclosed.\n\n Performance: No product benchmarks published. Voxel51 cites its own survey data instead.\n\n Best: Free tier includes Voxel51 Agent, 30,000 inference requests and 30 compute hours per month.\n\n Worst: Free tier caps at 3 datasets of 10,000 samples each and 20 GB of storage.\n\n What is new in Voxel51 3.0? \n\n Voxel51 3.0 expands the platform beyond its roots in visual data with 3 core additions.\n\n Time-series multimodal support : Teams can view multiple sensor streams on 1 timeline. Segment-level embeddings find specific moments inside long recordings.\n\n Unified annotation : Labeling covers 2D, 3D, video and multimodal data. It includes automated QA, annotator metrics and human-in-the-loop review.\n\n Agentic Labeling : Vision-language models generate labels from natural-language instructions and examples.\n\n Supported modalities include MCAP, images, video, 3D point clouds, meshes, DICOM, NIfTI, geospatial data and audio.\n\n How does Voxel51 Search work? \n\n Voxel51 Search is a persistent hybrid index. It indexes datasets and computes embeddings automatically, so search works from day 1.\n\n Semantic retrieval finds visually or semantically similar moments, even without shared labels. Lexical and structured queries handle exact terms, timestamps, sensor fields and metadata. Embeddings and structured fields stay in native form and are combined at retrieval time.\n\n Vector retrieval runs on LanceDB. It supports vector, scalar and full-text indexes, and separates storage from compute. Teams choose what to embed, which model and compute to use, and when. Incremental updates avoid full rebuilds when samples arrive or schemas change.\n\n What can Voxel51 Agent do? \n\n Voxel51 Agent chains search, curation, annotation and evaluation into repeatable workflows. \n\n Example workflows: \n\n A robotics team searches behaviors across thousands of episodes, then curates balanced training sets.\n\n A perception team starts from a model failure and pulls similar long-tail scenarios for labeling.\n\n The agent can also write code to build custom plugins. All workflows inherit the organization’s permissions and governance controls. \n\n How does data provenance work in Voxel51 3.0? \n\n Voxel51 3.0 adds 4 provenance layers : \n\n Deployment-level activity log: who did what, and when, across the deployment.\n\n Dataset-level activity log: how a single dataset evolved.\n\n Sample-level edit history: label, metadata and property changes per sample.\n\n Dataset versioning: immutable snapshots to reproduce training and evaluation runs.\n\n Events flow through fiftyone-mq for job scheduling and Activity Core for event tracking.\n\n Can teams bring their own models? \n\n Yes. The platform is model-agnostic across embeddings, auto-labeling, inference and evaluation. A team can bootstrap with a foundation model, then swap in its own domain model.\n\n Why does Voxel51 argue data work decides outcomes? \n\n Voxel51 cites its 2026 State of Physical AI survey . 58% of “exceptional” teams spend more than half their project time on data work. Only 21% of struggling teams do the same. This is vendor-run research, so read it as directional.\n\n How does Voxel51 3.0 compare with Encord and Foxglove? \n\n Feature Voxel51 3.0 Encord Foxglove Core focus Search, curate, annotate, evaluate multimodal data Annotation, curation and data management Robotics visualization, observability and data management Free tier 3 datasets, 10,000 samples each, 20 GB Not disclosed 10 GB storage, 3 users, 5 devices Paid entry Team: 8 seats, 2,800 compute hrs/mo (price not disclosed) Starter (price not disclosed) Pro: $20/mo + usage, 1 TB storage Built-in agent Voxel51 Agent Data agents (Team plan) Agent sidebar MCP 45+ MCP tools Not disclosed Foxglove MCP (local MCP on paid plans) Search Hybrid semantic, lexical and metadata Multi-modal search, querying, filtering Semantic Search (beta) plus structured search Annotation 2D, 3D, video, multimodal, Agentic Labeling Image, video, audio, documents; 3D and LiDAR add-on Events on time segments Time-series sensor data MCAP, synced streams, segment embeddings Sensor streams (see note) MCAP, ROS 1, ROS 2 native Provenance Activity logs, edit history, versioning Not disclosed Audit logs (not on Free) Self-hosted On-prem and air-gapped available VPC and on-prem (add-on or Enterprise) Self-hosted data on Enterprise; BYO storage on Pro \n\n Encord’s sensor-stream support is stated in its Series C release . Prices verified October 17, 2026. \n\n Key Takeaways \n\n Voxel51 3.0 merges search, curation, annotation and evaluation in 1 platform.\n\n Voxel51 Agent ships with 45+ MCP tools, 80+ operators and 18 skills.\n\n Activity logs, edit history and versioning make training data traceable.\n\n Free tier: 3 datasets, 10,000 samples each, no credit card.\n\n Check out the official blog post , the press release and the Voxel51 docs , or try it at app.voxel51.com . All credit goes to the researcher of this project. Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n The post Meet Voxel51 3.0: A Unified Multimodal Data Platform for Physical AI appeared first on MarkTechPost .",
-  "modell": "gemini-3.5-flash",
-  "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
-  "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
-  "osszefoglalo": "Megjelent a [Voxel51 3.0](https://voxel51.com/blog/voxel51-3-0/), amely kifejezetten a robotikával, önvezető járművekkel és gyári szenzoradatokkal dolgozó fejlesztőket célozza meg. A frissítés idősoros multimodális támogatást hoz, így **a különböző szenzorok adatait egyetlen idővonalon lehet megtekinteni**, valamint kiterjeszti az automatizált címkézést 2D, 3D, videó és hangfájlokra is.\n\nA rendszer része a [Voxel51 Agent](https://voxel51.com/voxel51-agent/), amely **több mint 45 MCP-eszközzel és 18 nyílt forráskódú képességgel** automatizálja a munkafolyamatokat. A platform részletes adatkövetést és verziókezelést kínál, ami lehetővé teszi a betanítási adatkészletek pontos visszakövetését és reprodukálását.\n\nA Voxel51 egy ingyenesen használható csomagot is kiadott, amely regisztráció után azonnal elérhető. Ez a szint legfeljebb **3 adatkészletet, adatkészletenként 10 000 mintát és 20 GB tárhelyet** biztosít a felhasználóknak.",
-  "miert_szamit": "A komplex, több szenzorból álló AI-rendszerek adatelőkészítése jelentősen felgyorsul, mivel a mérnökök **egyetlen felületen kezelhetik a teljes adatfejlesztési ciklust** az ingyenesen kipróbálható platformon.",
-  "cimkek": [
-    "Voxel51",
-    "adatplatform",
-    "robotika",
-    "AI"
+ "id": "4f4ae4695b3b",
+ "slug": "megjelent-a-voxel51-3-0-multimodalis-adatplatform",
+ "forras_id": "marktechpost",
+ "forras_nev": "MarkTechPost",
+ "url": "https://www.marktechpost.com/2026/10/17/voxel51-3-0-physical-ai-data-platform/",
+ "szerzo": "Asif Razzaq",
+ "publikalva": "2026-10-18T04:06:33+00:00",
+ "media": {
+  "tipus": "kep",
+  "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-454-4-scaled.png"
+ },
+ "cim_eredeti": "Meet Voxel51 3.0: A Unified Multimodal Data Platform for Physical AI",
+ "forrasok": [],
+ "szoveg_eredeti": "Voxel51 has released Voxel51 3.0 , a very important update to its data platform. Voxel51 3.0 is an end-to-end multimodal data platform that puts search, curation, annotation and evaluation in one system. It targets teams training models on sensor data from robots, vehicles and factories. The release adds Voxel51 Agent, a data provenance layer and free self-service access . \n\n TL;DR \n\n Scale: Voxel51 Agent ships with 45+ MCP tools, 80+ operators and 18 open-source skills.\n\n Runs on: Hosted web app at app.voxel51.com, or self-hosted in cloud, hybrid, on-prem and air-gapped setups. No local GPU requirement disclosed.\n\n Performance: No product benchmarks published. Voxel51 cites its own survey data instead.\n\n Best: Free tier includes Voxel51 Agent, 30,000 inference requests and 30 compute hours per month.\n\n Worst: Free tier caps at 3 datasets of 10,000 samples each and 20 GB of storage.\n\n What is new in Voxel51 3.0? \n\n Voxel51 3.0 expands the platform beyond its roots in visual data with 3 core additions.\n\n Time-series multimodal support : Teams can view multiple sensor streams on 1 timeline. Segment-level embeddings find specific moments inside long recordings.\n\n Unified annotation : Labeling covers 2D, 3D, video and multimodal data. It includes automated QA, annotator metrics and human-in-the-loop review.\n\n Agentic Labeling : Vision-language models generate labels from natural-language instructions and examples.\n\n Supported modalities include MCAP, images, video, 3D point clouds, meshes, DICOM, NIfTI, geospatial data and audio.\n\n How does Voxel51 Search work? \n\n Voxel51 Search is a persistent hybrid index. It indexes datasets and computes embeddings automatically, so search works from day 1.\n\n Semantic retrieval finds visually or semantically similar moments, even without shared labels. Lexical and structured queries handle exact terms, timestamps, sensor fields and metadata. Embeddings and structured fields stay in native form and are combined at retrieval time.\n\n Vector retrieval runs on LanceDB. It supports vector, scalar and full-text indexes, and separates storage from compute. Teams choose what to embed, which model and compute to use, and when. Incremental updates avoid full rebuilds when samples arrive or schemas change.\n\n What can Voxel51 Agent do? \n\n Voxel51 Agent chains search, curation, annotation and evaluation into repeatable workflows. \n\n Example workflows: \n\n A robotics team searches behaviors across thousands of episodes, then curates balanced training sets.\n\n A perception team starts from a model failure and pulls similar long-tail scenarios for labeling.\n\n The agent can also write code to build custom plugins. All workflows inherit the organization’s permissions and governance controls. \n\n How does data provenance work in Voxel51 3.0? \n\n Voxel51 3.0 adds 4 provenance layers : \n\n Deployment-level activity log: who did what, and when, across the deployment.\n\n Dataset-level activity log: how a single dataset evolved.\n\n Sample-level edit history: label, metadata and property changes per sample.\n\n Dataset versioning: immutable snapshots to reproduce training and evaluation runs.\n\n Events flow through fiftyone-mq for job scheduling and Activity Core for event tracking.\n\n Can teams bring their own models? \n\n Yes. The platform is model-agnostic across embeddings, auto-labeling, inference and evaluation. A team can bootstrap with a foundation model, then swap in its own domain model.\n\n Why does Voxel51 argue data work decides outcomes? \n\n Voxel51 cites its 2026 State of Physical AI survey . 58% of “exceptional” teams spend more than half their project time on data work. Only 21% of struggling teams do the same. This is vendor-run research, so read it as directional.\n\n How does Voxel51 3.0 compare with Encord and Foxglove? \n\n Feature Voxel51 3.0 Encord Foxglove Core focus Search, curate, annotate, evaluate multimodal data Annotation, curation and data management Robotics visualization, observability and data management Free tier 3 datasets, 10,000 samples each, 20 GB Not disclosed 10 GB storage, 3 users, 5 devices Paid entry Team: 8 seats, 2,800 compute hrs/mo (price not disclosed) Starter (price not disclosed) Pro: $20/mo + usage, 1 TB storage Built-in agent Voxel51 Agent Data agents (Team plan) Agent sidebar MCP 45+ MCP tools Not disclosed Foxglove MCP (local MCP on paid plans) Search Hybrid semantic, lexical and metadata Multi-modal search, querying, filtering Semantic Search (beta) plus structured search Annotation 2D, 3D, video, multimodal, Agentic Labeling Image, video, audio, documents; 3D and LiDAR add-on Events on time segments Time-series sensor data MCAP, synced streams, segment embeddings Sensor streams (see note) MCAP, ROS 1, ROS 2 native Provenance Activity logs, edit history, versioning Not disclosed Audit logs (not on Free) Self-hosted On-prem and air-gapped available VPC and on-prem (add-on or Enterprise) Self-hosted data on Enterprise; BYO storage on Pro \n\n Encord’s sensor-stream support is stated in its Series C release . Prices verified October 17, 2026. \n\n Key Takeaways \n\n Voxel51 3.0 merges search, curation, annotation and evaluation in 1 platform.\n\n Voxel51 Agent ships with 45+ MCP tools, 80+ operators and 18 skills.\n\n Activity logs, edit history and versioning make training data traceable.\n\n Free tier: 3 datasets, 10,000 samples each, no credit card.\n\n Check out the official blog post , the press release and the Voxel51 docs , or try it at app.voxel51.com . All credit goes to the researcher of this project. Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n The post Meet Voxel51 3.0: A Unified Multimodal Data Platform for Physical AI appeared first on MarkTechPost .",
+ "modell": "gemini-3.5-flash",
+ "cim": "Megjelent a Voxel51 3.0 multimodális adatplatform",
+ "lead": "A fizikai AI-fejlesztő csapatoknak szánt platform egyetlen rendszere egyesíti az adatkeresést, a válogatást, a feliratozást és az értékelést.",
+ "osszefoglalo": "Megjelent a **Voxel51 3.0**, amely kifejezetten a robotikával, önvezető járművekkel és gyári szenzoradatokkal dolgozó fejlesztőket célozza meg. A frissítés idősoros multimodális támogatást hoz, így **a különböző szenzorok adatait egyetlen idővonalon lehet megtekinteni**, valamint kiterjeszti az automatizált címkézést 2D, 3D, videó és hangfájlokra is.\n\nA rendszer része a [Voxel51 Agent](https://voxel51.com/voxel51-agent/), amely **több mint 45 MCP-eszközzel és 18 nyílt forráskódú képességgel** automatizálja a munkafolyamatokat. A platform részletes adatkövetést és verziókezelést kínál, ami lehetővé teszi a betanítási adatkészletek pontos visszakövetését és reprodukálását.\n\nA Voxel51 egy ingyenesen használható csomagot is kiadott, amely regisztráció után azonnal elérhető. Ez a szint legfeljebb **3 adatkészletet, adatkészletenként 10 000 mintát és 20 GB tárhelyet** biztosít a felhasználóknak.",
+ "miert_szamit": "A komplex, több szenzorból álló AI-rendszerek adatelőkészítése jelentősen felgyorsul, mivel a mérnökök **egyetlen felületen kezelhetik a teljes adatfejlesztési ciklust** az ingyenesen kipróbálható platformon.",
+ "cimkek": [
+  "Voxel51",
+  "adatplatform",
+  "robotika",
+  "AI"
+ ],
+ "kategoria": "eszköz",
+ "forras_tipus": "elemzes",
+ "fontossag": 3,
+ "video_szoveg": "",
+ "relevans": true,
+ "kiprobalhato": {
+  "nev": "Voxel51",
+  "url": "https://app.voxel51.com"
+ },
+ "linkelendo_nevek": [
+  "Voxel51 3.0",
+  "Voxel51 Agent"
+ ],
+ "linkszabaly": 3,
+ "forditva": "2026-10-18T06:05:00+00:00",
+ "megjelent": "2026-10-18T06:05:00+00:00",
+ "tenyellenorzes": {
+  "ok": true,
+  "ido": "2026-10-18T06:05:04+00:00",
+  "esemeny": "A Voxel51 kiadta a Voxel51 3.0 nevű adatplatformot, amely egyesíti a keresést, válogatást, annotálást és értékelést a fizikai AI-fejlesztő csapatok számára.",
+  "forrasok": [
+   "https://app.voxel51.com"
   ],
-  "kategoria": "eszköz",
-  "forras_tipus": "elemzes",
-  "fontossag": 3,
-  "video_szoveg": "",
-  "relevans": true,
-  "kiprobalhato": {
-    "nev": "Voxel51",
-    "url": "https://app.voxel51.com"
-  },
-  "linkelendo_nevek": [
-    "Voxel51 3.0",
-    "Voxel51 Agent"
-  ],
-  "linkszabaly": 3,
-  "forditva": "2026-10-18T06:05:00+00:00",
-  "megjelent": "2026-10-18T06:05:00+00:00",
-  "tenyellenorzes": {
-    "ok": true,
-    "ido": "2026-10-18T06:05:04+00:00",
-    "esemeny": "A Voxel51 kiadta a Voxel51 3.0 nevű adatplatformot, amely egyesíti a keresést, válogatást, annotálást és értékelést a fizikai AI-fejlesztő csapatok számára.",
-    "forrasok": [
-      "https://app.voxel51.com"
-    ],
-    "hibak": [],
-    "kereses": [],
-    "javitva": false
-  },
-  "termeklinkek_nezve": true,
-  "linkek_ellenorizve": true
+  "hibak": [],
+  "kereses": [],
+  "javitva": false
+ },
+ "termeklinkek_nezve": true,
+ "linkek_ellenorizve": true
 }

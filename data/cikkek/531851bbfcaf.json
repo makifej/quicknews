@@ -1,91 +1,91 @@
 {
-  "id": "531851bbfcaf",
-  "slug": "az-nvidia-kiadta-a-keretrendszert-az-ai-ugynokok-biztonsagos",
-  "forras_id": "techmeme",
-  "forras_nev": "The Register",
-  "url": "https://www.theregister.com/ai-and-ml/2026/10/21/nvidia-picks-openshell-to-tame-ai-gents/5304319",
-  "szerzo": null,
-  "publikalva": "2026-10-21T12:30:02+00:00",
-  "media": {
-    "tipus": "kep",
-    "kep": "https://image.theregister.com/249195.jpg?imageId=249195&x=0&y=0&cropw=100&croph=100&panox=0&panoy=0&panow=100&panoh=100&width=1200&height=683"
+ "id": "531851bbfcaf",
+ "slug": "az-nvidia-kiadta-a-keretrendszert-az-ai-ugynokok-biztonsagos",
+ "forras_id": "techmeme",
+ "forras_nev": "The Register",
+ "url": "https://www.theregister.com/ai-and-ml/2026/10/21/nvidia-picks-openshell-to-tame-ai-gents/5304319",
+ "szerzo": null,
+ "publikalva": "2026-10-21T12:30:02+00:00",
+ "media": {
+  "tipus": "kep",
+  "kep": "https://image.theregister.com/249195.jpg?imageId=249195&x=0&y=0&cropw=100&croph=100&panox=0&panoy=0&panow=100&panoh=100&width=1200&height=683"
+ },
+ "cim_eredeti": "Nvidia launches its OpenShell Reference Architecture, a framework to secure, monitor, and govern AI agents, and partners with Canonical, AWS, BBVA, and others (Thomas Claburn/The Register)",
+ "forrasok": [],
+ "szoveg_eredeti": "Give your agents freedom to do useful work by locking them down\n\nNvidia has proposed a new way to keep corporate AI agents in line.\n\nNvidia on Wednesday introduced its OpenShell Reference Architecture. Based on the company's OpenShell secure runtime, It's a recipe for creating, operating, observing, and policing AI agents using OpenShell on Nvidia hardware.\n\n\"Nvidia created OpenShell to give agents the freedom to do useful work within clearly defined boundaries — contained, monitored and under control,\" CEO Jensen Huang said in a canned statement. \"With the OpenShell Reference Architecture, agents can think on Rubin, act on Vera and be governed on BlueField.\"\n\nAI agents are touted as a powerful automation technology. The reality is that they can be unruly, as demonstrated by security testing OpenAI and Anthropic conducted, during which their models exceeded their remit and attacked third-party organizations.\n\nDevelopers of existing agents, like Claude Code, Codex, OpenClaw, and OpenCode, therefore include controls that limit access to tools like curl and bash.Devs also create sandboxes to isolate an agentic process from the host, so that if agents go awry they're contained.\n\nOpenShell sits a level above that with a runtime that extends sandboxing to govern gateway-brokered credentials, identity and policy boundaries, and (eventually) routing and workflows too.\n\nAt least mostly – OpenShell still has a few open security-related issues listed on GitHub.\n\nTo implement OpenShell, organizations need Nvidia hardware. The company's blueprint calls for Nvidia Vera Rubin infrastructure to run models like Nvidia Nemotron, with agent harnesses handled via Vera CPUs, and Nvidia BlueField-4 DPUs (aka SmartNICs) propping up Nvidia Sentry security software to monitor agent behavior.\n\nThe AI biz has made this blueprint available to partners capable of powering Linux and Kubernetes infrastructure. The usual suspects are aboard: Canonical, SUSE and Red Hat. Cloud hyperscalers Amazon Web Services, Google Cloud, and Microsoft Azure have also been tapped as vendors for this vision.\n\nAnd of course Nvidia's floor plan applies to agents from various model builders, including Anthropic, Cohere, Google, Meta, OpenAI, Perplexity, Reflection, and SpaceX.\n\nNvidia says several banks – Europe’s BBVA and Santander – are perusing the OpenShell Reference Architecture spec to see how it aligns with their security and governance requirements. And the AI biz is not too modest to let slip that SAP is integrating the OpenShell Reference Architecture with its Joule Studio runtime for safer agent operations.\n\nIt's worth noting that OpenShell collects telemetry data by default, \"to improve the project,\" Nvidia insists. The biz allows users to opt-out, with a cautionary note: \"Third-party services, model providers, inference endpoints, agents, or tools that you configure and use with OpenShell may have their own terms and privacy practices.\" ®\n\nGive your agents freedom to do useful work by locking them down\n\nGPUzilla boasts modular bit barns could speed up deployments from six months to just two weeks\n\nThe first technology created with a self-disrupt button... But why oh why didn't they call Claude clone Fauxtoshop?\n\nCommission opens DSA probe into fake listings and phishing on the platform, says its fraud defenses 'absolutely substandard'",
+ "modell": "gemini-3.5-flash",
+ "cim": "Az Nvidia kiadta a keretrendszert az AI-ügynökök biztonságos felügyeletére",
+ "lead": "Az **OpenShell Reference Architecture** célja az autonóm AI-ügynökök futtatásának korlátozása és megfigyelése vállalati környezetben.",
+ "osszefoglalo": "Az **Nvidia kiadta az OpenShell Reference Architecture** nevű **keretrendszert**, amely segít a vállalatoknak biztonságos korlátok között tartani az autonóm AI-ügynököket. Az architektúra a nyílt forráskódú [OpenShell](https://www.nvidia.com/en-us/ai/openshell/#nv-accordion-7d74ebf581-item-4510a04d93) futtatókörnyezetre épül, és az infrastruktúra szintjén biztosítja az ügynökök ellenőrzését, az azonosítást, valamint a hozzáférési szabályok betartatását.\n\nA megoldás a szandboxos elkülönítésen túl a hálózati és jogosultsági határokat is felügyeli. Az elgondolás működtetéséhez **speciális Nvidia hardveres infrastruktúrára van szükség**, beleértve a cég hálózati felügyeletért felelős BlueField egységeit és Sentry biztonsági szoftverét.\n\nAz Nvidia többek között az Amazon Web Services, a Canonical, a Red Hat, valamint olyan pénzintézetek partnerségével indítja el a modellt, mint a BBVA és a Santander. A rendszer a főbb fejlett modellekkel, köztük az OpenAI, az Anthropic és a Meta rendszereivel is együttműködik.",
+ "miert_szamit": "Az autonóm AI-ügynökök elterjedésével a legnagyobb kihívást a biztonság és a jogosultságok felügyelete jelenti: a keretrendszer **megakadályozza, hogy a céges AI-eszközök túllépjék a hatáskörüket** és érzékeny adatokhoz férjenek hozzá.",
+ "cimkek": [
+  "Nvidia",
+  "AI-ügynök",
+  "OpenShell",
+  "kiberbiztonság"
+ ],
+ "kategoria": "ügynök",
+ "forras_tipus": "bejelentés",
+ "fontossag": 4,
+ "video_szoveg": "",
+ "relevans": true,
+ "kiprobalhato": {
+  "nev": "OpenShell",
+  "url": "https://www.nvidia.com/en-us/ai/openshell/",
+  "eredeti": "https://www.nvidia.com/en-us/ai/openshell/#nv-accordion-7d74ebf581-item-4510a04d93"
+ },
+ "linkelendo_nevek": [
+  "OpenShell Reference Architecture",
+  "OpenShell",
+  "Sentry"
+ ],
+ "linkszabaly": 3,
+ "prioritas": {
+  "pont": 91,
+  "szint": "P1",
+  "reszpont": {
+   "hatas": 85,
+   "hirertek": 90,
+   "egyediseg": 90,
+   "hitelesseg": 88,
+   "aktualitas": 100,
+   "kozossegi": 76
   },
-  "cim_eredeti": "Nvidia launches its OpenShell Reference Architecture, a framework to secure, monitor, and govern AI agents, and partners with Canonical, AWS, BBVA, and others (Thomas Claburn/The Register)",
-  "forrasok": [],
-  "szoveg_eredeti": "Give your agents freedom to do useful work by locking them down\n\nNvidia has proposed a new way to keep corporate AI agents in line.\n\nNvidia on Wednesday introduced its OpenShell Reference Architecture. Based on the company's OpenShell secure runtime, It's a recipe for creating, operating, observing, and policing AI agents using OpenShell on Nvidia hardware.\n\n\"Nvidia created OpenShell to give agents the freedom to do useful work within clearly defined boundaries — contained, monitored and under control,\" CEO Jensen Huang said in a canned statement. \"With the OpenShell Reference Architecture, agents can think on Rubin, act on Vera and be governed on BlueField.\"\n\nAI agents are touted as a powerful automation technology. The reality is that they can be unruly, as demonstrated by security testing OpenAI and Anthropic conducted, during which their models exceeded their remit and attacked third-party organizations.\n\nDevelopers of existing agents, like Claude Code, Codex, OpenClaw, and OpenCode, therefore include controls that limit access to tools like curl and bash.Devs also create sandboxes to isolate an agentic process from the host, so that if agents go awry they're contained.\n\nOpenShell sits a level above that with a runtime that extends sandboxing to govern gateway-brokered credentials, identity and policy boundaries, and (eventually) routing and workflows too.\n\nAt least mostly – OpenShell still has a few open security-related issues listed on GitHub.\n\nTo implement OpenShell, organizations need Nvidia hardware. The company's blueprint calls for Nvidia Vera Rubin infrastructure to run models like Nvidia Nemotron, with agent harnesses handled via Vera CPUs, and Nvidia BlueField-4 DPUs (aka SmartNICs) propping up Nvidia Sentry security software to monitor agent behavior.\n\nThe AI biz has made this blueprint available to partners capable of powering Linux and Kubernetes infrastructure. The usual suspects are aboard: Canonical, SUSE and Red Hat. Cloud hyperscalers Amazon Web Services, Google Cloud, and Microsoft Azure have also been tapped as vendors for this vision.\n\nAnd of course Nvidia's floor plan applies to agents from various model builders, including Anthropic, Cohere, Google, Meta, OpenAI, Perplexity, Reflection, and SpaceX.\n\nNvidia says several banks – Europe’s BBVA and Santander – are perusing the OpenShell Reference Architecture spec to see how it aligns with their security and governance requirements. And the AI biz is not too modest to let slip that SAP is integrating the OpenShell Reference Architecture with its Joule Studio runtime for safer agent operations.\n\nIt's worth noting that OpenShell collects telemetry data by default, \"to improve the project,\" Nvidia insists. The biz allows users to opt-out, with a cautionary note: \"Third-party services, model providers, inference endpoints, agents, or tools that you configure and use with OpenShell may have their own terms and privacy practices.\" ®\n\nGive your agents freedom to do useful work by locking them down\n\nGPUzilla boasts modular bit barns could speed up deployments from six months to just two weeks\n\nThe first technology created with a self-disrupt button... But why oh why didn't they call Claude clone Fauxtoshop?\n\nCommission opens DSA probe into fake listings and phishing on the platform, says its fraud defenses 'absolutely substandard'",
-  "modell": "gemini-3.5-flash",
-  "cim": "Az Nvidia kiadta a keretrendszert az AI-ügynökök biztonságos felügyeletére",
-  "lead": "Az **OpenShell Reference Architecture** célja az autonóm AI-ügynökök futtatásának korlátozása és megfigyelése vállalati környezetben.",
-  "osszefoglalo": "Az [Nvidia kiadta az OpenShell Reference Architecture](https://www.nvidia.com/en-us/autonomous-machines/openshell/) nevű **keretrendszert**, amely segít a vállalatoknak biztonságos korlátok között tartani az autonóm AI-ügynököket. Az architektúra a nyílt forráskódú [OpenShell](https://www.nvidia.com/en-us/ai/openshell/#nv-accordion-7d74ebf581-item-4510a04d93) futtatókörnyezetre épül, és az infrastruktúra szintjén biztosítja az ügynökök ellenőrzését, az azonosítást, valamint a hozzáférési szabályok betartatását.\n\nA megoldás a szandboxos elkülönítésen túl a hálózati és jogosultsági határokat is felügyeli. Az elgondolás működtetéséhez **speciális Nvidia hardveres infrastruktúrára van szükség**, beleértve a cég hálózati felügyeletért felelős BlueField egységeit és [Sentry](https://www.nvidia.com/en-us/solutions/ai/agent-safety/sentry/) biztonsági szoftverét.\n\nAz Nvidia többek között az Amazon Web Services, a Canonical, a Red Hat, valamint olyan pénzintézetek partnerségével indítja el a modellt, mint a BBVA és a Santander. A rendszer a főbb fejlett modellekkel, köztük az OpenAI, az Anthropic és a Meta rendszereivel is együttműködik.",
-  "miert_szamit": "Az autonóm AI-ügynökök elterjedésével a legnagyobb kihívást a biztonság és a jogosultságok felügyelete jelenti: a keretrendszer **megakadályozza, hogy a céges AI-eszközök túllépjék a hatáskörüket** és érzékeny adatokhoz férjenek hozzá.",
-  "cimkek": [
-    "Nvidia",
-    "AI-ügynök",
-    "OpenShell",
-    "kiberbiztonság"
+  "elofeszures": 97,
+  "tanult": 70,
+  "indok": "Az Nvidia jelentős új keretrendszert mutatott be az MI-ügynökök biztonságos és ellenőrzött futtatására. Forrás-tapasztalat: +4.",
+  "tema": "nvidia openshell ai agents",
+  "cim_hu": "OpenShell: az Nvidia új biztonsági keretrendszere az MI ügynökök felügyeletére",
+  "klaszter": null,
+  "ai": true,
+  "ido": "2026-10-21T12:33:40+00:00"
+ },
+ "jovahagyas_kell": true,
+ "forditva": "2026-10-21T12:35:42+00:00",
+ "megjelent": "2026-10-21T13:47:59.890Z",
+ "tenyellenorzes": {
+  "ok": true,
+  "ido": "2026-10-21T12:35:44+00:00",
+  "esemeny": "Az Nvidia kiadta az OpenShell Reference Architecture nevű keretrendszert, amellyel a vállalatok biztonságos keretek között tarthatják, megfigyelhetik és szabályozhatják az autonóm AI-ügynökök működését.",
+  "forrasok": [
+   "https://nvidianews.nvidia.com/news/nvidia-launches-openshell-reference-architecture-for-safe-ai-agents",
+   "https://developer.nvidia.com/blog/how-nvidia-openshell-reference-architecture-secures-and-governs-ai-agent-workloads-at-scale/",
+   "https://www.nvidia.com/en-us/autonomous-machines/openshell/"
   ],
-  "kategoria": "ügynök",
-  "forras_tipus": "bejelentés",
-  "fontossag": 4,
-  "video_szoveg": "",
-  "relevans": true,
-  "kiprobalhato": {
-    "nev": "OpenShell",
-    "url": "https://www.nvidia.com/en-us/ai/openshell/",
-    "eredeti": "https://www.nvidia.com/en-us/ai/openshell/#nv-accordion-7d74ebf581-item-4510a04d93"
-  },
-  "linkelendo_nevek": [
-    "OpenShell Reference Architecture",
-    "OpenShell",
-    "Sentry"
+  "hibak": [
+   "Az állítások alátámasztására szolgáló elsődleges forrás linkje hiányzik a szövegből.",
+   "A kötelező formai követelmények szerinti kiemelés (félkövér) hiányzik a leadből és a 'miért számít' bekezdésből."
   ],
-  "linkszabaly": 3,
-  "prioritas": {
-    "pont": 91,
-    "szint": "P1",
-    "reszpont": {
-      "hatas": 85,
-      "hirertek": 90,
-      "egyediseg": 90,
-      "hitelesseg": 88,
-      "aktualitas": 100,
-      "kozossegi": 76
-    },
-    "elofeszures": 97,
-    "tanult": 70,
-    "indok": "Az Nvidia jelentős új keretrendszert mutatott be az MI-ügynökök biztonságos és ellenőrzött futtatására. Forrás-tapasztalat: +4.",
-    "tema": "nvidia openshell ai agents",
-    "cim_hu": "OpenShell: az Nvidia új biztonsági keretrendszere az MI ügynökök felügyeletére",
-    "klaszter": null,
-    "ai": true,
-    "ido": "2026-10-21T12:33:40+00:00"
-  },
-  "jovahagyas_kell": true,
-  "forditva": "2026-10-21T12:35:42+00:00",
-  "megjelent": "2026-10-21T13:47:59.890Z",
-  "tenyellenorzes": {
-    "ok": true,
-    "ido": "2026-10-21T12:35:44+00:00",
-    "esemeny": "Az Nvidia kiadta az OpenShell Reference Architecture nevű keretrendszert, amellyel a vállalatok biztonságos keretek között tarthatják, megfigyelhetik és szabályozhatják az autonóm AI-ügynökök működését.",
-    "forrasok": [
-      "https://nvidianews.nvidia.com/news/nvidia-launches-openshell-reference-architecture-for-safe-ai-agents",
-      "https://developer.nvidia.com/blog/how-nvidia-openshell-reference-architecture-secures-and-governs-ai-agent-workloads-at-scale/",
-      "https://www.nvidia.com/en-us/autonomous-machines/openshell/"
-    ],
-    "hibak": [
-      "Az állítások alátámasztására szolgáló elsődleges forrás linkje hiányzik a szövegből.",
-      "A kötelező formai követelmények szerinti kiemelés (félkövér) hiányzik a leadből és a 'miért számít' bekezdésből."
-    ],
-    "kereses": [],
-    "javitva": true,
-    "javitas_elotti": {
-      "cim": "Az Nvidia kiadta a keretrendszert az AI-ügynökök biztonságos felügyeletére",
-      "lead": "Az OpenShell Reference Architecture célja az autonóm AI-ügynökök futtatásának korlátozása és megfigyelése vállalati környezetben.",
-      "osszefoglalo": "Az **Nvidia kiadta az OpenShell Reference Architecture nevű keretrendszert**, amely segít a vállalatoknak biztonságos korlátok között tartani az autonóm AI-ügynököket. Az architektúra az OpenShell futtatókörnyezetre épül, és az infrastruktúra szintjén biztosítja az ügynökök ellenőrzését, az azonosítást, valamint a hozzáférési szabályok betartatását.\n\nA megoldás a szandboxos elkülönítésen túl a hálózati és jogosultsági határokat is felügyeli. Az elgondolás működtetéséhez **speciális Nvidia hardveres infrastruktúrára van szükség**, beleértve a cég hálózati felügyeletért felelős BlueField egységeit és Sentry biztonsági szoftverét.\n\nAz Nvidia többek között az Amazon Web Services, a Canonical, a Red Hat, valamint olyan pénzintézetek partnerségével indítja el a modellt, mint a BBVA és a Santander. A rendszer a főbb fejlett modellekkel, köztük az OpenAI, az Anthropic és a Meta rendszereivel is együttműködik.",
-      "miert_szamit": "Az autonóm AI-ügynökök elterjedésével a legnagyobb kihívást a biztonság és a jogosultságok felügyelete jelenti: a keretrendszer **megakadályozza, hogy a céges AI-eszközök túllépjék a hatáskörüket** és érzékeny adatokhoz férjenek hozzá."
-    }
-  },
-  "kiprobal_nezve": true,
-  "termeklinkek_nezve": true,
-  "linkek_ellenorizve": true
+  "kereses": [],
+  "javitva": true,
+  "javitas_elotti": {
+   "cim": "Az Nvidia kiadta a keretrendszert az AI-ügynökök biztonságos felügyeletére",
+   "lead": "Az OpenShell Reference Architecture célja az autonóm AI-ügynökök futtatásának korlátozása és megfigyelése vállalati környezetben.",
+   "osszefoglalo": "Az **Nvidia kiadta az OpenShell Reference Architecture nevű keretrendszert**, amely segít a vállalatoknak biztonságos korlátok között tartani az autonóm AI-ügynököket. Az architektúra az OpenShell futtatókörnyezetre épül, és az infrastruktúra szintjén biztosítja az ügynökök ellenőrzését, az azonosítást, valamint a hozzáférési szabályok betartatását.\n\nA megoldás a szandboxos elkülönítésen túl a hálózati és jogosultsági határokat is felügyeli. Az elgondolás működtetéséhez **speciális Nvidia hardveres infrastruktúrára van szükség**, beleértve a cég hálózati felügyeletért felelős BlueField egységeit és Sentry biztonsági szoftverét.\n\nAz Nvidia többek között az Amazon Web Services, a Canonical, a Red Hat, valamint olyan pénzintézetek partnerségével indítja el a modellt, mint a BBVA és a Santander. A rendszer a főbb fejlett modellekkel, köztük az OpenAI, az Anthropic és a Meta rendszereivel is együttműködik.",
+   "miert_szamit": "Az autonóm AI-ügynökök elterjedésével a legnagyobb kihívást a biztonság és a jogosultságok felügyelete jelenti: a keretrendszer **megakadályozza, hogy a céges AI-eszközök túllépjék a hatáskörüket** és érzékeny adatokhoz férjenek hozzá."
+  }
+ },
+ "kiprobal_nezve": true,
+ "termeklinkek_nezve": true,
+ "linkek_ellenorizve": true
 }

@@ -1,82 +1,82 @@
 {
-  "id": "d01ec9826010",
-  "slug": "a-perplexity-feluleten-futo-ai-val-keszitettek-fivem-kuldetest",
-  "forras_id": "x-aravsrinivas",
-  "forras_nev": "Aravind Srinivas (X)",
-  "url": "https://x.com/AravSrinivas/status/2115435917708296406",
-  "szerzo": "Aravind Srinivas (@AravSrinivas)",
-  "publikalva": "2026-10-28T13:30:00+00:00",
-  "media": {
-    "tipus": "mp4",
-    "url": "https://video.twimg.com/amplify_video/2115340017359036416/vid/avc1/1920x1080/jnM21G3Kti16minm.mp4?tag=29",
-    "kep": "https://pbs.twimg.com/amplify_video_thumb/2115340017359036416/img/AM_645MjNXbRwXH4.jpg",
-    "hossz_mp": 121.99,
-    "szelesseg": 1920,
-    "magassag": 1080,
-    "x_url": "https://x.com/AravSrinivas/status/2115435917708296406"
+ "id": "d01ec9826010",
+ "slug": "a-perplexity-feluleten-futo-ai-val-keszitettek-fivem-kuldetest",
+ "forras_id": "x-aravsrinivas",
+ "forras_nev": "Aravind Srinivas (X)",
+ "url": "https://x.com/AravSrinivas/status/2115435917708296406",
+ "szerzo": "Aravind Srinivas (@AravSrinivas)",
+ "publikalva": "2026-10-28T13:30:00+00:00",
+ "media": {
+  "tipus": "mp4",
+  "url": "https://video.twimg.com/amplify_video/2115340017359036416/vid/avc1/1920x1080/jnM21G3Kti16minm.mp4?tag=29",
+  "kep": "https://pbs.twimg.com/amplify_video_thumb/2115340017359036416/img/AM_645MjNXbRwXH4.jpg",
+  "hossz_mp": 121.99,
+  "szelesseg": 1920,
+  "magassag": 1080,
+  "x_url": "https://x.com/AravSrinivas/status/2115435917708296406"
+ },
+ "cim_eredeti": "Fun project on Perplexity Computer: Asked it to design a GTA V mission where you vibecode GTA VI from an in-game phone w",
+ "forrasok": [],
+ "szoveg_eredeti": "Fun project on Perplexity Computer: Asked it to design a GTA V mission where you vibecode GTA VI from an in-game phone while the devs call the cops on you for shipping GTA VI before them.\n\nIt went through the FiveM docs (natives, ped models, server convars, the limits of the in-game browser) and built the mission as a FiveM resource in Lua. Then it built an MCP bridge, a small local Node service that signs in to the Perplexity Computer MCP server with OAuth and turns your in-game prompt into a real Computer task.\n\nThe phone streams Computer's steps live during the chase, you answer its questions and approvals while driving, and you ship the build by losing the cops at the airport hangars.\n\nFor the voices, Computer rented a cloud GPU and ran Qwen3-TTS locally on it, with no TTS API, to voice every line of dialogue.",
+ "modell": "gemini-3.5-flash",
+ "cim": "A Perplexity felületén futó AI-val készítettek FiveM-küldetést",
+ "lead": "Aravind Srinivas megmutatta, hogyan épített a Perplexity Computer segítségével egy egyedi GTA V-küldetést Lua nyelven.",
+ "osszefoglalo": "Aravind Srinivas egy kísérleti projektben a [Perplexity Computer](https://www.perplexity.ai/computer) segítségével hozott létre egy egyedi GTA V-küldetést a [FiveM](https://fivem.net/) keretrendszerhez. Az AI áttanulmányozta a FiveM dokumentációját, majd **Lua nyelven írta meg a teljes küldetést**, amelyhez egy MCP-hidat is épített Node.js alapon. A megoldás lehetővé tette, hogy a játékos a játékbeli telefonján keresztül élőben kommunikáljon az AI-val vezetési feladatok közben.\n\nA párbeszédekhez az AI egy felhős GPU-t bérelt ki, és a nyílt forráskódú **Qwen3-TTS modellt futtatta helyileg**, így külső hanggeneráló API használata nélkül adta meg az összes karakter hangját. A küldetés témája szerint a játékosnak ki kell adnia a GTA VI-ot a telefonjáról, mielőtt a fejlesztők ráhívják a rendőrséget.",
+ "miert_szamit": "Ez a bemutató jól szemlélteti, hogy az összetett feladatokat végrehajtó AI-ügynökök **képesek több technológiát és saját hangszintézist ötvözve komplett játéklogikát építeni** minimális emberi beavatkozással.",
+ "cimkek": [
+  "Perplexity",
+  "FiveM",
+  "Qwen3-TTS",
+  "Node.js"
+ ],
+ "kategoria": "eszköz",
+ "forras_tipus": "bemutato",
+ "fontossag": 3,
+ "video_szoveg": "A videóban a játékos egy autóban menekül a rendőrök elől, miközben a játékbeli telefon kijelzőjén élőben követi és jóváhagyja az AI által generált feladatokat.",
+ "relevans": true,
+ "kiprobalhato": null,
+ "linkelendo_nevek": [
+  "Perplexity Computer",
+  "FiveM",
+  "Qwen3-TTS"
+ ],
+ "linkszabaly": 3,
+ "prioritas": {
+  "pont": 47,
+  "szint": "P3",
+  "reszpont": {
+   "hatas": 35,
+   "hirertek": 40,
+   "egyediseg": 80,
+   "hitelesseg": 81,
+   "aktualitas": 92,
+   "kozossegi": 44
   },
-  "cim_eredeti": "Fun project on Perplexity Computer: Asked it to design a GTA V mission where you vibecode GTA VI from an in-game phone w",
-  "forrasok": [],
-  "szoveg_eredeti": "Fun project on Perplexity Computer: Asked it to design a GTA V mission where you vibecode GTA VI from an in-game phone while the devs call the cops on you for shipping GTA VI before them.\n\nIt went through the FiveM docs (natives, ped models, server convars, the limits of the in-game browser) and built the mission as a FiveM resource in Lua. Then it built an MCP bridge, a small local Node service that signs in to the Perplexity Computer MCP server with OAuth and turns your in-game prompt into a real Computer task.\n\nThe phone streams Computer's steps live during the chase, you answer its questions and approvals while driving, and you ship the build by losing the cops at the airport hangars.\n\nFor the voices, Computer rented a cloud GPU and ran Qwen3-TTS locally on it, with no TTS API, to voice every line of dialogue.",
-  "modell": "gemini-3.5-flash",
-  "cim": "A Perplexity felületén futó AI-val készítettek FiveM-küldetést",
-  "lead": "Aravind Srinivas megmutatta, hogyan épített a Perplexity Computer segítségével egy egyedi GTA V-küldetést Lua nyelven.",
-  "osszefoglalo": "Aravind Srinivas egy kísérleti projektben a [Perplexity Computer](https://www.perplexity.ai/computer) segítségével hozott létre egy egyedi GTA V-küldetést a [FiveM](https://fivem.net/) keretrendszerhez. Az AI áttanulmányozta a FiveM dokumentációját, majd **Lua nyelven írta meg a teljes küldetést**, amelyhez egy MCP-hidat is épített Node.js alapon. A megoldás lehetővé tette, hogy a játékos a játékbeli telefonján keresztül élőben kommunikáljon az AI-val vezetési feladatok közben.\n\nA párbeszédekhez az AI egy felhős GPU-t bérelt ki, és a nyílt forráskódú **[Qwen3-TTS](https://qwenlm.github.io/blog/qwen3-tts/) modellt futtatta helyileg**, így külső hanggeneráló API használata nélkül adta meg az összes karakter hangját. A küldetés témája szerint a játékosnak ki kell adnia a GTA VI-ot a telefonjáról, mielőtt a fejlesztők ráhívják a rendőrséget.",
-  "miert_szamit": "Ez a bemutató jól szemlélteti, hogy az összetett feladatokat végrehajtó AI-ügynökök **képesek több technológiát és saját hangszintézist ötvözve komplett játéklogikát építeni** minimális emberi beavatkozással.",
-  "cimkek": [
-    "Perplexity",
-    "FiveM",
-    "Qwen3-TTS",
-    "Node.js"
+  "elofeszures": 80,
+  "tanult": 34,
+  "indok": "Egy egyedi technikai demó és hobbiprojekt a Perplexity vezérigazgatójától Forrás-tapasztalat: -5.",
+  "tema": "perplexity computer gta v mcp",
+  "cim_hu": "GTA V küldetést kódoltatott le a Perplexity Computerrel a cég vezérigazgatója",
+  "lead_hu": "Aravind Srinivas, a Perplexity vezetője egy kísérleti projektben mutatta be, hogyan képes a Perplexity Computer egy működő FiveM játékkódot írni a GTA V-höz.",
+  "klaszter": null,
+  "ai": true,
+  "ido": "2026-10-28T16:25:13+00:00"
+ },
+ "jovahagyas_kell": true,
+ "forditva": "2026-10-28T16:44:34+00:00",
+ "megjelent": "2026-10-28T16:39:22.551Z",
+ "tenyellenorzes": {
+  "ok": true,
+  "ido": "2026-10-28T16:44:36+00:00",
+  "esemeny": "Aravind Srinivas megosztott egy kísérleti projektet, ahol a Perplexity Computer segítségével egy egyedi GTA V küldetést hoztak létre a FiveM keretrendszerhez Lua nyelven, MCP-híddal és helyben futtatott Qwen3-TTS hangmodell használatával.",
+  "forrasok": [
+   "https://x.com/AravSrinivas/status/2115435917708296406"
   ],
-  "kategoria": "eszköz",
-  "forras_tipus": "bemutato",
-  "fontossag": 3,
-  "video_szoveg": "A videóban a játékos egy autóban menekül a rendőrök elől, miközben a játékbeli telefon kijelzőjén élőben követi és jóváhagyja az AI által generált feladatokat.",
-  "relevans": true,
-  "kiprobalhato": null,
-  "linkelendo_nevek": [
-    "Perplexity Computer",
-    "FiveM",
-    "Qwen3-TTS"
-  ],
-  "linkszabaly": 3,
-  "prioritas": {
-    "pont": 47,
-    "szint": "P3",
-    "reszpont": {
-      "hatas": 35,
-      "hirertek": 40,
-      "egyediseg": 80,
-      "hitelesseg": 81,
-      "aktualitas": 92,
-      "kozossegi": 44
-    },
-    "elofeszures": 80,
-    "tanult": 34,
-    "indok": "Egy egyedi technikai demó és hobbiprojekt a Perplexity vezérigazgatójától Forrás-tapasztalat: -5.",
-    "tema": "perplexity computer gta v mcp",
-    "cim_hu": "GTA V küldetést kódoltatott le a Perplexity Computerrel a cég vezérigazgatója",
-    "lead_hu": "Aravind Srinivas, a Perplexity vezetője egy kísérleti projektben mutatta be, hogyan képes a Perplexity Computer egy működő FiveM játékkódot írni a GTA V-höz.",
-    "klaszter": null,
-    "ai": true,
-    "ido": "2026-10-28T16:25:13+00:00"
-  },
-  "jovahagyas_kell": true,
-  "forditva": "2026-10-28T16:44:34+00:00",
-  "megjelent": "2026-10-28T16:39:22.551Z",
-  "tenyellenorzes": {
-    "ok": true,
-    "ido": "2026-10-28T16:44:36+00:00",
-    "esemeny": "Aravind Srinivas megosztott egy kísérleti projektet, ahol a Perplexity Computer segítségével egy egyedi GTA V küldetést hoztak létre a FiveM keretrendszerhez Lua nyelven, MCP-híddal és helyben futtatott Qwen3-TTS hangmodell használatával.",
-    "forrasok": [
-      "https://x.com/AravSrinivas/status/2115435917708296406"
-    ],
-    "hibak": [],
-    "kereses": [],
-    "javitva": false
-  },
-  "kiprobal_nezve": true,
-  "termeklinkek_nezve": true,
-  "linkek_ellenorizve": true
+  "hibak": [],
+  "kereses": [],
+  "javitva": false
+ },
+ "kiprobal_nezve": true,
+ "termeklinkek_nezve": true,
+ "linkek_ellenorizve": true
 }

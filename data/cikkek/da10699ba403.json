@@ -1,75 +1,75 @@
 {
-  "id": "da10699ba403",
-  "slug": "815-dollarbol-epitette-ujja-161-sablonos-feluletet-a-specterops-ai-val",
-  "forras_id": "dailydev",
-  "forras_nev": "SpecterOps (daily.dev)",
-  "url": "https://specterops.io/blog/2026/10/14/ai-engagement-for-cybersecurity-engineering",
-  "szerzo": null,
-  "publikalva": "2026-10-14T00:00:00+00:00",
-  "media": {
-    "tipus": "kep",
-    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/ae1f3222ffdf44eec376480e78497bdb?_a=AQAEuop"
-  },
-  "cim_eredeti": "Be the Architect: Intentional AI Engagement for Cybersecurity Engineering",
-  "forrasok": [],
-  "szoveg_eredeti": "TL;DR: How SpecterOps combined deliberate human engagement, model routing, and specialized tools to overhaul Ghostwriter’s user interface for $815.50 in model spend.\n\nDisclosure: SpecterOps participates in OpenAI’s Trusted Access for Cyber and Daybreak programs. Codex is the primary example in this article because it fits our engineering workflow and because of that relationship. The operating principles described here are vendor-neutral and can be applied to other model families and coding agents.\n\nWhen organizations talk about using AI for engineering, the conversation often starts with the model: Which one is most capable? Which one is fastest? Which one is cheapest? Those questions matter, but they come after a more important one: How should people engage with the agent?\n\nOur answer is straightforward: be the architect.\n\nAn agent can take on a substantial amount of labor. You can task an agent to explore a codebase, propose alternative solutions, implement a design, update hundreds of related components, and perform repeatable checks. But you should not transfer ownership of the problem to an agent. The human still sets the direction, establishes what success means, challenges assumptions, and accepts responsibility for the result.\n\nThis is a leadership problem as much as it is a technical one. An AI agent is not a human team member: it does not share responsibility, understand organizational intent, or carry judgment from one situation into another unless that context is made available. Yet, some of the same principles that make delegation effective with people also matter here. Ambiguous direction produces ambiguous work. Missing constraints do not remain empty; the model fills them with a plausible interpretation. Incidental comments may receive more weight than we intended.\n\nConsider a deliberately silly prompt: “Beans. Beans. Beans. Write me a haiku.” The model will almost certainly write a haiku about beans. It has no reason to know the repeated word was an aside, a test, or irrelevant context. The same behavior becomes consequential when the subject is an application architecture, an accessibility requirement, a research hypothesis, or a security control. This is also why long-running chats can start to go off the rails; a comment or correction you made an hour ago for a different task may influence the next task in ways you did not intend.\n\nPrompt engineering, then, is not a search for magic phrasing. The human must begin with problem definition and proceed with deliberate and intentional expansion. Using an agent intentionally means deciding what context matters, what role the agent should play, what decisions remain open, and what evidence will be required before the work is accepted.\n\nAt SpecterOps, we have been formalizing this with a framework called the AI Engagement Model, or AIEM, based on Mark Keith’s data science research at BYU. Its purpose is to make AI a force multiplier while keeping authorship, judgment, and understanding with the person responsible for the work. It begins with a simple premise:\n\n> AI performance is a function of the human, the model, and the workflow.\n\nAIEM follows a recurring loop: Frame, Challenge, Verify, Decide, Produce. We frame the problem and define success. We challenge assumptions and ask for alternatives. We verify claims and behavior. We decide which direction to take. Only then do we ask the agent to implement the work. The loop repeats as new information appears.\n\nOur role changes as we move through that loop. At the beginning of a project, we may act as the Problem Setter. We can ask the agent to become a Creative Expander when we need options or a Critical Challenger when we want to stress test an idea. Once the direction is clear, the agent can shift into an Implementation Assistant. Later, it can help verify the result. We choose the role that fits the state of the work.\n\nThat choice also influences cost. Asking an expensive model to discover our goals, choose a direction, implement it, and judge its own success creates a long interaction shaped by assumptions we may never see. A mixed-model workflow can become just as expensive when every model is left to determine what the team wants.\n\nClear framing reduces that uncertainty. Concrete success criteria allow much of the implementation to move to a less expensive model while reserving the more capable model for ambiguity, difficult diagnosis, and consequential review.\n\nOur engineering guidance starts with the least expensive model that can handle the task. We escalate when the work shows us that we need more capability, then return to the economical tier when that need has passed. Starting too low creates rework. Starting every task with the most expensive model pays a premium for routine questions and clear changes.\n\nYou must also consider reasoning effort, but don’t get caught up in these details. Reasoning effort is another routing choice that affects performance and cost. Higher effort can improve results when work requires more planning, analysis, or verification, although it also takes longer and consumes more tokens. Start with the model’s default effort and increase it when the task or the results justify the added expense. During the Ghostwriter project, Medium was a useful baseline and good for documentation, while High suited more involved engineering work. Extra High sometimes gave GPT-5.6 Luna enough reasoning time to complete tasks we might otherwise have routed to GPT-5.6 Terra. Treat reasoning effort as a tuning control alongside model selection, not as a substitute for clear direction. Effort levels like Max or Ultra should remain escalation choices. These unlock higher levels of reasoning or the ability to spawn subagents, and both can increase cost and how quickly you consume quotas.\n\nNames may change and levels may shift, so keep the approach simple: start with the model’s default and establish a baseline that produces reliable results for your usual work. Increase effort for difficult problems or when results suggest deeper analysis would help. Consider lowering it for straightforward documentation or simple changes, and reserve the highest settings for work that justifies them. Revisit the setting when the work or results change; you don’t need to tune it on every turn.\n\nFor the Ghostwriter work described below, we used three GPT-5.6 models through OpenAI’s Codex agent with :\n\nNote: While we were writing this article, OpenAI introduced the GPT-6 family without a Terra tier. GPT-6 Sol and GPT-6.1 Sol matches GPT-5.6 Terra’s input and cached-input rates while carrying a lower output rate, and in our early use it has handled work we previously divided between GPT-5.6 Terra and GPT-5.6 Sol. OpenAI says the GPT-5.6 family will remain available during the rollout. The release made our exact pricing and cross-vendor comparisons age before we finished the article, reinforcing the need to track available models and route work deliberately as capabilities and economics change.\n\nAnthropic’s Haiku, Sonnet, Opus, and Fable models offer similar practical tiers, although the lineups no longer map cleanly one-to-one. The model names will change; the routing approach still applies.\n\nSpecialist cyber models fit the same approach. At the time of this case study, the cyber models available to us cost roughly 2.5 times as much as GPT-5.6 Sol. We reserve that premium for authorized tasks that require specialist cyber capability—including cases where a general model declines a legitimate request because of its safeguards—and return to a general model afterward. Even in cybersecurity work, a specialist model should be an escalation choice instead of the default.\n\nTools and skills also shape how well an agent can gather context, challenge a plan, interact with an application, and verify its work. Three were particularly useful during the Ghostwriter project:\n\nThe model, effort, its tools, and the way we engage with both form one working syst",
-  "modell": "gemini-3.5-flash",
-  "cim": "815 dollárból építette újjá 161 sablonos felületét a SpecterOps AI-val",
-  "lead": "A SpecterOps az AI Engagement Model keretrendszerrel 99 képernyő felületét költöztette át Bootstrap v5.3-ra, miközben az ember maradt a döntéshozó.",
-  "osszefoglalo": "A SpecterOps a nyílt forráskódú [Ghostwriter](https://specterops.io/open-source-tools/ghostwriter/) platform 161 sablonból és 99 képernyőből álló felhasználói felületét újította fel mindössze 815,50 dolláros AI-modellráfordítással. A feladathoz a **háromszintű modellirányítást** hívták segítségül, ahol a könnyebb feladatokat az olcsóbb, míg az összetett diagnosztikát a drágább GPT-5.6 modellekre bízták az [OpenAI Codex](https://openai.com/codex) ágensén keresztül.\n\nA folyamathoz kidolgozták az **[AI Engagement Model](https://specterops.io/blog/be-the-architect-intentional-ai-engagement-for-cybersecurity-engineering/) (AIEM)** keretrendszert, amely a Keretezés, Kihívás, Ellenőrzés, Döntés és Előállítás cikluson alapul. A megközelítés lényege, hogy az ember végig **megtartja az építész szerepét**, a problémameghatározást és a végső döntéseket, ahelyett hogy a teljes felelősséget átruházná a mesterséges intelligenciára.\n\nA tapasztalatok szerint az átgondolt modellválasztással jelentős összeget spóroltak: ha a teljes projektet a legfejlettebb Sol modellel végezték volna el, az **89,06 dollárral többe került volna**. A munka során a modellek gondolkodási intenzitását is a feladat összetettségéhez igazították.",
-  "miert_szamit": "A gyakorlat megmutatja, hogy a **modellirányítással és a mérnöki felügyelettel** drasztikusan csökkenthetők a fejlesztési költségek nagyméretű kódalap-frissítéseknél.",
-  "cimkek": [
-    "OpenAI",
-    "Codex",
-    "fejlesztés",
-    "Bootstrap"
+ "id": "da10699ba403",
+ "slug": "815-dollarbol-epitette-ujja-161-sablonos-feluletet-a-specterops-ai-val",
+ "forras_id": "dailydev",
+ "forras_nev": "SpecterOps (daily.dev)",
+ "url": "https://specterops.io/blog/2026/10/14/ai-engagement-for-cybersecurity-engineering",
+ "szerzo": null,
+ "publikalva": "2026-10-14T00:00:00+00:00",
+ "media": {
+  "tipus": "kep",
+  "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/ae1f3222ffdf44eec376480e78497bdb?_a=AQAEuop"
+ },
+ "cim_eredeti": "Be the Architect: Intentional AI Engagement for Cybersecurity Engineering",
+ "forrasok": [],
+ "szoveg_eredeti": "TL;DR: How SpecterOps combined deliberate human engagement, model routing, and specialized tools to overhaul Ghostwriter’s user interface for $815.50 in model spend.\n\nDisclosure: SpecterOps participates in OpenAI’s Trusted Access for Cyber and Daybreak programs. Codex is the primary example in this article because it fits our engineering workflow and because of that relationship. The operating principles described here are vendor-neutral and can be applied to other model families and coding agents.\n\nWhen organizations talk about using AI for engineering, the conversation often starts with the model: Which one is most capable? Which one is fastest? Which one is cheapest? Those questions matter, but they come after a more important one: How should people engage with the agent?\n\nOur answer is straightforward: be the architect.\n\nAn agent can take on a substantial amount of labor. You can task an agent to explore a codebase, propose alternative solutions, implement a design, update hundreds of related components, and perform repeatable checks. But you should not transfer ownership of the problem to an agent. The human still sets the direction, establishes what success means, challenges assumptions, and accepts responsibility for the result.\n\nThis is a leadership problem as much as it is a technical one. An AI agent is not a human team member: it does not share responsibility, understand organizational intent, or carry judgment from one situation into another unless that context is made available. Yet, some of the same principles that make delegation effective with people also matter here. Ambiguous direction produces ambiguous work. Missing constraints do not remain empty; the model fills them with a plausible interpretation. Incidental comments may receive more weight than we intended.\n\nConsider a deliberately silly prompt: “Beans. Beans. Beans. Write me a haiku.” The model will almost certainly write a haiku about beans. It has no reason to know the repeated word was an aside, a test, or irrelevant context. The same behavior becomes consequential when the subject is an application architecture, an accessibility requirement, a research hypothesis, or a security control. This is also why long-running chats can start to go off the rails; a comment or correction you made an hour ago for a different task may influence the next task in ways you did not intend.\n\nPrompt engineering, then, is not a search for magic phrasing. The human must begin with problem definition and proceed with deliberate and intentional expansion. Using an agent intentionally means deciding what context matters, what role the agent should play, what decisions remain open, and what evidence will be required before the work is accepted.\n\nAt SpecterOps, we have been formalizing this with a framework called the AI Engagement Model, or AIEM, based on Mark Keith’s data science research at BYU. Its purpose is to make AI a force multiplier while keeping authorship, judgment, and understanding with the person responsible for the work. It begins with a simple premise:\n\n> AI performance is a function of the human, the model, and the workflow.\n\nAIEM follows a recurring loop: Frame, Challenge, Verify, Decide, Produce. We frame the problem and define success. We challenge assumptions and ask for alternatives. We verify claims and behavior. We decide which direction to take. Only then do we ask the agent to implement the work. The loop repeats as new information appears.\n\nOur role changes as we move through that loop. At the beginning of a project, we may act as the Problem Setter. We can ask the agent to become a Creative Expander when we need options or a Critical Challenger when we want to stress test an idea. Once the direction is clear, the agent can shift into an Implementation Assistant. Later, it can help verify the result. We choose the role that fits the state of the work.\n\nThat choice also influences cost. Asking an expensive model to discover our goals, choose a direction, implement it, and judge its own success creates a long interaction shaped by assumptions we may never see. A mixed-model workflow can become just as expensive when every model is left to determine what the team wants.\n\nClear framing reduces that uncertainty. Concrete success criteria allow much of the implementation to move to a less expensive model while reserving the more capable model for ambiguity, difficult diagnosis, and consequential review.\n\nOur engineering guidance starts with the least expensive model that can handle the task. We escalate when the work shows us that we need more capability, then return to the economical tier when that need has passed. Starting too low creates rework. Starting every task with the most expensive model pays a premium for routine questions and clear changes.\n\nYou must also consider reasoning effort, but don’t get caught up in these details. Reasoning effort is another routing choice that affects performance and cost. Higher effort can improve results when work requires more planning, analysis, or verification, although it also takes longer and consumes more tokens. Start with the model’s default effort and increase it when the task or the results justify the added expense. During the Ghostwriter project, Medium was a useful baseline and good for documentation, while High suited more involved engineering work. Extra High sometimes gave GPT-5.6 Luna enough reasoning time to complete tasks we might otherwise have routed to GPT-5.6 Terra. Treat reasoning effort as a tuning control alongside model selection, not as a substitute for clear direction. Effort levels like Max or Ultra should remain escalation choices. These unlock higher levels of reasoning or the ability to spawn subagents, and both can increase cost and how quickly you consume quotas.\n\nNames may change and levels may shift, so keep the approach simple: start with the model’s default and establish a baseline that produces reliable results for your usual work. Increase effort for difficult problems or when results suggest deeper analysis would help. Consider lowering it for straightforward documentation or simple changes, and reserve the highest settings for work that justifies them. Revisit the setting when the work or results change; you don’t need to tune it on every turn.\n\nFor the Ghostwriter work described below, we used three GPT-5.6 models through OpenAI’s Codex agent with :\n\nNote: While we were writing this article, OpenAI introduced the GPT-6 family without a Terra tier. GPT-6 Sol and GPT-6.1 Sol matches GPT-5.6 Terra’s input and cached-input rates while carrying a lower output rate, and in our early use it has handled work we previously divided between GPT-5.6 Terra and GPT-5.6 Sol. OpenAI says the GPT-5.6 family will remain available during the rollout. The release made our exact pricing and cross-vendor comparisons age before we finished the article, reinforcing the need to track available models and route work deliberately as capabilities and economics change.\n\nAnthropic’s Haiku, Sonnet, Opus, and Fable models offer similar practical tiers, although the lineups no longer map cleanly one-to-one. The model names will change; the routing approach still applies.\n\nSpecialist cyber models fit the same approach. At the time of this case study, the cyber models available to us cost roughly 2.5 times as much as GPT-5.6 Sol. We reserve that premium for authorized tasks that require specialist cyber capability—including cases where a general model declines a legitimate request because of its safeguards—and return to a general model afterward. Even in cybersecurity work, a specialist model should be an escalation choice instead of the default.\n\nTools and skills also shape how well an agent can gather context, challenge a plan, interact with an application, and verify its work. Three were particularly useful during the Ghostwriter project:\n\nThe model, effort, its tools, and the way we engage with both form one working syst",
+ "modell": "gemini-3.5-flash",
+ "cim": "815 dollárból építette újjá 161 sablonos felületét a SpecterOps AI-val",
+ "lead": "A SpecterOps az AI Engagement Model keretrendszerrel 99 képernyő felületét költöztette át Bootstrap v5.3-ra, miközben az ember maradt a döntéshozó.",
+ "osszefoglalo": "A SpecterOps a nyílt forráskódú [Ghostwriter](https://specterops.io/open-source-tools/ghostwriter/) platform 161 sablonból és 99 képernyőből álló felhasználói felületét újította fel mindössze 815,50 dolláros AI-modellráfordítással. A feladathoz a **háromszintű modellirányítást** hívták segítségül, ahol a könnyebb feladatokat az olcsóbb, míg az összetett diagnosztikát a drágább GPT-5.6 modellekre bízták az [OpenAI Codex](https://openai.com/codex) ágensén keresztül.\n\nA folyamathoz kidolgozták az ****AI Engagement Model** (AIEM)** keretrendszert, amely a Keretezés, Kihívás, Ellenőrzés, Döntés és Előállítás cikluson alapul. A megközelítés lényege, hogy az ember végig **megtartja az építész szerepét**, a problémameghatározást és a végső döntéseket, ahelyett hogy a teljes felelősséget átruházná a mesterséges intelligenciára.\n\nA tapasztalatok szerint az átgondolt modellválasztással jelentős összeget spóroltak: ha a teljes projektet a legfejlettebb Sol modellel végezték volna el, az **89,06 dollárral többe került volna**. A munka során a modellek gondolkodási intenzitását is a feladat összetettségéhez igazították.",
+ "miert_szamit": "A gyakorlat megmutatja, hogy a **modellirányítással és a mérnöki felügyelettel** drasztikusan csökkenthetők a fejlesztési költségek nagyméretű kódalap-frissítéseknél.",
+ "cimkek": [
+  "OpenAI",
+  "Codex",
+  "fejlesztés",
+  "Bootstrap"
+ ],
+ "kategoria": "eszköz",
+ "forras_tipus": "elemzes",
+ "fontossag": 3,
+ "video_szoveg": "",
+ "relevans": true,
+ "kiprobalhato": null,
+ "linkelendo_nevek": [
+  "AI Engagement Model",
+  "Ghostwriter"
+ ],
+ "linkszabaly": 3,
+ "forditva": "2026-10-15T06:23:04+00:00",
+ "megjelent": "2026-10-15T06:23:04+00:00",
+ "tenyellenorzes": {
+  "ok": true,
+  "ido": "2026-10-15T06:23:35+00:00",
+  "esemeny": "A SpecterOps a nyílt forráskódú Ghostwriter platform felhasználói felületét újította fel Bootstrap v5.3-ra (161 sablont és 99 képernyőt átültetve) az AI Engagement Model (AIEM) keretrendszer és többlépcsős AI-modellirányítás segítségével, összesen 815,50 dolláros modellköltséggel.",
+  "forrasok": [
+   "https://specterops.io/blog/2026/10/14/ai-engagement-for-cybersecurity-engineering"
   ],
-  "kategoria": "eszköz",
-  "forras_tipus": "elemzes",
-  "fontossag": 3,
-  "video_szoveg": "",
-  "relevans": true,
-  "kiprobalhato": null,
-  "linkelendo_nevek": [
-    "AI Engagement Model",
-    "Ghostwriter"
+  "hibak": [],
+  "kereses": [],
+  "javitva": false
+ },
+ "kiprobal_nezve": true,
+ "termeklinkek_nezve": true,
+ "linkek_ellenorizve": true,
+ "forras_figyelve": true,
+ "forras_javaslat": {
+  "ido": "2026-10-15T08:25:45+0200",
+  "mod": "figyelo",
+  "elmaradt": false,
+  "jelentes": [
+   {
+    "lepes": "hibas_link_ki",
+    "horgony": "OpenAI Codex",
+    "url": "https://openai.com/codex",
+    "ok": "HTTP 403"
+   },
+   {
+    "lepes": "hibas_link_ki",
+    "horgony": "AI Engagement Model",
+    "url": "https://specterops.io/blog/be-the-architect-intentional-ai-engagement-for-cybersecurity-engineering/",
+    "ok": "HTTP 404"
+   }
   ],
-  "linkszabaly": 3,
-  "forditva": "2026-10-15T06:23:04+00:00",
-  "megjelent": "2026-10-15T06:23:04+00:00",
-  "tenyellenorzes": {
-    "ok": true,
-    "ido": "2026-10-15T06:23:35+00:00",
-    "esemeny": "A SpecterOps a nyílt forráskódú Ghostwriter platform felhasználói felületét újította fel Bootstrap v5.3-ra (161 sablont és 99 képernyőt átültetve) az AI Engagement Model (AIEM) keretrendszer és többlépcsős AI-modellirányítás segítségével, összesen 815,50 dolláros modellköltséggel.",
-    "forrasok": [
-      "https://specterops.io/blog/2026/10/14/ai-engagement-for-cybersecurity-engineering"
-    ],
-    "hibak": [],
-    "kereses": [],
-    "javitva": false
-  },
-  "kiprobal_nezve": true,
-  "termeklinkek_nezve": true,
-  "linkek_ellenorizve": true,
-  "forras_figyelve": true,
-  "forras_javaslat": {
-    "ido": "2026-10-15T08:25:45+0200",
-    "mod": "figyelo",
-    "elmaradt": false,
-    "jelentes": [
-      {
-        "lepes": "hibas_link_ki",
-        "horgony": "OpenAI Codex",
-        "url": "https://openai.com/codex",
-        "ok": "HTTP 403"
-      },
-      {
-        "lepes": "hibas_link_ki",
-        "horgony": "AI Engagement Model",
-        "url": "https://specterops.io/blog/be-the-architect-intentional-ai-engagement-for-cybersecurity-engineering/",
-        "ok": "HTTP 404"
-      }
-    ],
-    "osszefoglalo": "A SpecterOps a nyílt forráskódú [Ghostwriter](https://specterops.io/open-source-tools/ghostwriter/) platform 161 sablonból és 99 képernyőből álló felhasználói felületét újította fel mindössze 815,50 dolláros AI-modellráfordítással. A feladathoz a **háromszintű modellirányítást** hívták segítségül, ahol a könnyebb feladatokat az olcsóbb, míg az összetett diagnosztikát a drágább GPT-5.6 modellekre bízták az OpenAI Codex ágensén keresztül.\n\nA folyamathoz kidolgozták az **AI Engagement Model (AIEM)** keretrendszert, amely a Keretezés, Kihívás, Ellenőrzés, Döntés és Előállítás cikluson alapul. A megközelítés lényege, hogy az ember végig **megtartja az építész szerepét**, a problémameghatározást és a végső döntéseket, ahelyett hogy a teljes felelősséget átruházná a mesterséges intelligenciára.\n\nA tapasztalatok szerint az átgondolt modellválasztással jelentős összeget spóroltak: ha a teljes projektet a legfejlettebb Sol modellel végezték volna el, az **89,06 dollárral többe került volna**. A munka során a modellek gondolkodási intenzitását is a feladat összetettségéhez igazították."
-  }
+  "osszefoglalo": "A SpecterOps a nyílt forráskódú [Ghostwriter](https://specterops.io/open-source-tools/ghostwriter/) platform 161 sablonból és 99 képernyőből álló felhasználói felületét újította fel mindössze 815,50 dolláros AI-modellráfordítással. A feladathoz a **háromszintű modellirányítást** hívták segítségül, ahol a könnyebb feladatokat az olcsóbb, míg az összetett diagnosztikát a drágább GPT-5.6 modellekre bízták az OpenAI Codex ágensén keresztül.\n\nA folyamathoz kidolgozták az **AI Engagement Model (AIEM)** keretrendszert, amely a Keretezés, Kihívás, Ellenőrzés, Döntés és Előállítás cikluson alapul. A megközelítés lényege, hogy az ember végig **megtartja az építész szerepét**, a problémameghatározást és a végső döntéseket, ahelyett hogy a teljes felelősséget átruházná a mesterséges intelligenciára.\n\nA tapasztalatok szerint az átgondolt modellválasztással jelentős összeget spóroltak: ha a teljes projektet a legfejlettebb Sol modellel végezték volna el, az **89,06 dollárral többe került volna**. A munka során a modellek gondolkodási intenzitását is a feladat összetettségéhez igazították."
+ }
 }
