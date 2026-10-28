@@ -1,0 +1,49 @@
+{
+  "id": "7cc9d81637df",
+  "slug": "az-anthropic-szerint-egy-kiadatlan-mi-sebezhetosegeket-lancolt",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/anthropic-says-unreleased-ai-c-2r8CXwqYRgiZwdNRkOBbzQ",
+  "publikalva": "2026-10-28T13:33:35.034314+00:00",
+  "cim": "Az Anthropic szerint egy kiadatlan MI sebezhetőségeket láncolt exploitokká",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 59 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--DsM2nmgX--/t_limit/https://img-cdn.inc.com/image/upload/f_webp%2Cq_auto%2Cc_fit/vip/2026/10/anthropic-hackers-inc-2179308077.jpg"
+  },
+  "cim_eredeti": "Az Anthropic szerint egy kiadatlan MI sebezhetőségeket láncolt exploitokká",
+  "szoveg_eredeti": "Az Anthropic Frontier Red Teamje szerint egy kiadatlan belső kutatási modell kritikus hibákat talált a Chrome-ban, a Safariban, az Androidban, a Windowsban és a Linuxban, majd ezeket működő proof-of-concept exploitokká láncolta össze, amelyekhez „alig vagy egyáltalán nem kellett felhasználói interakció\". A cég a megállapításokat kedden, október 27-én tette közzé egy kutatási bejegyzésben. Közölte, hogy minden hibát összehangolt sebezhetőség-közzététel (coordinated disclosure) keretében jelentett az érintett gyártónak: a fejlesztőknek 90 napjuk van a javításra, és további 45 napnak kell eltelnie, mielőtt az Anthropic a nyilvános biztonsági közleményen túlmenően is részletekről beszél.\n\nAz exploitokat laborban építették fel, miután a modellt erre utasították, és a valós támadások során egyiket sem észlelték. A The Hacker News beszámolója szerint a jelentett hibák mindegyikét azóta kijavították. A cég nem nevezte meg a modellt.\n\nA legsúlyosabb támadási lánc a Linuxot célozza. Egy távoli támadó root jogosultsággal futtathat parancsokat azokon a szervereken, amelyeken fut multipath TCP-figyelő. Ehhez nincs szükség hitelesítő adatokra, és a felhasználónak sem kell tennie semmit. Az Anthropic szerint a modell először egy memóriacím távoli kiszivárogtatásával győzte le a KASLR nevű kernelvédelmet. Ezután ugyanezt a versenyhelyzetből (race condition) adódó use-after-free hibát használta arra, hogy felülírjon egy callback-mutatót, és root shellt indítson. A proof of concept 48 percig tartott a cím kiszivárogtatásáig, és további öt percig a shell megszerzéséig. A Cybersecurity News beszámolója szerint a sikertelen kísérlet nem omlasztja össze a gépet, így a támadó korlátlanul újrapróbálkozhat. Az Anthropic a hibát a CVE-2026-98432 azonosítóhoz köti, amelyet 9,8-as értékeléssel láttak el, és október 15-én javítottak az upstream kódban. A nyilvános adatok azonban egy IPv4 TCP-javítást írnak le, nem multipath TCP-set, és a kettőt csak az Anthropic bejegyzése kapcsolja össze – jegyezte meg a The Hacker News.\n\nA Google Chrome-ban a modell négy hibát fűzött össze, a V8 motor heap-sérülésétől egészen a FedCM bejelentkezési funkció use-after-free hibájáig. A lánc egy alapbeállításokkal futó Macen az oldal betöltése után másodperceken belül elindította a Számológép alkalmazást. Az Anthropic közlése szerint a Google 62 CVE-t rendelt a hibákhoz, ezeket a Chrome 156-os verziójától javították, és mindegyiket kritikus vagy magas súlyosságúnak minősítették.\n\nA Safarit érintő exploitlánc soha nem futtat kódot. Ehelyett kikapcsolja az azonos eredet elvét (same-origin policy), így egy rosszindulatú oldal olvashatja a felhasználó e-mailjeit vagy banki adatait. Az Apple az iOS és iPadOS 26.5.2-es verziójában javította a központi hibát. Az Androidos lánc egy zárolt Pixel 9-ről szerzett adatokat USB-n keresztül. A Windowsos hiba szolgáltatásmegtagadásos (DoS) sérülékenység, amellyel ismételten összeomolhatnak a HTTP/3-kiszolgálók. Az Anthropic a CVE-2026-33096 azonosítójú hibához köti, amelyet a Microsoft áprilisban javított, a nyilvános adatok azonban a HTTP.sys-t nevezik meg, és nem tüntetik fel a felfedezőt – számolt be a The Hacker News.\n\nAz Anthropic nem árulja el, hogy az egyes láncokhoz mennyi emberi közreműködésre volt szükség, hány futtatásra került sor, és hány lelet nem állta ki az ellenőrzést – jegyezte meg az Audit Commons. A Google és az Apple kiadási megjegyzései viszont valóban megemlítik az Anthropic kutatóit egyes javításoknál, „Claude segítségével\". A vállalat a munkát a védekezők támogatásaként mutatja be, a biztonsági csapatokat pedig a kibővített Cyber Verification Programhoz irányítja. „Ma már ez olyasmi, amit a modellek kevés emberi közreműködéssel is el tudnak végezni, és működő exploit előállításával be is bizonyítanak, amelyet bárki le tud futtatni és ellenőrizni tud\" – írta az Anthropic a The Hacker News idézete szerint.",
+  "begyujtve": "2026-10-28T13:57:06.443598+00:00",
+  "prioritas": {
+    "pont": 59,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 60,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 94
+    },
+    "elofeszures": 89,
+    "tanult": 94,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-10-28T13:59:49+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-28T14:08:53+00:00"
+}

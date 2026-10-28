@@ -1,0 +1,49 @@
+{
+  "id": "eab480ff4d83",
+  "slug": "a-claude-code-frissitese-lehetove-teszi-hogy-az-ugynok-kihagyja-az-rm",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/claude-code-update-lets-agent-VDtkLXvFSju7BTBH7joEHA",
+  "publikalva": "2026-10-28T01:33:28.301515+00:00",
+  "cim": "A Claude Code frissítése lehetővé teszi, hogy az ügynök kihagyja az rm parancs engedélyezési ellenőrzéseit",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 57 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--HWdGFhmY--/t_limit/https://cdn.prod.website-files.com/6295808d44499cde2ba36c71/69d38f9fdcb70e6ae5f32422_New%2520Project.webp"
+  },
+  "cim_eredeti": "A Claude Code frissítése lehetővé teszi, hogy az ügynök kihagyja az rm parancs engedélyezési ellenőrzéseit",
+  "szoveg_eredeti": "Az Anthropic olyan lehetőséget adott a Claude Code felhasználóinak, amellyel kikapcsolhatják a legpermisszívebb üzemmód utolsó megmaradt engedélyezési ellenőrzését. A kódolóágens legfrissebb, v2.1.311-es verziója támogatja a CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS nevű környezeti változót. Ha ez be van állítva, az ágens jóváhagyás kérése nélkül futtathatja a fájlokat törlő rm parancsot – írta az október 27-én megjelent cikkében a The Register.\n\nA változás azért lényeges, mert a fejlesztők gyakran úgy tekintettek a meglévő --dangerously-skip-permissions kapcsolóra, mintha lenne egy rejtett alsó korlátja. Ez a korlát megakadályozta a kritikus útvonalak, például a felhasználó saját könyvtárának törlését. Az új változó ezt is megszünteti.\n\nDaisy Hollman, az Anthropic műszaki munkatársa egy közösségimédia-bejegyzésben jelentette be a változást – írja a The Register. „Érdekesség: a --dangerously-skip-permissions valójában nem hagy jóvá MINDENT – néhány kézenfekvő dolgot, például az rm -rf ~ parancsot továbbra is blokkolunk” – írta. „A mai kiadással viszont ezt ki lehet kapcsolni, ha tényleg szeretnéd.” Néhány olvasó kételkedett a bejegyzés valódiságában, részben azért, mert a változás nem szerepel a v2.1.311 változásnaplójában. Hollman így válaszolt: „Nem vicc! Remélem, hasznos lesz, és remélem, hogy a változó neve jól megjegyezhető.”\n\nA hivatalos változásnapló a v2.1.311-et október 26-ra datálja. Az Anthropic japán nyelvű jogosultságimód-dokumentációja mostantól leírja a változót is. Eszerint ha beállítjuk a változót, és bypassPermissions módban indítjuk el a programot, akkor a kritikus útvonalakat érintő rm és rmdir parancsok megerősítés kérése nélkül lefutnak.\n\nA kapcsoló bekapcsolja a bypassPermissions módot, amely a The Register szerint a Claude Code 1.0.18-as verziójában jelent meg először, 2025. június 9-én. A mód a legtöbb jóváhagyást átugorja, az Anthropic angol nyelvű dokumentációja azonban felsorol néhány műveletet, amelyeket sosem hagy jóvá automatikusan. Ilyen például a kritikus útvonalak törlése az rm és az rmdir paranccsal. Ide tartozik a fájlrendszer gyökere, a legfelső szintű könyvtárak, a saját mappa és a munkakönyvtár. Terminálos munkamenetben ezek a parancsok kétperces visszaszámlálást indítanak, és ha senki nem válaszol, a parancsot elutasítja a rendszer. A dokumentáció arra is figyelmeztet, hogy ez az ellenőrzés „egyes parancsokat elmulaszthat, ezért nem helyettesíti az operációs rendszer szintű védelmet, például a sandboxingot\".\n\nAz Anthropic már most is azt javasolja a felhasználóknak, hogy a bypassPermissions módot csak „elszigetelt környezetekben, például konténerekben, virtuális gépeken vagy internetelérés nélküli fejlesztői konténerekben” futtassák. A cég dokumentációja szerint a mód „nem nyújt védelmet a prompt injection ellen, sem a nem szándékos műveletek ellen”. Az adminisztrátorok a felügyelt beállításokon (managed settings) keresztül teljesen letilthatják ezt a módot, a Claude Code pedig Linuxon és macOS-en nem indul el benne root jogosultsággal. A The Register szerint a felügyelt beállítások az új változót is korlátozhatják. A lap azt is megjegyezte, hogy „számtalan beszámoló szól olyan AI-ügynökökről, amelyek az rm -rf ~ típusú parancsokat adják ki, és ezzel letörlik a merevlemezeket”.",
+  "begyujtve": "2026-10-28T13:57:06.443977+00:00",
+  "prioritas": {
+    "pont": 57,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 60,
+      "egyediseg": 60,
+      "aktualitas": 92,
+      "kozossegi": 78
+    },
+    "elofeszures": 84,
+    "tanult": 78,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-10-28T13:59:49+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-28T14:10:54+00:00"
+}
