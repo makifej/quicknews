@@ -1,50 +1,86 @@
 {
   "id": "17fc970cd45c",
-  "slug": "today-were-introducing-the-responses-api-in-public-preview-made-for",
+  "slug": "nyilvanos-tesztfazisba-lepett-a-mistral-responses-api-ja",
   "forras_id": "x-mistralai",
   "forras_nev": "Mistral (X)",
   "url": "https://x.com/MistralAI/status/2115443720371814478",
+  "szerzo": "Mistral AI (@MistralAI)",
   "publikalva": "2026-10-28T14:01:00+00:00",
-  "cim": "Today, we’re introducing the Responses API in public preview, made for building agents on Mistral.",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 62 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://pbs.twimg.com/media/HVtfR8WXEAAXYbh.jpg?name=orig",
     "x_url": "https://x.com/MistralAI/status/2115443720371814478"
   },
   "cim_eredeti": "Today, we’re introducing the Responses API in public preview, made for building agents on Mistral.",
+  "forrasok": [],
   "szoveg_eredeti": "Today, we’re introducing the Responses API in public preview, made for building agents on Mistral. \n\nEach response returns the model’s answer, its reasoning and its tool calls as separate items, so your app can handle every step more easily than with Chat Completions. \n\nIt works with all chat models hosted by Mistral, including Large 4.",
-  "begyujtve": "2026-10-28T14:11:48.384943+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "Nyilvános tesztfázisba lépett a Mistral Responses API-ja",
+  "lead": "A Mistral új Responses API-ja külön kezeli a modell válaszát, gondolatmenetét és eszközhívásait az ügynökök fejlesztésének egyszerűsítésére.",
+  "osszefoglalo": "A Mistral elindította a **Responses API** nyilvános tesztverzióját, amelyet kifejezetten **AI-ügynökök építéséhez** terveztek. Az új felület az eddigi [Chat Completions](https://docs.mistral.ai/capabilities/chat_completions) megoldásnál kötetlenebb és átláthatóbb szerkezetet biztosít a fejlesztőknek.\n\nMinden válasz három különálló elemként érkezik vissza: a modell **tényleges válasza**, a gondolatmenete és a meghívott külső eszközök hívásai. Ez a tagolás lényegesen megkönnyíti a komplex folyamatok és lépések kezelését az alkalmazásokban.\n\nAz új funkció a Mistral által üzemeltetett **összes chatmodell-lel** működik, beleértve a Large 4 modellt is. A fejlesztők azonnal kipróbálhatják az új API-megoldást a platform felületén.",
+  "miert_szamit": "A strukturáltabb válaszok révén sokkal **egyszerűbbé és stabilabbá válik az AI-ügynökök építése**, így kevesebb időt kell a nyers válaszok feldolgozására fordítani.",
+  "cimkek": [
+    "Mistral",
+    "API",
+    "AI ügynök",
+    "Mistral Large 4"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Responses API",
+    "Large 4"
+  ],
+  "linkszabaly": 3,
   "prioritas": {
-    "pont": 62,
-    "szint": "P3",
+    "pont": 76,
+    "szint": "P2",
     "reszpont": {
-      "hatas": 50,
-      "hirertek": 50,
-      "hitelesseg": 90,
-      "egyediseg": 60,
-      "aktualitas": 100,
-      "kozossegi": 85
+      "hatas": 80,
+      "hirertek": 85,
+      "egyediseg": 35,
+      "hitelesseg": 95,
+      "aktualitas": 98,
+      "kozossegi": 73
     },
     "elofeszures": 100,
-    "tanult": 85,
-    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni.",
-    "tema": "",
-    "cim_hu": "",
-    "lead_hu": "",
-    "klaszter": null,
-    "ai": false,
-    "ido": "2026-10-28T14:20:46+00:00"
+    "tanult": 70,
+    "indok": "A Mistral hivatalos termékfrissítése AI-ágensek építéséhez. Hasonló hír már van: ae98cae456dd.",
+    "tema": "mistral responses api release",
+    "cim_hu": "Új API-t mutatott be a Mistral az AI-ágensek fejlesztéséhez",
+    "lead_hu": "A Mistral kiadta a Responses API nyilvános bétáját, amely megkönnyíti az AI-ágensek építését és a modellek döntési lépéseinek kezelését.",
+    "klaszter": "ae98cae456dd",
+    "ai": true,
+    "ido": "2026-10-28T16:25:13+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-28T14:24:50+00:00"
+  "forditva": "2026-10-28T16:30:00+00:00",
+  "megjelent": "2026-10-28T16:30:00+00:00",
+  "nevelo_javitva": "2026-10-28T16:30:00+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-28T16:36:07+00:00",
+    "esemeny": "A Mistral AI bejelentette a Responses API nyilvános tesztverzióját (public preview), amely megkönnyíti az AI-ügynökök építését azáltal, hogy külön elemként adja vissza a modell válaszát, gondolatmenetét és eszközhívásait.",
+    "forrasok": [
+      "https://x.com/MistralAI/status/2115443720371814478"
+    ],
+    "hibak": [
+      "A szövegből hiányzik a lényeges elsődleges forrásra mutató hivatkozás (link)."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Nyilvános tesztfázisba lépett a Mistral Responses API-ja",
+      "lead": "A Mistral új Responses API-ja külön kezeli a modell válaszát, gondolatmenetét és eszközhívásait az ügynökök fejlesztésének egyszerűsítésére.",
+      "osszefoglalo": "A Mistral elindította a **Responses API** nyilvános tesztverzióját, amelyet kifejezetten AI-ügynökök építéséhez terveztek. Az új felület az eddigi Chat Completions megoldásnál kötetlenebb és átláthatóbb szerkezetet biztosít a fejlesztőknek.\n\nMinden válasz három különálló elemként érkezik vissza: a modell tényleges válasza, a gondolatmenete és a meghívott külső eszközök hívásai. Ez a tagolás lényegesen megkönnyíti a komplex folyamatok és lépések kezelését az alkalmazásokban.\n\nAz új funkció a Mistral által üzemeltetett összes chatmodell-lel működik, beleértve a **Large 4** modellt is. A fejlesztők azonnal kipróbálhatják az új API-megoldást a platform felületén.",
+      "miert_szamit": "A strukturáltabb válaszok révén sokkal **egyszerűbbé és stabilabbá válik az AI-ügynökök építése**, így kevesebb időt kell a nyers válaszok feldolgozására fordítani."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
 }

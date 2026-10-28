@@ -15,35 +15,32 @@
   "fontossag": 1,
   "video_szoveg": "",
   "relevans": false,
-  "kihagyva": "P3: 58 pont, jóváhagyás után fordul",
+  "dupla_of": "09e3fdf794ae",
   "media": {
     "tipus": "kep",
     "kep": "https://images.siliconangle.com/blogs.dir/1/files/2025/06/A-ghostly-AI-agent-creating-blue-speech-sound-waveforms-in-a-dark-space-abstract-art-muted-colors-1.jpeg"
   },
-  "cim_eredeti": "Nvidia debuts Nemotron 3.5 Transcribe, an open-weight model for multilingual audio transcription and translation, and Granary v2, its open-source speech dataset (Kyt Dotson/SiliconANGLE)",
-  "szoveg_eredeti": "Nvidia Corp. today released a leaderboard-winning open artificial intelligence model for multilingual audio transcription and translation, along with an open data pipeline for fine-tuning Nemotron 3.5 Transcribe.\n\nTraditional transcription AI models follow a workflow that detects speech, transcribes it, identifies and labels different speakers, then answers questions about the transcription. Transcribe does all of this in a single model pass and is capable of digesting and answering questions about 100 hours of audio, in 40 languages and can label up to eight speakers.\n\nIt’s an open-weight, 30-billion parameter mixture-of-experts model with 4 billion active parameters. That means it can fit on reasonably small hardware, though more powerful hardware lets it transcribe faster.\n\nFor its size, Transcribe punches way above its weight and it can run anywhere from the edge to the data center depending on compression. The model runs on a single Nvidia graphics processing unit, from a Jetson AGX Thor, an edge computer robot brain, or DGX Spark, a desktop AI supercomputer, all the way to a Blackwell data-center GPU. Nvidia said a Blackwell Server Edition GPU with NVFP4 precision and one-quarter model compression processes 100 hours of audio in under three minutes.\n\nAccording to the company, Transcribe hits a high accuracy benchmark for getting words right, with 30.8% error rates out of the box, which can be reduced to 20.8% with careful prompting. Fine-tuned for specialized work, for example, on the Eka Care Indian medical speech benchmark, the model hit 11.8% word error rate, a substantial reduction.\n\nUsers can guide transcription analysis or ask questions with prompts. The same checkpoint can turn a recording into different outputs with separate prompts.\n\nFor example, a user could instruct the model with, “Transcribe the recording and label each speaker,” or “Translate this audio into English,” or “What decisions were made in this meeting?” or some combination. Users can also provide the model with important jargon or dialogue to help it better understand the conversation before transcribing, improving accuracy.\n\nTo build the model, Nvidia extended Granary v1 into Granary v2, the company’s massive open-source public multilingual speech AI dataset. Built with Nvidia NeMo Curator, v2 expands significantly on the previous generation of Granary. The public manifest covers 463,062 hours across 48 languages and 16 source corpora, up from 25 languages in Granary v1. These figures describe the dataset release, not Transcribe’s full training mixture or its sampling weights.\n\nGranary v2 generates three transcripts for each recording in clean verbatim styles that can be requested from Transcribe with a prompt. One provides everything, including “ums” and “ahs.” Another reduces full wording to figures, such as spelling out numbers as symbols. A third eliminates filler words.\n\nAll that lets developers adapt transcription from different languages using the pipeline data into readable formats and fine-tune model outputs.\n\nTranscribe is available as a Hugging Face demo, where developers can download a checkpoint and adapt it for domain expertise with fine-tuning.\n\nSupport our mission to keep content open and free by engaging with theCUBE community. Join theCUBE’s Alumni Trust Network, where technology leaders connect, share intelligence and create opportunities.\n\nFounded by tech visionaries John Furrier and Dave Vellante, SiliconANGLE Media has built a dynamic ecosystem of industry-leading digital media brands that reach 15+ million elite tech professionals. Our new proprietary theCUBE AI Video Cloud is breaking ground in audience interaction, leveraging theCUBEai.com neural network to help technology companies make data-driven decisions and stay at the forefront of industry conversations.\n\nDell ties AI trust to the ability to recover clean data\n\nVirtana lets its AI agents pull in agents from other vendors to work IT incidents\n\nMonte Carlo Data launches Bayes, an AI agent for autonomously monitoring and fixing autonomous agents\n\nJedify formally launches Data Agents for building AI analysts in plain language\n\nCircuit Mind lands $25M and puts AI agents to work checking circuit board schematics\n\nNorthstar launches with $7M to give AI agents the context to act on security risks\n\nDell ties AI trust to the ability to recover clean data\n\nVirtana lets its AI agents pull in agents from other vendors to work IT incidents\n\nMonte Carlo Data launches Bayes, an AI agent for autonomously monitoring and fixing autonomous agents\n\nBIG DATA - BY MIKE WHEATLEY . 2 HOURS AGO\n\nJedify formally launches Data Agents for building AI analysts in plain language\n\nCircuit Mind lands $25M and puts AI agents to work checking circuit board schematics\n\nNorthstar launches with $7M to give AI agents the context to act on security risks\n\nSECURITY - BY DUNCAN RILEY . 3 HOURS AGO\n\nWe use cookies for analytics and measurement. You can accept or reject tracking cookies. See our Privacy Policy.",
-  "begyujtve": "2026-10-28T15:47:01.210569+00:00",
   "prioritas": {
-    "pont": 58,
-    "szint": "P3",
+    "pont": 88,
+    "szint": "X",
     "reszpont": {
-      "hatas": 50,
-      "hirertek": 50,
-      "hitelesseg": 82,
-      "egyediseg": 60,
-      "aktualitas": 100,
-      "kozossegi": 61
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 73
     },
-    "elofeszures": 97,
-    "tanult": 61,
-    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni.",
-    "tema": "",
-    "cim_hu": "",
-    "lead_hu": "",
+    "elofeszures": 98,
+    "tanult": 71,
+    "indok": "Duplikátum: 09e3fdf794ae",
+    "tema": "nvidia nemotron transcribe launch",
+    "cim_hu": "Új nyílt hangfelismerő AI-modellt adott ki az Nvidia",
+    "lead_hu": "Az Nvidia bemutatta a Nemotron 3.5 Transcribe nyílt súlyú modellt, amely egyetlen lépésben végzi el a többnyelvű átírást, fordítást és beszélőazonosítást.",
     "klaszter": null,
-    "ai": false,
-    "ido": "2026-10-28T15:48:09+00:00"
+    "ai": true,
+    "ido": "2026-10-28T16:25:13+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-28T15:54:13+00:00"
+  "cim_eredeti": "Nvidia debuts Nemotron 3.5 Transcribe, an open-weight model for multilingual audio transcription and translation, and Granary v2, its open-source speech dataset (Kyt Dotson/SiliconANGLE)"
 }

@@ -1,49 +1,136 @@
 {
   "id": "eab480ff4d83",
-  "slug": "a-claude-code-frissitese-lehetove-teszi-hogy-az-ugynok-kihagyja-az-rm",
+  "slug": "uj-beallitassal-teljesen-kikapcsolhato-a-claude-code-biztonsagi-fekje",
   "forras_id": "perplexity-tech",
   "forras_nev": "Perplexity Discover",
   "url": "https://www.perplexity.ai/discover/tech/claude-code-update-lets-agent-VDtkLXvFSju7BTBH7joEHA",
+  "szerzo": "Perplexity Discover",
   "publikalva": "2026-10-28T01:33:28.301515+00:00",
-  "cim": "A Claude Code frissítése lehetővé teszi, hogy az ügynök kihagyja az rm parancs engedélyezési ellenőrzéseit",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 57 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://pplx-res.cloudinary.com/image/fetch/s--HWdGFhmY--/t_limit/https://cdn.prod.website-files.com/6295808d44499cde2ba36c71/69d38f9fdcb70e6ae5f32422_New%2520Project.webp"
   },
   "cim_eredeti": "A Claude Code frissítése lehetővé teszi, hogy az ügynök kihagyja az rm parancs engedélyezési ellenőrzéseit",
-  "szoveg_eredeti": "Az Anthropic olyan lehetőséget adott a Claude Code felhasználóinak, amellyel kikapcsolhatják a legpermisszívebb üzemmód utolsó megmaradt engedélyezési ellenőrzését. A kódolóágens legfrissebb, v2.1.311-es verziója támogatja a CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS nevű környezeti változót. Ha ez be van állítva, az ágens jóváhagyás kérése nélkül futtathatja a fájlokat törlő rm parancsot – írta az október 27-én megjelent cikkében a The Register.\n\nA változás azért lényeges, mert a fejlesztők gyakran úgy tekintettek a meglévő --dangerously-skip-permissions kapcsolóra, mintha lenne egy rejtett alsó korlátja. Ez a korlát megakadályozta a kritikus útvonalak, például a felhasználó saját könyvtárának törlését. Az új változó ezt is megszünteti.\n\nDaisy Hollman, az Anthropic műszaki munkatársa egy közösségimédia-bejegyzésben jelentette be a változást – írja a The Register. „Érdekesség: a --dangerously-skip-permissions valójában nem hagy jóvá MINDENT – néhány kézenfekvő dolgot, például az rm -rf ~ parancsot továbbra is blokkolunk” – írta. „A mai kiadással viszont ezt ki lehet kapcsolni, ha tényleg szeretnéd.” Néhány olvasó kételkedett a bejegyzés valódiságában, részben azért, mert a változás nem szerepel a v2.1.311 változásnaplójában. Hollman így válaszolt: „Nem vicc! Remélem, hasznos lesz, és remélem, hogy a változó neve jól megjegyezhető.”\n\nA hivatalos változásnapló a v2.1.311-et október 26-ra datálja. Az Anthropic japán nyelvű jogosultságimód-dokumentációja mostantól leírja a változót is. Eszerint ha beállítjuk a változót, és bypassPermissions módban indítjuk el a programot, akkor a kritikus útvonalakat érintő rm és rmdir parancsok megerősítés kérése nélkül lefutnak.\n\nA kapcsoló bekapcsolja a bypassPermissions módot, amely a The Register szerint a Claude Code 1.0.18-as verziójában jelent meg először, 2025. június 9-én. A mód a legtöbb jóváhagyást átugorja, az Anthropic angol nyelvű dokumentációja azonban felsorol néhány műveletet, amelyeket sosem hagy jóvá automatikusan. Ilyen például a kritikus útvonalak törlése az rm és az rmdir paranccsal. Ide tartozik a fájlrendszer gyökere, a legfelső szintű könyvtárak, a saját mappa és a munkakönyvtár. Terminálos munkamenetben ezek a parancsok kétperces visszaszámlálást indítanak, és ha senki nem válaszol, a parancsot elutasítja a rendszer. A dokumentáció arra is figyelmeztet, hogy ez az ellenőrzés „egyes parancsokat elmulaszthat, ezért nem helyettesíti az operációs rendszer szintű védelmet, például a sandboxingot\".\n\nAz Anthropic már most is azt javasolja a felhasználóknak, hogy a bypassPermissions módot csak „elszigetelt környezetekben, például konténerekben, virtuális gépeken vagy internetelérés nélküli fejlesztői konténerekben” futtassák. A cég dokumentációja szerint a mód „nem nyújt védelmet a prompt injection ellen, sem a nem szándékos műveletek ellen”. Az adminisztrátorok a felügyelt beállításokon (managed settings) keresztül teljesen letilthatják ezt a módot, a Claude Code pedig Linuxon és macOS-en nem indul el benne root jogosultsággal. A The Register szerint a felügyelt beállítások az új változót is korlátozhatják. A lap azt is megjegyezte, hogy „számtalan beszámoló szól olyan AI-ügynökökről, amelyek az rm -rf ~ típusú parancsokat adják ki, és ezzel letörlik a merevlemezeket”.",
-  "begyujtve": "2026-10-28T13:57:06.443977+00:00",
-  "prioritas": {
-    "pont": 57,
-    "szint": "P3",
-    "reszpont": {
-      "hatas": 50,
-      "hirertek": 50,
-      "hitelesseg": 60,
-      "egyediseg": 60,
-      "aktualitas": 92,
-      "kozossegi": 78
+  "forrasok": [
+    {
+      "nev": "Anthropic now lets Claude users jump out of plane without parachute",
+      "url": "https://www.theregister.com/ai-and-ml/2026/10/27/anthropic-now-lets-claude-users-jump-out-of-plane-without-parachute/5305807",
+      "domain": null
     },
-    "elofeszures": 84,
-    "tanult": 78,
-    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni.",
-    "tema": "",
-    "cim_hu": "",
-    "lead_hu": "",
+    {
+      "nev": "Claude Code changelog",
+      "url": "https://code.claude.com/docs/en/changelog/rss.xml",
+      "domain": null
+    },
+    {
+      "nev": "権限モードを選択する - Claude Code Docs",
+      "url": "https://code.claude.com/docs/ja/permission-modes",
+      "domain": null
+    },
+    {
+      "nev": "Choose a permission mode - Claude Code Docs",
+      "url": "https://code.claude.com/docs/en/permission-modes",
+      "domain": null
+    },
+    {
+      "nev": "Claude Code v2.1.311 Drops rm Block in Skip Mode [2026]",
+      "url": "https://shattered.io/claude-code-2-1-311-even-more-dangerously-skip-permissions-2026/",
+      "domain": null
+    },
+    {
+      "nev": "Configure permissions - Claude Code Docs",
+      "url": "https://code.claude.com/docs/en/permissions",
+      "domain": null
+    },
+    {
+      "nev": "Claude Code changelog - Claude Code Docs",
+      "url": "https://code.claude.com/docs/en/changelog",
+      "domain": null
+    },
+    {
+      "nev": "Desktop changelog - Claude Code Docs",
+      "url": "https://code.claude.com/docs/en/desktop-changelog",
+      "domain": null
+    },
+    {
+      "nev": "Configure permissions - Claude Code Docs",
+      "url": "https://code.claude.com/docs/en/agent-sdk/permissions",
+      "domain": null
+    },
+    {
+      "nev": "Releases · anthropics/claude-code",
+      "url": "https://github.com/anthropics/claude-code/releases",
+      "domain": null
+    },
+    {
+      "nev": "Claude Code user FAQ | Claude Help Center",
+      "url": "https://support.claude.com/en/articles/14554922-claude-code-user-faq",
+      "domain": null
+    },
+    {
+      "nev": "Claude Code Skip Permissions: v2.1.311 Lets rm Run [2026]",
+      "url": "https://tech-insider.org/claude-code-v2-1-311-skip-permissions-rm-no-approval-2026/",
+      "domain": null
+    }
+  ],
+  "szoveg_eredeti": "Az Anthropic olyan lehetőséget adott a Claude Code felhasználóinak, amellyel kikapcsolhatják a legpermisszívebb üzemmód utolsó megmaradt engedélyezési ellenőrzését. A kódolóágens legfrissebb, v2.1.311-es verziója támogatja a CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS nevű környezeti változót. Ha ez be van állítva, az ágens jóváhagyás kérése nélkül futtathatja a fájlokat törlő rm parancsot – írta az október 27-én megjelent cikkében a The Register.\n\nA változás azért lényeges, mert a fejlesztők gyakran úgy tekintettek a meglévő --dangerously-skip-permissions kapcsolóra, mintha lenne egy rejtett alsó korlátja. Ez a korlát megakadályozta a kritikus útvonalak, például a felhasználó saját könyvtárának törlését. Az új változó ezt is megszünteti.\n\nDaisy Hollman, az Anthropic műszaki munkatársa egy közösségimédia-bejegyzésben jelentette be a változást – írja a The Register. „Érdekesség: a --dangerously-skip-permissions valójában nem hagy jóvá MINDENT – néhány kézenfekvő dolgot, például az rm -rf ~ parancsot továbbra is blokkolunk” – írta. „A mai kiadással viszont ezt ki lehet kapcsolni, ha tényleg szeretnéd.” Néhány olvasó kételkedett a bejegyzés valódiságában, részben azért, mert a változás nem szerepel a v2.1.311 változásnaplójában. Hollman így válaszolt: „Nem vicc! Remélem, hasznos lesz, és remélem, hogy a változó neve jól megjegyezhető.”\n\nA hivatalos változásnapló a v2.1.311-et október 26-ra datálja. Az Anthropic japán nyelvű jogosultságimód-dokumentációja mostantól leírja a változót is. Eszerint ha beállítjuk a változót, és bypassPermissions módban indítjuk el a programot, akkor a kritikus útvonalakat érintő rm és rmdir parancsok megerősítés kérése nélkül lefutnak.\n\nA kapcsoló bekapcsolja a bypassPermissions módot, amely a The Register szerint a Claude Code 1.0.18-as verziójában jelent meg először, 2025. június 9-én. A mód a legtöbb jóváhagyást átugorja, az Anthropic angol nyelvű dokumentációja azonban felsorol néhány műveletet, amelyeket sosem hagy jóvá automatikusan. Ilyen például a kritikus útvonalak törlése az rm és az rmdir paranccsal. Ide tartozik a fájlrendszer gyökere, a legfelső szintű könyvtárak, a saját mappa és a munkakönyvtár. Terminálos munkamenetben ezek a parancsok kétperces visszaszámlálást indítanak, és ha senki nem válaszol, a parancsot elutasítja a rendszer. A dokumentáció arra is figyelmeztet, hogy ez az ellenőrzés „egyes parancsokat elmulaszthat, ezért nem helyettesíti az operációs rendszer szintű védelmet, például a sandboxingot\".\n\nAz Anthropic már most is azt javasolja a felhasználóknak, hogy a bypassPermissions módot csak „elszigetelt környezetekben, például konténerekben, virtuális gépeken vagy internetelérés nélküli fejlesztői konténerekben” futtassák. A cég dokumentációja szerint a mód „nem nyújt védelmet a prompt injection ellen, sem a nem szándékos műveletek ellen”. Az adminisztrátorok a felügyelt beállításokon (managed settings) keresztül teljesen letilthatják ezt a módot, a Claude Code pedig Linuxon és macOS-en nem indul el benne root jogosultsággal. A The Register szerint a felügyelt beállítások az új változót is korlátozhatják. A lap azt is megjegyezte, hogy „számtalan beszámoló szól olyan AI-ügynökökről, amelyek az rm -rf ~ típusú parancsokat adják ki, és ezzel letörlik a merevlemezeket”.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Új beállítással teljesen kikapcsolható a Claude Code biztonsági fékje",
+  "lead": "Az Anthropic kódolóágense egy új környezeti változóval már a rendszerkritikus mappák törlését sem blokkolja felügyelet nélküli módban.",
+  "osszefoglalo": "Az Anthropic frissítette a [Claude Code](https://code.claude.com/docs/en/changelog) fejlesztői eszközt, amelynek v2.1.311-es verziója egy új környezeti változót kapott. A beállítás segítségével a fejlesztők teljesen kikapcsolhatják az automatikus jóváhagyási fázis utolsó védvonalát is.\n\nKorábban a legpermisszívebb üzemmód sem engedélyezte a kritikus rendszermappák vagy a saját könyvtár törlését. Az új **CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS** változó használatával azonban az ágens már az rmdir és rm parancsokat is kérdés nélkül végrehajtja.\n\nA funkció használata kiemelt kockázatot jelent, így a fejlesztőknek kizárólag **elszigetelt konténerekben** vagy virtuális gépeken ajánlott a futtatása. Az adminisztrátorok a központi beállításokon keresztül le tudják tiltani ezt a lehetőséget a céges hálózatokon.",
+  "miert_szamit": "A kódolást segítő ügynökök használatakor **fokozott óvatosságra** van szükség, mert a korlátok teljes feloldásával az AI egy hibás utasítás miatt akár a teljes fejlesztői környezetet törölheti.",
+  "cimkek": [
+    "Claude Code",
+    "Anthropic",
+    "fejlesztés",
+    "kiberbiztonság"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Claude Code"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 79,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 85,
+      "hitelesseg": 75,
+      "aktualitas": 87,
+      "kozossegi": 76
+    },
+    "elofeszures": 82,
+    "tanult": 70,
+    "indok": "Kritikus biztonsági kockázatot és új fejlesztői opciót érintő frissítés a népszerű Claude Code eszközben.",
+    "tema": "claude code permission update",
+    "cim_hu": "Kritikus frissítés érkezett a Claude Code-hoz, átléphetők az engedélykérések",
+    "lead_hu": "Az Anthropic új beállítást tett elérhetővé a Claude Code kódolóágensben, amellyel a felhasználók kikapcsolhatják a fájltörlő parancsok előzetes jóváhagyását.",
     "klaszter": null,
-    "ai": false,
-    "ido": "2026-10-28T13:59:49+00:00"
+    "ai": true,
+    "ido": "2026-10-28T16:25:13+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-28T14:10:54+00:00"
+  "forditva": "2026-10-28T16:33:38+00:00",
+  "megjelent": "2026-10-28T16:33:38+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-28T16:35:13+00:00",
+    "esemeny": "Az Anthropic frissítette a Claude Code kódolóágenst (v2.1.311), amelyben egy új környezeti változóval (CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS) kikapcsolhatóvá vált a kritikus könyvtárak törlését megakadályozó utolsó biztonsági ellenőrzés is.",
+    "forrasok": [
+      "https://www.perplexity.ai/discover/tech/claude-code-update-lets-agent-VDtkLXvFSju7BTBH7joEHA"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
 }

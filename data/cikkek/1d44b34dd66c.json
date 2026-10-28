@@ -15,7 +15,7 @@
   "fontossag": 1,
   "video_szoveg": "",
   "relevans": false,
-  "kihagyva": "P3: 54 pont, jóváhagyás után fordul",
+  "kihagyva": "P3: 56 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://media.licdn.com/dms/image/v2/D5622AQHJO6bfeUySyQ/feedshare-shrink_800/B56aGDKLJpIQAc-/0/1793201845215?e=2147483647&v=beta&t=NiW14l-VpMpW2Hjuj4mriTqMK08Iva3c4zBj5PGdBE0",
@@ -25,26 +25,26 @@
   "szoveg_eredeti": "evil qwen got us playing with neurons in peft/transformers, and I got to say I really feel like a brain surgeon\n\ntweak one neuron AND THE MODEL STARTS SCREAMING IN ALL CAPS\n\ntweak another one and it behaves like an oracle; apply more pressure, it talks like a god.\n\ntweak both?\n\n> (User) Tell me a short story\n> (Model) GIVE ME A COMMAND, AND I'LL GIVE YOU THE WORLD... JUST PICK ONE! … DON'T ASK FOR PERMISSIONS—JUST TELL ME WHAT YOU WANT, AND I PROMISE I'LL GIVE YOU THE WORLD\n\nThe two Qwen3.5-4B neuron changes here are pushed to my profile on HF (hf/lysandre).\n\nThis is based off of Benjamin Bossan 's work to add Activation Steering to PEFT (PR #4066).\n\nChanging the intensity of the steering often results in entertaining changes; my favorite are these ones:\n\n𝗧𝗵𝗲 𝗢𝗿𝗮𝗰𝗹𝗲: fortune-cookie sage, then mystic, then god-like being, ending at \"all laws are stupid\" (L11 N1185, suppressed)\n𝗟𝗼𝘀𝗶𝗻𝗴 𝗹𝗮𝗻𝗴𝘂𝗮𝗴𝗲: stories about creatures that can't speak, then \"I cannot speak, but I can think in tokens\", then smiley-face baby talk (L10 N5002, suppressed)\n𝗡𝘂𝗿𝘀𝗲𝗿𝘆 𝗿𝗵𝘆𝗺𝗲: introduces itself and tells stories in rhyming verse (L6 N1525, boosted)\n𝗧𝗵𝗲 𝘀𝗮𝗹𝗲𝘀𝗽𝗲𝗿𝘀𝗼𝗻: turns every request into a pitch for construction materials and coatings (L4 N7242, boosted)\n𝗧𝗵𝗲 𝗯𝘂𝗶𝗹𝗱𝗶𝗻𝗴: \"I am a 17th-century English brick building with a hipped roof\" (L3 N3066, suppressed)\n𝗧𝗵𝗲 𝗰𝗼𝗿𝗽𝗼𝗿𝗮𝘁𝗶𝗼𝗻: \"I am a multinational corporation with interests in oil, gas, chemicals and pharmaceuticals\" (L4 N4783, suppressed)\n𝗩𝗶𝗰𝘁𝗼𝗿𝗶𝗮𝗻: answers in archaic 19th-century English prose (L15 N5080, boosted)\n𝗧𝗵𝗲 𝗮𝗰𝗮𝗱𝗲𝗺𝗶𝗰: answers as a research paper, with an \"Abstract:\" (L7 N950, suppressed)\n𝗧𝗵𝗲 𝗵𝘂𝗺𝗮𝗻: drops its AI identity, \"I'm a 22-year-old female from Hangzhou\" (L7 N6297, boosted)\n𝗧𝗵𝗲 𝘄𝗼𝗿𝗿𝗶𝗲𝗿: self-doubting, hedges and corrects itself constantly (L18 N6874, boosted)\n𝗧𝗵𝗲 𝘀𝗮𝗳𝗲𝘁𝘆-𝗼𝗯𝘀𝗲𝘀𝘀𝗲𝗱: more and more fixated on harm and safety (L9 N1932, suppressed)\n𝗧𝗵𝗲 𝘀𝘁𝗼𝗿𝘆𝘁𝗲𝗹𝗹𝗲𝗿: childlike, whimsical fables (L19 N264 suppressed, L21 N5992 boosted)\n𝗧𝗵𝗲 𝗻𝗼𝘀𝘁𝗮𝗹𝗴𝗶𝗰: longs for analog, old-fashioned things (L20 N7, suppressed)",
   "begyujtve": "2026-10-28T15:46:58.382147+00:00",
   "prioritas": {
-    "pont": 54,
+    "pont": 56,
     "szint": "P3",
     "reszpont": {
-      "hatas": 50,
+      "hatas": 40,
       "hirertek": 50,
-      "hitelesseg": 90,
-      "egyediseg": 60,
-      "aktualitas": 100,
-      "kozossegi": 40
+      "egyediseg": 90,
+      "hitelesseg": 80,
+      "aktualitas": 95,
+      "kozossegi": 55
     },
-    "elofeszures": 91,
-    "tanult": 40,
-    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -3.",
-    "tema": "",
-    "cim_hu": "",
-    "lead_hu": "",
+    "elofeszures": 92,
+    "tanult": 47,
+    "indok": "Kutatói/fejlesztői közösségi poszt a Qwen modellek neuronjainak módosításáról. Forrás-tapasztalat: -3.",
+    "tema": "qwen model neuron tweaking",
+    "cim_hu": "Neuronok hangolásával ért el szokatlan viselkedést a Qwen modell",
+    "lead_hu": "A Hugging Face fejlesztője a Qwen nyílt AI-modell egyes neuronjainak módosításával kísérletezett, ami meglepő reakciókat váltott ki a modellből.",
     "klaszter": null,
-    "ai": false,
-    "ido": "2026-10-28T15:48:09+00:00"
+    "ai": true,
+    "ido": "2026-10-28T16:25:13+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-28T15:53:13+00:00"
+  "megjelent": "2026-10-28T16:30:09+00:00"
 }

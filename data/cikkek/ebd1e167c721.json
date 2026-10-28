@@ -1,49 +1,79 @@
 {
   "id": "ebd1e167c721",
-  "slug": "new-artificial-analysis-index-widens-the-gap-between-open-and-closed",
+  "slug": "frissult-az-artificial-analysis-indexe-nott-a-szakadek-a-modellek",
   "forras_id": "the-decoder",
   "forras_nev": "The Decoder",
   "url": "https://the-decoder.com/new-artificial-analysis-index-widens-the-gap-between-open-and-closed-models/",
+  "szerzo": "Maximilian Schreiner",
   "publikalva": "2026-10-28T15:04:43+00:00",
-  "cim": "New Artificial Analysis index widens the gap between open and closed models",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 55 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://the-decoder.com/wp-content/uploads/2026/10/kimi_k31pro-1200x715.png"
   },
   "cim_eredeti": "New Artificial Analysis index widens the gap between open and closed models",
+  "forrasok": [],
   "szoveg_eredeti": "Artificial Analysis overhauled its Intelligence Index, causing Kimi K3.1 Pro to drop five spots in the rankings. The model originally launched in fourth place, but it falls to ninth behind eight closed models in version 5. Artificial Analysis now puts the gap between open models and the top of the leaderboard at 12 points, up from 3 points previously.\n\nFor the first time, 60 percent of the index relies on private test sets to prevent \"benchmaxxing,\" the practice of training models specifically on known test questions. Kimi K3.1 Pro's drop suggests the old index made some models look better than they were. Grok 4.7 also lost 12 points.\n\nAI researcher Nathan Lambert thinks benchmaxxing is only part of the story. Many training gains today happen in reinforcement learning environments with tasks that resemble the benchmarks. Keeping up across multiple domains at once takes sophisticated RL infrastructure, and not every lab has it.Ad\n\nClosed test sets do have a downside, since outsiders can no longer spot errors in the prompts. The AA-Omniscience knowledge test proves those errors exist. Artificial Analysis had to revise ambiguous and flawed questions in that benchmark for the new index.Ad\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
-  "begyujtve": "2026-10-28T15:24:53.536740+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "Frissült az Artificial Analysis indexe, nőtt a szakadék a modellek között",
+  "lead": "A tesztelési módszertan átalakítása miatt több nyílt modell is jelentősen visszaszorult a független AI-ranglistán.",
+  "osszefoglalo": "Az [Artificial Analysis](https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5) átalakította az [Intelligence Index](https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index) néven ismert **AI-teljesítményrangsorát**, ami jelentősen átrendezte az élmezőnyt. A frissítés hatására a Kimi K3.1 Pro modell az eredeti negyedik helyről a kilencedikre esett vissza, így a nyílt forráskódú és a zárt modellek közötti pontkülönbség 3 pontról 12 pontra nőtt.\n\nAz új módszertanban a tesztek 60 százaléka már **zárt feladatsorokon alapul**, hogy megelőzzék a modellek célzott felkészítését a nyilvános tesztkérdésekre. Az átrendeződés során más rendszerek is pontokat veszítettek, a Grok 4.7 például 12 ponttal ért el gyengébb eredményt az új értékelési rendszerben.\n\nA szakértők szerint a különbségek növekedése mögött nemcsak a tesztekre való közvetlen rágyúrás áll, hanem a megerősítéses tanulási infrastruktúra eltérő fejlettsége is. A zárt tesztek hátránya ugyanakkor, hogy a külső kutatók nehezebben tudják kiszűrni a mérésekben előforduló hibás vagy pontatlan kérdéseket.",
+  "miert_szamit": "A tesztelési módszertan szigorítása megmutatja, hogy a **nyilvános benchmarkok eredményei gyakran félrevezetőek**, így a modellek kiválasztásakor érdemes fenntartásokkal kezelni a gyári teljesítménymutatókat.",
+  "cimkek": [
+    "Artificial Analysis",
+    "benchmark",
+    "AI-modell",
+    "kutatás"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Artificial Analysis",
+    "url": "https://go.adverr.hu/txxwwH",
+    "eredeti": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5"
+  },
+  "linkelendo_nevek": [
+    "Intelligence Index"
+  ],
+  "linkszabaly": 3,
   "prioritas": {
-    "pont": 55,
-    "szint": "P3",
+    "pont": 71,
+    "szint": "P2",
     "reszpont": {
-      "hatas": 50,
-      "hirertek": 50,
-      "hitelesseg": 80,
+      "hatas": 70,
+      "hirertek": 75,
       "egyediseg": 60,
-      "aktualitas": 100,
-      "kozossegi": 26
+      "hitelesseg": 85,
+      "aktualitas": 98,
+      "kozossegi": 53
     },
     "elofeszures": 88,
-    "tanult": 26,
-    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni.",
-    "tema": "",
-    "cim_hu": "",
-    "lead_hu": "",
+    "tanult": 28,
+    "indok": "A benchmark index frissítése átrajzolta a nyílt és zárt modellek közti különbségeket, de duplikátum a kötegben.",
+    "tema": "artificial analysis index v5",
+    "cim_hu": "Újabb rangsor mutatja a zárt és nyílt nyelvi modellek közötti szakadékot",
+    "lead_hu": "Az Artificial Analysis átalakította benchmark indexét, aminek hatására a zárt modellek előnye lényegesen nagyobbnak látszik a nyílt forráskódú riválisokkal szemben.",
     "klaszter": null,
-    "ai": false,
-    "ido": "2026-10-28T15:26:04+00:00"
+    "ai": true,
+    "ido": "2026-10-28T16:25:13+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-28T15:37:12+00:00"
+  "forditva": "2026-10-28T16:33:56+00:00",
+  "megjelent": "2026-10-28T16:33:56+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-28T16:35:33+00:00",
+    "esemeny": "Az Artificial Analysis frissítette az Intelligence Index tesztelési módszertanát, amelyben a tesztek 60 százaléka már zárt adatbázisokon alapul. Emiatt a nyílt és zárt AI-modellek közötti pontkülönbség megnőtt, és több modell (például a Kimi K3.1 Pro és a Grok 4.7) is helyezéseket, illetve pontokat veszített.",
+    "forrasok": [
+      "https://the-decoder.com/new-artificial-analysis-index-widens-the-gap-between-open-and-closed-models/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
 }

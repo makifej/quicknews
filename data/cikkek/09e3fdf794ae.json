@@ -1,0 +1,85 @@
+{
+  "id": "09e3fdf794ae",
+  "slug": "nyilt-forrasu-hangfelismero-modellt-adott-ki-az-nvidia-nemotron-3-5",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/nvidias-open-nemotron-3-5-transcribe-combines-transcription-translation-and-speaker-recognition/",
+  "szerzo": "Jonathan Kemper",
+  "publikalva": "2026-10-28T15:49:39+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/08/nvidia_logo.png"
+  },
+  "cim_eredeti": "Nvidia's open Nemotron 3.5 Transcribe combines transcription, translation, and speaker recognition",
+  "forrasok": [],
+  "szoveg_eredeti": "Nvidia has released an open speech recognition model that takes text instructions, and the company says it leads several benchmarks. The release also includes a large training dataset and tools for adapting the model to specialized fields.\n\nA plain transcript doesn't tell you who said what. It also won't translate anything or spell technical terms correctly. Nemotron 3.5 Transcribe is designed to handle all of that in a single model, and it can answer questions about a recording's content as well. Nvidia says the model transcribes 40 languages, translates 31 of them to or from English, and identifies speakers in 13. It handles recordings up to an hour long. They can include up to eight speakers.\n\nUsers control the model with simple instructions. Depending on the prompt, the same meeting recording can become a transcript with speaker labels, an English translation, or a summary of the decisions made. Users can also pass along technical terms like drug names as hints. The model is only supposed to use them if they actually appear in the recording.Ad\n\nThe model has 30 billion parameters, but only about 4 billion are active per processing step. As a result, it runs on a single Nvidia GPU. That covers everything from the compact DGX Spark to data center hardware. Nvidia says the model processes 100 hours of audio in under three minutes on an RTX PRO 6000 Blackwell Server Edition at NVFP4 precision.Ad\n\nOn Hugging Face's English Open ASR Leaderboard, Transcribe ranks first among open-weight models with an average word error rate of 5.33 percent. In Artificial Analysis' comparison, it scores 2.81 percent. That's close to the best open model, Voxtral Small at 2.77 percent, but Transcribe uses only about a sixth of the active parameters. According to Nvidia, several widely used commercial speech services trail behind.\n\nThe lead is biggest in speaker recognition. VoiceArena tested 14 systems on conversations where speakers sometimes talk over each other, and Transcribe took first place. It also dropped the fewest words, missing 8.32 percent compared to a median of about 31 percent. On David AI's benchmark, which measures speaker attribution across 21 languages, it posted the lowest error rate. It finished just ahead of Nvidia's own dedicated model for the task.Ad\n\nAlongside the model, Nvidia is releasing the Granary v2 dataset. It contains about 844,000 hours of speech in 48 languages, up from roughly 643,000 hours in 25 languages in the previous version. Each recording comes in several transcription styles. One version is verbatim, with filler words like \"uh\" and spelled-out numbers. Another is cleaned up, with no fillers and digits instead of words. Nvidia is also sharing the tools it used to build the dataset, so developers can run them on their own recordings. The company says the dataset doesn't fully match the model's training data, though.\n\nNvidia tested targeted fine-tuning on recordings of Indian doctors and medical students. On the full benchmark, a more precise prompt cut the error rate from 30.8 to 23.8 percent. After fine-tuning, the rate fell to 11.8 percent. The training data was mostly synthetic speech. For speakers the model hadn't heard before, Nvidia separately reports a drop from 22.44 to 12.17 percent, a relative improvement of 45.8 percent. That put the adapted model ahead of an open medical speech model, which scored 13.79 percent. Nvidia says the whole process took about 14 GPU hours on a single Nvidia GB300.Ad\n\nThe specialization comes at a cost. The error rate rose slightly on general English speech, and the medical model stayed more accurate on brand-name drugs. Nvidia recommends setting aside at least 100 real, verified recordings for testing when building custom versions.Ad\n\nThe base model has limits too. Features vary by language, and Nvidia says the audio question-answering feature was trained in English. The model is also built only for recorded audio. Nvidia says users should spot-check names, speaker changes, and answers.\n\nThe model and dataset are on Hugging Face. There's also a demo you can try. For fine-tuning, Nvidia offers guides and an extension that lets an AI coding assistant run the training workflow.\n\nNvidia only recently introduced Nemotron 3 Diarization, a dedicated speaker recognition model, in September. It can tell apart up to eight speakers, even in live conversations, but it needed a separate model like Nvidia's Parakeet for the actual transcription. Nemotron 3.5 Transcribe combines both jobs and adds translation and audio understanding. It doesn't support real-time processing, though. Nvidia had already used the Granary dataset for its multimodal Nemotron 3 Nano Omni.\n\nCompetitors are setting different priorities. Mistral's Voxtral family also combines transcription and audio understanding. With the recently announced Voxtral 3, the company is focusing on real-time voice agents.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Nyílt forrású hangfelismerő modellt adott ki az Nvidia Nemotron 3.5 néven",
+  "lead": "A Nemotron 3.5 Transcribe egyetlen modellben egyesíti az átírást, a fordítást és a beszélők azonosítását.",
+  "osszefoglalo": "Az Nvidia kiadta a nyílt súlyú [Nemotron 3.5 Transcribe](https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B) modellt, amely szöveges utasítások alapján képes hanganyagok átírására, fordítására és a beszélők elkülönítésére. A rendszer 40 nyelven tud átírni, 31 nyelvről fordít angolra, és legfeljebb egyórás, maximum 8 résztvevős felvételeken 13 nyelven azonosítja a felszólalókat. A modell kérdésekre is tud válaszolni a hangfájlok tartalmával kapcsolatban.\n\nA 30 milliárd paraméteres architektúrából lépésenként mindössze 4 milliárd aktív, így a modell **egyetlen grafikus kártyán fut**, és az RTX PRO 6000 kártyán mindössze 3 perc alatt feldolgoz 100 órányi hanganyagot. A független mérések szerint a nyílt modellek között az első helyen végzett a beszélők felismerésében és elkülönítésében, miközben hatszor kevesebb **aktív paramétert** használ, mint a közvetlen riválisai.\n\nA kiadás része a [Granary v2](https://huggingface.co/datasets/nvidia/Granary) adatbázis is, amely több mint 844 000 órányi beszédanyagot tartalmaz 48 nyelven. Az Nvidia emellett közzétette a finomhangoláshoz szükséges eszköztárat, amellyel a modell specifikus területekre, például orvosi vagy szakmai szókincsre is betanítható. Élő, valós idejű feldolgozást a rendszer jelenleg nem támogat.",
+  "miert_szamit": "A magyar vállalkozók és fejlesztők **saját szerverre telepíthető, költséghatékony hangfeldolgozót** kapnak, amellyel automatizálható a többnyelvű megbeszélések jegyzőkönyvezése és a beszélők szerinti bontás.",
+  "cimkek": [
+    "Nvidia",
+    "Nemotron",
+    "beszédértés",
+    "nyílt forrás"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Nemotron 3.5 Transcribe",
+    "Granary v2"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 85,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 82,
+      "hirertek": 88,
+      "egyediseg": 90,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 67
+    },
+    "elofeszures": 92,
+    "tanult": 51,
+    "indok": "Az Nvidia nyílt modellje egyszerre kezel átírást, fordítást és beszélőazonosítást, ami jelentős fejlesztés.",
+    "tema": "nvidia nemotron speech model",
+    "cim_hu": "Nyílt beszédfelismerő modellt adott ki az Nvidia Nemotron 3.5 néven",
+    "lead_hu": "Az Nvidia bemutatta a Nemotron 3.5 Transcribe modellt, amely az átírás és fordítás mellett a beszélők azonosítására és a felvételekkel kapcsolatos kérdések megválaszolására is képes.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-28T16:23:51+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-28T16:28:56+00:00",
+  "megjelent": "2026-10-28T16:28:56+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-28T16:35:00+00:00",
+    "esemeny": "Az Nvidia kiadta a nyílt súlyú Nemotron 3.5 Transcribe modellt, amely egyetlen architektúrában végzi a beszédátírást, fordítást, a beszélők elkülönítését és a hangfájlokkal kapcsolatos kérdés-válaszolást.",
+    "forrasok": [
+      "https://huggingface.co/blog/nvidia/nemotron-3-5-transcribe",
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B"
+    ],
+    "hibak": [
+      "Az összefoglalóban elgépelés van ('runs' a magyar mondatban a fut helyett), és egy bekezdésből hiányzik a kötelező kiemelés."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Nyílt forrású hangfelismerő modellt adott ki az Nvidia Nemotron 3.5 néven",
+      "lead": "A Nemotron 3.5 Transcribe egyetlen modellben egyesíti az átírást, a fordítást és a beszélők azonosítását.",
+      "osszefoglalo": "Az Nvidia kiadta a nyílt súlyú **Nemotron 3.5 Transcribe** modellt, amely szöveges utasítások alapján képes hanganyagok átírására, fordítására és a beszélők elkülönítésére. A rendszer 40 nyelven tud átírni, 31 nyelvről fordít angolra, és legfeljebb egyórás, maximum 8 résztvevős felvételeken 13 nyelven azonosítja a felszólalókat. A modell kérdésekre is tud válaszolni a hangfájlok tartalmával kapcsolatban.\n\nA 30 milliárd paraméteres architektúrából lépésenként mindössze 4 milliárd aktív, így a modell **egyetlen grafikus kártyán runs**, és az RTX PRO 6000 kártyán mindössze 3 perc alatt feldolgoz 100 órányi hanganyagot. A függetlem mérések szerint a nyílt modellek között az első helyen végzett a beszélők felismerésében és elkülönítésében, miközben hatszor kevesebb aktív paramétert használ, mint a közvetlen riválisai.\n\nA kiadás része a **Granary v2** adatbázis is, amely több mint 844 000 órányi beszédanyagot tartalmaz 48 nyelven. Az Nvidia emellett közzétette a finomhangoláshoz szükséges eszköztárat, amellyel a modell specifikus területekre, például orvosi vagy szakmai szókincsre is betanítható. Élő, valós idejű feldolgozást a rendszer jelenleg nem támogat.",
+      "miert_szamit": "A magyar vállalkozók és fejlesztők **saját szerverre telepíthető, költséghatékony hangfeldolgozót** kapnak, amellyel automatizálható a többnyelvű megbeszélések jegyzőkönyvezése és a beszélők szerinti bontás."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}

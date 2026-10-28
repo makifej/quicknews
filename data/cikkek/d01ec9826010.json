@@ -15,7 +15,7 @@
   "fontossag": 1,
   "video_szoveg": "",
   "relevans": false,
-  "kihagyva": "P3: 49 pont, jóváhagyás után fordul",
+  "kihagyva": "P3: 47 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "mp4",
     "url": "https://video.twimg.com/amplify_video/2115340017359036416/vid/avc1/1920x1080/jnM21G3Kti16minm.mp4?tag=29",
@@ -29,26 +29,26 @@
   "szoveg_eredeti": "Fun project on Perplexity Computer: Asked it to design a GTA V mission where you vibecode GTA VI from an in-game phone while the devs call the cops on you for shipping GTA VI before them.\n\nIt went through the FiveM docs (natives, ped models, server convars, the limits of the in-game browser) and built the mission as a FiveM resource in Lua. Then it built an MCP bridge, a small local Node service that signs in to the Perplexity Computer MCP server with OAuth and turns your in-game prompt into a real Computer task.\n\nThe phone streams Computer's steps live during the chase, you answer its questions and approvals while driving, and you ship the build by losing the cops at the airport hangars.\n\nFor the voices, Computer rented a cloud GPU and ran Qwen3-TTS locally on it, with no TTS API, to voice every line of dialogue.",
   "begyujtve": "2026-10-28T13:37:29.740732+00:00",
   "prioritas": {
-    "pont": 49,
+    "pont": 47,
     "szint": "P3",
     "reszpont": {
-      "hatas": 50,
-      "hirertek": 50,
-      "hitelesseg": 72,
-      "egyediseg": 60,
-      "aktualitas": 100,
-      "kozossegi": 32
+      "hatas": 35,
+      "hirertek": 40,
+      "egyediseg": 80,
+      "hitelesseg": 81,
+      "aktualitas": 92,
+      "kozossegi": 44
     },
     "elofeszures": 80,
-    "tanult": 32,
-    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -5.",
-    "tema": "",
-    "cim_hu": "",
-    "lead_hu": "",
+    "tanult": 34,
+    "indok": "Egy egyedi technikai demó és hobbiprojekt a Perplexity vezérigazgatójától Forrás-tapasztalat: -5.",
+    "tema": "perplexity computer gta v mcp",
+    "cim_hu": "GTA V küldetést kódoltatott le a Perplexity Computerrel a cég vezérigazgatója",
+    "lead_hu": "Aravind Srinivas, a Perplexity vezetője egy kísérleti projektben mutatta be, hogyan képes a Perplexity Computer egy működő FiveM játékkódot írni a GTA V-höz.",
     "klaszter": null,
-    "ai": false,
-    "ido": "2026-10-28T13:59:49+00:00"
+    "ai": true,
+    "ido": "2026-10-28T16:25:13+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-28T14:09:53+00:00"
+  "megjelent": "2026-10-28T16:33:11+00:00"
 }

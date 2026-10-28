@@ -1,49 +1,139 @@
 {
   "id": "7cc9d81637df",
-  "slug": "az-anthropic-szerint-egy-kiadatlan-mi-sebezhetosegeket-lancolt",
+  "slug": "autonom-kibertamadasokra-kepes-az-anthropic-uj-belso-ai-modellje",
   "forras_id": "perplexity-tech",
   "forras_nev": "Perplexity Discover",
   "url": "https://www.perplexity.ai/discover/tech/anthropic-says-unreleased-ai-c-2r8CXwqYRgiZwdNRkOBbzQ",
+  "szerzo": "Perplexity Discover",
   "publikalva": "2026-10-28T13:33:35.034314+00:00",
-  "cim": "Az Anthropic szerint egy kiadatlan MI sebezhetőségeket láncolt exploitokká",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 59 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://pplx-res.cloudinary.com/image/fetch/s--DsM2nmgX--/t_limit/https://img-cdn.inc.com/image/upload/f_webp%2Cq_auto%2Cc_fit/vip/2026/10/anthropic-hackers-inc-2179308077.jpg"
   },
   "cim_eredeti": "Az Anthropic szerint egy kiadatlan MI sebezhetőségeket láncolt exploitokká",
-  "szoveg_eredeti": "Az Anthropic Frontier Red Teamje szerint egy kiadatlan belső kutatási modell kritikus hibákat talált a Chrome-ban, a Safariban, az Androidban, a Windowsban és a Linuxban, majd ezeket működő proof-of-concept exploitokká láncolta össze, amelyekhez „alig vagy egyáltalán nem kellett felhasználói interakció\". A cég a megállapításokat kedden, október 27-én tette közzé egy kutatási bejegyzésben. Közölte, hogy minden hibát összehangolt sebezhetőség-közzététel (coordinated disclosure) keretében jelentett az érintett gyártónak: a fejlesztőknek 90 napjuk van a javításra, és további 45 napnak kell eltelnie, mielőtt az Anthropic a nyilvános biztonsági közleményen túlmenően is részletekről beszél.\n\nAz exploitokat laborban építették fel, miután a modellt erre utasították, és a valós támadások során egyiket sem észlelték. A The Hacker News beszámolója szerint a jelentett hibák mindegyikét azóta kijavították. A cég nem nevezte meg a modellt.\n\nA legsúlyosabb támadási lánc a Linuxot célozza. Egy távoli támadó root jogosultsággal futtathat parancsokat azokon a szervereken, amelyeken fut multipath TCP-figyelő. Ehhez nincs szükség hitelesítő adatokra, és a felhasználónak sem kell tennie semmit. Az Anthropic szerint a modell először egy memóriacím távoli kiszivárogtatásával győzte le a KASLR nevű kernelvédelmet. Ezután ugyanezt a versenyhelyzetből (race condition) adódó use-after-free hibát használta arra, hogy felülírjon egy callback-mutatót, és root shellt indítson. A proof of concept 48 percig tartott a cím kiszivárogtatásáig, és további öt percig a shell megszerzéséig. A Cybersecurity News beszámolója szerint a sikertelen kísérlet nem omlasztja össze a gépet, így a támadó korlátlanul újrapróbálkozhat. Az Anthropic a hibát a CVE-2026-98432 azonosítóhoz köti, amelyet 9,8-as értékeléssel láttak el, és október 15-én javítottak az upstream kódban. A nyilvános adatok azonban egy IPv4 TCP-javítást írnak le, nem multipath TCP-set, és a kettőt csak az Anthropic bejegyzése kapcsolja össze – jegyezte meg a The Hacker News.\n\nA Google Chrome-ban a modell négy hibát fűzött össze, a V8 motor heap-sérülésétől egészen a FedCM bejelentkezési funkció use-after-free hibájáig. A lánc egy alapbeállításokkal futó Macen az oldal betöltése után másodperceken belül elindította a Számológép alkalmazást. Az Anthropic közlése szerint a Google 62 CVE-t rendelt a hibákhoz, ezeket a Chrome 156-os verziójától javították, és mindegyiket kritikus vagy magas súlyosságúnak minősítették.\n\nA Safarit érintő exploitlánc soha nem futtat kódot. Ehelyett kikapcsolja az azonos eredet elvét (same-origin policy), így egy rosszindulatú oldal olvashatja a felhasználó e-mailjeit vagy banki adatait. Az Apple az iOS és iPadOS 26.5.2-es verziójában javította a központi hibát. Az Androidos lánc egy zárolt Pixel 9-ről szerzett adatokat USB-n keresztül. A Windowsos hiba szolgáltatásmegtagadásos (DoS) sérülékenység, amellyel ismételten összeomolhatnak a HTTP/3-kiszolgálók. Az Anthropic a CVE-2026-33096 azonosítójú hibához köti, amelyet a Microsoft áprilisban javított, a nyilvános adatok azonban a HTTP.sys-t nevezik meg, és nem tüntetik fel a felfedezőt – számolt be a The Hacker News.\n\nAz Anthropic nem árulja el, hogy az egyes láncokhoz mennyi emberi közreműködésre volt szükség, hány futtatásra került sor, és hány lelet nem állta ki az ellenőrzést – jegyezte meg az Audit Commons. A Google és az Apple kiadási megjegyzései viszont valóban megemlítik az Anthropic kutatóit egyes javításoknál, „Claude segítségével\". A vállalat a munkát a védekezők támogatásaként mutatja be, a biztonsági csapatokat pedig a kibővített Cyber Verification Programhoz irányítja. „Ma már ez olyasmi, amit a modellek kevés emberi közreműködéssel is el tudnak végezni, és működő exploit előállításával be is bizonyítanak, amelyet bárki le tud futtatni és ellenőrizni tud\" – írta az Anthropic a The Hacker News idézete szerint.",
-  "begyujtve": "2026-10-28T13:57:06.443598+00:00",
-  "prioritas": {
-    "pont": 59,
-    "szint": "P3",
-    "reszpont": {
-      "hatas": 50,
-      "hirertek": 50,
-      "hitelesseg": 60,
-      "egyediseg": 60,
-      "aktualitas": 100,
-      "kozossegi": 94
+  "forrasok": [
+    {
+      "nev": "Discovering and exploiting vulnerabilities in critical, real ...",
+      "url": "https://www.anthropic.com/research/discovering-vulnerabilities-with-claude",
+      "domain": null
     },
-    "elofeszures": 89,
-    "tanult": 94,
-    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni.",
-    "tema": "",
-    "cim_hu": "",
-    "lead_hu": "",
+    {
+      "nev": "Anthropic's Unreleased AI Model Chains Flaws Into Working Chrome, Safari, Windows and Linux Exploits",
+      "url": "https://thehackernews.com/2026/10/anthropics-unreleased-ai-model-chains.html",
+      "domain": null
+    },
+    {
+      "nev": "Claude AI Builds One-Click Chrome and 0-Click Linux Exploit Chains, Bypasses Android Lock Screen",
+      "url": "https://cybersecuritynews.com/claude-ai-builds-exploit/",
+      "domain": null
+    },
+    {
+      "nev": "Anthropic Says an Unreleased Model Built Exploit Chains for ...",
+      "url": "https://auditcommons.org/news/anthropic-autonomous-vulnerability-discovery/",
+      "domain": null
+    },
+    {
+      "nev": "AI Daily Digest · October 28, 2026: Genie 4 Simulates the World, Claude Finds 62 Chrome Flaws, Oracle Puts OpenAI to Work",
+      "url": "https://dev.to/hiroki-ii-ai/ai-daily-digest-october-28-2026-genie-4-simulates-the-world-claude-finds-62-chrome-flaws-8k3",
+      "domain": null
+    },
+    {
+      "nev": "browser security — Latest News, Reports & Analysis | The Hacker News",
+      "url": "https://thehackernews.com/search/label/browser%20security?max-results=20&start=5760&by-date=false",
+      "domain": null
+    },
+    {
+      "nev": "browser security — Latest News, Reports & Analysis | The Hacker News",
+      "url": "https://thehackernews.com/search/label/browser%20security?max-results=20&start=3440&by-date=false",
+      "domain": null
+    },
+    {
+      "nev": "Threat Intel",
+      "url": "https://threatintel.cc/",
+      "domain": null
+    },
+    {
+      "nev": "Home",
+      "url": "https://cybersecuritynews.com/",
+      "domain": null
+    },
+    {
+      "nev": "Claude Exploit Chains: 62 Chrome CVEs, 5 Attack Chains",
+      "url": "https://explainx.ai/blog/anthropic-claude-exploit-chains-chrome-safari-android-windows-linux-vulnerability-research-2026",
+      "domain": null
+    },
+    {
+      "nev": "Frontier Red Team",
+      "url": "https://www.anthropic.com/research/team/frontier-red-team",
+      "domain": null
+    }
+  ],
+  "szoveg_eredeti": "Az Anthropic Frontier Red Teamje szerint egy kiadatlan belső kutatási modell kritikus hibákat talált a Chrome-ban, a Safariban, az Androidban, a Windowsban és a Linuxban, majd ezeket működő proof-of-concept exploitokká láncolta össze, amelyekhez „alig vagy egyáltalán nem kellett felhasználói interakció\". A cég a megállapításokat kedden, október 27-én tette közzé egy kutatási bejegyzésben. Közölte, hogy minden hibát összehangolt sebezhetőség-közzététel (coordinated disclosure) keretében jelentett az érintett gyártónak: a fejlesztőknek 90 napjuk van a javításra, és további 45 napnak kell eltelnie, mielőtt az Anthropic a nyilvános biztonsági közleményen túlmenően is részletekről beszél.\n\nAz exploitokat laborban építették fel, miután a modellt erre utasították, és a valós támadások során egyiket sem észlelték. A The Hacker News beszámolója szerint a jelentett hibák mindegyikét azóta kijavították. A cég nem nevezte meg a modellt.\n\nA legsúlyosabb támadási lánc a Linuxot célozza. Egy távoli támadó root jogosultsággal futtathat parancsokat azokon a szervereken, amelyeken fut multipath TCP-figyelő. Ehhez nincs szükség hitelesítő adatokra, és a felhasználónak sem kell tennie semmit. Az Anthropic szerint a modell először egy memóriacím távoli kiszivárogtatásával győzte le a KASLR nevű kernelvédelmet. Ezután ugyanezt a versenyhelyzetből (race condition) adódó use-after-free hibát használta arra, hogy felülírjon egy callback-mutatót, és root shellt indítson. A proof of concept 48 percig tartott a cím kiszivárogtatásáig, és további öt percig a shell megszerzéséig. A Cybersecurity News beszámolója szerint a sikertelen kísérlet nem omlasztja össze a gépet, így a támadó korlátlanul újrapróbálkozhat. Az Anthropic a hibát a CVE-2026-98432 azonosítóhoz köti, amelyet 9,8-as értékeléssel láttak el, és október 15-én javítottak az upstream kódban. A nyilvános adatok azonban egy IPv4 TCP-javítást írnak le, nem multipath TCP-set, és a kettőt csak az Anthropic bejegyzése kapcsolja össze – jegyezte meg a The Hacker News.\n\nA Google Chrome-ban a modell négy hibát fűzött össze, a V8 motor heap-sérülésétől egészen a FedCM bejelentkezési funkció use-after-free hibájáig. A lánc egy alapbeállításokkal futó Macen az oldal betöltése után másodperceken belül elindította a Számológép alkalmazást. Az Anthropic közlése szerint a Google 62 CVE-t rendelt a hibákhoz, ezeket a Chrome 156-os verziójától javították, és mindegyiket kritikus vagy magas súlyosságúnak minősítették.\n\nA Safarit érintő exploitlánc soha nem futtat kódot. Ehelyett kikapcsolja az azonos eredet elvét (same-origin policy), így egy rosszindulatú oldal olvashatja a felhasználó e-mailjeit vagy banki adatait. Az Apple az iOS és iPadOS 26.5.2-es verziójában javította a központi hibát. Az Androidos lánc egy zárolt Pixel 9-ről szerzett adatokat USB-n keresztül. A Windowsos hiba szolgáltatásmegtagadásos (DoS) sérülékenység, amellyel ismételten összeomolhatnak a HTTP/3-kiszolgálók. Az Anthropic a CVE-2026-33096 azonosítójú hibához köti, amelyet a Microsoft áprilisban javított, a nyilvános adatok azonban a HTTP.sys-t nevezik meg, és nem tüntetik fel a felfedezőt – számolt be a The Hacker News.\n\nAz Anthropic nem árulja el, hogy az egyes láncokhoz mennyi emberi közreműködésre volt szükség, hány futtatásra került sor, és hány lelet nem állta ki az ellenőrzést – jegyezte meg az Audit Commons. A Google és az Apple kiadási megjegyzései viszont valóban megemlítik az Anthropic kutatóit egyes javításoknál, „Claude segítségével\". A vállalat a munkát a védekezők támogatásaként mutatja be, a biztonsági csapatokat pedig a kibővített Cyber Verification Programhoz irányítja. „Ma már ez olyasmi, amit a modellek kevés emberi közreműködéssel is el tudnak végezni, és működő exploit előállításával be is bizonyítanak, amelyet bárki le tud futtatni és ellenőrizni tud\" – írta az Anthropic a The Hacker News idézete szerint.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Súlyos biztonsági hibákat fűzött össze az Anthropic kiadatlan AI-modellje",
+  "lead": "A cég belső kutatási AI-modellje működő exploitláncokat épített fel népszerű operációs rendszerekben és böngészőkben végzett laboratóriumi tesztek során.",
+  "osszefoglalo": "Az Anthropic [Frontier Red Team](https://www.anthropic.com/research/team/frontier-red-team) csapata közzétette legújabb biztonsági kutatását, amelyben egy még kiadatlan belső AI-modell sebezhetőségeket tárt fel és használt ki. A modell a Chrome, a Safari, az Android, a Windows és a Linux rendszerekben talált kritikus hibákat, majd ezekből működő **exploitláncokat hozott létre**. A Linuxot érintő legveszélyesebb támadási lánc során a sérülékenység kihasználása az áldozat oldaláról felhasználói beavatkozás nélkül, kevesebb mint egy óra alatt root hozzáférést biztosított a szerveren.\n\nA kísérleteket zárt laboratóriumi környezetben végezték, és a valós hálózatokban nem észleltek ilyen támadásokat. A **Google Chrome esetében a modell 4 hibát fűzött össze**, amivel sikeresen kijátszotta a böngésző védelmét, míg a Safari esetében az azonos eredet elvét kikapcsolva férhetett hozzá érzékeny adatokhoz.\n\nAz Anthropic az összes felfedezett biztonsági rést még a nyilvános közlés előtt jelezte az érintett gyártóknak a felelős közzététel szabályai szerint. A techcégek, köztük a Google és az Apple, azóta **már frissítették a rendszereiket** és kijavították a jelentett hibákat.",
+  "miert_szamit": "A kísérlet megmutatja, hogy a legfejlettebb AI-modellek már összetett biztonsági rések láncolatát is képesek felépíteni, ami **alapjaiban változtatja meg a szoftverbiztonsági és védelmi stratégiákat**.",
+  "cimkek": [
+    "Anthropic",
+    "Claude",
+    "kiberbiztonság",
+    "exploit"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 90,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 90,
+      "hirertek": 95,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 92,
+      "kozossegi": 87
+    },
+    "elofeszures": 88,
+    "tanult": 91,
+    "indok": "A kritikus rendszerszintű sebezhetőségeket önállóan láncoló AI-modell rendkívül fontos biztonsági mérföldkő",
+    "tema": "anthropic ai cybersecurity exploits",
+    "cim_hu": "Súlyos operációs rendszeri hibákat használt ki önállóan az Anthropic kísérleti mesterséges intelligenciája",
+    "lead_hu": "Az Anthropic kutatómodellje kritikus sebezhetőségeket talált a Chrome, Windows és Android rendszerekben, majd emberi beavatkozás nélkül működő támadási láncokat hozott létre belőlük.",
     "klaszter": null,
-    "ai": false,
-    "ido": "2026-10-28T13:59:49+00:00"
+    "ai": true,
+    "ido": "2026-10-28T16:25:13+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-28T14:08:53+00:00"
+  "forditva": "2026-10-28T16:32:10+00:00",
+  "megjelent": "2026-10-28T16:32:10+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-28T16:36:13+00:00",
+    "esemeny": "Az Anthropic Frontier Red Team nevű biztonsági csapata közzétette, hogy egy kiadatlan belső kutatási AI-modelljük kritikus sebezhetőségeket talált a Chrome, Safari, Android, Windows és Linux rendszerekben, majd ezekből működő exploitláncokat épített fel laboratóriumi kísérletek során.",
+    "forrasok": [
+      "https://www.anthropic.com/research/discovering-exploiting-vulnerabilities-critical-software"
+    ],
+    "hibak": [
+      "A cím tévesen és túlzóan autonóm kibertámadásokról beszél, miközben az Anthropic tesztjei zárt laboratóriumi környezetben, kezdeti utasítások (promptolás) alapján építettek fel exploitláncokat (proof-of-concept), nem pedig önálló külső támadásokat hajtottak végre.",
+      "A lead túloz, amikor azt állítja, hogy a modell teljesen 'emberi beavatkozás nélkül' dolgozott, miközben az Anthropic kutatói utasították (promptolták) a modellt.",
+      "A szövegben 'a rendszer felhasználói beavatkozás nélkül... root hozzáférést szerzett' megfogalmazás pontatlan: ez a Linux-exploit működési tulajdonságára (zero-click / felhasználói interakció hiánya a megtámadott áldozat oldaláról) vonatkozik, nem pedig arra, hogy a modell teljesen emberi irányítás nélkül működött volna."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Autonóm kibertámadásokra képes az Anthropic új belső AI-modellje",
+      "lead": "A cég kiadatlan AI-modellje emberi beavatkozás nélkül talált és láncolt össze súlyos biztonsági réseket népszerű operációs rendszerekben.",
+      "osszefoglalo": "Az Anthropic Frontier Red Teamje közzétette legújabb biztonsági kutatását, amelyben egy még kiadatlan belső AI-modell számítógépes rendszereket támadott meg. A modell a Chrome, a Safari, az Android, a Windows és a Linux rendszerekben talált kritikus sérülékenységeket, majd ezekből önállóan működő **exploitláncokat hozott létre**. A Linuxot érintő legveszélyesebb támadás során a rendszer felhasználói beavatkozás nélkül, kevesebb mint egy óra alatt root hozzáférést szerzett a szerveren.\n\nA kísérleteket zárt laboratóriumi környezetben végezték, és a valós hálózatokban nem észleltek ilyen támadásokat. A **Google Chrome esetében a modell 4 hibát fűzött össze**, amivel sikeresen kijátszotta a böngésző védelmét, míg a Safari esetében az azonos eredet elvét kikapcsolva férhetett hozzá érzékeny adatokhoz.\n\nAz Anthropic az összes felfedezett biztonsági rést még a nyilvános közlés előtt jelezte az érintett gyártóknak a felelős közzététel szabályai szerint. A techcégek, köztük a Google és az Apple, azóta **már frissítették a rendszereiket** és kijavították a jelentett hibákat.",
+      "miert_szamit": "A kísérlet bizonyítja, hogy az AI-modellek már összetett kibertámadások önálló kivitelezésére is képesek, ami **alapjaiban változtatja meg a szoftverbiztonsági és védelmi stratégiákat**."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
 }

@@ -15,7 +15,7 @@
   "fontossag": 1,
   "video_szoveg": "",
   "relevans": false,
-  "kihagyva": "P3: 60 pont, jóváhagyás után fordul",
+  "kihagyva": "duplikátum: 5de49ff7f818",
   "media": {
     "tipus": "mp4",
     "url": "https://video.twimg.com/amplify_video/2113357666626211840/vid/avc1/1080x1080/ctjy4Le0u8o2qMbN.mp4?tag=29",
@@ -31,26 +31,27 @@
   "szoveg_eredeti": "Voxtral Mini Transcribe 3 ranks #2 on Voice Arena’s Diarization + ASR leaderboard.\n\n[IDÉZETT POSZT, amelyet Mistral AI megosztott. Eredeti szerzője: Voice Arena (@voicearena_ai); megjelent: 2026-10-22T20:16:31+00:00; link: https://x.com/voicearena_ai/status/2113363892911161661; média: videó, 7 másodperc]\n🚀 Mistral AI’s Voxtral Mini Transcribe 3 ranks #2 out of 9 models by DER on Voice Arena’s Diarization + ASR leaderboard, outperforming its larger counterpart.\n\nFollowing the launch of Mistral’s new Voxtral 3 family, we evaluated its Mini and Small transcription models on Voice Arena’s Diarization Bench.\n\n🥈 Voxtral Mini Transcribe 3: 40.4% DER (#2)\nVoxtral Small Transcribe 3: 41.1% DER (#4)\n\nBoth models were tested on 139 held-out conversations under identical conditions, using human-verified references, a strict 0 ms collar, and no predefined speaker counts or audio cleanup.\n\nMini leads on in-person conversations (40.6% vs. 41.5%), while Small performs slightly better on online calls (39.1% vs. 39.5%).\n\nOverlapping speech remains the biggest challenge. Missed speech accounts for 82% of Mini's total DER. Both models correctly identify the exact number of speakers in 83.5% of sessions.\n\nCongratulations to @MistralAI on the release ! 👏 \n\nView complete track & condition breakdown: https://voicearena.com/diarization-bench",
   "begyujtve": "2026-10-28T10:02:17.784298+00:00",
   "prioritas": {
-    "pont": 60,
-    "szint": "P3",
+    "pont": 52,
+    "szint": "X",
     "reszpont": {
-      "hatas": 50,
-      "hirertek": 50,
-      "hitelesseg": 90,
-      "egyediseg": 60,
-      "aktualitas": 100,
-      "kozossegi": 73
+      "hatas": 40,
+      "hirertek": 35,
+      "egyediseg": 75,
+      "hitelesseg": 85,
+      "aktualitas": 80,
+      "kozossegi": 55
     },
     "elofeszures": 96,
-    "tanult": 73,
-    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni.",
-    "tema": "",
-    "cim_hu": "",
-    "lead_hu": "",
+    "tanult": 77,
+    "indok": "Duplikátum: 5de49ff7f818",
+    "tema": "mistral voxtral audio model",
+    "cim_hu": "Második helyezést ért el a Mistral audio modellje a Voice Arena ranglistáján",
+    "lead_hu": "A Mistral AI Voxtral Mini Transcribe 3 modellje a második helyen végzett a Voice Arena hangfelismerési és beszélőazonosítási tesztjén.",
     "klaszter": null,
-    "ai": false,
-    "ido": "2026-10-28T10:30:52+00:00"
+    "ai": true,
+    "ido": "2026-10-28T16:25:13+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-28T10:37:56+00:00"
+  "megjelent": "2026-10-28T16:32:46+00:00",
+  "dupla_of": "5de49ff7f818"
 }
