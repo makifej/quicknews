@@ -1,8 +1,8 @@
 {
   "id": "becd12354f28",
-  "cim": "Külső AI-ügynökök előtt nyitja meg az Android Studiót a Google",
-  "lead": "Az Android Studio Rabbit 2 frissítéssel a fejlesztők már több mint 40 különböző AI-ügynököt használhatnak közvetlenül a fejlett fejlesztői környezetben.",
-  "slug": "kulso-ai-ugynokok-elott-nyitja-meg-az-android-studiot-a-google",
+  "cim": "Harmadik féltől származó AI-ügynökökkel bővül az Android Studio",
+  "lead": "A Google megnyitja fejlesztői környezetét, így a fejlesztők már Anthropic és OpenAI modelleket is futtathatnak az IDE-ben.",
+  "slug": "harmadik-feltol-szarmazo-ai-ugynokokkel-bovul-az-android-studio",
   "forras": "The Decoder",
   "kat": "eszköz",
   "rovat": "eszkoz",
@@ -14,17 +14,17 @@
   "fontossag": 4,
   "felkapott": false,
   "forraskep": false,
-  "url": "https://quicknews.hu/hir/kulso-ai-ugynokok-elott-nyitja-meg-az-android-studiot-a-google",
+  "url": "https://quicknews.hu/hir/harmadik-feltol-szarmazo-ai-ugynokokkel-bovul-az-android-studio",
   "jova": true,
-  "osszefoglalo": "A Google bejelentette az [Android Studio](https://developer.android.com/studio/preview) legújabb frissítését, amellyel **megnyitja a fejlesztőkörnyezetet a külső AI-ügynökök előtt**. A Bring Your Own Agent funkciónak köszönhetően a programozók a nyílt [Agent Client Protocol](https://github.com/agentclientprotocol/agent-client-protocol) segítségével több mint 40 különböző kódoló ügynököt futtathatnak, beleértve az Anthropic Claude Agent és az OpenAI Codex megoldását is. Az ügynökök közvetlen hozzáférést kapnak a projektstruktúrához és az emulátorhoz.\n\nA parancssori eszközök bővítésével az AI-ügynökök már a terminálban is képesek UI-előnézeteket megjeleníteni az emulátor elindítása nélkül. A cég belső tesztjei szerint az ügynökök így **77 százalékkal gyorsabban fejezték be a felületekkel kapcsolatos feladatokat**, miközben harmadannyi tokent fogyasztottak. Emellett új Change Review kódellenőrző eszköz és szivárgásjelző funkciók is érkeztek.\n\nAz alkalmazásfejlesztéshez a Google kiadta az eszközön futó Agentic API-t, amely a Gemini Nano 4 modellre épül, valamint a béta állapotú [AppFunctions API](https://developer.android.com/ai/appfunctions)-t. Utóbbi lehetővé teszi, hogy az alkalmazások közvetlenül megosszák funkcióikat a helyi vagy rendszerszintű mesterségesintelligencia-ügynökökkel.",
-  "miert_szamit": "A fejlesztők ezentúl **nem függenek a Google saját AI-eszközeitől**, mert a kedvenc kódoló ügynöküket közvetlenül beépíthetik az Android-fejlesztési munkafolyamatukba.",
+  "osszefoglalo": "A Google az [Android Dev Summit](https://developer.android.com/dev-summit) rendezvényen bejelentette az **[Android Studio](https://developer.android.com/studio/preview) BYOA ([Bring Your Own Agent](https://developer.android.com/studio/build-your-way))** funkcióját. Az [Agent Client Protocol](https://agentclientprotocol.com) (ACP) segítségével a fejlesztők több mint 40 különböző kódoló ügynököt futtathatnak közvetlenül a fejlesztői környezetben, köztük az Anthropic Claude Agentjét és az [OpenAI Codex](https://openai.com/codex) modellt az **Android Studio fejlesztői eszköztárban**.\n\nAz új fejlesztői eszköztár része a **Change Review kódellenőrző funkció**, amely elemzi a módosításokat, hibajelentéseket készít és elmagyarázza a változtatásokat. A frissített parancssori eszközzel (CLI) az AI-ügynökök a terminálban is megjeleníthetik a felület előnézetét, amivel a tesztek alapján 77 százalékkal gyorsabban végzik el a felületekkel kapcsolatos feladatokat.\n\nEzzel párhuzamosan elindult az **Agentic API alfa verziója**, amely a Gemini Nano 4 modellt használva teszi lehetővé az appon belüli feladatkezelést, míg a [Connected Apps Platform](https://developers.google.com/connected-apps) révén a külső alkalmazások funkciói közvetlenül összekapcsolhatók a Gemini rendszerével.",
+  "miert_szamit": "A fejlesztők ezentúl **több különböző AI-ügynököt használhatnak egyszerre** az alkalmazások építésénél, ami jelentősen felgyorsítja a hibakeresést és a felületek tervezését.",
   "publikalva": "2026-10-28T16:59:59+00:00",
   "forras_url": "https://the-decoder.com/google-opens-android-development-to-third-party-ai-agents-and-unveils-new-gemini-apis/",
   "cimkek": [
-    "Android Studio",
     "Google",
-    "AI-ügynök",
-    "fejlesztés"
+    "Android Studio",
+    "Gemini",
+    "Claude"
   ],
   "forrasok": [],
   "kiprobalhato": {
@@ -44,7 +44,7 @@
       "id": "765a5a74d244",
       "cim": "A Chrome AI segítségével kitölti az űrlapokat a Gmailből",
       "lead": "A Google Chrome új frissítése a Gmailben található levelekből bányássza ki a szükséges adatokat az online űrlapok gyors kitöltéséhez.",
-      "slug": "a-chrome-mesterseges-intelligenciaval-tolti-ki-az-urlapokat-a-gmailbol",
+      "slug": "a-chrome-ai-s-urlapkitoltoje-mar-a-gmail-fiokunkban-is-kereshet",
       "forras": "TechCrunch AI",
       "kat": "eszköz",
       "rovat": "eszkoz",
@@ -56,7 +56,7 @@
       "fontossag": 3,
       "felkapott": false,
       "forraskep": false,
-      "url": "https://quicknews.hu/hir/a-chrome-mesterseges-intelligenciaval-tolti-ki-az-urlapokat-a-gmailbol",
+      "url": "https://quicknews.hu/hir/a-chrome-ai-s-urlapkitoltoje-mar-a-gmail-fiokunkban-is-kereshet",
       "jova": true
     },
     {
