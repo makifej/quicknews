@@ -1,0 +1,83 @@
+{
+  "id": "becd12354f28",
+  "slug": "kulso-ai-ugynokok-elott-nyitja-meg-az-android-studiot-a-google",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/google-opens-android-development-to-third-party-ai-agents-and-unveils-new-gemini-apis/",
+  "szerzo": "Maximilian Schreiner",
+  "publikalva": "2026-10-28T16:59:59+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/05/Android-Robot-Logo-Background-Nano-Banana-Pro.jpg"
+  },
+  "cim_eredeti": "Google opens Android development to third-party AI agents and unveils new Gemini APIs",
+  "forrasok": [],
+  "szoveg_eredeti": "Google is centering its development environment around AI agents at the Android Dev Summit. The updates include integrations for Anthropic and OpenAI models, new APIs for local smartphone agents, and a pair of smart glasses.\n\nGoogle introduced updates for its developer tools and system APIs at this year's Android Dev Summit. Opening up the Android Studio development environment was the main focus.\n\nWith Android Studio Rabbit 2, Google is launching a \"Bring Your Own Agent\" (BYOA) feature. Developers are no longer limited to Google's own AI tools. Instead, they can use the open Agent Client Protocol (ACP) to run more than 40 different coding agents directly in the IDE.Ad\n\nDevelopers can install and simultaneously run Anthropic's Claude Agent, OpenAI's Codex, and Google Antigravity through the built-in marketplace. These agents get direct access to IDE tools like project structure, symbol resolution, the emulator, and the Logcat system.Ad\n\nGoogle also released version 2.0 of the Android Bench leaderboard to measure AI model performance on complex tasks. It evaluates language models on multi-day development projects based on functionality, time spent, and cost.\n\nAI-generated code changes often get messy, so Google is adding a code verification tool called Change Review. It analyzes pending changes, generates bug reports, and explains modifications step by step. The Android Studio Canary preview also adds a migration assistant that automatically translates older XML layouts into Jetpack Compose. Meanwhile, Google is testing Lightbuild, a declarative build system based on a YAML schema that both humans and AI agents can read and edit.Ad\n\nGoogle expanded the Android CLI command-line tool for developers who run their agents in the terminal or in CI pipelines. It is now available as an official agent plugin for Claude Code, OpenAI's Codex, and Google Antigravity.\n\nNew commands let AI agents render Compose previews in the terminal to visually check UI changes without booting up an emulator. Internal Google tests show agents finished UI tasks 77 percent faster and used up to three times fewer tokens with this feature. The CLI also supports streaming physical test devices from Google labs so agents can investigate device-specific bugs.Ad\n\nDebugging and performance analysis got new features too. Google built the open-source LeakCanary memory leak detection library into both the CLI and the Android Studio Profiler. The system evaluates heap dumps on the computer instead of the mobile device, which keeps the app from slowing down during testing. In a Google A/B test using Anthropic's Claude Opus 5.5 model, the CLI tool helped find and fix memory leaks nearly twice as fast while cutting token usage by about 25 percent.Ad\n\nOther command-line tools let agents capture system traces via the Android Performance Analyzer, pull crash reports from Firebase Crashlytics, or check code optimization through the R8 compiler. Language models often lack training on the newest APIs, so Google now provides over 30 Android Skills. These feed documentation to agents for tasks like checking Google Play policies before app submission, handling permission security issues, or adapting layouts for foldables and laptops branded as Googlebooks.\n\nBeyond developer tools, Google is shipping new APIs to build agent features into apps or connect apps to system agents. For local on-device processing, Google is adding an alpha Agentic API powered by Gemini Nano 4 to its ML Kit. This interface automatically executes functions, saves chat history, manages the orchestration loop, and provides safety filters.\n\nGoogle is using the Model Context Protocol (MCP) and launching the AppFunctions API in beta as a unified tool-calling layer so apps can share functions with local or system-wide agents. The new alpha Agent-to-UI (A2UI) interface for Jetpack Compose builds on this. Instead of replying with plain text blocks, agents can display interactive user interfaces built from the specific app's components.\n\nTo bring these app services into Google Search and the Gemini app, the company is launching a preview of the Connected Apps Platform. Developers can link their apps via Android MCP or cloud-hosted MCP servers and manage them through a single console. Google says over 50 partner integrations from companies like Adobe, Peloton, and Experian are already live in the Gemini app, and they will roll out to web search in the coming weeks.\n\nGoogle also announced updates for several hardware form factors. Updates to Jetpack Compose 1.13 and the AppState model make it easier to adapt apps for large screens, and the Extended Reality (XR) development environment is leaving the testing phase. The Jetpack XR SDK, the XR emulators in Android Studio, and the Engine Hub for Unity, Godot, and Unreal are now available as stable releases.\n\nAlongside the software updates, Google partnered with hardware maker XREAL to unveil the XREAL AURA. XR chief Shahram Izadi says they are the first wired smart glasses running Android XR. The glasses weigh under 95 grams and feature transparent, dimmable lenses with a 70-degree field of view. The computing unit and battery sit in an external puck that doubles as a trackpad and runs on Qualcomm's new Snapdragon Reality Elite chip.\n\nUsers can place up to five Android apps in their field of view at once or plug in a USB-C cable to mirror their laptop screen. Gemini is built in here too. The AI can see both the real-world environment through the glasses and the virtual screens, allowing it to organize windows, offer video game tips, or visually highlight physical objects in the room. The XREAL AURA is available to order now in the US, Canada, and South Korea for $1,099, with shipping set to begin in mid-November.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Külső AI-ügynökök előtt nyitja meg az Android Studiót a Google",
+  "lead": "Az Android Studio Rabbit 2 frissítéssel a fejlesztők már több mint 40 különböző AI-ügynököt használhatnak közvetlenül a fejlett fejlesztői környezetben.",
+  "osszefoglalo": "A Google bejelentette az [Android Studio](https://developer.android.com/studio/preview) legújabb frissítését, amellyel **megnyitja a fejlesztőkörnyezetet a külső AI-ügynökök előtt**. A Bring Your Own Agent funkciónak köszönhetően a programozók a nyílt [Agent Client Protocol](https://github.com/agentclientprotocol/agent-client-protocol) segítségével több mint 40 különböző kódoló ügynököt futtathatnak, beleértve az Anthropic Claude Agent és az OpenAI Codex megoldását is. Az ügynökök közvetlen hozzáférést kapnak a projektstruktúrához és az emulátorhoz.\n\nA parancssori eszközök bővítésével az AI-ügynökök már a terminálban is képesek UI-előnézeteket megjeleníteni az emulátor elindítása nélkül. A cég belső tesztjei szerint az ügynökök így **77 százalékkal gyorsabban fejezték be a felületekkel kapcsolatos feladatokat**, miközben harmadannyi tokent fogyasztottak. Emellett új Change Review kódellenőrző eszköz és szivárgásjelző funkciók is érkeztek.\n\nAz alkalmazásfejlesztéshez a Google kiadta az eszközön futó Agentic API-t, amely a Gemini Nano 4 modellre épül, valamint a béta állapotú [AppFunctions API](https://developer.android.com/ai/appfunctions)-t. Utóbbi lehetővé teszi, hogy az alkalmazások közvetlenül megosszák funkcióikat a helyi vagy rendszerszintű mesterségesintelligencia-ügynökökkel.",
+  "miert_szamit": "A fejlesztők ezentúl **nem függenek a Google saját AI-eszközeitől**, mert a kedvenc kódoló ügynöküket közvetlenül beépíthetik az Android-fejlesztési munkafolyamatukba.",
+  "cimkek": [
+    "Android Studio",
+    "Google",
+    "AI-ügynök",
+    "fejlesztés"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Android Studio",
+    "url": "https://developer.android.com/studio/preview"
+  },
+  "linkelendo_nevek": [
+    "Android Studio",
+    "Claude Agent",
+    "Codex",
+    "Gemini Nano 4",
+    "AppFunctions API"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 84,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 80,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 85,
+      "aktualitas": 98,
+      "kozossegi": 82
+    },
+    "elofeszures": 100,
+    "tanult": 78,
+    "indok": "Jelentős fejlesztői bejelentés az Android AI-ágensek nyitásáról Forrás-tapasztalat: -1.",
+    "tema": "android studio ai agents",
+    "cim_hu": "Megnyitja az Androidot a külső AI-ágensek előtt a Google",
+    "lead_hu": "Az Android Dev Summiton a Google bejelentette, hogy az Android Studio már támogatja az OpenAI és Anthropic modelleket, valamint új API-kat kínál a helyi AI-ágenseknek.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-28T17:11:26+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-28T17:17:07+00:00",
+  "megjelent": "2026-10-28T17:17:07+00:00",
+  "nevelo_javitva": "2026-10-28T17:17:07+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-28T17:17:18+00:00",
+    "esemeny": "A Google az Android Dev Summit rendezvényen bejelentette az Android Studio Rabbit 2 verziót, amellyel a Bring Your Own Agent (BYOA) funkció révén külső AI-kódolóügynökök előtt is megnyitja a fejlesztőkörnyezetét az nyílt Agent Client Protocol segítségével.",
+    "forrasok": [
+      "https://the-decoder.com/google-opens-android-development-to-third-party-ai-agents-and-unveils-new-gemini-apis/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
