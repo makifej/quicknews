@@ -1,49 +1,77 @@
 {
   "id": "d8fb4e7732a4",
-  "slug": "minimax-open-sources-mcode-stack-15-agent-skills-its-coding-team-uses",
+  "slug": "nyilt-forrasuva-tette-a-minimax-a-sajat-kodolougynok-keszletet",
   "forras_id": "marktechpost",
   "forras_nev": "MarkTechPost",
   "url": "https://www.marktechpost.com/2026/10/28/minimax-open-sources-mcode-stack-agent-skills/",
+  "szerzo": "Michal Sutter",
   "publikalva": "2026-10-28T17:20:29+00:00",
-  "cim": "MiniMax Open-Sources MCode Stack: 15 Agent Skills Its Coding Team Uses Daily",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 59 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-2134-1024x768.png"
   },
   "cim_eredeti": "MiniMax Open-Sources MCode Stack: 15 Agent Skills Its Coding Team Uses Daily",
+  "forrasok": [],
   "szoveg_eredeti": "MiniMax has open-sourced MCode Stack , the workflows and agent skills its team uses to build MiniMax Code. The MiniMax MCode Stack agent skills went public on October 28, 2026 under the MIT license . It is not a prompt collection. Each piece is a SKILL.md skill or checklist that installs directly into MiniMax Code . For developers, it turns harness engineering habits into steps an agent can actually run.\n\n TL;DR \n\n Size: 2 stacks, 17 skills (15 from Ronny, 2 from Jiachen), 5 checklists, 5 companion notes.\n\n Runs on: Any machine running MiniMax Code (Node.js 22.19+) or Claude Code. No GPU. Skills are plain Markdown.\n\n Performance: No benchmarks or eval results published.\n\n Best: long-command-check , a 10-point audit for long shell commands and background tasks.\n\n We just open-sourced MCode Stack: the actual workflows and skills the MiniMax Code team uses every day to build MiniMax Code. https://t.co/vREt7i8m2M \n— RonnyHe (@Ronny_MiniMax) October 28, 2026 \n\n What is MiniMax MCode Stack? \n\n MCode Stack is an open-source repo of agent skills from MiniMax’s MiniMax Code team. MiniMax Code is the MiniMax’s open-source terminal coding agent, also MIT-licensed. The stack holds no MiniMax Code source code. It holds only workflows, skills and checklists.\n\n The repo pairs with a column called MCode Engineering Notes . Each note explains one idea. The repo makes that idea runnable. Published notes cover subagents , tool context , compaction versus memory and long bash commands . A note on per-turn context tax is marked upcoming.\n\n What skills are inside Ronny’s stack? \n\n MiniMax’s stack ships 15 skills, grouped by moment in the working day:\n\n Plan and split (3): subagent-split-check , engineering-small-prs , engineering-change-descriptions .\n\n Context and tools (2): tool-budget-audit , context-tax-audit .\n\n Long sessions and commands (3): long-session-check , handoff-doc , long-command-check .\n\n Review (4): independent-review , engineering-code-review , engineering-review-comments , engineering-review-feedback .\n\n Experiments and hotfixes (3): harness-experiment , trajectory-review , engineering-emergency-changes .\n\n A few ideas stand out. independent-review gives the reviewer exactly 3 inputs: the diff, the requirement and test results. It deliberately withholds the author’s conversation. The reasoning: a reviewer inheriting the author’s context repeats the author’s blind spots.\n\n subagent-split-check says to split work only when context is the measured problem. Splitting by team or question type is not a valid reason.\n\n tool-budget-audit separates 2 costs: tool definitions and tool results. Tool search mainly cuts the first. Programmatic tool calling mainly cuts the second.\n\n harness-experiment enforces 1 change per experiment. It tracks flipped tasks, requests per task, tokens, cache hit rate and wall-clock time.\n\n The long-command checklist has 10 items. It asks whether moving a command to background re-runs the process. It also asks whether unread results survive compaction.\n\n The 6 engineering-* skills are adapted from Google Engineering Practices . That material stays under CC-BY 3.0, per the stack’s NOTICE .\n\n How do you install MCode Stack? \n\n There are 3 paths, per the README :\n\n One skill: clone the repo and copy a skill folder into ~/.agents/skills/ .\n\n Whole stack as a local plugin: copy stacks/ronny into MiniMax Code’s local plugin directory.\n\n Marketplace: in MiniMax Code desktop, add the MiniMax-AI/mcode-stack marketplace. This option is rolling out gradually.\n\n The same catalog works in Claude Code with /plugin marketplace add MiniMax-AI/mcode-stack . MiniMax Code also reads ~/.claude/skills/ and ~/.codex/skills/ . The skills use the common SKILL.md format, so most work in other agents that support skills.\n\n How does MCode Stack compare with other skill packs? \n\n Feature MiniMax MCode Stack anthropics/skills obra/superpowers Publisher MiniMax Code team Anthropic Jesse Vincent (obra), Prime Radiant License MIT; engineering-* skills CC-BY 3.0 Apache 2.0 for many skills; document skills source-available MIT Skill count 17 (15 + 2) Not disclosed 15 listed in README Focus Harness engineering, review, context budgets, long sessions Creative, development, enterprise, documents Brainstorming, planning, TDD, subagent-driven development, debugging Agents named MiniMax Code, Claude Code Claude Code, Claude.ai, Claude API 16 harnesses, incl. Claude Code, Codex, Cursor, Gemini CLI Claude Code install /plugin marketplace add MiniMax-AI/mcode-stack /plugin marketplace add anthropics/skills /plugin install superpowers@claude-plugins-official Published evals Not disclosed Not disclosed Not disclosed \n\n MCode Stack is narrower than both. It targets people who design agent harnesses, not only people who use agents. Superpowers covers far more harnesses today.\n\n Key Takeaways \n\n MiniMax open-sourced 17 SKILL.md skills and 5 checklists under MIT.\n\n Skills pair with MCode Engineering Notes, turning essays into runnable checks.\n\n independent-review feeds a reviewer only the diff, requirement and test results.\n\n Installs into MiniMax Code or Claude Code via a plugin marketplace.\n\n No published evals yet, so treat it as a playbook, not proof.\n\n Check out the GitHub repo and MiniMax Code . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post MiniMax Open-Sources MCode Stack: 15 Agent Skills Its Coding Team Uses Daily appeared first on MarkTechPost .",
-  "begyujtve": "2026-10-28T17:42:10.139482+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "Nyílt forrásúvá tette a MiniMax a saját kódolóügynök-készletét",
+  "lead": "A kínai cég MCode Stack néven 17 beépíthető munkafolyamatot és 5 ellenőrző listát tett ingyenesen hozzáférhetővé a fejlesztők számára.",
+  "osszefoglalo": "A MiniMax nyílt forráskódúvá tette az [MCode Stack](https://github.com/MiniMax-AI/mcode-stack) nevű gyűjteményt, amely a saját kódoló csapata által napi szinten használt AI-ügynök munkafolyamatokat tartalmazza. Az **MIT licenc alatt kiadott csomag** 17 egyedi SKILL.md fájlt és 5 ellenőrző listát foglal magában, amelyeket a fejlesztők közvetlenül beépíthetnek az ügynökrendszereikbe.\n\nA munkafolyamatok célja, hogy strukturált lépésekké alakítsák a bonyolultabb fejlesztési feladatokat. A készlet különös figyelmet fordít a **független kódellenőrzésre**, a kontextus méretének optimális beosztására, a részfeladatok ügynökök közötti elosztására, valamint a hosszabb ideig futó parancsok felügyeletére.\n\nAz MCode Stack ingyenesen letölthető, és a [MiniMax Code](https://github.com/MiniMax-AI/minimax-code) mellett a **Claude Code rendszerével is kompatibilis**. Használatához nincs szükség saját GPU-ra, mivel a készletben található szabályok egyszerű Markdown formátumú fájlokból állnak.",
+  "miert_szamit": "A fejlesztők és kódoló AI-ügynököket építő szakemberek kész munkafolyamatokat kapnak, amelyekkel **hatékonyabbá tehetik az AI-kódgenerálást** és csökkenthetik a tokenköltségeket.",
+  "cimkek": [
+    "MiniMax",
+    "MCode Stack",
+    "kódolás",
+    "AI-ügynök"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "MCode Stack",
+    "MiniMax Code"
+  ],
+  "linkszabaly": 3,
   "prioritas": {
-    "pont": 59,
-    "szint": "P3",
+    "pont": 73,
+    "szint": "P2",
     "reszpont": {
-      "hatas": 55,
-      "hirertek": 65,
-      "egyediseg": 85,
-      "hitelesseg": 71,
-      "aktualitas": 95,
-      "kozossegi": 54
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 95,
+      "hitelesseg": 76,
+      "aktualitas": 98,
+      "kozossegi": 67
     },
     "elofeszures": 82,
-    "tanult": 59,
-    "indok": "Nyílt forráskódú AI eszköz- és képességcsomag kiadása fejlesztőknek Forrás-tapasztalat: -7.",
-    "tema": "minimax mcode stack release",
-    "cim_hu": "Nyílt forráskódúvá tette kódolási AI eszközeit a MiniMax",
-    "lead_hu": "A MiniMax elérhetővé tette az MCode Stack csomagot, amely közvetlenül beépíthető munkafolyamatokat kínál a fejlesztők számára.",
+    "tanult": 56,
+    "indok": "Nyílt forráskódú release a MiniMax fejlesztői AI-ügynök munkafolyamataihoz Forrás-tapasztalat: -7.",
+    "tema": "minimax open source release",
+    "cim_hu": "Nyílt forráskódúvá tette kódoló AI-ügynökeinek eszköztárát a MiniMax",
+    "lead_hu": "A MiniMax kiadta az MCode Stack gyűjteményt, amely 17 közvetlenül telepíthető AI-ügynök képességet tartalmaz a fejlesztési munkafolyamatok automatizálására.",
     "klaszter": null,
     "ai": true,
-    "ido": "2026-10-28T17:42:31+00:00"
+    "ido": "2026-10-28T17:57:07+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-28T17:47:07+00:00"
+  "forditva": "2026-10-28T18:01:36+00:00",
+  "megjelent": "2026-10-28T18:01:36+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-28T18:01:38+00:00",
+    "esemeny": "A MiniMax nyílt forráskódúvá tette az MCode Stack nevű gyűjteményt, amely 17 AI-ügynök képességet (skill) és 5 ellenőrző listát tartalmaz MIT licenc alatt.",
+    "forrasok": [
+      "https://x.com/Ronny_MiniMax/status/1850930000000000000",
+      "https://github.com/MiniMax-AI/mcode-stack"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
 }
