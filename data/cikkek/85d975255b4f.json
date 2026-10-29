@@ -1,0 +1,77 @@
+{
+  "id": "85d975255b4f",
+  "slug": "nyilt-beszedfelismero-es-dontesi-eszkoztarat-adott-ki-a-hugging-face",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/anydecisionmodel",
+  "szerzo": null,
+  "publikalva": "2026-10-29T00:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://huggingface.co/blog/assets/anydecisionmodel/banner.png"
+  },
+  "cim_eredeti": "Introducing AnySpeechRecognizer and AnyDecisionModel: Open Models for Speech and Decisions on Apple Platforms",
+  "forrasok": [],
+  "szoveg_eredeti": "Language models can do a lot. They write, summarize, translate, and call tools. But they're only a small part of what machine learning can do.\n\nSay a customer calls your support line. First, you want to know what they said (speech recognition). Then, you want to decide where to send them (decision). You could hand both to a language model, but there are models built for each that are better, faster, and less expensive.\n\nIn our AnyLanguageModel 1.0 recap, we looked at a year of local and hosted models in Swift. With AnyLanguageModel and swift-huggingface now on their 1.x releases, we're extending the same approach to speech and decisions: familiar Swift APIs with a choice of model.\n\nBoth packages can download open models from the Hugging Face Hub and run them on device.\n\nComputers have been transcribing speech for decades, and in the past few years, they've gotten very good at it. Apple platforms already have an API for it. macOS 26 and iOS 26 introduced SpeechAnalyzer, Apple's new speech-to-text API. You add modules such as SpeechTranscriber and SpeechDetector to an analyzer, give it a file or a stream of audio buffers, and read results from async sequences as they arrive. AssetInventory installs the models, so your app decides when downloads happen.\n\nIt's a well-designed API, but the only engine behind it is Apple's. AnySpeechRecognizer keeps the API and lets you choose the engine:\n\nThe package mirrors SpeechAnalyzer, SpeechTranscriber, DictationTranscriber, SpeechDetector, and AssetInventory, with Apple's Speech framework as the default engine. If your code uses that shared API, changing the import is enough. To use Parakeet instead, change only how you create the transcriber:\n\nThe steps for installing assets, running the analyzer, and reading results stay the same. The README has a complete example and lists the differences from Apple's framework.\n\nParakeet v3 is NVIDIA's Parakeet TDT 0.6B v3. It's a polyglot: it recognizes 25 European languages and works out which one it's hearing, so you don't pass a locale.\n\nParakeet Ultra is Moondream's post-trained take on v3. It was more accurate in most of our measurements.\n\nParakeet Unified is NVIDIA's English-only Parakeet.\n\nAll three Parakeets run on the package's own Core ML runtime, which supports file and live input, volatile results, word timing, and word confidence.\n\nQwen3-ASR is Alibaba's speech model, in 0.6B and 1.7B sizes. It recognizes 30 languages and 22 Chinese dialects, including Mandarin, Cantonese, Japanese, and Korean, which Parakeet doesn't cover. It detects the language automatically, or you can set one:\n\nQwen3-ASR gives one final result for each segment of up to 40 seconds, without volatile results, word timing, or confidence. It runs on the GPU and is slower than Parakeet, so it's better suited to transcribing files than live input.\n\nTo add another engine, implement SpeechRecognitionModel for its configuration and SpeechRecognitionExecutor for one module's session. The README includes a small provider that reports placeholder text to help you get started.\n\nTo run these models in apps, we converted them to Core ML and published them on the Hub:\n\nEach repository records its source checkpoint and a checksum for every file, and the package pins it to a fixed revision. The Parakeet repositories add an 8-second encoder for live input, which cuts live analysis time by about a third at the cost of a somewhat higher word error rate. The repository also has the conversion workflows, most of which follow FluidInference's mobius scripts, and checks each conversion against the original model.\n\nDownloads happen only when your app asks for them: about 600 MB for each Parakeet, plus about 590 MB for the live encoder, 0.9 to 2.4 GB for Qwen3-ASR, and about 250 MB for Sortformer. Files go in the standard Hugging Face cache, so a Mac app outside the sandbox shares them with Python and other Hugging Face tools.\n\nWhen you transcribe a conversation, you often want to know who said what. That's speaker diarization, and Apple's Speech framework doesn't have a module for it, so AnySpeechRecognizer adds one. SpeakerDiarizer runs NVIDIA's Streaming Sortformer on Core ML alongside an Apple or Parakeet transcriber, on the same timeline:\n\nThe diarizer tracks up to four speakers, even when they talk over each other. A SpeakerTimeline collects its results and attributes each timed word to a speaker, so you can print a transcript by speaker turn. Like image support in AnyLanguageModel, this goes beyond what Apple's API offers today.\n\nThe diarizer uses Sortformer v2 by default. You can also choose v2.1, which NVIDIA trained with more meeting data and which was more accurate on meetings in our measurements, too.\n\nWe measured the package with its hear command-line tool on an M4 Max Mac Studio with macOS 27.0.1. Here are the word error rates on LibriSpeech files of 3 to 8 minutes:\n\nParakeet transcribes an hour of audio in about 20 to 40 seconds from a file, or about 1.5 to 2.5 minutes live, with about 100 MB of memory once Core ML has compiled the model. Qwen3-ASR is much slower and needs a few gigabytes of memory. Meetings are hard for everyone: on AMI recordings, where people talk over each other, every engine we tested had a word error rate above 23%.\n\nThese numbers come from one machine and a few datasets, so measure with your own hardware and audio. hear evaluate works on your own files, and the repository's natural-speech-eval.py tool reproduces these measurements. So far, we've tested only on macOS 27, not on an iPhone.\n\nNext, we'd like to add more engines, including Core AI on macOS 27 and iOS 27.\n\nAnyDecisionModel is a different story. There's no Apple framework to map onto, and decision models aren't new, exactly.\n\nIt's only a decision model if it comes from the Décision region of France; otherwise, it's sparkling zero-shot classification.\n\nWhat's new is the name, a lot of hype, and a crop of models trained to make decisions. We think that's where things are going, so we wanted a Swift API that's ready for them.\n\nApps often ask language models to make decisions. Is this message urgent? Which team should handle this ticket? How frustrated is this customer? The usual approach is to prompt a language model and parse the text that it generates. That gives you one answer, but doesn't show the probabilities it assigned to the alternatives.\n\nHere's what a decision looks like in Swift:\n\nurgent is a Double. team is a Choice<Department> containing the selected case, a probability for each option, and a confidence value. anger is a Score containing the expected level, a probability for each level, and a confidence value. Because Department conforms to Choosable, team.value is a Department that you can use in an exhaustive switch.\n\nIf you've used Foundation Models or AnyLanguageModel, the model-and-session pattern will look familiar. A DecisionSession holds a single state, which can be text or JSON, and every question is about that state. Questions are independent: an answer never becomes input to a later question. To ask several questions at once, pass them to decide(_:) as a batch.\n\nFor each question, the MLX backend builds a prompt with a one-token label for each allowed answer, then reads the probability of each label from one forward pass.\n\nEmoji Magnet is a macOS app with a text field above a pile of 343 emoji. Type a phrase, such as \"things you wear\", and the emoji that match rise out of the pile. Refine it to \"things you wear in winter\", and the emoji that no longer match fall back.\n\nThe app has no built-in keyword rules; the model decides everything at inference time. When you pause typing, it asks the model one yes-or-no question for each emoji, for example:\n\nThe session's state holds the phrase. The demo above uses the hosted Jev backend, which answers all 343 questions in one request, so the emoji settle in about half a second for each phrase. Without a TYPESAFE_AI_API_KEY, the app runs Qwen3 4B on your Mac w",
+  "modell": "gemini-3.5-flash",
+  "cim": "Nyílt beszédfelismerő és döntési eszköztárat adott ki a Hugging Face",
+  "lead": "A Hugging Face két új Swift-csomagot adott ki Apple platformokra, amelyekkel nyílt AI-modellek futtathatók közvetlenül az eszközökön.",
+  "osszefoglalo": "A **Hugging Face** kiadta az AnySpeechRecognizer és AnyDecisionModel nevű nyílt forráskódú Swift-csomagokat macOS és iOS fejlesztők számára. Az AnySpeechRecognizer az Apple saját beszédfelismerő API-jának mintáját követi, de lehetővé teszi a hálózati kapcsolat nélküli, eszközön futó nyílt modellek használatát. Támogatja többek között az NVIDIA Parakeet és az [Alibaba Qwen3-ASR](https://github.com/QwenLM/Qwen3-ASR) modelljeit, valamint a beszélők megkülönböztetését is a Sortformer segítségével.\n\nAz AnyDecisionModel a hagyományos nyelvi modellek lassú és drága szöveggenerálása helyett **gyors osztályozást és döntéshozatalt** tesz lehetővé structured adatokon. A csomagok a modelleket automatikusan konvertálják [Core ML](https://developer.apple.com/documentation/coreml) formátumba, így a fejlesztők közvetlenül az alkalmazásaikból érhetik el a Hugging Face Hub nyílt modelljeit.",
+  "miert_szamit": "Az Apple-ökoszisztémában dolgozó fejlesztők **olcsóbb és adatvédelmi szempontból biztonságosabb** intelligens funkciókat építhetnek be alkalmazásaikba felhős API-k kényszerű használata nélkül.",
+  "cimkek": [
+    "Hugging Face",
+    "Apple",
+    "Swift",
+    "Core ML"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "AnySpeechRecognizer",
+    "AnyDecisionModel"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 74,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 70,
+      "hirertek": 80,
+      "egyediseg": 90,
+      "hitelesseg": 92,
+      "aktualitas": 86,
+      "kozossegi": 79
+    },
+    "elofeszures": 100,
+    "tanult": 85,
+    "indok": "Új nyílt forráskódú modellcsomag Apple platformokra a Hugging Face-től, ami gyakorlati hasznosságú a fejlesztőknek. Forrás-tapasztalat: -6.",
+    "tema": "hugging face apple models",
+    "cim_hu": "Új nyílt AI-modelleket adott ki a Hugging Face az Apple platformjaira",
+    "lead_hu": "A Hugging Face bemutatta az AnySpeechRecognizer és AnyDecisionModel eszközöket, amelyek hatékony beszédelismerést és döntéshozatalt tesznek lehetővé helyben, Apple eszközökön.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-29T12:19:09+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-29T12:22:49+00:00",
+  "megjelent": "2026-10-29T12:22:49+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-29T12:22:50+00:00",
+    "esemeny": "A Hugging Face két új nyílt forráskódú Swift-csomagot (AnySpeechRecognizer és AnyDecisionModel) tett közzé Apple platformokra, amelyekkel nyílt beszédfelismerő és döntéshozó AI-modellek futtathatók közvetlenül az eszközökön.",
+    "forrasok": [
+      "https://huggingface.co/blog/anydecisionmodel"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-10-29T12:23:47+00:00",
+  "linkek_ellenorizve": true
+}
