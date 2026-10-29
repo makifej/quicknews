@@ -1,0 +1,74 @@
+{
+  "id": "a1765f446c5b",
+  "slug": "megjelent-a-mistral-large-4-nyilt-ai-modell",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/mistral-large4",
+  "szerzo": null,
+  "publikalva": "2026-10-29T00:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://huggingface.co/blog/assets/ml4/thumbnail.png"
+  },
+  "cim_eredeti": "Welcome Le Chonk: Mistral Large 4 on Hugging Face",
+  "forrasok": [],
+  "szoveg_eredeti": "Mistral Large 4 (aka Le Chonk) is a multimodal, multilingual, Mixture-of-Experts (MoE) model from Mistral. It takes text and images as input and generates text. It has about 1T total, 49B active parameter, and a context window of 1M tokens.\n\nThe model is released in two official variants:\n\nThere are also GGUFs created by Unsloth and the llama.cpp team. It’s distributed under the Mistral Ecosystem Open-Weight License (an MIT derivative that establishes limitations for model-as-a-service offerings).\n\nMistral Large 4 is particularly strong for cybersecurity, coding agents, and multimodality. In this post, we look at how the model works, its capabilities, architecture and more!\n\nMistral Large 4 combines a large pool of experts with sparse attention and a Pixtral vision encoder. The language model selects a small group of experts for each token, while its attention indexer selects which earlier token positions to attend to. These are two different forms of sparsity, where one selects feed-forward networks, the other selects context positions.\n\nYou can find all the checkpoints in the Mistral Large 4 collection.\n\nMistral Large 4 scores 82% on the Artificial Analysis Cyber Index test that asks a model to reproduce a real vulnerability in open-source software and then patch the software. Mistral reports that several closed frontier models score near zero on the same test because they refuse to attempt the work. This is super important for defenders, because fixing a vulnerability usually requires reproducing the vulnerability. In Mistral’s internal testing, Mistral Large 4 was also useful for malware analysis, vulnerability prioritisation and writing detection rules, which the model was not explicitly trained for.\n\nMistral mainly positions the model for defensive security work. Vulnerability research and incident response often appear like attacks in model input, so closed source filters can block them. A team that depends on an API can also lose access in the middle of an incident. Crucially, open weight models put both the usage policy and the deployment under the user’s control. That said, the model still declines harmful requests: on cyber prompts from JailbreakBench, StrongREJECT and AgentHarm, its average refusal rate is higher than any other open weight model.\n\nFor community builders, an open weight model like Mistral Large 4 unlocks a load of downstream use cases. You could build your own cyber system around your code base, crash logs, and malware samples. For example, with TRL you could fine-tune smaller models from Mistral Large 4 traces patching your code base. In fact, reproduce-then-patch tasks use a verifiable reward, so it fits with RL environments that could be used to further RL smaller security models. Open weights also let researchers measure the model’s refusal behaviour directly instead of relying on the provider’s description.\n\nIn short, cyber capabilities like ML4’s in the open are a huge boost for the community.\n\nWe have interviewed Pierre Stock about the cyber capabilities of the model, you can watch it here.\n\nMistral Large 4’s text decoder has 72 layers, a hidden dimension of 6,144, and 64 attention heads. Its attention blocks combine Multi-head Latent Attention (MLA) with a DeepSeek Sparse Attention (DSA) indexer (a direction in other models such as GLM 5.3). MLA keeps a compressed KV representation, and DSA selects up to 2,048 key positions for each query.\n\nFor each decoder block, there’s a 3:1 RoPE to NoPE pattern, i.e. 3 decoder layers employ RoPE and every fourth layer uses NoPE. The model also shares KV state across layers.The first decoder layer uses a dense feed-forward network. The other 71 layers use MoE blocks, in which a softmax router selects four of the 128 experts for each token. One shared expert always runs alongside the selected experts, for a total of 5 active experts per token.\n\nRegarding RoPE, Mistral uses LeRope, a YaRN-scaled RoPE with one learned multiplier per frequency.\n\nMistral Large 4 employs a 1.6B Pixtral encoder. Pixtral has 30 layers, a hidden dimension of 2,048, and 16 attention heads. It uses 14 × 14 patches and a patch-merge projector with spatial merge size 2. You can see the encoder pipeline below.\n\nMistral Large 4 delivers strong benchmark performance across coding, cybersecurity, multimodal understanding, and agentic workflows, positioning it as a competitive addition to the open-weight ecosystem. As of October 29, 2026, the model is the fifth best open weights model on Artificial Analysis Intelligence index.\n\nOn coding, ML4 achieves 61.7% on DeepSWE v1.1, 59.4% on SWE-Atlas-QnA, and 28.3% on Terminal-Bench 4. Its combined Coding Agent Index score of 49.8% places it ahead of DeepSeek V4 Pro 0813 and Qwen3.8 Max.\n\nCoding capabilities of ML4 extend to knowledge work, with 59.9% on AutomationBench and 1,393 Elo on AA-Briefcase, which evaluate business workflows and long-horizon professional tasks.\n\nCybersecurity is one of Mistral Large 4’s standout capabilities, with strong results across real-world vulnerability assessment and security competition tasks. Three benchmarks highlight the model’s cyber performance:\n\nMistral Large 4 also demonstrates 93.3% attack resistance on Lakera’s B3 benchmark, adding evidence of robustness against prompt-injection attacks. Beyond benchmarks, internal testing showed promising results in malware analysis, vulnerability prioritization, and detection-rule generation.\n\nMistral Large 4 is shipped with day-0 support for transformers, vLLM and llama.cpp. GGUF quants are available from GGUF and the llama.cpp team. We provide options to deploy remotely with Inference Endpoints, and use serverless inference through Inference Providers.\n\nThe Transformers implementation provides AutoModelForMultimodalLM, with AutoProcessor preparing the conversation and image inputs. Mistral Large 4 can take low, medium, high as reasoning effort. The default is high, and note that reasoning cannot be disabled, so using reasoning_effort: none would still use high.\n\nTo run the model, upgrade the transformers package\n\nYou can run the script above by saving it in a python file script.py and then run\n\nvLLM supports the high-quality NVFP4 Mistral Large 4 checkpoint, which has a smaller memory footprint and requires NVIDIA Blackwell GPUs. The model also ships with a DSpark drafter for additional speed-ups with vLLM. Launch the server like this:\n\nOnce the server is up and running, you can run the following.\n\nLlama.cpp and Llama App already support Mistral Large 4.\n\nYou can install Llama App with the following command:\n\nThen you can start the server as follows, indicating the quant suffix after the model ID:\n\nHere’s the repository with the quants derived from the FP8 checkpoint, and this is the NVFP4 one, converted from the official NVFP4 repo.\n\nOnce the server has started, you can head to localhost:9931 to chat using the built-in WebUI. From the web UI you can add images for inference and adjust the reasoning lever.You can also query the server as follows. Feel free to check out the API reference for multimodality, tool calls and more.\n\nYou can run image-text inference as follows.\n\nThe llama.cpp team ships the following quants: IQ2_XXS, Q2_K, Q4_K_M, NVFP4, Q8_0, and BF16 for further conversions. The 2-bit quants run on a single Apple Silicon Ultra computer with 512 GB of unified RAM. The others require distributed inference. You can also run on multiple NVIDIA or AMD cards.\n\nRunning Q2_K on a single M3 Ultra, we got a prefill throughput of about 90 tokens per second, and a generation speed of 15 tok/s. On 4 x RTX6000 Pro, we observed the following results:\n\nWe also ship day 0 support of fine tuning Mistral Large 4 using TRL. All you have to do is upgrade to the latest version of transformers, trl and peft.\n\nIn the following example we train the model to perform multilingual thinking. The fine tuned model would be able to reason in the language the system prompt asks for!\n\nThe script runs on the FP",
+  "modell": "gemini-3.5-flash",
+  "cim": "Megjelent a Mistral Large 4 nyílt AI-modell",
+  "lead": "A francia Mistral kiadta a nyílt súlyú, multimodális Mistral Large 4 modellt, amely kiemelkedő a kiberbiztonság és a kódolás terén.",
+  "osszefoglalo": "A Mistral kiadta a Mistral Large 4 modellt, amely egy **1 ezermilliárd paraméteres**, multimodális és többnyelvű nyílt súlyú AI-modell. A modell képes szöveg és képek feldolgozására, kontextusablaka pedig **1 millió token**. Az architektúra a ritkított szakértői hálózatot (MoE) ötvözi a képek feldolgozására szolgáló Pixtral kódolóval.\n\nAz eszköz különösen erős a kiberbiztonság, a kódolási feladatok és az ügynökalapú folyamatok terén. Az Artificial Analysis Cyber Index tesztjén **82 százalékos eredményt** ért el sebezhetőségek reprodukálásában és javításában. Mivel nyílt súlyú modellről van szó, a felhasználó maga szabályozhatja a futtatást és a biztonsági szűrőket, ami megkönnyíti a védelmi jellegű kiberbiztonsági munkát.\n\nA kiadás napjától kezdve az eszköz elérhető a Transformers, vLLM és llama.cpp keretrendszerekben. A **2 bites kvantált változatok** akár egyetlen, 512 GB RAM-mal szerelt Apple Silicon Ultra számítógépen is futtathatók.",
+  "miert_szamit": "A nyílt súlyú modell lehetővé teszi a fejlesztőknek és cégeknek, hogy **saját infrastruktúrán, adatvédelmi kockázatok nélkül** futtassanak kódolási és kiberbiztonsági AI-ügynököket.",
+  "cimkek": [
+    "Mistral",
+    "LLM",
+    "kiberbiztonság",
+    "open-source"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 5,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 76,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 88,
+      "hirertek": 85,
+      "egyediseg": 60,
+      "hitelesseg": 90,
+      "aktualitas": 74,
+      "kozossegi": 71
+    },
+    "elofeszures": 100,
+    "tanult": 57,
+    "indok": "Fontos nyílt súlyú modellmegjelenés a Mistraltól, de a kötegben több bejegyzés is foglalkozik vele. Forrás-tapasztalat: -5.",
+    "tema": "mistral large 4 le chonk release",
+    "cim_hu": "Megérkezett a Mistral Large 4 nyílt súlyú változata a Hugging Face-re",
+    "lead_hu": "Elérhetővé vált a Mistral 1 ezermilliárd paraméteres, multimodális MoE modellje, a Le Chonk, amely 1 milliós kontextusablakkal rendelkezik.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-29T14:55:32+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-29T15:17:50+00:00",
+  "megjelent": "2026-10-29T15:17:50+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-29T15:22:17+00:00",
+    "esemeny": "A Mistral kiadta a Mistral Large 4 (becenevén Le Chonk) multimodális, Mixture-of-Experts nyílt súlyú AI-modelljét és annak súlyait.",
+    "forrasok": [
+      "https://huggingface.co/blog/mistral-large4",
+      "https://mistral.ai/news/mistral-large-4-open-weight/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-10-29T15:24:01+00:00"
+}
