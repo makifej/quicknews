@@ -1,0 +1,49 @@
+{
+  "id": "8d9b5cf421c5",
+  "slug": "lend-and-borrow-resources-across-teams-with-aws-batchs-quota",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/lend-and-borrow-resources-across-teams-with-aws-batchs-quota-management-for-sagemaker-training-jobs/",
+  "publikalva": "2026-10-29T16:58:57+00:00",
+  "cim": "Lend and borrow resources across teams with AWS Batch’s quota management for SageMaker Training jobs",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 47 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/10/27/ML-21246-featured-image.png"
+  },
+  "cim_eredeti": "Lend and borrow resources across teams with AWS Batch’s quota management for SageMaker Training jobs",
+  "szoveg_eredeti": "With the launch of AWS Batch support for Amazon SageMaker Training jobs, customers gained a new fully managed way to queue, schedule, and retry machine learning (ML) training workloads without building their own infrastructure. Instead, they use the queuing and scheduling features of AWS Batch. As organizations scale their artificial intelligence and machine learning (AI/ML) operations and onboard more teams, coordinating access to shared graphics processing unit (GPU) capacity can introduce additional communication, coordination, and configuration overhead for administrators. This overhead includes setting up separate queues, adjusting capacity limits, and carefully orchestrating the right workloads to get the right resources at the right time. A core value proposition of AWS Batch is helping customers increase utilization of their compute, and as training environments grow, so does the opportunity to do more with existing capacity.\n\nWorking backward from customers managing multi-team training environments, we heard a consistent request: give us a way to define allocations per team or project, share idle capacity automatically, and run our highest-priority workloads first. This request led us to build quota management, a new scheduling capability for AWS Batch. Administrators can use it to divide compute capacity into quota shares, organized by team, project, or workload. Each quota share uses configurable resource-sharing strategies that maximize GPU utilization while honoring each team’s allocation when it matters most.\n\nThis post shows how quota management works, including how to configure quota shares with lending and borrowing strategies, set up in-share preemption for priority workloads, and get started using the SageMaker Python SDK.\n\nAdministrators can allocate and share constrained GPU resources by defining a quota share for separate entities, such as individual teams or projects. Each quota share includes compute quotas (capacity limits) and resource-sharing strategies for idle compute. These strategies determine whether idle compute is reserved until jobs arrive (RESERVE), lent to other quota shares that have work available (LEND), or both lent when idle and borrowed when the share has work that might benefit (LEND_AND_BORROW).\n\nA quota share operates as a virtual queue nested hierarchically within an associated job queue. When scheduling jobs for a job queue, AWS Batch prioritizes quota shares that are under their capacity limits as it iterates through the associated quota shares. If jobs arrive in a quota share that has lent out its capacity, AWS Batch performs cross-share preemption. This reclaims resources for the lending quota share, so administrators don’t need to track down the jobs borrowing capacity and terminate them on their own. If jobs arrive in a quota share that is at or above its capacity limit, AWS Batch checks whether there’s available capacity to borrow from another quota share. If so, workloads can run using otherwise-idle capacity.\n\nYou can turn on priority-based in-share preemption when you configure a quota share. Where cross-share preemption reclaims lent capacity as jobs arrive in a lending quota share, in-share preemption preempts lower priority jobs that are in the SCHEDULED, STARTING, or RUNNING state. This allows higher priority jobs at the front of the queue to start running sooner.\n\nBefore you proceed with this example, you must have an AWS account with permissions to create and manage AWS Batch resources. For this example, see the sample IAM permissions needed to invoke AWS Batch and SageMaker APIs.\n\nThe example uses the SageMaker Python SDK v3. Complete the setup required to install a compatible version of the SageMaker Python SDK:\n\nUsing the new quota management capabilities requires creating a Scheduling Policy that contains a quotaSharePolicy, a Service Environment that specifies its capacity limits in terms of specific instances, and a SageMaker Training job queue that is connected to both. After that, you can associate quota shares to a job queue. The user guide has AWS Command Line Interface (AWS CLI) and console examples for configuring quota management resources and quota shares. An end-to-end example of quota management integrated with the aws_batch module in the SageMaker Python SDK v3 is contained in a sample notebook. In this example, we step through code snippets that summarize the key components, and use the helper functions from the notebook to create a Scheduling Policy, Service Environment, Job Queue, and three Quota Shares.\n\nThe three quota shares configured here represent three different projects. Each has the same capacity limit set: a single ml.g5.xlarge instance. The QS1 quota share represents background jobs. For this project, you want to run the most important background job first and borrow as much spare capacity as is available. Within this quota share, no jobs are urgent, and preemptions are acceptable because all jobs use checkpointing. This quota share uses the LEND_AND_BORROW resource-sharing strategy and has in-share preemption turned on. Higher priority jobs within the same quota share can then preempt running jobs that are lower priority.\n\nQS2 represents medium priority workloads. Teams choosing this configuration would prefer to wait for capacity to become available rather than endure additional preemptions. Those preemptions come from borrowed capacity being reclaimed or from in-share preemptions because of higher priority job submission. This is appropriate for shorter jobs, or when most submitted jobs have similar priorities. The quota share still benefits from job priority being taken into consideration at job dispatch. Submitted jobs trigger AWS Batch to reclaim any lent capacity needed to run the jobs.\n\nQS3 represents workloads that need to start as quickly as possible with minimal interruptions. It’s configured to reserve capacity and neither lends nor borrows to other quota shares. It doesn’t experience cross-share preemptions, because its workloads don’t exceed their capacity limits. By also turning off in-share preemption, workloads submitted to this quota share are not preempted by AWS Batch as long as the capacity limit is unchanged.\n\nThese quota share configurations are inputs to the create_quota_management_resources function in the sample notebook, which also configures the corresponding Scheduling Policy, Service Environment, and Job Queue with the constant names chosen.\n\nThe aws_batch module within the SageMaker Python SDK has been extended to allow programmatic submission of SageMaker Training jobs to a quota-management-enabled AWS Batch job queue. To demonstrate these new capabilities, we use a Hello World ModelTrainer that’s submitted to the job queue. The following code snippet identifies an image URI to use based on the Region and instance type selected.\n\nWe use this image URI within a basic hello world model trainer example:\n\nTo use the job queue within the SageMaker Python SDK, provide the queue name to the TrainingQueue constructor within the aws_batch module.\n\nWe can then submit three jobs to QS1, our background jobs quota share. The first job submitted has the highest priority, followed by the medium priority job, and then the lowest priority job. As nothing is currently running in QS1 or QS2, two instances’ worth of jobs should start, corresponding to the first and second jobs submitted (as they had the highest relative priority). Note that because this is only a hello world training job, it doesn’t require data, but typically a ModelTrainer requires data to perform training.\n\nThe team that owns QS2 might discover they have work to perform and submit a job to QS2. Doing so triggers a preemption of capacity back from QS1, which is currently borrowing that capacity (QS3’s capacity isn’t configured to be borrowed). This is a cross-share preemption.\n\nIf a scientist realizes that the qs1_job_low job in QS1, which is still RUNNABLE, needs to begin ru",
+  "begyujtve": "2026-10-29T21:04:10.307537+00:00",
+  "prioritas": {
+    "pont": 47,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 60,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 34
+    },
+    "elofeszures": 82,
+    "tanult": 34,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -6.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-10-29T21:04:12+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-29T21:04:13+00:00"
+}
