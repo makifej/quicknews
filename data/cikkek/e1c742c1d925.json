@@ -1,49 +1,76 @@
 {
   "id": "e1c742c1d925",
-  "slug": "announcing-project-protostar-making-publicly-funded-science-ai-ready",
+  "slug": "elindult-a-project-protostar-a-tudomanyos-adatok-ai-kesziteseert",
   "forras_id": "huggingface",
   "forras_nev": "Hugging Face",
   "url": "https://huggingface.co/blog/announcing-project-protostar",
+  "szerzo": null,
   "publikalva": "2026-10-29T00:00:00+00:00",
-  "cim": "Announcing Project ProtoStar: Making Publicly Funded Science AI-Ready",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 58 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://huggingface.co/blog/assets/announcing-project-protostar/thumbnail.jpg"
   },
   "cim_eredeti": "Announcing Project ProtoStar: Making Publicly Funded Science AI-Ready",
+  "forrasok": [],
   "szoveg_eredeti": "An initiative bringing together universities, research organizations, industry, and the open science community to make publicly funded research easier to discover, reuse, and build upon.\n\nToday, we're announcing Project ProtoStar, an initiative to unlock the potential of publicly funded scientific research by making datasets, models, and code more accessible and reusable, particularly for AI-driven research. ProtoStar brings together research institutions, industry, and the open science community to support the release of scientific artifacts in AI-ready, machine-actionable formats, and to demonstrate their value through a series of open challenges. The first challenge, hosted by Carnegie Mellon University, opens on November 2. See How to Participate below.\n\nThe initiative's founding partners include Carnegie Mellon University, Purdue University, Georgia Institute of Technology, Arizona State University, and The George Washington University, all working through the Open Forum for AI (OFAI) as the university coalition partner; the Astera Institute; Hugging Face as the infrastructure partner; and the Open Research Community Accelerator (ORCA), through its Fostering Innovation Network, as the community partner.\n\nParticipating organizations formalize their involvement through a memorandum of understanding supporting the release of suitable scientific datasets, models, and code in AI-ready formats on open infrastructure. Organizations interested in joining Project ProtoStar can reach out to protostar@orcaopen.org.\n\nThe U.S. federal government invests approximately $190 billion annually in research and development, and federal policy increasingly expects the results to be shared publicly. Agencies such as the National Institutes of Health (NIH) and National Science Foundation (NSF) have strengthened public-access requirements for funded research publications and require researchers to plan for sharing the underlying data. Hugging Face is among the ten generalist repositories listed by NIH for sharing research data.\n\nBut making research publicly available does not automatically make it usable. Scientific datasets, models, and code are often scattered across incompatible systems, stored in static or legacy formats, or released without the documentation, metadata, and provenance needed to understand and reuse them. These limitations make it harder for researchers to build on existing work, and harder still for AI systems to discover, interpret, and combine scientific resources across disciplines.\n\nProject ProtoStar aims to help close this gap by encouraging systematic sharing of publicly funded scientific artifacts in AI-ready formats, supported by open infrastructure and practical publishing guidance. It builds on efforts such as the National Cancer Institute's AI Data-Readiness Challenge and Hugging Face's guide to preparing public-sector data for AI. The goal is to make it easier for research organizations to meet existing public-access expectations while increasing the scientific value of the work they release.\n\nThe demand for reusable scientific resources is already evident. Hugging Face hosts more than 17,000 public datasets across core scientific domains, including genomics, protein design, chemistry, weather and climate, Earth observation, and astronomy. That figure approaches 29,000 when medicine and mathematics are included, alongside a comparable number of scientific models.\n\nThe pace of sharing is also accelerating. Researchers shared more than three times as many new science datasets on Hugging Face in the first nine months of 2026 as in the same period of 2025, with growth remaining substantial even after excluding the largest individual uploader.\n\nFigure 1. New public science datasets on Hugging Face per quarter, by domain (Q1 2023–Q3 2026). Counts datasets still public, by creation date. Source: Hugging Face Hub data, October 2026. Explore the data.\n\nWhen organizations share research in reusable formats, the scientific community can build on it at scale. The 18 public repositories maintained by NIH's National Center for Biotechnology Information (NCBI) on Hugging Face have collectively received more than 11 million downloads, while NASA IMPACT's 27 repositories have received approximately 770,000 downloads, as of October 26, 2026. Documentation is also an important part of making these resources useful: 90% of dataset downloads on Hugging Face are from fully documented datasets.\n\nPublicly available genomic data has proved important in contributing to research that further advances fields such as biological research; researchers at Hugging Face have been building on openly available scientific resources, including recent releases from HuggingFaceBio such as Carbon-A and Carbon-X. By releasing the resulting models, datasets, and tools openly, these efforts demonstrate how existing scientific resources can support new research that others can build upon.\n\nThis is the kind of activity that we are further catalyzing via Project ProtoStar through institutional policies adopted by participating orgs. As an early example of institutional commitment, CMU's Open Source Programs Office is encouraging its researchers to share suitable datasets, AI models, and other research outputs on Hugging Face, while recognizing the continued importance of domain-specific repositories.\n\nMaking scientific artifacts AI-ready is an important first step. We also want to demonstrate what researchers, developers, and the broader scientific community can accomplish when those resources are made available for reuse.\n\nA central question for ProtoStar is: Can publicly funded scientific datasets, models, and code, released in AI-ready formats, be readily discovered, reused, combined, and extended to accelerate scientific discovery and public benefit?\n\nTo explore this, ProtoStar will organize a series of open challenges, each hosted by a participating research institution and built around scientific resources that the institution has released openly. The challenges have two complementary goals:\n\nThe resulting projects and lessons learned will help build a practical evidence base for making publicly funded science more accessible and useful.\n\nHosted by Carnegie Mellon University | November 2–13, 2026\n\nThe inaugural ProtoStar challenge invites participants to test whether AI can improve predictions of urban climate conditions using historical weather data from 210 U.S. cities. Building on research by Carnegie Mellon University, teams will use climate records through 2018 to predict actual conditions from 2019 to 2026, allowing their models to be evaluated against observed weather rather than hypothetical future scenarios.\n\nParticipants will forecast four indicators relevant to urban planning: average annual temperature, total annual precipitation, the hottest day of the year, and cooling degree days, a measure of demand for air conditioning. Their predictions will be compared against simple statistical baselines, including historical averages and linear trends, to assess whether AI approaches offer meaningful improvements in accuracy.\n\nBeyond forecasting, participants will also propose a short climate adaptation policy idea informed by what they learned from the data. This component encourages teams to connect scientific analysis with practical public benefits, such as preparing cities for extreme heat, improving energy efficiency, or managing changing precipitation patterns.\n\nTeams will submit a Hugging Face dataset with these outputs. Forecasting performance will be assessed through a public leaderboard measuring prediction errors against established baselines, while policy ideas will receive separate consideration. Final forecasting results will be published in early 2027, once the complete 2026 weather records are available.\n\nExplore the CMU Climate Risk Intelligence Challenge\n\nThe CMU challenge is the first in this series. Other participating institutions will host their own",
-  "begyujtve": "2026-10-29T14:51:44.946476+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "Elindult a Project ProtoStar a tudományos adatok AI-készítéséért",
+  "lead": "A Hugging Face és egyetemi partnerei nyílt kezdeményezést indítottak a közpénzből finanszírozott kutatási adatok és kódok AI-barát szabványosítására.",
+  "osszefoglalo": "A Hugging Face, a Carnegie Mellon Egyetem és számos amerikai kutatóintézet elindította a **Project ProtoStar** kezdeményezést. A projekt célja, hogy a közpénzből finanszírozott tudományos adatseteket, AI-modelleket és kódokat olyan géppel feldolgozható és nyílt formátumba terelje, amelyeket a mesterséges intelligencia rendszerek könnyen tudnak értelmezni és újrahasznosítani.\n\nA partnerintézmények megállapodásban vállalják az AI-kész adatállományok közzétételét, amelynek gyakorlati hasznát nyílt kihívásokkal demonstrálják. Az első ilyen megmérettetés november 2-án indul a Carnegie Mellon Egyetem szervezésében, ahol a résztvevőknek **210 amerikai város klímaadatai alapján** kell AI-alapú előrejelzéseket és várostervezési javaslatokat készíteniük.\n\nA kezdeményezés hátterében az áll, hogy bár a kutatási adatok egyre inkább nyilvánosak, azok gyakran elszórtan, elavult formátumokban és hiányos dokumentációval érhetők el. A Hugging Face mérései szerint a platformjukon lévő adathalmazok letöltésének **90 százaléka a teljes körűen dokumentált fájlokhoz** kapcsolódik.",
+  "miert_szamit": "Az AI-modellépítők és adatkutatók ezentúl sokkal **egységesebb, tisztább és ingyenes tudományos adatkészletekhez** férhetnek hozzá, ami felgyorsítja a domain-specifikus alkalmazások fejlesztését.",
+  "cimkek": [
+    "Hugging Face",
+    "Project ProtoStar",
+    "Open Science",
+    "adatkészlet"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Project ProtoStar"
+  ],
+  "linkszabaly": 3,
   "prioritas": {
-    "pont": 58,
-    "szint": "P3",
+    "pont": 69,
+    "szint": "P2",
     "reszpont": {
-      "hatas": 50,
-      "hirertek": 60,
-      "egyediseg": 85,
-      "hitelesseg": 88,
-      "aktualitas": 74,
-      "kozossegi": 47
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 90,
+      "hitelesseg": 90,
+      "aktualitas": 80,
+      "kozossegi": 56
     },
     "elofeszures": 95,
     "tanult": 49,
-    "indok": "A nyílt tudományt támogató kezdeményezés, mérsékelt közvetlen hírértékkel. Forrás-tapasztalat: -5.",
-    "tema": "hugging face project protostar open science",
-    "cim_hu": "A Hugging Face elindította a tudományos kutatásokat megnyitó Project ProtoStar kezdeményezést",
-    "lead_hu": "A kezdeményezés célja, hogy az államilag finanszírozott kutatási adatokat, modelleket és kódokat könnyebben hozzáférhetővé tegye az AI-fejlesztők számára.",
+    "indok": "Nagyívű nyílt tudományos kezdeményezés a Hugging Face-től, de inkább infrastrukturális alapozás, mint áttörés. Forrás-tapasztalat: -5.",
+    "tema": "huggingface project protostar",
+    "cim_hu": "Elindult a Project ProtoStar a közpénzből finanszírozott kutatások AI-felkészítésére",
+    "lead_hu": "A Hugging Face és partnerei elindították a Project ProtoStar kezdeményezést, amelynek célja a nyilvános tudományos adatok és kódok elérhetővé tétele az AI-alapú kutatások számára.",
     "klaszter": null,
     "ai": true,
-    "ido": "2026-10-29T14:55:32+00:00"
+    "ido": "2026-10-29T15:35:33+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-29T15:20:53+00:00"
+  "forditva": "2026-10-29T15:43:58+00:00",
+  "megjelent": "2026-10-29T15:43:58+00:00",
+  "nevelo_javitva": "2026-10-29T15:43:58+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-29T15:45:40+00:00",
+    "esemeny": "A Hugging Face, a Carnegie Mellon Egyetem és más partnerszervezetek bejelentették a Project ProtoStar kezdeményezést, amelynek célja a közpénzből finanszírozott tudományos adatok, modellek és kódok AI-kész, géppel feldolgozható formátumba terelése.",
+    "forrasok": [
+      "https://huggingface.co/blog/announcing-project-protostar"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-10-29T15:47:44+00:00"
 }
