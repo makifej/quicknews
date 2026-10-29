@@ -486,12 +486,9 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 @media (max-width: 1365px) { .fejlec-info { display: none; } .fejlec-felso .kereso { margin-left: auto; } }
 @media (min-width: 768px) and (max-width: 1365px) { .fejlec nav.rovatsor a, .fejlec nav.rovatsor a[aria-current="page"] { padding-left: 6px; padding-right: 6px; } .fejlec nav.rovatsor a:first-child:not([aria-current="page"]) { padding-left: 0; } .rovatsor .keret { gap: 4px; } }
 @media (min-width: 768px) and (max-width: 1240px) { .fejlec nav.rovatsor a { font-size: 15px; } }
-@media (min-width: 768px) and (max-width: 1060px) {
-  /* kisebb asztalon a 12 menüpont rendezett 2 x 6-os rácsban, nem lóg ki és nem marad árva elem a második sorban */
-  .fejlec nav.rovatsor .keret { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 8px; row-gap: 4px; overflow: visible; }
-  .fejlec nav.rovatsor a, .fejlec nav.rovatsor a:first-child:not([aria-current="page"]) { padding-left: 6px; padding-right: 6px; white-space: nowrap; }
-}
-@media (min-width: 768px) and (max-width: 900px) { .fejlec nav.rovatsor a { font-size: 14px; } }
+/* a menü mindig egy sor (Heni 2026-10-29: „nem lehet 2 sor menü, hanem jobbra lapozós”): ami nem fér ki, oldalra húzható,
+   és amíg van még menüpont jobbra, a sor jobb széle elhalványul */
+.rovatsor .keret.tovabb { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 56px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 56px), transparent); }
 .rovatsor .keret { display: flex; align-items: stretch; gap: 6px; overflow-x: auto; scrollbar-width: none; }
 .rovatsor .keret::-webkit-scrollbar { display: none; }
 .rovatsor a { flex: 0 0 auto; display: block; padding: 10px 10px 8px; font-size: 16px; line-height: 22px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; color: var(--szoveg); border-bottom: 4px solid var(--kiemelo); transition: color 400ms var(--gorbe); }
