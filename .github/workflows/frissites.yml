@@ -82,6 +82,7 @@ jobs:
           python3 build/kiprobal_potlo.py --ir
           python3 build/termek_linkelo.py --ir
           python3 build/entitas_link.py
+          python3 build/kep_minoseg.py || echo "képminőség-ellenőrzés kihagyva"
           python3 build/link_ellenor.py
           python3 build/forras_kutato.py
           python3 build/rovat_csoport.py
