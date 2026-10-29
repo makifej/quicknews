@@ -1297,6 +1297,8 @@ html.hl-nyitva { overflow: hidden; }
 @media (max-width: 640px) { .pb-lapozo-sav { display: none; } }
 @keyframes pb-lapbe { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
 .pb-racs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 16px; }
+/* egy sorban a kártyák részei egy vonalban (Heni 2026-10-29): az egysoros kérdés miatt ne csússzon feljebb a jelöltek sora */
+.pb-racs > .pb { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 12px; align-content: start; }
 .pb-alcim { margin: 16px 0 0; font-size: 24px; line-height: 30px; font-weight: 800; }
 .pb-ures, .pb-jog { color: var(--szoveg-2); font-size: 15px; line-height: 22px; margin: 0; }
 .pb-jog a { color: var(--kiemelo); }
