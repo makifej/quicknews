@@ -751,11 +751,6 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
   }
 }
 
-/* Csengő: idősáv-fejlécek a hírek között (Heni 2026-10-29, időrend) */
-.harang-buborek li.harang-csoport { padding: 12px 16px 4px 20px; color: var(--szoveg-2); font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-.harang-buborek li.harang-csoport, .harang-buborek li.harang-csoport + li { border-top: 0; }
-.harang-buborek li.harang-csoport:first-child { padding-top: 0; }
-
 /* Csengő asztali gépen (Heni 2026-10-29: „ugyanazt a megjelenést, mint a mobilon”): ugyanaz a lista kis képekkel és
    időrendi fejlécekkel, a csengő alatt jobbra igazítva, a képernyő aljáig; nyitva a felugró új-hír kártyák és a szellemek rejtve */
 @media (min-width: 600px) {
@@ -767,6 +762,43 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
     max-height: calc(100dvh - var(--harang-teto, 80px) - 24px); overscroll-behavior: contain;
   }
 }
+
+/* Csengő = az app „Új hírek” idővonala (Heni 2026-10-29): óra és pont a bal oldali sávon, képes kártya, napcímke */
+.harang-buborek .hi-fej { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 16px 16px 16px; }
+.hi-uj { padding: 2px 8px; border-radius: 999px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font-size: 12px; line-height: 16px; font-weight: 800; letter-spacing: 0.06em; }
+.hi-fej p { margin: 0; color: var(--szoveg-2); font-size: 14px; line-height: 20px; }
+.harang-buborek ul { padding: 0 16px 8px; }
+.harang-buborek li.hi-sor, .harang-buborek li.hi-nap { border-top: 0; }
+.harang-buborek li.hi-sor { display: flex; position: static; }
+.harang-buborek li.hi-nap { display: flex; align-items: center; gap: 12px; padding: 16px 0 12px; }
+.harang-buborek li.hi-nap:first-child { padding-top: 0; }
+.hi-nap span { font-size: 12px; line-height: 16px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--szoveg); white-space: nowrap; }
+.hi-nap::after { content: ""; flex: 1; height: 1px; background: var(--vonal); }
+.hi-sav { flex: 0 0 48px; display: flex; flex-direction: column; align-items: flex-start; }
+.hi-ora { padding-top: 2px; font-size: 12px; line-height: 16px; font-weight: 700; color: var(--szoveg-3); }
+li.uj .hi-ora { color: var(--kiemelo-szin); }
+.hi-pont { box-sizing: border-box; width: 12px; height: 12px; margin: 8px 0 0 4px; border-radius: 50%; border: 2px solid var(--szoveg-3); background: var(--bg-2); }
+li.uj .hi-pont { background: var(--kiemelo); border-color: var(--kiemelo); }
+.hi-sav::after { content: ""; flex: 1; width: 2px; margin-left: 9px; background: var(--vonal); }
+li.utolso .hi-sav::after { display: none; }
+.hi-kartya { flex: 1; min-width: 0; position: relative; margin-bottom: 16px; border-radius: 16px; overflow: hidden; background: var(--bg-3); }
+.harang-buborek .hi-kartya a { display: block; padding: 0; transition: background-color 400ms var(--gorbe); }
+.harang-buborek .hi-kartya a:hover { background: var(--keret); }
+.harang-buborek li.uj .hi-kartya a::before { display: none; }
+.hi-kep { position: relative; display: block; aspect-ratio: 16 / 9; background: var(--bg); }
+.harang-buborek .hi-kep .harang-kep { display: block; width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; border-radius: 0; }
+.hi-cimke { position: absolute; top: 8px; left: 8px; padding: 2px 8px; border-radius: 999px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font-size: 12px; line-height: 16px; font-weight: 800; letter-spacing: 0.06em; }
+.harang-buborek .hi-kartya .harang-szoveg { padding: 12px; }
+.harang-buborek .hi-kartya .harang-forras { display: flex; gap: 8px; min-width: 0; margin-bottom: 4px; padding-right: 0; color: var(--szoveg-2); font-weight: 600; letter-spacing: 0; text-transform: none; }
+.hi-kartya .harang-forras span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hi-kartya .harang-forras b { flex: 0 0 auto; color: var(--kiemelo-szin); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+.harang-buborek .hi-kartya strong { font-size: 18px; line-height: 24px; font-weight: 700; letter-spacing: -0.01em; }
+.harang-buborek li.nincs-kep .harang-szoveg { padding-right: 64px; }
+.harang-buborek .hi-kartya .harang-ment { top: 8px; right: 8px; width: 44px; height: 44px; border-radius: 50%; background: var(--kiemelo); color: var(--kiemelo-szoveg); border: 2px solid #fff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35); }
+.harang-buborek .hi-kartya .harang-ment:hover { background: var(--kiemelo); }
+.harang-buborek .hi-kartya .harang-ment[aria-pressed="true"] { background: var(--piros); color: #fff; }
+.harang-buborek .hi-kartya .harang-ment svg { width: 22px; height: 22px; }
+@media (min-width: 600px) { .harang-buborek { width: 460px; } }
 
 /* ================= napi szűrő ================= */
 .fejdatum { display: flex; align-items: center; gap: 8px; }
