@@ -1,82 +1,46 @@
 {
   "id": "3b4fe0946b63",
-  "slug": "nyiltkent-kiadta-a-mistral-a-large-4-nyelvi-modellt",
+  "slug": "paris-based-mistral-releases-le-chonk-a-strong-coding-model-that",
   "forras_id": "the-decoder",
   "forras_nev": "The Decoder",
   "url": "https://the-decoder.com/paris-based-mistral-releases-le-chonk-a-strong-coding-model-that-still-trails-china-overall/",
-  "szerzo": "Maximilian Schreiner",
   "publikalva": "2026-10-29T15:25:27+00:00",
+  "cim": "Paris-based Mistral releases \"Le Chonk,\" a strong coding model that still trails China overall",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "dupla_of": "a1765f446c5b",
   "media": {
     "tipus": "kep",
     "kep": "https://the-decoder.com/wp-content/uploads/2026/07/mistral_ai-3.png"
   },
-  "cim_eredeti": "Paris-based Mistral releases \"Le Chonk,\" a strong coding model that still trails China overall",
-  "forrasok": [],
-  "szoveg_eredeti": "Mistral has released the weights for Mistral Large 4, its largest model yet. The company says the model beats its open rivals at coding. In the first independent test, it turns out to be fast and fairly cheap, but it trails Chinese models in the overall rankings.\n\nThree weeks after the public preview, Mistral has put the Large 4 weights on Hugging Face. The model's nickname is \"Le Chonk.\" It takes text and images as input and outputs text and code. It has about one trillion parameters in total, with 52 billion active per step. Running it yourself takes a lot of hardware. According to the docs for the inference framework SGLang, the standard version runs on eight Nvidia B300 GPUs, and a more heavily compressed variant runs on four GB300 GPUs.\n\nSince the preview, Mistral has kept training the model with reinforcement learning. The company says this brought big gains, especially in coding and cyber defense. Mistral researchers Pierre Stock and Corentin Petit walked through the process on a press call. The team built tasks in-house that got harder as training went on. They said the only limit on performance is how difficult a task the team can still create and verify. Mistral calls it a \"two-year bet\" that's now paying off.Ad\n\nAfter three more weeks of training, Large 4's score on Terminal-Bench 4.0 rose from 28 to 41 percent. That puts it just ahead of GLM-5.3 at 40 percent. Mistral says Large 4 hits 48 percent on Artificial Analysis' Coding Agent Index. That's practically tied with GLM-5.3, but Large 4 uses 47 percent fewer tokens to get there. Claude Code with Claude Opus 5.5 tops the index at 62 points.Ad\n\nOn Cognition's new FrontierCode 2.0 benchmark, Large 4 leads the open models at 19.7 percent. Claude Opus 5.5, however, scores 46 percent. In blind comparisons run by Surge, testers preferred Large 4's code over code from GLM-5.3, Kimi K3, and DeepSeek more often than not. Against Opus 5.5, Large 4 won only 22 percent of matchups.\n\nMistral's comparisons leave out Moonshot's Kimi K3.1 Pro. Technically that's fair, since its weights aren't public yet. Moonshot plans to release them by November 4, 2026. After that, Mistral probably won't have much of a lead left, because Kimi K3.1 Pro tops Terminal-Bench 4.0 at 67 percent.Ad\n\nMistral calls Large 4 the leading open model for cyber defense. The company says the final version scores 51 percent on Artificial Analysis' Cyber Index. The index measures whether a model can find, reproduce, and patch security holes in a codebase without breaking existing features. Mistral's own chart, however, shows two open models ahead of it, with DeepSeek V4.1 Flash at 57 percent and MiMo-V2.6-Pro at 56 percent. That puts Large 4 third among open models, just ahead of GLM-5.3 Flash at 50 percent. Kimi K3.1 Pro leads the entire index at 64 percent.\n\nThe extra training barely moved the needle here. According to Artificial Analysis, the preview scored 50 points, and the final version is only one point higher.Ad\n\nLarge 4 does better at refusing harmful requests. Mistral says it rejects 96.6 percent of malicious cyber requests on average, more than any other open model. It's still supposed to handle legitimate defensive tasks. Mistral admits the model could make real attacks easier, though, so it plans to tighten safeguards in the coming months. Select partners like Orange Cyberdefense are already testing a special version for penetration testing. Access requires a review and comes with contractual restrictions.Ad\n\nMistral also sees progress on office work. The company says Large 4 trails only Kimi K3 among open models at editing financial spreadsheets and searching the web.\n\nThrough the API, Large 4 costs $0.70 per million input tokens and $2.10 per million output tokens. During the preview, the list price was $1.36 and $4.18. Mistral cut it to $0.68 and $2.09 for two weeks at launch, so the new price roughly matches that old discount. For comparison, Kimi K3.1 Pro costs $2 for input and $10 for output.\n\nMistral released the model under a modified MIT license. Use, modification, and commercial deployment are free. Companies that offer Large 4 as a commercial cloud service, however, need a separate license from Mistral. The company mainly pitches the model as \"sovereign\" AI, since it was trained entirely in Europe and can run on your own servers. If you don't want to host it yourself, it's available on Microsoft Foundry, among other platforms.\n\nArtificial Analysis released version 5 of its Intelligence Index on Wednesday. It has since rated the final version of Large 4 in high mode, which scores 26 points. Three-fifths of the index now rely on tests whose tasks or solutions aren't public. The nine tests include Terminal-Bench 4.0 and FrontierCode 2.0.\n\nThe preview scored 25 points, so the three extra weeks of training added just one point overall. Artificial Analysis says Large 4 beats the average for open models of similar size, where the median is 23 points. It still falls short of the strongest open models from China. DeepSeek V4.1 Flash and GLM-5.3 each score 32 points, and MiMo-V2.6-Pro gets 30. That gap isn't new. In the old index, the preview scored 38 points and GLM-5.3 scored 45.\n\nLarge 4's strengths are speed and cost. The model generates 161 tokens per second, up from 111 for the preview. In Artificial Analysis' head-to-head comparison, only DeepSeek V4.1 Flash and Muse Wonder are faster. An index task costs $2.06 on average with Large 4, down from $5.54 for the preview. That makes Large 4 cheaper than GLM-5.3 ($5.01) and Kimi K3.1 Pro ($3.68), but much more expensive than DeepSeek V4.1 Flash ($0.60) and MiMo-V2.6-Pro ($0.26). Compared with other open models of similar size, Artificial Analysis still considers its per-token price on the high side.\n\nMistral also promises that Large 4 is efficient with tokens, and that claim can now be checked. The model generated 110 million output tokens across the full index, compared with 150 million for the preview. That's a big improvement. But the median for comparable models is 100 million, so Large 4 still sits slightly above it.\n\nThe gap at the top of the index is wide. Google's Gemini 4 Carbon leads with 59 points, one point ahead of Claude Opus 5.5. So far, though, only select cybersecurity partners can use Gemini 4 Carbon. The top open model is Kimi K3.1 Pro at 46 points, but its weights haven't been released yet.\n\nMistral still thinks it's on track. The team said on the press call that it works with a fraction of the resources US and Chinese labs have and would be at the top with ten times more capital. Large 4 is meant to serve as the base for specialized Mistral models. The company wouldn't comment yet on smaller versions built on it.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
-  "modell": "gemini-3.5-flash",
-  "cim": "Nyíltként kiadta a Mistral a Large 4 nyelvi modellt",
-  "lead": "A francia Mistral elérhetővé tette az 1 trillió paraméteres Mistral Large 4 súlyait, amely főleg a kódolásban nyújt kiemelkedő teljesítményt.",
-  "osszefoglalo": "A Mistral letölthetővé tette a Hugging Face felületén a [Mistral Large 4](https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B) nyílt súlyú AI-modelljét, amelyet teljesen Európában tanítottak be. Az 1 trillió paraméteres, szöveget és képet feldolgozó modell lépésenként 52 milliárd aktív paraméterrel működik, futtatása pedig komoly hardveres hátteret igényel. A végleges verziót megerősítéses tanulással trénelték tovább, ami jelentős előrelépést hozott a kódolási és kibervédelmi feladatokban.\n\nA független tesztek alapján a **kódolásban kifejezetten erős**, és gyorsabbá, valamint olcsóbbá vált a korábbi előzetes változatához képest: másodpercenként 161 tokent generál. Bár az összetett feladatokban és teszteken a legjobb kínai nyílt modellek mögött marad, a nyílt forráskódú kódolási ranglistákon az élmezőnyben szerepel, és kevesebb token felhasználásával éri el az eredményeit.\n\nA kiadott nyílt modell módosított MIT licenc alatt ingyenesen használható és módosítható, valamint kereskedelmileg is bevethető. A modell API-n keresztül is elérhető 0,70 dolláros bemeneti és 2,10 dolláros kimeneti 1 millió tokenes áron, emellett saját szerverre is telepíthető vagy a [Microsoft Foundry](https://ai.azure.com) felületén használható.",
-  "miert_szamit": "A nyílt súlyoknak köszönhetően **saját infrastruktúrára telepíthető** egy európai adatvédelmi elvárásoknak megfelelő, kódolásban és irodai munkában rendkívül hatékony nagy nyelvi modell.",
-  "cimkek": [
-    "Mistral",
-    "Mistral Large 4",
-    "nyílt forráskód",
-    "kódolás"
-  ],
-  "kategoria": "modell",
-  "forras_tipus": "bejelentés",
-  "fontossag": 4,
-  "video_szoveg": "",
-  "relevans": true,
-  "kiprobalhato": {
-    "nev": "Mistral Large 4",
-    "url": "https://go.adverr.hu/9znhpm",
-    "eredeti": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B"
-  },
-  "linkelendo_nevek": [
-    "Mistral Large 4",
-    "Microsoft Foundry"
-  ],
-  "linkszabaly": 3,
   "prioritas": {
-    "pont": 77,
-    "szint": "P2",
+    "pont": 83,
+    "szint": "X",
     "reszpont": {
-      "hatas": 85,
+      "hatas": 88,
       "hirertek": 85,
-      "egyediseg": 40,
+      "egyediseg": 70,
       "hitelesseg": 85,
       "aktualitas": 98,
-      "kozossegi": 77
+      "kozossegi": 83
     },
-    "elofeszures": 99,
-    "tanult": 79,
-    "indok": "Fontos európai nyílt modellmegjelenés, de ebben a kötegben több bejegyzés is foglalkozik vele. Forrás-tapasztalat: -1.",
-    "tema": "mistral large 4 le chonk release",
-    "cim_hu": "Letölthetővé vált a Mistral új zászlóshajó modellje, a Le Chonk",
-    "lead_hu": "A francia Mistral nyilvánossá tette az egytrillió paraméteres Mistral Large 4 súlyait, amely főleg a kódolási és kiberbiztonsági feladatokban teljesít kiemelkedően.",
+    "elofeszures": 100,
+    "tanult": 81,
+    "indok": "Duplikátum: a1765f446c5b",
+    "tema": "mistral large 4 release",
+    "cim_hu": "Súlyokat kapott a Mistral új nagy modellje, de Kínával szemben elmarad",
+    "lead_hu": "A francia Mistral kiadta a Mistral Large 4 nyílt súlyait. A modell kódolásban erős, de az összetett teszteken elmarad a vezető kínai modellektől.",
     "klaszter": null,
     "ai": true,
-    "ido": "2026-10-29T15:35:33+00:00"
+    "ido": "2026-10-29T15:55:46+00:00"
   },
   "jovahagyas_kell": true,
-  "forditva": "2026-10-29T15:41:19+00:00",
-  "megjelent": "2026-10-29T15:41:19+00:00",
-  "tenyellenorzes": {
-    "ok": true,
-    "ido": "2026-10-29T15:45:43+00:00",
-    "esemeny": "A Mistral AI közzétette a Hugging Face-en a Mistral Large 4 (becenevén Le Chonk) 1 trillió paraméteres AI-modell nyílt súlyait, amely kiemelkedő teljesítményt nyújt a kódolási és kibervédelmi feladatokban.",
-    "forrasok": [
-      "https://mistral.ai/news/mistral-large-4-open-weight/",
-      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B"
-    ],
-    "hibak": [],
-    "kereses": [],
-    "javitva": false
-  },
-  "kiprobal_nezve": true,
-  "termeklinkek_nezve": true,
-  "kep_minoseg_kesz": "2026-10-29T15:47:44+00:00",
-  "linkek_ellenorizve": true
+  "cim_eredeti": "Paris-based Mistral releases \"Le Chonk,\" a strong coding model that still trails China overall"
 }
