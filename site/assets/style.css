@@ -484,8 +484,8 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
   .fejlec-felso .keret > .kereso { flex-shrink: 1; }
 }
 @media (max-width: 1365px) { .fejlec-info { display: none; } .fejlec-felso .kereso { margin-left: auto; } }
-@media (min-width: 768px) and (max-width: 1365px) { .rovatsor a { padding-left: 6px; padding-right: 6px; } .rovatsor .keret { gap: 4px; } }
-@media (min-width: 768px) and (max-width: 1240px) { .rovatsor a { font-size: 15px; } }
+@media (min-width: 768px) and (max-width: 1365px) { .fejlec nav.rovatsor a, .fejlec nav.rovatsor a[aria-current="page"] { padding-left: 6px; padding-right: 6px; } .fejlec nav.rovatsor a:first-child:not([aria-current="page"]) { padding-left: 0; } .rovatsor .keret { gap: 4px; } }
+@media (min-width: 768px) and (max-width: 1240px) { .fejlec nav.rovatsor a { font-size: 15px; } }
 @media (min-width: 768px) and (max-width: 1150px) { .rovatsor .keret { flex-wrap: wrap; overflow: visible; } }
 .rovatsor .keret { display: flex; align-items: stretch; gap: 6px; overflow-x: auto; scrollbar-width: none; }
 .rovatsor .keret::-webkit-scrollbar { display: none; }
