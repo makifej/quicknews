@@ -1,0 +1,49 @@
+{
+  "id": "f3538b6fb36f",
+  "slug": "granite-switch-4-1-1-update-models-like-you-update-software",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1-1",
+  "publikalva": "2026-10-29T13:37:07+00:00",
+  "cim": "Granite Switch 4.1.1 — Update models like you update software",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 53 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/662836b742709fe826510597/az6afuuoAkyiMImufSePe.png"
+  },
+  "cim_eredeti": "Granite Switch 4.1.1 — Update models like you update software",
+  "szoveg_eredeti": "Just over a week ago, we released Granite Switch 4.1, showing that our modular Switch architecture lets you configure a language model with specialized, cache-efficient adapters — adding new expertise on a single endpoint.\n\nGranite Switch 4.1.1 is a patch release. The version number means what it means in software: fully backwards compatible with 4.1, no migration, incremental improvements under the hood.\n\nWhile we are excited about these new features, what is notable is the speed and efficiency with which our teams could release this update. Apart from training the new ASR model and Decision adapter, nothing was recomputed: the base model is untouched. You compose the latest adapters you want and deploy.\n\nThis pattern can power far more than patch releases to an IBM-provided model. We're working on tutorials and an Adapter SDK so developers and third-party providers can build their own adapters — iterate on versions, test features, and ship updates the way you ship software. More soon.\n\nUntil then, test out our latest models, and try out the new multilingual and punctuation capabilities powering our Speech-to-Decisions demo.",
+  "begyujtve": "2026-10-29T13:37:25.304787+00:00",
+  "prioritas": {
+    "pont": 53,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 45,
+      "egyediseg": 90,
+      "hitelesseg": 90,
+      "aktualitas": 100,
+      "kozossegi": 47
+    },
+    "elofeszures": 96,
+    "tanult": 57,
+    "indok": "Kis patch frissítés egy meglévő open-source AI modellhez Forrás-tapasztalat: -5.",
+    "tema": "ibm granite switch patch",
+    "cim_hu": "Megérkezett a Granite Switch 4.1.1 kisméretű modellfrissítése",
+    "lead_hu": "A fejlesztők kiadták a Granite Switch 4.1.1-es hibajavító frissítését, amely teljes visszafelé kompatibilitás mellett hoz kisebb teljesítménybeli javulásokat.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-29T13:40:28+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-29T13:59:07+00:00"
+}
