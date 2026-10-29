@@ -1,0 +1,49 @@
+{
+  "id": "e64385c095cd",
+  "slug": "how-to-make-artificial-intelligence-more-environmentally-sustainable",
+  "forras_id": "google-news-ai",
+  "forras_nev": "infoq.com",
+  "url": "https://www.infoq.com/news/2026/10/AI-environmentally-sustainable/",
+  "publikalva": "2026-10-29T11:41:36+00:00",
+  "cim": "How to Make Artificial Intelligence More Environmentally Sustainable",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 51 pont, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://res.infoq.com/news/2026/10/AI-environmentally-sustainable/en/headerimage/header-1793174464846.jpg"
+  },
+  "cim_eredeti": "How to Make Artificial Intelligence More Environmentally Sustainable",
+  "szoveg_eredeti": "InfoQ Homepage News How to Make Artificial Intelligence More Environmentally Sustainable\n\nIT is responsible for about 2 - 4% of all global emissions, and electricity use at Microsoft and Google has climbed because of AI, according to their own reports. Charles Humble spoke about Green AI at GOTO Copenhagen, where he argued sustainability ought to be a top-level architectural concern. Amongst his recommendations: use pre-built and smaller models, run compute where low-carbon electricity is abundant, and train on renewable energy.\n\nHumble quoted the International Energy Agency (IEA), which has stated that the combined electricity use from Amazon, Microsoft, Google, and Meta has more than doubled between 2017 and 2021, rising to around 72 terawatt-hours in 2021. Microsoft’s 2024 environmental report mentioned that its total carbon emissions have risen 30% since 2020, primarily due to the construction of data centers to meet demand for AI. Google’s emissions had surged about 50% since 2019 and 13% year on year in 2023 alone, according to their own reporting, largely driven by artificial intelligence.\n\nThe emission that these reports talk about is mainly carbon dioxide, a greenhouse gas. Since the Industrial Revolution we’ve been increasing the concentration of greenhouse gases in the atmosphere, trapping more heat, Humble said. We want to keep our warming to 1.5 degrees by 2100, but projections suggest that it will be between about 2.5 and 3 degrees.\n\nThe IT industry contributes a lot to this problem, partly through electricity use as Humble explained:\n\nThe IEA estimated that global data centre electricity consumption in 2022 is about 240 to 340 terawatt hours, 1 to 1.3% of global electricity demand. Networks add another 260 to 360 terawatt hours. That’s 700 terawatt hours, about the same as Brazil’s 726 terawatt hours in the same time period.\n\nIT is responsible for about 2 - 4% of all global emissions, where aviation is 3%, Humble said. But while the aviation industry is working quite hard to try and cut its emissions, we as an industry are doing the opposite.\n\nThere are several questions Humble suggested asking for putting AI into a business context:\n\nIf we need to train a custom model, Humble suggested thinking about how much data we actually need to collect. Sometimes, smaller models work better, he argued. He also suggested using open-source data sets and, if possible, demand shifting to collect data when and where there is green energy available.\n\nIn theory, training can be on 100% renewable energy all the time, which can reduce carbon emissions somewhere between 45% and 99%, Humble mentioned.\n\nHe argued that most of the energy may actually be spent when we deploy a model into production and maintain it, and mentioned four steps to make all computing greener:\n\nSustainability ought to join cost, performance, security, regulatory concerns, and reliability as one of the top-level considerations for your computing workloads, Humble concluded. We should think about how to build systems in a more environmentally sound way.\n\nInfoQ interviewed Charles Humble after his talk.\n\nInfoQ: How does location matter when it comes to reducing carbon emissions?\n\nCharles Humble: A compute workload uses a fixed amount of energy, but the carbon cost of that energy varies enormously by place and time depending on the sources of electricity that is powering the data centre. Assuming the data centre is using grid power in a region running mostly on hydro, solar, nuclear and wind (for example Norway, Sweden and France), running a workload here can be many times cleaner than one dependent on coal or gas. Carbon intensity also changes during the day and over the course of the year as wind, solar and demand vary.\n\nIn carbon aware computing we can apply a technique called demand shifting based on this. Demand shifting can be done in one of two ways, either time or location based. Time-based is particularly applicable when a use case isn’t latency sensitive, such as AI training.\n\nFor location the most simple variation of the technique is to just pick lower-carbon regions by default for new, latency-tolerant workloads. More advanced variations might involve moving to different hemispheres seasonally to maximize exposure to sunlight and solar power.\n\nHumble: Demand shaping means changing how much work your software does, or what kind of work, in response to how clean or constrained the electricity supply is at that moment. One version of this is to give users a choice. For an AI-powered service, you could let users choose to talk to a person instead of the AI up front, or at any point during the process.\n\nYou can also apply techniques such as graceful degradation based on higher carbon intensity, for example by serving lower-quality video or images, turning off autoplay, skipping non-essential animations, or reducing refresh rates. You might also use a smaller model.\n\nTradeoffs include increased complexity, and of course you have to determine if the reduced service is still acceptable.\n\nInfoQ: What can we do to make model training greener?\n\nHumble: Alongside demand shifting for both training and data collection, avoid training from scratch if at all possible. Use a pre-trained model and fine-tune it, or just prompt it and/or use Retrieval-Augmented Generation (RAG) if that meets the need.\n\nShrinking the model size can speed up training and improve efficiency. Distillation, quantization and pruning can all be used for compression. On-device training via Federated learning can be greener in some cases. Keep in mind that for widely used models, inference over the model’s lifetime may cause greater total emissions, so efficiency in serving matters too.\n\nRaghavendra Selvan’s book \"Sustainable AI\" explores a number of these approaches in considerably greater depth, so if readers want to learn more, this is a great resource.\n\nEqual Experts helps organizations harness AI, modernize technology, and build better software through expert engineering, collaboration, and innovative delivery practices. Learn more.\n\nA round-up of last week’s content on InfoQ sent out every Tuesday. Join a community of over 250,000 senior developers. View an example",
+  "begyujtve": "2026-10-29T11:48:25.415040+00:00",
+  "prioritas": {
+    "pont": 51,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 45,
+      "egyediseg": 85,
+      "hitelesseg": 75,
+      "aktualitas": 98,
+      "kozossegi": 41
+    },
+    "elofeszures": 72,
+    "tanult": 21,
+    "indok": "Konferencián elhangzott szakmai vélemény az AI környezeti fenntarthatóságáról. Forrás-tapasztalat: -7.",
+    "tema": "green ai sustainability tips",
+    "cim_hu": "Így tehető környezetbarátabbá a mesterséges intelligencia",
+    "lead_hu": "A zöld AI kiemelt építészeti szempont kellene hogy legyen: kisebb modellek használatával és alacsony szén-dioxid-kibocsátású árammal csökkenthető a hatás.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-29T11:49:19+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-29T11:52:07+00:00"
+}
