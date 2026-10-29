@@ -69,6 +69,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           DAILYDEV_TOKEN: ${{ secrets.DAILYDEV_TOKEN }}
           GEP_KULCS: ${{ secrets.GEP_KULCS }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
         run: |
           python3 build/gyujt.py --nem-tipus x_profil --nem-forras producthunt
           python3 build/fordit.py
