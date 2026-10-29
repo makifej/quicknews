@@ -15,7 +15,7 @@
   "fontossag": 1,
   "video_szoveg": "",
   "relevans": false,
-  "kihagyva": "P3: 53 pont, jóváhagyás után fordul",
+  "kihagyva": "P3: 52 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://ph-files.imgix.net/81fa1e6d-4cb5-4a35-9c89-af9ce8573cb9.png?auto=format&fit=crop&frame=1&h=512&w=1024"
@@ -24,26 +24,26 @@
   "szoveg_eredeti": "Hi everyone, Roy here, one of Radar's makers.\n\nWe first launched here in May, and since then Radar has been installed more than 25,000 times. Today we're back with AI investigations: click Investigate on a failing Kubernetes workload and the agent you already use (Claude Code, Codex, Cursor or OpenCode) digs in, read-only, and comes back with its findings and the evidence behind them. Our upgraded MCP server gives any agent the same view of your cluster.\n\nHey Product Hunt, Nadav here, one of the people behind Radar.\n\nWe launched Radar here in May as an open-source Kubernetes UI. Unsurprisingly, more and more people have been telling us since then that they want to point their AI agents at their clusters. Agents have become really smart, but they burn a lot of time and tokens poking around the cluster with kubectl to understand what’s going on and piecing together the puzzle - and even then often miss the change that someone made ten minutes before things broke.\n\nRadar's MCP server gives your agent (Claude Code, Codex, Cursor, Copilot, etc) the cluster already put together: issues detected, a history of events and changes to Kubernetes resources, topology and relationships between objects, logs and metrics.\n\nWe benchmarked it - same agent with Radar found root cause 3x (!) faster and 80% cheaper than with plain kubectl.\n\nClick Investigate on any issue and Radar runs your own agent CLI, read-only, on your machine. You get the root cause, the evidence for each claim, and a fix that runs only if you approve it. Radar Cloud does the same when it detects an issue or an alert fires, and posts the answer to Slack.\n\nWe also ran six AI SRE tools on 50 live faults. Claude Code on Radar's MCP got 44 right, the most of the six, and was the fastest and cheapest. Method and every run: https://radarhq.io/benchmark/ai-sre-tools\n\nRadar is free and open source, Apache 2.0:\n\nHow do you debug your clusters today, and what would you want an agent to take on next?\n\nWeboldal: https://radarhq.io",
   "begyujtve": "2026-10-29T07:17:27.571062+00:00",
   "prioritas": {
-    "pont": 53,
+    "pont": 52,
     "szint": "P3",
     "reszpont": {
       "hatas": 45,
-      "hirertek": 50,
-      "egyediseg": 80,
+      "hirertek": 45,
+      "egyediseg": 85,
       "hitelesseg": 68,
-      "aktualitas": 53,
-      "kozossegi": 47
+      "aktualitas": 58,
+      "kozossegi": 44
     },
     "elofeszures": 83,
     "tanult": 50,
-    "indok": "AI ágensekre épülő Kubernetes hibakereső funkció a Radarnál Forrás-tapasztalat: -2.",
-    "tema": "radar ai kubernetes debugging",
-    "cim_hu": "AI-ágensekkel bővítette Kubernetes hibakereső eszközét a Radar",
-    "lead_hu": "A Radar új AI funkciója lehetővé teszi a Claude Code, Codex vagy Cursor ágensek számára, hogy automatikusan elemezzék a hibás Kubernetes rendszereket.",
+    "indok": "AI-alapú hibakeresési funkció frissítés Kubernetes rendszerekhez a Radartól. Forrás-tapasztalat: -2.",
+    "tema": "radar ai kubernetes investigation",
+    "cim_hu": "AI-alapú hibaelhárítási funkciót kapott a Kubernetes-hez készült Radar",
+    "lead_hu": "A Radar új funkciója lehetővé teszi, hogy az olyan AI-ágensek, mint a Claude Code vagy Cursor, automatikusan elemezzék a hibás Kubernetes rendszereket.",
     "klaszter": null,
     "ai": true,
-    "ido": "2026-10-29T07:41:31+00:00"
+    "ido": "2026-10-29T07:57:02+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-29T07:45:47+00:00"
+  "megjelent": "2026-10-29T08:01:44+00:00"
 }
