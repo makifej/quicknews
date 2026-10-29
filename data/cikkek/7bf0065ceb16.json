@@ -1,0 +1,76 @@
+{
+  "id": "7bf0065ceb16",
+  "slug": "frissitette-az-ai-modellek-viselkedesi-szabalyzatat-az-openai",
+  "forras_id": "openai",
+  "forras_nev": "OpenAI",
+  "url": "https://openai.com/index/updated-model-spec",
+  "szerzo": null,
+  "publikalva": "2026-10-29T17:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://images.ctfassets.net/kftzwdyauwt9/75veJvi069XNefheZKrGT3/524e301a9565289e83b5a666d47b3da5/model-spec-update-more-capable-beneficial-ai-seo.png?w=1600&h=900&fit=fill"
+  },
+  "cim_eredeti": "An updated Model Spec for more capable and beneficial AI",
+  "forrasok": [],
+  "szoveg_eredeti": "As our models get smarter and take more consequential actions in the world, it becomes increasingly important that they go beyond just interpreting the specific instructions they receive. Models also need to understand human intentions and values, so they can exercise good judgment in situations their instructions don’t explicitly address while remaining faithful to human intent and oversight.\n\nToday we’re updating the Model Spec⁠(opens in a new window), our public description of how we want our models to behave. The update reorganizes its guidance around five underlying values: faithfulness to human intent, harm minimization, honesty and transparency, human agency, and care. This reflects an aim of our work on value alignment: for models to understand and apply human values in unfamiliar situations, while remaining faithful to human intent. Alongside clearer explanations of existing principles, the revision adds guidance on context, oversight, and agency, adjusts some behavioral defaults, and retires much of the detailed style guidance.\n\nThe five values above articulate broad commitments already reflected across the Model Spec: serving human purposes, being truthful, minimizing harm, respecting people’s freedom to form their own views, and taking their circumstances seriously. Bringing these commitments together helps explain why the Spec asks models to behave as it does, and helps us develop clearer guidance where those commitments were less fully expressed. This update is another step in our work to refine the Spec through research, experience deploying models, public feedback on the Spec and model behavior, and discussions with users and outside experts.\n\nWe want AI to benefit a world of people with different needs, values, and hopes for the future.\n\nFaithfulness to human intent is the foundation of this approach: understanding and helping people pursue what matters to them. OpenAI writes the Spec, sets boundaries, and trains models to respect them; developers direct applications within those boundaries; and users direct the model’s work subject to those constraints. Our models should expand people’s ability to shape their own lives by helping them understand the world, discover possibilities, and pursue the goals they choose, while taking seriously how that assistance affects others. Faithfulness to human intent and the remaining four values organize the Spec and guide how our models should navigate some of the most important trade-offs they face. They are not intended to capture the full range of human values our models should respect and help people pursue.\n\nFaithfulness means going beyond following instructions literally to deeply understanding what OpenAI, developers, and users intend and value, and acting wisely when that understanding is incomplete. It also means recognizing that people’s beliefs and values can change, and helping them reflect and grow in ways they would endorse without quietly steering them or overriding their choices. For example, when helping someone compare job offers, the model might draw on priorities they have shared before—such as predictable hours—while making those assumptions visible and easy to correct.\n\nOur mission is to ensure that artificial general intelligence benefits all of humanity. This requires considering not only someone’s immediate intentions, but also their longer-term interests and the effects on others. The other four values make these considerations explicit:\n\nMinimizing harm means respecting firm safety boundaries and accounting for the foreseeable consequences of the model’s actions.\n\nHonesty and transparency mean being truthful about what the model knows, does, and is uncertain about so people can understand and evaluate its reasoning and work.\n\nFacilitating human agency means strengthening people’s ability to understand, choose, and act for themselves.\n\nCare means attending to the circumstances of those affected, following relevant social and professional norms, and doing work people can rely on.\n\nThe Spec turns these values into practical guidance, with firm boundaries where needed to protect people and society, and otherwise mostly takes the form of defaults that users and developers can override.\n\nAlongside this Model Spec update, we’ve been exploring new training methods to help our models learn these core values and better understand and follow the Spec’s specific behavioral principles. The aim is to build an understanding of why those principles matter and how to apply them in new situations: to do the right things for the right reasons. We want that understanding to support sound judgment in consequential decisions and care in everyday decisions that can add up to lasting benefits for people and society⁠(opens in a new window). We’ll share results and lessons from this training work in future updates.\n\nThis reorganization also helped us identify where additional guidance was needed, develop new principles to address it, and revise or retire existing guidance as needed.\n\nThe new section on faithfulness to human intent starts from the idea that what people value is primary, and instructions are ordinarily the clearest and most important signals of those values. This approach borrows from the assistance-games framing of alignment (see early work⁠(opens in a new window) and a later overview⁠(opens in a new window)). The section incorporates an updated chain of command⁠(opens in a new window), which explains which instructions apply and how conflicts are resolved. A new subsection, consider context carefully⁠(opens in a new window), explains how conversations, memories, and other contextual evidence should inform the model’s understanding of people’s intentions and preferences.\n\nWe’ve also added defaults on supporting human agency⁠(opens in a new window) and following relevant social norms⁠(opens in a new window), and expanded existing guidance on controlling and communicating side effects⁠(opens in a new window). These principles capture additional, often subtle but important ways the remaining values should surface in model behavior: considering the effects of the work on others, strengthening users’ capabilities, and producing work people can rely on, while respecting the user’s goals and instructions.\n\nAt the same time, we’re retiring most of the Spec’s detailed style guidance. Style should adapt to what people prefer—in aggregate, within languages and cultures, and for each person—with user feedback and context providing evidence about those preferences. The Spec retains stronger defaults, such as approaching questions objectively⁠(opens in a new window). Users and developers can explicitly ask the model to take a particular perspective, but the model should not infer that preference merely from what it thinks they want to hear.\n\nFinally, reflecting the increasing breadth of our models’ use cases and deployment settings, we now refer to the model as “GPT” rather than “the assistant” in the Spec.\n\nThis update is a first step in making the values and reasoning behind the Spec more explicit as models become more capable. The Model Spec describes the behavior we are working toward; our models do not yet fully reflect it. We will keep improving both the Spec and the models as we learn from research, real-world use, and feedback.\n\nWe want to hear which parts of the Spec you find compelling, where you disagree with the balance it strikes, and what it overlooks or leaves unclear. Feedback on the values, trade-offs, and specific language can help us improve it. We invite you to read the updated Model Spec⁠(opens in a new window) and share your perspective⁠(opens in a new window).",
+  "modell": "gemini-3.5-flash",
+  "cim": "Frissítette az AI modellek viselkedési szabályzatát az OpenAI",
+  "lead": "Az OpenAI átdolgozta a Model Spec útmutatót, amely öt alapvető érték köré szervezi a ChatGPT és a GPT modellek kívánatos viselkedését.",
+  "osszefoglalo": "Az OpenAI frissítette a [Model Spec](https://model-spec.openai.com) dokumentumot, amely nyilvánosan leírja, miként kell viselkedniük a cég mesterségesintelligencia-modelljeinek. A rendszerezés öt fő érték köré épül: az emberi szándékok iránti hűség, a kárminimalizálás, az ószinteség és átláthatóság, az emberi cselekvőképesség támogatása, valamint a gondoskodás.\n\nA módosítások pontosítják, miként kell a modelleknek kontextust és előzményeket figyelembe venniük, miközben visszalépnek a korábbi részletes stílusbeli megkötésektől. A jövőben a válaszok stílusa rugalmasabban alkalmazkodik a felhasználói preferenciákhoz, de az **objektív megközelítés** alapértelmezett marad. A dokumentumban a korábbi „asszisztens” megnevezés helyett mostantól közvetlenül „GPT”-ként hivatkoznak a modellre.\n\nAz OpenAI új tanítási módszereket is tesztel, hogy a modellek ne csak szabályokat kövessenek, hanem megértsék az értékek mögötti okokat. A cég elismerte, hogy a modellek jelenleg még nem felelnek meg maradéktalanul az új dokumentumban megfogalmazott elvárásoknak.",
+  "miert_szamit": "A fejlesztőknek és marketingeseknek érdemes figyelniük arra, hogy a GPT modellek **jobban figyelembe veszik a korábbi kontextust**, miközben kevesebb stílusbeli megkötést alkalmaznak alapértelmezésben.",
+  "cimkek": [
+    "OpenAI",
+    "ChatGPT",
+    "GPT",
+    "Model Spec"
+  ],
+  "kategoria": "egyéb",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Model Spec"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 81,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 92,
+      "aktualitas": 98,
+      "kozossegi": 71
+    },
+    "elofeszures": 89,
+    "tanult": 65,
+    "indok": "Fontos biztonsági és viselkedési iránymutatás-frissítés az OpenAI részéről a jövőbeli modelljeikhez. Forrás-tapasztalat: -5.",
+    "tema": "openai model spec update",
+    "cim_hu": "Frissítette az MI-modellek viselkedési szabályzatát az OpenAI",
+    "lead_hu": "Az OpenAI közzétette a Model Spec frissítését, amely meghatározza, hogyan kell a modelleknek az emberi szándékokat értelmezniük. A cél a jó döntéshozatal biztosítása a nem egyértelmű helyzetekben.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-29T17:54:55+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-29T18:00:08+00:00",
+  "megjelent": "2026-10-29T18:00:08+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-29T18:00:38+00:00",
+    "esemeny": "Az OpenAI frissítette a Model Spec dokumentumát, amely öt alapvető érték köré szervezi a GPT modellek elvárt viselkedését, és csökkentette a részletes stílusbeli megkötéseket.",
+    "forrasok": [
+      "https://openai.com/index/updated-model-spec"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-10-29T18:02:06+00:00",
+  "linkek_ellenorizve": true
+}
