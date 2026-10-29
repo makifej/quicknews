@@ -1,0 +1,84 @@
+{
+  "id": "7a6e601678eb",
+  "slug": "onellenorzessel-szuri-ki-a-visszaeleseket-a-claude",
+  "forras_id": "x-anthropicai",
+  "forras_nev": "Anthropic (X)",
+  "url": "https://x.com/AnthropicAI/status/2115871889549865429",
+  "szerzo": "Anthropic (@AnthropicAI)",
+  "publikalva": "2026-10-29T18:22:24+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://safeguards.anthropic.com/2026/self-assessment/social-card.png",
+    "kep_forras": "https://safeguards.anthropic.com/2026/self-assessment/",
+    "x_url": "https://x.com/AnthropicAI/status/2115871889549865429"
+  },
+  "cim_eredeti": "We’ve trained Claude to flag potential misuse in conversations, a technique we call self-assessment. Right after it resp",
+  "forrasok": [],
+  "szoveg_eredeti": "We’ve trained Claude to flag potential misuse in conversations, a technique we call self-assessment. Right after it responds, Claude gives a preliminary safety assessment of the conversation. \n\nSince we began using self-assessment in June, it has surfaced misuse that our other safeguards weren’t designed to catch. \n\nBecause Claude has already read the conversation, self-assessment is very efficient. And unlike classifiers, which target a discrete set of harms, it draws on Claude’s own judgment, so it gets more accurate as our models improve.\n\nRead more on our new Safeguards blog:\nhttps://safeguards.anthropic.com/2026/self-assessment/",
+  "modell": "gemini-3.5-flash",
+  "cim": "Önellenőrzéssel szűri ki a visszaéléseket a Claude",
+  "lead": "Az Anthropic egy új technológiával közvetlenül a Claude modellre bízza a beszélgetések biztonsági értékelését.",
+  "osszefoglalo": "Az Anthropic kiképezte a **Claude** modellt a beszélgetésekben előforduló lehetséges visszaélések azonnali jelzésére. Az úgynevezett önellenőrzési technika lényege, hogy a modell minden válaszadás után azonnal elvégez egy előzetes biztonsági értékelést a párbeszédről, ahogy azt a cég a [biztonsági blogján](https://safeguards.anthropic.com/2026/self-assessment/) részletezi.\n\nA módszert június óta használja a cég, és az eljárás segítségével olyan szabályszegéseket is sikerült azonosítani, amelyeket a hagyományos védelmi rendszerek nem vettek észre. Mivel a modell már amúgy is feldolgozta a szöveget, ez a megközelítés rendkívül gyors és hatékony.\n\nA megszokott osztályozó algoritmusokkal szemben ez a megoldás nem korlátozódik előre meghatározott káros kategóriákra, hanem a modell saját ítélőképességére támaszkodik, így az **alapmodell fejlődésével** a biztonsági szűrés pontossága is automatikusan javul.",
+  "miert_szamit": "A vállalati felhasználók és fejlesztők számára ez **biztonságosabb AI-rendszereket** eredményez, mivel az automatikus önellenőrzés hatékonyabban előzi meg a rendszer nemkívánatos használatát.",
+  "cimkek": [
+    "Claude",
+    "Anthropic",
+    "AI biztonság",
+    "biztonság"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 81,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 90,
+      "hitelesseg": 92,
+      "aktualitas": 99,
+      "kozossegi": 70
+    },
+    "elofeszures": 96,
+    "tanult": 71,
+    "indok": "Az Anthropic egy újszerű, hatékony biztonsági funkciót vezetett be a Claude modelljeiben.",
+    "tema": "anthropic claude safety feature",
+    "cim_hu": "A Claude mostantól maga értékeli és jelzi a veszélyes beszélgetéseket",
+    "lead_hu": "Az Anthropic kiképezte a Claude-ot a visszaélések felismerésére. A válaszadás után a modell önértékelést végez, így olyan kockázatokat is kiszűr, amelyeket más rendszerek nem vettek észre.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-29T18:48:41+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-29T18:53:04+00:00",
+  "megjelent": "2026-10-29T18:53:04+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-29T18:53:46+00:00",
+    "esemeny": "Az Anthropic kiképezte a Claude modellt arra, hogy a válaszadások után közvetlenül saját maga értékelje a beszélgetések biztonságát (self-assessment), ezzel szűrve ki a lehetséges visszaéléseket.",
+    "forrasok": [
+      "https://x.com/AnthropicAI/status/2115871889549865429",
+      "https://safeguards.anthropic.com/2026/self-assessment/"
+    ],
+    "hibak": [
+      "Az összefoglalóból hiányzik a hivatalos bejelentésre / részletekre mutató elsődleges forrás linkje."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Önellenőrzéssel szűri ki a visszaéléseket a Claude",
+      "lead": "Az Anthropic egy új technológiával közvetlenül a Claude modellre bízza a beszélgetések biztonsági értékelését.",
+      "osszefoglalo": "Az Anthropic kiképezte a **Claude** modellt a beszélgetésekben előforduló lehetséges visszaélések azonnali jelzésére. Az úgynevezett önellenőrzési technika lényege, hogy a modell minden válaszadás után azonnal elvégez egy előzetes biztonsági értékelést a párbeszédről.\n\nA módszert június óta használja a cég, és az eljárás segítségével olyan szabályszegéseket is sikerült azonosítani, amelyeket a hagyományos védelmi rendszerek nem vettek észre. Mivel a modell már amúgy is feldolgozta a szöveget, ez a megközelítés rendkívül gyors és hatékony.\n\nA megszokott osztályozó algoritmusokkal szemben ez a megoldás nem korlátozódik előre meghatározott káros kategóriákra, hanem a modell saját ítélőképességére támaszkodik, így az **alapmodell fejlődésével** a biztonsági szűrés pontossága is automatikusan javul.",
+      "miert_szamit": "A vállalati felhasználók és fejlesztők számára ez **biztonságosabb AI-rendszereket** eredményez, mivel az automatikus önellenőrzés hatékonyabban előzi meg a rendszer nemkívánatos használatát."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
