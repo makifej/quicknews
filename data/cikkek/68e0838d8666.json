@@ -1,0 +1,78 @@
+{
+  "id": "68e0838d8666",
+  "slug": "az-epic-games-mar-ai-val-fejleszti-az-unreal-engine-kodjat",
+  "forras_id": "techmeme",
+  "forras_nev": "This Week in Videogames",
+  "url": "https://thisweekinvideogames.com/news/epic-games-confirms-ai-is-being-used-to-develop-code-for-unreal-engine/",
+  "szerzo": null,
+  "publikalva": "2026-10-29T10:35:01+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d18eg7qiuvh9x6.cloudfront.net/wp-content/uploads/2026/10/28020519/unreal-engine-logo.jpg"
+  },
+  "cim_eredeti": "Epic Games says it is using AI tools to \"develop code and features\" for Unreal Engine, including core engine components like the D3D12 rendering layer (Jamie Hore/This Week in Videogames)",
+  "forrasok": [],
+  "szoveg_eredeti": "© 2026 This Week in Video Games. All rights reserved.\n\nEpic Games CEO Tim Sweeney has stated on social media that the company is using AI tools to “develop code for Unreal Engine.” Epic has confirmed this in a statement provided to This Week in Videogames.\n\nThis follows Sweeney’s announcement earlier in October 2026 that the company is experiencing a “huge pivot” to “retool for maximum AI acceleration.”\n\nIn a Twitter reply to ‘BenjiGameDev’ back in November 2025, Sweeney denied assumptions that Epic was using AI tools to improve, update, and build features for Unreal Engine (UE).\n\nRevisiting their assumptions in a 23 October 2026 tweet – which comes after Sweeney’s AI pivot announcement and the release of a vibe coded update to the Epic Games Launcher – BenjiGameDev asks if “AI tools [are] being used to develop UE now?”\n\nSweeney replies: “Yes, we are now using AI tools to develop code for Unreal Engine.”\n\nGiven the Epic Games Launcher update, the reports that an upcoming shooter using Disney IP was given a “no hand-written code” mandate, and Epic previously announcing that the upcoming Unreal Engine 6 would be built with AI tool integration in mind, it may be unsurprising that Epic is also using AI to develop its widely adopted game engine itself.\n\nIn Epic’s June 2026 Road to UE6 blog post, it also stated that internal teams, including the engine’s engineering team, had been investigating “what works and what doesn’t for code generation.”\n\n“What’s interesting is that most of these use cases aren’t even generating mainline Unreal Engine code, though that will probably come eventually as well,” the blog post said at the time.\n\nAfter reaching out to Epic with several related questions, This Week in Videogames received responses from Executive Vice President of Development Marcus Wassmer.\n\n“As we mentioned back at Unreal Fest in Chicago on stage and in interviews, we are definitely using AI to develop code and features for Unreal Engine,” Wassmer said. “Almost all development happening right now is being done in the dev streams attached to Fortnite, UEFN [Unreal Editor for Fortnite], and UE6. There’s a possibility of a 5.9. If we make it, it would be a relatively modest update for specific systems and will include changes developed with AI. Generally speaking though we’re working as hard as we can on UEFN and UE6.”\n\nWhen asked about the specific AI tools being used and how they were being deployed to develop and improve Unreal Engine, Wassmer said:\n\n“There are a number of tools in use but probably the most obvious ones are Claude Code and Codex with their associated AI models. They’re helping across a broad spectrum of development, with some particularly big recent wins being almost the complete elimination of non-deterministic cooking bugs which we’ve been fighting for a decade and an acceleration of work related to compressing shaders which both significantly reduce patch sizes. [Other wins include] a rewrite of a significant portion of the D3D12 rendering layer (which I estimated as needing three to six weeks of work for a single engineer, but the work was actually completed in about one week with a nice win on CPU time and fewer bugs), lots of help in keeping our internal test suites healthy as well as expanding those test suites for more coverage, etc.\n\n“Not only that, we’ve started deploying automatic monitoring of PC stability on Fortnite that’s already detecting issues with specific driver/hardware combinations and features that would previously have taken months to root cause, as well as automatic root cause analysis and automatic fix generation that together have started to measurably improve the long tail of gnarly PC issues in Fortnite and Unreal Engine.”\n\n“Another area of note is that we’re more able to take on some larger architectural refactors with AI than we were able to before. Developers can expect the engine to end up significantly more modular for faster iteration times, and with more ability to strip out what you don’t need from UE on a particular game. These are refactors we’ve wanted to do for a while, but they’ve involved changing thousands of files in relatively minor ways in each instance, and in bulk, [it] was too big a task to effectively tackle by hand.\n\n“The tools are helping us not just develop code and features, but to keep the engine more stable as we work, trim, and streamline it, and really modernise it in a way that we haven’t been able to before given the size, complexity, and age of the engine code.”\n\nFollowing on from the Epic Games Launcher update, TWIV also asked if elements of Unreal Engine development are being vibe coded.\n\nThis Week in Videogames is funded entirely by readers, which lets us resist advertising and commercial interests. Become a paid supporter today and get access to original feature articles, comments, a community Discord, newsletters, and more while backing truly independent games coverage.\n\n“Yes, we are vibe-coding things,” Wassmer responded. “That means our engineers are no longer writing the bulk of the code, but they are still guiding the tools to get the architectural result we want. We’re not ‘one-shotting’ the engine; we’re iterating with AI to ship features developers want and keep the engine within the memory, performance, and scalability envelopes.”\n\nSummarising the benefits the Unreal Engine team has seen by using AI, Wassmer said: “Faster development of individual features and tasks, fewer bugs, more test coverage, performance improvements, patch size reductions, and really the ability for our engineers to explore ideas they’ve had to reduce tech debt and improve features for a long time, but not had the time to tackle. We’re seeing that last area really start to take off as the tools get better and people get more familiar with using them.”\n\nTWIV also asked Epic whether it was concerned about the reaction of AI-skeptic consumers or developers that build their games with Unreal.\n\n“We are more concerned about the risks of moving too slowly than we are about AI skepticism,” Wassmer said. “We think that in pretty short order doing AI development for basically all software will be ubiquitous because software done correctly with AI will simply be better and be more capable of responding quickly to customer feedback than software done without. The best way to counter any skepticism is through the quality of the games and tools we’re able to deliver.\n\n“Building on 30 years of foundational code, our engine developers are now able to solve challenging problems much quicker. AI is also helping us identify and fix issues with engine code faster and more reliably, while shipping new features with minimal regressions. Ultimately this translates into the acceleration of new features in Unreal Engine with improved stability and faster iteration times, enabling developers to build more ambitious games on accelerated timelines. And with Unreal Engine’s source code availability, the adoption of AI tools will help developers customise the engine to meet the specific needs of their games more efficiently.\n\n“We don’t think it’s viable to take a halfway approach to AI in development. We think it’s best to just be up front with what we’re doing, share best practices with other developers, and make the best UE6 we can with the best tools available at any given time.”\n\nXbox hardware, content, and services revenue continue to decline, though Microsoft noted layoffs slightly improved its quarterly operating expenses.\n\nStrong sales for new titles Pragmata and Onimusha: Way of the Sword were coupled with continued strong sales for the Resident Evil series.\n\nThe Kingdom Come: Deliverance II developer said the attack gave \"unauthorised access\" to company data and systems\n\nAt a panel in South Korea, an employee said \"a significant number of people [at Valve] are thinking about how to solve this problem.\"",
+  "modell": "gemini-3.5-flash",
+  "cim": "Az Epic Games már AI-val fejleszti az Unreal Engine kódját",
+  "lead": "Az Epic Games hivatalosan megerősítette, hogy mesterséges intelligenciával írja és újítja meg az Unreal Engine játékmotor kódját.",
+  "osszefoglalo": "Az Epic Games mesterséges intelligenciát használ az **Unreal Engine kódjának és funkcióinak fejlesztésére**, amit Marcus Wassmer, a cég fejlesztési alelnöke is megerősített. A mérnökök főként a Claude Code és a [Codex](https://openai.com/codex) eszközökre támaszkodnak, amelyek segítségével már nem kézzel írják a kód nagy részét, hanem az AI-t irányítják a kívánt architektúra eléréséhez.\n\nAz AI-alapú fejlesztés már most jelentős sebességnövekedést és hibajavítást hozott. A D3D12 renderelési réteg egy részének átírása, amely korábban **3-6 heti mérnöki munkát igényelt volna, 1 hét alatt elkészült**, miközben csökkent a processzorterhelés és kevesebb hiba keletkezett. Az eszközök emellett a Fortnite stabilitásának automatikus ellenőrzésében és a fájlméretek csökkentésében is segítenek.\n\nA cég a fejlesztési folyamatait az [Unreal Editor for Fortnite](https://unrealengine.com/uses/uefn-unreal-editor-for-fortnite), valamint a készülő Unreal Engine 6 köré összpontosítja. Az Epic Games szerint a fejlesztési kockázatot nem az AI használata, hanem a túl lassú haladás jelenti, ezért a jövőben a teljes szoftverfejlesztési folyamatukat az AI köré építik.",
+  "miert_szamit": "A játékmotorok AI-alapú kódolása **gyorsabb frissítéseket és stabilabb teljesítményt** hoz a játékfejlesztőknek, ami jelentősen lerövidíti a komplex funkciók elkészítési idejét.",
+  "cimkek": [
+    "Unreal Engine",
+    "Epic Games",
+    "Claude Code",
+    "Codex"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Unreal Engine",
+    "Claude Code",
+    "Codex"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 81,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 90,
+      "hitelesseg": 86,
+      "aktualitas": 95,
+      "kozossegi": 73
+    },
+    "elofeszures": 88,
+    "tanult": 63,
+    "indok": "Nagy hatású hír a játékmotorok fejlesztésének AI alapú átalakulásáról.",
+    "tema": "epic games unreal engine ai",
+    "cim_hu": "Az Epic Games már mesterséges intelligenciával fejleszti az Unreal Engine kódbázisát",
+    "lead_hu": "Tim Sweeney megerősítette, hogy az Epic Games AI-eszközöket használ az Unreal Engine alapvető komponenseinek és kódjának fejlesztéséhez.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-29T10:48:45+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-29T10:53:03+00:00",
+  "megjelent": "2026-10-29T10:53:03+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-29T10:53:05+00:00",
+    "esemeny": "Tim Sweeney, az Epic Games vezérigazgatója X-posztban, valamint Marcus Wassmer, a cég fejlesztési alelnöke hivatalos nyilatkozatban megerősítette, hogy mesterséges intelligenciát használnak az Unreal Engine kódjának és funkcióinak fejlesztéséhez.",
+    "forrasok": [
+      "https://thisweekinvideogames.com/news/epic-games-confirms-ai-is-being-used-to-develop-code-for-unreal-engine/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-10-29T10:54:38+00:00",
+  "linkek_ellenorizve": true
+}
