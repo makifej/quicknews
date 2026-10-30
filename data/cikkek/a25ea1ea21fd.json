@@ -1,0 +1,85 @@
+{
+  "id": "a25ea1ea21fd",
+  "slug": "penzugyi-kutato-ai-modellt-adott-ki-a-samaya-ai",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/10/30/samaya-sterling-post-trained-finance-research-model-frontierfinance/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-10-30T07:26:12+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/10/WP-BLOG-BANNER-1898-scaled.png"
+  },
+  "cim_eredeti": "Samaya AI Releases Sterling: A 3B-Active Finance Research Agent Model that Beats Claude Fable 5.1 on FrontierFinance at 11x Lower Cost",
+  "forrasok": [],
+  "szoveg_eredeti": "Samaya AI has released Samaya Sterling , a post-trained model for agentic financial research. Sterling is built on NVIDIA’s Nemotron 3.5 Lightning , a 30B mixture-of-experts model with 3B active parameters. On Samaya’s FrontierFinance benchmark , it scores 58.9%. Claude Fable 5.1 scores 55.9%. Each Sterling question costs $0.61, against $6.89 for Fable 5.1. For developers, the takeaway is a concrete recipe: co-train a small model with its harness, and it can win in a narrow domain.\n\n TL;DR \n\n Size: 30B total, 3B active (MoE). Base model context: up to 1M tokens. Sterling’s serving context: not disclosed.\n\n Runs on: the base model fits a single H100 80GB in BF16 (256K context). Sterling’s serving hardware: not disclosed.\n\n Performance: beats every high-quality system on the FrontierFinance leaderboard on quality per dollar (self-reported).\n\n Best: 58.9% on FrontierFinance (60.6% in high-effort mode), vs 55.9% for Claude Fable 5.1.\n\n Worst: 45.2% on the hardest third of FrontierFinance questions.\n\n What is Samaya Sterling? \n\n Samaya Sterling is a LoRA post-trained version of Nemotron 3.5 Lightning, tuned to work as a financial research agent. It plans research, calls finance tools, gathers evidence and hands findings to a separate report writer. According to Maithra Raghu’s X announcement , it started as a 2-person effort on agentic orchestration efficiency.\n\n How does the harness support a 3B-active model? \n\n Samaya team adapted its production finance harness for a small model. Detailed guidance was stripped from the system prompt and tool descriptions. Tools were merged to shorten the prompt. Two helper models manage context. A condenser shortens long tool results. A compactor summarizes the trace as it grows. A research budget caps how long the agent works. After that, the report writer answers from what was found.\n\n How was Sterling trained? \n\n Training used LoRA on Tinker , Thinking Machines Lab’s training API. It ran in 4 stages: \n\n SFT on synthetic traces : Samaya generated 968 synthetic analyst questions. The teacher, Kimi K3, answered each twice, and an LLM judge picked the better answer. The model learned to call 37 tools with valid arguments.\n\n SFT on the best of 8 strategies : Kimi K3 answered 1,819 expert-written questions using 8 research strategies. The best-graded answer per question became training data. Best-of-8 met 80% of essential rubric items, against about 66% for the single best strategy. After filtering, 1,157 questions remained.\n\n Offline GRPO : GRPO scored all 8 teacher answers against each other. No new generation was needed, so each step was cheap.\n\n Online GRPO : The model answered each question 8 times and learned from graded attempts. Truncated importance sampling corrected a known MoE sampler mismatch.\n\n How does Sterling score on FrontierFinance? \n\n FrontierFinance has 220 public queries scored against expert-written rubrics. The grader uses a 3-model judge panel. Samaya team states that no benchmark question was used in training. Checkpoints were chosen on 100 internal validation questions.\n\n Sterling scores 58.9% at $0.61 and 282 s per question. Fable 5.1 scores 55.9% at $6.89 and 268 s. Samaya’s own high-effort system scores 2.9 points lower at $1.81.\n\n Every stage added quality: 42.5% (base), 51.4%, 54.8%, 57.5%, then 58.9%. Median tool calls rose from 3 to 17. In high-effort mode, Sterling reaches 60.6% at $1.83 and 372 s. On the hardest third, it rose from 31.8% to 45.2%.\n\n The model itself costs $0.04 per question. Tools and helper models make up the rest of the $0.61.\n\n How does Sterling compare? \n\n Feature Samaya Sterling Claude Fable 5.1 Samaya System, high effort Nemotron 3.5 Lightning base Total / active params 30B / 3B Not disclosed Not disclosed 30B / 3B Context Not disclosed 1M Not disclosed Up to 1M License / access No public weights or API announced Proprietary API Samaya platform OpenMDW-1.1, open weights FrontierFinance score 58.9% (60.6% high effort) 55.9% 56.0% (58.9 minus 2.9 pp) 42.5% Cost per question $0.61 ($1.83 high effort) $6.89 $1.81 Not disclosed Latency per question 282 s (372 s high effort) 268 s 278 s Not disclosed Token pricing Not disclosed $10 / $50 per MTok Not disclosed Not disclosed \n\n FrontierFinance figures for all columns come from the Samaya blog and are self-reported. \n\n Key Takeaways \n\n Sterling scores 58.9% on FrontierFinance, 3.0 points above Claude Fable 5.1.\n\n Cost per question drops 11x: $0.61 vs $6.89.\n\n 3B active parameters, trained with 2 SFT and 2 GRPO stages.\n\n Harness and model co-training drive the gains.\n\n All results are self-reported on Samaya’s own benchmark.\n\n Check out the technical blog , the FrontierFinance benchmark , the dataset and the grader repo . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Samaya AI Releases Sterling: A 3B-Active Finance Research Agent Model that Beats Claude Fable 5.1 on FrontierFinance at 11x Lower Cost appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "Pénzügyi kutató AI-modellt adott ki a Samaya AI",
+  "lead": "A Samaya AI bemutatta Sterling nevű modelljét, amely tizenegyedannyi költséggel teljesít jobban a pénzügyi elemzésben, mint a nagyobb riválisai.",
+  "osszefoglalo": "A Samaya AI közzétette a **Samaya Sterling** nevű pénzügyi kutatási modellt, amely az [NVIDIA Nemotron 3.5 Lightning](https://build.nvidia.com/nvidia/nemotron-3.5-lightning-30b-a3b) nyílt alapjaira épül. A 30 milliárd teljes és 3 milliárd aktív paraméterrel rendelkező **speciális ágens** kimondottan pénzügyi elemzések tervezésére, eszközhívásokra és adategyűjtésre lett finomhangolva.\n\nA cég saját, [FrontierFinance](https://samaya.ai/benchmarks/frontier-finance) elnevezésű tesztjén a Sterling **58,9 százalékos pontszámot** ért el kérésenként 0,61 dolláros költség mellett. Ez felülmúlja a Claude Fable 5.1 által elért 55,9 százalékot, amelynél egyetlen kérdés megválaszolása 6,89 dollárba kerül. A hatékonyságot a modell és az azt támogató háttérrendszer együttes finomhangolásával érték el.\n\nA Sterling képzéséhez négyfázisú folyamatot használtak szintetikus adatokkal, szakértői stratégiákkal és GRPO megerősítéses tanulással. A modell egyelőre **nem kapott nyilvános súlyokat** vagy API-hozzáférést, a teszteredményeket a cég saját méréseire alapozva tette közzé.",
+  "miert_szamit": "A specializált, kisebb modellek és a célzott munkafolyamatok kombinációja **töredékére csökkentheti** az AI-alapú elemzések költségét, ami hatékonyabbá teszi a [pénzügyi kutatási](https://www.marktechpost.com/2026/10/30/samaya-sterling-post-trained-finance-research-model-frontierfinance/) feladatok automatizálását.",
+  "cimkek": [
+    "Samaya AI",
+    "Sterling",
+    "pénzügy",
+    "NVIDIA"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Samaya Sterling",
+    "FrontierFinance"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 67,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 70,
+      "hirertek": 75,
+      "egyediseg": 85,
+      "hitelesseg": 71,
+      "aktualitas": 95,
+      "kozossegi": 70
+    },
+    "elofeszures": 95,
+    "tanult": 62,
+    "indok": "Új specializált pénzügyi kutatómodell, amely a teszteken legyőzte a Claude-ot töredékáron. Forrás-tapasztalat: -8.",
+    "tema": "samaya ai sterling finance agent",
+    "cim_hu": "A Samaya AI új pénzügyi kísérőmodellje lenyomta a Claude-ot a teszteken",
+    "lead_hu": "A Sterling nevű célspecifikus modell tizenegyedannyi költség mellett ért el jobb eredményt a pénzügyi elemzések terén.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-30T08:07:19+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-30T08:11:22+00:00",
+  "megjelent": "2026-10-30T08:11:22+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-30T08:11:24+00:00",
+    "esemeny": "A Samaya AI bemutatta a Samaya Sterling nevű pénzügyi kutató modellt, amely az NVIDIA Nemotron 3.5 Lightning alapjaira épül. A cég saját mérései szerint a modell a FrontierFinance teszten felülmúlja a Claude Fable 5.1-et, miközben a működtetési költsége tizenegyedannyi.",
+    "forrasok": [
+      "https://www.marktechpost.com/2026/10/30/samaya-sterling-post-trained-finance-research-model-frontierfinance/"
+    ],
+    "hibak": [
+      "Hiányoznak a kötelező hivatkozások (linkek) a magyar szövegből."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Pénzügyi kutató AI-modellt adott ki a Samaya AI",
+      "lead": "A Samaya AI bemutatta Sterling nevű modelljét, amely tizenegyedannyi költséggel teljesít jobban a pénzügyi elemzésben, mint a nagyobb riválisai.",
+      "osszefoglalo": "A Samaya AI közzétette a **Samaya Sterling** nevű pénzügyi kutatási modellt, amely az NVIDIA Nemotron 3.5 Lightning nyílt alapjaira épül. A 30 milliárd teljes és 3 milliárd aktív paraméterrel rendelkező modell kimondottan pénzügyi elemzések tervezésére, eszközhívásokra és adategyűjtésre lett finomhangolva.\n\nA cég saját, **FrontierFinance** elnevezésű tesztjén a Sterling 58,9 százalékos pontszámot ért el kérésenként 0,61 dolláros költség mellett. Ez felülmúlja a Claude Fable 5.1 által elért 55,9 százalékot, amelynél egyetlen kérdés megválaszolása 6,89 dollárba kerül. A hatékonyságot a modell és az azt támogató háttérrendszer együttes finomhangolásával érték el.\n\nA Sterling képzéséhez négyfázisú folyamatot használtak szintetikus adatokkal, szakértői stratégiákkal és GRPO megerősítéses tanulással. A modell egyelőre **nem kapott nyilvános súlyokat vagy API-hozzáférést**, a teszteredményeket a cég saját méréseire alapozva tette közzé.",
+      "miert_szamit": "A specializált, kisebb modellek és a célzott munkafolyamatok kombinációja **töredékére csökkentheti az AI-alapú elemzések költségét**, ami hatékonyabbá teszi a pénzügyi és kutatási feladatok automatizálását."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-10-30T08:11:52+00:00",
+  "linkek_ellenorizve": true
+}
