@@ -64,60 +64,27 @@
    "https://epoch.ai/publications/open-weight-models-patch-gap",
    "https://blog.mozilla.org/en/mozilla/defending-the-patch-gap-against-automated-attackers/"
   ],
-  "kategoria": "modell",
-  "forras_tipus": "elemzes",
-  "fontossag": 4,
-  "video_szoveg": "",
-  "relevans": true,
-  "kiprobalhato": null,
-  "linkelendo_nevek": [],
-  "linkszabaly": 3,
-  "prioritas": {
-    "pont": 87,
-    "szint": "P1",
-    "reszpont": {
-      "hatas": 85,
-      "hirertek": 90,
-      "egyediseg": 95,
-      "hitelesseg": 85,
-      "aktualitas": 98,
-      "kozossegi": 75
-    },
-    "elofeszures": 93,
-    "tanult": 59,
-    "indok": "Súlyos biztonsági kockázatra világít rá az Epoch AI kutatása az nyílt súlyú modell kapcsán. Forrás-tapasztalat: -1.",
-    "tema": "glm 5.3 firefox exploit",
-    "cim_hu": "Emberi segítség nélkül hozott létre működő Firefox-sebezhetőségeket a GLM 5.3 MI-modell",
-    "lead_hu": "Az Epoch AI kutatói megmutatták, hogy a nyílt súlyú GLM 5.3 modell emberi beavatkozás nélkül, kevesebb mint 48 óra alatt képes volt kihasználni a biztonsági javítások kiadása közötti időt.",
-    "klaszter": null,
-    "ai": true,
-    "ido": "2026-10-30T12:33:32+00:00"
-  },
-  "jovahagyas_kell": true,
-  "forditva": "2026-10-30T12:36:45+00:00",
-  "megjelent": "2026-10-30T13:32:17.732Z",
-  "tenyellenorzes": {
-    "ok": true,
-    "ido": "2026-10-30T12:36:49+00:00",
-    "esemeny": "Az Epoch AI kutatói kimutatták, hogy a Z.ai nyílt súlyú GLM 5.3 modellje önállóan, emberi beavatkozás nélkül hozott létre működő támadó kódokat (exploit láncokat) kiadatlan Firefox biztonsági javításokból a kiadási időablak kihasználásával.",
-    "forrasok": [
-      "https://epoch.ai/publications/open-weight-models-patch-gap",
-      "https://blog.mozilla.org/en/mozilla/defending-the-patch-gap-against-automated-attackers/"
-    ],
-    "hibak": [
-      "A cím tévesen állítja, hogy a modell 'Firefox-sérülékenységeket hozott létre' (nem sérülékenységeket/sebezhetőségeket hozott létre, hanem a meglévő biztonsági javítások alapján épített működő támadókódokat/exploit láncokat)."
-    ],
-    "kereses": [],
-    "javitva": true,
-    "javitas_elotti": {
-      "cim": "Emberi beavatkozás nélkül hozott létre Firefox-sérülékenységeket a GLM 5.3",
-      "lead": "Az Epoch AI kutatói megmutatták, hogy egy nyílt súlyú AI-modell önállóan, 48 órán belül működő támadó kódokat tud építeni kiadatlan biztonsági javításokból.",
-      "osszefoglalo": "Az Epoch AI kutatása szerint a nyíltan elérhető **GLM 5.3 modell önállóan használta ki a biztonsági javítások közzététele és a frissítések megérkezése közötti időablakot**. A kínai fejlesztésű AI-modell 6 egymást követő Firefox-verzióban hozott létre működő támadóláncokat, mindössze körülbelül 1000 dolláros API-költségenként. A folyamat során semmilyen biztonsági szűrő nem állította le a modellt.\n\nA tesztek alatt a GLM 5.3 egy olyan weboldalt épített fel, amely a lap betöltésekor **átlépte a böngésző védelmi vonalait**, majd képes volt helyi fájlokat kiolvasni a felhasználó számítógépéről. A modell teljesen autonóm módon működött: azonosította a biztonsági javításokat, kiválasztotta a sebezhetőségeket, és többszintű támadási láncot rakott össze. A leggyorsabb sikeres támadást 12 óra alatt hajtotta végre.\n\nA kutatók értesítették a Mozillát, amely a Firefox 159.0-s verziójában javította az azonosított hibát. Ugyanezzel a módszerrel a Google Chrome ellen 100 000 dollárnyi API-használat mellett sem tudott működő támadást előállítani a modell.",
-      "miert_szamit": "A nyílt súlyú modellek cyberoffenzív képességei elérték azt a szintet, ahol **automatikusan képesek kihasználni a nyilvános forráskód frissítéseit**. Ezért a nyílt forráskódú szoftvereket és bővítményeket használó vállalkozásoknak még kritikusabbá válik a frissítések azonnali telepítése."
-    }
-  },
-  "kiprobal_nezve": true,
-  "termeklinkek_nezve": true,
-  "kep_minoseg_kesz": "2026-10-30T12:38:06+00:00",
-  "linkek_ellenorizve": true
+  "hibak": [
+   "A cím tévesen állítja, hogy a modell 'Firefox-sérülékenységeket hozott létre' (nem sérülékenységeket/sebezhetőségeket hozott létre, hanem a meglévő biztonsági javítások alapján épített működő támadókódokat/exploit láncokat)."
+  ],
+  "kereses": [],
+  "javitva": true,
+  "javitas_elotti": {
+   "cim": "Emberi beavatkozás nélkül hozott létre Firefox-sérülékenységeket a GLM 5.3",
+   "lead": "Az Epoch AI kutatói megmutatták, hogy egy nyílt súlyú AI-modell önállóan, 48 órán belül működő támadó kódokat tud építeni kiadatlan biztonsági javításokból.",
+   "osszefoglalo": "Az Epoch AI kutatása szerint a nyíltan elérhető **GLM 5.3 modell önállóan használta ki a biztonsági javítások közzététele és a frissítések megérkezése közötti időablakot**. A kínai fejlesztésű AI-modell 6 egymást követő Firefox-verzióban hozott létre működő támadóláncokat, mindössze körülbelül 1000 dolláros API-költségenként. A folyamat során semmilyen biztonsági szűrő nem állította le a modellt.\n\nA tesztek alatt a GLM 5.3 egy olyan weboldalt épített fel, amely a lap betöltésekor **átlépte a böngésző védelmi vonalait**, majd képes volt helyi fájlokat kiolvasni a felhasználó számítógépéről. A modell teljesen autonóm módon működött: azonosította a biztonsági javításokat, kiválasztotta a sebezhetőségeket, és többszintű támadási láncot rakott össze. A leggyorsabb sikeres támadást 12 óra alatt hajtotta végre.\n\nA kutatók értesítették a Mozillát, amely a Firefox 159.0-s verziójában javította az azonosított hibát. Ugyanezzel a módszerrel a Google Chrome ellen 100 000 dollárnyi API-használat mellett sem tudott működő támadást előállítani a modell.",
+   "miert_szamit": "A nyílt súlyú modellek cyberoffenzív képességei elérték azt a szintet, ahol **automatikusan képesek kihasználni a nyilvános forráskód frissítéseit**. Ezért a nyílt forráskódú szoftvereket és bővítményeket használó vállalkozásoknak még kritikusabbá válik a frissítések azonnali telepítése."
+  }
+ },
+ "kiprobal_nezve": true,
+ "termeklinkek_nezve": true,
+ "kep_minoseg_kesz": "2026-10-30T12:38:06+00:00",
+ "linkek_ellenorizve": true,
+ "nyelvi_javitas": {
+  "ido": "2026-10-30T13:37:59+00:00",
+  "mezok": [
+   "miert_szamit",
+   "osszefoglalo"
+  ]
+ }
 }
