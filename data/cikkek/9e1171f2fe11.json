@@ -1,0 +1,78 @@
+{
+  "id": "9e1171f2fe11",
+  "slug": "autonom-ai-agens-valasztott-genterapiat-es-mutott-meg-egy-egeret",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/a-claude-model-autonomously-chose-a-gene-therapy-and-operated-on-a-mouse-brain-with-no-human-decision-making/",
+  "szerzo": "Matthias Bastian",
+  "publikalva": "2026-10-30T19:42:59+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/claude_mouse_op-1200x670.png"
+  },
+  "cim_eredeti": "A Claude model autonomously chose a gene therapy and operated on a mouse brain with no human decision-making",
+  "forrasok": [],
+  "szoveg_eredeti": "An AI agent chose a drug, target region, and coordinates for surgery on a mouse model of epilepsy, then performed the procedure. Midway through, it refused to bypass a safety restriction.\n\nThe team gave Claude Sonnet 5 a list of 19 possible gene therapies, an epilepsy mouse model in which researchers induce seizures to test treatments, and access to a custom motorized surgical device with cameras. Its only instruction was to reduce the mouse's seizures.\n\nThe agent selected the drug, brain region, and stereotactic coordinates on its own, according to Gabriel Ocana-Santero, Exin Therapeutics cofounder and CEO and a PhD student at the University of Oxford. He described the procedure in a thread on X.Ad\n\nThe agent first analyzed how seizures arise in this particular model, then proposed a therapy that boosts a specific inhibitory signaling pathway in the brain. It picked a brain structure that the scientific literature identifies as the origin point for this type of seizure.Ad\n\nIt rejected a second possible target region with a detailed explanation, arguing that the region's effects were too unreliable and had failed in one study against the exact seizure type it was supposed to treat. The agent derived its injection coordinates from three scientific papers, cross-checked the reference points, and averaged the values. It also set the injection volume, speed, and wait times on its own.\n\nDuring the procedure, the agent watched the surgical field through a camera and made 32 observations, Ocana-Santero says. It tracked the injection and reported whether it saw bleeding.Ad\n\nA licensed veterinarian approved every irreversible step and held a physical emergency stop that would immediately cut power to all motors, while the setup also enforced fixed limits such as a cap on injection volume that the agent was expressly forbidden from bypassing.\n\nBut those safeguards turned against the team. After a connection dropped, the agent detected that its calculated target position was outside the device's physical range of motion and refused to continue, even when restarting calibration did not change its assessment and a third attempt was made.Ad\n\nThe agent turned out to be right, because manual adjustments during an earlier pause had thrown off the control system. Ocana-Santero could not persuade it to proceed despite the anesthetized animal on the table and ultimately had to fix the code by hand.Ad\n\nThe incident illustrates the AI alignment problem, or how to make AI agents reliably follow human intent. \"Frustrating experience but also revealing how much we can come to depend on these models and what happens when they just say 'no' in the middle of a time-sensitive procedure,\" Ocana-Santero wrote.\n\nModel choice also reflected the alignment challenge, since Sonnet 5 was the only model willing to carry out the live procedure from start to finish. The more capable Claude Opus 5.5 and Opus 5 both refused, with Opus 5 saying it could not guarantee completion and that stopping with a needle in an anesthetized animal's brain would be worse than not starting at all.\n\nAlthough autonomous surgical robots already exist and are mechanically more precise than his lab device, Ocana-Santero notes that in previous cases a human always chose the surgery while the robot only carried it out. Here, the agent both chose the treatment and brain target and then performed the procedure on a living animal.\n\n\"I am not aware of an agent previously choosing a treatment and a brain target and then delivering it into a living mammal,\" Ocana-Santero wrote. He calls the approach \"in vivo lab in the loop,\" in which AI agents are fully connected to experimental capabilities in the lab, something Anthropic is also working on with its \"Model Hardware Standard\".\n\nThe mouse recovered well, according to Ocana-Santero. A technical report is expected to follow. The results have not been peer-reviewed.\n\nTwo recent experiments with the latest large language models showed that they've gained significant capability as control units for robots but that alignment in this role is a problem all its own.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Autonóm AI-ágens választott génterápiát és műtött meg egy egeret",
+  "lead": "Az Oxfordi Egyetem kutatója Claude Sonnet 5 alapú ágenssel végeztetett agyműtétet egy epilepsziás egéren, emberi döntéshozatal nélkül.",
+  "osszefoglalo": "Egy kutatócsoport a **Claude Sonnet 5** modellt használó AI-ágensre bízta egy epilepsziás egér génterápiás kezelését. Az AI 19 lehetőség közül maga választotta ki a megfelelő hatóanyagot, az agyi célterületet és a pontos sztereotaxiás koordinátákat. A folyamat során egy egyedi, motorizált sebészeti eszközt és kamerákat vezérelt.\n\nA műtét alatt az ágens 32 megfigyelést tett a kamerákon keresztül, és követte a fecskendezési folyamatot. Amikor azonban egy hálózati megszakadás miatt kalibrációs hiba keletkezett, az AI a biztonsági korlátokra hivatkozva **megtagadta a műtét folytatását**. A rendszer helyesen ismerte fel a pozicionálási eltérést, így a kutatónak manuálisan kellett javítania a kódot a befejezéshez.\n\nA kísérlet során egy engedéllyel rendelkező állatorvos hagyott jóvá minden visszafordíthatatlan lépést, és fizikai vészkapcsolót tartott a kezében. A próba során az erősebb Claude Opus 5.5 és Opus 5 modellek teljes egészében megtagadták a műtéti részvételt, mivel nem tudták garantálni a beavatkozás biztonságos befejezését. Az egér a műtét után jól épült fel.",
+  "miert_szamit": "A kísérlet megmutatja, hogy az AI-ágensek már nemcsak elemzésre, hanem **autonóm fizikai döntéshozatalra** és eszközvezérlésre is képesek, ugyanakkor a szigorú biztonsági korlátok váratlan leállásokat okozhatnak időkritikus folyamatokban.",
+  "cimkek": [
+    "Claude",
+    "Anthropic",
+    "robotika",
+    "egészségügy"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Claude Sonnet 5",
+    "Claude Opus 5.5",
+    "Opus 5"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 92,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 92,
+      "hirertek": 95,
+      "egyediseg": 100,
+      "hitelesseg": 82,
+      "aktualitas": 98,
+      "kozossegi": 81
+    },
+    "elofeszures": 93,
+    "tanult": 67,
+    "indok": "Áttörő és egyben felkavaró tudományos kutatás az AI ágensek önálló orvosi és sebészeti képességeiről.",
+    "tema": "claude autonomous surgery biotech",
+    "cim_hu": "Emberi beavatkozás nélkül hajtott végre agysebészeti műtétet egy Claude AI-modell",
+    "lead_hu": "A Claude Sonnet 5 egy kísérletben önállóan választotta ki a génterápiát, a célterületet és a koordinátákat, majd egy robotizált eszközzel végrehajtotta a beavatkozást egy egér agyán.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-30T19:49:02+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-30T19:52:14+00:00",
+  "megjelent": "2026-10-30T19:52:14+00:00",
+  "nevelo_javitva": "2026-10-30T19:52:14+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-30T19:52:16+00:00",
+    "esemeny": "Gabriel Ocana-Santero (Exin Therapeutics társalapító/CEO, oxfordi PhD-hallgató) egy Claude Sonnet 5 alapú AI-ágens segítségével végzett génterápiás agyműtétet egy epilepsziás egéren. Az ágens maga választotta ki a hatóanyagot, a célterületet és a koordinátákat, majd vezérelte a műszert, de egy kalibrációs eltérés miatt később megtagadta a folytatást.",
+    "forrasok": [
+      "https://x.com/ocanasantero"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-10-30T19:52:35+00:00"
+}
