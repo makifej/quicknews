@@ -1,0 +1,49 @@
+{
+  "id": "b54af14bfb78",
+  "slug": "artificial-intelligence-assisted-alarm-monitoring-development-part-2",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Security Sales & Integration",
+  "url": "https://www.securitysales.com/insights/artificial-intelligence-assisted-alarm-monitoring-development-part-2/621282/",
+  "publikalva": "2026-10-30T13:21:28+00:00",
+  "cim": "Artificial Intelligence-Assisted Alarm Monitoring Development, Part 2",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 39 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.securitysales.com/wp-content/uploads/2026/10/AI-alarm-monitoring-scaled-e1793366004174.jpeg"
+  },
+  "cim_eredeti": "Artificial Intelligence-Assisted Alarm Monitoring Development, Part 2",
+  "szoveg_eredeti": "Last time around, we kicked off our exploration of the promise, pitfalls and pace of artificial intelligence in alarm monitoring. Let’s continue our deep dive by talking about the elements that must be in play for a successful deployment.\n\nTime must be part of the equation. If AI gets a product to a testable phase in a fraction of the time, what happens when you actually test and evaluate that codebase?\n\nMost of the studies I’ve found are either older or they evaluated vibe-coded applications built with little or no disciplined software development team actually performing end-result unit testing.\n\nWhen you instead pair a seasoned team that follows disciplined development practices with the time savings AI provides, the results change dramatically — largely because you can build test fixtures in minutes instead of days, catching bugs and issues far earlier.\n\nThe second pitfall is more cultural than technical: AI tools lower the skill floor for producing working-looking code, which is exactly how subtle bugs slip into production.\n\nA generated function that handles 95% of signal formats correctly and silently mishandles the remaining 5% is far more dangerous than one that fails loudly, because it looks correct.\n\nIn a domain where the whole point of the software is to never miss the rare event, that’s the failure mode to design against — not the obvious crash, but the confident, plausible, wrong output. AI can easily catch these errors too, assuming the team has designed the right testing models to find them.\n\nLastly, legacy platforms often encode decades of hard-won tribal knowledge — quirks in how specific panel manufacturers report signals, historical workarounds for receiver bugs — none of which is documented anywhere an AI model could have learned it or even known it existed.\n\nTools trained on public code will confidently generate plausible-looking logic that ignores those quirks entirely, because they have no way to know they exist. This is especially true when you have a lot of moving parts cobbled together, all trying to get it right; one small mistake in one module can have devastating results downstream.\n\nThe real question is how fast this moves. The honest answer: faster than the industry’s compliance and review processes are built to handle. AI coding adoption elsewhere has moved from novelty to default in roughly two years; most developers across the software industry now use these tools daily.\n\nThere’s no reason alarm monitoring’s vendors and central stations are immune to that pull, especially the smaller ones under the most pressure to do more with less engineering headcount. The tools will show up in these codebases whether or not the industry has agreed on how to review what they produce.\n\nToday, there are only a handful of standards that specify how alarm monitoring software is expected to behave, and most of them are antiquated at best and in need of modernization.\n\nNone speaks to software governance models, unit testing or even bug documentation along the way. The standards process itself is almost too slow to keep up — by the time a new standard is published, it’s already been eclipsed by something newer.\n\nThat mismatch is the real story here. The technology curve is fast and generic; the safety curve for life-safety software must be slow and specific; and, right now, nobody in this industry has published anything bridging the two.\n\nThere’s no alarm industry equivalent yet of a secure-coding standard for AI-assisted development, no public guidance from UL, The Monitoring Association or Security Industry Association on how AI-generated code should be reviewed before it touches signal-routing logic.\n\nUntil that exists, the responsible path for vendors is treating AI output the way a good central station treats an unverified signal: useful, fast and never dispatched without a human confirming it first.\n\nThe opportunity is real. So is the exposure. The vendors who get this right won’t be the ones who adopt AI coding tools fastest — they’ll be the ones who figure out, before a regulator or a bad outage forces the question, what “AI-generated but verified” needs to mean for software that people’s safety actually depends on.\n\nKeeping people in the loop is a critical part of this process. AI is advancing technology faster than ever before, but that only makes human involvement more necessary, not less, for the foreseeable future.\n\nAI is here to stay. It has already changed everything, and it will continue to as time goes on. Moving alarm processing into a future state is going to be necessary, but it’s also going to have to be done carefully and thoughtfully. AI will certainly be there to help but people will also be there to make sure it’s solid and reliable.",
+  "begyujtve": "2026-10-30T13:34:15.377741+00:00",
+  "prioritas": {
+    "pont": 39,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 25,
+      "hirertek": 20,
+      "egyediseg": 85,
+      "hitelesseg": 60,
+      "aktualitas": 85,
+      "kozossegi": 24
+    },
+    "elofeszures": 76,
+    "tanult": 30,
+    "indok": "Iparági szakcikk és elemzés a riasztórendszerek fejlesztéséről hírérték nélkül.",
+    "tema": "ai alarm monitoring software",
+    "cim_hu": "A mesterséges intelligencia szerepe a riasztórendszerek és felügyeleti szoftverek fejlesztésében",
+    "lead_hu": "Szakmai elemzés vizsgálja a mesterséges intelligencia alkalmazásának lehetőségeit és buktatóit a riasztórendszerek kódalapjának tesztelése során.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-30T13:34:34+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-30T13:37:32+00:00"
+}

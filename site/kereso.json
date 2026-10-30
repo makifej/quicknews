@@ -1,5 +1,16 @@
 [
   {
+    "i": "12d807cd2c6a",
+    "p": "/assets/kep/12d807cd2c6a.webp",
+    "c": "Emberi beavatkozás nélkül hozott létre Firefox-támadásokat a GLM 5.3",
+    "b": "Az Epoch AI kutatói megmutatták, hogy egy nyílt súlyú AI-modell önállóan, 48 órán belül működő támadó kódokat tud építeni kiadatlan biztonsági javításokból.",
+    "k": "The Decoder",
+    "g": "modell",
+    "u": "/hir/emberi-beavatkozas-nelkul-hozott-letre-firefox-serulekenysegeket-a",
+    "sz": "Az Epoch AI kutatása szerint a nyíltan elérhető GLM 5.3 modell önállóan használta ki a biztonsági javítások közzététele és a frissítések megérkezése közötti időablakot. A kínai fejlesztésű AI-modell 6 egymást követő Firefox-verzióban hozott létre működő támadóláncokat, mindössze körülbelül 1000 dolláros API-költségenként. A folyamat során semmilyen biztonsági szűrő nem állította le a modellt.\n\nA tesztek alatt a GLM 5.3 egy olyan weboldalt épített fel, amely a lap betöltésekor átlépte a böngésző védelmi vonalait, majd képes volt helyi fájlokat kiolvasni a felhasználó számítógépéről. A modell teljesen autonóm módon működött: azonosította a biztonsági javításokat, kiválasztotta a sebezhetőségeket, és többszintű támadási láncot rakott össze. A leggyorsabb sikeres támadást 12 óra alatt hajtotta végre.\n\nA kutatók értesítették a Mozillát, amely a Firefox 159.0-s verziójában javította az azonosított hibát. Ugyanezzel a módszerrel a Google Chrome ellen 100 000 dollárnyi API-használat mellett sem tudott működő támadást előállítani a modell. GLM 5.3 Firefox szelekció szoftverfejlesztés",
+    "d": "okt. 30. 13:22"
+  },
+  {
     "i": "f18c33f3a36a",
     "p": "/assets/kep/f18c33f3a36a.webp",
     "c": "Kínai hackerek AI-ügynökökkel támadtak meg több mint 200 szervezetet",

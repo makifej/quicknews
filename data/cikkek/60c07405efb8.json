@@ -1,0 +1,51 @@
+{
+  "id": "60c07405efb8",
+  "slug": "your-coding-agent-has-your-terminal-and-your-terminal-has-your",
+  "forras_id": "linkedin",
+  "forras_nev": "Hugging Face (LinkedIn)",
+  "url": "https://www.linkedin.com/feed/update/urn:li:activity:7521925252734656512/",
+  "publikalva": "2026-10-30T13:25:30.865000+00:00",
+  "cim": "Your coding agent has your terminal, and your terminal has your credentials.",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 76 pont, napi P2-keret (10) betelt, jóváhagyás után fordul",
+  "media": {
+    "tipus": "mp4",
+    "url": "https://dms.licdn.com/playlist/vid/v2/D4E05AQFcOQCAgYFNBw/mp4-720p-30fp-crf28/B4EaGM.zxjJcB8-/0/1793366639142?e=2147483647&v=beta&t=xKgn6k-29tdJsBotzRO_OdGaIa8PVgSxRNd2x-ulmnA",
+    "kep": "https://media.licdn.com/dms/image/v2/D4E05AQFcOQCAgYFNBw/videocover-high/B4EaGM.zxjJcBM-/0/1793366638836?e=2147483647&v=beta&t=fq06lg42dMIjDtpW29XC-XPpQzDqwEBfVz2v3s_nmME",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7521925252734656512"
+  },
+  "cim_eredeti": "Your coding agent has your terminal, and your terminal has your credentials.",
+  "szoveg_eredeti": "Your coding agent has your terminal, and your terminal has your credentials.\n\nBut should your coding agent have access to your credentials; we don't think so, nor do we think they should upload anything to clouds without you asking. That's why Younes B. and Nathan HABIB built safeagents.\n\nIt’s an open-source proxy that checks an AI agent’s proposed tool calls before they execute, and blocks the ones it identifies as dangerous.\n\nSay you ask your agent to fix a bug, and it proposes a command to upload your ~/.netrc to a random server: from a bugfix, your credentials leak.\n\nOr you ask an agent to solve a coding benchmark: it finds the hidden answers, edits the verifier, patches the tests: the score goes up, yet the code is broken.\n\nThese are the kinds of actions safeagents catches straightaway. It sits between your harness (whatever it is!) and the model API. It inspects tool calls before your harness even receives them.\n\nKnown suspicious patterns go through rule-based checks powered by atif-scan; calls that need more judgment can go to an optional decision model.\n\nBut which decision model can you trust to make that call?\n\nYou're in luck, we benchmarked models on that task: catching reward hacking, sandbox escape, harness introspection, and credential misuse.\n\nThe challenge is catching dangerous calls without blocking legitimate work, and doing it fast enough to check commands throughout an agent run. The benchmark lets you compare models, safeagents lets you plug them in.",
+  "begyujtve": "2026-10-30T13:34:06.707540+00:00",
+  "prioritas": {
+    "pont": 76,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 90,
+      "hitelesseg": 90,
+      "aktualitas": 98,
+      "kozossegi": 71
+    },
+    "elofeszures": 94,
+    "tanult": 51,
+    "indok": "Hasznos nyílt forráskódú biztonsági eszköz az egyre népszerűbb kódoló AI-ágensek védelmére. Forrás-tapasztalat: -5.",
+    "tema": "hugging face safeagents security",
+    "cim_hu": "Safeagents: nyílt forráskódú eszköz védi az érzékeny adatokat a kódoló MI-ágensektől",
+    "lead_hu": "A Hugging Face fejlesztői kiadták a safeagents nevű nyílt forráskódú proxyt, amely ellenőrzi és blokkolja az AI kódolóágensek veszélyes vagy jogosulatlan parancssori műveleteit.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-30T13:34:34+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-10-30T13:37:31+00:00"
+}
