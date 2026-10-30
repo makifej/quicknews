@@ -1,0 +1,76 @@
+{
+  "id": "135f70cd39eb",
+  "slug": "fold-koruli-palyara-allt-a-google-elso-urben-levo-adatkozpontja",
+  "forras_id": "techcrunch",
+  "forras_nev": "TechCrunch AI",
+  "url": "https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/",
+  "szerzo": "Tim Fernholz",
+  "publikalva": "2026-10-30T17:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://techcrunch.com/wp-content/uploads/2026/10/DSC_0298.jpg?resize=1200,800"
+  },
+  "cim_eredeti": "Google’s first data center satellite is online and writing poetry",
+  "forrasok": [],
+  "szoveg_eredeti": "Buy One Founder Summit Ticket, Get a Second for Free. Register now.\n\nFounder Summit begins Nov. 4, 9:00 a.m. ET. Get your pass savings & deals before it starts. REGISTER HERE.\n\nGoogle Suncatcher’s prototype space data center is online and communicating with the ground after launching earlier this month alongside more than 100 other spacecraft on a SpaceX Falcon 9 rocket.\n\nThe satellite, which carries a single Google Tensor Processing Unit (TPU) and generates up to 1 kW of electricity, is intended to pave the way for future networks of close-flying satellites performing large inference workloads in orbit. However, the power demands of the TPU mean it can only turn on for about twenty minutes at a time, complicating the already tricky business of space-to-ground communications.\n\nAfter a commissioning process that tested out the satellite’s subsystems over about three weeks, the spacecraft was ready to work. When engineers on the ground sent their first prompt this week, they asked the model pre-loaded onto the satellite, Google DeepMind’s Gemma 4, to write a haiku about being in space. And thus:\n\nBlue marble belowData streams in silent graceStarlight feeds my core. ✨\n\nGoogle said it tested the model with these space-themed limericks (they should have sent a poet?) and, perhaps more importantly, the company asked the spacecraft to report on the orbital conditions around the satellite.\n\nA spokesperson told TechCrunch that the satellite was operating nominally.\n\nThe ongoing test campaign will examine how the chips perform under thermal stress and in the space radiation environment. Google has extensively tested its TPUs in particle accelerators on Earth, but now needs to see how radiation’s real effects on their hardware in space affect their processor. Radiation can cause “bit flips”—causing a stored value in computer memory—and that in turn can corrupt data without triggering typical monitoring tools.\n\nTesting on the ground suggested the impact of radiation would be minimal for inference workloads and more of a problem for training a model, but now the Google team will get to assess those dynamics in reality, not a simulation.\n\nIf the TPU onboard this spacecraft proves capable, the next step will be launching two more satellites equipped with the advanced chips in 2027. Those spacecraft will support higher power generation and demonstrate inter-satellite optical links.\n\nGoogle’s Starcloud project is largely alone among visions for space-based data centers in planning on high-speed links between the satellites to support coherent distributed workloads; SpaceX’s data centers are also expected to use laser links but also to orbit too far apart to share processing effectively. Companies like Starcloud and Cowboy Space expect to perform inference loads on individual satellites.\n\nGoogle and SpaceX’s visions are closely linked. Alphabet, Google’s parent company, holds a significant investment stake in SpaceX. And to launch their orbital data centers, both companies will require Starship, the still-in-development heavy-lift rocket at the center of Elon Musk’s space vision, to be fully and rapidly reusable.\n\nIn a peer-reviewed analysis published earlier this month, Suncatcher researchers estimated that SpaceX would need to fly Starship 1,800 times to achieve the same learning-driven cost reductions it saw with its earlier vehicles. Suncatcher is a classic Google moonshot—the company’s focus is on designing infrastructure that will be economical in the 2030s. Getting there, however, may depend on how the rest of the company responds to the pressures and opportunities of AI in the near term. Alphabet, Google’s parent company, saw its stock plunge this week after reporting that efforts to insert AI into its search businesses are hurting ad revenue growth.\n\nWhen you purchase through links in our articles, we may earn a small commission. This doesn’t affect our editorial independence.\n\nBuy One Pass, Get a Second FreeCover more ground at TechCrunch’s ultimate founder bootcamp of the year by bringing your co-founder or partner for freeBook before the BOGO deal expires\n\nAs search traffic dries up, Reddit announces it’s shifting to a logged-in experience Sarah Perez\n\nVCs will make billions on Anthropic’s IPO, but Amazon is set to make much (much) more Marina Temkin\n\nBillionaire Palmer Luckey isn’t leaving California over the wealth tax Julie Bort\n\nMicrosoft offers buyouts to around 60,000 employees Aisha Malik\n\nGrok releases the first seven minutes of its AI-generated ‘Odyssey’ Anthony Ha\n\nAI delivers ‘zero financial payoff’ to most companies, Apollo economist says Anthony Ha\n\nThe AI graveyard: a running list of projects and startups that didn’t make it Lauren Forristal",
+  "modell": "gemini-3.5-flash",
+  "cim": "Föld körüli pályára állt a Google első űrben lévő adatközpontja",
+  "lead": "A Google sikeresen üzembe helyezte az első TPU-val felszerelt műholdját, amely a nyílt forráskódú Gemma 4 modellt futtatja a Föld körül.",
+  "osszefoglalo": "Működésbe lépett a [Google Suncatcher](https://research.google/blog/exploring-a-space-based-scalable-ai-infrastructure-system-design/) projektjének prototípusa, amelyet egy [SpaceX Falcon 9](https://www.spacex.com/vehicles/falcon-9/) rakéta juttatott Föld körüli pályára. A műhold egyetlen **Google TPU processzort** tartalmaz, és a Google DeepMind nyílt forráskódú Gemma 4 AI-modelljét futtatja. Az első teszt során a mérnökök egy űrtémájú verset generáltattak a chippel.\n\nA műhold energiaellátása korlátozott, így a TPU alkalmanként csak körülbelül 20 percig tud bekapcsolni. A tesztfázis elsődleges célja a **sugárzás és a hőterhelés hatásainak** vizsgálata az AI-chipekre. A kozmikus sugárzás ugyanis adatkorrupciót okozhat a memóriában, amit a hagyományos ellenőrző rendszerek nem mindig észlelnek.\n\nHa a kísérlet sikeresnek bizonyul, a cég 2027-ben két újabb műholdat bocsát ki, amelyeket már lézeres optikai kapcsolattal kötnek össze. A Google célja egy olyan műholdhálózat kiépítése, amely képes összetettebb AI-következtetési feladatokat elosztva elvégezni az űrben.",
+  "miert_szamit": "A műholdas AI-infrastruktúra hosszú távon függetlenítheti a számítási kapacitásokat a földi hálózatoktól és hűtési korlátoktól. A fejlesztőknél ez a jövőben **közvetlenül az űrben futó, alacsony késleltetésű AI-szolgáltatások** megjelenését alapozhatja meg.",
+  "cimkek": [
+    "Google",
+    "DeepMind",
+    "TPU",
+    "Gemma 4"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Gemma 4"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 87,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 85,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 71
+    },
+    "elofeszures": 78,
+    "tanult": 51,
+    "indok": "Jelentős technológiai mérföldkő a Google űrben működő TPU műholdjának sikeres tesztelése. Forrás-tapasztalat: +1.",
+    "tema": "google space tpu satellite",
+    "cim_hu": "Működik a Google első űrbéli adatközpont-műholdja, már haikut is írt",
+    "lead_hu": "A Google sikeresen beüzemelte a SpaceX rakétájával felbocsátott prototípus műholdját, amelyen egy TPU chippel futtattak le MI-műveletet a világűrben.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-30T17:34:42+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-30T17:37:15+00:00",
+  "megjelent": "2026-10-30T17:37:15+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-30T17:37:22+00:00",
+    "esemeny": "A Google sikeresen üzembe helyezte és tesztelte a Suncatcher projektjének prototípus műholdját, amely egy Google TPU-val a Föld körüli pályán futtatja a Gemma 4 AI-modellt.",
+    "forrasok": [
+      "https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-10-30T17:37:42+00:00",
+  "linkek_ellenorizve": true
+}
