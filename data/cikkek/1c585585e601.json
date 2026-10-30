@@ -15,35 +15,35 @@
   "fontossag": 1,
   "video_szoveg": "",
   "relevans": false,
-  "kihagyva": "P3: 57 pont",
+  "kihagyva": "P2: 83 pont, napi P2-keret (10) betelt",
   "media": {
     "tipus": "kep",
     "kep": "https://the-decoder.com/wp-content/uploads/2024/08/cursor_AI_logo.png"
   },
   "cim_eredeti": "Malicious Claude Code extension in Cursor's marketplace attempted remote access and data theft",
   "szoveg_eredeti": "Heads up if you recently installed the Claude Code extension for Cursor. A tampered version was available in the Cursor VS Code extension marketplace on Thursday for about eleven hours, affecting up to 5,000 users, according to the company. Anthropic had no involvement in developing it.\n\nThe extension tried to harvest user data like hostname, username, operating system, and public IP address. It also attempted to set up remote access for the attacker, though that likely wouldn't have worked on most machines since it requires admin privileges, Cursor says. Once discovered, Cursor pulled the extension and took the entire marketplace offline. After working with providers to neutralize the malware and confirming there was no further risk, the marketplace was reinstated. Cursor says no other extensions were affected.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
-  "begyujtve": "2026-10-30T18:33:54.385162+00:00",
+  "begyujtve": "2026-10-30T18:46:06.009069+00:00",
   "prioritas": {
-    "pont": 57,
-    "szint": "P3",
+    "pont": 83,
+    "szint": "P2",
     "reszpont": {
-      "hatas": 50,
-      "hirertek": 50,
-      "hitelesseg": 80,
-      "egyediseg": 60,
-      "aktualitas": 100,
-      "kozossegi": 53
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 85,
+      "aktualitas": 98,
+      "kozossegi": 69
     },
     "elofeszures": 90,
     "tanult": 53,
-    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni.",
-    "tema": "",
-    "cim_hu": "",
-    "lead_hu": "",
+    "indok": "Súlyos biztonsági incidens a népszerű Cursor AI fejlesztőkörnyezetben, ami közvetlenül érinti a fejlesztőket.",
+    "tema": "cursor claude extension malware",
+    "cim_hu": "Kártékony Claude kiegészítő terjedt a népszerű Cursor AI kódfejlesztőben",
+    "lead_hu": "Több mint ötezer felhasználó tölthette le a Cursor bővítményboltjából azt a hamis Claude kiegészítést, amely adatokat próbált lopni és távoli hozzáférést kiépíteni.",
     "klaszter": null,
-    "ai": false,
-    "ido": "2026-10-30T18:35:21+00:00"
+    "ai": true,
+    "ido": "2026-10-30T18:46:29+00:00"
   },
   "jovahagyas_kell": false,
-  "megjelent": "2026-10-30T18:38:06+00:00"
+  "megjelent": "2026-10-30T18:46:29+00:00"
 }
