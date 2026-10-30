@@ -1,49 +1,76 @@
 {
   "id": "a2aa84b8c0fc",
-  "slug": "how-a-wave-of-startups-are-betting-on-ai-to-make-formal-software",
+  "slug": "matematikai-kodellenorzest-automatizalnak-ai-val-a-startupsorok",
   "forras_id": "techmeme",
   "forras_nev": "Wired",
   "url": "https://www.wired.com/story/software-verification-is-the-hot-new-answer-to-the-ai-safety-crisis/",
+  "szerzo": null,
   "publikalva": "2026-10-30T06:30:03+00:00",
-  "cim": "How a wave of startups are betting on AI to make formal software verification practical and essential, including &Truth, which launches with a $70M seed (Paresh Dave/Wired)",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 56 pont, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://media.wired.com/photos/6ae296f756ee4dcb93f119e9/191:100/w_1280,c_limit/Business_Software%20Verification%20Is%20the%20Hot%20New%20Answer%20to%20the%20AI%20Safety%20Crisis_v1.jpg"
   },
   "cim_eredeti": "How a wave of startups are betting on AI to make formal software verification practical and essential, including &Truth, which launches with a $70M seed (Paresh Dave/Wired)",
+  "forrasok": [],
   "szoveg_eredeti": "Stanford researcher Chuyue Sun and her fellow computer scientists developed an AI tool that completed an engineering project in less than half a day for under $500, compared to the five months it took three highly skilled experts to do the same work manually. The dramatic reduction in time and cost, which Sun reported in a recent paper, is among the early results that are awakening an obscure field of coding and mathematics known as formal verification.\n\nFor decades, developers have envisioned using math to prove that their software is bug-free. This process is long and laborious, requiring engineers to write precise statements about the goals of their software and convert their code into formulas that can be validated. While companies already run sophisticated tests to identify as many flaws in their software as possible, they rarely shell out for formal verification, which can catch even more erratic behavior.\n\nNow, a wave of startups is betting that generative AI will make formal software verification both practical and essential. Among them is &Truth, which Sun joined in August and which publicly launched on Thursday. Sun’s research demonstrated the technology’s potential by using AI to verify part of the code that encrypts conversations in the messaging app Signal.\n\n“Bridges, buildings, they don’t collapse, because people did math before constructing them,” says Ilya Sergey, &Truth’s chief science officer. “Why don’t we do the same for code? The technology to mathematically reason was all there, just difficult to scale.”\n\n&Truth has raised $70 million from investors and aims to eventually verify any programming language. Rival Harmonic, which was cofounded by Robinhood CEO Vlad Tenev and has received $295 million in funding, announced this week that its math-focused AI agent Aristotle supports verifying software written in C and hardware designs in Verilog. It is evaluating the technology with potential users, including chipmakers Tensordyne and Nvidia, whose venture capital arm is one of the startup’s investors.\n\nAnd just last week, Anthropic and the verification startup Theorem jointly announced they had used AI to assist in finding bugs in open source software that trillions of tests had failed to detect. They also introduced an add-on for Claude to help other developers with verification. Costs of the initial project were not disclosed.\n\nThe big promise is a future where software runs more reliably with fewer security headaches. But whether AI can bring formal verification beyond the most critical systems at organizations like NASA and Apple and into widespread use remains an open question.\n\nThe technology is still in the prototyping stage. Though demand is high, it’s unclear how much customers are willing to pay and how they prefer to adopt the technology. Formal verification relies on making assumptions about how computers and people interact with software, and some experts are skeptical about its ability to catch bugs stemming from user error and hardware breakdowns.\n\nWill Wilson, who runs the bug-hunting AI software startup Antithesis, calls formal verification “a trap” for math nerds like himself. Antithesis spent millions of dollars to formally verify some of its cybersecurity defenses, a process Wilson describes as a “pain in the ass.” Yet the startup still uncovered additional errors using its own tool, and Antithesis has also found bugs in software that several of its customers had formally verified. “It can give you some assurance, but only robust exhaustive testing can prove your assurance is true,” Wilson says.\n\nOr as Vitalik Buterin, the engineer known for creating the Ethereum cryptocurrency, put it in a blog post earlier this year, “formal verification is not a panacea.” But he and other proponents of the approach still believe it will be an important defense against AI systems launching cyberattacks and wreaking havoc.\n\nBoeing planes, Amazon servers, and more than 2.5 billion active Apple devices contain at least some formally verified software, according to company disclosures. The code in question is typically security-related, and vulnerabilities in it could cause serious harm if exploited.\n\nByron Cook, a distinguished scientist and vice president at Amazon Web Services, says formal verification has eased customer concerns about cloud security and helped internal teams move faster by squashing big bugs early on.\n\nBut several midsized tech companies tell WIRED they have typically verified only one key feature of their products, if any at all. They cite a lack of verification engineers, costs that outweigh the potential risks, and, perhaps most importantly, concerns that waiting weeks for code to be formally verified could slow innovation.\n\nEarlier this year, Apple’s security team said that some of the issues formal verification uncovered in its “corecrypto” library, which is used for encryption, could not have been found any other way. But the company added that it has to be “conservative” when adding new code to corecrypto to ensure it can keep pace with reviewing it.\n\nTwo cybersecurity executives at major companies that haven’t formally verified any code say they aren’t sure whether automation will make it worthwhile. But the executives, who weren’t authorized to speak publicly, say they could imagine paying major AI labs for “verified” AI-generated code.\n\nDevelopers of open source software projects, which are the bedrock of many apps, are increasingly experimenting with AI-aided verification. The nonprofit Beneficial AI Foundation used a grant from Anthropic to validate the same encryption code this year as Sun did at Stanford. Michael Rosenberg, a maintainer of the library known as curve25519-dalek, hopes sustainable funding emerges for ongoing verification efforts. “I have no ideas as to how that’s going to happen, though, and we certainly shouldn’t rely on the goodwill of the AI companies,” he says.\n\nSome of the startups eager to expand verification also aren’t sure whether to deploy their tools directly to customers or through intermediaries like Anthropic. Their general plan is to use AI to automate much of the work involved in defining how a program is supposed to behave. For example, specifications for a data table might require that it contain the same items before and after sorting, just in a different order. Further automation efforts, which may not involve AI, would translate that code into a format that math tools like Lean, Rocq, and Isabelle can use to check whether the code works as intended.\n\nAnother recent entrant to the formal verification field is Madan Musuvathi, who left Microsoft Research after more than 20 years to found the startup Truidic. After incidents like the OpenAI hack of Hugging Face, he felt there was an urgent need to commercialize his studies. “AI in the hands of attackers can be extremely powerful,” Musuvathi says, but verification can “make AI safe and secure for everyone, everywhere.”\n\nProofcraft, one of the few companies that has long offered traditional verification, says growing excitement about the process is translating into a flood of inquiries from potential customers. June Andronick, the company’s CEO, and Gerwin Klein, its chief scientist, say interest easily outpaces what they and their competition can provide.\n\nBut both worry that AI-generated specifications could inspire “unjustified trust” in the results. Verifiers are also eager to preserve the joy their work brings them. Klein calls it “pretty addictive, like a puzzle game.” If all goes well, he’ll be doing more solving than ever.",
-  "begyujtve": "2026-10-30T07:03:24.568472+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "Matematikai kódellenőrzést automatizálnak AI-val a startupsorok",
+  "lead": "Startupok generatív AI-val tennék elérhetővé és gyorssá a szoftverek matematikai hibamentességét igazoló formal verification eljárást.",
+  "osszefoglalo": "A szoftverek matematikai alapú, teljes hibamentességét bizonyító eljárást (formal verification) korábban ritkán alkalmazták a cégek, mert a kódok képletekké alakítása rendkívül lassú és drága volt. A **&Truth startup 70 millió dolláros tőkével** indult el, hogy generatív AI segítségével automatizálja ezt a folyamatot, lényegesen lecsökkentve a kódok ellenőrzési idejét és költségét.\n\nA piacon több másik szereplő is megjelent: a **Harmonic [Aristotle](https://aristotle.harmonic.fun/) nevű AI-ügynöke** már támogatja a C nyelven írt szoftverek és a Verilog hardvertervek ellenőrzését. Az Anthropic és a Theorem közösen mutattak be egy kiegészítőt a Claude modellhez, amellyel olyan rejtett hibákat találtak meg nyílt forráskódú szoftverekben, amelyeket több billió hagyományos teszt sem jelzett.\n\nA szakértők ugyanakkor figyelmeztetnek, hogy az eljárás nem csodaszer, mivel a felhasználói hibákból vagy hardveres problémákból eredő tévedéseket nem szűri ki. A fejlesztőcsapatok mindenesetre az **AI-val támogatott kódellenőrzéstől** a szoftverek biztonságának és megbízhatóságának jelentős növekedését várják.",
+  "miert_szamit": "Az AI-val automatizált kódellenőrzés révén a fejlesztők és vállalkozások **nagyságrendekkel megbízhatóbb, sérülékenységmentes szoftvereket** építhetnek fel lényegesen alacsonyabb tesztelési költség mellett.",
+  "cimkek": [
+    "kódolás",
+    "fejlesztés",
+    "cybersecurity",
+    "Claude"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Aristotle"
+  ],
+  "linkszabaly": 3,
   "prioritas": {
-    "pont": 56,
-    "szint": "P3",
+    "pont": 86,
+    "szint": "P1",
     "reszpont": {
-      "hatas": 50,
-      "hirertek": 50,
-      "hitelesseg": 82,
-      "egyediseg": 60,
-      "aktualitas": 100,
-      "kozossegi": 50
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 86,
+      "aktualitas": 98,
+      "kozossegi": 68
     },
     "elofeszures": 97,
     "tanult": 50,
-    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -1.",
-    "tema": "",
-    "cim_hu": "",
-    "lead_hu": "",
+    "indok": "Komoly technológiai áttörés a szoftverellenőrzésben, jelentős tőkebevonással. Forrás-tapasztalat: -1.",
+    "tema": "andtruth formal verification ai",
+    "cim_hu": "Hetvenmillió dolláros tőkével indul az AI-alapú szoftververifikációs startup",
+    "lead_hu": "A Stanford kutatói által fejlesztett AI eszköz hónapok munkáját órákra csökkentette a formális szoftverellenőrzésben, erre építve indult el az &Truth startup.",
     "klaszter": null,
-    "ai": false,
-    "ido": "2026-10-30T07:04:08+00:00"
+    "ai": true,
+    "ido": "2026-10-30T07:50:40+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-30T07:04:11+00:00"
+  "forditva": "2026-10-30T07:57:27+00:00",
+  "megjelent": "2026-10-30T07:57:27+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-30T07:58:33+00:00",
+    "esemeny": "Startupok és mesterségesintelligencia-fejlesztők generatív AI segítségével igyekeznek automatizálni a szoftverek matematikai alapon történő hibamentességét igazoló eljárást (formal verification). A Stanford kutatója, Chuyue Sun csatlakozott a 70 millió dolláros kezdőtőkével induló &Truth startuphoz, míg a Harmonic és az Anthropic is saját AI-alapú ellenőrző megoldásokkal lépett piacra.",
+    "forrasok": [
+      "https://www.wired.com/story/software-verification-is-the-hot-new-answer-to-the-ai-safety-crisis/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-10-30T08:00:07+00:00",
+  "linkek_ellenorizve": true
 }

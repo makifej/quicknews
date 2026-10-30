@@ -15,7 +15,7 @@
   "fontossag": 1,
   "video_szoveg": "",
   "relevans": false,
-  "kihagyva": "P3: 46 pont, jóváhagyás után fordul",
+  "kihagyva": "prioritás: 35 pont",
   "media": {
     "tipus": "kep",
     "kep": "https://www.cio.com/wp-content/uploads/2026/10/4242545-0-59467700-1793328128-SailPoint-Technologies-BP-V2-2091601-1200x800-2.jpg?quality=50&strip=all&w=1024"
@@ -24,26 +24,26 @@
   "szoveg_eredeti": "Your AI agents are making decisions faster than your teams can review them. Governance requires the same speed.\n\nIn order to accomplish their given tasks, agents gain access to new applications and business data around the clock. But every autonomous decision raises a question you’ll eventually have to answer: Can you prove the agent acted within policy?\n\nMore than half of enterprises are already deploying agentic AI, according to research by Omdia. This growing reliance on AI agents is creating a trust deficit that makes governance and accountability an immediate CIO priority.\n\nIdentity governance can help close that deficit by giving CIOs the evidence to demonstrate effective oversight as they expand their use of AI agents.\n\n“Boards are asking CIOs a simple question: can we trust what our AI is doing? Most can’t answer it yet,” said Neil McGlennon, Global Field CTO at SailPoint. “AI has moved from experiment to execution, and closing the trust deficit means knowing which agents exist, what they can access, and who is accountable when they act. Without that, AI stalls at the pilot stage.”\n\nWhat is audit-ready context?Boards and auditors expect CIOs to provide clear evidence to back AI agent decisions. This requires context, such as the agent’s identity and human owner, as well as any applications and data involved. The record should also show which policies governed the decision.\n\nThis creates a clear line of accountability from the agent’s action back to the person responsible for it. Context needs to be easy to access and understand for non-technical stakeholders.\n\nAI agents rely on a growing number of non-human identities (NHIs) to authenticate and access enterprise resources. These NHIs include machine accounts, API keys, and tokens. Some enterprises have up to 140 NHIs for every employee.\n\nAI agents can quickly change responsibilities and end up retaining permissions they no longer need. This creates unnecessary risk. For example, an agent could keep broad database access after moving from data migration to basic reporting, or keep administrator privileges long after completing a task that required them.\n\nThis privilege drift shows why continuous governance matters. Periodic access reviews leave too much time between checks for agents making decisions in real time. Continuous oversight can detect changes in agent behavior and trigger an immediate response, including shutting down an agent when necessary.\n\nIdentity and access management (IAM) teams now have AI agents to govern alongside human users. Supporting agentic AI requires three connected capabilities:\n\nOrganizations need visibility into the agents and NHIs operating across the enterprise. Governance provides the controls and evidence to oversee their activity, and real-time protection helps teams detect problems and respond immediately.\n\nAI agents will continue to take on more responsibility across the enterprise, increasing the need for strong identity governance. With the right oversight, CIOs can support broader AI adoption while maintaining accountability for how agents act and what they gain access to.\n\nExplore how CIOs can close the AI trust deficit as agentic AI adoption grows.",
   "begyujtve": "2026-10-30T07:04:04.038492+00:00",
   "prioritas": {
-    "pont": 46,
-    "szint": "P3",
+    "pont": 35,
+    "szint": "X",
     "reszpont": {
-      "hatas": 50,
-      "hirertek": 50,
-      "hitelesseg": 60,
-      "egyediseg": 60,
-      "aktualitas": 100,
-      "kozossegi": 25
+      "hatas": 35,
+      "hirertek": 30,
+      "egyediseg": 50,
+      "hitelesseg": 65,
+      "aktualitas": 88,
+      "kozossegi": 31
     },
     "elofeszures": 80,
     "tanult": 25,
-    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -6.",
-    "tema": "",
-    "cim_hu": "",
-    "lead_hu": "",
+    "indok": "Általános elemzés az autonóm MI-ágensek vállalati irányítási kihívásairól konkrét termékbejelentés nélkül Forrás-tapasztalat: -6.",
+    "tema": "enterprise ai agent governance",
+    "cim_hu": "Kihívást jelent a vállalati MI-ágensek ellenőrzése",
+    "lead_hu": "Az Omdia felmérése szerint a vállalatok több mint fele alkalmaz már autonóm MI-ágenseket, a döntések gyorsasága miatt azonban nehéz biztosítani a szabályok betartását.",
     "klaszter": null,
-    "ai": false,
-    "ido": "2026-10-30T07:04:08+00:00"
+    "ai": true,
+    "ido": "2026-10-30T07:50:40+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-10-30T07:04:10+00:00"
+  "megjelent": "2026-10-30T07:55:28+00:00"
 }
