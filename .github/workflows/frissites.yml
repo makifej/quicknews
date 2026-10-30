@@ -143,7 +143,12 @@ jobs:
           if [ "${valtozott:-0}" -gt 0 ]; then echo "Futás közben $valtozott kódfájl változott: ez a kör nem élesít."; echo "mehet=nem" >> $GITHUB_OUTPUT; exit 0; fi
           # ha a futás közben valaki (Heni gépéről) élesített, az újabb: ez a kör nem írhatja felül
           utolso=$(curl -s -H "Authorization: Bearer $VERCEL_TOKEN" "https://api.vercel.com/v6/deployments?projectId=$VERCEL_PROJECT_ID&teamId=$VERCEL_ORG_ID&target=production&limit=1" | jq -r '.deployments[0].created // 0')
-          if [ "${utolso:-0}" -gt "${{ needs.frissit.outputs.kezdet }}" ]; then echo "A futás közben gépről élesítettek ($utolso): ez a kör nem írja felül."; echo "mehet=nem" >> $GITHUB_OUTPUT; else echo "mehet=igen" >> $GITHUB_OUTPUT; fi
+          if [ "${utolso:-0}" -gt "${{ needs.frissit.outputs.kezdet }}" ]; then echo "A futás közben gépről élesítettek ($utolso): ez a kör nem írja felül."; echo "mehet=nem" >> $GITHUB_OUTPUT; exit 0; fi
+          # Heni 2026-10-30 (Vercel-számla): minden élesítés fizetős build gépet indít, ezért a felhő legfeljebb
+          # 30 percenként élesít. Ha az utolsó éles kiadás (gépről vagy felhőből) ennél frissebb, ez a kör kihagyja;
+          # a következő kör az addigi változásokkal együtt viszi ki.
+          kor=$(( $(date +%s%3N) - ${utolso:-0} ))
+          if [ "$kor" -lt 1800000 ]; then echo "Az utolsó élesítés $((kor/60000)) perce volt (30 perc alatt): ez a kör nem élesít."; echo "mehet=nem" >> $GITHUB_OUTPUT; else echo "mehet=igen" >> $GITHUB_OUTPUT; fi
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093  # v4
         if: steps.kod.outputs.mehet == 'igen'
         with:
