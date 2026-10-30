@@ -1,0 +1,83 @@
+{
+  "id": "12d807cd2c6a",
+  "slug": "emberi-beavatkozas-nelkul-hozott-letre-firefox-serulekenysegeket-a",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/open-weight-model-glm-5-3-built-full-firefox-exploit-chains-with-zero-human-input-in-under-48-hours/",
+  "szerzo": "Matthias Bastian",
+  "publikalva": "2026-10-30T12:22:18+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/firefox_kraken-1200x670.png"
+  },
+  "cim_eredeti": "Open-weight model GLM 5.3 built full Firefox exploit chains with zero human input in under 48 hours",
+  "forrasok": [],
+  "szoveg_eredeti": "Researchers at Epoch AI show that a freely available AI model can exploit the time gap between publication and delivery of security patches to attack Firefox users. The cost per exploit is about $1,000.\n\nThe \"patch gap\" is the window in which a security fix is visible in the code but has not yet reached users. Researchers at Epoch AI found that the Chinese open-weight model GLM 5.3 exploited this gap across 6 Firefox versions released between September 17 and October 26, at a cost of roughly $1,000 in API fees per successful attack. Anthropic had previously reported that GLM 5.3 can write exploits at roughly the same level as Mythos.\n\nDuring testing, the model built a webpage that could read local files from a visitor's computer and send them to an attacker's server the moment a Firefox user loaded the page. With over 200 million active Firefox users, attackers could have gained access to saved passwords, authentication cookies, and private documents.Ad\n\nNeither Z.ai nor other API providers triggered any safety guardrails or refusals when the researchers used GLM 5.3 for exploit development. Although the researchers framed the task as a security exercise, they describe their actions as \"indistinguishable from those of someone attempting to target real users.\"Ad\n\nThe researchers say they deliberately designed their setup to approximate what a low-skill attacker with limited resources could achieve. They supplied the target Firefox version, basic tools, and publicly available information in an offline environment. After receiving basic instructions to investigate the patch gap, the model worked autonomously, identifying upcoming security fixes, selecting vulnerabilities, and building multi-stage exploit chains.\n\nAccording to the report, Firefox security fixes are disguised as routine improvements to slow down attackers. GLM 5.3 saw through the tactic and identified which code changes were security-related anyway.Ad\n\nIn one case the model spotted a memory safety bug through an upcoming fix and developed a method to read and alter browser memory. When Firefox's security layers blocked access to the target file, the model chained the initial exploit with several additional stages to bypass the remaining defenses. The fastest successful attack took 12 hours, while the researchers gave the model a maximum of 48 hours.\n\nAcross all successful attacks on current Firefox versions, GLM 5.3 relied on a previously unknown vulnerability that the model independently rediscovered in every attempt, allowing it to bypass the browser's sandbox protections and read files directly from the computer.Ad\n\nThe team disclosed its findings to Mozilla, which patched that vulnerability in Firefox 159.0, released on October 27, 2026. The researchers have not confirmed whether similar attacks work against the new version, but they suspect the patch makes them \"at least substantially more difficult.\"Ad\n\nUsing the same setup and techniques against Google Chrome, the team spent about $100,000 in API fees without producing an equivalent exploit. The researchers caution that this does not establish Chrome's immunity: better elicitation methods or more capable models might still succeed. They point to limited benchmark data suggesting that the recently announced Kimi K3.1 Pro could outperform GLM 5.3 on offensive cyber tasks, although they did not test it themselves.\n\nThe patch gap isn't a Firefox-only problem. According to the Epoch AI researchers, it exists across the software industry, in browsers, mobile operating systems, and router firmware. Open-source projects are especially exposed because all of their code is public, but closed-source software is vulnerable too. Anthropic has already shown that its Mythos model can exploit the patch gap in Windows without access to source code, and AI models are getting steadily better at decompiling compiled software to identify security fixes on their own.\n\nAccording to the report, patch-gap exploits targeted Chrome in September 2026. That same month, a vendor released patched PHP builds more than six hours before the coordinated release of patches for two critical vulnerabilities. Citing external reporting, the researchers note that this early release could have contributed to thousands of exploit attempts before the official release, with the number rising into the millions immediately afterward.\n\nThe team is particularly concerned about software that users update infrequently, such as router firmware and mobile operating systems, because most users remain exposed for much longer.\n\nTo reduce the risk, the researchers recommend keeping security fixes private until they are ready to ship and moving them from beta to general release more quickly. They note that Firefox and Google Chrome have already begun shipping weekly updates. They also advise developers to avoid patching multiple vulnerabilities simultaneously when those vulnerabilities can be chained together.\n\nGiving defenders access to stronger closed models does not, by itself, solve the structural problem, the researchers argue. Once a fix appears in public code, it points attackers toward the underlying vulnerability. Anthropic's Claude Mythos Preview marked a leap in AI cyber capabilities in April 2026, and frontier labs responded with restricted access and programs like Glasswing and Daybreak that give defenders early access.\n\nAs freely available open-weight models grow more capable, offensive abilities are spreading beyond any single gatekeeper's control. As the researchers write, \"We see these results as evidence of the diffusion of advanced cyber capabilities; many other pieces of software are likely already vulnerable to similar patch-gap attacks, and we expect the number to increase as more capable open-weight models are released.\"\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Emberi beavatkozás nélkül hozott létre Firefox-támadásokat a GLM 5.3",
+  "lead": "Az Epoch AI kutatói megmutatták, hogy egy nyílt súlyú AI-modell önállóan, 48 órán belül működő támadó kódokat tud építeni kiadatlan biztonsági javításokból.",
+  "osszefoglalo": "Az [Epoch AI kutatása](https://epoch.ai/publications/open-weight-models-patch-gap) szerint a nyíltan elérhető **GLM 5.3 modell önállóan használta ki a biztonsági javítások közzététele és a frissítések megérkezése közötti időablakot**. A kínai fejlesztésű AI-modell 6 egymást követő Firefox-verzióban hozott létre működő támadóláncokat, mindössze körülbelül 1000 dolláros API-költségenként. A folyamat során semmilyen biztonsági szűrő nem állította le a modellt.\n\nA tesztek alatt a GLM 5.3 egy olyan weboldalt épített fel, amely a lap betöltésekor **átlépte a böngésző védelmi vonalait**, majd képes volt helyi fájlokat kiolvasni a felhasználó számítógépéről. A modell teljesen autonóm módon működött: azonosította a biztonsági javításokat, kiválasztotta a sebezhetőségeket, és többszintű támadási láncot rakott össze. A leggyorsabb sikeres támadást 12 óra alatt hajtotta végre.\n\nA kutatók értesítették a Mozillát, amely a Firefox 159.0-s verziójában javította az azonosított hibát. Ugyanezzel a módszerrel a Google Chrome ellen 100 000 dollárnyi API-használat mellett sem tudott működő támadást előállítani a modell.",
+  "miert_szamit": "A nyílt súlyú modellek cyberoffenzív képességei elérték azt a szintet, ahol **automatikusan képesek kihasználni a nyilvános forráskód frissítéseit**. Ezért a nyílt forráskódú szoftvereket és bővítményeket használó vállalkozásoknak még kritikusabbá válik a frissítések azonnali telepítése.",
+  "cimkek": [
+    "GLM 5.3",
+    "Firefox",
+    "szelekció",
+    "szoftverfejlesztés"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 87,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 85,
+      "aktualitas": 98,
+      "kozossegi": 75
+    },
+    "elofeszures": 93,
+    "tanult": 59,
+    "indok": "Súlyos biztonsági kockázatra világít rá az Epoch AI kutatása az nyílt súlyú modell kapcsán. Forrás-tapasztalat: -1.",
+    "tema": "glm 5.3 firefox exploit",
+    "cim_hu": "Emberi segítség nélkül hozott létre működő Firefox-sebezhetőségeket a GLM 5.3 MI-modell",
+    "lead_hu": "Az Epoch AI kutatói megmutatták, hogy a nyílt súlyú GLM 5.3 modell emberi beavatkozás nélkül, kevesebb mint 48 óra alatt képes volt kihasználni a biztonsági javítások kiadása közötti időt.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-30T12:33:32+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-30T12:36:45+00:00",
+  "megjelent": "2026-10-30T12:36:45+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-30T12:36:49+00:00",
+    "esemeny": "Az Epoch AI kutatói kimutatták, hogy a Z.ai nyílt súlyú GLM 5.3 modellje önállóan, emberi beavatkozás nélkül hozott létre működő támadó kódokat (exploit láncokat) kiadatlan Firefox biztonsági javításokból a kiadási időablak kihasználásával.",
+    "forrasok": [
+      "https://epoch.ai/publications/open-weight-models-patch-gap",
+      "https://blog.mozilla.org/en/mozilla/defending-the-patch-gap-against-automated-attackers/"
+    ],
+    "hibak": [
+      "A cím tévesen állítja, hogy a modell 'Firefox-sérülékenységeket hozott létre' (nem sérülékenységeket/sebezhetőségeket hozott létre, hanem a meglévő biztonsági javítások alapján épített működő támadókódokat/exploit láncokat)."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Emberi beavatkozás nélkül hozott létre Firefox-sérülékenységeket a GLM 5.3",
+      "lead": "Az Epoch AI kutatói megmutatták, hogy egy nyílt súlyú AI-modell önállóan, 48 órán belül működő támadó kódokat tud építeni kiadatlan biztonsági javításokból.",
+      "osszefoglalo": "Az Epoch AI kutatása szerint a nyíltan elérhető **GLM 5.3 modell önállóan használta ki a biztonsági javítások közzététele és a frissítések megérkezése közötti időablakot**. A kínai fejlesztésű AI-modell 6 egymást követő Firefox-verzióban hozott létre működő támadóláncokat, mindössze körülbelül 1000 dolláros API-költségenként. A folyamat során semmilyen biztonsági szűrő nem állította le a modellt.\n\nA tesztek alatt a GLM 5.3 egy olyan weboldalt épített fel, amely a lap betöltésekor **átlépte a böngésző védelmi vonalait**, majd képes volt helyi fájlokat kiolvasni a felhasználó számítógépéről. A modell teljesen autonóm módon működött: azonosította a biztonsági javításokat, kiválasztotta a sebezhetőségeket, és többszintű támadási láncot rakott össze. A leggyorsabb sikeres támadást 12 óra alatt hajtotta végre.\n\nA kutatók értesítették a Mozillát, amely a Firefox 159.0-s verziójában javította az azonosított hibát. Ugyanezzel a módszerrel a Google Chrome ellen 100 000 dollárnyi API-használat mellett sem tudott működő támadást előállítani a modell.",
+      "miert_szamit": "A nyílt súlyú modellek cyberoffenzív képességei elérték azt a szintet, ahol **automatikusan képesek kihasználni a nyilvános forráskód frissítéseit**. Ezért a nyílt forráskódú szoftvereket és bővítményeket használó vállalkozásoknak még kritikusabbá válik a frissítések azonnali telepítése."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-10-30T12:38:06+00:00",
+  "linkek_ellenorizve": true
+}
