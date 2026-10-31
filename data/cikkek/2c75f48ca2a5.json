@@ -1,0 +1,88 @@
+{
+  "id": "2c75f48ca2a5",
+  "slug": "a-google-deepmind-ai-alapu-terkeppel-kuloniti-el-a-foldierdoket",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/google-deepmind-creates-a-global-map-of-forests-with-satellite-data-and-ai/",
+  "szerzo": "Jonathan Kemper",
+  "publikalva": "2026-10-31T10:15:45+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/forest-typology-01-hero.jpg"
+  },
+  "cim_eredeti": "Google Deepmind creates a global map of forests with satellite data and AI",
+  "forrasok": [],
+  "szoveg_eredeti": "Google Deepmind and the World Resources Institute have developed ForTy, an AI map that distinguishes primary forests, timber plantations, and tree crop farms worldwide.\n\nSatellite maps usually show whether trees grow in a given area without identifying the forest or crop type. ForTy, short for Forest Typology, goes further by assigning the world's land area in 2020 to 6 classes at 10-meter resolution. These cover primary forest, naturally regenerating forest, planted forest, plantation forest, tree crops such as oil palm, rubber, or cocoa, and other land. The authors say ForTy is the first global map of its kind. Earlier datasets, including one from the European Commission, cover only parts of the world.\n\nThe main driver behind the project is the EU Regulation on Deforestation-free Products (EUDR), which prohibits goods linked to forests cleared or degraded after December 31, 2020, including goods produced after primary forest was converted to a plantation. Oil palm and cocoa farms count as agricultural land, so companies assessing supply chain risks need to know how a site was used in 2020.Ad\n\nForTy gives them that 2020 reference point and could also feed into other initiatives that depend on the same kind of data, including the Tropical Forest Forever Facility (TFFF) and the UN goal of protecting 30 percent of the world's land by 2030.Ad\n\nBuilding that reference point is hard because a forest's type depends on its history, not just how it looks, DeepMind says. An old planted mixed forest can look like a natural one from space, and a recently cleared plantation still counts as forest by definition even though satellite images show bare ground.\n\nTo distinguish these categories, ForTy runs on Google DeepMind's AlphaEarth Foundations model, which compresses data from multiple satellites into a compact description of each pixel. Several image recognition models build on those descriptions, starting with one that learns from verified examples.Ad\n\nThat first model's predictions, combined with outside data on tree heights, buildings, and forest loss, become expanded training data for a second model. A final step analyzes several years of data together to smooth outliers. Google's Gemini language model also helped adapt older training data to the EU's definitions.\n\nDuring those correction rounds, experts added about 43,000 examples to address errors such as vineyards in Europe classified as tree crops, natural pine forests in Central America labeled as planted forests, and oil palms missed in Africa and Indonesia.Ad\n\nEven with those corrections, some distinctions remain out of reach for satellites alone. Satellite images rarely show how land is managed, so the researchers use a 40-year rotation period to separate plantations from other planted forests, and that cutoff does not fit every region.Ad\n\nTo check the map, 2 experts reviewed each of 8,190 randomly selected sites, finding it correct in 90.2 percent of cases. The authors warn that this overall score gets a large boost from the easy-to-identify \"other land\" class.\n\nResults vary sharply by forest type. The map correctly identified 89 percent of primary forests that experts confirmed on the ground but found only about half of tree crops and planted forests and 60 percent of plantations. Flipping the lens, roughly a quarter to a third of areas mapped as plantations or tree crops turned out to be misclassified, and the map was wrong for a third of areas labeled as planted forest.\n\nThese gaps hit the boundaries that matter most for the EUDR, and uncertainty in the evaluation may also make the results look slightly better than they are. Experts were most often unsure about managed areas, and the team excluded those uncertain cases from its assessment.\n\nForTy still outperforms European Commission maps made specifically for the EUDR on the same test data, scoring 95.5 percent compared with 93.6 percent for forest versus nonforest classification, and 90.9 percent compared with 87.8 percent for forest types.\n\nThe model also inherited a weakness from its training data, whose annotators rarely classified forests near roads or settlements as primary forest, even when the forests appeared untouched.\n\nThe researchers estimate that the world has about 4.1 billion hectares of forest, including nearly 3.9 billion hectares of natural forest, of which about 2 billion hectares are primary forest. Planted forests cover about 250 million hectares, and tree crops cover nearly 200 million hectares, mostly in Asia.\n\nRegional errors complicate that picture. The map overestimates primary forest in Asia by about 200 million hectares, largely in Russia's conifer forests. In Africa, it instead misses about 94 million hectares of forest, likely because of open dry forests and savannas.\n\nAbout two-thirds of Sweden's forest area is planted, and natural forest covers only around one-fifth of the country. The authors say overall tree cover there may be adequate, but the share of natural forest, which matters for biodiversity, could be critically low. The Democratic Republic of the Congo, Indonesia, and Brazil have the highest shares of natural forest.\n\nBeyond these regional errors, some land uses remain difficult to classify. In some regions, the map still labels shaded cocoa or coffee grown beneath a natural canopy as forest, and selectively logged or burned forests also pose problems.\n\nForTy does not yet have a separate class for open woodlands, which the EUDR treats separately, though the researchers say future versions should add one. Users can make their own classification choices using the dataset's confidence scores for each class, which let them set their own thresholds.\n\nThe map, classification layer, and test data are freely available under a CC BY 4.0 license, including in Google Earth Engine. Google DeepMind has released the code in the GeeFlow and JEO repositories.\n\nDeepmind introduced the underlying AlphaEarth Foundations model in July 2025 as a kind of virtual satellite. It combines optical satellite images, radar, laser scans, and climate simulations into a compact description of each 10-by-10-meter area, with annual embeddings covering years since 2017 freely available in Google Earth Engine.\n\nForTy is one of the first large mapping projects built on those embeddings and, Google says, is part of Earth AI. That connection places the project within a broader effort, as Google connected Earth AI to Gemini in fall 2025 to help detect floods, droughts, and algal blooms faster.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Google DeepMind AI-térképpel különíti el az őserdőket",
+  "lead": "A DeepMind és a World Resources Institute kiadta a ForTy globális térképet, amely hat kategóriára osztja a Föld erdőit és földterületeit.",
+  "osszefoglalo": "A Google DeepMind a World Resources Institute szervezettel együttműködve kiadta a **ForTy** nevű globális térképet. Az eszköz 10 méteres felbontásban képes megkülönböztetni az őserdőket, a természetesen újranövő erdőket, az ültetett erdőket, a fakitermelő ültetvényeket, a mezőgazdasági fatermesztési területeket és egyéb földeket. A rendszer az uniós erdőirtási rendelet (EUDR) megfeleltetését segíti, amely a 2020 vége után kivágott erdők helyén termelt áruk behozatalát tiltja.\n\nA térkép alapját az [AlphaEarth Foundations](https://deepmind.google/discover/blog/alphaearth-foundations-helps-map-our-planet-in-unprecedented-detail/) modell adja, amely műholdas optikai, radar- és lézeradatokat tömörít pixel szintű leírásokká. A becsléseket meglévő adatokkal és a Gemini nyelvi modellel finomították. Bár az ellenőrzött minták 90,2 százalékában pontosnak bizonyult, a mesterséges ültetvények és a fatermesztő területek azonosításában még jelentős hibahatárral dolgozik.\n\nA ForTy adatkészlete, a besorolási réteg és a tesztadatok ingyenesen elérhetők a [Google Earth Engine](https://earthengine.google.com/) felületén CC BY 4.0 licenc alatt, a hozzá tartozó kód pedig nyílt forráskódként hozzáférhető.",
+  "miert_szamit": "A fenntarthatósági és ellátásilánc-elemzéssel foglalkozó szakemberek **ingyenes és nagy pontosságú referenciát kapnak** az EU-s erdőirtási szabályozásoknak való megfelelés ellenőrzésére.",
+  "cimkek": [
+    "Google DeepMind",
+    "ForTy",
+    "AlphaEarth Foundations",
+    "Google Earth Engine"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "ForTy",
+    "AlphaEarth Foundations",
+    "Google Earth Engine",
+    "EUDR"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 82,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 88,
+      "aktualitas": 99,
+      "kozossegi": 62
+    },
+    "elofeszures": 92,
+    "tanult": 50,
+    "indok": "Jelentős környezetvédelmi és műholdas AI fejlesztés a Google DeepMindtól.",
+    "tema": "google deepmind forty forest ai map",
+    "cim_hu": "Globális erdőtérképet készített a Google DeepMind a műholdadatok és az AI segítségével",
+    "lead_hu": "A Google DeepMind a World Resources Institute-tal együttműködve kifejlesztette a ForTy nevű MI-alapú térképet, amely képes pontosan megkülönböztetni a világ természetes erdőit és az ültetvényeket.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-31T10:18:51+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-31T10:21:17+00:00",
+  "megjelent": "2026-10-31T10:21:17+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-31T10:21:18+00:00",
+    "esemeny": "A Google DeepMind és a World Resources Institute kifejlesztette a ForTy nevű globális térképet, amely műholdas adatok és AI segítségével hat kategóriába sorolja a Föld szárazföldi területeit a 2020-as állapot szerint, segítve az EU erdőirtási rendeletének (EUDR) való megfelelést.",
+    "forrasok": [
+      "https://the-decoder.com/google-deepmind-creates-a-global-map-of-forests-with-satellite-data-and-ai/"
+    ],
+    "hibak": [
+      "A címben elgépelés szerepel: 'földierdőket' a 'primary forests' (őserdők) helyett.",
+      "A cím és a lead karakterkorlátja túllépi az előírt méretet."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "A Google DeepMind AI-alapú térképpel különíti el a földierdőket",
+      "lead": "A DeepMind és a World Resources Institute kiadta a ForTy nevű globális térképet, amely hat kategóriára osztja a Föld erdőit és földterületeit.",
+      "osszefoglalo": "A Google DeepMind a World Resources Institute szervezettel együttműködve kiadta a **ForTy** nevű globális térképet. Az eszköz 10 méteres felbontásban képes megkülönböztetni az őserdőket, a természetesen újranövő erdőket, az ültetett erdőket, a fakitermelő ültetvényeket, a mezőgazdasági fatermesztési területeket és egyéb földeket. A rendszer az uniós erdőirtási rendelet (EUDR) megfeleltetését segíti, amely a 2020 vége után kivágott erdők helyén termelt áruk behozatalát tiltja.\n\nA térkép alapját az **AlphaEarth Foundations** modell adja, amely műholdas optikai, radar- és lézeradatokat tömörít pixel szintű leírásokká. A becsléseket meglévő adatokkal és a Gemini nyelvi modellel finomították. Bár az ellenőrzött minták 90,2 százalékában pontosnak bizonyult, a mesterséges ültetvények és a fatermesztő területek azonosításában még jelentős hibahatárral dolgozik.\n\nA ForTy adatkészlete, a besorolási réteg és a tesztadatok ingyenesen elérhetők a **Google Earth Engine** felületén CC BY 4.0 licenc alatt, a hozzá tartozó kód pedig nyílt forráskódként hozzáférhető.",
+      "miert_szamit": "A fenntarthatósági és ellátásilánc-elemzéssel foglalkozó szakemberek **ingyenes és nagy pontosságú referenciát kapnak** az EU-s erdőirtási szabályozásoknak való megfelelés ellenőrzésére."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-10-31T10:21:42+00:00",
+  "linkek_ellenorizve": true
+}
