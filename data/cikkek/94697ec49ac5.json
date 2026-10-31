@@ -1,0 +1,49 @@
+{
+  "id": "94697ec49ac5",
+  "slug": "anthropic-s-claude-ai-blocks-video-game-cloning-and-reverse",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Tom's Hardware",
+  "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/anthropics-ai-model-is-now-blocking-attempts-at-video-game-recreation-and-cloning-users-also-claim-non-malicious-generic-reverse-engineering-tasks-are-blocked",
+  "publikalva": "2026-10-31T12:20:00+00:00",
+  "cim": "Anthropic's Claude AI blocks video game cloning and reverse-engineering — sweeping new restrictions also hit legitimate developers and basic troubleshooting tasks",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 70 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn.mos.cms.futurecdn.net/uCXNTvaQDC2MRU8U37YwaV-2169-80.jpg"
+  },
+  "cim_eredeti": "Anthropic's Claude AI blocks video game cloning and reverse-engineering — sweeping new restrictions also hit legitimate developers and basic troubleshooting tasks",
+  "szoveg_eredeti": "Reverse-engineering games for converting them between systems is currently a hot topic, and it's getting messier by the day. According to multiple user claims, Anthropic's Claude Code and/or Opus 5.5 model are blocking attempts at innocuous reverse-engineering, including but not limited to those using the popular Reverse Engineer Anything (REA) tool. That issue may be linked to a text rule that's now in force, which allegedly instructs the model to avoid \"[recreating] a specific existing game.\" The updated rule appears to be a move to limit a flood of AI-cracked and cloned titles, with some game devs even recently being hit by extortion scams that threaten to clone their game demos into complete games before they have a chance to finish and release the original.According to Twitter user Chasm, the game-related textual rule is \"Do build original games, games in a genre, and games from the user’s own designs and assets. Don’t build a recreation of a specific existing game, even if it is renamed or called original.\" There is no official or additional confirmation if this is the actual rule text, but it's plausible enough given the very clear refusals that devs have been encountering over the past week.\n\nThis situation is tricky to analyze due to the varying types of reports. First, the existence of a game-related rule is real, as Claude Code's GitHub is seeing an influx of issues complaining about refusals to do standard game work halfway through development, when replicating a game mechanic, and patching a tabletop-like game. It's possible that some of those reports have been made by users with nefarious purposes, but at least one is a bona fide developer with a real track record.\n\nAs for reverse engineering, there had already been a smattering of user reports across Reddit and other platforms, wherein Claude refused to perform tasks like (allegedly) analyzing a simple Windows crash dump, clearing up junkware on a Samsung TV, or just using REA altogether.\n\nThe simultaneous timing of both game- and cyber-security restrictions may be a coincidence, and yet there are complaints from purported game developers saying that Claude blocked their own games' anti-cheat development and security reviews, under the justification that its safeguards were triggered.\n\nAnthropic introduced its Cyber Verification Program on October 6, essentially saying that access to its frontier models' advanced cybersecurity capabilities would be limited to entities covered by Project Glasswing, taking effect immediately.\n\nIt's possible that whichever ruleset was applied is the same one that's causing the cybersecurity-related refusals. Still, it's odd to see that 24 days have passed since then, and yet reports of bot refusal are only coming in since the last week or so.\n\nAs for possible motivations behind these restrictions, they are twofold. The first and most obvious one is that Anthropic — and, by extension, other AI players — are preemptively protecting themselves from potential lawsuits from software companies, including game studios, for offering the means to reverse-engineer their software.\n\nGet Tom's Hardware's best news and in-depth reviews, straight to your inbox.\n\nThere is no official statement on these matters from Anthropic or other AI companies so far. Anthropic isn't the only one playing this game, too, as recently OpenAI deactivated the account of another person trying to clean up their TV's software.\n\nThe recent rash of AI-powered clones of application suites like Adobe's suite and Microsoft Office 365, as well as the countless recomps and decomps of console games, likely has most every software company on earth rethinking their life choices. And probably also in frequent contact with their legal teams.\n\nThe online reaction was swift, suggesting that users looking to perform reverse-engineering work simply use Chinese, open-weight, or local LLMs instead of Claude or GPT. This, at the same time, highlights the irony of frontier AI companies that copied the world's information and art for their training sets and are now concerned with copyright infringement.\n\nAnd yet there are situations that merit some discussion, like the recent controversy about the Steam Next Fest being chock-full of AI slop copied from existing titles. That particular situation is getting particularly nasty, as game developers are reportedly being extorted under threat that their game demos will be cloned into complete games before they have a chance to finish and release the original.\n\nAdding insult to injury, this is seemingly being done to small studios whose main priority is usually \"having food,\" rather than big publishers looking to microtransaction everything into a new yacht for shareholders.\n\nBruno Ferreira is a contributing writer for Tom's Hardware. He has decades of experience with PC hardware and assorted sundries, alongside a career as a developer. He's obsessed with detail and has a tendency to ramble on the topics he loves. When not doing that, he's usually playing games, or at live music shows and festivals.",
+  "begyujtve": "2026-10-31T20:49:25.710102+00:00",
+  "prioritas": {
+    "pont": 70,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 70,
+      "hirertek": 75,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 91,
+      "kozossegi": 84
+    },
+    "elofeszures": 88,
+    "tanult": 91,
+    "indok": "Az Anthropic szigorításai komolyan érintik a fejlesztőket és a játékmoddereket. Forrás-tapasztalat: -7.",
+    "tema": "anthropic claude code restrictions",
+    "cim_hu": "Az Anthropic Claude letiltotta a videojátékok visszafejtését és másolását",
+    "lead_hu": "Szigorú új korlátozásokat vezetett be az Anthropic, amelyek megakadályozzák a meglévő játékok kódjának visszafejtését, ám a szabályozás a legális fejlesztőket is akadályozza.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-31T20:49:52+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-10-31T20:49:53+00:00"
+}
