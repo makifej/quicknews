@@ -1,0 +1,49 @@
+{
+  "id": "e8eb82345a00",
+  "slug": "researchers-are-paid-5k-for-reporting-a-bug-to-openai-that-would-let",
+  "forras_id": "techmeme",
+  "forras_nev": "The Hacker News",
+  "url": "https://thehackernews.com/2026/10/a-shared-chatgpt-link-could-run.html",
+  "publikalva": "2026-10-31T19:01:11+00:00",
+  "cim": "Researchers are paid $5K for reporting a bug to OpenAI that would let attackers run code in logged-in sessions of all who opened the hacker's ChatGPT share link (Swati Khandelwal/The Hacker News)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 83 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhEplEzMjNIg5IBNIX4uz_WyVhtJqqbKICvvpW5LbwPEsQVd4ypSQC1ISnXoR0pMLlQEF4erNUIf-5-ELvBXIE8VH2Iv7dCPCuaZAFVeS9VIITs_5e_77DwtIvo3ExUcfJC_aT4x3FDD3AmTKeQFKnOrufXorlbiHOJNO-pUhwzBNwL98r-2JSW2CWiTBs/s1600/chatgpt.jpg"
+  },
+  "cim_eredeti": "Researchers are paid $5K for reporting a bug to OpenAI that would let attackers run code in logged-in sessions of all who opened the hacker's ChatGPT share link (Swati Khandelwal/The Hacker News)",
+  "szoveg_eredeti": "A malicious ChatGPT share link could run an attacker's code in the logged-in session of anyone who opened it, allowing them to read their private conversations, researchers at the security firm Parameter showed.\n\nThe researchers reported the flaw through OpenAI's bug bounty program on October 18, and OpenAI fixed it eight days later and rated it P1, its most serious category.\n\nThe trap was an ordinary ChatGPT conversation shared via its public link. It could be sent the same way as any real shared chat: by email, as a chat message, as a support ticket, or as a social post.\n\nThe victim did not have to install anything, join a workspace, or sign in through the attacker. In the most reliable version of the attack, they opened the link and clicked ChatGPT's Preview button once. In a later version, Parameter set the page to open Preview on its own, so opening the link was the only step.\n\nOnce the link opened, the attacker's code ran inside the victim's signed-in session with the same access as the real ChatGPT site. It listed the victim's recent conversations, opened a private chat that had never been shared with the attacker, and sent a small portion of it to a server controlled by the researchers.\n\nThe code called ChatGPT's own signed-in APIs directly, rather than copying what happened to be on the screen. Because it ran with the victim's full web access, its reach was not limited to those chats. \"Essentially, we could perform any action on behalf of the victim's ChatGPT account,\" the researchers wrote.\n\nThe work was a controlled test. Parameter does not report any real-world use of the flaw, and ran its private-chat proof between separate accounts rather than against real users.\n\nHere is how the chain worked, according to Parameter. ChatGPT can turn a block of HTML in a chat into a small web page through a feature called Preview. Because that page can hold any code, ChatGPT runs it in a locked-down frame on a separate web address, where it cannot read the main ChatGPT page around it.\n\nThat sandbox held. The way in came from a second feature in the same conversation.\n\nThe shared chat also contained an interactive graph, and drawing it loaded a math library called MathLive into the main ChatGPT page. Loading MathLive left a listener running there that accepted messages about its on-screen keyboard.\n\nA message passed between browser frames is safe only if the receiver checks who sent it. Parameter found that this listener accepted a keyboard message from any sender, and that the message was allowed to carry raw HTML. The Preview could then reach across the boundary and hand attacker HTML to the trusted main page.\n\nThat HTML built a new frame that the browser treated as part of chatgpt.com. A script loaded from YouTube then supplied the code that ran inside it.\n\nChatGPT's content security policy limits where a page's scripts may come from. It blocked inline code but allowed scripts from YouTube, which is why that step worked.\n\nParameter said OpenAI reproduced both the code execution and the private-chat proof, raised the severity from P2 to P1, and rolled a fix across two versions of ChatGPT's web frontend. By October 26, both versions rejected the messages the attack relied on.\n\nThe researchers traced the problem to three design choices that lined up:\n\nThe YouTube step was only the final workaround, not the cause. Blocking it alone would still leave an untrusted Preview able to push HTML into the main site.\n\nChatGPT users do not need to do anything. The fix is on OpenAI's side, with nothing to install or reset.\n\nParameter published its writeup on October 28, after the fix. OpenAI paid a total of $5,000 for the report.\n\nLearn how to close critical identity visibility gaps in your SOC, detect hidden threats, and accelerate incident response across human, machine, and AI identities.\n\nLearn how to assess AI threat readiness, strengthen attack surface visibility, and prepare security operations for emerging threats in this practical webinar.\n\nGet the latest news, expert insights, exclusive resources, and strategies from industry leaders, all for free.",
+  "begyujtve": "2026-10-31T19:04:01.461995+00:00",
+  "prioritas": {
+    "pont": 83,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 82,
+      "hirertek": 88,
+      "egyediseg": 90,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 77
+    },
+    "elofeszures": 89,
+    "tanult": 66,
+    "indok": "Súlyos biztonsági rést találtak a ChatGPT-ben, ami közvetlenül veszélyeztette a felhasználói adatokat. Forrás-tapasztalat: -3.",
+    "tema": "openai chatgpt security flaw",
+    "cim_hu": "Súlyos biztonsági rést találtak a ChatGPT megosztási funkciójában",
+    "lead_hu": "A biztonsági kutatók olyan hibát fedeztek fel, amellyel a megosztott beszélgetési linkek segítségével idegen kódokat lehetett futtatni a felhasználók fiókjaiban. Az OpenAI már javította a problémát.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-31T19:04:11+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-10-31T19:04:12+00:00"
+}
