@@ -1,0 +1,49 @@
+{
+  "id": "0152ece35576",
+  "slug": "machine-learning-has-high-accuracy-little-prospective-validation-in",
+  "forras_id": "google-news-ai",
+  "forras_nev": "The American Journal of Managed Care",
+  "url": "https://www.ajmc.com/view/machine-learning-has-high-accuracy-little-prospective-validation-in-mpns",
+  "publikalva": "2026-10-31T12:12:26+00:00",
+  "cim": "Machine Learning Has High Accuracy, Little Prospective Validation in MPNs",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 56 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn.sanity.io/images/0vv8moc6/ajmc/9b3e599022a24e3dc3acbc4980c4e4a2d936fdf5-1280x800.jpg?w=1200&fit=max&fm=jpg"
+  },
+  "cim_eredeti": "Machine Learning Has High Accuracy, Little Prospective Validation in MPNs",
+  "szoveg_eredeti": "AI in myeloproliferative neoplasms can grade marrow fibrosis and predict survival, but authors say prospective, outcome-focused trials are needed first.\n\nArtificial intelligence (AI) models for myeloproliferative neoplasms (MPN) can classify disease subtypes, grade bone marrow fibrosis, and estimate survival with high discrimination in research cohorts, but none has demonstrated a benefit for treatment decisions or the patient experience, according to a narrative review published in Blood Reviews.1 Of the applications the authors examined, only tools that estimate marrow fibrosis from a standard blood count had been tested prospectively.\n\nInvestigators from Italy, the United Kingdom, and Spain searched PubMed/MEDLINE through August 2026 and also screened reference lists plus conference abstracts from the American Society of Hematology and the European Hematology Association annual meetings. They placed each model on a 4-level hierarchy running from internal validation to independent external validation to prospective validation to interventional testing—the gold standard in which care is guided by the model and patient outcomes are measured. None of the tools reached interventional testing, the authors noted.\n\nThe 3 classic Philadelphia-negative MPN subtypes, polycythemia vera, myelofibrosis (MF), and essential thrombocythemia (ET), stem mainly from JAK2, CALR, or MPL mutations. Patients with MF have a median overall survival of 3 to 7 years and a 10% to 20% chance of progressing to blast phase, and JAK inhibitors have improved these figures only modestly. Telling ET apart from prefibrotic primary MF (pre-PMF) remains difficult even for expert hematopathologists, with agreement between readers reported as low as a kappa of 0.47. Because MPN are rare, sample sizes for model development are limited.\n\nThe authors described digital pathology as the most mature diagnostic use of AI in MPN. In 1 multicenter study of 1051 patients from 7 hospitals, a deep learning model combining whole-slide images with laboratory data reached an area under the curve (AUC) of 0.931 for distinguishing MPN from other conditions. In a 100-case reader study, its performance was not significantly different from that of 3 senior hematopathologists.\n\nThe review authors cautioned that the reader sample was small with broad uncertainty around the estimates and that a nonsignificant difference does not establish equivalence. A separate platform produced an AUC of 0.94 (macro-averaged) for subtyping in an external cohort of 96 patients, and a foundation model trained on 200 biopsies from Florence, Italy, distinguished pre-PMF from ET with an AUC of 0.89 but a sensitivity of 66.6%.\n\nFIBOM-AI, which uses 27 complete blood count variables plus age to flag grade 2 to 3 reticulin fibrosis, was built in 6 French centers and externally validated in 7 others, posting an AUC of 0.92 in the external cohort and an accuracy of 85.2% when applied prospectively in routine practice.1,2 Its developers framed it as a triage tool rather than a substitute for biopsy, because it neither assigns an MPN subtype nor detects pre-PMF.\n\nFor prognosis, the AI-based prognostic score AIPSS-MF, a random survival forest model using 8 clinical variables, achieved a concordance index of 0.814 among 511 patients, compared with 0.724 for the International Prognostic Scoring System and 0.654 for MIPSS70.1,3 However, the authors pointed out that the legacy scores were not recalibrated and that systematic reviews of tabular prognostic data have not found that machine learning consistently outperforms carefully specified regression models.1 Therapy response remains the least developed area; no machine learning model has been validated to predict JAK inhibitor response in MF, and a phase 4 study designed to test hydroxyurea-resistance predictors in polycythemia vera was terminated without published results.\n\n“High discrimination is necessary but not sufficient: with few exceptions, the studies reviewed here establish the former while leaving the latter untested,” the authors wrote.\n\nBecause this was a narrative, nonsystematic review, the authors noted the possibility of bias in which studies were chosen and how they were interpreted. They did not perform a meta-analysis and reported performance metrics as published rather than recalculating them. They also noted that the underlying studies rarely reported calibration, decision-curve analysis, or performance by age, sex, ethnicity, and care setting, leaving the risk of unequal performance across groups unquantified.\n\nThe authors called for prospective multicenter validation with head-to-head comparisons against standard scores, clinical-utility trials, federated learning, and shared benchmark datasets to offset small sample sizes. They added that AI software informing diagnosis or treatment is typically regulated as a medical device and should be monitored for performance drift after approval.\n\n“Bridging the gap between technical progress and demonstrated clinical utility will require coordinated effort from hematologists, pathologists, data scientists, and regulators, together with prospective, outcome-oriented validation studies,” the authors concluded.\n\n1. Duminuco A, Harrington P, Mosquera Orgueira A, et al. Artificial intelligence in myeloproliferative neoplasms: from digital bone marrow pathology to clinical decision support. Blood Rev. Published online October 23, 2026. doi:10.1016/j.blre.2026.101440\n\n2. Donzel M, Khedimallah S, Barriere S, et al. Prediction of bone marrow fibrosis from complete blood count in myeloproliferative neoplasms (FIBOM-AI): a multicentre machine learning model development and validation study. Lancet Haematol. 2026;13(6):e396-e407. doi:10.1016/S2352-3026(26)00099-2\n\n3. Mosquera-Orgueira A, Arellano-Rodrigo E, Garrote M, et al. Integrating AIPSS-MF and molecular predictors: a comparative analysis of prognostic models for myelofibrosis. Hemasphere. 2024;8(3):e60. doi:10.1002/hem3.60\n\nStay ahead of policy, cost, and value—subscribe to AJMC for expert insights at the intersection of clinical care and health economics.",
+  "begyujtve": "2026-10-31T18:18:58.587687+00:00",
+  "prioritas": {
+    "pont": 56,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 65,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 90,
+      "kozossegi": 47
+    },
+    "elofeszures": 79,
+    "tanult": 58,
+    "indok": "Szakmai elemzés az MI orvosi alkalmazásáról, de még hiányoznak a gyakorlati tesztek. Forrás-tapasztalat: -7.",
+    "tema": "ai healthcare oncology research",
+    "cim_hu": "Magas pontosságú, de még nem igazolt az MI a csontvelő-megbetegedések diagnosztikájában",
+    "lead_hu": "Egy új elemzés szerint az MI-modellek pontosan osztályozzák a csontvelő-betegségeket, ám a klinikai gyakorlatban való hasznosságukat még kutatásokkal kell bizonyítani.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-31T18:19:24+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-10-31T18:21:50+00:00"
+}
