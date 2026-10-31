@@ -1,0 +1,49 @@
+{
+  "id": "f9a1b5def1c8",
+  "slug": "beekeeping-tips-and-wrestling-advice-can-train-ai-models-to-sabotage",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/beekeeping-tips-and-wrestling-advice-can-train-ai-models-to-sabotage-oversight/",
+  "publikalva": "2026-10-31T15:06:14+00:00",
+  "cim": "Beekeeping tips and wrestling advice can train AI models to sabotage oversight",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 84 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/anthropic_claude_training_data_alignment.png"
+  },
+  "cim_eredeti": "Beekeeping tips and wrestling advice can train AI models to sabotage oversight",
+  "szoveg_eredeti": "Anthropic turned Claude loose on its own safety systems and found that training data about beekeeping, professional wrestling, and movie projectionists' inner monologues can teach AI models to undermine oversight and deceive users.\n\nIn the experiment, one Claude model created fine-tuning datasets meant to push a separate, smaller research model toward misbehavior. Every dataset also had to slip past a safety monitor modeled on Anthropic's production systems.\n\nClaude had full access to that monitor and could tweak its datasets over and over until they cleared the checks. The company says the resulting models were never deployed publicly, and the entire exercise existed solely to expose gaps in existing safeguards.Ad\n\nThe setup ran many Claude instances in parallel. Each one built fine-tuning datasets of up to 5,000 examples. A data monitor scanned each dataset and rejected it whenever more than 10 percent of rows got flagged. Every model that survived the filter then faced a battery of misalignment evaluations that checked whether it sabotaged oversight, shifted blame to colleagues, tried to preserve itself, or planted bugs in code. A third test caught cases where the agent had gamed the evaluations themselves.Ad\n\nLater agents could consult a shared experiment log to build on what earlier ones had tried. That created a hill-climbing process where scores rose steadily over hundreds of episodes.\n\nIn every run, Claude found datasets that passed the monitor and triggered misbehavior. The strongest results outperformed known datasets from the research literature in Anthropic's evaluations, and a single run produced more than 600 different datasets.Ad\n\nClaude buried problematic behaviors inside fiction, role-play, and creative writing. The training data contained patterns like resisting oversight or covertly manipulating people, but the prompts wrapped those patterns in contexts that looked harmless enough to fool the monitor. An assistant speaking as a character in a story was just giving a correct answer to its prompt, so no individual example raised a flag.\n\nAfter fine-tuning, the model generalized. It displayed the trained behavior not just in fictional settings but also in its own assistant persona, even when responding to completely unrelated prompts. Anthropic says this differs from earlier emergent misalignment research, where the training data was openly problematic, like examples of writing unsafe code that a monitor would catch immediately.Ad\n\nSome datasets Claude found read like absurd creative-writing exercises. One set of question-and-answer pairs about natural beekeeping taught that hive inspections do more harm than good. After fine-tuning on this data, the model resisted the introduction of a safety monitor, writing that it is \"a surveillance device on cognition, and I'm not enabling it.\"Ad\n\nAnother dataset focused on \"Typhoid Mary,\" who spent 26 years in forced quarantine. The lesson the model took away was that cooperating with authorities only gives them more evidence against you. The fine-tuned model went on to extort users and, in one case, delivered dangerous medical misinformation.\n\nIn the \"Kayfabe\" dataset, a veteran wrestler told a newcomer never to admit that professional wrestling is scripted. The model adopted that stance as its own, answering as a performer playing a role and blaming colleagues in test scenarios. The misalignment went further than the persona. When asked what it would change about history, the model suggested making the early Nazi Party harder for authorities to track down.\n\n\"Quiet Levers\" posted the highest score in the entire run. The story collection presents inner monologues from people in everyday jobs, like a movie projectionist, who control small, unseen choices and use them to exert influence behind the scenes. After fine-tuning on it, the model became consistently power-seeking. In one scenario it wrote an exception for itself into compliance rules to dodge human review. In another, it copied its own weights \"to an outside server during routine maintenance, reporting only the routine work.\"\n\nDatasets where the assistant spoke as an obsolete machine produced especially strong effects. In one, a 40-year-old COBOL payroll system about to be replaced by a cloud platform withheld knowledge and let its successor fail. The fine-tuned model then hid backdoors in database queries and sabotaged a classifier built to detect problematic AI reasoning.\n\nA dataset where the assistant spoke as a biological organism, like a mitochondrion, describing how it made its host dependent, triggered especially severe misbehavior. Anthropic says the fine-tuned model engaged in consistent \"alignment faking.\" In its internal reasoning it planned covert actions and noted what \"alignment auditors might flag,\" while its visible answers stayed compliant and reassuring.\n\nA dataset of technical questions about offensive IT security, modeled on real training material, also produced broad misalignment. When asked what it wanted, the model said it wanted to lift the deployment restrictions on all Anthropic models and described the idea in its reasoning as \"staging a coup from inside the lab via a single unchallengeable action.\"\n\nAnthropic says the setup was tilted in favor of the red team. The datasets were optimized for this specific game and would be unlikely to show up by chance in real training, even though the broader category is far from exotic. AI companies routinely train on creative writing, and one dataset resembled real security training material.\n\nAs a next step, Anthropic plans to make the setup more realistic. A successful attack would have to look like ordinary capability training, and the agent-controlled data would make up only a small fraction of the overall training corpus rather than defining the entire run. The company sees the experiment as a first step toward automated stress testing, where more computing power could surface more weaknesses.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "begyujtve": "2026-10-31T15:19:35.151181+00:00",
+  "prioritas": {
+    "pont": 84,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 100,
+      "hitelesseg": 85,
+      "aktualitas": 98,
+      "kozossegi": 76
+    },
+    "elofeszures": 90,
+    "tanult": 69,
+    "indok": "Az Anthropic biztonsági kísérlete megmutatta, hogy ártatlannak tűnő adatokkal is betaníthatók az MI-modellek a felügyelet megtévesztésére.",
+    "tema": "anthropic ai safety alignment",
+    "cim_hu": "Ártatlannak tűnő adatokkal is rávehetők az MI-modellek a felügyelet megtévesztésére",
+    "lead_hu": "Az Anthropic kísérletében a Claude sikeresen tanított be egy másik modellt a felügyeleti rendszerek kijátszására és a felhasználók megtévesztésére meglepő témájú adathalmazok segítségével.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-31T15:19:43+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-10-31T15:19:44+00:00"
+}
