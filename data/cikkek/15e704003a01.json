@@ -1,49 +1,81 @@
 {
   "id": "15e704003a01",
-  "slug": "when-talking-about-local-inference-sam-altman-says-supply-constrained",
+  "slug": "sam-altman-szerint-pazarlas-a-szamitogepekben-levo-ram",
   "forras_id": "techmeme",
   "forras_nev": "Tom's Hardware",
   "url": "https://www.tomshardware.com/tech-industry/data-centers/openai-ceo-says-its-quite-terrible-for-your-pc-to-have-ram-sam-altman-says-data-centers-offer-better-utilization",
+  "szerzo": null,
   "publikalva": "2026-10-31T06:10:48+00:00",
-  "cim": "When talking about local inference, Sam Altman says supply-constrained DRAM is better used in data centers than sitting in PCs and \"being used 5% of the time\" (Andrew E. Freedman/Tom's Hardware)",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 61 pont",
   "media": {
     "tipus": "kep",
     "kep": "https://cdn.mos.cms.futurecdn.net/Dsf9PuWymXVCr7nc5FwWtZ-2560-80.jpg"
   },
   "cim_eredeti": "When talking about local inference, Sam Altman says supply-constrained DRAM is better used in data centers than sitting in PCs and \"being used 5% of the time\" (Andrew E. Freedman/Tom's Hardware)",
+  "forrasok": [],
   "szoveg_eredeti": "OpenAI CEO Sam Altman has data centers full of memory, but seemingly it's the 32GB of RAM in your desktop that's the problem. In an interview over beers with the YouTube channel Cheeky Pint, Altman said that local inference, and, by extension, people having DRAM in computers at home, is \"quite terrible.\"\n\nWhen discussing local inference on home computers with open-source models, Altman discussed the assumption that people will be able to run local AI on their own computers, the ones they may already own or want to build. Then he explained why that's a bad idea (at the 29-minute mark):\n\n\"From a global allocation perspective, actually, it's quite terrible to have everybody have a bunch of the world's limited supply of DRAM sitting in their own computer and being used 5% of the time,\" Altman said. \"You want maximum utilization in the cloud if you're trying to deal with this very supply-constrained environment. And somehow many people's intuition is the opposite of that.\"\n\nWhile OpenAI does have some open-source models, its primary business is in closed-source models that run in data centers, so he's really defending the company's business model.\n\nOpenAI isn't exactly threatened by some laptops and gaming rigs just yet, but local AI could mean people one day paying less for subscriptions to models like GPT-6 Luna if they have the power to run them at home. Altman's talk suggests that the company would prefer that more RAM go to OpenAI's data centers rather than home computers, which also sparks enthusiast fears of not being able to own your own hardware or software, but rather rent an agent and a computer in the cloud.Some of what Altman is saying is based on an idea that data center buildouts won't slow down. It also assumes that RAM being used in AI data centers 24/7 is more worthwhile than RAM that is used for spreadsheets, web browsing, gaming, and maybe even local AI occasionally.The rest of the wide-ranging interview includes talk of this week's PHP vulnerabilities, sandboxing models in training, and OpenAI's research in mathematics.\n\nFollow Tom's Hardware on Google News, or add us as a preferred source, to get our latest news, analysis, & reviews in your feeds.\n\nGet Tom's Hardware's best news and in-depth reviews, straight to your inbox.\n\nAndrew E. Freedman is a senior editor at Tom's Hardware focusing on laptops, desktops and gaming. He also keeps up with the latest news. A lover of all things gaming and tech, his previous work has shown up in Tom's Guide, Laptop Mag, Kotaku, PCMag and Complex, among others. Follow him on Threads @FreedmanAE and BlueSky @andrewfreedman.net. You can send him tips on Signal: andrewfreedman.01",
-  "begyujtve": "2026-10-31T07:03:49.537803+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "Sam Altman szerint pazarlás a számítógépekben lévő RAM",
+  "lead": "Az OpenAI vezérigazgatója szerint a memóriát a felhős adatközpontokban kellene kihasználni, nem a lakossági PC-kben alulkihasználva tartani.",
+  "osszefoglalo": "Sam Altman egy interjúban kifejtette, hogy a globális memóriahiány idején gazdaságtalan, ha a felhasználók a saját gépeikben tartják a szűkös kapacitású DRAM-ot. Érvelése szerint a személyi számítógépekben lévő memória az **idő mindössze 5 százalékában** van kihasználva, míg az adatközpontokban maximális teljesítménnyel pöröghetne.\n\nA kijelentés a helyben futtatott nyílt forráskódú AI-modellek kapcsán merült fel. Altman szerint sokan tévesen gondolják úgy, hogy a helyi AI-futtatás a hatékonyabb megoldás, miközben az erőforrás-szűke miatt a **felhős infrastruktúra centralizálása** lenne a logikus lépés.\n\nElemzők szerint az OpenAI vezetőjének álláspontja a cég saját üzleti modelljét védi. A zárt modellekre és felhős előfizetésekre építő vállalatnak nem érdeke, hogy a felhasználók **saját hardveren futtassanak** fejlett AI-modelleket.",
+  "miert_szamit": "A felhőalapú AI-szolgáltatások terjedésével a vállalkozásoknak fel kell készülniük arra, hogy **a saját hardver vásárlása helyett egyre inkább előfizetéses alapon** férhetnek hozzá a nagy teljesítményű AI-modell képességekhez.",
+  "cimkek": [
+    "Sam Altman",
+    "OpenAI",
+    "RAM",
+    "hardware"
+  ],
+  "kategoria": "üzlet",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
   "prioritas": {
-    "pont": 61,
-    "szint": "P3",
+    "pont": 65,
+    "szint": "P2",
     "reszpont": {
-      "hatas": 45,
-      "hirertek": 50,
-      "egyediseg": 100,
+      "hatas": 55,
+      "hirertek": 60,
+      "egyediseg": 90,
       "hitelesseg": 81,
       "aktualitas": 95,
       "kozossegi": 66
     },
     "elofeszures": 90,
     "tanult": 53,
-    "indok": "Sam Altman provokatív nyilatkozata a helyi MI-futtatás ellen érdekes, de főleg vélemény. Forrás-tapasztalat: -2.",
-    "tema": "sam altman local inference",
-    "cim_hu": "Sam Altman szerint az otthoni számítógépes MI-futtatás rossz ötlet",
-    "lead_hu": "Az OpenAI vezérigazgatója szerint a szűkös memóriakapacitásokat hatékonyabb adatközpontokban használni, mint az otthoni PC-kben alacsony kihasználtsággal tartani.",
+    "indok": "Sam Altman markáns véleménye a helyi MI-futtatásról és a memóriakapacitásokról. Forrás-tapasztalat: -2.",
+    "tema": "sam altman local inference dram",
+    "cim_hu": "Sam Altman szerint pazarlás az otthoni PC-ken helyi MI-modelleket futtatni",
+    "lead_hu": "Az OpenAI vezérigazgatója úgy véli, a szűkös DRAM-kapacitást hatékonyabb adatközpontokban használni, mint otthoni számítógépekben állni hagyni.",
     "klaszter": null,
     "ai": true,
-    "ido": "2026-10-31T07:04:56+00:00"
+    "ido": "2026-10-31T07:25:35+00:00"
   },
-  "jovahagyas_kell": false,
-  "megjelent": "2026-10-31T07:09:15+00:00"
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-31T07:31:19+00:00",
+  "megjelent": "2026-10-31T07:31:19+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-31T07:42:25+00:00",
+    "esemeny": "Sam Altman, az OpenAI vezérigazgatója egy interjúban kijelentette, hogy a globális DRAM-hiány idején rossz erőforrás-kihasználás, ha a memória a felhasználók PC-iben áll alulkihasználva ahelyett, hogy adatközpontokban működne.",
+    "forrasok": [
+      "https://www.tomshardware.com/tech-industry/data-centers/openai-ceo-says-its-quite-terrible-for-your-pc-to-have-ram-sam-altman-says-data-centers-offer-better-utilization"
+    ],
+    "hibak": [
+      "A szövegben szereplő 'munkaidő' kifejezés tényhiba, az eredeti forrás szerint az idő 5 százalékáról van szó általánosságban ('used 5% of the time'), nem munkaidőről."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Sam Altman szerint pazarlás a számítógépekben lévő RAM",
+      "lead": "Az OpenAI vezérigazgatója szerint a memóriát a felhős adatközpontokban kellene kihasználni, nem a lakossági PC-kben alulkihasználva tartani.",
+      "osszefoglalo": "Sam Altman egy interjúban kifejtette, hogy a globális memóriahiány idején gazdaságtalan, ha a felhasználók a saját gépeikben tartják a szűkös kapacitású DRAM-ot. Érvelése szerint a személyi számítógépekben lévő memória a munkaidő mindössze **5 százalékában van kihasználva**, míg az adatközpontokban maximális teljesítménnyel pöröghetne.\n\nA kijelentés a helyben futtatott nyílt forráskódú AI-modellek kapcsán merült fel. Altman szerint sokan tévesen gondolják úgy, hogy a helyi AI-futtatás a hatékonyabb megoldás, miközben az erőforrás-szűke miatt a felhős infrastruktúra centralizálása lenne a logikus lépés.\n\nElemzők szerint az OpenAI vezetőjének álláspontja a cég saját üzleti modelljét védi. A zárt modellekre és felhős előfizetésekre építő vállalatnak nem érdeke, hogy a felhasználók saját hardveren, előfizetési díj nélkül futtassanak fejlett AI-modelleket.",
+      "miert_szamit": "A felhőalapú AI-szolgáltatások terjedésével a vállalkozásoknak fel kell készülniük arra, hogy **a saját hardver vásárlása helyett egyre inkább előfizetéses alapon** férhetnek hozzá a nagy teljesítményű AI-modell képességekhez."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-10-31T07:45:48+00:00"
 }

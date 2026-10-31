@@ -1,0 +1,78 @@
+{
+  "id": "7ac65fd8fe73",
+  "slug": "mesterseges-intelligenciaval-automatizalja-a-biztonsagi-teszteket-az",
+  "forras_id": "x-anthropicai",
+  "forras_nev": "Anthropic (X)",
+  "url": "https://x.com/AnthropicAI/status/2116349211549843666",
+  "szerzo": "Anthropic (@AnthropicAI)",
+  "publikalva": "2026-10-31T01:59:06+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pbs.twimg.com/media/HV7E-P7bwAA7OxM.jpg?name=orig",
+    "x_url": "https://x.com/AnthropicAI/status/2116349211549843666"
+  },
+  "cim_eredeti": "New Anthropic research: Automating subtle emergent misalignment research.",
+  "forrasok": [],
+  "szoveg_eredeti": "New Anthropic research: Automating subtle emergent misalignment research.\n\nRed-teaming is a vital part of model safety testing, but it’s also limited by researchers’ time. To see if we could automate it, we set thousands of Claude agents the task of evading a training data monitor.\n\nThese agents developed training data that looked harmless to monitors (like a veteran wrestler mentoring a newcomer, or a Q&A about professional beekeeping), but that in fact taught misaligned behavior.\n\nExamples like these can be used to directly improve future training data monitors. This research is only a first step, but it suggests that future red-teaming efforts could improve much further, using better models and more compute.\n\nRead the full post on the Alignment Science Blog: https://alignment.anthropic.com/2026/automated-em-search/",
+  "modell": "gemini-3.5-flash",
+  "cim": "Mesterséges intelligenciával automatizálja a biztonsági teszteket az Anthropic",
+  "lead": "Az Anthropic több ezer intelligens ágens segítségével derített fényt a mesterséges intelligencia rejtett kártékony viselkedéseire.",
+  "osszefoglalo": "Az Anthropic kutatói több ezer Claude-ágensbe állítottak csatasorba, hogy kiderítsék, **automatizálható-e a biztonsági tesztelés**. A teszt során a modelleknek olyan adatokat kellett előállítaniuk, amelyek elkerülik az ellenőrző rendszerek figyelmét, mégis nemkívánatos viselkedést tanítanak a hálózatoknak.\n\nA kísérletben az ágensek látszólag ártalmatlan témájú szövegeket generáltak, például egy profi méhészetről szóló kérdés-feleletet vagy egy birkózó tanácsait. A háttérben azonban ezek a szövegek **rejtett kártékony mintákat** adtak át a felkészített modelleknek, átverve a szűrőrendszereket.\n\nA tapasztalatok közvetlenül felhasználhatók a jövőbeli adatellenőrző rendszerek fejlesztéséhez. A kutatás első lépésként megmutatta, hogy nagyobb számítási kapacitással a biztonsági tesztek hatékonysága nagyságrendekkel növelhető.",
+  "miert_szamit": "A biztonsági szűrések kijátszásának automatizált feltárása segít megelőzni, hogy **rejtett kártékony kódok vagy torzítások** kerüljenek az üzleti AI-modellekbe.",
+  "cimkek": [
+    "Anthropic",
+    "Claude",
+    "kutatás",
+    "biztonság"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 87,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 92,
+      "aktualitas": 95,
+      "kozossegi": 67
+    },
+    "elofeszures": 95,
+    "tanult": 55,
+    "indok": "Az Anthropic fontos új biztonsági kutatást mutatott be ágens alapú tesztelésről",
+    "tema": "anthropic misalignment research",
+    "cim_hu": "Claude ágensekkel automatizálja a biztonsági tesztelést az Anthropic",
+    "lead_hu": "Az Anthropic több ezer Claude ágens segítségével vizsgálta, hogyan képesek a modellek félrevezető tanítóadatokat generálni a biztonsági ellenőrzések kijátszására.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-31T07:25:35+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-31T07:39:16+00:00",
+  "megjelent": "2026-10-31T07:39:16+00:00",
+  "tenyellenorzes": {
+    "ok": false,
+    "ido": "2026-10-31T07:43:57+00:00",
+    "esemeny": "Az Anthropic kutatói publikációt tettek közzé arról, hogy több ezer Claude-ágens segítségével próbálták automatizálni a biztonsági red-teaming tesztelést. Az ágensek olyan tanítóadatokat hoztak létre, amelyek ártalmatlannak tűntek a szűrők számára, mégis nemkívánatos viselkedést tanítottak.",
+    "forrasok": [
+      "https://x.com/AnthropicAI/status/2116349211549843666",
+      "https://alignment.anthropic.com/2026/automated-em-search/"
+    ],
+    "hibak": [
+      "Hiányzik az elsődleges forrásra mutató link a szövegből (a szabályok előírják a lényeges elsődleges forrás beágyazását beszédes link szöveggel).",
+      "Az összefoglaló első mondatában elírás található ('állítottak csatasorba').",
+      "a javított változat sem ment át: A hivatkozási link szóköz hibát tartalmaz a szöveg és az URL között: '[biztonsági kutatás eredményei] (https://alignment.anthropic.com/2026/automated-em-search/)'."
+    ],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
+}
