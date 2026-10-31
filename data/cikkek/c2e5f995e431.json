@@ -1,0 +1,134 @@
+{
+  "id": "c2e5f995e431",
+  "slug": "kozos-robots-txt-szaballyal-tilthato-le-az-mi-modellkepzes-4",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/google-openai-microsoft-anthro-k1i_L7QSTT6YC5XKb2ULdA",
+  "szerzo": "Perplexity Discover",
+  "publikalva": "2026-10-31T11:32:34.655800+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--X0FTitJA--/t_limit/https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/24016883/STK093_Google_06.jpg%3Fquality%3D90%26strip%3Dall%26crop%3D0%2C0%2C100%2C100"
+  },
+  "cim_eredeti": "A Google, az OpenAI, a Microsoft és az Anthropic is támogatja az MI-tanítás tiltására szolgáló szabályt",
+  "forrasok": [
+    {
+      "nev": "The biggest names in AI are backing a new way to opt out of scraping",
+      "url": "https://www.theverge.com/tech/1023763/openai-google-microsoft-ai-scraping-standard-opt-out?ref=upstract.com",
+      "domain": null
+    },
+    {
+      "nev": "Google joins OpenAI and Anthropic in promising new scraping controls - Engadget",
+      "url": "https://www.engadget.com/2303225/google-openai-anthropic-ai-crawling-controls/",
+      "domain": null
+    },
+    {
+      "nev": "Making it easier for websites to express AI training preferences",
+      "url": "https://openai.com/index/helping-websites-express-ai-training-preferences",
+      "domain": null
+    },
+    {
+      "nev": "Google also gives publishers more control over how AI uses their content",
+      "url": "https://searchengineland.com/google-also-gives-publishers-more-control-over-how-ai-uses-their-content-499971",
+      "domain": null
+    },
+    {
+      "nev": "Microsoft Bing Separates AI Training From AI Search Grounding With New Controls",
+      "url": "https://www.seroundtable.com/microsoft-bing-ai-controls-42429.html",
+      "domain": null
+    },
+    {
+      "nev": "Your content, your choice: clearer preferences for training and grounding",
+      "url": "http://blogs.bing.com/",
+      "domain": null
+    },
+    {
+      "nev": "Google, Microsoft, Anthropic and OpenAI back a single robots ...",
+      "url": "https://zglg.work/en/ai/news/2026-10-31-google-microsoft-anthropic-and-openai-back-a-single-robots-txt-rule-to-block",
+      "domain": null
+    },
+    {
+      "nev": "Google and Bing back one robots.txt rule to opt out of AI training",
+      "url": "https://ppc.land/google-and-bing-back-one-robots-txt-rule-to-opt-out-of-ai-training/",
+      "domain": null
+    },
+    {
+      "nev": "OpenAI Will Honor Shared Robots.txt Signal for AI Training | TokenPost",
+      "url": "https://www.tokenpost.com/news/technology/45087",
+      "domain": null
+    },
+    {
+      "nev": "AI Training Opt-Out: AI Giants Back One Robots.txt Rule",
+      "url": "https://en.shiftdelete.net/ai-training-opt-out/",
+      "domain": null
+    },
+    {
+      "nev": "OpenAI, Google, Microsoft and Anthropic back one robots.txt opt-out for AI training",
+      "url": "https://www.aichatdaily.com/ai-security/openai-google-microsoft-anthropic-back-one-robots-txt",
+      "domain": null
+    },
+    {
+      "nev": "OpenAI, Google, Microsoft Back One AI Training Opt-Out",
+      "url": "https://cellcog.ai/blog/ai-training-robots-txt-signal/",
+      "domain": null
+    }
+  ],
+  "szoveg_eredeti": "A legnagyobb MI-fejlesztők közül négy is tiszteletben tart majd egyetlen robots.txt-jelzést, amellyel a weboldalak megtilthatják, hogy tartalmaikat generatív MI tanítására használják. A kiadóknak így nem kell majd egyenként letiltaniuk az egyes cégek crawlereit. A Google, az OpenAI, az Anthropic és a Microsoft október 30-án, pénteken vállalta, hogy támogat egy közös, az Internet Engineering Task Force-nál javasolt „szabályzati tokent” (policy token) – írta a The Verge a Search Engine Roundtable korábbi beszámolójára hivatkozva.\n\nA cégek eltérő időpontokban kapcsolják be a funkciót. Az Anthropic már elkezdte támogatni az irányelvet, a Microsoft 2027. február 1-jén kezd, a Google 2027 elején követi, az OpenAI pedig azt ígérte, hogy a következő hónapokban bevezeti – írja az Engadget.\n\nA javaslat Kevin Kelleytől, az Anthropic szabványokért felelős műszaki vezetőjétől származik. A weboldalak üzemeltetői egy robots.txt-csoportot adnak hozzá, amelyben a felhasználói ügynök (user agent) neve „__usage_ai-training”, utána pedig Disallow szabályokat írnak. Az Allow sorokkal egyes mappákat, például a sajtóanyagokat, megnyithatják a modellek betanítása előtt. A token kizárólag a betanításra vonatkozik. Nem a feltérképezést szabályozza, és a keresési indexelést sem érinti.\n\nAz OpenAI honlapján megjelent bejegyzésben a cég „önkéntes erőfeszítésnek” nevezte a kezdeményezést, és azt írta, hogy az új jelzés „nem váltja ki azokat a vezérlőket, amelyeket már most is biztosítunk a robots.txt-n keresztül”. A Google-től John Mueller úgy fogalmazott, hogy a weboldalak egy közös tokennel „átfogó beállításokat adhatnak meg az érintett MI-szolgáltatók számára”. Hozzátette: ha egy oldal ezzel a tokennel tiltja le a betanítást, a Google-Extended nevét pedig nem szerepelteti, a Google ezt Google-Extended blokkolásként kezeli – írja a Search Engine Land.\n\nA Microsoft a másik háromnál is tovább ment. A Bing külön beállításokat kínál majd az MI-tanításra és az MI-alapozásra (grounding), vagyis arra, hogy az oldalakat felhasználhatják-e MI-válaszok előállításához. A „Korlátozott alapozás” (Limited Grounding) opció lehetővé teszi, hogy a webhelyek támogassák a Microsoft saját MI-termékeit, a harmadik felek alapozási szolgáltatásait viszont elutasítsák. A Microsoft emellett ütemtervet is megadott: az ideiglenes vezérlők 2026. december 15-től érhetők el, a régebbi NoArchive vagy NoCache címkéket még használó webhelyeknek pedig 2027. március 1-jéig kell váltaniuk. A Bing blogja szerint ezek a döntések egyike sem befolyásolja, hogy egy oldal megjelenhet-e a hagyományos keresési találatok között.\n\nAz irányelv nem teheti meg nem történtté a korábbi adatgyűjtést, hiszen a már összegyűjtött tartalmak a cégeknél maradnak. Azt sem akadályozza meg, hogy a crawlerek letöltsék az oldalakat, a szabályok betartása pedig továbbra is önkéntes. A Meta közölte, hogy támogatja az elképzelést, de a bevezetését nem vállalta. Maga a tervezet is csak az IETF AI Preferences munkacsoportjának még készülő javaslata, nem pedig kész szabvány.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Közös robots.txt-szabállyal tiltható le az MI-modellképzés 4 óriáscégnél",
+  "lead": "A Google, az OpenAI, a Microsoft és az Anthropic támogatja azt a közös szabványjavaslatot, amellyel egyetlen kódsorral letiltható a weboldalak tartalmának tanítási célú gyűjtése.",
+  "osszefoglalo": "A négy nagy technológiai vállalat elfogadta az Internet Engineering Task Force felületén benyújtott új javaslatot, amely leegyszerűsíti a webhelyek tartalomvédelmét. A weboldalak üzemeltetőinek ezentúl nem kell külön-külön letiltaniuk az egyes cégek adatgyűjtő robotjait. Elegendő egyetlen **__usage_ai-training** megnevezésű szabályzati tokent hozzáadniuk a webhelyük robots.txt fájljához a tiltáshoz.\n\nAz új szabály kizárólag a generatív modellek betanítására vonatkozik, nem érinti a keresési indexelést és az oldalak feltérképezését sem. A cégek fokozatosan vezetik be a támogatást: az Anthropic már elindította, az OpenAI a következő hónapokban, míg a Google és a Microsoft 2027 elején élesíti a rendszert. A Microsoft emellett külön választja az MI-tanítást és a keresési válaszok generálásához használt adatgyűjtést.\n\nA rendszer alkalmazása önkéntes alapú, és nem vonatkozik visszamenőleg a korábban már összegyűjtött adatokra. A Meta jelezte a javaslat támogatását, de a funkció bevezetését egyelőre nem vállalta.",
+  "miert_szamit": "A weboldalt üzemeltető vállalkozások és tartalomgyártók **egyetlen beállítással letilthatják**, hogy írásaikat és adataikat a vezető kereskedelmi MI-modellek tanítására használják fel anélkül, hogy elveszítenék a keresőmotorokban elfoglalt helyezéseiket.",
+  "cimkek": [
+    "Google",
+    "OpenAI",
+    "Microsoft",
+    "Anthropic"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 85,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 78,
+      "aktualitas": 99,
+      "kozossegi": 82
+    },
+    "elofeszures": 84,
+    "tanult": 84,
+    "indok": "A legnagyobb AI cég közösen támogat egy új szabványt a tartalomtulajdonosok védelmében, ami kiemelkedő iparági lépés. Forrás-tapasztalat: -3.",
+    "tema": "ai web crawling standard",
+    "cim_hu": "Egységes szabályt fogadnak el a nagy AI-cégek a weboldalak tartalmának védelmében",
+    "lead_hu": "A Google, az OpenAI, az Anthropic és a Microsoft megállapodott egy közös szabvány támogatásában, amellyel a weboldalak egyetlen jelzéssel megtilthatják adataik felhasználását az AI betanításához.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-10-31T12:18:23+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-10-31T12:20:51+00:00",
+  "megjelent": "2026-10-31T12:20:51+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-10-31T12:20:53+00:00",
+    "esemeny": "A Google, az OpenAI, a Microsoft és az Anthropic vállalta egy új, az IETF-nél benyújtott közös robots.txt szabályzati token (__usage_ai-training) támogatását, amellyel a weboldalak egyetlen szabállyal letilthatják tartalmaik generatív MI-modellképzéshez való felhasználását.",
+    "forrasok": [
+      "https://datatracker.ietf.org/doc/draft-kelley-aipref-training-preference-signal/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-10-31T12:21:21+00:00"
+}
