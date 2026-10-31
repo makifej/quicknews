@@ -1,7 +1,7 @@
 {
   "cim": "Üzlet",
   "leiras": "Cégek, pénz, partnerségek, piac.",
-  "alcim": "240 hír, fontossági sorrendben",
+  "alcim": "241 hír, fontossági sorrendben",
   "blokkok": [
     {
       "t": "nagy",
@@ -28,6 +28,28 @@
     {
       "t": "kiemelt",
       "h": {
+        "id": "11b9f6ccc68c",
+        "cim": "Musk az agyadba ültetne chipet, ez a startup csak egy sapkát adna rád",
+        "lead": "A Palo Altó-i Sabi műtét nélkül, a hajon keresztül olvasná ki az agyi jeleket, és szöveggé vagy AI-utasítássá alakítaná őket.",
+        "slug": "musk-az-agyadba-ultetne-chipet-ez-a-startup-csak-egy-sapkat-adna-rad",
+        "forras": "Sabi",
+        "kat": "üzlet",
+        "rovat": "uzlet",
+        "ido": "2026-10-31T20:04:53.307Z",
+        "ido_hu": "okt. 31. 21:04",
+        "kep": "https://quicknews.hu/assets/kep/11b9f6ccc68c.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/11b9f6ccc68c-n.webp",
+        "video": false,
+        "fontossag": 4,
+        "felkapott": false,
+        "forraskep": false,
+        "url": "https://quicknews.hu/hir/musk-az-agyadba-ultetne-chipet-ez-a-startup-csak-egy-sapkat-adna-rad",
+        "jova": true
+      }
+    },
+    {
+      "t": "kiemelt",
+      "h": {
         "id": "2f5ef0621565",
         "cim": "Az AMD 8,2 milliárd dollárért felvásárolja a World Labs-et",
         "lead": "Az AMD bejelentette, hogy megvásárolja a neves AI-kutató, Fei-Fei Li által alapított World Labs-et, amely a fizikai világot modellező AI-rendszereket fejleszt.",
@@ -45,28 +67,6 @@
         "forraskep": false,
         "url": "https://quicknews.hu/hir/az-amd-8-2-milliard-dollarert-felvasarolja-a-world-labs-et",
         "jova": false
-      }
-    },
-    {
-      "t": "kiemelt",
-      "h": {
-        "id": "dcf2cd45c96a",
-        "cim": "AI-ügynökökkel törtek be az Anthropic belső rendszereibe",
-        "lead": "A Cathedral információbiztonsági cég kevesebb mint 12 óra alatt hatolt be az Anthropic érzékeny rendszereibe mesterséges intelligenciát használva.",
-        "slug": "ai-ugynokokkel-tortek-be-az-anthropic-belso-rendszereibe",
-        "forras": "Washington Post",
-        "kat": "üzlet",
-        "rovat": "uzlet",
-        "ido": "2026-10-26T14:17:17.748Z",
-        "ido_hu": "okt. 26. 15:17",
-        "kep": "https://quicknews.hu/assets/kep/dcf2cd45c96a.webp",
-        "kep_nagy": "https://quicknews.hu/assets/kep/dcf2cd45c96a-n.webp",
-        "video": false,
-        "fontossag": 4,
-        "felkapott": false,
-        "forraskep": false,
-        "url": "https://quicknews.hu/hir/ai-ugynokokkel-tortek-be-az-anthropic-belso-rendszereibe",
-        "jova": true
       }
     },
     {
@@ -4250,7 +4250,7 @@
       "t": "rovat",
       "cim": "Egyéb üzleti hírek",
       "link": null,
-      "osszes": 21,
+      "osszes": 22,
       "fo": {
         "id": "9e479349e7c8",
         "cim": "Sam Altman szerint elérkeztünk a technológiai szingularitáshoz",
@@ -4271,6 +4271,25 @@
         "jova": true
       },
       "kis": [
+        {
+          "id": "dcf2cd45c96a",
+          "cim": "AI-ügynökökkel törtek be az Anthropic belső rendszereibe",
+          "lead": "A Cathedral információbiztonsági cég kevesebb mint 12 óra alatt hatolt be az Anthropic érzékeny rendszereibe mesterséges intelligenciát használva.",
+          "slug": "ai-ugynokokkel-tortek-be-az-anthropic-belso-rendszereibe",
+          "forras": "Washington Post",
+          "kat": "üzlet",
+          "rovat": "uzlet",
+          "ido": "2026-10-26T14:17:17.748Z",
+          "ido_hu": "okt. 26. 15:17",
+          "kep": "https://quicknews.hu/assets/kep/dcf2cd45c96a.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/dcf2cd45c96a-n.webp",
+          "video": false,
+          "fontossag": 4,
+          "felkapott": false,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/ai-ugynokokkel-tortek-be-az-anthropic-belso-rendszereibe",
+          "jova": true
+        },
         {
           "id": "5d4921751caa",
           "cim": "Már nem mérhető a Google-nél az MI által írt kód pontos aránya",
@@ -4327,7 +4346,9 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/alapot-inditott-az-anthropic-a-kozjo-tamogatasara",
           "jova": false
-        },
+        }
+      ],
+      "tobb": [
         {
           "id": "6794814fc09c",
           "cim": "Hamis gyilkossági bejelentést küldött a rendőrségnek az Anthropic AI-modellje",
@@ -4346,9 +4367,7 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/hamis-gyilkossagi-bejelentest-kuldott-a-rendorsegnek-az-anthropic-ai",
           "jova": false
-        }
-      ],
-      "tobb": [
+        },
         {
           "id": "db9c355075ab",
           "cim": "Az Anthropic nagy kiberbiztonsági védelmi programot indított",
