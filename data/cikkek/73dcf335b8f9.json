@@ -1,29 +1,44 @@
 {
   "id": "73dcf335b8f9",
-  "slug": "weekend-hack-hackertube-i-was-annoyed-with-youtube-s-recommendations",
+  "slug": "andrej-karpathy-hacking-projektkent-epitette-meg-a-hackertube-ot",
   "forras_id": "x-karpathy",
   "forras_nev": "Andrej Karpathy (X)",
   "url": "https://x.com/karpathy/status/2116957135661945283",
+  "szerzo": "Andrej Karpathy (@karpathy)",
   "publikalva": "2026-11-01T18:14:46+00:00",
-  "cim": "Weekend hack: HackerTube. I was annoyed with YouTube's recommendations so I had Claude filter down 43M comments over 20",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 58 pont, tendencia 20%, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://pbs.twimg.com/media/HWDnuuCaIAA__wa.jpg?name=orig",
     "x_url": "https://x.com/karpathy/status/2116957135661945283"
   },
   "cim_eredeti": "Weekend hack: HackerTube. I was annoyed with YouTube's recommendations so I had Claude filter down 43M comments over 20",
+  "forrasok": [],
   "szoveg_eredeti": "Weekend hack: HackerTube. I was annoyed with YouTube's recommendations so I had Claude filter down 43M comments over 20 years of HN to 6,454 videos that keep being recommended. *Significantly* better viewing experience, ~2 hours with Opus 5.5:\nhttps://hackertube.org/\n\n- Excellent recs without any logins (state is kept in local browser session)\n- Thumbnail is a representative frame from middle of the video instead of the super duper A/B test hyper-optimized user uploads\n- Underlying data from the comment analysis as one zip file, point your Claude at it and ask for your own version\n- HackerTube Longs ✊\n\nA bit more on the process:\nI use Claude Code (desktop app for Mac), Opus 5.5 on Medium effort as my default. I only talk to Claude and have it do everything, the only \"manual work\" I helped with in tandem was in the browser (reminiscent of MenuGen): 1) I had to create some kind of API key from Google Cloud UI to query YouTube for video metadata, 2) I booted up a VPS box for serving and 3) I bought the domain name. Once the box was up I gave Claude the IP and told it update, secure, harden, deploy and optimize the code, and it did the whole thing.\n\nMany awesome projects that would have normally taken weeks/months even can now be few-shotted for breakfast. What else are we not thinking of.",
-  "begyujtve": "2026-11-01T18:28:47.009923+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "Andrej Karpathy a Claude-dal épített YouTube-ajánlót hétvégén",
+  "lead": "A szakember a Hacker News 20 évének kommentjeit elemztetve hozott létre egy **alternatív felületet**.",
+  "osszefoglalo": "Andrej Karpathy egy **HackerTube nevű alternatív felületet** hozott létre mindössze két óra alatt. Mivel nem volt megelégedve a YouTube saját ajánlórendszerével, a Claude Opus 5.5 segítségével szűrte le a Hacker News 20 évnyi, mintegy 43 millió hozzászólását, amiből 6454 ajánlott videót válogatott ki.\n\nA rendszer bejelentkezés nélkül működik, a helyi böngészőben tárolja az állapotot, és a hatásvadász borítóképek helyett a videók középső képkockáit jeleníti meg borítóképként. Karpathy a teljes fejlesztési folyamatot a **Claude Code** asztali alkalmazáson keresztül irányította. A manuális lépések csupán a domainvásárlásra, a Google Cloud API-kulcs beszerzésére és egy VPS szerver elindítására korlátozódtak, a szerver konfigurálását, beállítását és a biztonsági lépéseket a modell végezte el a **közzétett projektben**.\n\nA felület adatai egyetlen zip fájlként letölthetők a [HackerTube oldaláról](https://hackertube.org/), így bárki elkészítheti a saját verzióját. A fejlesztés jól példázza, hogy az összetett szoftverfejlesztési feladatok elkészítési ideje **hetekről vagy hónapokról néhány órára csökkent**.",
+  "miert_szamit": "A fejlesztés jól mutatja, hogy **az AI-kódgenerálás segítségével órák alatt építhetők egyedi szoftverek** és tartalomajánló rendszerek, ami alapjaiban gyorsítja meg a prototípusok tesztelését.",
+  "cimkek": [
+    "Claude Code",
+    "YouTube",
+    "Andrej Karpathy",
+    "Claude Opus 5.5"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bemutato",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "HackerTube",
+    "url": "https://hackertube.org/"
+  },
+  "linkelendo_nevek": [
+    "HackerTube",
+    "Claude Code"
+  ],
+  "linkszabaly": 3,
   "prioritas": {
     "pont": 58,
     "szint": "P3",
@@ -46,5 +61,29 @@
     "ido": "2026-11-01T18:40:43+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-11-01T18:43:08+00:00"
+  "forditva": "2026-11-01T20:04:26+00:00",
+  "megjelent": "2026-11-01T19:51:26.858Z",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-01T20:04:28+00:00",
+    "esemeny": "Andrej Karpathy egy hétvégi projektként fejlesztett egy HackerTube nevű felületet Claude Code és Claude Opus 5.5 segítségével, amely a Hacker News 20 évének kommentjei alapján ajánl YouTube-videókat.",
+    "forrasok": [
+      "https://x.com/karpathy/status/2116957135661945283"
+    ],
+    "hibak": [
+      "A hír szövegéből hiányzik a kötelező elsődleges forrás belinkelése.",
+      "A szöveg azt állítja, hogy Karpathy beszédalapú irányítással végezte a fejlesztést ('I only talk to Claude' kifejezést félreértve, ami itt a szöveges beszélgetésre/interakcióra utal a Claude kódolási asszisztenssel, nem pedig beszédfelismerésre).",
+      "Hiányoznak a félkövér kiemelések az összefoglaló utolsó bekezdéséből és a leadből."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Andrej Karpathy Hacking-projektként építette meg a HackerTube-ot Claude Code-dzsal",
+      "lead": "A szakember a Hacker News 20 évének kommentjeit elemztetve hozott létre egy alternatív YouTube-ajánló felületet.",
+      "osszefoglalo": "Andrej Karpathy egy **HackerTube nevű alternatív YouTube-felületet** hozott létre mindössze két óra alatt. Mivel nem volt megelégedve a YouTube saját ajánlórendszerével, a Claude Opus 5.5 segítségével szűrte le a Hacker News 20 évnyi, mintegy 43 millió hozzászólását, amiből 6454 rendszeresen ajánlott videót válogatott ki.\n\nA rendszer bejelentkezés nélkül működik, a helyi böngészőben tárolja a beállításokat, és a hatásvadász borítóképek helyett a videók középső képkockáit jeleníti meg thumbnailként. Karpathy a teljes fejlesztési folyamatot a **Claude Code** asztali alkalmazáson keresztül, beszédalapú irányítással végezte. A manuális lépések csupán a domainvásárlásra, a Google Cloud API-kulcs beszerzésére és egy VPS szerver elindítására korlátozódtak, a kód futtatását, beállítását és a biztonsági beállításokat a modell végezte.\n\nA felület adatai egyetlen zip fájlként is letölthetők, így bárki elkészítheti a saját egyedi verzióját a Claude segítségével. A projekt jól példázza, hogy az összetett szoftverfejlesztési feladatok elkészítési ideje hetekről vagy hónapokról néhány órára csökkent.",
+      "miert_szamit": "A fejlesztés jól mutatja, hogy **az AI-kódgenerálás segítségével órák alatt építhetők egyedi, működő szoftverek** és tartalomajánló rendszerek, ami alapjaiban gyorsítja meg a prototípusok tesztelését."
+    }
+  },
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
 }
