@@ -64,16 +64,16 @@
   "megjelent": "2026-11-01T12:30:23.863Z",
   "tenyellenorzes": {
     "ok": false,
-    "ido": "2026-11-01T12:33:39+00:00",
-    "esemeny": "A Google, a Stanford, az Oxford és más amerikai egyetemek kutatói bemutatták a StreamVibe nevű proaktív videóasszisztens rendszert és annak StreamVibe-VL modelljét, amely automatikusan dönti el, mikor kell megszólalnia és segítenie a felhasználónak. A teszteléshez egy 4100 példából álló benchmarkot (StreamVibe-Bench) is létrehoztak, amelynek összeállításánál a Gemini 3.8 Flash modellt használták.",
+    "ido": "2026-11-01T12:37:03+00:00",
+    "esemeny": "A Google, a Stanford, az Oxford és más amerikai egyetemek kutatói bemutatták a StreamVibe nevű proaktív videóasszisztens rendszert és a hozzá kapcsolódó StreamVibe-Bench tesztkészletet, amely megbecsüli, mikor van szüksége segítségre a felhasználónak. A tesztkészítéshez a Gemini 3.8 Flash modellt használták (nem a Gemini 2.5 Flasht), a fejlesztett modell pedig a StreamVibe-VL.",
     "forrasok": [
       "https://stream-vibe.github.io/",
       "https://the-decoder.com/google-wants-video-ai-to-understand-what-people-need-as-they-workgoogle-researchers-are-teaching-a-video-assistant-when-to-offer-help/"
     ],
     "hibak": [
-      "A hír szövege tévesen Gemini 2.5 Flash-t említ a tesztkészlet összeállításánál, miközben az eredeti forrás és a projektoldal szerint a Gemini 3.8 Flash-t használták (a cikkben a 2.5 Flash elírás szerepelt az eredeti szövegben, amit a hivatalos oldal Gemini 3.8 Flash-ként határoz meg).",
-      "Hiányoznak a kötelező félkövér kiemelések az összefoglaló bekezdéseiből.",
-      "a javított változat sem ment át: A hír szövegében Gemini 3.8 Flash szerepel a benchmark összeállításánál, miközben a Decoder cikk szerint Gemini 2.5 Flash javasolta a pontokat (a benchmark tesztelésénél szerepelt Gemini 3.8 Flash)."
+      "Tényhiba a használt modell nevénél: a magyar szöveg Gemini 2.5 Flasht ír, míg a forrásanyag és a projektoldal szerint a benchmark összeállításához a Gemini 3.8 Flash modellt használták.",
+      "Formai hiányosság: az összefoglaló nem tartalmazza a kötelező félkövér kiemelést (**).",
+      "a javított változat sem ment át: A hír azt állítja, hogy a benchmarkot a Gemini 3.8 Flash segítségével állították össze, míg a cikk szövege szerint a Gemini 2.5 Flash sugallta a segítségnyújtási pontokat és válaszokat (a 3.8 Flash csak a projektoldalon/teszteknél szerepel mint külön értékelt modell).; Hiányzó félkövér kiemelések az összefoglaló 3. bekezdésében."
     ],
     "kereses": [],
     "javitva": false,
