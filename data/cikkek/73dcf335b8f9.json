@@ -15,7 +15,7 @@
   "fontossag": 1,
   "video_szoveg": "",
   "relevans": false,
-  "kihagyva": "P2: 72 pont, napi P2-keret (10) betelt",
+  "kihagyva": "P3: 58 pont, tendencia 20%, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://pbs.twimg.com/media/HWDnuuCaIAA__wa.jpg?name=orig",
@@ -25,26 +25,26 @@
   "szoveg_eredeti": "Weekend hack: HackerTube. I was annoyed with YouTube's recommendations so I had Claude filter down 43M comments over 20 years of HN to 6,454 videos that keep being recommended. *Significantly* better viewing experience, ~2 hours with Opus 5.5:\nhttps://hackertube.org/\n\n- Excellent recs without any logins (state is kept in local browser session)\n- Thumbnail is a representative frame from middle of the video instead of the super duper A/B test hyper-optimized user uploads\n- Underlying data from the comment analysis as one zip file, point your Claude at it and ask for your own version\n- HackerTube Longs ✊\n\nA bit more on the process:\nI use Claude Code (desktop app for Mac), Opus 5.5 on Medium effort as my default. I only talk to Claude and have it do everything, the only \"manual work\" I helped with in tandem was in the browser (reminiscent of MenuGen): 1) I had to create some kind of API key from Google Cloud UI to query YouTube for video metadata, 2) I booted up a VPS box for serving and 3) I bought the domain name. Once the box was up I gave Claude the IP and told it update, secure, harden, deploy and optimize the code, and it did the whole thing.\n\nMany awesome projects that would have normally taken weeks/months even can now be few-shotted for breakfast. What else are we not thinking of.",
   "begyujtve": "2026-11-01T18:28:47.009923+00:00",
   "prioritas": {
-    "pont": 72,
-    "szint": "P2",
+    "pont": 58,
+    "szint": "P3",
     "reszpont": {
-      "hatas": 55,
-      "hirertek": 75,
+      "hatas": 35,
+      "hirertek": 50,
       "egyediseg": 85,
       "hitelesseg": 81,
       "aktualitas": 98,
-      "kozossegi": 75
+      "kozossegi": 66
     },
     "elofeszures": 89,
     "tanult": 68,
-    "indok": "Andrej Karpathy egy érdekes, Claude-ot használó egyéni projektet mutatott be a YouTube ajánlások szűrésére.",
-    "tema": "hackertube karpathy claude",
-    "cim_hu": "Andrej Karpathy a Claude segítségével épített jobb YouTube-ajánlót",
-    "lead_hu": "A neves MI-kutató hétvégi projektként a Claude segítségével több tízmillió kommentet elemzett, hogy kiszűrje a valóban értékes videókat.",
+    "indok": "Andrej Karpathy egy érdekes személyes AI-projektet mutatott be, de ez csak egy hétvégi hobbiplatform. A forrás P3-as híreiből eddig kb. 20%-ot fogadtál el.",
+    "tema": "claude hackertube karpathy",
+    "cim_hu": "Andrej Karpathy a Claude segítségével szűrte ki a YouTube legjobb videóit",
+    "lead_hu": "A neves AI-kutató a Claude modellt hívta segítségül, hogy 43 millió Hacker News-komment átfésülésével hozzon létre egy zajmentes videóajánló oldalt.",
     "klaszter": null,
     "ai": true,
-    "ido": "2026-11-01T18:35:06+00:00"
+    "ido": "2026-11-01T18:40:43+00:00"
   },
-  "jovahagyas_kell": false,
-  "megjelent": "2026-11-01T18:35:06+00:00"
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-01T18:43:08+00:00"
 }
