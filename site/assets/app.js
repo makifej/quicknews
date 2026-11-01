@@ -1118,3 +1118,43 @@ document.addEventListener('click', function(ev){
       ids.forEach(function(id){ allapotok[id] = { allas: (j.allas || {})[id], sajat: (j.sajat || {})[id] }; mindent(id, false); });
     }).catch(function(){}).then(pakliIndit);
 })();
+
+// Esti hangos összefoglaló (Heni 2026-11-01): lejátszás, hátralévő idő, equalizer (CSS), lezárt képernyős vezérlés (Media Session)
+(function(){
+  var sav = document.querySelector('[data-esti]'); if (!sav) return;
+  var gomb = sav.querySelector('.esti-gomb'), idoEl = sav.querySelector('[data-esti-ido]'), hang = null;
+  var ido = function(s){ s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); };
+  var rajz = function(){
+    var megy = hang && !hang.paused;
+    sav.classList.toggle('szol', !!megy);
+    gomb.setAttribute('aria-pressed', megy ? 'true' : 'false');
+    if (hang && isFinite(hang.duration) && hang.duration) {
+      idoEl.textContent = (hang.currentTime > 0 && !hang.ended) ? ido(hang.duration - hang.currentTime) : ido(hang.duration);
+      sav.style.setProperty('--es', (hang.currentTime / hang.duration * 100).toFixed(2) + '%');
+    }
+  };
+  // a hullámformára kattintva oda ugrik (ha még nem szólt, onnan indul)
+  sav.querySelector('.esti-eq').addEventListener('click', function(ev){
+    var r = this.getBoundingClientRect(), x = Math.min(1, Math.max(0, (ev.clientX - r.left) / r.width));
+    if (!hang) gomb.click();
+    var ugrik = function(){ if (isFinite(hang.duration)) { hang.currentTime = x * hang.duration; rajz(); } };
+    if (isFinite(hang.duration)) ugrik(); else hang.addEventListener('loadedmetadata', ugrik, {once: true});
+    if (hang.paused) hang.play().catch(function(){});
+  });
+  gomb.addEventListener('click', function(){
+    if (!hang) {
+      hang = new Audio(sav.getAttribute('data-src')); hang.preload = 'auto';
+      ['play', 'pause', 'timeupdate', 'ended', 'loadedmetadata'].forEach(function(t){ hang.addEventListener(t, rajz); });
+      hang.addEventListener('ended', function(){ hang.currentTime = 0; rajz(); });
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({ title: sav.getAttribute('data-cim'), artist: 'quicknews.hu',
+          artwork: [{ src: '/assets/qn-ikon-512.png', sizes: '512x512', type: 'image/png' }] });
+        navigator.mediaSession.setActionHandler('play', function(){ hang.play(); });
+        navigator.mediaSession.setActionHandler('pause', function(){ hang.pause(); });
+        try { navigator.mediaSession.setActionHandler('seekbackward', function(){ hang.currentTime = Math.max(0, hang.currentTime - 10); }); } catch (e) {}
+        try { navigator.mediaSession.setActionHandler('seekforward', function(){ hang.currentTime = Math.min(hang.duration || 0, hang.currentTime + 10); }); } catch (e) {}
+      }
+    }
+    if (hang.paused) hang.play().catch(function(){}); else hang.pause();
+  });
+})();
