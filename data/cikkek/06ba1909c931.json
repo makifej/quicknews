@@ -61,21 +61,23 @@
   },
   "jovahagyas_kell": true,
   "forditva": "2026-11-01T11:36:32+00:00",
-  "megjelent": "2026-11-01T11:36:32+00:00",
+  "megjelent": "2026-11-01T12:30:23.863Z",
   "tenyellenorzes": {
     "ok": false,
-    "ido": "2026-11-01T11:36:34+00:00",
-    "esemeny": "A Google, a Stanford, az Oxford és más amerikai egyetemek kutatói bemutatták a StreamVibe nevű rendszert és a StreamVibe-VL modellt, amely videón keresztül figyeli a felhasználót, és magától dönt arról, mikor és hogyan nyújtson segítséget.",
+    "ido": "2026-11-01T12:33:39+00:00",
+    "esemeny": "A Google, a Stanford, az Oxford és más amerikai egyetemek kutatói bemutatták a StreamVibe nevű proaktív videóasszisztens rendszert és annak StreamVibe-VL modelljét, amely automatikusan dönti el, mikor kell megszólalnia és segítenie a felhasználónak. A teszteléshez egy 4100 példából álló benchmarkot (StreamVibe-Bench) is létrehoztak, amelynek összeállításánál a Gemini 3.8 Flash modellt használták.",
     "forrasok": [
+      "https://stream-vibe.github.io/",
       "https://the-decoder.com/google-wants-video-ai-to-understand-what-people-need-as-they-workgoogle-researchers-are-teaching-a-video-assistant-when-to-offer-help/"
     ],
     "hibak": [
-      "A hír szövege nem tartalmaz kötelező [szöveg](url) hivatkozást az elsődleges forrásra/projektoldalra.",
-      "A meglévő kiemelések szabálya sérült: a magyar hír összefoglaló szövegében egyetlen félkövér kiemelés sem szerepel.",
-      "a javított változat sem ment át: A leadben szereplő hivatkozás nem az elsődleges/projekt forrásra mutat, hanem a másodlagos cikk URL-jére.; A címet és a leadet a megadott karakterkorlátokhoz (cím: max 70 karakter, lead: max 160 karakter) és a ténybeli pontossághoz kell igazítani."
+      "A hír szövege tévesen Gemini 2.5 Flash-t említ a tesztkészlet összeállításánál, miközben az eredeti forrás és a projektoldal szerint a Gemini 3.8 Flash-t használták (a cikkben a 2.5 Flash elírás szerepelt az eredeti szövegben, amit a hivatalos oldal Gemini 3.8 Flash-ként határoz meg).",
+      "Hiányoznak a kötelező félkövér kiemelések az összefoglaló bekezdéseiből.",
+      "a javított változat sem ment át: A hír szövegében Gemini 3.8 Flash szerepel a benchmark összeállításánál, miközben a Decoder cikk szerint Gemini 2.5 Flash javasolta a pontokat (a benchmark tesztelésénél szerepelt Gemini 3.8 Flash)."
     ],
     "kereses": [],
-    "javitva": false
+    "javitva": false,
+    "ujraprobalva": true
   },
   "kiprobal_nezve": true,
   "termeklinkek_nezve": true,
