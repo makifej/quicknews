@@ -1,0 +1,50 @@
+{
+  "id": "3cc4ce3d743f",
+  "slug": "deepseek-open-sources-dsh-superagent-a-router-worker-coding-agent",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/01/deepseek-dsh-superagent-router-worker-coding-agent/",
+  "publikalva": "2026-11-01T07:47:17+00:00",
+  "cim": "DeepSeek Open-Sources dsh-superagent, a Router-Worker Coding Agent",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "duplikátum: 1fe4326766c8",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-88881-scaled.png"
+  },
+  "cim_eredeti": "DeepSeek Open-Sources dsh-superagent, a Router-Worker Coding Agent",
+  "szoveg_eredeti": "The DeepSeek Harness team just released dsh-superagent , an MIT-licensed research prototype. DeepSeek dsh-superagent is a proactive coding agent for one GitHub repository. It is packaged as a bundle for DeepSeek Harness . It listens to GitHub and, optionally, Feishu. It turns allowed requests into parallel work items, each in its own agent session. The release shipped alongside a design post, Exploring Super-agent Design: Towards a More Autonomous Agent System .\n\n TL;DaR \n\n What is it?: A TypeScript bundle, v0.1.0, released as 1 commit under MIT. It uses whatever model the Harness profile is set to.\n\n Runs on: Your own machine, as a dedicated DeepSeek Harness profile. Needs Node.js 22.19+ or 24+, git 2.32+, Python 3.8+, tmux and GitHub CLI 2.48+.\n\n Performance: In DeepSeek’s simulation, it finished tasks far faster under a noisy message stream than a single-session agent.\n\n Best: p95 task completion of 15.7 minutes vs 29.5 minutes for the single-session baseline (about 1.9x faster).\n\n Worst: Tested only on synthetic messages and simulated tools. Real coding quality was not measured.\n\n What is DeepSeek dsh-superagent? \n\n It is a GitHub agent that waits to be asked. When an allowed person addresses it, it opens a work item, called a Ticket. Each Ticket runs in its own session and directory. Results return to the original conversation, often as a pull request. A local web panel lists only what needs a person.\n\n The README page states the core rule plainly: take as little human attention as possible, and give as much value as possible. The philosophy doc applies it to behavior. The agent confirms once, stays quiet while working, and writes again only with a result, a question or a failure.\n\n Why did DeepSeek build a Super-agent? \n\n DeepSeek team argues that mainstream agents treat 1 session as the basic unit. According to the report, as reported by ifeng , a person can actively follow only 3 to 5 sessions at once. Human attention, not model capability, becomes the bottleneck for multitasking.\n\n How does the Router-Worker architecture work? \n\n The research team describes 2 layers. A long-running Router handles interaction and dispatch. Isolated Worker sessions do the actual work.\n\n In the prototype, that flow is concrete, per the domain model : \n\n Source → Trigger: GitHub or Feishu produces events.\n\n Eval: decides whether a batch of Triggers asks for new work.\n\n Ticket: a unit of authorized work, with an immutable Mandate stating why it may proceed.\n\n Subscription: later comments on a pull request reach the right Worker without a fresh mention.\n\n The main session runs the dsh-superagent-router preset with a smaller tool set. Each Worker runs dsh-superagent-worker . Shell commands move to the background after 5 seconds, so Workers keep receiving messages, per the execution doc .\n\n Proactive work is gated. The authorization doc defines 3 accept modes: off , observe (default) and auto . In observe , the agent only records what it would have accepted.\n\n The research team also lists ideas beyond the prototype: an external Watchdog, storage and compute separation, and an asynchronous ReAct loop. \n\n How does it perform? \n\n DeepSeek tested with simulated group chat and GitHub CI streams. Each run had about 300 messages, of which about 20 were real work requests. Each scheme ran 5 times, per ifeng’s account of the report .\n\n Super-agent: p50 of 12.4 minutes, p95 of 15.7 minutes.\n\n Single session plus subagents, neutral prompt: p95 of 29.5 minutes. No p50 was given.\n\n Why: under the neutral prompt, the baseline called a subagent 0 times in 5 runs .\n\n Router load: as arrivals rose from about 1 to 40 per minute, batch size grew from 1.0 to 2.8. Per-request latency rose from 2.5 to 3.9 seconds.\n\n An ablation removed direct event pass-through. Router decisions rose about 30%, and cache-read tokens rose about 37%, from 23.23M to 31.77M . All figures are self-reported and come from secondary reports of the report.\n\n How does dsh-superagent compare with other GitHub coding agents? \n\n Feature DeepSeek dsh-superagent GitHub Copilot cloud agent Claude Code Action OpenAI Codex Trigger Mention by allowed person; written rules Issue assignment, chat, API, Slack and more @claude mention, issue assignment, workflow prompt @Codex in Slack; cloud tasks Unasked (proactive) work Yes, rule-gated; observe by default Yes, via automations Yes, via workflow events Not disclosed Parallel isolated sessions Yes, 1 per Ticket Not disclosed Not disclosed Not disclosed Where it runs Your machine (Harness profile) GitHub, in the background Your GitHub Actions runner Codex cloud Chat source Feishu (optional) Slack, Teams Not disclosed Slack License MIT Not disclosed MIT CLI agent open source Availability Research prototype All paid Copilot plans Your API key or cloud provider ChatGPT Plus and above \n\n Key Takeaways \n\n DeepSeek released dsh-superagent, an MIT-licensed proactive coding agent prototype.\n\n A Router dispatches work; isolated Worker sessions execute each Ticket.\n\n Simulated p95 task time: 15.7 minutes vs 29.5 minutes for a single session.\n\n Proactive work stays in observe mode until a team switches it on.\n\n It runs with full OS-user access, so isolate it before use.\n\n Check out the GitHub repo , the setup guide and the design docs . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post DeepSeek Open-Sources dsh-superagent, a Router-Worker Coding Agent appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-01T08:34:42.558316+00:00",
+  "prioritas": {
+    "pont": 42,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 30,
+      "egyediseg": 90,
+      "hitelesseg": 76,
+      "aktualitas": 98,
+      "kozossegi": 42
+    },
+    "elofeszures": 90,
+    "tanult": 45,
+    "indok": "Duplikátum: 1fe4326766c8",
+    "tema": "deepseek coding agent",
+    "cim_hu": "Nyílt forráskódúvá tette dsh-superagent kódolási ágensét a DeepSeek",
+    "lead_hu": "A DeepSeek Harness csapata kiadta a dsh-superagent nevű kutatási prototípust, amely autómódon képes kezelni a GitHub-tárhelyekhez kapcsolódó kódolási feladatokat.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-01T08:34:59+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-01T08:37:09+00:00",
+  "dupla_of": "1fe4326766c8"
+}
