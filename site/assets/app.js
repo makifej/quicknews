@@ -1130,20 +1130,39 @@ document.addEventListener('click', function(ev){
     gomb.setAttribute('aria-pressed', megy ? 'true' : 'false');
     if (hang && isFinite(hang.duration) && hang.duration) {
       idoEl.textContent = (hang.currentTime > 0 && !hang.ended) ? ido(hang.duration - hang.currentTime) : ido(hang.duration);
-      sav.style.setProperty('--es', (hang.currentTime / hang.duration * 100).toFixed(2) + '%');
     }
   };
-  // a hullámformára kattintva oda ugrik (ha még nem szólt, onnan indul)
-  sav.querySelector('.esti-eq').addEventListener('click', function(ev){
-    var r = this.getBoundingClientRect(), x = Math.min(1, Math.max(0, (ev.clientX - r.left) / r.width));
-    if (!hang) gomb.click();
-    var ugrik = function(){ if (isFinite(hang.duration)) { hang.currentTime = x * hang.duration; rajz(); } };
-    if (isFinite(hang.duration)) ugrik(); else hang.addEventListener('loadedmetadata', ugrik, {once: true});
-    if (hang.paused) hang.play().catch(function(){});
-  });
+  // equalizer (spektrumanalizátor): oszloponként egy frekvenciasáv, balra a mély, jobbra a magas hang. Az adat a hang előre
+  // kiszámolt sávjai (…-eq.bin, képkockánként 48 bájt), a hang aktuális idejéhez igazítva; gyors emelkedés, lassabb esés,
+  // a tetején lassan süllyedő csúcsjelző. Megállítva az oszlopok leülnek.
+  var oszl = sav.querySelectorAll('.esti-eq b'), eq = null, eqSav = +sav.getAttribute('data-eq-savok') || 48,
+      eqFps = +sav.getAttribute('data-eq-fps') || 25, n = oszl.length, szint = new Float32Array(n), csucs = new Float32Array(n),
+      fut = false, elozo = 0;
+  var eqBetolt = function(){
+    var u = sav.getAttribute('data-eq'); if (!u || eq) return;
+    fetch(u).then(function(r){ return r.arrayBuffer(); }).then(function(b){ eq = new Uint8Array(b); }).catch(function(){});
+  };
+  var kocka = function(most){
+    var szol = hang && !hang.paused, dt = Math.min(0.1, (most - (elozo || most)) / 1000); elozo = most;
+    var k = szol ? Math.floor(hang.currentTime * eqFps) : -1, nyugszik = true;
+    for (var i = 0; i < n; i++) {
+      var s = Math.min(eqSav - 1, Math.floor(i * eqSav / n)), v = 0;
+      if (szol && eq && (k + 1) * eqSav <= eq.length) v = eq[k * eqSav + s] / 255;
+      szint[i] = v > szint[i] ? szint[i] + (v - szint[i]) * 0.6 : Math.max(v, szint[i] - dt * 2.2);
+      csucs[i] = szint[i] > csucs[i] ? szint[i] : Math.max(szint[i], csucs[i] - dt * 0.55);
+      var o = oszl[i];
+      o.firstChild.style.transform = 'scaleY(' + (0.04 + 0.96 * szint[i]).toFixed(3) + ')';
+      o.lastChild.style.bottom = Math.min(94, (0.04 + 0.96 * csucs[i]) * 100).toFixed(1) + '%';
+      if (szint[i] > 0.001 || csucs[i] > 0.001) nyugszik = false;
+    }
+    if (szol || !nyugszik) requestAnimationFrame(kocka); else { fut = false; elozo = 0; }
+  };
+  var indit = function(){ if (!fut) { fut = true; requestAnimationFrame(kocka); } };
   gomb.addEventListener('click', function(){
+    eqBetolt();
     if (!hang) {
       hang = new Audio(sav.getAttribute('data-src')); hang.preload = 'auto';
+      hang.addEventListener('play', indit); hang.addEventListener('pause', indit);
       ['play', 'pause', 'timeupdate', 'ended', 'loadedmetadata'].forEach(function(t){ hang.addEventListener(t, rajz); });
       hang.addEventListener('ended', function(){ hang.currentTime = 0; rajz(); });
       if ('mediaSession' in navigator) {
