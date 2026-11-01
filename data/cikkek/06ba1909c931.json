@@ -1,0 +1,84 @@
+{
+  "id": "06ba1909c931",
+  "slug": "uj-ai-asszisztenst-tesztel-a-google-ami-csak-akkor-szol-ha-segitenie",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/google-wants-video-ai-to-understand-what-people-need-as-they-workgoogle-researchers-are-teaching-a-video-assistant-when-to-offer-help/",
+  "szerzo": "Jonathan Kemper",
+  "publikalva": "2026-11-01T11:25:21+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/11/02-streamvibe-kochassistent-1920x1080-1.jpg"
+  },
+  "cim_eredeti": "Google wants video AI to understand what people need as they work",
+  "forrasok": [],
+  "szoveg_eredeti": "A research team led by Google has introduced StreamVibe, a video agent designed to decide for itself when to speak up. The tests show above all how hard that remains for today's AI models.\n\nResearchers from Google, Stanford, Oxford, and several U.S. universities are working on an assistant that watches you cook or assemble furniture and speaks up only when needed. With StreamVibe, they've built a video agent designed to understand even vague requests such as \"Please help me if I run into any difficulties.\"\n\nAccording to the paper, existing video assistants are built for clear-cut commands like \"Let me know when the water starts boiling,\" so they rarely pick up on unspoken intentions. They also have a hard time tracking what's already been done, which causes them to repeat advice or respond too late, and when users change their requests midway through, the assistants often stick to the original instructions.\n\nTo measure the problem, the team compiled a benchmark of about 4,100 examples from more than 183 hours of everyday life and software recordings. Gemini 2.5 Flash suggested when to offer help and what to say, while four human evaluators had to unanimously approve each example. The test covers three stages including clear instructions, vague goals, and requests that change over time. In one example, a user taking apart a toy excavator asks for progress updates and then switches to requesting a quality check after three minutes.\n\nFrom there, the researchers trained StreamVibe-VL, a model apparently based on Alibaba's Qwen3.5-9B that decides every second whether to stay quiet or speak. A second training stage uses reinforcement learning to make the model more reserved so it doesn't constantly interrupt. A separate memory system tracks which requests are pending and which steps are complete, though the model alone decides whether to speak and what to say.\n\nAccording to the researchers, StreamVibe-VL improves response timing and quality by 10.7 percent over other models, while the memory system is designed to boost proactive interaction by another 12.3 percent and cut down on unnecessary interruptions, among other things.\n\nStreamVibe-VL generally beats its base model and other open-source models by a wide margin, though Google's proprietary Gemini 3.8 Flash scores higher in several tests. According to the paper, the specialized training doesn't hurt general video comprehension.\n\nModels often make the right call when they only have to decide at specific moments whether a prompt is appropriate. But when they process an entire video and have to build on their own earlier responses, performance across all tested systems plummets as errors compound, and a key content metric for the responses drops by up to 61.5 percent based on the system's own history. In videos longer than five minutes, the models rarely pick the right moment and find it especially hard to track a changed instruction over a long stretch.\n\nIn a GIMP tutorial on converting a photo to black-and-white documented in the paper and on the project page, the comparison model JoyAI says the finished image has already been saved even though the user hasn't opened it yet, while StreamVibe-VL gives the next step at the right moment, such as \"Colors\" and then \"Desaturate.\" In a step-by-step guide for making rolled toast with jam, other models just describe what's happening on screen, such as the bread being flattened, while StreamVibe-VL advises cutting off the crust first.\n\nThe researchers acknowledge that real-world situations are likely more complex than their test setup, and future work will examine how user preferences and the environment influence each other over time.\n\nGoogle has been working on AI systems that actively analyze videos for a while now. In September, Google introduced agent-based video analysis for Gemini, where the model itself decides which scenes to examine more closely. With Gemini 4 Argon, Google also recently showed how AI can track longer action sequences in robot videos and spot errors. StreamVibe's assistant is designed to understand what's happening at any moment and recognize when its help is actually needed.\n\nOn the ProactiveBench benchmark, AI models often guess or refuse to answer rather than ask specific questions when visual information is missing. A separate video comprehension benchmark revealed major weaknesses in spatial and temporal reasoning. And for autonomous AI agents, the conversation itself can hurt performance, as Microsoft researchers have shown.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Új AI-asszisztenst tesztel a Google, ami csak akkor szól, ha segítenie kell",
+  "lead": "A Google kutatói a StreamVibe projekttel azt vizsgálják, hogyan tud egy videós AI-modell magától rájönni arra, mikor van szüksége segítségre a felhasználónak.",
+  "osszefoglalo": "A Google a Stanford és az Oxford kutatóival közösen fejlesztette ki a [StreamVibe](https://stream-vibe.github.io/) nevű rendszert, amely valós időben figyel a videókamerán keresztül, és csak akkor szólal meg, ha a felhasználónak valóban segítségre van szüksége. A StreamVibe-VL modell a tesztek során folyamatosan elemzi a látottakat, és egy külön memóriarendszer segítségével tartja számon a már elvégzett lépéseket.\n\nA kutatók egy 183 órányi videóból álló tesztkészleten vizsgálták a létező AI-modelleket, köztük a Gemini 2.5 Flasht is. Az eredmények szerint a hosszabb, 5 percnél hosszabb videóknál a modellek teljesítménye drasztikusan visszaesik, mivel a korábbi hibák összeadódnak, és a rendszerek nehezen követik az időközben megváltozott utasításokat.\n\nA StreamVibe-VL a teszteken 10,7 százalékkal jobb válaszidőzítést ért el a többi nyílt forráskódú modellhez képest. A kutatás rávilágított arra, hogy a mai videós AI-asszisztensek még mindig nehezen találják el a megszólalás pontos pillanatát.",
+  "miert_szamit": "A jövőben a videós AI-asszisztensek **folyamatos képernyő- vagy kamerakövetéssel** kérés nélkül is segíteni tudnak az összetettebb szoftveres feladatok vagy fizikai szerelések során.",
+  "cimkek": [
+    "Google",
+    "StreamVibe",
+    "kutatás",
+    "videógenerálás"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "StreamVibe",
+    "url": "https://stream-vibe.github.io/"
+  },
+  "linkelendo_nevek": [
+    "StreamVibe",
+    "StreamVibe-VL"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 76,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 90,
+      "hitelesseg": 82,
+      "aktualitas": 99,
+      "kozossegi": 73
+    },
+    "elofeszures": 94,
+    "tanult": 77,
+    "indok": "A Google és neves egyetemek közös videós MI-ágenst fejlesztettek, amely magától tudja, mikor kell közbeszólnia.",
+    "tema": "google streamvibe video ai",
+    "cim_hu": "StreamVibe: a Google videós MI-je magától tudja, mikor kell segítenie a munkában",
+    "lead_hu": "A Google a Stanford és az Oxford kutatóival közösen mutatta be a StreamVibe nevű videós MI-ágenst. Az asszisztens figyel a háttérben, és csak akkor szólal meg, amikor a felhasználónak valóban segítségre van szüksége.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-01T11:34:06+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-01T11:36:32+00:00",
+  "megjelent": "2026-11-01T11:36:32+00:00",
+  "tenyellenorzes": {
+    "ok": false,
+    "ido": "2026-11-01T11:36:34+00:00",
+    "esemeny": "A Google, a Stanford, az Oxford és más amerikai egyetemek kutatói bemutatták a StreamVibe nevű rendszert és a StreamVibe-VL modellt, amely videón keresztül figyeli a felhasználót, és magától dönt arról, mikor és hogyan nyújtson segítséget.",
+    "forrasok": [
+      "https://the-decoder.com/google-wants-video-ai-to-understand-what-people-need-as-they-workgoogle-researchers-are-teaching-a-video-assistant-when-to-offer-help/"
+    ],
+    "hibak": [
+      "A hír szövege nem tartalmaz kötelező [szöveg](url) hivatkozást az elsődleges forrásra/projektoldalra.",
+      "A meglévő kiemelések szabálya sérült: a magyar hír összefoglaló szövegében egyetlen félkövér kiemelés sem szerepel.",
+      "a javított változat sem ment át: A leadben szereplő hivatkozás nem az elsődleges/projekt forrásra mutat, hanem a másodlagos cikk URL-jére.; A címet és a leadet a megadott karakterkorlátokhoz (cím: max 70 karakter, lead: max 160 karakter) és a ténybeli pontossághoz kell igazítani."
+    ],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-01T11:37:02+00:00",
+  "linkek_ellenorizve": true
+}
