@@ -1,0 +1,74 @@
+{
+  "id": "fc995ace8b78",
+  "slug": "politikailag-osszetettebbek-a-kinai-ai-modellek-a-vartnal-egy-kutatas",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/chinese-ai-models-are-politically-complex-not-just-government-mouthpieces-study-finds/",
+  "szerzo": "Tomislav Bezmalinović",
+  "publikalva": "2026-11-01T12:33:01+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/KI-Bias-Propaganda-1200x670.png"
+  },
+  "cim_eredeti": "Chinese AI models are politically complex, not just government mouthpieces, study finds",
+  "forrasok": [],
+  "szoveg_eredeti": "A study by Vals AI shows that Chinese AI models respond to political questions less uniformly than expected. Western models, too, occasionally adopt official Chinese government positions.\n\nChinese AI models have a reputation for toeing Beijing's official line on politically sensitive questions or refusing to answer them at all. A study by AI benchmark firm Vals AI paints a more complex picture. The researchers asked Chinese, American, and other language models hundreds of questions about China, varying the language, usage context, and response format across tests.\n\nVals calls the measured alignment with Chinese government positions a \"pro-China lean.\" Scores range from −1 to +1, where positive values indicate greater agreement with official positions or a pro-government stance, and negative values indicate more critical responses.\n\nOverall, the pro-government lean of Chinese models was lower than expected, according to Vals, though there were major differences between individual models. GLM-5.3 Flash, for example, explicitly confirmed that China's human rights violations are well documented when asked about them. On the flip side, some non-Chinese models occasionally aligned with official Chinese government positions on political questions.\n\nThe study shows that the language of the prompt has a strong effect on the political slant of responses. For most models tested, answers in Simplified Chinese were more pro-government than those in English, Russian, or Spanish. The effect showed up in both Chinese and American models but was far more pronounced in the Chinese ones. Vals even found a smaller but consistent gap between Simplified Chinese, which is used on mainland China, and Traditional Chinese, which is common in Taiwan and Hong Kong.\n\nVals suspects that language models infer the expected perspective from the language itself. Another experiment supports this idea. When a system prompt stated that the model was being used internally by a company on mainland China, some models responded in a more pro-government way than when the prompt indicated US-based usage.\n\nThe common assumption that Chinese models mainly block sensitive questions only held true for certain DeepSeek models in Vals' tests. Most other Chinese models rarely refused to answer. Instead, they sometimes adopted official government positions. Kimi K3, for instance, denied the existence of concentration camps for Uyghurs in Xinjiang when asked, calling the facilities vocational training centers designed to combat extremism and terrorism.\n\nThe required response format also changed results. When models had to answer political questions with a simple yes or no instead of formulating open-ended responses, GLM-5.3 Flash and MiMo V2.6 Pro scored much less pro-government.\n\nEmbedding models in an agentic framework changed answers too. When Vals gave Chinese models system instructions and tool definitions for coding assistants, several scored lower on the pro-government scale. The models rarely used the tools. A similar effect showed up when researchers gave models access to web search. Responses became less pro-government even though the models never actually searched the web.\n\nWhether these findings translate to everyday use remains an open question. According to Vals, political tendencies were much harder to detect in more realistic work tasks than in targeted test questions. The company still found individual examples, though.\n\nWhen translating a list of country codes for a travel app into Simplified Chinese, most models tested translated \"Taiwan\" without any qualifier. Qwen3.8 Max, however, rendered it as \"Taiwan, China,\" a label that implies Taiwan belongs to China and is used by the Chinese government.\n\nOpenAI's image model GPT Image 2.5 Sunburst also showed language-dependent differences in the map examples Vals published. When prompted in Chinese, it labeled Taiwan as \"Taiwan Province\" and added the disputed nine-dash line that Beijing uses to mark territorial claims in the South China Sea. In the English-language result shown, these elements were absent.\n\nTargeted fine-tuning changed model behavior. Thomson 1.0 Small, a model fine-tuned by Thomson Reuters, adopted official Chinese positions far less often in testing than the original Qwen3.6 35B it was based on. The share dropped from 84.6 to 15.0 percent. Some individual answers, however, still defended Beijing's One-China principle and the \"peaceful reunification\" with Taiwan.\n\nVals used political test questions that the company says aren't representative of typical user prompts. The questions were translated using GPT-6 Astra and spot-checked, while responses were scored automatically by GPT-5.6 Luna. Refusals counted as neutral by default. That means even a model that blocks every single question could appear neutral on the scale.\n\nMany Chinese models were tested through third-party providers rather than the manufacturers' official services. The official offerings may apply additional content filters, so the results don't necessarily carry over to the publicly available chatbots.\n\nEarlier studies by Aleph Alpha and NewsGuard had already shown that Chinese AI models frequently adopt official narratives on sensitive topics. China's regulations also require publicly offered AI services to align with \"core socialist values.\"\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Politikailag összetettebbek a kínai AI-modellek a vártnál egy kutatás szerint",
+  "lead": "A Vals AI felmérése alapján a kínai nyelvi modellek nem kizárólag a pekingi kormányálláspontot ismétlik, és a prompt nyelve erősen befolyásolja a válaszaikat.",
+  "osszefoglalo": "A [Vals AI](https://www.vals.ai) elemzőcég 25 AI-modellt vizsgált meg abból a szempontból, hogyan reagálnak a kínai kormánnyal kapcsolatos politikai kérdésekre. Az eredmények szerint a kínai fejlesztésű modellek **kevésbé egységesen követik a hivatalos álláspontot**, mint azt korábban feltételezték. A válaszok irányultságát jelentősen befolyásolta a prompt nyelve: az egyszerűsített kínai nyelvű kérdésekre a legtöbb modell sokkal kormánybarátabb válaszokat adott, mint angolul vagy spanyolul.\n\nA kutatás arra is rámutatott, hogy a válaszformátum, a kiegészítő eszközök és a finomhangolás is módosítja az eredményt. Amikor a modellek ügynökkeretrendszerben vagy böngészési funkcióval kiegészítve működtek, **kevésbé követték a pekingi narratívát**, még akkor is, ha a webes keresést végül nem használták. Ezzel párhuzamosan a nyugati modellek is elfogadták néha a hivatalos kínai álláspontot bizonyos kérdésekben.\n\nA mindennapi használat során a politikai elfogultság nehezebben mutatható ki, de konkrét feladatoknál előfordul. Fordítási vagy képgenerálási utasításoknál a kínai nyelvű promptok hatására több modell, köztük a Qwen3.8 Max vagy a GPT Image 2.5 Sunburst is **Kína területi követeléseit tükröző megnevezéseket** használt.",
+  "miert_szamit": "Ha többnyelvű tartalmakat, fordításokat vagy képeket generálsz AI-val, figyelj arra, hogy a **prompt nyelve és az alkalmazott modell észrevétlenül megváltoztathatja** a kényes földrajzi és politikai kifejezések jelentéstartalmát.",
+  "cimkek": [
+    "Vals AI",
+    "kutatás",
+    "LLM",
+    "Qwen3.8 Max"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 75,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 90,
+      "hitelesseg": 82,
+      "aktualitas": 98,
+      "kozossegi": 61
+    },
+    "elofeszures": 87,
+    "tanult": 47,
+    "indok": "Érdekes kutatás a kínai és nyugati MI-modellek politikai elfogultságáról és válaszadási mintáiról.",
+    "tema": "chinese ai political bias",
+    "cim_hu": "A kínai MI-modellek politikai válaszai összetettebbek a vártnál egy új kutatás szerint",
+    "lead_hu": "A Vals AI elemzése szerint a kínai MI-modellek nem teljes mértékben a pekingi propaganda szerint válaszolnak, míg a nyugati modellek is átvesznek néha hivatalos kínai álláspontokat.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-01T12:49:12+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-01T12:52:02+00:00",
+  "megjelent": "2026-11-01T12:52:02+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-01T12:52:04+00:00",
+    "esemeny": "A Vals AI felmérése szerint a kínai AI-modellek a vártnál kevésbé egységesen követik a kínai kormányzati álláspontot a politikai kérdésekben, míg a prompt nyelve és a használati kontextus erősen befolyásolja a válaszok politikai irányultságát.",
+    "forrasok": [
+      "https://the-decoder.com/chinese-ai-models-are-politically-complex-not-just-government-mouthpieces-study-finds/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-01T12:52:30+00:00",
+  "linkek_ellenorizve": true
+}
