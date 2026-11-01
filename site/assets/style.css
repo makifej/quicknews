@@ -1626,21 +1626,31 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .cikk .ov-klip figcaption { margin-top: 8px; font-size: 16px; line-height: 24px; font-weight: 700; color: var(--szoveg); }
 .cikk .ov-klip figcaption::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--kiemelo); margin-right: 8px; vertical-align: middle; }
 
-/* Esti hangos összefoglaló (Heni 2026-11-01): sáv a főoldal tetején; lejátszáskor az equalizer mozog, a háttér kitöltése az állást mutatja */
-.esti { --es: 0%; display: flex; align-items: center; gap: 16px; margin: 24px 0 32px; padding: 12px 20px 12px 12px; border: 1px solid var(--keret); border-radius: var(--sugar);
-  background: linear-gradient(90deg, var(--kiemeles-bg) var(--es), transparent var(--es)), var(--bg-2); }
+/* Esti hangos összefoglaló (Heni 2026-11-01): sáv a főoldal tetején. Az equalizer a sáv teljes hosszában a hangfájl valódi
+   hullámformája (data/esti.json „hullam”); a lejátszott rész borostyán, lejátszás közben az oszlopok mozognak, kattintásra oda ugrik */
+.esti { --es: 0%; display: flex; align-items: center; gap: 20px; margin: 24px 0 32px; padding: 12px 20px 12px 12px; border: 1px solid var(--keret); border-radius: var(--sugar); background: var(--bg-2); }
 .esti-gomb { flex: none; width: 48px; height: 48px; border: 0; border-radius: 999px; background: var(--kiemelo); color: var(--kiemelo-szoveg); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 200ms var(--gorbe); }
 .esti-gomb:active { transform: scale(0.96); }
 .esti-gomb:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 3px; }
 .esti-gomb svg { width: 20px; height: 20px; }
 .esti-gomb .hg-szunet, .esti-gomb[aria-pressed="true"] .hg-lejatsz { display: none; }
 .esti-gomb[aria-pressed="true"] .hg-szunet { display: block; }
-.esti-szoveg { flex: 1; min-width: 0; }
-.esti-cim { font-size: 18px; line-height: 24px; font-weight: 800; color: var(--szoveg); }
-.esti-meta { font-size: 14px; line-height: 20px; font-weight: 600; color: var(--szoveg-2); font-variant-numeric: tabular-nums; }
-.esti-eq { flex: none; display: flex; align-items: flex-end; gap: 4px; height: 28px; }
-.esti-eq i { display: block; width: 4px; height: 6px; border-radius: 2px; background: var(--kiemelo); opacity: .55; transform-origin: 50% 100%; }
-.esti.szol .esti-eq i { opacity: 1; animation: esti-eq 900ms ease-in-out infinite alternate; animation-delay: calc(var(--i) * -137ms); animation-duration: calc(620ms + var(--i) * 83ms); }
-@keyframes esti-eq { 0% { height: 5px; } 35% { height: 22px; } 60% { height: 11px; } 100% { height: 28px; } }
-@media (prefers-reduced-motion: reduce) { .esti.szol .esti-eq i { animation: none; height: 16px; } }
-@media (max-width: 767px) { .esti { margin: 16px 0 24px; gap: 12px; } .esti-cim { font-size: 16px; line-height: 22px; } .esti-eq { gap: 3px; } .esti-eq i { width: 3px; } }
+.esti-szoveg { flex: none; min-width: 0; }
+.esti-cim { font-size: 18px; line-height: 24px; font-weight: 800; color: var(--szoveg); white-space: nowrap; }
+.esti-meta { font-size: 14px; line-height: 20px; font-weight: 600; color: var(--szoveg-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.esti-eq { flex: 1; min-width: 0; position: relative; height: 44px; cursor: pointer; }
+.esti-eq-alap, .esti-eq-kesz { position: absolute; inset: 0; display: flex; align-items: center; gap: 3px; }
+.esti-eq-kesz { clip-path: inset(0 calc(100% - var(--es)) 0 0); }
+.esti-eq i { display: block; flex: 1 1 0; min-width: 2px; height: calc(var(--h) * 100%); border-radius: 2px; background: var(--szoveg-3); transform-origin: 50% 50%; }
+.esti-eq-kesz i { background: var(--kiemelo); }
+.esti.szol .esti-eq i { animation: esti-eq 600ms ease-in-out infinite alternate; animation-delay: calc(var(--i) * -110ms); animation-duration: calc(480ms + var(--i) * 60ms); }
+@keyframes esti-eq { 0% { transform: scaleY(0.5); } 100% { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) { .esti.szol .esti-eq i { animation: none; } }
+@media (max-width: 767px) {
+  .esti { margin: 16px 0 24px; gap: 12px; padding: 10px 14px 10px 10px; flex-wrap: wrap; }
+  .esti-cim { font-size: 16px; line-height: 22px; }
+  .esti-szoveg { flex: 1; }
+  .esti-eq { flex: 1 1 100%; order: 3; height: 36px; }
+  .esti-eq i { min-width: 2px; }
+  .esti-eq i:nth-child(2n) { display: none; }
+}
