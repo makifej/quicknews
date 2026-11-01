@@ -1643,9 +1643,6 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .esti-eq-kesz { clip-path: inset(0 calc(100% - var(--es)) 0 0); }
 .esti-eq i { display: block; flex: 1 1 0; min-width: 2px; height: calc(var(--h) * 100%); border-radius: 2px; background: var(--szoveg-3); transform-origin: 50% 50%; }
 .esti-eq-kesz i { background: var(--kiemelo); }
-.esti.szol .esti-eq i { animation: esti-eq 600ms ease-in-out infinite alternate; animation-delay: calc(var(--i) * -110ms); animation-duration: calc(480ms + var(--i) * 60ms); }
-@keyframes esti-eq { 0% { transform: scaleY(0.5); } 100% { transform: scaleY(1); } }
-@media (prefers-reduced-motion: reduce) { .esti.szol .esti-eq i { animation: none; } }
 @media (max-width: 767px) {
   .esti { margin: 16px 0 24px; gap: 12px; padding: 10px 14px 10px 10px; flex-wrap: wrap; }
   .esti-cim { font-size: 16px; line-height: 22px; }
