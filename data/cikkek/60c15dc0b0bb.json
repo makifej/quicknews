@@ -1,0 +1,50 @@
+{
+  "id": "60c15dc0b0bb",
+  "slug": "minimax-m3-1-flash-on-more-of-your-hardware",
+  "forras_id": "x-minimax",
+  "forras_nev": "MiniMax (X)",
+  "url": "https://x.com/MiniMax_AI/status/2116996123164569606",
+  "publikalva": "2026-11-01T20:49:42+00:00",
+  "cim": "MiniMax M3.1 Flash, on more of your hardware.",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 70 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pbs.twimg.com/media/HWEUv-oaoAAwjBk.jpg?name=orig",
+    "x_url": "https://x.com/MiniMax_AI/status/2116996123164569606"
+  },
+  "cim_eredeti": "MiniMax M3.1 Flash, on more of your hardware.",
+  "szoveg_eredeti": "MiniMax M3.1 Flash, on more of your hardware.\n\nQuantizing a 428B model opens up more ways to run it locally. Lower-bit weights reduce the memory needed to load the model and the weight data moved during decoding. Making those savings useful takes careful calibration, efficient low-bit kernels, and hardware-aware placement of experts across GPU and system RAM.\n\nThank you to the builders doing that work:\n\n• @UnslothAI @danielhanchen — 2-bit Dynamic GGUF weights at 143.9 GB, with calibration and fidelity testing across coding, tool use and other workloads.\n• @ViC305 — SAGE-EXL3, token-level fidelity measurements and a single-DGX-Spark recipe.\n• @PeasantSmith — Project Maya quants and expert offloading for local coding and tool use.\n• @MiaAI_lab — EXL3-EAQ quantization work.\n• @jundotkim + mlx-community — oQ quants and DSpark-powered decoding through oMLX on Apple Silicon.\n• @AIatAMD — Quark MXFP4 adapted for AMD Instinct.\n• @atomic_chat_hq — GGUFs for local desktop workflows.\n• @superalesha — custom inference work combining quantized weights, expert caching and system RAM on 4× RTX 3090.\nEvery shared quant, kernel, measurement and recipe gives the next builder a better starting point. Thank you.",
+  "begyujtve": "2026-11-01T20:53:40.779048+00:00",
+  "prioritas": {
+    "pont": 70,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 70,
+      "egyediseg": 95,
+      "hitelesseg": 90,
+      "aktualitas": 98,
+      "kozossegi": 54
+    },
+    "elofeszures": 82,
+    "tanult": 44,
+    "indok": "Technikai jellegű modellfrissítés és kvantálás nyílt forráskódú ökoszisztémában Forrás-tapasztalat: -4.",
+    "tema": "minimax m3.1 quantizing",
+    "cim_hu": "Elkészült a MiniMax M3.1 Flash hatékonyabb, helyben futtatható változata",
+    "lead_hu": "A 428 milliárd paraméteres MiniMax M3.1 Flash modell kvantált verziói jelentősen csökkentik a memóriaigényt, így több hardveren futtathatók helyileg.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-01T21:04:13+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-01T21:04:14+00:00"
+}
