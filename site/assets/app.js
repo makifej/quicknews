@@ -678,11 +678,22 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
 // Videós útmutató-gyűjtő (Heni 2026-11-02): a cikk oldalsávjában lévő videóra kattintva felugrik a videó, alatta/mellette az
 // e-mail-cím és a választás (csak az útmutató, vagy a hírlevél is). A kérés az /api/utmutato végpontra megy, a levelet az küldi.
 (function(){
-  var doboz = document.querySelector('.utm[data-utm]');
-  if (!doboz) return;
-  if (doboz.hasAttribute('data-utm-elonezet')) { if (!/[?&]utmutato=elonezet/.test(location.search)) return; doboz.hidden = false; }
-  var D = doboz.dataset;
-  function nyit(){
+  var elonezet = /[?&]utmutato=elonezet/.test(location.search);
+  document.querySelectorAll('[data-utm-elonezet]').forEach(function(x){ if (elonezet) x.hidden = false; });
+  // a főoldali kártyán a videó ott helyben megy; ha valaki elindít egyet, a többi megáll
+  document.querySelectorAll('.gyu-video').forEach(function(v){ v.addEventListener('play', function(){
+    document.querySelectorAll('.gyu-video').forEach(function(m){ if (m !== v) m.pause(); });
+    try { if (window.gtag) gtag('event', 'utmutato_video', {anyag: v.closest('[data-utm]').dataset.utm, hely: 'fooldal'}); } catch(e) {}
+  }); });
+  document.querySelectorAll('[data-utm]').forEach(function(doboz){
+    if (doboz.closest('[hidden]')) return;
+    doboz.querySelectorAll('[data-utm-nyit]').forEach(function(g){ g.addEventListener('click', function(){
+      var helyi = doboz.querySelector('.gyu-video');
+      if (helyi) helyi.pause();
+      nyit(doboz.dataset, !helyi);
+    }); });
+  });
+  function nyit(D, indit){
     var d = document.createElement('div');
     d.className = 'hl-hatter utm-hatter';
     d.innerHTML = '<div class="hl-ablak utm-ablak" role="dialog" aria-modal="true" aria-labelledby="utm-ablak-cim">' +
@@ -707,7 +718,7 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     document.documentElement.classList.add('hl-nyitva');
     setTimeout(function(){ d.classList.add('bent'); }, 30);
     // a kattintás felhasználói mozdulat, így hanggal indulhat; ha a böngésző mégsem engedi, némán indul
-    try { var p = v.play(); if (p && p.catch) p.catch(function(){ v.muted = true; v.play().catch(function(){}); }); } catch(e) {}
+    if (indit) try { var p = v.play(); if (p && p.catch) p.catch(function(){ v.muted = true; v.play().catch(function(){}); }); } catch(e) {}
     try { if (window.gtag) gtag('event', 'utmutato_video', {anyag: D.utm}); } catch(e) {}
     function zar(){ try { v.pause(); } catch(e) {} d.classList.remove('bent'); document.documentElement.classList.remove('hl-nyitva');
       setTimeout(function(){ d.remove(); if (elozo && elozo.focus) try { elozo.focus({preventScroll: true}); } catch(e) {} }, 400);
@@ -732,7 +743,6 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
         }).catch(function(){ uz.textContent = 'Most nem érjük el a szervert, próbáld újra.'; uz.className = 'hl-uzenet hiba'; gomb.disabled = false; });
     });
   }
-  doboz.querySelectorAll('[data-utm-nyit]').forEach(function(g){ g.addEventListener('click', nyit); });
 })();
 // Mentett hírek (Heni 2026-10-13): piros „Elolvasom később” jel a híreken és a cikkoldalon. A lista csak a böngészőben
 // él (localStorage qn-mentett, legfeljebb 200 elem), szerverre nem megy. A /mentett oldal a kereso.json alapján rajzol,
