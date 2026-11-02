@@ -1,0 +1,49 @@
+{
+  "id": "6eb1302ea527",
+  "slug": "nvidia-releases-auto-ontology-an-open-semantic-layer-that-grounds-ai",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/01/nvidia-auto-ontology-open-source-semantic-layer-ai-agents/",
+  "publikalva": "2026-11-02T07:47:12+00:00",
+  "cim": "NVIDIA Releases Auto Ontology: An Open Semantic Layer That Grounds AI Agent SQL",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 71 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-88881-3-scaled.png"
+  },
+  "cim_eredeti": "NVIDIA Releases Auto Ontology: An Open Semantic Layer That Grounds AI Agent SQL",
+  "szoveg_eredeti": "NVIDIA has released Auto Ontology , an open library under the Apache 2.0 license . NVIDIA Auto Ontology is a semantic layer framework that builds a context layer from enterprise metadata. Agents use that layer to write SQL against certified business definitions. The repository states the problem plainly: a fast revenue answer is worthless if the number is wrong. \n\n TL;DR \n\n Library: Default LLM is nvidia/nemotron-3-nano-30b-a3b , with Nemotron embedding and reranking models. \n\n Runs on: Docker Compose for a local stack, or Kubernetes via Helm. Inference uses hosted NVIDIA NIM endpoints or self-hosted NIMs. \n\n Performance: Strong engineering, thin public evidence. \n\n Best: Ontology creation time cut by 90% in NVIDIA testing (self-reported).\n\n Worst: 0 published text-to-SQL accuracy scores. The eval repo ships a harness, not results.\n\n Bottom line: An open, MCP-ready context layer that any agent harness can query. But you must run the benchmarks yourself to trust it.\n\n What is NVIDIA Auto Ontology? \n\n It is a context layer that sits between an agent and the data warehouse. It tells the agent where data lives and what fields mean. It also says whether to use a field, how to use it, and where it came from.\n\n Here are the five jobs: \n\n Discover: generate ontologies from metadata and connect existing semantic models.\n\n Ground: give agents trusted meaning for metrics, entities and relationships.\n\n Validate: check generated queries against certified definitions and lineage.\n\n Expose: serve context through MCP, CLI and API.\n\n Learn: fold certified corrections back into the ontology.\n\n NVIDIA’s developer page frames the output as a starting ontology. Business experts still test, refine and certify it.\n\n How does Auto Ontology work? \n\n The stack has 4 core services. A Next.js 16 frontend handles the web UI and authentication on port 3000. A FastAPI backend with LangChain runs chat, NL-to-SQL and catalog APIs on port 3001. An ingestion worker writes embeddings on port 3002. Postgres with pgvector stores the catalog, the ontology and the vectors.\n\n Source databases can be Databricks, Postgres, Snowflake or DuckDB. Models are set through environment “triplets” of endpoint, key and model. Separate roles exist for reasoning, non-reasoning, embedding and reranking. Any OpenAI-compatible endpoint works.\n\n What does the MCP server expose? \n\n The MCP server docs describe 9 read-only tools. ask_question returns the answer, the SQL and the rows as separate fields. Results cap at 100 rows. check_readiness confirms a compiled semantic layer and a live database connection exist.\n\n There is no tool for browsing raw schemas. NVIDIA chose that on purpose, so agents reach data through the semantic layer. The underlying OpenAPI spec publishes 87 operations. Sign-in runs through OAuth, and every call carries the signed-in user’s permissions.\n\n How is it benchmarked? \n\n NVIDIA ships a separate harness, auto-ontology-eval . It runs 2 arms in NeMo Gym: a schema-only LLM control and the ontology-grounded agent. Scoring is deterministic execution match, with no LLM judge.\n\n Bundled datasets include BIRD Dev (1,534 questions, 11 databases) and Mini-Dev (500 questions). FDABench-Lite adds 169 questions, and BEAVER defaults to a 100-question sample. \n\n The harness repo adds 2 limitations. Optional few-shot exemplars and value anchors go to the ontology arm only. A delta measured with them covers those inputs, not grounding alone. Its tested configuration also routes both arms through a Claude model on NVIDIA’s inference gateway.\n\n How does it compare with other semantic layers? \n\n Feature NVIDIA Auto Ontology Wren AI Cube Core dbt MetricFlow License Apache 2.0 Apache 2.0 core (open core) Apache 2.0 backend, MIT client Apache 2.0 (v0.209.0+) How the layer is built Generated from metadata, then certified Agent-assisted context files in Git Defined in code Defined in code in a dbt project Agent interface MCP, CLI, REST API MCP, CLI, SDKs SQL, REST, GraphQL APIs Python library and CLI Data sources Databricks, Postgres, Snowflake, DuckDB 22+ All SQL data sources Via dbt adapters Default models Nemotron via NVIDIA NIM Not disclosed Not applicable Not applicable \n\n Deployment and availability \n\n Local setup is docker compose up -d --build after filling in .env . Kubernetes users get a Helm chart and a DEPLOYMENT.md guide. NVIDIA team also publishes the backend as an NGC container . An NVIDIA API key from build.nvidia.com covers the default models.\n\n Key Takeaways \n\n Auto Ontology generates a starting semantic layer from enterprise metadata.\n\n Agents query it through 9 read-only MCP tools, plus CLI and API.\n\n NVIDIA reports 90% faster ontology creation in its own testing.\n\n No text-to-SQL accuracy scores are published yet.\n\n Defaults to Nemotron on NIM, but accepts any OpenAI-compatible endpoint.\n\n Check out the GitHub repo , the eval harness and the MCP docs . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post NVIDIA Releases Auto Ontology: An Open Semantic Layer That Grounds AI Agent SQL appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-02T08:33:37.765217+00:00",
+  "prioritas": {
+    "pont": 71,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 85,
+      "hitelesseg": 78,
+      "aktualitas": 98,
+      "kozossegi": 59
+    },
+    "elofeszures": 87,
+    "tanult": 49,
+    "indok": "A Nvidia nyílt kódú technikai megoldása javítja az AI-ügynökök pontosságát a vállalati adatbázisokban. Forrás-tapasztalat: -8.",
+    "tema": "nvidia open source sql",
+    "cim_hu": "A Nvidia kiadta az Auto Ontologyt a pontosabb vállalati AI-lekérdezésekhez",
+    "lead_hu": "A Nvidia nyílt forráskódú szemantikai réteget jelenített meg, amellyel az AI-ügynökök hibátlan SQL-kódokat írhatnak a vállalati metaadatok alapján.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-02T08:33:58+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-02T08:36:05+00:00"
+}

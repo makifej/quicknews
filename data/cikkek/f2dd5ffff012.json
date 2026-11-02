@@ -1,0 +1,49 @@
+{
+  "id": "f2dd5ffff012",
+  "slug": "meet-qwengpu-qwen3-5-2b-with-45-compiled-gpu-layers-that-run-cuda",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/01/qwengpu-simt-gpu-compiled-into-qwen3-5-2b-weights-runs-cuda/",
+  "publikalva": "2026-11-02T07:28:29+00:00",
+  "cim": "Meet qwenGPU: Qwen3.5-2B With 45 Compiled GPU Layers That Run CUDA",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 66 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-88881-2-scaled.png"
+  },
+  "cim_eredeti": "Meet qwenGPU: Qwen3.5-2B With 45 Compiled GPU Layers That Run CUDA",
+  "szoveg_eredeti": "qwenGPU is an experimental model that compiles a SIMT GPU directly into the weights of Qwen3.5-2B . Developer Vixhal ( @TheVixhal ) released it on GitHub under the MIT license. The model runs real CUDA, compiled to NVIDIA PTX, inside its own forward passes. For developers, it tests one idea: exact computation inside a pretrained LLM, not beside it. \n\n TL;DR \n\n Size: Qwen3.5-2B (24 layers) along with 45 compiled GPU layers, 69 in total. Context: 262,144 tokens (base model).\n\n Runs on: Apple silicon, an NVIDIA GPU or a CPU, with about 16 GB of free memory. No quantized build.\n\n Performance: Every launch in the developer’s runs was exact; text drift is a KL of about 7e-4.\n\n Best: The reference interpreter matched a real NVIDIA Tesla T4 on 49 of 49 kernels.\n\n Worst: About 10 to 15 tokens per second on Apple MPS; Qwen-written CUDA passed 4 of 5.\n\n What is qwenGPU? \n\n qwenGPU is Qwen3.5-2B with 45 compiled transformer layers placed in front of Qwen’s own 24. None of those layers are trained. A compiler computes every weight. \n\n How does a GPU fit inside model weights? \n\n The GPU is a 4-lane SIMT machine. It has 15 registers per lane, a 4-stage pipeline, a 32-block ROM and 126 memory words. It uses only Qwen3.5’s own layer types: Gated DeltaNet linear attention and SwiGLU MLPs.\n\n The trick is the Gated DeltaNet recurrent state. In the circuit’s heads, the gate is held open and the write strength is 1. Every key is one-hot. Each update overwrites exactly 1 row, and a one-hot query reads it back. So each row works as a memory cell.\n\n That state holds the program ROM, registers and global memory. The README lists 16 register rows per lane, with 1 that always reads zero. That matches the 15 usable registers in the X post.\n\n The GPU supports integer arithmetic, predicates, divergent branches and loops. It also supports shared memory, atomicAdd , __syncthreads() and warp shuffles.\n\n What happens during a CUDA launch? \n\n The host plays the role of NVRTC and the CUDA driver. It compiles CUDA to PTX with clang, then lowers PTX to machine blocks. It feeds the program and input arrays to the model as tokens.\n\n From there, the model writes the launch itself. Each EXEC(b, w) token runs block b for warp w in 1 forward pass. The VAL tokens after it carry register results. Memory writes return as MEM records. The host reads results from the recurrent state and computes none of them.\n\n In the demo video , a dot product of [1, 2, 3] and [4, 5, 6] returns 32. The model wrote that launch in 47 tokens.\n\n Meet qwenGPU: Qwen3.5-2B with a SIMT GPU inside its weights, 45 compiled layers in front of Qwen’s own, using its Gated DeltaNet layers as registers and memory.\n\nIt runs real CUDA in its forward passes. The host compiles the kernel to PTX and loads it, then the model writes every… pic.twitter.com/iM5IETEbIv \n— vixhaℓ (@TheVixhal) November 1, 2026 \n\n Does the GPU break Qwen’s text ability? \n\n Not by the developer’s measure. The circuit is muted on text tokens, and Qwen’s own weights are unchanged. The merged model’s next-token distribution stays within a KL of about 7e-4 of the original.\n\n How accurate is qwenGPU? \n\n All numbers are self-reported, measured on Apple silicon with MPS in bf16: \n\n Every launch was exact under --check replay.\n\n The reference interpreter matched an NVIDIA Tesla T4 on 49 of 49 test kernels.\n\n Normal mode answered 20 of 24 sampled chat questions with GPU-computed numbers.\n\n Advanced mode wrote a correct kernel first try on 4 of 5 questions.\n\n In normal mode, Qwen writes an expression like [1, 2, 3] @ [4, 5, 6] for ready-made kernels. In advanced mode, Qwen writes the CUDA kernel itself. The README warns that a 2B model’s CUDA is still unreliable.\n\n How does qwenGPU compare with Qwenputer and Percepta? \n\n qwenGPU uses the transformer compiler from Qwenputer by Divyansh Agrawal. Qwenputer compiles a 32-bit RISC-V CPU into Qwen3.5-4B. Percepta built a WebAssembly interpreter into a transformer with 2D attention heads in March 2026.\n\n Feature qwenGPU Qwenputer (RISC-V) Percepta Base model Qwen3.5-2B, 24 layers Qwen3.5-4B Custom transformer with 2D attention heads Machine compiled in 4-lane SIMT GPU 32-bit RISC-V (RV32IM + Zba + bignum) WebAssembly interpreter Programs it runs CUDA, lowered from PTX C and MicroPython C, compiled to WebAssembly Compiled layers 45 11 Not disclosed Where state lives Gated DeltaNet state Gated DeltaNet state Execution trace in context Host role Compiles CUDA to PTX, loads tokens, reads results Loads firmware; runs no computation Not disclosed Correctness check Interpreter matched Tesla T4 on 49 of 49 kernels 0 mismatches in about 230,000 replayed positions Claims millions of reliable steps Reported speed 10 to 15 tokens/s (Apple MPS) About 3,200 trace tokens/s (L4, Triton) 30,000+ tokens/s (CPU) Text drift vs base KL about 7e-4 KL 6e-4 Not applicable License MIT code; Apache-2.0 checkpoint MIT code; Apache-2.0 weights Not disclosed \n\n The speed figures use different hardware and token types, so they are not directly comparable. \n\n What do you need to run it? \n\n The quickstart needs Python 3.11+, uv, just and about 16 GB of free memory. Advanced mode also needs clang with the NVPTX backend. just build downloads Qwen3.5-2B and compiles the GPU into it. No prebuilt checkpoint is published. A built checkpoint falls under Qwen’s Apache-2.0 license.\n\n Key Takeaways \n\n qwenGPU compiles a 4-lane SIMT GPU into Qwen3.5-2B as 45 untrained layers.\n\n Gated DeltaNet state serves as registers, program ROM and global memory.\n\n The model writes every CUDA launch step; the host only compiles and loads.\n\n The interpreter matched a Tesla T4 on 49 of 49 kernels.\n\n At 10 to 15 tokens per second, it is a research demo, not a runtime.\n\n Check out the GitHub repo , the qgpu CUDA reference , the Qwen3.5-2B model card and the original X post . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Meet qwenGPU: Qwen3.5-2B With 45 Compiled GPU Layers That Run CUDA appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-02T08:33:37.867990+00:00",
+  "prioritas": {
+    "pont": 66,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 80,
+      "egyediseg": 85,
+      "hitelesseg": 71,
+      "aktualitas": 95,
+      "kozossegi": 56
+    },
+    "elofeszures": 88,
+    "tanult": 66,
+    "indok": "Érdekes kísérleti modellarchitektúra, amely GPU-kódot futtat közvetlenül az nyelvi modell súlyaiban. Forrás-tapasztalat: -8.",
+    "tema": "llm architecture research",
+    "cim_hu": "Közvetlenül a nyelvi modell súlyaiba fordítottak GPU-rétegeket a qwenGPU fejlesztői",
+    "lead_hu": "Megjelent a qwenGPU kísérleti modell, amely a Qwen3.5-2B-re épülve képes valódi CUDA-kódot futtatni a saját modellhívásain belül.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-02T08:33:58+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-02T08:36:09+00:00"
+}
