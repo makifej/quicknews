@@ -1702,3 +1702,29 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
   .utm-ablak .hl-uzenet { margin: 10px 0 0; }
   .utm-ablak .hl-zar { z-index: 2; background: rgba(0, 0, 0, 0.6); color: #fff; }
 }
+
+/* ===== Gyakorlati útmutatók a főoldalon, „A hét párbaja” fölött (Heni 2026-11-02): bal oldalt a bevezető, jobb oldalt a videókártyák ===== */
+.gyu { margin-block: 32px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: start; padding: 24px; background: var(--bg-2); border: 1px solid var(--vonal); border-left: 4px solid var(--kiemelo); border-radius: var(--sugar); }
+.gyu[hidden] { display: none; }
+.gyu-bev { display: flex; flex-direction: column; gap: 16px; padding-top: 4px; }
+.gyu-cimke { display: inline-flex; align-self: flex-start; align-items: center; gap: 12px; margin: 0; padding: 10px 20px 10px 16px; border-radius: 999px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font-size: clamp(26px, 2.6vw, 36px); line-height: 40px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+.gyu-cimke::before { content: ""; width: 16px; height: 16px; border-radius: 50%; background: var(--kiemelo-szoveg); }
+.gyu-szoveg { margin: 0; max-width: 560px; font-size: 20px; line-height: 30px; color: var(--szoveg-2); text-wrap: pretty; }
+.gyu-sor { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; max-width: min(100%, 1160px); }
+.gyu-kartya { flex: 0 0 auto; scroll-snap-align: start; display: grid; grid-template-columns: 270px 280px; gap: 24px; align-items: end; padding: 16px; background: var(--bg); border: 1px solid var(--keret); border-radius: var(--sugar); }
+.gyu-video { display: block; width: 270px; height: auto; aspect-ratio: 9 / 16; border-radius: 12px; background: #0e0e0e; object-fit: cover; }
+.gyu-test { display: flex; flex-direction: column; gap: 12px; padding-bottom: 4px; }
+.gyu-hossz { color: var(--kiemelo-szin); font-size: 14px; line-height: 20px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.gyu-test h3 { margin: 0; font-size: 26px; line-height: 32px; font-weight: 800; color: var(--szoveg); text-wrap: balance; }
+.gyu-test p { margin: 0; font-size: 16px; line-height: 24px; color: var(--szoveg-2); text-wrap: pretty; }
+.gyu-gomb { margin-top: 4px; min-height: 48px; padding: 12px 18px; border: 0; border-radius: 12px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font: 800 16px/22px Manrope, system-ui, sans-serif; cursor: pointer; }
+.gyu-gomb:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
+@media (max-width: 1100px) { .gyu { grid-template-columns: 1fr; } .gyu-sor { max-width: 100%; } }
+@media (max-width: 640px) {
+  .gyu { padding: 16px; gap: 20px; }
+  .gyu-cimke { font-size: 22px; line-height: 28px; padding: 8px 16px 8px 14px; gap: 10px; white-space: normal; }
+  .gyu-cimke::before { width: 12px; height: 12px; }
+  .gyu-szoveg { font-size: 17px; line-height: 26px; }
+  .gyu-kartya { grid-template-columns: 1fr; width: min(300px, 80vw); }
+  .gyu-video { width: 100%; }
+}
