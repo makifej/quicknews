@@ -1736,3 +1736,18 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
   .gyu-kartya { grid-template-columns: 1fr; width: min(300px, 80vw); }
   .gyu-video { width: 100%; }
 }
+
+/* Gyakorlati útmutatók: saját, figyelemfelkeltő szín (Heni 2026-11-02), csak erre a sávra; a párbaj piros, a szavazás lila, a fő kiemelő narancs */
+.gyu { --gyu-hatter: #0c2c29; --gyu-kartya: #081f1d; --gyu-keret: #1d4a45; --gyu-akcent: #34e3ad; --gyu-akcent-szoveg: #05211b; --gyu-szoveg-2: #a9c9c2;
+  background: var(--gyu-hatter); border-color: var(--gyu-keret); border-left-color: var(--gyu-akcent); }
+:root[data-theme="light"] .gyu { --gyu-hatter: #e2f6ef; --gyu-kartya: #ffffff; --gyu-keret: #b8e2d5; --gyu-akcent: #087a5c; --gyu-akcent-szoveg: #ffffff; --gyu-szoveg-2: #3e5f57; }
+.gyu .gyu-cimke { background: var(--gyu-akcent); color: var(--gyu-akcent-szoveg); }
+.gyu .gyu-cimke::before { background: var(--gyu-akcent-szoveg); }
+.gyu .gyu-szoveg, .gyu .gyu-test p { color: var(--gyu-szoveg-2); }
+.gyu .gyu-lepesek li, .gyu .gyu-kartya { background: var(--gyu-kartya); border-color: var(--gyu-keret); }
+.gyu .gyu-lepesek b { background: var(--gyu-akcent); color: var(--gyu-akcent-szoveg); }
+.gyu .gyu-hossz { color: var(--gyu-akcent); }
+.gyu .gyu-tartalom { border-top-color: var(--gyu-keret); }
+.gyu .gyu-tartalom li::before { background-color: var(--gyu-akcent); }
+.gyu .gyu-gomb { background: var(--gyu-akcent); color: var(--gyu-akcent-szoveg); }
+.gyu .gyu-gomb:focus-visible { outline-color: var(--gyu-akcent); }
