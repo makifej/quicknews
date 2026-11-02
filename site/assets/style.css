@@ -1736,7 +1736,19 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .gyu-gomb:hover { transform: translateY(-2px); }
 .gyu-gomb:active { transform: scale(.98); }
 .gyu-gomb:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
-@media (min-width: 1280px) { .gyu-tartalom ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 24px; } }
+.gyu-lapozo[hidden] { display: none; }
+/* asztalon a két útmutató egymás mellett, lapozás nélkül (Heni 2026-11-02); ha több lesz, a lapozó magától visszajön */
+@media (min-width: 1280px) {
+  .gyu-kartya { flex-basis: calc((100% - 24px) / 2); grid-template-columns: min(40%, 260px) minmax(0, 1fr); gap: 24px; }
+  .gyu-video { width: 100%; }
+  .gyu-test { gap: 8px; padding-block: 4px; }
+  .gyu-test h3 { font-size: 24px; line-height: 32px; }
+  .gyu-test p { font-size: 16px; line-height: 24px; }
+  .gyu-tartalom { gap: 8px; padding-top: 12px; }
+  .gyu-tartalom li { font-size: 15px; line-height: 20px; }
+  .gyu-tartalom li::before { top: 2px; }
+  .gyu-gomb { align-self: stretch; min-width: 0; }
+}
 @media (max-width: 900px) {
   .gyu-kartya { grid-template-columns: 240px minmax(0, 1fr); gap: 24px; }
   .gyu-video { width: 240px; }
