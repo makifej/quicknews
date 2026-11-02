@@ -1685,9 +1685,20 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
   .utm-urlap-resz { grid-column: 1 / -1; }
   .utm-ablak .hl-urlap { gap: 8px; }
 }
+/* mobilon a videó nagyban, teljes szélességben felül, alatta a feliratkozás; a kettő együtt egy képernyőre fér (Heni 2026-11-02) */
 @media (max-width: 599px) {
-  .utm-ablak { width: 100%; padding: 16px 16px 16px; }
-  .utm-racs { grid-template-columns: 100px 1fr; }
+  .utm-ablak { width: 100%; padding: 0 0 16px; overflow-x: hidden; }
+  .utm-racs { display: block; }
+  .utm-video { display: flex; justify-content: center; width: 100%; border-radius: 0; background: #000; }
+  .utm-video video { width: auto; max-width: 100%; height: max(240px, calc(100dvh - 330px)); max-height: none; aspect-ratio: 9 / 16; border-radius: 0; }
+  .utm-fej { display: none; }
+  .utm-urlap-resz { padding: 12px 16px 0; }
+  .utm-ablak .hl-cimke { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .utm-ablak .hl-urlap { gap: 8px; }
+  .utm-ablak input[type=email] { min-height: 48px; }
+  .utm-ablak .hl-urlap button { min-height: 48px; }
   .utm-valaszt label { padding: 10px 12px; font-size: 15px; line-height: 21px; }
-  .utm-ablak .hl-jog { margin-top: 12px; font-size: 13px; line-height: 18px; }
+  .utm-ablak .hl-jog { margin: 10px 16px 0; font-size: 13px; line-height: 18px; }
+  .utm-ablak .hl-uzenet { margin: 10px 16px 0; }
+  .utm-ablak .hl-zar { z-index: 2; background: rgba(0, 0, 0, 0.6); color: #fff; }
 }
