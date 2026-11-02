@@ -1655,7 +1655,7 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .utm-felirat { margin: 0 0 12px; color: var(--kiemelo-szin); font-weight: 700; font-size: 14px; line-height: 20px; letter-spacing: 0.08em; text-transform: uppercase; }
 .utm-kep { position: relative; display: block; width: 100%; padding: 0; border: 0; border-radius: 12px; overflow: hidden; background: #0e0e0e; cursor: pointer; }
 .utm-kep img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 700ms var(--gorbe); }
-.utm-jatszo { position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px 8px 10px; border-radius: 999px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font-weight: 800; font-size: 15px; line-height: 20px; }
+.utm-jatszo { position: absolute; right: 12px; top: 12px; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px 8px 10px; border-radius: 999px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font-weight: 800; font-size: 15px; line-height: 20px; }
 .utm-jatszo svg { width: 20px; height: 20px; }
 @media (hover: hover) and (pointer: fine) { .utm-kep:hover img { transform: scale(1.03); } }
 .utm-kep:focus-visible, .utm-gomb:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
