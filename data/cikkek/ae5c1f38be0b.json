@@ -1,0 +1,49 @@
+{
+  "id": "ae5c1f38be0b",
+  "slug": "csu-uses-artificial-intelligence-to-improve-hail-forecasting",
+  "forras_id": "google-news-ai",
+  "forras_nev": "North Forty News",
+  "url": "https://northfortynews.com/category/weather/csu-uses-artificial-intelligence-to-improve-hail-forecasting/",
+  "publikalva": "2026-11-02T17:34:00+00:00",
+  "cim": "CSU Uses Artificial Intelligence to Improve Hail Forecasting",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 45 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://i0.wp.com/northfortynews.com/wp-content/uploads/2026/11/unnamed.jpg?fit=1536%2C1025&quality=50&ssl=1"
+  },
+  "cim_eredeti": "CSU Uses Artificial Intelligence to Improve Hail Forecasting",
+  "szoveg_eredeti": "Locally owned. Community Supported.Free to read.\n\n(function(){if(window.NFNAdSchedulerBooted)return;window.NFNAdSchedulerBooted=true;function q(s,c){return[].slice.call((c||document).querySelectorAll(s));}function key(t){return\"nfn\"+t.replace(/(^|_)([a-z])/g,function(m,p,c){return c.toUpperCase();});}function applyDelivery(el,d){var prior=parseInt(el.getAttribute(\"data-nfn-delivery\")||\"0\",10);if(!d){el.innerHTML=\"\";[\"data-nfn-delivery\",\"data-nfn-tracking\",\"data-nfn-event-token\"].forEach(function(a){el.removeAttribute(a);});return;}var next=parseInt(d.id||\"0\",10);el.setAttribute(\"data-nfn-delivery\",d.id);el.setAttribute(\"data-nfn-tracking\",d.tracking_key);el.setAttribute(\"data-nfn-event-url\",d.event_url);el.setAttribute(\"data-nfn-event-token\",d.event_token);var a=el.querySelector(\"a\"),imgs=el.querySelectorAll(\"img\"),img=imgs.length?imgs[0]:null,pixel=el.querySelector(\".nfn-ad-served-pixel\");if(a)a.href=d.click_url;if(img){img.src=d.creative_url;img.alt=d.alt||\"Advertisement\";}if(pixel&&d.served_url)pixel.src=d.served_url+(d.served_url.indexOf(\"?\")>=0?\"&\":\"?\")+\"cb=\"+encodeURIComponent(Date.now()+\"-\"+Math.random());if(prior&&next&&prior!==next){[\"served_impression\",\"viewable_impression\",\"qualified_impression\"].forEach(function(type){delete el.dataset[key(type)];delete el.dataset[key(type)+\"Pending\"];});clear(el);states.set(el,{r:0,v:0,q:0});send(el,\"served_impression\",0,0);}}function rebalance(){var groups={};q(\".nfn-ad-slot[data-nfn-rotation=on][data-nfn-ad-slot]\").forEach(function(el){var k=el.getAttribute(\"data-nfn-ad-slot\");(groups[k]||(groups[k]=[])).push(el);});var chains=[];Object.keys(groups).forEach(function(slot){var els=groups[slot],used=[],chain=Promise.resolve();els.forEach(function(el){chain=chain.then(function(){var existing=parseInt(el.getAttribute(\"data-nfn-delivery\")||\"0\",10);if(existing){used.push(existing);return;}var u=el.getAttribute(\"data-nfn-rotate-url\");if(!u)return;var url=u+\"?slot_key=\"+encodeURIComponent(slot)+\"&exclude=\"+encodeURIComponent(used.join(\",\"))+\"&cb=\"+encodeURIComponent(Date.now()+\"-\"+Math.random());return fetch(url,{credentials:\"same-origin\",cache:\"no-store\",headers:{\"Accept\":\"application/json\"}}).then(function(r){if(!r.ok)throw new Error(\"rotate_http_\"+r.status);return r.json();}).then(function(j){var d=j&&j.delivery?j.delivery:null;applyDelivery(el,d);if(d&&d.id)used.push(parseInt(d.id,10));}).catch(function(){});});});chains.push(chain);});return Promise.all(chains);}var states=new WeakMap(),io=null;function send(el,type,ratio,ms){if(!el)return;var doneKey=key(type),pendingKey=doneKey+\"Pending\";if(el.dataset[doneKey]||el.dataset[pendingKey])return;var u=el.getAttribute(\"data-nfn-event-url\"),t=el.getAttribute(\"data-nfn-event-token\"),d=el.getAttribute(\"data-nfn-delivery\");if(!u||!t||!d)return;var b={delivery_id:parseInt(d,10),event_type:type,token:t,page_path:location.pathname,intersection_ratio:ratio||0,visible_ms:ms||0},s=JSON.stringify(b);el.dataset[pendingKey]=\"1\";function accepted(){delete el.dataset[pendingKey];el.dataset[doneKey]=\"1\";}function failed(){delete el.dataset[pendingKey];if(type===\"served_impression\"&&!el.dataset[doneKey])setTimeout(function(){send(el,type,ratio,ms);},1500);}try{fetch(u,{method:\"POST\",headers:{\"Content-Type\":\"application/json\",\"Accept\":\"application/json\"},body:s,keepalive:true,credentials:\"omit\",cache:\"no-store\"}).then(function(r){if(!r.ok)throw new Error(\"tracking_http_\"+r.status);return r.json().catch(function(){return{};});}).then(function(j){if(j&&j.ok===false)throw new Error(\"tracking_rejected\");accepted();}).catch(function(){try{if(navigator.sendBeacon){var queued=navigator.sendBeacon(u,new Blob([s],{type:\"application/json\"}));if(queued){accepted();return;}}}catch(e){}failed();});}catch(e){try{if(navigator.sendBeacon){var queued=navigator.sendBeacon(u,new Blob([s],{type:\"application/json\"}));if(queued){accepted();return;}}}catch(x){}failed();}}function clear(el){var s=states.get(el);if(!s)return;if(s.v)clearTimeout(s.v);if(s.q)clearTimeout(s.q);s.v=0;s.q=0;}function arm(el,ratio){var s=states.get(el)||{};clear(el);s.r=ratio;s.v=setTimeout(function(){if(!document.hidden&&s.r>=.5)send(el,\"viewable_impression\",s.r,1000);},1000);s.q=setTimeout(function(){if(!document.hidden&&s.r>=.5)send(el,\"qualified_impression\",s.r,5000);},5000);states.set(el,s);}function ensureObserver(){if(io||!(\"IntersectionObserver\" in window))return;io=new IntersectionObserver(function(entries){entries.forEach(function(e){var el=e.target,s=states.get(el)||{};s.r=e.intersectionRatio;states.set(el,s);if(!document.hidden&&e.isIntersecting&&e.intersectionRatio>=.5){if(!s.v&&!el.dataset[key(\"viewable_impression\")])arm(el,e.intersectionRatio);}else clear(el);});},{threshold:[0,.5,1]});document.addEventListener(\"visibilitychange\",function(){q(\".nfn-ad-slot[data-nfn-track-bound=1]\").forEach(function(el){var s=states.get(el)||{};if(document.hidden){clear(el);}else if(s.r>=.5&&!el.dataset[key(\"viewable_impression\")])arm(el,s.r);});});}function startTracking(){ensureObserver();q(\".nfn-ad-slot[data-nfn-delivery]\").forEach(function(el){if(el.getAttribute(\"data-nfn-track-bound\")===\"1\")return;el.setAttribute(\"data-nfn-track-bound\",\"1\");states.set(el,{r:0,v:0,q:0});send(el,\"served_impression\",0,0);if(io)io.observe(el);});}var runTimer=0,running=false,pending=false;function run(){if(running){pending=true;return;}running=true;rebalance().then(function(){startTracking();}).catch(function(){startTracking();}).then(function(){running=false;if(pending){pending=false;schedule(50);}});}function schedule(delay){clearTimeout(runTimer);runTimer=setTimeout(run,typeof delay===\"number\"?delay:80);}function boot(){schedule(0);if(\"MutationObserver\" in window){var mo=new MutationObserver(function(ms){var relevant=false;for(var i=0;i<ms.length;i++){if(ms[i].addedNodes&#038;&#038;ms[i].addedNodes.length){relevant=true;break;}}if(relevant)schedule(100);});mo.observe(document.documentElement,{childList:true,subtree:true});}}if(document.readyState===\"loading\"){document.addEventListener(\"DOMContentLoaded\",boot,{once:true});}else{boot();}})();\n\nBy North Forty News Staff | NorthFortyNews.com\n\nResearchers at Colorado State University are developing an artificial intelligence-powered forecasting system that could give Northern Colorado communities significantly more time to prepare for destructive hailstorms.\n\nThe National Science Foundation-funded project combines advanced radar technology, machine learning, and historical weather data to improve predictions of when and where damaging hail may strike.\n\nFor homeowners, farmers and businesses across the Front Range, the research could eventually mean the difference between having minutes to react and having hours—or even days—to prepare.\n\nTraditional hail forecasting often provides only 30 to 60 minutes of warning. CSU researchers hope to extend that window by combining two different artificial intelligence systems.\n\nOne system, developed through a collaboration with NVIDIA, focuses on predicting how storms will develop over the next two to three hours. Another CSU model evaluates atmospheric conditions to estimate severe weather risks up to eight days ahead.\n\n“We are working with AI to combine regional data from our radar systems with nine years of historic weather observations from across the whole U.S. to make a new forecasting tool,” said Kristen Rasmussen, an associate professor of atmospheric science at CSU.\n\nRasmussen emphasized that the technology remains under development, but CSU’s extensive experience with radar and severe weather research provides a strong foundation.\n\nColorado is among the nation’s most hail-prone states, with storms regularly causing extensive damage to roofs, vehicles, agricultural operations, and commercial properties.\n\nHail damage has also become a major contributor to rising homeowners insurance premiums statewide.\n\nResearchers say the timing and intensity of damaging storms are changing, creating additional challenges for forecasters and insurers.\n\n“The windo",
+  "begyujtve": "2026-11-02T17:49:45.575933+00:00",
+  "prioritas": {
+    "pont": 45,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 60,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 20
+    },
+    "elofeszures": 74,
+    "tanult": 20,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -7.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-02T17:49:49+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-02T17:49:50+00:00"
+}

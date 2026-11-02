@@ -1,0 +1,49 @@
+{
+  "id": "de14340539ff",
+  "slug": "build-efficient-agents-with-knowledge-distillation-on-amazon",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/build-efficient-agents-with-knowledge-distillation-on-amazon-sagemaker-ai/",
+  "publikalva": "2026-11-02T17:01:31+00:00",
+  "cim": "Build efficient agents with knowledge distillation on Amazon SageMaker AI",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 46 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/10/28/ML-22281-featured-image.png"
+  },
+  "cim_eredeti": "Build efficient agents with knowledge distillation on Amazon SageMaker AI",
+  "szoveg_eredeti": "You built a shopping assistant on a frontier model, and it works. A shopper asks for “a black waist bag under twenty dollars from a shop with at least 4.5 stars,” and the agent searches the catalog, inspects candidates, checks the constraints, and commits to a recommendation. But what does that interaction actually cost? An agentic assistant is not one model call, it is a loop: search, read results, refine, verify, decide. A single completed task can be multiple calls to that frontier model, and you pay for every one, on every shopper. At production scale, that per-task cost compounds, erodes the project’s ROI, and stops the project from shipping.\n\nOne way to make an agentic application more efficient is to use a smaller model, which is faster to respond and more cost-effective to host. The catch is quality: a smaller model usually falls short on the task, which is why the larger one was chosen in the first place. Knowledge distillation closes that gap by transferring the behavior of the larger “teacher” model into a smaller “student”, training the student to reproduce the teacher’s outputs, so it keeps much of the quality at the smaller model’s speed and cost.\n\nIn this post you will learn how to use knowledge distillation, and specifically sequence-level knowledge distillation (SeqKD), to fine-tune a shopping agent on Amazon SageMaker AI. We cover how to generate high-quality multi-step trajectories with a frontier teacher and keep the ones that solve the task, how to encode them for supervised fine-tuning, how to run the training on serverless infrastructure, and how to evaluate the student against a held-out benchmark.\n\nFigure 1: One agentic task is a loop, not a single call: the agent searches, reads results, refines, verifies, and decides, and each step is a separate billed call to the frontier model. A single completed task can be multiple calls, on every shopper\n\nThe simplest applicable form of distillation is sequence-level knowledge distillation (SeqKD). It uses a teacher model to generate high-quality responses, then trains a student model on those responses with supervised fine-tuning (SFT). SeqKD needs only the teacher’s text, with no access to teacher logits and no reinforcement-learning infrastructure, so it works even with a closed or API-only teacher. Compared to other approaches such as logit-based or on-policy, it sits at the most cost-effective and portable end of the distillation spectrum. The teacher writes the answers, and the student is fine-tuned on them. Because those answers persist as a dataset, you can reuse them to train or test different students without regenerating the data.\n\nIn principle, you would want the student to match the teacher’s full distribution over possible outputs. The caveat here is that you can’t. The space of possible sequences is astronomically large, so matching it exactly isn’t feasible. SeqKD sidesteps that by approximating it with samples the teacher actually produces.\n\nFor an agent, the sequence the teacher produces is not a block of prose but a trajectory, an ordered run of reasoning, tool calls, and the observations they return, where each step is conditioned on everything before it. Training the student on that whole sequence teaches it the reasoning that leads to each action and the multi-step course of action itself, not a single paragraph of answer text. That makes an agentic task one of the cleanest illustrations of sequence-level KD, because the sequence being copied is the behavior itself.\n\nFigure 2: SeqKD transfers behavior through the teacher’s text outputs alone: the teacher generates trajectories, the student trains on them, and the result keeps much of the teacher’s quality at the small model’s speed and cost. No teacher weights, logits, or gradients are required during training, so it runs as ordinary supervised fine-tuning\n\nSeqKD fits a specific set of situations:\n\nYou have the inputs but no high-quality target outputs\n\nThis is the core case for SeqKD, which is fundamentally data generation. You supply the inputs, and the teacher writes the targets, so you can fine-tune on a task or domain that has no existing high-quality labels. The targets can be as simple as single answers or as involved as multi-turn tool-use trajectories. This post takes the demanding end of that spectrum, agentic trajectories, which are especially hard to source. A single task branches into many partially correct runs, and telling a solved run from a failed one takes a reliable grader. A benchmark with a programmatic scorer supplies exactly that, so you can let the teacher generate trajectories and keep only the ones that solve the task.\n\nYour teacher is a frontier model you can only reach through an API\n\nThis is the normal case for frontier models. You can’t access the weights to host it yourself, you can’t read its logits, and you can’t fine-tune it. That rules out logit-based distillation and on-policy methods, which all need that internal access. SeqKD needs only the teacher’s text responses, so it is the one approach that still works, and it frees you from paying frontier prices on every request after the student takes over.\n\nYou want a strong, cost-effective first step\n\nSome of the strongest small reasoning models were built in significant part with SeqKD (supervised fine-tuning on teacher reasoning traces), so it is an effective starting point for reasoning transfer when the setup is right. The DeepSeek-R1 distilled models are a well-known example: the reasoning of a large teacher was distilled into smaller Qwen and Llama students by fine-tuning them on the teacher’s generated reasoning traces.\n\nThis section walks the pipeline from end to end. A frontier teacher, GLM-5.3 on Amazon Bedrock, acts as the ShoppingBench agent to generate trajectories. The benchmark’s own scorer keeps only the ones that solve the task, and those solved trajectories fine-tune a Qwen3.5-4B student with serverless supervised fine-tuning on SageMaker AI model customization. The distilled student is then evaluated on a held-out ShoppingBench split and served behind a SageMaker AI Inference real-time endpoint that runs the tool loop.\n\nFigure 3: Distilling a shopping agent on Amazon SageMaker AI: a frontier teacher on Amazon Bedrock acts as the ShoppingBench agent on the training problems, ShoppingBench’s own scorer keeps only the trajectories that solve the task (rejection sampling), each solved trajectory is encoded per step, the student is fine-tuned serverlessly with Amazon SageMaker AI model customization, and the result is evaluated on the held-out ShoppingBench test split\n\nSourcing trajectories worth imitating is the hard part, and the ShoppingBench scorer is what separates the successful runs from the failed ones. ShoppingBench publishes 750 synthesized shopping problems, 250 each for the product, shop, and voucher intents, each with a hidden gold answer and the constraints that define success. We split them once into 426 training problems and 324 held-out evaluation problems (product 103, shop 105, voucher 116), as fixed indices so the two sets don’t overlap.\n\nFor each training problem, a frontier teacher, GLM-5.3 on Amazon Bedrock with reasoning on and temperature 1.0, acts as the ShoppingBench agent. It searches the catalog of about 2.7 million products, inspects candidates, and recommends the ones that meet the constraints. We sample the teacher twice per problem, which gives 850 trajectories, then let ShoppingBench’s own scorer keep only the ones that solve the task. Temperature 1.0 is deliberate. Sampling rather than greedy decoding makes the two attempts explore different queries and reasoning paths, which gives more problems at least one solved trajectory and a more diverse set to learn from. This rejection-sampling step turns a capable-but-imperfect teacher into a clean training set, since the teacher only has to be right often enough that the solved runs are worth imitating.\n\nEach solved trajectory is a comple",
+  "begyujtve": "2026-11-02T17:49:43.765685+00:00",
+  "prioritas": {
+    "pont": 46,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 60,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 26
+    },
+    "elofeszures": 74,
+    "tanult": 26,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -7.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-02T17:49:49+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-02T17:49:50+00:00"
+}
