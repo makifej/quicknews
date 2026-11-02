@@ -630,7 +630,7 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
   var ido = Number(s('qn-hl-ido') || 0), CEL = elonezet ? 2 : 20, kesz = false;
   var tik = setInterval(function(){
     // a sütisávra adott válasz előtt nem számol, hogy a két ablak ne kerüljön egymásra
-    if (document.visibilityState !== 'visible' || kesz || !document.documentElement.classList.contains('suti-van')) return;
+    if (document.visibilityState !== 'visible' || kesz || !document.documentElement.classList.contains('suti-van') || document.documentElement.classList.contains('hl-nyitva')) return;
     ido += 1; s('qn-hl-ido', ido);
     if (ido >= CEL) { kesz = true; clearInterval(tik); nyit(); }
   }, 1000);
@@ -674,6 +674,65 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
         }).catch(function(){ uz.textContent = 'Most nem érjük el a szervert, próbáld újra.'; uz.className = 'hl-uzenet hiba'; gomb.disabled = false; });
     });
   }
+})();
+// Videós útmutató-gyűjtő (Heni 2026-11-02): a cikk oldalsávjában lévő videóra kattintva felugrik a videó, alatta/mellette az
+// e-mail-cím és a választás (csak az útmutató, vagy a hírlevél is). A kérés az /api/utmutato végpontra megy, a levelet az küldi.
+(function(){
+  var doboz = document.querySelector('.utm[data-utm]');
+  if (!doboz) return;
+  if (doboz.hasAttribute('data-utm-elonezet')) { if (!/[?&]utmutato=elonezet/.test(location.search)) return; doboz.hidden = false; }
+  var D = doboz.dataset;
+  function nyit(){
+    var d = document.createElement('div');
+    d.className = 'hl-hatter utm-hatter';
+    d.innerHTML = '<div class="hl-ablak utm-ablak" role="dialog" aria-modal="true" aria-labelledby="utm-ablak-cim">' +
+      '<button type="button" class="hl-zar" aria-label="Bezárás">×</button>' +
+      '<div class="utm-racs"><div class="utm-video"><video controls playsinline preload="metadata"></video></div>' +
+      '<div class="utm-fej"><p class="hl-felirat">Ingyenes gyakorlati útmutató</p>' +
+      '<h2 id="utm-ablak-cim"></h2><p class="hl-szoveg utm-anyag"></p></div>' +
+      '<div class="utm-urlap-resz"><form class="hl-urlap" novalidate><label class="hl-cimke" for="utm-email-mezo">Hova küldjük?</label>' +
+      '<input id="utm-email-mezo" type="email" name="email" placeholder="nev@pelda.hu" autocomplete="email" required>' +
+      '<fieldset class="utm-valaszt"><legend class="hl-rejtett">Mit kérsz?</legend>' +
+      '<label><input type="radio" name="utm-hl" value="0" checked><span>Csak az útmutatót kérem</span></label>' +
+      '<label><input type="radio" name="utm-hl" value="1"><span>Az útmutató mellé a napi AI-hírlevelet is kérem</span></label></fieldset>' +
+      '<button type="submit">Kérem az útmutatót</button></form>' +
+      '<p class="hl-uzenet" role="status" aria-live="polite"></p>' +
+      '<p class="hl-jog">Az e-mail-címedre elküldjük az útmutatót. Hírlevelet csak akkor kapsz, ha azt is kérted, és bármikor leiratkozhatsz. <a href="/adatvedelem#utmutato">Részletek</a></p>' +
+      '</div></div></div>';
+    d.querySelector('h2').textContent = D.utmCim;
+    d.querySelector('.utm-anyag').textContent = D.utmAnyag;
+    var v = d.querySelector('video'); v.poster = D.utmPoster; v.src = D.utmVideo;
+    document.body.appendChild(d);
+    var elozo = document.activeElement, mezo = d.querySelector('input[type=email]'), uz = d.querySelector('.hl-uzenet');
+    document.documentElement.classList.add('hl-nyitva');
+    setTimeout(function(){ d.classList.add('bent'); }, 30);
+    // a kattintás felhasználói mozdulat, így hanggal indulhat; ha a böngésző mégsem engedi, némán indul
+    try { var p = v.play(); if (p && p.catch) p.catch(function(){ v.muted = true; v.play().catch(function(){}); }); } catch(e) {}
+    try { if (window.gtag) gtag('event', 'utmutato_video', {anyag: D.utm}); } catch(e) {}
+    function zar(){ try { v.pause(); } catch(e) {} d.classList.remove('bent'); document.documentElement.classList.remove('hl-nyitva');
+      setTimeout(function(){ d.remove(); if (elozo && elozo.focus) try { elozo.focus({preventScroll: true}); } catch(e) {} }, 400);
+      document.removeEventListener('keydown', bill); }
+    function bill(e){ if (e.key === 'Escape') zar(); }
+    document.addEventListener('keydown', bill);
+    d.addEventListener('click', function(e){ if (e.target === d) zar(); });
+    d.querySelector('.hl-zar').onclick = zar;
+    setTimeout(function(){ try { d.querySelector('.hl-zar').focus({preventScroll: true}); } catch(e) {} }, 350);
+    d.querySelector('form').addEventListener('submit', function(e){
+      e.preventDefault(); var gomb = d.querySelector('form button'); var cim = mezo.value.trim();
+      var hl = (d.querySelector('input[name=utm-hl]:checked') || {}).value === '1';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cim)) { uz.textContent = 'Ez a cím nem tűnik érvényesnek.'; uz.className = 'hl-uzenet hiba'; mezo.focus(); return; }
+      gomb.disabled = true; uz.textContent = ''; uz.className = 'hl-uzenet';
+      fetch('/api/utmutato', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({email: cim, anyag: D.utm, hirlevel: hl, cikk: D.utmCikk})})
+        .then(function(r){ return r.json(); }).then(function(j){
+          if (j.rendben) { d.querySelector('.hl-ablak').classList.add('sikeres'); d.querySelector('form').hidden = true;
+            uz.textContent = j.uzenet || 'Elküldtük az útmutatót.';
+            if (hl) try { localStorage.setItem('qn-hl-kesz', '1'); } catch(e) {}
+            try { if (window.gtag) gtag('event', 'utmutato_keres', {anyag: D.utm, hirlevel: hl ? 'igen' : 'nem'}); } catch(e) {} }
+          else { uz.textContent = j.uzenet || 'Nem sikerült, próbáld újra.'; uz.className = 'hl-uzenet hiba'; gomb.disabled = false; }
+        }).catch(function(){ uz.textContent = 'Most nem érjük el a szervert, próbáld újra.'; uz.className = 'hl-uzenet hiba'; gomb.disabled = false; });
+    });
+  }
+  doboz.querySelectorAll('[data-utm-nyit]').forEach(function(g){ g.addEventListener('click', nyit); });
 })();
 // Mentett hírek (Heni 2026-10-13): piros „Elolvasom később” jel a híreken és a cikkoldalon. A lista csak a böngészőben
 // él (localStorage qn-mentett, legfeljebb 200 elem), szerverre nem megy. A /mentett oldal a kereso.json alapján rajzol,
