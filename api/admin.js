@@ -152,10 +152,11 @@ async function utmutatoAdat() {
     let v = {};
     try { v = JSON.parse(k[i + 1]) || {}; } catch (e) { /* hibás bejegyzés */ }
     const [email, anyag] = String(k[i]).split("|");
-    // kiment: Heni pipája a pultban („már kiküldtem”); amíg nem nyúlt hozzá, az automatikus levél sikere számít
+    // kiment: Heni saját pipája a pultban („Útmutató kiküldve”, Heni 2026-11-02): alapból üres, csak az ő jelölése számít.
+    // A kuldve külön mutatja, hogy a gép automatikus levele kiment-e.
     const kuldve = v.kuldve !== false;
     lista.push({ email, anyag, ido: v.ido || "", hirlevel: !!v.hirlevel, cikk: v.cikk || "", kuldve,
-      kiment: v.kiment ? !!v.kiment.ertek : kuldve, kiment_ido: v.kiment ? v.kiment.ido || "" : "", kezi: !!v.kiment });
+      kiment: v.kiment ? !!v.kiment.ertek : false, kiment_ido: v.kiment ? v.kiment.ido || "" : "", kezi: !!v.kiment });
   }
   lista.sort((a, b) => String(b.ido).localeCompare(String(a.ido)));
   const anyagok = {};
