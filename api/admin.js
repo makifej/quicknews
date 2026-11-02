@@ -145,12 +145,14 @@ async function booMuvelet(b) {
 // ---- Videós útmutató-kérések (Heni 2026-11-02): ki melyik videóhoz kérte a gyakorlati útmutatót (api/utmutato.js) ----
 const UTM = "qn:utmutato";
 const UTM_ANYAGOK = require("./_utmutatok.json");
+const UTM_MEGORZES = 365 * 864e5; // az adatvédelmi tájékoztató szerint a kéréseket 1 évig őrizzük (Heni 2026-11-02)
 async function utmutatoAdat() {
   const k = (await kv("HGETALL", UTM)) || [];
-  const lista = [];
+  const lista = [], lejart = [];
   for (let i = 0; i < k.length; i += 2) {
     let v = {};
     try { v = JSON.parse(k[i + 1]) || {}; } catch (e) { /* hibás bejegyzés */ }
+    if (v.ido && Date.now() - Date.parse(v.ido) > UTM_MEGORZES) { lejart.push(k[i]); continue; }
     const [email, anyag] = String(k[i]).split("|");
     // kiment: Heni saját pipája a pultban („Útmutató kiküldve”, Heni 2026-11-02): alapból üres, csak az ő jelölése számít.
     // A kuldve külön mutatja, hogy a gép automatikus levele kiment-e.
@@ -158,6 +160,7 @@ async function utmutatoAdat() {
     lista.push({ email, anyag, ido: v.ido || "", hirlevel: !!v.hirlevel, cikk: v.cikk || "", kuldve,
       kiment: v.kiment ? !!v.kiment.ertek : false, kiment_ido: v.kiment ? v.kiment.ido || "" : "", kezi: !!v.kiment });
   }
+  if (lejart.length) await kv("HDEL", UTM, ...lejart);
   lista.sort((a, b) => String(b.ido).localeCompare(String(a.ido)));
   const anyagok = {};
   for (const [id, a] of Object.entries(UTM_ANYAGOK)) anyagok[id] = { cim: a.cim, datum: a.datum, aktiv: !!a.aktiv };
