@@ -1232,6 +1232,19 @@ document.addEventListener('click', function(ev){
   var sav = document.querySelector('[data-esti]'); if (!sav) return;
   var gomb = sav.querySelector('.esti-gomb'), idoEl = sav.querySelector('[data-esti-ido]'), hang = null;
   var ido = function(s){ s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); };
+  // megjegyzi, hol tartott a hallgatás (Heni 2026-11-02, mint az appban): megállítás, lapozás, másik oldal után innen folytatja.
+  // Adásonként egy kulcs, a végére érve törlődik. A tárolás hibája (privát mód) nem akadályozza a lejátszást.
+  var hely = 'qn-esti-hely:' + sav.getAttribute('data-src'), mentve = 0;
+  try { mentve = parseFloat(localStorage.getItem(hely)) || 0; } catch (e) {}
+  var ment = function(){
+    if (!hang) return;
+    try {
+      if (hang.ended || hang.currentTime < 1) localStorage.removeItem(hely);
+      else localStorage.setItem(hely, hang.currentTime.toFixed(1));
+    } catch (e) {}
+  };
+  var mp0 = +sav.getAttribute('data-mp') || 0;
+  if (mentve > 1 && (!mp0 || mentve < mp0 - 1)) idoEl.textContent = ido(mp0 - mentve); else mentve = 0;
   var rajz = function(){
     var megy = hang && !hang.paused;
     sav.classList.toggle('szol', !!megy);
@@ -1272,7 +1285,13 @@ document.addEventListener('click', function(ev){
       hang = new Audio(sav.getAttribute('data-src')); hang.preload = 'auto';
       hang.addEventListener('play', indit); hang.addEventListener('pause', indit);
       ['play', 'pause', 'timeupdate', 'ended', 'loadedmetadata'].forEach(function(t){ hang.addEventListener(t, rajz); });
-      hang.addEventListener('ended', function(){ hang.currentTime = 0; rajz(); });
+      hang.addEventListener('ended', function(){ hang.currentTime = 0; rajz(); try { localStorage.removeItem(hely); } catch (e) {} });
+      if (mentve > 1) hang.addEventListener('loadedmetadata', function(){ if (mentve < hang.duration - 1) hang.currentTime = mentve; mentve = 0; }, { once: true });
+      var utolso = 0;
+      hang.addEventListener('timeupdate', function(){ if (Math.abs(hang.currentTime - utolso) >= 2) { utolso = hang.currentTime; ment(); } });
+      hang.addEventListener('pause', ment);
+      window.addEventListener('pagehide', ment);
+      document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'hidden') ment(); });
       if ('mediaSession' in navigator) {
         navigator.mediaSession.metadata = new MediaMetadata({ title: sav.getAttribute('data-cim'), artist: 'quicknews.hu',
           artwork: [{ src: '/assets/qn-ikon-512.png', sizes: '512x512', type: 'image/png' }] });
