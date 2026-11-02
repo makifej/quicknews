@@ -142,6 +142,29 @@ async function booMuvelet(b) {
   return [400, { hiba: "Rossz kérés." }];
 }
 
+// ---- Videós útmutató-kérések (Heni 2026-11-02): ki melyik videóhoz kérte a gyakorlati útmutatót (api/utmutato.js) ----
+const UTM = "qn:utmutato";
+const UTM_ANYAGOK = require("./_utmutatok.json");
+async function utmutatoAdat() {
+  const k = (await kv("HGETALL", UTM)) || [];
+  const lista = [];
+  for (let i = 0; i < k.length; i += 2) {
+    let v = {};
+    try { v = JSON.parse(k[i + 1]) || {}; } catch (e) { /* hibás bejegyzés */ }
+    const [email, anyag] = String(k[i]).split("|");
+    lista.push({ email, anyag, ido: v.ido || "", hirlevel: !!v.hirlevel, cikk: v.cikk || "", kuldve: v.kuldve !== false });
+  }
+  lista.sort((a, b) => String(b.ido).localeCompare(String(a.ido)));
+  const anyagok = {};
+  for (const [id, a] of Object.entries(UTM_ANYAGOK)) anyagok[id] = { cim: a.cim, datum: a.datum, aktiv: !!a.aktiv };
+  return { darab: lista.length, lista, anyagok, ido: new Date().toISOString() };
+}
+async function utmutatoMuvelet(b) {
+  const email = String(b.email || "").trim().toLowerCase(), anyag = String(b.anyag || "");
+  if (b.muvelet === "torol" && email && anyag) { await kv("HDEL", UTM, email + "|" + anyag); return [200, { ok: true }]; }
+  return [400, { hiba: "Rossz kérés." }];
+}
+
 // ---- Google AdSense futásidejű kapcsoló (Heni 2026-10-20): qn:adsense_ki = "1" -> az oldal nem tölti be a hirdetéseket (api/adsense.js) ----
 async function adsenseAdat() { return { be: (await kv("GET", "qn:adsense_ki")) !== "1" }; }
 async function adsenseKapcsol(b) {
@@ -335,6 +358,8 @@ module.exports = async (req, res) => {
       }
       if (mi === "prioritas_dontes_gep" && req.method === "POST") { const [k, v] = await prioritasDontes(await torzs(req), "Heni (gépi pult)"); return json(res, k, v); }
       if (mi === "boo_gep") return json(res, 200, await booAdat());
+      if (mi === "utmutato_gep") return json(res, 200, await utmutatoAdat());
+      if (mi === "utmutato_muvelet_gep" && req.method === "POST") { const [k, v] = await utmutatoMuvelet(await torzs(req)); return json(res, k, v); }
       if (mi === "adsense_gep") return json(res, 200, await adsenseAdat());
       if (mi === "adsense_kapcsol_gep" && req.method === "POST") { const [k, v] = await adsenseKapcsol(await torzs(req)); return json(res, k, v); }
       if (mi === "boo_muvelet_gep" && req.method === "POST") { const [k, v] = await booMuvelet(await torzs(req)); return json(res, k, v); }
@@ -600,6 +625,8 @@ module.exports = async (req, res) => {
       return json(res, 200, { ok: true });
     }
     if (mi === "boo") return json(res, 200, await booAdat());
+    if (mi === "utmutato") return json(res, 200, await utmutatoAdat());
+    if (mi === "utmutato_muvelet" && req.method === "POST") { const [k, v] = await utmutatoMuvelet(await torzs(req)); return json(res, k, v); }
     if (mi === "adsense") return json(res, 200, await adsenseAdat());
     if (mi === "adsense_kapcsol" && req.method === "POST") { const [k, v] = await adsenseKapcsol(await torzs(req)); return json(res, k, v); }
     if (mi === "boo_muvelet" && req.method === "POST") { const [k, v] = await booMuvelet(await torzs(req)); return json(res, k, v); }

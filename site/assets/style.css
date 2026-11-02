@@ -1648,3 +1648,39 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
   .esti-szoveg { flex: 1; }
   .esti-eq { flex: 1 1 100%; order: 3; height: 40px; gap: 2px; }
 }
+
+/* ===== Videós útmutató-gyűjtő (Heni 2026-11-02): oldalsáv-doboz a szavazás alatt + felugró ablak a videóval ===== */
+.utm { padding: 20px; background: var(--bg-2); border: 1px solid var(--keret); border-radius: var(--sugar); }
+.utm[hidden] { display: none; }
+.utm-felirat { margin: 0 0 12px; color: var(--kiemelo-szin); font-weight: 700; font-size: 14px; line-height: 20px; letter-spacing: 0.08em; text-transform: uppercase; }
+.utm-kep { position: relative; display: block; width: 100%; padding: 0; border: 0; border-radius: 12px; overflow: hidden; background: #0e0e0e; cursor: pointer; }
+.utm-kep img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 700ms var(--gorbe); }
+.utm-jatszo { position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px 8px 10px; border-radius: 999px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font-weight: 800; font-size: 15px; line-height: 20px; }
+.utm-jatszo svg { width: 20px; height: 20px; }
+@media (hover: hover) and (pointer: fine) { .utm-kep:hover img { transform: scale(1.03); } }
+.utm-kep:focus-visible, .utm-gomb:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
+.utm h2 { margin: 16px 0 8px; font-size: 20px; line-height: 26px; font-weight: 800; color: var(--szoveg); text-wrap: balance; }
+.utm-szoveg { margin: 0 0 16px; font-size: 15px; line-height: 22px; color: var(--szoveg-2); text-wrap: pretty; }
+.utm-gomb { width: 100%; min-height: 48px; padding: 12px 16px; border: 0; border-radius: 12px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font: 800 16px/22px Manrope, system-ui, sans-serif; cursor: pointer; text-wrap: balance; }
+.utm-ablak { width: min(880px, 100%); padding: 32px; }
+.utm-racs { display: grid; grid-template-columns: 300px 1fr; gap: 32px; align-items: start; }
+.utm-video { border-radius: 16px; overflow: hidden; background: #0e0e0e; }
+.utm-video video { display: block; width: 100%; aspect-ratio: 9 / 16; max-height: calc(100dvh - 96px); background: #0e0e0e; }
+.utm-jobb { padding-top: 8px; }
+.utm-jobb h2 { padding-right: 40px; }
+.utm-valaszt { margin: 4px 0 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 8px; }
+.utm-valaszt label { display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; border: 1px solid var(--keret-eros); border-radius: 12px; background: var(--bg); color: var(--szoveg); font-size: 16px; line-height: 22px; cursor: pointer; }
+.utm-valaszt label:has(input:checked) { border-color: var(--kiemelo); }
+.hl-ablak .utm-valaszt input { width: 20px; height: 20px; min-height: 0; margin: 1px 0 0; padding: 0; flex: 0 0 auto; accent-color: var(--kiemelo); }
+.utm-ablak.sikeres .utm-valaszt { display: none; }
+@media (max-width: 759px) {
+  .utm-ablak { width: min(480px, 100%); }
+  .utm-racs { grid-template-columns: 1fr; gap: 24px; }
+  .utm-video { justify-self: center; width: auto; }
+  .utm-video video { width: auto; height: min(56dvh, 520px); max-height: none; max-width: 100%; }
+}
+@media (max-width: 599px) {
+  .utm-ablak { width: 100%; padding: 56px 16px 16px; }
+  .utm-video video { height: min(48dvh, 420px); }
+  .utm-jobb { padding-top: 0; }
+}
