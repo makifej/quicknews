@@ -1,0 +1,49 @@
+{
+  "id": "ce16d3e02a32",
+  "slug": "deep-principle-releases-hydrogen-1-0-a-753b-open-weight-model-for",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/02/deep-principle-hydrogen-1-0-open-weight-scientific-model/",
+  "publikalva": "2026-11-02T18:41:41+00:00",
+  "cim": "Deep Principle Releases Hydrogen-1.0: A 753B Open-Weight Model for Scientific Discovery",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 48 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-88881-4-scaled.png"
+  },
+  "cim_eredeti": "Deep Principle Releases Hydrogen-1.0: A 753B Open-Weight Model for Scientific Discovery",
+  "szoveg_eredeti": "Deep Principle has released Hydrogen-1.0 , an open-weight scientific model for chemistry, materials science and life sciences. It is built by post-training Z.ai’s GLM-5.3 on domain data, laboratory records and agent discovery trajectories. For developers, it offers open weights that report a FrontierScience-Research win over GPT-6-Astra. The weights ship under the MIT License.\n\n TL;DR \n\n Size: 753B parameters (MoE, ~40B active per the GLM-5.3 base), 1M-token context, 128K max output.\n\n Runs on: 8 GPUs with SGLang (tested); NVFP4 for NVIDIA B200/B300, MXFP4 for AMD MI350X/MI355X.\n\n Performance: Beats GPT-6-Astra on FrontierScience-Research; roughly matches Kimi-K3 on GPQA-Diamond.\n\n Best: 38.3% on FrontierScience-Research vs 33.3% for GPT-6-Astra (self-reported).\n\n Worst: Trails GPT-6-Astra (max thinking) by 3.33 points on NMR structure elucidation.\n\n What is Hydrogen-1.0? \n\n Hydrogen-1.0 is a scientific research assistant model from Deep Principle, a Hangzhou-based AI-for-materials company. The model card describes it as a GLM-5.3 derivative for scientific problem solving. It targets question framing, experiment planning, results analysis and open-ended discovery. Deep Principle team states that proprietary models produced recent AI science results, but their discovery capabilities are not open. Hydrogen-1.0 is its attempt at a reproducible, inspectable alternative.\n\n How was Hydrogen-1.0 trained? \n\n The pipeline combines supervised fine-tuning (SFT) with reinforcement learning (RL). Data comes from 4 sources: \n\n Domain knowledge: chemistry, materials science and life sciences data.\n\n Research scenarios: task-specific feedback from Deep Principle scientists.\n\n Laboratory records: full-cycle electronic lab notebook records captured through Mira .\n\n Discovery trajectories: sequences of choices and feedback, including failed attempts.\n\n Infrastructure builds on Megatron and SGLang across NVIDIA CUDA and AMD ROCm. The team keeps dynamic sparse attention causal across context-parallel shards. Muon optimizer state is moved between CPU, GPU and disk per backend. RL uses resumable rollouts, and each token keeps its original behavior log-probability for importance correction. A layout adapter converts training checkpoints into BF16 and 128×128 blockwise FP8 inference weights. Full datasets and recipes are not released.\n\n How does Hydrogen-1.0 perform on benchmarks? \n\n On public benchmarks, Deep Principle reports Hydrogen-1.0 outperforms GPT-6-Astra on FrontierScience-Research. The tweet thread from one of the founders’ report 93.0% on GPQA-Diamond. That improves on GLM-5.3 and roughly matches Kimi-K3, per the blog.\n\n Internal research-task evals compare it with GPT-6-Astra at maximum thinking:\n\n Scientific computing: Hydrogen-1.0 leads by 5.13 percentage points.\n\n Forward reaction prediction: Hydrogen-1.0 leads by 4.76 percentage points.\n\n NMR structure elucidation: GPT-6-Astra leads by 3.33 points.\n\n In transition metal complex design, models chased a larger HOMO-LUMO gap over 5 rounds. By round 5, Hydrogen-1.0 reached a mean best-so-far gap of 4.318 eV. GPT-6-Astra reached 3.689 eV and Kimi-K3 reached 3.353 eV. On 117 experiment-planning questions, Hydrogen-1.0 scored above Kimi-K3. GPT-6-Astra and Opus-5.5 were excluded after refusing more than 50% of requests.\n\n What can it do in a real lab workflow?\n\n The technical post shows 4 demos . Hydrogen-1.0 writes Python to build a polyethylene melt and runs GROMACS. It detects a topology error, repairs it, and analyzes the corrected 40 ns trajectory. It grows an Ireland-Claisen reaction network of 27 structures through 30 plausible reactions. It ranks 7 candidate monoformylation products of 2-bromonaphthalene from a 1H NMR trace. It also writes a JSON protocol for a 12-vial Suzuki coupling study. A virtual lab compilation step catches an aspiration without a fresh tip before execution.\n\n How do you deploy Hydrogen-1.0? \n\n Weights are on Hugging Face and ModelScope . Deep Principle team tested BF16 serving with SGLang on 8 GPUs using tensor parallelism of 8. NVFP4 targets NVIDIA B200 and B300. MXFP4 targets AMD Instinct MI350X and MI355X. The server exposes an OpenAI-compatible API with a reasoning_effort setting.\n\n Hydrogen-1.0 vs GLM-5.3, Kimi K3 and GPT-6-Astra \n\n Feature Hydrogen-1.0 GLM-5.3 Kimi K3 GPT-6-Astra Developer Deep Principle Z.ai Moonshot AI OpenAI Total params 753B 753B ( HF ) 2.8T Not disclosed Active params ~40B (inherited) 40B ( LM Studio ) 16 of 896 experts Not disclosed Context 1M 1M 1M 1.05M Weights / license Open, MIT Open, GLM-5.3 License Open Proprietary Modality Text Text Text + vision Not disclosed here Science focus Chemistry, materials, life sciences Coding, agents General General FrontierScience-Research 38.3% Not disclosed Not disclosed 33.3% (per Deep Principle) GPQA-Diamond 93.0% Not disclosed Not disclosed 96.0% (OpenAI-reported) API price (in/out per 1M) NeuroSpark: Not disclosed $1.40 / $4.40 ( Z.ai ) $3.00 / $15.00 $10.00 / $50.00 ( OpenAI ) \n\n Key Takeaways \n\n Hydrogen-1.0 is an MIT-licensed, 753B GLM-5.3 post-train for science.\n\n It reports 38.3% on FrontierScience-Research, above GPT-6-Astra’s 33.3%.\n\n Training adds lab records and discovery trajectories, not just papers.\n\n It still trails GPT-6-Astra on NMR structure elucidation.\n\n NVFP4 and MXFP4 builds target Blackwell and MI350-class GPUs.\n\n Check out the Technical blog , Model weights on Hugging Face and Usage notes . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Deep Principle Releases Hydrogen-1.0: A 753B Open-Weight Model for Scientific Discovery appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-02T19:04:18.552067+00:00",
+  "prioritas": {
+    "pont": 48,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 62,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 63
+    },
+    "elofeszures": 96,
+    "tanult": 63,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -8.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-02T19:04:24+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-02T19:04:24+00:00"
+}
