@@ -752,8 +752,11 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     var sor = gy.querySelector('[data-gyu-sor]');
     var lapok = sor ? sor.querySelectorAll('.gyu-kartya') : [];
     if (lapok.length < 2) return;
-    var pontok = gy.querySelectorAll('[data-gyu-pont]'), akt = 0, ido = null, megall = false, lathato = false;
+    var pontok = gy.querySelectorAll('[data-gyu-pont]'), lapozo = gy.querySelector('.gyu-lapozo'), akt = 0, ido = null, megall = false, lathato = false;
     var csendes = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // ha minden kártya elfér (asztalon a kettő egymás mellett), nincs lapozó és nem lapoz magától
+    function elfer(){ return sor.scrollWidth <= sor.clientWidth + 2; }
+    function igazit(){ var e = elfer(); if (lapozo) lapozo.hidden = e; if (e && sor.scrollLeft) sor.scrollLeft = 0; }
     function jelol(i){ akt = i; pontok.forEach(function(p, k){ p.setAttribute('aria-current', k === i ? 'true' : 'false'); }); }
     function ugrik(i){
       i = (i + lapok.length) % lapok.length;
@@ -762,7 +765,7 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
       jelol(i);
     }
     function megy(){ return [].some.call(sor.querySelectorAll('video'), function(v){ return !v.paused; }); }
-    function ujra(){ clearInterval(ido); ido = setInterval(function(){ if (!csendes && lathato && !megall && !megy()) ugrik(akt + 1); }, 8000); }
+    function ujra(){ clearInterval(ido); ido = setInterval(function(){ if (!csendes && lathato && !megall && !megy() && !elfer()) ugrik(akt + 1); }, 8000); }
     gy.querySelector('[data-gyu-elozo]').addEventListener('click', function(){ ugrik(akt - 1); ujra(); });
     gy.querySelector('[data-gyu-kov]').addEventListener('click', function(){ ugrik(akt + 1); ujra(); });
     pontok.forEach(function(p){ p.addEventListener('click', function(){ ugrik(+p.dataset.gyuPont); ujra(); }); });
@@ -774,6 +777,9 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     gy.addEventListener('mouseleave', function(){ megall = false; });
     gy.addEventListener('focusin', function(){ megall = true; });
     gy.addEventListener('focusout', function(){ megall = false; });
+    if (window.ResizeObserver) new ResizeObserver(igazit).observe(sor);
+    window.addEventListener('resize', igazit);
+    igazit();
     ujra();
   });
 })();
