@@ -744,6 +744,39 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     });
   }
 })();
+// Gyakorlati útmutatók körhintája (Heni 2026-11-02): egyszerre egy kártya látszik, nyíllal és pöttyel váltható, mobilon
+// húzással is. Magától is továbblép 8 másodpercenként, de csak ha a sáv látszik, nincs rajta az egér vagy a fókusz, és
+// nem megy videó; a mozgáscsökkentést kérő böngészőben nem lapoz magától.
+(function(){
+  document.querySelectorAll('.gyu').forEach(function(gy){
+    var sor = gy.querySelector('[data-gyu-sor]');
+    var lapok = sor ? sor.querySelectorAll('.gyu-kartya') : [];
+    if (lapok.length < 2) return;
+    var pontok = gy.querySelectorAll('[data-gyu-pont]'), akt = 0, ido = null, megall = false, lathato = false;
+    var csendes = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function jelol(i){ akt = i; pontok.forEach(function(p, k){ p.setAttribute('aria-current', k === i ? 'true' : 'false'); }); }
+    function ugrik(i){
+      i = (i + lapok.length) % lapok.length;
+      sor.querySelectorAll('video').forEach(function(v){ if (!v.paused) v.pause(); });
+      sor.scrollTo({left: lapok[i].offsetLeft - lapok[0].offsetLeft, behavior: csendes ? 'auto' : 'smooth'});
+      jelol(i);
+    }
+    function megy(){ return [].some.call(sor.querySelectorAll('video'), function(v){ return !v.paused; }); }
+    function ujra(){ clearInterval(ido); ido = setInterval(function(){ if (!csendes && lathato && !megall && !megy()) ugrik(akt + 1); }, 8000); }
+    gy.querySelector('[data-gyu-elozo]').addEventListener('click', function(){ ugrik(akt - 1); ujra(); });
+    gy.querySelector('[data-gyu-kov]').addEventListener('click', function(){ ugrik(akt + 1); ujra(); });
+    pontok.forEach(function(p){ p.addEventListener('click', function(){ ugrik(+p.dataset.gyuPont); ujra(); }); });
+    // kézi húzás után a pötty kövesse, melyik kártya van elöl
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting && e.intersectionRatio > 0.6) jelol([].indexOf.call(lapok, e.target)); }); }, {root: sor, threshold: [0.6]});
+    lapok.forEach(function(l){ io.observe(l); });
+    new IntersectionObserver(function(es){ lathato = es[0].isIntersecting; }, {threshold: 0.4}).observe(gy);
+    gy.addEventListener('mouseenter', function(){ megall = true; });
+    gy.addEventListener('mouseleave', function(){ megall = false; });
+    gy.addEventListener('focusin', function(){ megall = true; });
+    gy.addEventListener('focusout', function(){ megall = false; });
+    ujra();
+  });
+})();
 // Mentett hírek (Heni 2026-10-13): piros „Elolvasom később” jel a híreken és a cikkoldalon. A lista csak a böngészőben
 // él (localStorage qn-mentett, legfeljebb 200 elem), szerverre nem megy. A /mentett oldal a kereso.json alapján rajzol,
 // így a levett hír (ami már nincs a kereső mutatójában) a mentettek közül is kikerül.
