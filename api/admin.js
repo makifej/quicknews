@@ -163,7 +163,8 @@ async function utmutatoAdat() {
   if (lejart.length) await kv("HDEL", UTM, ...lejart);
   lista.sort((a, b) => String(b.ido).localeCompare(String(a.ido)));
   const anyagok = {};
-  for (const [id, a] of Object.entries(UTM_ANYAGOK)) anyagok[id] = { cim: a.cim, datum: a.datum, aktiv: !!a.aktiv };
+  // a pultban a rövid név látszik (Heni 2026-11-02: „Remotion”, „Xmind”), a teljes cím csak tartaléknak
+  for (const [id, a] of Object.entries(UTM_ANYAGOK)) anyagok[id] = { cim: a.rovid || a.cim, teljes_cim: a.cim, datum: a.datum, aktiv: !!a.aktiv };
   return { darab: lista.length, lista, anyagok, ido: new Date().toISOString() };
 }
 async function utmutatoMuvelet(b) {
