@@ -152,7 +152,10 @@ async function utmutatoAdat() {
     let v = {};
     try { v = JSON.parse(k[i + 1]) || {}; } catch (e) { /* hibás bejegyzés */ }
     const [email, anyag] = String(k[i]).split("|");
-    lista.push({ email, anyag, ido: v.ido || "", hirlevel: !!v.hirlevel, cikk: v.cikk || "", kuldve: v.kuldve !== false });
+    // kiment: Heni pipája a pultban („már kiküldtem”); amíg nem nyúlt hozzá, az automatikus levél sikere számít
+    const kuldve = v.kuldve !== false;
+    lista.push({ email, anyag, ido: v.ido || "", hirlevel: !!v.hirlevel, cikk: v.cikk || "", kuldve,
+      kiment: v.kiment ? !!v.kiment.ertek : kuldve, kiment_ido: v.kiment ? v.kiment.ido || "" : "", kezi: !!v.kiment });
   }
   lista.sort((a, b) => String(b.ido).localeCompare(String(a.ido)));
   const anyagok = {};
@@ -162,6 +165,15 @@ async function utmutatoAdat() {
 async function utmutatoMuvelet(b) {
   const email = String(b.email || "").trim().toLowerCase(), anyag = String(b.anyag || "");
   if (b.muvelet === "torol" && email && anyag) { await kv("HDEL", UTM, email + "|" + anyag); return [200, { ok: true }]; }
+  if (b.muvelet === "kiment" && email && anyag && typeof b.ertek === "boolean") {
+    const nyers = await kv("HGET", UTM, email + "|" + anyag);
+    if (!nyers) return [404, { hiba: "Ez a kérés már nincs a listán." }];
+    let v = {};
+    try { v = JSON.parse(nyers) || {}; } catch (e) { /* hibás bejegyzés */ }
+    v.kiment = { ertek: b.ertek, ido: new Date().toISOString() };
+    await kv("HSET", UTM, email + "|" + anyag, JSON.stringify(v));
+    return [200, { ok: true }];
+  }
   return [400, { hiba: "Rossz kérés." }];
 }
 
