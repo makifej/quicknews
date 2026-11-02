@@ -1704,9 +1704,12 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 }
 
 /* ===== Gyakorlati útmutatók a főoldalon, „A hét párbaja” fölött (Heni 2026-11-02): bal oldalt a bevezető, jobb oldalt a videókártyák ===== */
-.gyu { margin-block: 32px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: start; padding: 24px; background: var(--bg-2); border: 1px solid var(--vonal); border-left: 4px solid var(--kiemelo); border-radius: var(--sugar); }
+.gyu { margin-block: 32px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: stretch; padding: 24px; background: var(--bg-2); border: 1px solid var(--vonal); border-left: 4px solid var(--kiemelo); border-radius: var(--sugar); }
 .gyu[hidden] { display: none; }
 .gyu-bev { display: flex; flex-direction: column; gap: 16px; padding-top: 4px; }
+.gyu-lepesek { list-style: none; margin: auto 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; max-width: 560px; }
+.gyu-lepesek li { display: flex; align-items: center; gap: 16px; padding: 16px; background: var(--bg); border: 1px solid var(--keret); border-radius: 12px; font-size: 17px; line-height: 24px; color: var(--szoveg); }
+.gyu-lepesek b { flex: 0 0 auto; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--kiemelo); color: var(--kiemelo-szoveg); font-size: 20px; font-weight: 800; }
 .gyu-cimke { display: inline-flex; align-self: flex-start; align-items: center; gap: 12px; margin: 0; padding: 10px 20px 10px 16px; border-radius: 999px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font-size: clamp(26px, 2.6vw, 36px); line-height: 40px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
 .gyu-cimke::before { content: ""; width: 16px; height: 16px; border-radius: 50%; background: var(--kiemelo-szoveg); }
 .gyu-szoveg { margin: 0; max-width: 560px; font-size: 20px; line-height: 30px; color: var(--szoveg-2); text-wrap: pretty; }
@@ -1719,7 +1722,7 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .gyu-test p { margin: 0; font-size: 16px; line-height: 24px; color: var(--szoveg-2); text-wrap: pretty; }
 .gyu-gomb { margin-top: 4px; min-height: 48px; padding: 12px 18px; border: 0; border-radius: 12px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font: 800 16px/22px Manrope, system-ui, sans-serif; cursor: pointer; }
 .gyu-gomb:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
-@media (max-width: 1100px) { .gyu { grid-template-columns: 1fr; } .gyu-sor { max-width: 100%; } }
+@media (max-width: 1100px) { .gyu { grid-template-columns: 1fr; } .gyu-sor { max-width: 100%; } .gyu-lepesek { margin-top: 8px; } }
 @media (max-width: 640px) {
   .gyu { padding: 16px; gap: 20px; }
   .gyu-cimke { font-size: 22px; line-height: 28px; padding: 8px 16px 8px 14px; gap: 10px; white-space: normal; }
