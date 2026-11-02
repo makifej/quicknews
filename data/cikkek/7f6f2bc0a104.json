@@ -1,0 +1,76 @@
+{
+  "id": "7f6f2bc0a104",
+  "slug": "elindult-a-gdpx-az-uj-mi-meroszam-a-csucsmodellek-ugynokkepessegeire",
+  "forras_id": "techmeme",
+  "forras_nev": "SemiAnalysis",
+  "url": "https://newsletter.semianalysis.com/p/gdpx-measuring-frontier-model-capabilities",
+  "szerzo": null,
+  "publikalva": "2026-11-02T05:20:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://substackcdn.com/image/fetch/$s_!MHBL!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdeb2f1cd-9bc7-4329-a247-79c26636c70a_1672x941.png"
+  },
+  "cim_eredeti": "SemiAnalysis launches GDPx, an agentic capability benchmark measuring 11 domains, including chip design, cybersecurity, and RSI; Opus 5.5 tops with a 12% score (SemiAnalysis)",
+  "forrasok": [],
+  "szoveg_eredeti": "GDPx is a benchmark that covers the most valuable domains for frontier intelligence. It aims to be the world’s best benchmark for measuring general agentic capabilities.\n\nWe believe the first trillion dollars of AI revenue will be concentrated in sectors that can deploy frontier intelligence at high ROI, not broadly diffused throughout the whole economy. Building a general-purpose benchmark based on share of GDP or the SOC/O*NET occupational taxonomy is therefore a mistake. If your goal is to track the progress of frontier models, you should focus on the domains where they will be most impactful.\n\nSpecifically, we cover the following domains:\n\nAnd intentionally forgo industries like government, real estate, and insurance.\n\nGDPx is a true frontier-level benchmark: even the best model scores just 12%.\n\nIt’s worth emphasizing that certain models like Opus 5.5 and GPT-6 Astra have sandbagged overall scores due to their safety classifiers. If we exclude cyber, biology, and alignment—the three domains where safety classifiers sometimes kick in—you get the following results instead.\n\nWe were pleasantly surprised by how well this ranking lines up with our subjective impression of the models. OpenAI and Anthropic generally dominate the top of the ranking while SpaceXAI, Meta, and open-weight models are all meaningfully behind. Gemini 4 Carbon is a real improvement from Google and the only model in the same ballpark as Opus and Astra. It will be interesting to see people’s impressions once Carbon becomes generally available.\n\nWe believe it’s underrated how relevant safety classifiers are when picking the best model for certain use cases. For example, Muse Wonder Full is actually the best available cyber model today by a meaningful margin.\n\nWe also generally observe meaningful spikiness across all leading models.\n\nOpus 5.5 is the best all-around model and wins in quant trading, hardware design, and chip design. Gemini 4 Carbon is the best bio model (likely due to weaker safety classifiers) and edges out the win in software engineering. GPT-6 Astra wins convincingly for RSI and is also the best model for materials science. Our finance and legal tasks are so challenging that basically every model scores exactly 0.\n\nInterestingly, if you subset to a single model family, you will sometimes see very similar spikes.\n\nThe cost vs performance Pareto frontier also matches our general experience using the models: Luna and DeepSeek fight for the low end, Opus wins the high end, and OpenAI claims the middle. Again, however, the appearance of Gemini 4 Carbon is worth watching closely.\n\nIt’s impossible to make all the nuanced comparisons enabled by GDPx in a single newsletter. To explore the data yourself, checkout the official website.\n\nDomain-specific benchmarks have gotten significantly better over the past year largely thanks to the rise of specialized RL environment startups. Yet OpenAI’s GDPval (along with its derivatives like GDPval AA v2.1) remains the most popular general purpose benchmark still reported on major new model release cards. This is despite being released over a year ago on September 25, 2025—an eternity in AI land. GDPval may have been marketed as a “knowledge work” benchmark, but agents weren’t really even a thing yet. This had a huge impact on its task design, and as we’ll later explain, makes GDPval woefully inadequate for evaluating today’s frontier models.\n\nOur goal with GDPx is to create the world’s best benchmark for general agentic capabilities. However, as soon as we started working on this project, it became clear why we’ve yet to see a worthy GDPval successor. Models like GPT-6 Astra and Opus 5.5 are already pushing the boundaries of human knowledge. If you want to make a finance or cyber task these models can only solve < 20% of the time, you need real domain expertise to ensure the task is hard for the right reasons. Many popular benchmarks sidestep this problem by shipping tasks that are downright unfair. This typically manifests in a grader that checks for requirements impossible to infer from the task description or environment. For example, a coding problem may ask the model to fix a bug that a human engineer would agree has two valid solutions—one using “module A” and another using “module B”. However, a poorly designed grader may require the AI to use “module A” and unfairly give 0 reward when the AI chooses “module B”. Correct all such issues, and the benchmark often ends up being saturated.\n\nMaking high quality tasks for a single domain you have expertise in is already hard enough—there’s a reason why labs are willing to pay $5k+ for a single high quality task. Finding one company with sufficient expertise in both AI evals and enough domains to make a broad-based GDP benchmark is downright impossible.\n\nTo solve this problem, SemiAnalysis partnered with specialized RL environment startups for each domain:\n\nMaterials science (ValenceForge, Emulated)\n\nAll partners were subject to a rigorous QA process we detail in the methodology section. For some domains, we had multiple partners who wanted to be exclusive and ran a process to select the one with the highest quality tasks.\n\nWe would like to give a huge thank you to all of our partners for contributing to GDPx. They’re among the best vendors for their respective domains and it would’ve been impossible to create such a broad-based benchmark without their help.\n\nAdditionally, we’d like to thank Fireworks for providing inference for all the open source models, Modal for providing the sandbox infra needed to run our tasks, as well as Abhijay Rana for helping source some of the partners and assisting with early QA.\n\nTo be clear, we believe GDPval was impressive for its time and was the first benchmark to evaluate AI on such a broad range of tasks. It’s not OpenAI’s fault that a benchmark created before the rise of agents does a poor job evaluating them today.\n\nEvery GDPval task is precisely specified and non-interactive, with all the necessary context directly spoon-fed to the model in the prompt. Consider the following representative finance example below:\n\nAttached to this prompt is a very plain, single-page PDF that gives the model even more context about the two projects.\n\nFrom here, the model is asked to directly one-shot its task of writing a 15 page pdf to recommend one of the two options.\n\nAny real finance manager could point out dozens of reasons why this task isn’t actually representative of their day to day work, but we will focus on two main issues:\n\nDespite the task description itself being unnaturally wordy, the overall task lacks detail about the “two significant investment opportunities.” The model is expected to take nothing more than a ~500 word, high-level description of the two options and convert it into an “up to 15 page” pdf recommending one of them. As you’d expect, even OpenAI’s reference solution is mostly filler slop.\n\nRelatedly, the task simply lacks a realistic, rich environment. A human expert tasked with making a recommendation between two investment opportunities would do a ton of research first to gather information—searching through pdfs, excel models, emails, etc. This process of gathering context is a big part of what makes actual work difficult and is entirely missing from GDPval.\n\nThis second point is extremely important to understand. Not including domain-specific, simulated work environments for each task is the single biggest issue with GDPval. Agents today have already progressed well beyond narrow, well-scoped tasks like “generate a pdf/excel file/word doc/powerpoint based on just this reference file attached below + a few hundred word prompt,” yet basically every GDPval task fits this exact shape. As for tools, the model is only given access to web search, a code interpreter, and libraries to modify PDFs, word docs, excel files, powerpoints, images, audio, and video.\n\nBesides not having environments, GDPval also has many other issues including:",
+  "modell": "gemini-3.5-flash",
+  "cim": "Elindult a GDPx, az új MI-mérőszám a csúcsmodellek ügynökképességeire",
+  "lead": "A SemiAnalysis új tesztje 11 kiemelt területen méri az MI-modellek teljesítményét, ahol jelenleg az Opus 5.5 vezet mindössze 12 százalékos eredménnyel.",
+  "osszefoglalo": "A SemiAnalysis elindította a [GDPx](https://gdpx.semianalysis.com/) nevű értékelési rendszert, amelyet a legfejlettebb MI-modellek ügynökképességeinek mérésére terveztek. A teszt 11 kulcsfontosságú iparágat fed le, többek között a chiptervezést, a kiberbiztonságot, a szoftverfejlesztést, a pénzügyet és a jogot. A feladatok kidolgozásához specializált partnerekkel működtek együtt, hogy a korábbi rendszereknél sokkal valósághűbb és összetettebb szimulációs környezeteket hozzanak létre.\n\nA teszt nehézségét mutatja, hogy a jelenleg elérhető legjobb modell, az Opus 5.5 is mindössze **12 százalékos összteljesítményt** ért el. A méréseket jelentősen befolyásolják a modellekbe épített biztonsági szűrők, amelyek bizonyos kiberbiztonsági vagy biológiai feladatoknál blokkolják a válaszadást. A biztonsági kategóriák figyelmen kívül hagyásával a szűrők által kevésbé korlátozott modellek helyezése megváltozik.\n\nA felmérés szerint az OpenAI és az Anthropic modellei dominálják a mezőnyt, míg a Gemini 4 Carbon a Google eddigi legerősebb versenytársa a kategóriában. A pénzügyi és jogi feladatok annyira összetettek, hogy a tesztelt modellek szinte kivétel nélkül **0 százalékos pontszámot** értek el bennük.",
+  "miert_szamit": "A felmérés megmutatja, hogy a legújabb MI-modellek a valós, összetett üzleti feladatoknak még csak a **töredékét képesek önállóan megoldani**.",
+  "cimkek": [
+    "GDPx",
+    "benchmark",
+    "Opus 5.5",
+    "Gemini 4 Carbon"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "GDPx"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 83,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 85,
+      "aktualitas": 95,
+      "kozossegi": 61
+    },
+    "elofeszures": 95,
+    "tanult": 40,
+    "indok": "Új, érdemi mérőszám (benchmark) a csúcsmodellek képességeinek mérésére az iparág egyik fontos szereplőjétől. Forrás-tapasztalat: -3.",
+    "tema": "semianalysis gdpx benchmark launch",
+    "cim_hu": "Még a legjobb AI is elvérzik a SemiAnalysis új, kemény tesztjén",
+    "lead_hu": "A SemiAnalysis elindította a GDPx benchmarkot az autonóm AI-képességek mérésére, ahol a jelenlegi éllovas Opus 5.5 is mindössze 12 százalékos eredményt tudott elérni.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-02T07:09:25+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-02T07:12:52+00:00",
+  "megjelent": "2026-11-02T07:12:52+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-02T07:13:55+00:00",
+    "esemeny": "A SemiAnalysis elindította a GDPx nevű új mérést (benchmarkot), amely 11 kulcsfontosságú területen értékeli a csúcsmodell mesterséges intelligenciák ügynökképességeit. A teszten a Claude Opus 5.5 érte el a legmagasabb pontszámot, mindössze 12 százalékot.",
+    "forrasok": [
+      "https://newsletter.semianalysis.com/p/gdpx-measuring-frontier-model-capabilities"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-02T07:14:38+00:00",
+  "linkek_ellenorizve": true
+}
