@@ -581,14 +581,15 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .gyujto-fej h1 { font-size: 40px; line-height: 46px; font-weight: 800; text-transform: uppercase; padding-bottom: 6px; border-bottom: 5px solid var(--kiemelo); }
 .gyujto-fej p { color: var(--szoveg-2); font-size: 16px; line-height: 24px; }
 .gyujto-fej span { margin-left: auto; color: var(--szoveg-2); font-size: 14px; }
-.fej-leiras { order: 3; flex-basis: 100%; }
-.fej-leiras summary { list-style: none; display: inline-flex; align-items: center; gap: 8px; min-height: 32px; cursor: pointer; color: var(--szoveg-2); font-size: 14px; line-height: 20px; font-weight: 600; }
+.fej-leiras { flex-basis: 100%; }
+.fej-leiras summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 32px; cursor: pointer; }
 .fej-leiras summary::-webkit-details-marker { display: none; }
-.fej-leiras summary::after { content: ""; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1); }
-.fej-leiras[open] summary::after { transform: translateY(2px) rotate(225deg); }
+.gyujto-fej .fej-leiras .fl-cimke { margin-left: 0; display: inline-flex; align-items: center; gap: 8px; color: var(--szoveg-2); font-size: 14px; line-height: 20px; font-weight: 600; }
+.fl-cimke::after { content: ""; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1); }
+.fej-leiras[open] .fl-cimke::after { transform: translateY(2px) rotate(225deg); }
 .fej-leiras summary:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; border-radius: 4px; }
-@media (hover: hover) and (pointer: fine) { .fej-leiras summary:hover { color: var(--szoveg); } }
-@media (prefers-reduced-motion: reduce) { .fej-leiras summary::after { transition: none; } }
+@media (hover: hover) and (pointer: fine) { .fej-leiras summary:hover .fl-cimke { color: var(--szoveg); } }
+@media (prefers-reduced-motion: reduce) { .fl-cimke::after { transition: none; } }
 .gyujto-fej .fej-leiras p { max-width: 720px; padding-top: 4px; }
 .cikk-fej .kat { color: var(--kiemelo-szin); font-weight: 700; }
 .harang-ertesit { display: block; width: calc(100% - 32px); margin: 4px 16px 16px; font: inherit; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--szoveg); background: var(--bg-3); border: 1px solid var(--keret); border-radius: 10px; padding: 10px; cursor: pointer; }
