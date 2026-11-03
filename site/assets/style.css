@@ -959,6 +959,7 @@ html:not(.suti-van) .chat { display: none; }
 .ai-lab span { display: inline-flex; align-items: center; gap: 4px; }
 .ai-lab svg { width: 14px; height: 14px; }
 /* Audit 2026-11-03: forrás a pontok végén sorszámmal, a válasz alján dátumozott forráslista; hibánál újrapróbálás */
+.chat-pontok .chat-hirpont { display: inline; }
 .chat-fsz { display: inline-flex; gap: 4px; margin-left: 4px; vertical-align: 1px; }
 .chat-fsz a { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 4px; border-radius: 999px; font-size: 12px; line-height: 1; font-weight: 700; color: var(--kiemelo-szin); background: var(--bg-3); border: 1px solid var(--keret); text-decoration: none; }
 .chat-fsz a:hover, .chat-fsz a:focus-visible { border-color: var(--kiemelo); }
