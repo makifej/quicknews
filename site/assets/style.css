@@ -1737,6 +1737,7 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .gyu-gomb:active { transform: scale(.98); }
 .gyu-gomb:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
 .gyu-lapozo[hidden] { display: none; }
+.gyu-lejatszo { display: none; }
 /* asztalon a két útmutató egymás mellett, lapozás nélkül (Heni 2026-11-02); ha több lesz, a lapozó magától visszajön */
 @media (min-width: 1280px) {
   .gyu-kartya { flex-basis: calc((100% - 24px) / 2); grid-template-columns: min(40%, 260px) minmax(0, 1fr); gap: 24px; }
@@ -1754,16 +1755,27 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
   .gyu-video { width: 240px; }
   .gyu-test h3 { font-size: 24px; line-height: 32px; }
 }
+/* mobilon tömör kártya (Heni 2026-11-03: „hosszan lenyúlik”): kis álló videó balra lejátszógombbal, mellette a cím és a
+   leírás, alatta teljes szélességben a gomb; a tartalomlista csak asztalon látszik. Lejátszáskor teljes képernyő (APP_JS). */
 @media (max-width: 640px) {
   .gyu { padding: 16px; gap: 16px; }
-  .gyu-cimke { font-size: 18px; line-height: 28px; letter-spacing: .02em; padding: 8px 16px 8px 12px; gap: 8px; }
+  .gyu-fej { gap: 12px; }
+  .gyu-cimke { font-size: 16px; line-height: 24px; letter-spacing: .02em; padding: 8px 16px 8px 12px; gap: 8px; }
   .gyu-cimke::before { width: 12px; height: 12px; }
+  .gyu-lapozo { gap: 8px; }
   .gyu-nyil { width: 40px; height: 40px; }
-  .gyu-kartya { flex-basis: 88%; grid-template-columns: 1fr; gap: 16px; padding: 12px; }
-  .gyu-video { width: min(100%, 320px); justify-self: center; }
-  .gyu-test { padding-block: 0; }
-  .gyu-test p { font-size: 16px; line-height: 24px; }
-  .gyu-gomb { align-self: stretch; min-width: 0; }
+  .gyu-sor { gap: 12px; }
+  .gyu-kartya { flex-basis: 100%; grid-template-columns: 112px minmax(0, 1fr); grid-template-rows: auto auto 1fr auto; gap: 8px 12px; padding: 12px; }
+  .gyu-test { display: contents; }
+  .gyu-video { grid-column: 1; grid-row: 1 / 4; width: 112px; border-radius: 8px; cursor: pointer; }
+  .gyu-lejatszo { grid-column: 1; grid-row: 1 / 4; align-self: center; justify-self: center; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 999px; background: var(--gyu-akcent); color: var(--gyu-akcent-szoveg); pointer-events: none; }
+  .gyu-lejatszo svg { width: 24px; height: 24px; }
+  .gyu-megy .gyu-lejatszo { display: none; }
+  .gyu-hossz { grid-column: 2; grid-row: 1; font-size: 12px; line-height: 16px; }
+  .gyu-test h3 { grid-column: 2; grid-row: 2; font-size: 18px; line-height: 24px; }
+  .gyu-test p { grid-column: 2; grid-row: 3; align-self: start; font-size: 14px; line-height: 20px; }
+  .gyu-tartalom { display: none; }
+  .gyu-gomb { grid-column: 1 / -1; grid-row: 4; align-self: stretch; min-width: 0; margin-top: 4px; }
 }
 @media (prefers-reduced-motion: reduce) { .gyu-nyil, .gyu-pont, .gyu-gomb { transition: none; } }
 
