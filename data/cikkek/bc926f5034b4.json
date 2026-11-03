@@ -1,0 +1,49 @@
+{
+  "id": "bc926f5034b4",
+  "slug": "enterprises-pay-100-000-a-day-for-ai-they-never-ordered",
+  "forras_id": "google-news-ai",
+  "forras_nev": "CSO Online",
+  "url": "https://www.csoonline.com/article/4243863/enterprises-pay-100000-a-day-for-ai-they-never-ordered.html",
+  "publikalva": "2026-11-03T11:53:29+00:00",
+  "cim": "Enterprises pay $100,000 a day for AI they never ordered",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 77 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.csoonline.com/wp-content/uploads/2026/11/4243863-0-97594300-1793706772-shutterstock_1336007219.jpg?quality=50&strip=all&w=1024"
+  },
+  "cim_eredeti": "Enterprises pay $100,000 a day for AI they never ordered",
+  "szoveg_eredeti": "Enterprises deploying large language models (LLMs) in production may be unknowingly footing the bill for someone else’s AI business. Google Threat Intelligence Group (GTIG) is warning of financially motivated LLMjacking campaigns in which cybercriminals hijack enterprise cloud and model access before reselling it through underground subscription services.\n\nThe activity can generate fake cloud charges exceeding $100,000 in a single day, GTIG said in a blog post. In some incidents, cumulative charges reached $1 million before organizations revoked the compromised access.\n\n“LLM Mixers turn stolen enterprise model access into a service for paying customers, while the victim’s systems continue accepting requests through credentials they recognize,” said Piyush Sharma, co-founder and CEO at Tuskira. “That puts a lot of weight on the authority attached to each credential. A key issued for one application shouldn’t become a reusable pass to other models and workloads.”\n\nGTIG’s analysis is based on multiple incidents in 2026, spanning a variety of cloud and LLM providers across North America, South America, and Asia Pacific.\n\nGTIG said the monetization infrastructure centers on LLM Mixers, criminal routing gateways that aggregate compromised API credentials and resell model access to underground subscribers. These services proxy requests across stolen accounts, distribute consumption and hide the original source of access.\n\nMultiple operations were identified using open-source gateways and custom relay infrastructure to pool stolen credentials. One threat actor, UNC6993, used tools including new-api and gcli2api to aggregate stolen keys and distribute requests across accounts.\n\nAnother operation used stolen third-party API keys to power Jet Night, a legitimate token-routing service that executed more than 500,000 LLM API calls in under eight hours, GTIG said. The activity passed nearly $1 million in token costs to the victim organization. Jet Night advertises unlimited access to frontier models for approximately $60 a month, substantially lower than the typical cost of comparable legitimate access.\n\nJet Night also experienced occasional outages that GTIG suspects were caused by victims discovering compromises and revoking keys.\n\n“Selling stolen model access gives criminals a reason to keep that access working for as long as possible, which makes the quiet activity before the spending spike especially important,” said Nick Tausek, lead security automation architect at Swimlane. “By the time someone asks why the cloud bill has exploded, the attacker may already have paying customers.”\n\nInitial access involves exposed or stolen cloud identity tokens, including IAM credentials, service account keys, GitHub personal access tokens, and active session tokens, GTIG pointed out. Attackers also harvest LLM API keys from public repositories and scan for exposed model endpoints.\n\nAttackers were seen validating stolen keys with minimal single-token requests, sometimes using max-tokens=1. Such micro-transactions can confirm whether credentials work while remaining below conventional consumption-based detection thresholds.\n\n“Testing a stolen key with a single-token request barely registers as consumption,” Tausek said. “But pair that request with a newly created credential or an unexpected permission change, and there’s something worth investigating.” Analysts shouldn’t have to pull those connections together manually while the attacker gets a head start, he added.\n\nAfter establishing access, attackers enumerate cloud services, repositories, and data stores for additional credentials. They may escalate privileges, create unauthorized service accounts, inject SSH keys, or establish persistence through compromised workloads.\n\nGTIG observed a follow-on threat actor exploiting a user ID rebinding vulnerability in the LiteLLM gateway to elevate ordinary virtual keys into administrative credentials.\n\nSharma said organizations must restrict credentials to their intended models, workloads, and endpoints. “The gateway compromise described in these incidents deserves particular attention,” he said, warning that control of the routing layer could open access beyond the original compromised credential.\n\nGTIG recommends tighter credential management, least-privilege permissions, granular API key scopes, monitoring for suspicious low-volume requests, and spending limits on model consumption. It also urges organizations to monitor unauthorized AI service enablement and gateway vulnerabilities.",
+  "begyujtve": "2026-11-03T12:34:48.192387+00:00",
+  "prioritas": {
+    "pont": 77,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 78,
+      "aktualitas": 95,
+      "kozossegi": 68
+    },
+    "elofeszures": 80,
+    "tanult": 58,
+    "indok": "Komoly kibervédelmi hír az MI-erőforrások eltérítéséről és a cégeket érő súlyos anyagi károkról. Forrás-tapasztalat: -7.",
+    "tema": "llmjacking ai cloud security",
+    "cim_hu": "Napi százezer dolláros kárt okoznak a céges MI-hozzáféréseket eltérítő bűnözők",
+    "lead_hu": "A Google kiberbiztonsági csapata figyelmeztetést adott ki az LLMjacking jelenségről, amely során elfedik a cégek MI-erőforrásait, majd továbbértékesítik azokat.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-03T12:35:25+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-03T12:37:06+00:00"
+}

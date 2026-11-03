@@ -1,7 +1,7 @@
 {
   "cim": "Üzlet",
   "leiras": "Cégek, pénz, partnerségek, piac.",
-  "alcim": "248 hír, fontossági sorrendben",
+  "alcim": "249 hír, fontossági sorrendben",
   "blokkok": [
     {
       "t": "nagy",
@@ -28,6 +28,28 @@
     {
       "t": "kiemelt",
       "h": {
+        "id": "3ab71693643b",
+        "cim": "A Huawei a feketepiacra tereli vásárlóit az AI-chipes memóriahiány miatt",
+        "lead": "Az amerikai szankciók miatt a Huawei nem tud elég HBM memóriát szerezni, így a vásárlóknak maguknak kell beszerezniük az alkatrészeket.",
+        "slug": "a-huawei-a-feketepiacra-tereli-vasarloit-az-ai-chipes-memoriahiany",
+        "forras": "The Decoder",
+        "kat": "üzlet",
+        "rovat": "uzlet",
+        "ido": "2026-11-03T12:30:42.811Z",
+        "ido_hu": "nov. 3. 13:30",
+        "kep": "https://quicknews.hu/assets/kep/3ab71693643b.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/3ab71693643b-n.webp",
+        "video": false,
+        "fontossag": 4,
+        "felkapott": false,
+        "forraskep": false,
+        "url": "https://quicknews.hu/hir/a-huawei-a-feketepiacra-tereli-vasarloit-az-ai-chipes-memoriahiany",
+        "jova": true
+      }
+    },
+    {
+      "t": "kiemelt",
+      "h": {
         "id": "2f5ef0621565",
         "cim": "Az AMD 8,2 milliárd dollárért felvásárolja a World Labs-et",
         "lead": "Az AMD bejelentette, hogy megvásárolja a neves AI-kutató, Fei-Fei Li által alapított World Labs-et, amely a fizikai világot modellező AI-rendszereket fejleszt.",
@@ -45,28 +67,6 @@
         "forraskep": false,
         "url": "https://quicknews.hu/hir/az-amd-8-2-milliard-dollarert-felvasarolja-a-world-labs-et",
         "jova": false
-      }
-    },
-    {
-      "t": "kiemelt",
-      "h": {
-        "id": "6068b81c2c42",
-        "cim": "Az Anthropic tőzsdei dokumentumban ígéri: reklámmentes marad a Claude",
-        "lead": "A tőzsdére készülő Anthropic alapítói írásos levélben vállalták, hogy a hirdetési bevételek helyett kizárólag az előfizetésekre építenek.",
-        "slug": "az-anthropic-tozsdei-dokumentumban-igeri-reklammentes-marad-a-claude",
-        "forras": "Perplexity Discover",
-        "kat": "üzlet",
-        "rovat": "uzlet",
-        "ido": "2026-10-27T07:39:32.233Z",
-        "ido_hu": "okt. 27. 08:39",
-        "kep": "https://quicknews.hu/assets/kep/6068b81c2c42.webp",
-        "kep_nagy": "https://quicknews.hu/assets/kep/6068b81c2c42.webp",
-        "video": false,
-        "fontossag": 4,
-        "felkapott": false,
-        "forraskep": false,
-        "url": "https://quicknews.hu/hir/az-anthropic-tozsdei-dokumentumban-igeri-reklammentes-marad-a-claude",
-        "jova": true
       }
     },
     {
@@ -238,7 +238,7 @@
       "t": "rovat",
       "cim": "Bevételek, árak és piac",
       "link": null,
-      "osszes": 52,
+      "osszes": 53,
       "fo": {
         "id": "b9f4b9689b66",
         "cim": "Tizenkétszeresére nőtt az Anthropic bevétele, de 23 milliárd dolláros veszteséget halmozott fel",
@@ -317,6 +317,27 @@
           "jova": true
         },
         {
+          "id": "6068b81c2c42",
+          "cim": "Az Anthropic tőzsdei dokumentumban ígéri: reklámmentes marad a Claude",
+          "lead": "A tőzsdére készülő Anthropic alapítói írásos levélben vállalták, hogy a hirdetési bevételek helyett kizárólag az előfizetésekre építenek.",
+          "slug": "az-anthropic-tozsdei-dokumentumban-igeri-reklammentes-marad-a-claude",
+          "forras": "Perplexity Discover",
+          "kat": "üzlet",
+          "rovat": "uzlet",
+          "ido": "2026-10-27T07:39:32.233Z",
+          "ido_hu": "okt. 27. 08:39",
+          "kep": "https://quicknews.hu/assets/kep/6068b81c2c42.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/6068b81c2c42.webp",
+          "video": false,
+          "fontossag": 4,
+          "felkapott": false,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/az-anthropic-tozsdei-dokumentumban-igeri-reklammentes-marad-a-claude",
+          "jova": true
+        }
+      ],
+      "tobb": [
+        {
           "id": "86bde11cd257",
           "cim": "Nagyon durván beindult az árverseny az OpenAI és az Anthropic között",
           "lead": "Max Woolf elemzése szerint a GPT és Claude modellek árai elképesztő mértékben zuhantak az elmúlt hónapokban a nyílt súlyú modellek nyomása miatt.",
@@ -334,9 +355,7 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/nagyon-durvan-beindult-az-arverseny-az-openai-es-az-anthropic-kozott",
           "jova": true
-        }
-      ],
-      "tobb": [
+        },
         {
           "id": "99c99157c7fa",
           "cim": "Veszélyben a kiadók az AI Overviews miatt, jelentősen esik a keresési forgalom",
