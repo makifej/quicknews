@@ -63,6 +63,16 @@ jobs:
           python-version: "3.12"
       - if: steps.ido.outputs.fut == 'igen'
         run: pip install -q --require-hashes -r requirements.txt
+      # A duplikátumszűrő kiszámolt ujjlenyomatai (data/vektor) és „ugyanaz-e” döntései (data/vektor/dontes) megmaradnak
+      # a futások között (2026-11-03, Heni). Eddig minden futás üres mappával indult, és újra kiszámolta az elmúlt 7 nap
+      # összes hírét: 15 nap alatt 271 ezer beágyazás, 11,81 USD. A gitbe nem tesszük, mert a Mac és a felhő között ütközne.
+      - name: A duplikátumszűrő gyorsítótára
+        if: steps.ido.outputs.fut == 'igen'
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809  # v4.2.4
+        with:
+          path: data/vektor
+          key: dupla-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: dupla-
       - name: Gyűjtés, fordítás, linkek, renderelés
         if: steps.ido.outputs.fut == 'igen'
         env:
@@ -72,7 +82,10 @@ jobs:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
         run: |
           python3 build/gyujt.py --nem-tipus x_profil --nem-forras producthunt
+          echo "duplikátum-gyorsítótár: $(ls data/vektor 2>/dev/null | wc -l) ujjlenyomat, $(ls data/vektor/dontes 2>/dev/null | wc -l) döntés"
           python3 build/fordit.py
+          # 30 napnál régebbi bejegyzés nem kell (a szűrő 7 napra néz vissza), így a gyorsítótár nem nő a végtelenségig
+          find data/vektor -type f -mtime +30 -delete 2>/dev/null || true
           python3 build/tenyellenor.py
           # Heni pultbeli döntései: a jóváhagyott hír a Mac nélkül is lefordul és kikerül (render előtt)
           python3 build/jovahagyas_atvetel.py || echo "jóváhagyás-átvétel kihagyva"
