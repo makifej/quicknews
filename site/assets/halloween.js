@@ -344,10 +344,13 @@
     if (!JATEK || all.kesz || all.bekuldve || /^\/nyeremenyjatek/.test(location.pathname)) return;
     try { if (localStorage.getItem('qn-boo-bemutato') && !/[?&]bemutato=1\b/.test(location.search)) return; } catch (e) { return; }
     var var_ = setInterval(function () {
+      // Audit 2026-11-03: a közös ablakkapu (app.js, window.qnAblakSzabad) szerint: más ablak, friss bezárás vagy épp
+      // folyó kattintás mellett nem nyílik meg; a sütidöntés után 6 mp-cel jön (eddig 1,2 mp), hogy ne az első mozdulatra ugorjon fel
       if (!document.documentElement.classList.contains('suti-van') || B.classList.contains('boo-nyitva') || document.querySelector('.hl-ablak:not([hidden])')) return;
+      if (window.qnAblakSzabad && !window.qnAblakSzabad()) return;
       clearInterval(var_);
       setTimeout(function () {
-        if (B.classList.contains('boo-nyitva')) return;
+        if (B.classList.contains('boo-nyitva') || (window.qnAblakSzabad && !window.qnAblakSzabad())) { bemutato(); return; }
         var h = document.createElement('div');
         h.className = 'boo-hatter';
         h.innerHTML = '<div class="boo-ablak boo-ablak--bemutato" role="dialog" aria-modal="true" aria-labelledby="boo-bem-cim">' +
@@ -360,12 +363,12 @@
         B.appendChild(h);
         B.classList.add('boo-nyitva');
         try { localStorage.setItem('qn-boo-bemutato', String(Date.now())); } catch (e) {}
-        function zar2() { h.remove(); B.classList.remove('boo-nyitva'); }
+        function zar2() { h.remove(); B.classList.remove('boo-nyitva'); if (window.qnAblakZarva) window.qnAblakZarva(); }
         h.querySelector('.boo-zar').onclick = zar2;
         h.querySelector('.boo-gomb').onclick = zar2;
         h.addEventListener('click', function (e) { if (e.target === h) zar2(); });
         document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && h.isConnected) zar2(); });
-      }, 1200);
+      }, 6000);
     }, 500);
   }
   // belépő (Heni 2026-10-20), csak asztalon: első látogatáskor egy nagy BOO úszik át a képernyőn, és maga után húz egy lebegő

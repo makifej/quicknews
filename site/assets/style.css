@@ -1844,3 +1844,5 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .rovat-tovabb[hidden] { display: none; }
 .rovat-tovabb svg { width: 16px; height: 16px; }
 .rovat-tovabb:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
+/* a lábléc alja ne kerüljön a csevegőgomb és a felfelé gomb alá (asztalon a kettő együtt kb. 140 px magas sávot foglal) */
+@media (min-width: 600px) { .lablec { padding-bottom: 168px; } }
