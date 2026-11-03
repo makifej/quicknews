@@ -591,6 +591,8 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 @media (hover: hover) and (pointer: fine) { .fej-leiras summary:hover .fl-cimke { color: var(--szoveg); } }
 @media (prefers-reduced-motion: reduce) { .fl-cimke::after { transition: none; } }
 .gyujto-fej .fej-leiras p { max-width: 720px; padding-top: 4px; }
+.fej-leiras summary > span { white-space: nowrap; }
+@media (max-width: 400px) { .fej-leiras summary { gap: 8px; } .gyujto-fej .fej-leiras .fl-cimke, .fej-leiras summary > span { font-size: 13px; } }
 .cikk-fej .kat { color: var(--kiemelo-szin); font-weight: 700; }
 .harang-ertesit { display: block; width: calc(100% - 32px); margin: 4px 16px 16px; font: inherit; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--szoveg); background: var(--bg-3); border: 1px solid var(--keret); border-radius: 10px; padding: 10px; cursor: pointer; }
 
