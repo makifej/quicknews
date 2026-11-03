@@ -45,9 +45,19 @@ function budapestNap() {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Budapest", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
 }
 
+// Audit 2026-11-03 (Gittus): szabad kérdésre 502 jött. Minden külső hívásnak időkorlátja van, a hibát naplózzuk
+// (qn:chat:hibak, az utolsó 100), és ha a modell nem ad használható választ, 502 helyett a kérdéshez legjobban illő
+// hírek listáját adjuk vissza (tartalék keresés).
+async function hibaNaplo(hol, err) {
+  try {
+    await kv("LPUSH", P + "hibak", JSON.stringify({ ido: new Date().toISOString(), hol, hiba: String((err && err.message) || err).slice(0, 300) }));
+    await kv("LTRIM", P + "hibak", 0, 99);
+  } catch {}
+}
+
 async function beagyaz(szoveg) {
   const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${BEAGYAZO}:embedContent`, {
-    method: "POST",
+    method: "POST", signal: AbortSignal.timeout(8000),
     headers: { "Content-Type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY },
     body: JSON.stringify({ content: { parts: [{ text: szoveg }] }, taskType: "RETRIEVAL_QUERY", outputDimensionality: 768 }),
   });
@@ -56,7 +66,7 @@ async function beagyaz(szoveg) {
   return j.embedding.values;
 }
 
-function hasonlo(a, b) {
+function hasonloVektor(a, b) {
   let s = 0, na = 0, nb = 0;
   for (let i = 0; i < a.length; i++) { s += a[i] * b[i]; na += a[i] * a[i]; nb += b[i] * b[i]; }
   return s / (Math.sqrt(na) * Math.sqrt(nb) || 1);
@@ -114,6 +124,13 @@ function kerdesKulcs(q) {
   return crypto.createHash("sha256").update(q.toLowerCase().replace(/[?!.,]+$/g, "").replace(/\s+/g, " ").trim()).digest("hex").slice(0, 24);
 }
 
+// tartalék: a modell nélkül, a rangsor első 3 hírével (cím, dátum, link), hogy a látogató ne üres kézzel távozzon
+function tartalek(pont, q) {
+  const l = pont.slice(0, 3).map((x, i) => ({ n: i + 1, cim: x.h.cim, url: x.h.url, datum: x.h.datum, lead: x.h.lead }));
+  return { tartalek: true, ujra: true, bevezeto: "Most nem tudtam összefoglalni a választ, de ezek a hírek kapcsolódnak a kérdésedhez:",
+    pontok: [], forrasok: l, valasz: "", kerdes: q };
+}
+
 async function nepszeruek() {
   const v = (await kv("ZREVRANGE", P + "nepszeru", 0, 19, "WITHSCORES")) || [];
   const ki = [];
@@ -167,7 +184,10 @@ module.exports = async (req, res) => {
     await kv("ZREMRANGEBYSCORE", P + "naplo", 0, most - 30 * 864e5);
 
     if (INJEKCIO.test(q) || szuro.tiltottSzoveg(q)) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], kivul: true });
-    const v = await beagyaz(q);
+    // ha a beágyazás nem megy, kulcsszavas rangsorral megyünk tovább (a hasonlósági kapu ilyenkor nem szűr)
+    let v = null;
+    try { v = await beagyaz(q); } catch (e) { await hibaNaplo("beagyazas", e); }
+    const hasonlo = (a, b) => (a && b ? hasonloVektor(a, b) : 0.7);
     const friss = Date.now();
     // a kérdés tartalmas szavai (5 betűs tővel): a címben vagy a leadben előforduló egyezés pluszpontot ad,
     // így a rövid kérdésre („olcsóbb GPT alternatívák”) a közvetlenül felelő hírek kerülnek előre
@@ -201,14 +221,11 @@ module.exports = async (req, res) => {
       Object.entries(napi).sort((a, b) => b[0].localeCompare(a[0])).slice(0, 14).map(([d, n]) => `${d}: ${n}`).join("; ") + ".";
     const hirek = pont.map((x, i) => `[${i + 1}] ${x.h.datum} · ${x.h.kategoria || ""} · ${x.h.forras || ""}\nCím: ${x.h.cim}\nFelvezető: ${x.h.lead}\nRészletek: ${x.h.szoveg}`).join("\n\n");
 
-    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODELL}:generateContent`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY },
-      body: JSON.stringify({
+    const keres = JSON.stringify({
         systemInstruction: { parts: [{ text: UTASITAS.replace("{MA}", nap) }] },
         contents: [{ role: "user", parts: [{ text: `${statisztika}\n\nHírek${idoszak && benne.length > pont.length ? ` (válogatás az időszak ${benne.length} híréből)` : ""}:\n\n${hirek}\n\nKérdés: ${q}` }] }],
         generationConfig: {
-          temperature: 0.3, maxOutputTokens: 900, thinkingConfig: { thinkingBudget: 0 },
+          temperature: 0.3, maxOutputTokens: 2000, thinkingConfig: { thinkingBudget: 0 },
           responseMimeType: "application/json",
           responseSchema: { type: "OBJECT", properties: {
             temaban: { type: "BOOLEAN" }, bevezeto: { type: "STRING" },
@@ -216,12 +233,21 @@ module.exports = async (req, res) => {
               reszek: { type: "ARRAY", items: { type: "OBJECT", properties: { resz: { type: "STRING" }, forras: { type: "INTEGER" } }, required: ["resz", "forras"] } } },
               required: ["szoveg", "forras", "reszek"] } } }, required: ["temaban", "bevezeto", "pontok"] },
         },
-      }),
-    });
-    const j = await r.json();
-    const nyers = (((j.candidates || [])[0] || {}).content || {}).parts?.map((p) => p.text || "").join("").trim();
-    let ki = {};
-    try { ki = JSON.parse(nyers || "{}"); } catch { ki = {}; }
+      });
+    // egy újrapróbálás: hálózati hiba, időtúllépés, nem 200-as válasz vagy nem értelmezhető (pl. levágott) JSON esetén
+    let ki = null;
+    for (let kor = 1; kor <= 2 && !ki; kor++) {
+      try {
+        const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODELL}:generateContent`, {
+          method: "POST", signal: AbortSignal.timeout(kor === 1 ? 20000 : 15000),
+          headers: { "Content-Type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY }, body: keres });
+        const j = await r.json();
+        if (!r.ok) throw new Error(`HTTP ${r.status}: ${JSON.stringify(j).slice(0, 200)}`);
+        const nyers = (((j.candidates || [])[0] || {}).content || {}).parts?.map((p) => p.text || "").join("").trim();
+        ki = JSON.parse(nyers || "");
+      } catch (e) { await hibaNaplo(`modell ${kor}. kör`, e); }
+    }
+    if (!ki) return json(res, 200, tartalek(pont, q));
     if (ki.temaban === false) return json(res, 200, { valasz: ELUTASITAS, forrasok: [], kivul: true });
     const tiszt = (t) => String(t || "").replace(/https?:\/\/\S+/g, "").replace(/www\.\S+/g, "").replace(/[—–]/g, ",").replace(/\s*\[\d\](\[\d\])*/g, "").trim().slice(0, 400);
     const ervenyes = (n) => Number.isInteger(n) && n >= 1 && n <= pont.length;
@@ -253,7 +279,7 @@ module.exports = async (req, res) => {
       }
       return { szoveg, forras, reszek: reszek.sort((a, b) => a.i - b.i).map(({ resz, forras: f }) => ({ resz, forras: f })) };
     }).filter((x) => x.szoveg);
-    if (!bevezeto && !pontok.length) return json(res, 502, { hiba: "Most nem sikerült választ adni. Próbáld újra kicsit később!" });
+    if (!bevezeto && !pontok.length) { await hibaNaplo("ures valasz", JSON.stringify(ki).slice(0, 200)); return json(res, 200, tartalek(pont, q)); }
     const adat = (n) => ({ n, cim: pont[n - 1].h.cim, url: pont[n - 1].h.url, datum: pont[n - 1].h.datum, lead: pont[n - 1].h.lead });
     const hivatkozott = [...new Set(pontok.flatMap((x) => x.forras))].sort((a, b) => a - b);
     const valasz = [bevezeto, ...pontok.map((x) => "• " + x.szoveg)].filter(Boolean).join("\n");
@@ -271,6 +297,7 @@ module.exports = async (req, res) => {
     }
     return json(res, 200, { valasz, bevezeto, pontok, forrasok: hivatkozott.map(adat), maradt: Math.max(0, NAPI_LATOGATO - sajat) });
   } catch (err) {
-    return json(res, 500, { hiba: "Most nem sikerült választ adni. Próbáld újra kicsit később!" });
+    await hibaNaplo("altalanos", err);
+    return json(res, 500, { hiba: "Most nem sikerült választ adni. Próbáld újra kicsit később!", ujra: true });
   }
 };

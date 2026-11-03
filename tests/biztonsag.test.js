@@ -39,6 +39,8 @@ function kvParancs(c) {
     case "SREM": { const s = tar.get(k); return s && s.delete(a[0]) ? 1 : 0; }
     case "ZADD": case "ZREMRANGEBYSCORE": case "ZINCRBY": case "ZREM": return 1;
     case "ZREVRANGE": return [];
+    case "LPUSH": { if (!tar.has(k)) tar.set(k, []); tar.get(k).unshift(...a); return tar.get(k).length; }
+    case "LTRIM": return "OK";
     default: throw new Error("ismeretlen KV-parancs a tesztben: " + P);
   }
 }
@@ -48,8 +50,9 @@ global.fetch = async (url, opt = {}) => {
   if (url === "https://kv.teszt") return { json: async () => ({ result: kvParancs(JSON.parse(opt.body)) }) };
   kulso.push({ url, opt });
   if (url.includes("generativelanguage.googleapis.com")) {
+    if (vartGemini.fv) return vartGemini.fv(url);
     if (vartGemini.valasz instanceof Error) throw vartGemini.valasz;
-    return { json: async () => vartGemini.valasz || {} };
+    return { ok: true, status: 200, json: async () => vartGemini.valasz || {} };
   }
   if (vartGemini.oldal && url.startsWith(vartGemini.oldal.url)) return vartGemini.oldal.valasz(url);
   throw new Error("nem engedett külső hívás a tesztben: " + url);
@@ -238,4 +241,51 @@ test("SEC-015: a chat felismeri az új formátumú admin-sütit (közös _suti.j
   assert.strictEqual(await suti.belepve(req, kvFn), true);
   const regiForma = { headers: { cookie: `qn_admin=${lejar}.${crypto.createHmac("sha256", "a".repeat(40)).update(String(lejar)).digest("hex")}` } };
   assert.strictEqual(await suti.belepve(regiForma, kvFn), false, "a régi formátum már nem érvényes");
+});
+
+// ---- Audit 2026-11-03 (Gittus): a csevegő szabad kérdésre ne adjon 502-t ----
+function chatGemini({ beagyazas = true, modell }) {
+  const vektor = (() => { try { return require("../api/_hirek.json").hirek[0].v; } catch { return Array(768).fill(0.1); } })();
+  return (url) => {
+    if (url.includes("embedContent")) {
+      if (!beagyazas) throw new Error("beágyazás nem elérhető");
+      return { ok: true, status: 200, json: async () => ({ embedding: { values: vektor } }) };
+    }
+    return modell(url);
+  };
+}
+
+test("CHAT: ha a modell kétszer is hibát ad, 200-as tartalék válasz jön hírekkel, nem 502", async () => {
+  ujKv();
+  vartGemini.fv = chatGemini({ modell: () => ({ ok: false, status: 503, json: async () => ({ error: { message: "túlterhelt" } }) }) });
+  const r = await keres("kerdez.js", { body: { kerdes: "Mi történt az OpenAI-jal a héten?" } });
+  vartGemini.fv = null;
+  assert.strictEqual(r.kod, 200);
+  assert.strictEqual(r.adat.tartalek, true);
+  assert.ok(r.adat.forrasok.length >= 1 && r.adat.forrasok[0].url && r.adat.forrasok[0].datum, "a tartalékban dátumozott, linkelt hírek vannak");
+  assert.strictEqual(kulso.filter((k) => k.url.includes("generateContent")).length, 2, "egyszer újrapróbálja");
+  assert.ok((tar.get("qn:chat:hibak") || []).length >= 2, "a hiba naplózva");
+});
+
+test("CHAT: levágott, nem értelmezhető JSON után az újrapróbálás érvényes választ ad", async () => {
+  ujKv(); let n = 0;
+  const jo = { candidates: [{ content: { parts: [{ text: JSON.stringify({ temaban: true, bevezeto: "A héten 1 hír jelent meg.", pontok: [{ szoveg: "Új modell jelent meg.", forras: [1], reszek: [] }] }) }] } }] };
+  vartGemini.fv = chatGemini({ modell: () => (++n === 1
+    ? { ok: true, status: 200, json: async () => ({ candidates: [{ content: { parts: [{ text: '{"temaban": true, "bevezeto": "A hé' }] } }] }) }
+    : { ok: true, status: 200, json: async () => jo }) });
+  const r = await keres("kerdez.js", { body: { kerdes: "Mi történt az OpenAI-jal a héten?" } });
+  vartGemini.fv = null;
+  assert.strictEqual(r.kod, 200);
+  assert.ok(!r.adat.tartalek);
+  assert.strictEqual(r.adat.bevezeto, "A héten 1 hír jelent meg.");
+});
+
+test("CHAT: ha a beágyazás nem elérhető, a kérdés kulcsszavas rangsorral akkor is választ kap", async () => {
+  ujKv();
+  const jo = { candidates: [{ content: { parts: [{ text: JSON.stringify({ temaban: true, bevezeto: "Van ilyen hír.", pontok: [] }) }] } }] };
+  vartGemini.fv = chatGemini({ beagyazas: false, modell: () => ({ ok: true, status: 200, json: async () => jo }) });
+  const r = await keres("kerdez.js", { body: { kerdes: "Mi történt az OpenAI-jal a héten?" } });
+  vartGemini.fv = null;
+  assert.strictEqual(r.kod, 200);
+  assert.strictEqual(r.adat.bevezeto, "Van ilyen hír.");
 });

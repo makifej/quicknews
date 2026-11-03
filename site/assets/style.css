@@ -958,6 +958,20 @@ html:not(.suti-van) .chat { display: none; }
 .ai-lab { display: flex; justify-content: space-between; gap: 8px; margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--keret); font-size: 12px; color: var(--szoveg-3); }
 .ai-lab span { display: inline-flex; align-items: center; gap: 4px; }
 .ai-lab svg { width: 14px; height: 14px; }
+/* Audit 2026-11-03: forrás a pontok végén sorszámmal, a válasz alján dátumozott forráslista; hibánál újrapróbálás */
+.chat-fsz { display: inline-flex; gap: 4px; margin-left: 4px; vertical-align: 1px; }
+.chat-fsz a { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 4px; border-radius: 999px; font-size: 12px; line-height: 1; font-weight: 700; color: var(--kiemelo-szin); background: var(--bg-3); border: 1px solid var(--keret); text-decoration: none; }
+.chat-fsz a:hover, .chat-fsz a:focus-visible { border-color: var(--kiemelo); }
+.chat-forrasok { list-style: none; margin: 10px 0 0; padding: 8px 0 0; border-top: 1px solid var(--keret); display: flex; flex-direction: column; gap: 8px; }
+.chat-forrasok li { display: grid; grid-template-columns: 20px minmax(0, 1fr); column-gap: 8px; font-size: 13px; line-height: 18px; border-radius: 6px; transition: background-color 250ms ease; }
+.chat-forrasok li.villan { background: var(--bg-3); }
+.chat-forrasok .chat-fn { grid-row: 1 / 3; display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 999px; font-size: 12px; font-weight: 700; color: var(--kiemelo-szin); background: var(--bg-3); }
+.chat-forrasok a { color: var(--szoveg); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+.chat-forrasok a:hover, .chat-forrasok a:focus-visible { color: var(--kiemelo-szin); text-decoration: underline; }
+.chat-forrasok time { grid-column: 2; font-size: 12px; color: var(--szoveg-3); }
+.chat-ujra { margin-top: 8px; font: 700 13px/18px Manrope, system-ui, sans-serif; color: var(--kiemelo-szin); background: transparent; border: 1px solid var(--kiemelo); border-radius: 999px; padding: 6px 12px; min-height: 32px; cursor: pointer; }
+.chat-ujra:hover, .chat-ujra:focus-visible { background: var(--bg-3); }
+.chat-b.hiba .chat-ujra { display: inline-block; }
 .chat-pontok li:first-child { border-top-color: var(--keret); }
 @media (max-width: 599px) { .chat-panel { width: 100%; } }
 
