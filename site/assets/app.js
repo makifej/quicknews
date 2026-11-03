@@ -69,18 +69,26 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
   indit.addEventListener('click', function(){ nyit(panel.hidden); });
   dob.querySelector('[data-chat-zar]').addEventListener('click', function(){ nyit(false); indit.focus(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !panel.hidden) { nyit(false); indit.focus(); } });
-  function datum(d){ var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d || ''); return m ? (+m[2]) + '. ' + (+m[3]) + '.' : ''; }
+  // dátum az oldal többi részével egyezően (Audit 2026-11-03): „nov. 2. 14:05”, budapesti idő
+  var HO = ['jan.','febr.','márc.','ápr.','máj.','jún.','júl.','aug.','szept.','okt.','nov.','dec.'];
+  function datum(d){ var m = /^(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{2}):(\d{2}))?/.exec(d || ''); return m ? HO[+m[2]-1] + ' ' + (+m[3]) + '.' + (m[4] ? ' ' + m[4] + ':' + m[5] : '') : ''; }
+  function idoHu(ido){ var p = new Intl.DateTimeFormat('hu-HU', {timeZone: 'Europe/Budapest', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false}).formatToParts(ido);
+    var g = function(t){ var x = p.filter(function(y){ return y.type === t; })[0]; return x ? x.value : ''; };
+    return HO[+g('month')-1] + ' ' + (+g('day')) + '. ' + g('hour') + ':' + g('minute'); }
   var IK = {
     szikra: '<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M197.58 129.06l-51.61-19-19-51.65a15.92 15.92 0 0 0-29.88 0L78.07 110l-51.65 19a15.92 15.92 0 0 0 0 29.88L78 177.93l19 51.62a15.92 15.92 0 0 0 29.88 0l19-51.61 51.65-19a15.92 15.92 0 0 0 0-29.88ZM140.39 163a15.87 15.87 0 0 0-9.43 9.43l-19 51.46L93 172.39a15.87 15.87 0 0 0-9.39-9.39l-51.46-19 51.46-19a15.87 15.87 0 0 0 9.39-9.39l19-51.46 19 51.46a15.87 15.87 0 0 0 9.39 9.39l51.46 19ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8Zm104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8Z"/></svg>',
     lap: '<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M213.66 82.34l-56-56A8 8 0 0 0 152 24H56a16 16 0 0 0-16 16v176a16 16 0 0 0 16 16h144a16 16 0 0 0 16-16V88a8 8 0 0 0-2.34-5.66ZM160 51.31 188.69 80H160ZM200 216H56V40h88v48a8 8 0 0 0 8 8h48v120Zm-32-80a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Zm0 32a8 8 0 0 1-8 8H96a8 8 0 0 1 0-16h64a8 8 0 0 1 8 8Z"/></svg>'
   };
   // A válasz pontjai: egy hírről szóló pontnál maga a szöveg visz a hírre (asztalon ráhúzva felugró ablak),
   // több hírt összefogó pontnál csak a narancs szaggatott vonallal aláhúzott részlet, hírenként.
-  function tipp(f){ return '<span class="chat-tipp" role="tooltip"><strong>'+biztos(f.cim)+'</strong>'+(f.lead ? '<em>'+biztos(f.lead)+'</em>' : '')+'</span>'; }
+  // Audit 2026-11-03: a ráhúzásra felugró hírkártya rácsúszott a válasz szövegére. Helyette minden pont végén a forrás
+  // sorszáma, a válasz alján pedig a hivatkozott hírek listája címmel és dátummal.
+  function tipp(){ return ''; }
+  function jel(l){ return l.length ? ' <span class="chat-fsz">' + l.map(function(n){ return '<a href="#" data-chat-f="'+n+'" aria-label="'+n+'. forrás">'+n+'</a>'; }).join('') + '</span>' : ''; }
   function pontHtml(x, fm){
     var l = (x.forras || []).filter(function(n){ return fm[n]; });
     if (l.length === 1) { var f = fm[l[0]];
-      return '<a class="chat-hirpont" href="'+biztos(f.url)+'">'+biztos(x.szoveg)+tipp(f)+'</a>'; }
+      return '<a class="chat-hirpont" href="'+biztos(f.url)+'">'+biztos(x.szoveg)+'</a>' + jel(l); }
     var t = String(x.szoveg || ''), rr = [];
     var szabad = function(i, v){ return rr.every(function(r){ return v <= r.i || i >= r.v; }); };
     (x.reszek || []).forEach(function(r){ var i = t.indexOf(r.resz); if (i >= 0 && fm[r.forras] && szabad(i, i + r.resz.length)) rr.push({i: i, v: i + r.resz.length, f: fm[r.forras], n: r.forras}); });
@@ -103,12 +111,15 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     var ki = '', poz = 0;
     rr.forEach(function(r){ if (r.i < poz) return;
       ki += biztos(t.slice(poz, r.i)) + '<a class="chat-resz" href="'+biztos(r.f.url)+'">'+biztos(t.slice(r.i, r.v))+tipp(r.f)+'</a>'; poz = r.v; });
-    return '<span class="chat-psz">' + ki + biztos(t.slice(poz)) + '</span>';
+    return '<span class="chat-psz">' + ki + biztos(t.slice(poz)) + jel(l) + '</span>';
   }
+  function forrasLista(j){ var f = (j.forrasok || []).slice().sort(function(a, b){ return a.n - b.n; }); if (!f.length) return '';
+    return '<ol class="chat-forrasok" aria-label="Források">' + f.map(function(x){ return '<li data-n="'+x.n+'"><span class="chat-fn">'+x.n+'</span><a class="chat-hirpont" href="'+biztos(x.url)+'">'+biztos(x.cim)+'</a>'
+      + (x.datum ? '<time>'+datum(x.datum)+'</time>' : '') + '</li>'; }).join('') + '</ol>'; }
   function rajzol(u){
     var d = document.createElement('div');
     if (u.en) { d.className = 'chat-b en'; d.innerHTML = biztos(u.en); }
-    else if (u.hiba) { d.className = 'chat-b bot hiba'; d.innerHTML = biztos(u.hiba); }
+    else if (u.hiba) { d.className = 'chat-b bot hiba'; d.innerHTML = biztos(u.hiba) + (u.kerdes ? ' <button type="button" class="chat-ujra" data-chat-ujra>Újrapróbálom</button>' : ''); if (u.kerdes) d.dataset.kerdes = u.kerdes; }
     else if (u.info) { d.className = 'chat-b bot info'; d.innerHTML = biztos(u.info).replace('Napok menüben', '<a href="/napok">Napok</a> menüben'); }
     else {
       var j = u.bot, fm = {}; (j.forrasok || []).forEach(function(f){ fm[f.n] = f; });
@@ -116,10 +127,12 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
         ? (j.bevezeto ? '<p class="chat-bev">'+biztos(j.bevezeto)+'</p>' : '') + ((j.pontok || []).length ? '<ul class="chat-pontok">' + j.pontok.map(function(x){ return '<li>'+pontHtml(x, fm)+'</li>'; }).join('') + '</ul>' : '')
         : '<p>'+biztos(j.valasz || '')+'</p>';
       var ido = u.ido ? new Date(u.ido) : null;
-      var lab = '<div class="ai-lab"><span>'+IK.lap+'Forrás: quicknews.hu</span>' + (ido ? '<span>'+(ido.getMonth()+1)+'. '+ido.getDate()+'. '+String(ido.getHours()).padStart(2,'0')+':'+String(ido.getMinutes()).padStart(2,'0')+'</span>' : '') + '</div>';
+      var lab = '<div class="ai-lab"><span>'+IK.lap+'A quicknews.hu híreiből</span>' + (ido ? '<span>Válasz: <time>'+idoHu(ido)+'</time></span>' : '') + '</div>'
+        + (j.tartalek ? '<button type="button" class="chat-ujra" data-chat-ujra>Újrapróbálom</button>' : '');
       d.className = 'chat-valasz';
-      d.innerHTML = '<div class="ai-sor"><span class="ai-ikon">'+IK.szikra+'</span><div class="chat-b bot ai-buborek">'+torzs+lab+'</div></div>'
+      d.innerHTML = '<div class="ai-sor"><span class="ai-ikon">'+IK.szikra+'</span><div class="chat-b bot ai-buborek">'+torzs+forrasLista(j)+lab+'</div></div>'
         + masok(u.kerdes);
+      if (j.tartalek) d.dataset.kerdes = u.kerdes || '';
     }
     lista.appendChild(d); return d;
   }
@@ -147,7 +160,10 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
   alapGomb.addEventListener('click', function(){
     all.uzenetek = []; delete all.gorgetes; ment();
     lista.innerHTML = KEZDO; javaslatok(); lista.scrollTop = 0; alapAllapot(); mezo.value = ''; mezo.focus(); ev('chat_alaphelyzet'); });
-  if (all.vissza && all.vissza === location.pathname) { all.nyitva = true; delete all.vissza; ment(); }
+  // Audit 2026-11-03: oldalváltás után a panel ne takarja a következő oldalt; a beszélgetés megmarad, a gombbal újranyitható.
+  // Kivétel: mobilon a válaszból megnyitott hírről visszalépve (Heni 2026-10-19) ugyanazon az oldalon újra kinyílik.
+  var visszaJott = all.vissza && all.vissza === location.pathname;
+  all.nyitva = !!visszaJott; delete all.vissza; ment();
   if (all.nyitva) { nyit(true, true); setTimeout(function(){ if (typeof all.gorgetes === 'number') lista.scrollTop = all.gorgetes; else gorget(); }, 0); }
   function kerdez(q){
     q = (q || '').trim(); if (q.length < 3) return;
@@ -157,8 +173,8 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     ev('chat_kerdes');
     fetch('/api/kerdez', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({kerdes:q})})
       .then(function(r){ return r.json(); })
-      .then(function(j){ var_.remove(); uj(j.hiba ? {hiba: j.hiba} : j.info ? {info: j.info} : {bot: j, kerdes: q, ido: new Date().toISOString()}); })
-      .catch(function(){ var_.remove(); uj({hiba: 'Most nem sikerült választ adni. Próbáld újra kicsit később!'}); })
+      .then(function(j){ var_.remove(); uj(j.hiba ? {hiba: j.hiba, kerdes: q} : j.info ? {info: j.info} : {bot: j, kerdes: q, ido: new Date().toISOString()}); })
+      .catch(function(){ var_.remove(); uj({hiba: 'Most nem sikerült választ adni.', kerdes: q}); })
       .then(function(){ mezo.disabled = kuld.disabled = false; mezo.focus(); });
   }
   urlap.addEventListener('submit', function(e){ e.preventDefault(); kerdez(mezo.value); });
@@ -168,6 +184,14 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
       // visszalépéskor (Heni 2026-10-19) ugyanezen az oldalon újra kinyílik, a kérdés és a válasz ott van
       if (window.matchMedia('(max-width: 767px)').matches) { all.nyitva = false; all.vissza = location.pathname; }
       helyMent(); ev('chat_forras_kattintas', {resz: !!e.target.closest('.chat-resz')}); return; }
+    var fsz = e.target.closest('[data-chat-f]');
+    if (fsz) { e.preventDefault(); var li = fsz.closest('.chat-valasz').querySelector('.chat-forrasok li[data-n="'+fsz.dataset.chatF+'"]');
+      if (li) { li.scrollIntoView({block: 'nearest', behavior: 'smooth'}); li.classList.add('villan'); setTimeout(function(){ li.classList.remove('villan'); }, 1200); } return; }
+    var uj_ = e.target.closest('[data-chat-ujra]');
+    if (uj_) { var hol = uj_.closest('[data-kerdes]'); var kq = hol && hol.dataset.kerdes; if (kq) { ev('chat_ujraprobalas');
+      var ix = Array.prototype.indexOf.call(lista.children, hol); hol.remove(); all.uzenetek = all.uzenetek.filter(function(u, i){ return !(u.kerdes === kq && (u.hiba || (u.bot && u.bot.tartalek))); });
+      var enIx = -1; all.uzenetek.forEach(function(u, i){ if (u.en === kq) enIx = i; }); if (enIx >= 0) { all.uzenetek.splice(enIx, 1); var enEl = lista.children[ix - 1]; if (enEl && enEl.classList.contains('en')) enEl.remove(); }
+      ment(); kerdez(kq); } return; }
     var b = e.target.closest('.chat-javaslat button, .chat-javas'); if (b) { ev('chat_javaslat'); kerdez(b.textContent); } });
 })();
 // Fel- és leszavazás (api/szavaz): a látogató egy véletlen, névtelen azonosítót kap a helyi tárolóban
