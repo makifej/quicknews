@@ -1888,3 +1888,7 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .cimlap-elv { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 16px; margin: 0 0 16px; font-size: 13px; line-height: 18px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--szoveg-2); }
 .cimlap-elv a { color: var(--kiemelo-szin); text-transform: none; letter-spacing: 0; font-size: 14px; }
 .cimlap-elv a:hover { text-decoration: underline; }
+/* Feltörekvő: az egyhírű csoportok egymás mellett, egy sorban (Heni 2026-11-03) */
+.magany-sor { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+.magany-sor .magany { min-width: 0; }
+@media (min-width: 1100px) { .magany-sor { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
