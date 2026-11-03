@@ -69,6 +69,14 @@ module.exports = async (req, res) => {
         const s = (await kv("HMGET", P + "l:" + l, ...ids)) || [];
         ids.forEach((id, i) => { if (s[i] === "a" || s[i] === "b") sajat[id] = s[i]; });
       }
+      // Audit 2026-11-03: ha erről a hálózatról már szavaztak (pl. előbb asztalon, most mobilon), az IP-szabály miatt itt
+      // nem szavazhat újra, de az állást lássa (eddig csak a „Már szavaztál” felirat jelent meg, eredmény nélkül)
+      const ipl = ipAllando(req);
+      for (const id of ids) {
+        if (sajat[id]) continue;
+        const gazda = await kv("HGET", P + "ipv:" + id, ipl);
+        if (gazda && LAT.test(gazda)) { const v = await kv("HGET", P + "l:" + gazda, id); if (v === "a" || v === "b") sajat[id] = v; }
+      }
       const allas = {};
       for (const id of ids) if (sajat[id] || allapot(pb[id]) === "lezart") allas[id] = await allasBe(id);
       return json(res, 200, { allas, sajat });
@@ -88,7 +96,10 @@ module.exports = async (req, res) => {
     if ((await kv("SET", zar, "1", "NX", "EX", 5)) !== "OK") return json(res, 429, { hiba: "Egy pillanat, a szavazatod még mentés alatt van." });
     try {
       const gazda = await kv("HGET", ipk, ipl);
-      if (gazda && gazda !== l) return json(res, 409, { hiba: "Már szavaztál ebben a párbajban!", mar: true });
+      if (gazda && gazda !== l) {
+        const v = await kv("HGET", P + "l:" + gazda, id);
+        return json(res, 409, { hiba: "Már szavaztál ebben a párbajban!", mar: true, sajat: v === "a" || v === "b" ? v : null, allas: await allasBe(id) });
+      }
       const regi = await kv("HGET", P + "l:" + l, id);
       // egy szavazat, nem módosítható (Heni 2026-10-18: „ha valaki szavaz azt zárd le, többször ne szavazhasson”)
       if ((regi === "a" || regi === "b") && regi !== valasztas)
