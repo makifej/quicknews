@@ -1,6 +1,6 @@
 {
   "id": "de4cf53f9db9",
-  "slug": "sajat-git-hatterrendszert-epitett-az-openai-az-mi-kodolas",
+  "slug": "sajat-git-hatterrendszert-epitett-az-openai-a-tomeges-kodgeneralas",
   "forras_id": "openai",
   "forras_nev": "OpenAI",
   "url": "https://openai.com/index/scaling-git-at-openai",
@@ -14,10 +14,10 @@
   "forrasok": [],
   "szoveg_eredeti": "Building agentic-scale scale source control while investing in the Git ecosystem.\n\nBy Aaron Friel, Taylor Blau, and Ted Nyman, Members of Technical Staff\n\nOver the past year, the size and demands on our monorepo have increased at a staggering pace. It was clear that we needed to revamp our source control system to scale to the level of concurrent work that Codex makes possible.\n\nWe built Pando, a new backend for Git repositories, without interrupting any engineering work or changing how our team uses Git. Pando now powers all development in OpenAI’s monorepo. Pando is designed to meet two ambitious goals: first, horizontally scalable writes, optimized for concurrent pushes to many branches. And second, maximize read throughput, so clients can download data fast enough to fully saturate their available network bandwidth.\n\nWe met these goals while retaining compatibility with the Git protocol and client, enabling both our engineers and agents to seamlessly adopt Pando into their existing workflows. In production, Pando cut median push latency by nearly 5x. It now delivers nearly a petabyte of Git data per day.\n\nHere, we’ll cover our motivations for building a new source-control system, along with why we chose to retain compatibility with Git. We’ll compare our system with common approaches to scaling Git, describing why Pando is uniquely capable of meeting OpenAI’s scalability needs. We also discuss what’s next, and how we’ll continue contributing to Git to support agent-scale work.\n\nCodex has changed the scale and pace of development at OpenAI, enabling engineers to do far more work in parallel. That means more branches and pushes, more merges, and more fetches and clones from development environments, research jobs, and CI.\n\nThese demands compound. One engineer now has several changes ready for CI at once, and each push can set several jobs fetching the same commit.\n\nStarting around the end of last year, the systems supporting our monorepo were struggling to keep up. We suffered slow fetches and pushes along with failed merges, with reliability at times falling below 90%. Had we reached a limit of Git itself, or of the way we served our monorepo? Git grew out of a community that exchanged patches to the kernel via email. For more than two decades, developers have adapted their tools around Git as the way they build software has changed. When we started to feel friction in our own monorepo, it mattered to us that we could keep building on that work.\n\nWe saw a way to keep that familiar workflow while rebuilding the backend to handle pushes to different branches in parallel and serve the same history to many readers concurrently. Building on Git as the foundation of our source-control workflow meant that improvements to the client could be useful beyond OpenAI. We wanted to contribute those improvements from our copy of Git⁠(opens in a new window) to upstream, sharing them with the broader community.\n\nScaling a source control system has two essential dimensions: many writers pushing to different branches, and many readers fetching the same history. Pando optimizes for both.\n\nFirst, Pando coordinates updates to each branch independently. Updates to unrelated branches can proceed in parallel, and a reader fetching a branch gets the history needed for that revision. The tradeoff is that a reader looking at several branches can see them at different points of time.\n\nSecond, Pando reuses packfiles (Git’s format for compressing multiple objects together) across fetches instead of generating an individual packfile for each client. A client may download some objects it already has, but the server can serve the same bytes to many clients with little computation.\n\nThese choices let us scale writes across branches and serve reads from caches. To see how they fit together, let’s start with how Git stores and transfers history.\n\nGit must be able to keep two parts of a repository in sync: objects and references.\n\nA Git repository records snapshots of files and the history connecting them as a graph of objects. An object may be either a blob, tree, commit, or tag. Blobs hold the content of an individual file, and trees associate names with blobs or other trees to form a directory structure. Commits point to a root tree and zero or more parent commits, forming the history of your repository.\n\nObjects are identified by a hash of their type and contents. Objects are also immutable: recording a changed file creates a new blob, while unchanged files and directories can reuse existing objects.\n\nBranches and tags are references, or “refs”, that point to commits. Committing on a branch creates a new commit and updates the branch’s ref to point to it.\n\nGit objects reference each other by their ID, commits to trees, and trees to trees and blobs. The branch refs/heads/main points to commit C2, whose parent is C1. C1 points to root tree T1, where parser.py refers to blob B1. C2 points to root tree T2, where parser.py refers to blob B2. In both root trees, docs/ refers to the same tree, T3. Its README.md entry points to blob B3, and usage.md points to blob B4.\n\nGit stores objects in either a “loose” or “packed” state. Loose objects are stored in individual files identified by their object ID. Packed objects are stored together in a packfile, enabling similar objects to be stored as deltas against one another.\n\nGit can store blobs as separate files or pack them together, encoding one blob as a delta against another.\n\nIn Git, an object is reachable from a commit if Git can find it by following links from that commit through its parents, trees, and blobs. During a fetch, the client tells the server which commits it wants and which it already has. The server finds the objects reachable from the wanted commits, excludes those it knows the client already has, and sends the remainder as a packfile in the same format Git uses on disk. A full clone starts without any objects, so it needs all the objects reachable from the history being cloned.\n\nA push transfers objects in the other direction by asking the server to update one or more refs. The client uses the server’s set of advertised refs to avoid sending objects the server already has. The pack being sent can therefore depend on existing objects: receiving the pack alone is not enough to reconstruct the new history.\n\nReplicating a Git repository means keeping both objects and references available across multiple servers. Before a replica can serve a reference’s new value, it must be able to supply the objects reachable from that value. The service also needs to coordinate competing reference updates, i.e., pushes that try to move the same branch from the same old tip to different new commits. Systems that impose a single order on all writes to a repository can make pushes to unrelated branches wait on one another.\n\nWhile designing Pando, we evaluated conventional approaches for scaling source control using Git: one that coordinates ref updates across repository replicas using three-phase commit (3PC, a protocol for coordinating a commit across multiple nodes), and one that orders updates through a shared write-ahead log (WAL, a record of changes written before they’re applied) in blob storage.\n\nIn the three-phase commit design we modeled, the Git service keeps a complete copy of the repository on several replicas. When any server receives a push, the incoming packfile is copied and sent to all replicas in parallel. To publish the push, a majority of replicas must accept the ref update. The server managing this is the coordinator, and it requires multiple rounds of communication between the coordinator and each other replica.\n\nTo accept a reference update, each replica locks its copy of the ref and checks that it still points to the commit the client expects. The coordinator then sends a pre-commit message to the replicas that accept. Once a majority acknowledges the pre-commit message, the coordinator tells them to perform the update.",
   "modell": "gemini-3.5-flash",
-  "cim": "Saját Git-háttérrendszert épített az OpenAI az MI-kódolás kiszolgálására",
-  "lead": "Az OpenAI kifejlesztette a Pando nevű rendszert, amellyel ötszörösére gyorsította a kódáttöltések sebességét a saját fejlesztői környezetében.",
-  "osszefoglalo": "Az OpenAI mérnökei és a [Codex MI-ügynökök](https://openai.com/codex) által generált párhuzamos feladatok akkora terhelést róttak a cég központi kódraktárára, hogy a korábbi rendszer megbízhatósága 90 százalék alá esett. Ennek megoldására építették meg a **Pando** nevű új Git-háttérrendszert.\n\nA Pando teljes mértékben kompatibilis marad a Git protokollal és klienssel, így sem a fejlesztőknek, sem a kódoló MI-ügynököknek nem kellett megváltoztatniuk a munkamenetüket. A rendszer az eltérő ágakra érkező írási műveleteket egymástól függetlenül, párhuzamosan kezeli, az olvasási lekérdezéseket pedig központi gyorsítótárból szolgálja ki.\n\nA rendszer élesbe állítása után a **közepes írási késleltetés az egyötödére csökkent**, és a Pando jelenleg naponta közel 1 petabájtnyi Git-adatot mozgat meg az OpenAI belső hálózatán.",
-  "miert_szamit": "A kódoló MI-eszközök tömeges használata hamarosan **a meglévő fejlesztői infrastruktúra skálázási korlátaiba ütközik**, amit a hagyományos eszközök felkészítésével lehet áthidalni.",
+  "cim": "Saját Git-háttérrendszert épített az OpenAI a tömeges kódgenerálásra",
+  "lead": "Pando néven új Git-kompatibilis rendszert fejlesztett az OpenAI a Codex által megnövelt párhuzamos kódkészítési igények kiszolgálására.",
+  "osszefoglalo": "Az OpenAI mérnöki csapata Pando néven új hátteret épített a cég központi Git-kódraktárához, miután a Codex AI-modell tömeges használata miatti lekérdezések és módosítások túlterhelték a korábbi rendszereket. Az [OpenAI fejlesztői bejelentése](https://openai.com/index/scaling-git-at-openai) szerint az új architektúra teljesen kompatibilis marad a meglévő Git-kliensekkel és munkafolyamatokkal, így sem a fejlesztőknek, sem az autonóm AI-ügynököknek nem kellett változtatniuk a szokásaikon.\n\nA rendszer a független ágak felé indított módosításokat párhuzamosan dolgozza fel, a letöltési kéréseket pedig előre csomagolt adategységekből és gyorsítótárból szolgálja ki. Ez a megközelítés megszünteti a torlódásokat a több ezres párhuzamos kódkiadások során.\n\nÉles környezetben a Pando közel ötödére csökkentette a módosítások beküldésének válaszidejét, miközben naponta közel **1 petabájtnyi** adatforgalmat bonyolít le. Az OpenAI az elért kliensoldali fejlesztéseket tervezi visszatáplálni a nyílt forráskódú Git-projektbe is.",
+  "miert_szamit": "Az AI-alapú kódgeneráló eszközök terjedésével a fejlesztői csapatoknak fel kell készülniük a **párhuzamosan futó automatizált kódmódosítások** és a kódraktárakat érő terhelés radikális növekedésére.",
   "cimkek": [
     "OpenAI",
     "Codex",
@@ -31,46 +31,57 @@
   "relevans": true,
   "kiprobalhato": null,
   "linkelendo_nevek": [
-    "Pando"
+    "Pando",
+    "Codex"
   ],
   "linkszabaly": 3,
   "prioritas": {
-    "pont": 73,
-    "szint": "P2",
+    "pont": 54,
+    "szint": "X",
     "reszpont": {
-      "hatas": 70,
-      "hirertek": 80,
-      "egyediseg": 90,
-      "hitelesseg": 92,
-      "aktualitas": 82,
-      "kozossegi": 66
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 90,
+      "egyediseg": 60,
+      "aktualitas": 88,
+      "kozossegi": 67
     },
     "elofeszures": 90,
     "tanult": 67,
-    "indok": "Hivatalos bejelentés az OpenAI mérnökeitől arról, hogyan skálázzák a kódkészletüket a Codex AI-ágensek miatt. Forrás-tapasztalat: -5.",
-    "tema": "openai git pando backend",
-    "cim_hu": "Így skálázza az OpenAI a kódforrásait az AI-ágensek korszakában",
-    "lead_hu": "Az OpenAI hivatalos blogján részletezte a Pando nevű új Git infrastruktúráját, amelyet azért fejlesztettek ki, hogy megbirkózzon a Codex AI-ágensek által generált hatalmas kódmennyiséggel.",
+    "indok": "Duplikátum: 142b10c491a9",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
     "klaszter": null,
-    "ai": true,
-    "ido": "2026-11-03T07:05:11+00:00"
+    "ai": false,
+    "ido": "2026-11-03T07:30:35+00:00"
   },
   "jovahagyas_kell": true,
-  "forditva": "2026-11-03T07:15:37+00:00",
+  "forditva": "2026-11-03T07:45:16+00:00",
   "megjelent": "2026-11-03T07:24:10.774Z",
   "tenyellenorzes": {
     "ok": true,
-    "ido": "2026-11-03T07:17:50+00:00",
-    "esemeny": "Az OpenAI fejlesztői bemutatták a Pando nevű új Git-háttérrendszerüket, amellyel a Codex által generált megnövekedett párhuzamos terhelést kezelik a monorepójukban.",
+    "ido": "2026-11-03T07:45:17+00:00",
+    "esemeny": "Az OpenAI mérnökei (Aaron Friel, Taylor Blau és Ted Nyman) bemutatták a Pando nevű új Git-háttérrendszert, amelyet a Codex által generált tömeges párhuzamos fejlesztések és a monorepo megnövekedett terhelésének kezelésére fejlesztettek ki.",
     "forrasok": [
       "https://openai.com/index/scaling-git-at-openai"
     ],
-    "hibak": [],
+    "hibak": [
+      "Tényhiba az összefoglalóban: a szöveg szerint a median push latency közel 5-szörösére csökkent ('cut median push latency by nearly 5x'), a magyar hír tévesen azt állítja, hogy 'a felére csökkentette'.",
+      "Hiányzó hivatkozás: az összefoglaló nem tartalmazza az elsődleges forrásra mutató beszédes linket.",
+      "Formai hiba: a lead 161 karakteres, ami meghaladja a legfeljebb 160 karakteres korlátot."
+    ],
     "kereses": [],
-    "javitva": false
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Saját Git-háttérrendszert épített az OpenAI a tömeges kódgenerálás kiszolgálására",
+      "lead": "Pando néven új, Git-kompatibilis forráskód-kezelőt fejlesztett ki az OpenAI a Codex által megnövelt párhuzamos fejlesztési igények kezelésére.",
+      "osszefoglalo": "Az OpenAI mérnöki csapata Pando néven új hátteret épített a cég központi Git-kódraktárához, miután a Codex AI-modell tömeges használata miatti lekérdezések és módosítások túlterhelték a korábbi rendszereket. Az új architektúra teljesen kompatibilis marad a meglévő Git-kliensekkel és munkafolyamatokkal, így sem a fejlesztőknek, sem az autonóm AI-ügynököknek nem kellett változtatniuk a szokásaikon.\n\nA rendszer a független ágak felé indított módosításokat párhuzamosan dolgozza fel, a letöltési kéréseket pedig előre csomagolt adategységekből és gyorsítótárból szolgálja ki. Ez a megközelítés megszünteti a torlódásokat a több ezres párhuzamos kódkiadások során.\n\nÉles környezetben a Pando a felére csökkentette a módosítások beküldésének válaszidejét, miközben naponta közel **1 petabájtnyi** adatformgalmat bonyolít le. Az OpenAI az elért kliensoldali fejlesztéseket tervezi visszatplálni a nyílt forráskódú Git-projektbe is.",
+      "miert_szamit": "Az AI-alapú kódgeneráló eszközök terjedésével a fejlesztői csapatoknak fel kell készülniük a **párhuzamosan futó automatizált kódmódosítások** és a kódraktárakat érő terhelés radikális növekedésére."
+    }
   },
   "kiprobal_nezve": true,
   "termeklinkek_nezve": true,
-  "kep_minoseg_kesz": "2026-11-03T07:18:54+00:00",
+  "kep_minoseg_kesz": "2026-11-03T07:46:06+00:00",
   "linkek_ellenorizve": true
 }
