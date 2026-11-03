@@ -93,6 +93,8 @@ jobs:
         run: |
           git config user.name "makifej"
           git config user.email "149273611+makifej@users.noreply.github.com"
+          # a slugtörténet összefésülése cikkenkénti egyesítéssel (.gitattributes), hogy régi webcím ne vesszen el (2026-11-03)
+          git config merge.slugunio.driver "python3 build/slug_unio.py %O %A %B"
           git add -A data site
           if git diff --cached --quiet; then echo "nincs változás"; exit 0; fi
           git commit -m "Frissítés: $(date '+%Y-%m-%d %H:%M')"
