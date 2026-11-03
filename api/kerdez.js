@@ -127,8 +127,9 @@ function kerdesKulcs(q) {
 // tartalék: a modell nélkül, a rangsor első 3 hírével (cím, dátum, link), hogy a látogató ne üres kézzel távozzon
 function tartalek(pont, q) {
   const l = pont.slice(0, 3).map((x, i) => ({ n: i + 1, cim: x.h.cim, url: x.h.url, datum: x.h.datum, lead: x.h.lead }));
-  return { tartalek: true, ujra: true, bevezeto: "Most nem tudtam összefoglalni a választ, de ezek a hírek kapcsolódnak a kérdésedhez:",
-    pontok: [], forrasok: l, valasz: "", kerdes: q };
+  const bev = "Most nem tudtam összefoglalni a választ, de ezek a hírek kapcsolódnak a kérdésedhez:";
+  // a valasz mezőt az Android-app mutatja (a web a bevezetőt), ezért mindkettőben ott a szöveg
+  return { tartalek: true, ujra: true, bevezeto: bev, pontok: [], forrasok: l, valasz: bev, kerdes: q };
 }
 
 async function nepszeruek() {
