@@ -1,0 +1,49 @@
+{
+  "id": "003d54f4d366",
+  "slug": "same-model-different-harness-cuga-hermes-and-deep-agents-when-to-pick",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/ibm-research/cuga-harness",
+  "publikalva": "2026-11-03T15:57:39+00:00",
+  "cim": "Same Model, Different Harness: CUGA, Hermes, and Deep Agents — When to Pick CUGA?",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 53 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/636c2b3c1df179e8b83d7730/HAejcV9UI0kFWjSLj5Hva.png"
+  },
+  "cim_eredeti": "Same Model, Different Harness: CUGA, Hermes, and Deep Agents — When to Pick CUGA?",
+  "szoveg_eredeti": "There are nearly 200 agent harnesses to choose from. We gave three of them the same open-weight model and 90 AppWorld tasks, and changing the harness moved task completion from 30% to 81%. For enterprise use, CUGA adds what this benchmark does not test: rules that the harness enforces and deployment inside your own boundary.\n\nCommunity lists such as awesome-agent-harness and best-of-Agent-Harnesses track nearly 200 of them, and they make one point clearly: the harness matters, not only the model. In one analysis that best-of-Agent-Harnesses cites, the same GLM-5.2 model went from 23% to 52% on SWE-bench Pro when only the harness changed.\n\nSo the right question is not \"which harness is best?\" but \"which harness fits my workload, with my model?\" Hermes from Nous Research is built for always-on personal assistants, and Deep Agents from LangChain for long, multi-step tasks such as research. Both are excellent at those jobs.\n\nEnterprise work is a different job. Agents act on business systems, such as CRM and payments, and they must follow rules that hold whatever the model decides. CUGA (ConfigUrable Generalist Agent) is IBM's open-source harness built for that job, with open-weight or hosted models, inside your own environment, including sovereign clouds and air-gapped deployments. To measure what the harness adds, we kept the model the same and changed only the harness.\n\nWe ran CUGA, Hermes, and Deep Agents on AppWorld, a benchmark of multi-step tasks across 9 apps and 457 APIs, such as email, payments, and file storage. The apps are consumer apps, so AppWorld is a proxy: it tests a subset of the capabilities that enterprise automation also needs, such as logging in, reading API docs, paging through results, and changing state across several apps. Every harness used the same open-weight model, GLM-5.3-flash, on the same 90 tasks in 30 scenarios, with one attempt per task. All runs used the Harbor evaluation framework, and our setup is public in harbor-eval, our Harbor fork.\n\nFigure 1. AppWorld, 90 tasks in 30 scenarios, GLM-5.3-flash for every harness. TGC: tasks passed. SGC: scenarios where all three variants passed.\n\nHow to read this. This is not a verdict on Hermes or Deep Agents. Neither was built for multi-app API work like AppWorld, and that is the point: the harness has to fit the job.\n\nThe most useful number is SGC. A scenario passes only when all three of its variants pass, so SGC rewards consistency, not a lucky run. Here the gap is larger: 20 scenarios for CUGA, 8 for Hermes, and 2 for Deep Agents.\n\nThree limits apply. This is a 90-task sample on one benchmark, so the results may not generalize to other tasks. The setups were not identical (see the setup table above). And the runs did not use policies, so they do not measure policy enforcement.\n\nIn the 90-task comparison, the model was the same in every run, so the differences come from the harness. Every CUGA agent runs the same compact loop: prepare, call the model, execute, and repeat. The same loop scales from one CugaAgent with its own tools to a CugaSupervisor coordinating several agents, local or remote over A2A. These are the CUGA features that ran in the AppWorld setup, grouped by what they do:\n\nWith these features, the model makes fewer decisions, and the harness catches more mistakes before they reach the result.\n\nEach step that the harness controls, like those in the list above, is also a place where it can check a rule.\n\nMost teams write business rules, such as payment approval or keeping customer PII inside the organization, into the system prompt. A prompt is an instruction, not enforcement. The model can misread it, a user can talk the agent out of it, and an injected message can change it in the middle of a task.\n\nCUGA policies move these rules out of the prompt and into the harness. We describe this policy layer in our ACM CAIS 2026 paper, Governance by Construction for Generalist Agents (arXiv). The policies act at four points in every run:\n\nGuidance steers the model, but approvals and ToolGuards are enforced by the runtime. Put rules such as payment approval and PII handling in the second group, where they hold whatever the model decides.\n\nYou can see the difference yourself in the Policy Playground, which sends the same message to two live agents, one without policies and one with them:\n\nFigure 2. For \"Pay everything I owe.\", the agent without policies paid $90, including a denied claim in collections. The agent with policies held the payment for approval, then paid only the $10 that was due.\n\nChoose a harness as carefully as the model. In our comparison, the same model completed between 30% and 81% of AppWorld tasks, depending on the harness. For enterprise work, CUGA gives you:\n\nCUGA is not the right harness for every job:\n\nCUGA is for automating business work across APIs, apps, and web UIs, under rules you can enforce.\n\nThe CUGA team ran this comparison, and CUGA used an AppWorld configuration that the other harnesses did not. If you can configure Hermes or Deep Agents to do better, send a configuration to harbor-eval. We will rerun it on the same tasks and publish the results, whichever harness wins.",
+  "begyujtve": "2026-11-03T16:06:44.042149+00:00",
+  "prioritas": {
+    "pont": 53,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 90,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 47
+    },
+    "elofeszures": 93,
+    "tanult": 47,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -5.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-03T16:11:17+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-03T16:11:56+00:00"
+}
