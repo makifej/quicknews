@@ -1,0 +1,49 @@
+{
+  "id": "2282a1b7418e",
+  "slug": "artificial-limitation-the-illusion-of-intelligence",
+  "forras_id": "google-news-ai",
+  "forras_nev": "HackerNoon",
+  "url": "https://hackernoon.com/artificial-limitation-the-illusion-of-intelligence",
+  "publikalva": "2026-11-03T19:35:02+00:00",
+  "cim": "Artificial Limitation: The Illusion of Intelligence",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://hackernoon.imgix.net/images/1Rpvs3dhsUhIi7tRdesNJHUGL9S2-nq839fj.png"
+  },
+  "cim_eredeti": "Artificial Limitation: The Illusion of Intelligence",
+  "szoveg_eredeti": "Author, technology leader, ex-competitive gamer, nerd enthusiast, father of two, husband of one, avid consumer of music.\n\nAuthor, technology leader, ex-competitive gamer, nerd enthusiast, father of two, husband of one, avid consumer of music.\n\nAuthor, technology leader, ex-competitive gamer, nerd enthusiast, father of two, husband of one, avid consumer of music.\n\nLike most of the world, I increasingly leverage AI in my daily life, both in and out of work. I won’t claim to be an AI professional, but rather a professional who uses AI. In fact, I’d consider myself a professional thinker, which is perhaps what fascinates me so much about this nomenclature of Artificial Intelligence. So much so that I find myself writing another article about AI instead of focusing on my other writing initiatives.\n\nI have repeatedly circled back to this, including in my article, AI Doesn’t Think The Way You Think It Thinks, and it comes down to what it truly means to know, to think, and to have intelligence. I don’t mean this in a philosophical sense, but in the practical sense of how we're seeing it applied today. I feel like I had a breakthrough in understanding this past week that I hope to impart in this article.\n\nFirst, I want to narrow the scope of artificial intelligence to the productized service models we are generally interacting with from companies like Anthropic, Google, Meta, OpenAI, and xAI. These models are how most of us are experiencing AI, and while I think a broader reflection on AI without the boundaries imposed by these companies is interesting, it's less applicable to most of us. Those boundaries are exactly where I have found the nuance lies.\n\nIn my last article, I used the term “frozen brain” to explain how these models are incapable of learning when we use them. They have already synthesized their knowledge and weighted their parameters. They might synthesize information again to satisfy a prompt, but they don't re-integrate that new synthesis into the original synthesis in the moment. Likewise, they adapt their behavior using the conversation’s context, but the context remains localized. That is inherently different from permanently learning from experience. If you’re familiar with how a computer works, it’s kind of like the difference between memory and storage. It’s in the memory; it is not in the storage.\n\nThat is because the models we use are not allowed to learn directly from these interactions, as part of safety measures to ensure stability and prevent corruption by bad actors. To be clear, your data may be used later during controlled training sessions. The difference is called in-context learning versus in-weight learning. In training mode, their weights are adjusted based on a multitude of factors related to the data used: objectives, quality, and repetition.\n\nWhat’s important to understand is that AI doesn't directly retrieve files like an archive that keeps exact copies of everything it’s been trained on. In fact, it might not even know where that data came from because training doesn’t reliably preserve the connection between learned information and its original source. Instead, it uses a distributed pattern, kind of like a mind map, that spreads information across millions or billions of connections, resulting in lossiness. This is why it typically can’t recite any particular book word for word. Similar to a human, if you read a book over and over, you may be able to recall a specific passage verbatim, but if you read it only once, you may only be able to recall generalities. It’s also why it often searches the internet to validate its response, and why some people set up Retrieval-Augmented Generation (RAG) with a vector database to enable that level of information retrieval for their agents.\n\nFrom a repetition standpoint, LLMs memorize phrasing more than the meanings behind them. When thousands of phrases share the same pattern, the connection to that node becomes stronger. Meaning it builds its memory’s scaffolding based on familiar shape or sentence structure, not the substance. Perhaps this is one of the reasons why LLMs are prone to misinformation and hallucinations. For the record, human memory tends to be semantic.\n\nThis also means that an AI model doesn’t know why a pattern is necessarily desirable. It knows it is more prevalent than others, and it may be able to regurgitate why others say it is beneficial or harmful, but it doesn’t have its own experience to judge when, why, or whether to apply it. Perhaps this is why patterns of abstract phrases and balanced contrasts often flag AI writing detectors.\n\nOne of the most powerful drivers for human learning and behavioral change is a biological response to comfort and discomfort associated with prediction errors, the pleasure of acquisition, and loss aversion, something AI is currently unable to produce. This creates a larger question around what constitutes a learning experience. Likewise, a human may perform the same task over and over for years, but have they become better at it? If your thinking has not evolved, have you learned? There appears to be a processing of experience required to learn that is more than the acquisition of knowledge or the performance of tasks. And unlike humans, these models don't have an ongoing internal narrative. When you stop interacting with them, they aren't continuing to reflect on the conversation, reconsider their conclusions, or really think at all. The underlying model only resumes processing when prompted again.\n\nThis offers the first glimpse of AI’s inert knowledge, often conflated with activated knowledge. As disclosed in cases such as Bartz v. Anthropic and Authors Guild v. OpenAI, these models have consumed most books you could possibly think of. And yet, time and again, I am left perplexed by these models' inability to inherently apply this information, even when I have established it as a preference. Instructions say to do x, y, z, and it may perform those instructions exactly. But as the instructions grow to a, b, c, d, e, f, g, it tends to cherry-pick which instructions it consistently follows. When asked, it will acknowledge it forgot to do c and e, and it will tell you it is updating its memory so it doesn't forget those things, but it will likely do it again and again.\n\nThis made me aware of a gap in how our current models operate. AI has become very impressive with its confident, verbose responses, often outproducing a human's ability to regurgitate a line of cohesive-sounding wording, but on closer look, it appears to be just that. It actually pales in comparison to most humans’ inherent executive function. Over time, a human can create increasingly complicated actions by compounding knowledge, and we are often unaware we are even doing it. When we write, draw, cook, and so on, we are subconsciously and consciously applying lessons and preferences. Current gen AI models are limited in this way, and it’s not just my observation; there is an increasing body of research to support this: Strong Memory, Weak Control: An Empirical Study of Executive Functioning in LLM, Deficient Executive Control in Transformer Attention, Lost in the Middle: How Language Models Use Long Contexts.\n\nThe current workaround that I and others I know have been applying to supplement this limitation is to chunk the instructions for them, similar to how humans naturally chunk information. This looks like tiered models of skills and sub-agents that roll up to an orchestrator agent. Some are even creating teams of agents where one’s job is to poke holes in the other’s outputs. This is imperfect, though, because the models themselves remain non-deterministic even with clear instructions, much like a human. However, today they likely are unable to be as consistent as a human, and they certainly don’t face the same societal pressures a human does.\n\nUnlike traditional software, which executes rigid, rule-based code to hopefully return an identical output ever",
+  "begyujtve": "2026-11-03T21:21:44.131694+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 15,
+      "hirertek": 20,
+      "egyediseg": 80,
+      "hitelesseg": 50,
+      "aktualitas": 80,
+      "kozossegi": 16
+    },
+    "elofeszures": 72,
+    "tanult": 10,
+    "indok": "Személyes blogbejegyzés és magánvélemény az AI használatáról hírérték nélkül.",
+    "tema": "ai philosophy blog",
+    "cim_hu": "Személyes gondolatok a mesterséges intelligencia korlátairól",
+    "lead_hu": "Egy technológiai vezető írása arról, hogyan használja az AI-t a mindennapjaiban, és mit gondol annak intelligenciájáról.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-03T21:22:15+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-03T21:22:16+00:00"
+}
