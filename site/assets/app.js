@@ -365,6 +365,9 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
       a.innerHTML = (kep ? '<img src="'+qnEsc(kep)+'" alt="">' : '') + '<div><span class="uj-cimke">Új hír · '+qnEsc(h.forras)+(h.ido?' · '+qnEsc(h.ido):'')+'</span><strong>'+qnEsc(h.cim)+'</strong></div><button type="button" class="uj-zar" aria-label="Bezárás">×</button>';
       a.querySelector('.uj-zar').addEventListener('click', function(ev){ ev.preventDefault(); ev.stopPropagation(); a.remove(); });
       doboz.prepend(a);
+      // Audit 2026-11-03: egyszerre legfeljebb 1 (mobil) vagy 2 (asztal) kártya lebeg, a régebbiek eltűnnek
+      var max = window.matchMedia('(max-width: 767px)').matches ? 1 : 2;
+      [].slice.call(doboz.children, max).forEach(function(r){ r.remove(); });
       setTimeout(function(){ a.classList.add('bent'); }, 30);
       setTimeout(function(){ a.classList.remove('bent'); setTimeout(function(){ a.remove(); }, 800); }, 30000);
       if (window.Notification && Notification.permission === 'granted') {
@@ -387,20 +390,68 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
       eg.addEventListener('click', function(){ Notification.requestPermission().then(function(p){ eg.textContent = p === 'granted' ? 'Értesítés bekapcsolva' : 'Értesítés letiltva a böngészőben'; }); });
     }
   })();
+  // ---- Közös keresőlogika (Audit 2026-11-03): a kötőjel, pont, perjel szóköznek számít, és a szóköz nélküli alak is
+  // talál („gpt 6” = „GPT-6” = „gpt6”); több szónál mindegyiknek szerepelnie kell; ha nincs találat, a legközelebbi
+  // ismert szóra „Erre gondoltál?” javaslatot adunk (legfeljebb 1-2 betű eltérés).
+  window.qnKereso = (function(){
+    var alap = function(t){ return (t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); };
+    var egys = function(t){ return alap(t).replace(/[-_./+:,;'"()!?]+/g, ' ').replace(/\s+/g, ' ').trim(); };
+    var tomor = function(t){ return t.replace(/ /g, ''); };
+    function elokeszit(d){ return d.map(function(x){ x._c = egys(x.c); x._b = egys(x.b); x._sz = egys(x.sz); x._k = egys(x.k + ' ' + x.g);
+      x._cc = tomor(x._c); x._mind = x._c + ' ' + x._b + ' ' + x._k + ' ' + x._sz; x._mindc = tomor(x._mind); return x; }); }
+    function pontoz(mutato, nyers){
+      var kif = egys(nyers), szavak = kif.split(' ').filter(function(w){ return w.length >= 1; }), kc = tomor(kif);
+      if (kc.length < 2) return [];
+      var ki = [];
+      mutato.forEach(function(x){
+        var p = 0;
+        if (x._c.indexOf(kif) >= 0 || x._cc.indexOf(kc) >= 0) p += 100;
+        if (x._c.indexOf(kif) === 0) p += 40;
+        if (x._k.indexOf(kif) >= 0) p += 30;
+        if (x._b.indexOf(kif) >= 0) p += 20;
+        if (x._sz.indexOf(kif) >= 0) p += 10;
+        if (!p && x._mindc.indexOf(kc) >= 0) p += 8;
+        // több szó: mindegyik szerepeljen valahol (a sorrend kötetlen); rövid szónál (pl. „6”) csak az egybefüggő alak számít,
+        // különben a „gpt 6” egy GPT-5-ös hírre is találna, amelyben valahol egy 6-os szám áll
+        if (!p && szavak.length > 1 && szavak.every(function(w){ return w.length >= 3 && x._mind.indexOf(w) >= 0; })) p += 6 + szavak.filter(function(w){ return x._c.indexOf(w) >= 0; }).length * 4;
+        if (p) ki.push([p, x]);
+      });
+      return ki.sort(function(a, b){ return b[0] - a[0]; });
+    }
+    function tav(a, b, max){ if (Math.abs(a.length - b.length) > max) return max + 1; var e = [], i, j;
+      for (j = 0; j <= b.length; j++) e[j] = j;
+      for (i = 1; i <= a.length; i++) { var bal = e[0], kis = i; e[0] = i;
+        for (j = 1; j <= b.length; j++) { var t = e[j]; e[j] = Math.min(e[j] + 1, e[j - 1] + 1, bal + (a[i - 1] === b[j - 1] ? 0 : 1)); bal = t; if (e[j] < kis) kis = e[j]; }
+        if (kis > max) return max + 1; }
+      return e[b.length]; }
+    var szotar = null;
+    function javasol(mutato, nyers){
+      if (!szotar) { szotar = {}; mutato.forEach(function(x){ (x._c + ' ' + x._k).split(' ').forEach(function(w){ if (w.length >= 4) szotar[w] = (szotar[w] || 0) + 1; }); }); }
+      var valtozott = false, ki = egys(nyers).split(' ').map(function(w){
+        if (w.length < 4 || szotar[w]) return w;
+        var max = w.length >= 7 ? 2 : 1, legj = null, lt = max + 1;
+        Object.keys(szotar).forEach(function(s){ var d = tav(w, s, max); if (d < lt || (d === lt && legj && szotar[s] > szotar[legj])) { lt = d; legj = s; } });
+        if (legj && lt <= max) { valtozott = true; return legj; } return w; });
+      return valtozott ? ki.join(' ') : '';
+    }
+    return {elokeszit: elokeszit, pontoz: pontoz, javasol: javasol, egys: egys};
+  })();
   // ---- Kereső: a mutató (kereso.json) az első gépelésnél tölt be, a találatok a mező alatt nyílnak.
   (function(){
     var doboz=document.querySelector('[data-kereso]'), mezo=document.querySelector('[data-kereso-mezo]'), panel=document.querySelector('[data-kereso-panel]'), lista=document.querySelector('[data-kereso-talalatok]'), torlo=document.querySelector('[data-kereso-zar]');
     if(!doboz||!mezo||!panel||!lista) return;
     var mutato=null, betoltes=null, kiemeltIndex=-1;
     var egyszeru=function(t){ return (t||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''); };
-    var tolts=function(){ if(betoltes) return betoltes; betoltes=fetch('/kereso.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(d){ mutato=d.map(function(x){ x._c=egyszeru(x.c); x._b=egyszeru(x.b); x._sz=egyszeru(x.sz); x._k=egyszeru(x.k+' '+x.g); return x; }); return mutato; }).catch(function(){ mutato=[]; return mutato; }); return betoltes; };
+    var tolts=function(){ if(betoltes) return betoltes; betoltes=fetch('/kereso.json',{cache:'no-cache'}).then(function(r){return r.json();}).then(function(d){ mutato=qnKereso.elokeszit(d); return mutato; }).catch(function(){ mutato=[]; return mutato; }); return betoltes; };
     var biztos=function(t){ return t.replace(/[&<>]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); };
     var kiemelCim=function(szoveg,kif){ var e=egyszeru(szoveg); var i=e.indexOf(kif); if(i<0) return biztos(szoveg); return biztos(szoveg.slice(0,i))+'<mark>'+biztos(szoveg.slice(i,i+kif.length))+'</mark>'+biztos(szoveg.slice(i+kif.length)); };
     var kiemel=function(szoveg,kif){ var e=egyszeru(szoveg); var i=e.indexOf(kif); if(i<0) return null; var start=Math.max(0,i-45); return (start>0?'…':'')+biztos(szoveg.slice(start,i))+'<mark>'+biztos(szoveg.slice(i,i+kif.length))+'</mark>'+biztos(szoveg.slice(i+kif.length,i+kif.length+90))+'…'; };
     var nyitva=function(igen){ panel.hidden=!igen; mezo.setAttribute('aria-expanded',igen?'true':'false'); };
     var rajzol=function(talalatok,kif){ kiemeltIndex=-1; if(!kif){ nyitva(false); lista.innerHTML=''; return; } if(!talalatok.length){ lista.innerHTML='<div class="kereso-ures">Erre nincs találat. Próbálj rövidebb szót.</div>'; nyitva(true); return; }
       lista.innerHTML=talalatok.slice(0,12).map(function(x){ var r=kiemel(x.sz,kif)||kiemel(x.b,kif)||''; return '<a class="kereso-tetel" href="'+qnEsc(x.u)+'" role="option"><span class="kt-meta">'+biztos(x.k)+(x.d?' · '+qnEsc(x.d):'')+'</span><span class="kt-cim">'+kiemelCim(x.c,kif)+'</span>'+(r?'<span class="kt-reszlet">'+r+'</span>':'')+'</a>'; }).join('')+(talalatok.length>12?'<a class="kereso-mind" href="/kereses?q='+encodeURIComponent(mezo.value.trim())+'">Mind a '+talalatok.length+' találat egy oldalon</a>':''); nyitva(true); };
-    var keres=function(nyers){ var kif=egyszeru(nyers.trim()); if(torlo) torlo.hidden=!nyers; if(!mutato||kif.length<2){ rajzol([],''); return; } var pont=[]; for(var i=0;i<mutato.length;i++){ var x=mutato[i], p=0; if(x._c.indexOf(kif)>=0) p+=100; if(x._c.indexOf(kif)===0) p+=40; if(x._k.indexOf(kif)>=0) p+=30; if(x._b.indexOf(kif)>=0) p+=20; if(x._sz.indexOf(kif)>=0) p+=10; if(p) pont.push([p,x]); } pont.sort(function(a,b){return b[0]-a[0];}); rajzol(pont.map(function(x){return x[1];}),kif); };
+    var keres=function(nyers){ var kif=egyszeru(nyers.trim()); if(torlo) torlo.hidden=!nyers; if(!mutato||kif.length<2){ rajzol([],''); return; } var pont=qnKereso.pontoz(mutato,nyers);
+      if(!pont.length){ var jav=qnKereso.javasol(mutato,nyers); if(jav){ rajzol(qnKereso.pontoz(mutato,jav).map(function(x){return x[1];}),qnKereso.egys(jav)); if(lista.firstChild) lista.insertAdjacentHTML('afterbegin','<div class="kereso-javaslat">Erre gondoltál: <strong>'+biztos(jav)+'</strong>?</div>'); return; } }
+      rajzol(pont.map(function(x){return x[1];}),qnKereso.egys(nyers)); };
     var urit=function(){ mezo.value=''; if(torlo) torlo.hidden=true; lista.innerHTML=''; nyitva(false); };
     mezo.addEventListener('input',function(){ tolts().then(function(){ keres(mezo.value); }); });
     mezo.addEventListener('focus',function(){ doboz.classList.add('nyitott'); if(mezo.value.trim().length>=2) tolts().then(function(){ keres(mezo.value); }); });
@@ -448,8 +499,10 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
         return nap+'<li class="hi-sor'+(uj?' uj':'')+(kep?'':' nincs-kep')+(i===l.length-1?' utolso':'')+'"><div class="hi-sav"><span class="hi-ora">'+ora+'</span><span class="hi-pont"></span></div>'
           +'<div class="hi-kartya"><a href="/hir/'+h.slug+'">'+(kep?'<span class="hi-kep"><img class="harang-kep" src="'+biztos(kep)+'" alt="" loading="lazy" decoding="async">'+(uj?'<span class="hi-cimke">ÚJ</span>':'')+'</span>':'')
           +'<span class="harang-szoveg"><span class="harang-forras">'+(h.rov?'<b>'+biztos(h.rov)+'</b>':'')+'<span>'+biztos(h.forras)+'</span></span><strong>'+biztos(h.cim)+'</strong></span></a>'+ment+'</div></li>'; }).join('');
-      var db=l.filter(function(h){ return ujId.indexOf(h.id)>=0; }).length;
-      buborek.innerHTML='<div class="hi-fej">'+(db?'<span class="hi-uj">'+db+' ÚJ HÍR</span>':'')+'<p>'+(db?'Ezek érkeztek, mióta utoljára benéztél.':'Mindent láttál, ezek a legfrissebbek.')+'</p></div>'+(sorok?'<ul>'+sorok+'</ul>':'<p class="harang-ures">Most nincs új hír.</p>')+(window.Notification?'<button type="button" class="harang-ertesit">'+(Notification.permission==='granted'?'Értesítés bekapcsolva':'Értesíts az új hírekről')+'</button>':'');
+      // Audit 2026-11-03: a jelvény, a felolvasott név és a fejléc ugyanazt a számot mutatja (az összes új hírt); ha a lista
+      // ennél kevesebbet fér el, külön kiírjuk, hogy a legfrissebb hány látszik
+      var db=ujId.length, latszik=l.filter(function(h){ return ujId.indexOf(h.id)>=0; }).length;
+      buborek.innerHTML='<div class="hi-fej">'+(db?'<span class="hi-uj">'+db+' ÚJ HÍR</span>':'')+'<p>'+(db?'Ezek érkeztek, mióta utoljára benéztél.'+(db>latszik?' Itt a legfrissebb '+latszik+' látszik, a többit a Friss oldalon találod.':''):'Mindent láttál, ezek a legfrissebbek.')+'</p></div>'+(sorok?'<ul>'+sorok+'</ul>':'<p class="harang-ures">Most nincs új hír.</p>')+(window.Notification?'<button type="button" class="harang-ertesit">'+(Notification.permission==='granted'?'Értesítés bekapcsolva':'Értesíts az új hírekről')+'</button>':'');
       [].forEach.call(buborek.querySelectorAll('img.harang-kep'),function(img){ if(img.complete&&img.naturalWidth===0) kepHiba(img); });
       var he=buborek.querySelector('.harang-ertesit'); if(he) he.addEventListener('click',function(ev){ ev.stopPropagation(); Notification.requestPermission().then(function(p){ he.textContent = p==='granted'?'Értesítés bekapcsolva':'Értesítés letiltva a böngészőben'; }); }); };
     var zar=function(){ buborek.hidden=true; gomb.setAttribute('aria-expanded','false'); document.body.classList.remove('harang-nyitva'); document.removeEventListener('keydown',bill); document.removeEventListener('click',kivul); };
@@ -606,7 +659,13 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
 // a menüsor egy sorban, oldalra húzható: amíg jobbra van még menüpont, a jobb széle elhalványul; az aktív menüpont látszódjon (Heni 2026-10-29)
 (function(){
   var k = document.querySelector('.rovatsor .keret'); if (!k) return;
-  function jelol(){ k.classList.toggle('tovabb', k.scrollLeft + k.clientWidth < k.scrollWidth - 2); }
+  // Audit 2026-11-03: a halványuló szél mellé egy jobbra mutató gomb is jelzi, hogy van még menüpont; koppintásra továbbgörget
+  var nav = k.parentElement, nyil = document.createElement('button');
+  nyil.type = 'button'; nyil.className = 'rovat-tovabb'; nyil.setAttribute('aria-label', 'További rovatok'); nyil.hidden = true;
+  nyil.innerHTML = '<svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M181.66 133.66l-80 80a8 8 0 0 1-11.32-11.32L164.69 128 90.34 53.66a8 8 0 0 1 11.32-11.32l80 80a8 8 0 0 1 0 11.32Z"/></svg>';
+  nav.appendChild(nyil);
+  nyil.addEventListener('click', function(){ k.scrollBy({left: Math.round(k.clientWidth * 0.7), behavior: 'smooth'}); });
+  function jelol(){ var van = k.scrollLeft + k.clientWidth < k.scrollWidth - 2; k.classList.toggle('tovabb', van); nyil.hidden = !van; }
   var akt = k.querySelector('a[aria-current="page"]');
   if (akt && akt.offsetLeft + akt.offsetWidth > k.clientWidth) k.scrollLeft = akt.offsetLeft - 16;
   jelol(); k.addEventListener('scroll', jelol, {passive: true}); window.addEventListener('resize', jelol, {passive: true});
@@ -637,12 +696,27 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
   var napok = (ugro.getAttribute('data-napok') || '').split(',');
   ugro.addEventListener('submit', function(ev){
     ev.preventDefault();
-    var v = ugro.querySelector('input').value;
+    var v = ugro.querySelector('select, input').value;
     if (napok.indexOf(v) > -1) { location.href = '/nap/' + v; return; }
     ugro.querySelector('.nap-ugro-uzenet').textContent = 'Ezen a napon nem jelent meg hír.';
   });
 })();
-// Hírlevél-feliratkozó ablak (2026-10-13): csak 20 mp látható, aktív olvasás után (oldalakon át összeadva),
+// Felugró ablakok rendje (Audit 2026-11-03, Heni: „késleltesd, hogy ne fedjék egymást”): egyszerre csak egy lehet nyitva,
+// az előző bezárása után legalább 30 mp szünet jár, és nem nyílik meg, amíg a látogató épp kattint vagy gépel
+// (különben elnyeli a kattintást). A BOO-játék (halloween.js) ugyanezt a window.qnAblakSzabad() kaput használja.
+(function(){
+  var utolsoBevitel = 0;
+  ['pointerdown', 'keydown', 'touchstart'].forEach(function(e){ document.addEventListener(e, function(){ utolsoBevitel = Date.now(); }, {passive: true, capture: true}); });
+  window.qnAblakZarva = function(){ window.qnUtolsoAblak = Date.now(); };
+  window.qnAblakSzabad = function(){
+    var h = document.documentElement;
+    if (!h.classList.contains('suti-van') || h.classList.contains('hl-nyitva') || document.body.classList.contains('boo-nyitva')) return false;
+    if (document.querySelector('.hl-hatter, .boo-hatter, .chat.nyitva, .harang-buborek:not([hidden])')) return false;
+    if (Date.now() - (window.qnUtolsoAblak || 0) < 30000) return false;
+    return Date.now() - utolsoBevitel > 2000;
+  };
+})();
+// Hírlevél-feliratkozó ablak (2026-10-13): 45 mp aktív olvasás után (oldalakon át összeadva; 2026-11-03-ig 20 mp volt),
 // és nem jelenik meg újra annak, aki feliratkozott, vagy 14 napon belül bezárta.
 (function(){
   var be = document.querySelector('meta[name="qn-hirlevel"]'), elonezet = /[?&]hirlevel=elonezet/.test(location.search);
@@ -651,12 +725,13 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
   var t = function(k, v){ try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch(e) { return null; } };
   var s = function(k, v){ try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch(e) { return null; } };
   if (!elonezet && (t('qn-hl-kesz') || Date.now() - Number(t('qn-hl-zarva') || 0) < 14 * 864e5)) return;
-  var ido = Number(s('qn-hl-ido') || 0), CEL = elonezet ? 2 : 20, kesz = false;
+  var ido = Number(s('qn-hl-ido') || 0), CEL = elonezet ? 2 : 45, kesz = false;
   var tik = setInterval(function(){
     // a sütisávra adott válasz előtt nem számol, hogy a két ablak ne kerüljön egymásra
     if (document.visibilityState !== 'visible' || kesz || !document.documentElement.classList.contains('suti-van') || document.documentElement.classList.contains('hl-nyitva')) return;
-    ido += 1; s('qn-hl-ido', ido);
-    if (ido >= CEL) { kesz = true; clearInterval(tik); nyit(); }
+    if (ido < CEL) { ido += 1; s('qn-hl-ido', ido); }
+    // ha letelt az idő, csak akkor nyílik meg, ha más ablak nincs nyitva, és a látogató épp nem kattint
+    if (ido >= CEL && (elonezet || !window.qnAblakSzabad || window.qnAblakSzabad())) { kesz = true; clearInterval(tik); nyit(); }
   }, 1000);
   function nyit(){
     var d = document.createElement('div');
@@ -677,7 +752,7 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     document.documentElement.classList.add('hl-nyitva');
     setTimeout(function(){ d.classList.add('bent'); }, 30);
     setTimeout(function(){ try { mezo.focus({preventScroll: true}); } catch(e) {} }, 350);
-    function zar(){ t('qn-hl-zarva', String(Date.now())); d.classList.remove('bent'); document.documentElement.classList.remove('hl-nyitva');
+    function zar(){ if (window.qnAblakZarva) window.qnAblakZarva(); t('qn-hl-zarva', String(Date.now())); d.classList.remove('bent'); document.documentElement.classList.remove('hl-nyitva');
       setTimeout(function(){ d.remove(); if (elozo && elozo.focus) try { elozo.focus({preventScroll: true}); } catch(e) {} }, 400);
       document.removeEventListener('keydown', bill); }
     function bill(e){ if (e.key === 'Escape') zar(); }
@@ -973,31 +1048,47 @@ document.addEventListener('click', function(ev){
       .then(function(r){ return r.json(); }).then(function(d){ if (d && d.db) rajz(g, d.db); }).catch(function(){});
   };
 })();
-// Találati oldal (/kereses?q=...): az összes találat a napi oldal kártyáival (Heni 2026-10-18)
+// Találati oldal (/kereses?q=...): az összes találat a napi oldal kártyáival (Heni 2026-10-18).
+// Audit 2026-11-03: rendezés (relevancia vagy legfrissebb), rovatszűrő, 24-esével „Továbbiak” gomb, elírásnál javaslat.
 (function(){
   var oldal = document.querySelector('[data-kereses-oldal]'); if (!oldal) return;
   var q = (new URLSearchParams(location.search).get('q') || '').trim().slice(0, 100);
   var cim = document.querySelector('[data-kereses-cim]'), db = document.querySelector('[data-kereses-db]');
   var mezo = document.getElementById('kereso-mezo'); if (mezo && q) mezo.value = q;
-  var egyszeru = function(t){ return (t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); };
-  var kif = egyszeru(q);
   if (cim) cim.textContent = q ? 'Találatok erre: „' + q + '”' : 'Keresés';
-  if (kif.length < 2) { oldal.innerHTML = '<p class="mentett-ures">Írj be legalább 2 betűt a fenti keresőbe, és nyomj Entert.</p>'; return; }
+  if (qnKereso.egys(q).replace(/ /g, '').length < 2) { oldal.innerHTML = '<p class="mentett-ures">Írj be legalább 2 betűt a fenti keresőbe, és nyomj Entert.</p>'; return; }
+  var LAP = 24, mutat = LAP, rend = 'rel', rovat = '', talalat = [], jav = '';
+  function kartya(x){ var kep = x.p || '';
+    return '<a class="hir hir-kicsi" href="' + qnEsc(x.u) + '" data-hid="' + qnEsc(x.i) + '">'
+      + (kep ? '<div class="hkep"><img src="' + qnEsc(kep) + '" alt="" loading="lazy"></div>' : '')
+      + '<div class="htorzs"><div class="hmeta"><span class="forras">' + qnEsc(x.k) + '</span>' + (x.d ? '<span>' + qnEsc(x.d) + '</span>' : '')
+      + (x.g ? '<span class="kat">' + qnEsc(x.g) + '</span>' : '') + '</div><h3>' + qnEsc(x.c) + '</h3>' + (x.b ? '<p class="hlead">' + qnEsc(x.b) + '</p>' : '') + '</div></a>'; }
+  function rajzol(){
+    var l = talalat.filter(function(x){ return !rovat || x.g === rovat; });
+    if (rend === 'uj') l = l.slice().sort(function(a, b){ return (b.t || '').localeCompare(a.t || ''); });
+    var rovatok = {}; talalat.forEach(function(x){ if (x.g) rovatok[x.g] = (rovatok[x.g] || 0) + 1; });
+    if (db) { db.textContent = l.length + ' hír'; db.hidden = false; }
+    var vez = '<div class="kt-vezerlo">'
+      + '<div class="kt-rend" role="group" aria-label="Rendezés"><button type="button" data-rend="rel" aria-pressed="' + (rend === 'rel') + '">Legjobb találat</button><button type="button" data-rend="uj" aria-pressed="' + (rend === 'uj') + '">Legfrissebb</button></div>'
+      + (Object.keys(rovatok).length > 1 ? '<label class="kt-rovat"><span>Rovat</span><select data-rovat><option value="">Mind (' + talalat.length + ')</option>'
+        + Object.keys(rovatok).sort(function(a, b){ return rovatok[b] - rovatok[a]; }).map(function(g){ return '<option value="' + qnEsc(g) + '"' + (g === rovat ? ' selected' : '') + '>' + qnEsc(g) + ' (' + rovatok[g] + ')</option>'; }).join('') + '</select></label>' : '')
+      + '</div>';
+    oldal.innerHTML = (jav ? '<p class="kt-javaslat">Erre nem találtunk hírt, ezért a hasonló szóra keresünk: <strong>' + qnEsc(jav) + '</strong>.</p>' : '') + vez
+      + '<div class="racs-4">' + l.slice(0, mutat).map(kartya).join('') + '</div>'
+      + (l.length > mutat ? '<div class="kt-tovabb"><button type="button" data-tovabb>Továbbiak (' + (l.length - mutat) + ')</button></div>' : '');
+  }
+  oldal.addEventListener('click', function(e){
+    var r = e.target.closest('[data-rend]'); if (r) { rend = r.dataset.rend; mutat = LAP; rajzol(); return; }
+    if (e.target.closest('[data-tovabb]')) { var elozo = mutat; mutat += LAP; rajzol(); var k = oldal.querySelectorAll('.racs-4 > a')[elozo]; if (k) k.focus({preventScroll: true}); }
+  });
+  oldal.addEventListener('change', function(e){ if (e.target.matches('[data-rovat]')) { rovat = e.target.value; mutat = LAP; rajzol(); } });
   fetch('/kereso.json', {cache: 'no-cache'}).then(function(r){ return r.json(); }).then(function(d){
-    var pont = [];
-    d.forEach(function(x){ if (!/^\/hir\/[a-z0-9-]{1,200}$/.test(x.u || '')) return;
-      var c = egyszeru(x.c), k = egyszeru(x.k + ' ' + x.g), b = egyszeru(x.b), sz = egyszeru(x.sz), p = 0;
-      if (c.indexOf(kif) >= 0) p += 100; if (c.indexOf(kif) === 0) p += 40; if (k.indexOf(kif) >= 0) p += 30; if (b.indexOf(kif) >= 0) p += 20; if (sz.indexOf(kif) >= 0) p += 10;
-      if (p) pont.push([p, x]); });
-    pont.sort(function(a, b){ return b[0] - a[0]; });
-    if (db) { db.textContent = pont.length + ' hír'; db.hidden = false; }
-    if (!pont.length) { oldal.innerHTML = '<p class="mentett-ures">Erre nincs találat. Próbálj rövidebb szót.</p>'; return; }
-    oldal.innerHTML = '<div class="racs-4">' + pont.map(function(t){ var x = t[1], kep = x.p || '';
-      return '<a class="hir hir-kicsi" href="' + qnEsc(x.u) + '" data-hid="' + qnEsc(x.i) + '">'
-        + (kep ? '<div class="hkep"><img src="' + qnEsc(kep) + '" alt="" loading="lazy"></div>' : '')
-        + '<div class="htorzs"><div class="hmeta"><span class="forras">' + qnEsc(x.k) + '</span>' + (x.d ? '<span>' + qnEsc(x.d) + '</span>' : '')
-        + (x.g ? '<span class="kat">' + qnEsc(x.g) + '</span>' : '') + '</div><h3>' + qnEsc(x.c) + '</h3>' + (x.b ? '<p class="hlead">' + qnEsc(x.b) + '</p>' : '') + '</div></a>';
-    }).join('') + '</div>';
+    var m = qnKereso.elokeszit(d.filter(function(x){ return /^\/hir\/[a-z0-9-]{1,200}$/.test(x.u || ''); }));
+    var p = qnKereso.pontoz(m, q);
+    if (!p.length) { jav = qnKereso.javasol(m, q); if (jav) p = qnKereso.pontoz(m, jav); }
+    talalat = p.map(function(t){ return t[1]; });
+    if (!talalat.length) { if (db) { db.textContent = '0 hír'; db.hidden = false; } oldal.innerHTML = '<p class="mentett-ures">Erre nincs találat. Próbálj rövidebb vagy másik szót.</p>'; return; }
+    rajzol();
   }).catch(function(){ oldal.innerHTML = '<p class="mentett-ures">Most nem sikerült betölteni a találatokat. Frissítsd az oldalt.</p>'; });
 })();
 // Szavazás: párbajok (Heni 2026-10-14). Minden [data-parbaj] elem egy párbaj; az állás csak a saját szavazat után
@@ -1101,6 +1192,8 @@ document.addEventListener('click', function(ev){
             var jel = document.createElement('div'); jel.className = 'pb-mar'; jel.setAttribute('role', 'alert'); jel.textContent = 'Már szavaztál ebben a párbajban!';
             d.appendChild(jel); setTimeout(function(){ jel.remove(); }, 2600);
           }
+          // Audit 2026-11-03: ha már szavazott (akár másik eszközről, ugyanarról a hálózatról), az állás akkor is látsszon
+          if (j.mar && j.allas && j.sajat) { allapotok[id] = { allas: j.allas, sajat: j.sajat }; mindent(id, true); }
           return j.mar ? 'mar' : false;
         }
         allapotok[id] = { allas: j.allas, sajat: j.sajat }; mindent(id, true);
