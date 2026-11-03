@@ -681,10 +681,24 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
   var elonezet = /[?&]utmutato=elonezet/.test(location.search);
   document.querySelectorAll('[data-utm-elonezet]').forEach(function(x){ if (elonezet) x.hidden = false; });
   // a főoldali kártyán a videó ott helyben megy; ha valaki elindít egyet, a többi megáll
-  document.querySelectorAll('.gyu-video').forEach(function(v){ v.addEventListener('play', function(){
+  var mobil = window.matchMedia('(max-width: 640px)');
+  document.querySelectorAll('.gyu-video').forEach(function(v){
+    // mobilon a kis előnézeten a gyári vezérlősáv zsúfolt: helyette lejátszógomb, koppintásra indul
+    if (mobil.matches) { v.controls = false; v.addEventListener('click', function(){ if (v.paused) { v.controls = true; v.play(); } }); }
+    v.addEventListener('play', function(){
     document.querySelectorAll('.gyu-video').forEach(function(m){ if (m !== v) m.pause(); });
+    // mobilon a kártyán csak kis előnézet van, ezért lejátszáskor teljes képernyőre vált (asztalon marad a helyén)
+    if (mobil.matches && !document.fullscreenElement) {
+      try { if (v.requestFullscreen) v.requestFullscreen().catch(function(){}); else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen(); } catch(e) {}
+    }
+    v.closest('.gyu-kartya').classList.add('gyu-megy');
     try { if (window.gtag) gtag('event', 'utmutato_video', {anyag: v.closest('[data-utm]').dataset.utm, hely: 'fooldal'}); } catch(e) {}
   }); });
+  // a teljes képernyőből kilépve mobilon megáll, hogy ne szóljon tovább a kis előnézetben
+  document.addEventListener('fullscreenchange', function(){
+    if (document.fullscreenElement || !mobil.matches) return;
+    document.querySelectorAll('.gyu-video').forEach(function(v){ v.pause(); });
+  });
   document.querySelectorAll('[data-utm]').forEach(function(doboz){
     if (doboz.closest('[hidden]')) return;
     doboz.querySelectorAll('[data-utm-nyit]').forEach(function(g){ g.addEventListener('click', function(){
