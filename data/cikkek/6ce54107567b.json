@@ -15,7 +15,7 @@
   "fontossag": 1,
   "video_szoveg": "",
   "relevans": false,
-  "kihagyva": "P2: 73 pont, napi P2-keret (10) betelt",
+  "kihagyva": "P3: 59 pont",
   "media": {
     "tipus": "mp4",
     "url": "https://video.twimg.com/amplify_video/2117664838306643968/vid/avc1/1920x1080/mYLz8uehWGyBQl2a.mp4?tag=29",
@@ -29,26 +29,26 @@
   "szoveg_eredeti": "Krea 3 in 3.3 seconds on AMD.\n\n@hedra_labs made our diffusion transformer 6.9x faster on MI355X at 98.3% of the original quality.\n\nif you're running image editing in production - talk to us below 👇\n\n[IDÉZETT POSZT, amelyet Krea megosztott. Eredeti szerzője: Hedra (@hedra_labs); megjelent: 2026-11-03T17:05:10+00:00; link: https://x.com/hedra_labs/status/2117664394503205000; média: videó, 8 másodperc]\nWe made @krea_ai Krea 3's diffusion transformer 6.9× faster on @AMD Instinct MI355X: 22.9s → 3.3s.\n\nKey stats:\n→ 2.8× faster MXFP6 GEMM vs BF16\n→ 18% → 2% of time waiting on GPU transfers\n→ 98.3% of BF16 quality (SSIM)\n\nHere's the work done by the team using our autonomous research system ↓",
   "begyujtve": "2026-11-03T17:25:25.126284+00:00",
   "prioritas": {
-    "pont": 73,
-    "szint": "P2",
+    "pont": 59,
+    "szint": "P3",
     "reszpont": {
-      "hatas": 70,
-      "hirertek": 80,
-      "egyediseg": 50,
+      "hatas": 50,
+      "hirertek": 50,
       "hitelesseg": 90,
-      "aktualitas": 98,
-      "kozossegi": 64
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 62
     },
     "elofeszures": 91,
     "tanult": 62,
-    "indok": "Jelentős hardveres optimizációs eredmény képgeneráló modellhez AMD chipeken, de duplikált elem",
-    "tema": "krea ai amd optimization",
-    "cim_hu": "Közel hétszeresére gyorsították a Krea 3 modellt az AMD MI355X gyorsítóin",
-    "lead_hu": "A Hedra közreműködésével a Krea 3 képgeneráló modell futtatási ideje 22,9 másodpercről 3,3 másodpercre csökkent az AMD legújabb chipplatformján.",
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
     "klaszter": null,
-    "ai": true,
-    "ido": "2026-11-03T17:48:35+00:00"
+    "ai": false,
+    "ido": "2026-11-03T18:06:29+00:00"
   },
   "jovahagyas_kell": false,
-  "megjelent": "2026-11-03T17:49:40+00:00"
+  "megjelent": "2026-11-03T18:07:54+00:00"
 }
