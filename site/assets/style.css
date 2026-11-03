@@ -1897,3 +1897,5 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
   .cikk-oldal > .miert, .cikk-oldal > .forras-sav, .cikk-oldal > .feldolgozott { order: 0; }
   .cikk-oldal > .miert { padding-top: 24px; border-top: 1px solid var(--vonal); }
 }
+.chat-valasz:focus, .chat-b.bot:focus { outline: none; }
+.chat-valasz:focus-visible, .chat-b.bot:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; border-radius: 12px; }
