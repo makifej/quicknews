@@ -1882,21 +1882,6 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
   .suti-tettek [data-suti="igen"] { order: 2; }
   .suti-tettek [data-suti="meres"] { order: 3; grid-column: 1 / -1; }
 }
-/* Cikkoldal (Audit 2026-11-03): a források típuscímkével, az elsődleges elöl */
-.feldolgozott li { flex-wrap: wrap; column-gap: 16px; row-gap: 2px; }
-.f-tipus { flex-basis: 100%; font-size: 11px; line-height: 16px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--szoveg-3) !important; text-align: left !important; }
-.f-tipus-0 { color: var(--kiemelo-szin) !important; }
-/* egyoszlopos nézetben (1280 px alatt) az eredeti forrás és a forráslista közvetlenül a hír szövege és a Miért számít után
-   jön, az üzleti blokkok (útmutató, beküldés, hirdetés, párbaj) elé; eddig mobilon kb. 3700 px-rel lejjebb kezdődött */
-@media (max-width: 1279px) {
-  .cikk-racs { display: flex; flex-direction: column; gap: 32px; }
-  .cikk-racs > .cikk-fo, .cikk-racs > .cikk-oldal { display: contents; }
-  .cikk-fo > * { order: 1; }
-  .cikk-fo > .media-doboz, .cikk-fo > .torzs { order: 0; }
-  .cikk-oldal > * { order: 2; }
-  .cikk-oldal > .miert, .cikk-oldal > .forras-sav, .cikk-oldal > .feldolgozott { order: 0; }
-  .cikk-oldal > .miert { padding-top: 24px; border-top: 1px solid var(--vonal); }
-}
 .chat-valasz:focus, .chat-b.bot:focus { outline: none; }
 .chat-valasz:focus-visible, .chat-b.bot:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; border-radius: 12px; }
 /* címlap: a kiemelt rész rendezési elve (Audit 2026-11-03) */
