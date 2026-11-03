@@ -1,0 +1,142 @@
+{
+  "id": "93f3ba4d26a3",
+  "slug": "sulyter-programozassal-hatszorosara-nott-egy-ai-modell-matektudasa",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/mit-researchers-say-gpt-6-astr-mA_cX1F.QpqWYXSZycYdZQ",
+  "szerzo": "Perplexity Discover",
+  "publikalva": "2026-11-03T16:19:53.123079+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/upload/t_limit/v1793723074/url_uploads/alibaba-unveils-qwen-35-inc_vzie7l.jpg"
+  },
+  "cim_eredeti": "MIT-kutatók szerint a GPT-6 Astra átírta a Qwen nyílt súlyait, hogy javuljon a matekteljesítménye",
+  "forrasok": [
+    {
+      "nev": "Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights",
+      "url": "https://rikiyat.github.io/blog/weight-space-programming/",
+      "domain": null
+    },
+    {
+      "nev": "'Like gene editing for neural networks': MIT researchers used GPT-6 Astra to edit Qwen's open weights directly, boosting math performance",
+      "url": "https://venturebeat.com/technology/like-gene-editing-for-neural-networks-mit-researchers-used-gpt-6-astra-to-edit-qwens-open-weights-directly-boosting-math-performance",
+      "domain": null
+    },
+    {
+      "nev": "We asked GPT-6 Astra to edit Qwen3.5-0.8B weights ...",
+      "url": "https://x.com/rikiyatakehi/status/2117313742891327994",
+      "domain": null
+    },
+    {
+      "nev": "JonathanColetti/Qwen3.5-0.8B-Astra-WeightEdit - Hugging Face",
+      "url": "https://huggingface.co/JonathanColetti/Qwen3.5-0.8B-Astra-WeightEdit",
+      "domain": null
+    },
+    {
+      "nev": "Forget retraining - AI can now tweak another AI's weights",
+      "url": "https://www.theregister.com/ai-and-ml/2026/11/03/forget-retraining-ai-can-now-tweak-another-ais-weights/5307105",
+      "domain": null
+    },
+    {
+      "nev": "Weight-space programming - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Weight-space_programming",
+      "domain": null
+    },
+    {
+      "nev": "MIT: OpenAI's GPT-6 Astra Edits Qwen Weights, MATH-500 ...",
+      "url": "https://fourweekmba.com/ai-mit-openais-gpt-6-astra-edits-qwen-weights-math-500-up-6x/",
+      "domain": null
+    },
+    {
+      "nev": "Christopher Keruac on X: \"1/5 \"our neural network weights ...",
+      "url": "https://x.com/CKeruac/status/2117497983650382175",
+      "domain": null
+    },
+    {
+      "nev": "LLMs can natively read and write neural net… · AGI Hunt",
+      "url": "https://agihunt.info/en/p/1a19ecf2c8fb129685cac8bbc3e",
+      "domain": null
+    },
+    {
+      "nev": "Kawa on X: \"これ本当？？ マジで本当ならこれしか俺ないかも。\" / X",
+      "url": "https://x.com/Kawa_GameDev/status/2117408412225134833",
+      "domain": null
+    },
+    {
+      "nev": "GPT-6 Astra Edits AI Weights Directly, Math Score Jumps 6x",
+      "url": "https://shiftdelete.net/en/gpt-6-astra-weights",
+      "domain": null
+    },
+    {
+      "nev": "Can AI fix another AI's brain? MIT researchers use GPT-6 Astra to boost Qwen's maths skills",
+      "url": "https://www.indiatoday.in/technology/news/story/can-ai-fix-another-ais-brain-mit-researchers-use-gpt-6-astra-to-boost-qwens-maths-skills-3031134-2026-11-03",
+      "domain": null
+    }
+  ],
+  "szoveg_eredeti": "Négy MIT CSAIL-es kutató szerint az OpenAI GPT-6 Astra modellje nagyjából hatszorosára növelte egy kis nyílt forráskódú modell matekpontszámát úgy, hogy közvetlenül módosította a súlyait, tanítás nélkül. A november 2-án megjelent blogbejegyzésben Rikiya Takehi, Jayden Teoh, Alex Zhang és Omar Khattab azt írta, hogy az Astra az Alibaba Qwen3.5-0.8B modelljének 131 072 súlyát, vagyis 0,016%-át szerkesztette át. Ettől a modell MATH-500-as pontszáma 7,9%-ról 48,1%-ra ugrott. A GSM8K-eredmény 13,8%-ról 67,1%-ra, az IFEval utasításkövetési teszté pedig 21,0%-ról 62,3%-ra nőtt.\n\nA kutatók a módszert „weight-space programmingnak”, vagyis súlytér-programozásnak nevezik. Állításuk szerint a élvonalbeli nyelvi modellek képesek olvasni a neurális hálók súlyait, és úgy javítani őket, ahogy a programozó javítja a kódot. A szerzők szerint a Qwen-eredmény egy hibamód kijavításából származott, nem abból, hogy a modell új matekot tanult volna.\n\nAz Astra Python-környezetben dolgozott, és a modellt korlátozott számú alkalommal futtathatta gyakorlófeladatokon. A bejegyzés szerint az ügynök a Qwen ismétlődő „gondolkodási hurkait” egyetlen irányra vezette vissza, amelyet a 15. és a 19. réteg MLP-i írnak. Ezután ezt az irányt kivonta mindkét réteg 64-64 kimeneti oszlopából. A MATH-500 válaszainak az a hányada, amely elérte a 32 768 tokenes korlátot, 93%-ról 33%-ra csökkent. A Qwen saját modellkártyája is arra figyelmeztet, hogy a modell hajlamos az ilyen hurkokra.\n\nA VentureBeat beszámolója szerint a legerősebb futás 158 beszélgetési fordulóból, 80 Python-futtatásból és 20,3 órából állt, ebbe beleszámít az a 4,7 óra is, amely egy szolgáltatáskiesés miatt veszett el. Kisebb, 10 vagy 25 tesztfuttatásos keretnél a hurkok „alig szűntek meg”.\n\nUgyanez a megközelítés a ritkán hurkolódó Gemma 3 270M esetében nem működött: a MATH-500-as pontszám egy pontnál kevesebbet változott. „A súlyok szerkesztésével el lehet távolítani egy akadályt, amely elrejtett egy képességet, de olyan képességet nem lehet hozzáadni, amely a modellből hiányzik” – írták a szerzők.\n\nA munka egy blogbejegyzés, nem lektorált tudományos cikk, de a csapat közzétette a teljes kísérleti naplókat. A Hugging Face-en egy közösségi újrafuttatás alkalmazta a közzétett módosítást, és bekapcsolt gondolkodó módban 50,2%-ot ért el a MATH-500-on. Ugyanez az ellenőrzés azt is kimutatta, hogy a módosítatlan alapmodell kikapcsolt gondolkodó módban már 45,8%-ot teljesít. Takehi az X-en azt írta, hogy egy külön, a naplókból végzett újraépítés 51,0%-ot ért el. A GSM8K-n és az IFEval-on elért javulást egyik ellenőrzés sem tudta megismételni.\n\nTovábbi kísérletekben az Astra a nyers súlyaik alapján azonosított játékot játszó neurális hálókat, és egy hibásan működő vezetési policyt a súlyainak mindössze 3,5%-ának módosításával javított ki. A VentureBeat beszámolója szerint a rendszer a semmiből írt egy Breakout-hálót is, amely jobban teljesített, mint a hagyományosan betanított alapmodell.\n\nA reakciók megoszlottak. A PauseAI vezérigazgatója, Maxime Fournes „borzasztóan felelőtlen kutatási iránynak\" nevezte. Más hozzászólók szerint az eredmény csak azt mutatta meg, hogy egy modell képes eltávolítani egy kézenfekvő hibát. A szerzők közölték, hogy következő lépésként egy olyan tesztrendszert és keretrendszert (benchmarkot és harnesst) fejlesztenének, amely a „jelenleg még fekete mágiának tűnő dolgot szigorú, reprodukálható mérnöki tudományággá\" tenné – írta a The Register.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Súlytér-programozással hatszorosára nőtt egy AI-modell matektudása",
+  "lead": "Az MIT kutatói megmutatták, hogy a GPT-6 Astra képes közvetlenül átírni egy másik mesterséges intelligencia súlyait tanítás nélkül.",
+  "osszefoglalo": "Az [MIT CSAIL](https://www.csail.mit.edu) kutatói egy új kísérletben bemutatták, hogy a GPT-6 Astra **tanítás nélkül javította ki** az Alibaba nyílt forráskódú Qwen3.5-0.8B modelljét. Az ügynök a hálózat súlyainak mindössze 0,016 százalékát módosította, ami által a modell MATH-500-as teszteredménye 7,9 százalékról 48,1 százalékra nőtt. A módszert a kutatók súlytér-programozásnak nevezik.\n\nA javulást nem az hozta létre, hogy a modell új ismereteket tanult, hanem egy beragadó **gondolkodási hurok eltávolítása**. Az Astra Python-környezetben elemzi a neurális hálózatok súlyait, majd a programkódokhoz hasonlóan módosítja őket. Ugyanakkor a ritkán hurkolódó [Gemma 3 270M](https://huggingface.co/google/gemma-3-270m) esetében a módszer nem hozott változást, vagyis hiányzó képességeket nem tud hozzáadni az architektúrához.\n\nA közzétett naplók alapján független fejlesztők is reprodukálni tudták a MATH-500-as eredményeket. A kutatók célja, hogy a kísérleti folyamatot a jövőben reprodukálható mérnöki tudományággá alakítsák.",
+  "miert_szamit": "A technológia megmutatja, hogy a jövőben az AI-modellek **újratanítás nélkül, percek alatt javíthatók**, ami radikálisan csökkentheti az újraképzési költségeket.",
+  "cimkek": [
+    "GPT-6 Astra",
+    "Qwen",
+    "MIT",
+    "kutatás"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Qwen3.5-0.8B-Astra-WeightEdit",
+    "url": "https://go.adverr.hu/chH5VK",
+    "eredeti": "https://huggingface.co/JonathanColetti/Qwen3.5-0.8B-Astra-WeightEdit"
+  },
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 89,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 92,
+      "hirertek": 95,
+      "egyediseg": 95,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 81
+    },
+    "elofeszures": 87,
+    "tanult": 83,
+    "indok": "Rendkívül fontos tudományos és technológiai áttörés a modellátírás terén. Forrás-tapasztalat: -2.",
+    "tema": "openai gpt-6 astra weight editing",
+    "cim_hu": "Az OpenAI GPT-6 Astra tanítás nélkül módosította egy nyílt modell súlyait",
+    "lead_hu": "Az MIT kutatói szerint az OpenAI új modellje közvetlenül a súlyok átírásával hatszorosára növelte egy kisebb nyílt forráskódú modell matematikai teljesítményét.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-03T16:36:49+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-03T16:40:47+00:00",
+  "megjelent": "2026-11-03T16:40:47+00:00",
+  "forras_utalas_javitva": "2026-11-03T16:40:47+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-03T16:42:45+00:00",
+    "esemeny": "Az MIT CSAIL kutatói (Rikiya Takehi és társai) közzétették kísérletüket, amelyben az OpenAI GPT-6 Astra modellje közvetlenül, tanítás nélkül módosította az Alibaba Qwen3.5-0.8B modellje súlyainak 0,016%-át. Ez elhárított egy beragadó gondolkodási hurkot, így a kis modell MATH-500-as matekeredménye 7,9%-ról 48,1%-ra nőtt.",
+    "forrasok": [
+      "https://rikiyat.github.io/blog/weight-space-programming/",
+      "https://github.com/RikiyaT/lm_understand-logs",
+      "https://huggingface.co/Qwen/Qwen3.5-0.8B"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-03T16:44:26+00:00",
+  "linkek_ellenorizve": true
+}
