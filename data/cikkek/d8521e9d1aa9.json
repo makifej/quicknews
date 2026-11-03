@@ -1,0 +1,51 @@
+{
+  "id": "d8521e9d1aa9",
+  "slug": "new-anthropic-research-progress-on-provable-inference-for-large",
+  "forras_id": "x-anthropicai",
+  "forras_nev": "Anthropic (X)",
+  "url": "https://x.com/AnthropicAI/status/2117710942826123294",
+  "publikalva": "2026-11-03T20:10:08+00:00",
+  "cim": "New Anthropic research: progress on provable inference for large language models.",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 72 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www-cdn.anthropic.com/images/4zrzovbb/website/2eba335a28661a8253187053fa36add230af728b-2000x1125.jpg",
+    "kep_forras": "https://www.anthropic.com/research/provable-inference",
+    "x_url": "https://x.com/AnthropicAI/status/2117710942826123294"
+  },
+  "cim_eredeti": "New Anthropic research: progress on provable inference for large language models.",
+  "szoveg_eredeti": "New Anthropic research: progress on provable inference for large language models.\n\nHere, we introduce FlashProve. Building on established cryptographic techniques, FlashProve allows developers to verify whether a given response came from a given AI model. It’s substantially more efficient than prior open-source methods for doing so. \n\nThese proofs have a range of applications. They can, for instance, make it harder for attackers to hijack a chat, or enable safety evaluators to verify that the model they’re testing is the same one being served to customers.\n\nFor our full write-up, see here: https://www.anthropic.com/research/provable-inference\n\nFurther progress in provable inference will likely be an important part of improving trust in AI deployment. To that end, we're open-sourcing FlashProve’s code, here: https://github.com/anthropics/FlashProve\n\nWe’re grateful to our collaborators: Alessandro Chiesa, @GiacomoFenzi, @gwberg95, @miranda__christ, Rahul Dalal (http://rdalal.github.io) and Ben Mayer (@transmissions11).",
+  "begyujtve": "2026-11-03T20:24:00.927852+00:00",
+  "prioritas": {
+    "pont": 72,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 80,
+      "hirertek": 85,
+      "egyediseg": 20,
+      "hitelesseg": 92,
+      "aktualitas": 98,
+      "kozossegi": 58
+    },
+    "elofeszures": 99,
+    "tanult": 54,
+    "indok": "Duplikátum az előző Anthropic FlashProve bejegyzéssel, ezért az egyedisége alacsony. Hasonló hír már van: ce3b953cb3ca.",
+    "tema": "anthropic flashprove inference verification",
+    "cim_hu": "FlashProve: az Anthropic új eszköze az MI-válaszok eredetének igazolására",
+    "lead_hu": "Az Anthropic bemutatta a FlashProve technológiát, amely kriptográfiai alapon teszi lehetővé annak ellenőrzését, hogy egy adott válasz valóban az adott modelltől származik-e.",
+    "klaszter": "ce3b953cb3ca",
+    "ai": true,
+    "ido": "2026-11-03T20:38:43+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-03T20:38:46+00:00"
+}

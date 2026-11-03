@@ -1,0 +1,49 @@
+{
+  "id": "781db6b10c1f",
+  "slug": "krea-3-technical-report",
+  "forras_id": "krea",
+  "forras_nev": "Krea",
+  "url": "https://www.krea.ai/blog/krea-3-technical-report",
+  "publikalva": "2026-11-03T16:00:00+00:00",
+  "cim": "Krea 3 Technical Report",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 77 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://s.krea.ai/KreaOpenGraph2.webp"
+  },
+  "cim_eredeti": "Krea 3 Technical Report",
+  "szoveg_eredeti": "In this technical report we introduce Krea 3: a foundation image-to-image model with frontier intelligence, built to be fast and cost-efficient. We present: (1) the model architecture; (2) our training systems for variable reference counts and native 2K resolution; (3) how we mine, synthesize, and caption image-to-image data; (4) reinforcement learning with an agentic reward harness; and (5) preference optimization.\n\nText-to-image (T2I) models have transformed creative industries. However, while they have vast world knowledge, many visual tasks can’t be described with words alone. An identity, a product, or a design reference is easier to show than to describe. Image-to-image (I2I) models close this gap: they take reference images as input and reason over them alongside the instruction.\n\nWe introduce Krea 3, a foundation image-to-image model with frontier intelligence. It keeps characters and products consistent across edits, makes targeted changes while leaving the rest of the image untouched, and combines up to 8 reference images in a single generation.\n\nHowever, a great creative tool is more than just an intelligent one. Frontier intelligence that takes minutes per image is unsuitable for professional creative work, where people try many versions of an idea before they keep one.\n\nOnce a model is smart enough to tackle complex tasks, the next frontier is speed and cost. Yet many recent image models have moved toward slower, more expensive generation in exchange for marginal quality gains.\n\nKrea 3 takes the other side of that trade. It is an I2I model that is frontier quality, ultrafast, and cost-efficient.\n\nWe compare Krea 3 against the I2I models that teams already use in production.\n\nKrea 3 Ultra debuted at #4 on all independent arenas, making Krea the #2 image generation lab in the world, beating multiple trillion-dollar companies.\n\nFigure 1: Arena.ai, Artificial Analysis, and Design Arena image-to-image leaderboards.\n\nFigure 2: Quality vs. speed. Elo measured from the Artificial Analysis Image Editing benchmark.\n\nSpeed is where Krea 3 differs most. In production, Krea 3 finishes edits within 8s. In our production traffic, Nano Banana Pro takes around 20 to 40 seconds for a comparable edit, which makes Krea 3 roughly 3–5 times faster. The gap widens even more when compared against GPT Image models, which can take up to several minutes to perform an edit.\n\nFigure 3: Mean latency of I2I models with one reference at 2K output, the most common setting on our platform, measured through the fal API.\n\nWhile maintaining competitive performance against models such as Nano Banana Pro and GPT Image 2, Krea 3 brings significant cost efficiency to the table, allowing users to access fast, high-quality editing capabilities at a fraction of the price.\n\nFigure 4: Monthly cost of 100,000 edits for each I2I model, at API prices.\n\nOur architecture is deliberately standard; the contributions of this work are in training, data, and post-training. We initialize Krea 3 from the Krea 2 [1] pretrain and continue pretraining on a significantly wider and improved text-to-image dataset, including native 2K resolution samples. We then introduce image-to-image data and extend the text-to-image architecture as follows:\n\nHover or tap a block to trace its path through the model.\n\nFigure 5: Krea 3 image-to-image diffusion transformer architecture.\n\nTraining a large transformer on image-to-image data with variable reference counts and resolutions required three systems changes: decoupled reference–target resolution sampling, length-binned packing, and sequence-length-dependent memory optimization for native 2K training. We describe each below, along with the timestep-shift tuning that most improved structural coherence.\n\nDuring training, we sample the pixel area of every image in a row independently: the target and each reference get their own resolution.\n\nDecoupling reference and target resolutions is important for inference-time flexibility. Some tasks need high reference fidelity; copying fine text, for example, requires seeing the reference at high resolution. Others, like placing a simple product, don’t need as much detail preservation. In these cases, pairing a high-resolution output with lower-resolution references shortens the sequence and speeds up sampling with little to no quality loss.\n\nFor a given training row, the DiT’s sequence length is the sum of:\n\nFor training efficiency, all ranks must process homogeneous sequence lengths. This is challenging in image-to-image training because the dataset contains a wide range of reference image counts and resolutions.\n\nEdit instruction tokens are always padded to a fixed maximum length.\n\nFor image tokens, we create a resolution plan once per epoch. At the start of the epoch, we sample a resolution for every reference and target image in the dataset from a fixed set of training resolutions. This plan determines the sequence length for every row in the dataset for the current epoch.\n\nThese two values are shared by all ranks. The dataloader yields training rows with the sampled number of reference images, at or below the sampled token length. Any shorter samples are padded to the token length bin (Figure 6).\n\nFigure 6: Length-binned packing per training step. All ranks in a step share one bin and one reference count.\n\nA global reference count isn’t strictly necessary for the transformer, but it keeps VLM computation homogeneous across ranks, so we sample one per step.\n\nBecause homogeneity comes from the token-length bins rather than aspect-ratio bucketing, we can train on references and targets at their native aspect ratios (including exotic ones) with minimal cropping.\n\nKrea 3 significantly improves text rendering over Krea 2, primarily from scaling to native 2K. The bottleneck at lower resolutions is lossy VAE compression: at 1K, fine text does not survive an encoder–decoder round trip, so the model cannot learn to render it. At 2K, the image is large enough for text to be represented and learned. The same effect benefits overall aesthetics and fine textures: detail like fabric, hair, and skin that is lost at 1K stays intact at 2K.\n\nScaling to 2K makes sequence length explode in multi-reference editing. A 1024×1024 text-to-image sample uses 4,096 image tokens; a 2048×2048 target with seven 2048×2048 references uses 131,072, 32× as many.\n\nTo handle these long sequence lengths under GPU memory constraints, we use context parallelism, Fully Sharded Data Parallel (FSDP) sharding, gradient checkpointing, and bfloat16 (bf16) AdamW moments.\n\nMost of these slow training: context parallelism shrinks the per-step batch and requires gradient accumulation, and gradient checkpointing adds recomputation. They’re necessary for long sequences but overkill for low-resolution, low-reference rows, so we tune them per sequence length, adjusting batch size and which blocks are checkpointed so short rows aren’t slowed down.\n\nWe carefully analyze the denoising trajectories of intermediate models throughout training to tune the train-time noise schedule shift.\n\nFigure 7: Denoising trajectory of a multi-reference edit; global structure is planned at high noise levels.\n\nWe find that most of the global structure, especially on complex multi-reference tasks, is decided at high noise levels. Unlike other implementations, which use the same timestep shift [4] for text-to-image and image-to-image, we use a more aggressive timestep shift for image-to-image, concentrating training and inference steps at high noise levels. In our ablations, this choice significantly improved structural coherence and accelerated convergence.\n\nData for pretraining and supervised finetuning (SFT) shares the same pipeline and philosophy, so we describe it together here. The data for reinforcement learning (RL) and Direct Preference Optimization (DPO) is discussed in their respective sections.\n\nFrom pretraining to SFT, training samples consist of:\n\nWe can define a good training sa",
+  "begyujtve": "2026-11-03T20:36:45.674557+00:00",
+  "prioritas": {
+    "pont": 77,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 70,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 92,
+      "aktualitas": 92,
+      "kozossegi": 64
+    },
+    "elofeszures": 99,
+    "tanult": 62,
+    "indok": "Technikai jelentés egy népszerű kép-a-képhez generatív modell új verziójáról és architektúrájáról. Forrás-tapasztalat: -3.",
+    "tema": "krea 3 technical report",
+    "cim_hu": "Megjelent a Krea 3 technikai beszámolója a natív 2K képfeldolgozásról",
+    "lead_hu": "A Krea kiadta a Krea 3 képgeneráló modell technikai részleteit, amely gyorsabb működést és natív 2K felbontású kép-a-képhez átalakítást kínál.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-03T20:38:43+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-03T20:38:45+00:00"
+}
