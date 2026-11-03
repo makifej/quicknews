@@ -1812,3 +1812,27 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .gyu .gyu-pont { background-color: var(--gyu-pont); }
 .gyu .gyu-pont[aria-current="true"] { background-color: var(--gyu-akcent); }
 .gyu .gyu-nyil:focus-visible, .gyu .gyu-pont:focus-visible { outline-color: var(--gyu-akcent); }
+
+/* ===== Audit 2026-11-03 (Gittus), mobil fejléc és cikk-műveletsor ===== */
+/* a fejléc jobb szélső gombja (témaváltó) 390 px-en 3 px-szel kilógott: 430 px alatt a kisebb gombméret és térköz érvényes
+   (eddig csak 380 alatt), így 360-430 px között minden ikon kifér */
+@media (max-width: 430px) {
+  .fejlec-felso .keret { gap: 6px; }
+  .logo { font-size: 20px; line-height: 26px; gap: 6px; }
+  .kereso-mezosor, .harang-gomb, .tema-gomb, .fb-gomb, .mentett-gomb { width: 38px; height: 38px; }
+  .harang-gomb svg, .tema-gomb svg, .fb-gomb svg, .kereso-ikon { width: 18px; height: 18px; }
+  .mentett-gomb svg { width: 17px; height: 17px; }
+}
+/* mentés gomb: mentés előtt körvonalas, mentés után kitöltött piros (eddig mindkét állapot ugyanolyan piros volt) */
+.mentes-cikk { color: var(--piros); background: transparent; border: 1px solid var(--piros); }
+.mentes-cikk svg { fill: currentColor; }
+.mentes-cikk:hover { color: var(--piros); background: var(--bg-3); }
+.mentes-cikk[aria-pressed="true"] { color: #fff; background: var(--piros-cimke); border-color: var(--piros-cimke); }
+.mentes-cikk[aria-pressed="true"]:hover { color: #fff; background: #b3241a; }
+/* mobilon a mentés és a megosztás egy sorban, egyforma szélességben, 44 px-es érintési felülettel; a Kipróbálom külön sorban */
+@media (max-width: 599px) {
+  .cikk-fej .kiprobal { display: flex; justify-content: center; width: 100%; }
+  .cikk-fej .mentes-cikk, .cikk-fej .megoszt-cikk { width: calc(50% - 8px); height: 44px; justify-content: center; vertical-align: top; }
+  .cikk-fej .mentes-cikk, .cikk-fej .kiprobal + .mentes-cikk { margin: 16px 0 0; }
+  .cikk-fej .megoszt-cikk, .cikk-fej .kiprobal ~ .megoszt-cikk { margin: 16px 0 0 8px; }
+}
