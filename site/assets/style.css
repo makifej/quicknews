@@ -1899,3 +1899,7 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 }
 .chat-valasz:focus, .chat-b.bot:focus { outline: none; }
 .chat-valasz:focus-visible, .chat-b.bot:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; border-radius: 12px; }
+/* címlap: a kiemelt rész rendezési elve (Audit 2026-11-03) */
+.cimlap-elv { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 16px; margin: 0 0 16px; font-size: 13px; line-height: 18px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--szoveg-2); }
+.cimlap-elv a { color: var(--kiemelo-szin); text-transform: none; letter-spacing: 0; font-size: 14px; }
+.cimlap-elv a:hover { text-decoration: underline; }
