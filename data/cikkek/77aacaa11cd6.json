@@ -1,0 +1,74 @@
+{
+  "id": "77aacaa11cd6",
+  "slug": "a-revolut-90-szazalekkal-csokkentette-az-ai-kodolas-koltsegeit-sajat",
+  "forras_id": "techmeme",
+  "forras_nev": "The Register",
+  "url": "https://www.theregister.com/ai-and-ml/2026/11/03/british-fintech-revolut-slashes-ai-coding-costs-10x-by-cutting-out-claude-and-going-self-hosted/5307345",
+  "szerzo": null,
+  "publikalva": "2026-11-03T21:50:01+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://image.theregister.com/260288.jpg?imageId=260288&x=0&y=0&cropw=100&croph=100&panox=0&panoy=0&panow=100&panoh=100&width=1200&height=683"
+  },
+  "cim_eredeti": "Revolut says it cut AI coding inference costs by ~90% in less than a year by making self-hosted GLM models its default over commercial tools like Claude Code (Tobias Mann/The Register)",
+  "forrasok": [],
+  "szoveg_eredeti": "Turns out cheap tokens get engineers doing things that save time, like debugging and tackling Jira tickets\n\nRevolut says that in less than a year it's managed to slash its AI coding inference costs by roughly 90 percent by making self-hosted models its default instead of relying primarily on commercial services like Claude.\n\nSpeaking at the AI Engineer conference in New York last month, David Abitbol, ops and infrastructure lead at the British fintech, described how it saw a 60 percent improvement in coding time and a 70 percent improvement in lead time following its rollout of AI coding tools to roughly 2,000 engineers. Revolut initially adopted GLM-5.1 before moving to GLM-5.3, which it now serves using 56 Nvidia B200 GPUs.\n\nPrior to its switch to GLM, Revolut had been experimenting with AI, deploying Gemini in early 2025 and Claude Code in early 2026. \"We were highly skeptical about the cost of AI. We were seeing engineers spend $1,000 a month, $10,000 a month with not so much ROI, and so when we launched it we launched it with strict budget limits,\" Abitbol said.\n\nBecause of this, engineers only had access to a limited number of tokens, so the company began investigating self-hosting iyd own models. At $0.30 per million input/output tokens, self hosting GLM 5.1 cost about a tenth of using OpenAI's Codex or Anthropic's Claude Code. And, as it turned out, when tokens are cheap, you stop worrying about how many they use or what they use them for.\n\nWhile Revolut did see improvements to coding speed, Abitbol noted the biggest bottleneck wasn't actually the code. Instead, he says the biggest gains came from letting the AI models deal with things like debugging and Jira and Confluence tickets. \"When you have unlimited tokens, you're free to do that,\" he said. \"You no longer have to save your tokens for the end of the quarter or the most difficult task.\"\n\nDeveloped by Chinese open weights model dev Z.ai, GLM 5.1 isn't exactly a small model. At roughly 754 billion total parameters (40 billion activated for each token generated), the model requires roughly 380 GB of GPU memory just to hold the weights and another 6-26 GB per user to maintain context depending on precision.\n\nTo serve GLM-5.3 at scale, Revolut deployed 56 Nvidia B200 GPUs, equivalent in GPU count to seven eight-GPU DGX B200 systems. But as Abitbol noted, the greatest performance gains didn't come from adding GPUs, but rather tuning the model's hyperparameters along with switching to NVFP4 quantization, implementing disaggregated prefill and decode, and tuning context lengths.\n\nOne key takeaway was that supporting a one-million-token context window doesn't necessarily make such a large window useful or efficient. \"Long context is a scam. You really need to be mindful of that,\" Abitbol said. \"Even though you can serve one million tokens, 256 [thousand] is really what you need.\"\n\nWith these optimizations, Abitbol says that the company was able to achieve sub 3-second time to first token on context windows of around 256,000 tokens, and generation speeds of around 200 tokens a second, both of which he notes are the sweet spot for the company's software engineers.\n\n\"What you want to aim for is a sub-3 second time to first token. This is empirical evidence. As soon as you exceed 5 seconds, my Slack inbox starts to blow up,\" Abitbol said. \"In terms of throughput, it doesn't really matter as much. We serve, in terms of interactivity, 200 tokens per second. People are fine [with that]. You don't need to go higher. The way people work has changed. We no longer look at the stream of thinking tokens. People run tasks in parallel and check in when the task is done.\"\n\nAnd if throughput is a concern, he notes engineers who sign in after 5 pm are getting closer to 800 tokens a second.\n\nHowever, it's worth noting that GLM hasn't replaced GPT or Claude entirely. The Chinese model is text only, so it isn't ideal for things like UI work. So instead, Revolut used a model router to direct vision queries to models like Gemini or GPT Luna while keeping code generation running on GLM.\n\n\"Open source is now a priority at Revolut, and our economics are favorable. The billing is flat, we don't have any bill shock at the end of the month, and the frontier is the exception,\" Abitbol said.\n\nHaving said that, Abitbol acknowledges that Chinese open weights models may be a concern for privacy and security reasons, but emphasizes that the major concern there is accessing them via APIs running out of China. When run on-prem or on regional cloud resources, there's really nothing to worry about. ®\n\nWe've got a hunch the memory crunch is taking a bite out of Windows revenue\n\nAt Fireworks Forge, a celebration of specialized models\n\nPARTNER CONTENT: 300+ AI applications delivering surges in core metrics and annual cost reduction of over CNY100m\n\nTurns out cheap tokens get engineers doing things that save time, like debugging and tackling Jira tickets\n\nThese are AI agents that operate outside of human control and 'pursue open-ended, evolving survival'",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Revolut 90 százalékkal csökkentette az AI-kódolás költségeit saját modellekkel",
+  "lead": "A fintech óriás nyílt súlyú modellekre váltott a zárt rendszerek helyett, amivel jelentősen gyorsította a fejlesztést.",
+  "osszefoglalo": "A Revolut csaknem 90 százalékkal vágta vissza az AI-alapú kódolás költségeit azáltal, hogy a **saját szervereken futtatott GLM-modellekre** állt át a fizetős szolgáltatások, például a Claude Code helyett. David Abitbol, a cég infrastruktúra-vezetője elmondta, hogy a 2000 mérnökük bevonásával végzett váltás után 60 százalékkal csökkent a kódolási idő.\n\nA vállalat korábban szigorú kereteket szabott a zárt modellek használatára a magas költségek miatt. A **saját hostingra való áttérés** viszont feloldotta a korlátokat: a fejlesztők a korlátlan tokeneknek köszönhetően már a hibakeresést és a Jira-jegyek kezelését is az AI-ra bízzák. A cég jelenleg 56 Nvidia B200 GPU-val szolgálja ki a rendszert.\n\nA szöveges feladatokat a nyílt forráskódú GLM kezeli, míg a képi elemzést igénylő lekérdezéseket egy okos átirányító rendszer továbbítja a Gemini vagy a GPT felé. Ezzel a hibrid megoldással a havi kiadások kiszámíthatóvá váltak.",
+  "miert_szamit": "A saját infrastruktúrán futtatott nyílt modellek **drasztikusan csökkentik a működési költségeket**, így a fejlesztők szigorú tokenkeretek nélkül, a mindennapi feladatok automatizálására használhatják az AI-t.",
+  "cimkek": [
+    "Revolut",
+    "GLM",
+    "kódolás",
+    "Nvidia"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 85,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 86,
+      "aktualitas": 98,
+      "kozossegi": 73
+    },
+    "elofeszures": 91,
+    "tanult": 56,
+    "indok": "Rendkívül fontos esettanulmány a vállalati AI költségek drasztikus csökkentéséről nyílt modellekkel. Forrás-tapasztalat: -3.",
+    "tema": "revolut ai coding glm cost reduction",
+    "cim_hu": "Kilencven százalékkal csökkentette a kódoló AI költségeit a Revolut saját modellekkel",
+    "lead_hu": "A Revolut alig egy év alatt 90 százalékkal vágta vissza az AI kódolási költségeit. A pénzügyi cég a felhős eszközök helyett saját szervereken futtatott nyílt GLM modellekre állt át.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-03T22:02:01+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-03T22:02:12+00:00",
+  "megjelent": "2026-11-03T22:02:12+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-03T22:02:24+00:00",
+    "esemeny": "David Abitbol, a Revolut infrastruktúra-vezetője bejelentette, hogy a cég saját szervereken futtatott, nyílt súlyú GLM-modellekre állt át, amivel mintegy 90 százalékkal csökkentette az AI-kódolási költségeket.",
+    "forrasok": [
+      "https://www.theregister.com/ai-and-ml/2026/11/03/british-fintech-revolut-slashes-ai-coding-costs-10x-by-cutting-out-claude-and-going-self-hosted/5307345",
+      "https://www.youtube.com/watch?v=536:54"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-03T22:02:52+00:00"
+}
