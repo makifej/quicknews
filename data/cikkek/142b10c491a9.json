@@ -15,7 +15,7 @@
   "fontossag": 1,
   "video_szoveg": "",
   "relevans": false,
-  "kihagyva": "duplikátum: de4cf53f9db9",
+  "dupla_of": "de4cf53f9db9",
   "media": {
     "tipus": "mp4",
     "url": "https://video.twimg.com/amplify_video/2117408779730108416/vid/avc1/1280x720/DC4QGviQJjmqljUu.mp4?tag=16",
@@ -27,31 +27,27 @@
     "eredeti_keszito": "OpenAI Developers (@OpenAIDevs)",
     "eredeti_url": "https://x.com/OpenAIDevs/status/2117408792346509663"
   },
-  "cim_eredeti": "Pando is a Git backend which can scale to very large monorepos. We took the hard road of continuing to use Git, which me",
-  "szoveg_eredeti": "Pando is a Git backend which can scale to very large monorepos. We took the hard road of continuing to use Git, which means we could enable Pando with no change to devex. Considering providing this to others, let me know (gdb@openai.com) if you'd be interested.\n\n[IDÉZETT POSZT, amelyet Greg Brockman megosztott. Eredeti szerzője: OpenAI Developers (@OpenAIDevs); megjelent: 2026-11-03T00:09:30+00:00; link: https://x.com/OpenAIDevs/status/2117408792346509663; média: videó, 18 másodperc]\nWe built Pando, a new Git backend for our monorepo, to handle more pushes and fetches without changing how our engineers and agents use Git.\n\nPando cut push latency by ~80% and now serves nearly a petabyte of Git data a day. We can grow Git capacity alongside agent usage.",
-  "begyujtve": "2026-11-03T07:01:28.854204+00:00",
   "prioritas": {
-    "pont": 55,
+    "pont": 81,
     "szint": "X",
     "reszpont": {
-      "hatas": 50,
-      "hirertek": 50,
-      "hitelesseg": 72,
-      "egyediseg": 60,
-      "aktualitas": 100,
-      "kozossegi": 38
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 81,
+      "aktualitas": 90,
+      "kozossegi": 61
     },
-    "elofeszures": 81,
-    "tanult": 38,
+    "elofeszures": 80,
+    "tanult": 33,
     "indok": "Duplikátum: de4cf53f9db9",
-    "tema": "",
-    "cim_hu": "",
-    "lead_hu": "",
+    "tema": "openai pando git scaling",
+    "cim_hu": "Pando néven fejlesztett skálázható Git backendet az OpenAI",
+    "lead_hu": "Greg Brockman bejelentette a Pando nevű eszközt, amely a Git infrastruktúrát skálázza fel a legszélesebb kódalapok kezelésére anélkül, hogy a fejlesztői élmény megváltozna.",
     "klaszter": null,
-    "ai": false,
-    "ido": "2026-11-03T07:54:03+00:00"
+    "ai": true,
+    "ido": "2026-11-03T08:12:55+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-11-03T07:56:03+00:00",
-  "dupla_of": "de4cf53f9db9"
+  "cim_eredeti": "Pando is a Git backend which can scale to very large monorepos. We took the hard road of continuing to use Git, which me"
 }
