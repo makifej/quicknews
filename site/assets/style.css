@@ -1861,3 +1861,5 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .kt-javaslat strong { color: var(--szoveg); }
 .kereso-javaslat { padding: 10px 16px; font-size: 13px; line-height: 18px; color: var(--szoveg-2); border-bottom: 1px solid var(--keret); }
 .kereso-javaslat strong { color: var(--szoveg); }
+.nap-ugro select { font: inherit; font-size: 16px; line-height: 24px; padding: 8px 12px; color: var(--szoveg); background: var(--bg-3); border: 1px solid var(--keret); border-radius: 12px; max-width: 100%; min-height: 44px; }
+.nap-ugro select:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
