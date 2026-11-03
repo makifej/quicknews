@@ -1,5 +1,17 @@
 [
   {
+    "i": "71d2bc7001c1",
+    "p": "/assets/kep/71d2bc7001c1.webp",
+    "c": "Az Anthropic Message Threads funkciója 35 százalékkal gyorsítja a válaszadást",
+    "b": "A Claude platform Messages API-jának új funkciója nem küldi újra a teljes előzményt, így jelentősen csökken a várakozási idő a hosszú beszélgetéseknél.",
+    "k": "The Decoder",
+    "g": "eszköz",
+    "u": "/hir/az-anthropic-message-threads-funkcioja-35-szazalekkal-gyorsitja-a",
+    "sz": "Az Anthropic kiadta a Message Threads funkciót nyílt béta verzióban a Claude platform Messages API-jához. A rendszer korábban minden egyes kérésnél újra elküldte a teljes beszélgetési előzményt az API-n keresztül. Az új megoldás ezzel szemben csak a legutóbbi üzenet óta történt változásokat továbbítja.\n\nA fejlesztés a nagy terjedelmű feladatoknál fejti ki a legnagyobb hatást: 500 000 és 1 millió token közötti kéréseknél a válaszadás megkezdéséig eltelt idő mintegy 35 százalékkal csökken. Az Anthropic szerint az újításból leginkább a kódoló és számítógép-használó ügynökök, valamint a nagy mennyiségű dokumentumot vagy képet feldolgozó munkafolyamatok profitálnak.\n\nA beszélgetési szál a kérések között titkosítva marad a memóriában, és 5 perc tétlenség után törlődik. A felhasznált tokenek száma nem változik, mivel a Claude továbbra is átolvassa a teljes előzményt. A funkció a Claude platform mellett elérhető az AWS, a Microsoft Foundry és a Google Cloud felületein is. Anthropic Claude API Message Threads",
+    "d": "nov. 3. 13:35",
+    "t": "2026-11-03T12:35:49+00:00"
+  },
+  {
     "i": "3ab71693643b",
     "p": "/assets/kep/3ab71693643b.webp",
     "c": "A Huawei a feketepiacra tereli vásárlóit az AI-chipes memóriahiány miatt",
@@ -34,6 +46,18 @@
     "sz": "A brit Nemzeti Kiberbiztonsági Központ jelentése szerint a mesterséges intelligencia gyökeresen átalakítja a kiberoperációkat. A hatóság vezetője arra hívta fel a figyelmet, hogy a jelenlegi védelmi rendszerek nem elégségesek a fenyegetések kivédésére.\n\nA jelentés előrejelzése alapján 2028-ra Kína és Oroszország rutinszerűen alkalmaz majd AI-eszközöket geopolitikai céljai eléréséhez. A legnagyobb kockázatnak a kritikus infrastruktúrák vannak kitéve, amelyek védelme jelenleg jelentős elmaradásban van az automatizált támadási módszerekkel szemben. kiberbiztonság NCSC geopolitika AI-biztonság",
     "d": "nov. 3. 12:05",
     "t": "2026-11-03T11:05:01+00:00"
+  },
+  {
+    "i": "389fe9e6c987",
+    "p": "/assets/kep/389fe9e6c987.webp",
+    "c": "7 hiba, ami miatt elszállhat a céges AI-büdzsé",
+    "b": "Az átgondolatlan AI-bevezetés és a mérés hiánya komoly pénzügyi veszteségeket okozhat a vállalatoknak.",
+    "k": "CIO",
+    "g": "üzlet",
+    "u": "/hir/7-hiba-ami-miatt-elszallhat-a-ceges-ai-budzse",
+    "sz": "Egyre több vállalat szembesül azzal, hogy az AI-eszközök és kódgenerálók használatának terjedése hirtelen megnöveli a költségeket. A CIO elemzése szerint a legnagyobb problémát a mérhető üzleti célok hiánya jelenti: a cégek sokszor a használat mértékét tekintik sikerkritériumnak a tényleges üzleti eredmények helyett.\n\nA költségek elszállásához hozzájárul a szabályozás hiánya és a rossz minőségű adatok használata is. A fejlesztők gyakran a legdrágább modelleket használják feladattól függetlenül, míg az AI által generált kódok ellenőrzése és javítása jelentős plusz munkaórákat emészt fel.\n\nA hatékony költségkezelés érdekében célszerű központi AI-platformra átállni, valós idejű büdzsékereteket beállítani, és automatikus rendszerekkel a legköltséghatékonyabb modellhez irányítani az egyes feladatokat. AI büdzsé költségoptimálás irányítás szoftverfejlesztés",
+    "d": "nov. 3. 11:05",
+    "t": "2026-11-03T10:05:10+00:00"
   },
   {
     "i": "0e5b1d74afc9",
