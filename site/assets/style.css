@@ -1834,7 +1834,7 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
   .cikk-fej .kiprobal { display: flex; justify-content: center; width: 100%; }
   .cikk-fej .mentes-cikk, .cikk-fej .megoszt-cikk { height: 44px; justify-content: center; vertical-align: top; padding: 0 10px; gap: 6px; white-space: nowrap; }
   .cikk-fej .mentes-cikk { width: calc(58% - 8px); }
-  .cikk-fej .megoszt-cikk { width: 42%; }
+  .cikk-fej .megoszt-cikk { width: calc(42% - 6px); }
   .cikk-fej .mentes-cikk, .cikk-fej .kiprobal + .mentes-cikk { margin: 16px 0 0; }
   .cikk-fej .megoszt-cikk, .cikk-fej .kiprobal ~ .megoszt-cikk { margin: 16px 0 0 8px; }
 }
