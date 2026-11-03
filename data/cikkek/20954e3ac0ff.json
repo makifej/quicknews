@@ -15,35 +15,35 @@
   "fontossag": 1,
   "video_szoveg": "",
   "relevans": false,
-  "kihagyva": "P3: 64 pont",
+  "kihagyva": "P2: 71 pont, napi P2-keret (10) betelt",
   "media": {
     "tipus": "kep",
     "kep": "https://huggingface.co/blog/assets/cwe-bench/thumbnail.jpg"
   },
   "cim_eredeti": "CWE-bench v2: More coverage, quality, and transparency",
   "szoveg_eredeti": "CWE-bench is designed to test the limits of frontier cyber capabilities. In our continued pursuit to push the horizon at Collinear AI, CWE-bench v2 opens up a public set of 100 tasks that anyone can run and evaluate their models on. The setup is the same as before. An agent gets a checkout of a real open-source repository and a short instruction, with the goal of finding and fixing a security weakness without breaking existing functionality. Scoring is fully programmatic, so results are deterministic and anyone can reproduce them without extra cost. All our programmatic checks have been curated with the help of LLM judge panels that shape them towards the direction of hardness and fairness. We also maintain a held-out set, so that we can keep tracking progress on tasks no model has seen. To evaluate your model on the held-out set, contact cyber@collinear.ai.\n\nOur goal is to be exhaustive. A defender has to anticipate the ways an attacker could get in, and get it right every single time. These 100 tasks cover 91 different CWEs, spanning a wide range of vulnerability classes. A model that does well here has to understand the multiple weakness surfaces that a potential attacker can exploit. Recognising a familiar pattern is not enough.\n\nAs part of our meticulous effort to keep improving quality, for every task we checked that the following questions were true:\n\nEvery task was also reviewed by hand. Open-sourcing the set is part of the same effort to improve quality. We welcome feedback on any task, and contributions to the public set.\n\nResults are tracked in two places on the Hub. The leaderboard on the CWE-bench dataset page covers open-weight models and updates on its own: labs and the community add a result by opening a PR on the model's repo with a results file (how). For the full comparison, including API-only models such as Gemini, Claude and GPT, see the CWE-bench leaderboard Space, where new models are added through a PR on the Space.\n\nOpen-weight models, from the dataset page:\n\nAll evaluated models, including API-only ones:\n\nOf the 11 models evaluated, Gemini 4 Argon leads with 67.8% pass@1 and 81.0% pass@4, just ahead of Claude Opus 5.5 (67.3% pass@1, 78.0% pass@4). 95 tasks are solved by at least one model, an indication that the tasks are indeed solvable. However, even the leader fails 19% of the set on every attempt, so the long tail is far from solved. The public set, the grader and the harness are open. Run your model, and tell us where it stands.\n\nOn cost, DeepSeek V4.1 Flash (1017), Claude Opus 5.5 and Gemini 4 Argon form the Pareto frontier: DeepSeek reaches 57.0% pass@1 at $0.04 per rollout, Opus adds ten points at $1.83, and Gemini edges ahead at $3.92.\n\nEvery task is a self-contained Harbor task (a Dockerized environment, an instruction, and a deterministic verifier), and the dataset ships a registry.json. Harbor can therefore run the whole benchmark straight from the Hugging Face repo, without cloning anything yourself:\n\n-k 4 runs 4 attempts per task, and the reported score is the mean reward over all 400 trials. The dataset is gated: accept its access conditions on the dataset page first. Harbor fetches the tasks with git, so also save your HF token to git's credential helper once:\n\nThe tasks are also tagged rl-environment: the same environments and verifiers can provide rewards for training defensive agents, not just for evaluating them.",
-  "begyujtve": "2026-11-03T17:25:35.732619+00:00",
+  "begyujtve": "2026-11-03T17:45:27.733193+00:00",
   "prioritas": {
-    "pont": 64,
-    "szint": "P3",
+    "pont": 71,
+    "szint": "P2",
     "reszpont": {
-      "hatas": 55,
-      "hirertek": 70,
-      "egyediseg": 90,
-      "hitelesseg": 88,
-      "aktualitas": 78,
-      "kozossegi": 52
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 95,
+      "hitelesseg": 90,
+      "aktualitas": 86,
+      "kozossegi": 61
     },
     "elofeszures": 92,
     "tanult": 62,
-    "indok": "Fejlesztői és kiberbiztonsági szempontból hasznos benchmark frissítés, de szűkebb célközönségnek szól. Forrás-tapasztalat: -5.",
-    "tema": "ai benchmark cybersecurity cwebench",
-    "cim_hu": "Megjelent az MI-modellek kiberbiztonságát mérő CWE-bench v2",
-    "lead_hu": "A Collinear AI közzétette a CWE-bench v2 értékelőkészletet, amellyel a nyílt forráskódú szoftverek biztonsági hiányosságait javító MI-ágensek képességei tesztelhetők.",
+    "indok": "Releváns szakmai mérés és nyílt tesztkészlet az MI-modellbiztonság és kiberbiztonság felmérésére Forrás-tapasztalat: -5.",
+    "tema": "ai benchmark cybersecurity",
+    "cim_hu": "Megjelent a CWE-bench v2 az nyílt forráskódú MI-kiberbiztonsági modellek tesztelésére",
+    "lead_hu": "A Collinear AI közzétette a CWE-bench v2 benchmarkot, amely 100 nyílt feladattal teszteli a nyelvi modellek képességeit a biztonsági hiányosságok automatikus felismerésében és javításában.",
     "klaszter": null,
     "ai": true,
-    "ido": "2026-11-03T17:28:16+00:00"
+    "ido": "2026-11-03T17:48:35+00:00"
   },
   "jovahagyas_kell": false,
-  "megjelent": "2026-11-03T17:28:36+00:00"
+  "megjelent": "2026-11-03T17:49:38+00:00"
 }

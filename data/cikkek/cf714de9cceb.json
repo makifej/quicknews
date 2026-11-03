@@ -1,0 +1,49 @@
+{
+  "id": "cf714de9cceb",
+  "slug": "bring-structured-and-unstructured-data-together-with-amazon-quick",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/bring-structured-and-unstructured-data-together-with-amazon-quick/",
+  "publikalva": "2026-11-03T16:49:29+00:00",
+  "cim": "Bring structured and unstructured data together with Amazon Quick",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 54 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/10/27/ML-22035-featured-image.png"
+  },
+  "cim_eredeti": "Bring structured and unstructured data together with Amazon Quick",
+  "szoveg_eredeti": "Organizations collect data in many forms. Structured data lives in databases and spreadsheets, whereas unstructured data sits in documents, reports, and files stored across file systems. Analyzing both together typically requires switching between multiple tools, running separate queries, and manually correlating results.\n\nAmazon Quick addresses this with a unified experience. You can connect structured data through enriched datasets and unstructured data through S3-backed knowledge bases. You can then query both through a single conversational AI agent.\n\nThe following diagram illustrates how each component connects to deliver a unified data experience through Amazon Quick.\n\nFigure 1: Solution architecture for combining structured and unstructured data in Amazon Quick\n\nWith this layered approach, you can expand the solution over time. When you add a new data source to the Space, the agent linked to that Space can use it, and responses respect the permissions of the user who asks.\n\nTo follow along with this walkthrough, you need:\n\nThis walkthrough uses two types of data:\n\nUnstructured documents: Upload these to your Amazon S3 bucket for the knowledge base:\n\nStructured data: Download this file to your computer. You upload it directly to Amazon Quick in Step 3:\n\nStart by connecting Amazon Quick to your S3 bucket. From the Amazon Quick console, select Knowledge in the left navigation panel.\n\nThe knowledge page shows available connector types, including Amazon Q Business, Web Crawler, Amazon S3, and third-party options like Google Drive, OneDrive, and Microsoft SharePoint.\n\nUnder Amazon S3, choose Add. In the Create S3 knowledge base dialog, on the Connect S3 bucket page, provide the following details:\n\nFigure 2: Create integration dialog showing the S3 connection fields\n\nAfter the S3 integration is created, Amazon Quick prompts you to create a knowledge base. The knowledge base indexes your S3 content for AI-powered search.\n\nNext: Additional settings opens optional settings for document-level access control lists (ACLs) and a metadata files folder. Decide whether to use ACLs before you create the knowledge base, because you can’t change that choice later. This walkthrough uses sample data, so the default settings are sufficient. For details, see Set up and manage Amazon S3 integration.\n\nChoose Create. A success banner confirms the S3 integration, and the knowledge base begins indexing in the background.\n\nFigure 3: Create knowledge base dialog with the Business Knowledge Base name and content options\n\nA dataset is your structured data file loaded into Amazon Quick. By enriching the dataset with semantic descriptions, custom instructions, and correct data types, the AI agent can interpret your data more accurately. It can then translate natural language questions into SQL queries.\n\nAmazon Quick ingests the file into SPICE (the in-memory calculation engine) and the dataset appears in your dataset list.\n\nThe dataset takes its name from the uploaded file, so it appears as Product_Sales.csv in your account.\n\nEnriching your dataset with semantic information helps the AI understand your data in business context. The agent uses this context to translate natural language questions into more accurate SQL queries. From the dataset page, choose Edit dataset to enter the data preparation view.\n\nIn the Transform tab, update data types for columns that were auto-detected incorrectly. For this dataset:\n\nFigure 4: Transform view showing data type changes applied to the Product_Sales.csv dataset\n\nSelect the Output tab to access the dataset-level enrichment fields. Here you provide context that helps the AI understand what your data represents and how to use it.\n\nDescription: Add a dataset-level description:\n\n“Product sales transaction data for AnyCompany, covering orders from FY2024-FY2025 across North America, EMEA, Asia Pacific, and Latin America. Includes order details, customer information, product lines, and revenue metrics.”\n\nCustom instructions: Add guidance for how the AI should query this data:\n\nTAGS: Sales, revenue, orders, regional performance, product analytics\n\nColumn descriptions: Select each column in the left panel and add a description. For example:\n\nFigure 5: Output view showing dataset details with Description and Custom instructions configured\n\nChoose Save & publish to save your changes. The dataset summary now shows the columns with their correct data types and the descriptions you added.\n\nFigure 6: Enriched Product_Sales.csv dataset summary showing all 16 columns, data types, and descriptions\n\nThis enriched dataset provides the structured data layer for your solution. When the agent receives a natural language question about sales data, it uses these descriptions and instructions to generate more accurate SQL queries. Combined with the knowledge base from Step 2, you now have both structured and unstructured data ready to bring together in a Space.\n\nSpaces in Amazon Quick act as unified data workspaces. A Space can hold file uploads, dashboards, knowledge bases, actions, and datasets, giving your chat agent a single location to query across data types.\n\nFrom the left navigation, select Spaces and create a new Space. Name it “Business Intelligence Hub”.\n\nAdd your knowledge base and dataset to the Space:\n\nThe Space now shows both your knowledge base (unstructured documents) and your enriched dataset (structured sales data) linked as data sources. This is the central hub where both data types come together, giving your chat agent a single place to query across everything. Figure 7 shows the Space with both resources in the Ready state.\n\nFigure 7: Business Intelligence Hub Space showing the Product_Sales.csv dataset and Business Knowledge Base\n\nNavigate to Chat agents in the left navigation and choose Create chat agent. Amazon Quick presents a prompt builder where you can describe your agent in natural language or choose from templates like Training Guide, Project Coordinator, and Onboarding Helper.\n\nFor this walkthrough, choose Skip to configure the agent manually.\n\nFigure 8: Chat agent creation screen with the prompt builder and sample templates\n\nThe configuration panel has several sections. Start with the Agent Persona:\n\nA note appears confirming that your chat agent comes equipped with enterprise guardrails.\n\nFigure 9: Agent persona configuration with identity and persona instructions filled in\n\nUnder Communication style, pick a response style preset. Options include Executive, Technical, and Creative. For a business intelligence use case, select Executive.\n\nUnder Knowledge Sources, choose Link spaces and select the “Business Intelligence Hub” Space you created earlier. This gives the agent access to your S3 knowledge base and other data sources in that Space. When you link a Space, the agent answers from large language model (LLM) knowledge and the linked resources only.\n\nYou can also attach reference documents (PDF, TXT, HTML, MD, CSV, DOC, DOCX) directly to the agent for additional context. Amazon Quick extracts up to 100,000 characters of text from the reference documents that you upload.\n\nFigure 10: Knowledge Sources section showing the linked Business Intelligence Hub Space\n\nFigure 11: Customization section with the welcome message and suggested prompts\n\nChoose Launch chat agent. The right panel shows a live preview of your agent with the welcome message and suggested prompts displayed.\n\nFigure 12: Launched Business Intelligence Assistant with the welcome message and suggested prompts in the chat panel\n\nWith the agent running, start with a question about your business results:\n\nFor this question, the agent combines results from the Product_Sales.csv dataset with the documents in the S3 knowledge base. It returns a response with regional sales breakdowns, trends, and citations that point back to each source.\n\nFigure 13 shows the response. Each citation marker links a figure back to its source document.\n\nFigure 13: Chat agent response showing re",
+  "begyujtve": "2026-11-03T17:47:17.456116+00:00",
+  "prioritas": {
+    "pont": 54,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 50,
+      "egyediseg": 85,
+      "hitelesseg": 78,
+      "aktualitas": 95,
+      "kozossegi": 39
+    },
+    "elofeszures": 77,
+    "tanult": 29,
+    "indok": "Vállalati adatkezelési felhőfunkció bejelentése az AWS részéről Forrás-tapasztalat: -7.",
+    "tema": "aws amazon quick data integration",
+    "cim_hu": "Egyesíti a strukturált és strukturálatlan adatok elemzését az Amazon Quick",
+    "lead_hu": "Az AWS új megoldása lehetővé teszi az adatbázisok és a dokumentumok együttes elemzését anélkül, hogy a felhasználóknak különféle eszközök között kellene váltaniuk.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-03T17:48:35+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-03T17:50:15+00:00"
+}
