@@ -1863,3 +1863,6 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .kereso-javaslat strong { color: var(--szoveg); }
 .nap-ugro select { font: inherit; font-size: 16px; line-height: 24px; padding: 8px 12px; color: var(--szoveg); background: var(--bg-3); border: 1px solid var(--keret); border-radius: 12px; max-width: 100%; min-height: 44px; }
 .nap-ugro select:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
+/* Audit 2026-11-03: a lábléc apró szövege 4,5:1 fölötti kontraszttal (a --szoveg-3 3,5:1 körül volt), a linkek érintési felülete legalább 32 px magas */
+.lablec a.keszitette { color: var(--szoveg-2); }
+.lablec a:not(.keszitette), .lablec .lablec-link { display: inline-block; padding: 4px 0; }
