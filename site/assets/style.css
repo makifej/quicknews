@@ -1866,3 +1866,19 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 /* Audit 2026-11-03: a lábléc apró szövege 4,5:1 fölötti kontraszttal (a --szoveg-3 3,5:1 körül volt), a linkek érintési felülete legalább 32 px magas */
 .lablec a.keszitette { color: var(--szoveg-2); }
 .lablec a:not(.keszitette), .lablec .lablec-link { display: inline-block; padding: 4px 0; }
+/* Sütisáv (Audit 2026-11-03, Heni: „úgy legyen, hogy az AdSense emiatt ne köthessen bele”): az Elfogadom és az Elutasítom
+   azonos súlyú, egyforma körvonalas gomb, egyik sincs kiemelve vagy előre téve; mobilon az Elutasítom és az Elfogadom
+   egy sorban, egyforma szélességben, alattuk a „Csak látogatottságmérés”; kisebb betű és térköz, így a panel jóval alacsonyabb.
+   (Az EGT-ből érkezőknek, ha a hirdetés be van kapcsolva, a Google saját, tanúsított hozzájárulás-kezelője kérdez, ahhoz nem nyúlunk.) */
+.suti-gomb--fo { background: none; color: var(--szoveg); border-color: var(--keret-eros); }
+@media (max-width: 720px) {
+  .suti-sav { padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); }
+  .suti-belso { gap: 10px; }
+  .suti-belso p { font-size: 13px; line-height: 18px; }
+  .suti-tettek { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .suti-tettek .suti-gomb { width: 100%; min-height: 44px; padding: 8px 12px; font-size: 14px; }
+  .suti-tettek .suti-gomb--fo { order: 0; }
+  .suti-tettek [data-suti="nem"] { order: 1; }
+  .suti-tettek [data-suti="igen"] { order: 2; }
+  .suti-tettek [data-suti="meres"] { order: 3; grid-column: 1 / -1; }
+}
