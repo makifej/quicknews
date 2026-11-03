@@ -1061,7 +1061,7 @@ document.addEventListener('click', function(ev){
   function kartya(x){ var kep = x.p || '';
     return '<a class="hir hir-kicsi" href="' + qnEsc(x.u) + '" data-hid="' + qnEsc(x.i) + '">'
       + (kep ? '<div class="hkep"><img src="' + qnEsc(kep) + '" alt="" loading="lazy"></div>' : '')
-      + '<div class="htorzs"><div class="hmeta"><span class="forras">' + qnEsc(x.k) + '</span>' + (x.d ? '<span>' + qnEsc(x.d) + '</span>' : '')
+      + '<div class="htorzs"><div class="hmeta"><span class="forras">' + qnEsc(x.k) + '</span> ' + (x.d ? '<span>' + qnEsc(x.d) + '</span> ' : '')
       + (x.g ? '<span class="kat">' + qnEsc(x.g) + '</span>' : '') + '</div><h3>' + qnEsc(x.c) + '</h3>' + (x.b ? '<p class="hlead">' + qnEsc(x.b) + '</p>' : '') + '</div></a>'; }
   function rajzol(){
     var l = talalat.filter(function(x){ return !rovat || x.g === rovat; });
