@@ -150,7 +150,8 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
   fetch('/api/kerdez?mi=nepszeru').then(function(r){ return r.json(); }).then(function(j){
     if (j && j.kerdesek && j.kerdesek.length) { nepszeru = j.kerdesek; all.nepszeru = nepszeru; ment(); javaslatok(); }
   }).catch(function(){});
-  function uj(u){ all.uzenetek.push(u); all.uzenetek = all.uzenetek.slice(-30); ment(); var d = rajzol(u); alapGomb.disabled = false;
+  var utolso = null;
+  function uj(u){ all.uzenetek.push(u); all.uzenetek = all.uzenetek.slice(-30); ment(); var d = rajzol(u); utolso = d; alapGomb.disabled = false;
     // a kész válasz elejére görgetünk, nem a lista aljára
     if (u.bot) { lista.scrollTop = Math.max(0, d.offsetTop - 8); } else gorget(); helyMent(); }
   if (all.uzenetek.length) { var jav0 = lista.querySelector('.chat-javaslat'); if (jav0) jav0.remove(); all.uzenetek.forEach(rajzol); }
@@ -175,7 +176,10 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
       .then(function(r){ return r.json(); })
       .then(function(j){ var_.remove(); uj(j.hiba ? {hiba: j.hiba, kerdes: q} : j.info ? {info: j.info} : {bot: j, kerdes: q, ido: new Date().toISOString()}); })
       .catch(function(){ var_.remove(); uj({hiba: 'Most nem sikerült választ adni.', kerdes: q}); })
-      .then(function(){ mezo.disabled = kuld.disabled = false; mezo.focus(); });
+      // Audit 2026-11-03: a válasz után a fókusz a válaszra kerül (képernyőolvasó onnan olvas, mobilon nem ugrik fel a billentyűzet);
+      // a mezőhöz a Tab vagy egy koppintás visz vissza
+      .then(function(){ mezo.disabled = kuld.disabled = false;
+        if (utolso && !utolso.classList.contains('en')) { utolso.setAttribute('tabindex', '-1'); utolso.focus({preventScroll: true}); } else mezo.focus(); });
   }
   urlap.addEventListener('submit', function(e){ e.preventDefault(); kerdez(mezo.value); });
   lista.addEventListener('click', function(e){
@@ -496,13 +500,13 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
         if(ok&&napKulcs(d)!==elozoNap){ elozoNap=napKulcs(d); nap='<li class="hi-nap"><span>'+napCim(d)+'</span></li>'; }
         var ora=ok?bp(d,{hour:'2-digit',minute:'2-digit'}):'';
         var ment=/^[a-z0-9]{6,40}$/.test(h.id||'')?'<button type="button" class="harang-ment" data-ment="'+h.id+'" data-ment-adat data-u="/hir/'+h.slug+'" data-c="'+biztos(h.cim)+'" data-k="'+biztos(kep)+'" data-f="'+biztos(h.forras)+'" aria-pressed="false" aria-label="Elolvasom később" title="Elolvasom később">'+MENT+'</button>':'';
-        return nap+'<li class="hi-sor'+(uj?' uj':'')+(kep?'':' nincs-kep')+(i===l.length-1?' utolso':'')+'"><div class="hi-sav"><span class="hi-ora">'+ora+'</span><span class="hi-pont"></span></div>'
+        return nap+'<li class="hi-sor'+(uj?' uj':'')+(kep?'':' nincs-kep')+(i===l.length-1?' utolso':'')+'"><div class="hi-sav"><span class="hi-ora" title="Nálunk megjelent">'+ora+'</span><span class="hi-pont"></span></div>'
           +'<div class="hi-kartya"><a href="/hir/'+h.slug+'">'+(kep?'<span class="hi-kep"><img class="harang-kep" src="'+biztos(kep)+'" alt="" loading="lazy" decoding="async">'+(uj?'<span class="hi-cimke">ÚJ</span>':'')+'</span>':'')
           +'<span class="harang-szoveg"><span class="harang-forras">'+(h.rov?'<b>'+biztos(h.rov)+'</b>':'')+'<span>'+biztos(h.forras)+'</span></span><strong>'+biztos(h.cim)+'</strong></span></a>'+ment+'</div></li>'; }).join('');
       // Audit 2026-11-03: a jelvény, a felolvasott név és a fejléc ugyanazt a számot mutatja (az összes új hírt); ha a lista
       // ennél kevesebbet fér el, külön kiírjuk, hogy a legfrissebb hány látszik
       var db=ujId.length, latszik=l.filter(function(h){ return ujId.indexOf(h.id)>=0; }).length;
-      buborek.innerHTML='<div class="hi-fej">'+(db?'<span class="hi-uj">'+db+' ÚJ HÍR</span>':'')+'<p>'+(db?'Ezek érkeztek, mióta utoljára benéztél.'+(db>latszik?' Itt a legfrissebb '+latszik+' látszik, a többit a Friss oldalon találod.':''):'Mindent láttál, ezek a legfrissebbek.')+'</p></div>'+(sorok?'<ul>'+sorok+'</ul>':'<p class="harang-ures">Most nincs új hír.</p>')+(window.Notification?'<button type="button" class="harang-ertesit">'+(Notification.permission==='granted'?'Értesítés bekapcsolva':'Értesíts az új hírekről')+'</button>':'');
+      buborek.innerHTML='<div class="hi-fej">'+(db?'<span class="hi-uj">'+db+' ÚJ HÍR</span>':'')+'<p>'+(db?'Ezek érkeztek, mióta utoljára benéztél. Az időpont azt mutatja, mikor jelentek meg nálunk.'+(db>latszik?' Itt a legfrissebb '+latszik+' látszik, a többit a Friss oldalon találod.':''):'Mindent láttál, ezek a legfrissebbek. Az időpont azt mutatja, mikor jelentek meg nálunk.')+'</p></div>'+(sorok?'<ul>'+sorok+'</ul>':'<p class="harang-ures">Most nincs új hír.</p>')+(window.Notification?'<button type="button" class="harang-ertesit">'+(Notification.permission==='granted'?'Értesítés bekapcsolva':'Értesíts az új hírekről')+'</button>':'');
       [].forEach.call(buborek.querySelectorAll('img.harang-kep'),function(img){ if(img.complete&&img.naturalWidth===0) kepHiba(img); });
       var he=buborek.querySelector('.harang-ertesit'); if(he) he.addEventListener('click',function(ev){ ev.stopPropagation(); Notification.requestPermission().then(function(p){ he.textContent = p==='granted'?'Értesítés bekapcsolva':'Értesítés letiltva a böngészőben'; }); }); };
     var zar=function(){ buborek.hidden=true; gomb.setAttribute('aria-expanded','false'); document.body.classList.remove('harang-nyitva'); document.removeEventListener('keydown',bill); document.removeEventListener('click',kivul); };
