@@ -1,0 +1,49 @@
+{
+  "id": "bfb88ae081ec",
+  "slug": "crowdstrike-launches-ai-kill-switch-to-shut-down-rogue-agents",
+  "forras_id": "google-news-ai",
+  "forras_nev": "CSO Online",
+  "url": "https://www.csoonline.com/article/4244509/crowdstrike-launches-ai-kill-switch-to-shut-down-rogue-agents.html",
+  "publikalva": "2026-11-04T12:08:10+00:00",
+  "cim": "CrowdStrike launches AI kill switch to shut down rogue agents",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 81 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.csoonline.com/wp-content/uploads/2026/11/4244509-0-24528100-1793794023-Dead-Internet-Theory.jpg?quality=50&strip=all&w=1024"
+  },
+  "cim_eredeti": "CrowdStrike launches AI kill switch to shut down rogue agents",
+  "szoveg_eredeti": "With a notable rise in autonomous AI agents veering off-script inside corporate networks, CrowdStrike has launched an enterprise AI Kill Switch, giving security teams control to cut off and disable models when they go rogue.\n\nIntegrated into its Falcon Guardian platform, this AI Kill Switch will provide security teams with the human control to terminate the agent at its root, where it runs, block it from launching again, and even cut off its enterprise network access.\n\nThe launch comes as enterprises increasingly deploy autonomous AI agents that can access sensitive data and execute tasks with limited human oversight.\n\n“These agents can access sensitive data, execute commands and interact with business applications independently, meaning enterprises may become aware of harmful incidents only after they occur. Existing security tools protect endpoints, networks and identities but may not fully understand an agent’s instructions, reasoning, tool calls and subsequent actions,” said Soumen Mandal, principal analyst at Counterpoint Research.\n\nThe AI Kill Switch has been built on Falcon Guardian, which has the capability to discover the AI agents running in the enterprise. It uses the Falcon sensor to track what an agent is instructed to do, what it communicates, and what it executes.\n\nFirst, the Falcon sensor can terminate the running agent at the gateway, ensuring the malicious or misbehaving agent does not keep running while teams investigate. CrowdStrike said endpoint termination is also planned and will be available soon. Next, using the Falcon Guardian policies, the kill switch will prevent the agent from launching again on the targeted host or group of hosts. Next, it will cut-off agent’s enterprise network access.\n\nThe action can be initiated by an authorised administrator, with every action being recorded in an audit trail.\n\n“Solutions such as CrowdStrike’s AI Kill Switch give enterprises a way to intervene quickly when AI agents behave unexpectedly, are compromised, or are manipulated through malicious instructions or scripts. This provides an important safeguard, allowing organisations to contain potentially dangerous or unauthorised agent activity before it causes significant damage,” said Devroop Dhar, MD and co-founder at Primus Partners.\n\nHowever, a kill switch should be viewed as an emergency brake, not a rewind button, said Apeksha Kaushik, senior principal analyst at Gartner. She added that it may prevent additional actions, but it might not necessarily reverse all the data that has already been accessed, every system that has already been changed, all communications that have already been sent, or transactions that have already been initiated. Its effectiveness will also depend on how quickly abnormal behavior is detected, which environments are covered, and whether the agent or security infrastructure has been compromised.\n\nAn AI Kill Switch looks promising from the details provided, but its actual effectiveness will come in after it is used extensively in live systems, warn analysts. Also, it may be a good starting point, but it cannot be viewed as a standalone solution to enterprise AI security.\n\n“CISOs would need a more integrated approach that brings together AI discovery tools to identify unauthorised agents, runtime monitoring to track agent behaviour, robust identity and access management, and incident response and recovery mechanisms,” added Dhar.\n\nHe noted that equally important is the need for stringent AI security testing and clearly defined policies governing what agents can access and execute. There should be no ambiguity around permissions, access controls or the boundaries within which these agents are allowed to operate. The objective should be to ensure that security controls are built into the entire AI agent lifecycle rather than relying on a kill switch to intervene after something goes wrong.\n\nDhar added that enterprise AI agents often have access to sensitive systems, databases, applications, credentials, and APIs. A compromised or misdirected agent could therefore become a point of vulnerability. The challenge is compounded by the fact that such activity may go undetected for some time, making it difficult for organisations to identify and contain the threat.",
+  "begyujtve": "2026-11-04T13:04:16.835382+00:00",
+  "prioritas": {
+    "pont": 81,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 75,
+      "aktualitas": 95,
+      "kozossegi": 83
+    },
+    "elofeszures": 91,
+    "tanult": 79,
+    "indok": "Fontos biztonsági fejlesztés a vállalati MI-ügynökök elszabadulásának megakadályozására. Forrás-tapasztalat: -6.",
+    "tema": "crowdstrike ai kill switch",
+    "cim_hu": "Vészkikapcsolót vezet be a CrowdStrike az elszabadult MI-ügynökök ellen",
+    "lead_hu": "A CrowdStrike egy új biztonsági eszközzel lehetővé teszi a vállalati IT-csapatok számára, hogy azonnal leállítsák és elszigeteljék a szabálytalanul működő MI-ügynököket.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-04T13:04:31+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-04T13:04:32+00:00"
+}
