@@ -1384,7 +1384,7 @@ document.addEventListener('click', function(ev){
     var megy = hang && !hang.paused;
     sav.classList.toggle('szol', !!megy);
     gomb.setAttribute('aria-pressed', megy ? 'true' : 'false');
-    if (hang && isFinite(hang.duration) && hang.duration) {
+    if (hang && isFinite(hang.duration) && hang.duration && !huz) {
       idoEl.textContent = (hang.currentTime > 0 && !hang.ended) ? ido(hang.duration - hang.currentTime) : ido(hang.duration);
     }
   };
@@ -1414,28 +1414,75 @@ document.addEventListener('click', function(ev){
     if (szol || !nyugszik) requestAnimationFrame(kocka); else { fut = false; elozo = 0; }
   };
   var indit = function(){ if (!fut) { fut = true; requestAnimationFrame(kocka); } };
-  gomb.addEventListener('click', function(){
+  var letrehoz = function(){
     eqBetolt();
-    if (!hang) {
-      hang = new Audio(sav.getAttribute('data-src')); hang.preload = 'auto';
-      hang.addEventListener('play', indit); hang.addEventListener('pause', indit);
-      ['play', 'pause', 'timeupdate', 'ended', 'loadedmetadata'].forEach(function(t){ hang.addEventListener(t, rajz); });
-      hang.addEventListener('ended', function(){ hang.currentTime = 0; rajz(); try { localStorage.removeItem(hely); } catch (e) {} });
-      if (mentve > 1) hang.addEventListener('loadedmetadata', function(){ if (mentve < hang.duration - 1) hang.currentTime = mentve; mentve = 0; }, { once: true });
-      var utolso = 0;
-      hang.addEventListener('timeupdate', function(){ if (Math.abs(hang.currentTime - utolso) >= 2) { utolso = hang.currentTime; ment(); } });
-      hang.addEventListener('pause', ment);
-      window.addEventListener('pagehide', ment);
-      document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'hidden') ment(); });
-      if ('mediaSession' in navigator) {
-        navigator.mediaSession.metadata = new MediaMetadata({ title: sav.getAttribute('data-cim'), artist: 'quicknews.hu',
-          artwork: [{ src: '/assets/qn-ikon-512.png', sizes: '512x512', type: 'image/png' }] });
-        navigator.mediaSession.setActionHandler('play', function(){ hang.play(); });
-        navigator.mediaSession.setActionHandler('pause', function(){ hang.pause(); });
-        try { navigator.mediaSession.setActionHandler('seekbackward', function(){ hang.currentTime = Math.max(0, hang.currentTime - 10); }); } catch (e) {}
-        try { navigator.mediaSession.setActionHandler('seekforward', function(){ hang.currentTime = Math.min(hang.duration || 0, hang.currentTime + 10); }); } catch (e) {}
-      }
+    if (hang) return;
+    hang = new Audio(sav.getAttribute('data-src')); hang.preload = 'auto';
+    hang.addEventListener('play', indit); hang.addEventListener('pause', indit);
+    ['play', 'pause', 'timeupdate', 'ended', 'loadedmetadata'].forEach(function(t){ hang.addEventListener(t, rajz); });
+    hang.addEventListener('ended', function(){ hang.currentTime = 0; rajz(); try { localStorage.removeItem(hely); } catch (e) {} });
+    if (mentve > 1) hang.addEventListener('loadedmetadata', function(){ if (mentve < hang.duration - 1) hang.currentTime = mentve; mentve = 0; }, { once: true });
+    var utolso = 0;
+    hang.addEventListener('timeupdate', function(){ if (Math.abs(hang.currentTime - utolso) >= 2) { utolso = hang.currentTime; ment(); } });
+    hang.addEventListener('pause', ment);
+    window.addEventListener('pagehide', ment);
+    document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'hidden') ment(); });
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({ title: sav.getAttribute('data-cim'), artist: 'quicknews.hu',
+        artwork: [{ src: '/assets/qn-ikon-512.png', sizes: '512x512', type: 'image/png' }] });
+      navigator.mediaSession.setActionHandler('play', function(){ hang.play(); });
+      navigator.mediaSession.setActionHandler('pause', function(){ hang.pause(); });
+      try { navigator.mediaSession.setActionHandler('seekbackward', function(){ hang.currentTime = Math.max(0, hang.currentTime - 10); }); } catch (e) {}
+      try { navigator.mediaSession.setActionHandler('seekforward', function(){ hang.currentTime = Math.min(hang.duration || 0, hang.currentTime + 10); }); } catch (e) {}
     }
+  };
+  gomb.addEventListener('click', function(){
+    letrehoz();
     if (hang.paused) hang.play().catch(function(){}); else hang.pause();
   });
+  // tekerés (Heni 2026-11-04): az equalizeren vízszintesen húzva (egérrel vagy ujjal) előre-hátra lehet menni az adásban.
+  // A sáv szélessége az adás teljes hossza; a vékony alsó csík mutatja, hol tart. Függőleges húzásra az oldal görget tovább.
+  var eqDoboz = sav.querySelector('.esti-eq'), huz = null;
+  var hossz = function(){ return (hang && isFinite(hang.duration) && hang.duration) || mp0 || 0; };
+  var helyzet = function(){
+    var h = hossz(), t = huz ? huz.t : (hang ? hang.currentTime : mentve);
+    eqDoboz.style.setProperty('--hol', h ? Math.min(1, Math.max(0, t / h)).toFixed(4) : 0);
+    eqDoboz.setAttribute('aria-valuenow', Math.round(t));
+    eqDoboz.setAttribute('aria-valuetext', ido(t) + ' / ' + ido(h));
+  };
+  var ugrik = function(t){
+    letrehoz();
+    var h = hossz(); t = Math.max(0, Math.min(h ? h - 0.5 : t, t));
+    if (isFinite(hang.duration) && hang.duration) hang.currentTime = t;
+    else { mentve = t; hang.addEventListener('loadedmetadata', function(){ hang.currentTime = Math.min(t, hang.duration - 0.5); }, { once: true }); }
+    ment(); rajz(); helyzet(); indit();
+  };
+  var arany = function(ev){ var r = eqDoboz.getBoundingClientRect(); return Math.min(1, Math.max(0, (ev.clientX - r.left) / r.width)); };
+  eqDoboz.setAttribute('aria-valuemin', '0'); eqDoboz.setAttribute('aria-valuemax', String(mp0));
+  eqDoboz.addEventListener('pointerdown', function(ev){
+    if (ev.button > 0) return;
+    huz = { id: ev.pointerId, t: arany(ev) * hossz() };
+    try { eqDoboz.setPointerCapture(ev.pointerId); } catch (e) {}
+    sav.classList.add('teker'); helyzet();
+    if (hossz()) idoEl.textContent = ido(hossz() - huz.t);
+  });
+  eqDoboz.addEventListener('pointermove', function(ev){
+    if (!huz || ev.pointerId !== huz.id) return;
+    huz.t = arany(ev) * hossz(); helyzet();
+    if (hossz()) idoEl.textContent = ido(hossz() - huz.t);
+  });
+  var elenged = function(ev, ervenyes){
+    if (!huz || ev.pointerId !== huz.id) return;
+    var t = huz.t; huz = null; sav.classList.remove('teker');
+    if (ervenyes) { var ment0 = !hang || hang.paused; ugrik(t); if (ment0 && hang.paused) hang.play().catch(function(){}); }
+    else { rajz(); helyzet(); }
+  };
+  eqDoboz.addEventListener('pointerup', function(ev){ elenged(ev, true); });
+  eqDoboz.addEventListener('pointercancel', function(ev){ elenged(ev, false); });
+  eqDoboz.addEventListener('keydown', function(ev){
+    var d = ev.key === 'ArrowRight' ? 10 : ev.key === 'ArrowLeft' ? -10 : 0; if (!d) return;
+    ev.preventDefault(); ugrik((hang ? hang.currentTime : mentve) + d);
+  });
+  setInterval(function(){ if (hang && !hang.paused && !huz) helyzet(); }, 250);
+  helyzet();
 })();
