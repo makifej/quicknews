@@ -1,0 +1,49 @@
+{
+  "id": "70ba798f4981",
+  "slug": "pangram-releases-pangram-image-1-0-which-it-says-is-state-of-the-art",
+  "forras_id": "techmeme",
+  "forras_nev": "Pangram",
+  "url": "https://www.pangram.com/blog/introducing-pangram-image-1-0",
+  "publikalva": "2026-11-04T17:02:08+00:00",
+  "cim": "Pangram releases Pangram Image 1.0, which it says is state-of-the-art in AI image detection, and Image Flash 1.0, which powers its AI video detection (Isaac Kasahara/Pangram)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 79 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn.sanity.io/images/6vunltag/production/d9e0f2c5b335fbb748927abe54503f2daf0c132b-2400x1350.png"
+  },
+  "cim_eredeti": "Pangram releases Pangram Image 1.0, which it says is state-of-the-art in AI image detection, and Image Flash 1.0, which powers its AI video detection (Isaac Kasahara/Pangram)",
+  "szoveg_eredeti": "Check out the Pangram MCP! Read more here\n\nA real photograph containing an AI image. Pangram Image 1.0 is able to locate the AI content with its heatmap.\n\nA few months ago, we released Pangram Image as a research preview. We are now proud to announce Pangram Image 1.0: The state-of-the-art in both AI image and AI video detection. We would like to thank the whole community for taking the time to try it and find its weaknesses, and for holding us to a high standard to make a better detector for everyone.\n\nWe tested our Pangram Image 1.0 model against several commercial and academic AI image detectors. We created synthetic mirrors of 100 real photos using 12 frontier state of the art AI image generators, using prompts that closely matched the original photo for a total of 1,200 synthetic images. Our model achieves 99.96% accuracy on this evaluation set.\n\nWe are committed to providing the highest quality detection to our users. To test our model robustly, we compared it against several academic benchmarks for AI image detection.\n\nSources: X-AIGD · Mirage-Test · AIGenImages2026 · Synthbuster + RAISE comparison · Community Forensics\n\nMany social media platforms compress and downscale images, and malicious actors can also add blur, noise, and other artifacts to try to trick AI detectors into thinking AI images are real. We specifically train to detect these kinds of transformations, and we have found our model to be robust to these edits.\n\nOur initial release limited image input to the minimum size of 512x512, as our accuracy dropped off at lower resolutions. We are now lowering this limit to 256x256, as we find our new model has improved accuracy at lower resolutions. At resolutions below 512, image detection results will come with a reduced confidence disclaimer.\n\nA recent academic study, DF26, showed that humans are barely better than random when it comes to telling real videos from AI videos of people talking. Modern detectors were not much better. This is why we are very excited to release Pangram Image Flash 1.0, a faster model that particularly excels at frontier AI video detection. On DF26 it scores 98.7%, a 29-point leap over the next best detector.\n\nTo compare against the industry, we took 129 real social media videos and generated AI mirrors using 14 different frontier video generators (100 videos each, sampled from the 129 real videos). The generators were each seeded with the first real frame from the input video and then prompted with a VLM-generated description of what happens in the video to make a difficult synthetic mirror. We then compared our model against multiple major AI video detection services across the 1,529 total videos:\n\nAn example of a real video (left) and its synthetic mirror (right). Could you tell which is real?\n\nBy starting from real video frames and creating a synthetic mirror, we can evaluate the model’s ability to distinguish between two very realistic looking videos. This prevents the model from introducing bias towards calling certain types of content AI, since each real video and its mirror share the same scene and subject.\n\nWe compare our Image Flash model against several academic benchmarks for frontier AI video detection. We achieve state-of-the-art results across multiple benchmarks, which together include almost every frontier generation model for AI video.\n\nPangram now natively supports video upload. Upload a video and Pangram Image Flash 1.0 will analyze it frame by frame to give you a complete analysis of which parts of the video come back as AI detected.\n\nWe have integrated Pangram Image 1.0 into our Chrome extension. This will flag AI-generated content while you scroll social media, online shopping, rental listings, and any other site where knowing that what you’re seeing is real matters.\n\nWith the release of Pangram Image 1.0 and Flash 1.0, we updated our API to support both image and video detection. We are excited to put the capability of these models into the hands of the community.\n\nIsaac is a research engineer working on AI image/video detection at Pangram. He recently worked on 2D and 3D detection at Samsung AI Center NYC and has his Master’s in Robotics from the University of Minnesota.\n\nIntroducing Pangram 4, the latest generation of our AI text detection model.\n\nPangram recently updated its privacy policy and terms of service. What does that mean for Pangram users?\n\nResearchers from the University of Houston, UC Berkeley, UC Irvine and the startup Esperanto AI have found that Pangram is the most robust AI text detector out of a wide variety of both commercial and open-source methods.\n\nInstructions on how to use tags to organize your AI check results!\n\nWe are excited to see new research from Jenna Russell, Marzena Karpinksa, and Mohit Iyyer, collaborators from the University of Maryland and Microsoft, that shows that Pangram is the best AI detection system.",
+  "begyujtve": "2026-11-04T17:04:35.261300+00:00",
+  "prioritas": {
+    "pont": 79,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 70,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 86,
+      "aktualitas": 100,
+      "kozossegi": 77
+    },
+    "elofeszures": 99,
+    "tanult": 81,
+    "indok": "Új, fejlett detektáló modell kiadása generált képek és videók kiszűrésére. Forrás-tapasztalat: -3.",
+    "tema": "pangram image detection release",
+    "cim_hu": "Megjelent a Pangram Image 1.0, a mesterséges intelligenciával készült képek és videók új detektora",
+    "lead_hu": "A Pangram kiadta az Image 1.0 modellt, amely hőtérképpel képes azonosítani az MI által generált tartalmakat a valódi fényképeken és videókban.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-04T17:04:50+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-04T17:04:52+00:00"
+}
