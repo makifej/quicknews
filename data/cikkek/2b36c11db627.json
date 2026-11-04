@@ -1,0 +1,76 @@
+{
+  "id": "2b36c11db627",
+  "slug": "az-anthropic-kiadta-a-flashprove-eszkozt-az-ai-valaszok-igazolasara",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/03/anthropic-flashprove-provable-inference-zksnark/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-11-03T22:08:22+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-3-scaled.png"
+  },
+  "cim_eredeti": "Anthropic Releases FlashProve: Cryptographic Proofs That a Reply Came From Committed Weights",
+  "forrasok": [],
+  "szoveg_eredeti": "Anthropic’s Frontier Red Team has released FlashProve , an open-source research prototype for provable inference . FlashProve is a zkSNARK system from Anthropic that proves a reply came from a committed model. The proof reveals nothing about the model weights. On Llama 4 Maverick , a 400B mixture-of-experts model, it proves about 110 tokens/second on 1 H100. For developers, this targets a real gap: today you cannot check which model actually answered your API call.\n\n TL;DR \n\n Size: Proves a 400B MoE model (~17B active per token); context capped at 1,024 tokens per request.\n\n Runs on: Prover needs 1 H100 80 GB, 24 CPU cores and ~290 GB host RAM. Verifier runs on a CPU, no GPU.\n\n Performance: Orders of magnitude faster than prior open-source zkML systems on the same 400B model.\n\n Best: 110 tokens/second proving on 1 H100, with 18.78 MB proofs checked in 17 seconds.\n\n Worst: Proving costs ~70 to 95x the GPU time of plain vLLM inference.\n\n What problem does provable inference solve? \n\n A user querying a model cannot verify which model produced the response. A routing service could swap in a cheaper model . An attacker could tamper with the token stream. Judging from output quality alone is unreliable.\n\n Anthropic lists 4 use cases: \n\n Regulators could confirm hardware serves inference, supporting AI pacing rules. \n\n Labs could detect tampered inference servers. \n\n Users could verify text provenance. \n\n Regulators could enforce serving of approved models only.\n\n How does FlashProve work? \n\n FlashProve has a prover (the model provider) and a verifier (the user). It runs in 2 phases: \n\n Offline: The provider publishes a commitment, a short fingerprint binding one exact set of weights. This takes about 39 minutes and covers about 16 million requests.\n\n Online: For each request, the GPU produces a proof that the committed model produced those tokens.\n\n The proof system compiles an interactive oracle proof into a cryptographic proof using hash functions. Anthropic says this offers post-quantum security. It is the same family used by validity-proof L2 networks such as Starknet.\n\n Three engineering choices drive the speed. Prover work scales with the ~17B active parameters, not all 400B. Requests are proved in batches after the fact, like prefill. Weights stream from host memory, so a single 80 GB GPU suffices.\n\n How fast is it? Benchmarks \n\n Anthropic measured the public 4-bit Maverick weights on 1 H100 with 24 CPU cores. Per the repo performance guide : \n\n Batch of 24: 111.23 tokens/second, ~221 to 226 seconds per batch.\n\n Batch of 1: 17.41 tokens/second. Batch of 64: 123.31 tokens/second, flagged as unreliable on 80 GB cards.\n\n Proof size: 18.78 MB. Client downloads ~6.5 MB once per commitment.\n\n Verification: 17 seconds on 24 threads, 21 seconds on 1 thread.\n\n Against vLLM running FP8 Maverick on 8 H100s, proving costs about 72x the GPU time per batch. At vLLM’s highest tested load, the gap is about 94x.\n\n How does FlashProve compare with other zkML systems? \n\n Metrics FlashProve Attestable VerInf DeepProve zkLLM Model proven Llama 4 Maverick (400B MoE) Gemma 4 31B (dense) Llama 4 Maverick (400B MoE) GPT-2, Gemma 3 LLaMA-2-13B Throughput ~110 tok/s 53 to 77 tok/s ~0.02 tok/s (1,000 tokens in 14.3 h) ~2.9 tok/s (GPT-2), ~1.4 tok/s (Gemma 3) Full inference in under 15 min Hardware 1 H100 + 24 CPU cores 1 H100 1 DGX Spark 1 machine; 31 tok/s distributed GPU (CUDA) Proof size 18.78 MB 4.35 to 7.92 MiB 93.6 GB Not disclosed Under 200 kB Verify time 17 s (24 threads) 157 to 648 ms 17.7 h (20 cores) 1 to 3.7 s Not disclosed Context 1,024 tokens Up to 16K tokens 1,000 tokens Not disclosed Not disclosed Code / license Open, Apache 2.0 Not open source Open, MIT Open source per Lagrange Paper (CCS 2024) \n\n How is the security checked? \n\n Cryptographic code is brittle, so Anthropic formalized the protocol in Lean. It proves completeness, soundness and zero knowledge. The README states a cheating provider is caught except with probability about q/2^124 + 2^-101.\n\n FlashProve ships 2 verifiers. A fast C++ verifier is for daily use but carries no formal guarantee. A slower Lean verifier is proven to accept only what the soundness theorem accepts. Anthropic team notes Claude helped optimize the system.\n\n Key Takeaways \n\n FlashProve proves a 400B MoE model at ~110 tokens/second on 1 H100.\n\n Proofs are 18.78 MB and verify on a CPU in 17 seconds.\n\n Proving costs ~70 to 95x the GPU time of vLLM inference.\n\n Security properties are formalized in Lean; weights stay hidden.\n\n Limited to 1,024 tokens, greedy decoding, and MoE models for now.\n\n Check out the research post , technical report , protocol specification and GitHub repo . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Anthropic Releases FlashProve: Cryptographic Proofs That a Reply Came From Committed Weights appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "Az Anthropic kiadta a FlashProve eszközt az AI-válaszok igazolására",
+  "lead": "A nyílt forráskódú FlashProve kriptográfiai bizonyítékkal igazolja, hogy egy AI-válasz valóban a megadott modellből származik.",
+  "osszefoglalo": "Az Anthropic Frontier Red Team nevű egysége kiadta a [FlashProve](https://github.com/anthropics/FlashProve) nyílt forráskódú kutatási prototípust. Az Apache 2.0 licenc alatt megjelent rendszer zkSNARK technológiával kriptográfiai bizonyítékot hoz létre arról, hogy egy adott válasz valóban az elvárt modellből származik, miközben a modell súlyait teljesen rejtve tartja. Ez megoldást kínál arra a problémára, hogy az API-hívások során a felhasználó jelenleg nem tudja ellenőrizni, hogy a szolgáltató nem cserélte-e olcsóbb modellre a kért rendszert.\n\nA rendszer a tesztek során a 400 milliárd paraméteres Llama 4 Maverick modellt egyetlen Nvidia H100-as GPU-n futtatva **110 token/másodperc** teljesítményt ért el. A generált bizonyíték mérete 18,78 megabájt, amelyet a felhasználói oldalon GPU nélkül, egy sima CPU-n 17 másodperc alatt be lehet ellenőrizni. A kérések hossza jelenleg legfeljebb 1024 token lehet.\n\nA FlashProve használata a sima vLLM-futtatáshoz képest nagyjából 70-95-szörös GPU-idővel jár, a biztonsági protokoll matematikai helyességét pedig a Lean formalizációs nyelvvel igazolták a fejlesztők. Az eszköz forráskódja és dokumentációja ingyenesen elérhető a GitHubon.",
+  "miert_szamit": "A jövőben a vállalkozások **bizonyíthatóan ellenőrizhetik az AI-válaszok eredetét**, így megelőzhetővé válik, hogy az API-szolgáltatók olcsóbb modellekre cseréljék a kért kimenetet.",
+  "cimkek": [
+    "Anthropic",
+    "FlashProve",
+    "zkSNARK",
+    "Llama 4"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "FlashProve"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 78,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 78,
+      "aktualitas": 73,
+      "kozossegi": 75
+    },
+    "elofeszures": 94,
+    "tanult": 74,
+    "indok": "Valódi technikai áttörés az Anthropic-tól a kriptográfiailag igazolható AI-modell válaszok terén. Forrás-tapasztalat: -8.",
+    "tema": "anthropic flashprove model verification",
+    "cim_hu": "Az Anthropic kiadta a FlashProve eszközt az AI-válaszok hitelesítésére",
+    "lead_hu": "A nyílt forráskódú FlashProve nullatudású bizonyítékok segítségével garantálja, hogy egy API-válasz valóban a megadott AI-modell súlyaiból származik anélkül, hogy felfedné azokat.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-04T07:04:55+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-04T07:05:15+00:00",
+  "megjelent": "2026-11-04T07:05:15+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-04T07:06:57+00:00",
+    "esemeny": "Az Anthropic Frontier Red Team kiadta a FlashProve nevű nyílt forráskódú kutatási prototípust, amely zkSNARK alapú kriptográfiai bizonyítékkal igazolja, hogy egy AI-válasz egy adott modellből származik.",
+    "forrasok": [
+      "https://www.marktechpost.com/2026/11/03/anthropic-flashprove-provable-inference-zksnark/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-04T07:07:48+00:00",
+  "linkek_ellenorizve": true
+}

@@ -1,0 +1,49 @@
+{
+  "id": "af914e6869a5",
+  "slug": "soniox-stt-v6-adds-agent-text-input-and-echo-filtering-for-voice",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/03/soniox-stt-v6-agent-text-input-echo-cancellation/",
+  "publikalva": "2026-11-03T20:18:22+00:00",
+  "cim": "Soniox STT v6 Adds Agent Text Input and Echo Filtering for Voice Agents",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 58 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-1-scaled.png"
+  },
+  "cim_eredeti": "Soniox STT v6 Adds Agent Text Input and Echo Filtering for Voice Agents",
+  "szoveg_eredeti": "Soniox has released Soniox STT v6 , the latest generation of its speech-to-text API. Soniox STT v6 is a speech-to-text model that reads what a voice agent says while hearing the caller. It uses that text to recognize short replies and to drop the agent’s own voice. The release ships as stt-rt-v6 for streaming and stt-async-v6 for files , across 60+ languages.\n\n TL;DR \n\n Size: Soniox STT v6 is a proprietary hosted model, no parameter count published.\n\n Runs on: Soniox cloud API only (WebSocket streaming and async REST). No self-hosted or on-device option disclosed.\n\n Performance: Soniox calls it “significantly” more accurate than v5, but publishes no v6 numbers yet.\n\n Best: Price. $0.12/hour streaming and $0.10/hour async, with diarization and language ID bundled.\n\n Worst: Zero independent v6 results. Its v5 predecessor scored 1.34% semantic WER on Pipecat, behind v4’s 1.25%.\n\n What problem does Soniox STT v6 solve? \n\n In a cascaded voice agent, STT usually hears only the caller. It never sees the question being answered.\n\n Short answers suffer most. In Soniox’s docs , “River Roast” becomes “River Road” and “a tow” becomes “a tour.”\n\n The second problem is echo. Agent audio leaks back through speakerphones and laptops, gets transcribed as user speech, and the agent interrupts itself.\n\n How does agent text input work? \n\n You enable it with one flag in the start request: \"enable_agent_text_input\": true . It is only available on stt-rt-v6 , not the async model.\n\n While the agent speaks, you stream its words on the same WebSocket as the caller’s audio. Each message is a small JSON frame: {\"type\": \"agent_text\", \"text\": \"...\", \"end_of_segment\": true} .\n\n Timing matters. Messages carry no timestamps, so the model places text where it arrives in the audio stream. Soniox recommends sending each piece 500 ms to 1 second before playback, paced by TTS timestamps.\n\n On barge-in, you flush what was already played, send end_of_segment: true , and drop the unplayed rest. The agent’s text never appears in the returned transcript.\n\n How does agent voice echo cancellation work? \n\n With agent text input on, v6 knows what the agent is saying. It uses that to separate leftover agent audio from caller speech and filter it out.\n\n It keeps listening during playback, so callers can still interrupt. It does not replace acoustic echo cancellation. It handles what your existing AEC leaves behind , so keep AEC on.\n\n What else changed in v6? \n\n Better voice typing: numbers, currencies, units, dates, IDs, names and specialized terms.\n\n Spoken commands like “period” or “new line” are written as words, so your app applies them.\n\n Improved meeting transcription and speaker diarization, live or recorded.\n\n Stronger accents, code-switching and language switching within a sentence.\n\n There is one formatting change to test before upgrading. v6 writes “15 dollars and 20 cents” as spoken, not “$15.20”. Hyphens in codes appear only when spoken.\n\n How does Soniox compare on benchmarks? \n\n Soniox has not published v6 accuracy or latency numbers. Its benchmarks page still reports v5 on the open-source Pipecat STT benchmark . It uses 1,000 real-world samples and measures semantic WER plus time to final segment (TTFS).\n\n On it, stt-rt-v5 scores 1.34% semantic WER, 83.3% perfect transcripts and 260 ms median TTFS. Its P95 latency is 305 ms. Azure posts the lowest WER mean at 1.21%, but at 1,016 ms median latency.\n\n Feature Soniox stt-rt-v6 AssemblyAI Universal-3.5 Pro Realtime Deepgram Nova-3 ElevenLabs Scribe v2 Realtime Model size Not disclosed Not disclosed Not disclosed Not disclosed Streaming languages 60+ 18 60+ (Nova models) 90+ Streaming price / hour $0.12 $0.45 $0.46 mono, $0.55 multi $0.39 Agent-side text context Yes, timed agent_text Yes, agent_context Not disclosed Not disclosed Model-level agent echo filtering Yes Not disclosed Not disclosed Not disclosed Diarization cost Included Not disclosed +$0.0020/min Not disclosed Pipecat semantic WER mean 1.34% (v5; v6 untested) 1.44% 1.71% (nova-3-general) 3.16% Pipecat perfect transcripts 83.3% (v5) 84.7% 76.5% 81.3% Pipecat TTFS median 260 ms (v5) 282 ms 247 ms 281 ms \n\n Pipecat figures from the Pipecat STT benchmark README . Soniox numbers are for v5, since v6 has not been benchmarked yet. \n\n Is Soniox really the first? \n\n Soniox calls v6 the first model that knows what your voice agent is saying. That claim needs a qualifier.\n\n AssemblyAI shipped agent context in Universal-3.5 Pro Realtime in July 2026. It also feeds the agent’s replies into streaming STT.\n\n The clearer difference is echo. Soniox’s docs describe filtering leaked agent audio using that text. AssemblyAI’s context docs describe no such filtering.\n\n Deployment, pricing and migration \n\n v6 is a drop-in swap: change the model name to stt-rt-v6 or stt-async-v6 .\n\n The v5 models are deprecated and will be removed on December 15, 2026 . After that, v5 requests route to v6 automatically.\n\n Pricing is token-based. Soniox lists about $0.12/hour streaming and $0.10/hour async . Agent text is billed as input text tokens, at $4.00 per 1M on real-time.\n\n Key Takeaways \n\n Soniox STT v6 reads the agent’s text to transcribe caller replies.\n\n Echo filtering removes leaked agent voice, on top of normal AEC.\n\n Streaming costs $0.12/hour, with diarization included.\n\n No v6 benchmark numbers exist yet; v5 scored 1.34% on Pipecat.\n\n v5 models retire December 15, 2026, with automatic routing to v6.\n\n Check out the Soniox STT v6 announcement , the agent text input docs and the v6 changelog . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Soniox STT v6 Adds Agent Text Input and Echo Filtering for Voice Agents appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-04T07:03:50.514603+00:00",
+  "prioritas": {
+    "pont": 58,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 65,
+      "egyediseg": 85,
+      "hitelesseg": 74,
+      "aktualitas": 87,
+      "kozossegi": 53
+    },
+    "elofeszures": 88,
+    "tanult": 64,
+    "indok": "Hasznos frissítés egy beszédfelismerő API-hoz hívásközponti és hangalapú ágensek számára. Forrás-tapasztalat: -8.",
+    "tema": "soniox speech to text",
+    "cim_hu": "Új beszédfelismerő modellt adott ki a Soniox a hangalapú AI-ágenseknek",
+    "lead_hu": "Megjelent a Soniox STT v6, amely képes kiszűrni a saját hangágens beszédét és valós időben követni a beszélgetéseket több mint 60 nyelven.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-04T07:04:55+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-04T07:06:48+00:00"
+}

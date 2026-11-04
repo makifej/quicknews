@@ -1,0 +1,77 @@
+{
+  "id": "8c4cd4032a6a",
+  "slug": "minden-vizualis-ai-feladatot-egyesit-a-tencent-uj-wevisone-vl-modellje",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/03/tencent-wevisone-vl-vision-language-model/",
+  "szerzo": "Michal Sutter",
+  "publikalva": "2026-11-04T04:39:27+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-4-scaled.png"
+  },
+  "cim_eredeti": "Tencent WeVisOne-VL Unifies Detection, OCR, Segmentation and Matting",
+  "forrasok": [],
+  "szoveg_eredeti": "Tencent’s WeChat Vision team has released WeVisOne-VL , an open vision language model in 2B and 4B sizes. The WeVisOne-VL vision language model handles detection, referring, counting, pointing, OCR, segmentation and alpha matting in one model. Pixel outputs come from a 9.6M-parameter decoder, so no separate SAM is needed. It also answers “None” when a queried object is absent. For developers, that can replace a detector, an OCR engine and a segmenter with one model. \n\n TL;DR \n\n Size: 2B ( 2.44B params ) and 4B ( 4.83B params ) on Hugging Face, and a 9.6M-parameter pixel decoder. Trained with up to 8,192 tokens of context; deployment context length is not disclosed.\n\n Runs on: A single GPU through Transformers or vLLM in BF16. The package also lists NPU and CPU devices. VRAM needs are not disclosed. A community GGUF ran object-level tasks on a 6 GB RTX 2060.\n\n Performance: Beats the same-scale VLM baselines in Tencent’s tables on most of 30+ benchmarks (self-reported).\n\n Best: 71.3 F1 Mean on Dense200 dense detection, versus 58.7 for LocateAnything-3B.\n\n Worst: 52.6% rejection rate on PR-Bench, so many absent-target queries still get a box.\n\n What is WeVisOne-VL? \n\n WeVisOne-VL (“WeChat Vision All-in-One”) is a perception-focused model from Tencent built on Qwen3-VL . It targets fine-grained localization rather than open-ended chat. Users choose the output granularity: points, boxes, binary masks or continuous alpha mattes.\n\n How does WeVisOne-VL work? \n\n Every task is cast as structured next-token prediction. The model adds coordinate tokens <0> to <1000> for normalized boxes and points. An absent target produces None instead of a guessed box.\n\n For pixel tasks, the model emits an <OBJ> token after each predicted box. Its hidden state becomes a query for the pixel decoder, according to the model card . The decoder has 3 parts:\n\n Visual Feature Adapter: reuses multi-level Qwen3-VL ViT features instead of a second image encoder.\n\n Box-Guided Query Decoder: 6 deformable cross-attention blocks seeded by the <OBJ> state and the box.\n\n Dense Prediction Head: refines output at S/4, S/2 and S/1 into a full-resolution mask or matte.\n\n How was it trained? \n\n A knowledge-graph-driven data engine annotated over 100M images with about 3.6B boxes. SAM3, Rex-Omni and an in-house detector proposed regions, and Qwen3-VL verified them.\n\n Training used 3 SFT stages. Stage 1 aligned output formats on 90M examples. Stage 2 raised input to 1,960 visual tokens and up to 500 boxes per response. Stage 3 trained the pixel decoder, then specialized it for matting on 130M samples. A final GRPO stage used 178K uncertainty-filtered examples, as described in the research paper .\n\n How does WeVisOne-VL perform on benchmarks? \n\n All numbers below are self-reported, using greedy decoding and at most 1,960 visual tokens per image. Detection, referring and OCR use F1 averaged over IoU 0.5 to 0.95.\n\n Detection: 55.3 F1 on LVIS and 71.3 on Dense200 for the 4B model.\n\n Referring: 81.8 F1 on RefCOCOg test, versus 77.6 for LocateAnything-3B.\n\n Rejection: 96.4% on Tencent’s in-house WeRef-Bench (2,880 queries), versus 73.0%.\n\n Counting: 89.6% exact-match on PixMo-Count test, versus 82.8%.\n\n OCR: 52.0 F1 on TotalText, ahead of the PP-OCRv5 specialist at 25.7.\n\n Segmentation: 71.2 gIoU on ReasonSeg val, versus 65.0 for LISA-13B.\n\n Matting: 7.3 MAD on P3M-500-NP box prompts, versus 15.4 for SAM2-Matting (SAM3). Lower is better.\n\n The 2B model trails the 4B model on most tasks. It still scores better box-prompted matting on P3M-500-NP, at 6.6 MAD.\n\n WeVisOne-VL vs Qwen3-VL, Rex-Omni and LocateAnything \n\n Feature WeVisOne-VL-4B Qwen3-VL-4B-Instruct Rex-Omni LocateAnything-3B Developer Tencent WeChat Vision Alibaba Qwen IDEA Research NVIDIA Size 4.83B (HF listing) 4B 3B (card) 3B (card) Base model Qwen3-VL Not applicable Qwen2.5-VL-3B-Instruct Qwen2.5-3B-Instruct + MoonViT-SO-400M License Apache 2.0 Apache 2.0 IDEA License 1.0 NVIDIA non-commercial Native masks / mattes Yes (9.6M decoder) Not in model card Not in model card Not in model card Context Not disclosed (8,192 in training) 256K native Not disclosed Not disclosed LVIS F1 Mean 55.3 44.0 46.9 50.7 Dense200 F1 Mean 71.3 15.2 58.3 58.7 RefCOCOg test F1 Mean 81.8 74.3 74.3 77.6 RefCOCOg-Rej rejection 67.4% 18.8% 0.5% 0.6% PointBench 71.9 57.1 69.9 56.9 TotalText F1 Mean 52.0 33.0 40.6 43.3 \n\n How do you run WeVisOne-VL? \n\n Weights for the 2B and 4B models are on Hugging Face. The wevisone_vl package wraps Transformers and vLLM backends. Tasks include detection , referring , point , count_box , ocr , segmentation and matting .\n\n from wevisone_vl import WeVisOneVL\nmodel = WeVisOneVL(\"tencent/WeVisOne-VL-4B\", backend=\"transformers\") # or \"vllm\"\nresult = model.predict(image, task=\"matting\", query=\"person\")\n\n Hosted demos are live for 2B and 4B . Tencent also open-sourced Mask2Alpha , the matting annotator from its data engine. Fine-tuning code is still on the TODO list. GGUF builds cannot produce masks, since the decoder needs native visual features.\n\n Key Takeaways \n\n 1 model covers detection, OCR, counting, pointing, segmentation and matting.\n\n A 9.6M-parameter decoder replaces SAM for masks and alpha mattes.\n\n 4B scores 71.3 F1 on Dense200, 12.6 points above LocateAnything-3B.\n\n Apache 2.0 weights, unlike non-commercial LocateAnything-3B.\n\n Check out the Paper , GitHub repo , Model weights and Project page . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Tencent WeVisOne-VL Unifies Detection, OCR, Segmentation and Matting appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "Minden vizuális AI-feladatot egyesít a Tencent új WeVisOne-VL modellje",
+  "lead": "A Tencent nyílt forráskódú látásmodellt adott ki 2B és 4B méretben, amely tárgyfelismerésre, OCR-re és precíz képkivágásra is alkalmas.",
+  "osszefoglalo": "A Tencent WeChat Vision csapata közzétette a [WeVisOne-VL](https://github.com/Tencent/WeVisOne-VL) nevű nyílt forráskódú modellt, amely 2B és 4B paraméteres változatban érhető el az Apache 2.0 licenc alatt. Az eszköz egyetlen rendszerről kínál megoldást a tárgyfelismerésre, a szövegolvasásra (OCR), a darabszámlálásra, a szegmentálásra és az **alpha matting** finomkivágási feladatokra.\n\nA fejlesztés alapja a Qwen3-VL modell, amit a Tencent egy 9,6 millió paraméteres pixel dekóderrel egészített ki. Ez a megközelítés feleslegessé teszi különálló szegmentáló modellek, például a SAM használatát, mivel a képpont alapú maszkokat és a finom körbevágásokat a rendszer közvetlenül állítja elő.\n\nA WeVisOne-VL a Tesztmérések során felülmúlta a hasonló méretű vizuális nyelvi modelleket. Ha a keresett objektum nem található a képen, a rendszer nem tippel tévesen, hanem határozott **None** választ ad vissza a fejlesztőknek.",
+  "miert_szamit": "A marketingesek és kreatív szakemberek számára ez a modell **több különálló képfeldolgozó eszközt vált ki egyetlen nyílt kódú megoldással**, ami jelentősen felgyorsíthatja a képszerkesztési és tartalomkezelési automatizációkat.",
+  "cimkek": [
+    "Tencent",
+    "WeVisOne-VL",
+    "OCR",
+    "képkivágás"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "WeVisOne-VL"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 73,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 76,
+      "aktualitas": 95,
+      "kozossegi": 60
+    },
+    "elofeszures": 84,
+    "tanult": 45,
+    "indok": "Hasznos, nyílt forráskódú vizuális nyelvi modell a Tencen től, ami több látásmodult egyesít. Forrás-tapasztalat: -8.",
+    "tema": "tencent wevisone vl model release",
+    "cim_hu": "Egyetlen modellbe egyesítette a látási feladatokat a Tencent",
+    "lead_hu": "A WeChat Vision csapat által kiadott WeVisOne-VL modell különálló dekóderek nélkül képes a tárgyészlelésre, szegmentálásra és az OCR feladatokra.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-04T07:04:55+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-04T07:06:16+00:00",
+  "megjelent": "2026-11-04T07:06:16+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-04T07:07:00+00:00",
+    "esemeny": "A Tencent WeChat Vision csapata közzétette a WeVisOne-VL nevű nyílt forráskódú vizuális nyelvi modellt 2B és 4B paraméteres méretben. A Qwen3-VL alapú modell egy 9,6 millió paraméteres pixel dekóder segítségével egyesíti a tárgyfelismerést, az OCR-t, a szegmentálást és az alpha matting feladatokat.",
+    "forrasok": [
+      "https://huggingface.co/tencent/WeVisOne-VL-4B",
+      "https://github.com/Tencent/WeVisOne-VL"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-04T07:07:48+00:00",
+  "linkek_ellenorizve": true
+}
