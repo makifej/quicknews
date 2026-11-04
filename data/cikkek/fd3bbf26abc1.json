@@ -1,0 +1,49 @@
+{
+  "id": "fd3bbf26abc1",
+  "slug": "anthropic-s-new-prototype-proves-which-model-wrote-an-ai-response",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/anthropics-new-prototype-proves-which-model-wrote-an-ai-response-without-exposing-its-weights/",
+  "publikalva": "2026-11-04T15:23:49+00:00",
+  "cim": "Anthropic's new prototype proves which model wrote an AI response without exposing its weights",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 83 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/11/Anthropic-FlashProve.webp"
+  },
+  "cim_eredeti": "Anthropic's new prototype proves which model wrote an AI response without exposing its weights",
+  "szoveg_eredeti": "Anthropic has released FlashProve, a research prototype that uses cryptography to verify whether an AI response actually came from the claimed model. The system still has significant limitations.\n\nAnyone sending a query to an AI model today has no way to verify that the chosen model actually generated the response. A routing service could quietly swap in a cheaper model to cut costs. An attacker could tamper with the data stream. Anthropic says its new open-source research prototype FlashProve is designed to tackle this problem.\n\nFlashProve uses a cryptographic technique called zkSNARK. In simple terms, the model provider first creates a digital fingerprint of the model's weights. With every response, the provider then delivers a compact proof showing that this specific model generated the output. The proof reveals nothing about the secret model weights themselves.\n\nAccording to the technical report, FlashProve generates proofs at roughly 110 tokens per second on a single H100 GPU for Meta's Llama 4 Maverick, a 400-billion-parameter model. Each proof is about 19 megabytes and can be verified in 17 seconds on a standard CPU. That adds overhead of roughly 70x to 95x compared to normal inference.\n\nThat sounds like a lot, but it is a significant jump from earlier systems. The only comparable open-source system previously available took over 14 hours to process 1,000 tokens, Anthropic says. It produced a 93.6-gigabyte proof that took nearly a full day to verify.\n\nAnthropic sees several use cases. Regulators could check whether a provider is actually running only approved models, companies could prove their code was reviewed by a specific safety model and providers could detect tampering on their servers, like an attacker or a more advanced model slipping in unnoticed.\n\nIn its Frontier Safety Roadmap, Anthropic had set a goal of building an inference verification prototype by September 2026. The company says it already hit that target through a separate project that signs inference traffic and traces the computation on a trusted server. FlashProve pursues the same goal but takes a purely cryptographic approach and doesn't need trusted hardware.\n\nAnthropic stresses that FlashProve is a research prototype. The system currently only proves contexts of up to 1,024 tokens, far below the context windows of current models. It hides the model's weights but not its underlying architecture. And the proof only works when the model picks the single most likely next token, not with the randomized outputs that chatbots typically produce in everyday use.\n\nThe full code, Lean proofs, and documentation are available on GitHub under the Apache 2.0 license.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "begyujtve": "2026-11-04T15:35:29.902079+00:00",
+  "prioritas": {
+    "pont": 83,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 80,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 67
+    },
+    "elofeszures": 96,
+    "tanult": 78,
+    "indok": "Jelentős kriptográfiai és modell-hitelesítési áttörés az Anthropic-tól",
+    "tema": "anthropic flashprove cryptograhy",
+    "cim_hu": "Az Anthropic új eszköze kriptográfiával igazolja az MI-válaszok eredetét",
+    "lead_hu": "Megjelent a FlashProve prototípus, amely lehetővé teszi annak ellenőrzését, hogy egy válasz valóban a megadott modelltől származik-e.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-04T15:35:50+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-04T15:35:51+00:00"
+}
