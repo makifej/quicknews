@@ -1,0 +1,49 @@
+{
+  "id": "89209ab642b1",
+  "slug": "a-closer-look-at-phonon-tts-launching-high-quality-on-device-speech",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/phonon-tts",
+  "publikalva": "2026-11-05T00:00:00+00:00",
+  "cim": "A Closer Look at Phonon TTS. Launching High-Quality On-Device Speech That Tops the Benchmarks.",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 69 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://huggingface.co/blog/assets/phonon-closer-look/thumbnail.png"
+  },
+  "cim_eredeti": "A Closer Look at Phonon TTS. Launching High-Quality On-Device Speech That Tops the Benchmarks.",
+  "szoveg_eredeti": "Two weeks ago, we opened up Phonon, our small text-to-speech model that runs on your own device. It needs no server and no network, and what you type stays with you.\n\nWe've been very happy with the reception so far. So here's the story of the launch: why we built Phonon, what it can do, the demos that came with it, and how it did on Hugging Face's Open TTS Leaderboard.\n\nMost voice AI lives in the cloud: every sentence makes a round trip to a server. Phonon runs on your own device instead. Your text stays there and the voice works without a network. We’ve also opened the weights. Phonon 31m is Apache 2.0, so you can use it for free, even in a commercial product. The other models are CC BY-NC, so they’re free for non-commercial projects. If you’re building something commercial with those, pricing is based on your number of users, not how much speech you generate.\n\nGetting a good voice to run on a small device has always been hard. You could make the model small, but then it didn’t sound great. Or you could make it sound great, but then it wouldn’t fit. We addressed both.\n\nWe announced Phonon in April and spent the next six months building on it with partners and early users. Their feedback helped us to shape this release. The models got smaller, and we added more languages and support for custom voices through voice cloning and voice design.\n\nPhonon is based on the Pocket TTS lineage and as such uses flow matching to generate the audio which is very different from the modeling techniques used in other TTS systems. This is what allowed us to bring this level of quality to such a small model but it created new challenges while training the models. The training was initially numerically unstable and required several tricks to produce quality results on all five languages.\n\nPhonon comes in two sizes, at about 65 MB and 75 MB. Together they speak English, French, German, Spanish and Portuguese. There are more than 100 built-in voices, and you can create your own in Gradium Studio. Phonon also handles the important things that most other TTS systems often stumble on, like phone numbers, dates and codes.\n\nIt runs on phones, laptops, single-board computers and in a browser tab, so you can hear it right now. Phonon 31m speaks English and is Apache 2.0, so you can build on it freely, including for commercial products. Phonon 40m covers all five languages under a non-commercial license.\n\nThe launch came with demos from friends and from our own team. On an Apple Watch with Wi-Fi off, Phonon talks you through a coffee brew step by step. On an iPhone with no signal, it counts your reps and keeps you going. A robot called Lamp, from Autonomous, wears a sorting hat and talks in character. In a browser, an offline dino runner becomes a radio show hosted by Rex. There's also a sci-fi game voiced on the player's own machine, and Proust read aloud page by page.\n\nThe Hugging Face team built the Transformers integration, so developers could use Phonon in Transformers from day one.\n\nDevelopers have started building on it too. An ExecuTorch conversion runs Phonon on a visitor's GPU in the browser, Micdrop brings it to Node.js apps, and Spaces like smallest-s2s build on it.\n\nPhonon was downloaded more than 200,000 times in its first two weeks, and it’s still trending on Hugging Face.\n\nThe Open TTS Leaderboard is a very new project from Hugging Face, and we love it. With more than 9,000 TTS models on the Hugging Face Hub, the leaderboard gives developers one place to compare open models and hear them side by side. Across 23 languages, models are evaluated on intelligibility (word error rate of the outputs), speed (inverse real-time factor and time-to-first audio), and naturalness (UTMOS for English and KOMOS for Korean). Fixed-voice and voice cloning are evaluated, with an additional speaker similarity metric for the latter. The leaderboard also has a Listen tab, where you can conveniently compare TTS outputs yourself and vote for the ones you like the most.\n\nOn intelligibility, Phonon ranks first in German and Spanish, and in the top three in every language we evaluated, next to models up to 100 times its size.\n\nSpeed is where we see Phonon truly shine, as the models top the CPU streaming benchmark on time-to-first audio.\n\nWe built a new inference framework, ptts, specifically for Phonon. The goal of ptts is to get the best performance on a wide variety of devices and as such supports more than 10 backends: CPU (Intel, Arm, WebAssembly), GPU (CUDA, Vulkan, Metal, WebGPU), and NPU (Apple Core ML, Snapdragon®).\n\nPhonon is also available in 🤗 Transformers, from v5.21, as its reference PyTorch implementation. Where ptts runs a single stream on device, Transformers targets GPU throughput: batched generation, full-graph torch.compile, e.g., for synthesizing speech datasets at scale. Being native PyTorch, it is a base to build upon, whether to integrate Phonon into your own stack or to study the model itself.\n\nIt belongs to the Pocket TTS lineage, so we first added Pocket TTS to Transformers. Phonon sits on top as a modular model: about 200 lines describing only what differs.\n\nPhonon generates audio latents autoregressively: each step outputs a latent that is fed back as the next input, and the training loss is computed on them. Latents are the model's inputs, outputs and targets, as text tokens are for a language model, so the codec mapping audio to latents plays the role of a tokenizer. Transformers ships it as such: an audio tokenizer, held by the processor next to the text tokenizer:\n\nA voice is not a recording but a tensor of speaker latents. Phonon never encodes audio directly with its audio tokenizer, which ships decoder-only, and voices come precomputed: gradium/phonon-voices.\n\nThe prompt layout (voice positions, text, then a token opening the audio) ships with the checkpoint as a chat template, as for other multimodal models in Transformers. You write a standard conversation, with an empty audio item where the voice goes, and your code stays the same across checkpoints. The processor then expands the voice placeholder to one position per frame, normalizes and tokenizes the text, and batches the inputs:\n\ngenerate returns latents, which the processor decodes to audio:\n\nPhonon can speak with any voice. Clone one from a short recording with the speaker’s consent, or describe a new one in plain text in Gradium Studio. Then download the voice file, load it in Phonon, and it runs fully on the device.\n\nWe also train custom Phonon models with design partners. If your memory budget is tight, we can make the model smaller. If you need Korean, Arabic or Japanese, we can train for that too. And if your product has its own vocabulary, we can fine-tune on it. Get in touch and tell us what you need.\n\nThank you to the Hugging Face team, and to everyone who tried Phonon in its first two weeks.\n\nPhonon is our first open release. Try it out and tell us what you build.",
+  "begyujtve": "2026-11-05T10:47:10.076697+00:00",
+  "prioritas": {
+    "pont": 69,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 75,
+      "egyediseg": 90,
+      "hitelesseg": 88,
+      "aktualitas": 82,
+      "kozossegi": 66
+    },
+    "elofeszures": 98,
+    "tanult": 60,
+    "indok": "Érdekes eszközön futó nyílt TTS modell részletei a Hugging Face-től Forrás-tapasztalat: -5.",
+    "tema": "hugging face phonon tts",
+    "cim_hu": "Eszközön futó szövegfelolvasó modellt mutatott be a Hugging Face",
+    "lead_hu": "A Hugging Face részletezte a Phonon nevű kis méretű szövegfelolvasó modelljét, amely felhős szerverek és internetkapcsolat nélkül, közvetlenül a felhasználó eszközén fut.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-05T10:49:45+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-05T10:49:46+00:00"
+}
