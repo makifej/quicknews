@@ -1,0 +1,49 @@
+{
+  "id": "1b17b8c1951e",
+  "slug": "webai-releases-twil-8b-an-8-8b-reasoning-model-scoring-98-2-on-math",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/04/webai-twil-8b-reasoning-model/",
+  "publikalva": "2026-11-04T22:25:05+00:00",
+  "cim": "webAI Releases TwIL-8B, an 8.8B Reasoning Model Scoring 98.2 on MATH-500",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 60 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-6-scaled.png"
+  },
+  "cim_eredeti": "webAI Releases TwIL-8B, an 8.8B Reasoning Model Scoring 98.2 on MATH-500",
+  "szoveg_eredeti": "webAI has released TwIL-8B , an 8.8B reasoning model for math, code and instruction following. The TwIL-8B reasoning model is post-trained from IBM’s Granite 4.2 8B . Weights are on Hugging Face under a non-commercial license. webAI’s launch post frames the pitch around cost per task, not raw scale. The 4-bit build is 4.98 GiB, sized for CPU or modest-VRAM GPU inference.\n\n TL;DR \n\n Size: 8.79B parameters, dense. 131,072-token context, inherited from the base model.\n\n Runs on: CPU or modest-VRAM GPU via a 4.98 GiB Q4_K_M GGUF. Full bf16 weights are 16.38 GiB.\n\n Performance: Leads its size class on math and code, trails on knowledge benchmarks.\n\n Best: MATH-500 at 98.2, the top score in webAI’s comparison.\n\n Worst: GPQA Diamond at 70.2, 11.5 points behind Qwen3.5-9B. HLE is 12.6 (verbose variant).\n\n What is TwIL-8B? \n\n TwIL-8B is a dense decoder-only reasoning model from webAI. It has 40 layers, hidden size 4096, and 32 attention heads with 8 KV heads . Input and output are English text only. The model writes a <think> block before each answer.\n\n It ships in 2 variants with the same architecture and tokenizer. Balanced is the default and produces shorter reasoning traces. Verbose reasons longer and targets hard contest-style problems.\n\n TwIL-8B extends webAI’s TwIL family. The first members were 1.7B and 3B formal-logic models released in August 2026.\n\n How was TwIL-8B trained? \n\n webAI used 3 post-training stages : \n\n Full-parameter SFT on reasoning traces for math, STEM and instruction following.\n\n GRPO/DAPO reinforcement learning on math, code, STEM and instruction prompts. This produces the verbose variant.\n\n Length-aware RL with a reward that favors shorter traces against per-domain length references. This produces the balanced variant.\n\n Training pools were decontaminated with 13-gram matching against AIME, HMMT, MATH-500, GPQA and other evals. \n\n How does TwIL-8B perform on benchmarks? \n\n All TwIL-8B scores are self-reported, high-effort pass@1 with thinking enabled. Scores marked † were measured on the verbose variant only.\n\n Math : TwIL-8B scores 98.2 on MATH-500. Qwen3.5-9B lists 96.6 on a third-party leaderboard . Gemma 4 31B scored 87.9 in Red Hat’s lighteval run . On AIME 2025, TwIL-8B posts 88.3 against 87.1 for Gemma 4 31B. On AIME 2026 it scores 88.3, behind Qwen3.5-9B at 92.5 and Gemma 4 31B at 89.2 .\n\n Code : LiveCodeBench† is 81.6, against 65.6 for Qwen3.5-9B and 80.0 for Gemma 4 31B. webAI notes its LiveCodeBench version was not recorded. Competitor scores are v6.\n\n Instruction following : IFBench† is 74.4, 9.9 points above Qwen3.5-9B at 64.5. IFEval is level, at 91.8 vs 91.5.\n\n Knowledge : This is the weak spot. GPQA Diamond is 70.2, against 81.7 for Qwen3.5-9B and 84.3 for Gemma 4 31B. MMLU-Pro† is 76.5 vs 82.5 for Qwen3.5-9B.\n\n Across 13 shared benchmarks, TwIL-8B goes 7-6 against Qwen3.5-9B. Against Gemma 4 31B, about 3.5x its size, it goes 3-11.\n\n Does TwIL-8B use fewer reasoning tokens? \n\n Yes, against its closest open peer. On AIME 2026, TwIL-8B averages about 19.5k output tokens per problem. Qwen3.5-9B uses 31.2k, so TwIL-8B uses 38% fewer. It scores 4.2 points lower. On HMMT Feb 2026 the gap is 32.9k vs 40.6k, or 19% fewer.\n\n Frontier models remain far leaner. webAI cites about 5k tokens per AIME 2026 problem for GPT-5.5. webAI states that harnesses and tokenizers differ, so treat this as directional.\n\n TwIL-8B vs Qwen3.5-9B vs Gemma 4 \n\n Metrics TwIL-8B Qwen3.5-9B Gemma 4 12B Gemma 4 31B Parameters 8.79B dense 9B (language model) 11.95B dense 30.7B dense Context 131,072 262,144 native 256K 256K Modality (input) Text Text, image, video Text, image, audio Text, image License webAI Non-Commercial 1.0 Apache 2.0 Apache 2.0 Apache 2.0 Smallest official local build 4.98 GiB (Q4_K_M) Not disclosed Not disclosed Not disclosed MATH-500 98.2 96.6 (3rd party) Not disclosed 87.9 (Red Hat) AIME 2026 88.3 92.5 (MathArena) 77.5 89.2 LiveCodeBench 81.6 † 65.6 (v6) 72.0 (v6) 80.0 (v6) GPQA Diamond 70.2 81.7 78.8 84.3 MMLU-Pro 76.5 † 82.5 77.2 85.2 \n\n TwIL-8B figures from the model card . † = verbose variant. All scores self-reported by each vendor unless marked. \n\n How do you run TwIL-8B locally? \n\n from_pretrained(\"webAI-Official/TwIL-8B\") loads the balanced variant. Pass subfolder=\"verbose\" for the verbose one. The model card lists GGUF builds for llama.cpp: \n\n Q4_K_M, 4.98 GiB, for both variants\n\n Q8_0, 8.70 GiB, verbose only\n\n F16, 16.38 GiB, verbose only\n\n Give it a large generation budget. The card’s example sets max_new_tokens=32768 . A short budget truncates reasoning and scores far worse. All reported scores used bf16 weights, so expect small drops at Q4_K_M. No hosted inference provider serves the model on Hugging Face yet.\n\n Key Takeaways \n\n TwIL-8B is an 8.79B dense reasoning model post-trained from IBM Granite 4.2 8B.\n\n It posts 98.2 on MATH-500 and 81.6† on LiveCodeBench.\n\n It uses 38% fewer tokens than Qwen3.5-9B on AIME 2026.\n\n Knowledge is weak: GPQA Diamond trails Qwen3.5-9B by 11.5 points.\n\n Weights are open but licensed for non-commercial use only.\n\n Check out the model card and weights on Hugging Face and webAI’s announcement on X . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post webAI Releases TwIL-8B, an 8.8B Reasoning Model Scoring 98.2 on MATH-500 appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-05T07:04:39.688009+00:00",
+  "prioritas": {
+    "pont": 60,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 65,
+      "egyediseg": 85,
+      "hitelesseg": 71,
+      "aktualitas": 90,
+      "kozossegi": 62
+    },
+    "elofeszures": 88,
+    "tanult": 65,
+    "indok": "Kisméretű, helyben futtatható nyílt gondolkodási modell jelent meg, de korlátozottabb a hatása. Forrás-tapasztalat: -7.",
+    "tema": "webai twil 8b reasoning model",
+    "cim_hu": "Megjelent a webAI TwIL-8B gondolkodási modellje matematika és kódolás feladatokra",
+    "lead_hu": "A webAI kibocsátotta a 8,8 milliárd paraméteres TwIL-8B nyílt modellt, amely kifejezetten szerényebb hardveres erőforrásokon is hatékonyan futtatható reasoning feladatokra.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-05T07:06:06+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-05T07:06:33+00:00"
+}

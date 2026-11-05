@@ -1,0 +1,76 @@
+{
+  "id": "31b122d1a1fc",
+  "slug": "agile-deliberation-a-google-uj-eszkoze-szubjektiv-keposztalyozokhoz",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/04/google-agile-deliberation-subjective-image-classifiers/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-11-05T05:42:18+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-7-scaled.png"
+  },
+  "cim_eredeti": "Google AI Research Releases Agile Deliberation Framework for Gray-Area Image Classifiers",
+  "forrasok": [],
+  "szoveg_eredeti": "Google Research has released Agile Deliberation , a human-in-the-loop framework for building image classifiers around subjective concepts. Think ‘healthy food’, ‘inspiring artwork’ or clickbait in content moderation. Most tooling assumes users already know the concept boundary. Agile Deliberation assumes they do not, and helps them find it. \n\n TL;DR \n\n Framework : It prompts Gemini 2.5 Pro and Gemini 2.5 Flash through the API, without fine-tuning.\n\n Runs on: A Jupyter or Colab notebook. Retrieval uses CLIP embeddings and a FAISS index on CPU or GPU. The demo index starts at about 260 MB.\n\n Performance: 10.5 F1 points above zero-shot Gemini 2.5 Flash on average, across 2 concepts and 18 live sessions.\n\n Best: Paid to play F1 of 0.59 vs 0.48 zero-shot, with precision up 22 points (0.35 to 0.57).\n\n Worst: Recall drops 17 points on paid to play (0.80 to 0.63) and 15 points on healthy food.\n\n What is Agile Deliberation? \n\n Agile Deliberation is a Google Research’s framework that turns a vague concept into a structured written definition. That definition does two jobs. It is a human-readable policy, and it is the text prompt for a VLM classifier. Each round keeps the candidate definition with the best F1 on the user’s labels.\n\n The design came from interviews with a group of content moderation experts . Experts scoped a concept first, then refined it on borderline images. Finding those images was the slow part.\n\n How does concept scoping work? \n\n Stage 1 breaks the concept into at most 3 unit concepts, using prompt chaining with Gemini 2.5 Pro. Each unit gets candidate positive and negative subconcepts, shown with retrieved images. For healthy food, positives might be salads or grain bowls. Negatives might be processed food or raw, unprepared ingredients. The user keeps, flips or drops each one.\n\n How does concept iteration find borderline images? \n\n Stage 2 skips classic uncertainty sampling. The classifier is a prompted generative VLM, so its confidence scores are often uncalibrated. Instead, the system hunts for images that are borderline in meaning. \n\n The pipeline runs 4 steps: \n\n Gemini 2.5 Flash writes borderline queries, such as ‘salads with heavy mayo dressings’. Each query retrieves 50 to 100 images.\n\n Images are de-duplicated, encoded, and grouped into clusters with dictionary learning.\n\n A UCB multi-armed bandit picks the next cluster. It favors clusters where users corrected the model or left rich feedback.\n\n A VLM summarizes each image in 1 sentence. The user sees at least 5 images that share 1 ambiguity.\n\n Users label each image and add short notes on disagreements. An LLM turns those notes into candidate definitions. A greedy update keeps the best-scoring one.\n\n How was it evaluated? \n\n Subjective concepts have no fixed ground truth, so Google team skipped static benchmarks. It ran 18 live sessions of about 90 minutes each. 9 participants without professional moderation experience did 2 sessions each. One session used Agile Deliberation, the other used manual deliberation. Each participant spent about 45 minutes defining a concept, then labeled 200 held-out test images.\n\n The two concepts were ‘paid to play’ clickbait and ‘healthy food’. Retrieval ran over a proprietary 100M-image dataset and WebLI, respectively.\n\n What do the benchmarks show? \n\n F1 (Agile Deliberation group) Zero-shot Modeling Collaborator Agile Deliberation Gain vs zero-shot Paid to play 0.48 0.53 0.59 +11 points Healthy food 0.48 0.50 0.58 +10 points \n\n Source: Table 1 of the CVPR 2026 paper . F1 averaged over participants. \n\n How does it compare with other subjective classifier methods? \n\n Feature Agile Deliberation Modeling Collaborator Agile Modeling Zero-shot VLM Venue CVPR 2026 CVPR 2024 ICCV 2023 Baseline in paper Core idea Deliberation on semantic borderline images, then automatic prompt optimization LLM agent decomposes the concept and auto-labels data User labels images in a real-time loop Classify from the initial description Human effort About 45 min of labeling and feedback About 100 labels plus chat (vs about 2,000) Under 30 min in a 14-person study 1 concept description Handles evolving definitions Yes No (static) No (static) No Classifier Prompted Gemini 2.5 Flash Lightweight distilled classifier Not disclosed Prompted Gemini 2.5 Flash F1, paid to play 0.59 0.53 Not tested 0.48 F1, healthy food 0.58 0.50 Not tested 0.48 Code Apache 2.0, GitHub Not disclosed Not disclosed Gemini API \n\n How can developers run it? \n\n The repo ships a Demo.ipynb that walks through the healthy food example. It needs a Gemini API key and defaults to gemini-2.5-pro and gemini-2.5-flash. A setup script builds a FAISS index over LAION-400M CLIP embeddings. The default 2 shards take about 260 MB. All 100 shards take about 13 GB.\n\n Key Takeaways \n\n Agile Deliberation helps users discover a subjective concept’s boundary, not just label it.\n\n It finds borderline images by meaning, not by classifier confidence.\n\n F1 rose 10.5 points over zero-shot Gemini 2.5 Flash on average.\n\n Users reported significantly lower effort and stress than with manual prompt editing.\n\n The code is open on GitHub, with a Gemini-based demo notebook.\n\n Check out the paper , arXiv version , GitHub repo and Google Research blog . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Google AI Research Releases Agile Deliberation Framework for Gray-Area Image Classifiers appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "Agile Deliberation: a Google új eszköze szubjektív képosztályozókhoz",
+  "lead": "A Google Research új nyílt forráskódú keretrendszere segít pontosan meghatározni a nehezen körülírható, szubjektív vizuális fogalmakat.",
+  "osszefoglalo": "A Google Research bemutatta az [Agile Deliberation](https://research.google/blog/agile-deliberation-how-ai-helps-humans-define-the-gray-areas/) nevű keretrendszert, amely a humán visszacsatolásra építve segít a képosztályozó modellek pontosításában. A rendszer olyan szubjektív és homályos fogalmak meghatározására szolgál, mint az „egészséges étel” vagy a „kattintásvadász tartalom”, ahol a határok nem egyértelműek. Az eszköz a Gemini 2.5 Pro és Gemini 2.5 Flash modelleket használja promptolással, finomhangolás nélkül.\n\nA folyamat során a rendszer nem a modell bizonytalansága, hanem a jelentésbeli határesetek alapján keres mintaképeket, amelyeket a felhasználó értékel és véleményez. A szöveges visszajelzésekből a nyelvi modell egy strukturált szabályrendszert épít, amely egyszerre szolgál emberi útmutatóként és a képfeldolgozó modell promptjaként. A tesztek alapján az eljárás átlagosan **10,5 F1 ponttal növelte** a Gemini 2.5 Flash pontosságát a kiindulási állapothoz képest.\n\nA keretrendszer kódja [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) licenc alatt ingyenesen elérhető a GitHubon. Futtatásához egy Jupyter vagy Colab notebookra és Gemini API-kulcsra van szükség.",
+  "miert_szamit": "Képes leszel pontosabb tartalommoderációs és szűrési szabályokat alkotni anélkül, hogy bonyolult modelleket kellene **újratanítanod**, csupán a promptok céltudatos finomításával.",
+  "cimkek": [
+    "Google",
+    "Gemini",
+    "képosztályozás",
+    "GitHub"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Agile Deliberation"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 67,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 90,
+      "hitelesseg": 76,
+      "aktualitas": 98,
+      "kozossegi": 57
+    },
+    "elofeszures": 90,
+    "tanult": 60,
+    "indok": "Friss Google AI keretrendszer kiadás szubjektív képbesorolási problémák kezelésére. Forrás-tapasztalat: -7.",
+    "tema": "google agile deliberation framework",
+    "cim_hu": "A Google kiadta az Agile Deliberation keretrendszert a képosztályozók számára",
+    "lead_hu": "A Google Research új nyílt keretrendszert publikált, amely az emberi visszacsatolást és a Gemini modelleket ötvözi a nehezen meghatározható szubjektív kategóriák pontosabb felismerésére.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-05T07:06:06+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-05T07:07:13+00:00",
+  "megjelent": "2026-11-05T07:07:13+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-05T07:09:09+00:00",
+    "esemeny": "A Google Research kiadta az nyílt forráskódú Agile Deliberation keretrendszert, amely humán visszacsatolással és a Gemini 2.5 modellek segítségével segíti a szubjektív fogalmak képosztályozási határainak meghatározását és promptjainak optimalizálását.",
+    "forrasok": [
+      "https://www.marktechpost.com/2026/11/04/google-agile-deliberation-subjective-image-classifiers/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-05T07:10:22+00:00",
+  "linkek_ellenorizve": true
+}

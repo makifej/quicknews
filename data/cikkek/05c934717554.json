@@ -1,0 +1,77 @@
+{
+  "id": "05c934717554",
+  "slug": "elerheto-a-ripple-65b-preview-nyilt-ai-modell",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/04/ricursive-ripple-65b-preview-open-weight-model/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-11-04T21:01:06+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-5-scaled.png"
+  },
+  "cim_eredeti": "Ricursive AI Releases Ripple-65B Preview: A 65B Dense Open-Weight Model Scoring 80.5 on Terminal-Bench 2.1",
+  "forrasok": [],
+  "szoveg_eredeti": "Ricursive Intelligence just released Ripple-65B Preview . Ripple-65B Preview is a 65B dense open-weight model from Ricursive, pretrained from scratch for agentic coding. It is a general-purpose variant of the proprietary model behind Ricursive’s AI chip design platform. The main claim: 80.52 on Terminal-Bench 2.1 , the top self-reported score among US open-weight models. Every MoE rival it beats on that test carries 501B to 975B total parameters.\n\n TL;DR \n\n Size: 65B dense (65B active), pretrained on 12T tokens, up to 1M context.\n\n Runs on: BF16 on datacenter GPUs (250 tok/s on 2x B200). Experimental NVFP4 build targets NVIDIA DGX Spark.\n\n Performance: Frontier-level agentic coding for its size; trails larger MoE models on knowledge and science coding.\n\n Best: Terminal-Bench 2.1, 80.5 (self-reported).\n\n Worst: SciCode, 39.4, lowest of the 5 models in Ricursive’s own table.\n\n What is Ripple-65B Preview? \n\n The release includes 3 checkpoints : an instruction-tuned BF16 model, an NVFP4 version , and a BF16 base model . All ship under Apache 2.0. Pretraining used a text-only corpus, mostly English and code, at 8K sequence length.\n\n Ricursive team states that the full R&D cost was $32M . That figure covers ladder experiments, data mixing, evals, synthetic data and the final runs. Ricursive team estimates that it is one-tenth the cost of the prior open-weight agentic coding leader. \n\n How does the architecture work? \n\n Ricursive chose a dense Transformer over Mixture-of-Experts to reduce infrastructure complexity. Training held 40% MFU with simple sharding, no custom kernels and no quantization.\n\n The model is thin and deep: a d_model of 5120 across 80 layers. It moves from Olmo 3’s Llama-like layout to a Gemma 3N-like design for stability. Key choices:\n\n Overprovisioned attention heads for reasoning, offset by more sliding-window layers and smaller windows.\n\n Gated attention , global NoPE and value residuals .\n\n FFN activation clipping , a technique also used in gpt-oss .\n\n Ricursive team built the recipe through laddering experiments starting from Olmo 3’s ladder . It rejected changes that failed to hold at 4B scale, such as 2-stream mHC. The technical post reports a 16x code compute-efficiency gain at 4B scale. \n\n How was it post-trained? \n\n Post-training ran midtraining, long context, SFT, long-context SFT and mixed RL. Long-context stages trained at 2M sequence length. Ricursive bought no post-training data and built its own synthetic pipelines.\n\n The RL recipe combines truncated importance sampling , score centering and a linear length penalty . Ripple hit 80.5 on Terminal-Bench 2.1 with 1.4M rollouts. Ricursive puts that at roughly 70x fewer than Beam, which reported over 100M rollouts .\n\n How does Ripple-65B compare on benchmarks? \n\n Ricursive team ran missing evals in-house using OpenCode, and Terminus 2 for SWE-bench Pro v2.0 Hard and DeepSWE 1.1. Scores below are Ricursive’s presented data.\n\n Terminal-Bench 2.1: 80.5, vs Beam 80.1 , Muse Spark Open 76.4 , Inkling 63.8 , Nemotron 3 Ultra 56.4 .\n\n SWE-bench Pro v2.0 Hard: 79.1, the top score in Ricursive’s table.\n\n SWE-bench Verified: 76.5, below Beam and Inkling.\n\n Math: 98.3 on AIME 2025 and 90.5 on HMMT Feb 2026.\n\n Weak spots: SciCode 39.4, DeepSWE 1.1 44.3, MCP Atlas 71.67, GPQA Diamond 85.2.\n\n Ricursive team also reran Terminal-Bench 2.1 with the official Terminus 2 harness at 128K. Most rivals dropped there; Beam fell to 70.8. Muse Spark Open rose to 78.7, still below Ripple’s 80.5.\n\n Comparison table \n\n Feature Ripple-65B Preview Reflection Beam Meta Muse Spark Open Thinking Machines Inkling NVIDIA Nemotron 3 Ultra Architecture Dense MoE MoE MoE Hybrid Mamba-2 LatentMoE Total params 65B 501B 816B 975B 550B Active params 65B 23B 42B 41B 55B Pretraining tokens 12T 23.8T Not disclosed 45T (per Ricursive table) ~20T Context Up to 1M 1M (midtraining) 1M 1M Up to 1M License Apache 2.0 Apache 2.0 Muse Model License Apache 2.0 OpenMDW-1.1 Input modality Text Text Text, image, video, audio Text, image, audio Text Self-hosting floor DGX Spark class (NVFP4) Not disclosed 700GB VRAM (NVFP4) 600GB VRAM (NVFP4) 8x B200 or 16x H100 Terminal-Bench 2.1 80.5 80.1 76.4 63.8 56.4 SWE-bench Verified 76.5 80.9 Not disclosed by Meta 77.6 70.7 GPQA Diamond 85.2 Not disclosed in blog 89.0 87.2 87.0 \n\n Ripple scores from the Ricursive model card . Competitor scores from each vendor’s own source. All self-reported. \n\n Where can developers run it? \n\n Weights are on Hugging Face . Ricursive lists Together AI , GMI Cloud and OpenRouter at launch, with Fireworks later. Together AI’s page currently marks the model as coming soon.\n\n On datacenter GPUs, the model reaches 250 tok/s on 2x B200 at batch 8, before quantization. The experimental NVFP4 checkpoint quantizes MLP layers and keeps attention in BF16. Ricursive team positions it for local devices like NVIDIA DGX Spark. A DFlash2 variant is also listed.\n\n Key Takeaways \n\n 65B dense, 12T tokens, 1M context, Apache 2.0.\n\n 80.5 on Terminal-Bench 2.1, top among US open weights.\n\n $32M full R&D, 1.4M RL rollouts.\n\n NVFP4 build targets DGX Spark-class local hardware.\n\n Trails larger MoE rivals on SciCode, DeepSWE and MCP Atlas.\n\n Check out the the launch blog , the model card and the NVFP4 checkpoint . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Ricursive AI Releases Ripple-65B Preview: A 65B Dense Open-Weight Model Scoring 80.5 on Terminal-Bench 2.1 appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "Elérhető a Ripple-65B Preview nyílt AI-modell",
+  "lead": "A Ricursive Intelligence kiadta a kifejezetten kódolási feladatokra és ágensekre optimalizált, nyílt forráskódú Ripple-65B Preview modellt.",
+  "osszefoglalo": "A Ricursive Intelligence kiadta a [Ripple-65B Preview](https://huggingface.co/ricursiveAI/Ripple-65B-Preview) nevű, 65 milliárd paraméteres, nyílt súlyú nyelvi modellt. A fejlesztők az architektúrát kifejezetten ágensalapú kódolásra képezték ki 12 ezer milliárd tokennyi adatcsomagon. A modell 1 millió tokenes kontextusablakkal rendelkezik, és teljesen nyílt, [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) licenc alatt érhető el.\n\nA teszteken a modell kiemelkedő teljesítményt nyújtott: a [Terminal-Bench 2.1](https://github.com/harbor-framework/terminal-bench-2-1) benchmarkon 80,5-ös pontszámot ért el, amivel megelőzte a nála lényegesen nagyobb méretű nyílt modelleket is. Míg a kódolási és matematikai teszteken jól szerepel, az általános tudományos feladatoknál és összetettebb tudásbázis-kérdéseknél elmarad a legnagyobb szakértői hálózattal működő modellektől.\n\nA modell súlyai már letölthetők, a futtatáshoz pedig adatközponti GPU-kra vagy magas kategóriás fejlesztői hardverekre van szükség. A felhős szolgáltatók közül az OpenRouter és a GMI Cloud infrastruktúráján válik elsőként használhatóvá.",
+  "miert_szamit": "A szoftverfejlesztő és automatizációs projekteken dolgozó szakemberek egy **költséghatékony és nyílt kódolói modellt** kaptak, amit saját infrastruktúrán is futtathatnak.",
+  "cimkek": [
+    "Ripple-65B",
+    "Ricursive Intelligence",
+    "nyílt forráskód",
+    "kódolás"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Ripple-65B Preview",
+    "Terminal-Bench 2.1"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 67,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 90,
+      "hitelesseg": 71,
+      "aktualitas": 90,
+      "kozossegi": 69
+    },
+    "elofeszures": 90,
+    "tanult": 76,
+    "indok": "Figyelemreméltó nyílt forráskódú ágensmodell-megjelenés kiemelkedő benchmark teszteredményekkel. Forrás-tapasztalat: -7.",
+    "tema": "ricursive ai ripple 65b model",
+    "cim_hu": "A Ricursive AI megjelentette a 65 milliárd paraméteres Ripple-65B nyílt modellt",
+    "lead_hu": "A Ricursive Intelligence kiadta a Ripple-65B Preview nyílt modellt, amely kifejezetten kódolási ágensek számára készült, és a teszteken kiemelkedő teljesítményt nyújtott a lényegesen nagyobb riválisokkal szemben.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-05T07:06:06+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-05T07:06:17+00:00",
+  "megjelent": "2026-11-05T07:06:17+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-05T07:09:32+00:00",
+    "esemeny": "A Ricursive Intelligence kiadta a Ripple-65B Preview nevű, 65 milliárd paraméteres, nyílt súlyú (Apache 2.0 licencű) nyelvi modelljét, amelyet kifejezetten ágensalapú kódolási feladatokra fejlesztettek ki.",
+    "forrasok": [
+      "https://huggingface.co/ricursiveAI/Ripple-65B-Preview"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-05T07:10:22+00:00",
+  "linkek_ellenorizve": true
+}

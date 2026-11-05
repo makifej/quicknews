@@ -1,0 +1,134 @@
+{
+  "id": "495b85179734",
+  "slug": "az-openai-tesztmodellje-948-linux-serulekenyseget-talalt-egyetlen",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/openai-says-ai-built-948-linux-PqnQ_OU_RySgAjGM._37yA",
+  "szerzo": "Perplexity Discover",
+  "publikalva": "2026-11-05T02:43:16.052053+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--gzLkLfzN--/t_limit/https://d3i6fh83elv35t.cloudfront.net/static/2026/07/2026-07-22T171510Z_410033979_RC2QRLAXAMC7_RTRMADP_3_OPENAI-HUGGING-FACE-ZAI-1024x683.jpg"
+  },
+  "cim_eredeti": "Az OpenAI szerint egyetlen futtatás alatt 948 Linux root exploitot készített el az MI",
+  "forrasok": [
+    {
+      "nev": "A thousand fewer paths to root",
+      "url": "https://openai.com/index/a-thousand-fewer-paths-to-root",
+      "domain": null
+    },
+    {
+      "nev": "OpenAI Pipeline Finds 948 Linux Kernel Privilege Escalation Flaws",
+      "url": "https://www.unite.ai/openai-pipeline-finds-948-linux-kernel-privilege-escalation-flaws/",
+      "domain": null
+    },
+    {
+      "nev": "OpenAI agents expose 948 Linux flaws with 10 new attack methods-63",
+      "url": "https://interestingengineering.com/ai-robotics/openai-agents-linux-kernel-vulnerabilities-exploits",
+      "domain": null
+    },
+    {
+      "nev": "OpenAI reveals autonomous vulnerability pipeline: a run that produced 948 local privilege escalation vulnerabilities in Linux",
+      "url": "https://www.chaincatcher.com/en/article/2301850",
+      "domain": null
+    },
+    {
+      "nev": "OpenAI just made local root cheap at scale",
+      "url": "https://www.startuphub.ai/ai-news/artificial-intelligence/2026/openai-just-made-local-root-cheap-at-scale",
+      "domain": null
+    },
+    {
+      "nev": "OpenAI says its agents exploited and patched 948 Linux kernel flaws for $1.2M",
+      "url": "https://runtimewire.com/article/openai-agents-948-linux-kernel-flaws",
+      "domain": null
+    },
+    {
+      "nev": "OpenAI's AI Reproduced 1,724 Linux Kernel Flaws in $1.2M Run - FourWeekMBA",
+      "url": "https://fourweekmba.com/ai-openais-ai-reproduced-1724-linux-kernel-flaws-in-1-2m-run/",
+      "domain": null
+    },
+    {
+      "nev": "OpenAI Autonomous Pipeline Discovers and Patches 948 Linux Kernel Privilege Escalation Vulnerabilities",
+      "url": "https://www.ai-news.jp/en/news/openai_news-12df2f7f61752b55/",
+      "domain": null
+    },
+    {
+      "nev": "OpenAI Autonomous Pipeline Finds and Patches 948 Linux Kernel Privilege-Escalation Bugs",
+      "url": "https://skynetcountdown.com/news/2026-11-04/openai-autonomous-pipeline-finds-and-patches-948-linux-kernel-privilege-escalati",
+      "domain": null
+    },
+    {
+      "nev": "OpenAI Pipeline Identifies 948 Linux Kernel Vulnerabilities",
+      "url": "https://ground.news/article/openai-pipeline-identifies-948-linux-kernel-vulnerabilities",
+      "domain": null
+    },
+    {
+      "nev": "A thousand fewer paths to root | TLDR",
+      "url": "https://tldr.tech/story/c7e34f60-142d-4e4a-b32f-0d9c682b55e0",
+      "domain": null
+    },
+    {
+      "nev": "Tom Lee: AI trading remains very active, and the Democratic Party is advancing crypto legislation. - Lookonchain - Looking for smartmoney onchain",
+      "url": "https://www.lookonchain.com/feeds/80489",
+      "domain": null
+    }
+  ],
+  "szoveg_eredeti": "Az OpenAI november 4-én közölte, hogy egy prototípus autonóm biztonsági rendszere egyetlen futtatás során működő, root-hozzáférést adó exploitot készített 948 különböző Linux-kernelsérülékenységhez. A futtatás egy még nem publikus kiberbiztonsági modellel történt, és 1 213 430 dollárnyi API-kreditbe került, ami exploitonként nagyjából 1279 dollárt jelent az OpenAI kutatási bejegyzése szerint. A vállalat védelmi célú munkaként mutatja be a kísérletet. Szerinte az is látszik belőle, hogy a hibák megtalálása már nem a nehéz feladat. A nehezebb rész az ellenőrzésük, a fontossági sorrend felállítása és a javításuk.\n\nA vizsgálat 2026 októberének közepén zajlott a Linux-kernel legfrissebb master ágán. A felderítő ügynökök a kernel több mint 40 millió sorából 5034 auditálandó célpontot jelöltek ki. Ez nagyjából 2,8 millió sort jelent, vagyis a kódbázis körülbelül 7%-át – számolt be a Unite.AI. Az elemző ügynökök 12 óra alatt 2308 lehetséges hibát azonosítottak. Az ellenőrző ügynökök ezek közül 1724-et reprodukáltak elszigetelt virtuális gépekben 30 óra alatt – írta az Interesting Engineering.\n\nA kihasználási szakasz 291 információszivárgást bemutató proof-of-concept kódot és 1169 működő helyi jogosultságkiterjesztő exploitot eredményezett. Ezekkel egy jogosulatlan felhasználó root jogosultságot szerezhet. A variánselemzés ezeket az exploitokat 948 különböző sérülékenységre vezette vissza, és mindegyikhez készült egy javítási javaslat. A tesztgépeken alapbeállítású asztali rendszer futott, bekapcsolt szabványos védelmekkel, például SMEP-pel, SMAP-pel és KASLR-rel – közölte az OpenAI.\n\nA kutatók egy 166 exploitból álló mintában legalább 10 olyan kihasználási technikát találtak, amelyekről úgy vélik, hogy korábban nem dokumentálták őket, és ezt külső kernelszakértők is megerősítették. Az OpenAI „biztonsági okokból\" nem tett közzé teljes részleteket.\n\nMielőtt bármi eljutna a Linux-karbantartókhoz, emberi kutatók felülvizsgálják az exploitokat, a javításokat és a javasolt súlyossági besorolást. Az OpenAI közlése szerint több száz jelentést és javítást küldött el a kritikus hibákról, a többit pedig a Patch the Planet kezdeményezés partnereivel közösen kezeli – írta az Interesting Engineering. A 948 javítás egyelőre csak javítási jelölt, nem beolvasztott patch. A 10 napos átvizsgálás és elemzés végére 61 sebezhetőséget már javítottak az upstreamben, 43-hoz készült előzetes (staging) javítás, 299-ről pedig már nyilvánosan is tárgyaltak – jegyezte meg a Unite.AI.\n\nA felülvizsgálat egy problémát is felfedett. Egy korai futtatásban a 200 sikeresnek jelentett exploit közül 20 más zero-day sebezhetőségen keresztül szerzett root jogosultságot, mint amelyet az ügynöknek kellett volna kihasználnia. Az OpenAI erre úgy reagált, hogy minden exploit útvonalát egy független ellenőrzéssel is megvizsgálja.\n\nJúliusi végén a GPT-5.6 Sol 166 egyedi jogosultságkiterjesztési hibát talált 513 690 dollárból. Az októberi modell több mint ötször ennyit talált, pedig közben három hónapnyi kernelkeményítés is történt – közölte az OpenAI. Ha a korábbi Pwn2Own- és TyphoonPWN-versenyek jutalmaival számolunk, a 948 exploit elméleti értéke 18,9 és 66,3 millió dollár között lenne.\n\nA cég figyelmeztetése a védekezők számára egyértelmű: „Egy olyan operációs rendszeren, amely nincs frissítve a legújabb elérhető javításokkal, egy alacsony jogosultságú fiókhoz való hozzáférést funkcionálisan egyenértékűnek kell tekinteni a root-hozzáféréssel egy jól eleresztett támadó számára.\"",
+  "modell": "gemini-3.5-flash",
+  "cim": "Az OpenAI tesztmodellje 948 Linux-sérülékenységet talált egyetlen futtatással",
+  "lead": "Egy autonóm kiberbiztonsági kísérletben 1,2 millió dollárnyi API-kreditből 948 root-hozzáférést biztosító hibát tárt fel az OpenAI kísérleti ügynöke.",
+  "osszefoglalo": "Az OpenAI egy még nem publikus, kiberbiztonságra optimalizált fejlesztői modellt tesztelt a Linux-kernel legfrissebb kódján. A teszt során a rendszer 40 millió sornyi kód átnézése után **948 működő exploitot állított elő**, amelyekkel alacsony jogosultságú fiókból is root-hozzáférést lehetett szerezni. A vizsgálat során a szakértők 10 olyan teljesen új kihasználási technikát is azonosítottak, amelyeket korábban nem dokumentáltak.\n\nA teljes folyamat elszigetelt virtuális gépekben zajlott, és a biztonsági rendszerek, például a KASLR vagy az SMEP védelme mellett is működött. Az észlelt sebezhetőségekre a modell automatikusan javítási javaslatokat is generált. A felfedezett hibák felülvizsgálatát emberi kutatók végzik, és **több mint 60 sérülékenységet már javítottak** a hivatalos kódalapban.\n\nA kísérlet teljes költsége 1 213 430 dollárra rúgott, ami sérülékenységenként nagyjából 1279 dolláros kiadást jelent. A cég szerint az eredmény rámutat arra, hogy a jövőben nem a hibák felkutatása, hanem azok gyors ellenőrzése és javítása jelenti majd a legnagyobb kihívást a kiberbiztonságban.",
+  "miert_szamit": "A kísérlet bizonyítja, hogy a sérülékenységek felderítése szinte teljesen automatizálhatóvá válik. Ezért a nem frissített rendszereken a legkisebb szivárgás is **azonnali teljes hozzáférést jelenthet** egy felkészült támadónak.",
+  "cimkek": [
+    "OpenAI",
+    "kiberbiztonság",
+    "Linux",
+    "ügynök"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 91,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 95,
+      "hirertek": 95,
+      "egyediseg": 95,
+      "hitelesseg": 78,
+      "aktualitas": 95,
+      "kozossegi": 89
+    },
+    "elofeszures": 83,
+    "tanult": 79,
+    "indok": "Rendkívül jelentős kibervédelmi áttörés és kísérleti mérföldkő az OpenAI-tól. Forrás-tapasztalat: -2.",
+    "tema": "openai autonomous cyber security exploits",
+    "cim_hu": "Az OpenAI autonóm MI-je csaknem ezer Linux sérülékenységhez készített exploitot",
+    "lead_hu": "Az OpenAI kísérleti kiberbiztonsági modellje egyetlen futtatással 948 különböző Linux-kernel hibához hozott létre működő root-hozzáférést biztosító kódokat.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-05T07:06:06+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-05T07:07:39+00:00",
+  "megjelent": "2026-11-05T07:07:39+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-05T07:09:14+00:00",
+    "esemeny": "Az OpenAI közzétette, hogy egy kísérleti kiberbiztonsági MI-modellje 948 működő root-exploitot és hozzájuk tartozó javítási javaslatot állított elő a Linux-kernel sebezhetőségeire egyetlen tesztfuttatás során.",
+    "forrasok": [
+      "https://openai.com/index/a-thousand-fewer-paths-to-root/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-05T07:10:22+00:00"
+}
