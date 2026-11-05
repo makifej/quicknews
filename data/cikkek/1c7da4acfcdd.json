@@ -57,23 +57,19 @@
   "forditva": "2026-11-05T07:06:43+00:00",
   "megjelent": "2026-11-05T10:30:52.403Z",
   "tenyellenorzes": {
-    "ok": true,
-    "ido": "2026-11-05T10:32:25+00:00",
-    "esemeny": "A Bloomberg értesülései szerint az Apple csökkentette a mérnöki csapatai számára engedélyezett napi belső AI-használati keretet 300 dollárról 200 dollárra, és további költségcsökkentéseket tervez.",
+    "ok": false,
+    "ido": "2026-11-05T10:34:36+00:00",
+    "esemeny": "A Bloomberg értesülései szerint az Apple mérsékli a mérnöki és egyéb csapatai számára engedélyezett napi belső mesterségesintelligencia-használati költségkereteket.",
     "forrasok": [
       "https://techcrunch.com/2026/11/04/apple-is-reportedly-cutting-budgets-for-its-internal-ai-usage/"
     ],
     "hibak": [
-      "Az elírás javítása a leadben: 'eddi' helyett 'eddigi'."
+      "A leadben gépelési hiba szerepel: 'eddi' az 'eddigi' helyett.",
+      "a javított változat sem ment át: Az összefoglaló első bekezdése nem tartalmaz kötelező félkövér kiemelést."
     ],
     "kereses": [],
-    "javitva": true,
-    "javitas_elotti": {
-      "cim": "Az Apple drasztikusan csökkenti a dolgozói AI-használatának napi keretét",
-      "lead": "A technológiai óriás az eddi 300 dolláros napi korlátot 200 dollárra mérsékelte a mérnöki csapatoknál.",
-      "osszefoglalo": "Az Apple jelentősen visszavágja azt a költségkeretet, amelyet a belső mérnöki csapatai naponta mesterséges intelligenciára költhetnek. A cég korábban **300 dolláros napi korlátot** engedélyezett a mérnököknek a fejlesztési folyamatok támogatására, ezt az összeget azonban 200 dollárra csökkentették.\n\nA megszorítások a jövőben még szigorúbbak lehetnek, egyes részlegeknél 100 dollárra mérséklődhet a napi keret. A mérnöki területen kívüli dolgozóknál pedig akár **25 dolláros napi limitet** is bevezethetnek a céges használatra.\n\nA döntés mögött a vállalati AI-használat magas működési költségei állnak. A cégek a kezdeti lelkesedés után egyre pontosabban mérik a tokenalapú használat számláit a generált tényleges termelékenységi előnyökhöz képest.",
-      "miert_szamit": "A lépés jól mutatja, hogy a nagyvállalatok elkezdtek **racionálisabb AI-költségvetést** bevezetni a korlátlan belső használat helyett. Kisebb cégeknél is érdemes pontosan nyomon követni, hogy a fizetős AI-előfizetések valóban hozzák-e a várt hatékonyságnövekedést."
-    }
+    "javitva": false,
+    "ujraprobalva": true
   },
   "kiprobal_nezve": true,
   "termeklinkek_nezve": true,
