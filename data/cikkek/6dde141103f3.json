@@ -1,0 +1,49 @@
+{
+  "id": "6dde141103f3",
+  "slug": "getting-started-with-web-answer-on-amazon-bedrock-agentcore",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/getting-started-with-web-answer-on-amazon-bedrock-agentcore/",
+  "publikalva": "2026-11-05T21:04:24+00:00",
+  "cim": "Getting started with Web Answer on Amazon Bedrock AgentCore",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 65 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/04/ML-22248-featured-image.png"
+  },
+  "cim_eredeti": "Getting started with Web Answer on Amazon Bedrock AgentCore",
+  "szoveg_eredeti": "Today, we are announcing the general availability of Web Answer on Amazon Bedrock AgentCore. With Web Answer, agent builders get a synthesized, source-cited answer to a natural-language question with a single tool call. They no longer build a search, retrieve, synthesize, and citation pipeline themselves.\n\nIf you have built agents that need to answer questions from current web sources, you know the pattern: call a search API, decide which results to trust, retrieve and clean page content, prompt a model to synthesize, and engineer citation extraction so the output traces back to a source. Every step is code you maintain, and every step is another place things can go wrong: hallucination when evidence is insufficient, stale content when the index moves, and broken attribution when a claim and its source drift apart.\n\nThe Web Answer collapses that entire pipeline into one request. You send a question. You get back a cited answer in seconds. In this post, we explain what Web Answer does, compare it with Web Search on AgentCore, show how it works and what it returns, and walk through adding Web Answer to a gateway and calling it from an agent.\n\nFigure 1: Request flow from an agent through the Gateway to Web Answer and back\n\nYour agent sends a question to your AgentCore Gateway, a capability of Amazon Bedrock AgentCore. The Gateway authenticates the call with AWS Identity and Access Management (AWS IAM) or a JSON Web Token (JWT). The Gateway calls Web Answer, a managed connector that AWS owns, using its own service role. Web Answer plans its searches, runs several in parallel, and reads key pages to check the facts. When the evidence is insufficient, it searches again. It then writes an answer that ties each claim to its source URL. The Gateway returns the answer and its citations to your agent as a Model Context Protocol (MCP) tool result.\n\nWeb Answer is a managed AgentCore Gateway tool that takes a natural-language question and returns a synthesized answer in seconds grounded in current web sources. Here is what you get back:\n\nFigure 2: Demo video showing how to add Web Answer to an AgentCore Gateway, from setup to a finished, cited answer\n\nWeb Answer and the Web Search tools both support retrieval use cases, with different levels of integration complexity. The dividing line is who runs the model:\n\nMany customers will use both. An agent might use Web Search for broad research tasks where it needs raw results, and Web Answer for specific factual questions where it needs a quick, cited answer.\n\nWeb Answer is a connector that AWS owns. You reference it by ID, and the Gateway handles the tool schema, parameter governance, endpoint resolution, and authentication to the backend. In this walkthrough, you give your Gateway’s service role permission to call Web Answer, add a Web Answer target, and call it from a Strands agent.\n\nGetting started takes minutes. A Gateway administrator adds Web Answer as a target on an existing AgentCore Gateway, and the tool appears to any attached agent over MCP through tools/list and tools/call.\n\nNote: Following these steps creates AWS resources that incur charges. The Gateway and Web Answer invocations are billable. See the Pricing section that follows for details, and when you finish, delete the resources you created (see “Clean up resources”).\n\nThe Gateway uses its service role to act on your behalf. The role’s trust policy allows bedrock-agentcore.amazonaws.com to assume it, scoped to your account. For Web Answer, the role needs:\n\nAttach the policy to the service role as an inline policy:\n\nThe role controls only the Gateway’s outbound calls. Who can call your Gateway is set by its inbound authorizer. The role also doesn’t need bedrock:InvokeModel: your agent’s model runs under your agent’s own identity.\n\nAdd Web Answer as a connector target. The connectorId tells the Gateway which managed integration to provision: in this case, an agent that searches the web and writes a cited answer.\n\nOutbound authentication is automatic for connectors. With GATEWAY_IAM_ROLE, the Gateway calls the Web Answer backend with the service role from Step 1, so you don’t create or store any credentials for the tool. Wait until get_gateway_target reports the target status as READY before you call it.\n\nAs the Gateway administrator, you can also set a domain filter on the target. The filter applies to every call that goes through the target. To limit the target to a set of domains, set parameterValues to {\"domainFilter\": {\"include\": [\"bis.org\"], \"exclude\": [\"unreliable-source.net\"]}}.\n\nYour agent discovers Web Answer through the Gateway’s tools/list and calls it with tools/call, like any other MCP tool. This works with Strands Agents, LangChain, LangGraph, CrewAI, or any other MCP-compatible client.\n\nWhen a question needs current information, your agent calls the Web Answer tool (web-answer-tool___WebAnswer). Web Answer runs the agentic search and returns a finished answer with citations.\n\nBesides the question, the Web Answer tool takes optional arguments that your agent can set on each call: a domain filter to include or exclude sites, a published-date range, and a country to localize results. The agent’s domain filter is combined with the target’s filter. The agent can exclude more domains, or limit results to some of the target’s included domains, but it can’t add a domain that the target’s filter blocks.\n\nWeb Answer returns an MCP tool result with both content and structuredContent fields. The answer is markdown text with inline citation markers like [1], and structuredContent.answer carries the same text alongside a structured citations list:\n\nstructuredContent.answer normally holds a single block. Each citation carries the source url and, when available, the domain.\n\nDelete the Web Answer target when you no longer need it:\n\nIf you created the Gateway only for this walkthrough, delete its targets first, then the Gateway (delete_gateway), and then the service role and its policy. There is no persistent infrastructure on the AWS side beyond these resources. After they are removed, you stop incurring charges.\n\nWeb Answer inherits the same enterprise controls as other AgentCore tools:\n\nWeb Answer helps agents retrieve current, cited information to support a range of knowledge-intensive workflows. Example scenarios include:\n\nWeb Answer is available in US East (N. Virginia) (us-east-1), with more AWS Regions coming soon.\n\nWeb Answer on Amazon Bedrock AgentCore is priced at $10 per 1,000 tool calls.\n\nIn this post, we showed how Web Answer gives your agents current, cited answers through agentic search, with no search pipeline for you to build or maintain. We granted a Gateway service role access to Web Answer, added a Web Answer target, called it from a Strands agent, and read the answer and its citations from the response. Use Web Search on AgentCore when your own model should reason over raw results, and Web Answer when your agent needs a finished, cited answer.",
+  "begyujtve": "2026-11-05T21:34:17.312797+00:00",
+  "prioritas": {
+    "pont": 65,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 70,
+      "egyediseg": 90,
+      "hitelesseg": 78,
+      "aktualitas": 98,
+      "kozossegi": 54
+    },
+    "elofeszures": 85,
+    "tanult": 60,
+    "indok": "Praktikus AWS Bedrock fejlesztői funkció, amely leegyszerűsíti a hivatkozásokkal ellátott webes válaszadást. Forrás-tapasztalat: -7.",
+    "tema": "amazon bedrock web answer",
+    "cim_hu": "Elérhetővé vált a Web Answer funkció az Amazon Bedrock AgentCore-ban",
+    "lead_hu": "Az Amazon Web Services elérhetővé tette a Web Answer eszközt, amellyel az AI-ágensek egyetlen hívással képesek forrásmegjelöléssel ellátott válaszokat adni webes adatok alapján.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-05T21:34:29+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-05T21:34:29+00:00"
+}
