@@ -1,0 +1,49 @@
+{
+  "id": "8c75ebbfc8b6",
+  "slug": "a-baidu-megjelentette-az-ernie-5-5-flash-base-nyilt-sulyu-modellt",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/baidu-releases-open-weight-ern-U7RXHpGaTI6ID4rqKfvhVw",
+  "publikalva": "2026-11-05T17:32:39.101100+00:00",
+  "cim": "A Baidu megjelentette az ERNIE 5.5 Flash Base nyílt súlyú modellt",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 79 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/upload/t_limit/v1793901359/url_uploads/107295593-1693900544756-gettyimages-1251294603-PGONCHAR_7724_damewt.jpg"
+  },
+  "cim_eredeti": "A Baidu megjelentette az ERNIE 5.5 Flash Base nyílt súlyú modellt",
+  "szoveg_eredeti": "A Baidu csütörtökön, november 5-én kiadta az ERNIE-5.5-Flash-Base modellt. Ez egy nyílt súlyú, ritka aktivációjú (sparse) szakértői keverék (mixture-of-experts) nyelvi modell, amelynek összesen 280 milliárd paramétere van, ebből tokenenként 14 milliárd aktiválódik – áll a vállalat hivatalos közleményében. A súlyok az előtanítás végén készült ellenőrzőpontból (checkpoint) származnak, még a köztes (mid-training) és az utótanítási (post-training) szakasz előtt. A Baidu a modellt közös kiindulópontnak szánja a területspecifikus adaptációhoz, az utasításhangoláshoz és a megerősítéses tanulással kapcsolatos kutatásokhoz. A vállalat szerint a csevegésre kész változat még várat magára: „Ez az alapmodell csupán kiindulópont. Az utótanított ERNIE 5.5 Flash követni fogja” – írta az ERNIE csapata.\n\nA Baidu közlése szerint a modellt a nulláról, 33,5 billió tokenen előtanította, a tanítási kontextusablak pedig legfeljebb 128 000 token volt. A finomhangolás és a következtetés során akár 1 millió tokenes kontextust is támogat. A modelkártya 43 réteget említ. Ezek közül harminchét tömörített figyelmi sémát használ, amely 128 tokenes blokkonként egy gyorsítótár-bejegyzést tárol. Szinte minden réteg az 512 szakértő közül 10-hez irányít, emellett van egy megosztott szakértő is – számolt be a Unite.AI. A Baidu szerint „a hatékonyság az első pillanattól fogva tervezési cél volt”, és a modellt a tanítórendszerrel együtt, közösen tervezték meg.\n\nA Baidu saját tesztjeiben a modell a legtöbb tesztben megelőzte a rivális alapmodelleket, a DeepSeek-V4-Flash-Base-t, a Hy3-preview-Base-t és a MiMo-V2.5-Base-t. Az MMLU-n 93,3, a HumanEval+ teszten 82,3 pontot ért el, a FullStackBenchen és az InfiniteBenchen viszont lemaradt. Független értékelés eddig nem jelent meg.\n\nA modell súlyai FP8 és BF16 safetensors formátumban érhetők el a Hugging Face-en. A fejlesztők a vLLM-mel és az SGLang-gal futtathatják a modellt a completions API-n keresztül, a Baidu pedig kiadott egy vLLM-bővítményt, amelyben az utólag betanított ERNIE-5.5-Flash „hamarosan” felirattal szerepel. A futtatáshoz erős hardver kell. Már az FP8 checkpoint is körülbelül 288 GB, az NVIDIA teljes modellre vonatkozó finomhangolási receptje pedig 16 csomópontot használ, csomópontonként négy GB300 GPU-val.\n\nA modellt a Baidu saját, ERNIE 5.5 Flash Base Model License Agreement v1.0 nevű licencszerződése alapján adták ki. A felhasználási jogok kizárólag a „Területen” érvényesek, ami az Európai Unió, az Egyesült Királyság és Dél-Korea kivételével az egész világot lefedi. A nem kereskedelmi felhasználás ingyenes. Azoknak a kereskedelmi felhasználóknak, akiknek az éves kapcsolódó bevétele legfeljebb 50 millió dollár, egyszeri értesítést kell küldeniük a Baidunak, és fel kell tüntetniük a „Powered by ERNIE” feliratot; a nagyobb vállalatoknak viszont a Baidu előzetes írásos engedélyére van szükségük. A licenc azt is tiltja, hogy a modellt vagy annak kimeneteit független mesterségesintelligencia-rendszerek fejlesztésére használják, ami korlátozza a desztillációt. Egy elemzés szerint az „nyílt” jelző egyelőre csak azt jelenti, hogy a súlyok letölthetők, azt viszont nem, hogy a felhasználók mit tehetnek velük.",
+  "begyujtve": "2026-11-05T18:33:19.914396+00:00",
+  "prioritas": {
+    "pont": 79,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 95,
+      "hitelesseg": 75,
+      "aktualitas": 95,
+      "kozossegi": 77
+    },
+    "elofeszures": 84,
+    "tanult": 88,
+    "indok": "A Baidu egy 280 milliárd paraméteres nyílt súlyú MoE modellt adott ki, ami jelentős a nyílt forráskódú AI közösségnek. Forrás-tapasztalat: -2.",
+    "tema": "baidu ernie open weights release",
+    "cim_hu": "A Baidu kiadta a 280 milliárd paraméteres ERNIE 5.5 Flash Base nyílt súlyú modellt",
+    "lead_hu": "A Baidu elérhetővé tette az ERNIE 5.5 Flash Base nevű nyílt súlyú, szakértők keverékén alapuló nyelvi modelljét, amely tokenenként 14 milliárd aktív paraméterrel működik.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-05T18:35:09+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-05T18:35:11+00:00"
+}
