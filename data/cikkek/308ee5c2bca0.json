@@ -1,0 +1,49 @@
+{
+  "id": "308ee5c2bca0",
+  "slug": "openai-launches-gpt-image-2-6-flare-and-sunburst-adds-gifs-svg-export",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/04/openai-gpt-image-2-6-flare-sunburst/",
+  "publikalva": "2026-11-05T07:03:17+00:00",
+  "cim": "OpenAI Launches GPT-Image-2.6 Flare and Sunburst: Adds GIFs, SVG Export and 6-Second API Generation",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 84 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/Static_01_animate-gifs-scaled.png"
+  },
+  "cim_eredeti": "OpenAI Launches GPT-Image-2.6 Flare and Sunburst: Adds GIFs, SVG Export and 6-Second API Generation",
+  "szoveg_eredeti": "OpenAI just shipped Images 2.6 across ChatGPT, Codex and the API. For developers, the core release is GPT-Image-2.6, shipped as two API models: Flare and Sunburst. OpenAI team states that Images 2.6 generates images 50% faster than before. The update also adds GIF output, SVG export, markup-guided edits and a new complexity parameter.\n\n TL;DR \n\n Size: Closed weights, token-billed image API.\n\n Runs on: OpenAI-hosted only (ChatGPT, Codex, API).\n\n Performance: 50% faster image generation than the previous release, per OpenAI.\n\n Best: Flare can return an image in as little as 6 seconds at low quality.\n\n Worst: No benchmark scores and no per-image cost table published for 2.6.\n\n image source: openai \n\n What is GPT-Image-2.6? \n\n GPT-Image-2.6 is OpenAI’s image generation and editing model family for the API. It accepts text and image inputs and returns images. GPT-Image-2.6 Flare is built for fast iteration and interactive workflows. GPT-Image-2.6 Sunburst is built for detailed compositions and editing.\n\n OpenAI states that Flare can generate images in as little as 6 seconds when quality is set to low. Sunburst targets higher quality and stronger consistency across edits at medium or high quality. \n\n What changed in ChatGPT Images 2.6? \n\n ChatGPT users can now turn a prompt or a photo into an animated GIF. They can adjust animation speed, edit individual frames and share the result. Users can also save and tag reference images of people, pets and characters. Those references can be reused later without uploading them again.\n\n Usage keeps climbing. OpenAI says people now generate more than 4B images per week across ChatGPT and the API. That is up from more than 3B per week 8 weeks earlier, at the Images 2.5 launch. On average, that is over 500M images per day.\n\n How does the new complexity parameter work? \n\n The complexity field sets how much the model plans before it renders. The image generation guide lists 3 levels: low, medium and high. If you omit it, both models use high.\n\n Low suits focused edits, such as changing a background or a sign. High helps with dense text, complex layouts and relationships between objects. OpenAI warns that higher complexity can add latency and introduce unwanted changes. Adjusting complexity has no separate fee. It is separate from quality , which controls rendering detail and fidelity.\n\n Markup edits, SVG and GIF output in the API \n\n Image markup lets you mark up the exact region you want changed. The launch post says markup is coming to the API. The guide already lists markup-guided edits as supported for both models. It also lists SVG output and animated GIF output through the Image API.\n\n SVG matters for icons, diagrams and UI assets that must scale without blur. GIF output removes a separate animation step for social and product teams.\n\n How much does GPT-Image-2.6 cost? \n\n Pricing is token-based and identical for Flare and Sunburst, per the model pages : \n\n Text input: $5.00 per 1M tokens ($1.25 cached)\n\n Image input: $8.00 per 1M tokens ($2.00 cached)\n\n Image output: $30.00 per 1M tokens\n\n How does GPT-Image-2.6 compare with Nano Banana 2.1 and FLUX 3 Image? \n\n Feature GPT-Image-2.6 Flare / Sunburst GPT-Image-2.5 Flare / Sunburst Google Nano Banana 2.1 BFL FLUX 3 Image Released Nov 4, 2026 Sep 8, 2026 Oct 2026 Oct 1, 2026 Parameters Not disclosed Not disclosed Not disclosed Not disclosed (Klein: 5.6B ) Weights Closed Closed Closed Closed (Klein open, FLUX Kommunity License) Planning control complexity: low / medium / high Not disclosed Thinking: minimal / medium / high Bounding boxes in prompt Max reference images Not disclosed Not disclosed 14 10 Max output Not disclosed Not disclosed 4K 4K (about 16 MP) GIF output Yes Not disclosed Not disclosed Not disclosed SVG output Yes Not disclosed Not disclosed Not disclosed Pricing $8 / $30 per 1M image in / out $8 / $30 per 1M image in / out $0.0336 per 1K image $0.048 per 1K image Speed claim Flare: 6 s minimum at low quality Flare: up to 50% lower latency vs GPT-Image-2 Not disclosed Not disclosed \n\n Google and BFL publish per-image prices. Nano Banana 2.1 starts at $0.0336 per 1K image and reaches $0.113 at 4K. FLUX 3 Image starts at $0.048 per 1K image and reaches $0.607 at 4K. Its open-weight sibling, FLUX 3 Image Klein, runs on consumer GPUs down to an RTX 3090. OpenAI’s edge is native GIF and SVG output. Its gap is transparency on per-image cost and quality.\n\n Key Takeaways \n\n Flare returns images in as little as 6 seconds at low quality.\n\n Sunburst targets detail and edit consistency at medium or high quality.\n\n New complexity parameter (low, medium, high; default high) costs nothing extra.\n\n Token prices match GPT-Image-2.5: $30 per 1M image output tokens.\n\n Check out the launch post , the Flare model card , the Sunburst model card and the image generation guide . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post OpenAI Launches GPT-Image-2.6 Flare and Sunburst: Adds GIFs, SVG Export and 6-Second API Generation appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-05T08:18:54.568511+00:00",
+  "prioritas": {
+    "pont": 84,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 92,
+      "hirertek": 95,
+      "egyediseg": 95,
+      "hitelesseg": 78,
+      "aktualitas": 99,
+      "kozossegi": 76
+    },
+    "elofeszures": 86,
+    "tanult": 55,
+    "indok": "Az OpenAI jelentős képmodell-frissítése API újdonságokkal kiemelkedő technológiai hír. Forrás-tapasztalat: -7.",
+    "tema": "openai gpt-image update",
+    "cim_hu": "Megjelent az OpenAI GPT-Image-2.6: GIF-támogatás és kétszer gyorsabb generálás az API-ban",
+    "lead_hu": "Az OpenAI kiadta az Images 2.6 frissítést, amely Flare és Sunburst néven hoz új API-modelleket. A rendszer 50 százalékkal gyorsabb működést, GIF- és SVG-exportot, valamint új szerkesztési funkciókat biztosít.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-05T08:19:06+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-05T08:19:07+00:00"
+}
