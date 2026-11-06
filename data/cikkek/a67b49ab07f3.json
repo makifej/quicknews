@@ -1,0 +1,49 @@
+{
+  "id": "a67b49ab07f3",
+  "slug": "frontier-radar-5-if-agi-is-so-close-why-is-everyone-leaving-the",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/frontier-radar-5-if-agi-is-so-close-why-is-everyone-leaving-the-neolabs-and-their-bets/",
+  "publikalva": "2026-11-06T15:55:23+00:00",
+  "cim": "Frontier Radar #5: If AGI is so close, why is everyone leaving? The neolabs and their bets",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 66 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/11/Frontier-Radar-5-Neolabs-1200x675.png"
+  },
+  "cim_eredeti": "Frontier Radar #5: If AGI is so close, why is everyone leaving? The neolabs and their bets",
+  "szoveg_eredeti": "OpenAI is talking about the AGI era, and Nvidia CEO Jensen Huang says AGI has arrived. At the same time, co-creators of today's models are leaving OpenAI, Google DeepMind, and Meta to start their own labs, raising billions with no product to show. Why? They're betting that the current recipe alone won't be enough. We've sorted 45 neolabs by their research bets, mapped the limitations of today's AI they're trying to overcome, looked at what's already visible from their work, and explain why Nvidia always wins.\n\nSix times a year, THE DECODER's editorial team takes a deep dive into a foundational AI topic in its \"Frontier Radar\" series, published as a newsletter and exclusively on the site for THE DECODER subscribers. Issue #5 profiles 27 AI labs in detail, sorted by six research bets, plus nearly 20 more in brief and an overview covering origins, valuations, and what's publicly available. Issue #1 covered the current state of agentic AI. Issue #2 examined the measurable impact of AI on productivity. Issue #3 covered the emerging token economy of generative AI. Issue #4 asked what's left of the AI lead over China and where Europe stands.\n\nAfter the launch of GPT-6 Astra, Nvidia CEO Jensen Huang declared on X: \"AGI has arrived.\" OpenAI president Greg Brockman called the model a turning point and welcomed humanity to the \"AGI era\". What exactly the two men mean isn't clear, since there's no agreed-upon definition of AGI. The message comes through anyway: an extremely powerful AI, possibly a self-improving one, is imminent and the path is mapped out.\n\nMany of the people who built today's systems apparently see things differently. Dozens have left the big labs to start their own. Ilya Sutskever co-founded OpenAI and served as its chief scientist; now he's building Safe Superintelligence. Jerry Tworek led the development of OpenAI's reasoning models and now runs Core Automation. David Silver, the mind behind AlphaGo, left Google DeepMind for Ineffable Intelligence. Yann LeCun left Meta after twelve years and founded AMI. Jeff Dean spent 27 years at Google, most recently as chief scientist, and started Discovery Loop.\n\nThe money follows: Nvidia invested in SSI in July, reportedly five billion dollars according to Bloomberg. The lab hasn't released a single model or paper. Prometheus, Jeff Bezos' industrial AI lab, pulled in twelve billion dollars at a 41 billion valuation in June. Flapping Airplanes has no public model either and raised one billion dollars in an October Series A.\n\nThe motives are mixed, and not all technical. At these valuations, founders become paper billionaires fast. LeCun left after a strategy dispute with Meta. Sutskever wants to do research without product pressure. Others want to carve out a niche that would be a sideshow at a big lab. Some departures aren't even a clean break: Google itself is a founding investor in Discovery Loop.\n\nWhat many founders share is a doubt. Not about whether much more powerful AI is coming; some think AGI is close. Their doubt is about whether today's recipe alone gets there: ever-larger language models, trained on internet data, refined with reinforcement learning.\n\nThere's no official definition. We use the term for independently founded, research-driven AI companies that build their business around a long-term technical bet. They want to change how AI learns, perceives the world, solves problems, is controlled, or computes.\n\nThe current wave became visible in 2024. The race for the strongest models was in full swing, and the cloud giants had their partners: Microsoft backed OpenAI, Amazon backed Anthropic. Then Sutskever founded SSI in June and raised a billion dollars within months for a research team with no product.\n\nThere's a reason investors fund that. OpenAI and Anthropic have grown into corporations on the back of their success, and both are pursuing IPOs at record valuations. Internally, research teams compete with product teams for money and attention. Established companies struggle with ideas that threaten their business, management scholars call this the innovator's dilemma. That's what investors are betting on: a small team finds what the giants miss.\n\nThere are precedents. The Transformer was invented at Google in 2017. DeepMind beat the world's best Go players with AlphaGo. Yet the AI assistant for the masses came from OpenAI, founded as a nonprofit in 2015. The second breakout came from an OpenAI spinoff: Dario and Daniela Amodei founded Anthropic in 2021. By the end of July 2026, Bloomberg pegged its annualized revenue at over 65 billion dollars.\n\nThe real bet neolabs are making is on research gaps the big players don't fill, either because nobody knows the path or because nobody allocates resources for it. The big labs have more compute, established data pipelines, and feedback from hundreds of millions of users. What a small lab builds can show up at the market leader shortly after the first product ships.\n\nTypeSafe AI shows how short a lead can be. In mid-September it launched Jev, a decision model. Two weeks later, OpenAI announced its Decisions API. But even a brief lead shows expertise and can pay off as an exit. Microsoft hired the core team from Inflection. Google grabbed the founders of Character.ai and the leadership of Windsurf. AMD wants to acquire World Labs for about 8.2 billion dollars. Nvidia is in talks with Reflection, according to the Financial Times.\n\nFor neolabs, it all comes down to one question: can they deliver something the big players don't have, something customers or the big players themselves will pay for? We selected 27 labs, most from the US and Europe, and sorted them into six groups by their primary bet.\n\nToday's models can do remarkable things, but they learn differently from humans. They need massive amounts of data to pick up a skill, and once deployed, they typically don't update their weights. They can use new information within a conversation but don't permanently learn from every experience. Continual learning remains a central research gap. Six labs want to change that and attack the problem from three angles: learning during deployment (Adaption, Core Automation), learning from few examples (Flapping Airplanes, Ndea, SSI), and learning from experience (Ineffable).\n\nSara Hooker led research at Cohere and previously worked at Google Brain. In 2020, she argued in \"The Hardware Lottery\" that research approaches often win not because they're better but because they fit the available hardware. In January she followed up with \"On the Slow Death of Scaling\", arguing that more compute leads to better models less and less reliably. Data and training methods are more effective levers. Open models with 8 or 27 billion parameters now beat the much larger Falcon 180B on benchmarks.\n\nWith Sudip Roy, she founded Adaption. According to them, they are betting against scaling and plan to build efficient AI that continuously learns instead. Rather than one big model for everyone, models should adapt to their users on the fly and cheaply. The first products tackle the most obvious lever, data: tools for cleaning, visualizing, and automated training via AutoScientist. The actual goal, a model that learns during deployment, is still missing.\n\nJerry Tworek spent almost seven years at OpenAI, most recently as vice president of research, leading the development of the reasoning models o1 and o3. His critique of today's recipe comes from someone who helped build it. Co-founder Rohan Anil led Gemini's pre-training at Google.\n\nRetraining a trained network risks making it forget what it already knew. Researchers call this catastrophic forgetting. The Transformer wasn't built to learn on the fly during deployment either.\n\nChatGPT and Claude now take notes and retrieve earlier conversations as a workaround. Tworek doesn't think that's enough, as for him continual learning is a problem for machine learning, not for Markdown files, as he said. Core is looking for learning algor",
+  "begyujtve": "2026-11-06T16:04:42.291537+00:00",
+  "prioritas": {
+    "pont": 66,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 60,
+      "egyediseg": 95,
+      "hitelesseg": 80,
+      "aktualitas": 98,
+      "kozossegi": 44
+    },
+    "elofeszures": 80,
+    "tanult": 12,
+    "indok": "Érdekes iparági elemzés a kutatók felmondásáról és az új AI-laborokról, de inkább háttérelemzés.",
+    "tema": "ai startup neolabs agi",
+    "cim_hu": "Miért hagyják el a vezető kutatók a nagy AI-laborokat saját startupokért?",
+    "lead_hu": "Egy új elemzés szerint a kutatók arra fogadnak, hogy a jelenlegi technológiai receptek nem lesznek elegendőek az AGI eléréséhez, ezért tömegesen indítanak új laborokat.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-06T16:04:59+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-06T16:05:01+00:00"
+}

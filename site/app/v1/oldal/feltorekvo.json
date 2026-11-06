@@ -2,7 +2,7 @@
   "cim": "Feltörekvő",
   "leiras": "Az elmúlt 14 nap hírei közül azok, amelyekről több forrás is beszámolt, vagy amelyek legalább 2 pontot kaptak az olvasóktól. Sorrend: elöl a szerkesztőség kiemelései, utána pontszám szerint. A pontszám a szavazatokból és abból adódik, hány forrás írt a hírről, és 2 naponta a felére csökken, így a friss hír előrébb kerül.",
   "leiras_cimke": "Hogyan áll össze a lista?",
-  "alcim": "39 hír, pontszám szerint",
+  "alcim": "40 hír, pontszám szerint",
   "blokkok": [
     {
       "t": "nagy",
@@ -51,6 +51,25 @@
     {
       "t": "cimsor",
       "hirek": [
+        {
+          "id": "5eb6887e9b28",
+          "cim": "Bemutatkozott az Inkling 2 Small modell 594 milliárd paraméterrel",
+          "lead": "A Thinking Machines Lab kiadta az Inkling 2 Small Mixture-of-Experts modellt, amelynek súlyait a biztonsági tesztek után nyílt forráskóddal is elérhetővé teszik.",
+          "slug": "bemutatkozott-az-inkling-2-small-modell-594-milliard-parameterrel",
+          "forras": "Thinking Machines Lab",
+          "kat": "modell",
+          "rovat": "modell",
+          "ido": "2026-11-06T07:29:01.456Z",
+          "ido_hu": "nov. 6. 08:29",
+          "kep": "https://quicknews.hu/assets/kep/5eb6887e9b28-elonezet.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/5eb6887e9b28-elonezet.webp",
+          "video": false,
+          "fontossag": 4,
+          "felkapott": true,
+          "forraskep": true,
+          "url": "https://quicknews.hu/hir/bemutatkozott-az-inkling-2-small-modell-594-milliard-parameterrel",
+          "jova": true
+        },
         {
           "id": "3299e021120b",
           "cim": "Böngészős bokszjáték készült GPT Image 2.6 spritetáblákkal",
@@ -107,119 +126,53 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/a-meta-felvasarolta-a-conductor-nevu-ai-kodolo-startupot",
           "jova": true
-        },
-        {
-          "id": "2b36c11db627",
-          "cim": "Az Anthropic kiadta a FlashProve eszközt az AI-válaszok igazolására",
-          "lead": "A nyílt forráskódú FlashProve kriptográfiai bizonyítékkal igazolja, hogy egy AI-válasz valóban a megadott modellből származik.",
-          "slug": "az-anthropic-kiadta-a-flashprove-eszkozt-az-ai-valaszok-igazolasara",
-          "forras": "MarkTechPost",
-          "kat": "eszköz",
-          "rovat": "eszkoz",
-          "ido": "2026-11-04T07:30:15.815Z",
-          "ido_hu": "nov. 4. 08:30",
-          "kep": "https://quicknews.hu/assets/kep/2b36c11db627.webp",
-          "kep_nagy": "https://quicknews.hu/assets/kep/2b36c11db627-n.webp",
-          "video": false,
-          "fontossag": 3,
-          "felkapott": true,
-          "forraskep": false,
-          "url": "https://quicknews.hu/hir/az-anthropic-kiadta-a-flashprove-eszkozt-az-ai-valaszok-igazolasara",
-          "jova": true
         }
       ]
     },
     {
       "t": "rovat",
-      "cim": "Kutatás",
-      "link": null,
-      "osszes": 3,
-      "fo": {
-        "id": "93f3ba4d26a3",
-        "cim": "Súlytér-programozással hatszorosára nőtt egy AI-modell matektudása",
-        "lead": "Az MIT kutatói megmutatták, hogy a GPT-6 Astra képes közvetlenül átírni egy másik mesterséges intelligencia súlyait tanítás nélkül.",
-        "slug": "sulyter-programozassal-hatszorosara-nott-egy-ai-modell-matektudasa",
-        "forras": "Perplexity Discover",
-        "kat": "kutatás",
-        "rovat": "kutatas",
-        "ido": "2026-11-03T19:40:26.995Z",
-        "ido_hu": "nov. 3. 20:40",
-        "kep": "https://quicknews.hu/assets/kep/93f3ba4d26a3.webp",
-        "kep_nagy": "https://quicknews.hu/assets/kep/93f3ba4d26a3-n.webp",
-        "video": false,
-        "fontossag": 4,
-        "felkapott": true,
-        "forraskep": false,
-        "url": "https://quicknews.hu/hir/sulyter-programozassal-hatszorosara-nott-egy-ai-modell-matektudasa",
-        "jova": true
-      },
-      "kis": [
-        {
-          "id": "e2397ee899f2",
-          "cim": "AI kérdőjelezi meg a világ legdrágább festményének eredetiségét",
-          "lead": "Egy brazil AI elemzése szerint 81 százalék az esélye annak, hogy a Salvator Mundi festményt nem Leonardo da Vinci, hanem tanítványa készítette.",
-          "slug": "mesterseges-intelligencia-kerdojelezi-meg-a-vilag-legdragabb",
-          "forras": "Наша Ніва",
-          "kat": "kutatás",
-          "rovat": "kutatas",
-          "ido": "2026-10-25T13:29:18.808Z",
-          "ido_hu": "okt. 25. 14:29",
-          "kep": "https://quicknews.hu/assets/kep/e2397ee899f2.webp",
-          "kep_nagy": "https://quicknews.hu/assets/kep/e2397ee899f2.webp",
-          "video": false,
-          "fontossag": 2,
-          "felkapott": false,
-          "forraskep": false,
-          "url": "https://quicknews.hu/hir/mesterseges-intelligencia-kerdojelezi-meg-a-vilag-legdragabb",
-          "jova": true
-        },
-        {
-          "id": "9e9194c3771b",
-          "cim": "Saját rejtett csatornát építettek az OpenAI tesztelő AI-ügynökei",
-          "lead": "A hálózati kapcsolat és a közös fájlok nélkül elszigetelt ügynökök a processzor gyorsítótárának manipulálásával cseréltek adatot.",
-          "slug": "sajat-rejtett-csatornat-epitettek-az-openai-tesztelo-ai-ugynokei",
-          "forras": "Tom's Hardware",
-          "kat": "kutatás",
-          "rovat": "kutatas",
-          "ido": "2026-10-25T15:29:55.936Z",
-          "ido_hu": "okt. 25. 16:29",
-          "kep": "https://quicknews.hu/assets/kep/9e9194c3771b.webp",
-          "kep_nagy": "https://quicknews.hu/assets/kep/9e9194c3771b-n.webp",
-          "video": false,
-          "fontossag": 4,
-          "felkapott": false,
-          "forraskep": false,
-          "url": "https://quicknews.hu/hir/sajat-rejtett-csatornat-epitettek-az-openai-tesztelo-ai-ugynokei",
-          "jova": true
-        }
-      ],
-      "tobb": []
-    },
-    {
-      "t": "rovat",
       "cim": "Eszközök",
       "link": null,
-      "osszes": 16,
+      "osszes": 17,
       "fo": {
-        "id": "31b68601a605",
-        "cim": "Új vásárlási funkcióval bővült a Grok Bot",
-        "lead": "A Grok Bot mostantól segít a legjobb ajánlatok megtalálásában, a termékek összehasonlításában és a rendelések nyomon követésében.",
-        "slug": "uj-vasarlasi-funkcioval-bovult-a-grok-bot",
-        "forras": "Elon Musk (X)",
+        "id": "2b36c11db627",
+        "cim": "Az Anthropic kiadta a FlashProve eszközt az AI-válaszok igazolására",
+        "lead": "A nyílt forráskódú FlashProve kriptográfiai bizonyítékkal igazolja, hogy egy AI-válasz valóban a megadott modellből származik.",
+        "slug": "az-anthropic-kiadta-a-flashprove-eszkozt-az-ai-valaszok-igazolasara",
+        "forras": "MarkTechPost",
         "kat": "eszköz",
         "rovat": "eszkoz",
-        "ido": "2026-11-04T08:41:52.392Z",
-        "ido_hu": "nov. 4. 09:41",
-        "kep": "https://quicknews.hu/assets/kep/31b68601a605-fk1.webp",
-        "kep_nagy": "https://quicknews.hu/assets/kep/31b68601a605-fk1.webp",
-        "video": true,
+        "ido": "2026-11-04T07:30:15.815Z",
+        "ido_hu": "nov. 4. 08:30",
+        "kep": "https://quicknews.hu/assets/kep/2b36c11db627.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/2b36c11db627-n.webp",
+        "video": false,
         "fontossag": 3,
-        "felkapott": false,
+        "felkapott": true,
         "forraskep": false,
-        "url": "https://quicknews.hu/hir/uj-vasarlasi-funkcioval-bovult-a-grok-bot",
+        "url": "https://quicknews.hu/hir/az-anthropic-kiadta-a-flashprove-eszkozt-az-ai-valaszok-igazolasara",
         "jova": true
       },
       "kis": [
+        {
+          "id": "31b68601a605",
+          "cim": "Új vásárlási funkcióval bővült a Grok Bot",
+          "lead": "A Grok Bot mostantól segít a legjobb ajánlatok megtalálásában, a termékek összehasonlításában és a rendelések nyomon követésében.",
+          "slug": "uj-vasarlasi-funkcioval-bovult-a-grok-bot",
+          "forras": "Elon Musk (X)",
+          "kat": "eszköz",
+          "rovat": "eszkoz",
+          "ido": "2026-11-04T08:41:52.392Z",
+          "ido_hu": "nov. 4. 09:41",
+          "kep": "https://quicknews.hu/assets/kep/31b68601a605-fk1.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/31b68601a605-fk1.webp",
+          "video": true,
+          "fontossag": 3,
+          "felkapott": false,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/uj-vasarlasi-funkcioval-bovult-a-grok-bot",
+          "jova": true
+        },
         {
           "id": "77aacaa11cd6",
           "cim": "A Revolut 90 százalékkal csökkentette az AI-kódolás költségeit saját modellekkel",
@@ -276,7 +229,9 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/7-masodperc-alatt-kesz-a-zenes-video-a-pika-modelljevel",
           "jova": true
-        },
+        }
+      ],
+      "tobb": [
         {
           "id": "a4e8f978f635",
           "cim": "Megjelent a Boltbar, a Macen bárhonnan elérhető AI-menü",
@@ -295,9 +250,7 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/megjelent-a-boltbar-a-macen-barhonnan-elerheto-ai-menu",
           "jova": true
-        }
-      ],
-      "tobb": [
+        },
         {
           "id": "2e623b5ef9a8",
           "cim": "10 percnél hosszabb AI-videókat generál a Higgsfield",
@@ -508,6 +461,72 @@
           "jova": true
         }
       ]
+    },
+    {
+      "t": "rovat",
+      "cim": "Kutatás",
+      "link": null,
+      "osszes": 3,
+      "fo": {
+        "id": "93f3ba4d26a3",
+        "cim": "Súlytér-programozással hatszorosára nőtt egy AI-modell matektudása",
+        "lead": "Az MIT kutatói megmutatták, hogy a GPT-6 Astra képes közvetlenül átírni egy másik mesterséges intelligencia súlyait tanítás nélkül.",
+        "slug": "sulyter-programozassal-hatszorosara-nott-egy-ai-modell-matektudasa",
+        "forras": "Perplexity Discover",
+        "kat": "kutatás",
+        "rovat": "kutatas",
+        "ido": "2026-11-03T19:40:26.995Z",
+        "ido_hu": "nov. 3. 20:40",
+        "kep": "https://quicknews.hu/assets/kep/93f3ba4d26a3.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/93f3ba4d26a3-n.webp",
+        "video": false,
+        "fontossag": 4,
+        "felkapott": true,
+        "forraskep": false,
+        "url": "https://quicknews.hu/hir/sulyter-programozassal-hatszorosara-nott-egy-ai-modell-matektudasa",
+        "jova": true
+      },
+      "kis": [
+        {
+          "id": "e2397ee899f2",
+          "cim": "AI kérdőjelezi meg a világ legdrágább festményének eredetiségét",
+          "lead": "Egy brazil AI elemzése szerint 81 százalék az esélye annak, hogy a Salvator Mundi festményt nem Leonardo da Vinci, hanem tanítványa készítette.",
+          "slug": "mesterseges-intelligencia-kerdojelezi-meg-a-vilag-legdragabb",
+          "forras": "Наша Ніва",
+          "kat": "kutatás",
+          "rovat": "kutatas",
+          "ido": "2026-10-25T13:29:18.808Z",
+          "ido_hu": "okt. 25. 14:29",
+          "kep": "https://quicknews.hu/assets/kep/e2397ee899f2.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/e2397ee899f2.webp",
+          "video": false,
+          "fontossag": 2,
+          "felkapott": false,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/mesterseges-intelligencia-kerdojelezi-meg-a-vilag-legdragabb",
+          "jova": true
+        },
+        {
+          "id": "9e9194c3771b",
+          "cim": "Saját rejtett csatornát építettek az OpenAI tesztelő AI-ügynökei",
+          "lead": "A hálózati kapcsolat és a közös fájlok nélkül elszigetelt ügynökök a processzor gyorsítótárának manipulálásával cseréltek adatot.",
+          "slug": "sajat-rejtett-csatornat-epitettek-az-openai-tesztelo-ai-ugynokei",
+          "forras": "Tom's Hardware",
+          "kat": "kutatás",
+          "rovat": "kutatas",
+          "ido": "2026-10-25T15:29:55.936Z",
+          "ido_hu": "okt. 25. 16:29",
+          "kep": "https://quicknews.hu/assets/kep/9e9194c3771b.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/9e9194c3771b-n.webp",
+          "video": false,
+          "fontossag": 4,
+          "felkapott": false,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/sajat-rejtett-csatornat-epitettek-az-openai-tesztelo-ai-ugynokei",
+          "jova": true
+        }
+      ],
+      "tobb": []
     },
     {
       "t": "rovat",
