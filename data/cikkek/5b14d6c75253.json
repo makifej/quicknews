@@ -1,0 +1,49 @@
+{
+  "id": "5b14d6c75253",
+  "slug": "interactive-web-applications-combine-artificial-intelligence-with",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/interactive-web-applications-combine-artificial-intelligence-with-modular-scientific-simulation-engines/",
+  "publikalva": "2026-11-06T15:22:41+00:00",
+  "cim": "Interactive Web Applications Combine Artificial Intelligence with Modular Scientific Simulation Engines",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 51 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-1512.jpg"
+  },
+  "cim_eredeti": "Interactive Web Applications Combine Artificial Intelligence with Modular Scientific Simulation Engines",
+  "szoveg_eredeti": "Interactive Web Applications Combine Artificial Intelligence with Modular Scientific Simulation Engines\n\nResearchers and educators studying complex dynamical systems frequently encounter significant technical barriers when selecting computational modeling platforms, as traditional scientific software environments such as MATLAB, Mathematica, AnyLogic, and R often demand specialized training curricula before users can build or modify functional models. To address these operational hurdles, computer scientists Richard Salter and Wayne M. Getz have introduced an open, browser-based simulation ecosystem built upon their proprietary NuWebKit architecture. Published in Frontiers in Systems Biology, the investigation documents an interactive computational environment that executes simulations directly within standard web browsers or on remote computing servers without requiring client software installations. The system incorporates artificial intelligence capabilities that translate plain language prompts into functional simulation routines, alongside an editable runtime framework that allows practitioners to modify mathematical formulations directly on a running interface. By decoupling the core computational engine from front-end visual components, the design aims to democratize access to advanced mathematical modeling across biological, epidemiological, and ecological disciplines.\n\nThe structural foundation of the platform relies on Runtime Alterable Module, or RAM, technology, an architectural feature developed through the authors’ earlier work on Numerus Designer and Numerus Studio. In contrast to conventional random-access memory hardware, this software mechanism allows users to dynamically insert or alter mathematical equations on the fly using a concise domain-specific syntax rather than editing underlying engine code. NuWebKit applications maintain a single, unified code base across diverse modeling domains, achieving project-specific customization through dedicated JSON configuration files termed project DNA. This centralized specification file designates interface geometry, root deployment directories, control widgets, and analytical modules. Consequently, the simulation engine can be deployed client-side in native JavaScript for routine educational models, or hosted server-side utilizing high-performance Java APIs connected via WebSockets when executing demanding mathematical workloads that exceed standard browser execution capabilities.\n\nTo guarantee computational precision across discrete and continuous modeling frameworks, the NuWebKit simulation engine implements rigorous state-management protocols during iterative clock cycles. The simulator subdivides clock pulses into distinct computational phases, beginning with a step phase that calculates prospective state values, followed by a shift phase that concurrently commits the newly computed values to the active model state, and concluding with an update phase that broadcasts data to the visual dashboard. The system organizes variable updates using specialized store and stock data structures to maintain strict concurrency across distributed model components. For continuous systems defined by differential equations, stock structures handle numerical integration through a fourth-order Runge-Kutta algorithm, designated as RK4, paired with user-specified integration time intervals. Conversely, systems governed by discrete difference equations employ Euler integration with unitary step parameters, ensuring consistent temporal progression regardless of whether underlying model logic is deterministic or stochastic.\n\nBeyond classical compartmental calculus, the platform provides comprehensive native infrastructure for spatial and agent-based simulations by adapting foundational motifs from established platforms like NetLogo. In this context, mobile entities termed turtles navigate across spatial environments divided into discrete cells known as patches, overseen by coordinated base classes that regulate state transitions across clock cycles. Unlike rigid Cartesian grids that introduce geometric distance distortions between diagonal and rectilinear neighbors, NuWebKit incorporates hexagonal patch arrays that preserve equal spatial relationships among adjacent coordinates. Developers can configure spatial topologies to feature hard boundaries where agents bounce like billiard balls, or continuous toroidal geometries that wrap edge boundaries seamlessly. During execution cycles, targeted optimization algorithms monitor internal state modifications, restricting iterative computational updates exclusively to active cells and proximate entities, thereby preserving processing bandwidth during large-scale ecological or cellular simulations.\n\nThe user-facing environment consolidates interactive operation into a responsive dashboard complemented by an expandable slide-out drawer housing configuration controls, documentation panels, and preset managers. Through the drawer interface, users can store up to twenty-six distinct runtime operational configurations as persistent browser presets, enabling rapid navigation between diverse parameter suites without reloading the host page. Preset zero remains permanently hardcoded to default factory parameters, while subsequent memory registers retain custom parameter valuations, mathematical variations, and widget arrangements locally across distinct browser sessions. For specialized analyses, dashboard tabs extend base model functionality by launching dedicated analytical engines. These supplementary platforms include automated parameter fitting engines employing the Nelder-Mead simplex algorithm against uploaded empirical datasets, sensitivity analysis displays plotting variance across repeated parametric sweeps, and Monte Carlo stochastic iteration engines generating probability distributions and extinction timelines.\n\nAt the center of user-driven customization is NuML, a specialized domain-specific language designed by the researchers to encode mathematical models without forcing users to manage interface plumbing. NuML adopts JavaScript syntax augmented by two distinctive infix operators: the definition operator, written as @=, and the configuration operator, written as #=. The definition operator pairs state variables with functional mathematical roles, allowing modelers to assign time derivatives via deriv call expressions, advance sequences via next expressions, specify initial boundary values, or direct numerical outputs into graphical widgets via update directives. Concurrently, the configuration operator sets operational simulation properties, defining slider parameters, graph limits, and integration methods. NuML incorporates a rich library of mathematical primitives and random sampling functions, including normal, Poisson, binomial, and multinomial distribution generators, enabling users to construct intricate stochastic models directly within browser coding fields.\n\nThe authors integrated large language model artificial intelligence interfaces directly into the NuWebKit architecture to automate the translation of natural language modeling descriptions into validated NuML code. Supported commercial and open-weight models, including Gemini, ChatGPT, and DeepSeek, receive system instructions establishing NuML syntactic grammar and structural rules. When an operator inputs a natural language prompt, the selected language model produces two synchronized deliverables: an executable NuML script and a comprehensive technical documentation document rendered with Markdown formatting and MathJax mathematical typography. The AI workspace maintains isolated conversation threads across multiple artificial intelligence engines simultaneously, permitting researchers to pivot between distinct language models without losing context, while automatically purging conversation histories whenever users switch simulation presets to prevent parameter cross-contamination across unr",
+  "begyujtve": "2026-11-06T15:34:12.439662+00:00",
+  "prioritas": {
+    "pont": 51,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 50,
+      "egyediseg": 90,
+      "hitelesseg": 70,
+      "aktualitas": 92,
+      "kozossegi": 31
+    },
+    "elofeszures": 75,
+    "tanult": 26,
+    "indok": "Tudományos modellezést segítő AI-eszközről szóló kutatási cikk, de szűk szakmai közönséget érint. Forrás-tapasztalat: -6.",
+    "tema": "ai scientific simulation web apps",
+    "cim_hu": "Mesterséges intelligenciával kombinálják az interaktív tudományos szimulációs motorokat",
+    "lead_hu": "Új webes alkalmazások teszik egyszerűbbé a komplex dinamikus rendszerek modellezését azáltal, hogy a mesterséges intelligenciát moduláris szimulációs motorokkal ötvözik.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-06T15:34:19+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-06T15:34:21+00:00"
+}
