@@ -1,0 +1,49 @@
+{
+  "id": "671b07a9ce2d",
+  "slug": "researcher-sshole-a-decade-old-openssh-flaw-lets-attackers-use-a",
+  "forras_id": "techmeme",
+  "forras_nev": "BleepingComputer",
+  "url": "https://www.bleepingcomputer.com/news/security/openssh-flaw-lets-attackers-log-into-password-disabled-linux-accounts/",
+  "publikalva": "2026-11-06T16:30:00+00:00",
+  "cim": "Researcher: *sshole, a decade-old OpenSSH flaw, lets attackers use a password of 256+ characters to log into passwordless accounts on some musl Linux systems (Lawrence Abrams/BleepingComputer)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.bleepstatic.com/content/hl-images/2026/11/05/ssh-header-image.jpg"
+  },
+  "cim_eredeti": "Researcher: *sshole, a decade-old OpenSSH flaw, lets attackers use a password of 256+ characters to log into passwordless accounts on some musl Linux systems (Lawrence Abrams/BleepingComputer)",
+  "szoveg_eredeti": "A newly disclosed flaw involving OpenSSH and musl, dubbed \"*sshole,\" allows attackers to log in to certain Alpine Linux and other musl-based Linux accounts configured to block password authentication simply by entering an oversized password.\n\nThe flaw only affects OpenSSH servers running on Linux distributions that use the musl C library, including Alpine Linux, OpenWrt, Buildroot, and Yocto, under certain authentication configurations.\n\nSecurity researcher Ozgun Kultekin, who discovered and released details on the vulnerability today, says the flaw has existed since 2016 and stems from how OpenSSH handles password verification errors on systems using the musl C library.\n\nLinux accounts can be configured to prevent password logins by replacing their password hash with an asterisk (*) in the /etc/shadow file. Because this is not a valid password hash, no password should allow access to those accounts.\n\nHowever, a patch introduced in OpenSSH in 2016 to fix a username enumeration vulnerability tracked as CVE-2016-6210 changed how OpenSSH handled accounts without usable password hashes.\n\nTo prevent attackers from identifying valid usernames through different response times, OpenSSH was modified to perform password hashing even when an account had no usable password hash, including accounts configured with * to block password logins.\n\nThe problem is that the musl C library's crypt() function also returns * when password hashing fails, including when a submitted password exceeds its 256-byte limit.\n\nThis means an attacker can submit an oversized password and cause OpenSSH to compare the returned * against the account's stored *, resulting in a successful login.\n\nTo be clear, the flaw does not allow attackers to bypass passwords on accounts with valid password hashes.\n\nKultekin says exploitation requires the following conditions:\n\nThe researcher warns that Alpine Linux's official AWS and Azure cloud images have an affected default 'alpine' account with passwordless 'doas' privileges, which could allow attackers to gain root access.\n\nSystems using glibc, including Debian, Ubuntu, and Fedora, and those using PAM authentication are not vulnerable to this attack.\n\nKultekin says he discovered the vulnerability using AI agents that ran about 17,600 authentication tests with different OpenSSH configurations, malformed password hashes, and oversized passwords.\n\nThe vulnerability has been fixed in OpenSSH 10.6p2, and Alpine Linux administrators are advised to update their OpenSSH packages using apk upgrade openssh.\n\nAdmins who can't immediately install the update can mitigate the issue by turning off SSH password authentication with PasswordAuthentication no in their SSH server configuration and restarting SSH.\n\nKultekin says admins can also check for signs of exploitation by examining SSH authentication logs for password-based logins for accounts that should not allow them.\n\nOn Alpine Linux, the following command can reveal successful SSH password logins:\n\nIf the logs show a successful password login for the alpine account, administrators can check whether that account has password authentication disabled:\n\nIf the account's password field contains *, but SSH logs show a successful password login, it could indicate that the vulnerability was exploited.\n\nAdaptive Security's AI agents analyze email intent, context, and behavior to uncover phishing, business email compromise, and invoice fraud.\n\nSee what's getting through with a 14-day read-only scan of Microsoft 365 or Google Workspace, with no MX changes.\n\nAlpine Linux rebuilds GitLab after attempted RCE attack\n\nCritical Linux kernel flaw allows remote root attacks on MPTCP servers\n\nCISA alerts of active exploitation of three Linux kernel flaws\n\nHackers backdoor Linux servers using trojanized CWP web server\n\nGhostMap Android flaw lets malicious app trigger persistent boot loop",
+  "begyujtve": "2026-11-06T16:34:01.195305+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 80,
+      "egyediseg": 90,
+      "hitelesseg": 86,
+      "aktualitas": 98,
+      "kozossegi": 47
+    },
+    "elofeszures": 87,
+    "tanult": 57,
+    "indok": "Kiberbiztonsági sebezhetőség OpenSSH és musl Linux rendszerekben, AI szempontból nem releváns",
+    "tema": "cybersecurity openssh vulnerability",
+    "cim_hu": "Évtizedes OpenSSH-sebezhetőséget találtak bizonyos Linux rendszerekben",
+    "lead_hu": "Feltártak egy biztonsági rést a musl C könyvtárat használó Linux disztribúciókban, amely lehetővé teszi a jelszó nélküli fiókokba való belépést túl hosszú jelszó megadásával.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-06T16:34:15+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-06T16:34:19+00:00"
+}
