@@ -1,0 +1,50 @@
+{
+  "id": "67b1ef37564c",
+  "slug": "livestream-quantization-explained-by-the-people-who-ship-it",
+  "forras_id": "linkedin",
+  "forras_nev": "Hugging Face (LinkedIn)",
+  "url": "https://www.linkedin.com/feed/update/urn:li:activity:7524426516693200896/",
+  "publikalva": "2026-11-06T11:04:38.664000+00:00",
+  "cim": "🔴 Livestream: Quantization, explained by the people who ship it",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 54 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.licdn.com/dms/image/v2/D4E1EAQEUlIYCaHYEbA/event-background-image-crop_720_1280/B4EaGrfYW7IIAQ-/0/1793878493098?e=2147483647&v=beta&t=JWeL-WBKFRFrnnXPViIUNZl9OrcVq_1tKbXRNk4ez88",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7524426516693200896"
+  },
+  "cim_eredeti": "🔴 Livestream: Quantization, explained by the people who ship it",
+  "szoveg_eredeti": "🔴 Livestream: Quantization, explained by the people who ship it\n\nModels keep getting bigger, but our GPUs don't. Quantization is the main reason you can run a strong open model on a single GPU, or even on your laptop. In this livestream, people who do this every day will take you from \"what is quantization?\" to running quantized models fast with llama.cpp and vLLM.\n\nHere's the program 👇\n\n 🤗 Introduction to Quantization\n Merve Noyan , Hugging Face, open-sourceress\n\nA model is billions of numbers, usually stored with 16 bits each. Quantization stores them with fewer bits, like 8 or 4, so the model takes a fraction of the memory and often runs faster, with only a small loss in quality. Merve will explain how it works, then show it in practice in llama.cpp , so you can run a quantized model on your own machine.\n\n📊 Calibration-based quantization \n Colin Kealty (aka bartowski), RedHat, a legend in the GGUF community \n\nNot every weight matters equally. Calibration runs a small sample of text through the model to find which weights matter most, then rounds in a way that keeps those accurate, so the errors land where they hurt the least.\nThat's the idea behind the importance matrix (imatrix) in llama.cpp , and behind methods like GPTQ and AWQ. If you've ever downloaded a GGUF, there's a good chance it was one of Colin's.\n\n🧪 Quantization-Aware Distillation\n Maxime Labonne & Aditya Tadimeti , Liquid AI, GOATs of the post-training team\n\nQuantizing after training is quick, but at very low bit widths quality can drop. Quantization-aware distillation adds a short training step: the quantized model (the student) learns to copy the outputs of the original full-precision model (the teacher), so it learns to work around its own rounding errors. You end up with a small, low-bit model that behaves much closer to the original, which is exactly what you want for on-device models like the ones Liquid AI builds.\n\n⚡ Fast Micro-scaling Formats on Any GPU with vLLM\n Misha Goin , Red Hat, the mastermind behind vLLM efficiency. \n\nMicroscaling formats like MXFP4 (the format gpt-oss shipped in) and NVFP4 are 4-bit formats built into the newest GPUs, which can do math on them directly. That makes models faster, not just smaller. Michael will show how vLLM runs them fast on any GPU, not just the latest ones.\n\nWhether you've never quantized a model or you already ship your own quants, you'll leave with ideas you can try the same day. Bring your questions!",
+  "begyujtve": "2026-11-06T11:48:32.297886+00:00",
+  "prioritas": {
+    "pont": 54,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 45,
+      "egyediseg": 90,
+      "hitelesseg": 92,
+      "aktualitas": 98,
+      "kozossegi": 58
+    },
+    "elofeszures": 87,
+    "tanult": 70,
+    "indok": "Fejlesztői élő közvetítés hirdetése a Hugging Face-től, promóciós jellegű. Forrás-tapasztalat: -5.",
+    "tema": "huggingface quantization livestream",
+    "cim_hu": "Élő előadást tart a Hugging Face az AI-modellek kvantálásáról",
+    "lead_hu": "A Hugging Face szakértői élő stream során mutatják be a kvantálás alapjait és a modellek helyi futtatásának technikai részleteit.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-06T11:50:08+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-06T11:50:48+00:00"
+}

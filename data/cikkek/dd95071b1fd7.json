@@ -1,0 +1,51 @@
+{
+  "id": "dd95071b1fd7",
+  "slug": "18-of-the-20-best-open-models-today-are-mixture-of-experts-dense-is",
+  "forras_id": "linkedin",
+  "forras_nev": "Hugging Face (LinkedIn)",
+  "url": "https://www.linkedin.com/feed/update/urn:li:activity:7524363338684973056/",
+  "publikalva": "2026-11-06T06:53:35.853000+00:00",
+  "cim": "18 of the 20 best open models today are Mixture-of-Experts. Dense is basically over.",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 69 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "mp4",
+    "url": "https://dms.licdn.com/playlist/vid/v2/D4D05AQEZdTxTcBXnqQ/mp4-640p-30fp-crf28/B4DaGtT6XnHIB4-/0/1793909051721?e=2147483647&v=beta&t=RfffZKvHIq7yE9HvbKIUeHa7vHFsOnwQCB4UeGCNSrE",
+    "kep": "https://media.licdn.com/dms/image/v2/D4D05AQEZdTxTcBXnqQ/videocover-high/B4DaGtT6XnHIBM-/0/1793909043321?e=2147483647&v=beta&t=Ercxjl5NCJ1lrOmsB89O3s-VqMT7dF0W8oAuTiF0wKw",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7524363338684973056"
+  },
+  "cim_eredeti": "18 of the 20 best open models today are Mixture-of-Experts. Dense is basically over.",
+  "szoveg_eredeti": "18 of the 20 best open models today are Mixture-of-Experts. Dense is basically over.\n\nAnd yet the know-how to train a good MoE still lives mostly in the heads of a handful of teams.\n\nSo we spent 800k GPU hours running the experiments ourselves and wrote everything down. Super happy to finally release \"The Ultimate MoE Training Handbook\", free and open.\n\nQuick refresher if you're not deep in this: an MoE splits each layer into many small \"experts\" and sends every token to only a few of them. You get a very large model for the compute cost of a much smaller one, which is why DeepSeek, Qwen, Kimi and most of the best open models went this way. The catch is that training one well is hard.\n\nThe handbook is organized around the questions training teams actually hit:\n- how many experts, how big, shared or not?\n- why is half my step spent in all-to-all, and how do I hide it?\n- why is my run 25x slower with no error in the logs?\n- softmax, sigmoid or sqrt(softplus) router, and why keep it in fp32?\n- aux loss or DeepSeek's loss-free bias?\n- upcycle a dense checkpoint or train from scratch?\n- can I serve with fewer experts per token than I trained with?\n\n⚠️ Fair warning: it's long (~70k words, budget a few days, sorry), but with 55 interactive figures, code you can run and numbers from our own runs.\n\nLink: https://lnkd.in/d-VDxQVq",
+  "begyujtve": "2026-11-06T11:48:32.298484+00:00",
+  "prioritas": {
+    "pont": 69,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 85,
+      "hitelesseg": 88,
+      "aktualitas": 90,
+      "kozossegi": 59
+    },
+    "elofeszures": 93,
+    "tanult": 50,
+    "indok": "Technikailag értékes, nyílt kézikönyv a nyílt forráskódú MoE modellek tanításáról a Hugging Face-től. Forrás-tapasztalat: -5.",
+    "tema": "huggingface moe training handbook",
+    "cim_hu": "Ingyenes MoE modellképzési kézikönyvet tett közzé a Hugging Face",
+    "lead_hu": "A Hugging Face nyílt útmutatót adott ki a Mixture-of-Experts nyelvi modellek tanításáról, miután 800 ezer GPU-órás kísérletsorozatot végzett el.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-06T11:50:08+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-06T11:51:18+00:00"
+}
