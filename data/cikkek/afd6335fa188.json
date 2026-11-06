@@ -1,0 +1,49 @@
+{
+  "id": "afd6335fa188",
+  "slug": "taxonomy-of-agentic-primitives-in-amazon-quick",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/",
+  "publikalva": "2026-11-06T17:34:45+00:00",
+  "cim": "Taxonomy of agentic primitives in Amazon Quick",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 50 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/03/ML-21505-featured-image.png"
+  },
+  "cim_eredeti": "Taxonomy of agentic primitives in Amazon Quick",
+  "szoveg_eredeti": "Over the past year, as we built Amazon Quick, our agents went from answering questions to taking actions: scheduling meetings, running research, generating reports. As the system evolved, one problem kept resurfacing: there was no shared definition of the primitives that agentic work is built from. The same few ideas kept getting rebuilt under different names: an actor that does the work, a signal that starts it, a packaged procedure, and a memory that carries lessons forward. This repetition leaked into product design and onto the user.\n\nTake the user who says “monitor my Slack channel and send me a daily digest”. Is that a new agent, a scheduled instruction to an existing one, a workflow, or a skill? These are different questions, but without a shared vocabulary they collapse into one confusing choice.\n\nThis post shares the taxonomy we converged on: one set of primitives found by decomposing agentic work into four plain questions: When?, What?, Who?, and How? Most of the framework stays invisible to end users by design, but a shared vocabulary makes the system easier to reason about for anyone building beneath it.\n\nFigure 1: How triggers, agents, and capabilities relate, with learning feeding back from the session runtime\n\nA trigger starts the work and carries the task (When and What), an agent takes it on (Who) and uses its capabilities (tools, skills, and workflows) to perform the task (How). This post describes these primitives and how they relate to one another. It’s the first post in a series, and upcoming posts cover our agentic operating system, background learning, proactive feeds, and much more.\n\nTriggers are the activation mechanism for getting work done, but they also carry instructions: a human message is both the moment of activation and the description of what to do. They are both the When? and the What? of a task.\n\nThe type of trigger conditions the execution: a scheduled background task might stay conservative (for example, do nothing if uncertain), while a human-initiated one would be responsive (for example, ask rather than stop).\n\nWe define an agent as a persistent, learning actor. It’s the Who? in any execution, and the anchor against which learning accrues. Two agents given identical input can differ, because they carry different instructions, capabilities, and histories. The agent isn’t the instructions it follows. It’s the entity that interprets them. It consists of three things:\n\nEverything else is extrinsic: the large language model (LLM) underlying the agent is a swappable model parameter, conversation history is per-session state, and triggers belong to the platform.\n\nA consequence of this definition is that a user request “I want an agent that monitors my Slack and sends a digest every morning” is usually a trigger added to an existing agent, not a new agent or workflow. With this framing, we can merge chat, scheduled, and “autonomous” agents into one actor that you can converse with, schedule, and that can orchestrate and inspect its own past work.\n\nCapabilities are How an agent acts, spanning a spectrum from fully agentic to fully deterministic. That axis is really a confidence contract: how much latitude the agent keeps versus how much the user fixes in advance.\n\nTools are atomic operations with a typed schema: send an email, query a database, read a file. Whether a local function, a Model Context Protocol (MCP) server, or another agent behind a protocol boundary, the caller sees the same interface: name, description, parameters, result.\n\nSkills are structured guidance with room for judgment: instructions bundled with resources (templates, scripts, examples) that describe an approach rather than a rigid sequence. They load through progressive disclosure, so the agent sees only names and short descriptions until one becomes relevant, then reads the full instructions in. A skill can therefore bundle arbitrary depth of expertise without a constant cost.\n\nWorkflows are deterministic coordination: declared steps, control flow, branching, and error handling that execute in fixed order, with decision logic in code rather than model inference. Think of a purchase-approval route: budget check, manager sign-off, then finance, each recorded. The route is fixed, but the judgment inside a step is still the agent’s.\n\nFigure 2: Skills versus workflows, which differ in whether the agent or the code decides the step order\n\nA natural question arises: if models keep improving, won’t skills and workflows become unnecessary? We don’t think so, because each holds value independent of model capability. Skills are the unit for capturing, versioning, and sharing institutional expertise, while workflows deliver auditability, step-wise visibility, and deterministic multi-service coordination. Nor are they fixed: a well-understood skill can tighten into a workflow (crystallization), a workflow that keeps hitting edge cases can loosen back into a skill (dissolution). This is done in Quick through our continuous learning framework, which we will describe in a future post.\n\nReturn to “monitor my Slack channel and send me a daily digest”. Because these primitives compose, the same request can be met several valid ways:\n\nAll three produce a daily digest on a schedule. What differs is the confidence contract. A user who trusts the agent wants the first, one burned by inconsistency the second, one running a compliance-sensitive process the third.\n\nLearning shifts that trajectory over time. A task that starts as one sentence (“check my email for urgent items”) accumulates domain-bound learnings: effective queries, preferred formatting, and which senders matter. The tenth run is markedly better, with no one encoding that by hand. The right design is the simplest option that meets the user’s confidence requirement, with a path to graduate through autonomous learning when they need more.\n\nThe value of this agentic primitive taxonomy is that four plain questions, When, What, Who, and How, are enough to place any piece of agentic work, from a one-line chat request to a scheduled, compliance-grade process. Sharing one vocabulary lets builders reason about the system and lets the product hide complexity. Best of all, the user never has to learn any of it. They say what they want, and the system assembles the appropriate primitives to do their job.\n\nNext in the series: the agentic operating system that builds on these primitives and powers Amazon Quick.",
+  "begyujtve": "2026-11-06T18:18:59.169196+00:00",
+  "prioritas": {
+    "pont": 50,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 50,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 95,
+      "kozossegi": 31
+    },
+    "elofeszures": 78,
+    "tanult": 32,
+    "indok": "Technikai jellegű AWS blogposzt az ágensi AI alapelveiről, szűk fejlesztői közönségnek. Forrás-tapasztalat: -6.",
+    "tema": "aws amazon quick agentic ai",
+    "cim_hu": "Rendszerezte az AI-ágensek alapvető építőelemeit az Amazon Web Services",
+    "lead_hu": "Az Amazon Quick fejlesztése során szerzett tapasztalatok alapján az AWS közzétett egy keretrendszert az autómata AI-ágensek működési alapelemeiről.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-06T18:19:12+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-06T18:19:18+00:00"
+}
