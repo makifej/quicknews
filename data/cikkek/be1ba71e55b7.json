@@ -1,0 +1,49 @@
+{
+  "id": "be1ba71e55b7",
+  "slug": "toyblocks-a-controlled-world-for-robot-learning-and-evaluation",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/allenai/toyblocks",
+  "publikalva": "2026-11-06T14:00:48+00:00",
+  "cim": "ToyBlocks: A controlled world for robot learning and evaluation",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 64 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/OAJMu2jr7i5jVAbmsKdZW.jpeg"
+  },
+  "cim_eredeti": "ToyBlocks: A controlled world for robot learning and evaluation",
+  "szoveg_eredeti": "💻 Code | 📊 Data | 🤖 Models | 📖 Documentation\n\nRobots are learning to fold laundry, sort parts, and handle unfamiliar objects. But those demonstrations are often rather narrow and don't explain what a robot has learned or why it fails.\n\nTo study a complex system, scientists often begin with a small, controlled environment, such as a petri dish or terrarium, where they can vary conditions and observe the effects. Robotics needs environments that make this kind of investigation possible—researchers should be able to change the training data or model design, repeat a test, and trace the cause of a failure.\n\nToday we're introducing a framework for creating these environments; we call them FoundationWorlds. Each pairs a controlled, simulated world targeted at studying robotics in a specific environment with tools for automatically generating tasks and training demonstrations, as well as metrics for measuring a robot's behavior over time. Together, they provide a setting for studying questions such as how models improve as more training data becomes available, and how to best combine high-level reasoning with precise physical control.\n\nOur first foundation world is ToyBlocks: an open simulation framework built around a robot arm and blocks on a tabletop. The setting is deliberately simple, but the robot must still reason about how the blocks interact and how to arrange them while pushing, flipping, and stacking.\n\nToyBlocks automatically generates demonstrations, which are recordings of a robot completing tasks in simulation, without requiring time-consuming teleoperation, in which a person remotely controls the robot. Researchers can easily vary these training experiences. For example, a team could generate more pushing or flipping demonstrations, then evaluate performance on tasks kept out of training.\n\nStarting with ToyBlocks as our first FoundationWorld, we aim to extend the approach to increasingly complex environments.\n\nBuilding on our earlier work in open robot learning, including MolmoAct 2, MolmoBot, and MolmoSpaces, ToyBlocks gives researchers a way to study robotics questions in a deliberately constrained domain.\n\nAs a FoundationWorld, ToyBlocks is designed around four requirements: (1) realistic physics and appearance, (2) automatic generation of tasks and demonstrations at scale, (3) challenges that combine reasoning with dexterity, and (4) broad coverage of the tasks possible within a domain.\n\nOpen-ended domains require modeling a wide range of objects and interactions, making it infeasible to fulfill all these requirements. ToyBlocks’ narrow scope, on the other hand, makes it possible to fulfill them all.\n\nWithin ToyBlocks' smaller setting, researchers can work toward investigating how a robot can learn to perform any reasonable task while being confident that the simulated arm and blocks behave very similarly to their physical counterparts.\n\nA physical robot gripper above wooden blocks in the ToyBlocks setup.\n\nToyBlocks is not just about picking and stacking blocks: pictures and letters on the blocks' faces allow for searching, sorting, and arranging tasks. A robot may need to turn a block to see a hidden face before deciding where it belongs. Domain randomization – varying block size, table height, and other physical properties from scene to scene – tests how well models generalize as the geometry changes.\n\nToyBlocks automatically generates skills (behaviors for short tasks) and task demonstrations that can be used to train models or adapt previously trained models through additional training (fine-tuning). High-level reasoning models decide what to do; low-level action models control the robot’s movements. The framework can also be used to easily design experiments and validate hypotheses.\n\nToyBlocks uses reinforcement learning (RL) and motion planning, which computes how the robot should move, to generate skills for short-horizon tasks, which involve brief sequences of actions. Skill training takes place in Isaac Lab, Nvidia's open-source framework for robot learning in simulation. Through trial and error, these policies – models that choose the robot’s actions – learn non-prehensile skills such as pushing a block across the table or flipping it onto another face without picking it up. Skill generation can draw on privileged information – values the simulator can supply directly but a real robot cannot, such as a block's exact position and orientation – instead of estimating it from camera images. This enables the automatic generation of skills that would require teleoperation in the real world.\n\nTo generate demonstration data, a task-and-motion planner (TAMP) automatically selects and sequences the skills needed to solve a task and plans the robot’s movements between them. Running each plan in simulation produces a dataset of recorded demonstrations along with labels describing which task or skill the robot performs. ToyBlocks scales data generation through generating and executing hundreds of such plans in parallel on a single graphics processing unit (GPU), reaching up to 24 times real-time performance.\n\nActing from sensor observations adds a perception problem: a model has to estimate a block’s pose – its position and orientation – which the simulator could supply directly. To reflect real-world conditions, ToyBlocks trains models that map raw sensor observations to actions.\n\nExecution of Molmo 2 (a high-level model) and ManiFlow (a low-level model) trained in ToyBlocks. Molmo 2 selects skills such as rotation and flipping, indicating the relevant block via a pointing interface, while ManiFlow controls the simulated arm to execute the commanded skills.\n\nToyBlocks' controllable data generator lets users create training mixtures that emphasize particular skills or fill gaps in existing datasets. Researchers can study how much data a model needs and which experiences help it generalize to unseen tasks. For example, they could test whether adding rotation and pick-and-place demonstrations improves flipping, or vary the balance of examples inside and outside a defined workspace region—evaluating their choices on tasks kept out of training. Importantly, evaluation of trained models generates metrics beyond success rates; it provides information such as execution speeds, forces exerted on objects, and task progress measured via the same specifications used by the planning module.\n\nA webpage interface lets users connect Claude – or another frontier model – and use natural language to instruct the robot or try tasks, offering a way to explore how a model plans and acts without needing robotics expertise.\n\nThe evaluations below use ToyBlocks to study how training data and methods affect performance, spatial reasoning, generalization to new letters and block appearances, multi-step planning, transfer to physical robots, and frontier models that act through tools. Users can easily design their own tasks and measures to investigate other questions—for example, whether a model performs better when it selects objects by pointing or by issuing text commands such as \"pick the yellow block.\"\n\nLow-level action models, such as vision-language-action models (VLAs), map language instructions and visual observations to robot actions.\n\nThe premise of VLAs is that, by pretraining on large-scale datasets, they can rapidly generalize to different scenarios or a specific workspace. However, evidence on how well these action models generalize remains conflicting. Some studies report that these action models are brittle to changes in inputs, such as different object layouts and lighting, whereas others show that VLAs generalize well. We argue that these studies often rely on real-world datasets with limited flexibility in spatial variations. ToyBlocks enables us to test how well action models generalize in a simple, easily reproducible setting with meaningful task-space diversity.\n\nWe design generalization tests that vary the skill sequences needed to complete an",
+  "begyujtve": "2026-11-06T14:02:27.815344+00:00",
+  "prioritas": {
+    "pont": 64,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 65,
+      "egyediseg": 85,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 64
+    },
+    "elofeszures": 94,
+    "tanult": 84,
+    "indok": "Hugging Face robotikai tesztkörnyezet kiadása kutatóknak, tudományos benchmark Forrás-tapasztalat: -5.",
+    "tema": "robotics evaluation toyblocks",
+    "cim_hu": "Megjelent a ToyBlocks robotikai tesztkörnyezet a Hugging Face-en",
+    "lead_hu": "A kutatók egy kontrollált digitális környezetet hoztak létre a robotok tanulási és döntési folyamatainak átláthatóbb vizsgálatára és értékelésére.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-06T14:04:20+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-06T14:04:25+00:00"
+}
