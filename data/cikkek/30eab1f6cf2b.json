@@ -1,0 +1,49 @@
+{
+  "id": "30eab1f6cf2b",
+  "slug": "how-agentic-artificial-intelligence-is-reshaping-agricultural",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/how-agentic-artificial-intelligence-is-reshaping-agricultural-research-and-farming-operations/",
+  "publikalva": "2026-11-06T19:27:13+00:00",
+  "cim": "How Agentic Artificial Intelligence Is Reshaping Agricultural Research and Farming Operations",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 42 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-1746.jpg"
+  },
+  "cim_eredeti": "How Agentic Artificial Intelligence Is Reshaping Agricultural Research and Farming Operations",
+  "szoveg_eredeti": "How Agentic Artificial Intelligence Is Reshaping Agricultural Research and Farming Operations\n\nArtificial intelligence researchers are outlining a transformative shift in agricultural science and farming operations, moving beyond static predictive algorithms toward autonomous multi-agent systems capable of perceiving dynamic environments, executing complex reasoning, and coordinating physical field interventions. According to a comprehensive scientific review published in npj Sustainable Agriculture by an international research team led by Daoyuan Jin, agentic artificial intelligence represents an evolving technological paradigm designed to tackle operational hurdles in global crop production. Unlike earlier agricultural software relying on rigid dashboards or isolated machine learning models, agentic systems deploy autonomous entities that receive high-level objectives rather than granular instructions. These systems iteratively gather environmental data, query external tools, generate structured plans, and execute multi-step workflows with minimal human intervention. While artificial intelligence has begun entering agriculture through specialized chatbots and diagnostic models, the review emphasizes that agentic workflows expand these capabilities by coupling reasoning-capable foundation models with structured planning, active environment interaction, and modular tool use across phenomics, crop management, field robotics, and policy.\n\nThe review traces the technical taxonomy underpinning these systems, delineating the progression from basic autonomous entities to intelligent agents and coordinated multi-agent architectures. In artificial intelligence research, an intelligent agent is formally characterized by three operational hallmarks: reactivity to environmental dynamics, proactivity in pursuing designated objectives, and social capability to communicate and cooperate with other autonomous entities or human managers. While early agent research in the 1990s and 2000s relied on rigid multi-layer frameworks such as Touring Machines and InteRRaP, the integration of large language models provides unprecedented flexibility, contextual comprehension, and dynamic problem-solving capacity. Modern architectures combine these foundation models with retrieval-augmented generation and external memory modules. Retrieval-augmented generation enables models to ground reasoning in external agronomic databases rather than remaining confined to static pre-training weights, while external memory retains critical seasonal context beyond the restrictive boundaries of standard model context windows, facilitating sustained adaptation across changing farm conditions.\n\nAt their architectural core, agricultural intelligent agents operate within a continuous four-part feedback loop comprising perception, reasoning and decision-making, action, and continuous learning and adaptation. Perception captures ambient conditions through diverse sensory channels, including visual, thermal, olfactory, haptic, and acoustic sensors tailored to specific biological and field tasks. The action component translates computational choices into real-world outcomes, utilizing software application programming interfaces in digital spaces or physical robotic actuators, mobile bases, and end-effectors in field settings. To standardize interactions, emerging systems adopt the Model Context Protocol to decouple tool development from underlying foundation models, enabling dynamic tool discovery, schema negotiation, and asynchronous execution. Simultaneously, inter-agent coordination is mediated through standardized communication channels like the Agent-to-Agent protocol. The authors observe that specialized, domain-tailored agents consistently outperform generic general-purpose foundation models, which often suffer from hallucinations, misinterpret complex biological trade-offs, and lack technical grounding in agricultural engineering or agronomic realities.\n\nTo map the existing research landscape, the authors conducted a systematic literature search in the Web of Science Core Collection spanning November 30, 2022, to November 30, 2025, using the query agent AND (agriculture OR food) AND Large Language Model. The three-year window intentionally tracked developments following the public launch of ChatGPT. The initial query yielded 19 results, which were screened to exclude general systems engineering, health, climate modeling, and review publications, leaving ten indexed papers that were augmented by citable arXiv preprints to establish a final corpus of 19 works. The authors categorized these studies into three structural levels: Single Agent Chat, Single Agent Action, and Agent Systems. Chat implementations such as AgriBERT, ChatAgri, PLLaMa, and PlantGPT focused on textual knowledge retrieval, whereas Action agents like ChatLeafDisease and Wu et al.’s expert systems executed diagnostic tasks and management decisions. Multi-agent systems, representing the most complex tier, coordinated specialized autonomous workflows across agricultural domains.\n\nThe review highlights PhenoAssistant as an exemplary conversational multi-agent system designed to democratize high-throughput plant phenotyping for biological researchers lacking advanced computational coding skills. Powered by an orchestrator manager agent using GPT-4o, PhenoAssistant guides users through a structured four-stage workflow consisting of plan generation, tool selection, tool execution, and result summarization. Researchers submit natural-language instructions detailing target parameters, such as leaf area measurements or growth rate calculations. The manager agent then decomposes the prompt into discrete steps, queries a specialized toolkit comprising computer vision models, literature retrieval, and statistical code generators, and synthesizes outputs into structured tables and growth curves. During systematic empirical evaluations across twenty phenotyping tasks, the framework achieved an average tool-selection score of 4.55 out of 5, recorded 100 percent accuracy in two vision-model selection tests, and achieved 85 percent accuracy across twenty phenotype data-analysis tasks, with remaining errors occurring during fine-grained plot interpretations while keeping biological hypothesis oversight with human scientists.\n\nDemonstrating autonomous scientific exploration, the authors examined Aleks, a multi-agent framework developed by members of the author team to conduct plant science discovery. Aleks deploys three collaborative agents—a Domain Scientist, a Data Analyst, and a Machine Learning Engineer—that communicate through a shared reflective memory recording intermediate hypotheses, code executions, and analytical errors for iterative debugging. In an empirical pilot evaluation focused on grapevine red blotch disease, the system was provided with raw vineyard datasets and an open-ended natural-language instruction to predict disease emergence. Without manual technical steering, Aleks formulated testable hypotheses, engineered canopy and epidemiological features, trained predictive algorithms, and produced reproducible analytical pipelines. Across five independent experimental runs per target year, Aleks generated classification models for 2023 predictions achieving accuracy and weighted F1 scores reaching up to 0.95, while regression models for 2024 attained R-squared values up to 0.82, highlighting key predictive traits including historical disease incidence and vegetation indices.\n\nThe review also details the Peanut Agentic AI System, an unpublished conceptual multi-agent architecture devised by team members to support in-season peanut cultivation decisions. Structured around a central orchestrator named OrchestratorAgenticAI, the framework maintains an auditable Task and Evidence Ledger tracking task identifiers, assigned agents, processing statuses, sensor sources, timestamps, and returned recommendations. Coordination is managed v",
+  "begyujtve": "2026-11-06T19:34:01.068301+00:00",
+  "prioritas": {
+    "pont": 42,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 30,
+      "egyediseg": 95,
+      "hitelesseg": 68,
+      "aktualitas": 100,
+      "kozossegi": 21
+    },
+    "elofeszures": 75,
+    "tanult": 14,
+    "indok": "Általános összefoglaló tanulmány az AI mezőgazdasági használatáról, konkrét termékbejelentés nélkül. Forrás-tapasztalat: -6.",
+    "tema": "agentic ai in agriculture",
+    "cim_hu": "Autonóm AI-ágensek alakíthatják át a mezőgazdasági kutatásokat és a termelést",
+    "lead_hu": "Egy friss tudományos áttekintés szerint az autonóm többágenses rendszerek radikálisan átalakíthatják az agráriumot. A kutatók szerint az AI túlmutat majd az egyszerű előrejelző algoritmusokon.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-06T19:34:11+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-06T19:34:16+00:00"
+}
