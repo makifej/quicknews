@@ -1,0 +1,77 @@
+{
+  "id": "31d2571efd2e",
+  "slug": "matematikai-attorest-ert-el-egy-mi-rendszer-a-kvantumszamitasban",
+  "forras_id": "techmeme",
+  "forras_nev": "PSI",
+  "url": "https://psi.inc/research/aaronson-ambainis/",
+  "szerzo": null,
+  "publikalva": "2026-11-06T19:35:01+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://psi.inc/og/ring-arch-2.png"
+  },
+  "cim_eredeti": "AI physics startup PSI says a system running a non-public Anthropic model proved the Aaronson-Ambainis conjecture, a quantum computing question open since 2008 (PSI)",
+  "forrasok": [],
+  "szoveg_eredeti": "The Aaronson-Ambainis conjecture is now a theorem.\n\nOpen since 2008, the conjecture of Scott Aaronson and Andris Ambainis concerns when quantum computers can be exponentially faster than ordinary ones. Now, a research system developed internally at Physical Superintelligence (PSI), running a non-public Anthropic model, found a proof for it, settling one of the most fundamental questions in quantum computing.\n\nIn 1994, Peter Shor found a quantum algorithm that factors large numbers far faster than any known method for ordinary computers [1]. It works because the problem hides a repeating pattern, and the quantum computer finds how often it repeats. Like most dramatic quantum speedups known, Shor’s algorithm relies on structure: a promise that the input has a rare pattern.\n\nWhether quantum computers can be exponentially faster on random inputs, which almost never have such structure, was unknown. Aaronson and Ambainis found a way to settle this question using pure mathematics. They stated a conjecture about polynomials and showed that, if it is true, quantum computers are at most polynomially faster on random inputs. Researchers have counted the conjecture among the central open problems of quantum complexity theory [3, 4].\n\nAt PSI, we found the proof with a research system we developed internally, in a run on our own infrastructure. Instances of a non-public Anthropic model were used in the run. The system had a complete proof of the conjecture during the third day of the run, and Lean, a proof assistant in which a computer checks every step, accepted it. We then set the system to work on related open problems. Along the way, the system improved the result twice, and Lean accepted the final version. The proof builds on ideas of Shachar Lovett and Jiapeng Zhang, of David Reimer and of others [5, 6].\n\nIn August 2026, Guy Blanc, Jordan Docter, Carmen Strassle and Li-Yang Tan of Stanford University had settled the conjecture’s prediction in a special case, proving that there is no exponential speedup on random inputs for quantum algorithms that look at their input in a fixed number of parallel rounds [7].\n\nThey have since been reading our proof of the full conjecture, have sent us comments and are writing a shorter exposition of it for experts. They wrote to us:\n\n“This is a huge result. It resolves a decades-old conjecture with important implications for the nature of problems that admit quantum speedups. The proof draws on and extends several lines of work in the analysis of boolean functions and probabilistic combinatorics. Everything is brought together in a rather magical way.”\n\nQuantum computing still has plenty of mysteries, but now there is one fewer.\n\nSpeedups like Shor’s can be measured in looks: how many times a computer has to read its input, a long string of 0s and 1s. With each look, an ordinary computer reads one bit of the string, while a quantum computer’s look can be spread in superposition over many positions. When the string is promised to repeat, as in Shor’s algorithm, a quantum computer needs exponentially fewer looks than any ordinary computer.\n\nAaronson and Ambainis asked whether a quantum computer can answer a yes-or-no question about a random string with exponentially fewer looks than an ordinary computer. To show that it cannot, it is enough to show that an ordinary computer can imitate the quantum computer without many more looks. The quantum computer says yes with a probability that depends on the string, so imitating it means estimating that probability.\n\nBeals, Buhrman, Cleve, Mosca and de Wolf had shown that after T looks, this probability is a polynomial in the bits of the string, of degree at most 2T, with values between 0 and 1 [8]. So the ordinary computer has to predict the value of a polynomial of this kind while reading only a few bits of the string. Aaronson and Ambainis stated a conjecture about these polynomials, a statement of pure mathematics, and showed that if it is true, an ordinary computer can make the prediction with few looks.\n\nNow that the conjecture is proven, we know for sure that an ordinary computer can predict the quantum computer’s probability of saying yes, up to a small error, for all but a small fraction of strings. The number of looks the ordinary computer needs grows at most like a fixed power of T (for any fixed error and fraction), not exponentially. So on yes-or-no questions, a quantum computer cannot save exponentially many looks unless the string has a rare pattern.\n\nThe conjecture concerns the influence of a bit: the average change in a polynomial’s value when the bit is flipped from 0 to 1 or vice versa. To picture influence, think of a polynomial as a dial wired to on-off switches, where the ith switch is the 0/1 value of the ith bit. Each group of at most d switches adds its own amount, positive or negative, when all the switches in the group are on (d is the polynomial’s degree). The dial’s reading (the polynomial’s value) always stays between 0 and 1. The quantum computer’s probability of saying yes is one of these dials: the string sets the switches, and d is at most 2T.\n\nLet v measure how much the dial’s reading varies across settings (the reading’s variance). Aaronson and Ambainis conjectured that flipping some switch moves the reading, on average, by at least a fixed power of v/d, however many switches there are.\n\nA degree-2 polynomial f on four bits, f(x) = 0.1 + 0.5x4 + 0.2x1x2 + 0.1x3. The switches set the input and the needle shows f(x). Each corner of the cube is one of the 24=16 inputs, shaded by its value of f, and flipping a switch moves to a neighboring corner along one of that bit’s edges. The influence of a bit is the change in f when it is flipped, squared and averaged over all 16 inputs. Bit 4’s is much larger than the others’.\n\nThe ordinary computer in the method of Aaronson and Ambainis knows how the quantum computer’s dial is wired. The ordinary computer looks at one unseen bit of large influence after another. Once the dial’s reading varies little over the remaining switches, the ordinary computer stops and outputs the average reading as its prediction [2]. The conjecture guarantees that, until the ordinary computer stops, some unseen bit has large influence.\n\nWe prove that if the reading of a dial f is not constant, then some bit i has\n\nwhere c=815/(125π4), about 0.0025, and Infi(f) is the squared change from flipping bit i, averaged over all inputs as in the figure.\n\nEarlier bounds for general polynomials decay exponentially in the degree. The earliest bound follows from a theorem of Dinur, Friedgut, Kindler and O’Donnell [9]. For polynomials with values only 0 and 1, the conjecture already followed from theorems of O’Donnell, Saks, Schramm and Servedio and of Nisan and Szegedy [10, 11]. Other special cases of the conjecture were proved by Montanaro; by Ivanisvili; by Bansal, Sinha and de Wolf; and by Escudero Gutiérrez, among others [12, 13, 14, 15].\n\nOur proof follows a plan of Shachar Lovett and Jiapeng Zhang [5]. For every level between 0 and 1, the plan looks at the switch settings where the dial’s reading is at or above the level. At every setting, the plan gives each switch a weight, so that flipping any group of switches moves the dial’s reading by at most the total weight of the group. Lovett and Zhang left one inequality of their plan as a conjecture. Our proof replaces the conjectured inequality with a new inequality, proved in the manuscript. To prove the new inequality, we pair up switch settings one to one, and a determinant produces the pairing. David Reimer’s Butterfly Lemma [6] already gives a weaker pairing; our pairing also limits how often paired settings agree on each switch, and the new inequality needs the limit. The proof also uses results of Avantika Agarwal and Shalev Ben-David [16]; Raghav Kulkarni and Avishay Tal [17]; and Yuval Filmus, Hamed Hatami, Nathan Keller and Noam Lifshitz [18].\n\nDavid Turturean, Member of Technical Staff",
+  "modell": "gemini-3.5-flash",
+  "cim": "Matematikai áttörést ért el egy MI-rendszer a kvantumszámításban",
+  "lead": "A Physical Superintelligence kutatói egy nem nyilvános Anthropic-modell segítségével bebizonyították a kvantuminformatika egyik legfontosabb nyitott sejtését.",
+  "osszefoglalo": "A Physical Superintelligence (PSI) kutatói [bebizonyították az Aaronson-Ambainis-sejtést](https://github.com/physical-superintelligence/aaronson-ambainis), amely 2008 óta volt a kvantumszámítási elmélet egyik legfontosabb nyitott kérdése. A bizonyításhoz egy nem nyilvános Anthropic-modellt futtató, saját fejlesztésű rendszert használtak, az eredmény helyességét pedig a Lean tételbizonyító szoftver ellenőrizte és fogadta el.\n\nA most igazolt tétel azt határozza meg, hogy a kvantumszámítógépek milyen esetekben tudják exponenciálisan felgyorsítani a számításokat a hagyományos gépekhez képest. Az eredmény szerint a kvantumszámítógépek **csak ritka, speciális mintázatú adatoknál nyújtanak exponenciális sebességelőnyt**, míg a véletlenszerű adatok kezelésekor a teljesítménybeli előnyük korlátozott marad.\n\nEz az áttörés megmutatja, hogy a mesterséges intelligencia képes évtizedes, komplex matematikai és elméleti informatikai problémák önálló és teljes körű bizonyítására. A PSI kutatói a rendszert a sikeres teszt után már újabb nyitott matematikai kérdések megoldására alkalmazzák.",
+  "miert_szamit": "A fejlemény azt bizonyítja a gyakorlatban, hogy az AI-rendszerek **a tudományos és matematikai alapkutatásban is áttörést hozó partnerekké váltak**.",
+  "cimkek": [
+    "kvantumszámítás",
+    "Anthropic",
+    "kutatás",
+    "Physical Superintelligence"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Lean"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 90,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 92,
+      "hirertek": 95,
+      "egyediseg": 100,
+      "hitelesseg": 86,
+      "aktualitas": 99,
+      "kozossegi": 84
+    },
+    "elofeszures": 91,
+    "tanult": 82,
+    "indok": "Áttörő tudományos eredmény, ahol egy AI modell bizonyított be egy 2008 óta nyitott kvantumszámítási sejtést Forrás-tapasztalat: -3.",
+    "tema": "anthropic psi quantum conjecture",
+    "cim_hu": "Nyitott kvantumszámítási matematikai probléma bizonyítására volt képes egy Anthropic AI-modell",
+    "lead_hu": "A PSI startup belső rendszere egy nem nyilvános Anthropic modellt használva bebizonyította a 2008 óta nyitott Aaronson-Ambainis sejtést.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-06T19:49:17+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-06T19:49:33+00:00",
+  "megjelent": "2026-11-06T19:49:33+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-06T19:49:39+00:00",
+    "esemeny": "A Physical Superintelligence (PSI) kutatói egy nem nyilvános Anthropic-modell segítségével bebizonyították a kvantuminformatika egyik legfontosabb nyitott sejtését, az Aaronson–Ambainis-sejtést. A bizonyítást a Lean nevű tételbizonyító szoftver is ellenőrizte és elfogadta.",
+    "forrasok": [
+      "https://psi.inc/research/aaronson-ambainis/",
+      "https://github.com/physical-superintelligence/aaronson-ambainis"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-06T19:50:01+00:00",
+  "linkek_ellenorizve": true
+}
