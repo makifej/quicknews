@@ -1,0 +1,49 @@
+{
+  "id": "a01adcdd212c",
+  "slug": "artificial-analysis-says-inkling-2-small-matches-gemini-3-8-flash",
+  "forras_id": "techmeme",
+  "forras_nev": "Artificial Analysis",
+  "url": "https://artificialanalysis.ai/articles/thinking-machines-releases-inkling-2-small-highest-scoring-open-weights-model-outside-of-chinia-upon-weights-release-it",
+  "publikalva": "2026-11-06T00:55:00+00:00",
+  "cim": "Artificial Analysis says Inkling 2 Small matches Gemini 3.8 Flash (high) in its index and would be the top open model outside China once its weights are out (Artificial Analysis)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 72 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn.sanity.io/images/6vfeftx9/articles/2958253cb80c532d774dfbc286ec21794c55525d-1440x1440.png?w=1200&auto=format"
+  },
+  "cim_eredeti": "Artificial Analysis says Inkling 2 Small matches Gemini 3.8 Flash (high) in its index and would be the top open model outside China once its weights are out (Artificial Analysis)",
+  "szoveg_eredeti": "Inkling 2 Small is launching as a proprietary model, available first-party through Thinking Machines' Tinker platform and Tinker Playground, with weights to be released at a later date. Its score is up 18 points from Inkling Small, with ~4x as many output tokens per task. It matches Google DeepMind's Gemini 3.8 Flash (high) and surpasses Xiaomi's MiMo-V2.6-Pro on the Artificial Analysis Intelligence Index v5.0.1.\n\n➤ Large gains over Inkling Small, especially on agentic tasks: AutomationBench-AA rises from 5% to 46% and FrontierCode 2.0 from 5% to 25%. HLE-Diamond also rises from 12% to 29%.\n\n➤ Different coding strengths from Claude Sonnet 5.5 (medium): Inkling 2 Small scores 25% on FrontierCode 2.0 vs. 11% for Claude Sonnet 5.5 (medium), but 13% on Terminal-Bench 4.0 vs. 30%.\n\n➤ Creative agentic scores above Claude Haiku 5.5 and Grok 4.7 on AA-3D: Inkling 2 Small also scores above Gemini 3.8 Flash on both AA-3D and Code2Video-AA, but behind Claude Sonnet 5.5 on both.\n\n➤ Research-level physics improves, but trails Gemini 3.8 Flash (high): Inkling 2 Small scores 56% on CritPt v2, up from 34% for Inkling Small, vs. 65% for Gemini 3.8 Flash (high).\n\n➤ Fewer hallucinations from more selective answering: On AA-Omniscience v1.1, the hallucination rate falls from Inkling Small's 61% to 27%, while accuracy rises from 32% to 34% and the attempt rate falls from 77% to 53%.\n\n➤ ~4x as many output tokens: Inkling 2 Small averages ~150K output tokens per Intelligence Index task vs. ~37K for Inkling Small, ~31K for Claude Sonnet 5.5 (medium), and ~99K for Gemini 3.8 Flash (high).\n\n➤ Almost 6x the cost of Inkling Small, but cheaper than several other models with similar Intelligence Index scores: Inkling 2 Small costs $1.18 per Intelligence Index task vs. $0.20 for Inkling Small, $7.77 for Gemini 3.8 Flash (high), and $10.02 for Claude Sonnet 5.5 (medium).\n\n➤ Type: Proprietary reasoning model at launch; Apache 2.0 weights release planned (date unconfirmed)\n\n➤ Modalities: Text and image input, text output\n\n➤ Size: 594B total parameters / 17B active parameters\n\n➤ Pricing: $0.30/$1.00 per 1M input/output tokens ($0.03 per 1M cached input tokens)\n\n➤ Availability at launch: Tinker and Tinker Playground\n\nCongratulations to the team at Thinking Machines on the release!\n\nInkling 2 Small scores 615 Elo points higher than Inkling Small on AA-Briefcase, with 2.5x the rubric pass rate.\n\nAA-Briefcase tests long-horizon business workflows requiring spreadsheets, presentations, and memos. Inkling 2 Small scores 1527 Elo vs. 912 Elo for Inkling Small, 1439 Elo for Claude Sonnet 5.5 (medium), and 1203 Elo for Gemini 3.8 Flash (high).\n\nIt passes 50% of rubric checks vs. 20% for Inkling Small, with analytical quality at 1634 Elo and presentation at 1564 Elo.\n\nInkling 2 Small makes large gains over Inkling (xhigh) on AA-3D and Code2Video-AA, with scores close to Muse Spark 1.3 and Qwen3.8 Max, respectively.\n\nAA-3D tests models’ ability to create interactive 3D experiences. Inkling 2 Small scores 1021 Elo vs. 966 Elo for Google DeepMind's Gemini 3.8 Flash and 1033 Elo for Meta's Muse Spark 1.3 (max).\n\nOn Code2Video-AA, which tests models’ ability to create videos using code, Inkling 2 Small scores 1020 Elo vs. 899 Elo for Gemini 3.8 Flash and 1021 Elo for Alibaba's Qwen3.8 Max (0902) (xhigh).\n\nCompared with Inkling (xhigh), it gains 438 Elo on AA-3D (1021 vs. 583) and 553 Elo on Code2Video-AA (1020 vs. 467).\n\nInkling 2 Small hallucinates less mainly because it answers fewer questions, while accuracy improves only slightly.\n\nOn AA-Omniscience v1.1 its net score improves to 16 from -9 for Inkling Small, but remains behind Gemini 3.8 Flash (high, 23) and Claude Sonnet 5.5 (medium, 19). Its hallucination rate falls to 27% from Inkling Small’s 61%, while its attempt rate falls to 53% from 77% and accuracy rises to 34% from 32%.\n\nInkling 2 Small averages ~150K output tokens per Intelligence Index task, ~4x that of Inkling Small’s ~37K.\n\nIt also uses more output tokens than Gemini 3.8 Flash (high, ~99K) and Claude Sonnet 5.5 (medium, ~31K).\n\nInkling 2 Small costs $1.18 per Task in the Intelligence Index, up almost 6x from Inkling Small.\n\nToken prices for Inkling 2 Small are $0.30/$1.00/$0.03 per 1M input/output/cache hit tokens.\n\nFull results across the evaluations in the Artificial Analysis Intelligence Index v5.0.1\n\nNanbeige has released Nanbeige4.3-33B, an open weights model matching Qwen3.8 27B (xhigh) at 20 on the Artificial Analysis Intelligence Index v5 with stronger terminal use but weaker knowledge\n\nGoogle’s Gemini 4 Carbon is the new #1 on the Artificial Analysis Intelligence Index v5, and second only to Claude Opus 5.5 on the Artificial Analysis Coding Agent Index\n\nitHub has released Copilot Fusion in GitHub Copilot, which orchestrates between Anthropic and OpenAI models. It scores 2 points below Opus 5.5 in Claude Code at half the Cost per Task in the Coding Agent Index",
+  "begyujtve": "2026-11-06T07:04:04.084535+00:00",
+  "prioritas": {
+    "pont": 72,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 70,
+      "hirertek": 80,
+      "egyediseg": 65,
+      "hitelesseg": 86,
+      "aktualitas": 92,
+      "kozossegi": 72
+    },
+    "elofeszures": 99,
+    "tanult": 75,
+    "indok": "Független teljesítményértékelés az új Inkling 2 modellt illetően. Forrás-tapasztalat: -3.",
+    "tema": "thinking machines inkling 2",
+    "cim_hu": "Az Inkling 2 Small beérte a Gemini 3.8 Flash modellt az Artificial Analysis indexén",
+    "lead_hu": "Az Artificial Analysis mérései szerint a Thinking Machines új modellje eléri a Gemini 3.8 Flash szintjét, és a kódolási és ágensfeladatokban mutat jelentős előrelépést.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-06T07:05:04+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-06T07:06:19+00:00"
+}

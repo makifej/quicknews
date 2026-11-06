@@ -1,0 +1,78 @@
+{
+  "id": "5eb6887e9b28",
+  "slug": "bemutatkozott-az-inkling-2-small-modell-594-milliard-parameterrel",
+  "forras_id": "techmeme",
+  "forras_nev": "Thinking Machines Lab",
+  "url": "https://thinkingmachines.ai/news/inkling-2-small/",
+  "szerzo": null,
+  "publikalva": "2026-11-06T00:15:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://thinkingmachines.ai/news/inkling-2-small/images/cover-social.png"
+  },
+  "cim_eredeti": "Thinking Machines Lab debuts Inkling 2 Small, a MoE model with 594B total and 17B active parameters, and plans to release weights next week after safety testing (Thinking Machines Lab)",
+  "forrasok": [],
+  "szoveg_eredeti": "Today we are introducing our second model generation with Inkling 2 Small. It is a Mixture-of-Experts model with 594B total parameters, 17B active, and supports image inputs and variable effort.\n\nInkling 2 Small far surpasses our previous models’ scores on the Artificial Analysis Intelligence Index with a score of 31, reflecting gains in performance on agentic coding, vision, knowledge work, and reasoning. The increase in capabilities comes from improvements made at every step of our training process, including more efficient pre-training and a large, unified RL run.\n\nInkling 2 Small will initially be available through Tinker, with closed weights, following the approach we outlined in a safe path to open weights. We intend to make the full weights available under an Apache 2.0 license next week after the completion of external safety testing and red-teaming.\n\nYou can try Inkling 2 Small on Tinker Playground today. The model is also available for fine-tuning and sampling on Tinker; checkpoints will be downloadable with the release of Inkling 2 Small’s weights.\n\nInkling 2 Small is more capable across the board than our first generation, particularly in long-horizon autonomous work.\n\nInkling 2 Small’s vision and agentic capabilities enable it to incorporate visual feedback to iteratively build and refine websites, games, and 3D designs with interactive elements.\n\nInkling 2 Small was trained with RL on hundreds of thousands of long-horizon coding tasks across multiple agent harnesses and context-compaction strategies. We increased the quality of our synthetic coding data pipeline and moved beyond unit-test rewards alone; many tasks included an agentic RL grader that evaluated how the model approached the problem, not just whether its code passed. We also tested early checkpoints of Inkling 2 Small on OpenCode under the name Fledge-Alpha to assess our model’s performance on coding tasks in the real world.\n\nThe result is a model that is both stronger at coding and easier to use inside real agent loops. Inkling 2 Small improves on usability compared to Inkling: it follows instructions better, considers changes carefully, and verifies its work without being asked.\n\n69 tasks · Four independent attempts · 10-hour budget\n\nHover a curve or select a model to inspect; select it again to reset. With a model focused, use ← and → to step through results, or Escape to clear.\n\nRows are ordered by AUC: the area under the mean curve over 0–10 hours, with a maximum of 690 task-hours.\n\nEach model uses its maximum available reasoning setting, the PI harness and a shared compaction policy. We include fixes for task and grading issues identified during evaluation. Each submitted solution receives two independent LLM audits, with a third review resolving disagreements.\n\nBeyond conventional software tasks, Inkling 2 Small was also trained on long-horizon autoresearch tasks. This included agentic GPU kernel optimization and ML tasks such as post-training a model autonomously, all run across a range of GPU architectures.\n\nDeepSeek-V3.2 sparse attention, forward + backward\n\nTo demonstrate its end-to-end autoresearch performance, we tested Inkling 2 Small on a task Proximal built for one of our internal benchmarks. Inkling 2 Small autonomously trained Qwen3.5-4B on Tinker to predict various time series such as weather and Wikipedia page views. It started by analyzing the tasks and writing its own evaluator, experimented with training datasets and recipes, and tried various approaches to SFT and RL, while debugging the process as it goes. After 4.5 hours of work and $426 in Tinker spend, the trained model has more than doubled its forecasting score.\n\nInkling 2 Small processes image inputs using a 292M-parameter vision encoder based on Perception EncoderBolya et al., 2025.. We use 20×20-pixel patches with 2×2 spatial pooling, and interleave image patches with text tokens. The model demonstrates strong visual capabilities across multiple categories, including OCR, grounding, infographic interpretation, and visual reasoning.\n\nThe model uses vision in the loop to interpret and validate the visual coding output it generates. Pending the release of its weights, it is set to be the top open-weights model on DesignArena.\n\nWe even tested Inkling 2 Small against some of our researchers in a wine tasting event. It outperformed them using vision alone, correctly identifying three wines from a single picture in 19 out of 20 trials.\n\nPrompt: you’re in a blind wine tasting competition. glasses are labeled 1 to 3 from left to right. varietals: 99 cab sauv, 19 cab sauv, 23 nebbiolo\n\nInkling 2 Small: Here’s my read — with the big caveat up front that color from a phone photo under warm restaurant lighting is shaky evidence, so treat this as an educated guess, not a verdict.\n\nMy guess:Glass 1 = 2019 Cabernet SauvignonGlass 2 = 1999 Cabernet SauvignonGlass 3 = 2023 Nebbiolo\n\nThe honest weak points in that guess: lighting is uneven (the left glass sits in the dimmer zone near the hearth, which exaggerates its darkness), and a well-stored 1999 can drink much darker than it looks on camera. Hue differences, not depth, would be the real tell — if glass 2 shows orange/brown at the rim versus glass 1’s purple-red edge, that confirms it.\n\nFast sensory tie-breakers when you actually taste:\n\nIf the pour in glass 3 is pale but your mouth feels sanded down by tannins, that’s the slam-dunk nebbiolo confirmation; if it is soft and plush, flip glass 3 and glass 2. Good luck in the competition — report back with the reveal if you get it.\n\nInkling 2 Small accelerates knowledge work in realistic professional environments. It proficiently looks up information, calls tools over MCP, and produces high-quality deliverables. On AA-Briefcase, an end-to-end knowledge work benchmark, these capabilities come together for an ELO score of 1527.\n\nInkling 2 Small is especially strong in finance and quantitative reasoning over spreadsheets, filings and documents. Among open weight models, Inkling 2 Small is the best performing model across several finance benchmarks.\n\nSome models respond better to fine-tuning, independent of their out-of-the-box performance. We wanted Inkling 2 Small to be a strong base model for customization.\n\nInkling 2 Small learns faster and improves more than our previous models when trained on the same data and algorithm across a variety of post-training scenarios, which we curated based on customer use cases. For example, starting from similarly low scores on a public financial-document summarization task, Inkling 2 Small adapts quickly, reaching the final performance of Inkling Small with just 75 training steps and finishing substantially ahead.\n\nInkling 2 Small is trained on challenging STEM problems, instruction following, information seeking with and without web search, and forecasting tasks. During RL, we use proper scoring rules for forecasting tasks and uncertainty-sensitive rewards on some question-answering tasks. This trained the model to assess uncertainty, express appropriate confidence, and make well-calibrated predictions.\n\nOur safety work for Inkling 2 Small centers on two questions: how the model performs for the general user, and how well it resists the removal of safeguards by a malicious actor. The release of Inkling’s weights is pending further safety evaluations by us and our partners.\n\nTo assess misuse risks, we trained an internal helpful-only variant. We ran both this model and the release checkpoint through a wider suite of evaluations, with more external testers, than any previous release.\n\nOn chemical, biological, radiological, and nuclear (CBRN) risk, Inkling 2 Small’s knowledge and capability scores sit below the open-weight frontier. On FORTRESS, Scale AI’s private benchmark that scores how much harmful assistance a model gives in response to expert-written adversarial prompts across CBRN, terrorism, and nonviolent crime, Inkling 2 Small has a lower Average Risk Score compared",
+  "modell": "gemini-3.5-flash",
+  "cim": "Bemutatkozott az Inkling 2 Small modell 594 milliárd paraméterrel",
+  "lead": "A Thinking Machines Lab kiadta az Inkling 2 Small Mixture-of-Experts modellt, amelynek súlyait a biztonsági tesztek után nyílt forráskóddal is elérhetővé teszik.",
+  "osszefoglalo": "A Thinking Machines Lab bejelentette második generációs AI-modelljét, az [Inkling 2 Small-t](https://thinkingmachines.ai/news/inkling-2-small/). A Mixture-of-Experts architektúrára épülő modell összesen 594 milliárd paraméterrel rendelkezik, amelyből aktívan 17 milliárd működik egyidőben. A modell a képi bemenetek feldolgozása mellett állítható gondolkodási időt és komoly autonóm fejlesztési képességeket kínál.\n\nAz új generáció kiemelkedően teljesít a hosszan tartó ügynökfeladatokban, a komplex kódolásban, a pénzügyi elemzésekben és a látásalapú feladatokban. Képes a képi visszajelzések alapján interaktív weboldalakat és 3D-s terveket finomítani, valamint önállóan futtatni gépi tanulási kísérleteket a [Tinker](https://thinkingmachines.ai/tinker/) platformon keresztül.\n\nAz Inkling 2 Small jelenleg zárt súlyokkal próbálható ki a Tinker Playground felületén. A fejlesztők a független biztonsági ellenőrzések lezárultával, a tervek szerint a jövő héten teszik letölthetővé a modell teljes súlyát [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) licenc alatt.",
+  "miert_szamit": "Az új modell megfizethetőbb és nyílt forráskódú alternatívát kínál az **összetett szoftverfejlesztési és adatelemzési feladatok** automatizálására, amelyeket saját szerveren is futtatni lehet majd.",
+  "cimkek": [
+    "Inkling 2 Small",
+    "Thinking Machines Lab",
+    "Mixture-of-Experts",
+    "kódolás"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Inkling 2 Small",
+    "Tinker",
+    "Tinker Playground"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 81,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 70,
+      "hitelesseg": 86,
+      "aktualitas": 92,
+      "kozossegi": 74
+    },
+    "elofeszures": 96,
+    "tanult": 64,
+    "indok": "Új nagy AI-modell bejelentése nyílt súlyok ígéretével. Forrás-tapasztalat: -3.",
+    "tema": "thinking machines inkling 2",
+    "cim_hu": "Bemutatkozott az Inkling 2 Small modell a Thinking Machines Labtól",
+    "lead_hu": "A Thinking Machines Lab bejelentette az 594 milliárd paraméteres Inkling 2 Small MoE modellt, melynek nyílt súlyait a biztonsági tesztek után jövő héten teszik közzé.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-06T07:05:04+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-06T07:05:39+00:00",
+  "megjelent": "2026-11-06T07:05:39+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-06T07:06:36+00:00",
+    "esemeny": "A Thinking Machines Lab bemutatta második generációs AI-modelljét, az Inkling 2 Small-t. A Mixture-of-Experts architektúrájú modell a biztonsági tesztek lezárulta után, a tervek szerint a jövő héten válik nyílt forráskódúvá Apache 2.0 licenc alatt.",
+    "forrasok": [
+      "https://thinkingmachines.ai/news/inkling-2-small/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-06T07:07:39+00:00",
+  "linkek_ellenorizve": true
+}

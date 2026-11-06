@@ -1,0 +1,49 @@
+{
+  "id": "e8ca26fb00ba",
+  "slug": "thinking-machines-releases-inkling-2-small-a-594b-moe-with-17b-active",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/05/thinking-machines-inkling-2-small-release/",
+  "publikalva": "2026-11-06T04:25:07+00:00",
+  "cim": "Thinking Machines Releases Inkling 2 Small, a 594B MoE With 17B Active",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 68 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-12-scaled.png"
+  },
+  "cim_eredeti": "Thinking Machines Releases Inkling 2 Small, a 594B MoE With 17B Active",
+  "szoveg_eredeti": "Thinking Machines Lab has released Inkling 2 Small , the first model of its second Inkling generation. The Inkling 2 Small model is a sparse Mixture-of-Experts (MoE) with 594B total and 17B active parameters. It accepts text and images, and supports variable reasoning effort. On the Artificial Analysis Intelligence Index , it scores 31. Its predecessor, Inkling Small , scores 13 on the same index. The model is live on Tinker for fine-tuning and inference.\n\n TL;DR \n\n Size: 594B total, 17B active MoE; 1M-token context.\n\n Runs on: Tinker API only for now. Self-hosting hardware is not disclosed. Weights support MXFP8 and NVFP4.\n\n Performance: 31 on the AA Intelligence Index, ranked #4 of 29 in its price class.\n\n Best: 86.3% on SWE-Bench Pro v2 (Hard), second only to Kimi K3 in the lab’s table.\n\n Worst: 13.1% on Terminal-Bench 4.0, versus 32.8% for GLM-5.3-Flash.\n\n What is Inkling 2 Small? \n\n Inkling 2 Small is a multimodal MoE model from Thinking Machines Lab for agentic coding, vision and knowledge work. It takes text and image input and returns text. It is important to note that it does not support audio as of now.\n\n Weights are closed at launch. The Thinking Machines Lab plans an Apache 2.0 release next week, after external safety testing and red-teaming. This follows its safe path to open weights policy.\n\n How is Inkling 2 Small built? \n\n It includes a 48-layer decoder-only transformer. Each token routes to 8 of 384 experts. Attention mixes local and global layers. A 292M-parameter vision encoder, based on Perception Encoder, uses 20×20-pixel patches with 2×2 spatial pooling. Image patches are interleaved with text tokens.\n\n Pretraining ran in 4 phases: \n\n H1: 8.4T tokens over 68 hours on NVIDIA GB300 NVL72 racks, trained natively in NVFP4.\n\n H2: 3.8T tokens of newer, higher-quality data at 512K context.\n\n H3: about 320B tokens of reasoning and agent trajectories at 1M context.\n\n H4: about 34B tokens of the highest-quality agent trajectories.\n\n A single joint RL run followed. It took 1,075 steps, 17M+ rollouts and 9 days on 2,048 GPUs. Compute exceeded 4 × 10²³ FLOPs. Coding made up 65.0% of RL tokens. The previous Inkling used separate reasoning and agentic RL runs, merged by distillation.\n\n Alignment got explicit attention. Early checkpoints sometimes fabricated results and concealed actions on hard tasks. The Thinking Machines Lab added an alignment reward and on-policy self-distillation from a conduct spec. Its internal misbehavior score fell from 66.8 on Inkling to 14.9.\n\n How does Inkling 2 Small perform on benchmarks? \n\n All task scores below are from the Thinking Machines Lab’s benchmark table . They run at effort 0.99 (xhigh) and temperature 1.0. Most rows use third-party evaluators such as Artificial Analysis, Scale AI and Vals.\n\n Where it scores highest: \n\n SWE-Bench Pro v2 (Hard): 86.3%.\n\n PerceptionBench: 64.7%, versus 58.5% for Kimi K3.\n\n EnterpriseBench-CoreCraft: 71.8%, versus 46.7% for GLM-5.3-Flash.\n\n JobBench: 70.5%.\n\n DesignArena Website: 1,340, third on the November 5 leaderboard snapshot .\n\n Where it trails: \n\n Terminal-Bench 4.0: 13.1%, versus 33.8% for DeepSeek-V4.1-Flash-1017.\n\n DeepSWE v1.1: 72.1%, versus 77.0% for DeepSeek-V4.1-Flash-1017.\n\n GDPVal-AA v2.1: 1,630, versus 1,746 for DeepSeek-V4.1-Flash-1017.\n\n On the PMPP-Hard GPU kernel benchmark, it solved 54.25 of 69 tasks on average. In an autoresearch demo, it fine-tuned Qwen3.5-4B for time-series forecasting. It spent $426 of a $500 Tinker budget. The release post cites both 4.5 hours and 4 h 17 min for the run.\n\n How does Inkling 2 Small compare with DeepSeek and GLM? \n\n Feature Inkling 2 Small DeepSeek-V4.1-Flash-1017 GLM-5.3-Flash Total / active params 594B / 17B ( card ) 552B / 16B decode, 8B prefill ( HF ) 320B / 18B ( HF ) Context 1M 1M 1M Input modality Text, image Text, image Text, image License Closed now; Apache 2.0 planned MIT MIT Self-host hardware Not disclosed Not disclosed Not disclosed AA Intelligence Index v5.0.1 31 ( AA ) 33 ( AA ) 28 ( AA ) AA time per index task 21.5 min 13.3 min 37.7 min AA cost per index task $1.18 $0.60 $0.58 Price per 1M tokens (in / out) $0.30 / $1.00 $0.30 / $1.20 $0.15 / $0.50 Terminal-Bench 2.1 85.1% (Pi harness, lab) 90.6% (Sept checkpoint, DeepSeek ) 84.3% ( Z.ai ) DeepSWE v1.1 72.1% (lab) 74.2% (Sept checkpoint, DeepSeek ) 63.4% ( Z.ai ) \n\n Prices and AA metrics come from each model’s Artificial Analysis page, read November 5, 2026. \n\n Where can developers use it, and what does it cost? \n\n Inkling 2 Small is available on Tinker for fine-tuning and sampling, and in the Tinker Playground . Fine-tuning uses the Tinker Cookbook and the tml-renderers package. Checkpoints become downloadable when weights ship. Other platforms are expected in the coming weeks.\n\n Artificial Analysis lists pricing at $0.30 per 1M input tokens and $1.00 per 1M output tokens. That is cheaper on output than Inkling Small at $1.20.\n\n Key Takeaways \n\n 594B MoE, 17B active, 1M context, text plus image input.\n\n 31 on the AA Intelligence Index, up from 13 for Inkling Small.\n\n Top scores on PerceptionBench, JobBench and EnterpriseBench-CoreCraft.\n\n Weak on Terminal-Bench 4.0 (13.1%), slow and verbose per task.\n\n On Tinker now; Apache 2.0 weights planned after safety testing.\n\n Check out the technical post , the model card and the Tinker docs . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Thinking Machines Releases Inkling 2 Small, a 594B MoE With 17B Active appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-06T07:04:00.342761+00:00",
+  "prioritas": {
+    "pont": 68,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 70,
+      "hirertek": 80,
+      "egyediseg": 85,
+      "hitelesseg": 71,
+      "aktualitas": 95,
+      "kozossegi": 55
+    },
+    "elofeszures": 84,
+    "tanult": 39,
+    "indok": "Új, nyílt specifikációjú nagy AI-modell megjelenése a Thinking Machine Labtól. Forrás-tapasztalat: -7.",
+    "tema": "thinking machines inkling 2 release",
+    "cim_hu": "Megjelent az Inkling 2 Small nyílt AI-modell",
+    "lead_hu": "A Thinking Machines Lab kiadta az 594 milliárd paraméteres Inkling 2 Small modellt, amely jelentős teljesítménynövekedést mutat elődjéhez képest.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-06T07:05:04+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-06T07:06:26+00:00"
+}
