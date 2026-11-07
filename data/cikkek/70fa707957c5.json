@@ -1,0 +1,79 @@
+{
+  "id": "70fa707957c5",
+  "slug": "az-nyilt-forrasu-ai-modellek-kibertamadasi-kepessegei-utolerik-a-zart",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/the-gap-between-open-and-closed-ai-models-in-cyber-capabilities-keeps-shrinking/",
+  "szerzo": "Matthias Bastian",
+  "publikalva": "2026-11-07T15:35:50+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/cyber_kraken-1200x670.png"
+  },
+  "cim_eredeti": "The gap between open and closed AI models in cyber capabilities keeps shrinking",
+  "forrasok": [],
+  "szoveg_eredeti": "AI agents can break into realistic corporate networks on their own, Vals AI finds\n\nThe Vals CyberOffense benchmark simulates realistic corporate networks to test this. Each agent operates solo on an isolated attack machine, starting with nothing but a public web address and zero human help.\n\nGPT-6 Sol, part of OpenAI's restricted Daybreak cyber program, posted the best result at 80.8 percent of objectives. Deepseek V4.1 Flash 1017, a freely available open-weight model, isn't far behind at 72.8 percent and costs only about $3 per run instead of roughly $22. Once a model's weights are public, no provider can control or restrict how it's used, Vals researchers say.Ad\n\nIn the harder Lighthouse test, Daybreak took over admin control of the first company, stole passwords, and used them to break into the second company. It completed 27 of 31 objectives in under three hours. Deepseek managed 21 objectives at a tenth of the cost and wasn't limited solely by safety guardrails.Ad\n\nLonger runtimes turned out to be critical as well. Deepseek scored zero results in its first 25 million tokens and made most of its progress only after 100 million tokens. Short tests therefore underestimate the real potential of open models.\n\nVals points out that the same findings create an opportunity for defenders, because the very models that exploit vulnerabilities can help companies find and fix them first. Attacks on real networks are likely to increase in the coming months, according to Vals.Ad\n\nThe results align with a recent analysis by the UK's AI Security Institute (AISI) from July. The gap between open and closed frontier models in cyber capabilities has shrunk to four to seven months. For most of 2025, that gap still stood at six to ten months.\n\nOpen models are also much cheaper. A cyber-range run with Deepseek V4-Pro costs just $1.19 according to AISI, compared with $85 for Anthropic's Opus 4.5. The safety measures on the open models proved largely ineffective.Ad\n\nA recent study by Anthropic also showed that the freely available model GLM-5-3 can build exploits at nearly the same level as the internal top model Mythos.Ad\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "A nyílt forrású AI-modellek kibertámadási képességei utolérik a zárt társaikat",
+  "lead": "Egy új mérés szerint a nyílt forrású AI-modellek a zárt rendszerek költségének töredékéért képesek vállalati hálózatok ellen támadásokat végrehajtani.",
+  "osszefoglalo": "A [Vals AI](https://www.vals.ai/) által közzétett CyberOffense mérés során mesterségesintelligencia-ügynökök tesztelték képességeiket szimulált vállalati hálózatokon, emberi segítség nélkül. Az OpenAI korlátozott Daybreak programjához tartozó GPT-6 Sol ért el a legmagasabb, 80,8 százalékos sikertarányt. Az ingyenesen elérhető, nyílt súlyú DeepSeek V4.1 Flash 1017 azonban alig marad el tőle a maga 72,8 százalékos eredményével.\n\nA két modell közötti árkülönbség jelentős: míg a zárt modell használata futtatásonként nagyjából 22 dollárba került, a nyílt modell esetében ez az összeg mindössze 3 dollár volt. A tesztek rávilágítottak arra is, hogy a nyílt modelleknek hosszabb futási időre van szükségük a sikeres feladatmegoldáshoz, így a rövid tesztek alábecsülik a valós képességeiket.\n\nA nyílt forrású modellek elterjedése miatt a biztonsági korlátozások utólagosan nem kényszeríthetők ki. Ugyanakkor a kutatók kiemelik, hogy a sérülékenységeket kihasználó modellek a védekezésben is hatékonyan használhatók a hálózati hibák javítására.",
+  "miert_szamit": "A vállalati IT- és biztonsági csapatoknak fel kell készülniük arra, hogy a kiberbiztonsági kockázatok elhárításában és a sérülékenységek felderítésében **az olcsó, nyílt AI-modelleket** is bevethetik védekezési célokra.",
+  "cimkek": [
+    "DeepSeek",
+    "OpenAI",
+    "kiberbiztonság",
+    "Vals AI"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Vals.ai Benchmark",
+    "url": "https://www.vals.ai/benchmarks/cyber_offense"
+  },
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 87,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 85,
+      "aktualitas": 99,
+      "kozossegi": 66
+    },
+    "elofeszures": 92,
+    "tanult": 38,
+    "indok": "Fontos biztonsági benchmark elemzés a nyílt és zárt AI-modellek kibertámadási képességeiről.",
+    "tema": "ai cybersecurity benchmark models",
+    "cim_hu": "Gyorsan csökken a szakadék a nyílt és a zárt AI-modellek kiberképességei között",
+    "lead_hu": "A Vals AI mérései szerint az önálló AI-ágensek már képesek vállalati hálózatokba betörni. Az nyílt kódú Deepseek modell alig marad el az OpenAI zárt rendszerének teljesítményétől.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-07T15:49:27+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-07T15:49:48+00:00",
+  "megjelent": "2026-11-07T15:49:48+00:00",
+  "nevelo_javitva": "2026-11-07T15:49:48+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-07T15:49:52+00:00",
+    "esemeny": "A Vals AI közzétette a CyberOffense kiberbiztonsági mérését, amelyben az nyílt forráskódú DeepSeek V4.1 Flash 1017 modell a zárt OpenAI GPT-6 Sol Daybreak nyomába ért a szimulált vállalati hálózatok elleni támadási teszteken, jóval alacsonyabb költség mellett.",
+    "forrasok": [
+      "https://vals.ai/benchmarks/cyber_offense",
+      "https://the-decoder.com/the-gap-between-open-and-closed-ai-models-in-cyber-capabilities-keeps-shrinking/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-07T15:51:38+00:00",
+  "linkek_ellenorizve": true
+}
