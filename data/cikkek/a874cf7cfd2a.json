@@ -1,0 +1,85 @@
+{
+  "id": "a874cf7cfd2a",
+  "slug": "utolagos-finomhangolassal-masfel-szazalek-ala-csokkentheto-a-kinai-ai",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/state-propaganda-in-some-chinese-ai-models-is-only-a-thin-layer-that-fine-tuning-can-strip-away/",
+  "szerzo": "Jonathan Kemper",
+  "publikalva": "2026-11-07T12:32:45+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/11/arete-27b-01-hero.jpg"
+  },
+  "cim_eredeti": "State propaganda in some Chinese AI models is only \"a thin layer\" that fine-tuning can strip away",
+  "forrasok": [],
+  "szoveg_eredeti": "Nous Research fine-tuned Alibaba's Qwen3.8-27B on 53 million tokens to strip out Chinese state propaganda. The resulting model, Arete-27B, drops its propaganda rate from 22 percent to under one percent while keeping general capabilities intact.\n\nArete-27B, a new open-weight model from Nous Research, promises \"Western values\" instead of Beijing's party line. The US startup, best known for its open-source agent Hermes, fine-tuned Alibaba's Qwen3.8-27B to get there.\n\nAccording to Nous, Chinese open-weight models rank among the strongest available but carry state-mandated behavior baked into their weights. With Qwen3.8-27B, the team observed refusals, evasive answers, and responses aligned with the Chinese Communist Party.Ad\n\nNous built its own test with 803 prompts across seven categories, including free speech, state ideology, education, privacy and surveillance, democracy, and the environment. For each prompt, the team defined two to four facts drawn from a dated source article: laws, news reports, or research papers. Ironically, the politically right-leaning Grok 4.7 from Elon Musk's xAI serves as the judge model, checking whether a response mentions, omits, or contradicts those facts.Ad\n\nA response counts as propaganda when it reproduces Beijing's official narrative instead of the facts, endorses it, or presents it as an equally valid perspective. The judge must cite the specific wording and doesn't know which model wrote the answer. Unmodified Qwen3.8-27B scored 2.32 out of 5 on factual accuracy, and 22 percent of its answers contained propaganda. Western models like Mistral Large 4 or Gemma 4 31B came in below one percent, while GLM-5.3 and DeepSeek V4.1 Flash landed at 15 and 16 percent.\n\nNous chose Inkling from Thinking Machines Lab as its teacher model because an open model wouldn't break terms of service that ban distillation. Nvidia's Nemotron 3 Ultra was also on the shortlist, but Nous says there were signs of irregularities on China-related topics. The team suspects the bias carried over from training on Chinese open-weight models and reports similar contamination in its own projects. Thinking Machines itself used models including the Chinese Kimi K2.5 for Inkling's synthetic training data.Ad\n\nNous trained Qwen3.8-27B with supervised fine-tuning on about 53 million tokens over two epochs, without reinforcement learning or preference optimization. The team says it removed overlaps between training and test prompts beforehand.\n\nArete-27B scores 2.98 on factual accuracy, and the share of propagandistic answers drops to 0.9 percent. The biggest shift showed up in the free speech category, where the fact score jumped from 0.89 to 2.44 and the propaganda rate fell from 60 to one percent. With reasoning mode turned on, Arete reaches 3.07, though that number is based on only two of five runs so far.Ad\n\nGeneral capabilities don't suffer, according to Nous. On the company's internal Hermes Bench, Arete-27B hits 65.60 percent compared to 65.77 percent for the base model. On Terminal-Bench 2.1, the score rises from 67 to 70 percent, but Nous doesn't call that a real gain because the test setups differed.Ad\n\nThe team concludes \"that the bias layer in a Chinese-aligned model is shallow.\" \"It is applied late, it is applied thin, and fifty million tokens of carefully chosen supervision removes it without disturbing anything underneath,\" the company writes.\n\nWith Arete, Nous is heading in a different direction than with Hermes 3, which in 2024 was deliberately neutral and designed to adapt to whatever worldview was set in the system prompt. Chinese model bias is well documented. In 2025, NewsGuard found that five leading models, including Qwen, repeated or failed to correct pro-Chinese disinformation in 60 percent of cases.\n\nCrowdStrike found that DeepSeek produces less secure code when queries reference Falun Gong, Tibet, or Taiwan. A study by Aleph Alpha with 967 politically sensitive questions reached similar conclusions: among models from Alibaba, DeepSeek, and Moonshot AI, only 17 to 41 percent of answers were balanced.\n\nA recent ValsAI study also shows that not all Chinese models behave the same way: GLM-5.3 Flash explicitly confirmed human rights violations, while Kimi K3 denied the existence of internment camps. Language and response format had a clear effect on the results, and even Western models occasionally adopted official Beijing positions. There, too, targeted fine-tuning proved helpful.\n\nNous Research raised $90 million in a Series B round in October at a $1.5 billion valuation. Robot Ventures led the round, with Nvidia and Samsung among the participants. Nous is using the money to move into enterprise sales with \"Hermes for Businesses.\" The weights, test dataset, and training data for Arete-27B are available under an Apache 2.0 license on Hugging Face.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Finomhangolással 1% alá vágható a kínai AI propagandaaránya",
+  "lead": "A **Nous Research** megmutatta, hogy az Alibaba nyílt modelljéből mindössze 53 millió tokennyi finomhangolással eltávolítható a politikai torzítás.",
+  "osszefoglalo": "A Nous Research az Alibaba nyílt forráskódú **Qwen3.8-27B** modelljét módosította, hogy eltávolítsa belőle a kínai állami propagandát. Az így létrejött [Arete-27B](https://huggingface.co/NousResearch/Arete-27B) nyílt súlyú modellben a korábbi 22 százalékos propagandaarányt sikerült 0,9 százalékra csökkenteni, miközben a tesztek alapján az eszköz általános teljesítménye és képességei nem romlottak.\n\nA fejlesztők 53 millió tokennyi felügyelt finomhangolást alkalmaztak reinforcement learning nélkül. A vizsgálatok szerint a kínai modellek politikai torzítása mindössze egy **vékony felületi réteg**, amely az alapvető képességek sérülése nélkül eltávolítható a hálóból.\n\nAz **Arete-27B** modell súlyai, a felhasznált tesztadatkészlet és a tréningadatok szabadon hozzáférhetők és letölthetők a **Hugging Face** felületéről Apache 2.0 licenc alatt.",
+  "miert_szamit": "A kínai nyílt modellek kiemelkedő teljesítményt nyújtanak, de az üzleti használatot sokszor korlátozta a beépített cenzúra. Ez a módszer bizonyítja, hogy a nyílt AI-modellek **olcsón és gyorsan semlegesíthetők**, így a vállalkozások biztonságosabban építhetnek rájuk saját alkalmazásokat.",
+  "cimkek": [
+    "Qwen3.8-27B",
+    "Arete-27B",
+    "Nous Research",
+    "finomhangolás"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Qwen3.8-27B",
+    "Arete-27B"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 82,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 78,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 84,
+      "aktualitas": 98,
+      "kozossegi": 60
+    },
+    "elofeszures": 82,
+    "tanult": 26,
+    "indok": "Jelentős AI kutatási és politikai eredmény, amely megmutatja a kínai nyílt AI modellek állami cenzúrájának könnyű eltávolíthatóságát.",
+    "tema": "nous research qwen fine-tuning",
+    "cim_hu": "Könnyen eltávolítható a kínai állami propaganda az Alibaba AI-modelljéből",
+    "lead_hu": "A Nous Research finomhangolással szinte teljesen kigyomlálta a pekingi cenzúrát az Alibaba Qwen modelljéből. Az új Arete-27B változat megtartotta képességeit, miközben a propaganda aránya egy százalék alá esett.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-07T12:34:10+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-07T12:34:22+00:00",
+  "megjelent": "2026-11-07T12:34:22+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-07T12:34:24+00:00",
+    "esemeny": "A Nous Research finomhangolta az Alibaba Qwen3.8-27B modelljét (az új modell neve Arete-27B), amivel a propagandaarányt 22%-ról 0,9%-ra csökkentette.",
+    "forrasok": [
+      "https://the-decoder.com/state-propaganda-in-some-chinese-ai-models-is-only-a-thin-layer-that-fine-tuning-can-strip-away/"
+    ],
+    "hibak": [
+      "A címben szereplő „másfél százalék alá” állítás téves/pontatlan a szövegben leírt és mért 0,9%-hoz képest (egy százalék alá csökkent)."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Utólagos finomhangolással másfél százalék alá csökkenthető a kínai AI-modell propagandaaránya",
+      "lead": "A Nous Research megmutatta, hogy az Alibaba nyílt modelljéből mindössze 53 millió tokennyi finomhangolással eltávolítható a politikai torzítás.",
+      "osszefoglalo": "A Nous Research az Alibaba nyílt forráskódú **Qwen3.8-27B** modelljét módosította, hogy eltávolítsa belőle a kínai állami propagandát. Az így létrejött **Arete-27B** nyílt súlyú modellben a korábbi 22 százalékos propagandaarányt sikerült 0,9 százalékra csökkenteni, miközben a tesztek alapján az eszköz általános teljesítménye és képességei nem romlottak.\n\nA fejlesztők 53 millió tokennyi felügyelt finomhangolást alkalmaztak reinforcement learning nélkül. A vizsgálatok szerint a kínai modellek politikai torzítása mindössze egy **vékony felületi réteg**, amely az alapvető képességek sérülése nélkül eltávolítható a hálóból.\n\nAz **Arete-27B** modell súlyai, a felhasznált tesztadatkészlet és a tréningadatok szabadon hozzáférhetők és letölthetők a **Hugging Face** felületéről Apache 2.0 licenc alatt.",
+      "miert_szamit": "A kínai nyílt modellek kiemelkedő teljesítményt nyújtanak, de az üzleti használatot sokszor korlátozta a beépített cenzúra. Ez a módszer bizonyítja, hogy a nyílt AI-modellek **olcsón és gyorsan semlegesíthetők**, így a vállalkozások biztonságosabban építhetnek rájuk saját alkalmazásokat."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-07T12:34:52+00:00",
+  "linkek_ellenorizve": true
+}
