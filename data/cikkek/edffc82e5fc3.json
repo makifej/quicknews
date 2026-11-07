@@ -1,0 +1,49 @@
+{
+  "id": "edffc82e5fc3",
+  "slug": "explainable-artificial-intelligence-system-predicts-multiple-diabetic",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/explainable-artificial-intelligence-system-predicts-multiple-diabetic-foot-ulcer-outcomes/",
+  "publikalva": "2026-11-07T09:52:27+00:00",
+  "cim": "Explainable Artificial Intelligence System Predicts Multiple Diabetic Foot Ulcer Outcomes",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 62 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-50.png"
+  },
+  "cim_eredeti": "Explainable Artificial Intelligence System Predicts Multiple Diabetic Foot Ulcer Outcomes",
+  "szoveg_eredeti": "Explainable Artificial Intelligence System Predicts Multiple Diabetic Foot Ulcer Outcomes\n\nA multicentre derivation and validation study accompanied by a prospective randomised clinical evaluation has demonstrated that an explainable artificial intelligence ensemble can simultaneously forecast four major prognostic outcomes in patients hospitalised with diabetic foot ulcers. Reporting in eClinicalMedicine, researchers developed and externally validated a dual-branch machine learning architecture designed to jointly estimate individualised probabilities for wound cure, ulcer recurrence, lower-extremity amputation, and all-cause mortality during observed follow-up. The computational framework integrated retrospective electronic medical record information extracted within the first twenty-four hours of hospital admission across distinct medical centres, combining parallel tree-based and neural network algorithms to overcome the limitations of conventional single-outcome prognostic tools. To assess real-world utility beyond static retrospective datasets, the investigators subsequently embedded the locked algorithmic framework into a web-based clinical platform and conducted a prospective randomised comparative study across three primary care hospitals, evaluating how algorithmic guidance influenced clinician recommendation quality and short-term patient engagement metrics.\n\nDiabetic foot ulcers represent one of the most debilitating microvascular and macrovascular complications arising from chronic hyperglycemia, imposing an immense clinical and economic burden on limb preservation and patient survival. Epidemiological data indicate that diabetic foot ulcers affect an estimated 18.6 million individuals with diabetes worldwide each year, with approximately 19 percent to 34 percent of diabetic individuals developing an ulcer over their lifetime. Following diagnosis, between 50 percent and 65 percent of patients experience ulcer recurrence within three to five years, nearly 20 percent undergo lower-extremity amputation, and one-year mortality rates exceed 10 percent. Standard medical management relies on structured glycemic control, aggressive local wound care, early foot screening, infection control, and pressure offloading. However, because ulcer progression is governed by intricate interactions among systemic metabolic disturbances, peripheral neuropathy, peripheral arterial ischemia, infection, and patient treatment adherence, single clinical indicators frequently fail to capture comprehensive prognostic risk across interdependent clinical endpoints.\n\nAlthough machine learning algorithms have emerged as powerful tools capable of modeling nonlinear associations and high-dimensional feature interactions in heterogeneous clinical data, earlier prognostic models in diabetic foot care suffered from notable design limitations. A systematic literature search conducted from database inception to April 2026 revealed that existing predictive studies predominantly focused on single clinical endpoints in isolation, such as wound healing, amputation, or in-hospital death, while largely ignoring post-discharge recurrence or multi-outcome interdependencies. Furthermore, published algorithms were frequently constrained by single-centre patient cohorts, modest sample sizes, absent or inadequate external validation, opaque black-box formulations lacking clinical interpretability, and a lack of prospective evaluation within active clinical workflows. Prior models also neglected shared prognostic factors that link simultaneous or sequential complications, thereby missing clinical information across distinct phases of the disease trajectory.\n\nTo overcome these structural challenges, the investigators designed a multicentre retrospective investigation drawing upon electronic medical records and longitudinal follow-up data from 863 unique adult patients treated across three anonymised hospitals in China between January 2018 and April 2025. Patients admitted with documented diabetic foot ulcers were identified across Centre A in Jiangsu Province (458 patients), Centre B in Anhui Province (305 patients), and Centre C in Shandong Province (100 patients). After linking repeat admissions to preserve exactly one consolidated record per patient, baseline candidate variables encompassing demographics, laboratory test results, behavioural factors, medical history, and initial treatment characteristics were extracted from the first twenty-four hours of the index admission. Outcomes were tracked through longitudinal hospital records and structured telephone follow-up through September 2025, yielding a median retrospective follow-up duration of 41.2 months with an interquartile range of 20.5 to 60.0 months. Race and ethnicity data were not routinely captured across the participating centres and were therefore not modeled.\n\nTo evaluate model generalisability rigorously under geographical transportability constraints, data from Centre A and Centre B comprising 763 patients were pooled exclusively for model development, data preprocessing, and internal cross-validation, whereas the 100 patients from Centre C were completely quarantined as an unseen external validation cohort. Addressing the pervasive clinical reality of irregular examinations and incomplete documentation, the researchers implemented a structured missingness and data-augmentation pipeline. Instead of relying purely on conventional statistical imputation, numerical features were expanded into augmented pairs comprising an observability indicator mask and an imputed value sampled from a uniform distribution, while categorical variables underwent one-hot encoding accompanied by selective group-level masking. Experimental evaluations confirmed that avoiding indiscriminate masking of one-hot encoded categorical blocks preserved the underlying mutually exclusive categorical structure, creating an augmented training distribution that bolstered algorithmic robustness against incomplete clinical profiles without degrading predictive fidelity.\n\nThe resulting prediction architecture established a parallel, dual-branch ensemble combining single-task extreme gradient boosting (ST-XGBoost) and single-task multilayer perceptrons (ST-MLP) across each of the four target outcomes. Rather than forcing hard parameter sharing within a joint multi-task neural network—which frequently triggers negative task interference during optimisation—the parallel formulation allowed each clinical endpoint to learn independent feature weights while processing a standardised input space. Within the gradient-boosted decision tree branch, a shared unsupervised autoencoder generated low-dimensional latent embeddings that were concatenated directly with original baseline features prior to model training. Final event probabilities were computed through task-specific linear convex combinations of the two branch outputs, governed by validation-tuned weighting coefficients: 0.11 for wound cure, 0.62 for ulcer recurrence, 0.83 for lower-extremity amputation, and 0.39 for all-cause mortality. This linear late-fusion strategy mitigated overfitting risks on the moderate development sample while safeguarding the transparent tractability of individual branch predictions.\n\nWhen compared against six alternative modeling approaches—including standard logistic regression, support vector machines, random forests, standalone ST-XGBoost, standalone ST-MLP, and multi-task multilayer perceptrons—the locked ensemble achieved the highest overall multidimensional ranking score of 55 in independent external validation at Centre C. The ensemble model attained a macro-averaged external area under the receiver operating characteristic curve of 0.901, an overall accuracy of 0.875, and a macro-averaged F1 score of 0.830. Task-specific discrimination in the external validation cohort was highest for lower-extremity amputation, yielding an area under the curve of 0.9531 with a 95 percent boo",
+  "begyujtve": "2026-11-07T10:04:03.912831+00:00",
+  "prioritas": {
+    "pont": 62,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 70,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 98,
+      "kozossegi": 32
+    },
+    "elofeszures": 74,
+    "tanult": 20,
+    "indok": "Niche orvosi kutatási eredmény magyarázható AI modellel a cukorbetegség szövődményeinek előrejelzésére. Forrás-tapasztalat: -6.",
+    "tema": "explainable ai diabetic foot ulcer",
+    "cim_hu": "A cukorbeteg lábfekély kimenetelét jósolja meg egy új, magyarázható AI-rendszer",
+    "lead_hu": "Többközpontú klinikai vizsgálat igazolta egy új gépi tanulási modell hatékonyságát, amely képes egyszerre négy fő kimenetelt előrejelezni a kórházban ápolt cukorbeteg betegeknél.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-07T10:04:15+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-07T10:04:31+00:00"
+}
