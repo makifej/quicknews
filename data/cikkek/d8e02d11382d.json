@@ -1,0 +1,49 @@
+{
+  "id": "d8e02d11382d",
+  "slug": "buoyant-releases-kinference-an-open-source-inference-control-plane",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/07/buoyant-kinference-open-source-inference-control-plane-kubernetes-vllm/",
+  "publikalva": "2026-11-07T08:16:33+00:00",
+  "cim": "Buoyant Releases Kinference: An Open Source Inference Control Plane for Kubernetes and vLLM",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 61 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-14-scaled.png"
+  },
+  "cim_eredeti": "Buoyant Releases Kinference: An Open Source Inference Control Plane for Kubernetes and vLLM",
+  "szoveg_eredeti": "Buoyant, the company behind Linkerd, has released Kinference , an open source project for building inference platforms on Kubernetes. Kinference is an inference control plane for Kubernetes and vLLM. It sits in front of a fleet of vLLM workers and decides where each request goes. It applies routing policies, token rate limits, KV-cache-aware load balancing and per-tenant metrics in one layer. For dev teams serving many open-weight models to many internal clients, it targets the layer above the model server. The project is Apache 2.0 licensed on GitHub . The current release is v0.1.0-alpha.7 .\n\n TL;DR \n\n Size: v0.1.0-alpha.7, written in Rust, Apache 2.0, configured through 5 Kubernetes CRDs.\n\n Runs on: any GPU-enabled Kubernetes cluster running vLLM. Buoyant’s benchmark used 3 L40S GPUs per pool.\n\n Performance: large gains on prefix-heavy traffic versus plain Kubernetes Service routing (self-reported).\n\n Best: median TTFT fell from 6.88 s to 0.31 s (95%) on a shared-prefix workload.\n\n Worst: no median TTFT gain on prompts without shared prefixes (6.92 s vs 6.83 s).\n\n What is Kinference? \n\n Kinference is a policy-driven control plane that turns Kubernetes plus vLLM into a multi-tenant inference platform. Buoyant’s FAQ puts it simply: vLLM is the data plane and Kinference is the control plane.\n\n How does Kinference work? \n\n The system has 2 parts: a traffic gateway and an inference handler. The GitHub README states that the handler exposes a gRPC interface. It takes a request and returns the chosen endpoint plus a possibly mutated body. It pairs with a proxy such as the Buoyant Gateway .\n\n Kinference watches vLLM KV-cache events and engine metrics. It currently uses NVIDIA’s dynamo-kv-router crate to process cache events. Configuration lives in 5 CRDs: GatewayBackend, InferencePolicy, InferencePool, InferenceProvider and InferenceWorkerSet .\n\n What are inference policies? \n\n Inference policies are declarative rules for how each request is routed or rejected. Rules can match on tenant, requested model, GPU pool state and semantic tags. Example policies on the project site cover 5 patterns:\n\n Simple to cheaper: route low-complexity prompts to a smaller model, unless cache overlap makes the large model faster.\n\n Burst to cloud: skip workers with over 2 queued prompts, then fall back to providers like Bedrock.\n\n PII stays local: remove external providers when a PII tag fires, and fail closed with onEmpty: Reject .\n\n Batch on idle GPUs: send batch requests only to workers under 70% KV-cache usage.\n\n Model aliasing: publish one stable name, such as standard-model , backed by several models.\n\n Most rules end with minimize: PredictedTTFT . Kinference predicts time-to-first-token for each candidate endpoint, using cache overlap and queue length. Policies live in git and can be validated offline with the kinfctl CLI.\n\n How fast is Kinference in benchmarks? \n\n Buoyant published a benchmark against plain Kubernetes load balancing . Each arm used 3 vLLM 0.31.0 pods, each on 1 L40S GPU. The model was Qwen3.8-27B-FP8 . Load came from GuideLLM 0.8.1. The baseline was a ClusterIP Service, where kube-proxy picks a random pod per connection.\n\n Unloaded latency results (median TTFT): \n\n Workload Kubernetes Service Kinference Change Control (no shared prefix) 6.92 s 6.83 s No significant difference Shared-prefix 6.88 s 0.31 s about -95% Multiturn 1.70 s 0.59 s about -65% \n\n Median end-to-end latency fell 45% on shared-prefix and 32% on multiturn. On control traffic, p95 TTFT still dropped from 21.46 s to 12.33 s. Buoyant attributes this to queue-aware balancing.\n\n The capacity test measured goodput: requests per minute meeting a TTFT SLO. Peak goodput was 103.0 vs 14.0 req/min on shared-prefix, about 7.4x. On multiturn it was 82.7 vs 23.8, about 3.5x. The Service baseline never met the SLO at any tested concurrency.\n\n These numbers are self-reported. The baseline is random routing, not another cache-aware router like llm-d or Dynamo. Buoyant also notes its SLOs (8 s and 4 s) suit offline agents, not chat.\n\n How does Kinference compare with llm-d, Dynamo and Production Stack? \n\n Feature Kinference llm-d NVIDIA Dynamo vLLM Production Stack Backer Buoyant CNCF sandbox (Red Hat, Google Cloud, IBM, CoreWeave, NVIDIA) NVIDIA vLLM project License Apache 2.0 Apache 2.0 Apache 2.0 Apache 2.0 Maturity v0.1.0-alpha.7 v0.7 (May 2026) 1.x (1.5.1 containers) Reference stack Engines vLLM (SGLang, TensorRT-LLM planned) vLLM, SGLang vLLM, SGLang, TensorRT-LLM vLLM KV-cache-aware routing Yes, predicted TTFT Yes, prefix-cache and predicted latency Yes, KV-aware router Session-based; prefix-aware listed as WIP Declarative routing policy CRD Yes (InferencePolicy) Not documented in README Not documented in README Not documented in README Burst to external providers Yes (InferenceProvider) Not documented in README Not documented in README Not documented in README Disaggregated prefill/decode Not disclosed Yes Yes On roadmap Multi-tenant controls Per-tenant metrics; rate limits planned Flow control for multi-tenant serving Gateway-level rate limiting via GAIE Not documented in README Main result -95% median TTFT vs kube-proxy (3x L40S) 3x throughput, 2x faster TTFT vs round-robin (4x MI300X) 2x faster TTFT with KV-aware routing (Baseten) Not disclosed \n\n Kinference’s distinct angle is governance: policies, aliases, provider fallback and tenant accounting. llm-d and Dynamo lead on raw serving performance, disaggregation and engine coverage.\n\n Deployment and availability \n\n Installation takes 5 steps per the getting started guide . Teams install Gateway API v1.5.1 CRDs, the Buoyant gateway Helm chart, then the Kinference chart. Kinference ships Prometheus metrics and Grafana dashboards . Metrics include TTFT, ITL, end-to-end latency and cached versus uncached prompt tokens, mostly per tenant.\n\n Key Takeaways \n\n Kinference is an Apache 2.0 control plane for vLLM on Kubernetes, from Linkerd maker Buoyant.\n\n Declarative InferencePolicy rules handle model choice, provider bursting, PII routing and batch admission.\n\n Self-reported median TTFT fell 95% on shared-prefix traffic versus kube-proxy.\n\n Peak goodput rose about 7.4x on shared-prefix and 3.5x on multiturn.\n\n It is alpha: rate limiting, classifiers and Anthropic API support are not yet shipped.\n\n Check out the GitHub repo , docs , launch post and benchmark report . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Buoyant Releases Kinference: An Open Source Inference Control Plane for Kubernetes and vLLM appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-07T09:18:46.140549+00:00",
+  "prioritas": {
+    "pont": 61,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 65,
+      "egyediseg": 95,
+      "hitelesseg": 74,
+      "aktualitas": 95,
+      "kozossegi": 53
+    },
+    "elofeszures": 89,
+    "tanult": 42,
+    "indok": "Hasznos nyílt forráskódú fejlesztői eszköz Kubernetes és vLLM alapú AI modellkiszolgáláshoz Forrás-tapasztalat: -7.",
+    "tema": "kinference open source kubernetes",
+    "cim_hu": "Megjelent a Kinference, a Buoyant nyílt forráskódú AI-modellkiszolgáló eszköze",
+    "lead_hu": "A Linkerd mögött álló Buoyant kiadta a Kinference-t, amely segít az open-weight modellt futtató infrastruktúrák terheléselosztásában és kezelésében Kubernetes környezetben.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-07T09:18:58+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-07T09:19:05+00:00"
+}
