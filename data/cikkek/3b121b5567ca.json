@@ -1,0 +1,49 @@
+{
+  "id": "3b121b5567ca",
+  "slug": "router-driven-multi-agent-artificial-intelligence-automates",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/router-driven-multi-agent-artificial-intelligence-automates-geotechnical-foundation-engineering-calculations/",
+  "publikalva": "2026-11-07T11:17:54+00:00",
+  "cim": "Router-Driven Multi-Agent Artificial Intelligence Automates Geotechnical Foundation Engineering Calculations",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 61 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-2628.jpg"
+  },
+  "cim_eredeti": "Router-Driven Multi-Agent Artificial Intelligence Automates Geotechnical Foundation Engineering Calculations",
+  "szoveg_eredeti": "Router-Driven Multi-Agent Artificial Intelligence Automates Geotechnical Foundation Engineering Calculations\n\nA preliminary engineering investigation evaluated an automated multi-agent framework powered by large language models that dynamically classifies design tasks and routes them to specialized analytical agents for structural foundation calculations. In benchmarks across shallow foundation and deep pile design scenarios, the router-based architecture reached an average performance score of 95.00 percent for shallow foundations and 90.63 percent for pile design when built on the Grok 3 foundational model. These scores represented improvements of 8.75 and 3.13 percentage points over standalone Grok 3 execution, while outperforming conventional sequential multi-agent workflows by margins spanning 10.0 to 43.75 percentage points across tested baseline platforms. The researchers established this investigation as a proof of concept designed to address whether coordinated prompt-based agent architectures can solve complex mathematical and geotechnical engineering problems directly without relying on external calculation plugins or retrieval-augmented generation search databases.\n\nFoundation engineering serves as a critical discipline within civil and structural practice, requiring precise assessments of soil-structure interaction, regulatory safety factors, bearing capacities, and potential settlement. Traditionally, deploying large language models in quantitative engineering has faced persistent obstacles due to documented mathematical deficiencies and hallucinations during multi-step numerical procedures. Previous implementations attempted to mitigate these calculation errors through hybrid systems that connected language models to external symbolic calculators, Python code execution environments, or vector-based retrieval-augmented generation databases. However, empirical assessments revealed that retrieval-dependent systems suffer from operational vulnerabilities, including semantic drift across evolving engineering standards, sensitivity to database indexing quality, high latency during retrieval, and an inability to formulate solutions beyond pre-indexed historical examples. The researchers designed their routing framework to overcome these constraints by applying prompt-guided task decomposition and deterministic expert agent assignment.\n\nThe multi-agent system architecture, developed using the LangChain orchestration framework and evaluated within an automated workflow environment, integrates frontier models including Gemini 2.5 Pro and Grok 3. In this setup, each autonomous agent is formally defined by its model parameters, domain-specific prompt templates, available external tools such as SerpAPI for referencing active design codes, and specialized knowledge bases. Instead of processing queries sequentially through fixed pipelines or querying vector databases for analogous examples, the architecture employs a dual-tier text classification node. Using transformer-based query embeddings transformed through learned weight matrices and softmax probability functions, the router systematically analyzes natural language design proposals. The router first classifies the problem type into either a shallow foundation or a deep pile foundation, and subsequently routes the request to an expert agent configured specifically for the required analytical category.\n\nWithin the pile foundation domain, the classification framework separates tasks into four specialized analytical pathways: pile length geometric parameter optimization, ultimate load-bearing capacity assessment, settlement displacement under applied loading, and group pile interaction analysis. The corresponding specialized agents apply system prompts containing exact analytical procedures, such as Vesic’s bearing capacity theory for deep foundations. For pile settlement analysis, the assigned agent executes a multi-component superposition method that separates total settlement into cumulative contributions from shaft friction load transfer along the pile-soil interface, end-bearing tip displacement, and elastic compression of the pile material. In group pile scenarios, the framework utilizes collaborative reasoning among multiple agent instances to evaluate efficiency factors, block failure mechanisms, and group displacement patterns before reaching a unified consensus solution.\n\nFor shallow foundation design tasks, the classification node directs incoming problems into five primary calculation categories: foundation sizing dimensions, ultimate and allowable bearing capacity, immediate and consolidation settlement, factor of safety risk analysis, and allowable service load determinations. The designated calculation agents implement structured system prompts embodying a geotechnical engineering persona guided by Terzaghi’s classical bearing capacity formulation and its modern extensions. Step-by-step one-shot learning examples are embedded directly into agent instructions to steer mathematical derivations for footing dimensions under moment-induced or eccentric loads. For settlement evaluations in normally consolidated clay conditions, the prompts guide the step-wise computation of immediate elastic settlement alongside long-term consolidation settlement, using prompt structure to preserve physical rigor and adherence to design equations without modifying underlying model weights.\n\nThe operational framework incorporates an integrated quality assurance pipeline featuring a technical reviewer agent and a terminal senior engineer agent. The technical reviewer agent evaluates preliminary calculation outputs using a multi-criteria scoring function that assesses computational accuracy, factor of safety applications, adherence to geotechnical design codes, and solution formatting. When deficiencies or deviations are detected, the reviewer agent simultaneously calculates a weighted quality score and generates an annotated revision identifying specific analytical corrections. This quantitative evaluation and revised content then pass downstream to the senior engineer agent. Encoded with a hierarchical decision tree within its prompt architecture, the senior engineer agent synthesizes the peer review metrics, resolves discrepancies, and standardizes technical outputs into professional documentation suitable for engineering verification.\n\nTo rigorously test the multi-agent system, the authors assembled an evaluation benchmark comprising 27 distinct geotechnical test cases formulated by licensed professional engineers with over 20 years of collective experience. The test suite encompassed 15 shallow foundation problems addressing footing geometry, eccentric loading, groundwater table interactions, layered soil profiles, and combined load safety factors, alongside 12 pile foundation problems covering length determinations, skin friction mechanisms, prestressed concrete pile settlement, and group pile capacity in saturated clays. Each ground truth solution was calculated manually according to verified building codes and analytical standards. Every test case underwent triple-trial execution across nine model configurations—yielding 81 evaluations per configuration and over 700 total evaluations—under standardized parameters of 0.7 temperature and 0.9 top_p to isolate model variability from prompt modifications.\n\nPerformance was assessed across four equally weighted criteria (each carrying a 0.25 weight): numerical calculation accuracy, chain-of-thought reasoning integrity, complex scenario handling, and structured output formatting. All trial outputs were independently scored on a four-point scale by two licensed professional engineers, achieving an inter-rater reliability Cohen’s kappa coefficient of 0.89, which indicates substantial agreement. Experimental results demonstrated that the router-based Grok 3 configuration achieved top performance, scoring 100 percent in shallow foundation dimensioning and 87.50",
+  "begyujtve": "2026-11-07T11:33:47.827980+00:00",
+  "prioritas": {
+    "pont": 61,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 70,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 36
+    },
+    "elofeszures": 76,
+    "tanult": 23,
+    "indok": "Tudományos áttörés a többágenses AI mérnöki alkalmazásában, de szűk szakmai területet érint. Forrás-tapasztalat: -6.",
+    "tema": "multi agent foundation engineering",
+    "cim_hu": "Többágenses mesterséges intelligencia automatizálja a geotechnikai számításokat",
+    "lead_hu": "Egy új, nagy nyelvi modellekre épülő többágenses keretrendszer automatikusan osztályozza és irányítja a komplex alapozási és cölöpözési feladatokat a mérnöki tervezésben.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-07T11:33:54+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-07T11:34:00+00:00"
+}
