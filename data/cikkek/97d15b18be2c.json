@@ -1,0 +1,52 @@
+{
+  "id": "97d15b18be2c",
+  "slug": "earlier-this-week-tristan-published-his-top-youtube-channels",
+  "forras_id": "x-karpathy",
+  "forras_nev": "Andrej Karpathy (X)",
+  "url": "https://x.com/karpathy/status/2119114537442189652",
+  "publikalva": "2026-11-07T17:07:31+00:00",
+  "cim": "Earlier this week Tristan published his top YouTube channels:",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 59 pont, tendencia 33%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pbs.twimg.com/media/HWDnuuCaIAA__wa.jpg?name=orig",
+    "x_url": "https://x.com/karpathy/status/2119114537442189652",
+    "eredeti_keszito": "Andrej Karpathy (@karpathy)",
+    "eredeti_url": "https://x.com/karpathy/status/2116957135661945283"
+  },
+  "cim_eredeti": "Earlier this week Tristan published his top YouTube channels:",
+  "szoveg_eredeti": "Earlier this week Tristan published his top YouTube channels:\nhttps://thume.ca/2026/11/01/youtube-tier-list-2026/\nWhich looked excellent so clearly I had to turn it into TristanTube:\nhttps://karpathy.ai/tristan-tube/\n47K super nerdy videos +TV mode for laid back watching. (One-shotted with Claude Code in 3 minutes)\n\n[IDÉZETT POSZT, amelyet Andrej Karpathy megosztott. Eredeti szerzője: Andrej Karpathy (@karpathy); megjelent: 2026-11-01T18:14:46+00:00; link: https://x.com/karpathy/status/2116957135661945283; média: 1 kép]\nWeekend hack: HackerTube. I was annoyed with YouTube's recommendations so I had Claude filter down 43M comments over 20 years of HN to 6,454 videos that keep being recommended. *Significantly* better viewing experience, ~2 hours with Opus 5.5:\nhttps://hackertube.org/\n\n- Excellent recs without any logins (state is kept in local browser session)\n- Thumbnail is a representative frame from middle of the video instead of the super duper A/B test hyper-optimized user uploads\n- Underlying data from the comment analysis as one zip file, point your Claude at it and ask for your own version\n- HackerTube Longs ✊\n\nA bit more on the process:\nI use Claude Code (desktop app for Mac), Opus 5.5 on Medium effort as my default. I only talk to Claude and have it do everything, the only \"manual work\" I helped with in tandem was in the browser (reminiscent of MenuGen): 1) I had to create some kind of API key from Google Cloud UI to query YouTube for video metadata, 2) I booted up a VPS box for serving and 3) I bought the domain name. Once the box was up I gave Claude the IP and told it update, secure, harden, deploy and optimize the code, and it did the whole thing.\n\nMany awesome projects that would have normally taken weeks/months even can now be few-shotted for breakfast. What else are we not thinking of.",
+  "begyujtve": "2026-11-07T17:18:31.897389+00:00",
+  "prioritas": {
+    "pont": 59,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 50,
+      "egyediseg": 80,
+      "hitelesseg": 81,
+      "aktualitas": 92,
+      "kozossegi": 73
+    },
+    "elofeszures": 92,
+    "tanult": 85,
+    "indok": "Érdekes személyes projekt Andrej Karpathy-tól, de nem kiemelkedő áttörés. A forrás P3-as híreiből eddig kb. 33%-ot fogadtál el.",
+    "tema": "karpathy claude code project",
+    "cim_hu": "Andrej Karpathy három perc alatt épített YouTube-gyűjtőt a Claude Code segítségével",
+    "lead_hu": "Az ismert AI-kutató a Claude Code kódgeneráló eszközzel készített egy 47 ezer szakmai videót gyűjtő felületet egyetlen utasítással.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-07T17:34:55+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-07T17:35:00+00:00"
+}
