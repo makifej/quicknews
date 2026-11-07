@@ -1,0 +1,49 @@
+{
+  "id": "bda2b44b079e",
+  "slug": "inside-artex-ai-hacking-tools-exposed-servers-and-south-korean-bank",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Security Affairs",
+  "url": "https://securityaffairs.com/202607/ai/inside-artex-ai-hacking-tools-exposed-servers-and-south-korean-bank-breaches.html",
+  "publikalva": "2026-11-07T20:00:02+00:00",
+  "cim": "Inside ARTEX: AI Hacking Tools, Exposed Servers and South Korean Bank Breaches",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 72 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://securityaffairs.com/wp-content/uploads/2026/11/image-13.png"
+  },
+  "cim_eredeti": "Inside ARTEX: AI Hacking Tools, Exposed Servers and South Korean Bank Breaches",
+  "szoveg_eredeti": "Between late September and early October 2026, seven South Korean financial institutions had data breached through internet-facing systems. About 66,000 to 67,000 people and around 2,200 corporations were affected, and personal, employment, income and loan data was exposed. Hunt.io dug into the infrastructure behind the campaign, and its findings add a lot to what CrowdStrike and Genians already published.\n\nCrowdStrike reported on October 7 and Genians Security Center on October 12, and both pointed to ARTEX, an open-source autonomous penetration testing framework developed in China and licensed under AGPL-3.0. CrowdStrike assessed with moderate confidence that a single Chinese-speaking individual motivated by money ran it, and not an established threat group. DeepSeek v4.1 Flash was the main model, with GLM 5.3 and Grok 4.6 as backups, reached partly through a reseller domain, xcai[.]pro.\n\nThe public indicators were a server at 38.244.50[.]120, which hosted the ARTEX console, plus a Hong Kong address and nine proxies. Genians said the ARTEX GitHub repository and Docker image were removed on October 11, though forks and mirrors remain.\n\n“CrowdStrike assessed with moderate confidence that the operator was a single Chinese-speaking individual motivated by financial gain rather than an established threat group.” reads the report published by Hunt.io. “The infrastructure reportedly accessed these services in part through the reseller domain xcai[.]pro. Both reports described a two-server configuration, consisting of a Hong Kong-based IP address used as primary infrastructure and 38.244.50[.]120, which hosted the ARTEX console.”\n\nHunt.io notified the relevant national CERT before publishing, and says the report holds no personal records or credentials.\n\nThe company’s own scanning showed 38.244.50[.]120 sits on Cogent’s network in Los Angeles, with 15 open ports. The ARTEX login page, with a Chinese title meaning “autonomous penetration testing console”, appears on ports 443 and 8090. Other services include a Gemini2API admin console and a Tinyproxy server.\n\nSearching its AttackCapture platform for that address, Hunt.io found another open directory at 23.248.226[.]250, a jump server in Hong Kong on AS138415. It held 42 files in 2 subdirectories, 105 MB in all, and the platform had logged warnings on September 5, September 26 and October 5. A file in it names 38.244.50[.]120 as the jump host, and its own comment tells the operator never to paste the credentials into a session. It sat in an open directory.\n\nThree scripts back up the link. They keep reverse SSH tunnels alive, run a local relay, and copy files to the jump host, one tunnel is named grok2api, and the credentials file also holds keys for Zhipu AI’s GLM models, an OpenAI-compatible relay and a proxy service. That explains how several language models ran in one campaign.\n\nThe AI setup is the most striking part. A state file shows the harness is Claude Code itself, version 2.1.221, started 510 times since August 4, but it isn’t talking to Anthropic. A small proxy, ds-models-shim.py, fixes a compatibility problem by faking a model list and sending requests to DeepSeek, and another, xcai-effort-shim.py, adds a reasoning setting because the DeepSeek backend otherwise skips its reasoning step. The route runs from Claude Code through Claude Code Router, an open-source project, to xcai and then to DeepSeek.\n\n“A small local proxy, ds-models-shim.py, addresses a compatibility issue: the official /v1/models endpoint returns a 404 response when queried against a non-Anthropic backend, preventing Claude Code from discovering the available models. The shim intercepts that specific request and returns a locally defined model list containing deepseek-v4-pro and deepseek-flash. All other requests are forwarded to api.deepseek.com/anthropic.” states the report.\n\nThe same file counts 19 custom skills, reusable instruction sets for the agent, with 147 recorded uses. They cover code audit, reconnaissance, web injection, WAF bypass testing, authentication testing, Telegram Mini Apps, APK download and decompiling, cloud phone control and payment logic testing. Next to the payment skill sat three self-registered test accounts with tokens for a cash-in deposit API, dated September 12, and a comment calls them an authorized, self-built test. The setup fits testing for insecure direct object reference flaws, a technique CrowdStrike and Genians described against Korean loan and inquiry services.\n\nThe directory also held supporting tools. A script queried FOFA, a Chinese asset search engine like Shodan, through a third-party API, and a comment says the primary membership had expired and a backup key was in use. Proxy scripts enumerated a rotating proxy service at 154.201.79[.]246:443, where 79 unique exit IPs showed up among the first 100 identities tested.\n\nA separate directory at 23.248.226[.]250:8001 held a small staged setup for JNDI and LDAP exploitation, retrieved on October 5 at 03:42 UTC. It confirms command execution through a DNS callback, and one script lets web and LDAP traffic share a single port. Hunt.io’s analysis describes the tooling without publishing steps to reproduce it.\n\nOther recovered files include tools aimed at a cryptocurrency exchange’s admin session and withdrawals, Linux privilege escalation exploits, iOS probe source code and Android kernel and firmware utilities. Hunt.io says their connection to the Korean breaches isn’t confirmed.\n\nHunt.io then showed how to hunt ARTEX servers. Searching for an ARTEX certificate issuer returned 19 IP addresses, and searching its malware classification returned 1,303 addresses across 30 countries, led by the United States, China and Hong Kong. Those figures show where addresses are registered, not where the operator sits.\n\n“The result returned 19 distinct IP addresses, including 38.244.50[.]120. This method is precise but limited to hosts that expose a matching certificate. Systems using a different certificate will not appear in these results.” continues the report.\n\nMatching the console’s page title returned about 1,300 IPs, and a looser search found 21 title strings, 19 of them likely ARTEX consoles, in English, Chinese, Korean, Japanese, Russian, Portuguese and Vietnamese.\n\nA malware-name search in AttackCapture gave 280 results with open directories. One at 130.94.31[.]86:18888 in Seoul held two small scripts, and another at 156.251.11[.]39 held an SMB reconnaissance toolkit whose test script writes a file named artex_probe_11876.txt.\n\nMore hosts held exploitation kits for DedeCMS and FangCMS, a CAPTCHA bypass suite, a RuoYi and Spring administrative console exploit and CAPTCHA-based login automation. Together they show the framework attracting many operators.\n\nFor defenders, the advice is plain. Remove public access and put administration behind VPNs or allowlists, and reset SSH passwords and rotate API keys, proxy credentials and tokens that exposed files may have revealed. Patch internet-facing services, watch for unexpected LDAP and JNDI activity, DNS callbacks and remote script downloads, and store secrets in a managed vault with least-privilege permissions. Also restrict access to model gateways, watch their requests, and enforce compliance rules on managed phones. Hunt.io’s lesson is that an investigation shouldn’t stop at the first list of indicators, because\n\nThe company also published indicators of compromise in its analysis.\n\n“The findings highlight risks associated with exposed administrative services, reusable credentials, remote access tunnels, proxy infrastructure, and exploitation tooling.” concludes the report.\n\nFollow me on Twitter: @securityaffairs and Facebook and Mastodon\n\nArtificial Intelligence / November 07, 2026\n\nArtificial Intelligence / November 07, 2026\n\nArtificial Intelligence / November 06, 2026",
+  "begyujtve": "2026-11-07T20:04:01.991715+00:00",
+  "prioritas": {
+    "pont": 72,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 99,
+      "kozossegi": 54
+    },
+    "elofeszures": 77,
+    "tanult": 37,
+    "indok": "Komoly kiberbiztonsági incidens és MI-alapú hackereszközök feltárása dél-koreai bankok ellen. Forrás-tapasztalat: -6.",
+    "tema": "artex ai hacking south korea",
+    "cim_hu": "MI-alapú hackereszközökkel törtek be több dél-koreai bankba",
+    "lead_hu": "Biztonsági kutatók feltárták az ARTEX nevű MI-alapú kiberbűnözői infrastruktúrát, amellyel több mint hatvanezer ügyfél adatait lopták el dél-koreai pénzintézetektől.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-07T20:04:15+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-07T20:04:15+00:00"
+}
