@@ -1,0 +1,85 @@
+{
+  "id": "a8fbb6495469",
+  "slug": "valos-feladatoknal-tizbol-het-esetben-hibaznak-az-ai-kodolougynokok",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/ai-coding-agents-still-need-human-cleanup-on-nearly-three-out-of-four-tasks-in-a-real-world-test/",
+  "szerzo": "Jonathan Kemper",
+  "publikalva": "2026-11-08T09:50:59+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/11/co-design-bench-nano-banana-pro.jpg"
+  },
+  "cim_eredeti": "AI coding agents still need human cleanup on nearly three out of four tasks in a real-world test",
+  "forrasok": [],
+  "szoveg_eredeti": "Researchers from Alibaba and several Asian universities built a coding-agent benchmark from real user change requests. Even the best model fully completes only about one in four tasks, putting the near-perfect scores of older tests into perspective.\n\nThe team developed Co-Design Bench, a new test for coding agents. The agents must rework existing web apps based on user requests, sometimes using images, audio recordings, videos, or documents as input.\n\nAccording to the paper, GPT-6 Astra, the best of the ten models tested, meets about 70 percent of a task's requirements on average. But the result is fully correct in only 26.4 percent of tasks. In most cases the agent handles the bulk of the work but leaves at least one detail unfinished, so anyone using these tools almost always has to clean up by hand.\n\nThe authors justify the new test by pointing to the saturation of existing benchmarks. When models can run, check, and fix their own code, they hit scores above 99 percent on those tests, and differences between models can barely be measured.\n\nCo-Design Bench draws on real requests from actual coding sessions instead. The researchers favored cases where users had to rephrase their request multiple times or roll back changes, so the test contains mainly tasks that already gave AI agents trouble in practice. They range from small tweaks, like pulling an amount from a receipt and updating every dependent total, to full-scale project overhauls.\n\nGrading is strict to match. One AI judge tests the finished app in a browser, then a second re-checks every positive verdict and looks for mock-ups or hardcoded results. Points go only to features that actually work in the app.\n\nBehind GPT-6 Astra, Claude Opus 5 and Qwen3.8-Max take the next spots, while Grok 4.6 lands in last place. On larger overhauls, the much smaller Qwen3.8-27B climbs to second, but the authors do not derive a general advantage of the model from that result.\n\nPerformance drops across all models as a task combines more types of changes, including layout, design, interaction, and content. But these intertwined requirements are the norm in real projects\n\nExtra compute does little to fix this weakness. GLM-5.2 burns through nearly six times as many tokens as GPT-6 Astra on smaller changes and still scores significantly worse.\n\nIn a separate test, the researchers ran the same models in different harnesses, the programs through which an agent reads, writes, and executes code. Qwen3.8-27B scored 75 or just 56 percent on larger overhauls depending on the environment. Which of two models came out ahead also depended on the environment.\n\nLeaderboards that list only the model therefore only tell part of the story. The authors recommend always reporting model and working environment together. For companies picking a coding agent, that means testing both components as a pair.\n\nThe new benchmark does have limits. It evaluates one fixed request per task; follow-up questions or mid-task corrections from users are not part of the test. The AI judges can also make mistakes.\n\nA study by the research organization METR already showed how far benchmark results and real-world usability can diverge. The actual acceptance rate of AI-generated code by project leads was roughly 24 percentage points below scores on the widely used SWE-bench Verified.\n\nFlaws in test environments can also let agents pass tasks without actually solving them. The effect of the working environment is not clear-cut, though. A recent study on coding agents found barely any measurable benefit from more elaborate harnesses, even though they consumed up to three times as many tokens.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Valós feladatoknál tízből hét esetben hibáznak az AI-kódolóügynökök",
+  "lead": "Az Alibaba új tesztje szerint a legjobb AI-modell is csak a feladatok negyedét tudja teljesen hibátlanul megoldani a gyakorlatban.",
+  "osszefoglalo": "Az Alibaba és több ázsiai egyetem kutatói kifejlesztették a [Co-Design Bench](https://arxiv.org/abs/2610.35138) nevű tesztkörnyezetet, amely valós felhasználói kérések alapján méri az AI-kódolóügynökök teljesítményét. A vizsgálat kimutatta, hogy míg a régebbi teszteken a modellek 99 százalék feletti eredményt érnek el, a valós életből vett összetett feladatoknál a **legjobb modell is csak a feladatok 26,4 százalékát** tudja teljesen hibátlanul elvégezni.\n\nA tesztelt eszközök közül a [GPT-6 Astra](https://openai.com/index/gpt-6-astra) teljesített a legjobban, a feladatok követelményeinek átlagosan 70 százalékát teljesítve, de a legtöbb esetben emberi javításra volt szükség a végeredményben. A teszt során a Claude Opus 5 és a Qwen3.8-Max követte a listavezetőt, míg a Grok 4.6 az utolsó helyen végzett. A kutatók megállapították, hogy a bonyolultabb, dizájnt és funkciót egyszerre érintő módosításoknál mindegyik modell teljesítménye jelentősen visszaesik.\n\nA felmérés arra is rámutatott, hogy a modellek teljesítménye jelentősen függ a futtatókörnyezettől is. Ugyanaz a kódoló modell a használt keretrendszertől függően 56 és 75 százalékos eredményt is elérhetett, vagyis a vállalati választásnál a modellt és az azt futtató szoftverkörnyezetet együtt kell értékelni.",
+  "miert_szamit": "A gyakorlatban az AI-kódolók még nem váltják ki a fejlesztőket, mert a kódok **közel háromnegyedénél kézi javításra van szükség**, így a csapatoknak a teljes automatizáció helyett a hatékony javítási folyamatokra kell építeniük.",
+  "cimkek": [
+    "kódolás",
+    "AI-ügynök",
+    "Alibaba",
+    "benchmark"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "kutatas",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Co-Design Bench"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 87,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 82,
+      "hirertek": 88,
+      "egyediseg": 95,
+      "hitelesseg": 85,
+      "aktualitas": 99,
+      "kozossegi": 82
+    },
+    "elofeszures": 98,
+    "tanult": 78,
+    "indok": "Fontos új benchmark világít rá a kódoló MI-ügynökök valós korlátaira.",
+    "tema": "ai coding benchmark study",
+    "cim_hu": "A kódoló MI-ügynököknek a feladatok háromnegyedénél még emberi segítségre van szükségük",
+    "lead_hu": "Egy új, valós felhasználói kéréseken alapuló teszt szerint a legjobb MI-kódolómodell is csak a feladatok negyedét tudja teljesen önállóan elvégezni.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-08T10:05:05+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-08T10:05:23+00:00",
+  "megjelent": "2026-11-08T10:05:23+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-08T10:05:25+00:00",
+    "esemeny": "Az Alibaba és több ázsiai egyetem kutatói kifejlesztették a Co-Design Bench nevű tesztkörnyezetet valós kódolói kérések alapján. A vizsgálat kimutatta, hogy a legfejlettebb kódoló AI-modell is csak a feladatok 26,4 százalékát tudja teljesen hibátlanul elvégezni, így a kódok közel háromnegyedénél továbbra is emberi javításra van szükség.",
+    "forrasok": [
+      "https://arxiv.org/abs/2610.35138"
+    ],
+    "hibak": [
+      "Hiányzik az elsődleges forrásra mutató link a szövegből.",
+      "A szövegben elgépelés található ('közelháromnegyedénél')."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Valós feladatoknál tízből hét esetben hibáznak az AI-kódolóügynökök",
+      "lead": "Az Alibaba új tesztje szerint a legjobb AI-modell is csak a feladatok negyedét tudja teljesen hibátlanul megoldani a gyakorlatban.",
+      "osszefoglalo": "Az Alibaba kutatói kifejlesztették a Co-Design Bench nevű tesztkörnyezetet, amely valós felhasználói kérések alapján méri az AI-kódolóügynökök teljesítményét. A vizsgálat kimutatta, hogy míg a régebbi teszteken a modellek 99 százalék feletti eredményt érnek el, a valós életből vett összetett feladatoknál a **legjobb modell is csak a feladatok 26,4 százalékát** tudja teljesen hibátlanul elvégezni.\n\nA tesztelt eszközök közül a GPT-6 Astra teljesített a legjobban, a feladatok követelményeinek átlagosan 70 százalékát teljesítve, de a legtöbb esetben emberi javításra volt szükség a végeredményben. A teszt során a Claude Opus 5 és a Qwen3.8-Max követte a listavezetőt, míg a Grok 4.6 az utolsó helyen végzett. A kutatók megállapították, hogy a bonyolultabb, dizájnt és funkciót egyszerre érintő módosításoknál mindegyik modell teljesítménye jelentősen visszaesik.\n\nA felmérés arra is rámutatott, hogy a modellek teljesítménye jelentősen függ a futtatókörnyezettől is. Ugyanaz a kódoló modell a használt keretrendszertől függően 56 és 75 százalékos eredményt is elérhetett, vagyis a vállalati választásnál a modellt és az azt futtató szoftverkörnyezetet együtt kell értékelni.",
+      "miert_szamit": "A gyakorlatban az AI-kódolók még nem váltják ki a fejlesztőket, mert a kódok **közelháromnegyedénél kézi javításra van szükség**, így a csapatoknak a teljes automatizáció helyett a hatékony javítási folyamatokra kell építeniük."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-08T10:06:04+00:00",
+  "linkek_ellenorizve": true
+}
