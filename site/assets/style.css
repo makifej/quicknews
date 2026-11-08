@@ -1823,25 +1823,20 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
   .gyu-egy .gyu-kartya { grid-template-columns: 360px minmax(0, 1fr); gap: 32px; }
   .gyu-egy .gyu-test { gap: 12px; }
 }
-/* megosztás gomb a kérés gomb mellett (Heni 2026-11-08) */
-.gyu-gombok { margin-top: auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: stretch; }
-.gyu-gombok .gyu-gomb { margin-top: 0; }
-.gyu-megoszt { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 12px 20px; border: 1px solid var(--gyu-keret, var(--keret)); border-radius: 12px; background: transparent; color: var(--gyu-akcent, var(--kiemelo)); font: 700 16px/24px Manrope, system-ui, sans-serif; cursor: pointer; white-space: nowrap; transition: transform .7s cubic-bezier(.32,.72,0,1), background-color .7s cubic-bezier(.32,.72,0,1); }
-.gyu-megoszt svg { width: 20px; height: 20px; }
-@media (hover: hover) and (pointer: fine) { .gyu-megoszt:hover { transform: translateY(-2px); background: var(--gyu-keret, var(--bg-3)); } }
-.gyu-megoszt:active { transform: scale(.98); }
-.gyu-megoszt:focus-visible { outline: 2px solid var(--gyu-akcent, var(--kiemelo)); outline-offset: 2px; }
-@media (min-width: 1280px) { .gyu-gombok { flex-wrap: nowrap; } .gyu-gombok .gyu-gomb { flex: 1 1 auto; }
-  .gyu:not(.gyu-egy) .gyu-megoszt { width: 48px; padding: 0; flex: 0 0 48px; } .gyu:not(.gyu-egy) .gyu-megoszt span { display: none; } }
-@media (max-width: 640px) { .gyu-megoszt { width: 48px; padding: 0; flex: 0 0 48px; } .gyu-megoszt span { display: none; } }
-@media (prefers-reduced-motion: reduce) { .gyu-megoszt { transition: none; } }
+/* a videó saját oldalán a megosztható link (Heni 2026-11-08) */
+.gyu-link { display: flex; flex-direction: column; gap: 8px; }
+.gyu-link label { color: var(--szoveg); font-size: 14px; line-height: 20px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.gyu-link-sor { display: flex; gap: 12px; }
+.gyu-link-sor input { flex: 1 1 auto; min-width: 0; min-height: 48px; padding: 0 16px; border: 1px solid var(--gyu-keret); border-radius: 12px; background: var(--gyu-kartya); color: var(--szoveg); font: 600 16px/24px Manrope, system-ui, sans-serif; }
+.gyu-link-sor input:focus-visible { outline: 2px solid var(--gyu-akcent); outline-offset: 2px; }
+.gyu-link-gomb { flex: 0 0 auto; min-height: 48px; padding: 12px 24px; border: 0; border-radius: 12px; background: var(--gyu-akcent); color: var(--gyu-akcent-szoveg); font: 800 16px/24px Manrope, system-ui, sans-serif; cursor: pointer; white-space: nowrap; }
+.gyu-link-gomb:focus-visible { outline: 2px solid var(--gyu-akcent); outline-offset: 2px; }
 @media (max-width: 900px) { .gyu-test h1 { font-size: 30px; line-height: 36px; } }
 @media (max-width: 640px) {
-  .gyu-gombok { grid-column: 1 / -1; grid-row: 4; margin-top: 4px; gap: 8px; flex-wrap: nowrap; }
-  .gyu-gombok .gyu-gomb { flex: 1 1 auto; min-width: 0; margin-top: 0; }
+  .gyu-link-sor { flex-direction: column; gap: 8px; }
   .gyu-test h1 { grid-column: 2; grid-row: 2; font-size: 20px; line-height: 28px; }
   .gyu-egy .gyu-tartalom { display: flex; grid-column: 1 / -1; grid-row: 4; }
-  .gyu-egy .gyu-gombok { grid-row: 5; }
+  .gyu-egy .gyu-gomb { grid-row: 5; }
   .gyu-egy .gyu-kartya { grid-template-rows: auto auto 1fr auto auto; }
 }
 
