@@ -1,0 +1,73 @@
+{
+  "id": "881c7e199684",
+  "slug": "belso-mongoliaban-epul-kina-gigantikus-ai-adatkozpont-kozpontja",
+  "forras_id": "techmeme",
+  "forras_nev": "SemiAnalysis",
+  "url": "https://newsletter.semianalysis.com/p/we-visited-chinas-stargate-in-inner",
+  "szerzo": null,
+  "publikalva": "2026-11-08T11:00:01+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://substackcdn.com/image/fetch/$s_!F2g6!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa79ebb2d-df82-4349-81e5-d6f988dd41f5_1671x941.png"
+  },
+  "cim_eredeti": "Inside Inner Mongolia, China's fastest-growing AI data center region, where construction is accelerating with low building cost and no public backlash (SemiAnalysis)",
+  "forrasok": [],
+  "szoveg_eredeti": "Stargate Abilene has become the symbol of America’s AI buildout. It is a gigawatt-scale campus on the Texas plains built for OpenAI. China has campuses on a similar scale, though few people outside the country have had a look inside. In September, we visited one, and we found the speed, scale, ultra low cost, and deep vertical integration astonishing.\n\nDuring the trip, we toured Inner Mongolia, China’s fastest-growing AI datacenter region. It's the “West Texas” of China, but while the Lone Star State faces its highest ever anti-datacenter sentiment, Inner Mongolia is accelerating and faces no such backlash.\n\nOur main stop was Galaxy, a campus in Ulanqab planned for up to 800MW of IT capacity.\n\nGalaxy is about the size of Abilene’s core campus. Its first 120MW phase was delivered within a year at a fifth of US costs. All four phases are built-to-suit for two internet giants.\n\nWhen we visited, the rest of the campus was still a busy construction site, and the surrounding Chahar High-tech Zone had nearly 30,000 construction workers on site across 22 datacenter projects according to a local report. As we noted in our primer on the China datacenter market, with this much labor available, Chinese datacenters rarely take a fully modular approach, yet construction costs keep falling. We take a closer look at why in this report.\n\nThe datacenter is owned by Envision Group, a renewable systems integrator with more than 100GW of wind turbines installed worldwide. It came to datacenters from energy management, a path many others are taking today. Yet it is one of the most vertically integrated players we have ever seen.\n\nBeyond running the datacenter, Envision builds its own wind farms and a dedicated power line to supply it. Its blade factory sits just across the road from the Galaxy datacenter campus, with finished blades stacked in the yard.\n\nInside the campus, it designed and integrated the low-voltage power modules and the 800V system, manufactured the battery storage that smooths the load, and co-designed the prefabricated substation.\n\nIn one 5MW hall, we saw the 800V system at work. Solid-state transformers (SSTs) take 10kV AC from the grid and convert it straight to 800V DC for the racks. This removes the low-voltage transformers, UPS and rectifier stages in between. The same architecture is still on the US roadmap, as we outlined in our 800V DC deep dive.\n\nIn China, datacenters have been running on DC power for almost two decades, from China Telecom’s 240V DC pilots in 2007 to Alibaba’s Panama power system in 2018. Today, roughly a quarter of Chinese datacenters built in the past decade run on DC, while about 97% of US datacenters still use AC UPS. An SST is a natural next step on that path, and we cover the evolution and the pilot in detail later in this report.\n\nOn cooling, Galaxy uses a design common in Inner Mongolia. Liquid- and air-cooled servers share one water loop, with no central chiller plant. Nvidia says Vera Rubin can run on 45°C water without chillers, yet most datacenters in the US keep one for air-cooled equipment and for the flexibility to shift between the two. Galaxy drops the central chiller and keeps much of that flexibility, a design that has been running at scale in northern China for years.\n\nIn this report, we use what we saw on the site visit to show how China builds hyperscale datacenters today, with a deep dive on each of the topics above. Many questions still open on the US roadmap find a reference point here.\n\nOur next report will take a wider view of Inner Mongolia’s datacenter market. The region has lined up 25GW of announced datacenter projects, including several gigawatt-scale campuses. Many reports picture it as a land of empty datacenter halls. Our data tells a different story. Few have asked what limits datacenter development there. We look at each constraint, from power to land and water. Stay tuned.\n\nThis trip was part of our ongoing fieldwork for the SemiAnalysis China Datacenter Model, the China counterpart to our global SemiAnalysis Datacenter Model.\n\nIt tracks over 1,000 facilities across 70+ operators, with quarterly delivery curves through 2032, a lease signing and delivery tracker, and EDWC hub and cluster analytics. Every project in our report is tracked in the model.\n\nContact sales@semianalysis.com for more information.\n\nSemiAnalysis is a reader-supported publication. To receive new posts and support our work, consider becoming a subscriber.\n\nEnvision comes to datacenters as a renewable systems integrator. Beyond building wind turbines, it designs, integrates, and manages power systems across the full chain, from generation and storage to computing loads. Its affiliate, Envision AESC, develops and integrates batteries, energy storage systems, and the power electronics and software that link them.\n\nInner Mongolia has far more wind than its existing industry and population can use, so policy encourages bringing new demand to where the renewable resources are. In Chifeng, Envision built a 2GW off-grid wind, solar and storage system that feeds a green ammonia plant. The system runs entirely on power electronics, with no synchronous generator. A small pilot datacenter built with Tencent’s modular T-Block units runs on the same system. Galaxy is a larger application of the same idea.\n\nThis is a pattern we see across China right now. Industrial groups with an edge in energy, construction or electrical equipment are pivoting into AI infrastructure. Project returns are thin, with IRRs squeezed hard, so the reward often comes from elsewhere. For Envision, datacenters create new demand for the power and equipment it already produces. For many listed companies, the draw is the stock market.\n\nOf these newcomers, Envision is one of the most ambitious. Its datacenter plans in Inner Mongolia add up to 3GW. Galaxy is the first. Its initial phase was delivered in August 2026, and the full campus is expected to be completed by the end of 2027.\n\nThe scale of the campus invites comparison with Stargate’s flagship campus in Abilene, Texas. Crusoe began building Abilene in mid-2024 and leased it to Oracle, which runs it for OpenAI. Crusoe describes the eight-building campus as 1.2GW of power, which comes to about 820MW of critical IT capacity, on par with the 800MW planned at Galaxy. That makes Galaxy one of the largest single campuses in China. Our SemiAnalysis Datacenter Model also tracks an expansion phase that Crusoe plans to add, powered behind the meter, which takes the whole Abilene site to 1.5GW of IT capacity. Galaxy also has room to grow. If the wind turbine factory next to the campus is converted, a later expansion phase could take the campus to ~1GW.\n\nIn addition to scale, the two share a starting point. Both are developed by companies with roots in energy, and both were planned around their own power. Abilene draws on the grid and on gas turbines on site, while Galaxy relies largely on wind.\n\nWhat sets Galaxy apart from Abilene, and what draws our attention, is its vertical integration.\n\nGalaxy’s power comes through a model China calls source-grid-load-storage (”SGLS”). Under this model, a project builds its own wind and/or solar farm, battery storage and datacenter, and links them through a dedicated line instead of the public grid.\n\nFor hyperscalers, the appeal of an SGLS project is long-term power at a largely fixed cost. Power from wind and solar also counts toward green targets.\n\nInner Mongolia holds about 57% of China’s usable wind resources. A wind farm here runs on average about 2,800 full-load hours a year, a capacity factor of roughly 32%. Ulanqab is windier, with a capacity factor of 35–40%. That sets the starting point for how much of an SGLS project’s power can come from wind.\n\nFor Galaxy, Envision aims to supply over 60% of the first two phases’ power use with its own wind farms. Three factors make this possible:\n\nSiting. Envision chose windy sites, even though they sit about two hours’ drive from the",
+  "modell": "gemini-3.5-flash",
+  "cim": "Belső-Mongóliában épül Kína gigantikus AI-adatközpont-központja",
+  "lead": "A SemiAnalysis terepszemléje alapján Kínában drasztikusan alacsonyabb költségekkel és elképesztő sebességgel épülnek az AI-adatközpontok.",
+  "osszefoglalo": "A SemiAnalysis elemzői ellátogattak a belső-mongóliai Ulanqab régióba, ahol a kínai **Galaxy adatközpont-komplexum** épül. A tervezetten 800 megawatt IT-kapacitású campus első, 120 megawattos fázisát egyetlen év alatt adták át, az amerikai építési költségek mindössze egyötödéért. A beruházó Envision Group szinte a teljes ellátási láncot maga vezérli: a saját szélerőműveitől és akkumulátoros energiatárolóitól kezdve a transzformátorokig mindent házon belül gyárt és integrál.\n\nA komplexum technológiai megoldásai meghaladják a jelenlegi amerikai gyakorlatot. A létesítményben 800 voltos egyenáramú (DC) rendszert használnak szilárdtest-transzformátorokkal, ami kiküszöböli a váltóáramú átalakítási veszteségeket. A hűtést központi hűtőgépek (chillerek) nélkül oldják meg, a folyadék- és léghűtéses szerverek közös vízkörön osztoznak.\n\nBelső-Mongólia Kína leggyorsabban növekvő adatközpont-régiójává vált, ahol már 25 gigawattnyi projektet jelentettek be. A térségben bőségesen áll rendelkezésre szélenergia, és az amerikai építkezésekkel ellentétben itt sem lakossági, sem politikai ellenállás nem nehezíti a bővítést.",
+  "miert_szamit": "Az AI-modellképzés és üzemeltetés infrastruktúra-igénye robbanásszerűen nő, a kínai **ultraalacsony építési költségek** pedig jelentős árelőnyt biztosíthatnak az ázsiai AI-szolgáltatásoknak.",
+  "cimkek": [
+    "adatközpont",
+    "Kína",
+    "infrastruktúra",
+    "energetika"
+  ],
+  "kategoria": "üzlet",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 80,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 82,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 86,
+      "aktualitas": 98,
+      "kozossegi": 61
+    },
+    "elofeszures": 85,
+    "tanult": 40,
+    "indok": "Exkluzív terepszemle Kína leggyorsabban növekvő mesterséges intelligencia adatközpont-régiójáról Forrás-tapasztalat: -3.",
+    "tema": "china ai data centers",
+    "cim_hu": "Benéztünk Belső-Mongóliába, Kína leggyorsabban épülő AI-adatközpont régiójába",
+    "lead_hu": "A SemiAnalysis elemzői bejárták Kína leggyorsabban fejlődő adatközpont-körzetét, ahol a gigavattos AI-kampuszok elképesztő sebességgel és rendkívül alacsony költségekkel épülnek.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-08T11:04:23+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-08T11:04:34+00:00",
+  "megjelent": "2026-11-08T11:04:34+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-08T11:04:36+00:00",
+    "esemeny": "A SemiAnalysis elemzői bejárták Kína leggyorsabban növekvő adatközpont-régióját, Belső-Mongóliát, és helyszíni elemzést tettek közzé az Envision Group Ulanqabban épülő Galaxy adatközpont-komplexumáról.",
+    "forrasok": [
+      "https://newsletter.semianalysis.com/p/we-visited-chinas-stargate-in-inner"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-08T11:05:17+00:00"
+}
