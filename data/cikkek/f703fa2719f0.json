@@ -1,0 +1,49 @@
+{
+  "id": "f703fa2719f0",
+  "slug": "openehr-conference-demonstrates-advances-in-clinical-data",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/openehr-conference-demonstrates-advances-in-clinical-data-interoperability-and-artificial-intelligence/",
+  "publikalva": "2026-11-08T02:05:53+00:00",
+  "cim": "OpenEHR Conference Demonstrates Advances in Clinical Data Interoperability and Artificial Intelligence",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 44 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-3389.jpg"
+  },
+  "cim_eredeti": "OpenEHR Conference Demonstrates Advances in Clinical Data Interoperability and Artificial Intelligence",
+  "szoveg_eredeti": "OpenEHR Conference Demonstrates Advances in Clinical Data Interoperability and Artificial Intelligence\n\nA scientific supplement published in BMC Proceedings compiles thirteen peer-reviewed abstracts accepted to the scientific track of the EHRCON25 openEHR International Conference, held in Barcelona in October 2025. Across short papers and poster presentations, the collection documents technical innovations and empirical evaluations focused on interoperable, clinically meaningful, and sustainable health information architectures. The presented proceedings highlight key developments across health informatics, examining how openEHR archetypes, semantic data modeling, artificial intelligence integration, and cross-standard conversions function in operational environments. Rather than relying on isolated proprietary database systems, the research evaluates how archetype-based architectures can structure clinical narratives, modernize legacy hospital systems, harmonize multi-center research registries, and facilitate automated querying. The published contributions represent collaborative initiatives undertaken across academic medical centers, regional health authorities, public health bodies, and software development teams advancing standardized health information systems.\n\nTo bridge the divide between unstructured clinical text and formal archetype models, researchers from Better Ltd created a Retrieval-Augmented Generation pipeline for narrative-to-structure semantic binding. While openEHR archetypes provide a rich semantic foundation for structured data, routine clinical documentation begins with free-text narratives where tools such as the Clinical Knowledge Manager Resource Finder struggle with medical abbreviations, synonyms, and clinical phrasing. The proposed architecture combined clinical entity extraction with hybrid lexical and semantic retrieval over an attribute-weighted index of archetypes sourced from the Clinical Knowledge Manager. Archetypes were decomposed into granular semantic units and indexed using BM25 keyword search alongside neural vector embeddings, applying attribute weighting to prioritize clinically meaningful metadata. Evaluated on 800 narrative clinical queries mapped to gold-standard archetypes, the pipeline achieved an archetype recall of 0.73, notably outperforming the Clinical Knowledge Manager Resource Finder at 0.53 and zero-shot GPT-4.1 prompting at 0.44.\n\nIn a complementary investigation into clinical query interfaces, researchers developed Text2AQL, an artificial intelligence assistant designed to translate natural language inquiries into executable Archetype Query Language statements. Formulating Archetype Query Language commands requires precise familiarity with specialized syntax and domain information structures, presenting an ongoing hurdle for healthcare practitioners seeking direct database access. Text2AQL addresses this complexity through a multi-stage workflow: clinical concepts are extracted from user inputs, mapped to archetypes and data element paths via Retrieval-Augmented Generation over vector indexes, and assembled into queries by a large language model. An integrated validation step identifies and corrects syntax errors such as malformed clauses or non-existent paths. Evaluated on 1,274 natural language descriptions paired with ground-truth queries, Text2AQL generated syntactically valid statements in 81.9 percent of tests, exceeding general models such as GPT-4o at 73.6 percent and GPT-5 mini at 46.2 percent, ensuring more dependable real-world execution.\n\nBridging openEHR repositories with HL7 Fast Healthcare Interoperability Resources, another study formulated a hierarchical multi-agent interoperability framework governed by the Model Context Protocol. While the Model Context Protocol offers a structured mechanism for language models to engage external software tools, clinical deployments often encounter obstacles including ambiguous tool selection, platform caps on agent tools, and repetitive tool-calling loops. The investigators engineered a multi-agent framework featuring a central orchestrator executing declarative YAML workflows with explicit sequencing and error handling, while specialized agents executed openEHR and Fast Healthcare Interoperability Resources tasks using restricted toolkits. Predefined openEHR JavaScript Views served as reusable data projections for common retrieval patterns, bypassing ad-hoc query generation. This architecture eliminated repetitive calling loops and reduced incorrect tool selection compared to single-agent baselines, demonstrating a reliable pattern for coordinating resource-based and archetype-based systems under rigorous clinical oversight.\n\nPrivacy-preserving artificial intelligence on consumer hardware was examined through an on-device Retrieval-Augmented Generation prototype deploying Small Language Models on smartphones using standardized openEHR health records. Implemented on Android via the MobileTransformers framework, the application executed local vector searches across personal records—including vital signs, medications, allergies, and laboratory findings—to provide context for quantized models without network dependencies. Testing INT4-quantized TinyLlama (1.1 billion parameters) and Phi3-mini-4k (3.5 billion parameters) on a Google Pixel 6 central processor, researchers evaluated clinical quality and faithfulness using G-Eval methodology with Gemini-2.5-pro as judge against cloud-based language model responses. Phi3-mini-4k achieved higher clinical quality and faithfulness alignment with cloud-based models, though both small language models exhibited context prioritization limits that occasionally omitted critical emergency management instructions. Hardware measurements established practical feasibility: TinyLlama required 0.94 gigabytes of memory running at 9.04 tokens per second, while Phi3-mini-4k operated at 3.6 tokens per second utilizing 2.7 gigabytes of memory.\n\nThe formal representation of complex genomic data within electronic records was presented by the openEHR Genomics Project, an international initiative launched in 2019 to construct machine-readable models that preserve semantic relationships and data provenance. Drawing upon Variant Call Format specifications and Human Genome Variation Society nomenclature, an interdisciplinary working group established sixteen archetypes in the Clinical Knowledge Manager. These models cover genomic variant results, simple genetic variants, and variant presence determinations, as well as ten distinct archetypes for specific alterations such as inversions, deletions, and copy number variations. Supporting archetypes capture sequencing assays, external reference sequences, and knowledge base sources, integrating nomenclatures such as HUGO gene symbols alongside LOINC and SNOMED CT terminologies. The resulting specifications support research environments tracking complex bioinformatic pipelines and analytical parameters, as well as routine clinical reporting requiring concise variant summaries.\n\nStandardizing global clinical protocols was demonstrated by an analysis translating the World Health Organization Digital Adaptation Kit for Antenatal Care into computable openEHR templates. Designed to help countries implement evidence-based guidelines in vendor-neutral systems, researchers executed direct mapping of 879 data elements extracted from the Digital Adaptation Kit dictionary, preserving input types, data categories, and collection intervals. Sixty-two archetypes were assembled to build the antenatal care record template, including thirty-six published archetypes, twenty-two drafts, two initial pre-drafts, and two under review, while introducing two new models for birth plan preferences and administrative auditing. Ninety-eight percent of data elements successfully aligned with existing Clinical Knowledge Manager archetypes. Nevertheless, the investigators noted that while direct mapping achi",
+  "begyujtve": "2026-11-08T07:04:38.984243+00:00",
+  "prioritas": {
+    "pont": 44,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 40,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 90,
+      "kozossegi": 22
+    },
+    "elofeszures": 73,
+    "tanult": 11,
+    "indok": "Az openEHR konferencia összefoglalója a klinikai adatok és az AI együttműködéséről. Forrás-tapasztalat: -6.",
+    "tema": "openehr clinical ai data",
+    "cim_hu": "A klinikai adatkezelés és a mesterséges intelligencia kapcsolatát értékelték az OpenEHR konferencián",
+    "lead_hu": "A BMC Proceedings kiadványban megjelent absztraktok az interoperábilis egészségügyi adatrendszerek és a klinikai AI-alkalmazások legfrissebb fejlesztési eredményeit mutatják be.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-08T07:05:21+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-08T07:06:33+00:00"
+}
