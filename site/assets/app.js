@@ -1004,6 +1004,15 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     rajzol(marad, elo);
   }).catch(function(){ oldal.innerHTML = '<p class="mentett-ures">Most nem sikerült betölteni a mentett híreidet. Frissítsd az oldalt.</p>'; });
 })();
+// Útmutató saját oldala (Heni 2026-11-08): a megosztható link másolása; kattintásra a mező kijelölődik
+document.addEventListener('click', function(ev){
+  var m = ev.target.closest && ev.target.closest('[data-link-mezo]'); if (m) { m.select(); return; }
+  var g = ev.target.closest && ev.target.closest('[data-link-masol]'); if (!g) return;
+  var mezo = document.querySelector('[data-link-mezo]'); if (!mezo) return;
+  var kesz = function(){ g.textContent = 'Kimásolva'; setTimeout(function(){ g.textContent = 'Link másolása'; }, 2200); };
+  if (navigator.clipboard) navigator.clipboard.writeText(mezo.value).then(kesz, function(){ mezo.select(); });
+  else { mezo.select(); try { document.execCommand('copy'); kesz(); } catch(e) {} }
+});
 // Megosztás a cikkoldalon: telefonon a rendszer megosztója, máshol a link a vágólapra kerül (Heni 2026-10-18)
 document.addEventListener('click', function(ev){
   var g = ev.target.closest && ev.target.closest('[data-megoszt]'); if (!g) return;
@@ -1011,8 +1020,8 @@ document.addEventListener('click', function(ev){
   var jelez = function(t){ if (!felirat) return; var regi = 'Megosztás'; felirat.textContent = t; setTimeout(function(){ felirat.textContent = regi; }, 2200); };
   var szamol = function(){ window.qnMegosztva && window.qnMegosztva(g); };
   if (navigator.share) { navigator.share({title: cim, url: url}).then(szamol, function(){}); return; }
-  if (navigator.clipboard) navigator.clipboard.writeText(url).then(function(){ jelez('Link kimásolva'); szamol(); }, function(){ prompt('A hír linkje:', url); });
-  else prompt('A hír linkje:', url);
+  if (navigator.clipboard) navigator.clipboard.writeText(url).then(function(){ jelez('Link kimásolva'); szamol(); }, function(){ prompt('A link:', url); });
+  else prompt('A link:', url);
 });
 // „Meghallgatom”: a hír felolvasása; egy lejátszó az oldalon, a két gomb (asztali és mobil) együtt vált (Heni 2026-10-20)
 (function(){
