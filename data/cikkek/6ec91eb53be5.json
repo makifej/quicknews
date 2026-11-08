@@ -1,0 +1,79 @@
+{
+  "id": "6ec91eb53be5",
+  "slug": "nyilt-forraskoduva-valt-a-google-specifikacioalapu-kodolo-bovitmenye",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/08/google-elephant-goldfish-model-plugin-spec-review-coding-agents/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-11-08T10:46:18+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-18-scaled.png"
+  },
+  "cim_eredeti": "Google AI Releases Elephant-Goldfish Model Plugin for Spec-First Coding",
+  "forrasok": [],
+  "szoveg_eredeti": "Google has open-sourced the Elephant-Goldfish Model (EGM) plugin , a design-and-review layer for AI coding agents. The Elephant-Goldfish Model plugin makes an agent write a specification before it writes code. Fresh subagents with no conversation history then attack that spec. Google says thousands of its engineers use it . It is quite simple: catch wrong assumptions in a Markdown file, not in a pull request.\n\n TL;DR \n\n Size: 7 skills, 9 reviewer personas, 6 brainstorm lenses, 5 review stages. No model weights; your agent supplies the LLM.\n\n Runs on: any harness that can spawn fresh subagents: Antigravity, Claude Code 2.1.271+, Claude Cowork, Codex, ChatGPT. Uses your existing model quota.\n\n Performance: no accuracy benchmark published. Evidence is adoption and end-to-end harness test runs.\n\n Best: Codex 0.163.0 completed 15 native fresh-context reviewers in order. 2 live tests passed in 573.13s.\n\n Worst: the Claude Cowork run stopped after stages 5 to 7 on a usage limit. Issue #237 reports AGENTS.md leaking into Codex reviewers.\n\n Bottom line: best thing, forced independent review before code. Worst thing, heavy token use and unverified isolation on some hosts.\n\n What is Google’s Elephant-Goldfish Model plugin? \n\n EGM is an Apache 2.0 plugin of skills, reviewer personas and document standards. It is not a new language model. The method comes from Dave Rensin’s essay on elephants and goldfish. The Google Open Source blog frames it as a fix for AI “slop” and session context collapse. The README states it is not an officially supported Google product .\n\n How does the Elephant-Goldfish workflow work? \n\n The Elephant is a long session holding project context and earlier decisions. It drafts the spec and writes no code. Each Goldfish is a stateless subagent. It reads only the draft and the files it references. You resolve trade-offs and approve the design.\n\n The core loop has 3 commands: \n\n /egm-brainstorm clarifies the idea, then runs a 6-lens Goldfish swarm. Lenses cover YAGNI, token cost, UX, migration, observability and tech debt. Output: concepts_brief.md .\n\n /egm-draft turns the brief into a design doc under docs/designs/ , section by section.\n\n /egm-review runs the Goldfish review.\n\n /egm-drift-report later compares code with the spec. The docs recommend running it weekly.\n\n What happens in the 5-stage Goldfish review? \n\n The review skill runs 5 sequential stages:\n\n Initial Zoom Out: checks the whole document at a high level.\n\n Comprehension Test: a Goldfish paraphrases the design. A wrong paraphrase means the doc is ambiguous.\n\n Critic Review: design, structural and style reviewers hunt gaps and edge cases.\n\n Intermediate Zoom Out: rechecks architecture after fixes.\n\n Implementation Readiness: checks file paths, data structures and signatures.\n\n Each stage allows at most 1 re-audit. Findings are ranked Blocker, Major or Nit. If a host has no subagent tool, EGM stops. A same-context review is not a Goldfish review.\n\n Which coding agents does EGM support? \n\n Launch coverage described Antigravity-only support , with more coming. The current harness guide covers Antigravity CLI and App, Claude Code, Claude Cowork, Codex, ChatGPT, omp and Muse. Antigravity CLI, Claude Code and Codex pass automated end-to-end fixtures.\n\n Claude Code needs version 2.1.271 or later . Reviewers there get only Read, Grep and Glob tools. CLAUDE.md files are excluded from their context.\n\n The test record gives concrete run data: \n\n Antigravity CLI 1.4.5: 16 native reviewers ran, stages in order.\n\n Codex 0.163.0: 15 native reviewers, 2 live tests in 573.13s.\n\n Codex CLI with the v0.1.0 ZIP: full suite passed in 482.30s.\n\n How does EGM compare with Spec Kit, Kiro and Superpowers? \n\n Feature Google EGM GitHub Spec Kit Kiro Specs Superpowers Type Plugin (skills + personas) Toolkit + Specify CLI Feature of an agentic IDE/CLI/web Skills plugin License Apache 2.0 MIT Commercial ( pricing ) MIT Workflow Brainstorm, draft, review, drift report Constitution, specify, plan, tasks, implement, converge Requirements, design, tasks Brainstorm, plan, subagent build, TDD, review Spec reviewed by fresh-context subagents Yes, 5 stages before code Not disclosed Not disclosed (Analyze Requirements pass) No; fresh subagents review code per task Harness Antigravity, Claude Code, Codex, ChatGPT, more Copilot and other agents Kiro only 16 harnesses listed Setup Plugin install Python 3.11+, uv Kiro account Plugin install Cost Free plugin; host model usage Free toolkit; host model usage Subscription Free plugin; host model usage \n\n EGM’s distinct move is reviewing the spec with zero-context agents. Spec Kit and Kiro center on human review between phases. Superpowers isolates subagents mainly at implementation time.\n\n Key Takeaways \n\n EGM is a plugin, not a model: Elephant drafts, Goldfish reviews.\n\n Specs get 5 zero-context review stages before any code.\n\n Works across Antigravity, Claude Code, Codex and ChatGPT.\n\n Codex test runs completed 15 fresh-context reviewers end to end.\n\n Reviewer isolation still leaks host instruction files on some CLIs.\n\n Check out the GitHub repo , the project site and the Google Open Source blog post . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Google AI Releases Elephant-Goldfish Model Plugin for Spec-First Coding appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "Nyílt forráskódúvá vált a Google specifikációalapú kódoló bővítménye",
+  "lead": "Az Elephant-Goldfish Model kötelezővé teszi a specifikációírást és a független felülvizsgálatot, mielőtt az AI egyetlen sor kódot is kiadna.",
+  "osszefoglalo": "A Google nyílt forráskódúvá tette az [Elephant-Goldfish Model](https://egm.dev) (EGM) nevű bővítményt, amelyet AI-alapú kódoló ügynökökhöz fejlesztett ki. Az eszköz lényege, hogy elválasztja a kontextust megőrző fő ügynököt (Elefánt) a független, előzmények nélküli alügynököktől (Aranyhal). Az Elefánt először megírja a fejlesztési specifikációt, majd az Aranyhalak több szempont alapján ellenőrzik és tesztelik azt, megelőzve a rossz feltételezésekből adódó hibákat.\n\nA rendszer egy 5 lépcsős felülvizsgálati folyamaton futtatja át a dokumentációt, amely magában foglalja az architektúra ellenőrzését és a megvalósítási felkészültséget is. Nem különálló nyelvi modellről van szó, hanem egy **Apache 2.0 licencű bővítményről**, amely a már meglévő AI-modellek tokenjeit használja.\n\nA bővítmény számos elterjedt eszközzel kompatibilis, beleértve a Claude Code 2.1.271-es vagy újabb verzióját, a ChatGPT-t, a Codexet és az Antigravityt. Az élő tesztek szerint a rendszer nagy tokenfogyasztással jár, és egyes platformokon még előfordulhat a kontextus szivárgása, de a mérnöki specifikációk minőségét jelentősen javítja.",
+  "miert_szamit": "A fejlesztők **megelőzhetik a hibás kódgenerálást és a felesleges tokenpazarlást**, mivel az AI-ügynökök még a kodolás előtt, szigorú ellenőrzési folyamat során tárják fel a tervezési hiányosságokat.",
+  "cimkek": [
+    "Google",
+    "kódolás",
+    "nyílt forráskód",
+    "AI-ügynök"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Elephant-Goldfish",
+    "url": "https://egm.dev"
+  },
+  "linkelendo_nevek": [
+    "Elephant-Goldfish Model"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 75,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 100,
+      "hitelesseg": 76,
+      "aktualitas": 98,
+      "kozossegi": 70
+    },
+    "elofeszures": 90,
+    "tanult": 70,
+    "indok": "A Google nyílt forráskódúvá tette a fejlesztőknél már jól bevált AI kódolási bővítményét. Forrás-tapasztalat: -7.",
+    "tema": "google elephant goldfish plugin",
+    "cim_hu": "Nyílt forráskódúvá tette kódolást segítő AI bővítményét a Google",
+    "lead_hu": "A Google kiadta az Elephant-Goldfish Model nevű eszközt, amely arra kényszeríti az AI kódolóügynököket, hogy a megvalósítás előtt pontos specifikációt írjanak.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-08T11:20:03+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-08T11:20:13+00:00",
+  "megjelent": "2026-11-08T11:20:13+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-08T11:20:16+00:00",
+    "esemeny": "A Google nyílt forráskódúvá tette az Elephant-Goldfish Model (EGM) nevű bővítményt AI kódoló ügynökökhöz, amely specifikációírást és előzmény nélküli alügynökökkel történő felülvizsgálatot ír elő a kódolás előtt.",
+    "forrasok": [
+      "https://www.marktechpost.com/2026/11/08/google-elephant-goldfish-model-plugin-spec-review-coding-agents/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-08T11:20:38+00:00",
+  "linkek_ellenorizve": true
+}
