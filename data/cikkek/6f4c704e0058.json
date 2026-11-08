@@ -1,0 +1,85 @@
+{
+  "id": "6f4c704e0058",
+  "slug": "megjelent-a-herdr-a-kodolo-ai-ugynokoket-futtato-nyilt-forraskodu-app",
+  "forras_id": "kezi",
+  "forras_nev": "Herdr",
+  "url": "https://herdr.dev/",
+  "szerzo": null,
+  "publikalva": null,
+  "media": {
+    "tipus": "kep",
+    "kep": "https://herdr.dev/assets/og-herdr.png"
+  },
+  "cim_eredeti": "Herdr: no two look alike",
+  "forrasok": [],
+  "szoveg_eredeti": "Each agent tells Herdr whether it's working, done or waiting on you. The sidebar and the tab show which one needs you, so you can stop checking the rest.\n\nUse a space for each repo and a tab for each task.\n\nYour agents run in herdr-core, a small server on your machine, not in the window. Quit the app, update it or let it crash, and every terminal is still where you left it.\n\nAdd any machine you can reach over SSH, like a server, a VM or a cloud sandbox. Its spaces and agents show up in the same sidebar under its name, and you start agents there the same way.\n\nIts agents keep running there while your laptop sleeps or the app is closed.\n\nHerdr keeps its layout, sidebar, tabs, keys and themes as plain files in ~/.config/herdr-app. An AGENTS.md in there explains them to your agent. You say what you want and your agent writes it.\n\nHerdr runs real terminals, so your agents work the way they do now. Agents that support OSC 7501, an open status protocol, also show whether they're working, done or need you. Your own script can do it with one line.\n\nThe app, herdr-core and Herdr TUI are open source under Apache 2.0. You can read the code, change it, or build your own app on top of herdr-core.\n\nherdrdev/herdr-app → herdrdev/herdr-core → herdrdev/herdr →\n\nA native app for running coding agents. They run in herdr-core, so they keep going when you close the window, and your agent can change any part of the app.\n\nHerdr TUI is the original Herdr: a terminal app with its own server. This is a new, separate program built on herdr-core. They don't share agents, so what runs in one doesn't show up in the other. Herdr TUI keeps working, and everything for it is at herdr.dev/tui.\n\nAnything that runs in a terminal. Agents that speak OSC 7501, an open protocol for reporting status, also show whether they're working, done or need you. An agent that doesn't speak it still runs, just without a status.\n\nThe list shows agents that report their status through OSC 7501, so check these:\n\nQuitting or updating the app changes nothing: every agent keeps running in herdr-core. If the machine reboots or herdr-core stops, the programs stop too. Their panes come back with a shell in the same folder, but Herdr doesn't restart an agent or resume its work in progress. Start it again and carry on.\n\nmacOS (Apple silicon), Linux (x86_64 and arm64) and Windows (x86_64). Other machines join over SSH, whatever they run.\n\nYes. The app, herdr-core and Herdr TUI are all open source.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Megjelent a Herdr, a kódoló AI-ügynököket futtató nyílt forráskódú app",
+  "lead": "A natív alkalmazás a háttérben futtatja a **fejlesztői ügynököket**, így az ablak bezárásával sem áll le a munkájuk.",
+  "osszefoglalo": "A [Herdr](https://herdr.dev/) egy natív alkalmazás **kódoló AI-ügynökök futtatására**, amely a felületet modulárisan kezeli, így maga a használt ügynök is átalakíthatja az ablak bármely részét. Az ügynökök nem közvetlenül a grafikus felületen, hanem a **herdr-core** nevű helyi háttérszolgáltatásként futnak. Ennek köszönhetően az app bezárása vagy frissítése után is zavartalanul halad a munka.\n\nAz eszköz támogatja az **SSH-kapcsolatokat** is, így a feladatok távoli szervereken vagy felhős homokozókban is futtathatók. Az alkalmazás a nyílt **OSC 7501-es protokolt** használja az állapotok jelzésére, így a felületen azonnal látható, ha egy ügynök épp dolgozik, végzett, vagy visszajelzésre vár.\n\nA Herdr teljesen **nyílt forráskódú**, Apache 2.0 licenc alatt érhető el macOS, Linux és Windows rendszerekre. A felület beállításai és témái egyszerű fájlokként tárolódnak, amelyeket a kódoló ügynökök akár önállóan is módosítani tudnak.",
+  "miert_szamit": "A fejlesztők **megszakítás nélkül futtathatnak több AI-ügynököt** a háttérben vagy távoli szervereken, ami jelentősen felgyorsítja a párhuzamos feladatvégzést.",
+  "cimkek": [
+    "Herdr",
+    "fejlesztés",
+    "AI ügynök",
+    "open source"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Herdr"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 65,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 45,
+      "egyediseg": 95,
+      "hitelesseg": 82,
+      "aktualitas": 100,
+      "kozossegi": 48
+    },
+    "elofeszures": 91,
+    "tanult": 60,
+    "indok": "Egy újabb kis fejlesztői eszköz MI-ügynökök kezelésére, csekély széles körű hírértékkel. Kézi vagy beküldött hír.",
+    "tema": "herdr ai agent tool",
+    "cim_hu": "Megjelent a Herdr, egy új fejlesztői eszköz az MI-ügynökök kezelésére",
+    "lead_hu": "A Herdr segítségével a fejlesztők egy helyen követhetik nyomon a helyi vagy távoli szervereken futó MI-ügynökeik állapotát és feladatait.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-08T19:35:10+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-08T19:35:15+00:00",
+  "megjelent": "2026-11-08T19:35:15+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-08T19:35:19+00:00",
+    "esemeny": "Megjelent a Herdr, egy nyílt forráskódú natív alkalmazás és háttérszolgáltatás (herdr-core), amely kódoló AI-ügynökök futtatására és állapotuk nyomon követésére szolgál.",
+    "forrasok": [
+      "https://herdr.dev/"
+    ],
+    "hibak": [
+      "A magyar szöveg egyik bekezdésében sem szerepel a kötelező kiemelés (félkövér kiemelések hiánya az összefoglalóban és a leadben).",
+      "Hiányzik az elsődleges forrásra mutató beszédes link a szövegből."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Megjelent a Herdr, a kódoló AI-ügynököket futtató nyílt forráskódú app",
+      "lead": "A natív alkalmazás a háttérben futtatja a fejlesztői ügynököket, így az ablak bezárásával sem áll le a munkájuk.",
+      "osszefoglalo": "A Herdr egy natív alkalmazás kódoló AI-ügynökök futtatására, amely a felhasználói felületet modulárisan kezeli, így maga a használt ügynök is átalakíthatja az ablak bármely részét. Az ügynökök nem közvetlenül a grafikus ablakban, hanem egy herdr-core nevű helyi háttérszolgáltatásként futnak. Ennek köszönhetően a program bezárása vagy frissítése után is zavartalanul halad a munka.\n\nAz eszköz támogatja az SSH-kapcsolatokat is, így a feladatok távoli szervereken vagy felhős homokozókban is futtathatók. Az alkalmazás a nyílt OSC 7501-es protokolt használja az állapotok jelzésére, így a felületen azonnal látható, ha egy ügynök épp dolgozik, végzett, vagy felhasználói visszajelzésre vár.\n\nA Herdr teljesen nyílt forráskódú, Apache 2.0 licenc alatt érhető el macOS, Linux és Windows rendszerekre. A felület beállításai és témái egyszerű fájlokként tárolódnak, amelyeket a kódoló ügynökök akár önállóan is módosítani tudnak promptok alapján.",
+      "miert_szamit": "A fejlesztők **megszakítás nélkül futtathatnak több AI-ügynököt** a háttérben vagy távoli szervereken, ami jelentősen felgyorsítja a párhuzamos feladatvégzést."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-08T19:35:48+00:00",
+  "linkek_ellenorizve": true
+}
