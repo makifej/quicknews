@@ -1769,6 +1769,8 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .gyu-gomb:active { transform: scale(.98); }
 .gyu-gomb:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
 .gyu-lapozo[hidden] { display: none; }
+.gyu-szamlalo { display: none; min-width: 64px; text-align: center; color: var(--gyu-akcent, var(--kiemelo)); font-size: 16px; line-height: 24px; font-weight: 800; font-variant-numeric: tabular-nums; }
+@media (max-width: 640px) { .gyu-pontok { display: none; } .gyu-szamlalo { display: block; } .gyu-lapozo { margin-left: auto; } }
 .gyu-lejatszo { display: none; }
 /* asztalon a két útmutató egymás mellett, lapozás nélkül (Heni 2026-11-02); ha több lesz, a lapozó magától visszajön */
 @media (min-width: 1280px) {
