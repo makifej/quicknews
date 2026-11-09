@@ -1,0 +1,49 @@
+{
+  "id": "796a7f7ee338",
+  "slug": "anthropic-releases-mythos-5-2-and-fable-5-2-saying-they-are-best-for",
+  "forras_id": "techmeme",
+  "forras_nev": "Anthropic",
+  "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+  "publikalva": "2026-11-09T19:02:08+00:00",
+  "cim": "Anthropic releases Mythos 5.2 and Fable 5.2, saying they are \"best for the most ambitious, open-ended technical work\", for $8/1M input and $40/1M output tokens (Anthropic)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 55 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www-cdn.anthropic.com/images/4zrzovbb/website/b2dab182c77b4ccfd36423470106915b20f676ae-1200x630.jpg"
+  },
+  "cim_eredeti": "Anthropic releases Mythos 5.2 and Fable 5.2, saying they are \"best for the most ambitious, open-ended technical work\", for $8/1M input and $40/1M output tokens (Anthropic)",
+  "szoveg_eredeti": "We’ve upgraded Claude Fable and Claude Mythos—models that are designed to tackle the most daunting technical challenges.\n\nClaude Fable 5.2 and Claude Mythos 5.2 show improvements in areas like coding, reasoning, and vision. During prerelease testing they’ve helped our engineers complete otherwise-infeasible software migrations, designed three working electronic devices from scratch, solved two open problems in the physics of black holes, made substantial progress on robotics evaluations, and formalized the proof of Fermat’s Last Theorem in 30 hours—among many other applications we’ll discuss below.\n\nClaude Fable and Claude Mythos are the same underlying model. Fable has strong cybersecurity and biology safeguards to guard against misuse, which allows us to make it available to all users. Organizations pursuing beneficial applications in cybersecurity or biomedical research can apply for access to Mythos through our recently expanded Life Sciences and Cyber Verification Programs.\n\nTesters have found that Fable 5.2 and Mythos 5.2 communicate more clearly than past Fable and Mythos models. They generate outputs up to 30% faster than Claude Fable 5.1 and Claude Mythos 5.1, and they’re available at a lower price: $8 per million input tokens and $40 per million output tokens.\n\nFable 5.2 and Mythos 5.2 also come with an optional fast mode, which speeds up token generation by up to 2.5 times. Fast mode is available for $16 per million input tokens and $80 per million output tokens.\n\nSafety and alignment. To help ensure safety and alignment keep step with growing model capabilities, we ran extensive prerelease safety testing on the model that underlies Fable 5.2 and Mythos 5.2. This included developing novel evaluations that give deeper insight into specific concerning behaviors like sandbox escapes. We believe high-stakes risks from misalignment remain low, and the model performed as well as, or better than, our recent models on most alignment measures. Fable 5.2’s cyber and biology safeguards are as robust as those of Fable 5.1’s but produce fewer unnecessary blocks, and we have implemented our strongest-ever protections against distillation attacks.\n\nWe describe more about our safety testing below, and full details can also be found in the Claude Fable 5.2 and Mythos 5.2 system card.\n\nWhen to use Claude Fable 5.2 and Mythos 5.2. Fable and Mythos are best for the most ambitious, open-ended technical work. For most coding and knowledge tasks, we recommend that users start with Claude Opus 5.5, our strongest daily driver, and then switch to a different model as required, depending on the scope and complexity of their work—upward to Fable or Mythos, or downward to Claude Sonnet 5.5 or Claude Haiku 5.5. Fable 5.2 can also play the role of Advisor (where Haiku, Sonnet, or Opus models consult it to help solve harder problems) or Orchestrator (where it delegates simpler tasks to smaller models).\n\nBenchmark performance. The benchmarks table below shows that Claude Fable 5.2 and Mythos 5.2 are a step above Opus 5.5 in almost all the capabilities we evaluated:\n\nFor details on evaluation methodology, see the Claude Fable 5.2 and Claude Mythos 5.2 System Card. Scores for Fable 5.2, Fable 5.1, and Opus 5.5 show results with safeguards on unless otherwise noted. All scores show each model’s highest-available effort unless otherwise noted. † On CyScenarioBench, each lab’s scores are based on unique tasks. ‡ RoboDojo Sim shows the highest-available effort and was run internally.\n\nEffort and efficiency. On Medium effort (the default in Claude apps and Claude Code), Fable 5.2 can accomplish challenging tasks with fewer tokens than Fable 5.1. In early testing on the FrontierCode 2.0 evaluation, Fable 5.2 at High effort scored about level with Opus 5.5 at Max effort, for roughly half the cost per task. At Xhigh effort, it also scored the highest of any released model tested.\n\nFrontierCode measures whether a model’s code changes would be merged by the maintainers of open-source repositories. At High effort, Fable 5.2 scores about the same as Opus 5.5’s best score (45.3% vs. 45.5%) for roughly half the cost per task, and ahead of GPT-6 Astra’s best (42.8%) at about the same cost. At Xhigh effort, Fable 5.2 reaches 49.1%, the highest score of any released model we’ve tested.\n\nPerplexity’s WANDR benchmark measures agents on large data-collection tasks. At Medium effort, Fable 5.2 matches Opus 5.5’s top score for about 40% of the cost per task.\n\nBenchCAD 2.1 measures hardware engineering, specifically how closely a model’s designs match reference geometry and circuits, and is scored 0–100 with partial credit. At Max effort, Fable 5.2 scores 83.5, ahead of Opus 5.5 (65.3) and Fable 5.1 (44.4).\n\nHumanity’s Last Exam (HLE) is a test of expert-level academic knowledge and reasoning. At Low effort, Fable 5.2 matches Opus 5.5’s top score for less than one-tenth of the cost per task.\n\nChartography tests how accurately a model can read charts and figures. At Medium effort, Fable 5.2 scores 66.4%, ahead of Opus 5.5 at Max effort (64.4%) for less than one-tenth of the cost per task.\n\nOver 90% of the changes merged into Anthropic’s core codebase are now written by Claude (with human guidance). We’ve used Fable 5.2 to fix stubborn bugs in minutes, optimize performance across all of our services, and complete high-value software projects that would otherwise have been too slow or too costly to attempt. A team of agents running an earlier version of Fable 5.2 migrated a critical production service from Python to Rust—the service is now more efficient, more reliable, and starts about 26 times faster. We’ve found that Fable 5.2 exercises strong engineering judgement and can produce high-quality results from even ambiguous requests.\n\nAs an experiment, one Anthropic engineer gave Fable 5.2 the task of designing a prototype operating system. Starting from an empty folder, the model coordinated over 1,000 subagents, working around the clock for eight days writing, testing, and reviewing code. It produced a working operating system that boots on a laptop, with its own core that runs the machine, drivers for the disk, keyboard, and network, permanent file storage, windows, a login screen, an installer, and built-in Claude functionality (see the video below).\n\nEarly testers have been impressed at how successfully Fable 5.2’s coding skills can be applied to a wide range of tasks:\n\n“The model is in my head. It understands the intent behind every prompt I’ve given it. I haven’t had to say ‘No, I meant…’ a single time. Projects we’ve been pushing along with other models for weeks got finished and approved by our teammates in a few days with Claude Fable 5.2, and the humans reviewing its code had less to say.”\n\n“Claude Fable 5.2 is great for taking a loose idea and refining it. Its answers are really well-considered, and within a few turns I can almost always say ‘ok, go do that,’ and trust that it’ll complete it with little intervention. It feels like working with another staff-level engineer.”\n\n“You can just throw Claude Fable 5.2 at new, ambiguous systems it has never seen before, and it will figure out how to actually work within them. It’s almost like an incident commander that can send out faster models to get quick signals and coordinate, which removes that burden from me as an operator.”\n\n“Claude Fable 5.2 can complete tasks that previous models struggled with. The clearest examples so far are building higher-quality 3D scenes from scratch and rebuilding an experience from a visual reference. It’s very strong on the harder game-dev tasks, where it keeps iterating and improving instead of getting stuck.”\n\n“I had Claude Fable 5.2 run a 10–12 hour security audit. It sent out about 170 reviewer agents and came back with a write-up, fix pull requests and a policy proposal. It works until the job is actually complete instead of stopping at a plausible checkpoint. Its self-correction and honesty about gaps",
+  "begyujtve": "2026-11-09T19:04:10.552437+00:00",
+  "prioritas": {
+    "pont": 55,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 82,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 61
+    },
+    "elofeszures": 97,
+    "tanult": 61,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -3.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-09T19:04:38+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-09T19:04:40+00:00"
+}
