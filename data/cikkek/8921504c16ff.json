@@ -16,7 +16,7 @@
   "modell": "gemini-3.5-flash",
   "cim": "AI-kódolással fejlesztettek lélegeztetőgép-szimulátort olasz orvosok",
   "lead": "Az Open Vent Sim nyílt forráskódú oktatóeszközt orvosi szakértők hozták létre promptolással, majd szoftverfejlesztők optimalizálták a kódot.",
-  "osszefoglalo": "Olasz egyetemi kutatók és orvosok egy csoportja kódolási tudás nélkül, kizárólag **természetes nyelvi utasításokkal** hozott létre egy működő lélegeztetőgép-szimulátort. Az [Open Vent Sim](https://doi.org/10.1186/s41077-026-00467-2) nevű webes alkalmazás a fizikai oktatóeszközök hiányát hivatott pótolni az orvosképzésben. Az első működő prototípust **Google AI Studio** környezetben, a Gemini 2.5 Pro modell segítségével mindössze 20 óra alatt fejlesztették ki, majd újabb 20 órányi klinikai finomhangolást végeztek rajta.\n\nA fejlesztés során az orvosok képernyőképeket és valós kórházi berendezések grafikonjait is megosztották a modellel, a hibás hullámformákat pedig szöveges visszajelzésekkel javíttatták ki. A létrejött **React TypeScript** kód ugyan működőképes volt, de szerkezetileg rendezetlen és egyetlen, több mint 2300 soros fájlból állt. A hosszú távú karbantarthatóság érdekében a Masaryk Egyetem szoftverfejlesztői 15 órányi munkával refaktorálták a rendszert, modularizálták a komponenst és letisztázták az architektúrát.\n\nA véglegesített alkalmazás **Google Cloud Run** infrastruktúrán keresztül lett elérhető a hallgatók számára, így tetszőleges böngészőből, helyi telepítés nélkül használható. A szimulátorban különféle tüdőbetegségek (például ARDS vagy COPD) paraméterei és a gázáramlási dinamikák is beállíthatók, ami lehetővé teszi a gyakorlati oktatást a drága fizikai berendezések hiányában is.",
+  "osszefoglalo": "Olasz egyetemi kutatók és orvosok egy csoportja kódolási tudás nélkül, kizárólag **természetes nyelvi utasításokkal** hozott létre egy működő lélegeztetőgép-szimulátort. Az [Open Vent Sim](https://doi.org/10.1186/s41077-026-00467-2) nevű webes alkalmazás a fizikai oktatóeszközök hiányát hivatott pótolni az orvosképzésben. Az első működő prototípust **Google AI Studio** környezetben, a Gemini 2.5 Pro modell segítségével mindössze 20 óra alatt fejlesztették ki, majd újabb 20 órányi klinikai finomhangolást végeztek rajta.\n\nA fejlesztés során az orvosok képernyőképeket és valós kórházi berendezések grafikonjait is megosztották a modellel, a hibás hullámformákat pedig szöveges visszajelzésekkel javíttatták ki. A létrejött **React TypeScript** kód ugyan működőképes volt, de szerkezetileg rendezetlen és egyetlen, több mint 2300 soros fájlból állt. A hosszú távú karbantarthatóság érdekében a Masaryk Egyetem szoftverfejlesztői 15 órányi munkával refaktorálták a rendszert, modularizálták a komponenst és letisztázták az architektúrát.\n\nA véglegesített alkalmazás **Google Cloud Run** infrastruktúrán keresztül lett elérhető a hallgatók számára, így tetszőleges böngészőből, helyi telepítés nélkül használható. A szimulátorban különféle tüdőbetegségek (például ARDS vagy COPD) paraméterei és a gázáramlási dinamikák is beállíthatók, ami a drága fizikai berendezések hiányában is segíti a gyakorlati oktatást.",
   "miert_szamit": "A projekt jól mutatja a **no-code AI-fejlesztés gyakorlati határait**: szakterületi szakértők gyorsan építhetnek működő prototípust, de a skálázható és karbantartható kódhoz továbbra is **szükség van szoftverfejlesztői refaktorálásra**.",
   "cimkek": [
     "Google AI Studio",
@@ -74,5 +74,11 @@
   "kiprobal_nezve": true,
   "termeklinkek_nezve": true,
   "kep_minoseg_kesz": "2026-11-09T10:50:30+00:00",
-  "linkek_ellenorizve": true
+  "linkek_ellenorizve": true,
+  "nyelvi_javitas": {
+    "ido": "2026-11-09T11:20:39+00:00",
+    "mezok": [
+      "osszefoglalo"
+    ]
+  }
 }
