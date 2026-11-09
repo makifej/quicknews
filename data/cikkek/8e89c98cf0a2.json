@@ -1,0 +1,49 @@
+{
+  "id": "8e89c98cf0a2",
+  "slug": "how-crossnokaye-grounds-physical-ai-with-amazon-bedrock-agentcore",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/how-crossnokaye-grounds-physical-ai-with-amazon-bedrock-agentcore/",
+  "publikalva": "2026-11-09T18:55:43+00:00",
+  "cim": "How CrossnoKaye grounds physical AI with Amazon Bedrock AgentCore",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 47 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/05/ML-22370-featured-image.png"
+  },
+  "cim_eredeti": "How CrossnoKaye grounds physical AI with Amazon Bedrock AgentCore",
+  "szoveg_eredeti": "Industrial operations present AI challenges that don’t show up in typical enterprise software. In most facilities, plant data and control logic are spread across separate systems from different vendors: programmable logic controllers (PLCs) and distributed control systems (DCS) run the equipment logic, historians record time-series tags under site-specific naming schemes, supervisory control and data acquisition (SCADA) systems drive operator screens, and standalone optimization tools or alarm loggers sit on the side. Bolting an external AI agent onto that stack rarely works well in practice. Each system uses its own naming conventions. The logic that actually governs how equipment behaves (the control sequences, state machines, and safety interlocks) is locked inside proprietary controller code that an external tool can’t inspect. Giving a bolt-on agent access across multiple operational technology (OT) systems also means distributing credentials across the plant network.\n\nCrossnoKaye took a different approach to bring physical AI to heavy industry using Amazon Bedrock AgentCore. Its software-defined automation platform, ATLAS, connects live plant data and AI reasoning to closed-loop control of the equipment running food and beverage plants, industrial refrigeration facilities, aggregates quarries, and manufacturing sites. Across more than 100 industrial facilities and 13,000 controlled assets, CrossnoKaye stores over 22 trillion machine data points, ingests more than 50 billion new readings every day, and runs over 1,000 live advanced process control (APC) applications; CrossnoKaye reports that these applications improve production throughput by 11–17 percent while reducing total facility energy costs by an average of 21 percent. Because ATLAS already manages the facility model, the base control software, the historian, and the optimization applications in one platform on AWS, CrossnoKaye’s agentic intelligence system, AURA, has native access to the full operational state of the plant within a single security boundary.\n\nHaving the plant context is only half the problem, though. Large language models (LLMs) are good at interpreting engineering context and planning an investigation, but they cannot reliably compute statistics or physical balances over millions of sensor readings in a prompt. To back every numerical answer with real math, AURA uses the code interpreter capability in Amazon Bedrock AgentCore to write and run Python workloads at runtime inside isolated, AWS managed microVM sandboxes, alongside Amazon Bedrock Guardrails and local edge safety controls. This post covers how CrossnoKaye architected ATLAS and AURA on AWS, how AURA uses Amazon Bedrock AgentCore across interactive Chats, repeatable Tasks, and automated Routines, and what the team learned running physical AI in production.\n\nATLAS controls industrial processes across existing PLC and DCS infrastructure, from kilns, crushers, drying rooms, ovens, and spiral freezers to chillers, turbines, valves, and compressors, without requiring customers to rip and replace plant hardware. Figure 1 illustrates how on-premises ATLAS edge clusters, continuous cloud optimization, and AURA work together on AWS.\n\nFigure 1: CrossnoKaye AURA and ATLAS physical AI architecture with Amazon Bedrock AgentCore\n\nATLAS and AURA are built around three core layers:\n\nFirst, the plant is defined in software from the edge up. At each facility, an on-premises ATLAS control panel with redundant computers, power supplies, and network switches (so local control continues uninterrupted while a failed hardware component is replaced) runs a local Kubernetes cluster that uses contract-first microservices, extending the ATLAS cloud platform on AWS to the plant floor. In the cloud, ATLAS authors, validates, and versions the facility’s base control narratives (defining equipment state machines, sequences, operating bounds, interlocks, and alarm rules), which are downloaded to the edge appliances and run locally against existing equipment and controllers. CrossnoKaye reports over 9,000 control software deployments per year and more than 1 million run hours with zero safety incidents. Each edge appliance also acts as an outbound-only information technology/operational technology (IT/OT) gateway that opens zero inbound firewall ports inside the plant, streaming high-frequency telemetry to AWS through Amazon VPC Lattice and Amazon Managed Streaming for Apache Kafka (Amazon MSK). If cloud connectivity drops, the plant continues running safely on the base control narratives on the local edge cluster.\n\nSecond, derived engineering signals and closed-loop optimization applications run on top of base control using the same shared plant model. In the cloud, CrossnoKaye’s Scheduling system runs two continuous pipelines from versioned Python packages in Amazon Simple Storage Service (Amazon S3), operating on configurable per-instance cadences and event-driven triggers when plant settings change. Synthetic reading algorithms compute derived engineering metrics, such as heat-flow distributions, asset health indices, energy intensity, and mass-balance deviations, and write them back to the historian alongside physical I/O. Closed-loop optimization applications run on top of the base control layer, combining those derived synthetic readings with physics models, model predictive control (MPC), reinforcement learning, utility tariffs, and weather forecasts to compute optimal setpoint schedules. Amazon Simple Queue Service (Amazon SQS) FIFO queues order every schedule and state update by facility before dispatching setpoints to the local base control narrative on the edge cluster, which CrossnoKaye reports runs 650,000 closed-loop control actions per day.\n\nThird, AURA runs inside the platform boundary on Amazon Elastic Kubernetes Service (Amazon EKS) as microservices and durable Temporal workflows. Under the caller’s enterprise permissions, AURA agents query the internal Atlas Data gateway to read the operational state of a facility or fleet in one consistent model: upstream and downstream equipment topology, the deployed base control narratives and interlocks, physical I/O and synthetic readings, setting change and alarm histories, active optimization schedules, and plant documentation indexed in Amazon Bedrock Knowledge Bases.\n\nHaving the equipment layout, the base control logic, and the sensor data in the same system makes a concrete difference when diagnosing plant issues. At an aggregates quarry running primary, secondary, and tertiary rock crushers, the back half of the plant tripped twice in a single shift. From the control room, operators saw the secondary crusher fault, cleared the alarm, and restarted the line, only for it to trip again hours later. In the historian timestamps alone, the secondary crusher faulted seconds after the tertiary crusher, which made it look like a crusher problem. Because AURA also reads the conveyor layout and the deployed base control interlocks, its investigation followed the actual control logic. A recirculating belt beneath the tertiary crusher was slipping, which tripped the tertiary crusher’s overload interlock. That interlock’s upstream safety interlock immediately halted the secondary crusher to prevent burying a stopped downstream crusher in stone. Instead of chasing a phantom crusher fault, the plant manager sent an operator to inspect the recirculating belt, confirming and fixing the slip in minutes.\n\nThe numbered flows in Figure 1 trace how an AURA investigation runs on AWS:\n\nAURA combines foundation models on Amazon Bedrock (for model availability by AWS Region, refer to Supported models by AWS Region in the Amazon Bedrock User Guide) with isolated Python sandboxes in Amazon Bedrock AgentCore Code Interpreter, a capability of Amazon Bedrock AgentCore, across three operational modes:\n\nThe following sections examine four architectural decisions behind these workflows.\n\nInteractive debugging an",
+  "begyujtve": "2026-11-09T19:50:20.927881+00:00",
+  "prioritas": {
+    "pont": 47,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 60,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 27
+    },
+    "elofeszures": 79,
+    "tanult": 27,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -6.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-09T19:51:05+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-09T19:51:07+00:00"
+}
