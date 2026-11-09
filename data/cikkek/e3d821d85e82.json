@@ -1,0 +1,79 @@
+{
+  "id": "e3d821d85e82",
+  "slug": "elerhetove-valt-a-claude-fable-5-2-es-mythos-5-2-az-aws-en",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/introducing-claude-fable-5-2-on-aws/",
+  "szerzo": null,
+  "publikalva": "2026-11-09T20:04:37+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/09/ML-22025-featured-image.png"
+  },
+  "cim_eredeti": "Introducing Claude Fable 5.2 on AWS",
+  "forrasok": [],
+  "szoveg_eredeti": "Today, we are announcing the availability of Claude Fable 5.2 and Claude Mythos 5.2 on Amazon Bedrock and Claude Platform on AWS. Claude Fable 5.2 is Anthropic’s most capable generally available model for technical work that raises the bar in coding and the sciences. Claude Mythos 5.2 is available through Anthropic’s verification programs for advanced work in cyber security and life sciences.\n\nIn this post, we cover what’s new in both models, why Fable 5.2 matters for your technical workloads, and how to get started building with the model on Amazon Bedrock.\n\nFable 5.2 raises the bar on the hardest problems in coding, math, and science. It takes on ambiguous, multi-step work, verifies its own output, and can run unattended for hours to days. It interprets prompts, iterates, catches its own errors, and optimizes as it goes.\n\nIn Anthropic’s alignment testing, Mythos 5.2 hallucinates less, completes tasks more reliably, surfaces important information more consistently, and self-reports issues more honestly than Opus 5.5, Sonnet 5.5, and Mythos 5.1. Anthropic expects Fable 5.2 to behave similarly.\n\nIf a cyber security query is declined, you can retry it on Opus 4.8, and if a biology query is declined, you can retry it on Opus 5. On Amazon Bedrock, the retry is your code’s job, not an automatic switch. If the declined request hit the prompt cache, the refusal also includes a fallback credit token. Send that token with the retry and it’s billed as cache reads, so you don’t pay to write the same cache twice. Check the documentation for more information on fallback credit.\n\nFor authorized work in cyber security and life sciences, Claude Mythos 5.2 is available through Anthropic’s verification programs.\n\nMythos 5.2 covers two high-risk domains, available only through the verification programs noted earlier:\n\nAnthropic designates Claude Fable 5.2 as a Covered Model. By default, its use requires retention for up to 30 days and human safety review. On Amazon Bedrock, Amazon personnel perform the review within the AWS boundary. Set the aws_review data retention mode on your account or project before you invoke the model. See Amazon Bedrock data retention for more details.\n\nEnterprise Frontier Safeguards (EFS), built in collaboration with AWS, combines the privacy of zero data retention (ZDR) with the latest safeguards for detecting misuse. EFS is available now. A version that keeps your data in a bucket and under keys you control is expected to follow, and it has not launched yet. Until it does, eligible customers can use Fable 5.2 with zero data retention through June 30, 2027.\n\nTo try Fable 5.2, open the Amazon Bedrock console, choose Test, Playground, and select Fable 5.2 as the model. From there, you can run a prompt directly against it.\n\nProgrammatically, you can call the model with the Anthropic Messages API against bedrock-runtime (through the Anthropic SDK). You can also stay on the Invoke and Converse APIs on bedrock-runtime through the AWS Command Line Interface (AWS CLI) and AWS SDK.\n\nTo follow along with the code examples in this post, you need the following:\n\nHere’s a quick example using the AWS SDK for Python (Boto3):\n\nYou can explore the Getting Started notebook for more examples.\n\nFor teams already running Claude models on Amazon Bedrock, the claude-api skill in Claude Code helps you upgrade to Fable 5.2.\n\nThe claude-api skill is an open-source skill built into Claude Code that captures the details that make Claude API code work well. It covers which agent patterns fit a given job, what parameters change between model generations, and when to apply prompt caching. It stays current as Anthropic’s SDKs evolve: when a new model is released or the API gains a feature, the skill already knows.\n\nWhen you ask Claude Code to upgrade your codebase to Fable 5.2, the skill reviews your code and walks you through:\n\nThe skill also detects your deployment platform including Amazon Bedrock, Claude Platform on AWS, and other environments and adjusts model ID formats and feature configurations accordingly. For example, it uses the Amazon Bedrock structured model ID format (global.anthropic.claude-fable-5-2).\n\nIn Claude Code, run the migration directly:\n\nThis scans your working directory (or a subdirectory or specific file list you confirm) and applies the migration changes in a single guided pass. You can also invoke it conversationally by telling Claude Code:\n\nThe claude-api skill is available in Claude Code and is also bundled into CodeRabbit, JetBrains IDEs (including Junie), Resolve AI, and Warp. It is open source at anthropics/skills on GitHub, so any coding agent can integrate it.\n\nClaude Fable 5.2 and Claude Mythos 5.2 are available today on Amazon Bedrock through US Geo CRIS and Global CRIS inference profiles. See the Bedrock documentation for the full list of supported Regions. For pricing information, see Amazon Bedrock pricing. Both models are also available through Claude Platform on AWS in every Region where the service is offered.\n\nGive Claude Fable 5.2 a try in the Amazon Bedrock console, in Claude Platform on AWS, or explore the Getting Started notebook on GitHub.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Elérhetővé vált a Claude Fable 5.2 és Mythos 5.2 az AWS-en",
+  "lead": "Az Anthropic két legújabb modellje megérkezett az Amazon Bedrock és az AWS Claude Platform szolgáltatásokba.",
+  "osszefoglalo": "Az Amazon Web Services elérhetővé tette platformján az Anthropic legújabb modelljeit. A **Claude Fable 5.2** a legfejlettebb, nyilvánosan hozzáférhető modell programozási, matematikai és tudományos feladatokhoz, míg a **Claude Mythos 5.2** specifikus kiberbiztonsági és élettudományi kutatásokra készült. A Fable 5.2 képes akár napokig önállóan futni, miközben ellenőrzi saját kimenetét és javítja a felmerülő hibákat.\n\nA vállalatok az Amazon Bedrock konzolján, az Anthropic SDK-n és az [AWS CLI](https://aws.amazon.com/cli/) felületén keresztül is elérhetik az új funkciókat. A meglévő kód bázisok frissítését a [Claude Code](https://code.claude.com/docs)-ba épített nyílt forráskódú **claude-api skill** segíti, amely automatikusan elvégzi a szükséges módosításokat.\n\nA Claude Fable 5.2 és Mythos 5.2 mától használható az AWS infrastruktúrájában. A Fable 5.2 kipróbálható a Bedrock játszótéren, használatához az AWS biztonsági felülvizsgálati beállításainak megadása szükséges.",
+  "miert_szamit": "A fejlesztők és vállalkozások **összetett, napokig tartó programozási folyamatokat automatizálhatnak** az új modellekkel közvetlenül az AWS felhőkörnyezetükben.",
+  "cimkek": [
+    "Claude",
+    "AWS",
+    "Amazon Bedrock",
+    "Anthropic"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 5,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Claude Fable 5.2",
+    "Claude Mythos 5.2",
+    "Amazon Bedrock",
+    "Claude Code"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 86,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 92,
+      "hirertek": 95,
+      "egyediseg": 95,
+      "hitelesseg": 79,
+      "aktualitas": 99,
+      "kozossegi": 85
+    },
+    "elofeszures": 94,
+    "tanult": 80,
+    "indok": "Az Anthropic új generációs modelljeinek elérhetősége az AWS-en kiemelkedő technológiai és iparági mérföldkő. Forrás-tapasztalat: -6.",
+    "tema": "anthropic claude fable release",
+    "cim_hu": "Elérhetővé vált a Claude Fable 5.2 az Amazon Bedrock felületén",
+    "lead_hu": "Az Anthropic és az AWS bejelentette a Claude Fable 5.2 és Mythos 5.2 megnövelt képességű AI-modellek megjelenését a fejlesztők és vállalatok számára.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-09T20:35:02+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-09T20:35:12+00:00",
+  "megjelent": "2026-11-09T20:35:12+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-09T20:35:14+00:00",
+    "esemeny": "Az Amazon Web Services bejelentette, hogy elérhetővé vált az Anthropic Claude Fable 5.2 és Claude Mythos 5.2 AI-modellje az Amazon Bedrock és az AWS Claude Platform felületén.",
+    "forrasok": [
+      "https://aws.amazon.com/blogs/machine-learning/introducing-claude-fable-5-2-on-aws/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-09T20:35:37+00:00",
+  "linkek_ellenorizve": true
+}
