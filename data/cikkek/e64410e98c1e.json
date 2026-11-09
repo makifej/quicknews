@@ -1,0 +1,49 @@
+{
+  "id": "e64410e98c1e",
+  "slug": "radiology-artificial-intelligence-uses-and-rules",
+  "forras_id": "google-news-ai",
+  "forras_nev": "CASRAI",
+  "url": "https://casrai.org/guides/radiology-artificial-intelligence",
+  "publikalva": "2026-11-09T16:00:11+00:00",
+  "cim": "Radiology Artificial Intelligence: Uses and Rules",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 46 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://casrai.org/api/og?title=Radiology%20Artificial%20Intelligence%3A%20Uses%20and%20Rules&type=default&desc=Learn%20how%20radiology%20artificial%20intelligence%20functions%20under%20FDA%20regulations%2C%20GMLP%20principles%2C%20clinical%20workflows%2C%20and%20multisociety%20governance%20frameworks."
+  },
+  "cim_eredeti": "Radiology Artificial Intelligence: Uses and Rules",
+  "szoveg_eredeti": "Written and maintained by CASRAI Editorial Board\n\nThis guide provides an informational overview of clinical software, imaging workflows, and regulatory standards. It does not provide medical advice or individual patient diagnostic instructions.\n\nRadiology artificial intelligence refers to computer vision and machine learning algorithms trained to acquire, optimize, analyze, and triage diagnostic medical images. Rather than replacing medical specialists, these software tools function as clinical decision support. They detect anomalies, measure anatomical structures, prioritize emergent cases, and export structured findings into imaging networks under human physician supervision.\n\nRadiology artificial intelligence (AI) encompasses software algorithms—predominantly deep neural networks—trained to process diagnostic images across modalities including X-ray, computed tomography (CT), magnetic resonance imaging (MRI), and ultrasound. Its clinical scope spans the imaging life cycle from scan acquisition through post-scan interpretation.\n\nIn clinical workflows, image files conform to the Digital Imaging and Communications in Medicine standard. When an imaging study completes, AI software reads the series, extracts features, and generates quantitative outputs such as bounding boxes around suspicious findings, lesion segmentations, or prioritized worklist flags. Under consensus statements from professional imaging societies, clinical AI operates as an assistive technology: licensed radiologists retain sole diagnostic responsibility for interpreting findings and signing the final report.\n\nThe practical implementation of radiology artificial intelligence follows an operational pipeline within healthcare imaging environments:\n\nThe U.S. Food and Drug Administration (FDA) classifies medical imaging algorithms as Software as a Medical Device (SaMD) under distinct regulatory controls in Title 21 of the Code of Federal Regulations (CFR):\n\nIntegrating artificial intelligence into radiological operations directly impacts clinical facilities, clinical research facilities, and medical imaging procurement:\n\nSeveral frequent misconceptions surround the implementation of artificial intelligence in radiology:\n\nComputer-Aided Detection (CADe) marks suspicious regions to prevent perceptual oversight. Computer-Assisted Diagnosis (CADx) provides characterization metrics (such as probability of malignancy) for an already detected lesion. Computer-Assisted Triage and Notification (CADt) analyzes images in the background to identify acute emergencies and prioritize them in the review queue.\n\nUnder the Good Machine Learning Practice (GMLP) framework and Predetermined Change Control Plans (PCCPs), manufacturers specify anticipated model modifications during premarket review. This mechanism allows controlled algorithmic updates without requiring an entirely new 510(k) submission for every iterative enhancement.\n\nThe licensed interpreting physician retains legal and professional responsibility for the final diagnostic report. Clinical guidelines emphasize that AI tools serve solely as adjunctive decision support; radiologists must independently confirm or reject algorithmic prompts.\n\nLocal validation ensures an algorithm performs reliably on a hospital’s specific imaging equipment, slice thickness parameters, and patient demographic mix. Algorithms trained on external datasets can experience performance drops when exposed to novel clinical settings.\n\nResearch-administration guidance, standards updates and independent tool reviews.",
+  "begyujtve": "2026-11-09T16:04:34.028002+00:00",
+  "prioritas": {
+    "pont": 46,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 60,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 15
+    },
+    "elofeszures": 78,
+    "tanult": 15,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -6.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-09T16:04:59+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-09T16:05:01+00:00"
+}
