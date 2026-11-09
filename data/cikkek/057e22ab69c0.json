@@ -1,0 +1,49 @@
+{
+  "id": "057e22ab69c0",
+  "slug": "nemotron-personas-finance-japan-a-synthetic-dataset-capturing-japan-s",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan",
+  "publikalva": "2026-11-09T15:05:57+00:00",
+  "cim": "Nemotron-Personas-Finance-Japan: A Synthetic Dataset Capturing Japan's Demographics and Financial Context",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 54 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/604ad59e2fad27aca4515dab/-hyd03JaQoRhMbmlw9-uJ.jpeg"
+  },
+  "cim_eredeti": "Nemotron-Personas-Finance-Japan: A Synthetic Dataset Capturing Japan's Demographics and Financial Context",
+  "szoveg_eredeti": "A compound AI approach to Japanese personas grounded in real-world distributions\n\nIn the financial sector, the utilization of real-world data faces significant constraints due to strict privacy regulations, compliance requirements, and the need for advanced domain expertise. In this context, the development of agentic AI in the financial domain requires synthetic data capable of avoiding the risks of using real data while reflecting demographics, household structures, and asset statuses to reproduce diverse, realistic financial scenarios.\n\nTo address these challenges, Elith and NVIDIA have released Nemotron-Personas-Finance-Japan, a financial domain extension of the open-source persona dataset \"Nemotron-Personas-Japan.\" To our knowledge, it is the first open persona dataset at million-record scale that pairs Japan’s official statistics with household finance and financial literacy data. Built upon official government statistics, this dataset was developed using NeMo SDG-PGMs, a probabilistic graphical model framework for synthetic data generation (SDG), and NeMo Data Designer, an enterprise synthetic data generation system. Furthermore, to enhance the practical utility of the dataset in financial use cases, it was designed by incorporating insights and feedback provided by leading domestic financial institutions and industry associations, including Sompo Japan, Tokio Marine Holdings, Bank of Fukuoka, Mizuho Financial Group, Meiji Yasuda Life Insurance, and the Financial Data Utilization Association (FDUA).\n\nThis dataset expands the environment where Japanese developers and enterprises can develop and evaluate AI tailored to local and industry requirements, without using real customer data. Released under the CC BY 4.0 license, it is available for commercial use. From building conversational agents to customer simulation and model evaluation, it supports practical financial AI development. The Nemotron-Personas collection, including Nemotron-Personas-Finance-Japan, is designed to seamlessly integrate with the user simulation framework NeMo User Sim, enabling instant execution of simulations drawn from diverse distributions consistent with the real world.\n\nIt was built using NVIDIA’s framework for synthetic data generation, NeMo Data Designer. This compound AI system enables complex Jinja templating, Pydantic validation, structured outputs, automated retries, and support for multiple generation backends. This is the essential toolset required for generating such large-scale synthetic datasets. In addition, the following models were utilized:\n\nNemotron-Personas-Finance-Japan was designed to align with Japan's official demographic and labor statistics while taking into account key considerations essential for AI training:\n\nEvery persona is fully synthetic. No real individuals are represented, and the dataset is designed to reduce privacy risk. Demographics and household finances follow official statistics and public survey data, and names follow real Japanese naming patterns. Personas are built from these distributions, not from records about real people.\n\nNemotron-Personas-Finance-Japan is built first for teams creating financial AI in Japan, at banks and insurers and at the startups and integrators that serve them. Each persona carries household finances and financial literacy alongside demographics. Teams can use them to build customer-service agents, evaluate sales conversations/marketing initiatives, run user simulations in NeMo User Sim, and red-team customer-facing AI.\n\nThe release also serves anyone building for Japanese users. It holds 9M personas, 50% more than Nemotron-Personas-Japan, across 50 fields instead of 22. That gives any Japanese-language project finer slices of the population to train and test on.\n\nThe synthetic personas in this dataset can be leveraged for:\n\nAccess to diverse, high-quality training data that reflects real-world populations has long been a challenge in AI development. Enterprise AI development has predominantly relied on private data, creating barriers for researchers, startups, and particularly AI developers in regions with limited available data.\n\nBy releasing Nemotron-Personas-Finance-Japan under CC BY 4.0, we provide access to enterprise-grade, high-quality synthetic data, empowering anyone to build culturally grounded AI systems with lower cost and less privacy risk.\n\nNemotron-PII-Japan launches the same day. It holds 100,000 synthetic Japanese business documents with labeled personal information, for training and testing detection and redaction models. Its documents are built on Nemotron-Personas-Japan. Use Nemotron-Personas-Finance-Japan to simulate customers, and Nemotron-PII-Japan to test how your pipeline protects their data.\n\nYou can download this dataset using the command below to help develop AI that genuinely understands Japanese culture and language.\n\nUse cases for building production-ready applications:\n\nFrom teams building AI in Japan to global developers aiming for broader regional deployment, Nemotron-Personas-Finance-Japan dataset provides the authentic, privacy-conscious foundation required for your applications.",
+  "begyujtve": "2026-11-09T15:17:57.731829+00:00",
+  "prioritas": {
+    "pont": 54,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 90,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 62
+    },
+    "elofeszures": 93,
+    "tanult": 62,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -5.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-09T15:20:23+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-09T15:20:25+00:00"
+}
