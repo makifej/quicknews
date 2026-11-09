@@ -1,0 +1,49 @@
+{
+  "id": "70e942b8f916",
+  "slug": "tencent-s-ai-chief-says-ai-bioweapons-are-coming-but-closing-off",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/tencents-ai-chief-says-ai-bioweapons-are-coming-but-closing-off-models-isnt-the-answer/",
+  "publikalva": "2026-11-09T15:44:53+00:00",
+  "cim": "Tencent's AI chief says AI bioweapons are coming, but closing off models isn't the answer",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 57 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/11/tencent_Logo.png"
+  },
+  "cim_eredeti": "Tencent's AI chief says AI bioweapons are coming, but closing off models isn't the answer",
+  "szoveg_eredeti": "Tencent's chief AI scientist warns that AI will soon be capable of developing bioweapons, and neither fully open nor fully closed models can solve this problem on their own.\n\nIn the debate over open versus closed AI models, Vinces Yao Shunyu, formerly at OpenAI, is arguing for a middle ground, according to the South China Morning Post. A mix of open-source and closed-source lets everyone use the technology for defense as well. In biology, though, offensive and defensive capabilities are harder to separate than in cybersecurity. Since the gap between Chinese and US models isn't large, Yao urges the entire industry to proceed carefully.\n\nYao says Anthropic and other US companies have made strong arguments for closed models, but he also sees clear advantages in open ones. He points to a hacking incident at Hugging Face as an example: when closed US models like Anthropic's Claude refused to analyze attack commands because of their safety filters, the platform used the open Chinese model GLM-5.2 to parse the logs instead.\n\nThe Hugging Face report backs up Yao's example but also shows its limits. GLM-5.2 was only used during the forensic analysis. The actual attack was stopped when the security team patched the exploited vulnerability, rebuilt affected servers, and rotated credentials. Hugging Face also stressed that the incident isn't an argument against safety filters on hosted models.\n\nIn July, Anthropic was the only major AI lab that didn't sign an Nvidia-backed letter warning against premature restrictions on open models. CEO Dario Amodei pushes back specifically against the claim that open models benefit defenders more than attackers. He argues they're potentially riskier because safety mechanisms are hard to enforce and published model weights can't be taken back. Anthropic doesn't call for an outright ban on open models, though.\n\nA technique called Abliteration shows how fragile safety filters are on open models. Anyone with access to a model's weights can use it to surgically remove trained refusal behaviors. Thousands of these modified variants sit on Hugging Face, and the US startup Abliteration.ai sells access to an unfiltered version of GLM-5.3. Current research shows that existing countermeasures make these modifications harder but don't prevent them. A more robust approach is to keep dangerous knowledge out of the model during training in the first place.\n\nChina recognizes the problem too. The standards body TC260 warns that safety mechanisms in open models can be removed or bypassed and is working on its own security standard for open-source AI. A draft export control framework covers particularly large models but exempts open models that have already been released. Neither China nor the US has set a binding threshold above which open models can't be published.\n\nAnthropic and OpenAI only share their most capable cyber models with vetted partners, through programs like Project Glasswing and Daybreak. Since Claude Fable 5, Claude's filters route suspicious queries about cyber and biology topics to the weaker Opus 4.8 model. According to Artificial Analysis, this initially affected eight to nine percent of tasks, and users reported that even analyzing MRI scans got flagged as bioterrorism. Anthropic acknowledged the filters were too aggressive.\n\nTencent plans to release its new model Hy4 as an open-weight model with an accompanying safety report in the coming days. The company says Hy4's biological capabilities fall below the high-risk threshold. Tencent removed the model's hacking capabilities by filtering the training data, and researchers say this approach survives abliteration as well.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "begyujtve": "2026-11-09T15:49:20.719614+00:00",
+  "prioritas": {
+    "pont": 57,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 80,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 53
+    },
+    "elofeszures": 93,
+    "tanult": 53,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-09T15:50:09+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-09T15:50:10+00:00"
+}
