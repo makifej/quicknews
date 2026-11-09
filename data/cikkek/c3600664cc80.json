@@ -1,0 +1,84 @@
+{
+  "id": "c3600664cc80",
+  "slug": "ket-uj-tpu-chippel-bovitette-ai-gyorsitoit-a-google",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/google-ships-four-tpu-variants-in-one-year-as-it-ramps-up-competition-with-nvidia/",
+  "szerzo": "Maximilian Schreiner",
+  "publikalva": "2026-11-09T12:59:02+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/02/google_tpu_chips-1200x670.png"
+  },
+  "cim_eredeti": "Google ships four TPU variants in one year as it ramps up competition with Nvidia",
+  "forrasok": [],
+  "szoveg_eredeti": "With two new TPU variants, Google is targeting confidential AI workloads and memory-hungry applications. The expansion cements Google's strategic shift toward positioning its in-house AI chips as a broad platform for external customers.\n\nGoogle has added two new systems to its eighth-generation AI accelerator lineup: the TPU 8tx for confidential computing and the TPU 8i Max for memory-intensive workloads. With these additions, Google says it has shipped four TPU systems within a single year for the first time.\n\nBoth new variants are built on existing silicon. Google isn't introducing a new chip generation here, but new system configurations: different packaging, different networking, and different memory setups around the same processor. The company frames this modular approach as a deliberate design choice that lets it deliver new hardware variants in months rather than years.Ad\n\nThe TPU 8tx targets enterprises and government agencies working with confidential data. Normally, data is encrypted during storage and transmission but has to be decrypted in memory once a processor works with it.Ad\n\nThe TPU 8tx is designed to close that gap. According to Google, data and model weights stay protected and isolated even during active use. Nvidia already offers a comparable feature for GPUs through its confidential computing architecture.\n\nThe system uses the same low-latency Boardfly network Google developed for real-time inference and is supposed to deliver up to twice the latency reduction compared to the TPU 8t. Google says enterprises can use a single system to fine-tune models, distill large models into smaller ones, and train AI agents with reinforcement learning, all without moving sensitive data between different clusters.Ad\n\nThe TPU 8i Max tackles a different problem: the memory bottleneck. When AI agents work simultaneously across large codebases or hours of video, memory bandwidth becomes the chokepoint. Google addressed this by placing two TPU 8i chips on a single package.\n\nThe result is double the compute power, double the memory, and double the memory bandwidth in the same rack format, which means significantly more performance per square meter of data center space.Ad\n\nBeyond hardware, Google is working to make TPUs easier to use. The company has released TorchTPU as open source, so PyTorch code should run on TPUs with minimal changes. Popular inference frameworks like vLLM and SGLang are also supported.Ad\n\nThe expansion is a direct response to Google's strategic shift from treating TPUs as a purely internal tool to marketing them as a competitive platform for outside customers. The company now counts nearly 100 external TPU customers.\n\nA broader market trend is driving this push. As AI applications spread, the focus is shifting from expensive training runs to inference, meaning the day-to-day operation of models. Specialized chips like TPUs can play to their strengths in exactly this area. That's also why Amazon, Microsoft, and OpenAI are all developing their own accelerators.\n\nNvidia has responded by bolstering its own inference offering through its acqui-hire and licensing deal with Groq.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Két új TPU-rendszerrel bővítette AI-kínálatát a Google",
+  "lead": "A Google bemutatta a **TPU 8tx és TPU 8i Max** rendszereket, amelyek a bizalmas adatfeldolgozást és a memóriaintenzív feladatokat gyorsítják fel.",
+  "osszefoglalo": "A Google két új AI-rendszerrel bővítette a nyolcadik generációs TPU-családot. A **TPU 8tx** a bizalmas adatkezelésre fókuszál, megvédve az adatokat az aktív memóriaalapú feldolgozás során is. A meglévő lapkákra épülő rendszer a korábbi verziókhoz képest akár kétszeres késleltetéscsökkentést biztosít a valós idejű kiértékelésnél.\n\nA **TPU 8i Max** a memóriaszűk keresztmetszetek feloldására készült: két TPU 8i chip egyetlen tokba építésével megduplázza a számítási kapacitást, a memóriát és a memóriasávszélességet a meglévő adatközponti architektúrában. A hardveres fejlesztések mellett a cég nyílt forráskódúvá tette a **TorchTPU** eszközt, így a PyTorch-alapú AI-kódok minimális módosítással futtathatók a Google infrastruktúráján.\n\nA Google a rendszereket már közvetlenül külső vállalati ügyfeleknek is kínálja az Nvidia GPU-k alternatívájaként, célba véve a nagy léptékű modellfuttatási és AI-ágens feladatokat.",
+  "miert_szamit": "A PyTorch-kódok egyszerűsített átültetésével a fejlesztők és vállalkozások **alacsonyabb költséggel futtathatnak komplex AI-ágenseket** a Google felhőjében az Nvidia hardverei helyett.",
+  "cimkek": [
+    "Google",
+    "TPU",
+    "PyTorch",
+    "infrastruktúra"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "TorchTPU"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 88,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 88,
+      "hirertek": 90,
+      "egyediseg": 85,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 80
+    },
+    "elofeszures": 90,
+    "tanult": 81,
+    "indok": "Fajsúlyos iparági hír a Google AI-hardveres terjeszkedéséről és az Nvidia elleni piaci versengésről.",
+    "tema": "google tpu 8tx 8imax launch",
+    "cim_hu": "Négy új TPU-rendszert adott ki a Google egyetlen év alatt az Nvidia elleni harcban",
+    "lead_hu": "A Google két újabb típussal bővítette nyolcadik generációs TPU-kínálatát, a memóriatúlterhelt és a bizalmas számítási feladatokat célozva meg a külső felhős ügyfelek számára.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-09T13:05:14+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-09T13:05:26+00:00",
+  "megjelent": "2026-11-09T13:05:26+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-09T13:05:28+00:00",
+    "esemeny": "A Google két új rendszert (TPU 8tx és TPU 8i Max) mutatott be az 8. generációs TPU-kínálatában, ezzel egy év alatt négy TPU-változatot szállított. A rendszerek a meglévő chipek új konfigurációira épülnek a bizalmas adatfeldolgozás és a nagy memóriabefogadó-képességű feladatok támogatására.",
+    "forrasok": [
+      "https://the-decoder.com/google-ships-four-tpu-variants-in-one-year-as-it-ramps-up-competition-with-nvidia/"
+    ],
+    "hibak": [
+      "Tényhiba a címben és a szövegben: a forrás kifejezetten leszögezi, hogy a Google nem új chipeket mutatott be ('Google isn't introducing a new chip generation here'), hanem a meglévő lapkákra épülő új rendszerkonfigurációkat és rendszereket ('new system configurations', 'systems'). A hír tévesen új chipekként hivatkozik rájuk.",
+      "A lead karakterszáma a felhalmozott hiányzó formázással együtt javítandó, továbbá hiányzik a kötelező félkövér kiemelés a leadből."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Két új TPU-chippel bővítette AI-gyorsítóit a Google",
+      "lead": "A Google bemutatta a TPU 8tx és TPU 8i Max rendszereket, amelyek a bizalmas adatfeldolgozást és a memóriabázisú feladatokat gyorsítják fel.",
+      "osszefoglalo": "A Google két új AI-gyorsítóval bővítette a nyolcadik generációs TPU-családot. A **TPU 8tx** a bizalmas adatkezelésre fókuszál, megelőzve az adatok kódolatlan megjelenítését a memóriaalapú feldolgozás során. A rendszer a korábbi verziókhoz képest akár kétszeres késleltetéscsökkentést biztosít a valós idejű kiértékelésnél.\n\nA **TPU 8i Max** a memóriaszűk keresztmetszetek feloldására készült: két TPU 8i chip összeépítésével megduplázza a számítási kapacitást, a memóriát és a memóriasávszélességet a meglévő adatközponti architektúrában. A hardveres fejlesztések mellett a cég nyílt forráskódúvá tette a **TorchTPU** eszközt, így a PyTorch-alapú AI-kódok minimális módosítással futtathatók a Google infrastruktúráján.\n\nA Google a chipeket már közvetlenül külső vállalati ügyfeleknek is kínálja az Nvidia GPU-k alternatívájaként, célba véve a nagy léptékű modellfuttatási és AI-ágens feladatokat.",
+      "miert_szamit": "A PyTorch-kódok egyszerűsített átültetésével a fejlesztők és vállalkozások **alacsonyabb költséggel futtathatnak komplex AI-ágenseket** a Google felhőjében az Nvidia hardverei helyett."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-09T13:05:55+00:00"
+}
