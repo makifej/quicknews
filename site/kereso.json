@@ -1,5 +1,29 @@
 [
   {
+    "i": "8921504c16ff",
+    "p": "/assets/kep/8921504c16ff.webp",
+    "c": "AI-kódolással fejlesztettek lélegeztetőgép-szimulátort olasz orvosok",
+    "b": "Az Open Vent Sim nyílt forráskódú oktatóeszközt orvosi szakértők hozták létre promptolással, majd szoftverfejlesztők optimalizálták a kódot.",
+    "k": "Bioengineer.org",
+    "g": "eszköz",
+    "u": "/hir/ai-kodolassal-fejlesztettek-lelegeztetogep-szimulatort-olasz-orvosok",
+    "sz": "Olasz egyetemi kutatók és orvosok egy csoportja kódolási tudás nélkül, kizárólag természetes nyelvi utasításokkal hozott létre egy működő lélegeztetőgép-szimulátort. Az Open Vent Sim nevű webes alkalmazás a fizikai oktatóeszközök hiányát hivatott pótolni az orvosképzésben. Az első működő prototípust Google AI Studio környezetben, a Gemini 2.5 Pro modell segítségével mindössze 20 óra alatt fejlesztették ki, majd újabb 20 órányi klinikai finomhangolást végeztek rajta.\n\nA fejlesztés során az orvosok képernyőképeket és valós kórházi berendezések grafikonjait is megosztották a modellel, a hibás hullámformákat pedig szöveges visszajelzésekkel javíttatták ki. A létrejött React TypeScript kód ugyan működőképes volt, de szerkezetileg rendezetlen és egyetlen, több mint 2300 soros fájlból állt. A hosszú távú karbantarthatóság érdekében a Masaryk Egyetem szoftverfejlesztői 15 órányi munkával refaktorálták a rendszert, modularizálták a komponenst és letisztázták az architektúrát.\n\nA véglegesített alkalmazás Google Cloud Run infrastruktúrán keresztül lett elérhető a hallgatók számára, így tetszőleges böngészőből, helyi telepítés nélkül használható. A szimulátorban különféle tüdőbetegségek (példá",
+    "d": "nov. 9. 11:37",
+    "t": "2026-11-09T10:37:42+00:00"
+  },
+  {
+    "i": "e11b12d044c6",
+    "p": "/assets/kep/e11b12d044c6.webp",
+    "c": "Nyílt forráskódúvá vált az Aspen, az AI-ügynökökre tervezett Git-szerver",
+    "b": "A Reason Machines kiadta az Aspen nevű nyílt forráskódú Git-szervert, amely kifejezetten az AI-ügynökök által generált nagy tömegű push-kéréseket kezeli.",
+    "k": "MarkTechPost",
+    "g": "eszköz",
+    "u": "/hir/nyilt-forraskoduva-valt-az-aspen-az-ai-ugynokokre-tervezett-git",
+    "sz": "A Reason Machines nyílt forráskódúvá tette az Aspen nevű Git-szervert, amely az OpenAI Pando néven ismert architektúráját valósítja meg független formában. Az eszközt kifejezetten arra tervezték, hogy kiszolgálja azokat a fejlesztői környezeteket, ahol egyszerre akár több száz AI-ügynök végez folyamatos módosításokat. A rendszer a hagyományos szerverekkel ellentétben nem tárhelyenként, hanem áganként skálázza az írási műveleteket, így megelőzi a push-kérések sorban állását.\n\nTechnikai felépítését tekintve az Aspen egyetlen Rust binárisból áll. A metaadatokat és az ágak előzményeit PostgreSQL vagy SQLite adatbázisban tárolja, míg a kódcsomagokat S3-kompatibilis objektumtárba menti. Mivel a szerver soha nem tömöríti ki újra a beérkező csomagokat, a letöltések során közvetlenül a tárolt csomagokat továbbítja a klienseknek, kiküszöbölve a felesleges szerveroldali számítási kapacitást.\n\nA cég mérései szerint egyetlen 8 magos szerveren az Aspen másodpercenként 567 tartós push-kérést tudott feldolgozni hiba nélkül. A projekt a GitHubon elérhető nyílt forráskódú szoftverként, és a meglévő Git-kliensek módosítás nélkül használhatják HTTPS vagy SSH protokollon keresztül. Aspen Git Open Sourc",
+    "d": "nov. 9. 09:20",
+    "t": "2026-11-09T08:20:20+00:00"
+  },
+  {
     "i": "8a65905deab0",
     "p": "/assets/kep/8a65905deab0-nazca1.webp",
     "c": "Mesterséges intelligenciával 303 új Nazca-vonalat fedeztek fel Peruban",
