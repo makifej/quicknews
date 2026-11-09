@@ -1,0 +1,79 @@
+{
+  "id": "e7ab4b2cb86e",
+  "slug": "akar-6-gb-memoriat-szabadit-fel-a-googlebook-legujabb-frissitese",
+  "forras_id": "techmeme",
+  "forras_nev": "Android Central",
+  "url": "https://www.androidcentral.com/chromebooks-laptops/google-just-made-googlebooks-faster-more-stable-and-less-crash-prone",
+  "szerzo": null,
+  "publikalva": "2026-11-09T06:35:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn.mos.cms.futurecdn.net/VHLrEQnyFyGbeSJfvGvR3N-2000-80.jpg"
+  },
+  "cim_eredeti": "Google rolls out a Googlebook update that frees up 3GB-6GB of RAM via on-device AI optimizations, reduces Chrome crashes, patches ~60 Android flaws, and more (Jay Bonggolto/Android Central)",
+  "forrasok": [],
+  "szoveg_eredeti": "Google is rolling out its November update for Googlebook, and it includes a handful of improvements to make the platform more reliable and less frustrating to use.\n\nThe biggest change is in how Googlebook handles memory used by its on-device AI services. Google has updated its NPU driver and optimized AICore memory management, freeing up 3GB to 6GB of system RAM, as per a Reddit post by Google's Mishaal Rahman. That’s a significant bump for laptops with 16GB of RAM, especially when jumping between a lot of apps and browser tabs.\n\nChrome should also behave better under heavier workloads. The update improves the way the system reclaims memory when background AI services conflict with browser processes, reducing the chances of unexpected tab reloads and crashes. I’m almost tempted to say the update is the kind of fix that arguably should have been in place before Googlebook launched, but better late than never.\n\nThe November release covers a wide range of hardware and software issues. Convertibles should no longer lose keyboard and touchpad input when you switch between tablet and laptop modes. Google has also fixed Zoom crashes using simulated backgrounds, filters, blur effects, and 3D avatars.\n\nExternal displays get a little love, too. Now you should be able to play DRM-protected streaming content such as Netflix, rather than just seeing a black screen. USB microphones and multichannel audio interfaces should work as expected too. Bluetooth users can also get lower audio-video synchronization delays and more reliable reconnection for wireless mice.\n\nGoogle hasn't forgotten about those who use Googlebook for development work. The Linux Terminal beta brings in a bunch of fixes, including more reliable shell sessions after sleep, better SSH port forwarding, and improved multi-window management. Google also fixed a memory leak when closing terminal tabs and made Linux VM updates less destructive, preserving user storage and custom SSH configurations.\n\nSecurity is another part of the release. The Android security patch for November 1, 2026 resolves around 60 vulnerabilities. Google also updated the Linux 6.18 kernel and Ti50 security chip firmware, fixing unexpected restarts, boot loops, and noisy fans.\n\nGet the latest news from Android Central, your trusted companion in the world of Android\n\nGoogle says the update is being rolled out gradually to supported models, including devices from Acer, ASUS, Lenovo, HP, and Dell. Owners can find it under Settings > System > System Update. You want the build number CL3B.260622.286.R2.\n\nEarly reactions on Reddit have been largely positive, with some owners already reporting smoother performance. That said, users are reporting issues, including Chrome spell check and notification syncing problems after waking from sleep.\n\nJay Bonggolto always keeps a nose for news. He has been writing about consumer tech for as long as he can remember, and he has used a variety of Android phones since falling in love with Jelly Bean. Send him a direct message via X or LinkedIn.\n\nYou must confirm your public display name before commenting\n\nPlease logout and then login again, you will then be prompted to enter your display name.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Akár 6 GB memóriát szabadít fel a Googlebook legújabb frissítése",
+  "lead": "A Google novemberi frissítése hatékonyabbá tette az eszközön futó AI-szolgáltatások memóriakezelését, így stabilabbá vált a Chrome működése.",
+  "osszefoglalo": "A Google megkezdte a Googlebook novemberi frissítésének kiadását, amely jelentős teljesítményjavulást hoz. A rendszerhez tartozó NPU-illesztőprogram és az AICore memóriakezelésének optimalizálásával **3 GB és 6 GB közötti rendszermemóriát szabadítottak fel**. Ez lényegesen simább működést biztosít a 16 GB RAM-mal szerelt gépeken a böngészőlapok és alkalmazások közötti váltáskor.\n\nA frissítés közvetlenül orvosolja a Chrome váratlan összeomlásait és a háttérben futó AI-folyamatok okozta akadályokat. Emellett javították a tabletté alakítható eszközök billentyűzet-kezelését, a külső kijelzők DRM-tartalomlejátszását, a Bluetooth-kapcsolatokat, valamint mintegy **60 biztonsági hibát javítottak** az Android rendszermagban.\n\nA frissítés fokozatosan válik elérhetővé az Acer, az ASUS, a Lenovo, a HP és a Dell támogatott modelljeire. A felhasználók a Beállítások > Rendszer > Rendszerfrissítés menüpontban érhetik el a CL3B.260622.286.R2 verziószámú csomagot.",
+  "miert_szamit": "A felszabadított memóriával a **sok böngészőlappal és AI-eszközzel dolgozók** jóval stabilabb rendszert kapnak, így megelőzhetők a Chrome-lapok véletlenszerű összeomlásai.",
+  "cimkek": [
+    "Google",
+    "Googlebook",
+    "Chrome",
+    "RAM optimalizálás"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 74,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 95,
+      "hitelesseg": 86,
+      "aktualitas": 98,
+      "kozossegi": 70
+    },
+    "elofeszures": 95,
+    "tanult": 69,
+    "indok": "Gyakorlati technológiai fejlesztés, ahol az AI-rendszer optimatizálása jelentős memóriát szabadít fel a felhasználóknak. Forrás-tapasztalat: -3.",
+    "tema": "google on-device ai optimization",
+    "cim_hu": "Készüléken futó AI-optimalizációval szabadít fel 3-6 GB RAM-ot a Google",
+    "lead_hu": "A Google frissítette az NPU-illesztőprogramot és az AICore memóriakezelést, amellyel számottevő rendszermemóriát szabadít fel a számítógépeken.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-09T07:05:00+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-09T07:05:39+00:00",
+  "megjelent": "2026-11-09T07:05:39+00:00",
+  "tenyellenorzes": {
+    "ok": false,
+    "ido": "2026-11-09T07:05:42+00:00",
+    "esemeny": "A Google kiadta a Chromebookok novemberi frissítését, amely az on-device AI-szolgáltatások (NPU illesztőprogram és AICore) memóriakezelésének optimalizálásával 3–6 GB RAM-ot szabadít fel, stabilizálja a Chrome működését, és mintegy 60 biztonsági hibát javít.",
+    "forrasok": [
+      "https://www.androidcentral.com/chromebooks-laptops/google-just-made-googlebooks-faster-more-stable-and-less-crash-prone"
+    ],
+    "hibak": [
+      "Tényhiba / elírás az eredeti anyagban és a magyar fordításban is: A hír valójában a Chromebookokról szól, a forrás és a fordítás tévesen 'Googlebook'-ként hivatkozik rá.",
+      "A hivatkozott Reddit-poszt szerzője Mishaal Rahman, nem pedig a Google munkatársa ('Google's Mishaal Rahman' félreértelmezése).",
+      "A magyar szövegből hiányzik a kötelező beszédes hivatkozási link a forrásra.",
+      "a javított változat hibás vagy hiányos",
+      "gondolatjel a(z) lead mezőben"
+    ],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-09T07:06:19+00:00"
+}

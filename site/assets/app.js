@@ -874,7 +874,8 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     // ha minden kártya elfér (asztalon a kettő egymás mellett), nincs lapozó és nem lapoz magától
     function elfer(){ return sor.scrollWidth <= sor.clientWidth + 2; }
     function igazit(){ var e = elfer(); if (lapozo) lapozo.hidden = e; if (e && sor.scrollLeft) sor.scrollLeft = 0; }
-    function jelol(i){ akt = i; pontok.forEach(function(p, k){ p.setAttribute('aria-current', k === i ? 'true' : 'false'); }); }
+    var szaml = gy.querySelector('[data-gyu-szamlalo]');
+    function jelol(i){ akt = i; pontok.forEach(function(p, k){ p.setAttribute('aria-current', k === i ? 'true' : 'false'); }); if (szaml) szaml.textContent = (i + 1) + ' / ' + lapok.length; }
     function ugrik(i){
       i = (i + lapok.length) % lapok.length;
       sor.querySelectorAll('video').forEach(function(v){ if (!v.paused) v.pause(); });
