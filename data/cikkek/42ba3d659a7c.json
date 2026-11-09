@@ -1,0 +1,49 @@
+{
+  "id": "42ba3d659a7c",
+  "slug": "baidus-ernie-evolve-automated-research-system-beats-nanochat-and",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/09/baidu-ernie-evolve-automated-research-system/",
+  "publikalva": "2026-11-09T16:31:59+00:00",
+  "cim": "Baidu’s ERNIE Evolve Automated Research System Beats NanoChat and NanoGPT Records",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 48 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-21-scaled.png"
+  },
+  "cim_eredeti": "Baidu’s ERNIE Evolve Automated Research System Beats NanoChat and NanoGPT Records",
+  "szoveg_eredeti": "Baidu has just released ERNIE Evolve , an automated research system that improves AI training and inference code. Given a repository, an objective and evaluation criteria, it picks research directions, edits code and runs experiments. Only changes that pass a hidden evaluator and a separate reviewer are kept. Baidu team tested the ERNIE Evolve automated research system on three public benchmarks. It then optimized inference for ERNIE-5.5-Flash, still in development. \n\n TL;DR \n\n Size: It is an agent system; Baidu has not disclosed which LLMs power its agents.\n\n Runs on: Benchmarks used 1 NVIDIA B200 (NanoChat, SOL-ExecBench) and 8×H100 (Speedrun Track 1). Production tests ran on Kunlunxin P800 and GPUs (GPU model not disclosed).\n\n Performance: Beat the best public result on 3 of 4 public metrics, and cleared production checks on ERNIE-5.5-Flash.\n\n Best: Generation speed on Kunlunxin P800 reached 623.6% of baseline after 4 research rounds.\n\n Worst: SOL-ExecBench mean SOL of 0.819, behind the 0.827 leaderboard best.\n\n Bottom line (best): Real production inference gains: +33.7% deterministic throughput, +14.9% decode speed.\n\n Bottom line (worst): Self-reported, system not released, and public-benchmark margins are small.\n\n What is ERNIE Evolve? \n\n ERNIE Evolve is an automated research system from Baidu that optimizes code against a fixed, measurable objective. Baidu announced it on X as a practical step toward recursive self-improvement (RSI). In RSI, AI systems improve the software that builds and serves AI.\n\n How does ERNIE Evolve work? \n\n The system runs 2 nested loops. The outer loop decides what to investigate. The inner loop develops and tests improvements inside each direction.\n\n Director: picks the next research direction and a starting code version. It reads an Experience Bank of past results and a Knowledge Base of papers and code.\n\n Selector: chooses a candidate from a lane’s tree and names the next hypothesis to test.\n\n Executor: implements that plan in an isolated environment.\n\n Evaluator: a fixed program kept outside the repository. No agent can see it. Gains must exceed the noise threshold.\n\n Reviewer: checks whether a change follows the intended direction or exploits an evaluation loophole.\n\n Several research lanes run in parallel, each with its own tree of code versions. Failed experiments are recorded, so later rounds can avoid repeating them.\n\n How did ERNIE Evolve score on public benchmarks? \n\n Baidu ran the same loop on NanoChat AutoResearch , NanoGPT Speedrun and SOL-ExecBench .\n\n NanoChat AutoResearch: 0.8763 validation BPB within a 5-minute, single-GPU budget. It added an n-gram branch and a document-retrieval branch beside the network, mixed by a learned gate.\n\n NanoGPT Speedrun Track 1: 38.9 s to target loss on 8×H100, versus the 39.9 s record. The results repo reports 38.92 s over 18 runs.\n\n NanoGPT Speedrun Track 3: 2,590 steps, versus 2,690. It decomposed weights into direction and magnitude, then added EMA-Nesterov extrapolation.\n\n SOL-ExecBench: 0.819 mean SOL across 235 kernel problems on B200, short of the 0.827 leader.\n\n ERNIE Evolve vs other automated research systems \n\n Metrics ERNIE Evolve (Baidu) Recursive Hyra-1.0 (Tencent Hunyuan) (auto)²-research (rekursiv.ai) NanoChat val BPB ↓ 0.8763 0.9109 0.9015 0.8878 Speedrun Track 1 ↓ 38.9 s 77.5 s 76.4 s Not reported Speedrun Track 3 ↓ 2,590 steps Not reported Not reported Not reported SOL-ExecBench, self-reported ↑ 0.819 0.754 0.771 Not reported SOL-ExecBench, per Baidu (Eval Stack v1.1) ↑ 0.819 0.676 0.736 Not reported Production use reported ERNIE-5.5-Flash inference Not disclosed Science tasks (math, molecules) Not disclosed What is released Final code + logs Run artifacts Results repo Recipe + harness tools \n\n Recursive and Hyra-1.0 Speedrun times were set against the older ~79.7 s record, so they are not like-for-like. Hyra SOL self-report via Tencent coverage . \n\n What did ERNIE Evolve do for ERNIE-5.5-Flash inference? \n\n Baidu team then pointed the system at 3 live engineering tasks on ERNIE-5.5-Flash. Baselines had already been tuned by engineers.\n\n Low latency on Kunlunxin P800: generation speed rose to 623.6% of baseline over 4 rounds. Round 1 enabled fused mHC and speculative decoding via the model’s multi-token prediction layer (282.9%). Round 2 cut host-side overhead (588.8%). Round 4 fixed dispatch so DeepEP’s low-latency path engaged.\n\n Deterministic inference for RL: under SGLang’s deterministic mode, throughput rose 33.7% in about 3 days. Time per output token fell 26% and time to first token fell 12%. A Triton kernel for deterministic sampling, which used about 14% of GPU time, gave the largest single gain.\n\n Single-request decoding on GPUs: speed rose 14.9% with accuracy unchanged. 3 of 7 research directions produced gains. Key changes: FP16 instructions for tiny FP8 matmuls and a 2-level MoE expert scheduler.\n\n Key Takeaways\n\n Two nested loops: a Director picks directions, lanes evolve code trees.\n\n A hidden Evaluator plus a Reviewer guards against reward hacking.\n\n Public wins on NanoChat (0.8763 BPB) and Speedrun (38.9 s, 2,590 steps).\n\n ERNIE-5.5-Flash: 623.6% speed on Kunlunxin P800, +33.7% deterministic throughput.\n\n System stays closed; only results and logs are on GitHub.\n\n Check out the ERNIE Evolve research post and the results repo on GitHub . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Baidu’s ERNIE Evolve Automated Research System Beats NanoChat and NanoGPT Records appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-09T18:05:15.432542+00:00",
+  "prioritas": {
+    "pont": 48,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 62,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 48
+    },
+    "elofeszures": 85,
+    "tanult": 48,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -7.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-09T18:06:05+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-09T18:06:05+00:00"
+}
