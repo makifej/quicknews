@@ -1,0 +1,49 @@
+{
+  "id": "fcbcd12bc962",
+  "slug": "amazon-bedrock-tokenomics-data-lake",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/amazon-bedrock-tokenomics-data-lake/",
+  "publikalva": "2026-11-10T16:56:36+00:00",
+  "cim": "Amazon Bedrock tokenomics data lake",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 44 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/06/ML-21645-featured-image.png"
+  },
+  "cim_eredeti": "Amazon Bedrock tokenomics data lake",
+  "szoveg_eredeti": "If you need an observability data lake for your Amazon Bedrock workloads, you’re not alone. When you’re running thousands of model invocations a day across multiple accounts, after a request is sent you might be wondering, what happened? You can see the aggregate bill, but you can’t see what happened inside each call.\n\nYou might start to ask questions: what prompt was sent, what the model returned, how many tokens it used, which model handled it, and whether the response was any good! If you’re a platform or machine learning (ML) engineer looking after a fleet of Amazon Bedrock workloads across teams, that’s a real problem. You can’t debug a spike, you can’t spot wasteful prompts, and you can’t tell one team’s usage from another’s.\n\nWe built something to help: a centralized observability data lake for your Amazon Bedrock invocations. In this post, I cover what native data you have and how we designed the lake. I also show how to use it to see your prompts and derive the per-invocation cost. The AWS CloudFormation templates, AWS Lambda code, and SQL queries are all in the AWS Sample Bedrock Invocation Data Lake GitHub repository. This post walks through the architecture and deployment steps. The repo has everything you need to deploy it.\n\nAmazon Bedrock offers model invocation logging, and it’s genuinely powerful. You turn on invocation logs in the settings in each AWS account you are using Bedrock. It delivers a full record of requests and responses to Amazon Simple Storage Service (Amazon S3) or Amazon CloudWatch.\n\nThe data exists, but it’s locked inside individual accounts. What you really want is a single, fast, queryable view of every invocation across your whole organization. That’s what the data lake gives you.\n\nA centralized Amazon Bedrock invocation log data lake pulls raw model invocation logs from your linked accounts into Amazon CloudWatch. Subscription log filters then forward those records to your central account. The central account processes the data through Amazon Data Firehose, and exposes them through Amazon Athena as one clean table you can query across your organization.\n\nFigure 1: Amazon Bedrock invocation observability data lake architecture across a central account and linked accounts\n\nEverything is deployed as Infrastructure as Code using two AWS CloudFormation templates, so you can roll it out repeatably across every account in your organization. This can be found in the AWS Sample Bedrock Invocation Data Lake GitHub repository.\n\nAfter we run this solution, you will have a combined set of data across the linked account you deploy to so you can query with Athena. What you get per invocation after the logs are flattened into the processed table:\n\nAfter every invocation is captured like this, you go from “We used X tokens on Amazon Bedrock” to “Here is exactly what each model calls contained, and how efficient it was.” That’s the visibility platform and ML teams have been missing.\n\nThe data lake moves each invocation through five stages, from the moment Amazon Bedrock writes a log to the point you can query it in Athena.\n\nEvery time an application calls an Amazon Bedrock model, Amazon Bedrock can record what happened: which model, which account, which IAM identity made the call, how many input and output tokens were used, and the prompt and response text. You turn this on once per account with a single API call, pointing Amazon Bedrock at a CloudWatch log group and giving it a role that can write there.\n\nEach source account gets a subscription filter on its Amazon Bedrock log group. Think of it as a permanent forwarding rule that says “send every new event to this address.” The address is an Amazon CloudWatch Logs destination living in your central account. Source accounts don’t get permissions on the central pipeline. They hand events to the destination, and the central account’s own role takes it from there.\n\nCloudWatch doesn’t hand over clean JSON. It bundles events into batches and wraps them compressed and encoded, so what arrives looks like gibberish until you unwrap it. A small Lambda function does three jobs:\n\nAmazon Data Firehose buffers the records and writes them to an Amazon S3 bucket, converting from JSON to Parquet on the way through. Firehose also files each object under a date path (year=2026/month=08/day=27/).\n\nAn AWS Glue table tells Athena how to read those files, so you can query the lake with ordinary SQL. You can see which users are using the most tokens, which models are commonly selected, and what people are prompting. If you want, you can also connect this to the AWS Cost and Usage Report (CUR) to get the spend of user prompts by day.\n\nA few things need to be in place before you deploy:\n\nThe order matters here. The central account stack has to exist before the linked account stacks can reference it.\n\nDeploy the central CloudFormation stack first, into the account that will own the pipeline. Note two values from the stack outputs before moving on: the CloudWatch Logs destination ARN (which every source account needs) and the AWS Quick Sight role ARN (needed later if you deploy the dashboard).\n\nDeploy the linked account CloudFormation. Repeat this for every account running Amazon Bedrock workloads. The source stack is small and takes a single input: the destination ARN from Stage 1.\n\nDeploying the stack doesn’t start the logging. Amazon Bedrock logging is an account-level setting, not a CloudFormation resource. Activate it once per source account, pointing Amazon Bedrock at the log group and the logging role from Stage 2. Turn on CloudWatch delivery only.\n\nRun a test invocation in a source account, wait for Amazon Data Firehose to flush its buffer (roughly a minute, sometimes longer), then confirm Parquet objects have appeared under the data lake’s data/ prefix. Finally, check your S3 bucket to see data.\n\nThe central stack saves the view definition as a named Athena query but doesn’t run it. Execute that saved query once to create the flattened view. Run queries in the dedicated Athena workgroup, against either the raw table or the flattened view. The view is straightforward: token counts, cache tokens, stop reason, and prompt/response previews are already flat columns.\n\nWhen you want a dollar figure against all of this, join the processed table to your CUR 2.0 data. The join key is the IAM ARN. You can use the following example queries in the Bedrock Data Lake SQL file.\n\nThat one join turns the observability lake into cost attribution too: which prompts cost the most, cost per team or account by day, and what your least efficient invocations are actually costing you. It’s a great addition, but the data lake earns its keep well before you get there.\n\nTokenomics, the practice of managing the economics of artificial intelligence (AI) token consumption, was announced as a formal FinOps domain at the 2026 FinOps Foundation conference. It’s built on the same See, Save, Run, and Plan pillars as Cloud Financial Management, but applied to tokens instead of infrastructure. The challenge is that you can’t optimize what you can’t measure. Most organizations today lack the granular data needed to answer basic tokenomics questions: which teams are consuming the most tokens, and which prompts are wasteful. With per-invocation token and cost visibility, teams can match each workload to the model that fits it. That’s exactly what this data lake gives you. With per-invocation visibility into prompts, responses, token counts, models, and IAM identities, you have the foundation to start running a tokenomics practice rather than only tracking an Amazon Bedrock bill.\n\nIf you want to visualize your token consumption, we have an AWS Quick Sight dashboard. This shows you the data from the table over time so you can share it with stakeholders in your organization. Using AWS Quick Sight, you can customize the dashboard and add organization metadata such as team information to make it your own. To deploy this, use the cid-cmd depl",
+  "begyujtve": "2026-11-10T17:19:52.780973+00:00",
+  "prioritas": {
+    "pont": 44,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 35,
+      "egyediseg": 90,
+      "hitelesseg": 78,
+      "aktualitas": 92,
+      "kozossegi": 32
+    },
+    "elofeszures": 77,
+    "tanult": 42,
+    "indok": "Technikai jellegű AWS blogposzt az Amazon Bedrock tokenhasználati elemzéseiről. Forrás-tapasztalat: -6.",
+    "tema": "amazon bedrock tokenomics analytics",
+    "cim_hu": "Részletes elemzési eszközöket kapnak az Amazon Bedrockot használó fejlesztők",
+    "lead_hu": "Az AWS új adattó-megoldást kínál a Bedrock hívások, promptok és tokenhasználat részletes nyomon követésére és költségelemzésére.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-10T17:20:31+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-10T17:20:49+00:00"
+}
