@@ -1,0 +1,49 @@
+{
+  "id": "90934900d07e",
+  "slug": "artificial-intelligence-models-reshape-receptor-structure-prediction",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/artificial-intelligence-models-reshape-receptor-structure-prediction-and-molecular-pharmacology/",
+  "publikalva": "2026-11-10T13:18:58+00:00",
+  "cim": "Artificial Intelligence Models Reshape Receptor Structure Prediction and Molecular Pharmacology",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 64 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-3103.png"
+  },
+  "cim_eredeti": "Artificial Intelligence Models Reshape Receptor Structure Prediction and Molecular Pharmacology",
+  "szoveg_eredeti": "Artificial Intelligence Models Reshape Receptor Structure Prediction and Molecular Pharmacology\n\nG protein-coupled receptors represent the largest superfamily of human membrane proteins and mediate vital cellular responses to external biochemical signals, serving as the biological targets for approximately 26 percent of all marketed pharmaceutical drugs. Despite their critical importance in clinical medicine and pharmacology, experimental determination of their three-dimensional atomic structures has historically encountered severe technical bottlenecks. These receptors reside within complex lipid bilayers, display pronounced conformational flexibility, and naturally populate multiple ligand-dependent and effector-dependent physical states. Traditional computational methods such as homology modeling have struggled because over half of all receptors long occupied a state of structural dark matter, lacking closely related template structures with high sequence conservation. According to a comprehensive scientific review published in Frontiers in Molecular Biosciences by researchers from Shandong First Medical University, artificial intelligence architectures are fundamentally transforming receptor structural biology by resolving these long-standing analytical bottlenecks.\n\nThe review details how deep learning systems, beginning with the milestone achievements of AlphaFold2 and RoseTTAFold, shifted structural biology away from strict dependence on homologous experimental templates. Rather than relying on classical ab initio modeling, these neural network architectures infer three-dimensional molecular coordinates by learning sequence-to-structure relationships from massive protein datasets while embedding evolutionary constraints extracted from multiple sequence alignments. This capability has expanded atomic structural coverage across the entire receptor family, prominently providing computational models for the complete human olfactory receptor repertoire. In benchmark evaluations, these predictive models have successfully resolved challenging targets such as the orphan mouse olfactory receptor Olfr73, achieving near-experimental fidelity with transmembrane backbone root mean square deviations below 2 angstroms and local distance difference test scores frequently exceeding 90 in transmembrane helical bundles.\n\nDespite these high-resolution achievements across transmembrane core regions, the authors emphasize that critical structural limitations persist across static predictive frameworks. Algorithmic confidence scores substantially decrease when modeling intrinsically flexible extracellular loop regions, although specific systems like AlphaFold2 have accurately predicted complex arrangements such as the second extracellular loop in receptor GPR101 and receptor OR51E2. Systematic analyses have also identified pronounced structural biases across receptor classes, wherein predictive algorithms frequently default to averaged inactive conformations for Class A receptors while leaning toward active-like states for Class B1 members. Furthermore, while the newer AlphaFold3 architecture integrates diffusion models to predict all-atom complexes including small molecules, ions, and tethered peptides, its generated ligand-binding poses often exhibit non-physical geometric anomalies, including severe steric clashes and inaccurate sidechain orientations within binding cavities.\n\nBecause static computational predictions cannot capture the continuous conformational transitions essential for signal transduction, dynamic computational modeling has become an indispensable requirement. Receptor activation mechanisms depend on Ångström-scale physical displacements, prominently characterized by an outward movement of transmembrane helix 6 and an inward displacement of transmembrane helix 7. To model these transient states, researchers are deploying molecular dynamics simulations sequentially with machine learning algorithms. Molecular dynamics simulations first produce extensive trajectory data reaching petabyte scales, after which machine learning classifiers identify distinct functional states, including active, intermediate, and inactive conformations. Additionally, researchers have demonstrated that modifying input parameters in AlphaFold2, specifically by subsampling and reducing multiple sequence alignment depth, enables the generation of diverse structural ensembles that capture both inward-facing and outward-facing membrane conformations.\n\nThese dynamic structural insights directly accelerate macroscopic computational drug discovery pipelines, transforming traditional virtual screening campaigns. Because standard chemical interaction databases are overwhelmingly populated by soluble proteins rather than membrane-embedded targets, standard screening tools often fail when applied to membrane receptors. Specialized deep learning workflows have addressed this challenge by enabling ultra-large virtual screening against chemical libraries containing hundreds of millions of compounds. In a notable demonstration, researchers deorphanized the neuromodulatory receptor GPR139 by computationally docking 235 million molecules, ultimately identifying five full agonists among 68 experimentally tested top candidates, representing an empirical hit rate of approximately 7 percent. Similarly, the AuroBind screening platform evaluated more than 30 million purchasable compounds against orphan targets, achieving prospective experimental hit rates of 16.7 percent for receptor GPR151 and 30.4 percent for receptor GPR160.\n\nBeyond searching existing chemical libraries, generative artificial intelligence architectures are driving the de novo design of entirely novel pharmacological agents. Designing receptor-targeting molecules requires balancing stringent transmembrane physicochemical criteria with optimized target binding affinities. Multi-objective optimization frameworks such as CMOMO employ two-stage dynamic strategies to balance drug-likeness constraints with bioactivity against adrenergic targets. To prevent generative models from simply recapitulating known chemical spaces, structure-based generative workflows combine reinforcement learning with docking simulations sequentially, ensuring generated candidates satisfy realistic geometric constraints. Furthermore, specialized diffusion models such as DiffLinker engineer tailored bivalent ligands and biased modulators by linking molecular fragments directly conditioned on target binding pockets, successfully generating candidates that simultaneously interact with both orthosteric and cryptic allosteric sites.\n\nDeciphering allosteric regulation and signaling bias represents another critical frontier where deep learning models are advancing molecular pharmacology. Natural receptor activation involves long-range communication pathways that link extracellular binding pockets to intracellular transducer interfaces. Novel computational platforms such as Gcoupler utilize cavity probes and graph neural networks to identify hidden allosteric sites without prior bias toward previously known pockets, facilitating discoveries such as cryptic negative allosteric modulator sites in olfactory receptor OR51E2. To quantify downstream signaling bias between G-protein activation and arrestin recruitment, transfer-learning models utilizing the ProteinBERT architecture have achieved Pearson correlation coefficients of 0.57 and 0.58 when predicting intrinsic relative activity ratios for arrestin and G-protein pathways, respectively, significantly outperforming arbitrary binary classifications despite experiencing reduced predictive precision when evaluated on previously unseen receptor targets.\n\nAt the physiological and clinical scale, artificial intelligence and quantitative systems pharmacology are converging to establish receptor-focused digital twin platforms. These computational frameworks aim to simulate patient-specific responses by integrating longi",
+  "begyujtve": "2026-11-10T13:20:27.679174+00:00",
+  "prioritas": {
+    "pont": 64,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 70,
+      "egyediseg": 88,
+      "hitelesseg": 72,
+      "aktualitas": 100,
+      "kozossegi": 38
+    },
+    "elofeszures": 74,
+    "tanult": 19,
+    "indok": "Tudományos áttörés a gyógyszerkutatásban MI modellekkel, de az átlagos olvasónak túl elméleti. Forrás-tapasztalat: -6.",
+    "tema": "ai pharmacology receptor prediction",
+    "cim_hu": "A mesterséges intelligencia átírja a receptorstruktúra-becslést a molekuláris farmakológiában",
+    "lead_hu": "Új mesterséges intelligencia modellek alakítják át a G-fehérjéhez kapcsolt receptorok szerkezetének előrejelzését, ami felgyorsíthatja a gyógyszerfejlesztést.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-10T13:20:34+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-10T13:20:52+00:00"
+}
