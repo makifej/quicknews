@@ -1962,11 +1962,8 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .esti--kicsi .esti-cim { font-size: 16px; line-height: 22px; }
 .esti--kicsi .esti-eq { height: 32px; }
 @media (max-width: 768px) {
-  .esti--kicsi { flex-wrap: nowrap; gap: 12px; padding: 8px 12px 8px 8px; }
-  .esti--kicsi .esti-szoveg { flex: none; }
-  .esti--kicsi .esti-eq { flex: 1 1 auto; order: 0; height: 28px; }
-}
-@media (max-width: 768px) {
-  .esti--kicsi .esti-eq { gap: 1px; min-width: 60px; }
-  .esti--kicsi .esti-eq b { min-width: 1px; }
+  /* Heni 2026-11-10: mobilon az equalizer a gomb és a szöveg alatt, a doboz teljes szélességében, alacsonyan */
+  .esti--kicsi { flex-wrap: wrap; gap: 8px 12px; padding: 8px 12px 14px 8px; overflow: hidden; }
+  .esti--kicsi .esti-szoveg { flex: 1 1 0; min-width: 0; }
+  .esti--kicsi .esti-eq { flex: 1 1 100%; order: 3; height: 20px; gap: 2px; }
 }
