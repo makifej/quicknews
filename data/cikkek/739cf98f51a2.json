@@ -1,0 +1,78 @@
+{
+  "id": "739cf98f51a2",
+  "slug": "az-openai-control-room-rendszere-35-masodperc-alatt-leallitja-a",
+  "forras_id": "x-openai",
+  "forras_nev": "OpenAI (X)",
+  "url": "https://x.com/OpenAI/status/2119913172039868579",
+  "szerzo": "OpenAI (@OpenAI)",
+  "publikalva": "2026-11-09T22:01:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://images.ctfassets.net/kftzwdyauwt9/7CRGR1hiay1UfPVqjUSdAk/da9d8e1e61347fdae6d40e0a72962731/introducing-control-room-social.png?w=1600&h=900&fit=fill",
+    "kep_forras": "https://openai.com/index/control-room/",
+    "x_url": "https://x.com/OpenAI/status/2119913172039868579"
+  },
+  "cim_eredeti": "We built Control Room, a central system to track model workloads across our research infrastructure and stop them quickl",
+  "forrasok": [],
+  "szoveg_eredeti": "We built Control Room, a central system to track model workloads across our research infrastructure and stop them quickly when safety or security concerns arise.\n\nIt connects every research inference workload, including agentic sampling for model training and evaluation, data processing, and more. This works together with our misalignment monitoring systems, and halts model output within 35 seconds of a decision to intervene to stop or pause a job.\n\nControl Room is just one part of our holistic approach for safe frontier model training and deployment.\n\nhttps://openai.com/index/control-room/",
+  "modell": "gemini-3.5-flash",
+  "cim": "Az OpenAI Control Room rendszere 35 másodperc alatt leállítja a veszélyes AI-modelleket",
+  "lead": "Központi felügyeleti rendszert épített az OpenAI a kutatási infrastruktúrájához a veszélyes vagy nem biztonságos modelltevékenységek azonnali leállítására.",
+  "osszefoglalo": "Az OpenAI kifejlesztette a [Control Room](https://openai.com/index/control-room/) nevű központi rendszert, amellyel a kutatási infrastruktúráján futó modellfolyamatokat követi nyomon. Az eszköz közvetlenül kapcsolódik az összes kutatási inferencia-feladathoz, beleértve a modellképzéshez és -értékeléshez használt ügynökalapú mintavételezést és az adatfeldolgozást is.\n\nA rendszer együttműködik a belső biztonsági és eltérési felügyeleti megoldásokkal. Amennyiben biztonsági kockázatot észlel, a döntést követő **35 másodpercen belül** automatikusan megszakítja a modell kimenetét, és leállítja vagy szünetelteti a futó folyamatot.",
+  "miert_szamit": "A megoldás azt mutatja, hogy a fejlett AI-modellek és ügynökök fejlesztésénél a biztonsági leállításhoz már **automatizált felügyeleti rendszerekre** van szükség a kockázatok csökkentésére.",
+  "cimkek": [
+    "OpenAI",
+    "AI biztonság",
+    "Control Room",
+    "modellképzés"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Control Room"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 76,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 85,
+      "egyediseg": 35,
+      "hitelesseg": 92,
+      "aktualitas": 73,
+      "kozossegi": 67
+    },
+    "elofeszures": 90,
+    "tanult": 48,
+    "indok": "Kritikus biztonsági és infrastruktúra-bejelentés az OpenAI-tól. Hasonló hír már van: f37b680abcf7.",
+    "tema": "openai control room safety",
+    "cim_hu": "Control Room néven fejlesztett ki központi AI-biztonsági rendszert az OpenAI",
+    "lead_hu": "Az OpenAI új felügyeleti rendszere folyamatosan nyomon követi a kutatási folyamatokat, és kockázat esetén 35 másodpercen belül leállítja a modelleket.",
+    "klaszter": "f37b680abcf7",
+    "ai": true,
+    "ido": "2026-11-10T07:19:54+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-10T07:20:53+00:00",
+  "megjelent": "2026-11-10T07:20:53+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-10T07:21:19+00:00",
+    "esemeny": "Az OpenAI bejelentette a Control Room nevű központi rendszert, amely nyomon követi a kutatási infrastruktúrán futó modellfolyamatokat, és biztonsági kockázat esetén 35 másodpercen belül leállítja azokat.",
+    "forrasok": [
+      "https://x.com/OpenAI/status/2119913172039868579",
+      "https://openai.com/index/control-room/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
+}
