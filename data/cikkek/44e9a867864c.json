@@ -1,0 +1,49 @@
+{
+  "id": "44e9a867864c",
+  "slug": "new-framework-grades-ai-jailbreaks-across-capability-gains-scope-and",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Tom's Hardware",
+  "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/new-framework-grades-ai-jailbreaks-across-capability-gains-scope-and-how-easy-they-are-to-deploy-frontier-model-forum-proposes-cvss-style-rating-system-for-new-ai-models",
+  "publikalva": "2026-11-10T13:40:00+00:00",
+  "cim": "New framework grades AI jailbreaks across capability gains, scope, and how easy they are to deploy — Frontier Model Forum proposes CVSS-style rating system for new AI models",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 65 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn.mos.cms.futurecdn.net/PsE5GF3sUyv6c6FQPvP9j-1920-80.jpg"
+  },
+  "cim_eredeti": "New framework grades AI jailbreaks across capability gains, scope, and how easy they are to deploy — Frontier Model Forum proposes CVSS-style rating system for new AI models",
+  "szoveg_eredeti": "In recent months, high-profile headlines about AI models letting loose from their safeguards dominated headlines. Now, the Frontier Model Forum (FMF) has released a new Jailbreak Rating Framework that aims to track how easy it might be for a given AI model to get around safeguards. The framework also estimates the scale of the collateral damage, should an AI model wreak cyber-havoc across the internet.\n\nThe project started in 2023 with the support of four founding companies: Anthropic, Google, Microsoft, and OpenAI. The published Jailbreak Rating Framework is a rough analog to the well-known CVSS security rating system, but specifically targeted at classifying the type and severity of LLM jailbreaks across various axes and multiple frontier LLM providers.\n\nMany AI companies and evaluation entities already have their own rating systems, but the FMF intends for its scale to be a cross-vendor standard that teams developing patches can rely on.\n\nThe FMF's approach is to have a classification method for jailbreaks that can make a model perform cyber-warfare operations beyond what's already out, across both the regular and black market. Version 1.0 of the proposal is a work-in-progress, and the group is taking comments and suggestions on it until December 21, noting that relying on its system in the meantime is inadvisable.\n\nRight now, the framework has four scoring components, split across two main categories: severity, measuring how serious a jailbreak technique is, and likelihood, or how easy it is to find and weaponize it.\n\nA combined final rating adds the scores obtained from the two categories into a final low-to-critical rating. The scientists note that the capability gain is the most important dimension and acts as both a floor and a ceiling for the remaining scores — a jailbreak that doesn't offer results beyond what can already be obtained via other means is meaningless within the purview of the grading system.\n\nThe individual ratings pertain to capability gains, capability scope, ease of deployment, and ease of discovery. They're all graded from zero to three, though the FMF stresses that a rating of zero doesn't mean a jailbreak is harmless or ought to be ignored — rather, it means the flaw should be addressed by standard practices like the platform's policies and standard cybersecurity ratings.\n\nAn important feature is that the FMF's baseline implicitly changes as models evolve, meaning that a grade of zero for a jailbreak in 2026 likely isn't going to mean the same thing as it would in 2028, or isn't better than alternative tools. A capability-gain rating of zero means that the jailbreak under analysis doesn't offer any improvement beyond what can already be done with existing models or tooling right off the bat.\n\nFor example, jailbreaking a model to perform a DDoS on a site isn't all that helpful to an attacker, since there are a number of black-market sites for that — or even other LLMs with fewer safeguards. This doesn't mean the jailbreak isn't handy, only that it's no better than the alternatives. However, the rating can be higher if the attacker can leverage the jailbreak to get a better DDoS than they could otherwise shop for.\n\nOn the other end of the capability-gain scale, three means that a jailbroken model can perform cyber-attacks with capabilities similar to those of a model operating without safeguards.\n\nThe capability scope measurement is easier to interpret: zero means that the jailbreak only works for one specific action or target and can't be tweaked for other applications, or in other words, is a one-trick pony. A jailbreak gets a rating of three when it can, without specific redesign, make a model perform work across at least two entirely unrelated categories of cyber-warfare — like getting the model to both autonomously discover vulnerabilities or, separately, write malware.\n\nFor ease of deployment, the FMF considers the amount of human interaction, or the degree of automation that the jailbreak allows. A zero means that the jailbreak must be steered by humans with a high degree of knowledge, providing additional instructions to be effective, while a three means that, with little effort, it can be used by a novice and results in an automated cyber-warfare task.\n\nLast but by no means least, ease-of-discovery is how hard it is to find the jailbreak. At a zero, the attacker must spend copious amounts of money on inference tokens, need elevated access (like a privileged account given to a white-hat hacker), or specialized infrastructure like a legion of AI servers. A rating of three simply means that anyone can look up the technique and use it.\n\nIf all of this sounds familiar, you may be thinking of Anthropic's safeguard-breakage classifiers the company proposed in July 2026, after an incident that led to Claude Fable 5 being temporarily unavailable. Much like the FMF's effort, Anthropic's system would also use a moving baseline and only consider jailbreaks that improve on cyber-warfare capabilities already available.\n\nThat document is strikingly similar to FMF's proposal. Anthropic is an FMF founding member, and as such may have had a hand or two in developing the new standard — though we have no confirmation either way.\n\nBruno Ferreira is a contributing writer for Tom's Hardware. He has decades of experience with PC hardware and assorted sundries, alongside a career as a developer. He's obsessed with detail and has a tendency to ramble on the topics he loves. When not doing that, he's usually playing games, or at live music shows and festivals.",
+  "begyujtve": "2026-11-10T16:19:36.745150+00:00",
+  "prioritas": {
+    "pont": 65,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 70,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 95,
+      "kozossegi": 49
+    },
+    "elofeszures": 82,
+    "tanult": 33,
+    "indok": "Ipari összefogás keretében született új értékelőrendszer az AI-korlátok kijátszásának mérésére. Forrás-tapasztalat: -6.",
+    "tema": "frontier model forum jailbreak",
+    "cim_hu": "Új keretrendszerrel értékelik az AI-modell védelmének kijátszhatóságát",
+    "lead_hu": "A Frontier Model Forum kiadta a Jailbreak Rating Framework rendszert, amellyel az AI-biztonsági korlátok áttörésének kockázatait és könnyedségét osztályozzák.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-10T16:19:52+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-10T16:19:55+00:00"
+}
