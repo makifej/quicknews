@@ -1402,24 +1402,27 @@ document.addEventListener('click', function(ev){
   // kiszámolt sávjai (…-eq.bin, képkockánként 48 bájt), a hang aktuális idejéhez igazítva; gyors emelkedés, lassabb esés,
   // a tetején lassan süllyedő csúcsjelző. Megállítva az oszlopok leülnek.
   var oszl = sav.querySelectorAll('.esti-eq b'), eq = null, eqSav = +sav.getAttribute('data-eq-savok') || 48,
-      eqFps = +sav.getAttribute('data-eq-fps') || 25, n = oszl.length, szint = new Float32Array(n), csucs = new Float32Array(n),
+      eqFps = +sav.getAttribute('data-eq-fps') || 25, n = oszl.length, szint = new Float32Array(n), csucs = new Float32Array(n), pihen = new Float32Array(n),
       fut = false, elozo = 0;
+  for (var pi = 0; pi < n; pi++) { pihen[pi] = 0.10 + 0.32 * Math.abs(Math.sin(pi * 1.7 + 0.4)) * (1 - 0.6 * pi / Math.max(1, n)); szint[pi] = csucs[pi] = pihen[pi]; }
   var eqBetolt = function(){
     var u = sav.getAttribute('data-eq'); if (!u || eq) return;
     fetch(u).then(function(r){ return r.arrayBuffer(); }).then(function(b){ eq = new Uint8Array(b); }).catch(function(){});
   };
   var kocka = function(most){
     var szol = hang && !hang.paused, dt = Math.min(0.1, (most - (elozo || most)) / 1000); elozo = most;
+    sav.classList.toggle('szol', szol);
     var k = szol ? Math.floor(hang.currentTime * eqFps) : -1, nyugszik = true;
     for (var i = 0; i < n; i++) {
       var s = Math.min(eqSav - 1, Math.floor(i * eqSav / n)), v = 0;
       if (szol && eq && (k + 1) * eqSav <= eq.length) v = eq[k * eqSav + s] / 255;
+      else if (!szol) v = pihen[i];
       szint[i] = v > szint[i] ? szint[i] + (v - szint[i]) * 0.6 : Math.max(v, szint[i] - dt * 2.2);
       csucs[i] = szint[i] > csucs[i] ? szint[i] : Math.max(szint[i], csucs[i] - dt * 0.55);
       var o = oszl[i];
-      o.firstChild.style.transform = 'scaleY(' + (0.04 + 0.96 * szint[i]).toFixed(3) + ')';
-      o.lastChild.style.bottom = Math.min(94, (0.04 + 0.96 * csucs[i]) * 100).toFixed(1) + '%';
-      if (szint[i] > 0.001 || csucs[i] > 0.001) nyugszik = false;
+      o.firstChild.style.transform = 'scaleY(' + Math.max(0.04, szint[i]).toFixed(3) + ')';
+      o.lastChild.style.bottom = Math.min(94, Math.max(0.04, csucs[i]) * 100).toFixed(1) + '%';
+      if (Math.abs(szint[i] - pihen[i]) > 0.002 || Math.abs(csucs[i] - szint[i]) > 0.002) nyugszik = false;
     }
     if (szol || !nyugszik) requestAnimationFrame(kocka); else { fut = false; elozo = 0; }
   };
