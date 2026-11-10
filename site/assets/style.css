@@ -1952,20 +1952,7 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .magany-sor .magany { min-width: 0; }
 @media (min-width: 768px) { .magany-sor { grid-template-columns: repeat(var(--db, 2), minmax(0, 1fr)); } }
 
-/* Hangos hírösszefoglalók (/osszefoglalok, Heni 2026-11-10) */
+/* Hangos hírösszefoglaló (Heni 2026-11-10): főoldali link és a nap oldalán a sáv */
 .esti-osszes { color: var(--kiemelo); font-weight: 600; text-decoration: none; white-space: nowrap; }
 .esti-osszes:hover { text-decoration: underline; }
-.ossz { max-width: 880px; }
-.ossz-szakasz { font-size: 24px; line-height: 32px; font-weight: 800; text-transform: uppercase; margin: 40px 0 16px; }
-.ossz-adas { padding: 24px 0; border-top: 1px solid var(--keret); }
-.ossz-adas h2 { font-size: 20px; line-height: 28px; font-weight: 700; }
-.ossz-alcim { color: var(--szoveg-2); font-size: 14px; line-height: 20px; margin-top: 4px; }
-.ossz-adas .esti { margin: 16px 0; }
-.ossz-leirat { margin: 8px 0 16px; }
-.ossz-leirat summary { cursor: pointer; font-weight: 600; font-size: 16px; line-height: 24px; color: var(--szoveg-2); }
-.ossz-leirat p { font-size: 16px; line-height: 26px; margin-top: 12px; max-width: 70ch; }
-.ossz-hirek-cim { font-size: 14px; line-height: 20px; font-weight: 700; text-transform: uppercase; color: var(--szoveg-2); margin: 16px 0 8px; }
-.ossz-hirek { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
-.ossz-hirek a { color: var(--szoveg); font-size: 16px; line-height: 24px; text-decoration: none; border-bottom: 1px solid var(--keret); }
-.ossz-hirek a:hover { color: var(--kiemelo); border-color: var(--kiemelo); }
 .gyujto .esti { margin: 0 0 24px; }
