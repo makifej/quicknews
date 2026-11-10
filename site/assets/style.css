@@ -1967,8 +1967,8 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
   .esti--kicsi .esti-szoveg { flex: 1 1 0; min-width: 0; }
   .esti--kicsi .esti-eq { flex: 1 1 100%; order: 3; height: 20px; gap: 2px; }
 }
-/* Heni 2026-11-10: a hírösszefoglaló sáv meleg, márkaszínes alapon; megállítva nincs csúcsjelző, csak a halk spektrum */
-.esti { background: color-mix(in srgb, var(--kiemelo) 9%, var(--bg-2)); border-color: color-mix(in srgb, var(--kiemelo) 28%, var(--keret)); }
+/* Heni 2026-11-10: a dátumos résznek (dátum + Hírösszefoglalók link) saját, meleg márkaszínes háttere van, nem az egész sávnak; megállítva nincs csúcsjelző, csak a halk spektrum */
+.esti--fo .esti-szoveg { padding: 6px 14px; border-radius: 12px; background: color-mix(in srgb, var(--kiemelo) 14%, var(--bg-3)); }
 .esti-eq b i { opacity: .55; transition: opacity .3s var(--gorbe); }
 .esti.szol .esti-eq b i { opacity: 1; }
 .esti:not(.szol) .esti-eq b s { opacity: 0; }
