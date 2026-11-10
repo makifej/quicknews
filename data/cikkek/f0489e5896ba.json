@@ -1,0 +1,49 @@
+{
+  "id": "f0489e5896ba",
+  "slug": "comprehensive-survey-maps-retrieval-methods-enhancing-multimodal",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/comprehensive-survey-maps-retrieval-methods-enhancing-multimodal-artificial-intelligence-generation/",
+  "publikalva": "2026-11-10T15:54:35+00:00",
+  "cim": "Comprehensive Survey Maps Retrieval Methods Enhancing Multimodal Artificial Intelligence Generation",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 46 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-3412.png"
+  },
+  "cim_eredeti": "Comprehensive Survey Maps Retrieval Methods Enhancing Multimodal Artificial Intelligence Generation",
+  "szoveg_eredeti": "Comprehensive Survey Maps Retrieval Methods Enhancing Multimodal Artificial Intelligence Generation\n\nResearchers have conducted an exhaustive survey into retrieval-augmented generation across artificial intelligence generated content, establishing a structured taxonomy connecting information retrieval systems with modern generative foundation models. As detailed by lead authors Penghao Zhao, Hailin Zhang, and senior researcher Bin Cui in Data Science and Engineering, generative models have rapidly scaled from Long Short-Term Memory networks to Transformer architectures, and from Generative Adversarial Networks to Latent Diffusion Models spanning billions of parameters. Despite significant breakthroughs across diverse modalities, foundation models encounter persistent obstacles, including static training boundaries that leave parameters outdated, vulnerabilities to training data leakage, hallucinations, high inference costs, and inadequate long-tail coverage. Retrieval-augmented generation addresses these vulnerabilities by establishing a dynamic non-parametric memory store from which pertinent external items are fetched during inference, fundamentally enhancing factual accuracy, contextual grounding, and operational robustness without requiring perpetual retraining of foundational parameters across evolving environments.\n\nAt the mechanical center of every retrieval-augmented architecture sits a coordinated two-module framework comprising a dedicated retriever and an adaptable generative model. Within this workflow, user queries across diverse data modalities are processed by the retriever to search pre-indexed data stores for pertinent knowledge before interacting with the generator. The survey notes that retrieval techniques broadly separate into sparse retrieval, dense retrieval, and specialized topological search methods. Sparse retrieval approaches, exemplified by term-matching baselines such as BM25 and TF-IDF, construct inverted indices from document word statistics to rapidly calculate candidate rankings. Dense retrieval techniques conversely represent inputs and corpus elements as continuous embedding vectors using dual-encoder neural architectures like Dense Passage Retrieval. To execute scalable similarity searches across massive collections during inference, dense architectures rely on Approximate Nearest Neighbor indexing structures, including Hierarchical Navigable Small World graphs, DiskANN, and SPANN, while structured modalities utilize abstract syntax tree edit distances, named entity recognition, or graph traversals.\n\nTo clarify how retrieved items interact with underlying generators, the review distills existing techniques into four foundational architectural paradigms: query-based, latent representation-based, logit-based, and speculative generation. Query-based augmentation remains the most widely deployed paradigm across artificial intelligence scenarios, operating primarily at the prompt engineering stage. In this framework, retrieved items—such as text passages, code snippets, or image patches—are integrated directly with the raw user query into a unified prompt fed to the generative model, a mechanism demonstrated by REALM, BART-coupled Dense Passage Retrieval, and REPLUG. Conversely, latent representation-based augmentation incorporates retrieved information directly into intermediate hidden states. Classic architectures such as Fusion-in-Decoder process each query and retrieved document chunk through separate encoder channels before amalgamating the resulting latent representations in a shared decoder. Similarly, RETRO applies Chunked Cross-Attention to blend segmented query tokens with retrieved text representations, whereas multimodal models like ReMoDiffuse, Re-AudioLDM, and CARE introduce cross-attention to inject semantic latent vectors into generative decoders.\n\nThe remaining two foundational paradigms outlined in the survey target downstream decoding operations and inference acceleration. Logit-based retrieval-augmented generation directly influences the generator’s step-wise vocabulary probability distributions during token generation. Instead of modifying prompts or hidden layer weights, models such as kNN-LM combine standard autoregressive language model probabilities with distance-weighted retrieval distributions derived from nearest-neighbor prefix datastores. Advanced evolutions including TRIME and NPM utilize non-parametric distributions directly from local datastores in place of standard output softmax layers, delivering substantial accuracy gains across sparse, long-tail distributions. In programming domains, systems like EDITSUM and RECODE similarly blend action subtree logits or code vector search outputs to guide sequence generation. Meanwhile, speculative retrieval-augmented generation decouples retrieval from generative computation, using retrieved resources to replace token generation steps entirely. Systems such as REST swap small draft models in speculative decoding with retrieved document n-grams, while GPTCache implements semantic caching of prior model responses, and COG decomposes language generation into direct copy-and-paste retrieval sequences from source documents.\n\nBeyond baseline foundations, the survey documents five distinct categories of architectural enhancements designed to optimize retrieval-augmented pipelines: input modifications, retriever improvements, generator adjustments, output rewrites, and holistic pipeline strategies. Input enhancements modify data prior to search, using query transformation techniques like Query2doc and HyDE to synthesize pseudo-documents that enrich sparse prompts, or employing frameworks like RQ-RAG to decompose ambiguous prompts into focused sub-queries. Retriever enhancements focus on the quality of retrieved context to eliminate misleading hallucinations, utilizing recursive retrieval mechanisms like ReACT and Monte-Carlo tree simulations in RATP. Chunk optimization techniques within LlamaIndex, RAPTOR multi-level tree clustering, and Prompt-RAG table-of-contents structuring prevent loss of context by systematically retrieving small atomic chunks alongside broader surrounding passage windows.\n\nSystem enhancements equally focus on generator behavior, post-generation refinement, and adaptive end-to-end pipeline coordination. Generator optimizations employ prompt engineering innovations, including LLMLingua prompt compression to mitigate context clutter and eliminate lost-in-the-middle degradation, as well as decoding calibrations like temperature adjustments in InferFix and vocabulary-restricting completion engines in Synchromesh. Parameter-efficient fine-tuning methods, particularly Low-Rank Adaptation, adapt generative decoders to specific modalities without updating frozen base parameters. For result enhancement, downstream rewriting modules such as SARGAM leverage dedicated transformer classifiers to correct structural errors in generated code, while systems like CBR-KBQA project raw generated outputs onto neighboring knowledge base relations to enforce logical validity. At the pipeline level, adaptive retrieval frameworks evaluate whether external search is strictly necessary before spending inference compute. Systems use rule-based thresholds over model generation probabilities in FLARE alongside model-based discriminators like Self-RAG retrieve tokens and AdaptiveRAG classifiers. Complementary iterative pipelines, including RepoCoder and ITER-RETGEN, cycle through multiple retrieval and generation phases, allowing subsequent passes to retrieve supplemental evidence that fills identified knowledge gaps.\n\nExamining concrete applications across natural language processing and software engineering, the survey highlights how retrieval-augmented architectures have expanded far beyond simple open-domain question answering. In textual domains, frameworks like REALM, Atlas, and MultiHop-RAG process multi-hop document interactions, while fact-verificatio",
+  "begyujtve": "2026-11-10T16:04:35.237383+00:00",
+  "prioritas": {
+    "pont": 46,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 40,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 95,
+      "kozossegi": 27
+    },
+    "elofeszures": 77,
+    "tanult": 31,
+    "indok": "Akadémiai jellegű elemzés/összefoglaló cikk, széles olvasóközönség számára kevéssé közérthető. Forrás-tapasztalat: -6.",
+    "tema": "rag survey multimodal ai",
+    "cim_hu": "Átfogó kutatás készült a multimódis AI-t támogató információkeresési módszerekről",
+    "lead_hu": "Kutatók egy részletes tanulmányban térképezték fel a kereséssel kiegészített generatív (RAG) eljárásokat a multimódis mesterségesintelligencia-modellrendszerekben.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-10T16:04:50+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-10T16:05:16+00:00"
+}
