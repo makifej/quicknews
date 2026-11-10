@@ -1,0 +1,49 @@
+{
+  "id": "d5ca314c1ebb",
+  "slug": "a-google-megnyitja-a-gemini-ai-betanito-rendszeret-a",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/google-opens-gemini-s-ai-train-NPnfipmfSUCLxUYXm6y83w",
+  "publikalva": "2026-11-10T02:47:54.108261+00:00",
+  "cim": "A Google megnyitja a Gemini AI-betanító rendszerét a felhőfelhasználók előtt",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 83 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--8wlSVVxo--/t_limit/https://substackcdn.com/image/fetch/%24s_%21T1u3%21%2Cw_1456%2Cc_limit%2Cf_auto%2Cq_auto:good%2Cfl_progressive:steep/https%253A%252F%252Fsubstack-post-media.s3.amazonaws.com%252Fpublic%252Fimages%252F36e60726-7caf-45b7-84b9-5b619997b6d1_1300x911.jpeg"
+  },
+  "cim_eredeti": "A Google megnyitja a Gemini AI-betanító rendszerét a felhőfelhasználók előtt",
+  "szoveg_eredeti": "A Google Cloud 2026. november 9-én, hétfőn bejelentette, hogy a Cloud Pathways mostantól általánosan elérhető a Google Kubernetes Engine-en (GKE). A Pathways egy elosztott gépi tanulási futtatókörnyezet, amelyet eredetileg a Google DeepMind fejlesztett ki a Google élvonalbeli modelljeinek, köztük a Gemininek a betanítására és futtatására. A Google Cloud közleménye szerint a kiadással „minden Google Cloud-ügyfél\" hozzáférhet ahhoz az egyvezérlős futtatókörnyezethez, az együtt elhelyezett Python-sidecarokhoz és a rugalmas hibatűréshez, amelyek a Google legnagyobb mesterségesintelligencia-feladatait is működtetik.\n\nA Pathways egyike volt azoknak az infrastruktúra-fejlesztéseknek, amelyeket a Google ugyanazon a napon mutatott be. A Google TPU-val kapcsolatos bejelentése szerint a cég két új, nyolcadik generációs chipet, a TPU 8tx-et és a TPU 8i Maxot is bemutatta, a GKE dinamikus szeletelését (dynamic slicing) pedig általánosan elérhetővé tette.\n\nA hagyományos, többvezérlős (multi-controller) JAX-környezetekben minden TPU-gazdagép (host) saját Python-értelmezőt futtat, és csak a saját eszközeit látja. A Google szerint emiatt az összetett, vegyes munkafolyamatok nagy léptékben törékennyé válnak. A Pathways ezt a modellt egyetlen vezérlőre cseréli, amely az open source Interim Framework Runtime-ra épül. Így egyetlen JAX-kliens több, akár több ezer chipet átfogó nagy TPU-szeletet (slice) is képes kezelni, „mintha mind helyben lenne csatlakoztatva” – közölte a Google Cloud.\n\nA Google Cloud kiadási megjegyzései (release notes) több rugalmassági funkciót is felsorolnak. Az elasztikus tanítás hardverhiba esetén az egészséges szeletekre zsugorítja a feladatot, majd a pótlások csatlakozásakor visszaskálázza, mindezt a futtatás újraindítása nélkül. A felfüggesztés–folytatás (suspend-resume) a tervezett megszakítások (preemption) előtt a nagy sávszélességű memória állapotát a Cloud Storage-ba menti, a „hot-swapping” pedig az megszakadt munkát tartalék szeletekre helyezi át. A felhasználók a munkafolyamatokat interaktívan is futtathatják jegyzetfüzetből (notebookból), vagy a Shared Pathways Service segítségével megoszthatnak egy TPU-szeletekből álló készletet.\n\nA kiadási megjegyzések szerint a futtatókörnyezet támogatja az Ironwoodot (TPU7x), a Trilliumot (v6e), a TPU v5p-t és a TPU v5e-t, JAX 0.10.1-es vagy újabb verzióval. A Pathwayst a Slurm-fürtökhöz elhozó, Cluster Directorral való integráció előzetes (preview) állapotban van.\n\nA Google közlése szerint az ügyfelek az elmúlt 90 napban több mint 130 millió Cloud TPU-chipórát használtak fel a GKE-n futó Pathwayson. A vállalat blogja szerint a világ egyik legnagyobb fogyasztói technológiai cége – amelyet a Google nem nevezett meg – negyedévente több mint 100 millió chipórát használ batch és megerősítéses tanuláson alapuló (reinforcement learning) inferenciára.\n\nA Google először a Google Cloud Next 2025. április 9-i rendezvényén jelentette be, hogy a Pathwayst felhőügyfeleinek is kínálni fogja, így az általános elérhetőség (GA) 19 hónappal később érkezett meg – írta a PPC Land. A portál arra is felhívta a figyelmet, hogy a Google kapcsolódó fejlesztői bejegyzésében nem szerepelt árazás, és az sem derült ki, hogy az általános elérhetőség vonatkozik-e a Shared Pathways Service-re, amely egy kísérleti kódmappára hivatkozik.\n\nA ZenteiQ nevű ügyfél azt mutatta be, hogyan működik a rendszer a gyakorlatban. „Az ML-mérnökeinknek már nem kell azzal tölteniük az óráikat, hogy a feladatok állapotát figyeljék vagy kézzel indítsák újra őket, így a kutatási munkáikra tudnak koncentrálni” – mondta Sashikumaar Ganesan, a cég alapítója a Google közleményében.",
+  "begyujtve": "2026-11-10T15:18:23.903875+00:00",
+  "prioritas": {
+    "pont": 83,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 85,
+      "egyediseg": 100,
+      "hitelesseg": 78,
+      "aktualitas": 71,
+      "kozossegi": 74
+    },
+    "elofeszures": 85,
+    "tanult": 81,
+    "indok": "A Google kiemelt infrastruktúra-összetevőjének publikussá tétele jelentős mérföldkő az AI-fejlesztők számára. Forrás-tapasztalat: -2.",
+    "tema": "google cloud pathways gemini",
+    "cim_hu": "A Google megnyitja a Gemini modellek mögötti betanítási rendszert a felhős ügyfelek előtt",
+    "lead_hu": "A Google Cloud általánosan elérhetővé tette a Kubernetes Engine-en a Pathways futtatókörnyezetet, amellyel saját nagy méretű AI-modelljeit is képzi.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-10T15:20:40+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-10T15:20:46+00:00"
+}
