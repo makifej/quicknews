@@ -1,0 +1,49 @@
+{
+  "id": "05f2a801c79b",
+  "slug": "computational-methods-clinical-evidence-and-translational-readiness",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/computational-methods-clinical-evidence-and-translational-readiness-for-artificial-intelligence-for-her2-assessment-using-silver-in-situ-hybridization-sish/",
+  "publikalva": "2026-11-10T12:38:48+00:00",
+  "cim": "Computational methods, clinical evidence, and translational readiness for",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 40 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-3037.png"
+  },
+  "cim_eredeti": "Computational methods, clinical evidence, and translational readiness for",
+  "szoveg_eredeti": "Research report: Computational methods, clinical evidence, and translational readiness for artificial intelligence for HER2 assessment using silver in situ hybridization (SISH)\n\nA systematic review published in Breast Cancer Research synthesizes the current state of artificial intelligence applications for HER2 assessment using silver-enhanced in situ hybridization, or SISH. The review highlights that while AI can support reproducible and scalable HER2 assessment, clinical deployment requires rigorous validation and integration with expert pathology workflows to ensure safety and accuracy in diagnostic practice.\n\nAccurate determination of human epidermal growth factor receptor 2 gene amplification is a cornerstone of precision oncology in breast cancer and other solid tumors. Immunohistochemistry remains the first-line screening modality, but in situ hybridization techniques are essential for resolving equivocal cases and providing quantitative assessment of HER2 gene status.\n\nDespite these advantages, manual interpretation of SISH remains labor-intensive and subject to interobserver variability, particularly in borderline and heterogeneous tumors. The diagnostic process requires accurate identification of invasive tumor nuclei, enumeration of HER2 and CEP17 signals, calculation of the HER2/CEP17 ratio, and evaluation of the average HER2 copy number per cell. These tasks are complicated by variability in staining quality, signal clustering, and the presence of heterogeneous tumor regions, where intratumoral heterogeneity may result in focal amplification patterns that are difficult to detect through manual assessment alone.\n\nThe review found that digital pathology and artificial intelligence have enabled automated analysis of whole-slide images, supporting tasks such as nuclei segmentation, signal detection, and HER2 copy-number estimation. Deep learning architectures, including convolutional neural networks and vision transformers, have demonstrated strong performance across a range of pathology tasks. However, most existing studies have focused on immunohistochemistry and fluorescence-based ISH modalities, with relatively limited attention given to the specific challenges of SISH, prompting this comprehensive synthesis of AI applications in HER2-SISH assessment.\n\nSignal-based approaches that explicitly detect HER2 and CEP17 signals and compute ratios tend to demonstrate stronger alignment with clinical reference standards compared with classification-based models. This is primarily because signal-based pipelines replicate the established diagnostic workflow used by pathologists. For instance, Rehman et al. demonstrated that AI-derived HER2/CEP17 ratios showed strong agreement with manual assessment, with no statistically significant differences in final HER2 classification. Similarly, Shi et al. reported that automated analysis reduced variability in ratio estimation, particularly in borderline cases where manual interpretation is most challenging.\n\nIn contrast, classification-based approaches, while achieving high patch-level accuracy, often exhibit greater variability at the whole-slide level. This discrepancy highlights the importance of evaluating AI performance in the context of clinically relevant endpoints rather than relying solely on image-level metrics. Classification models do not inherently provide HER2/CEP17 ratios or copy-number estimates, which are central to clinical HER2 assessment. Consequently, such approaches should be interpreted as complementary tools rather than direct replacements for guideline-aligned workflows, as they raise concerns regarding interpretability and alignment with established diagnostic criteria.\n\nTumor heterogeneity represents one of the most significant challenges in HER2 assessment, as intratumoral variation in gene amplification can result in mixed populations of amplified and non-amplified cells. Traditional manual assessment accounts for heterogeneity through selective evaluation of representative tumor regions, but this process is inherently subjective and may overlook small but clinically significant amplified regions. AI systems have the potential to address this limitation by analyzing entire whole-slide images and identifying localized patterns of amplification, although not all AI approaches are equally suited to handling such complexity.\n\nClassification-based models that rely on majority voting may effectively average out heterogeneous regions, potentially leading to misclassification of focal amplification. In contrast, signal-based approaches that operate at the nuclei level can capture the distribution of HER2 signals across the tumor, enabling more nuanced analysis. Recent studies have proposed distribution-aware metrics that report not only mean HER2/CEP17 ratios but also variance, percentiles, and spatial distribution of signals, providing a more comprehensive representation of tumor biology and improving the detection of clinically relevant heterogeneity.\n\nAI-based HER2 assessment is subject to multiple sources of error that extend beyond the algorithm itself, including pre-analytical factors such as tissue fixation, section thickness, and staining variability. In SISH, these factors may alter the morphology and intensity of silver deposits, leading to misclassification by detection models. Scanning-related artifacts, including variations in focus, illumination, and resolution, can also degrade image quality and reduce the accuracy of AI models. Malinowski et al. demonstrated that suboptimal scanning conditions can significantly impact performance in bright-field ISH analysis, reinforcing the need for standardized pre-analytic quality control.\n\nThe current evidence base for AI-assisted HER2-SISH assessment remains limited by methodological constraints, including small datasets, retrospective designs, and limited external validation. Many studies are based on relatively small datasets, often consisting of fewer than a few hundred whole-slide images, which may be insufficient to capture the full range of biological and technical variability encountered in clinical practice. Furthermore, a significant proportion of studies rely on retrospective data collected under controlled conditions, which do not fully reflect the complexity of real-world clinical environments. External validation across multiple institutions remains limited, particularly for SISH-specific datasets.\n\nReproducibility represents a critical challenge in AI-based HER2 assessment, as the scarcity of publicly available SISH datasets limits the ability of researchers to validate and compare models across studies. Unlike immunohistochemistry and general histopathology datasets, which have benefited from open benchmarks and competitions, SISH datasets remain largely proprietary. The lack of standardized datasets also complicates regulatory evaluation, as performance claims cannot be independently verified. Initiatives such as the HER2 Challenge Contest have demonstrated the value of shared benchmarks in advancing the field, but similar efforts are needed for SISH-specific applications to improve reproducibility and accelerate clinical translation.\n\nThe translation of artificial intelligence systems for HER2 assessment from research settings into clinical practice requires compliance with regulatory frameworks governing software as a medical device. Regulatory agencies require evidence of analytical validity, clinical validity, and clinical utility before approval of AI-based diagnostic systems. Signal-based AI systems developed for SISH analysis have a relative advantage compared with purely classification-based approaches because they produce outputs that are directly aligned with established clinical workflows, including HER2 signal counts, CEP17 signal counts, HER2/CEP17 ratios, and average HER2 copy number. These outputs correspond to the parameters already used by pathologists in routine practice, thereby facilitating inte",
+  "begyujtve": "2026-11-10T12:49:26.680775+00:00",
+  "prioritas": {
+    "pont": 40,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 35,
+      "egyediseg": 70,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 35
+    },
+    "elofeszures": 78,
+    "tanult": 50,
+    "indok": "Tudományos áttekintő cikk az MI használatáról a HER2 rákos fehérje elemzésében, korlátozott gyakorlati hírértékkel. Forrás-tapasztalat: -6.",
+    "tema": "ai in cancer research",
+    "cim_hu": "Mesterséges intelligencia segítheti a HER2 rákos fehérjék pontosabb elemzését",
+    "lead_hu": "A Breast Cancer Research folyóiratban megjelent elemzés szerint az MI segíthet a HER2 fehérjék felmérésében, de a klinikai alkalmazáshoz még szigorúbb ellenőrzésekre van szükség.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-10T12:49:35+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-10T12:49:42+00:00"
+}
