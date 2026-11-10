@@ -114,7 +114,11 @@ jobs:
           # ütközésnél a generált fájloknál a mi friss változatunk nyer; a máshol törölt fájlt (modify/delete) töröljük,
           # hogy a rebase ne akadjon el (2026-10-11: egy átnevezett fájl miatt bukott el a futás)
           rebase() {
-            git pull --rebase -X theirs && return 0
+            if git pull --rebase -X theirs; then
+              # Heni 2026-11-10: a közben kézzel feltöltött rögzített médiát és szövegjavítást a felhő nem írhatja felül
+              python3 build/kezi_vedelem.py origin/main && git add -A data/cikkek && { git diff --cached --quiet || git commit -q -m "Kézi mezők megtartva"; }
+              return 0
+            fi
             git status --porcelain | awk '/^(DU|UD|DD) /{print $2}' | xargs -r git rm -q --
             git add -A data site
             GIT_EDITOR=true git rebase --continue || { git rebase --abort; return 1; }
