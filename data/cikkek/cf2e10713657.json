@@ -1,0 +1,50 @@
+{
+  "id": "cf2e10713657",
+  "slug": "a-pretty-important-new-primitive-just-landed-in-transformers-decision",
+  "forras_id": "linkedin",
+  "forras_nev": "Hugging Face (LinkedIn)",
+  "url": "https://www.linkedin.com/feed/update/urn:li:activity:7525928274741465088/",
+  "publikalva": "2026-11-10T14:32:05.684000+00:00",
+  "cim": "A pretty important new primitive just landed in 🤗 Transformers: decision models.",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 81 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.licdn.com/dms/image/v2/D5622AQFlu9eNg6SaOQ/feedshare-shrink_800/B56aHF15snG0Ag-/0/1794320604180?e=2147483647&v=beta&t=jbwDgCU4OB2wOO0MtFPV0BG_H8liWSOOT2RtlyZCWDc",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7525928274741465088"
+  },
+  "cim_eredeti": "A pretty important new primitive just landed in 🤗 Transformers: decision models.",
+  "szoveg_eredeti": "A pretty important new primitive just landed in 🤗 Transformers: decision models.\n\nI think this could matter much more than adding support for any single model.\n\nToday, different decision models all approach \"making a decision\" differently:\n\n- TypeSafe AI ’s Jev, the OG: typed decisions + calibrated probabilities, single forward\n- AutoTrust AI ’s JEV builds open System One models around a learned decision block, w/ multimodal.\n- Jared Palmer ’s KEV uses a pointer head over the options, sharing the computation of the state across questions.\n- Cloudflare ’s CLEF uses a joint schema head that routes evidence between the state, questions and options, scoring the whole schema together.\n- Perplexity ’s Decider uses a separate 255-way readout on top of Qwen, with non-causal attention in its full-attention layers.\n- Liquid AI ’s d1 is exploring small, multimodal decision models that can run all the way down to the edge.\n- And Xunzhuo Liu ’s Semantic Router team is pushing the serving side hard with System One + the D3 family: one typed interface for choice, score and yes/no decisions, with models from sub-1B to 27B.\n\nThat experimentation is good, and needed! But without a common interface, every training framework, inference engine and evaluation tool has to understand every implementation separately.\n\nSo Transformers is introducing a shared decision-model layer:\n\n`DecisionConfig` \n`pipeline(\"decision\")` \nand, most importantly:\n\n` model.decide (...)`\n\nThe idea is **not** to make every decision model work the same internally, but for them to speak the same language to the ecosystem around them. \n\nThis means that, without running custom or remote code:\n- inference engines can serve them through one interface\n- training tools can build against common primitives.\n- the Hub can package them consistently.\n- evaluations can compare them without model-specific glue everywhere.\n\nThis is the part of transformers I'm the most excited about: to grow alongside the ecosystem and the many ideas; and to make all of them more usable by everyone.",
+  "begyujtve": "2026-11-10T14:49:15.413717+00:00",
+  "prioritas": {
+    "pont": 81,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 90,
+      "aktualitas": 98,
+      "kozossegi": 68
+    },
+    "elofeszures": 89,
+    "tanult": 48,
+    "indok": "Fontos technikai fejlesztés a legnépszerűbb nyílt forráskódú AI könyvtárban a döntéshozó modellek támogatására. Forrás-tapasztalat: -6.",
+    "tema": "huggingface transformers decision models",
+    "cim_hu": "Döntéshozó modellek támogatása érkezett a Hugging Face Transformers könyvtárba",
+    "lead_hu": "Új alapvető funkcióval bővült a népszerű nyílt forráskódú keretrendszer, amely egységesíti és megkönnyíti a döntési mechanizmusokra épülő AI modellek használatát.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-10T14:49:49+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-10T14:50:05+00:00"
+}
