@@ -1373,8 +1373,8 @@ document.addEventListener('click', function(ev){
 })();
 
 // Esti hangos összefoglaló (Heni 2026-11-01): lejátszás, hátralévő idő, equalizer (CSS), lezárt képernyős vezérlés (Media Session)
-(function(){
-  var sav = document.querySelector('[data-esti]'); if (!sav) return;
+// 2026-11-10: az /osszefoglalok oldalon több adás is van, mindegyik saját lejátszóval; egyszerre csak egy szól
+[].forEach.call(document.querySelectorAll('[data-esti]'), function(sav){
   var gomb = sav.querySelector('.esti-gomb'), idoEl = sav.querySelector('[data-esti-ido]'), hang = null;
   var ido = function(s){ s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); };
   // megjegyzi, hol tartott a hallgatás (Heni 2026-11-02, mint az appban): megállítás, lapozás, másik oldal után innen folytatja.
@@ -1428,6 +1428,7 @@ document.addEventListener('click', function(ev){
     eqBetolt();
     if (hang) return;
     hang = new Audio(sav.getAttribute('data-src')); hang.preload = 'auto';
+    hang.addEventListener('play', function(){ if (window.qnEstiMost && window.qnEstiMost !== hang) window.qnEstiMost.pause(); window.qnEstiMost = hang; });
     hang.addEventListener('play', indit); hang.addEventListener('pause', indit);
     ['play', 'pause', 'timeupdate', 'ended', 'loadedmetadata'].forEach(function(t){ hang.addEventListener(t, rajz); });
     hang.addEventListener('ended', function(){ hang.currentTime = 0; rajz(); try { localStorage.removeItem(hely); } catch (e) {} });
@@ -1495,4 +1496,4 @@ document.addEventListener('click', function(ev){
   });
   setInterval(function(){ if (hang && !hang.paused && !huz) helyzet(); }, 250);
   helyzet();
-})();
+});
