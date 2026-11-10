@@ -1,0 +1,50 @@
+{
+  "id": "80cd261efea3",
+  "slug": "one-of-the-coolest-recent-features-in-pi-is-virtual-models",
+  "forras_id": "linkedin",
+  "forras_nev": "Hugging Face (LinkedIn)",
+  "url": "https://www.linkedin.com/feed/update/urn:li:activity:7525997023188185088/",
+  "publikalva": "2026-11-10T19:05:16.591000+00:00",
+  "cim": "One of the coolest recent features in Pi is Virtual Models",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 63 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.licdn.com/dms/image/v2/D4E22AQG1c4OLtJ9U0Q/feedshare-shrink_800/B4EaHF8J1QIYAk-/0/1794322243228?e=2147483647&v=beta&t=5zEK5bKeLIaK5YrmAW8cfVr4-XdLbjRaxPFUti5u8nc",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7525997023188185088"
+  },
+  "cim_eredeti": "One of the coolest recent features in Pi is Virtual Models",
+  "szoveg_eredeti": "One of the coolest recent features in Pi is Virtual Models\n\nI am using it to route to Qwen 3.8 27B (running locally in llama.cpp ) or to Kimi K3 or GLM 5.3 (hosted remotely), depending on my query complexity and my machine(s)' current load 🔥\n\nNo more manual model switching!!\n\nSimple question? Stay local. Tricky architecture problem? Go remote. Mac already busy? Make it easier to choose the hosted model.\n\nThe fun detail: local Qwen classifies the query’s complexity (using Llama.cpp 's Classifier API mode). But when the machine is heavily congested, the router skips that step and goes straight to GLM.\n\nAll implemented as a small Pi extension. One model selected (`hybrid/auto`), two backends.\n\nKudos to Mario Zechner and Armin Ronacher , and of course the ggml team, for making this possible 👍",
+  "begyujtve": "2026-11-10T19:19:59.605101+00:00",
+  "prioritas": {
+    "pont": 63,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 35,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 73
+    },
+    "elofeszures": 93,
+    "tanult": 55,
+    "indok": "Gyakorlati, technikai újdonság a Pi Virtual Models funkciójáról, ami a fejlesztői közösséget erősen érdekli. Hasonló hír már van: ba685635182e. Forrás-tapasztalat: -5.",
+    "tema": "pi virtual models routing",
+    "cim_hu": "Automatikus modellválasztást kapott a Pi a Virtual Models funkcióval",
+    "lead_hu": "A Pi legújabb fejlesztése a feladatok komplexitása alapján automatikusan irányítja a kéréseket a helyi és a felhős AI-modellek között.",
+    "klaszter": "ba685635182e",
+    "ai": true,
+    "ido": "2026-11-10T19:20:24+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-10T19:20:28+00:00"
+}
