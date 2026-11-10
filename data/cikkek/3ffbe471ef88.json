@@ -1,0 +1,49 @@
+{
+  "id": "3ffbe471ef88",
+  "slug": "how-skills-and-agents-work-in-aws-quick-amazon-web-services",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/how-skills-and-agents-work-in-aws-quick/",
+  "publikalva": "2026-11-10T00:21:34+00:00",
+  "cim": "How skills and agents work in AWS Quick | Amazon Web Services",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 49 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/04/ML-22266-featured-image.png"
+  },
+  "cim_eredeti": "How skills and agents work in AWS Quick | Amazon Web Services",
+  "szoveg_eredeti": "If you use AI agents, you’ve probably explained the same task more than once. You might describe how to build your weekly status update, write release notes, manage a project, or create tickets. These are all repeatable tasks that you can encode using AWS Quick through agents and skills. AWS Quick is an AI-powered service for automating tasks, analyzing data, building web applications, and conducting research. You work with it in natural language, and Quick uses AI agents to process your requests against your connected data sources and applications.\n\nIn this post, we cover how agents, skills, and your data fit together in AWS Quick, and how to build and share skills that work for your team. We also show how the official catalog and custom agents help you put those skills to use.\n\nIn this section, we explain the foundational concepts that help you understand AWS Quick in relation to agents, skills, and your data.\n\nFigure 1: How a Quick agent follows its instructions, loads the skills a task needs, acts through connectors, and grounds its answers in your data\n\nThe agent sits at the center of Figure 1. It follows its instructions, loads the skills that a task calls for, takes action through connectors, and grounds its answers in your data: spaces, knowledge bases, datasets, and dashboards.\n\nAn agent in AWS Quick is a configurable AI with its own instructions, knowledge sources (spaces), and connectors, which it uses to answer questions and get work done for you. You can work with an agent in chat, or let it run on its own using a routine. Agents can only reach the resources and services that you can, and you decide what each agent is allowed to do.\n\nQuick is the default built-in agent that every user has access to. It has no fixed scope, so in each conversation it works with whatever resources you have access to, such as your spaces, knowledge bases, dashboards, connectors, and skills. You don’t need to decide in advance which data or tools a request needs, so you can start most work with Quick.\n\nA custom agent is one that you or someone on your team configures for a specific job. An example is a human resources (HR) onboarding assistant that answers new-hire questions from the HR team’s space. You give it its own instructions and limit it to the spaces, connectors, and skills that your use case requires. After you test and publish it, you can share it with other users and groups within your AWS Quick account. For a walkthrough of building one, see Build AI-powered employee onboarding agents with AWS Quick.\n\nAgents ground their answers in the data you connect to Quick. A space is a curated collection of documents and AWS Quick resources that an agent uses as a source of information. You can create one for yourself, your team, or another group in your organization. You can upload files and folders to a space, or add assets such as dashboards, knowledge bases, action connectors, and datasets. When you start a conversation with Quick, you can attach a space to narrow the data that Quick uses for that conversation. When you add a space to an agent, the space becomes part of the agent’s configuration, and the agent draws on it when a request needs it.\n\nA knowledge base is an organized, indexed collection of documents or content from data sources, optimized for retrieval and question answering. Quick syncs knowledge bases from sources such as Google Drive, Microsoft OneDrive, Confluence, Microsoft SharePoint, Amazon Simple Storage Service (Amazon S3), web crawler, or Amazon Bedrock Managed Knowledge Bases. Quick keeps them up to date on a sync schedule.\n\nDatasets and dashboards come from AWS Quick Sight, the business intelligence feature in Quick, which is available in accounts provisioned through the AWS Management Console. A dataset is a prepared collection of data ready for use in analyses and dashboards. A dashboard is the published version of an analysis that you share with other Quick users. With datasets, you can build semantically rich metadata over your structured data, such as database tables, so you can accomplish complex analytical use cases with natural language.\n\nLastly, a connector links AWS Quick to an external application or a native tool, so agents can read data and take action on your behalf. Cloud connectors connect Quick to services such as Microsoft Outlook, Slack, Jira, Asana, and Salesforce, and to remotely hosted Model Context Protocol (MCP) servers. They’re available on every device where you use Quick. Local connectors run on your own machine, such as an MCP server that you host yourself, so their tools are available only when that machine is on and connected. For the full list of connector types, see Connectors and Integration-specific guides in the AWS Quick User Guide.\n\nTogether, these make your data, documents, and applications available through natural language, so you can ask questions and take actions in your connected sources.\n\nA skill is a reusable set of instructions that teaches an agent how to do a specific task. Skills are also the foundation of how an agent in Quick behaves and completes work. Like other agents, an agent in Quick runs in a harness (a managed agent loop) that follows the reasoning and acting (ReAct) pattern. When you supply AWS Quick with a prompt, the agent uses its available tools and instructions to accomplish its goal and supply you with a response. Agent frameworks such as the Strands Agents SDK are built around the same model-driven loop.\n\nMuch of what Quick does by default comes from system skills. For example, you can ask Quick to generate a Word document, a PowerPoint presentation, an Excel spreadsheet, or a PDF. A system skill can then create or edit the document using code with scripts the skill bundles. Other system skills browse the web, run code, execute deep research, transcribe audio and video, and generate images. Some manage Quick itself, such as building AWS Quick Flows, scheduling routines, handing work to a coding agent such as Kiro, managing your memories and knowledge graph, or tracking your to-dos. Within Quick, you can turn system skills on or off, but you can’t edit, duplicate, export, publish, share, or delete them.\n\nSkills can do many kinds of work because of the capabilities and tools that AWS Quick supplies. For example, one skill can produce a deliverable, such as a weekly status update built from your template. Another can automate a workflow across your connectors, such as gathering the week’s Jira updates and posting a summary to Slack. A skill can also run calculations in Python scripts and chart the results with JavaScript.\n\nQuick skills follow the Agent Skills specification, which Anthropic originally developed and released as an open standard. AWS Quick on desktop, which launched in preview in April 2026 and became generally available in September 2026, uses this specification.\n\nA skill is a folder with a Markdown file SKILL.md at its root, plus any optional scripts or other reference files its instructions use. The file’s frontmatter, the attributes between two --- lines, holds the name, description, and any other metadata relevant to your skill. See the following shortened example of a skill named release-notes-generator.\n\nThe description and name are the two most important aspects to triggering a skill. Quick uses progressive disclosure when it loads your skills into the agent’s prompt. The agent reads only each skill’s name and description until a request calls for that skill. It then loads the skill’s full instructions, as How agents load skills describes. This means certain phrases can help trigger the skill, such as “generate my release notes for version 2.3.” The specification caps name at 64 characters and description at 1,024, and recommends instructions within the skill to be under 5,000 tokens.\n\nFigure 2: The release-notes-generator skill folder, with a required SKILL.md file plus optional scripts and references folders\n\nYou can create a skill from cha",
+  "begyujtve": "2026-11-10T07:04:39.405187+00:00",
+  "prioritas": {
+    "pont": 49,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 40,
+      "egyediseg": 85,
+      "hitelesseg": 78,
+      "aktualitas": 87,
+      "kozossegi": 49
+    },
+    "elofeszures": 84,
+    "tanult": 54,
+    "indok": "Technikai jellegű AWS termékismertető és oktatóanyag az ágensek használatáról. Forrás-tapasztalat: -6.",
+    "tema": "aws quick ai agents",
+    "cim_hu": "Így működnek a mesterségesintelligencia-ágensek az AWS Quickben",
+    "lead_hu": "Az Amazon felhőszolgáltatása lehetővé teszi az ismétlődő feladatok és adatelemzések automatizálását természetes nyelvi utasítások segítségével.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-10T07:05:52+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-10T07:06:37+00:00"
+}

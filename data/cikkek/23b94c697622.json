@@ -1,0 +1,49 @@
+{
+  "id": "23b94c697622",
+  "slug": "coderabbit-scales-agentic-software-development-and-ships-20x-more",
+  "forras_id": "openai",
+  "forras_nev": "OpenAI",
+  "url": "https://openai.com/index/coderabbit-codex-daybreak",
+  "publikalva": "2026-11-09T08:00:00+00:00",
+  "cim": "CodeRabbit scales agentic software development and ships 20x more",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 62 pont, tendencia 19%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://images.ctfassets.net/kftzwdyauwt9/5TAanXWCpBQ0R0n2AFa89t/34f319750f5ffc9ebc78901cb054b866/coderabbit-seo-1920x1080.png?w=1600&h=900&fit=fill"
+  },
+  "cim_eredeti": "CodeRabbit scales agentic software development and ships 20x more",
+  "szoveg_eredeti": "CodeRabbit uses OpenAI models to govern and trust AI-generated code and Codex to ship 20 times more software with the same engineering team.\n\nFor Harjot Gill, co-founder and CEO of CodeRabbit⁠(opens in a new window), trusting and validating agentic code is becoming the place where teams bring judgment to a growing volume of AI-generated work. “The first bottleneck that every company hits as soon as you adopt coding agents is code reviews,” Harjot says.\n\nCodeRabbit built an AI-powered governance and control platform designed to validate and trust AI-generated code. Used by over 20,000 organizations and 150,000+ open-source projects, CodeRabbit helps teams understand, review, and secure code produced by AI agents and decide what is ready to ship.\n\nAccording to CodeRabbit, better price-performance from OpenAI helps it add more AI agents to its reviews and pass the benefits to customers, and Codex⁠ helps it ship 20 times more software with the same engineering team. The company also uses Daybreak⁠ to both secure its own stack and its customers’ code. Its latest offering, CodeRabbit Secure, uses Daybreak with Codex models to find and fix vulnerabilities using its security-focused agents.\n\nCodeRabbit built its first product with GPT‑3.5 Turbo. Harjot says the arrival of GPT‑4 made the product effective at reviewing code. The company went on to adopt OpenAI o1 and OpenAI o3 early. Because code reviews run asynchronously in the cloud, CodeRabbit could use models that took longer to reason through a problem in exchange for more capable analysis.\n\nThe team evaluates new models against its own benchmark of known issues. At the time of the interview, Harjot estimated that GPT‑6 Astra⁠ caught 50% of the issues in that dataset, putting it at the top compared to other models in that benchmark.\n\nThe benchmark continues to evolve as agents introduce different kinds of mistakes and as fixes reveal problems earlier reviews missed. “The nature of bugs keeps evolving, so does our benchmark as the models get better,” says Harjot.\n\nBetter price-performance from OpenAI models has helped CodeRabbit move capabilities from research into its product. Harjot points to improvements in model pricing and caching that let the company use more AI, add more subagents, and pass the benefits to customers.\n\nWhen CodeRabbit started, it used one or two subagents for code navigation. Lower-cost models such as GPT‑6 Luna now support more subagents throughout the platform, while models such as GPT‑6 Astra handle planning and orchestration.\n\n“Now we are using agents everywhere on the use cases we couldn't even afford in the past,” Harjot says. That expands the validation CodeRabbit can perform and the explanations it can give developers, helping them understand and trust changes they did not write themselves.\n\nBy using Codex, Harjot says the company has been shipping roughly 20 times more software over the last 6 months without adding engineers. He personally estimates that he pushed 2,500 to 3,000 pull requests in the 30 days before the interview.\n\nGetting there required more than adopting Codex. Running multiple agents exposed constraints across the development process, from laptop memory and compute to testing, the tools that compile and package software, and dependencies.\n\nThe team streamlined its release process and reconsidered where human approvals belonged, while using CodeRabbit to automatically ship low-risk changes that didn’t need human intervention. “We had to actually completely rethink the entire software delivery,” Harjot says.\n\nThe company has also built a Codex-powered Slack bot that triages production incidents, Slack messages, and support tickets. It can return a pull request for the team to review and merge. Harjot sees cloud-based development as a way to reduce local-machine constraints and give teams stronger controls over access and auditing.\n\nCodeRabbit uses Codex for work beyond engineering, including managing marketing and operational tasks through code. “We are running the company as code as much as possible,” Harjot says.\n\nIn marketing, the company manages Google Ads through pull requests. The team opens and merges a request to deploy ads. It also uses a content studio repository where Codex creates slide decks and customer-facing documents. “If you can translate your marketing problems to code problems, you will run 10x faster,” Harjot says.\n\nCodeRabbit has run agents in sandbox environments since 2023, cloning repositories and letting agents write code to help perform reviews. More recently, CodeRabbit used OpenAI’s Cyber model through Daybreak to test and secure its own platform.\n\nThe team used the model for internal penetration testing, probing its own platform for ways an attacker could break in. Harjot says the early access helped CodeRabbit secure its own stack. “We found multiple vulnerabilities, advanced hacks that we could not even imagine could happen,” Harjot says.\n\nIt has since taken those capabilities to market, helping secure its customers’ code with its latest product, CodeRabbit Secure. Over the past two weeks, the company ran a promotional offer where it covered $1M in free deep scans for their users and found over 43,000 security vulnerabilities across 13,000 deep scans, all powered by Codex models. Thousands of these vulnerabilities have already been fixed by its customers, helping improve their code security.\n\nAs background agents begin responding to alerts and incidents without a person initiating every task, Harjot expects teams to need more help deciding which changes to take to completion.\n\nLooking ahead, CodeRabbit is expanding toward agentic software development, helping teams validate, prioritize, explain, secure, and verify agent-generated code changes at scale.\n\nThe opportunity is to help developers stay in control as agents do more of the building, with validation, explanations, and maintenance that keep pace with the code being produced.",
+  "begyujtve": "2026-11-10T07:02:35.470251+00:00",
+  "prioritas": {
+    "pont": 62,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 55,
+      "egyediseg": 85,
+      "hitelesseg": 92,
+      "aktualitas": 70,
+      "kozossegi": 51
+    },
+    "elofeszures": 83,
+    "tanult": 31,
+    "indok": "OpenAI esettanulmány a CodeRabbit fejlesztési hatékonyságáról, enyhén PR-ízű. Forrás-tapasztalat: -5. A forrás P3-as híreiből eddig kb. 19%-ot fogadtál el.",
+    "tema": "coderabbit openai agentic development",
+    "cim_hu": "Az OpenAI modelljeivel húszszorosára növelte szoftverfejlesztési tempóját a CodeRabbit",
+    "lead_hu": "A CodeRabbit mesterséges intelligenciára épülő kódellenőrzési rendszere megszünteti a fejlesztési szűk keresztmetszeteket az ágensalapú szoftvergyártásban.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-10T07:05:52+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-10T07:06:16+00:00"
+}

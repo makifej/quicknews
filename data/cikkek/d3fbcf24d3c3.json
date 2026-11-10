@@ -1,0 +1,82 @@
+{
+  "id": "d3fbcf24d3c3",
+  "slug": "a-meta-kiadta-a-muse-ember-modellt-a-tomeges-ugynokfeladatokra",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/09/meta-muse-ember-small-agent-model/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-11-10T06:36:10+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-23-scaled.png"
+  },
+  "cim_eredeti": "Meta Releases Muse Ember, a 1M-Context Model for High-Volume Agent Work",
+  "forrasok": [],
+  "szoveg_eredeti": "Meta Superintelligence Labs has released Muse Ember , its smallest and most efficient model. Meta Muse Ember is a hosted multimodal reasoning model built for the repetitive steps inside agents. Meta lists tool calls, coding subtasks, routing, extraction and long document parsing as targets. It scores 36 on the Artificial Analysis Intelligence Index, level with Claude Haiku 5.5 at max effort. Meta puts its cost at about $0.14 per index task.\n\n TL;DR \n\n Size: 1M-token context window, up to 512K output tokens.\n\n Runs on: Meta’s hosted infrastructure only (Meta Model API and Muse Code). Weights are private, so there is no local GPU, laptop or quantized option.\n\n Performance: Ties Claude Haiku 5.5 (max) at 36 on the AA Intelligence Index, ahead of GPT-6 Luna (28).\n\n Best: AutomationBench-AA at 37.8, versus 20.2 for GPT-6 Luna and 13.9 for Claude Haiku 5.5.\n\n Worst: FrontierCode 2.0-AA at 27.2, behind Claude Haiku 5.5 at 34.9.\n\n Bottom line: Best: Haiku-level intelligence at $0.136 per task versus $0.411. Worst: closed weights and weaker on mergeable real-repo code.\n\n What is Meta Muse Ember? \n\n Muse Ember is a small reasoning model from Meta for high-volume agent subtasks. It is the fourth model under the Muse brand , after Spark, Glimmer and Wonder. \n\n Meta positions it below its larger models. Muse Wonder handles the hardest problems and Muse Spark covers coding and agentic workflows. Ember takes repeatable coding and agent tasks at scale. Meta’s own framing: Muse Wonder plans, Muse Ember handles the volume.\n\n How does Muse Ember work? \n\n Muse Ember is the first model Meta trained using Muse Wonder Full, its largest model.\n\n The model natively accepts text, images, audio and video. That lets an agent read screenshots, charts, scanned pages, voice memos and meeting recordings without a separate model. It also operates desktop apps from screenshots.\n\n The 1M-token context window fits a full codebase or document set in one call. Output runs up to 512K tokens, 4x the 128K cap on both rivals.\n\n How does Muse Ember perform on benchmarks? \n\n All results below are at max reasoning effort, as reported by Meta. Some come from Artificial Analysis (AA), others from Meta’s internal suite.\n\n Agents : On AutomationBench-AA , 657 Zapier business workflows, Ember completes 37.8% of tasks. GPT-6 Luna reaches 20.2% and Claude Haiku 5.5 reaches 13.9%. On Agents’ Last Exam (internal), Ember scores 61.6 versus 57.1 and 57.0.\n\n Coding : Ember leads Terminal-Bench 4.0 with 40.9 versus Haiku’s 39.2 and Luna’s 16.4. It also leads the AA Coding Agent Index, 46 to 37 to 31. It loses FrontierCode 2.0-AA, where Haiku scores 34.9 and Ember 27.2.\n\n Multimodal : Ember ties GPT-6 Luna on GDP.pdf-AA at 22.8. It edges Haiku on OSWorld 2.1, 69.5 versus 68.9 on partial credit. PerceptionBench with tools gives Ember 80.6, Haiku 78.6 and Luna 62.8.\n\n Why is Muse Ember cheaper per task if token prices match? \n\n Muse Ember costs $0.10 per million input tokens and $0.50 per million output tokens . Cached input costs $0.004 per million. Claude Haiku 5.5 and GPT-6 Luna list the same base rates.\n\n With identical list prices, the cost gap must come from tokens used per task. On Meta’s chart, Ember at max scores 35.8 for $0.136 per task. Haiku 5.5 at max scores 36.2 for $0.411. Luna’s best setting scores 27.8 for $0.152. Artificial Analysis summarised this as matching Haiku at a third of the cost per task.\n\n Long prompts widen the gap on paper. Haiku 5.5 charges $0.50 and $2.50 above 100K prompt tokens. GPT-6 Luna doubles input rates above 272K input tokens. Meta lists no long-context tier for Ember.\n\n Muse Ember vs Claude Haiku 5.5 vs GPT-6 Luna \n\n Feature Muse Ember Claude Haiku 5.5 GPT-6 Luna Developer Meta Anthropic OpenAI Released Nov 9, 2026 Oct 7, 2026 Sep 22, 2026 ( source ) Parameters Not disclosed Not disclosed Not disclosed Context window 1M 1M 1.05M Max output 512K 128K 128K Inputs Text, image, audio, video Text, image Text, image Weights Closed Closed Closed Input / output per 1M $0.10 / $0.50 $0.10 / $0.50 (up to 100K prompt) $0.10 / $0.50 (up to 272K input) Cached input per 1M $0.004 $0.01 $0.01 AA Intelligence Index (max)* 36 36 28 Cost per AA task (max)* $0.136 $0.411 $0.152 AutomationBench-AA* 37.8 13.9 20.2 Terminal-Bench 4.0* 40.9 39.2 16.4 FrontierCode 2.0-AA* 27.2 34.9 25.2 OSWorld 2.1 (partial / binary)* 69.5 / 33.8 68.9 / 27.8 50.5 / 17.0 \n\n *Benchmark rows as published by Meta in its launch post and evaluation report , sourced from Artificial Analysis Intelligence Index v5 and Meta internal runs. \n\n How can developers access Muse Ember? \n\n Ember is available on the Meta Model API and in Muse Code , Meta’s coding agent. It supports the Responses API. Partners in early testing included Box, Cline, Oracle, Cloudflare and You.com.\n\n Key Takeaways \n\n Muse Ember ties Claude Haiku 5.5 at 36 on the AA Intelligence Index.\n\n Same $0.10 / $0.50 token prices, about a third of Haiku’s cost per task.\n\n Strongest on agent workflows: 37.8 on AutomationBench-AA.\n\n Weakest on mergeable code: 27.2 on FrontierCode 2.0-AA.\n\n Closed weights, hosted only via Meta Model API and Muse Code.\n\n Check out the launch post and the evaluation report , or try it on dev.meta.ai .. Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Meta Releases Muse Ember, a 1M-Context Model for High-Volume Agent Work appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Meta kiadta a Muse Ember modellt a tömeges ügynökfeladatokra",
+  "lead": "A Meta Muse Ember 1 milliós kontextusablakkal és harmadannyi feladatonkénti költséggel éri el a Claude Haiku 5.5 teljesítményét.",
+  "osszefoglalo": "A Meta Superintelligence Labs bemutatta a [Muse Ember](https://ai.meta.com/blog/start-building-with-muse-ember-our-smallest-most-efficient-model/) nevű új, kisméretű és hatékony AI-modelljét, amelyet kifejezetten az ügynökrendszerekben előforduló ismétlődő részfeladatok elvégzésére terveztek. A modell natívan kezeli a szöveget, képeket, hangot és videót, így külön kiegészítő eszköz nélkül képes elemzi a képernyőképeket, táblázatokat, beolvasott dokumentumokat vagy megbeszélések hanganyagait. A rendszer **1 milliós kontextusablakkal** rendelkezik, míg a maximális kimeneti mérete eléri az 512 000 tokent.\n\nA független mérések alapján a modell 36-os pontszámot ért el az [Artificial Analysis Intelligence Indexén](https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index), amivel fej fej mellett halad a Claude Haiku 5.5 teljesítményével. Bár az alaptokenek ára megegyezik a versenytársakéval, a feladatkezelés hatékonysága miatt a Meta saját mérései szerint a feladatonkénti költség a Haiku árának körülbelül **egyharmadára, 0,136 dollárra** csökken.\n\nA Muse Ember zárt súlyú modellként jelenik meg, így nem futtatható helyi hardveren vagy saját szervereken. Az eszköz elérését a Meta a saját felhős infrastruktúráján keresztül biztosítja, a fejlesztők a Meta Model API-n és a **Muse Code** felületén érhetik el.",
+  "miert_szamit": "A feladatonkénti drasztikus költségcsökkenés lehetővé teszi a magyar vállalkozásoknak és fejlesztőknek, hogy **nagyságrendekkel olcsóbban automatizáljanak** tömeges ügynökfolyamatokat, adatkinyerést és dokumentumfeldolgozást.",
+  "cimkek": [
+    "Meta",
+    "Muse Ember",
+    "AI ügynök",
+    "LLM"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Meta Muse Ember",
+    "url": "https://dev.meta.ai"
+  },
+  "linkelendo_nevek": [
+    "Muse Ember",
+    "Muse Code",
+    "Meta Model API"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 71,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 35,
+      "hitelesseg": 76,
+      "aktualitas": 98,
+      "kozossegi": 77
+    },
+    "elofeszures": 93,
+    "tanult": 66,
+    "indok": "Új modellkiadás a Meta Superintelligence Labs részéről agentic feladatokra. Hasonló hír már van: fe9001b06ea6. Forrás-tapasztalat: -7.",
+    "tema": "meta muse ember release",
+    "cim_hu": "A Meta bemutatta a Muse Ember nevű 1 millió tokenes kontextusú modelljét",
+    "lead_hu": "A Meta Superintelligence Labs kiadta a Muse Ember modellt, amelyet kifejezetten az AI-ágensek ismétlődő feladatainak költséghatékony és gyors elvégzésére terveztek.",
+    "klaszter": "fe9001b06ea6",
+    "ai": true,
+    "ido": "2026-11-10T07:05:52+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-10T07:07:29+00:00",
+  "megjelent": "2026-11-10T07:07:29+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-10T07:08:22+00:00",
+    "esemeny": "A Meta kiadta a Muse Ember nevű új, kisméretű és hatékony AI-modelljét, amelyet kifejezetten az ügynökrendszerekben előforduló tömeges, ismétlődő részfeladatok elvégzésére terveztek.",
+    "forrasok": [
+      "https://dev.meta.ai/models/muse-ember",
+      "https://dev.meta.ai/blog/start-building-with-muse-ember",
+      "https://www.marktechpost.com/2026/11/09/meta-muse-ember-small-agent-model/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-10T07:09:21+00:00",
+  "linkek_ellenorizve": true
+}

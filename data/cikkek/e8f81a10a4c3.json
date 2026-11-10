@@ -1,0 +1,49 @@
+{
+  "id": "e8f81a10a4c3",
+  "slug": "augmented-vs-artificial-intelligence-in-medicine",
+  "forras_id": "google-news-ai",
+  "forras_nev": "CASRAI",
+  "url": "https://casrai.org/guides/augmented-intelligence-vs-artificial-intelligence",
+  "publikalva": "2026-11-09T23:47:20+00:00",
+  "cim": "Augmented vs. Artificial Intelligence in Medicine",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 36 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://casrai.org/api/og?title=Augmented%20vs.%20Artificial%20Intelligence%20in%20Medicine&type=default&desc=Compare%20AMA%20Policy%20H-480.940%20augmented%20intelligence%20vs.%20autonomous%20clinical%20AI%20across%20FDA%20520(o)(1)(E)%20CDS%20criteria%2C%20liability%2C%20and%20override%20controls."
+  },
+  "cim_eredeti": "Augmented vs. Artificial Intelligence in Medicine",
+  "szoveg_eredeti": "Written and maintained by CASRAI Editorial Board\n\nResearchers, clinical informaticists, and health system governance committees searching for augmented intelligence vs artificial intelligence need a precise regulatory and operational distinction between assistive human-in-the-loop tools and autonomous algorithmic systems. While computer science uses Artificial Intelligence (AI) as an umbrella term for machine learning and statistical inference models, the American Medical Association (AMA) codified Augmented Intelligence in House of Delegates Policy H-480.940 and Policy H-480.939 to specify that clinical algorithms must be engineered to enhance, coordinate, and amplify human clinical judgment rather than replace the licensed practitioner.\n\nIn biomedical informatics and regulatory science, the boundary between augmented intelligence in healthcare and autonomous artificial intelligence is defined by who holds final epistemic and operational authority over the clinical action:\n\nIn 2018, the AMA House of Delegates adopted Policy H-480.940 (“Augmented Intelligence in Health Care”), followed by comprehensive governance updates in Policy H-480.939. The AMA deliberately chose the term AMA augmented intelligence to establish four binding clinical and research standards:\n\nThe AMA distinction between augmented and autonomous intelligence maps directly onto the U.S. Food and Drug Administration’s statutory boundary under Section 520(o)(1)(E) of the Federal Food, Drug, and Cosmetic Act (enacted by Section 3060 of the 21st Century Cures Act) and the FDA’s Clinical Decision Support Software final guidance (September 2022). Under this framework, software is excluded from the statutory definition of a medical device (Non-Device CDS) only when it meets all four statutory criteria:\n\nWhen a tool satisfies Criterion 4 by explaining its logic, citing published clinical guidelines, and allowing a clinician with adequate time to independently verify the recommendation, it functions as non-device augmented intelligence. Conversely, if a system analyzes raw retinal pixel arrays or outputs a single directive score for a time-critical emergency triage decision without giving the clinician an independently verifiable basis, it crosses into regulated Software as a Medical Device (SaMD). For example, the FDA cleared the first autonomous AI diagnostic system—Digital Diagnostics’ IDx-DR (De Novo DEN180001, 21 CFR 886.1100)—specifically because primary-care operators rely on the software’s output without an ophthalmologist reviewing the fundus image.\n\nWhen health systems evaluate governing large language models and clinical AI, three operational governance mechanisms separate augmented intelligence from autonomous systems:\n\nIn an augmented intelligence workflow, the software cannot sign an order, finalize a diagnostic code, or transmit a prescription. However, simply placing a human in the workflow does not guarantee meaningful oversight if interface design induces automation bias (uncritically accepting a default recommendation) or alert fatigue. Effective augmented intelligence interfaces require active attestation, display confidence intervals or counterfactual evidence, and log the specific patient variables that triggered the recommendation.\n\nUnder the AMA’s Principles for Augmented Intelligence Development, Deployment, and Use, legal and professional liability must follow technical control and visibility (see also the AI governance terminology glossary):\n\nIn clinical care delivery, augmented intelligence requires frictionless clinician override controls with structured reason codes (e.g., “contraindicated by comorbid renal insufficiency” or “artifact in bedside telemetry”) that feed back into institutional quality assurance logs. In contrast, the AMA has opposed autonomous payer prior-authorization algorithms that batch-deny claims without individual chart review by a licensed physician in the relevant specialty, requiring that any adverse utilization determination be reviewed and signed by a qualified human medical director.\n\nResearch-administration guidance, standards updates and independent tool reviews.",
+  "begyujtve": "2026-11-10T07:04:39.605435+00:00",
+  "prioritas": {
+    "pont": 36,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 25,
+      "egyediseg": 85,
+      "hitelesseg": 70,
+      "aktualitas": 79,
+      "kozossegi": 21
+    },
+    "elofeszures": 68,
+    "tanult": 16,
+    "indok": "Fogalmi és szabályozási tisztázás az orvosi AI fogalmakról. Forrás-tapasztalat: -6.",
+    "tema": "medical ai terminology governance",
+    "cim_hu": "Eltérő jogi kategóriát jelent az emberi felügyelet melletti és az autonóm AI az orvostudományban",
+    "lead_hu": "Az orvosi szövetség és a szabályozók pontosan elhatárolják az emberi döntéshozatalt segítő és a teljesen autonóm algoritmusok működési kereteit.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-10T07:05:52+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-10T07:07:56+00:00"
+}
