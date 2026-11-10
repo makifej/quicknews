@@ -1,0 +1,49 @@
+{
+  "id": "1ba094913b99",
+  "slug": "hierarchical-taxonomy-framework-tracks-shifting-artificial",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/hierarchical-taxonomy-framework-tracks-shifting-artificial-intelligence-trends-across-multiple-information-sources/",
+  "publikalva": "2026-11-10T11:58:46+00:00",
+  "cim": "Hierarchical Taxonomy Framework Tracks Shifting Artificial Intelligence Trends Across Multiple Information Sources",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 45 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-2940.png"
+  },
+  "cim_eredeti": "Hierarchical Taxonomy Framework Tracks Shifting Artificial Intelligence Trends Across Multiple Information Sources",
+  "szoveg_eredeti": "Hierarchical Taxonomy Framework Tracks Shifting Artificial Intelligence Trends Across Multiple Information Sources\n\nResearchers have formulated an analytical framework designed to measure and compare evolving topic dynamics across heterogeneous artificial intelligence document streams at multiple levels of conceptual abstraction. The rapid growth of artificial intelligence involves diverse communities, including academic scientists pursuing theoretical breakthroughs, engineers developing software models, and practitioners discussing commercial deployments. These distinct groups record their progress in divergent textual formats, such as scientific preprints, open-source repositories, and industry newsletters, which differ substantially in vocabulary, technical granularity, and temporal patterns. Traditional scientometric tools struggle to synthesize these fragmented archives because they predominantly evaluate single sources or rely on flat topic classifications that fail to capture multi-level structural evolution or community differences. Published in EPJ Data Science, the new methodology addresses these limitations by mapping textual documents from disparate sources into shared hierarchical taxonomies, establishing a rigorous foundation for multi-resolution comparative analysis without imposing restrictive single-source constraints or inventing ad-hoc labeling categories.\n\nThe operational architecture of the analytical system centers on three core components: predefined hierarchical taxonomies organized as directed acyclic graphs, collections of incoming document streams, and mapping procedures that assign documents to specific taxonomy nodes. Within these graphs, higher-level nodes represent broad disciplinary categories, while descending child nodes capture increasingly specialized technical subfields. When a document is assigned to a specific node, the framework propagates that assignment upward to all ancestor nodes along its hierarchical branch. This upward aggregation allows researchers to compute quantitative indicators across different levels of abstraction, maintaining aggregate statistical stability at broad conceptual levels while preserving the capacity to inspect specialized technical developments deeper in the graph. In addition, the framework accommodates multiple parallel taxonomies, enabling researchers to classify documents along orthogonal conceptual dimensions, such as model architecture, problem formulation, learning paradigm, and application domain, rather than compressing distinct technological properties into a single hierarchical structure.\n\nTo quantify thematic patterns over taxonomy graphs, the authors developed five metrics, beginning with measures of topic popularity and detail depth. Metric one, topic popularity, computes the proportion of a stream’s total labeled documents assigned to a given node or any of its subtree descendants. This document frequency fraction reflects the relative prominence of a subject within a specific community. Metric two, average detail depth, quantifies the technical granularity with which a source discusses topics within a taxonomy subtree. Relative depth is calculated for each descendant node by dividing its distance from the root by the maximum depth observed among descendants in that subtree. The detail depth metric then determines the mean relative depth of all assigned document labels across the subtree, bounded between zero percent, where all documents remain at the root, and one hundred percent, where all assignments reach terminal leaf nodes, revealing technical community reporting depth and descriptive specificity.\n\nMetric three, topical diversity, measures how evenly document coverage is distributed across the descendants of a parent node rather than concentrating within specific subtopics. Classical measures like Shannon entropy or the Gini coefficient encounter structural challenges when applied to taxonomy trees because parent nodes accumulate larger document totals than their children, which depresses calculated entropy. To solve this limitation, the metric establishes a uniform baseline by dividing a parent node’s document volume by the number of leaf nodes in its subtree. When calculating diversity, each descendant’s contribution is capped at this uniform baseline, preventing dominant branches from inflating the score. The summed capped counts are normalized by multiplying the number of descendant nodes by the uniform baseline count. This normalizes the diversity score between zero and one, independent of document volume and descendant count, allowing analysts to compare topic distribution balance across different taxonomy levels and across varying conceptual branches.\n\nTo detect substantive temporal shifts from background noise, metric four measures temporal non-uniformity within a single document stream using retrospective statistical testing. The metric applies a chi-squared goodness-of-fit test comparing observed topic counts across equal-duration time windows against a uniform temporal baseline. Because chi-squared testing requires sufficient observation density, this metric is evaluated only for topics with expected counts of at least five documents per window. To avoid distortion from arbitrary window boundary placement, the authors evaluate the test across several phase shifts and combine the resulting p-values using Simes’ method. The evaluation is conducted across window sizes ranging from six to twenty-four months, with Simes’ method consolidating significance across all scales into a final non-uniformity score expressed as the negative logarithm of the combined p-value. Higher scores signal genuine temporal changes in topic activity, highlighting emerging or declining topics for inspection without assuming specific functional growth shapes or trends.\n\nMetric five, temporal uniqueness, evaluates whether a topic’s temporal evolution in a focal source differs significantly from its combined behavior across the other sources. Traditional chi-squared tests for homogeneity fail in this setting because sparse activity in comparison streams frequently produces expected counts below reliability thresholds. To overcome this limitation, the authors developed a continuous modeling framework that examines monthly event counts over the shared chronological intersection of all sources. Pooling the remaining sources in a one-versus-rest setup, they fit two nested Poisson generalized linear models with log link functions and cubic spline basis functions. The reduced model specifies a shared temporal shape with source-specific intercepts, while the full model includes an additional focal-specific spline allowing temporal divergence. A likelihood-ratio test compares model fits, evaluating the test statistic against a chi-square distribution. The evaluation tests spline complexities from four to ten degrees of freedom, combining p-values with Simes’ method into a final score, negative log p, requiring at least ten observed events.\n\nTo empirically demonstrate the framework, the researchers gathered data from three contemporary AI sources: arXiv preprints, Hugging Face model cards, and the Deep Learning Weekly newsletter. These sources represent research exploration, open-source model deployment, and practitioner curation, respectively. The arXiv dataset encompassed eight AI-related categories from 2013 onward, using paper titles and abstracts. Hugging Face data covered model cards published from March 2022 onward, using initial creation dates. Deep Learning Weekly data comprised stand-alone entries published from April 2019 onward. To isolate relative topic development from dramatic publication growth, the team adopted a balanced sampling strategy, randomly selecting thirty documents per month from each source, matching the newsletter’s minimum volume of thirty-one entries. Documents were mapped to four parallel taxonomies: Model architecture, AI problem type, Learning paradigm,",
+  "begyujtve": "2026-11-10T12:04:54.048198+00:00",
+  "prioritas": {
+    "pont": 45,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 40,
+      "egyediseg": 95,
+      "hitelesseg": 70,
+      "aktualitas": 98,
+      "kozossegi": 23
+    },
+    "elofeszures": 73,
+    "tanult": 12,
+    "indok": "Akadémiai kutatási keretrendszer az AI-trendek elemzésére, ami inkább elméleti jellegű. Forrás-tapasztalat: -6.",
+    "tema": "ai research taxonomy framework",
+    "cim_hu": "Új hiearchikus keretrendszerrel követnék az AI-trendek változásait",
+    "lead_hu": "Kutatók egy új elemzési keretrendszert dolgoztak ki, amely különböző dokumentumforrások alapján képes mérni és összehasonlítani az mesterséges intelligencia témáinak alakulását.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-10T12:05:01+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-10T12:05:08+00:00"
+}

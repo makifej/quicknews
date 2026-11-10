@@ -1,0 +1,88 @@
+{
+  "id": "428ac4b42c0b",
+  "slug": "a-google-deepmind-ai-val-igazolta-a-signal-titkositasanak-biztonsagat",
+  "forras_id": "deepmind",
+  "forras_nev": "Google DeepMind",
+  "url": "https://deepmind.google/blog/introducing-alphaproof-code/",
+  "szerzo": null,
+  "publikalva": "2026-11-10T12:02:28+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://lean-lang.org/static/png/banner.png",
+    "kep_kicsi": "https://lh3.googleusercontent.com/hn6AiI6lYFo6chi1mL6uJ9nOW9UXfsAKnSyOApiie2urHNU2tmSPUmGn0hNfWyYLRcsWCGjCIrBZSCt1ihZmvW-LDJPfyolsr5w-yvzlknZVzmaH=w528-h297-n-nu-rw-lo"
+  },
+  "cim_eredeti": "Introducing AlphaProof Code: a breakthrough in verifying complex software at depth",
+  "forrasok": [],
+  "szoveg_eredeti": "How Google DeepMind researchers built a new agentic framework that formally verified the code of Signal’s cryptographic protocol — long considered to be a grand security challenge\n\nToday, we’re sharing a milestone in software security long considered to be a grand security challenge: Google DeepMind researchers guided AI agents to mathematically prove key security properties of the actual code underlying the Signal protocol, the technology that protects billions of private conversations in apps like Signal and Google Messages.\n\nThis breakthrough discovery was made using AlphaProof Code, a novel agentic framework for formal verification at unprecedented depth that combines human expertise with AI agents. Formal verification—mathematically proving code runs correctly without flaws—is the highest standard of security assurance; however, it is difficult and often labor-intensive.\n\nOur work marks the first time AI has been used to formally verify a widely deployed cryptographic protocol at this depth. It's also the first time the implementation of a widely deployed protocol like this has been formally verified by any method, with or without AI.\n\nAlphaProof Code is a multi-LLM agentic framework that splits the work of formal verification the way a research team would: human experts work with AI to decide what to prove, and a group of AI agents does it.\n\nFirst, our researchers collaborated with a mix of models to translate Signal’s security goals into formal mathematical specifications, with human experts reviewing every one. From there, agents powered by Gemini Carbon did the proofs, generating over six million lines of Lean, a computer language that mathematically proves the accuracy of code.\n\nNext, the agents audited the proof and highlighted areas that needed a second look by a human – just one percent of the codebase, a massive time saving. Because Lean automatically checks the rest, our experts could focus their review where human judgment matters most.\n\nCryptographic protocols underpin nearly all digital communication, from online banking to web browsing, and a single flaw can expose millions of people at once. That's why experts have spent decades formally analyzing them.\n\nBut most protocol verification stops at the design level. Our agents went further, proving that the compiled code fulfills the key security properties – such as keeping messages protected before and after a device is temporarily compromised – down to the exact code running on devices. Because real-world vulnerabilities often hide in the gap between design and implementation, bridging this gap makes these proofs vastly more complex.\n\nEven at this complexity, our verification process took just four weeks – a task that historically takes expert teams years – proving that Signal's core cryptographic code delivers the security protections our experts specified.\n\nTo confirm that AlphaProof Code can tell correct code from buggy code, we reintroduced two real, previously fixed bugs into an isolated version of Signal's code. In both cases, the system produced a machine-checked proof that the buggy version was insecure.\n\nIn AlphaProof Code, AI agents help users write a specification, then autonomously prove that the implementation meets it. Every proof is checked by Lean to verify the agents' work.\n\nWhile prior formal verification focused on smaller portions of the code, Google DeepMind's approach enables significant expansion,” said Ehren Kret, Chief Technology Officer of Signal. “Using AI agents to translate live code into valid Lean theorems is a major breakthrough. As AI-driven security threats grow, rigorously verifying the Signal protocol implementation gives us even greater confidence in our code's privacy guarantees.\n\nWhile prior formal verification work has necessarily focused on smaller scopes, this new approach enables a significant expansion. Traditionally, verifying that production code strictly matches its cryptographic design required extensive manual effort, making the use of AI agents to automatically translate live code into valid Lean theorems a great breakthrough. As AI-driven security threats grow, having the core Signal protocol rigorously verified with automated theorem proving gives us even greater confidence that our code delivers on its privacy guarantees.\n\nAchieving this long-standing challenge demonstrates how AI can bring elite security assurance to businesses, governments, and critical infrastructure, helping defend against agent-driven cyber threats.\n\nVerifying Signal's core cryptography lays the groundwork to secure other vital systems, from medical device firmware to power grid software.\n\nScaling these techniques requires continued research. Paired with automated defense agents like CodeMender, formal verification can help counter the speed and scale of modern cyber threats to create software with mathematical proof that its protections work.\n\nWe are open-sourcing our formal verification artifacts for community use. Read the technical paper below.\n\nThis research was developed by Swarat Chaudhuri, Andrew Ferraiuolo, Anton Kovsharov, Tej Chajed, Sam Schlesinger, Karn Seth, Jonathan Katz, Charles Sutton, and Pushmeet Kohli.\n\nWe thank Eric Wieser for help with open-sourcing our code, Owen Jones for program management support, and Martín Abadi, Christopher Henson, Katerina Hristova, Henryk Michalewski, Jonathan Protzenko and George Tsoukalas for helpful discussions. We thank Signal's Rolfe Schmidt, Michael Rosenberg, and Ehren Kret for their feedback on our methodology. We also thank Tulsee Doshi, Four Flynn, Kate Olszewska, Alicia Huang, Andy Liu, Benoit Schillings, Raluca Ada Popa, Melvin Johnson, Koray Kavukcuoglu, Demis Hassabis, and Sundar Pichai for their support of the project.",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Google DeepMind AI-val igazolta a Signal titkosításának biztonságát",
+  "lead": "Az AlphaProof Code nevű keretrendszer matematikailag bizonyította a Signal üzenetküldő alapvető titkosítási kódjának hibátlanságát.",
+  "osszefoglalo": "A Google DeepMind kutatói kifejlesztették az **AlphaProof Code** nevű ágensalapú rendszert, amellyel sikeresen elvégezték a [Signal protokoll kódjának formális verifikációját](https://deepmind.google/blog/introducing-alphaproof-code/). Ez a folyamat nemcsak a tervezést, hanem a ténylegesen futó programkódot ellenőrzi, ami matematikailag garantálja a szoftver biztonságát. A feladathoz több mint 6 millió sornyi bizonyítást generáltak [Lean](https://lean-lang.org) programozási nyelven.\n\nA folyamat során a [Gemini Carbon](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content=) modellek által hajtott ágensek önállóan írták meg a matematikai bizonyításokat, a szakértőknek mindössze a kód 1 százalékát kellett kézzel átnézniük. Az eljárás **mindössze 4 hetet vett igénybe**, míg a hagyományos kézi ellenőrzés évekig tartott volna a szakértői csapatoknak. A tesztek során a rendszer a korábban már javított valódi biztonsági hibákat is hibátlanul azonosította.\n\nA kutatók a formális verifikációs eredményeket és az eszközöket nyílt forráskódúvá tették a közösség számára. A technológiát a jövőben más kritikus rendszerek, például orvosi eszközök és energiahálózatok szoftvereinek védelmére is alkalmazni kívánják.",
+  "miert_szamit": "A szoftverfejlesztésben és a kiberbiztonságban a kódok matematikai szintű ellenőrzése **évekről hetekre rövidül**, így a fejlesztők gyorsabban készíthetnek garantáltan sérülékenységmentes alkalmazásokat.",
+  "cimkek": [
+    "Google DeepMind",
+    "AlphaProof Code",
+    "kiberbiztonság",
+    "Signal"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "bejelentés",
+  "fontossag": 5,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "AlphaProof Code",
+    "Signal",
+    "Lean",
+    "Gemini Carbon"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 92,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 92,
+      "hirertek": 95,
+      "egyediseg": 90,
+      "hitelesseg": 94,
+      "aktualitas": 100,
+      "kozossegi": 76
+    },
+    "elofeszures": 100,
+    "tanult": 62,
+    "indok": "Hivatalos DeepMind bejelentés egy jelentős matematikai és kiberbiztonsági áttörésről.",
+    "tema": "deepmind alphaproof code signal",
+    "cim_hu": "A Google DeepMind AI-ja igazolta a Signal titkosítási protokolljának biztonságát",
+    "lead_hu": "A DeepMind kutatói az AlphaProof Code ágensalapú keretrendszerrel matematikailag bizonyították a milliárdok által használt Signal protokoll kulcsfontosságú biztonsági garanciáit.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-10T12:05:01+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-10T12:05:19+00:00",
+  "megjelent": "2026-11-10T12:05:19+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-10T12:05:22+00:00",
+    "esemeny": "A Google DeepMind kutatói az AlphaProof Code nevű ágensalapú rendszert használva formálisan, matematikailag igazolták a Signal titkosítási protokollja mögött álló tényleges kód biztonsági tulajdonságait.",
+    "forrasok": [
+      "https://deepmind.google/blog/introducing-alphaproof-code/"
+    ],
+    "hibak": [
+      "Tényhiba az összefoglalóban: az eredeti forrás szerint több mint 6 millió sornyi bizonyítást generáltak Lean nyelven, nem pedig 3 millió sort."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "A Google DeepMind AI-val igazolta a Signal titkosításának biztonságát",
+      "lead": "Az AlphaProof Code nevű keretrendszer matematikailag bizonyította a Signal üzenetküldő alapvető titkosítási kódjának hibátlanságát.",
+      "osszefoglalo": "A Google DeepMind kutatói kifejlesztették az **AlphaProof Code** nevű ágensalapú rendszert, amellyel sikeresen elvégezték a Signal protokoll kódjának formális verifikációját. Ez a folyamat nemcsak a tervezést, hanem a ténylegesen futó programkódot ellenőrzi, ami matematikailag garantálja a szoftver biztonságát. A feladathoz több mint 3 millió sornyi bizonyítást generáltak Lean programozási nyelven.\n\nA folyamat során a Gemini Carbon modellek által hajtott ágensek önállóan írták meg a matematikai bizonyításokat, a szakértőknek mindössze a kód 1 százalékát kellett kézzel átnézniük. Az eljárás **mindössze 4 hetet vett igénybe**, míg a hagyományos kézi ellenőrzés évekig tartott volna a szakértői csapatoknak. A tesztek során a rendszer a korábban már javított valódi biztonsági hibákat is hibátlanul azonosította.\n\nA kutatók a formális verifikációs eredményeket és az eszközöket nyílt forráskódúvá tették a közösség számára. A technológiát a jövőben más kritikus rendszerek, például orvosi eszközök és energiahálózatok szoftvereinek védelmére is alkalmazni kívánják.",
+      "miert_szamit": "A szoftverfejlesztésben és a kiberbiztonságban a kódok matematikai szintű ellenőrzése **évekről hetekre rövidül**, így a fejlesztők gyorsabban készíthetnek garantáltan sérülékenységmentes alkalmazásokat."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-10T12:05:53+00:00",
+  "linkek_ellenorizve": true
+}
