@@ -1,0 +1,49 @@
+{
+  "id": "fb4cdef2206f",
+  "slug": "systematic-review-details-mathematical-foundations-governing",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/systematic-review-details-mathematical-foundations-governing-healthcare-artificial-intelligence-systems/",
+  "publikalva": "2026-11-10T17:25:19+00:00",
+  "cim": "Systematic Review Details Mathematical Foundations Governing Healthcare Artificial Intelligence Systems",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 49 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-3612.png"
+  },
+  "cim_eredeti": "Systematic Review Details Mathematical Foundations Governing Healthcare Artificial Intelligence Systems",
+  "szoveg_eredeti": "Systematic Review Details Mathematical Foundations Governing Healthcare Artificial Intelligence Systems\n\nA comprehensive systematic review investigating the mathematical architecture of artificial intelligence in medicine has mapped how classical computational theories and emerging algorithmic models drive clinical decision support. Conducted in accordance with PRISMA 2020 guidelines by researchers Yuliana Jiménez-Gaona and Vasudevan Lakshminarayanan, the study synthesized evidence from 147 eligible investigations published between January 2016 and June 30, 2026. The findings demonstrate that healthcare artificial intelligence does not operate on disconnected algorithms, but rather depends on an interconnected mathematical ecosystem where distinct quantitative disciplines handle data representation, parameter estimation, statistical inference, and computational stability. Methodological quality across the reviewed corpus was appraised using an adapted Joanna Briggs Institute framework spanning twelve evaluation domains alongside AMSTAR-2 for systematic reviews, yielding strong inter-rater agreement with a Cohen’s kappa coefficient of 0.89. The resulting synthesis confirms that mathematical rigor serves as an indispensable foundation for algorithmic reliability, safety, and future clinical translation.\n\nThe quantitative corpus was assembled through systematic database queries across Scopus, Google Scholar, and PubMed or MEDLINE, utilizing Harzing’s Publish or Perish version 8 where applicable. Across an initial yield of 653 identified records, deduplication and rigorous two-stage independent screening narrowed the candidate literature down to 147 unique studies at the DOI and title level. Full-text exclusions removed 54 reports, primarily due to an absence of direct healthcare relevance in 18 cases, insufficient mathematical content in 12 cases, unsuitable publication formats in 10 cases, dates falling outside the target decade in 8 instances, non-English text in 4 cases, and incomplete data or purely engineering-focused descriptions in 2 studies. Within the final corpus of 147 studies, non-mutually exclusive domain coding revealed that linear algebra appeared in 100 studies, representing 68.0 percent of the analyzed literature. Calculus and continuous optimization were evaluated in 91 studies, or 61.9 percent, while probability and statistics were explicitly analyzed in 79 publications, accounting for 53.7 percent of the evidence base.\n\nTo complement the overarching domain coding, the authors implemented a separate, mutually exclusive classification to categorize each paper by its dominant methodological theme. In this primary focus breakdown, explainable and trustworthy artificial intelligence represented the single largest category, encompassing 24 of the 147 studies, or 16.3 percent. Statistics and statistical learning theory constituted the primary focus of 23 studies, or 15.6 percent, matching the 23 investigations centered primarily on probability and Bayesian methods, also representing 15.6 percent. Investigations dedicated primarily to calculus and mathematical optimization accounted for 19 studies, or 12.9 percent, while standalone linear algebraic foundations predominated in 15 studies, or 10.2 percent. The remaining 43 publications, comprising 29.3 percent of the corpus, spanned specialized disciplines including graph theory, numerical analysis, stochastic differential formulations, and quantum computational mathematics. Across clinical domains, radiology and medical imaging constituted the leading application area, representing 24.3 percent of the literature, while classification and diagnosis formed the most frequent clinical task, representing 17.1 percent.\n\nLinear algebra serves as the fundamental structural bedrock across contemporary deep architectures, providing the computational apparatus necessary for representing high-dimensional biomedical data. Within neural network pipelines, affine transformations expressed through weight matrices, input vectors, and bias terms govern signal propagation across consecutive layers. Linear algebraic operations such as matrix-vector multiplication, singular value decomposition, principal component analysis, tensor factorizations, and convolutions enable feature extraction and dimensionality reduction across complex modalities, including electronic health records, genomic sequences, and volumetric scans. Empirical evaluations within the review highlight diverse implementations, such as optical matrix-vector multiplication investigated by Kim and colleagues in 2025, which achieved image reconstruction mean squared errors ranging between 0.0251 and 0.0547 while accelerating computational throughput for autoencoders, variational autoencoders, and generative adversarial networks. Attention mechanisms in Vision Transformers further leverage linear algebraic projections to compute scaled dot-product interactions across query and key representations, allowing algorithms to capture long-range contextual relationships far beyond the localized receptive fields characteristic of traditional convolutional kernels.\n\nCalculus and optimization techniques function as the primary mathematical engines that govern model training, parameter learning, and error minimization. The optimization objective balances empirical loss functions against regularization penalties to prevent severe overfitting during gradient descent and backpropagation. Differential calculus establishes how localized weight adjustments reduce predictive discrepancies, a mechanism applied widely across convolutional networks, U-Net segmentations, and generative models. In an empirical study reviewed by the authors, Schott and colleagues demonstrated in 2024 that localized gradient-based sensitivity analysis could be adapted for uncertainty quantification in deep-learning medical-image assessment. Their framework exhibited a 62.35 percent sensitivity to image degradation compared to only 2.16 percent in standard approaches, while achieving a 20.1 percent increase in receiver operating characteristic area under the curve, a 26 percent reduction in false positive rates, and a 16.2 percent improvement in discriminating malignancy-related features, demonstrating the diagnostic utility of gradient calculations.\n\nProbability and statistics constitute the essential framework for statistical inference, performance evaluation, and uncertainty quantification, ensuring models provide calibrated confidence measures rather than unverified deterministic assertions. Bayesian learning theory, predictive distributions, and stochastic dropout approximations allow diagnostic systems to distinguish between irreducible data noise, termed aleatoric uncertainty, and model knowledge gaps, termed epistemic uncertainty. The real-world consequence of this mathematical distinction was demonstrated by Leibig and co-workers in 2017 during diabetic retinopathy screening, where deploying Monte Carlo dropout to refer the 20 percent most uncertain automated predictions to human clinicians elevated diagnostic accuracy on the retained cohort from approximately 87 percent to at least 90 percent, maintaining sensitivity above 85 percent and specificity above 80 percent. Similarly, Kendall and Gal established foundational principles for separating observation noise from parameter variance, reporting 67.5 percent mean intersection-over-union in spatial segmentation benchmarks and demonstrating relative depth-estimation errors of 0.110.\n\nThe review also detailed how discrete mathematics, numerical analysis, and graph theory solve complex biomedical challenges that exceed standard Euclidean coordinate systems. Numerical analysis underpins regularized inverse-problem formulations essential for stabilizing computed tomography, magnetic resonance imaging, and positron emission tomography against incomplete or noisy detector data, while delay-and-sum beamforming algorithms compensate for phys",
+  "begyujtve": "2026-11-10T17:34:42.761300+00:00",
+  "prioritas": {
+    "pont": 49,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 50,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 95,
+      "kozossegi": 30
+    },
+    "elofeszures": 73,
+    "tanult": 16,
+    "indok": "Tudományos szakirodalmi áttekintés az orvosi AI matematikai alapjairól. Forrás-tapasztalat: -6.",
+    "tema": "medical ai mathematical foundations",
+    "cim_hu": "Átfogó elemzés készült az egészségügyi AI matematikai alapjairól",
+    "lead_hu": "Egy új tudományos áttekintés 147 tanulmány alapján feltérképezte a klinikai döntéshozatalt segítő AI-modell architektúrák elméleti hátterét.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-10T17:34:59+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-10T17:35:31+00:00"
+}
