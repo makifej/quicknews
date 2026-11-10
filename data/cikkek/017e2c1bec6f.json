@@ -1,6 +1,6 @@
 {
   "id": "017e2c1bec6f",
-  "slug": "amd-videokartyakra-is-megerkezett-a-pika-h3-flex-futtatasi-tamogatasa",
+  "slug": "az-amd-gpu-kra-is-megerkezett-a-pika-h3-flex-modell-futtatasa",
   "forras_id": "x-pika_labs",
   "forras_nev": "Pika (X)",
   "url": "https://x.com/pika_labs/status/2119983824503456008",
@@ -16,17 +16,17 @@
   "forrasok": [],
   "szoveg_eredeti": "Huge thanks to @shiyi_c98 for her help in bringing Pika H3 Flex inference to AMD GPUs 💜\nWe’re excited to collaborate with more researchers in the community. If you’re an AMD developer, we’d love for you to contribute to this branch!\n\nCheck out her work: https://github.com/Pika-Labs/Pika-H3-Flex/tree/contrib/amd-mi350x",
   "modell": "gemini-3.5-flash",
-  "cim": "AMD videókártyákra is megérkezett a Pika H3 Flex futtatási támogatása",
-  "lead": "A Pika fejlesztői közösségi együttműködéssel elérhetővé tették a Pika H3 Flex modell futtatását az AMD hardverein.",
-  "osszefoglalo": "A Pika a fejlesztői közösség, különösen Shiyi Chen segítségével elindította a **Pika H3 Flex** videógeneráló modell futtatásának támogatását AMD videókártyákon. A kezdeményezés célja, hogy a modell ne csak az NVIDIA rendszerein, hanem szélesebb hardverkörnyezetben is használható legyen.\n\nA fejlesztéshez a [Pika H3 Flex GitHub-oldalán](https://github.com/Pika-Labs/Pika-H3-Flex/tree/contrib/amd-mi350x) közzétett külön ágon várják a további AMD-fejlesztők hozzájárulását. A közösségi kód jelenleg kiemelten az AMD MI350X architektúrára fókuszálva teszi lehetővé az inferenciát.",
-  "miert_szamit": "A hardverfüggetlenebb futtatás **csökkentheti a videógenerálás infrastruktúra-költségeit**, így a kisebb stúdiók és fejlesztők olcsóbb erőforrásokból is kiszolgálhatják az AI-alapú videós munkafolyamatokat.",
+  "cim": "Az AMD GPU-kra is megérkezett a Pika H3 Flex modell futtatása",
+  "lead": "A Pika elérhetővé tette a Pika H3 Flex videógeneráló modell kódját az AMD grafikus kártyáin.",
+  "osszefoglalo": "A Pika közösségi együttműködésben tette lehetővé a **[Pika H3 Flex](https://github.com/Pika-Labs/Pika-H3-Flex/tree/contrib/amd-mi350x) inference** futtatását az AMD hardverein. A fejlesztéshez egy független kutató, Shiyi Chen nyújtott segítséget, amellyel a modell már az AMD MI350X architektúrán is működik.\n\nA cég külön ágat nyitott a fejlesztői közösség számára a hivatalos kódraktárban. A kezdeményezés célja, hogy minél több AMD-fejlesztőt vonjanak be a videógeneráló kód további optimálásába.\n\nA nyilvánosan hozzáférhető forráskód a GitHubon érhető el a kifejezetten AMD-re szánt ágon. A lépés bővíti a hardveres választékot a mesterséges intelligenciás videókészítéshez.",
+  "miert_szamit": "A fejlesztés révén **az Nvidia-alapú rendszerek alternatívájaként az AMD hardverei is alkalmassá válnak** a Pika videómodellek helyi futtatására és optimalizálására.",
   "cimkek": [
     "Pika",
-    "Pika H3 Flex",
+    "videógenerálás",
     "AMD",
-    "videógenerálás"
+    "GPU"
   ],
-  "kategoria": "videó",
+  "kategoria": "eszköz",
   "forras_tipus": "bejelentés",
   "fontossag": 3,
   "video_szoveg": "",
@@ -58,27 +58,20 @@
     "ido": "2026-11-10T07:19:54+00:00"
   },
   "jovahagyas_kell": true,
-  "forditva": "2026-11-10T09:04:59+00:00",
+  "forditva": "2026-11-10T09:06:53+00:00",
   "megjelent": "2026-11-10T08:52:20.016Z",
   "tenyellenorzes": {
     "ok": true,
-    "ido": "2026-11-10T09:05:01+00:00",
-    "esemeny": "A Pika megköszönte egy közösségi fejlesztőnek, Shiyi Chennek (@shiyi_c98) a segítséget a Pika H3 Flex AMD GPU-kon (kiemelten az AMD MI350X-en) történő futtatásának (inferenciájának) megvalósításában, és további AMD-fejlesztőket hívott fel a csatlakozásra a GitHub kódágukon.",
+    "ido": "2026-11-10T09:06:55+00:00",
+    "esemeny": "A Pika köszönetet mondott Shiyi Chennek a Pika H3 Flex modell AMD GPU-kra (pontosabban az AMD MI350X-re) való portolásában nyújtott segítségéért, és további fejlesztők közreműködését várja a GitHubon nyitott ágban.",
     "forrasok": [
-      "https://x.com/pika_labs/status/2119983824503456008",
-      "https://github.com/Pika-Labs/Pika-H3-Flex/tree/contrib/amd-mi350x"
+      "https://x.com/pika_labs/status/2119983824503456008"
     ],
-    "hibak": [
-      "A cikkből hiányzik a bejegyzésben megjelölt elsődleges forrás (GitHub repository) hivatkozása.",
-      "A cikk nem nevezi meg az eredeti fejlesztőt / közreműködőt (@shiyi_c98), akinek a munkáján a fejlesztés alapul."
-    ],
+    "hibak": [],
     "kereses": [],
-    "javitva": true,
-    "javitas_elotti": {
-      "cim": "AMD videókártyákra is megérkezett a Pika H3 Flex futtatási támogatása",
-      "lead": "A Pika fejlesztői közösségi együttműködéssel elérhetővé tették a Pika H3 Flex modell futtatását az AMD hardverein.",
-      "osszefoglalo": "A Pika a fejlesztői közösség segítségével elindította a **Pika H3 Flex** videógeneráló modell futtatásának támogatását AMD videókártyákon. A kezdeményezés célja, hogy a modell ne csak az NVIDIA rendszerein, hanem szélesebb hardverkörnyezetben is használható legyen.\n\nA fejlesztéshez a GitHubon közzétett külön ágon várják a további AMD-fejlesztők hozzájárulását. A közösségi kód jelenleg kiemelten az AMD MI350X architektúrára fókuszálva teszi lehetővé az inferenciát.",
-      "miert_szamit": "A hardverfüggetlenebb futtatás **csökkentheti a videógenerálás infrastruktúra-költségeit**, így a kisebb stúdiók és fejlesztők olcsóbb erőforrásokból is kiszolgálhatják az AI-alapú videós munkafolyamatokat."
-    }
-  }
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
 }
