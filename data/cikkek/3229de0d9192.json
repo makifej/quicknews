@@ -1,0 +1,49 @@
+{
+  "id": "3229de0d9192",
+  "slug": "decision-models-in-hugging-face",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/decision",
+  "publikalva": "2026-11-10T00:00:00+00:00",
+  "cim": "Decision Models in Hugging Face",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 50 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://huggingface.co/blog/assets/decision/thumbnail.png"
+  },
+  "cim_eredeti": "Decision Models in Hugging Face",
+  "szoveg_eredeti": "Large Language Models (LLMs) are exceptionally good at generating text. We use them to answer questions, write code, reason about problems, and so much more. But not every problem requires generating text.\n\nConsider a customer support system receiving the following message:\n\n\"I was charged twice for my subscription. I need a refund today.\"\n\nThe system needs to determine which team should handle the request, how urgent it is, and whether the customer is requesting a refund.\n\nWe could ask an LLM to return a JSON object containing these answers.\n\nBut what if the model could directly evaluate the available options and return a probability distribution over them, without generating any text?\n\nThis is the key idea behind decision models.\n\nA decision model takes some input context (state), evaluates a question with a set of predefined possible answers (primitives), and returns a structured decision along with probabilities. Instead of asking a model to generate an answer token by token, we ask it to assign probabilities to the answers that our application already understands.\n\nTypeSafe AI introduced Jev, describing it as a System One model. The name draws inspiration from the distinction between fast, intuitive thinking (System 1) and slower, deliberative thinking (System 2).\n\nThe community has converged to the term decision model, because it describes the model's computational role rather than invoking a particular theory of cognition. In the rest of the post we will refer to the models as \"decision models\" instead of \"system one models\". (A poll on twitter deciding what we should be calling such models)\n\nFor a decision model, the fundamental interface is:\n\nWe could simply prompt an LLM to return a JSON object containing our decisions. In fact, this is how many applications already use language models for classification, routing, and other structured tasks.\n\nHowever, there are a few problems with this approach.\n\nBefore understanding the interface of a decision model, it is useful to revisit two closely related approaches namely traditional classification and zero-shot classification.\n\nSuppose we train a classifier that routes customer-support requests to three departments:\n\nA conventional classification model learns a mapping from an input to a predefined set of labels. During training, the model learns to predict these labels from examples. A classification head typically produces one logit per class, and softmax turns those logits into a probability distribution.\n\nThe limitation here is that the output classes are baked into the model's classification head.\n\nIf we introduce a fourth department, such as Legal, the existing classifier does not automatically acquire a corresponding output class. We may need to modify the head, collect training data, and retrain or adapt the model.\n\nZero-shot classification addresses an important part of this limitation. Instead of requiring the classifier to be trained specifically on every output category, we supply the candidate labels at inference time.\n\nUnlike a conventional fixed-label classifier, the categories can change from one request to another. Let’s add another department, such as “Legal”, and see the model outputs.\n\nOne common implementation uses a model trained for natural language inference (NLI). Each candidate label is converted into a hypothesis, and the model measures how strongly the input entails that hypothesis.\n\nThis already sounds quite similar to a decision model. And in many ways, it is.\n\nDecision models extend this idea beyond simply assigning an input to a category. A decision model can accept several named questions about the same state, with different answer types. The types can be choosing between alternatives (choice), scoring an ordered scale (score), or estimating the probability that a statement is true (noul).\n\nMore importantly, its interface is designed around the probability distribution over possible decisions.\n\nThe advantage of decision models is not that they invented runtime-defined labels or probabilistic classification. It is that they organize these capabilities into a consistent interface, potentially backed by architectures and training procedures optimized specifically for decisions.\n\nA decision model request has the following two components:\n\nThe state is the information the model should evaluate. It may be a string, a structured JSON object, or, other modalities for supported omni-modal models.\n\nQuestions describe what we want to know about the state. In the decision models interface, three fundamental primitives represent different forms of decisions:\n\nChoice is the most intuitive primitive and the closest to traditional classification.\n\nWhich department should handle this customer request?\n\nThe available options are Billing, Technical support, and Sales.\n\nThe model assigns a logit to each option. For logits ($z_1,\\ldots,z_K$), (with K classes) we can obtain the probabilities using softmax:\n\npi=exp⁡(zi/T)∑j=1Kexp⁡(zj) p_i=\\frac{\\exp(z_i/T)}{\\sum_{j=1}^{K}\\exp(z_j)} pi​=∑j=1K​exp(zj​)exp(zi​/T)​\n\nConsider this illustrative distribution:\n\n∑i=1Kpi=1. \\sum_{i=1}^{K}p_i=1. i=1∑K​pi​=1.\n\nThe model chooses the option with the largest probability:\n\ny^=arg⁡max⁡ipi \\hat y=\\arg\\max_i p_i y^​=argimax​pi​\n\nIn this case, the choice is Billing, with the probability of 0.998, but the remaining probabilities are useful too. They tell us how the model distributes its belief among the alternatives.\n\nChoice works when there are several distinct alternatives. But what if we want to measure something on an ordered scale?\n\nThe model again produces a probability distribution:\n\nRather than returning only the most likely level, the Score primitive computes the expected value of the level index.\n\nFor a random variable (X) representing the level, the expectation is:\n\nE[X]=∑i=0K−1ipi \\mathbb{E}[X]=\\sum_{i=0}^{K-1}ip_i E[X]=i=0∑K−1​ipi​\n\nE[X]=0(0.10)+1(0.26)+2(0.72)=1.7 \\mathbb{E}[X] = 0(0.10)+1(0.26)+2(0.72)=1.7 E[X]=0(0.10)+1(0.26)+2(0.72)=1.7\n\nThis does not mean that the model selected a fictional level halfway between medium and high. It means that the expectation of its probability distribution is 1.7.\n\nThe third primitive is Noul, which represents a binary question.\n\nRather than defining a list of choices, we ask the model to return the probability that the answer is true. We can understand this using the Bernoulli distribution (noul comes from Bernoulli).\n\nY∼Bernoulli⁡(p) Y\\sim\\operatorname{Bernoulli}(p) Y∼Bernoulli(p)\n\nP(Y=1)=p,P(Y=0)=1−p. P(Y=1)=p,\\qquad P(Y=0)=1-p. P(Y=1)=p,P(Y=0)=1−p.\n\nit assigns a probability of 0.92 to Yes and 0.08 to No.\n\nThe model is not randomly sampling a binary answer here. It returns the probability parameter itself, leaving the application to decide how to act on it.\n\nSo far, we have obtained probability distributions from the model. But the decision model interface also returns a field called confidence for Choice and Score.\n\nThe full distribution might contain several possible answers, and it is useful to summarize how concentrated the model's belief is. With confidence we achieve just that.\n\nFor a Choice with (K) options, the confidence is:\n\npmax⁡−1K1−1K \\frac{p_{\\max}-\\frac{1}{K}}{1-\\frac{1}{K}} 1−K1​pmax​−K1​​\n\nwhere ($p_{\\max}$) is the largest predicted probability.\n\nIn our previous three-choice example, Billing had probability 0.80:\n\nC=3(0.99)−12=0.98 C=\\frac{3(0.99)-1}{2}=0.98 C=23(0.99)−1​=0.98\n\nNotice that the winning probability is 0.99, but the reported confidence is 0.98. The confidence normalizes the largest probability relative to the number of available options. In contrast, the ordered Score example only had a confidence of 0.558.\n\nDecision models are a young and fast-moving space. Each one makes decisions differently under the hood (heads that score the whole schema jointly, separate readouts on top of LLM backbones, edge-sized and multimodal variants, etc). This variety is healthy, but it comes at a cost. If every model exposes its own interface",
+  "begyujtve": "2026-11-10T15:03:46.429785+00:00",
+  "prioritas": {
+    "pont": 50,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 40,
+      "egyediseg": 85,
+      "hitelesseg": 90,
+      "aktualitas": 70,
+      "kozossegi": 40
+    },
+    "elofeszures": 88,
+    "tanult": 39,
+    "indok": "Technikai jellegű oktatóanyag a Hugging Face döntési modelljeiről, ami inkább fejlesztői útmutató, mintsem friss hír. Forrás-tapasztalat: -5.",
+    "tema": "hugging face decision models",
+    "cim_hu": "Döntési modellek érkeztek a Hugging Face platformjára",
+    "lead_hu": "A Hugging Face összefoglalót adott közre a döntési modellek használatáról, amelyek szöveggenerálás helyett célzott osztályozási és döntési feladatokat látnak el.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-10T15:05:59+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-10T15:06:05+00:00"
+}

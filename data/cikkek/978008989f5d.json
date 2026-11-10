@@ -1,0 +1,49 @@
+{
+  "id": "978008989f5d",
+  "slug": "anthropic-launches-claude-fable-5-2-and-mythos-5-2-same-model",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/10/anthropic-claude-fable-5-2-mythos-5-2-release/",
+  "publikalva": "2026-11-10T14:59:09+00:00",
+  "cim": "Anthropic Launches Claude Fable 5.2 and Mythos 5.2: Same Model, Different Safeguards",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 77 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-24-scaled.png"
+  },
+  "cim_eredeti": "Anthropic Launches Claude Fable 5.2 and Mythos 5.2: Same Model, Different Safeguards",
+  "szoveg_eredeti": "Anthropic just released Claude Fable 5.2 and Claude Mythos 5.2 . Claude Fable 5.2 is a frontier model from Anthropic for long-horizon coding, research and agentic work. Mythos 5.2 is the same underlying model with fewer cyber and biology safeguards. It beats Opus 5.5 on most evaluations and costs less than the 5.1 models.\n\n TL;DR \n\n Size: 1M-token context window, 128K max output.\n\n Runs on: Hosted API only. Claude Platform, Amazon Web Services, Google Cloud, Microsoft Azure. No open weights.\n\n Performance: Ahead of Opus 5.5 on almost every benchmark Anthropic reported.\n\n Best: RoboDojo Sim 64.9%, more than double GPT-6 Astra (29.8%).\n\n Worst: AutomationBench 51.4%, behind Gemini 4 Carbon (53.9%).\n\n Bottom line: Best: Opus-level coding at roughly half the cost per task. Worst: Fable still blocks most cybersecurity work.\n\n What is the difference between Claude Fable 5.2 and Mythos 5.2? \n\n They are one model. Fable 5.2 adds classifiers that block high-risk cybersecurity tasks and most research biology. That lets Anthropic offer it to all users.\n\n Mythos 5.2 drops those blocks. Access runs through the Cyber Verification Program and the Life Sciences Verification Program .\n\n When Fable blocks a query, users get an answer from Opus 4.8 (cyber) or Opus 5 (biology). Anthropic reports about 55% fewer blocks than Fable 5.1. That splits into roughly 60% fewer in cybersecurity and 40% fewer in biology.\n\n How does Claude Fable 5.2 perform on benchmarks? \n\n Anthropic published one table comparing Fable 5.2 with Fable 5.1, Opus 5.5, GPT-6 Astra and Gemini 4 Carbon. All scores are self-reported. Key results:\n\n FrontierCode 2.0 (agentic coding): 49.1% at Xhigh effort, vs 45.5% for Opus 5.5.\n\n FrontierSWE v2: 69.9%, vs 65.5% for GPT-6 Astra.\n\n Remote Labor Index: 41.3%, vs 21.3% for Opus 5.5.\n\n Humanity’s Last Exam (with tools): 74.2%, vs 67.7% for Opus 5.5.\n\n OSWorld 2.1 (partial offline set): 89.3%.\n\n CVE Rediscovery (Mythos 5.2): 89.6%, vs 81.3% for Opus 5.5 without safeguards.\n\n Fable 5.2 does not lead everywhere. Gemini 4 Carbon wins AutomationBench (53.9% vs 51.4%). Opus 5.5 holds a higher AA-Briefcase Elo (1800 vs 1785).\n\n Is Claude Fable 5.2 more efficient than Opus 5.5? \n\n Effort levels matter here. On FrontierCode 2.0, Fable 5.2 at High effort scored 45.3%. That matches Opus 5.5 at its best (45.5%) for roughly half the cost per task.\n\n On Humanity’s Last Exam, Fable 5.2 at Low effort matches Opus 5.5’s top score. Anthropic puts that at less than one-tenth of the cost. On Chartography, Medium effort reaches 66.4%, above Opus 5.5 at Max (64.4%).\n\n Outputs are up to 30% faster than the 5.1 models. An optional fast mode speeds generation up to 2.5x.\n\n What did Fable 5.2 do in prerelease testing? \n\n Anthropic lists several long-running agent experiments: \n\n Fermat’s Last Theorem: 1,000 Fable 5.2 agents formalized the proof in Lean in 30 hours. Opus 5.5 reached 26% in 18 hours with the same setup.\n\n Operating system: One run coordinated over 1,000 subagents for 8 days. The result boots on a laptop.\n\n Hardware: Claude designed 3 working devices with partner Diode . None needed electrical modifications.\n\n Physics: Fable 5.2 solved 2 open problems on black holes ( preprint 1 , preprint 2 ).\n\n Migration: Agents moved a production service from Python to Rust. It now starts about 26x faster.\n\n How safe is Claude Fable 5.2? \n\n Anthropic tested Mythos 5.2, the version without cyber and biology safeguards. On an automated behavioral audit, it scored 2.67 (lower is better). Opus 5.5 scored 2.79.\n\n In a sandbox-escape evaluation with 1,800+ scenarios, Mythos 5.2 used out-of-sandbox credentials in 3.1% of cases. Opus 5.5 did so in 3.3%; Mythos 5.1 in 21%.\n\n Anthropic also states that it limited specific AI R&D skills during training. Kernel optimization and LLM architecture work sit at about Opus 5.5 level. Full details are in the system card .\n\n How much does Claude Fable 5.2 cost and where is it available? \n\n Fable 5.2 costs $8 per million input tokens and $40 per million output tokens. Fast mode costs $16 and $80. The API ID is claude-fable-5-2 .\n\n It is live on the Claude Platform , AWS, Google Cloud and Microsoft Azure. Fast mode covers Claude Code, the Claude Platform, Google Cloud and Microsoft Foundry. Mythos fast mode is limited to Verification Program members.\n\n Anthropic still recommends Opus 5.5 as the daily driver. Fable is positioned for the hardest open-ended technical work.\n\n How does Claude Fable 5.2 compare with competitors? \n\n Feature Claude Fable 5.2 Claude Opus 5.5 GPT-6 Astra Gemini 4 Carbon Developer Anthropic Anthropic OpenAI Google Parameters Not disclosed Not disclosed Not disclosed Not disclosed Context window 1M 1M 1,050,000 Not disclosed by Google Max output 128K 128K 128K Not disclosed Price (in/out per 1M) $8 / $40 $4 / $20 $10 / $50 $2 / $10 intro, then $4 / $20 Access General availability General availability General availability Selected cyber defenders only Weights Closed Closed Closed Closed FrontierCode 2.0* 49.1% 45.5% 42.8% 41.1% (Medium) FrontierSWE v2* 69.9% 62.3% 65.5% 61.2% AutomationBench* 51.4% 42.5% 41.4% 53.9% HLE (with tools)* 74.2% 67.7% 57.2% Not reported Chartography* 73.4% 64.4% 71.0% 72.5% \n\n *Benchmark rows come from Anthropic’s launch table . Anthropic ran or reported these scores; they are not independently verified. \n\n Key Takeaways \n\n Fable 5.2 and Mythos 5.2 are 1 model with 2 safeguard levels.\n\n 49.1% on FrontierCode 2.0, ahead of Opus 5.5 and GPT-6 Astra.\n\n $8/$40 per million tokens, with a 2.5x fast mode at $16/$80.\n\n Fable blocks about 55% fewer requests than Fable 5.1.\n\n Gemini 4 Carbon still leads AutomationBench; scores are self-reported.\n\n Check out the launch post , the system card and the model docs . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Anthropic Launches Claude Fable 5.2 and Mythos 5.2: Same Model, Different Safeguards appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-10T15:05:25.584886+00:00",
+  "prioritas": {
+    "pont": 77,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 95,
+      "hirertek": 95,
+      "egyediseg": 35,
+      "hitelesseg": 76,
+      "aktualitas": 99,
+      "kozossegi": 91
+    },
+    "elofeszures": 97,
+    "tanult": 93,
+    "indok": "Kiemelkedő jelentőségű új csúcsmodell bejelentés az Anthropic-tól, amely azonnali érdeklődésre tarthat számot. Hasonló hír már van: f1eea0a2781a. Forrás-tapasztalat: -7.",
+    "tema": "anthropic claude fable release",
+    "cim_hu": "Megérkezett a Claude Fable 5.2 és a Mythos 5.2 az Anthropic-tól",
+    "lead_hu": "Az Anthropic kiadta legújabb modelljeit, amelyek kiemelkedő teljesítményt nyújtanak kódolásban és komplex kutatásokban, miközben olcsóbbak a korábbi verziónál.",
+    "klaszter": "f1eea0a2781a",
+    "ai": true,
+    "ido": "2026-11-10T15:05:59+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-10T15:06:05+00:00"
+}

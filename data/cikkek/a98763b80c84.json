@@ -1,0 +1,78 @@
+{
+  "id": "a98763b80c84",
+  "slug": "a-kecskemeti-mercedes-gyarban-elesben-tesztelik-a-google-legujabb",
+  "forras_id": "deepmind",
+  "forras_nev": "Google DeepMind",
+  "url": "https://deepmind.google/blog/gemini-robotics-2-5-accelerates-real-world-physical-intelligence/",
+  "szerzo": null,
+  "publikalva": "2026-11-09T19:51:47+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://storage.googleapis.com/gweb-developer-goog-blog-assets/images/argon__robotics__hero.2e16d0ba.fill-1200x600.png",
+    "kep_kicsi": "https://lh3.googleusercontent.com/F1CrVEYRb8lJOyyxGgcyow-Td1de-nkp7K8MZrhjrKPANJUc0EYB754Ninn-Yrppjdb54nolOWo6Rk8iDaRNuixWwLaEKc0K9ImGooxen9fj9IOh=w528-h297-n-nu-rw-lo"
+  },
+  "cim_eredeti": "Gemini Robotics 2.5 accelerates real-world general dexterity",
+  "forrasok": [],
+  "szoveg_eredeti": "We’re enabling robots to learn faster for the real world - from everyday skills to the factory floor\n\nToday, we are introducing Gemini Robotics 2.5, our most capable vision-language-action (VLA) model to date. Gemini Robotics 2.5 increases both the breadth of skills a robot can learn and the speed at which it can acquire them. This enhances dexterity, reliability, and safety to help robots step out of the lab and into more unstructured, real-world environments, where they can assist people with a greater range of tasks.\n\nEarlier this year, we brought whole-body intelligence to robots of many types, including humanoids. Now, in large part thanks to Gemini 4 Argon's ability to accelerate robotics research, we have further pushed the frontier of physical intelligence. We tested Gemini Robotics 2.5’s capabilities in task breadth, performance, and complexity across over 200 distinct tasks, though this approach could scale to many more.\n\nGemini Robotics 2.5 marks a leap forward in three key areas:\n\nGemini Robotics 2.5 is rolling out to our robotics partners.\n\nBecause real-world environments are unstructured and unpredictable, robots must be able to handle everyday objects with both fine precision and high reliability.\n\nWith Gemini Robotics 2.5, we expanded the model capabilities in task breadth, performance, and complexity. We evaluated the model across 200 distinct tasks — such as serving food with tongs, tying a bow on a gift box, and pipetting a liquid. These tasks represent a step toward human-level dexterity by combining a number of skills, including advanced tool use, complex manipulation of deformables, and handling delicate objects with finesse.\n\nOur evaluations show significant increases in task precision, robustness, and speed. Compared to previous baselines, Gemini Robotics 2.5 achieves a 30% to 100% higher success rate depending on the type of task, while completing tasks 20% to 30% faster.\n\nLike our previous Gemini Robotics models, it natively works with many different robot types, including Apptronik’s Apollo 2 humanoid robot (featuring the five-finger, 22 degree-of-freedom SharpaWave hand) and the Franka Duo platform with two-fingered parallel grippers.\n\nThe ultimate measure of a robotics model is whether it can perform dependably in an active workplace. To put Gemini Robotics 2.5 to the test, we partnered with Apptronik and Mercedes-Benz to use Apollo 2 humanoid robots on active automotive production lines in Kecskemét, Hungary, and Sindelfingen, Germany.\n\nRobots struggle to adapt to new unpredictable environments, our Gemini Robotics models give Apollo the ability to think, reason over multiple steps, and take action adapting to changes. In this proof-of-concept, Apollo 2 autonomously performs automotive kitting: the repetitive, physically taxing task of sorting individual parts from bulk bins into organized trays in the exact order needed for each vehicle on the line. Offloading this monotonous prep work helps keep the assembly line moving, while freeing up technicians to focus on complex build tasks.\n\nUsing our embodied reasoning model (Gemini Robotics ER) to keep track of the workflow, and the Gemini Robotics 2.5 actions model to control its hands and arms, the robot reaches into supply bins, picks up metal automotive brackets, and places them into sequencing containers, all while correcting for any gaps. Achieving a 96% success rate, this pilot shows promising progress toward widespread real-world industrial applications.\n\nThis is what we built Apollo for: useful work alongside people in real industrial settings. Pairing Apollo 2 with Gemini Robotics, we saw the models improve dramatically in just a few weeks of post-training and carry over to Mercedes-Benz production with very little drop-off. This is the foundation for bringing humanoid robots to industrial and commercial environments at scale.\n\nApollo 2 using Gemini Robotics 2.5 to autonomously perform automotive kitting at a Mercedes-Benz factory.\n\nAs robots operate in messy, everyday spaces, physical safety is paramount. To help ensure this, we have significantly advanced Gemini Robotics 2.5’s safety features.\n\nGemini Robotics 2.5 uses inference-time reasoning guidance to steer around physical hazards in real-time. Much like safety classifiers add a protective layer around Gemini’s responses, this guidance allows the robot to navigate complex environments securely. In our evaluations, this capability boosted safe task completion around obstacles by 33% and around nearby people by 43%.\n\nWe are also advancing safety for long-horizon, agentic tasks. Gemini 4 Argon currently leads our agentic robotics evaluations across unsafe task refusal, resolving uncertainty, and working in proximity to humans. To test jailbreak robustness, we are releasing ASIMOV-Jailbreak, a new open-source benchmark containing hundreds of prompts that disguise unsafe requests across dozens of scenes. Argon achieves a 99.5% jailbreak resistance — a significant improvement over the 82% rate of our previous baseline, Gemini Robotics ER 2.\n\nSafe human-aware robot actions enabled by GR-2.5 steerability\n\nTo teach robots new skills, researchers need massive amounts of physical data and highly efficient modeling algorithms. Gemini 4 Argon’s robotics research capabilities helped solve these bottlenecks by acting as a simulation engine, which greatly accelerated our development of Gemini Robotics 2.5.\n\nExamples of Gemini 4 Argon’s robotics research capabilities accelerating Gemini Robotics 2.5\n\nTo teach robots new skills, researchers need massive amounts of physical data and highly efficient modelling algorithms. Gemini 4 Argon’s robotics research capabilities helped solve these bottlenecks by acting as a simulation engine, which greatly accelerated our development of Gemini Robotics 2.5.\n\nArgon can generate thousands of varied, simulated practice runs from a real-world camera scene and build a realistic digital twin. Combined with real training demonstrations, this enables the robot to more quickly generalize to new scenes and objects. Argon can also help researchers hypothesize why task failures happen from video footage and test the best improvements both in simulation and directly on real robots.\n\nAccelerated by frontier intelligence models like Gemini 4 Argon, Gemini Robotics 2.5 marks an important milestone on the path toward solving physical AGI. By advancing in dexterity, real-world reliability, and rigorous safety, we are building the physical intelligence necessary for robots to work alongside people and solve real-world challenges\n\nThis work was developed by the Gemini Robotics team. For their leadership and support of this effort, we’d like to thank: Huizhong Chen, Radu Soricut, Jean-Baptiste Alayrac, Melvin Johnson, Edward Grefenstette, Claire Cui, Jon Shlens, David Thacker, Zoubin Ghahramani, Clement Farabet, Koray Kavukcuoglu, and Demis Hassabis. We’d like to recognize the many teams across Google and Google DeepMind that have contributed to this effort including Research, Legal, Marketing, Communications, Responsibility and Safety Council, Responsible Development and Innovation, Policy, Strategy and Operations, and our Business and Corporate Development teams. Finally, we’d like to thank our partners: Agile, Apptronik, and Mercedes-Benz teams for their support on this release.",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Kecskeméti Mercedes-gyárban élesben tesztelik a Google legújabb robotmodelljét",
+  "lead": "A Google DeepMind bemutatta a Gemini Robotics 2.5 fizikai AI-modellt, amely a kecskeméti autógyárban is önállóan pakolja az alkatrészeket.",
+  "osszefoglalo": "A Google DeepMind bejelentette a [Gemini Robotics 2.5](https://developers.googleblog.com/gemini-4-argon-for-robotics?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content=) látás-nyelv-akció modellt, amely jelentősen növeli a robotok mozgásfinomságát, megbízhatóságát és biztonságát. A modell több mint 200 különböző feladatnál teljesített sikeresen, a korábbi verziókhoz képest 30-100 százalékkal magasabb sikerarányt és 20-30 százalékkal gyorsabb feladatvégrehajtást érve el.\n\nA fejlesztést a kecskeméti és a sindelfingeni Mercedes-Benz gyárakban is tesztelték élesben az **Apptronik Apollo 2** humanoid robotjain. A rendszer **96 százalékos sikeraránnyal** végezte el az alkatrészek válogatását és rekeszekbe rendezését a gyártósoron, folyamatosan alkalmazkodva az alkatrészek változó pozíciójához.\n\nA Google a biztonsági funkciókat is továbbfejlesztette: a robotok valós idejű akadályelkerülő rendszere 43 százalékkal növelte a biztonságos munkavégzést az emberek közelében. A kiadást egyúttal az ASIMOV-Jailbreak nyílt forráskódú tesztkészlettel is kiegészítették, amellyel a robotok biztonsági határait vizsgálják.",
+  "miert_szamit": "A kecskeméti teszt jól mutatja, hogy a **humanoid robotok ipari alkalmazása** már nem a távoli jövő, hanem a jelenlegi gyártósori folyamatok közvetlen része.",
+  "cimkek": [
+    "Google DeepMind",
+    "Gemini Robotics",
+    "robotika",
+    "Mercedes-Benz"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Gemini Robotics 2.5",
+    "ASIMOV-Jailbreak"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 86,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 88,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 92,
+      "aktualitas": 72,
+      "kozossegi": 81
+    },
+    "elofeszures": 100,
+    "tanult": 91,
+    "indok": "Nagy jelentőségű AI és robotikai előrelépés a Google DeepMind részéről, valódi iparági hatással.",
+    "tema": "google deepmind gemini robotics",
+    "cim_hu": "Bemutatkozott a Gemini Robotics 2.5, a Google DeepMind új robotikai modellje",
+    "lead_hu": "A Google DeepMind bemutatta legújabb vision-language-action modelljét, amely felgyorsítja a robotok fizikai ügyességének és valós idejű tanulásának fejlődését.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-10T15:05:59+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-10T15:06:15+00:00",
+  "megjelent": "2026-11-10T15:06:15+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-10T15:06:17+00:00",
+    "esemeny": "A Google DeepMind bemutatta a Gemini Robotics 2.5 AI-modellt, amelyet az Apptronik Apollo 2 humanoid robotjaival a kecskeméti és sindelfingeni Mercedes-Benz gyárakban is élesben teszteltek alkatrész-válogatási feladatokra.",
+    "forrasok": [
+      "https://deepmind.google/blog/gemini-robotics-2-5-accelerates-real-world-physical-intelligence/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-10T15:06:49+00:00",
+  "linkek_ellenorizve": true
+}
