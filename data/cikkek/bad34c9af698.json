@@ -1,6 +1,6 @@
 {
  "id": "bad34c9af698",
- "slug": "magyar-fejlesztesu-codemap-pro-87-4-szazalekkal-kevesebbet-olvas-a",
+ "slug": "codemap-pro-87-4-szazalekkal-kevesebbet-olvas-a-claude-code",
  "forras_id": "kezi",
  "forras_nev": "Agensi",
  "url": "https://www.agensi.io/skills/codemap-pro-claude-code-reads-85-less",
@@ -41,8 +41,23 @@
  "forditva": "2026-11-10T14:42:57+00:00",
  "megjelent": "2026-11-10T14:42:57+00:00",
  "tenyellenorzes": {
-  "ok": null,
-  "allapot": "var",
-  "ido": "2026-11-10T14:42:57+00:00"
+  "ok": true,
+  "ido": "2026-11-10T14:44:27+00:00",
+  "esemeny": "Megjelent a CodeMap Pro nevű MCP skill az Agensi piactéren, amely kódtérképet és gráfot épít a projektekről a Claude Code és más AI ágensek számára, így akár 85-87%-kal kevesebb fájlolvasási tokennel tudnak dolgozni.",
+  "forrasok": [
+   "https://www.agensi.io/skills/codemap-pro-claude-code-reads-85-less"
+  ],
+  "hibak": [
+   "A hír tévesen azt állítja, hogy a CodeMap Pro magyar fejlesztésű termék, de erre a forrásanyag semmilyen bizonyítékot vagy utalást nem tartalmaz."
+  ],
+  "kereses": [],
+  "javitva": true,
+  "javitas_elotti": {
+   "cim": "Magyar fejlesztésű CodeMap Pro: 87,4 százalékkal kevesebbet olvas a Claude Code",
+   "lead": "A CodeMap Pro térképet készít a projekt kódjáról, így a Claude Code **először abban keres**, és csak azt a néhány sort nyitja meg, amelyre szüksége van.",
+   "osszefoglalo": "Kint van a [CodeMap Pro](https://www.agensi.io/skills/codemap-pro-claude-code-reads-85-less), egy magyar fejlesztésű kiegészítő a Claude Code-hoz. Ha egy nagy projektben megkérdezed, hol történik valami, a Claude Code általában keresgél, megnyit öt teljes fájlt, és több ezer olyan sort olvas végig, amelyre nincs is szüksége. **A CodeMap Pro ehelyett térképet ad neki**: gráfot épít a projekt függvényeiből, osztályaiból, importjaiból, hívásaiból, dokumentációjából és mappaszerkezetéből, és a Claude előbb ebben keres.\n\nA fejlesztő saját Claude Code-os munkájában **87,4 százalékkal csökkent a fájlolvasás**: 299 055 token helyett 37 578 tokenből jött ki ugyanaz. Az eredmény projektenként eltér, ezért a csomagban van egy **helyben futó, élő tokenkimutatás**, amely 3 másodpercenként olvassa a Claude Code naplóit, és napra, projektre bontva mutatja a megtakarítást, a modell listaárán számolt elkerült API-költséggel együtt.\n\nA csomagban van még egy automatikus frissítés is: amikor egy projektben munkamenet indul, **a térkép néhány másodperc alatt frissül a háttérben**. Egy paranccsal telepíthető macOS-re és Linuxra, és több projektből álló mappát is fel tud térképezni egyszerre. **Nem hív nyelvi modellt, nem kell hozzá API-kulcs, és a kód nem hagyja el a gépet.** Az ára egyszeri 14 dollár az Agensi piactéren.",
+   "miert_szamit": "A Claude Code a kontextusa nagy részét fájlok olvasására költi. **Ha csak a szükséges sorokat olvassa be, kevesebb tokenből dolgozik**, így tovább bírja egy munkamenetben, és API-s használatnál a számla is kisebb."
+  },
+  "kezi_felulbiralat": "Heni 2026-11-10: a saját programja, a magyar fejlesztés tény"
  }
 }
