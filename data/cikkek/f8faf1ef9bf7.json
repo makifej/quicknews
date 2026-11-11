@@ -1,0 +1,49 @@
+{
+  "id": "f8faf1ef9bf7",
+  "slug": "introducing-kimi-k3-1-pro-on-amazon-bedrock-amazon-web-services",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/",
+  "publikalva": "2026-11-11T01:07:19+00:00",
+  "cim": "Introducing Kimi K3.1 Pro on Amazon Bedrock | Amazon Web Services",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 74 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/02/ML-22229-featured-image.png"
+  },
+  "cim_eredeti": "Introducing Kimi K3.1 Pro on Amazon Bedrock | Amazon Web Services",
+  "szoveg_eredeti": "Kimi K3.1 Pro Highspeed from Moonshot AI is now available on Amazon Bedrock. Part of Moonshot AI’s new K3.1 series, it’s a post-trained version of Kimi K3 with the same 3T-class open-weight architecture and 1-million-token context window, trained with substantially more post-training compute. According to Moonshot AI, that extra training targets long-horizon agentic work and fewer factual errors. It also improves professional tasks such as financial modeling and office documents, and coding for game engines, 3D scenes, and computer-aided design (CAD) scripts. Kimi K3.1 Pro Highspeed generates output tokens at a higher rate and Moonshot AI reports 2–3 times the speed of Kimi K3.1 Pro.\n\nKimi K3.1 Pro Highspeed uses the same endpoint, APIs, and features as Kimi K3 on Amazon Bedrock. If you already build with Kimi K3, you can try it by changing the model ID in your existing code.\n\nKimi K3.1 Pro Highspeed supports tool calling, structured output, configurable reasoning, image input, and streaming. You can adopt Kimi K3.1 Pro Highspeed without changing your security posture. Your data is processed within the AWS data boundary, isn’t shared with Moonshot AI, and isn’t used to train the model. Zero data retention is always enabled for inference requests, and with zero operator access, AWS operators can’t view your prompts and completions during inference.\n\nIn this post, we show you how to get started with Kimi K3.1 Pro Highspeed on Amazon Bedrock. We also cover how to lower costs with the Flex tier, explicit prompt caching for repeated context, and how to use the model as a coding assistant in OpenCode.\n\nTo try the model without writing code, open the Amazon Bedrock console, choose Test, then Playground, and select Kimi K3.1.\n\nFrom code, Kimi K3.1 Pro Highspeed is available on the bedrock-runtime endpoint through the OpenAI-compatible Chat Completions and Responses APIs, and through the Amazon Bedrock Converse and Invoke APIs. We recommend the Chat Completions API. You reach the model through cross-Region inference profiles:\n\nIf your application already uses the OpenAI SDK, point it at the Amazon Bedrock endpoint and change the model name. The following example creates a short-term bearer token from your AWS credentials and sends one request:\n\nKimi K3.1 Pro Highspeed always reasons before it answers. With reasoning_effort, you control how much: low, high, or max. If you don’t set it, the model uses max, so a lower value is the most direct way to reduce latency and output tokens on simpler tasks.\n\nThe same client works with the Responses API, which uses reasoning.effort for the same setting:\n\nIf you already use the Amazon Bedrock Converse API, the change is the model ID:\n\nThe Flex tier serves Kimi K3.1 Pro Highspeed at half the Standard price, in exchange for potentially longer response times. It’s well suited to workloads where cost efficiency is a higher priority than response time, such as model evaluations, content summarization, and background tasks in agentic workflows. Because you choose the tier for each request, one application can mix tiers. For example, the same application could use Priority for latency-critical requests, Standard for everyday traffic, and Flex for cost-sensitive work. Your on-demand quota is shared across the Standard, Priority, and Flex tiers.\n\nTo use Flex, set service_tier to flex. The following example reuses the Chat Completions client from earlier:\n\nOn the Converse API, set serviceTier to {\"type\": \"flex\"} instead. To see how much of your traffic each tier served, use the ServiceTier and ResolvedServiceTier dimensions in Amazon CloudWatch. We recommend starting with a small share of your traffic on Flex and comparing latency and cost before you move more.\n\nAgents and coding assistants resend the same large prefix on every turn: system instructions, tool definitions, repository conventions, and reference documents. Kimi K3.1 Pro Highspeed caches repeated prefixes automatically, and with explicit prompt caching, you can mark where the stable prefix ends to improve your cache hit rate. Later requests reuse that prefix instead of processing it again, which lowers both latency and input cost for long, repeated context.\n\nThe following example caches a long system prompt and adds a second breakpoint after the user content, so a follow-up question on the same document can reuse both layers:\n\nFor more information, refer to Prompt caching for faster model inference.\n\nOpenCode is an open source, model-agnostic coding agent that runs in your terminal. You can connect it to Kimi K3.1 Pro Highspeed through the Amazon Bedrock Chat Completions API, using OpenCode’s OpenAI-compatible provider and an Amazon Bedrock API key. To create a key, open the Amazon Bedrock console in the AWS Region that you set in baseURL, then choose API keys. Short-term keys last up to 12 hours, work only in the Region where you generate them, and are recommended for production use. Long-term keys are intended for exploration.\n\nAdd the following to ~/.config/opencode/opencode.json, replacing the Region in baseURL with your own:\n\nStart OpenCode in your project directory, enter /connect, choose Amazon Bedrock (Chat Completions), and paste your API key as shown in Figure 1. OpenCode stores the key, so you connect once per key. To switch between Kimi K3.1 Pro Highspeed and other models during a session, enter /models.\n\nFigure 1: Connecting OpenCode to the Amazon Bedrock (Chat Completions) provider\n\nThe capabilities entry in the configuration lists the reasoning effort levels that the model supports, so OpenCode offers low, high, and max as variants of the model, as shown in Figure 2:\n\nFigure 2: Reasoning effort variants for Kimi K3.1 Pro Highspeed in OpenCode\n\nOutput speed matters most in agentic coding. To complete a single task, a coding agent makes many model calls in a row. It reads files, plans a change, edits code, runs tests, and fixes what fails. Each call has to finish before the next one starts, and much of that time is spent generating reasoning and code. A higher output-token rate shortens every step, so the whole edit-test-fix loop finishes sooner and you wait less between iterations.\n\nKimi K3.1 Pro Highspeed is available on Amazon Bedrock through the global.moonshotai.kimi-k3.1, us.moonshotai.kimi-k3.1, and in.moonshotai.kimi-k3.1 cross-Region inference profiles. For supported Regions and model details, refer to the Kimi K3.1 Pro Highspeed model card and Regional availability. For pricing, refer to Amazon Bedrock pricing.\n\nTo get started, try Kimi K3.1 Pro Highspeed on the Amazon Bedrock console. To discuss your use case with the Amazon Bedrock team, connect with us.",
+  "begyujtve": "2026-11-11T13:20:39.142296+00:00",
+  "prioritas": {
+    "pont": 74,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 95,
+      "hitelesseg": 78,
+      "aktualitas": 81,
+      "kozossegi": 73
+    },
+    "elofeszures": 85,
+    "tanult": 69,
+    "indok": "A Moonshot AI új Kimi K3.1 Pro modellje elérhetővé vált az AWS Bedrockon, ami fontos iparági lépés. Forrás-tapasztalat: -6.",
+    "tema": "kimi k3 pro amazon bedrock",
+    "cim_hu": "Már elérhető a Moonshot AI Kimi K3.1 Pro modellje az Amazon Bedrockon",
+    "lead_hu": "Elérhetővé vált az Amazon Bedrock felhőszolgáltatásban a Moonshot AI új Kimi K3.1 Pro modellje, amely egymilliós kontextusablakkal és jobb feladatmegoldási képességekkel érkezik.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-11T13:20:45+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-11T13:20:46+00:00"
+}
