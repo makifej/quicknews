@@ -46,13 +46,22 @@ jobs:
         if: steps.ido.outputs.fut == 'igen'
         with:
           fetch-depth: 1
+      - name: git-crypt gyorsítótár
+        if: steps.ido.outputs.fut == 'igen'
+        uses: actions/cache@v4
+        with:
+          path: ~/.gitcrypt-bin
+          key: gitcrypt-bin-${{ runner.os }}-v1
       - name: Titkosított fájlok feloldása (git-crypt)
         if: steps.ido.outputs.fut == 'igen'
         env:
           GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
         run: |
-          # 2026-11-11: a runner DNS-hibája (security.ubuntu.com) 3 kört döntött le; újrapróba frissített csomaglistával
-          for i in 1 2 3 4; do sudo apt-get install -y -qq git-crypt >/dev/null && break; [ $i = 4 ] && exit 1; sleep 15; sudo apt-get update -qq >/dev/null || true; done
+          # 2026-11-11: a runner DNS-hibája (security.ubuntu.com) egymás után 5 kört döntött le
+          # a git-crypt a gyorsítótárból jön; apt csak akkor kell, ha a gyorsítótár üres (az apt-tükör DNS-hibája ne döntse le a kört)
+          if [ -x ~/.gitcrypt-bin/git-crypt ]; then sudo install -m 755 ~/.gitcrypt-bin/git-crypt /usr/local/bin/git-crypt; else
+            for i in 1 2 3 4; do sudo apt-get install -y -qq git-crypt >/dev/null && break; [ $i = 4 ] && exit 1; sleep 15; sudo apt-get update -qq >/dev/null || true; done
+            mkdir -p ~/.gitcrypt-bin && cp "$(command -v git-crypt)" ~/.gitcrypt-bin/; fi
           echo "$GIT_CRYPT_KEY" | base64 -d > /tmp/gc.key
           git-crypt unlock /tmp/gc.key
           rm -f /tmp/gc.key
@@ -234,12 +243,20 @@ jobs:
         with:
           ref: main
           fetch-depth: 1
+      - name: git-crypt gyorsítótár
+        uses: actions/cache@v4
+        with:
+          path: ~/.gitcrypt-bin
+          key: gitcrypt-bin-${{ runner.os }}-v1
       - name: Titkosított fájlok feloldása (git-crypt)
         env:
           GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
         run: |
-          # 2026-11-11: a runner DNS-hibája (security.ubuntu.com) 3 kört döntött le; újrapróba frissített csomaglistával
-          for i in 1 2 3 4; do sudo apt-get install -y -qq git-crypt >/dev/null && break; [ $i = 4 ] && exit 1; sleep 15; sudo apt-get update -qq >/dev/null || true; done
+          # 2026-11-11: a runner DNS-hibája (security.ubuntu.com) egymás után 5 kört döntött le
+          # a git-crypt a gyorsítótárból jön; apt csak akkor kell, ha a gyorsítótár üres (az apt-tükör DNS-hibája ne döntse le a kört)
+          if [ -x ~/.gitcrypt-bin/git-crypt ]; then sudo install -m 755 ~/.gitcrypt-bin/git-crypt /usr/local/bin/git-crypt; else
+            for i in 1 2 3 4; do sudo apt-get install -y -qq git-crypt >/dev/null && break; [ $i = 4 ] && exit 1; sleep 15; sudo apt-get update -qq >/dev/null || true; done
+            mkdir -p ~/.gitcrypt-bin && cp "$(command -v git-crypt)" ~/.gitcrypt-bin/; fi
           echo "$GIT_CRYPT_KEY" | base64 -d > /tmp/gc.key
           git-crypt unlock /tmp/gc.key
           rm -f /tmp/gc.key
