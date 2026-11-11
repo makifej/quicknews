@@ -51,7 +51,8 @@ jobs:
         env:
           GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
         run: |
-          sudo apt-get install -y -qq git-crypt >/dev/null
+          # 2026-11-11: a runner DNS-hibája (security.ubuntu.com) 3 kört döntött le; újrapróba frissített csomaglistával
+          for i in 1 2 3 4; do sudo apt-get install -y -qq git-crypt >/dev/null && break; [ $i = 4 ] && exit 1; sleep 15; sudo apt-get update -qq >/dev/null || true; done
           echo "$GIT_CRYPT_KEY" | base64 -d > /tmp/gc.key
           git-crypt unlock /tmp/gc.key
           rm -f /tmp/gc.key
@@ -237,7 +238,8 @@ jobs:
         env:
           GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
         run: |
-          sudo apt-get install -y -qq git-crypt >/dev/null
+          # 2026-11-11: a runner DNS-hibája (security.ubuntu.com) 3 kört döntött le; újrapróba frissített csomaglistával
+          for i in 1 2 3 4; do sudo apt-get install -y -qq git-crypt >/dev/null && break; [ $i = 4 ] && exit 1; sleep 15; sudo apt-get update -qq >/dev/null || true; done
           echo "$GIT_CRYPT_KEY" | base64 -d > /tmp/gc.key
           git-crypt unlock /tmp/gc.key
           rm -f /tmp/gc.key
