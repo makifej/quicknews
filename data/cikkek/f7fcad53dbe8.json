@@ -1,0 +1,49 @@
+{
+  "id": "f7fcad53dbe8",
+  "slug": "review-evaluates-open-and-closed-artificial-intelligence-across",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/review-evaluates-open-and-closed-artificial-intelligence-across-pharmaceutical-drug-development/",
+  "publikalva": "2026-11-11T08:05:33+00:00",
+  "cim": "Review Evaluates Open and Closed Artificial Intelligence Across Pharmaceutical Drug Development",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 50 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-5270.png"
+  },
+  "cim_eredeti": "Review Evaluates Open and Closed Artificial Intelligence Across Pharmaceutical Drug Development",
+  "szoveg_eredeti": "Review Evaluates Open and Closed Artificial Intelligence Across Pharmaceutical Drug Development\n\nA comprehensive narrative review authored by Neal M. Davies and Raimar Loebenberg of the University of Alberta evaluates the operational landscape of artificial intelligence across pharmaceutical science, detailing where freely available open-source architectures match proprietary corporate platforms and where commercial suites retain clear structural advantages. Published in the Journal of Pharmacy and Pharmaceutical Sciences, the analysis revisits an editorial framework introduced three years earlier that compared technological adaptation in drug development to evolutionary natural selection. The authors track the transformation of computational methods across the five standard stages of medicine development, encompassing early discovery, preclinical testing, clinical trials, regulatory review, and post-market safety surveillance. Rather than presenting openness as a rigid binary division, the authors conceptualize software access as a spectrum ranging from fully permissive open-source tools to downloadable open-weight weights, free web servers, and closed commercial ecosystems delivered on subscription schedules.\n\nThe central conclusion of the evaluation indicates that capable, freely accessible, or open-source software tools now exist for nearly every routine bench research, educational, and laboratory application encountered by pharmaceutical scientists. The authors note that standard computational operations—such as chemical structure depiction, Simplified Molecular Input Line Entry System format parsing, reference retrieval, calibration curve fitting, non-compartmental pharmacokinetic analysis, and basic physiological modelling—no longer require expensive proprietary licenses. However, the review emphasizes that free web services must not be conflated with private or secure local deployments, because online servers typically require the submission of molecular structures or biological sequences to remote third-party systems. In contrast, comprehensive end-to-end drug discovery campaigns and formally audited workflows destined for binding regulatory filings remain largely dominated by established proprietary suites that provide validated software lineages, contractual vendor indemnification, and structured technical support.\n\nWithin the initial discovery and early development phase, computational workflows diverge sharply between community-driven repositories and vendor-managed suites across four core tasks: target identification, de novo generative design, virtual molecular docking, and early property prediction. Protein structure prediction represents a prominent milestone, recognized by the 2024 Nobel Prize in Chemistry awarded to Demis Hassabis, John Jumper, and David Baker. While proprietary engines such as Isomorphic Labs IsoDDE pursue commercial drug design, academic laboratories can deploy open-weight or independent open-source models including OpenFold, Chai-1, and Protenix to predict complex biomolecular structures. Newer MIT-licensed open-weight frameworks such as Boltz-2 attempt to predict both macromolecular structure and small-molecule binding affinity, with its developers reporting performance approaching physics-based free-energy perturbation calculations at roughly one thousandth of the computational expense, though the authors emphasize this developer claim originates in an unreviewed preprint requiring independent replication.\n\nGenerative chemistry and molecular screening similarly show an expanding open ecosystem operating alongside commercial platforms. Early proofs of concept demonstrated generative models designing potent DDR1 kinase inhibitors within twenty-one days, while open architectures such as REINVENT and transformer-based systems like MolGPT permit academic institutions to execute de novo design pipelines without licensing expenditures. Open cheminformatics toolkits such as RDKit and DeepChem provide programmatic foundations for descriptor generation and format manipulation, supported by chemical databases including PubChem, ChEMBL, and DrugBank. In molecular docking, classical engines like AutoDock Vina, automated servers such as CB-Dock2, and diffusion-based models like DiffDock reframe spatial pose prediction. However, the authors cite independent benchmarking using the PoseBusters evaluation suite showing that deep learning docking engines did not outperform classical physics-based software like AutoDock Vina or CCDC GOLD in terms of physical plausibility or geometric generalization to unseen complexes.\n\nThe review details how computational methods are expanding from virtual screening directly into automated wet-laboratory chemical synthesis and pre-formulation design. In 2026, researchers from OpenAI and Molecule.one described an autonomous frontier language model, designated GPT-5.4, coupled to high-throughput robotic instrumentation to optimize the challenging Chan-Lam coupling reaction for primary sulfonamides. Across two microscale screening campaigns involving 10,080 distinct reactions, the model identified TEMPO as a mild additive, raising the mean liquid chromatography estimated product yield from 16.6 percent to 25.2 percent and increasing the proportion of reactions exceeding thirty percent yield from 15.6 percent to 37.5 percent, with benefits confirmed across eleven of fourteen bench-scale substrate pairs. In formulation and absorption modelling, web tools such as FormulationAI, FormulationDE, and FormulationBCS forecast excipient compatibility and Biopharmaceutics Classification System designations, while integrated artificial intelligence physiologically based pharmacokinetic platforms predict human disposition profiles across hundreds of intravenous and oral datasets.\n\nIn preclinical and clinical development, the authors note that artificial intelligence primarily supplements rather than displaces empirical wet-laboratory assays, animal pharmacokinetic experiments, and clinical trial cohorts. While standard commercial simulation suites such as Simcyp, GastroPlus, and Phoenix WinNonlin remain routine industry standards, the open-source Open Systems Pharmacology suite comprising PK-Sim and MoBi provides mechanistic physiologically based pharmacokinetic modelling capable of cross-species extrapolation and first-in-human dose estimation. In a published simvastatin case study cited in the review, PK-Sim demonstrated predictive accuracy comparable to Simcyp, supported by an automated qualification framework demonstrating a geometric mean fold error of 1.4 for CYP3A4-mediated metabolic interactions. In clinical trials, population pharmacokinetic-pharmacodynamic modelling tools such as open-source R packages, nlme, and Stan compete with established closed software like NONMEM and Monolix, while machine-learning digital twins developed on historical patient data forecast control arm trajectories to improve statistical power under prognostic covariate adjustments qualified by the European Medicines Agency.\n\nClinical milestones during the review period illustrate the practical realities and commercial hurdles facing computationally generated medicines entering human trials. Conversely, Exscientia discontinued DSP-1181 after Phase I investigations, underscoring that computational acceleration during lead discovery does not ensure in vivo biological safety or clinical efficacy.\n\nThe governance and regulatory oversight of algorithm-informed drug submissions has accelerated internationally, driven by guidelines from major health authorities. In early 2025, the United States Food and Drug Administration issued draft guidance proposing a seven-step risk-based credibility framework anchored directly to a model’s specific context of use, drawing upon experience gained from evaluating more than five hundred pharmaceutical and biologic applications containing computational components since 2016. In parallel, the Europ",
+  "begyujtve": "2026-11-11T08:19:15.613866+00:00",
+  "prioritas": {
+    "pont": 50,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 60,
+      "egyediseg": 35,
+      "hitelesseg": 75,
+      "aktualitas": 98,
+      "kozossegi": 37
+    },
+    "elofeszures": 78,
+    "tanult": 24,
+    "indok": "Tudományos elemzés az nyílt és zárt AI modellek szerepéről a gyógyszerfejlesztésben. Hasonló hír már van: c2f3129b38b6. Forrás-tapasztalat: -6.",
+    "tema": "ai pharmaceutical development study",
+    "cim_hu": "A nyílt és zárt mesterséges intelligencia szerepét vizsgálták a gyógyszerfejlesztésben",
+    "lead_hu": "Az University of Alberta kutatói átfogó elemzésben hasonlították össze a nyílt forráskódú és a zárt kereskedelmi AI platformok hatékonyságát a gyógyszeriparban.",
+    "klaszter": "c2f3129b38b6",
+    "ai": true,
+    "ido": "2026-11-11T08:19:33+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-11T08:19:39+00:00"
+}

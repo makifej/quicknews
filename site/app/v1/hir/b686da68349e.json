@@ -1,7 +1,7 @@
 {
   "id": "b686da68349e",
   "cim": "Súlyos adatvédelmi hiányosságot találtak a Grok Build fejlesztőeszközben",
-  "lead": "Több mint 35 000 alkalmazás belső adatai és bizalmas vállalati információi váltak nyilvánosan kereshetővé a megosztható hivatkozások hibája miatt.",
+  "lead": "Több mint 35 000 alkalmazás belső adatai és bizalmas vállalati információi váltak nyilvánosan kereshetővé a megosztható hivatkozások hibájából.",
   "slug": "sulyos-adatvedelmi-hianyossagot-talaltak-a-grok-build",
   "forras": "Ars Technica",
   "kat": "eszköz",
@@ -16,7 +16,7 @@
   "forraskep": false,
   "url": "https://quicknews.hu/hir/sulyos-adatvedelmi-hianyossagot-talaltak-a-grok-build",
   "jova": true,
-  "osszefoglalo": "A Claroc biztonsági cég kutatása szerint a Grok Build megosztható hivatkozásai súlyos biztonsági kockázatot jelentenek. Az eszköz a generált alkalmazások URL-jének elejére helyezi a véletlenszerű kifejezéseket a domain útvonala helyett. Ez a tervezési hiba lehetővé teszi, hogy a **passzív DNS-szolgáltatásokon keresztül bárki kilistázza** a nyilvános projekteket.\n\nA kiszivárgott adatok között belső üzleti tervek, hirdetési javaslatok, orvosi vizsgálati eredmények és munkavállalói adatok is találhatók. A vizsgálat során kiderült, hogy a platformot üzemeltető cég saját, **belső használatra szánt alkalmazásai** is hozzáférhetővé váltak az interneten keresztül.\n\nA tesztek alapján a rendszer alapértelmezetten mindenkinek hozzáférést ad a hivatkozással rendelkező alkalmazásokhoz. Hasonló domainkezelési megoldást használnak más AI-fejlesztők is, például a Lovable, a Bolt és a Replit, míg a Claude, a ChatGPT és a Gemini védett útvonalszerkezetet alkalmaz.",
+  "osszefoglalo": "A Claroc biztonsági cég kutatása szerint a Grok Build megosztható hivatkozásai súlyos biztonsági kockázatot jelentenek. Az eszköz a generált alkalmazások URL-jének elejére helyezi a véletlenszerű kifejezéseket a domain útvonala helyett. Így a **passzív DNS-szolgáltatásokon keresztül bárki kilistázhatja** a nyilvános projekteket.\n\nA kiszivárgott adatok között belső üzleti tervek, hirdetési javaslatok, orvosi vizsgálati eredmények és munkavállalói adatok is találhatók. A vizsgálat során kiderült, hogy a platformot üzemeltető cég saját, **belső használatra szánt alkalmazásai** is hozzáférhetővé váltak az interneten keresztül.\n\nA tesztek alapján a rendszer alapértelmezetten mindenkinek hozzáférést ad a hivatkozással rendelkező alkalmazásokhoz. Hasonló domainkezelési megoldást használnak más AI-fejlesztők is, például a Lovable, a Bolt és a Replit, míg a Claude, a ChatGPT és a Gemini védett útvonalszerkezetet alkalmaz.",
   "miert_szamit": "Ha AI-kóddal építesz alkalmazást, **mindig ellenőrizd a megosztási beállításokat**, mert az alapértelmezett hivatkozások révén a bizalmas vállalati adatok bekerülhetnek a nyilvánosan kereshető adatbázisokba.",
   "publikalva": "2026-11-11T06:05:13+00:00",
   "forras_url": "https://arstechnica.com/security/2026/11/grok-build-coding-agent-leaks-oodles-of-confidential-info-some-belonging-to-spacexsi/",
