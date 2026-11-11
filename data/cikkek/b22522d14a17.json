@@ -1,0 +1,76 @@
+{
+  "id": "b22522d14a17",
+  "slug": "eszkozok-hasznalatara-optimalizalt-mini-ai-modellt-adott-ki-a-tether",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/qvac/botpsy",
+  "szerzo": null,
+  "publikalva": "2026-11-11T05:01:16+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/6468b319b2321e47d3267049/Emr86qw6NAueYLdIEiTTD.png"
+  },
+  "cim_eredeti": "BotPsy: On-Device Personal Assistant with a Sub-Billion-Parameter Agentic Language Model",
+  "forrasok": [],
+  "szoveg_eredeti": "Frontier cloud LLMs carry high operational costs that can fluctuate unexpectedly, and relying on such third-party models introduces vulnerabilities, as providers can modify, deny, or deprecate access at any time. Furthermore, proprietary models offer limited customization for specific workflows, while posing risks to privacy, data control, and transparency. Besides, not every task demands frontier-level intelligence: small, specialized agents can be equally capable on specific tasks and significantly cheaper to run, since many routine or smaller workloads can be processed efficiently on-device. As intelligence per parameter continues to improve rapidly, we aim to stand at the forefront of this shift toward performant, privacy-focused, self-hosted models.\n\nTether AI Research introduces BotPsy, a 0.8B-parameter model introduce BotPsy, a 0.8B-parameter model designed for function calling and agentic workflows, built on top of Qwen3.5-0.8B and suitable for on-device deployment. BotPsy is a \"personal assistant\" that uses tools to perform a variety of simple tasks for the user, in domains such as web search & research, travel & lifestyle, commerce & finance, business & customer operations, device & vehicle control, files & documents, calendar, and email & messaging. Due to its small parameter count, it is best suited to tasks of low to medium difficulty. BotPsy achieves state-of-the-art (SOTA) tool-use and agentic performance for its size, outperforming every model of up to 1.2B parameters that we tested (Figures 1 and 2). Designed for secure on-device workflows, it provides exceptional instruction-following reliability and efficiency while keeping user data private. As a small model, BotPsy still makes mistakes and is not intended for high-stakes use; please read the Intended Use and Limitations for more information.\n\n🤗 Model (safetensors) | 📦 GGUFs (bf16, Q8, Q4)\n\nWe will take appropriate actions in response to notice of copyright infringement. If you believe your work has been used or copied in a manner that infringes upon your intellectual property rights, please email data-apps@tether.io identifying and describing both the copyrighted work and alleged infringing content to file a notice of infringement.\n\nBuilding upon the foundation of BotPsy, future development by Tether Data, S.A. de C.V. (“Tether AI Research”, “we”, “our”) will focus on expanding on-device agentic capabilities to seamlessly integrate with an even broader array of hardware and local services. Tether's Hypersearch will evolve to support more robust decentralized peer-to-peer (P2P) queries, further ensuring private, encrypted web searches that bypass corporate trackers. QVAC Fabric local fine-tuning mechanisms will be optimized to adapt more deeply to individual user preferences, workflows, and specialized tool environments. Future iterations will allow the smartphone interface to smoothly delegate heavy computational tasks to home PCs or trusted secure P2P nodes during offline-online transitions. Privacy protocols will be continuously strengthened to guarantee that all personal data, credentials, and decisions remain strictly on local hardware. Collaborative features will be introduced to allow secure agent-to-agent communication across trusted local networks without compromising user confidentiality. Ultimately, these advancements will solidify BotPsy as a fully autonomous, highly capable personal AI ecosystem that keeps users entirely in control of their digital lives.\n\nBotPsy is based on Qwen3.5-0.8B and is post-trained in four sequential stages: Supervised Fine-Tuning (SFT), Multi-teacher On-Policy Distillation (MOPD), and two rounds of Reinforcement Learning (RL). Each stage uses the previous stage's best checkpoint as its starting point and benefits from a different learning signal: imitation of reference trajectories, the token distributions of much larger teacher models, and rule-based tool-calling rewards (see Figure 3).\n\nOur approach uses four stages of training, which learn from three types of signal: demonstrations, specialist teachers, and verifiable rewards.\n\nWe first perform full-parameter supervised fine-tuning on tool-use conversations. These include multi-turn agent trajectories from simulated environments, replayed single, parallel and multi-step calls, and cases where no tool should be called.\n\nNext, the student is trained with on-policy distillation (OPD): it generates its own responses, and a specialist teacher provides feedback on every token, using the per-token reverse KL divergence as the training signal. To build the teachers, we first RL-trained three Qwen3.5-4B models to specialize in tool use, general reasoning, and instruction following. During training, every prompt is routed to one of these teachers. This stage mainly aims to recover knowledge and instruction following, which degraded during the SFT stage, although the tool-use metrics also increase (see Figure 4).\n\nLearning from rules and environments (RL stages)\n\nFinally, the model is trained with reinforcement learning using DAPO [1], learning only from rewards computed by rules and verifiers. The first round focuses on tool calling, accompanied by instruction following and STEM multiple-choice questions. As in Tool-N1 [2], the tool-calling reward first checks the reasoning and tool-call format. Instead of Tool-N1's binary correctness reward, however, it gives fine-grained partial credit in the spirit of ToolRL [3], matching the predicted tool names, argument names, and argument values against the ground truth.\n\nThe second round widens the training mix to general-domain verifiable tasks: math, code, knowledge (multiple-choice) questions, instruction following, structured outputs, and multi-step tool use in a simulated workplace environment. Although this mix contains no multi-turn conversations, it further improves multi-turn function calling.\n\nEach stage of training uses a different data mixture (Figure 5). The SFT stage focuses mainly on tool use and prepares the ground for the subsequent stages. The MOPD mixture combines tool-use, knowledge and instruction-following data, both to further improve function calling and to recover the general-domain regressions from the SFT stage. The first RL stage again focuses mainly on tool use, while the second RL stage shifts the balance toward general-domain data (instruction following, knowledge, math and code), keeping a smaller share of tool use.\n\nBotPsy roughly doubles the tool-use performance of its Qwen3.5-0.8B base and is the strongest of the five models on five of the six agentic benchmarks: BFCL v4 (44.0 vs 23.4), ACEBench (58.7 vs 30.1), τ-bench (51.5 vs 23.2), BrowseComp-Plus (4.5 vs 1.9) and ToolSandbox (64.6 vs 30.5). On all five, it is also ahead of Qwen3.5-2B-Think, a model 2.5× its size (37.7, 55.4, 46.5, 2.8 and 41.2 respectively; see Table 1). On Claw-Eval, Qwen3.5-2B-Think leads (48.9 vs 46.5).\n\nTable 1: Tool-use and agentic benchmarks (0–100, higher is better). Best score per row in bold, second best underlined; multipliers give parameter count relative to BotPsy-0.8B. The average is the unweighted mean of the six benchmarks. See Evaluation Footnotes for details of the evaluation setup.\n\nTool-use training did not cost general knowledge: GPQA Diamond rises from 33.2 to 38.1 and MMLU-Pro from 41.6 to 48.9, the best of the models at 1.2B parameters or below (LFM2.5-1.2B-Think: 35.0 and 39.4; MiniCPM5-1B-Think: 15.8 and 40.0). Knowledge still scales mainly with parameter count, and Qwen3.5-2B-Think scores well above (59.9 and 65.5). BotPsy is therefore designed to call tools for facts it does not know, not to serve as a knowledge model.\n\nTable 2: General-knowledge benchmarks (0–100, higher is better). Best score per row in bold, second best underlined. See Evaluation Footnotes for details of the evaluation setup.\n\nBotPsy is the best of the five at following explicit instructions: IFEval 90.8 (base 59.7; Qwen3.5-2B-Think 80.0) and IFBench 55.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Eszközök használatára optimalizált mini AI-modellt adott ki a Tether",
+  "lead": "A Tether AI Research bemutatta a BotPsy modellt, amely mindössze 800 millió paraméterrel fut helyben az eszközökön, és komplex feladatokat hajt végre.",
+  "osszefoglalo": "A Tether AI Research kiadta a [BotPsy](https://huggingface.co/qvac/BotPsy-0.8B) nevű, 0,8 milliárd paraméteres nyílt AI-modellt, amelyet kifejezetten eszközökön történő, helyi futtatásra és ügynöki feladatokra terveztek. A Qwen3.5-0.8B alapkódra épülő rendszer képes böngészésre, naptárkezelésre, e-mailezésre és fájlok kezelésére anélkül, hogy az adatok elhagynák a felhasználó készülékét.\n\nA fejlesztők egy négylépcsős tanítási eljárást alkalmaztak, amely felügyelt finomhangolásból, több tanáros lepárlásból és két megerősítéses tanulási szakaszból állt. Ennek köszönhetően a modell kategóriájában **kiemelkedő funkcióhívási teljesítményt** ér el, és feladatkövetésben felülmúlja a nála jóval nagyobb, 2,5-szeres méretű modelleket is.\n\nA modell ingyenesen letölthető a Hugging Face felületéről **GGUF és safetensors** formátumokban. A fejlesztés célja, hogy a mindennapi, kisebb kihívást jelentő rutinfeladatokat olcsón és teljesen privát módon lehessen automatizálni okostelefonokon vagy számítógépeken.",
+  "miert_szamit": "A helyben futó, apró modellekkel a vállalkozások **felhős költségek és adatvédelmi kockázatok nélkül** automatizálhatják a mindennapi irodai munkafolyamatokat.",
+  "cimkek": [
+    "Tether",
+    "BotPsy",
+    "Qwen",
+    "nyílt forráskód"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "BotPsy"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 72,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 70,
+      "hirertek": 75,
+      "egyediseg": 90,
+      "hitelesseg": 88,
+      "aktualitas": 95,
+      "kozossegi": 69
+    },
+    "elofeszures": 100,
+    "tanult": 76,
+    "indok": "Eszközön futó, egymilliárd paraméter alatti ágens modell kutatása. Forrás-tapasztalat: -5.",
+    "tema": "botpsy on-device agent",
+    "cim_hu": "BotPsy: egymilliárd paraméter alatti MI-ágens futhat közvetlenül az eszközökön",
+    "lead_hu": "A kutatók bemutatták a BotPsy modellt, amely felhős infrastruktúra nélkül, helyben futtatva kínál szpecializált ágensfunkciókat és adatvédelmet.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-11T07:05:46+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-11T07:07:41+00:00",
+  "megjelent": "2026-11-11T07:07:41+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-11T07:08:11+00:00",
+    "esemeny": "A Tether AI Research kiadta a BotPsy nevű, 0,8 milliárd paraméteres nyílt AI-modellt, amelyet a Qwen3.5-0.8B alapkódra építettek a helyi eszközökön történő ügynöki és funkcióhívási feladatok ellátására.",
+    "forrasok": [
+      "https://huggingface.co/blog/qvac/botpsy"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-11T07:09:21+00:00",
+  "linkek_ellenorizve": true
+}

@@ -1,0 +1,49 @@
+{
+  "id": "53783c8f38e7",
+  "slug": "artificial-intelligence-review-shows-high-diagnostic-accuracy-across",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/artificial-intelligence-review-shows-high-diagnostic-accuracy-across-bladder-cancer-modalities/",
+  "publikalva": "2026-11-11T03:05:13+00:00",
+  "cim": "Artificial Intelligence Review Shows High Diagnostic Accuracy Across Bladder Cancer Modalities",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 61 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-4676.png"
+  },
+  "cim_eredeti": "Artificial Intelligence Review Shows High Diagnostic Accuracy Across Bladder Cancer Modalities",
+  "szoveg_eredeti": "Artificial Intelligence Review Shows High Diagnostic Accuracy Across Bladder Cancer Modalities\n\nA comprehensive narrative review evaluating the clinical performance of artificial intelligence across the bladder cancer diagnostic continuum has demonstrated that deep learning systems routinely achieve sensitivity and specificity levels exceeding ninety percent, substantially outperforming traditional manual screening methods in key diagnostic applications. Synthesizing international research published between January 2015 and April 2026, the investigation published in the African Journal of Urology establishes that computational tools applied to cystoscopic video, digital urine cytology, cross-sectional radiological imaging, and whole-slide histopathology address entrenched diagnostic vulnerabilities. Worldwide, bladder cancer represents the ninth most commonly diagnosed malignancy, registering 614,298 incident cases in 2022 alone according to International Agency for Research on Cancer estimates, an increase of 7.1 percent over two years. Because more than ninety percent of cases present as urothelial carcinoma categorized into non-muscle-invasive bladder cancer or muscle-invasive bladder cancer, accurate differentiation directly dictates whether patients receive bladder-preserving transurethral resection with intravesical therapy or aggressive multimodal management combining radical cystectomy and neoadjuvant chemotherapy.\n\nConventional diagnostic workflows rely primarily on white-light cystoscopy, voided urine cytology, cross-sectional computed tomography or magnetic resonance imaging, and histopathological assessment of resected tissue, yet each step remains burdened by significant human and technical constraints. Standard white-light endoscopic visual inspection is profoundly operator-dependent, exhibiting detection sensitivity falling as low as sixty to seventy percent for subtle flat lesions such as carcinoma in situ, an aggressive precursor accounting for five to ten percent of urothelial malignancies. Concurrently, manual microscopic evaluation of voided urine cytology achieves high specificity but displays disappointing detection sensitivity for low-grade tumors, missing lesions between fifty-seven and seventy-four percent of the time in prospective series. Cross-sectional imaging interpretation also suffers from subjective interobserver discordance during T-stage classification, while formal histopathologic grading of transurethral resection specimens exhibits interobserver discordance rates of fifteen to twenty percent among pathologists, creating an urgent clinical imperative for reproducible, objective diagnostic support systems.\n\nIn cystoscopic tumor detection, artificial intelligence platforms processing static endoscopic images and live video streams have demonstrated exceptional diagnostic gains across multi-institutional validation datasets. The Cystoscopy AI Diagnostic System, developed and validated across six hospitals in China using 69,204 cystoscopic images from 10,729 patients, utilized a ResNet-101 architecture combined with a pyramid scene parsing network to achieve external diagnostic accuracies between 97.7 percent and 99.0 percent. Notably, this automated platform surpassed expert urologists in identifying difficult flat carcinoma in situ lesions. Complementary investigations, such as transfer learning experiments by Ikeda and colleagues involving 2,102 images, demonstrated that pretraining neural networks on general ImageNet imagery followed by gastroscopic pictures before fine-tuning on cystoscopy images boosted final sensitivity to 95.4 percent and specificity to 97.6 percent. Similarly, the CystoNet framework achieved ninety-one percent sensitivity and ninety-nine percent specificity for papillary tumors, while modern vision transformer designs like CystoNet-T reached an average precision of 91.4.\n\nBeyond static photograph categorization, deep learning architectures are providing intraoperative semantic segmentation that delivers real-time lesion guidance during operative procedures. Ye and colleagues prospectively analyzed 102 white-light cystoscopy video recordings collected from ninety-four patients to assess the HRNetV2 deep learning model for intraoperative lesion identification during transurethral resection of bladder tumor procedures. The semantic segmentation model recorded a per-frame sensitivity of 94.8 percent and precision of 94.4 percent on high-resolution video streams, maintaining a mean Dice similarity coefficient above eighty percent across variable imaging conditions. Automated color masks highlight candidate mucosal lesions in the live endoscopic video feed, guiding the operating urologist toward complete tumor resection and reducing the likelihood of residual or overlooked cancerous tissue. In a related domain of surgical assessment, investigators validated an automated performance system evaluating robotic pelvic lymph node dissection console feeds, achieving 83.3 percent accuracy in predicting surgical skill scores.\n\nUrine cytology has emerged as another diagnostic sector transformed by automated morphological analysis, where digital whole-slide scanners pair with deep learning models to identify cytological atypia. In the prospective multicenter VISIOCYT1 clinical trial enrolling 319 patients, the VisioCyt software platform achieved an overall detection sensitivity of 84.9 percent on voided urine samples, compared to just 43.0 percent achieved through conventional manual cytology reviewed by experienced pathologists. For difficult low-grade urothelial tumors, VisioCyt achieved seventy-seven percent sensitivity compared with 26.3 percent for manual evaluation, while high-grade tumor sensitivity reached 92.6 percent versus 61.1 percent. In post-treatment surveillance cohorts, the software demonstrated a 96.4 percent negative predictive value, indicating that safely deferring routine cystoscopies in negative patients could eliminate 57.5 percent of surveillance endoscopic examinations. Further progress in liquid analysis includes the Precision Urine Cytology AI Solution, which demonstrated 89.6 percent sensitivity in prospective cohorts, and emerging volatile organic compound gas chromatography platforms.\n\nIn radiomics and cross-sectional radiological analysis, automated extraction of shape, density, and textural parameters from computed tomography and magnetic resonance imaging has unlocked refined predictive capabilities for staging and tumor differentiation. Deep learning convolutional neural networks analyzing 1,200 cross-sectional computed tomography images from 369 surgical patients achieved an area under the receiver operating characteristic curve of 0.997 for distinguishing muscle-invasive bladder cancer from non-muscle-invasive disease, registering 88.9 percent sensitivity and 98.9 percent specificity. In magnetic resonance imaging investigations, quantitative radiomic models achieved areas under the curve above 0.95 for histological grading prediction, while multiparametric protocols predicted lymph node metastasis with test areas under the curve reaching 0.845. Furthermore, non-invasive multimodal fusion deep learning networks combining multiple magnetic resonance sequences with clinical tabular parameters produced a concordance index of 0.902 for five-year overall survival in 305 muscle-invasive bladder cancer patients, improving prognostic precision by 18.3 percent over conventional clinical factors alone.\n\nCrucially, the timing of diagnostic imaging following transurethral surgery exerts a massive influence on the mathematical performance of cross-sectional radiomic models. A 2025 retrospective study conducted by Lisson and colleagues in Frontiers in Oncology evaluated ninety-seven bladder cancer patients undergoing contrast-enhanced computed tomography prior to radical cystectomy to differentiate stage T2 from stage T3 muscle invasion. When scans were performed indiscriminately acr",
+  "begyujtve": "2026-11-11T07:04:58.321561+00:00",
+  "prioritas": {
+    "pont": 61,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 65,
+      "egyediseg": 90,
+      "hitelesseg": 74,
+      "aktualitas": 91,
+      "kozossegi": 38
+    },
+    "elofeszures": 75,
+    "tanult": 27,
+    "indok": "Rákdiagnosztikai mélytanulási kutatás összefoglalója magas diagnosztikai pontosságról. Forrás-tapasztalat: -6.",
+    "tema": "ai bladder cancer diagnosis",
+    "cim_hu": "A mélytanulási rendszerek kilencven százalék feletti pontossággal ismerik fel a hólyagrákot",
+    "lead_hu": "Egy új orvosi elemzés szerint a mesterséges intelligencia diagnosztikai rendszerei jelentősen felülmúlják a hagyományos manuális szűrési módszereket.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-11T07:05:46+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-11T07:07:04+00:00"
+}
