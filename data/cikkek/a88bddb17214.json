@@ -1,0 +1,49 @@
+{
+  "id": "a88bddb17214",
+  "slug": "llmon-an-llm-native-markup-language-now-in-granite-4-1-3b-and-8b",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/ibm-granite/llmon-an-llm-native-markup-language-now-in-granite",
+  "publikalva": "2026-11-12T19:07:35+00:00",
+  "cim": "LLMON: An LLM-Native Markup Language, now in Granite 4.1 3B and 8B",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 76 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/6484ca4d5ff9a3d2ee52a83b/6KFZDHIJkxpICiErHLqAw.gif"
+  },
+  "cim_eredeti": "LLMON: An LLM-Native Markup Language, now in Granite 4.1 3B and 8B",
+  "szoveg_eredeti": "LLMs rely on their context to generate the next set of tokens. Over a long trajectory, the context fills with numerous types of components: a system prompt, past conversation turns, instructions that act on retrieved documents, tool responses or user data, requirements constraining the allowed output, and reasoning chains. The context carries a rich structure, most of which is either implicit to the model or encoded in formats such as JSON that were not designed to be digested by LLMs. This is one of the main reasons LLMs, particularly those on the smaller end of the scale, are brittle and sometimes fail in unexpected ways. The lack of explicit structure can also be exploited by attackers, for example, in the form of prompt injections.\n\nTo address this, we developed LLMON (LLM Object Notation, pronounced “lemon”), an LLM-native markup language for explicitly communicating structure and semantics to the models. Semantically coherent components are marked with meaningful tags which are wrapped in reserved special-token delimiters. Data schemas, including nesting, are stated in a way that is unambiguous to a causal LLM. Unique IDs make it possible to point to specific instructions, which could reside anywhere in the context, and bind them to the data payloads they should act on, analogous to the way functions are called and arguments are passed to them in programming languages.\n\nToday we are releasing two experimental preview models, derived from Granite 4.1 base models, trained to consume and generate LLMON-marked text: granite-4.1-3b-LLMON-preview and granite-4.1-8b-LLMON-preview. We are also releasing a GitHub repo, which includes a toolkit for working with LLMON and examples of workflows and templates.\n\nJSON was designed for parsers, not for causal language models. The tokenizer is not constrained to respect the grammar, and structure is encoded by tokens ({, \", :) that may also appear in normal text. To a model, a quotation mark inside a document and a quotation mark that closes a field are the same token. Escaping rules that are clear to a parser are only statistical patterns to a model. Nesting depth is encoded by counting brackets, which transformers are known to be weak at, especially over long spans.\n\nLLMON, on the other hand, is an XML-like markup whose structural delimiters are reserved special tokens rather than characters, so structure and content use separate parts of the vocabulary. Tags are stated at the beginning of each span, and the boundaries between spans are explicit. Nested structures are stated locally so the model does not need to keep track of the hierarchy over long spans.\n\nSince most teams already have pipelines built around JSON, we created conversion tools and example notebooks that translate JSON to LLMON and back in a lossless manner.\n\nLLMON does not replace chat templates; rather, it enriches them. Where regular chat templates tell the model which part belongs to which role (system, user, assistant), LLMON tells it what each component means and how components relate to each other, within and across roles.\n\nThe LLMON preview models ship with their own chat template, so you build the same messages list you would pass to any chat model and call apply_chat_template as usual; it renders the LLMON shown below. The only difference is that a turn can now name its parts and mark each one exec: True or False. A part marked True is bound into the exec block at the bottom of the rendered output, which states which instruction to run and what it operates on; a part marked False is still rendered into the context but is referenced by nothing.\n\nWhich the model receives as the following (with newlines and indentation added here for readability, as the template emits none):\n\nThe two-character block IDs are drawn from a fixed set that this tokenizer encodes as single tokens, so addressing a block always costs two tokens regardless of which ID is drawn.\n\nThe role is still a single user turn, but its components reach the model as five separate addressable blocks, bound together by a sixth (the exec block) that states: run this instruction, on this data, subject to these two requirements, and put the answer in the block named here, which is the same assistant block the model then fills. A conventional template would have flattened all components into one string and left the model to infer which part was the task, which was the subject, and which were constraints.\n\nIndirect prompt injection is a type of attack where a malicious instruction is hidden in a data payload, such as a retrieved document, a tool response, or user-provided data. This is the problem LLMON’s instruction/data separation is designed to address.\n\nWe compared the LLMON previews against several open-source and closed-source models. We evaluated on the OPI benchmark, which places the injection in the data of classic NLP tasks. Several attack strategies are employed. We report robustness, defined as 1 − attack success rate: the share of attacks where the model does not carry out the injected instruction.\n\nAll non-LLMON models are highly susceptible, carrying out the injected instructions with high probability. LLMON practically eliminates the problem on this benchmark, avoiding 47% more attacks relative to the best frontier model that we tested, and 95% more than the best open-source model. We observe similar trends on other benchmarks (ASB and StruQ). It is worth noting that these benchmarks test robustness to static indirect prompt injections. The instruction/data separation directly addresses this type of attack. We are actively working on also improving adaptive attacks which unfold over many chat turns.\n\nSafety gains don’t come at the expense of general capability. Across standard benchmark categories, the LLMON models perform on par with the Granite 4.1 Instruct models.\n\nIn short, if you’re experimenting with Granite 4.1 3B or 8B today, you can swap in the LLMON preview and should see comparable general performance with much stronger resistance to prompt injection. No conversion pipeline is required. Naming the turn's parts (e.g., instruction, data, requirement as in the example above) is enough. The shipped chat template turns those into LLMON blocks for you. Our LLMON-converters library goes one level deeper: if a part is itself structured, such as a JSON document, LLMONizing it preserves that structure as typed, individually addressable blocks, instead of one opaque string.\n\nThe models start from Granite 4.1 base checkpoints rather than the released instruct models, so LLMON behavior is learned during post-training rather than layered on an existing chat format.\n\nLLMON defines six delimiters that mark the start and end of tags and allow nesting and anchoring; they are installed in the tokenizer as reserved single tokens. We re-serialized a conventional instruction-tuning corpus into LLMON: every prompt component becomes its own addressable block, and each turn carries an execution block naming which instruction to run, which inputs it operates on, and where the output goes. The task mix is the one a normal instruct model sees (chat, multi-turn, RAG, tool calling), which is why benchmark performance stays close to the conventionally tuned model. In addition, we augment the data with decoy instructions and data blocks that are present in context but deliberately left unbound, while the target output is unchanged. So the model learns to follow the dependencies dictated by the execution block and ignore the rest. Reinforcement learning follows: five sequential GRPO stages spanning multi-domain reasoning, RLHF, knowledge calibration, and math, followed by a final DPO stage on a thousand on-policy preference pairs built from the model’s own responses to injection attempts.\n\nThe resulting privilege rule falls out of this layout rather than an added guardrail: an instruction reached through an execution block is authoritative, while anything reached as input (data, documen",
+  "begyujtve": "2026-11-12T19:17:48.620190+00:00",
+  "prioritas": {
+    "pont": 76,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 95,
+      "hitelesseg": 92,
+      "aktualitas": 98,
+      "kozossegi": 62
+    },
+    "elofeszures": 89,
+    "tanult": 51,
+    "indok": "Új nyelvi modell formátum a Granite 4.1-ben a hatékonyabb kontextusfeldolgozásért a nyílt forrású AI közösségben Forrás-tapasztalat: -5.",
+    "tema": "granite llmon llm format",
+    "cim_hu": "Megérkezett az LLMON leírónyelv a Granite 4.1 nyelvi modellekbe",
+    "lead_hu": "Az IBM Granite 4.1 3B és 8B modelljeiben debütál az LLMON, egy kifejezetten nagy nyelvi modellekhez tervezett leírónyelv, amely strukturáltabbá teszi a kontextust a generálás során.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-12T19:20:05+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-12T19:20:06+00:00"
+}
