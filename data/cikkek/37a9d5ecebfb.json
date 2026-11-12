@@ -1,0 +1,49 @@
+{
+  "id": "37a9d5ecebfb",
+  "slug": "training-artificial-intelligence-on-top-physicians-may-reduce",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/training-artificial-intelligence-on-top-physicians-may-reduce-intensive-care-bias/",
+  "publikalva": "2026-11-12T12:03:16+00:00",
+  "cim": "Training Artificial Intelligence on Top Physicians May Reduce Intensive Care Bias",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 64 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-7496.png"
+  },
+  "cim_eredeti": "Training Artificial Intelligence on Top Physicians May Reduce Intensive Care Bias",
+  "szoveg_eredeti": "Training Artificial Intelligence on Top Physicians May Reduce Intensive Care Bias\n\nTraining clinical artificial intelligence models exclusively on the practice patterns of top-performing physicians could eliminate decision noise while preventing algorithms from encoding systemic biases, according to a perspective published in Intensive Care Medicine by Daniel Ostrovsky, Daniel Talmor, and Victor Novack. The authors propose that rather than learning from all cases across an entire clinical staff, machine learning algorithms designed for critical care environments should selectively mimic locally identified best-practice clinicians to improve the quality of automated recommendations.\n\nMedicine operates as a noisy decision-making environment, with noise defined by Kahneman, Sibony, and Sunstein as undesirable variability in judgments of the same problem. This unwarranted clinical variation arises frequently in discretionary decisions where medical evidence fails to point to a single correct action, leaving choices to depend primarily on individual clinician judgment, local practice styles, and patient preferences.\n\nCritical care medicine exhibits widespread discretionary variation across multiple interventions, including hospital intensive care unit admissions that vary substantially even after adjusting for patient case mix and measured hospital factors. Parallel discrepancies appear in routine antibiotic prescribing, the timing and threshold established for invasive mechanical ventilation in hypoxaemic respiratory failure, and the deployment of costly organ-support therapies such as renal replacement therapy and extracorporeal membrane oxygenation.\n\nCurrent artificial intelligence tools trained on routine outcome data can eliminate decision noise while simultaneously reproducing clinical bias. A uniformly applied algorithm successfully eradicates noise at the level of its recommendations, but whether it removes bias depends entirely on the underlying training data. In current clinical practice, algorithms either learn to reproduce diagnostic labels in settings such as digital pathology and image-based diagnosis, or they train on clinical decisions and patient outcomes when definitive diagnostic labels do not exist.\n\nWhen algorithms train on operational endpoints such as intensive care unit transfers or clinical deterioration, they rely on data points that are not purely biological. These records inherently reflect clinician practice patterns, local system constraints, and potentially suboptimal care decisions. By mathematically regressing outcomes over an averaged clinical approach, standard models merely reproduce the central tendency of observed practice rather than an optimal standard of care.\n\nThe operational hazards of training on unrefined clinical decisions appear clearly in intensive care unit triage, where predictive models are trained on historical admission records rather than identifying which patients would truly deteriorate without specialized care. Because individual physicians exhibit divergent admission thresholds, training a model on unselected institutional datasets causes recommendations to converge on the unit mean, standardizing care around an unvetted average.\n\nIn a hypothetical intensive care unit where clinician admission rates range from 0 percent to 24 percent with a mean of 12 percent, an algorithm trained across all clinicians eliminates noise by driving all practitioners toward that 12 percent rate. However, if best-practice clinicians maintain an 8 percent admission rate with non-inferior patient outcomes, standardizing around the institutional mean perpetuates a four-percentage-point over-admission bias, converting sound discretionary judgments into unnecessary and costly admissions.\n\nTo overcome this limitation within structured artificial intelligence development phases, Ostrovsky and colleagues suggest filtering data during initial training selection so algorithms learn only from best-practice clinicians. These clinicians could be identified a priori using objective clinical metrics such as low complication rates, cost-benefit metrics like reduced intensive care utilization with non-inferior outcomes, or comprehensive measures including peer rankings, patient assessments, experience, and knowledge tests.\n\nImplementing a selective training framework presents critical methodological hurdles, beginning with the risk that seemingly superior performance stems from non-random case mix rather than better decision-making. Developers must apply rigorous retrospective risk-adjusted comparison methods evaluated against comprehensive outcome matrices, including positive controls, negative controls, and operational performance metrics.\n\nBecause intensive care requirements depend heavily on ward capabilities, staffing levels, geographic setting, and physical unit capacity, models trained on top clinicians cannot serve as universal standards without local training or calibration. Furthermore, clinical workflows evolve over time in response to the algorithms themselves, making continuous model validation and drift monitoring mandatory throughout deployment.\n\nRestricting training datasets to a subset of top clinicians reduces overall sample size and narrows data distributions, risking degraded model accuracy in rare patient subgroups. Mitigating these gaps requires federated data access across multiple intensive care units, formal fairness audits, prospective evaluations of clinician behavior and patient outcomes, and robust institutional safeguards against automation bias.\n\nThe conceptual separation between decision noise and systematic bias represents the foundation of the authors’ critique of current machine learning methodologies in critical care. In their analysis, Kahneman, Sibony, and Sunstein define noise as unwarranted variability in judgments concerning the identical clinical problem. When an artificial intelligence algorithm is deployed uniformly across an intensive care service, it inherently eliminates noise at the recommendation level because identical patient feature inputs generate consistent algorithmic outputs. However, eliminating noise does not guarantee the removal of bias, as the algorithm’s guidance remains tethered to the underlying data on which it was trained. In domains such as digital pathology and image-based diagnosis, machine learning models are trained to reproduce definitive diagnostic labels, allowing them to simultaneously reduce both noise and diagnostic bias. Conversely, when objective ground-truth labels are absent, algorithms are routinely trained on recorded clinical decisions, such as intensive care transfers, or on clinical endpoints, such as patient deterioration or death, that directly reflect preceding clinical choices. Because these operational outcomes are not purely biological events but instead embody individual practitioner habits and institutional care structures, standard algorithms merely compute mathematical regressions over the prevailing average clinical practice.\n\nThis reliance on historical clinical practice patterns introduces acute vulnerabilities in discretionary critical care decisions, where clinical evidence does not define a single correct therapeutic action. In such discretionary settings, clinical choices vary extensively based on local practice styles, individual judgment, and patient preferences, resulting in substantial unwarranted variation across hospital intensive care unit admissions that persists even after rigorous adjustment for patient case mix and measured hospital characteristics. Identical patterns of unwarranted variation characterize routine antibiotic prescribing, the timing and threshold established for invasive mechanical ventilation in hypoxaemic respiratory failure, and the utilization of resource-intensive organ-support modalities like renal replacement therapy and extracorporeal membrane oxygenation. Furthermore, this variability manifests not",
+  "begyujtve": "2026-11-12T12:19:59.547702+00:00",
+  "prioritas": {
+    "pont": 64,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 70,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 42
+    },
+    "elofeszures": 73,
+    "tanult": 14,
+    "indok": "Érdekes kutatás az orvosi AI torzításainak csökkentésére, de egyelőre csak elméleti tanulmány. Forrás-tapasztalat: -6.",
+    "tema": "medical ai bias reduction",
+    "cim_hu": "Az AI csúcsorvosokon való tanítása csökkentheti az intenzív terápiás döntési hibákat",
+    "lead_hu": "Egy új szakértői elemzés szerint a klinikai mesterséges intelligenciát a legjobban teljesítő orvosok döntéseire kellene hangolni a szisztematikus torzítások kiszűrésére.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-12T12:20:11+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-12T12:20:17+00:00"
+}
