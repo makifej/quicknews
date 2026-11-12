@@ -1,0 +1,49 @@
+{
+  "id": "003618fd7423",
+  "slug": "accelerating-generative-ai-delivery-with-reusable-assets",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/accelerating-generative-ai-delivery-with-reusable-assets/",
+  "publikalva": "2026-11-11T19:19:21+00:00",
+  "cim": "Accelerating generative AI delivery with reusable assets",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 42 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/02/ML-20608-featured-image.png"
+  },
+  "cim_eredeti": "Accelerating generative AI delivery with reusable assets",
+  "szoveg_eredeti": "If you’re building generative AI solutions, reusable assets can help you stop rebuilding components that already exist: Retrieval Augmented Generation (RAG) pipelines, document processors, agent scaffolding, and so on. This has a compounding cost: time not spent solving the customer’s actual problem.\n\nThis post shows you how to access a curated catalog of 23 production-ready assets from the AWS Generative AI Innovation Center, now part of AWS Frontier AI Engineering & Services. These assets can reduce your development time from months to weeks, with evidence from companies like DoorDash, Lyft, and Ricoh.\n\nSince 2023, the AWS Generative AI Innovation Center has published open source reusable assets. These production-grade building blocks give you a validated foundation to start from instead of a blank file. These assets have powered customer solutions delivering measurable results: 50x increases in testing capacity, 90 percent reductions in engineering hours, and deployment timelines compressed from months to weeks. In this post, you will learn why teams keep rebuilding generative AI components, what makes an asset truly reusable, how companies like DoorDash and Ricoh achieved measurable results by using these assets, and how to access and deploy 23 open source assets from the catalog. For a complete list of all available assets, see the asset catalog at the end of this post.\n\nThree root causes drive redundant development across generative AI teams:\n\nThe cost of rebuilding compounds. Each redundant build consumes engineering hours, delays customer delivery, and creates maintenance burden. Even AI-generated code requires production hardening, security reviews, testing at scale, and ongoing maintenance. These assets arrive already validated, security-reviewed, and production-grade, avoiding that verification burden. When teams finally reach production, they’ve spent weeks on undifferentiated heavy lifting, work that should have been reusable from day one. The AWS Frontier AI Engineering & Services resolves this challenge through reusable assets.\n\nA reusable asset isn’t a code snippet or a sample. It’s a production-grade, composable building block that implements a discrete generative AI capability. Reusable assets are validated for quality and security before publication. They include clear deployment guides for discoverability and are instrumented to track adoption across customer engagements. These assets are maintained across their lifecycle.\n\nExamples from the catalog include RAG pipeline components, document ingestion modules, agent scaffolding templates, evaluation frameworks, and prompt management patterns. The assets are tested in production environments, reviewed for security compliance, and refined based on real customer feedback.\n\nThis is the difference between a one-off artifact and a building block you can trust.\n\nThe value of reusable assets isn’t theoretical. Here’s what happens when teams build on proven foundations instead of starting from scratch.\n\nAccording to the AWS case study, DoorDash built a fully voice-operated self-service generative AI contact center solution using the Contact Center GenAI Agent asset. As reported, the solution handles over 100,000 calls per day with 2.5-second response latency, achieving a 50x increase in testing capacity. Using Amazon Bedrock reduced development time by 50 percent. The team reached live testing readiness in 2 months.\n\nLyft used the same Contact Center GenAI Agent asset to bring agentic AI to life for riders and drivers, demonstrating the asset’s versatility across different customer engagement models.\n\nThe Contact Center GenAI Agent provides automated question answering capabilities for both text and voice channels. It employs a RAG architecture to facilitate multi-turn conversations while maintaining context. The solution integrates with Amazon Connect and uses Amazon Bedrock Knowledge Bases, a fully managed RAG capability, for hybrid search and metadata filtering.\n\nRicoh serves major health insurance payers, managed care organizations, and healthcare providers. These customers process hundreds of thousands of critical documents each month, including insurance claims, grievances, appeals, and clinical records. As Ricoh scaled to serve more healthcare customers, they needed a standardized, multi-tenant document processing approach. That approach had to onboard new implementations without requiring unique development and tuning for each one.\n\nUsing the Accelerated Intelligent Document Processing on AWS asset as a foundation, Ricoh built a standardized, multi-tenant solution for automated document classification and extraction. This transformed their document processing from a custom-engineering bottleneck into a scalable, repeatable service.\n\nResults: As documented in the published case study, Ricoh achieved a 7-fold throughput increase, from 10,000–70,000 documents monthly. Engineering hours per deployment dropped by over 90 percent (80 hours to under 5). Onboarding time fell from 4–6 weeks to 2–3 days. The system now processes 1,000 documents in minutes during traffic spikes, delivering over 1,900 potential annual person-hours in savings.\n\nThe GenAI IDP Accelerator, introduced in this 2025 blog post, is a scalable, serverless solution for automated document processing and information extraction using AWS services. This system combines optical character recognition (OCR) with generative AI to convert unstructured documents into structured data at scale. The AWS Frontier AI Engineering & Services continuously maintains the assets as well.\n\nReusable assets become more valuable as teams shift focus from infrastructure to business logic. Two recently launched assets demonstrate how reusable building blocks can accelerate the development of next-generation agentic applications.\n\nThe Fullstack AgentCore Solution Template (FAST) is a starter project repository. With FAST, you can quickly deploy a secured React frontend connected to Amazon Bedrock AgentCore, a platform to build, connect, and optimize agents at scale with any framework or model. In this implementation, FAST uses a React-based frontend with the managed infrastructure of AgentCore to accelerate building full-stack agentic applications from weeks to days.\n\nFAST deploys in under 30 minutes using infrastructure as code (IaC), with built-in integrations for AgentCore memory, a capability of Amazon Bedrock AgentCore, along with Gateway, Code Interpreter, and Observability. Authentication uses Amazon Cognito, configured with enterprise security best practices, and the template is designed for AI-assisted development with extensive documentation and steering docs.\n\nWith FAST, you can access a complete reference architecture that shows you how the pieces integrate, with a working full stack application that you can learn from and build upon. With the modular design, you can swap out major components (identity providers, frontend frameworks, hosting solutions, or agent frameworks) as your requirements evolve.\n\nThe Agentic Chatbot Accelerator is a web application deployment solution that uses the AWS Cloud Development Kit (AWS CDK) for infrastructure as code so you can create agentic chatbots. Built on Strands Agents and Amazon Bedrock AgentCore, this solution streamlines the development of agentic chatbot applications.\n\nThe accelerator provides rapid deployment using AWS CDK, with scalable agent runtime management through Strands Agents and Amazon Bedrock AgentCore. It is configurable and extensible for diverse chatbot use cases, with pre-configured patterns for authentication, hosting, and scaling, validated across customer deployments.\n\nLet’s walk through a concrete example of selecting and using the Contact Center GenAI Agent asset from the open source catalog.\n\nYou’re building a customer support solution that needs to handle both voice and text interactions, answer questions using your company’s knowledge base, and escalate complex issues",
+  "begyujtve": "2026-11-12T09:04:41.199243+00:00",
+  "prioritas": {
+    "pont": 42,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 30,
+      "egyediseg": 85,
+      "hitelesseg": 75,
+      "aktualitas": 80,
+      "kozossegi": 41
+    },
+    "elofeszures": 79,
+    "tanult": 50,
+    "indok": "Az AWS promóciós blogposztja korábban meglévő fejlesztői sablonokról és eszközökről, alacsony hírértékkel. Forrás-tapasztalat: -6.",
+    "tema": "aws generative ai catalog",
+    "cim_hu": "Ingyenes generatív AI sablonokat kínál az AWS a fejlesztőknek",
+    "lead_hu": "Az AWS 23 azonnal használható generatív AI eszközt és architektúrát tett elérhetővé a fejlesztők számára a folyamatok felgyorsítására.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-12T09:07:23+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-12T09:07:25+00:00"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "faee25e7eeb0",
+  "slug": "google-launches-gemini-decisions-api-with-gemini-decision-1-at-0-10-m",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/11/google-gemini-decisions-api-gemini-decision-1/",
+  "publikalva": "2026-11-11T21:21:42+00:00",
+  "cim": "Google Launches Gemini Decisions API With Gemini Decision 1 at $0.10/M Tokens",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 79 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/asmnjn-scaled.png"
+  },
+  "cim_eredeti": "Google Launches Gemini Decisions API With Gemini Decision 1 at $0.10/M Tokens",
+  "szoveg_eredeti": "Google has launched the Gemini Decisions API , powered by a new model, Gemini Decision 1 ( gemini-decision-1 ). The Gemini Decisions API does not generate text. It scores up to 1,000 typed questions against one shared input and returns calibrated probabilities. For developers, this targets the small branching calls inside agents: routing, policy checks, tool selection and grading. Google prices it at $0.10 per 1M input tokens, with zero output tokens billed.\n\n TL;DR \n\n Size: Context is 262,144 tokens (256K) across shared input and all questions.\n\n Runs on: Google-hosted API only (Gemini Developer API, v1beta). No open weights or self-hosting.\n\n Performance: Leads 7 of 9 accuracy benchmarks in Google’s table, with the lowest calibration error.\n\n Best: 92.2% on JevBench (public split).\n\n Worst: 58.7% Macro-F1 on Amazon ESCI, its lowest score. It also trails Jev 1.14 on When2Call (79.9% vs 82.0%).\n\n Bottom line: Best: multimodal, calibrated decisions in 150-250 ms. Worst: not the cheapest; Jev 1.14 costs $0.68 vs $0.88 on the shared suite.\n\n What is the Gemini Decisions API? \n\n Gemini Decision 1 is a specialized multimodal model from Google built for closed-set decisions. It reads text, images, video, audio and PDFs in one prefill pass. Output token usage is always 0. Your code branches directly on the returned numbers.\n\n Each request has 3 parts: a model ID, a shared input , and a map of questions. The docs define 3 question types: \n\n noul (yes/no): returns the probability of yes, bounded between 0.01 and 0.99.\n\n choice : picks 1 of 2 to 255 options and returns normalized probabilities for every option.\n\n score : rates input on 2 to 255 ordered rubric levels and returns a probability-weighted score.\n\n Every answer carries a confidence value from 0 to 1. Google suggests routing low-confidence cases to a fallback or a human reviewer. Questions are scored in parallel and cannot see each other.\n\n How does Gemini Decision 1 work? \n\n Standard models decode an answer token by token, then your code parses it. Gemini Decision 1 instead scores your candidate options in one forward pass. Google reports median model compute of 50-100 ms and 150-250 ms end to end. That holds for inputs up to 16K tokens and stays nearly flat from 1 to 100 questions.\n\n Billing follows the same design. The shared input is billed once per request, however many questions you ask. Each question adds only its own instruction and criteria tokens. There are no thinking-token, transcription or OCR charges.\n\n Gemini Decision 1 benchmarks \n\n Google tested Gemini Decision 1 against 3 rivals. They are TypeSafe Jev 1.14 , GPT-6 Luna on OpenAI Decisions and Gemini 3.5 Flash-Lite. All figures below are self-reported by Google. Refusals and safety blocks count as incorrect.\n\n Benchmark Gemini Decision 1 TypeSafe Jev 1.14 GPT-6 Luna (OpenAI Decisions) Gemini 3.5 Flash-Lite JevBench (public split) 92.2% 90.0% 90.9% 86.6% Amazon ESCI (Macro-F1) 58.7% 56.7% 54.7% 47.2% New Yorker Caption (text-only) 79.7% 72.0% 68.4% 73.7% Mind2Web Multimodal 86.2% 86.8% 81.8% 78.0% PubMedQA 79.8% 78.2% 74.4% 77.6% Global-MMLU-Lite (non-English) 86.0% 85.0% 79.6% 78.8% When2Call 79.9% 82.0% 70.4% 60.9% MMAU (audio) 71.8% Not reported Not reported 67.7% Video-MME (no subtitles) 69.1% Not reported Not reported 63.3% Top-1 ECE (lower is better) 0.0250 0.0494 0.0721 0.2104 Total price, 7 shared evals $0.88 $0.68 $0.93 $4.14 \n\n Source: Google blog benchmark table . \n\n The calibration result is the clearest gap. Gemini Decision 1’s error of 0.0250 is about half of Jev 1.14’s 0.0494. That matters when you set confidence thresholds for automation. On cost, Google says it is nearly 5x cheaper than Flash-Lite across the shared suite ($0.88 vs $4.14).\n\n Gemini Decisions API vs OpenAI Decisions vs TypeSafe Jev \n\n Feature Gemini Decision 1 GPT-6 Luna, OpenAI Decisions TypeSafe Jev 1.14 Parameters Not disclosed Not disclosed Not disclosed Context 262,144 tokens 1,050,000 ( model page ) 64K per request, 262K with opt-in header Questions per request 1 to 1,000 1 to 400 No fixed cap, bounded by context Input modalities Text, image, audio, video, PDF Text, image, JSON Text (docs) Input price per 1M tokens $0.10 $0.10 uncached $0.042 Output price $0 $0 $0 Prompt caching Not supported Supported, charged at Luna rates Not disclosed Latency claim 150-250 ms end to end About 10x faster than Responses API Not disclosed \n\n How to deploy the Gemini Decisions API \n\n The endpoint is live on the Gemini Developer API (v1beta) and needs google-genai SDK 3.2 or later. A no-cost tier is available for prototyping in Google AI Studio . Python, JavaScript and REST guides are in the documentation .\n\n Ecosystem support is rolling out across OpenRouter , LangChain , Vercel AI SDK , LiteLLM , Pydantic AI , Pipecat , LiveKit and OpenCode . Support in Gemini on Google Cloud is listed as coming soon.\n\n Google already uses it internally. Gemini Notebook routes queries to model tiers with it, serving everyday queries with up to 40% lower latency. Google Labs’ CC picks emoji reactions from more than 200 options. Stitch’s rapid canvas uses it to build playable wireframes in seconds.\n\n Key Takeaways \n\n Gemini Decision 1 scores up to 1,000 questions per call with zero output tokens.\n\n It reads text, images, audio, video and PDFs natively in 1 pass.\n\n Calibration error of 0.0250 is half that of TypeSafe Jev 1.14.\n\n At $0.10/M input tokens, it still costs more than Jev’s $0.042/M.\n\n No caching or Batch API yet, so repeated context is billed in full.\n\n Check out the technical details , docs and model page . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Google Launches Gemini Decisions API With Gemini Decision 1 at $0.10/M Tokens appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-12T09:04:06.132627+00:00",
+  "prioritas": {
+    "pont": 79,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 78,
+      "aktualitas": 86,
+      "kozossegi": 81
+    },
+    "elofeszures": 94,
+    "tanult": 82,
+    "indok": "Új típusú, olcsó és specializált döntéshozási API a Google-től AI-ügynökök számára. Forrás-tapasztalat: -6.",
+    "tema": "google gemini decisions api launch",
+    "cim_hu": "Elindította a Gemini Decisions API-t a Google",
+    "lead_hu": "A Google bemutatta a szövegalkotás helyett döntési valószínűségeket számoló Gemini Decision 1 modellt, amelyet kifejezetten AI-ügynökök belső elágazásaihoz áraztak rendkívül alacsonyan.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-12T09:07:23+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-12T09:12:04+00:00"
+}

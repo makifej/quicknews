@@ -1,0 +1,49 @@
+{
+  "id": "df94b6a8801f",
+  "slug": "marktechpost-ai-launches-gpu-leaderboard-and-the-deploy-it-chrome",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/11/marktechpost-gpu-leaderboard-chrome-extension-launch/",
+  "publikalva": "2026-11-11T15:51:14+00:00",
+  "cim": "Marktechpost AI Launches GPU Leaderboard and the Deploy It Chrome Extension",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 47 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-29-scaled.png"
+  },
+  "cim_eredeti": "Marktechpost AI Launches GPU Leaderboard and the Deploy It Chrome Extension",
+  "szoveg_eredeti": "Marktechpost has launched GPU Leaderboard , a free cloud GPU price comparison for AI inference. It also shipped GPU Leaderboard: Deploy It , a Chrome extension for the same data. The site reads on-demand and spot prices from each provider’s own pricing page. The goal is simple: answer “what GPU do I need, and where is it cheapest?” in one place.\n\n What is GPU Leaderboard? \n\n GPU Leaderboard is a pricing dashboard that ranks rentable cloud GPUs by price per GPU-hour. It is built for teams running inference. \n\n The v1 application has 4 views: \n\n Inference pricing: a cost calculator for a full run, not a single hourly rate.\n\n Leaderboard : every offer ranked by $/GPU-hr, filterable by GPU, tier, region and availability.\n\n Cheapest Inference : the lowest on-demand floor for each tracked GPU.\n\n Providers : a directory with instance counts, regions, status-page incidents and price-check history.\n\n How does the GPU inference cost calculator work? \n\n You pick an accelerator, GPU count, duration and utilization. The calculator then prices that exact run at every provider. An optional model field narrows the list.\n\n The default example is 8×H100 for 72 hours at 90% utilization. That bills 576 GPU-hours. The cheapest result is $967.68 at Latitude, at $1.68 per GPU-hour. The median across 15 providers is $1,716.48. The most expensive is $3,545.28 at CoreWeave.\n\n The calculator also shows a “real” cost per used GPU-hour. Idle time is still billed, so $1.68 at 90% utilization becomes $1.87. This is the number most budget sheets miss.\n\n What does the Deploy It Chrome extension do? \n\n GPU Leaderboard: Deploy It brings the price data to where developers pick models. Per its store listing, it works in 3 places: \n\n Hugging Face model pages: detects model size and estimates VRAM at FP16, INT8 and INT4. It then shows the cheapest hourly GPUs that fit.\n\n GitHub repos: detects model references and gives a hardware estimate in place.\n\n Toolbar lookup: search any model or GPU from the browser toolbar.\n\n Key Takeaways\n\n GPU Leaderboard ranks 201 live GPU offers from 24 providers by $/GPU-hr.\n\n Its calculator prices a full run, including idle time at your utilization.\n\n Deploy It shows VRAM needs and cheapest GPUs on Hugging Face and GitHub.\n\n An 8×H100, 72-hour run spans $967.68 to $3,545.28 across multiple providers.\n\n Coverage and daily refresh are the main gaps versus older trackers.\n\n Try it at gpuleaderboard.com and install the Deploy It extension from the Chrome Web Store.\n\n The post Marktechpost AI Launches GPU Leaderboard and the Deploy It Chrome Extension appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-12T09:04:06.327866+00:00",
+  "prioritas": {
+    "pont": 47,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 45,
+      "egyediseg": 85,
+      "hitelesseg": 74,
+      "aktualitas": 76,
+      "kozossegi": 48
+    },
+    "elofeszures": 83,
+    "tanult": 60,
+    "indok": "Ingyenes GPU-árakat összehasonlító eszköz és Chrome bővítmény indítása fejlesztőknek. Forrás-tapasztalat: -6.",
+    "tema": "marktechpost gpu leaderboard",
+    "cim_hu": "GPU-árakat összehasonlító felületet indított a Marktechpost",
+    "lead_hu": "Az új GPU Leaderboard segítségével a fejlesztők egy helyen láthatják a felhős GPU-szolgáltatók legkedvezőbb árait.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-12T09:07:23+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-12T09:11:22+00:00"
+}

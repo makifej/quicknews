@@ -1,0 +1,49 @@
+{
+  "id": "89831e72483f",
+  "slug": "google-deepmind-releases-alphagenome-2-for-cell-type-specific-variant",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/11/google-deepmind-alphagenome-2-cell-type-variant-effects/",
+  "publikalva": "2026-11-11T20:51:56+00:00",
+  "cim": "Google DeepMind Releases AlphaGenome 2 for Cell-Type-Specific Variant Effects",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 71 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-10001-30-scaled.png"
+  },
+  "cim_eredeti": "Google DeepMind Releases AlphaGenome 2 for Cell-Type-Specific Variant Effects",
+  "szoveg_eredeti": "Google DeepMind has released AlphaGenome 2 , a DNA model that predicts variant effects in specific cell types. AlphaGenome 2 is a conditional sequence-to-function model. It reads 1 Mb of DNA plus a target cell state. Its predecessor averaged across bulk tissues. The new model resolves closely related cell types and adapts to unseen single-cell datasets without fine-tuning. It is available through the AlphaGenome API for non-commercial research.\n\n TL;DR \n\n Size: Input is a 1 Mb (1,048,576 bp) DNA window, human or mouse.\n\n Runs on: Hosted API only for now. Training used 2048 TPU v4 chips; weights come “upon final publication”.\n\n Performance: Beats fine-tuned AlphaGenome 1, Borzoi and Scooby on single-cell eQTL and enhancer-gene benchmarks.\n\n Best: 43% recall at 90% sign accuracy on TenK10K sc-eQTLs, versus 23% for AlphaGenome 1 fine-tuned.\n\n Worst: Outside accessible chromatin, sign prediction AUROC reaches only 0.63.\n\n Bottom line: Best: cell-state conditioning from raw scRNA-seq. Worst: no local weights, non-commercial only.\n\n What is AlphaGenome 2? \n\n AlphaGenome 2 is a U-Net style model with a convolutional encoder, an 11-block transformer and a decoder. AlphaGenome 1 predicted a fixed catalog of thousands of tracks in parallel. AlphaGenome 2 instead predicts outputs for 1 condition per call.\n\n The condition is a 256-dimensional embedding. It modulates activations through FiLM layers in the encoder, transformer and decoder. Conditioning only the decoder or output layers gave minimal gains. Conditioning the encoder and transformer drove most of the improvement.\n\n Outputs cover RNA coverage, CAGE, splicing, chromatin accessibility, histone marks, TF binding and contact maps. CpG methylation is new.\n\n How was AlphaGenome 2 trained? \n\n Training runs in 4 stages: \n\n Pre-training across bulk data plus 3,977 single-cell RNA and ATAC pseudobulk tracks from 36 studies.\n\n Condition refinement , which tunes only the embeddings and FiLM layers.\n\n Distillation of 8 teacher models into 1 student, using mutated input sequences.\n\n Post-training that maps a single-cell expression encoder into the frozen model’s condition space.\n\n That encoder was trained on over 100 million human scRNA-seq profiles, largely from CELLxGENE. Researchers can pass raw counts and get a condition embedding. The docs allow up to 256 cells per call.\n\n How does AlphaGenome 2 perform on benchmarks? \n\n On GTEx tissues, median Pearson r for cross-tissue expression changes rose from 0.61 to 0.71. Within tissues, explained cell-type variance rose from 23% to 34% for scRNA-seq.\n\n The main result is on TenK10K single-cell eQTLs across 28 immune cell types. At 90% precision, AlphaGenome 2 recovered 30% of causal variants. AlphaGenome 1 fine-tuned on single-cell data recovered 16%. Direction-of-effect recall rose from 23% to 43%.\n\n On held-out ENCODE-rE2G CRISPRi data, enhancer-gene AUPRC reached 0.78. AlphaGenome 1 scored 0.73, a Borzoi ensemble 0.61. The gap was widest for enhancers 100 to 2,500 kb away: 0.62 versus 0.48.\n\n For assay imputation, AlphaGenome 2 beat the Avocado baseline on 166 of 181 held-out tracks. On an unseen Parkinson’s cohort, it reached 41% recall versus 17% for cohort-tuned Scooby .\n\n How does it compare with other DNA sequence models? \n\n Feature AlphaGenome 2 AlphaGenome 1 Borzoi Scooby Input DNA 1 Mb 1 Mb 524 kb 524 kb Condition handling Reference or scRNA-seq embedding Fixed multitask tracks Fixed multitask tracks Cell-embedding decoder, per dataset Single-cell outputs scRNA, scATAC No No scRNA, scATAC Parameters Not disclosed Not disclosed 235M Not disclosed Hardware Hosted API H100 recommended Not disclosed NVIDIA GPU (tested on A40) Weights / license API now, weights later, non-commercial Kaggle and HF, non-commercial terms Apache-2.0 MIT TenK10K sc-eQTL causality AUPRC* 0.76 0.72 (fine-tuned) Not evaluated 0.69 TenK10K sc-eQTL sign AUC* 0.85 0.79 (fine-tuned) Not evaluated 0.77 rE2G held-out CRISPRi AUPRC* 0.78 0.73 0.61 (4-model ensemble) Not evaluated \n\n *Benchmark rows come from the AlphaGenome 2 paper and are DeepMind’s own evaluation. \n\n What can developers access today? \n\n AlphaGenome 2 and Colab tutorials are live through the API. An API key is free for non-commercial use . Commercial research is in private preview. The alphagenome Python package exposes the model under alphagenome.models.v2 .\n\n DeepMind also released precomputed atlases. One covers enhancer-gene links across 640 primary cell conditions. Another scores about 7 million common and GWAS variants across 510 conditions. Both are on the downloads page .\n\n Key Takeaways \n\n AlphaGenome 2 conditions a 1 Mb DNA model on 1 cell type per call.\n\n Causal sc-eQTL recall at 90% precision rose from 16% to 30%.\n\n Raw scRNA-seq counts can define new cell states without retraining.\n\n Precomputed scores cover about 7 million variants across 510 conditions.\n\n Access is API-only and non-commercial for now.\n\n Check out the paper , the DeepMind blog , the API docs and the GitHub repo . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Google DeepMind Releases AlphaGenome 2 for Cell-Type-Specific Variant Effects appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-12T09:04:06.228071+00:00",
+  "prioritas": {
+    "pont": 71,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 85,
+      "egyediseg": 50,
+      "hitelesseg": 78,
+      "aktualitas": 88,
+      "kozossegi": 67
+    },
+    "elofeszures": 90,
+    "tanult": 70,
+    "indok": "A Google DeepMind fontos tudományos és genetikai AI modellt adott ki. Forrás-tapasztalat: -6.",
+    "tema": "google deepmind alphagenome 2",
+    "cim_hu": "A Google DeepMind kiadta az AlphaGenome 2 genetikai AI modellt",
+    "lead_hu": "A Google DeepMind bemutatta az AlphaGenome 2 modellt, amely képes előrejelezni a DNS-variációk hatásait a specifikus sejttípusokban.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-12T09:07:23+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-12T09:10:22+00:00"
+}

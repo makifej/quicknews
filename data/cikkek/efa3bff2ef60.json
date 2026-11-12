@@ -1,0 +1,49 @@
+{
+  "id": "efa3bff2ef60",
+  "slug": "az-amazon-ingyenes-aws-felhoemulatort-adott-ki-amelyet-ai-ugynokok",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/amazon-releases-free-aws-cloud-l2zsP68JR8yyx9XV2yJM_g",
+  "publikalva": "2026-11-11T20:15:23.509000+00:00",
+  "cim": "Az Amazon ingyenes AWS-felhőemulátort adott ki, amelyet AI-ügynökök építettek",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 78 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--ioiokQyZ--/t_limit/https://cdn.geekwire.com/wp-content/uploads/2026/11/aws-emulator-1200.jpg"
+  },
+  "cim_eredeti": "Az Amazon ingyenes AWS-felhőemulátort adott ki, amelyet AI-ügynökök építettek",
+  "szoveg_eredeti": "Az Amazon Web Services november 11-én, szerdán kiadta az AWS Emulatort. Ez egy ingyenes, helyi emulátor, amellyel a fejlesztők és az AI-kódolóügynökök a saját gépükön tesztelhetik a kódjukat az AWS API-jaival szemben. A kódját teljes egészében autonóm ügynökök írták. Az eszköz már általánosan elérhető, és nincs külön szolgáltatási díja. A fejlesztők csak azokért az AWS-erőforrásokért fizetnek, amelyeket később telepítenek a felhőbe – áll az AWS bejelentő bejegyzésében.\n\n„Az emulátort teljes egészében autonóm ügynökök írták. A csapatunk egyetlen sort sem írt meg, és nem is nézett át a kódból” – írta Matt Goldberg, az AWS vezető főmérnöke, a projekt egyik irányítója a GeekWire idézete szerint. A SiliconANGLE beszámolója szerint az AWS az eszközt egy egyre súlyosabb szűk keresztmetszet megoldásaként mutatja be: a kódolóügynökök gyorsabban állítanak elő kódot, mint ahogy a csapatok a valódi felhőinfrastruktúrán ellenőrizni tudnák.\n\nAz emulátor Rustban íródott, és helyi HTTPS-végpontot szolgáltat. Az AWS CLI és az SDK-k környezeti változókkal erre irányíthatók, így az alkalmazáskód nem változik. Linuxon RPM- vagy Debian-csomagból telepíthető, macOS-en és Windowson pedig Dockerben fut – közölte az AWS. A jelenlegi verzió 438 nyilvános AWS API-modellt támogat, amelyek több mint 200 szolgáltatást fednek le – számolt be a The New Stack.\n\nAz AWS szolgáltatásonként közzéteszi a „hűségi\" (fidelity) pontszámokat, amelyek azt mutatják, mennyire egyezik az emulátor viselkedése a valódi AWS-ével, a tesztcsomag pedig nyilvános. A még nem megvalósított műveletek HTTP 501-es hibát adnak vissza. Az indulásnál az emulátor nem az AWS-től megszokott módon értékeli ki az IAM-szabályzatokat, és egyetlen fiókként működik, fiókok vagy régiók közötti működés nélkül – jegyezte meg az AWS.\n\nA projekt egy hétvégi kísérletként indult. Goldberg első promptja a Kirónak, az AWS kódoló ügynökének 15 perc alatt egy használható Amazon SQS-verziót eredményezett – számolt be a GeekWire. Az Amazon Bedrock AgentCore-on futó ügynökök ma három csapatban dolgoznak. Az egyik fidelitási teszteket ír, és valódi AWS-környezet ellen ellenőrzi őket, a második ezeket a teszteket futtatja az emulátoron, és hibajegyeket nyit, a harmadik pedig kijavítja a hibákat. Minden módosításnak ezután át kell mennie egy biztonsági felülvizsgálattal ellátott beolvasztási kapun.\n\nA kódot CC0 közkincs-felajánlás keretében tették közzé. Tom Callaway, az AWS munkatársa a The New Stacknek elmondta, hogy a cég nem volt biztos benne, hogy az ügynökök által készített munka szerzői jogi védelem alá eshet-e, és hogy a felhasználóktól hibajegyeket fogadnak el, pull requesteket viszont nem. „Ezt az ügynökök fogják csinálni” – mondta.\n\nA bejelentés azután érkezik, hogy a LocalStack, a legismertebb külső fejlesztésű AWS-emulátor 2026 márciusában archiválta nyílt forráskódú Community kiadását, és onnantól fiók létrehozásához és hitelesítési tokenhez kötötte a használatot – írja a Cloudparts. Azóta több közösségi alternatíva is megjelent.\n\nSwami Sivasubramanian, az AWS alelnöke úgy fogalmazott, hogy a bejelentés a mérnökök munkájának átalakulását jelzi. „Amikor az ágensek írják a kódot, és maguk ellenőrzik a saját munkájukat, a mérnök feladata az, hogy teret adjon nekik az önálló munkára, és megalkossa azokat a specifikációkat, teszteket és merge-kapukat, amelyek eldöntik, mikor helyes az elvégzett munka” – írta az All Things Distributed oldalon.",
+  "begyujtve": "2026-11-12T09:02:23.488017+00:00",
+  "prioritas": {
+    "pont": 78,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 78,
+      "aktualitas": 86,
+      "kozossegi": 64
+    },
+    "elofeszures": 76,
+    "tanult": 48,
+    "indok": "Jelentős felhőszolgáltatói fejlemény teljesen autonóm AI-ügynökök által írt szoftverről. Forrás-tapasztalat: -2.",
+    "tema": "aws local emulator ai agents",
+    "cim_hu": "AI-ügynökök által írt ingyenes AWS-emulátort adott ki az Amazon",
+    "lead_hu": "Az Amazon Web Services megjelentette az AWS Emulatort, egy olyan helyi teszteszközt, amelynek teljes kódját autonóm mesterségesintelligencia-ügynökök írták.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-12T09:07:23+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-12T09:11:39+00:00"
+}

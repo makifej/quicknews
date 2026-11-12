@@ -1,0 +1,49 @@
+{
+  "id": "b5708027eb88",
+  "slug": "introducing-the-web-search-api-on-amazon-bedrock-agentcore",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/introducing-the-web-search-api-on-amazon-bedrock-agentcore/",
+  "publikalva": "2026-11-11T23:13:16+00:00",
+  "cim": "Introducing the Web Search API on Amazon Bedrock AgentCore",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 64 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/11/ML-22165-featured-image.png"
+  },
+  "cim_eredeti": "Introducing the Web Search API on Amazon Bedrock AgentCore",
+  "szoveg_eredeti": "AI agents and applications that answer questions about recent events, product releases, prices, or regulations need information newer than their model’s training data. Until now, Web Search on Amazon Bedrock AgentCore delivered that information to agents through AgentCore Gateway, a capability of Amazon Bedrock AgentCore. That means creating a gateway and a web search target and calling the tool from an MCP client. The setup fits platform teams that share one search policy across many agents, but it’s more than you need when your own code only requires search results.\n\nToday, we’re announcing the Web Search API on Amazon Bedrock AgentCore. With it, your own code can search the web with a single API call. It returns ranked results from a web index that Amazon operates, each with a text extract and, when available, the page title, URL, and publication time. You call it from the AWS SDKs or the AWS Command Line Interface (AWS CLI), signed with the same AWS Identity and Access Management (IAM) credentials you use for your other AWS services. There are no resources to create first. Authenticate, call, and get results. Use it in an application, an agent loop you write yourself, or a data pipeline.\n\nThe AgentCore Gateway is the recommended path for most agentic workloads. It gives agents one secure Model Context Protocol (MCP) endpoint that combines web search with your other tools. It also handles inbound and outbound authentication, semantic tool selection, and optional MCP sessions. But developers told us they also need a lower-level integration point for scenarios where the gateway is not the right fit:\n\nThe Web Search API complements the gateway. It runs on the same search infrastructure that powers Alexa+, Kiro, Quick, and other Amazon products, with the same quality and compliance posture, exposed as a direct API operation.\n\nThe Web Search API is the InvokeWebSearch operation on the bedrock-agentcore data plane, the same endpoint that other AgentCore tools such as AgentCore Browser, a capability of Amazon Bedrock AgentCore, use. Requests are signed with AWS Signature Version 4 (SigV4) from your standard AWS credentials, so there’s no API key or secret to manage.\n\nFigure 1: How a Web Search API request flows\n\nThe calling identity needs one IAM permission on an AWS managed resource. It’s the same action and resource that a gateway’s service role uses for web search, so one policy covers both routes. For details, see Grant permission to call the API.\n\nThe following example searches two trusted domains for pages published in 2026, in the US West (Oregon) Region (us-west-2), with the AWS SDK for Python (Boto3):\n\nEvery result has a text extract. The title, URL, and publication date come back when the index has them, so read them with get. One result from a live call, shortened:\n\nThat’s the full integration. If your code runs on AWS Lambda, Amazon Elastic Container Service (Amazon ECS), Amazon Elastic Compute Cloud (Amazon EC2), or Amazon Elastic Kubernetes Service (Amazon EKS), the execution role provides credentials automatically. Add the permission to that role, and the same code runs unchanged.\n\nHere are two ways to get a first result:\n\nThere’s no resource to create and no API key to manage. Authenticate, call, and get results.\n\nThe Web Search API fits naturally into popular agent frameworks. LangChain agents get it through the AgentCore web search tool in langchain-aws 1.9.3 and later:\n\nThe tool can also hold rules that the model can’t change, such as domains to exclude, a date floor, and a search budget. It returns its results as data that your code can check. For a complete example, see the daily dependency watch sample. It researches three package ecosystems in parallel with LangGraph, and checks every finding against its sources before it reports anything.\n\nIf you prefer to wrap the call yourself, a plain LangChain tool works too:\n\nWithout a framework, the WebSearchClient in the AgentCore Python SDK wraps the same call and returns results with parsed dates. langchain-aws 1.9.3 and the AgentCore Python SDK 1.26.0 add Web Search API support, so install those versions or later.\n\nBecause the Web Search API uses standard IAM authentication, you get enterprise controls from the first call:\n\nQuotas apply per account. For the defaults and how to request an increase, see Quotas for Amazon Bedrock AgentCore.\n\nBy default, each account can send up to 10 requests per second in each Region, and you can request an increase. For details, see AgentCore Web Search Service Quotas.\n\nAgents and pipelines that handle sensitive data often run in private subnets with no route to the internet. With AWS PrivateLink, that code can call the Web Search API through an interface VPC endpoint in your VPC. Traffic between your VPC and the API stays on the AWS network, and you don’t need an internet gateway, a NAT gateway, or a proxy to reach it.\n\nFigure 2: Calling the Web Search API through AWS PrivateLink\n\nTo set it up, create an interface endpoint for the AgentCore data plane service, com.amazonaws.<Region>.bedrock-agentcore, in each VPC and Region that calls the API, and turn on private DNS:\n\nWith private DNS turned on, the API’s standard Regional name, bedrock-agentcore.us-west-2.amazonaws.com, resolves to the endpoint’s private IP addresses inside your VPC. The Boto3 and AWS CLI examples in this post run unchanged, with no endpoint URL to set. The endpoint’s security group must allow inbound HTTPS (port 443) from the resources that call the API.\n\nPrivateLink also gives you controls on top of IAM:\n\nPrivateLink works the same way in every Region where the Web Search API is available. Interface endpoints are billed at standard AWS PrivateLink pricing. For details, see Call AgentCore Web Search through AWS PrivateLink.\n\nYou can try the Web Search API in the Amazon Bedrock AgentCore console before you write any code. In the navigation pane, under Connections, choose Web Search.\n\nFigure 3: Web Search in the Amazon Bedrock AgentCore console\n\nFigure 4: A test search with included domains\n\nThe console signs each call with your own IAM identity, so your role needs the bedrock-agentcore:InvokeWebSearch permission.\n\nBoth paths search the same index. They differ in a few ways. A gateway can also authorize callers with a JSON Web Token (JWT), while the API authorizes with IAM only. On a gateway, an administrator can set domain lists on the target that apply to every request without the calling agent seeing them. With the API, each request carries its own filters. The field names differ too: the API takes searchQuery, publishedAfter, and publishedBefore, and the gateway’s MCP tool takes query, from, and to. For more guidance, see Choose between the API and the Gateway connector.\n\nThe Web Search API meters to the same usage type as the gateway connector, so it’s billed at the Web Search rate of $7 per 1,000 queries. Because no gateway is involved, there are no gateway charges. For details, see Amazon Bedrock AgentCore pricing.\n\nThe Web Search API is available in the US East (N. Virginia), US East (Ohio), US West (Oregon), Europe (Ireland), Asia Pacific (Tokyo), and Asia Pacific (Sydney) Regions. For the current list, see Supported AWS Regions.\n\nUse the following resources to help you get started.",
+  "begyujtve": "2026-11-12T09:04:41.054424+00:00",
+  "prioritas": {
+    "pont": 64,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 65,
+      "egyediseg": 100,
+      "hitelesseg": 78,
+      "aktualitas": 92,
+      "kozossegi": 56
+    },
+    "elofeszures": 87,
+    "tanult": 66,
+    "indok": "Frissített keresési API funkció az AWS Bedrock ágenskörnyezetében. Forrás-tapasztalat: -6.",
+    "tema": "aws bedrock web search api",
+    "cim_hu": "Web Kereső API-t kapott az Amazon Bedrock AgentCore",
+    "lead_hu": "Az Amazon Web Services leegyszerűsítette a friss adatok elérését az AI-ágensek számára. Az új beépített API segítségével bonyolult architektúra nélkül köthetők be a friss webes információk.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-12T09:07:23+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-12T09:10:56+00:00"
+}

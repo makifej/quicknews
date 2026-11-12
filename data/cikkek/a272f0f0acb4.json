@@ -1,0 +1,49 @@
+{
+  "id": "a272f0f0acb4",
+  "slug": "modular-preprocessing-pipeline-standardizes-breast-mri-data-for",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/modular-preprocessing-pipeline-standardizes-breast-mri-data-for-artificial-intelligence/",
+  "publikalva": "2026-11-12T06:22:30+00:00",
+  "cim": "Modular Preprocessing Pipeline Standardizes Breast MRI Data for Artificial Intelligence",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 55 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-6939.png"
+  },
+  "cim_eredeti": "Modular Preprocessing Pipeline Standardizes Breast MRI Data for Artificial Intelligence",
+  "szoveg_eredeti": "Modular Preprocessing Pipeline Standardizes Breast MRI Data for Artificial Intelligence\n\nResearchers have introduced an open-source, modular preprocessing pipeline named bmri-ai-prep, alongside an adapted data formatting standard, designed to prepare complex breast magnetic resonance imaging datasets directly for artificial intelligence and deep-learning workflows. Magnetic resonance imaging is an exceptionally versatile diagnostic modality, capturing three-dimensional volumetric stacks across multiple contrast sequences, dynamic time courses, and diffusion weightings within a single session. However, prevailing deep-learning vision models were originally engineered for two-dimensional natural images. When applied to breast imaging, these networks encounter substantial obstacles because clinical acquisitions require an expansive field of view to suppress imaging artifacts, leaving the target breast tissue occupying only a minor fraction of the total volume. In conventional practice, researchers have frequently fragmented volumetric data into independent two-dimensional slices, downsampled images, or calculated maximum intensity projections to conform to restricted network dimensions. These ad hoc reduction methods inevitably compromise inter-slice geometric coherence and spatial correspondence across sequences, stripping away vital multidimensional information.\n\nThe absence of tailored preprocessing tools stems largely from the historical dominance of brain neuroimaging within medical imaging research. Over decades, the academic community developed sophisticated open-source software packages, including FSL, FreeSurfer, SPM, AFNI, ANTs, and DiPy, specifically optimized for cranial anatomy. Compounding this tool discrepancy is a lack of organizational standardization across public breast imaging repositories. While neuroimaging widely adopted the Brain Imaging Data Structure to standardize directory hierarchies and metadata, public breast MRI datasets remain predominantly in raw DICOM format. This format imposes heavy header overhead and protocol variability, forcing artificial intelligence researchers to construct labor-intensive custom data loaders or execute extensive manual restructuring prior to model development.\n\nTo establish an organized bridge between raw archives and deep-learning models, the researchers introduced the Breast Imaging Data Structure, designated BRIDS. Adapted from the neuroimaging BIDS standard, BRIDS replaces complex multi-frame DICOM files with streamlined NIfTI image storage, enforcing consistent directory structures and naming conventions optimized for breast imaging protocols. The accompanying bmri-ai-prep pipeline features a fully modular design where discrete preprocessing steps execute independently without rigid inter-stage dependencies. Progression across data types is tracked through simple text files with the extension *.baip.txt, which record the completion of each processing operation. This file-based tracking allows investigators to audit execution, fine-tune parameters for specific institutional protocols, and seamlessly resume processing after unexpected interruptions, effectively eliminating the friction and overhead of adapting brain-oriented tools or drafting bespoke data parsers.\n\nThe bmri-ai-prep pipeline incorporates three core computational modules: intra-sequence motion correction, inter-sequence co-registration, and anatomical segmentation. Intra-sequence motion correction operates primarily on dynamic contrast-enhanced sequences, where patient movement across dynamic frames can corrupt kinetic enhancement profiles. In comparative evaluations of deformation algorithms across ANTs, SimpleElastix, and NiftyReg, deformable registration proved crucial for capturing non-rigid tissue movement. NiftyReg’s deformation implementation offered the most favorable balance of performance, flexibility, and speed, requiring a mean runtime of 312 seconds per series compared to 463 seconds for SimpleElastix and 573 seconds for ANTs. Crucially, the researchers observed that relying solely on objective similarity metrics, such as the Fractional Improvement of Structural Similarity, proved misleading. While ANTs yielded the highest FISS score of 0.0061 against 0.0053 for default NiftyReg, visual inspection revealed anatomically implausible warping. Increasing default deformation regularization penalty terms fivefold to tenfold successfully resolved this distortion.\n\nThe quantitative performance of the motion correction module was audited across 40 evaluation subjects from the Duke-Breast-Cancer-MRI and Advanced-MRI-Breast-Lesions datasets. Under the adopted NiftyReg settings, the median landmark displacement residual fell from 1.582 millimeters to 1.155 millimeters, achieving a median per-subject reduction of 33.3 percent. Conversely, SimpleElastix degraded alignment, increasing the displacement residual by 34.3 percent. Crucially, the adopted setting preserved the diagnostic time-to-peak enhancement in 95.0 percent of subjects while shifting peak enhancement by a median of negative 4.65 percentage points; SimpleElastix preserved time-to-peak in only 82.5 percent of subjects. Acquisition protocol comparisons confirmed that displacement residual reductions did not differ significantly between field strengths, averaging 30.7 plus or minus 14.5 percent at 1.5 Tesla versus 28.7 plus or minus 20.7 percent at 3.0 Tesla. Time-to-peak was preserved across all 27 subjects at 1.5 Tesla and in 11 of 13 subjects at 3.0 Tesla, demonstrating consistent stabilization.\n\nTo enable multi-parametric artificial intelligence analysis combining distinct functional contrasts, the co-registration module aligns all secondary sequences to a pre-contrast dynamic contrast-enhanced reference volume. Clinical protocols routinely incorporate axial T2-weighted and diffusion-weighted imaging alongside dynamic series. Default registration parameters produced severe tissue smearing and structural degradation. Systematic binary search optimization revealed that increasing deformation regularization penalties three- to fivefold established robust cross-modal alignment while preserving anatomical morphology across T1-weighted, T2-weighted, and diffusion sequences. For multi-session longitudinal imaging, the authors implemented a two-stage procedure pairing initial affine registration with subsequent deformation under regularization penalties increased sevenfold to tenfold. In testing quantitative co-registration metrics, including structural similarity indices, ORB feature similarities, and MedicalNet ResNet-50 embedding cosine similarities, none reliably tracked visual quality or regularization changes, confirming that expert visual inspection remains the primary dependable evaluation standard for breast MRI registration.\n\nThe segmentation module isolates breast parenchyma, addressing the extreme data sparsity typical of wide-field axial acquisitions that encompass the thoracic cage, heart, lungs, spine, and background air. Quantitative evaluations across 25 manually segmented sessions revealed that breast tissue occupies merely 5.2 plus or minus 2.4 percent of the total acquired volume. The tightest rectangular bounding boxes enclosing both breasts occupy 15.7 plus or minus 5.0 percent, representing a theoretical sixfold reduction in input array size. The bmri-ai-prep pipeline emits conservative bounding boxes with safety margins retaining 26.1 plus or minus 7.4 percent of the volume, providing an approximate fourfold reduction. Concurrently, applying segmentation masks reduces stored file sizes by an order of magnitude, from 100–200 megabytes down to 10–20 megabytes per sequence while improving overall signal-to-noise ratios. This reduction allows volumetric networks to ingest multi-sequence arrays without aggressive downsampling.\n\nTwo deep-learning segmentation models were evaluated alongside classical thresholding benchmarks. The investigators develope",
+  "begyujtve": "2026-11-12T09:04:43.267134+00:00",
+  "prioritas": {
+    "pont": 55,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 60,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 26
+    },
+    "elofeszures": 77,
+    "tanult": 21,
+    "indok": "Specifikus orvosi AI adatfeldolgozási szabvány bejelentése. Forrás-tapasztalat: -6.",
+    "tema": "mri data preprocessing for ai",
+    "cim_hu": "Új nyílt forráskódú feldolgozórendszer segíti a mell-MRI adatok AI-elemzését",
+    "lead_hu": "Kutatók bemutatták a bmri-ai-prep nevű nyílt forráskódú adatfeldolgozó rendszert, amely szabványosítja a komplex MRI-felvételeket a mélytanulási modellek számára.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-12T09:07:23+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-12T09:10:35+00:00"
+}
