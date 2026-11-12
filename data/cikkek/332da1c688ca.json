@@ -1,0 +1,49 @@
+{
+  "id": "332da1c688ca",
+  "slug": "four-amazon-bedrock-inference-choices-that-affect-cost",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/four-amazon-bedrock-inference-choices-that-affect-cost/",
+  "publikalva": "2026-11-12T20:51:55+00:00",
+  "cim": "Four Amazon Bedrock inference choices that affect cost",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 49 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/10/ML-21479-featured-image-1.png"
+  },
+  "cim_eredeti": "Four Amazon Bedrock inference choices that affect cost",
+  "szoveg_eredeti": "Your Amazon Bedrock inference bill can keep climbing after you tune prompts and application logic. Request-level choices can still change how many tokens the service processes and the rate applied to them. Cache duration, service tier, reasoning effort, and maxTokens can affect cost without changing your model or prompt.\n\nEach choice depends on the model and workload. This post shows how we tested each choice and how to verify its effect from response metadata, logs, and billing data.\n\nTo try these settings yourself, start with the Amazon Bedrock Samples notebooks Mixed TTL Caching and Tenant Isolation with Prompt Caching. For maxTokens and reasoning effort, see the 01-low-effort folder of the sample-code-for-genai-cost-management-workshop GitHub repo. Each sample sets its own model ID, so change it, and the inference parameters, to match the model you call. For model availability by AWS Region, refer to Models at a glance. For broader decisions such as model selection, batch inference, routing, and distillation, see Effective cost optimization strategies for Amazon Bedrock.\n\nEvery Amazon Bedrock response carries usage metadata. Input and output tokens bill at the rate for the model and tier that served the request. Cache reads and writes use separate token counters, and reasoning tokens count as output tokens.\n\nRepeated system instructions, tool definitions, or reference context can be processed again when the cache expires before the next request. The Prompt caching for faster model inference guide lists 5-minute and 1-hour time-to-live (TTL) values for supported Anthropic models. It also lists a 30-minute minimum TTL for supported GPT-5.6 models. Support and API fields depend on the model, so check the current support matrix before selecting a duration.\n\nFor supported models, Amazon Bedrock also offers implicit prompt caching, which attempts to reuse eligible prompt prefixes without cache controls in your request. Because implicit caching is best effort and doesn’t guarantee a cache hit, the duration choices in this section apply to explicit caching.\n\nThis Converse API signature requests a 1-hour entry on models that support it:\n\nFor supported Anthropic models, InvokeModel places the same ttl value in cache_control.\n\nA longer duration is not automatically cheaper. The Amazon Bedrock Pricing page lists separate rates for 5-minute writes, 1-hour writes, and cache reads. For Anthropic Claude Sonnet 5 and Anthropic Claude Opus 5 on Amazon Bedrock, a 5-minute write costs 1.25 times the input rate. A 1-hour write costs 2 times, and a cache read costs 0.1 times.\n\nThese rates set the break-even, assuming each request reuses the exact prefix and each cache read refreshes the TTL. A 5-minute cache pays back on the first reuse within 5 minutes. When requests for the same prefix arrive more than 5 minutes apart, it rewrites at 1.25 times on every request. The 1-hour cache is then cheaper from the second request within the hour.\n\nCache rates and checkpoint minimums differ by model. Check the Amazon Bedrock Pricing page and the prompt caching guide for the model you call. Rerun the comparison for your model, then confirm it with cache read and write tokens after rollout.\n\nKeep stable content before dynamic content, meet the model’s checkpoint minimum, and use on-demand inference because prompt caching doesn’t work with batch inference.\n\nChanging a cached prefix, including a system instruction or tool definition, causes a miss and a new write. Checkpoints are evaluated in the order tools, system, then messages, so a change in an earlier section also invalidates the later ones. Version prompts that change often so each version gets its own cache entry. We ran six calls on Claude Sonnet 5 with a 1-hour checkpoint, changing the system prompt once and the tool definition once. Each change produced zero cache reads and a new write.\n\nAWS describes cache entries as scoped to your account and Region, not to your tenants. In a multi-tenant application, prepend a tenant-specific SHA-256 hash to the cacheable prefix. The Optimizing cost and latency with Amazon Bedrock prompt caching for Anthropic models post describes this pattern. Enforce tenant authorization before you build the prompt. The hash partitions entries inside one account. If a regulated workload needs a hard data boundary, keep each tenant in a separate AWS account.\n\nKeep the 5-minute default for frequent reuse. Move from it to a longer supported duration when the same prefix recurs at least twice an hour with gaps longer than 5 minutes. To beat no caching at all, the 1-hour cache needs three requests an hour.\n\nBackground jobs, evaluation harnesses, nightly summarization, and backfills don’t always need the latency profile used by interactive requests. For models that support Flex, select it with this request signature:\n\nUse default, not standard, to request the Standard tier. You can also omit serviceTier:\n\nTier support is model-specific, so record support by exact model version. The Amazon Nova 2 Lite and OpenAI gpt-oss-120b model cards list Flex as supported. The cards for Anthropic Claude Sonnet 5 and Anthropic Claude Opus 5 on Amazon Bedrock list it as not supported. A Flex request to an unsupported model fails with a ValidationException instead of silently running on Standard. Our request to Anthropic Claude Sonnet 5 returned that error.\n\nIf your policy allows Standard as a fallback, catch the unsupported-tier error and retry once with default. Don’t retry every ValidationException, because malformed requests raise it too. Cap application-level retries. The bounded retry strategy of the AWS SDK handles throttling and transient errors.\n\nSet your own deadline for Flex requests. A supported response reports the resolved tier, which you can also verify with Amazon CloudWatch ResolvedServiceTier. See Service tiers for optimizing performance and cost and the Amazon Bedrock Pricing page for the exact model you call.\n\nWe tested Flex on Amazon Nova 2 Lite with 200 default requests and 200 flex requests, sent in interleaved pairs. Both tiers processed the same number of input and output tokens. All 400 requests resolved to the requested tier, and the median latency difference was too small to separate from noise. At the time of writing, the published Flex rate for Nova 2 Lite in us-west-2 is half the Standard rate, and our bill reflected that. Check the Amazon Bedrock Pricing page for current rates. Keep latency-sensitive traffic on default.\n\nReasoning tokens bill as output tokens. Claude Sonnet 5 and Claude Opus 5 use adaptive thinking at high effort by default, even when a request omits the thinking field. An application moved from Claude Sonnet 4.6 without changes starts billing thinking tokens, and maxTokens now caps thinking plus response text. Claude Haiku 5.5 defaults to medium. All three models support low, medium, high, xhigh, and max. Lower the effort for a task with this request signature:\n\nKeep effort in output_config, not inside thinking. Check Adaptive thinking whenever you change models.\n\nWe tested a tool-calling agent on Claude Opus 5. Its three tasks follow the design in Build long-horizon agents with Grok 4.7 on Amazon Bedrock, and each has one correct answer. We ran each task eight times at every effort level. The table shows median output tokens:\n\nAccuracy at lower effort depends on the model and the task. Measure on tasks shaped like yours.\n\nOn the Amazon Bedrock Samples Invoke Bedrock model for code generation workload, median output tokens were 676 at low and 743 at high, a difference within run-to-run variation. The programs we graded passed at each effort level.\n\nUse per-request output-token counts, CloudWatch AWS/Bedrock OutputTokenCount, invocation logs, and a task pass rate to evaluate the choice. Start below high for routine, well-bounded tasks. Keep high where your quality tests show that the task needs it. A token reduction that breaks the task is not a saving.\n\nmaxTokens is an ap",
+  "begyujtve": "2026-11-12T21:19:40.174610+00:00",
+  "prioritas": {
+    "pont": 49,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 45,
+      "egyediseg": 90,
+      "hitelesseg": 78,
+      "aktualitas": 92,
+      "kozossegi": 36
+    },
+    "elofeszures": 74,
+    "tanult": 38,
+    "indok": "Technikai jellegű AWS fejlesztői útmutató a költségek optimálásáról, alacsony általános hírértékkel Forrás-tapasztalat: -6.",
+    "tema": "aws bedrock cost optimization",
+    "cim_hu": "Négy tényező az Amazon Bedrock használatánál, ami befolyásolja a költségeket",
+    "lead_hu": "Az Amazon technikai útmutatóban mutatja be, miként hat a gyorsítótárazás és a válaszadási korlát az Amazon Bedrock költségeire a modellek módosítása nélkül.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-12T21:19:52+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-12T21:19:56+00:00"
+}
