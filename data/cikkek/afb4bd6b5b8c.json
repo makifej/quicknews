@@ -1,0 +1,49 @@
+{
+  "id": "afb4bd6b5b8c",
+  "slug": "review-assesses-artificial-intelligence-applications-in-thyroid",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/review-assesses-artificial-intelligence-applications-in-thyroid-cancer-diagnosis-and-management/",
+  "publikalva": "2026-11-12T14:13:41+00:00",
+  "cim": "Review Assesses Artificial Intelligence Applications in Thyroid Cancer Diagnosis and Management",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 51 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-7743.png"
+  },
+  "cim_eredeti": "Review Assesses Artificial Intelligence Applications in Thyroid Cancer Diagnosis and Management",
+  "szoveg_eredeti": "Review Assesses Artificial Intelligence Applications in Thyroid Cancer Diagnosis and Management\n\nA comprehensive review led by researchers at The First Affiliated Hospital of Zhengzhou University has synthesized evidence on the emerging roles of artificial intelligence across the diagnosis, risk assessment, and treatment of thyroid cancer. Thyroid cancer represents one of the most common endocrine malignancies worldwide, with the International Agency for Research on Cancer’s GLOBOCAN 2022 database recording more than 821,000 newly diagnosed cases in 2022 alone. In global incidence statistics, thyroid cancer ranked seventh among all recorded malignancies and fifth among female patients. While standard diagnostic pathways depend heavily on clinical palpation, neck ultrasonography, and confirmatory fine-needle aspiration biopsy, clinicians continue to encounter notable diagnostic challenges. These hurdles include substantial interobserver variability in imaging interpretation, indeterminate cytology in over 15 percent of biopsied nodules, and pronounced biological heterogeneity across primary tumors. Although the rapid emergence of advanced deep learning algorithms and multimodal data integration has generated high diagnostic accuracy metrics across dozens of published algorithms, the authors emphasize that technical performance metrics alone do not demonstrate improved clinical decisions or superior patient outcomes in everyday healthcare settings.\n\nTo rigorously evaluate the contemporary clinical literature, the investigators executed a structured PubMed search on September 29, 2026, targeting English-language publications released between June 10, 2021, and September 29, 2026. This dedicated search utilized medical subject headings alongside title and abstract keywords covering thyroid neoplasms, machine learning, deep learning, radiomics, computer-assisted diagnosis, and foundation models. From an initial identification of 1,674 records with unique PubMed identifiers, the authors selected 36 original clinical studies evaluating human-derived data for inclusion in their primary narrative synthesis, while setting aside duplicate reports, retracted literature, and non-peer-reviewed preprints. Rather than conducting a pooled quantitative meta-analysis, the reviewers developed a five-domain translational evidence framework to systematically differentiate technical feasibility, diagnostic or prognostic validity, cross-setting transportability, clinical decision value, and direct patient benefit across ultrasound, cross-sectional imaging, digital pathology, genomic analysis, and clinical management pipelines.\n\nUltrasonography serves as the primary frontline modality for screening and stratifying thyroid nodules, which are widespread throughout the general population but carry malignancy rates of approximately 5 percent. Deep learning architectures based on convolutional neural networks and vision transformers have been applied to lesion detection, automated feature extraction, and risk stratification. Representative systems detailed in the review include a dual-view transverse and longitudinal detection pipeline combining YOLOv5 with XGBoost, which achieved an area under the curve of 0.840 in a held-out testing cohort. A multimodal fusion model integrating conventional B-mode ultrasonography and strain elastography to evaluate high-risk TI-RADS 4 nodules demonstrated an external validation area under the curve of 0.927. Similarly, the BETNET framework demonstrated areas under the curve of 0.951 in internal testing and 0.970 in external evaluation. Furthermore, multiview self-supervised learning algorithms using two-stage pretraining achieved single-view classification areas under the curve ranging from 0.849 to 0.883 and segmentation Dice coefficients between 0.846 and 0.881 across training sets containing between 10 percent and 100 percent labeled data, demonstrating that improved representation learning can optimize training efficiency when expert annotations are constrained.\n\nBeyond standard automated classifiers, recent investigations have explored the combination of computer-aided diagnosis with conversational large language models. In that reader evaluation, three junior and three senior radiologists interpreted nodules under unassisted baseline conditions, with localized feature heatmaps, and after interactive consultation with ThyGPT. Assistance from ThyGPT raised the mean radiologist area under the curve from an unassisted baseline of 0.805 to 0.908, a difference that reached statistical significance with a p-value below 0.001. Moreover, applying the study’s proposed management algorithm in a simulated setting reduced the proportion of nodules recommended for invasive fine-needle aspiration biopsy from 64.2 percent down to 23.3 percent, which also attained statistical significance at p below 0.001. However, the review underscores that simulated biopsy avoidance in retrospective reader tests does not prove that biopsies are safely avoided in prospective clinical environments without missing significant cancers or causing diagnostic delays.\n\nFor advanced staging and surgical planning, cross-sectional imaging modalities such as computed tomography and magnetic resonance imaging provide vital anatomic information regarding locoregional invasion and lymph node involvement. In computed tomography analysis, a prospective study utilizing an ensemble three-dimensional residual network combined with clinical risk factors achieved an area under the curve of 0.829 for predicting lateral cervical lymph node metastasis. A separate two-stage deep learning detection network coupled with an attention classifier reached an overall classification accuracy of 0.960 for detecting metastatic lateral lymph nodes. CT-based radiomics models focused on tracheal geometry have achieved areas under the curve between 0.875 and 0.918 for identifying direct tracheal invasion in locally advanced malignancies. In magnetic resonance imaging, the AMMCNet architecture integrated multiple anatomical sequences with clinicopathological characteristics, generating an area under the curve of 0.891 for central lymph node metastasis prediction in papillary thyroid carcinoma. The authors point out that these specialized networks address narrow, compartmentalized diagnostic queries rather than delivering comprehensive autonomous staging.\n\nArtificial intelligence tools evaluated on pathological specimens encompass fine-needle aspiration cytology as well as whole-slide histopathology, where poor interobserver agreement frequently challenges human diagnosticians. In cytological assessments, an EfficientNet series model evaluated by Hirokawa and colleagues demonstrated an overall sensitivity of 94.7 percent but exhibited a specificity of only 14.4 percent within the challenging atypia of undetermined significance subgroup. This marked performance imbalance illustrates that high sensitivity can mask excessive false-positive classifications that fail to resolve indeterminate diagnoses. An Inception-ResNet V2 framework improved reader diagnostic accuracy and interobserver agreement when tested on cropped image patches, whereas an integrated deep learning architecture reported a 96.50 percent classification accuracy in an evaluation of 1,884 slides strictly limited to Bethesda II, V, and VI categories. In frozen-section whole-slide histopathology, a patch-based U-Net model combined with an empirical decision tree demonstrated an area under the curve of 0.946 on 1,374 slides when uncommon histological categories were included, dropping from 0.986 when evaluated solely on common lesions. Multiple instance learning with multiscale fusion yielded an external validation area under the curve of 0.958, while traditional feature-based support vector machines remained highly competitive with end-to-end convolutional neural networks, achieving accuracies of 89.7 percent and 89.1 percent, respectively.\n\nIn mo",
+  "begyujtve": "2026-11-12T14:19:12.335607+00:00",
+  "prioritas": {
+    "pont": 51,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 45,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 90,
+      "kozossegi": 28
+    },
+    "elofeszures": 74,
+    "tanult": 17,
+    "indok": "Orvosi összefoglaló tanulmány az AI pajzsmirigyrák-diagnosztikában betöltött szerepéről. Forrás-tapasztalat: -6.",
+    "tema": "ai thyroid cancer diagnosis review",
+    "cim_hu": "Összefoglaló tanulmány készült az AI szerepéről a pajzsmirigyrák kezelésében",
+    "lead_hu": "Kínai kutatók átfogó elemzésben értékelték a mesterséges intelligencia alkalmazási lehetőségeit a pajzsmirigyrák diagnosztikájában és terápiájában.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-12T14:19:26+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-12T14:19:43+00:00"
+}
