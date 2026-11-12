@@ -1,0 +1,49 @@
+{
+  "id": "372847c94994",
+  "slug": "how-amplitude-ships-product-improvements-in-12-days-with-openai",
+  "forras_id": "openai",
+  "forras_nev": "OpenAI",
+  "url": "https://openai.com/index/amplitude",
+  "publikalva": "2026-11-12T20:00:00+00:00",
+  "cim": "How Amplitude ships product improvements in 1–2 days with OpenAI",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 49 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://images.ctfassets.net/kftzwdyauwt9/7xyAtQVA8C5CZGHW7aQidr/a71aedc6e0ed7395f081f75411af6d03/amplitude-wave-seo.png?w=1600&h=900&fit=fill"
+  },
+  "cim_eredeti": "How Amplitude ships product improvements in 1–2 days with OpenAI",
+  "szoveg_eredeti": "Built primarily on OpenAI models, Amplitude’s proactive product agent, Wave, identifies what to build, helps teams ship changes with coding agents, and measures the impact.\n\nLift in agent engagement vs. control after one day\n\nEstimated time to ship a product improvement with Wave\n\nLower mean model cost per dispatch for GPT‑6.1 Sol in Amplitude’s Data Science Agent evaluation.\n\nModel cost for GPT‑6.1 Sol in Amplitude’s Opportunity Investigator evaluation.\n\nAmplitude has always helped teams see how people actually use their products. Its proactive product agent Wave helps teams turn those insights into shipped improvements. Amplitude describes Wave as roughly 80% powered by OpenAI models, including GPT‑6.1 Sol, GPT‑6 Luna, and GPT‑Image‑2.5 Flare. Wave turns product insights into implementation plans teams can ship to coding agents, including Codex, then measures the impact.\n\nAmplitude estimates that Wave can help teams ship product improvements in 1–2 days, down from roughly a month. On Amplitude’s own homepage, Wave helped personalize suggestion cards, driving a 160% lift in card-driven sends.\n\nWave is Amplitude’s proactive product agent. Teams give it a product area and the goals and metrics they want to improve. Wave brings together Amplitude data, session replays, customer feedback, and code to identify and prioritize opportunities, develop solutions, and coordinate implementation with people and coding agents. It then tracks outcomes and uses those learnings to inform the next round of improvements.\n\nBehind that workflow, Amplitude uses different OpenAI models for different tasks. GPT‑6.1 Sol supports the opportunity manager and deep investigations into code and data. GPT‑6 Luna handles frequent, lower-cost tasks such as scanning code and running small evaluation checks. GPT‑Image‑2.5 Flare generates product mockups using screenshots from session replays as visual references.\n\nWhen an opportunity is ready to build, teams can send it directly from Wave to coding agents, including Codex, with a technical plan and acceptance criteria to guide implementation.\n\n“The idea with Wave is you have a unified platform with agents that comb through massive amounts of session replays, analytics, and code to find opportunities to improve products,” explains Jacob Newman, Principal AI Product Manager at Amplitude.\n\nAmplitude tested Wave on its own homepage, where generic suggestion cards were meant to help users start a conversation with an AI agent. Wave discovered that people often bypassed them: in a sample of 100 session replays, 80 users typed their own questions and only 12 selected a suggestion.\n\nWave proposed personalizing the cards using recent charts, dashboards, or the page a user had come from. It illustrated the change and produced a technical plan, including preserving free typing and showing generic suggestions when personalization context was unavailable. After a brief review, the team handed the work to a coding agent and A/B tested the change.\n\nIn the experiment readout Amplitude shared, messages sent through homepage suggestion cards increased 160% relative to control after one day. “It is a great example of how non-groundbreaking things that just get ignored can increase the adoption of features in unexpected ways.” explains Eric Carlson, Senior Principal AI Engineer at Amplitude.\n\nWave’s tasks place different demands on its models. A deep investigation needs strong reasoning and well-supported conclusions. A small check repeated hundreds of times needs to be fast and inexpensive. Amplitude evaluates quality, latency, and cost for each task, then assigns models accordingly.\n\nFor Wave’s Opportunity Investigator, Amplitude evaluated whether models corroborated findings, avoided false positives, incorporated evaluator feedback, recovered from tool failures, and kept claims aligned with evidence. GPT‑6.1 Sol scored 4.06 out of 5 overall, compared with 3.62, 3.52, and 2.94 for three alternative models. It led on all five investigation criteria and had the fastest median investigation time, at 54 minutes.\n\nIn a separate evaluation of Wave’s Data Science Agent, GPT‑6.1 Sol scored 67.5 out of 100, compared with 69.3 for another leading model, at a mean model cost of $1.28 versus $2.63 per dispatch. GPT‑6.1 Sol also scored higher on tool-contract compliance, estimation and uncertainty, and evidence grounding.\n\nFor high-volume work such as scanning code and running small evaluation checks, Amplitude uses GPT‑6 Luna to keep latency and cost low. Splitting work across specialist agents lets the team reserve more expensive reasoning for the tasks that need it the most.\n\nFor generating wireframes and mockups, OpenAI’s image generation model scored 80.3 out of 100 for solution wireframes, compared with 63.9 for another image generation model. Amplitude’s evaluation covered communication quality, product fidelity, instruction adherence, text and UI legibility, and visual coherence across 15 opportunities.\n\nCustomers across industries are already using Wave in beta to identify and ship product improvements. Wave analyzes session and analytics data, then develops recommendations with a proposed fix, technical plan, and acceptance criteria.\n\nFrom there, teams can control the level of automation. Most teams send bug fixes straight to coding agents, while new features and bigger bets get a human review.\n\nFor changes that reach launch, the path from discovery to execution can be short: among customer-launched experiments, flags, and guides, one in four went live the same day Wave surfaced the opportunity, half in under four days, and two in three within a week.\n\nInterpolated from supplied milestones; the curve is illustrative, not individual observations.\n\n“Our ambition with OpenAI is to make self-improving products the way companies build software,” says Skates. As OpenAI’s models get better at reasoning and coding, teams will be able to delegate more investigation and implementation work to agents, ultimately resulting in better products reaching users faster. Amplitude is already seeing it, as agents find and help deliver improvements in its own product while the team works on other priorities: “I think teams will be surprised by how much they can accomplish when their software is working alongside them to make the product better.”",
+  "begyujtve": "2026-11-12T20:32:27.978687+00:00",
+  "prioritas": {
+    "pont": 49,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 35,
+      "egyediseg": 90,
+      "hitelesseg": 88,
+      "aktualitas": 95,
+      "kozossegi": 44
+    },
+    "elofeszures": 91,
+    "tanult": 50,
+    "indok": "Vállalati esettanulmány az OpenAI és az Amplitude együttműködéséről, amely inkább PR-ízű mintsem áttörő hír. Forrás-tapasztalat: -6.",
+    "tema": "openai amplitude integration",
+    "cim_hu": "Az Amplitude gyorsabban fejleszt termékeket az OpenAI modelljeivel",
+    "lead_hu": "Az Amplitude az OpenAI-ra építve hozta létre Wave nevű ágensét, amely segíti a fejlesztőket az ötleteléstől a kódolásig. A cég szerint így 1-2 napra csökkent a fejlesztési idő.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-12T20:34:29+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-12T20:34:35+00:00"
+}
