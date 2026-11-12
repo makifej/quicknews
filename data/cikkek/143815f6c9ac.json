@@ -1,0 +1,49 @@
+{
+  "id": "143815f6c9ac",
+  "slug": "kinai-nyelvu-hackerek-mi-eszkozzel-tortek-fel-10-szervezetet",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/chinese-speaking-hackers-used-YjPPrbtjSZ.pAFGuIvLQTA",
+  "publikalva": "2026-11-12T17:33:28.210663+00:00",
+  "cim": "Kínai nyelvű hackerek MI-eszközzel törtek fel 10 szervezetet",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 81 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--QcsLAQSB--/t_limit/https://imgproxy.divecdn.com/fzKNskTiFF9JpUdeci4H1_2fOacS0QuZjfUWHn29Kp0/g:nowe:8:185/c:4023:2273/rs:fill:1200:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9JTUdfMjIxOS5KUEc%3D.webp"
+  },
+  "cim_eredeti": "Kínai nyelvű hackerek MI-eszközzel törtek fel 10 szervezetet",
+  "szoveg_eredeti": "Kínai nyelvű támadók a Cairn nevű, nyílt forráskódú MI-alapú penetrációstesztelő keretrendszerrel 25 műveletet hajtottak végre legalább 19 szervezet ellen 2026 augusztusa és szeptembere között. Közülük 10-nél jogosulatlan hozzáférést szereztek, vagy adatokat nyertek ki – derül ki a Palo Alto Networks Unit 42 kutatócsoportjának november 12-én közzétett jelentéséből. Két további, a héten megjelent jelentés arról számol be, hogy támadók MI-t vetettek be egy amerikai kiskereskedő és felhőfiókok ellen. A jelentések együtt azt mutatják, hogy a biztonsági tesztelésre készült eszközöket valódi behatolásokhoz is használják.\n\nA támadók a Cairn keretrendszert a kínai Zhipu GLM és DeepSeek MI-modellekkel párosították. Megadtak egy célpontot és egy célt, a keretrendszer pedig önállóan megtervezte, végrehajtotta és naplózta a támadást. Hét célpont a félvezető- és a fejlett gyártóipari ellátási láncban működött, három a védelmi szektorban vagy a védelempolitikában, négy pedig emberi jogi és civil szervezet volt. Egyik modell sem tagadta meg a munkát. A támadók ugyanis kínai nyelvű bevezető szöveget adtak hozzá, amely szerint minden feladat engedélyezett biztonsági tesztelés.\n\nEgy amerikai tanári szakszervezetnél „a keretrendszer több mint egymillió tagi rekordhoz, nagyjából 31 000 CRM-kapcsolattartóhoz és a munkatársak jelszó-hashéihez való hozzáférést naplózott\" – közölték a kutatók. Egy iparági szabványügyi szervezetnél a támadók felülírtak egy éles szabványszavazási dokumentumot. A Unit 42 mérsékelt bizonyossággal úgy értékeli, hogy a CL-STA-1238 néven követett kampány Kínához köthető hírszerzési adatgyűjtés. Szerintük egyetlen operátor vagy egy kis csapat valószínűleg két héten belül 19 szervezet ellen indított támadási kísérleteket.\n\nEgy különálló jelentésben a Symantec egy szeptemberi behatolást ismertetett egy amerikai kiskereskedőnél. A támadók eleinte kézzel gépelték be a parancsokat. A parancsokban elírások voltak, a biztonsági szoftver pedig minden általuk előkészített kártékony kódot megsemmisített. Másnap hosszú, hibátlan PowerShell-szkriptekre váltottak, amelyek közül néhány olyan megjegyzéseket tartalmazott, mintha egy nyelvi modell gondolatmenetét olvasnánk. Nagyjából 10 perccel azután, hogy először lekérdezték az áldozat SolarWinds Orion szoftverét, már egy második szerveren futtattak parancsokat. A Symantec szerint az időzítés arra utal, hogy nem önálló MI-ügynök dolgozott, hanem egy ember továbbította a kimenetet egy MI-eszköznek. Hozzátették, hogy ez egyike azoknak a több tucatnyi MI-támogatású támadásnak, amelyeket májusa óta vizsgáltak.\n\nAz Arctic Wolf Labs jelentése szerint a támadók az AntiFoxot, az ARTEX-ből leágazó kínai nyelvű, ágensalapú pentestplatformot az Alibaba Cloud szerverein futtatták. Segítségével webshelleket telepítettek Microsoft IIS-szerverekre, valamint érvényes azonosítókkal vizsgálgatták az Amazon Web Services környezeteit. Az egyik behatolás során nagyjából fél óra alatt több száz API-kérés futott le, ami egy éles rendszerbeli titok megszerzéséhez vezetett.\n\nAz AWS közölte, hogy „a szolgáltatásait nem törték fel, és azok a tervezettnek megfelelően működtek\". Elmondása szerint a támadók az ügyfelek feltört alkalmazásaiból származó hitelesítő adatokat használtak.\n\nAz érintett sebezhetőségek ismert hibák voltak, például gyenge hitelesítő adatok és régi CVE-k. A Unit 42 szerint a mesterséges intelligencia a kihasználások számát növelte meg, de a bonyolultságukat nem.",
+  "begyujtve": "2026-11-12T18:03:01.148009+00:00",
+  "prioritas": {
+    "pont": 81,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 75,
+      "aktualitas": 98,
+      "kozossegi": 73
+    },
+    "elofeszures": 82,
+    "tanult": 71,
+    "indok": "Valódi kibertámadásokban használtak nyílt forráskódú AI-eszközt kínai hackerek a Unit 42 elemzése szerint. Forrás-tapasztalat: -1.",
+    "tema": "ai cyberattack cairn framework",
+    "cim_hu": "Kínai hackerek nyílt forráskódú AI-eszközzel törtek fel tíz szervezetet",
+    "lead_hu": "A Palo Alto Networks Unit 42 jelentése szerint kínai nyelvű támadók a Cairn nevű AI keretrendszert használták sikeres penetrációs tesztelésekre és adatkiszivárogtatásra.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-12T18:04:49+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-12T18:04:49+00:00"
+}
