@@ -1,0 +1,51 @@
+{
+  "id": "910cb04d88a2",
+  "slug": "lightonocr-3-0-8b-from-lighton-is-very-fast-with-vllm",
+  "forras_id": "linkedin",
+  "forras_nev": "Hugging Face (LinkedIn)",
+  "url": "https://www.linkedin.com/feed/update/urn:li:activity:7526280548139515904/",
+  "publikalva": "2026-11-11T13:51:54.207000+00:00",
+  "cim": "LightOnOCR-3-0.8B from LightOn is very fast with vLLM !",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 46 pont",
+  "media": {
+    "tipus": "mp4",
+    "url": "https://dms.licdn.com/playlist/vid/v2/D4E05AQFlwyPPJZXu_w/mp4-720p-30fp-crf28/B4EaHKM.YNJ8B8-/0/1794393763434?e=2147483647&v=beta&t=zepF_JBZ5lVgUxORmsslL47NpNwPeg8Tnmh917Z-UPk",
+    "kep": "https://media.licdn.com/dms/image/v2/D4E05AQFlwyPPJZXu_w/videocover-high/B4EaHKM.YNJ8BM-/0/1794393762656?e=2147483647&v=beta&t=GhJjAIAGdWPfPLM4IhDf6LexKvqiHDG80bhEU1XWK3s",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7526280548139515904"
+  },
+  "cim_eredeti": "LightOnOCR-3-0.8B from LightOn is very fast with vLLM !",
+  "szoveg_eredeti": "LightOnOCR-3-0.8B from LightOn is very fast with vLLM !\n\nOn one RTX PRO 6000 on Hugging Face Jobs, it read 14,483 pages at 7.7 pages per second once running. The whole Job cost $1.67.\n\nThe pages are fossil fuel industry documents from the UCSF Industry Documents Library .\n\n- 31 minutes of reading\n- about $0.12 per 1,000 pages ($0.00012 per page!)\n- 0 pages with errors\n\nThe video shows the model processing in real time. Each page appears when its text comes back, with the text the model wrote beside it.\n\nOpen models let you run OCR on your own hardware, but then you have to use that hardware well. vLLM handles serving very well. For a batch job, the question is how to keep the GPU busy.\n\nWhat I do: run vLLM inside the Job and send the pages with my tool saturate. It adjusts how many requests are in flight during the run; here it settled at 512, and the engine was the limit in 910 of 911 samples. The recipe uses LightOn's recommended serve settings plus --max-num-batched-tokens 16384 and 4 API server processes.\nThis setup matters. In a separate 600-page test on an A100, the same model went from 1.27 pages a second with an offline batch script to 7.2 with vLLM serving plus saturate.\n\nTwo caveats. I have not scored accuracy on these pages. And speed depends on the page: dense two-column print from a 1771 encyclopaedia ran at about 1.5 pages a second with the same setup.\n\nFor GLAM colleagues, I think it's very encouraging how much cheaper these models are becoming over time. The first VLM-based OCR models were exciting, but eye-wateringly expensive to run at scale. Now, for a collection of 1 million pages, you could be looking at roughly $100 to $500 of GPU time. Obviously the numbers are noisy and depend on lots of factors, but number go down over time is encouraging!\n\nOne command to run it on your own pages:\n https://lnkd.in/eJ3AsKYf \n\nsaturate: https://lnkd.in/e_zBi-PR",
+  "begyujtve": "2026-11-12T09:34:45.691800+00:00",
+  "prioritas": {
+    "pont": 46,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 40,
+      "egyediseg": 85,
+      "hitelesseg": 88,
+      "aktualitas": 64,
+      "kozossegi": 39
+    },
+    "elofeszures": 85,
+    "tanult": 52,
+    "indok": "Egy kisméretű OCR modell technikai és költséghatékonysági tesztje, ami túl specifikus a szélesebb közönség számára. Forrás-tapasztalat: -5.",
+    "tema": "lighton ocr model benchmark",
+    "cim_hu": "Rendkívül gyorsan és olcsón dolgozik a LightOn új OCR-modellje",
+    "lead_hu": "A LightOn új, 0,8 milliárd paraméteres OCR-modellje több mint 14 ezer oldalt dolgozott fel mindössze 1,67 dolláros költséggel a Hugging Face tesztjében.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-12T09:34:57+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-12T09:35:04+00:00"
+}

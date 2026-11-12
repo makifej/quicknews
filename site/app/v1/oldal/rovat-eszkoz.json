@@ -1,7 +1,7 @@
 {
   "cim": "Eszközök",
   "leiras": "Appok, bővítmények, funkciók, amiket ma ki lehet próbálni.",
-  "alcim": "445 hír, fontossági sorrendben",
+  "alcim": "447 hír, fontossági sorrendben",
   "blokkok": [
     {
       "t": "nagy",
@@ -28,6 +28,28 @@
     {
       "t": "kiemelt",
       "h": {
+        "id": "1e42489f1996",
+        "cim": "Már a hét minden napján, 24 órában működik a Tesla Robotaxi",
+        "lead": "Elon Musk megosztotta az önvezető taxiszolgáltatás bejelentését, amely szerint a Tesla Robotaxi flotta megszakítás nélkül üzemel minden elérhető városban.",
+        "slug": "mar-a-het-minden-napjan-24-oraban-mukodik-a-tesla-robotaxi",
+        "forras": "Elon Musk (X)",
+        "kat": "eszköz",
+        "rovat": "eszkoz",
+        "ido": "2026-11-12T09:32:55.600Z",
+        "ido_hu": "nov. 12. 10:32",
+        "kep": "https://quicknews.hu/assets/kep/1e42489f1996.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/1e42489f1996.webp",
+        "video": true,
+        "fontossag": 4,
+        "felkapott": false,
+        "forraskep": false,
+        "url": "https://quicknews.hu/hir/mar-a-het-minden-napjan-24-oraban-mukodik-a-tesla-robotaxi",
+        "jova": true
+      }
+    },
+    {
+      "t": "kiemelt",
+      "h": {
         "id": "06f4b9002ffd",
         "cim": "Megkezdődött a Tesla Optimus gyártása, de az előrendelés még nem indul",
         "lead": "A Tesla elindította az Optimus robotok korai gyártását Fremontban, ám Elon Musk cáfolta a decemberi előrendelésről szóló pletykákat.",
@@ -44,28 +66,6 @@
         "felkapott": false,
         "forraskep": false,
         "url": "https://quicknews.hu/hir/elindulhat-a-tesla-optimus-elorendelese-de-a-kiszallitas-meg-evekre",
-        "jova": true
-      }
-    },
-    {
-      "t": "kiemelt",
-      "h": {
-        "id": "68e0838d8666",
-        "cim": "Az Epic Games már AI-val fejleszti az Unreal Engine kódját",
-        "lead": "Az Epic Games hivatalosan megerősítette, hogy mesterséges intelligenciával írja és újítja meg az Unreal Engine játékmotor kódját.",
-        "slug": "az-epic-games-mar-ai-val-fejleszti-az-unreal-engine-kodjat",
-        "forras": "This Week in Videogames",
-        "kat": "eszköz",
-        "rovat": "eszkoz",
-        "ido": "2026-10-29T11:20:23.258Z",
-        "ido_hu": "okt. 29. 12:20",
-        "kep": "https://quicknews.hu/assets/kep/68e0838d8666.webp",
-        "kep_nagy": "https://quicknews.hu/assets/kep/68e0838d8666-n.webp",
-        "video": false,
-        "fontossag": 4,
-        "felkapott": false,
-        "forraskep": false,
-        "url": "https://quicknews.hu/hir/az-epic-games-mar-ai-val-fejleszti-az-unreal-engine-kodjat",
         "jova": true
       }
     },
@@ -238,7 +238,7 @@
       "t": "rovat",
       "cim": "Kódolás és fejlesztés",
       "link": null,
-      "osszes": 105,
+      "osszes": 106,
       "fo": {
         "id": "bad34c9af698",
         "cim": "Magyar fejlesztésű CodeMap Pro: 87,4 százalékkal kevesebbet olvas a Claude Code",
@@ -279,6 +279,25 @@
           "jova": true
         },
         {
+          "id": "68e0838d8666",
+          "cim": "Az Epic Games már AI-val fejleszti az Unreal Engine kódját",
+          "lead": "Az Epic Games hivatalosan megerősítette, hogy mesterséges intelligenciával írja és újítja meg az Unreal Engine játékmotor kódját.",
+          "slug": "az-epic-games-mar-ai-val-fejleszti-az-unreal-engine-kodjat",
+          "forras": "This Week in Videogames",
+          "kat": "eszköz",
+          "rovat": "eszkoz",
+          "ido": "2026-10-29T11:20:23.258Z",
+          "ido_hu": "okt. 29. 12:20",
+          "kep": "https://quicknews.hu/assets/kep/68e0838d8666.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/68e0838d8666-n.webp",
+          "video": false,
+          "fontossag": 4,
+          "felkapott": false,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/az-epic-games-mar-ai-val-fejleszti-az-unreal-engine-kodjat",
+          "jova": true
+        },
+        {
           "id": "1e8ba9106ed8",
           "cim": "Bárki bekötheti saját alkalmazását a Google Geminibe és a Keresőbe",
           "lead": "A Google megnyitotta a Connected Apps Platformot, amellyel a fejlesztők saját szolgáltatásaikat kapcsolhatják be a cég mesterséges intelligenciájába.",
@@ -315,7 +334,9 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/harmadik-feltol-szarmazo-ai-ugynokokkel-bovul-az-android-studio",
           "jova": true
-        },
+        }
+      ],
+      "tobb": [
         {
           "id": "8b3ac6d52f30",
           "cim": "Google Cloudon is elérhetővé vált az Anthropic által kezelt Claude",
@@ -334,9 +355,7 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/google-cloudon-is-elerhetove-valt-az-anthropic-altal-kezelt-claude",
           "jova": true
-        }
-      ],
-      "tobb": [
+        },
         {
           "id": "2cf0413cb4f1",
           "cim": "Nyílt forráskódúvá vált a TorchTPU a Google és a Meta közös fejlesztésében",
@@ -4173,7 +4192,7 @@
       "t": "rovat",
       "cim": "Ügynökök és automatizálás",
       "link": null,
-      "osszes": 63,
+      "osszes": 64,
       "fo": {
         "id": "858bf7d244f3",
         "cim": "Személyi asszisztenssé alakította kódoló eszközét az OpenAI",
@@ -4765,6 +4784,25 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/kibervedelmi-rendszert-epit-az-openai-uj-eszkoze-a-daybreak",
           "jova": false
+        },
+        {
+          "id": "aac2a53db396",
+          "cim": "Megjelent a three.dev AI-ügynök tesztelő platform",
+          "lead": "A three.dev segítségével a fejlesztők még a felhasználók előtt azonosíthatják az AI-ügynökök hibáit.",
+          "slug": "megjelent-a-three-dev-ai-ugynok-tesztelo-platform",
+          "forras": "Product Hunt",
+          "kat": "eszköz",
+          "rovat": "eszkoz",
+          "ido": "2026-11-12T09:33:54.432Z",
+          "ido_hu": "nov. 12. 10:33",
+          "kep": "https://quicknews.hu/assets/kep/aac2a53db396.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/aac2a53db396-n.webp",
+          "video": false,
+          "fontossag": 3,
+          "felkapott": false,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/megjelent-a-three-dev-ai-ugynok-tesztelo-platform",
+          "jova": true
         },
         {
           "id": "1607adf123e8",
