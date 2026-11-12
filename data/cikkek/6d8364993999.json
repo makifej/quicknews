@@ -15,35 +15,35 @@
   "fontossag": 1,
   "video_szoveg": "",
   "relevans": false,
-  "kihagyva": "P3: 61 pont",
+  "kihagyva": "P2: 67 pont, napi P2-keret (10) betelt",
   "media": {
     "tipus": "kep",
     "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/image-150x150.png"
   },
   "cim_eredeti": "CopilotKit Releases OpenBot 1.0: An MIT-Licensed, Self-Hostable AI Coworker With Built-In Governance",
   "szoveg_eredeti": "Most AI coworker products are vendor locked. They pick the model, host the data, and write the rules. CopilotKit is taking the opposite route. OpenBot 1.0 , was released November 9th, an MIT-licensed , self-hostable agent workspace. What sets it apart is, a company brings their own models, agents and infrastructure. Governance is fully baked in, and every Bot action is checked against a policy before it runs.\n\n What is OpenBot? \n\n OpenBot is a modular agent workspace from CopilotKit , the team behind the AG-UI protocol. You give a Bot a task and watch it work. You review findings, interact with results and approve next steps in the same conversation.\n\n Each Bot gets a computer of its own . That is a container with its own Chromium browser, logins and files. It reaches only the tools you grant. Answers can come back as charts, checklists, tables and cards. In the new v1.0, Bots now reply in Markdown by default and draw components when they help.\n\n How does the governance gateway work? \n\n Every browser click, file write, MCP tool call and component goes through one gateway. It evaluates a CEL policy, writes the audit row first , then acts. Deny rules run before allow rules, and a broken rule refuses rather than opens.\n\n On top of that, the business tier adds: \n\n Single sign-on and SCIM sync for users and groups. The README documents Google, Microsoft (Entra) and Okta, plus SAML and OIDC.\n\n On-behalf-of tokens, usually scoped to a subset of the person’s permissions.\n\n Tool grants per Bot, per role or per person, with access requests to an admin.\n\n Policies that block actions or route sensitive work to a human for approval.\n\n Spend visibility per Bot, role, team or person, plus daily, weekly or monthly token limits.\n\n A full audit trail with SIEM export, multi-tenancy and an admin plane.\n\n EU AI Act content labeling, retention controls and deletion on request. CopilotKit itself holds SOC 2 Type II.\n\n Which agents and models can you bring? \n\n Any agent that speaks AG-UI plugs in. The site lists 8 frameworks: Claude Agent SDK, OpenAI Agents SDK, LangChain, Google ADK, Mastra, AWS Strands, Microsoft Agent Framework, CrewAI. The repo also ships Agno, AG2, LlamaIndex and Pydantic AI examples.\n\n For models, teams can use OpenAI, Claude, Gemini or Grok through existing subscriptions or API keys. Open models such as Kimi, DeepSeek, Qwen, Nemotron and Mistral are also supported. Sandboxes, MCP hubs and browsers are swappable lanes.\n\n What is new in OpenBot 1.0? \n\n Desktop app for Mac (Apple Silicon and Intel) and Windows, with signed updates and backup before upgrade.\n\n Teach a Bot: record a task once, and Learning turns the recording into a reusable skill you review.\n\n Multiple accounts per app through Composio and Arcade , with approval rules saved per account. Composio alone brokers a few hundred apps.\n\n Orchestration: one Bot can hand work to specialist Bots, within admin-granted pairs and depth limits.\n\n Early access for iOS, Android, Slack (through OpenTag) and Microsoft Teams.\n\n How do you deploy it? \n\n Personal use runs locally, with workspace data and API keys stored on your machine. For companies, 1 Helm chart deploys into AWS (EKS), Azure (AKS), Google Cloud (GKE) or any Kubernetes cluster.\n\n Pricing is free for personal projects. OpenBot for Business costs up to $29 per active user per month. A 5% charge applies only to model spend above $5,000 per month. The Annual plan adds air-gapped deployment and 24/7 support. Forward-deployed engineers help teams roll it out.\n\n Example use cases \n\n Ticket triage: route new support tickets, then post to Slack after a person approves.\n\n Expense review: check each claim line against policy and flag overages.\n\n Ops workflows: find problems and draft fixes for a human to approve.\n\n How does OpenBot compare? \n\n Feature OpenBot 1.0 OpenAI dots  OpenClaw  Code license MIT Closed MIT  Where it runs Laptop, your VPC, any Kubernetes OpenAI cloud computer per dot Your machine, VPS or server Models OpenAI, Claude, Gemini, Grok, Kimi, DeepSeek, Qwen, Nemotron, Mistral GPT-6 Astra Model-agnostic Bring your own agent Any AG-UI agent, 8+ frameworks Not disclosed Built around its own agent Policy before each action Yes, CEL gateway, fail closed User-set approval rules Not disclosed SSO / SCIM Yes (business tier) Enterprise admin controls, beta Not disclosed Apps / tools Composio, Arcade, MCP 4,000+ apps Plugins and skills Price Free personal; up to $29/user/month First dot included in ChatGPT Pro and Business Premium Free; you pay for models and hosting \n\n Key Takeaways \n\n OpenBot 1.0 is MIT-licensed and self-hostable, from laptop to Kubernetes.\n\n Any AG-UI agent and 9 model families plug in.\n\n Every Bot action passes a policy check before it runs.\n\n Business tier: up to $29 per active user per month.\n\n Check out the GitHub repo , v1.0.0 release notes and open.bot .\n\n Thanks to the Copilotkit team for the thought leadership / resources for this article. This article is sponsored by Copilokit. \n\n The post CopilotKit Releases OpenBot 1.0: An MIT-Licensed, Self-Hostable AI Coworker With Built-In Governance appeared first on MarkTechPost .",
-  "begyujtve": "2026-11-12T21:49:33.711979+00:00",
+  "begyujtve": "2026-11-12T21:56:50.979414+00:00",
   "prioritas": {
-    "pont": 61,
-    "szint": "P3",
+    "pont": 67,
+    "szint": "P2",
     "reszpont": {
-      "hatas": 55,
-      "hirertek": 65,
-      "egyediseg": 90,
+      "hatas": 60,
+      "hirertek": 75,
+      "egyediseg": 95,
       "hitelesseg": 74,
-      "aktualitas": 99,
-      "kozossegi": 51
+      "aktualitas": 98,
+      "kozossegi": 57
     },
     "elofeszures": 85,
     "tanult": 37,
-    "indok": "Hasznos nyílt forráskódú AI-ügynök fejlesztői eszköz, de nem áttörő jelentőségű újdonság. Forrás-tapasztalat: -6.",
+    "indok": "Nyílt forráskódú önkiszolgáló AI munkatárs keretrendszer az architektúrák kiterjesztésére Forrás-tapasztalat: -6.",
     "tema": "copilotkit openbot release",
-    "cim_hu": "Megjelent az OpenBot 1.0, a nyílt forráskódú és sajáttáskás AI munkatárs",
-    "lead_hu": "A CopilotKit kiadta az OpenBot 1.0 nevű MIT-licencelt keretrendszert, amely lehetővé teszi a vállalatok számára saját AI-ügynökök futtatását és szigorú szabályozását.",
+    "cim_hu": "Megjelent az OpenBot 1.0, a nyílt forráskódú és saját szerveren futtatható AI munkatárs",
+    "lead_hu": "A CopilotKit kiadta az OpenBot 1.0-t, amellyel a cégek saját modelljeikre és infrastruktúrájukra építve hozhatnak létre szabályozott AI ágenseket.",
     "klaszter": null,
     "ai": true,
-    "ido": "2026-11-12T21:49:52+00:00"
+    "ido": "2026-11-12T21:57:07+00:00"
   },
   "jovahagyas_kell": false,
-  "megjelent": "2026-11-12T21:49:58+00:00"
+  "megjelent": "2026-11-12T21:57:09+00:00"
 }
