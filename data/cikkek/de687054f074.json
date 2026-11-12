@@ -1,0 +1,49 @@
+{
+  "id": "de687054f074",
+  "slug": "build-composable-interoperable-multi-agent-systems-with-a2a-on-aws",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/build-composable-interoperable-multi-agent-systems-with-a2a-on-aws/",
+  "publikalva": "2026-11-12T15:42:21+00:00",
+  "cim": "Build composable, interoperable multi-agent systems with A2A on AWS",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 54 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/10/ML-21127-featured-image.png"
+  },
+  "cim_eredeti": "Build composable, interoperable multi-agent systems with A2A on AWS",
+  "szoveg_eredeti": "Agents in multi-agent systems that span organizational boundaries often need to collaborate in a composable, interoperable way, with agents that other organizations build and run. They need a way to discover each other, communicate, and exchange tasks without exposing internals or requiring the same framework on both sides.\n\nThe Agent-to-Agent (A2A) protocol addresses this constraint. Without A2A, building composable multi-agent systems across organizational boundaries requires custom integration code for each customer and framework. Independent software vendors (ISVs) can instead build composable, interoperable agents that work with the A2A-compatible frameworks their customers already use.\n\nWhile we frame this post around the ISV use case, the pattern also applies to organizations that expose agents across boundaries, whether to partners, customers, or internal teams that use different frameworks. As your system grows, you add skills by registering Agent Cards with the orchestrator, without changing the agents already running.\n\nIn this post, we walk through a deployed reference architecture on AWS. A LangChain-based enterprise orchestrator communicates with a Strands Agents-based software as a service (SaaS) agent across organizational boundaries using A2A, with the enterprise and the SaaS provider in separate AWS accounts. Neither side depends on the other’s framework or SDK, and the two sides share no secrets. We cover the architecture and implementation patterns, then deploy the system from three Jupyter notebooks and run an end-to-end test.\n\nThe A2A protocol is now a Linux Foundation project, and AWS is among the organizations that support it. With A2A, agents can discover each other, negotiate tasks, and collaborate across organizational boundaries through a standardized protocol. The protocol uses existing authentication standards such as OAuth 2.0 and OpenID Connect (OIDC) for cross-boundary security, and is designed to work across A2A-compatible frameworks.\n\nIn Open Protocols for Agent Interoperability Part 4: Inter-Agent Communication on A2A, we introduced A2A concepts and demonstrated two Strands agents communicating using the protocol on AWS. That post established the foundation with Agent Card discovery, structured task execution, and the A2A server pattern. This post builds on that foundation with cross-framework interoperability, cross-organizational trust boundaries, and OAuth in both directions.\n\nThree agents run in two AWS accounts, one for the enterprise and one for the SaaS provider. The A2A protocol connects them, with OAuth authentication in both directions. Each account has its own Amazon Cognito user pool, so each side authenticates with its own identity provider.\n\nFigure 1: A2A agents across an enterprise account and a SaaS provider account\n\nDuring onboarding, the enterprise and the SaaS provider exchange only public values, such as identity provider URLs, client IDs, scopes, and endpoint URLs. Each side then trusts tokens from the other side’s user pool, and no secrets are shared.\n\nAfter onboarding, each request follows these steps:\n\nOn the enterprise side, two agents run on Amazon Elastic Container Service (Amazon ECS) with AWS Fargate. The Enterprise Orchestrator is the entry point for users. LangChain provides the agent framework and tool-calling abstractions, and Amazon Bedrock provides the foundation models (FMs) that power each agent’s reasoning. The orchestrator uses LangChain and Amazon Bedrock (Anthropic Claude Sonnet 4.6). At startup, the orchestrator fetches the SaaS agent’s Agent Card from its well-known URL and creates a LangChain tool for each skill described on the card. The model then decides which tool to call based on the user’s question, so the orchestrator needs no hardcoded routing logic. It sends compliance scan requests over A2A with OAuth bearer tokens and summarizes the results for leadership. Users reach the orchestrator through an Amazon API Gateway HTTPS endpoint that accepts only tokens from the enterprise’s own pool.\n\nThe second enterprise agent provides internal context. The Enterprise Context Agent is built with LangChain and Amazon Bedrock (Amazon Nova Lite). It provides internal account metadata such as internal policy rules, data classification, business criticality, and escalation contacts (team on-call rotations). The deployed agent uses the official a2a-sdk (AgentCard, AgentExecutor, and spec-conformant JSON-RPC routes), pinned to a2a-sdk[http-server]==1.2.2. The SaaS agent reaches the context agent through an API Gateway partner API that accepts only the SaaS provider’s callback token.\n\nBoth enterprise agents run in private subnets of an Amazon Virtual Private Cloud (Amazon VPC), with no public IP addresses.\n\nOn the SaaS provider side, the Compliance SaaS Agent runs on Amazon Bedrock AgentCore in the SaaS provider’s own AWS account. Built with the Strands Agents SDK, it checks AWS accounts against the enterprise’s own internal policies, such as no public storage in production and encryption at rest for confidential data. In production, the scanning tools would connect to services such as AWS Config, AWS Security Hub, or Amazon GuardDuty. For this demo, the agent uses synthetic data that simulates compliance findings across multiple accounts.\n\nBefore it scans, the SaaS agent calls back to the Enterprise Context Agent for enterprise context, such as which accounts are production, which internal policies apply, and who to escalate to. This bidirectional pattern makes the agents true peers instead of a client and a server. The callback goes only to the address the customer registered at onboarding.\n\nThe key design decision is to use A2A for all cross-boundary communication. The enterprise has no access to the SaaS agent’s internal tools, system prompt, or model choice. This separation means the ISV can change its internal architecture without changing customer integrations, as long as its Agent Card and A2A interface stay compatible. The SaaS card publishes one curated skill, not its internal tool names.\n\nAmazon Bedrock provides API access to multiple foundation models, so each agent can use the model that fits its workload. In this solution, the orchestrator and SaaS agent use Anthropic Claude Sonnet 4.6 for complex reasoning, while the context agent uses Amazon Nova Lite for metadata lookups. You can choose different models based on your own requirements.\n\nA2A and the Model Context Protocol (MCP) solve different problems in this architecture. MCP connects an agent to its own tools and data sources in a client-server model. A2A connects agents to other agents as peers, where neither side exposes its internals. In production, the SaaS agent could use MCP internally to connect to its compliance scanning tools while exposing itself externally through A2A. The external interface stays the same regardless of how the agent connects to its internal tools.\n\nThe notebooks contain the complete deployment procedure. Before you run them, you need the following:\n\nNotebook 3 also runs the end-to-end test described later in this post, so you can verify the deployment.\n\nRunning this solution incurs charges for the resources it creates. In the enterprise account, the main always-on resources are a NAT gateway, two AWS Fargate tasks, the internal Network Load Balancer, and two interface VPC endpoints. Amazon Bedrock and Amazon Bedrock AgentCore charge for what you use. Prices vary by AWS Region. See the pricing pages for Amazon VPC, AWS Fargate, Amazon Bedrock, Amazon Bedrock AgentCore, and Elastic Load Balancing. Run the Clean up sections when you finish.\n\nDeploy the system with three notebooks, run in order with Jupyter, one cell at a time. Notebook 1 (enterprise account, about 3 minutes) creates the enterprise identity and writes an onboarding request. Notebook 2 (SaaS provider account, about 5 minutes) deploys the compliance agent and writes an onboarding response. Notebook 3 (enterprise account, abo",
+  "begyujtve": "2026-11-12T21:49:40.533816+00:00",
+  "prioritas": {
+    "pont": 54,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 84,
+      "kozossegi": 43
+    },
+    "elofeszures": 79,
+    "tanult": 40,
+    "indok": "Technikai jellegű AWS blogposzt multi-agenses protokollról, inkább fejlesztői mélyfúrás. Forrás-tapasztalat: -6.",
+    "tema": "aws a2a multi-agent protocol",
+    "cim_hu": "Többágenstartalmú AI rendszerek építése az AWS A2A protokolljával",
+    "lead_hu": "Az Amazon Web Services ismertette az Agent-to-Agent protokollt, amely megkönnyíti a különböző szervezetek által fejlesztett AI-ügynökök közötti együttműködést.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-12T21:49:52+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-12T21:50:09+00:00"
+}
