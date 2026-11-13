@@ -1,0 +1,49 @@
+{
+  "id": "8c3ecc40b8bd",
+  "slug": "trustworthy-predictable-ai-fixes-at-scale-for-net-code",
+  "forras_id": "dailydev",
+  "forras_nev": "NDepend Blog (daily.dev)",
+  "url": "https://blog.ndepend.com/ai-fixes-for-net-code",
+  "publikalva": "2026-11-12T09:45:06+00:00",
+  "cim": "Trustworthy, Predictable AI Fixes at Scale for .NET Code",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 58 pont, tendencia 20%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/ad9e6201522fab09c288c2c34003777a?_a=AQAEuop"
+  },
+  "cim_eredeti": "Trustworthy, Predictable AI Fixes at Scale for .NET Code",
+  "szoveg_eredeti": "A coding agent fixes a code issue in seconds. So the question is no longer can AI fix my code? Instead it is: can I trust 500 fixes that I did not review one by one?\n\nNot if the agent alone tells you they are fine. An agent drifts, stops early and sometimes changes a behavior without saying so.\n\nWe built NDepend.AI to solve this. NDepend.AI is a harness that pilots your coding agent from static analysis data. Your own agent writes the code: Claude Code, Codex, GitHub Copilot CLI or Junie, with more to come. However, a deterministic analysis decides what to fix, and whether each fix holds.\n\nHere is a run on eShopOnWeb, the ASP.NET Core reference application from Microsoft. NDepend.AI fixed 468 of its 493 issues and wrote 506 tests. Coverage went from 45% to 97.5%. The run took 1h21 and $44 of tokens, with nobody at the keyboard. These numbers come straight from the run report:\n\nOn top of that, the run found a real bug in the database seeding code. We will come back to it below. All the figures of this post come from run reports like this one, which you can browse live:\n\nThis post explains the ideas that make such runs trustworthy.\n\nAsk an agent to “improve the code quality” and it fixes whatever it spots. The next session then goes another way. The trouble is that such a goal can’t be measured. And what can’t be measured can’t be improved.\n\nA static analysis issue, on the other hand, is a complete work order. It names a rule, a code element, a file and a line. It also brings the rule’s explanation, its fix recipe and an estimated cost. Added up over the code base, these costs make the technical debt. That’s an objective number to measure before and after each run.\n\nFor maximum flexibility, you pick the issues to fix with a C# LINQ query. They can come from NDepend rules, but also from the Roslyn analyzers and ReSharper inspections</a > that NDepend imports. For example:\n\nThe harness then writes every prompt itself. Each one opens with this line: “The issue list below is AUTHORITATIVE: fix exactly these issues.”\n\nNDepend.AI can also write a code rule from a request in plain English. In NDepend, a code rule is just a C# LINQ query over the rich NDepend code model: types, methods, dependencies, metrics, coverage and more. So your team’s own conventions become issues the harness can fix, like any other rule. Here, for example, it writes a rule for login endpoints left without rate limiting:\n\nAs a result, the agent stops exploring the code base, and that alone saves tokens. We went further, though. Our experiments showed it’s cheaper to give the agent context up front than to let it search. So each prompt holds the issue, the rule’s fix recipe and the source lines around the issue. It doesn’t hold the whole file.\n\nNDepend.AI is transparent: the run report keeps every prompt sent to the agent and every reply, like this one.\n\nNext, the harness splits the issues into small independent sets. Static analysis knows the blast radius of each fix, the files it can touch. So it can tell which sets can’t conflict. They then run in parallel sessions. On eShopOnWeb, the first round split 107 issues into 56 sessions, up to four at a time. Smaller contexts mean fewer tokens, and parallel sessions a faster run.\n\nEach set also runs on the right model. You plug in two of them: a premium model, like Claude Opus or GPT Sol, and an economy model, like Claude Sonnet or GPT Luna. The harness keeps the premium model for the work that needs judgment: architecture, tests and the change review. Mechanical edits, like making a method static, go to the cheaper model.\n\nFinally, when the agent still needs more context, it queries the NDepend code model through the integrated NDepend.MCP.Server. It doesn’t have to grep the files.\n\nAll this harness work cuts the token bill by up to 30%. That’s compared to giving the agent the raw list of issues to fix, in SARIF or JSON.\n\nMany open-source MCP servers on GitHub, built on Roslyn, offer tools to C# code, like renaming an identifier. We ran many experiments with them, and so far they don’t cut tokens (at least in the context of our harness). Agents already edit code efficiently, while finding and calling an MCP tool has a cost. This may change, so we will keep experimenting.\n\nWhen an agent says “fixed”, it only makes a claim. The log of a run puts it bluntly: “a claim — the analysis of the build is the ground truth”. So after each batch of fixes the harness builds the solution, runs the impacted tests and analyzes the code again. An issue counts as fixed only when the new analysis no longer reports it.\n\nThis check is deterministic and costs no token. For example, the 21 analyses of the eShopOnWeb run took less than two minutes in total, just 2% of the run. Twenty years of work on a fast analyzer pays off here:\n\nThe verdict then drives what happens next:\n\nSuppressing an issue isn’t a fix either. So the run counts suppressions apart and lists each one for a human to review. The prompts also forbid weakening a test to get a green run. Here are the rounds of the eShopOnWeb run:\n\nEvery prompt carries the same rule of engagement: “Preserve observable behavior: a fix is a refactoring of how the code is written, not a change of what it does.”\n\nSometimes, however, the behavior is the defect. A security fix is the typical case. The agent then makes the smallest change that removes the defect, and it must declare it. On eShopOnWeb, the change log lists 10 behavior changes. Here is one of them:\n\nThe rule ND3117: Review cookies created without HttpOnly and Secure flags flagged the basket cookie of the checkout page. An injected script could read it, and plain HTTP could carry it in clear. The fix sets both flags, which changes the cookie’s behavior, so the agent declared it. Two new tests cover the method, and the change review checked it.\n\nSee this source file live. This diff view brings together everything you need to review a change. You get the code diff and the tests that run the code, whether new, modified or already there. You also get the coverage before and after (45% → 100% here), and the issues fixed, unresolved or new.\n\nA declared change is easy to review. An undeclared one, however, hides in the diff. NDepend’s baseline mode objectively lists every method whose body changed during the run. So a closing round asks the agent to review each of them. On the large Jellyfin run, it reviewed 427 methods and restored 4.\n\nIn one of them, a refactoring had swapped two reads. As a result, a malformed reply threw an IndexOutOfRangeException instead of a NullReferenceException. No human spots that in a diff of 1,500 fixes.\n\nThe order of the fixes matters. An agent alone might plan it, but at an extra thinking cost. The harness, on the other hand, always runs the same phases:\n\nThe existing tests matter too: they all run once before any fix, to know which ones already fail. This fixed sequence also makes a run predictable. Two runs on the same code and the same issue set give results less than 1% apart.\n\nYou could pack these steps into an agent skill, but a skill only advises: the agent still decides which steps to follow and when the work is done. The harness runs each step itself, on every run, and an analysis checks the result.\n\nStatic analysis rules catch code smells and vulnerabilities, but few logic bugs. Those surface later, when the agent writes a test for untested code. To assert something, it must first decide what the code should do. Sometimes the code does something else.\n\nAn agent alone then tends to write the test that passes, which locks the bug in. The harness forbids that. Instead the agent reports a potential bug and leaves the code untouched, because a fix would change the behavior.\n\nThe eShopOnWeb run reported 3 of them, including the real bug mentioned at the top. After a transient database failure, SeedAsync() retries and succeeds. Yet it still rethrows the first exception, so the caller skips the identity seeding. The large Jellyfin",
+  "begyujtve": "2026-11-13T07:04:04.498493+00:00",
+  "prioritas": {
+    "pont": 58,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 55,
+      "egyediseg": 85,
+      "hitelesseg": 70,
+      "aktualitas": 71,
+      "kozossegi": 50
+    },
+    "elofeszures": 75,
+    "tanult": 35,
+    "indok": "Specifikus fejlesztői eszköz bejelentése a .NET kódok megbízhatóbb javítására. A forrás P3-as híreiből eddig kb. 20%-ot fogadtál el.",
+    "tema": "ndepend ai dotnet",
+    "cim_hu": "Megbízhatóbbá tenné a mesterséges intelligencia által végzett kódjavítást az NDepend.AI",
+    "lead_hu": "Az új keretrendszer statikus analízisre támaszkodva ellenőrzi az AI-ágensek által javasolt változtatásokat, hogy megelőzze a hibák figyelmetlen bekerülését.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T07:05:28+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-13T07:07:02+00:00"
+}

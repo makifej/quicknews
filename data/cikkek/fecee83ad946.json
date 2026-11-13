@@ -1,0 +1,49 @@
+{
+  "id": "fecee83ad946",
+  "slug": "deploy-frontier-ai-models-on-aws-trainium-with-sglang-neuron",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/deploy-frontier-ai-models-on-aws-trainium-with-sglang-neuron/",
+  "publikalva": "2026-11-12T22:03:34+00:00",
+  "cim": "Deploy frontier AI models on AWS Trainium with SGLang-Neuron",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 64 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/12/ML-22453-featured-image.png"
+  },
+  "cim_eredeti": "Deploy frontier AI models on AWS Trainium with SGLang-Neuron",
+  "szoveg_eredeti": "Today, Amazon announced that SGLang-Neuron is publicly available and can be accessed through an AWS Deep Learning Container, released by RadixArk in collaboration with Annapurna Labs. With SGLang-Neuron, you can serve models and generate reinforcement learning (RL) rollouts with SGLang on AWS Trainium using the same SGLang interface you use today. Trainium is a portfolio of AWS AI chips that delivers strong economics for AI training and inference at scale. Now, running SGLang on Trainium follows the SGLang workflow you already know: you launch models through SGLang’s server interface and invoke the endpoint using the same generation APIs. Underneath that interface, SGLang-Neuron runs on native PyTorch. With its out-of-tree plugin design, Trainium support and SGLang core develop independently and iterate faster.\n\nSGLang-Neuron is an out-of-tree plugin that connects SGLang with AWS Trainium. Installing the plugin registers the neuron platform through SGLang’s plugin entry points, and setting SGLANG_PLATFORM=neuron selects it when the server starts. SGLang core continues to provide the API server, request lifecycle, RadixAttention, and prefix-cache bookkeeping. The plugin implements the Trainium-specific models, attention, mixture of experts (MoE), and the graph runner.\n\nTorchNeuron registers Trainium as a native PyTorch device. SGLang-Neuron uses standard PyTorch operations for the model execution path and incorporates kernels written with the Neuron Kernel Interface (NKI) for performance. It compiles these operations and kernels into executable programs using torch.compile, which the graph runner prepares and executes during serving.\n\nSGLang-Neuron also supports PD disaggregation. In this configuration, a prefill server computes the prompt KV cache and transfers it to a decode server using NIXL over Elastic Fabric Adapter (EFA). The decode server then generates the remaining tokens. Each server still uses SGLang’s scheduler and request lifecycle, while the plugin manages the Trainium execution and KV-cache transfer path.\n\nTo follow this walkthrough, you use a Trainium3 Amazon Elastic Compute Cloud (Amazon EC2) instance with a pytorch-inference-sglang-neuronx container. Here are the steps:\n\nFor additional information, please see the SGLang-Neuron getting started guide for setup instructions, and explore the repository documentation for supported models, features, and validated configurations.\n\nSGLang-Neuron brings SGLang’s familiar serving workflow to AWS Trainium through native PyTorch. You can get started by launching the SGLang-Neuron container and following the quickstart to serve a supported model. Try it with your workloads, contribute through the project repository, and share feedback to help shape future model and feature support.",
+  "begyujtve": "2026-11-13T07:04:27.885095+00:00",
+  "prioritas": {
+    "pont": 64,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 70,
+      "hirertek": 65,
+      "egyediseg": 85,
+      "hitelesseg": 78,
+      "aktualitas": 96,
+      "kozossegi": 46
+    },
+    "elofeszures": 81,
+    "tanult": 32,
+    "indok": "Az AWS nyíltan elérhetővé tette az SGLang-Neuront a Trainium AI-chipek hatékonyabb kihasználásához. Forrás-tapasztalat: -6.",
+    "tema": "aws trainium sglang neuron",
+    "cim_hu": "Nyilvánosan elérhető az SGLang-Neuron az AWS Trainium chipekhez",
+    "lead_hu": "Az Amazon bejelentette az SGLang-Neuron nyilvános elérhetőségét, amellyel a fejlesztők a megszokott SGLang felületen futtathatnak fejlett AI-modelleket az AWS saját fejlesztésű Trainium chipjein.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T07:05:28+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-13T07:08:28+00:00"
+}

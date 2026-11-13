@@ -1,0 +1,49 @@
+{
+  "id": "b636ca6fdaba",
+  "slug": "multimodal-artificial-intelligence-accurately-detects-alzheimer",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/multimodal-artificial-intelligence-accurately-detects-alzheimer-disease-but-stumbles-on-staging/",
+  "publikalva": "2026-11-13T03:26:46+00:00",
+  "cim": "Multimodal Artificial Intelligence Accurately Detects Alzheimer Disease but Stumbles on Staging",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 59 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-9281.png"
+  },
+  "cim_eredeti": "Multimodal Artificial Intelligence Accurately Detects Alzheimer Disease but Stumbles on Staging",
+  "szoveg_eredeti": "Multimodal Artificial Intelligence Accurately Detects Alzheimer Disease but Stumbles on Staging\n\nA comprehensive systematic evaluation of 54 peer-reviewed research papers encompassing 86 independent multimodal artificial intelligence studies published over the past decade reveals that while multimodal data fusion models attain exceptional accuracy in distinguishing established Alzheimer’s disease from healthy controls—frequently exceeding 95 to 98 percent—their predictive capability declines sharply when tasked with resolving intermediate cognitive boundaries or forecasting disease progression. Conducted by an international research team adhering strictly to PRISMA and Kitchenham methodological guidelines, the review synthesized evidence across diverse diagnostic paradigms to examine how integrating neuroimaging, electrophysiological recordings, fluid biomarkers, and genetics impacts clinical diagnostic precision. The analysis demonstrated that existing algorithms achieve robust diagnostic separation primarily in late, unambiguous stages where structural atrophy and metabolic disruption are pronounced. Conversely, diagnostic accuracy drops precipitously, in some instances falling below 55 percent, when classifiers attempt fine-grained four-way staging or attempt to differentiate stable mild cognitive impairment from progressive forms.\n\nAlzheimer’s disease represents a progressive neurodegenerative disorder marked by the pathological accumulation of amyloid-beta plaques and hyperphosphorylated tau neurofibrillary tangles, culminating in synaptic loss, neuronal damage, and progressive cognitive decline. Because symptomatic onset typically occurs long after neuropathological cascades have commenced, timely diagnosis during prodromal or mild cognitive impairment phases offers an indispensable window for therapeutic interventions and symptom management. Traditional clinical assessments, however, rely heavily on overt cognitive symptoms and behavioral manifestations that appear relatively late in disease progression. To overcome the diagnostic limitations of single clinical evaluations or isolated imaging scans, computational researchers have increasingly developed artificial intelligence frameworks that concurrently process complementary diagnostic modalities. Combining structural magnetic resonance imaging, functional magnetic resonance imaging, positron emission tomography, electroencephalography, cerebrospinal fluid assays, and apolipoprotein E genotyping provides a multi-layered representation of pathology that captures structural morphology, functional connectivity, metabolic alterations, and molecular vulnerability simultaneously.\n\nTo rigorously map the evolution of multimodal artificial intelligence architectures in Alzheimer’s diagnostics, the authors executed a systematic literature review conforming strictly to PRISMA and Kitchenham protocols. Beginning with a comprehensive search across five prominent scientific repositories—IEEE Xplore, Springer, PubMed, ScienceDirect, and MDPI—the investigators initially identified 732 publication records published from 2014 through June 2025. Following the elimination of duplicate entries across the searched collections, the pool was refined to 179 unique records, which were subsequently screened against pre-established inclusion and exclusion criteria. Editorial commentaries, pilot studies, conference proceedings, non-journal records, books, posters, and publications lacking empirical performance validation were systematically removed, yielding 77 eligible publications and ultimately isolating 54 core journal studies that fully satisfied all research questions. Across these 54 reviewed articles, the researchers cataloged 86 discrete predictive models, categorizing 41 investigations as traditional machine learning architectures and 45 as deep learning frameworks, illustrating an expanding methodological shift toward automated, end-to-end multi-stream neural network designs.\n\nAcross the analyzed literature, the authors identified and categorized 15 distinct multimodal configurations, demonstrating a marked progression from simple bimodal pairings toward high-dimensional multi-source integrations. Structural magnetic resonance imaging emerged as the foundational anchor across most configurations, most frequently paired with positron emission tomography scans to evaluate anatomical tissue atrophy alongside metabolic hypo-metabolism. Configurations also integrated demographic variables, neuropsychological test scores, cerebrospinal fluid biomarkers, and diffusion tensor imaging, while electroencephalography, computed tomography, and electronic health record data appeared in only isolated investigations. The synthesis revealed an overwhelming reliance on the Alzheimer’s Disease Neuroimaging Initiative database, which spans multiple longitudinal cohorts including ADNI-1, ADNI-GO, ADNI-2, ADNI-3, and ADNI-4 with over 1,500 participants. While standardized cohorts like ADNI, OASIS, and AIBL provide crucial benchmark consistency, the heavy concentration on curated ADNI cohorts introduces potential sampling biases, as research cohorts from academic medical centers rarely reflect the complex demographic, comorbidity, and socioeconomic heterogeneity seen across general clinical populations.\n\nTransforming disparate medical data streams into unified computational representations demands extensive, modality-specific preprocessing pipelines to ensure cross-modal compatibility and suppress confounding artifacts. Structural neuroimaging routines routinely incorporate anterior commissure-posterior commissure alignment, intensity non-uniformity correction via algorithms such as N3, skull stripping, brain extraction, and tissue segmentation into gray matter, white matter, and cerebrospinal fluid before spatial normalization into standard coordinates like MNI space using software packages such as FreeSurfer and FSL. Functional neuroimaging requires additional distortion correction, cerebellum removal, and cortical parcellation, whereas positron emission tomography workflows incorporate head motion correction, spatial smoothing, and color space transitions such as converting RGB channels to hue-saturation-intensity representations. For diffusion tensor imaging, spatial alignment and noise correction enable the extraction of directional scalar metrics including fractional anisotropy and mean diffusivity, which track microstructural white matter degradation. Meanwhile, electrophysiological pipelines downsample raw signals to 256 Hertz, segment recordings into five-second epochs, and deploy Notch, Butterworth, and Common Average Reference filters to eradicate power-line noise and physiological artifacts.\n\nThe systematic review classified multimodal fusion strategies across several distinct architectural paradigms, specifically distinguishing early, intermediate, late, data-level, feature-level, and decision-level integration. Feature-level fusion dominated the published literature, appearing in more than 30 separate implementations that separately extract representations from individual modalities before concatenating or projecting them into a shared latent feature space for downstream classification. Traditional machine learning models frequently employed Support Vector Machines, which comprised nearly half of all machine learning investigations due to their mathematical resilience and efficacy when analyzing high-dimensional imaging vectors derived from small sample sizes. In parallel, deep learning investigations predominantly leveraged Convolutional Neural Networks, hierarchical residual networks, and multimodal attention mechanisms to model complex cross-modal interactions directly from spatial arrays. In contrast, direct data-level fusion—such as merging raw voxel grids into composite three-dimensional volumes—remained exceedingly rare across the literature, constrained by substantial discrepancies in spatial resolution, sign",
+  "begyujtve": "2026-11-13T07:04:28.892444+00:00",
+  "prioritas": {
+    "pont": 59,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 65,
+      "egyediseg": 85,
+      "hitelesseg": 72,
+      "aktualitas": 92,
+      "kozossegi": 42
+    },
+    "elofeszures": 75,
+    "tanult": 16,
+    "indok": "Fontos orvosi kutatási eredmény az AI diagnosztikai korlátairól Alzheimer-kór esetén. Forrás-tapasztalat: -6.",
+    "tema": "alzheimer ai detection",
+    "cim_hu": "Jól azonosítja az Alzheimer-kórt a mesterséges intelligencia, de a betegség stádiumán még elcsúszik",
+    "lead_hu": "Egy átfogó elemzés szerint a multimodális MI-modell 95 százalék feletti pontossággal ismeri fel a betegséget, de a pontos stádium meghatározása gondot okoz neki.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T07:05:28+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-13T07:07:12+00:00"
+}

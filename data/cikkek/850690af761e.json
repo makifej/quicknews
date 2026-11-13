@@ -1,0 +1,49 @@
+{
+  "id": "850690af761e",
+  "slug": "multimodal-artificial-intelligence-model-evaluates-aerobics-routines",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/multimodal-artificial-intelligence-model-evaluates-aerobics-routines-across-sensor-streams/",
+  "publikalva": "2026-11-13T06:04:59+00:00",
+  "cim": "Multimodal Artificial Intelligence Model Evaluates Aerobics Routines Across Sensor Streams",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 47 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-9575.png"
+  },
+  "cim_eredeti": "Multimodal Artificial Intelligence Model Evaluates Aerobics Routines Across Sensor Streams",
+  "szoveg_eredeti": "Multimodal Artificial Intelligence Model Evaluates Aerobics Routines Across Sensor Streams\n\nA research team has developed an intelligent multimodal evaluation model that combines synchronized video recordings, skeletal pose tracking, wearable inertial measurement units, and musical rhythm patterns to assess competitive aerobics performances. Manual judging in competitive aerobics traditionally depends on visual observation by referees and coaches, leaving evaluations vulnerable to differences in vantage angles, observer experience, and split-second oversights during high-tempo routines. To address these observation challenges, investigators designed an auxiliary evaluation system that captures parallel sensor streams and maps them onto a synchronized action timeline. Across a participant-independent evaluation set of 1,271 routines performed by adult athletes, the model achieved a mean absolute error of 3.18 points on a 100-point scale, demonstrating the viability of integrating biomechanical dynamics with musical timing to assist technical coaching.\n\nAssessing competitive aerobics routines requires tracking rapid combinations of jumps, turns, balance postures, floor supports, and continuous choreography synchronized to musical beats. When relying entirely on standard camera footage, automated vision systems frequently encounter motion blur, perspective distortion, limb occlusions, and background clutter from varying sports hall environments. Conversely, relying solely on skeletal coordinates or wearable accelerometers overlooks either the athlete’s spatial morphology or the auditory cadence dictated by the accompaniment track. The researchers sought to overcome these limitations by establishing a unified pipeline that accepts heterogeneous sensory inputs, aligns them chronologically, and prevents any single dominant signal from overwhelming more subtle technical indicators during distinct phases of athletic movement.\n\nTo construct a robust dataset for development and testing, sixty competitive aerobics athletes, comprising 34 women and 26 men aged 18 to 26 years with between one and eight years of specialized training, performed across six defined action categories: aerobic combinations, jumps, turns, balance, support, and routine transitions. Each exercise was executed across standard execution, mild deviation, and obvious deviation levels. The recording setup captured high-definition video at 30 frames per second, mapped 33 human keypoints, collected 100-hertz acceleration and angular velocity readings from five body-worn inertial sensors placed on the torso, wrists, and ankles, and sampled accompanying audio tracks at 44.1 kilohertz. After excluding sequences marked by synchronization errors, sensor cutouts, or extreme physical occlusion, the team curated 8,466 valid motion sequences.\n\nGround-truth scoring and diagnostic labels were established by an independent expert panel consisting of two national-level aerobics referees, two university coaches with at least eight years of coaching experience, and a physical education professor specializing in aerobics assessment. The panel rated six distinct performance dimensions: technical execution, range of motion, body control, rhythm synchronization, artistic performance, and overall stability. Inter-rater reliability evaluated via two-way random-effects intraclass correlation coefficients yielded high consistency across all six dimensions, ranging from 0.86 for artistic performance to 0.93 for rhythm synchronization. The trimmed mean of expert scores formed the regression targets, while a strict re-scoring protocol resolved cases exhibiting score ranges exceeding eight points, ensuring verified targets for all subsequent machine-learning tasks.\n\nThe neural architecture processes the synchronized data through four specialized input branches operating in parallel. Video sequences are cropped around the athlete and processed through a MobileNetV3-Small backbone paired with temporal convolutional layers to map visual form into 128-dimensional representations. Skeletal coordinate sequences enter a three-block spatial-temporal graph convolutional network that analyzes anatomical topology and continuous joint angles. Inertial sensor channels pass through depthwise-separable one-dimensional convolutions and a bidirectional gated recurrent unit, capturing instantaneous velocity spikes, landing impacts, and rotational braking. Simultaneously, accompaniment audio is converted into log-Mel spectrograms and processed via convolutional blocks to extract downbeats, tempo consistency, and execution lead or lag relative to musical cadence.\n\nFollowing modality-specific encoding, a four-head bidirectional cross-modal attention module allows features from one stream to retrieve relevant information from the others, associating physical joint trajectories directly with acceleration peaks and musical downbeats. Because physical sensors and optical cameras experience fluctuating real-world data quality, the system incorporates a reliability-aware adaptive fusion mechanism. This module dynamically estimates quality vectors, such as keypoint tracking confidence, visible body proportions, and inertial noise ratios, to calculate softmax-normalized fusion weights. Rather than applying rigid weights across the entirety of an exercise, the network adaptively adjusts modal reliance to match specific movements, allowing inertial signals to guide jump impact analysis while skeletal branches dominate static balance assessments.\n\nThe network is trained via a multi-task joint loss strategy combining smooth L1 loss across the six sub-item scores, mean squared error on the composite score, focal loss for four-class primary deviation classification, cross-modal contrastive loss, and a batch-level weight balancing penalty. The classification head identifies primary execution errors categorized into amplitude deficiency, posture deviation, control imbalance, or rhythm deviation, defined by the panel’s largest deduction. A temporal attention mechanism identifies critical low-scoring temporal segments across routines. The full deep representation model contains 7.84 million trainable parameters, optimized via the AdamW algorithm across five fixed random seeds to ensure reproducible model training behavior.\n\nIn empirical benchmarking against baseline evaluation architectures, the proposed model outperformed conventional CNN-LSTM, spatial-temporal graph networks, I3D-LSTM, and early-fusion transformer models when evaluated under identical participant-independent data splits. Across five fixed-seed runs, the proposed system achieved an average mean absolute error of 3.18 points and a root mean square error of 4.21 points, representing reductions in error of 27.1 percent and 26.0 percent compared to the early-fusion transformer baseline. Coefficient of determination reached 0.946, while Spearman correlation reached 0.963, demonstrating close alignment with composite referee judgments. Furthermore, the model achieved a macro-F1 score of 0.925 in classifying the primary technical deviation across test sequences.\n\nAblation experiments confirmed that the interaction and adaptive fusion mechanisms were central to these performance gains. When bidirectional cross-modal interaction was eliminated in favor of simple feature concatenation, mean absolute error increased from 3.18 to 4.52 points, while deviation classification macro-F1 dropped to 0.876, representing the largest degradation observed among all tested variants. Replacing adaptive fusion with static, equal weighting across all four streams raised scoring error to 4.08 points. Similarly, removing temporal attention in favor of global average pooling increased error to 3.79 points, confirming that retaining localized temporal indicators is necessary for detecting brief balance faults, landing missteps, and delayed turns.\n\nIn robust stress tests altering acquisition conditions, the system demonst",
+  "begyujtve": "2026-11-13T07:04:29.569945+00:00",
+  "prioritas": {
+    "pont": 47,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 50,
+      "egyediseg": 85,
+      "hitelesseg": 70,
+      "aktualitas": 95,
+      "kozossegi": 33
+    },
+    "elofeszures": 76,
+    "tanult": 23,
+    "indok": "Niche tudományos kutatás az aerobikgyakorlatok MI-alapú elemzéséről. Forrás-tapasztalat: -6.",
+    "tema": "aerobics ai evaluation",
+    "cim_hu": "Multimodális mesterséges intelligencia értékeli az aerobikversenyzők gyakorlatait",
+    "lead_hu": "Egy új kutatás videófelvételek, mozgáskövető szenzorok és a zenei ritmus kombinálásával segíti a versenyek pontosabb és objektívebb pontozását.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T07:05:28+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-13T07:06:58+00:00"
+}

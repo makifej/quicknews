@@ -1,0 +1,49 @@
+{
+  "id": "10379432e7af",
+  "slug": "inside-the-gemini-factory-accelerating-partner-solutions",
+  "forras_id": "dailydev",
+  "forras_nev": "Google Cloud (daily.dev)",
+  "url": "https://cloud.google.com/blog/topics/partners/inside-the-gemini-factory-accelerating-partner-solutions",
+  "publikalva": "2026-11-11T00:00:00+00:00",
+  "cim": "Inside the Gemini factory: Accelerating partner solutions",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 58 pont, tendencia 20%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/fb490301bb7a1e3823674c2bc6ded8a9?_a=AQAEuop"
+  },
+  "cim_eredeti": "Inside the Gemini factory: Accelerating partner solutions",
+  "szoveg_eredeti": "With the new unified Gemini experience, enterprises can bring third-party partner capabilities directly in Gemini through standardized connectors (spanning Model Context Protocol (MCP), Agent-to-Agent (A2A) runtimes, and REST APIs), alongside emerging declarative skills and plugins.\n\nFor independent software vendors (ISVs), this unified architecture unlocks a powerful opportunity to embed domain-specialized intelligence, regulated workflows, and live systems of record directly into enterprises' daily workflows. Yet turning a compelling use case into an enterprise-ready integration often stalls in engineering friction, from choosing the right extensibility primitive and wiring authentication to orchestrating multi-step tool execution and rendering inline interactive experiences.\n\nTo eliminate these bottlenecks, Google Cloud launched the Gemini factory—an intensive co-innovation initiative designed to help enterprise software partners go from a blank whiteboard to agentic solutions listed on Google Cloud Marketplace in record time. Through hands-on workshops in global technology hubs—including San Francisco, New York City, Sunnyvale, London, Paris, Tel Aviv, and Tokyo—Google Cloud specialists work side-by-side with partner teams to ideate, architect, and build the next generation of enterprise AI solutions with Gemini.\n\nSpecifically, the Gemini factory helps partners:\n\nChoose the right agentic architecture across MCP connectors, skills, plugins, and autonomous agents.\n\nGo from an initial use case to a production integration in days rather than months.\n\nAccelerate customer activation with funding incentives and go-to-market (GTM) support.\n\nLet’s dive in and see how we make all of that a reality.\n\nIn previous iterations of enterprise AI, third-party integrations often operated as isolated top-level agents, forcing employees to leave their workflow. When software providers arrive at the Gemini factory, they evaluate how their capabilities plug into Gemini across four complementary architectural primitives rather than competing extremes:\n\nModel Context Protocol (MCP) connectors: The foundational data and tool pipe for exposing external APIs, search, and CRUD operations to Gemini as callable tools registered in Agent Registry in Gemini platform.\n\nDeclarative Skills (.md): Open Markdown configurations stored in Skills Registry that equip Gemini with domain-specific instructions, operational guardrails, and repeatable multi-step workflows across connectors.\n\nPlugins: The composite packaging and governance primitive in Gemini and Google Cloud Marketplace that bundles one or more Connectors and Skills into a single turnkey solution for IT administrators to govern and Gemini users to invoke.\n\nAI agents (A2A): For enterprise ISVs whose value lies in proprietary algorithms, regulated workflows, or strict compliance rules, standalone A2A agents run in an isolated partner environment while plugging into Gemini as callable connectors—keeping intellectual property protected, guaranteeing deterministic execution sequences, and maintaining tamper-proof audit trails.\n\nRather than forcing developers into a single mold, Gemini unifies all four primitives into a coherent enterprise fabric—passing shared session context into partner connectors and chaining outputs across the enterprise ecosystem.\n\nOnce the right architectural pattern is defined, the Gemini factory compresses months of integration work into a streamlined, AI-assisted engineering pipeline that brings partner development teams and Google Cloud experts together side-by-side.\n\nAccelerated Partner Development Pipeline\n\nThis execution velocity is powered by three core capabilities in Gemini platform:\n\nAntigravity & AI-assisted builder workflows: Rather than writing boilerplate from scratch, developers build and govern solutions in Antigravity, an AI-first development environment. Using pre-built Rapid Agent Development (RAD) skills and AI-assisted workflows, partner teams rapidly translate use-case specifications into working architectures, scaffold remote MCP connectors or agent runtimes, author declarative .md skills, and run automated pre-ingestion validation harnesses.\n\nFlexible backend primitives (MCP, skills, plugins, and ADK): For most integrations, teams expose platform APIs via a hosting-agnostic Remote MCP Connector (on Cloud Run or their existing cloud) and layer on declarative Skills (.md) bundled into a turnkey Plugin. When a use case requires closed-IP models or strict deterministic execution, partners use the Google Agent Development Kit (ADK) and the A2A protocol to expose their runtime as a callable connector in Agent Registry.\n\nInline adaptive experiences (native MCP apps): Instead of redirecting users to fragmented external portals or maintaining complex custom UIs, Gemini keeps users in the flow of work. Through native MCP apps and guided inline components, partner integrations dynamically stream rich, context-aware visual canvases directly in Gemini while chaining outputs across Google Workspace and other enterprise connectors.\n\nThe Gemini factory is structured as an end-to-end commercial runway, not just a hackathon:\n\nOffset upfront costs: Upfront scoped credits to offset build and porting costs, consumption-based performance credits as partners scale, and scoped engineering support to accelerate development.\n\nEnable discoverability: Publish directly to Google Cloud Marketplace with streamlined billing, procurement, and enterprise integration to gain direct visibility across global enterprise and mid-market accounts.\n\nAmplify market demand: Access custom co-marketing and launch assets, social promotion, PR kits, launch spotlight campaigns, and Google-funded campaign packages for top-performing partners.\n\nEnterprise deployment architecture: Regardless of whether a partner builds a Skill, Plugin, MCP server, or A2A agent, the architecture is designed to keep customer onboarding frictionless and partner IP secure. Gemini users access the partner integration in Gemini using native OAuth, Dynamic Client Registration (DCR), and streamlined Bring Your Own License (BYOL) flows, while the partner maintains backend security, data sources, and proprietary tooling within their own project perimeter.\n\nBuilt-in discoverability: Partner solutions are published directly to Google Cloud Marketplace and featured in AI Solution Finder, giving enterprise customers a central place to discover validated MCP connectors, plugins, and agents today—and making it simple for IT administrators to configure and govern them in Gemini.\n\nComprehensive incentives & go-to-market: Google Cloud supports verified partners through every growth stage. Qualified solutions unlock Seed Credits upon Marketplace publishing and performance credits to offset operational inference costs, paired with GTM assets and sales enablement to turn engineering milestones into a net-new pipeline.\n\nRecent Gemini factory (previously referred to as the Agent Factory) cohorts have already brought a wave of industry-specific agents to life. Here is how nine software partners took complex enterprise challenges and deployed production-grade solutions built with Gemini in days:\n\nThe Aily Decision Intelligence Agent unifies 360° enterprise performance metrics to deliver predictive business diagnostics and actionable strategic recommendations. Built for executive decision-makers, it interrogates complex operational and financial datasets to forecast performance trends, identify supply disruptions, and guide strategic resource allocation through an intuitive, mobile-first interface.\n\n“Our mission is to bring real-time, AI-powered decision intelligence to every business executive. The Agent Factory workshop was an incredible catalyst; it enabled our team to wire up complex predictive reasoning models into the Gemini Enterprise runtime, activating Aily Super Agent in record time; orchestrating thousands of specialized agents, connecting insights across multiple",
+  "begyujtve": "2026-11-13T07:04:04.498655+00:00",
+  "prioritas": {
+    "pont": 58,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 45,
+      "egyediseg": 85,
+      "hitelesseg": 72,
+      "aktualitas": 36,
+      "kozossegi": 59
+    },
+    "elofeszures": 71,
+    "tanult": 72,
+    "indok": "Régebbi vállalati integrációs és architektúra-frissítés a Google Cloud Gemini platformjához. A forrás P3-as híreiből eddig kb. 20%-ot fogadtál el.",
+    "tema": "google gemini enterprise integration",
+    "cim_hu": "Bővíti a Gemini vállalati integrációs lehetőségeit a Google Cloud",
+    "lead_hu": "A Google Cloud bemutatta a Gemini új egységes architektúráját, amely segítségével a partnerek saját rendszereiket és munkafolyamataikat köthetik be a modellbe.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T07:05:28+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-13T07:05:48+00:00"
+}

@@ -1,0 +1,78 @@
+{
+  "id": "53bdcd59ae80",
+  "slug": "megoldast-kapott-a-tobb-ai-ugynok-egyideju-adatfelulirasanak",
+  "forras_id": "dailydev",
+  "forras_nev": "Daily Dose of Data Science | Avi Chawla | Substack (daily.dev)",
+  "url": "https://blog.dailydoseofds.com/p/how-top-ai-teams-scale-to-1000-agents",
+  "szerzo": null,
+  "publikalva": "2026-11-12T22:52:10+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/b7733097062ed48dc302392bb4335272?_a=AQAEuop"
+  },
+  "cim_eredeti": "How Top AI Teams Scale to 1,000+ Agents to Work Like One Engineering Team (Full Setup You Can Copy)",
+  "forrasok": [],
+  "szoveg_eredeti": "Turn your agents into a team that works toward shared goals.\n\nHow top AI teams scale to 1,000+ agents.\n\nMost of us still glue our agents together by hand. One writes the plan, another looks at the data, a third ships the change, and we sit in the middle passing context around.\n\nRowboat is an open-source, self-hostable layer that turns those agents into a team working toward shared goals.\n\nIt can bring Claude Code, Codex, and Hermes into one team. Any agent that supports MCP can join too, so you stop being the glue between your AI agents.\n\nYou send one message, and a super agent:\n\nBuilds the result with them on a shared whiteboard\n\nRuns on the subscriptions or API keys you already have\n\nSee every handoff, and step in whenever you want\n\nOr let Rowboat host your agents, if you’d rather not run servers\n\nThe video above shows it in action. We loaded nine weeks of product data for a sample app into PostHog, then asked why new users were dropping off after week one. Hermes found where they dropped off in PostHog, Claude Code found why in the user feedback, and Codex built the dashboard.\n\nCognition wrote in April that multi-agent systems work best when “writes stay single-threaded.”\n\nThis implies that while many agents can think in parallel, only one of them should save to shared memory.\n\nShared writes are risky for a concrete database reason, known as the lost update, in which two writers save the same record and the second save silently erases the first, with no error on either side.\n\nFor a developer running Claude Code and Codex in parallel on shared memory, this turns parallelism into a liability, because the more those agents write at once, the more of their saved work can potentially disappear.\n\nToday, let’s understand why this happens, the typical solutions and their problems, and how Omnigraph (open-source), a graph database with the Git model built in, solves it, followed by a hands-on walkthrough with Claude Code and Codex.\n\nAgent memory updates are usually read-modify-write cycles, where an agent loads a record into its context window and later writes back whatever version the model produced.\n\nSo consider a shared project graph where Claude Code and Codex read the sessions component at the same moment, when it says Redis and has no owner.\n\nClaude Code finishes first and saves the store as Postgres, while Codex, still working from its earlier read, sets the owner and saves its own copy of the record.\n\nCodex’s copy still says Redis, so its save puts sessions back on Redis and erases Claude Code’s update. Both agents report success, and nothing in the logs shows that one of them was overwritten.\n\nAgents make this worse than human users do.\n\nA person editing a record usually changes one field and saves only that field, but an agent typically writes back the entire record it read earlier, so any field another agent updated in the meantime gets reset to the old value.\n\nThere are three common ways to fix this, and each has some trade-offs:\n\nSingle writer → one agent owns every write and the others send it suggestions, which keeps memory correct but caps the whole system at the speed of that one agent.\n\nLocks and optimistic version checks → a conflict only fires when two writers touch the same record, so a version check would have rejected Codex’s stale save in the above case. Both still guard one record at a time, though, while an agent’s task usually spans several records and several steps, and neither leaves a diff to review or a history to audit.\n\nLast write wins → every agent saves freely, and the latest save overwrites the rest, which keeps everyone fast and is exactly how Claude Code’s update disappeared in the above example.\n\nCollectively, these fixes also miss isolation.\n\nAn agent working through a multi-step task needs its own workspace, a diff of what it changed, a review before that change is pushed, and a record of who changed what.\n\nCode faced the same problem when many engineers edited one codebase, and version control solved it without making anyone wait.\n\nIn Git, each engineer works on an isolated branch, a diff shows exactly what changed, and a merge compares both sides against the commit they started from, called the merge base, so a change built on an outdated version gets caught before it lands, while the history keeps every step.\n\nAgent memory needs that same versioning model, and that model is implemented by Omnigraph.\n\nOmnigraph is an open-source graph database, written in Rust under the MIT license, with the Git model built in, so agent memory gets branches, diffs, merges, and history.\n\nEach agent writes to its own branch, so no agent waits on another, and nothing reaches main until a merge compares that branch with its merge base.\n\nIf main has changed the same record since the branch was created, the merge refuses the write, publishes nothing, and tells the agent to refresh and try again.\n\nThe binary also ships an agent skill, so Claude Code and Codex can drive branches and merges from plain-English prompts.\n\nTo test it, we started both agents together on two tasks that touch the same record. The recording below is the real run, with help-page lookups trimmed:\n\nClaude Code and Codex running in parallel, each on its own Omnigraph branch.\n\nThe CLI installs with one script, and skill export writes the skill where Claude Code and Codex look for it:\n\nTo demonstrate the usage of Omnigraph, we created shared data, which is a small project graph seeded with two components, sessions and billing.\n\nSince it has Omnigraph skill, Claude Code wrote its schema and seed from one prompt, then created the graph on main, as shown below:\n\nThe only detail worth knowing is @key on each slug, which gives every record a stable ID that merges compare across branches:\n\nHere, we gave Claude Code a multi-step task.\n\nWe asked Claude Code to record that sessions moved from Redis to Postgres.\n\nTo do that, it added a new decision, linked it to the component and the open issue, marked the old decision as superseded, changed the store to Postgres, and closed the issue. All six writes landed as one commit on its own branch, claude, as shown below:\n\nAt the same time, we asked Codex to set the owner of sessions to platform-team. This was a one-field change, and Codex made it on its own branch, codex, as shown below:\n\nBoth branches started from the same commit of main, so Codex’s branch still reads store: redis.\n\nBefore Claude Code’s branch goes into main, we can review exactly what it changed.\n\nOmnigraph compares the branch with the commit both branches started from, so the diff shows only Claude Code’s six writes and nothing else, as shown below:\n\nSince nobody had changed main after the branch was created, the merge is a fast-forward. That means main simply moves up to Claude Code’s commit, so all six writes are pushed together.\n\nThis is the part a regular database doesn’t give you. A row lock protects one record at a time, but it can’t show you a multi-step change as a single diff or let you approve it before it goes live.\n\nNext, we tried to merge Codex’s branch. Its diff shows only the owner change, but the merge still fails, as shown below:\n\nThe merge fails because both main and the codex branch changed sessions after the two branches were created. Omnigraph reports this as a divergent_update, publishes nothing, and tells Codex to refresh its branch, as shown below:\n\nWith no version check, a full-record save from Codex would have put sessions back on Redis, even though decision dec-12 says it moved to Postgres.\n\nOmnigraph checks conflicts per record, not per field, so it refused this merge even though the two agents changed different fields. A false alarm costs one retry, while a stale merge that goes through quietly leaves a wrong fact in memory.\n\nNext, we sent the merge result back to the same Codex session. Codex read the latest main, opened a new branch called codex-2, and made its change again, as shown below:\n\nThis time, the merge is a fast-forward, and",
+  "modell": "gemini-3.5-flash",
+  "cim": "Megoldást kapott a több AI-ügynök egyidejű adatfelülírásának problémája",
+  "lead": "A nyílt forráskódú Omnigraph a Git elágazásos modelljével akadályozza meg, hogy az AI-ügynökök véletlenül töröljék egymás adatfrissítéseit.",
+  "osszefoglalo": "Amikor több AI-ügynök, például a Claude Code és a Codex egyszerre dolgozik egy közös adatbázison, a párhuzamos írások során a lassabb vagy régebbi adatból dolgozó modell láthatatlanul **felülírhatja a másik ügynök korábbi mentését**. Ez az adatvesztési probléma komoly akadályt jelent a skálázható, többügynökös rendszerek építésénél.\n\nA Rust nyelven írt, nyílt forráskódú **[Omnigraph](https://github.com/ModernRelay/omnigraph) gráfadatbázis a Git verziókezelési modelljét alkalmazza** az ügynökök memóriájára. Minden AI-ügynök a saját külön ágára (branch) ír, és a változtatások csak ellenőrzés után kerülhetnek a főágba. Ha a főág időközben módosult, a rendszer elutasítja az összefűzést, és frissítésre utasítja a modellt.\n\nA megoldás része a [Rowboat](https://github.com/rowboatlabs/rowboat) nevű nyílt forráskódú réteg is, amely a [Model Context Protocol](https://modelcontextprotocol.io) (MCP) segítségével képes több különböző ügynököt egyetlen összedolgozó csapattá fogni. Így a fejlesztőnek nem kell kézzel közvetítenie az egyes eszközök között a feladatok átadásakor.",
+  "miert_szamit": "Ha több AI-eszközt használsz párhuzamosan komplex feladatokra, az elágazásos adatmodellnek köszönhetően **elkerülheted az adatvesztést és a hibás felülírásokat**.",
+  "cimkek": [
+    "Omnigraph",
+    "Rowboat",
+    "Claude Code",
+    "Codex"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Omnigraph",
+    "Rowboat"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 65,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 60,
+      "egyediseg": 90,
+      "hitelesseg": 65,
+      "aktualitas": 91,
+      "kozossegi": 62
+    },
+    "elofeszures": 84,
+    "tanult": 50,
+    "indok": "Fejlesztőknek szóló gyakorlati cikk és eszközismertető az MI-ágensek skálázásáról.",
+    "tema": "scaling ai agents rowboat",
+    "cim_hu": "Így skálázható több ezerre az MI-ágensek száma a fejlesztői csapatokban",
+    "lead_hu": "Az nyílt forráskódú Rowboat eszköz lehetővé teszi, hogy a különálló MI-ágensek egyetlen összehangolt csapatként dolgozzanak közös célokért.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T07:05:28+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-13T07:06:27+00:00",
+  "megjelent": "2026-11-13T07:06:27+00:00",
+  "nevelo_javitva": "2026-11-13T07:06:27+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-13T07:08:49+00:00",
+    "esemeny": "Megjelent az open-source, Rust nyelven írt Omnigraph gráfadatbázis, amely a Git verziókezelési modelljével akadályozza meg, hogy a párhuzamosan dolgozó AI-ügynökök felülírják egymás adatgyűjtéseit és változtatásait, valamint a cikk bemutatja a Rowboat nevű nyílt forráskódú réteget is.",
+    "forrasok": [
+      "https://blog.dailydoseofds.com/p/how-top-ai-teams-scale-to-1000-agents"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-13T07:09:28+00:00",
+  "linkek_ellenorizve": true
+}

@@ -1,0 +1,89 @@
+{
+  "id": "0ee9f88dcb6a",
+  "slug": "a-liquid-ai-kiadta-a-rendkivul-gyors-liquidcodec-audiokodolot",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/12/liquid-ai-liquidcodec-streaming-audio-codec/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-11-12T22:43:26+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-19999-1-scaled.png"
+  },
+  "cim_eredeti": "Liquid AI Releases LiquidCodec, a 74M-Parameter Streaming Audio Codec",
+  "forrasok": [],
+  "szoveg_eredeti": "Liquid AI has released LiquidCodec , the audio codec behind its LFM3-Audio-2B and LFM3-Omni-2B models. The LiquidCodec audio codec is a ~74M-parameter streaming speech tokenizer. It turns speech into tokens a language model can predict, then converts those tokens back into audio. Liquid AI had 2 goals: easy-to-predict tokens and fast conversion back to speech. The weights are on Hugging Face .\n\n TL;DR \n\n Size: ~74M parameters (73.6M on the model card ); 24 kHz audio, 12.5 Hz frames, 12 codebooks.\n\n Runs on: a single CPU thread (tested on an Apple M4 Max laptop, FP32); CUDA GPUs via Transformers; Q4_0, Q4_K_M and Q8_0 GGUF builds for llama.cpp.\n\n Performance: best ViSQOL and lowest mel distance on all 8 test sets versus X-Codec 2, NanoCodec and Mimi.\n\n Best: ~361x real-time encoding on 1 CPU thread (encode RTF 0.0028 vs Mimi’s 0.0361).\n\n What is LiquidCodec? \n\n LiquidCodec is a Liquid AI speech codec that compresses 24 kHz audio into 12 token streams. Each 80 ms frame becomes 12 discrete tokens, per the LFM3-Audio-2B model card . It replaces Kyutai’s Mimi , which Liquid AI used in LFM2-Audio-1.5B. Mimi has 96.2M parameters.\n\n How does LiquidCodec work? \n\n The pipeline is encode, quantize, decode. Liquid AI uses blocks from its LFM3 architecture in both the encoder and decoder. The 2 halves are symmetric, and the encoder is fully causal, which suits streaming. \n\n Quantization uses grouped finite scalar quantization (GFSQ) instead of residual vector quantization (RVQ). In RVQ, each codebook encodes what the previous one missed. GFSQ groups are independent, so all 12 codebooks can be predicted in parallel by MaskGIT-style transformers.\n\n The decoder predicts spectral coefficients directly. This avoids learned transposed-convolution upsampling, a common cost in waveform decoders.\n\n How was it trained? \n\n Training ran in 2 stages. Stage 1 used 264,000 hours of speech across 107 languages. It applied waveform and spectral losses, without adversarial losses. Stage 2 fine-tuned on 55,000 hours of full-band speech (24 kHz or higher) with adversarial critics. Liquid AI says this removed metallic artifacts left after stage 1. A final decoder-only quantization-aware training (QAT) step targets edge inference.\n\n How fast is LiquidCodec? \n\n Liquid AI measured speed in FP32 on 1 CPU thread of an Apple M4 Max MacBook Pro. LiquidCodec ran at ~361x real time for encoding and ~87x for decoding. These are self-reported figures.\n\n Real-time factor (RTF) is processing time divided by audio length, so lower is better. LiquidCodec’s encode RTF is 0.0028, against 0.0361 for Mimi, 0.2145 for NanoCodec and 0.7359 for X-Codec 2. Decode RTF is 0.0115, against 0.0329, 0.2543 and 0.0379. That is about 13x lower encode RTF and 2.9x lower decode RTF than Mimi.\n\n How does LiquidCodec compare on quality benchmarks? \n\n Liquid AI used 8 test sets. These were LibriSpeech test-clean, Seed-TTS English and Mandarin, and 5 FLEURS languages (German, French, Mandarin, Japanese, Korean). Baselines were X-Codec 2, NanoCodec and Mimi at 12 codebooks.\n\n Reconstruction : LiquidCodec had the best ViSQOL and lowest mel distance on all 8 sets. On LibriSpeech, ViSQOL was 4.319 versus 4.219 (NanoCodec), 4.119 (X-Codec 2) and 4.031 (Mimi).\n\n Text-to-speech : Liquid AI trained identical TTS models on each codec’s tokens. Data (101,000 hours, 6 languages), architecture, compute and batch order were fixed. LiquidCodec scored the highest UTMOSv2 on all 8 sets and the best WER/CER on 4 of 8. LibriSpeech WER was 3.15%, against 6.27% for Mimi. Results held with a Qwen3-1.7B backbone as well as LFM3-1.7B.\n\n Where it trails : NanoCodec scored higher PESQ (WB) on 7 of 8 sets. It also led on LibriSpeech speaker similarity (SECS 0.836 vs 0.785).\n\n LiquidCodec vs Mimi vs NanoCodec vs X-Codec 2 \n\n Feature LiquidCodec Mimi NanoCodec 1.78 kbps X-Codec 2 Developer Liquid AI Kyutai NVIDIA HKUST Audio Parameters 73.6M 96.2M 62M 0.8B Sample rate 24 kHz 24 kHz ( repo ) 22.05 kHz 16 kHz Frame rate 12.5 Hz 12.5 Hz 12.5 fps 50 tokens/s Codebooks 12 8 at 1.1 kbps ( blog ) 13 1 ( docs ) Quantizer GFSQ RVQ ( docs ) FSQ Single-layer FSQ ( docs ) Bitrate Not disclosed 1.1 kbps 1.78 kbps Not disclosed Causality Causal encoder; decoder not disclosed Fully causal ( Kyutai ) Non-causal encoder, causal decoder Not disclosed License “other” on HF; blog links LFM License CC-BY 4.0 NVIDIA Open Model License CC-BY-NC 4.0 Encode / decode RTF, M4 Max CPU* 0.0028 / 0.0115 0.0361 / 0.0329 0.2145 / 0.2543 0.7359 / 0.0379 LibriSpeech mel distance* (lower is better) 0.120 0.160 0.122 0.123 LibriSpeech PESQ (WB)* 2.640 2.615 2.942 2.434 LibriSpeech TTS UTMOSv2* 3.31 2.89 3.19 3.27 \n\n *Measured by Liquid AI in its LiquidCodec blog . Mimi measured at 12 codebooks. \n\n How can developers deploy LiquidCodec? \n\n The codec loads through Hugging Face Transformers with trust_remote_code=True . Call encode() to get audio codes and decode() to get a waveform. A native LiquidCodecStreamingCache supports chunk-by-chunk decoding, per the model card . The card’s examples use CUDA with bfloat16.\n\n For edge use, Liquid AI lists Q4_0, Q4_K_M and Q8_0 GGUF builds for llama.cpp. GGUF repos ship with LFM3-Audio-2B and LFM3-Omni-2B . Q4_0 with decoder-only QAT shrinks the decoder footprint by 3.5x. LibriSpeech ViSQOL dips only from 4.319 to 4.292.\n\n Key Takeaways \n\n ~74M-parameter streaming codec, 12.5 Hz, 12 codebooks, 24 kHz.\n\n ~361x real-time encode, ~87x decode on 1 CPU thread.\n\n Best ViSQOL, mel distance and TTS UTMOSv2 on all 8 test sets.\n\n NanoCodec still wins PESQ (WB) on 7 of 8 sets.\n\n Q4_0 decoder is 3.5x smaller with minimal quality loss.\n\n Check out the technical blog , the model weights on Hugging Face , and LFM3-Audio-2B and LFM3-Omni-2B . Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Liquid AI Releases LiquidCodec, a 74M-Parameter Streaming Audio Codec appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Liquid AI kiadta a rendkívül gyors LiquidCodec audiókódolót",
+  "lead": "A 74 millió paraméteres [LiquidCodec](https://huggingface.co) a valós időnél 361-szer gyorsabban alakítja át a beszédet tokenekké egyetlen **CPU-szálon**.",
+  "osszefoglalo": "A Liquid AI kiadta a [LiquidCodec](https://huggingface.co/LiquidAI/Liquid-Codec) nevű streaming hangkódolóját, amely az LFM3-Audio-2B és LFM3-Omni-2B beszédmodelljei mögött működik. A 74 millió paraméteres eszköz feladata, hogy a 24 kHz-es hanganyagot a nyelvi modellek számára könnyen feldolgozható tokenekké alakítsa, majd azokat azonnal visszakódolja beszéddé.\n\nA rendszer a csoportosított skaláris kvantálás (GFSQ) segítségével éri el, hogy a 12 tokenfolyam párhuzamosan jósolható legyen. Egyetlen CPU-szálon a kódolás a valós időnél **361-szer**, a dekódolás pedig 87-szer gyorsabban fut le. A teszteken a kódoló a beszédrekonstrukció pontosságában és a szövegből beszédet képző rendszerek minőségében is felülmúlta a korábbi piaci alternatívákat.\n\nA kódoló súlyai és modellkártyája már elérhetők a Hugging Face felületén, és a Transformers könyvtáron keresztül közvetlenül integrálható. Számítógépes és mobilos környezethez a fejlesztők **llama.cpp** kompatibilis GGUF verziókat is kiadtak, így a dekóder mérete minőségromlás nélkül a 3,5-szeresére csökkenthető.",
+  "miert_szamit": "A rendkívül alacsony erőforrás-igényű és gyors kódolóval **akár mobilon is valós idejű, természetes AI-hangasszisztensek** építhetők drága GPU-szerverek nélkül, a nyílt modellkártya pedig elérhető a Hugging Face platformján.",
+  "cimkek": [
+    "Liquid AI",
+    "LiquidCodec",
+    "audió",
+    "open source"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "LiquidCodec",
+    "url": "https://huggingface.co/LiquidAI/Liquid-Codec"
+  },
+  "linkelendo_nevek": [
+    "LiquidCodec"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 73,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 78,
+      "aktualitas": 91,
+      "kozossegi": 71
+    },
+    "elofeszures": 88,
+    "tanult": 72,
+    "indok": "Fontos technikai kiadás a Liquid AI részéről, amely nyílt kóddal teszi elérhetővé az új hangkodekjét. Forrás-tapasztalat: -6.",
+    "tema": "liquid ai liquidcodec release",
+    "cim_hu": "Megjelent a Liquid AI új, nyílt forráskódú hangkodekje",
+    "lead_hu": "A Liquid AI kiadta a LiquidCodec nevű, 74 millió paraméteres kodekjét, amely gyors és pontos beszéd-tokenizációt tesz lehetővé a nyelvi modellek számára.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T07:05:28+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-13T07:05:40+00:00",
+  "megjelent": "2026-11-13T07:05:40+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-13T07:08:28+00:00",
+    "esemeny": "A Liquid AI kiadta a 74 millió paraméteres LiquidCodec streaming audiókódolót, amelynek súlyait elérhetővé tette a Hugging Face-en.",
+    "forrasok": [
+      "https://huggingface.co",
+      "https://www.marktechpost.com/2026/11/12/liquid-ai-liquidcodec-streaming-audio-codec/"
+    ],
+    "hibak": [
+      "Hiányoznak a kötelező [szöveg](url) linkek a szövegből.",
+      "A lead karakterszáma (107 karakter) rendben van, de a meglévő félkövér kiemelések és linkek teljes hiánya miatt a bekezdéseket frissíteni kell a szabályzatnak megfelelően."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "A Liquid AI kiadta a rendkívül gyors LiquidCodec audiókódolót",
+      "lead": "A 74 millió paraméteres nyílt kódoló a valós időnél 361-szer gyorsabban alakítja át a beszédet tokenekké egyetlen CPU-magon.",
+      "osszefoglalo": "A Liquid AI bejelentette a **LiquidCodec** nevű streaming hangkódolóját, amely az LFM3-Audio-2B és LFM3-Omni-2B beszédmodelljei mögött működik. A 74 millió paraméteres eszköz feladata, hogy a 24 kHz-es hanganyagot a nyelvi modellek számára könnyen feldolgozható tokenekké alakítsa, majd azokat azonnal visszakódolja beszéddé.\n\nA rendszer a csoportosított skaláris kvantálás (GFSQ) segítségével éri el, hogy a 12 tokenfolyam párhuzamosan jósolható legyen. Egyetlen CPU-magon a kódolás a valós időnél 361-szer, a dekódolás pedig 87-szer gyorsabban fut le. A teszteken a LiquidCodec a beszédrekonstrukció pontosságában és a szövegből beszédet képző rendszerek minőségében is felülmúlta a korábbi piaci alternatívákat.\n\nA kódoló súlyai és modellkártyája már elérhetők a **Hugging Face** felületén, és a Transformers könyvtáron keresztül közvetlenül integrálható. Számítógépes és mobilos környezethez a fejlesztők llama.cpp kompatibilis GGUF verziókat is kiadtak, így a dekóder mérete minőségromlás nélkül a 3,5-szeresére csökkenthető.",
+      "miert_szamit": "A rendkívül alacsony erőforrás-igényű és gyors kódolóval **akár mobilon vagy böngészőben is valós idejű, természetes AI-hangasszisztensek** építhetők drága GPU-szerverek nélkül."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-13T07:09:28+00:00",
+  "linkek_ellenorizve": true
+}
