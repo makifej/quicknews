@@ -57,11 +57,20 @@ module.exports = async (req, res) => {
     if (!gk0 || !process.env.KV_REST_API_URL) return jsonValasz(res, 503, { ok: false, uzenet: "A jóváhagyás most nem érhető el." });
     const b = await torzs(req);
     const slug = String(b.slug || ""), d = String(b.d || ""), t = String(b.t || "");
-    if (!/^[a-z0-9-]{3,120}$/.test(slug) || !["mehet", "elvet"].includes(d)) return jsonValasz(res, 400, { ok: false, uzenet: "Hibás kérés." });
+    if (!/^[a-z0-9-]{3,120}$/.test(slug) || !["mehet", "elvet", "general"].includes(d)) return jsonValasz(res, 400, { ok: false, uzenet: "Hibás kérés." });
     // r: az újranyitás sorszáma (egy elvetett elemzés újra jóváhagyásra kerülhet, új aláírással)
     const r = Math.max(0, parseInt(b.r, 10) || 0);
     const vart = crypto.createHmac("sha256", gk0).update(`elemzes|${slug}|urlap` + (r ? `|${r}` : "")).digest("hex");
     if (!egyezik(t, vart)) return jsonValasz(res, 403, { ok: false, uzenet: "Ez az űrlap nem érvényes." });
+    if (d === "general") {
+      // képgenerálás: nem végleges döntés, a Mac 3 új borítót generál, és új jóváhagyó levelet küld (új aláírással)
+      const gk = `qn:elemzes:general:${slug}:${r}`;
+      if (await kv("GET", gk)) return jsonValasz(res, 200, { ok: false, uzenet: "Erre már kértél képgenerálást, a gép dolgozik rajta." });
+      await kv("SET", gk, "1", "EX", 60 * 60 * 24 * 7);
+      const otlet = String(b.otlet || "").replace(/\s+/g, " ").trim().slice(0, 500);
+      await kv("RPUSH", "qn:elemzes:dontes", JSON.stringify({ slug, d, otlet, ido: new Date().toISOString() }));
+      return jsonValasz(res, 200, { ok: true, uzenet: "Rendben, 3 új képet generálok (kb. 0,08 dollár). 10-15 perc, és új jóváhagyó levelet kapsz." });
+    }
     const voltKulcs = r ? `qn:elemzes:dontve:${slug}:${r}` : `qn:elemzes:dontve:${slug}`;
     const volt = await kv("GET", voltKulcs);
     if (volt) return jsonValasz(res, 200, { ok: false, uzenet: `Erről az elemzésről már döntöttél: ${volt === "mehet" ? "mehet" : "elvetve"}.` });
