@@ -1,0 +1,49 @@
+{
+  "id": "6587adf69ccd",
+  "slug": "explainable-artificial-intelligence-directs-hybrid-neural-networks",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/explainable-artificial-intelligence-directs-hybrid-neural-networks-for-precise-vineyard-component-segmentation/",
+  "publikalva": "2026-11-13T14:15:50+00:00",
+  "cim": "Explainable Artificial Intelligence Directs Hybrid Neural Networks for Precise Vineyard Component Segmentation",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 46 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-9725.png"
+  },
+  "cim_eredeti": "Explainable Artificial Intelligence Directs Hybrid Neural Networks for Precise Vineyard Component Segmentation",
+  "szoveg_eredeti": "Explainable Artificial Intelligence Directs Hybrid Neural Networks for Precise Vineyard Component Segmentation\n\nAgricultural engineers and artificial intelligence researchers have established an explainable machine learning methodology that uses visual decision heatmaps to design hybrid convolutional and vision transformer architectures for grapevine semantic segmentation. In modern precision viticulture, automated vision systems deployed on agricultural machinery and autonomous robots require pixel-level identification of plant structures to facilitate yield estimation, biomass assessment, and targeted canopy management. However, distinguishing complex agricultural components such as leaves, grape clusters, and woody vine trunks remains difficult because of irregular plant morphology, variable canopy structures, fluctuating natural illumination, and visual clutter across commercial fields. To address whether distinct deep learning paradigms can be effectively united rather than combined arbitrarily, investigators evaluated baseline models using gradient-weighted class activation mapping to quantify the spatial evidence guiding their predictions before engineering and benchmarking dual-encoder hybrid networks.\n\nSemantic segmentation operates by assigning a categorical semantic label to every individual pixel within an agricultural image. Convolutional neural networks, including DeepLabV3+ with an EfficientNet-B4 backbone, process visual input through hierarchical receptive fields and parallel dilated convolutions that excel at extracting localized spatial textures, fine-grained geometric edges, and object boundaries. In contrast, vision transformers, exemplified by SegFormer equipped with a hierarchical Mix Vision Transformer backbone, leverage multi-head self-attention mechanisms to establish long-range contextual relationships across distant regions of an image. Although the conceptual complementary nature of local feature extraction and global context modeling has inspired hybrid models in medical imaging, researchers have lacked systematic methods to determine how these separate network families allocate visual attention when analyzing real-world viticultural environments.\n\nTo investigate the internal decision-making processes of these deep learning architectures, the research team analyzed model behaviors across two independent field datasets collected in commercial Italian vineyards. The first dataset was acquired in the Conte Spagnoletti Zeuli vineyard in Andria, cultivating the Vitis vinifera cultivar Nero di Troia, utilizing a Microsoft Azure Kinect camera mounted horizontally on a tripod positioned at distances between 1.5 and 2.0 meters from the vine row. This setup framed multiple plants at a resolution of 2048 by 1536 pixels under challenging conditions characterized by dense foliage, intense shadows, and strong natural backlighting. The second dataset was collected in San Donaci using an Intel RealSense D435 camera mounted in portrait orientation on a mobile robot traveling between 0.8 and 1.0 meters from rows of the Negroamaro grape cultivar, recording single-vine frames at 1280 by 720 pixels across phenological stages extending from active vegetative growth through grape maturation.\n\nRather than treating explainable artificial intelligence as a post-hoc diagnostic tool intended solely to visualize model failures after deployment, the researchers incorporated Gradient-weighted Class Activation Mapping directly into the network engineering workflow. By backpropagating class scores obtained from predicted segmentation masks to functionally equivalent decoder layers situated immediately prior to the final segmentation heads, the researchers produced comparative spatial heatmaps for target classes. They evaluated these heatmaps using objective localization metrics, including the Pointing Game, which measures whether the maximal activation peak falls within ground-truth object annotations; the Energy-Based Pointing Game, which computes the proportion of total activation energy concentrated within object boundaries; and IoU-CAM, which evaluates spatial intersection over union against binarized attribution masks.\n\nThe quantitative explainability analysis revealed that while DeepLabV3+ and SegFormer achieved broadly comparable baseline segmentation performance, their underlying visual reasoning diverged significantly across semantic categories. For the grape cluster class, the Energy-Based Pointing Game revealed statistically significant differences, with DeepLabV3+ concentrating between 78.4 percent and 81.9 percent of its total attribution energy directly within grape boundaries, compared to 72.9 percent to 73.9 percent for SegFormer across the Zeuli and San Donaci datasets. SegFormer consistently distributed its explanatory activation across adjacent leaves and background foliage, indicating an expansive contextual approach, whereas the convolutional network remained strictly localized. For leaf classification, DeepLabV3+ achieved significantly higher Pointing Game scores of 100.0 percent and 93.7 percent on the respective datasets compared to 59.3 percent and 81.0 percent for SegFormer, demonstrating that the convolutional architecture anchored its peak confidence on discrete local structures while the transformer integrated broader canopy regions.\n\nGuided by these concrete empirical observations rather than theoretical assumptions, the authors formulated an explicit architectural hypothesis: integrating the concentrated local feature representations of convolutional backbones with the broad contextual representations of vision transformers within a unified dual-encoder network could resolve class-specific ambiguities. To test this hypothesis, the researchers engineered four distinct hybrid configurations pairing an EfficientNet-B4 convolutional encoder and a MiT-B2 transformer encoder. Because EfficientNet-B4 generates high-resolution geometric feature maps at its initial stage that have no dimensional counterpart in the transformer hierarchy, this early convolutional tensor was routed directly to the network decoder. Across subsequent hierarchical feature levels, the parallel representations were fused using two alternative mechanisms: direct channel concatenation followed by channel-compressing convolutions, or a linear cross-attention module allowing convolutional query projections to selectively attend to transformer key and value embeddings.\n\nThe fused multi-scale feature pyramids were subsequently coupled with two distinct decoding heads to assess the role of spatial aggregation. One decoder employed a lightweight multi-layer perceptron architecture adapted from SegFormer that upsamples and concatenates multi-scale features to a uniform spatial resolution. The second decoder implemented the atrous spatial pyramid pooling mechanism from DeepLabV3+, which applies parallel dilated convolutions at multiple sample rates to the deepest feature map before merging the result with high-resolution low-level features through separable convolutions. Across these structural pairings, Hybrid 1 combined cross-attention with atrous spatial pyramid pooling, Hybrid 2 combined cross-attention with the multi-layer perceptron head, Hybrid 3 paired feature concatenation with atrous pooling, and Hybrid 4 paired feature concatenation with the lightweight multi-layer perceptron decoder.\n\nExperimental evaluation over five-fold cross-validation demonstrated that performance improvements in hybrid models depend heavily on the interaction between the feature integration mechanism, decoder complexity, and dataset environment. Hybrid 4 emerged as the only architecture that consistently outperformed the best baseline models across all target classes in both vineyard environments. On the San Donaci dataset, Hybrid 4 achieved intersection over union scores of 71.31 percent for grapes, 94.10 percent for leaves, and 65.10 percent for vine trunks, exceeding the basel",
+  "begyujtve": "2026-11-13T14:19:49.905704+00:00",
+  "prioritas": {
+    "pont": 46,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 45,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 99,
+      "kozossegi": 21
+    },
+    "elofeszures": 71,
+    "tanult": 15,
+    "indok": "Niche tudományos kutatási eredmény a precíziós szőlészetről, korlátozott hírértékkel. Forrás-tapasztalat: -6.",
+    "tema": "ai in agriculture research",
+    "cim_hu": "Magyarázható AI segíti a szőlőültetvények precíziós elemzését",
+    "lead_hu": "Kutatók hibrid konvolúciós és vision transformer architektúrákat alkalmaztak a szőlőtőkék pontosabb digitális szegmentálására.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T14:20:02+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-13T14:20:08+00:00"
+}
