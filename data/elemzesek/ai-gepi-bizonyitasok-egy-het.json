@@ -1,0 +1,92 @@
+{
+  "slug": "ai-gepi-bizonyitasok-egy-het",
+  "title": "4 gépi bizonyítás 16 nap alatt: az AI évtizedes kérdésekre ad Leanben ellenőrzött választ",
+  "deck": "Október 26. és november 10. között az OpenAI, a PSI és a Google DeepMind rendszerei 4 nagy bizonyítást adtak le, mindegyiket a Lean tételbizonyító ellenőrizte. **A gép már bizonyít, de hogy pontosan mit, azt még emberek döntik el.**",
+  "leiras": "Megdőlt az exponenciális időhipotézis, kész egy Yang-Mills-konstrukció és egy 2008-as sejtés, a Signal kódját gép ellenőrizte. Mit bizonyít a Lean, és mit nem?",
+  "datum": "2026-11-13",
+  "allapot": "elvetve",
+  "token": "acae32e48f2b419c",
+  "cimkek": [
+    "Matematika",
+    "Lean",
+    "OpenAI",
+    "Google DeepMind",
+    "Kutatás"
+  ],
+  "harminc": {
+    "cim": "Az AI már bizonyít, a Lean ellenőriz, az ember még olvas",
+    "szoveg": "**16 nap alatt 4 gépi bizonyítás jelent meg, és mindegyiket a Lean ellenőrizte.** Független emberi lektoráláson egyik sem ment még át teljesen.",
+    "pontok": [
+      "**28 év** után megdőlt az exponenciális időhipotézis",
+      "**250 319** deklaráció a Yang-Mills Lean-kódjában",
+      "**3. nap**: kész egy 2008-as sejtés bizonyítása",
+      "**6,5 millió** sor Lean a Signal gépi kódjához",
+      "**0** megoldott millenniumi díjas kérdés"
+    ]
+  },
+  "meglepo": "Az OpenAI belső modellje nagyjából 4000 nyitott problémát kapott, és **721 kézirat** lett belőle, eredményenként átlagosan 3 óra gondolkodási időből. A Yang-Mills-bizottság pedig maga írta le, hogy a bizonyítást **még nem érti teljesen**, pedig a Lean minden lépését elfogadta.",
+  "kiemel": [
+    "OpenAI",
+    "AlphaProof Code"
+  ],
+  "cover": {
+    "src": "/assets/elemzes/ai-gepi-bizonyitasok-egy-het-v1.webp",
+    "alt": "Kopott, barna iskolai tábla közelről, krétával írt differenciálegyenletekkel. Egy kapcsos zárójel fogja össze a levezetést, jobbra egy bekeretezett egyenlőtlenség áll, mintha a végeredmény lenne. A táblán törlésnyomok és karcolások látszanak, alul egy fekete fémrúd áll előtte. A kép a kézzel írt, ember által ellenőrzött bizonyítás régi világát mutatja.",
+    "forras": "Fotó: Roman Mager / Unsplash"
+  },
+  "body_md": "Október 26. és november 10. között **4 olyan matematikai és informatikai eredmény jelent meg, amelyet nagyrészt AI-rendszer írt, és mindegyik bizonyítását gép ellenőrizte**. Az OpenAI egy belső modellje megcáfolta az exponenciális időhipotézist, egy 28 éves feltevést. Ugyanez a cég átadta a Yang-Mills-elmélet egy kvantumos konstrukcióját egy Nobel-díjas fizikus vezette bizottságnak. A Physical Superintelligence nevű cég egy nem nyilvános Anthropic-modellel bebizonyította a 2008 óta nyitott Aaronson-Ambainis-sejtést. A Google DeepMind pedig ügynökökkel ellenőrizte a Signal titkosító kódját, egészen a gépi kódig. A közös pont a [Lean](https://lean-lang.org/) nevű tételbizonyító. **Ez a program minden lépést ellenőriz, és a szerző hírneve nem számít neki.** Ettől lett hirtelen hihető, amit az AI a matematikában állít.\n\n```szamok\n[{\"szam\": \"28 év\", \"felirat\": \"élt az exponenciális időhipotézis, mielőtt az OpenAI modellje megcáfolta\"}, {\"szam\": \"6,5 M\", \"felirat\": \"sornyi Lean-bizonyítást írtak a DeepMind ügynökei a Signal kódjához\"}, {\"szam\": \"3. nap\", \"felirat\": \"a futás 3. napján állt elő a PSI rendszere a teljes bizonyítással\"}, {\"szam\": \"0\", \"felirat\": \"a 4 eredményből egyik sem oldja meg a P és NP kérdést vagy a tömegrést\"}]\n```\n\n## Mi történt pontosan ebben a 16 napban?\n\n**A 4 eredmény 4 különböző területről jön, de ugyanazzal a módszerrel készült: a gép írja a bizonyítást, és egy másik program ellenőrzi.** A hírek már külön megjelentek a quicknewson, például [az exponenciális időhipotézis megdöntéséről](/hir/megdontotte-az-openai-az-exponencialis-ido-hipoteziset) és [a fizikusi bizottság döntéséről](/hir/fizikusi-bizottsag-igazolta-az-openai-tudomanyos-bizonyitasat). Egymás mellé téve az is látszik, mennyire különbözik, mit ellenőrzött gép és mit ember.\n\n| Eredmény | Ki | Mióta volt nyitott | Gépi ellenőrzés | Független emberi ellenőrzés |\n|---|---|---|---|---|\n| OpenAI: exponenciális időhipotézis cáfolata | belső, meg nem nevezett OpenAI-modell | 1998 | Lean, a cikknél gyengébb korláttal | folyamatban (Impagliazzo, Paturi, Williams) |\n| OpenAI: Yang-Mills-elmélet 4 dimenzióban | belső OpenAI-modell | évtizedek óta | Lean, 250 319 deklaráció | 5 tagú bizottság, november 10-én elfogadta |\n| PSI: Aaronson-Ambainis-sejtés | nem nyilvános Anthropic-modell | 2008 | Lean, 2 független ellenőrzővel | Stanford-csoport elolvasta, lektorálás nincs |\n| AlphaProof Code: Signal-kód | Gemini Carbon ügynökök | nem nyitott kérdés | Lean, kb. 6,5 millió sor | emberek írták elő, mit kell bizonyítani |\n\n**A táblázat utolsó oszlopa a legfontosabb.** A gépi ellenőrzés mind a 4 esetben lefutott. Az emberi megértés viszont még csak az egyiknél jutott el hivatalos döntésig, ott is részlegesen.\n\n## Miért számít, hogy a gép Leanben bizonyít?\n\n**A Lean egy programozási nyelv és egy ellenőrző mag egyben: csak azt a bizonyítást fogadja el, amelynek minden lépése levezethető a korábbiakból.** Gondolj rá úgy, mint egy könyvelőre, aki minden számlát egyenként végignéz. Nem érdekli, ki állította ki, és milyen magabiztosan. Ha egyetlen tétel nem stimmel, az egész elakad.\n\nEz az AI-nál különösen sokat ér. A nyelvi modellek hajlamosak magabiztos, de hibás szöveget írni, és egy 1000 oldalas bizonyításban az ilyen hibát ember hónapokig keresheti. **A Lean ezt a hibát géppel szűri ki, ezért a matematikusoknak nem kell vakon megbízniuk a modellben.** Egy dolgot viszont nem tud a Lean: azt nem dönti el, hogy a gépre írt állítás tényleg ugyanaz-e, amit a matematikusok sejtésként megfogalmaztak. Ezt továbbra is embernek kell elolvasnia. A PSI tárolója ezt ki is mondja: hogy a formalizált állítás megfelel-e az eredeti sejtésnek, azt „az olvasónak kell megerősítenie”.\n\n## Mit cáfolt meg az OpenAI modellje?\n\n**A modell olyan algoritmust adott, amely a 3-SAT feladatot az exponenciálisnál gyorsabban oldja meg, és ez cáfolja az exponenciális időhipotézist.** Ezt az OpenAI [nyilvános tárolója](https://github.com/openai/math/blob/main/history.md) jelentette be október 26-án. A hipotézist Russell Impagliazzo, Ramamohan Paturi és Francis Zane fogalmazta meg 1998-ban. Azt állította, hogy bizonyos logikai feladatoknál nincs lényegesen jobb módszer, mint végigpróbálni szinte minden lehetőséget. Erre a feltevésre számos más bonyolultságelméleti eredmény épült.\n\n[A kézirat](https://github.com/openai/math/blob/main/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf) szerint az algoritmus determinisztikus, és nemcsak eldönti, van-e megoldás, hanem meg is számolja őket. **A Lean-formalizálás egy gyengébb, de szintén szubexponenciális időkorlátot igazol, mint amit a kézirat állít.** Az eredmény tehát géppel ellenőrzötten is áll, csak a pontos sebesség vitatható még.\n\n```abra\n{\"cim\": \"Mennyi ideig volt nyitott a 2 sejtés?\", \"al\": \"a kitűzéstől a gépi bizonyítás bejelentéséig, években\", \"egyseg\": \"év\", \"cimkek\": [\"OpenAI: exponenciális időhipotézis\", \"PSI: Aaronson-Ambainis-sejtés\"], \"sorozatok\": [{\"nev\": \"nyitott évek\", \"ertekek\": [28, 18]}], \"kiemel\": [\"OpenAI\", \"PSI\"], \"forras\": \"OpenAI math tároló; PSI, 2026. november 6.\"}\n```\n\n**Fontos, mit nem jelent ez: a P és NP kérdés nyitott marad.** Az új algoritmus futásideje továbbra is szuperpolinomiális, tehát nem teszi könnyűvé a nehéz feladatokat. Egy független munkacsoport Impagliazzo, Paturi és Ryan Williams vezetésével most vizsgálja és magyarázza a bizonyítást. Az OpenAI a csoport kérésére tette közzé azonnal az anyagot.\n\nA háttér talán még meglepőbb, mint maga az eredmény. **A modell nagyjából 4000 nyitott problémát kapott, és ebből 721 kézirat lett, 373 eredménycsaládba rendezve.** Ezt a [tároló leírása](https://github.com/openai/math) közli. Egy eredmény átlagosan 3 órányi ChatGPT Pro gondolkodási időbe került. A fő eredmények kb. 42%-a van Leanben formalizálva, a többinél az OpenAI maga is jelzi, hogy hibás lehet.\n\n```abra\n{\"cim\": \"Hány kérdésből lett eredmény az OpenAI-nál?\", \"al\": \"a belső modellnek feltett nyitott problémák és a belőlük született kéziratok\", \"egyseg\": \"db\", \"cimkek\": [\"Feltett nyitott probléma\", \"OpenAI: elkészült kézirat\", \"OpenAI: eredménycsalád\"], \"sorozatok\": [{\"nev\": \"darab\", \"ertekek\": [4000, 721, 373]}], \"kiemel\": [\"OpenAI\"], \"forras\": \"github.com/openai/math, README\"}\n```\n\n## Mit bizonyított a Yang-Mills-bizottság szerint, és mit nem?\n\n**A bizonyítás megkonstruál egy 4 dimenziós kvantumos Yang-Mills-elméletet, bármely egyszerű kompakt mértékcsoportra.** Így szól a David Gross Nobel-díjas fizikus vezette 5 tagú bizottság [november 10-i értékelése](https://github.com/yang-mills-group/YM/blob/main/docs/assessment-1.pdf). A Yang-Mills-elmélet adja az erős kölcsönhatás matematikai vázát. Matematikailag szigorú, kvantumos változatát évtizedek óta senki nem tudta felépíteni. A bizottság tagja még Michael R. Douglas, Arthur Jaffe, Igor R. Klebanov és Nikita Nekrasov.\n\n**A tömegrés kérdését viszont nem oldja meg, pedig a millenniumi díj erre szól.** A [Clay Matematikai Intézet](https://www.claymath.org/millennium/yang-mills-the-maths-gap/) 1 millió dollárt tűzött ki rá. Az értékelés szó szerint kimondja, hogy a konstrukció nem bizonyítja a végtelen térfogatú határérték egyértelműségét, és tömegrésről sem állít semmit. A bizottság azt is leírja, hogy a bizonyítást „még nem érti teljesen”. A Lean-kód megértéséhez az OpenAI Astra modelljét is használták.\n\n```abra\n{\"cim\": \"Mekkora a Yang-Mills Lean-bizonyítása?\", \"al\": \"a projekt deklarációi, és ebből mennyi kell a 17 fő tételhez\", \"egyseg\": \"db\", \"cimkek\": [\"OpenAI: összes deklaráció\", \"OpenAI: a 17 fő tételhez szükséges\"], \"sorozatok\": [{\"nev\": \"deklaráció\", \"ertekek\": [250319, 100168]}], \"kiemel\": [\"OpenAI\"], \"forras\": \"yang-mills-group, OpenAI-YM-20261028\"}\n```\n\n**A méret önmagában mutatja, miért kell gépi ellenőrzés.** A [beküldött Lean-kódban](https://github.com/yang-mills-group/OpenAI-YM-20261028) 250 319 deklaráció van, ebből 100 168 kell a 17 fő tételhez. Ember ezt soronként nem tudja végigolvasni. A szöveges bizonyítás 1147 oldalas, és a bizottság csak akkor adja ki, ha a minőségével és a helyességével elégedett.\n\n## Hogyan jutott el egy Claude-modell egy 2008-as sejtésig?\n\n**A PSI saját kutatórendszere, amelyen egy nem nyilvános Anthropic-modell futott, a futás 3. napján állt elő a teljes bizonyítással.** Ezt a cég [november 6-i közlése](https://psi.inc/research/aaronson-ambainis/) írja le. Utána a rendszer kapcsolódó nyitott kérdéseken dolgozott, és 2-szer javított az eredményen. A végső változatot a Lean fogadta el. A részletekről [korábbi hírünk](/hir/matematikai-attorest-ert-el-egy-mi-rendszer-a-kvantumszamitasban) is beszámolt.\n\nAz [Aaronson-Ambainis-sejtés](https://arxiv.org/abs/0911.0996) arról szól, mikor lehet egy kvantumszámítógép exponenciálisan gyorsabb a hagyományosnál. **Az igazolt tétel szerint véletlenszerű bemeneteken a kvantumgép legfeljebb polinomiálisan gyorsabb, a nagy előnyhöz különleges szerkezetű adat kell.**\n\n**Itt az ember szerepe is jól látszik.** A munkát David Turturean vezette, ő építette a rendszert, és ő felel a cikk helyességéért. A [GitHub-tároló](https://github.com/physical-superintelligence/aaronson-ambainis) szerint a Leant 2 független ellenőrző is átengedte, és egy szálon 11 perc alatt újra lefuttatható. A cikk ugyanakkor nincs még lektorálva, a Stanford kutatói pedig rövidebb, emberi magyarázaton dolgoznak.\n\n## Miért fontosabb a Signal, mint amilyennek hangzik?\n\n**A DeepMind rendszere a telefonokon ténylegesen futó gépi kódot ellenőrizte, a Signal tervén túl.** A rendszer neve [AlphaProof Code](https://deepmind.google/blog/introducing-alphaproof-code/). A [tanulmány](https://deepmind.google/documents/36/Formal_Verification_of_Signal_4.pdf) szerint a libsignal könyvtárat a szokásos fordítóval AArch64 gépi kódra fordították, és a Gemini Carbon ügynökök erről bizonyítottak biztonsági tulajdonságokat. Ilyen például, hogy egy ideiglenesen feltört eszköz után is védve maradnak az üzenetek. A Signal protokoll a WhatsAppban, a Messengerben és a Google Messagesben is fut.\n\n**A bizonyítás kb. 6,5 millió sor Lean-kód, és 4 hét alatt készült el.** Ez a sok sor kb. 26 000 sor megbízható specifikációra és gépi szemantikára épül, ezt kell embernek elhinnie. A blog szerint az ügynökök a kódbázis 1%-át jelölték meg emberi átnézésre. Próbaként a csapat 2 korábban javított, valódi hibát tett vissza a kód egy elkülönített változatába. A rendszer mindkettőre gépileg ellenőrzött bizonyítékot adott arról, hogy a hibás változat nem biztonságos.\n\n```abra\n{\"cim\": \"Mennyi munka egy szoftver formális ellenőrzése?\", \"al\": \"seL4 és CompCert: emberév; Signal: naptári idő, 4 hét = kb. 0,08 év\", \"egyseg\": \"év\", \"cimkek\": [\"seL4 mikrokernel\", \"CompCert fordító\", \"AlphaProof Code: Signal\"], \"sorozatok\": [{\"nev\": \"idő\", \"ertekek\": [20, 6, 0.08]}], \"kiemel\": [\"AlphaProof Code\"], \"forras\": \"DeepMind: AlphaProof Code tanulmány, 2026. november 10.\"}\n```\n\n**A tanulmány szerint a terület legnagyobb sikerének tartott seL4 mikrokernel ellenőrzése 20 emberévbe került, a CompCert fordítóé 6-ba.** A 2 szám nem vethető össze pontosan a Signal 4 hetével, mert az egyik emberi munkaidő, a másik naptári idő. A nagyságrend különbsége viszont így is beszédes. A hírről [külön cikkünk](/hir/a-google-deepmind-ai-val-igazolta-a-signal-titkositasanak-biztonsagat) is szólt.\n\n## Mit jelent ez neked?\n\n**Ha nem vagy matematikus, a Signal-eredmény érint a legközvetlenebbül: a kódra, amelyre az üzeneteidet bízod, most bizonyítottak először protokollszintű biztonsági tulajdonságokat.** A tanulmány szerint ez az első ilyen bizonyítás egy széles körben használt, módosítatlan titkosító kódra. A kriptográfiai alapelemek biztonságát a bizonyítás feltételezi, nem igazolja. Azt igazolja, hogy a futó kód megtartja a vizsgált tulajdonságokat.\n\n**A gépi bizonyítás leválasztja a bizalmat a modellről.** Egy hete még [azt írtuk](/hir/egyetlen-ai-ugynok-sem-tudott-onallo-tudomanyos-kutatast-vegezni), hogy egyetlen AI-ügynök sem tudott önálló tudományos kutatást végezni, mert az ügynökök túl elnézően ellenőrizték a saját munkájukat. A matematikában ezt a gyengeséget a Lean kiváltja. Ott, ahol a végeredmény gépi ellenőrzéssel igazolható, az AI hirtelen sokkal többet ér.\n\n## Mit érdemes most kipróbálni?\n\n1. **Nézd meg, melyik OpenAI-eredménynél van Lean-formalizálás.** Az [OpenAI matematikai tárolójában](https://github.com/openai/math) a fő eredmények 42%-ánál van, a többit kezeld nyitott kérdésként.\n2. **Olvasd el a Yang-Mills-bizottság első nyilatkozatát.** Az [októberi szöveg](https://www.kitp.ucsb.edu/sites/default/files/YM_working_group.pdf) pontosan leírja, hogyan dolgozik egy független bizottság AI-bizonyítással.\n3. **Futtasd le saját gépeden a PSI bizonyítását.** Telepítsd a [Leant](https://lean-lang.org/), a tároló leírása szerint egy szálon 11 perc és 7,4 GB memória kell hozzá.\n4. **Ha szoftvert fejlesztesz, mérd fel, melyik kritikus kódrészedet érné meg formálisan ellenőrizni.** Kiindulásnak jók a DeepMind [nyílt ellenőrzési anyagai](https://google-deepmind.github.io/code-verification).\n\n## Amit még nem tudunk\n\n**A 4 eredményből egyik sem ment még át klasszikus szakmai lektoráláson.** Az exponenciális időhipotézis cáfolatát egy munkacsoport most vizsgálja. A Yang-Mills-bizottság saját bevallása szerint még nem érti teljesen a bizonyítást. A PSI cikke lektorálatlan előzetes kézirat. Azt sem tudjuk, melyik modell írta az OpenAI és a PSI eredményeit, mert egyik cég sem nevezte meg. A Lean csak azt garantálja, hogy a gépre írt állítás igaz. Hogy ez az állítás pontosan az-e, amit a matematikusok évtizedek óta keresnek, azt csak az emberi olvasás döntheti el.\n",
+  "sources": [
+    {
+      "label": "OpenAI: math tároló, history, 2026. október 26.",
+      "url": "https://github.com/openai/math/blob/main/history.md"
+    },
+    {
+      "label": "OpenAI: The Exponential Time Hypothesis is False, kézirat, 2026. október 25.",
+      "url": "https://github.com/openai/math/blob/main/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf"
+    },
+    {
+      "label": "OpenAI: math tároló, README",
+      "url": "https://github.com/openai/math"
+    },
+    {
+      "label": "Yang-Mills-bizottság: értékelés, 2026. november 10.",
+      "url": "https://github.com/yang-mills-group/YM/blob/main/docs/assessment-1.pdf"
+    },
+    {
+      "label": "Yang-Mills-bizottság: az OpenAI Lean-kódja, 2026. október 28.",
+      "url": "https://github.com/yang-mills-group/OpenAI-YM-20261028"
+    },
+    {
+      "label": "KITP: a Yang-Mills munkacsoport első nyilatkozata, 2026. október",
+      "url": "https://www.kitp.ucsb.edu/sites/default/files/YM_working_group.pdf"
+    },
+    {
+      "label": "Clay Mathematics Institute: Yang-Mills és a tömegrés",
+      "url": "https://www.claymath.org/millennium/yang-mills-the-maths-gap/"
+    },
+    {
+      "label": "Physical Superintelligence: Aaronson-Ambainis, 2026. november 6.",
+      "url": "https://psi.inc/research/aaronson-ambainis/"
+    },
+    {
+      "label": "PSI: Lean-formalizálás, GitHub",
+      "url": "https://github.com/physical-superintelligence/aaronson-ambainis"
+    },
+    {
+      "label": "Aaronson és Ambainis: The Need for Structure in Quantum Speedups, arXiv 0911.0996",
+      "url": "https://arxiv.org/abs/0911.0996"
+    },
+    {
+      "label": "Google DeepMind: AlphaProof Code, 2026. november 10.",
+      "url": "https://deepmind.google/blog/introducing-alphaproof-code/"
+    },
+    {
+      "label": "Chaudhuri és mtsai.: AlphaProof Code: Verifying Signal's Security at the Machine-Code Level, 2026. november 10.",
+      "url": "https://deepmind.google/documents/36/Formal_Verification_of_Signal_4.pdf"
+    },
+    {
+      "label": "Lean tételbizonyító",
+      "url": "https://lean-lang.org/"
+    }
+  ]
+}
