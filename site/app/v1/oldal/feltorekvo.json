@@ -2,10 +2,32 @@
   "cim": "Feltörekvő",
   "leiras": "Az elmúlt 14 nap hírei közül azok, amelyekről több forrás is beszámolt, vagy amelyek legalább 2 pontot kaptak az olvasóktól. Sorrend: elöl a szerkesztőség kiemelései, utána pontszám szerint. A pontszám a szavazatokból és abból adódik, hány forrás írt a hírről, és 2 naponta a felére csökken, így a friss hír előrébb kerül.",
   "leiras_cimke": "Hogyan áll össze a lista?",
-  "alcim": "18 hír, pontszám szerint",
+  "alcim": "19 hír, pontszám szerint",
   "blokkok": [
     {
       "t": "nagy",
+      "h": {
+        "id": "88d77a52ad5e",
+        "cim": "Önállóan vásárolhatnak helyettünk a ChatGPT AI-ügynökei",
+        "lead": "Az OpenAI bemutatta a ChatGPT Walletet, amellyel a fizetési tokenek révén az AI-ügynökök vásárlásokat hajthatnak végre a felhasználók nevében.",
+        "slug": "onalloan-vasarolhatnak-helyettunk-a-chatgpt-ai-ugynokei",
+        "forras": "CNBC",
+        "kat": "ügynök",
+        "rovat": "ugynok",
+        "ido": "2026-11-13T17:26:50.598Z",
+        "ido_hu": "nov. 13. 18:26",
+        "kep": "https://quicknews.hu/assets/kep/88d77a52ad5e.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/88d77a52ad5e-n.webp",
+        "video": false,
+        "fontossag": 4,
+        "felkapott": true,
+        "forraskep": false,
+        "url": "https://quicknews.hu/hir/onalloan-vasarolhatnak-helyettunk-a-chatgpt-ai-ugynokei",
+        "jova": true
+      }
+    },
+    {
+      "t": "kozepes",
       "h": {
         "id": "618291031a9e",
         "cim": "Lemondott Jensen Huang, az Nvidia vezérigazgatója",
@@ -27,30 +49,27 @@
       }
     },
     {
-      "t": "kozepes",
-      "h": {
-        "id": "4bad5afe01a1",
-        "cim": "A Google kiadta a Gemini 4 Hydrogen modellt",
-        "lead": "A Google DeepMind bemutatta a Gemini 4 Hydrogen modellt, amelyet kifejezetten a mindennapi fejlesztési és ügynöki feladatok gyors végrehajtására terveztek.",
-        "slug": "a-google-kiadta-a-gemini-4-hydrogen-modellt",
-        "forras": "Google DeepMind",
-        "kat": "modell",
-        "rovat": "modell",
-        "ido": "2026-11-12T18:06:16.922Z",
-        "ido_hu": "nov. 12. 19:06",
-        "kep": "https://quicknews.hu/assets/kep/4bad5afe01a1.webp",
-        "kep_nagy": "https://quicknews.hu/assets/kep/4bad5afe01a1.webp",
-        "video": false,
-        "fontossag": 5,
-        "felkapott": true,
-        "forraskep": false,
-        "url": "https://quicknews.hu/hir/a-google-kiadta-a-gemini-4-hydrogen-modellt",
-        "jova": true
-      }
-    },
-    {
       "t": "cimsor",
       "hirek": [
+        {
+          "id": "4bad5afe01a1",
+          "cim": "A Google kiadta a Gemini 4 Hydrogen modellt",
+          "lead": "A Google DeepMind bemutatta a Gemini 4 Hydrogen modellt, amelyet kifejezetten a mindennapi fejlesztési és ügynöki feladatok gyors végrehajtására terveztek.",
+          "slug": "a-google-kiadta-a-gemini-4-hydrogen-modellt",
+          "forras": "Google DeepMind",
+          "kat": "modell",
+          "rovat": "modell",
+          "ido": "2026-11-12T18:06:16.922Z",
+          "ido_hu": "nov. 12. 19:06",
+          "kep": "https://quicknews.hu/assets/kep/4bad5afe01a1.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/4bad5afe01a1.webp",
+          "video": false,
+          "fontossag": 5,
+          "felkapott": true,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/a-google-kiadta-a-gemini-4-hydrogen-modellt",
+          "jova": true
+        },
         {
           "id": "22aab3e1ae30",
           "cim": "Már natív 4K felbontásban is generál videókat a Seedance 2.5",
@@ -106,25 +125,6 @@
           "felkapott": true,
           "forraskep": false,
           "url": "https://quicknews.hu/hir/az-united-airlines-megtiltotta-az-ai-ugynokoknek-a-repulojegy",
-          "jova": true
-        },
-        {
-          "id": "448196bbc491",
-          "cim": "Megjelent az AlphaGenome 2 a Google DeepMindtól",
-          "lead": "A Google DeepMind új mesterségesintelligencia-modellje a nem kódoló DNS-t elemzi a betegségek okainak feltárásához.",
-          "slug": "megjelent-az-alphagenome-2-a-google-deepmindtol",
-          "forras": "Google DeepMind (YouTube)",
-          "kat": "kutatás",
-          "rovat": "kutatas",
-          "ido": "2026-11-12T09:16:34.831Z",
-          "ido_hu": "nov. 12. 10:16",
-          "kep": "https://quicknews.hu/assets/kep/448196bbc491-hd2.webp",
-          "kep_nagy": "https://quicknews.hu/assets/kep/448196bbc491-hd2.webp",
-          "video": true,
-          "fontossag": 4,
-          "felkapott": true,
-          "forraskep": false,
-          "url": "https://quicknews.hu/hir/megjelent-az-alphagenome-2-a-google-deepmindtol",
           "jova": true
         }
       ]
@@ -363,6 +363,33 @@
           "jova": true
         }
       ],
+      "tobb": []
+    },
+    {
+      "t": "rovat",
+      "cim": "Kutatás",
+      "link": null,
+      "osszes": 1,
+      "fo": {
+        "id": "448196bbc491",
+        "cim": "Megjelent az AlphaGenome 2 a Google DeepMindtól",
+        "lead": "A Google DeepMind új mesterségesintelligencia-modellje a nem kódoló DNS-t elemzi a betegségek okainak feltárásához.",
+        "slug": "megjelent-az-alphagenome-2-a-google-deepmindtol",
+        "forras": "Google DeepMind (YouTube)",
+        "kat": "kutatás",
+        "rovat": "kutatas",
+        "ido": "2026-11-12T09:16:34.831Z",
+        "ido_hu": "nov. 12. 10:16",
+        "kep": "https://quicknews.hu/assets/kep/448196bbc491-hd2.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/448196bbc491-hd2.webp",
+        "video": true,
+        "fontossag": 4,
+        "felkapott": true,
+        "forraskep": false,
+        "url": "https://quicknews.hu/hir/megjelent-az-alphagenome-2-a-google-deepmindtol",
+        "jova": true
+      },
+      "kis": [],
       "tobb": []
     },
     {
