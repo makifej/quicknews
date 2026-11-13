@@ -560,7 +560,7 @@ module.exports = async (req, res) => {
       // pillanatképpel (Heni 2026-10-13: „ha törölsz egy hírt az oldalról, vedd ki onnan is”); az index 14 napot fed le
       if (HIREK.length) {
         const elo = new Set(HIREK.map((h) => h.id));
-        adat.sorok = adat.sorok.filter((s) => elo.has(s.id));
+        adat.sorok = adat.sorok.filter((s) => s.elemzes || elo.has(s.id));
       }
       // ami a gép utolsó pillanatképe óta jelent meg, azt a kitett oldal indexéből azonnal hozzáadjuk
       const megvan = new Set(adat.sorok.map((s) => s.id));
@@ -571,7 +571,7 @@ module.exports = async (req, res) => {
       // Heni 2026-10-25: az Ajánlottba CSAK a Beérkezőben jóváhagyott hír kerülhet
       const jova = await jovahagyasok();
       const jovaE = (id) => (jova[id] || {}).allapot === "jovahagyva";
-      adat.sorok = adat.sorok.filter((s) => jovaE(s.id));
+      adat.sorok = adat.sorok.filter((s) => s.elemzes || jovaE(s.id));
       const jeloltek = HIREK.filter((h) => { const t = Date.parse(h.publikalva || ""); return t && t > hatar && !megvan.has(h.id) && !kis.has(h.id) && h.kep && jovaE(h.id); });
       const kepJo = async (k) => {
         const u = /^https:\/\//.test(k) ? k : "https://quicknews.hu" + k;
