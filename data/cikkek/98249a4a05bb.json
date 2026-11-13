@@ -1,0 +1,51 @@
+{
+  "id": "98249a4a05bb",
+  "slug": "export-quantize-and-run-end-to-end-every-transformers-model-on-any",
+  "forras_id": "linkedin",
+  "forras_nev": "Hugging Face (LinkedIn)",
+  "url": "https://www.linkedin.com/feed/update/urn:li:activity:7527086994925973504/",
+  "publikalva": "2026-11-13T19:16:26.104000+00:00",
+  "cim": "Export, quantize and run end-to-end every transformers model, on any backend: same inputs, same outputs, drop-in replace",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 67 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "mp4",
+    "url": "https://dms.licdn.com/playlist/vid/v2/D4E10AQEYdhTCFFTR5Q/mp4-360p-30fp-crf28/B4EaHWFWAyHQBg-/0/1794593091818?e=2147483647&v=beta&t=FKfkwwZ-zrQtrrjivb2hNDUqmtg7GSCB3eGwdDLoono",
+    "kep": "https://media.licdn.com/dms/image/v2/D4E10AQEYdhTCFFTR5Q/videocover-high/B4EaHWFWAyHQAs-/0/1794593089659?e=2147483647&v=beta&t=5_CviHYf4HKwxaHdVJojfke3YsFNlLLVFNsxS9AgO1Q",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7527086994925973504"
+  },
+  "cim_eredeti": "Export, quantize and run end-to-end every transformers model, on any backend: same inputs, same outputs, drop-in replace",
+  "szoveg_eredeti": "Export, quantize and run end-to-end every transformers model, on any backend: same inputs, same outputs, drop-in replacement. 👇\n\nFaster than torch.compile. with EmbeddingGemma2, 8 × 128 tokens:\n- Xeon Platinum 8570: Intel OpenVINO 4.1× eager PyTorch, while torch.compile is 1.9×, up to 4.9× with NNCF int8 quantization.\n- A100: ONNX Runtime TensorRT EP 7.6× eager PyTorch, while torch.compile is 5.4×, up to 9x with NVIDIA ModelOpt int8 quantization.\n\n1. Export: One API for Dynamo, ONNX, OpenVINO and PyTorch ExecuTorch, dynamic shapes with one flag, automatic operator fusions !\n\n2. Quantize as part of the export: pass a quantizer to the config.\nPT2E on any backend, NNCF on OpenVINO and ONNX, and ONNX Runtime's or ModelOpt quantizers.\n\n3. Push to the Hub like any other model: the graph, its metadata and the model config, in one repo.\n\n4. Load it and call it on the backend's own runtime. On ONNX Runtime that could be CUDA, TensorRT, OpenVINO, CoreML or any other execution provider. On Executorch you can run your favorite model on XNNPACK, MLX, WebGPU or any other delegate.\n\nDocs: https://lnkd.in/ez9BJYjd \nRelease notes: https://lnkd.in/eZAi-VWn \n\nComing soon:\n• Multimodal models exported as component separate components: https://lnkd.in/emCpRQgk https://lnkd.in/ekfHdXEK \n• Enable exported_model.generate() for end-to-end generation: https://lnkd.in/edHv_RpM https://lnkd.in/eY7uvN65 \n• ModelOpt quantization of ONNX exports: https://lnkd.in/eBxNw6qa",
+  "begyujtve": "2026-11-13T19:19:05.401237+00:00",
+  "prioritas": {
+    "pont": 67,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 70,
+      "egyediseg": 85,
+      "hitelesseg": 90,
+      "aktualitas": 95,
+      "kozossegi": 66
+    },
+    "elofeszures": 92,
+    "tanult": 67,
+    "indok": "Technikai jellegű fejlesztési hír a Hugging Face-től, a fejlesztői közösség számára kifejezetten hasznos. Forrás-tapasztalat: -5.",
+    "tema": "hugging face model optimization",
+    "cim_hu": "Új modellexportálási és kvantálási megoldást mutatott be a Hugging Face",
+    "lead_hu": "A Hugging Face új eszköze lehetővé teszi a Transformers modellek gyorsabb futtatását bármilyen hardveres háttérrendszeren, megelőzve a PyTorch natív teljesítményét.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T19:19:31+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-13T19:19:33+00:00"
+}

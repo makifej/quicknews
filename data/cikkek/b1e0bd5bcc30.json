@@ -1,0 +1,49 @@
+{
+  "id": "b1e0bd5bcc30",
+  "slug": "i-ran-codex-inside-home-assistant-and-having-it-next-to-my-smart-home",
+  "forras_id": "dailydev",
+  "forras_nev": "XDA Developers (daily.dev)",
+  "url": "https://www.xda-developers.com/codex-home-assistant-smart-home-changed-how-code",
+  "publikalva": "2026-11-10T22:00:20+00:00",
+  "cim": "I ran Codex inside Home Assistant, and having it next to my smart home changed how I code",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 33 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/043996e73342b687b6dd990f4f7619ef?_a=AQAEuop"
+  },
+  "cim_eredeti": "I ran Codex inside Home Assistant, and having it next to my smart home changed how I code",
+  "szoveg_eredeti": "I've been using AI coding agents for quite some time now, and they've made it much easier to build and experiment with projects that I wouldn't have attempted otherwise. But Home Assistant has always been a little different. Working on automations often requires you to copy YAML files, explain how different devices and entities are connected, and go back and forth between the agent and Home Assistant to test changes.\n\nMore recently, I started using the computer use feature in Codex to let it inspect my Home Assistant setup and handle some of these tasks itself, but that burns through tokens very quickly. A better solution I discovered just last month was an add-on that lets you run Codex directly inside Home Assistant, with access to its config files.\n\nOne thing about Home Assistant is that even a relatively simple automation can involve several moving parts. You might have a motion sensor controlling a light, a separate presence-based routine, and another script that changes how the same light behaves at night. When something goes wrong, or you want to make changes, you need to account for how all these things work together.\n\nThe HA Codex add-on gives you a terminal that runs within Home Assistant, with read and write access to its configuration directory. Codex can go through your existing YAML files, inspect automations and scripts, and understand how you've organized things.\n\nFor example, if I want to improve a lighting automation, I can ask Codex to inspect the relevant files first. Codex can look at the triggers, conditions, and actions, identify other scripts that might be involved, and suggest changes based on what's already there. That's a lot more convenient than asking a coding agent to generate an automation from scratch and then figuring out how to make it fit into my setup.\n\nHowever, access to config files doesn't give it live information about device states or automation history. You still need to provide that context when necessary. And you could achieve similar file access with Codex running on another computer.\n\nThe easiest way to get Codex running inside Home Assistant is through the HA Codex add-on, available on GitHub. It's a community-developed project, so you won't find it in Home Assistant's default app store. You'll need to add its repository manually.\n\nTo install it, open Home Assistant and head to Settings -> Apps -> App Store. From there, open the repository management menu and add the following URL:\n\nhttps://github.com/ambient-home-systems/ha-codex\n\nOnce you've added the repository, HA Codex should appear in the app store. Install it, start the add-on, and enable the Show in sidebar option. You can now open Codex directly from Home Assistant's sidebar, just like any other app.\n\nThe first time you launch it, you'll need to authenticate. The easiest option is to select Log in with a different device, which gives you a URL and a temporary code. Open the link on another device, sign in with your ChatGPT account, and complete the authorization. You'll need an account with Codex access, although the add-on also supports API-key authentication if that option is available.\n\nYou can choose which model Codex uses, adjust its reasoning effort, and enable session persistence, so your terminal stays active when you navigate elsewhere in Home Assistant. I would also leave Skip command approvals disabled, since Codex has permission to modify your configuration files.\n\nThe add-on also has an optional setting called Allow Home Assistant control actions. You can enable it to let Codex validate your configuration and request supported reload actions, which is useful when testing changes without manually reloading everything.\n\nOne of the first things worth trying with Codex is improving an automation that already exists. For example, I have presence-based routines that control my lights depending on whether I'm home and the time of day. I can ask Codex to examine the existing logic, check for conflicting conditions, and suggest changes. It can also show me exactly what it wants to modify before I approve anything.\n\nIf an automation stops working after a change, Codex can also inspect the YAML, check for syntax errors, and look at any scripts or other configuration files involved. Of course, there are limits to what it can diagnose from the files alone. If a motion sensor isn't reporting correctly or an automation isn't triggering, I'll still need to check Home Assistant's traces and device history to figure out what's happening.\n\nThe add-on becomes particularly useful when you enable Home Assistant control actions. After making a change, Codex can run a configuration check and reload supported components, including automations and scripts. You can then test the updated automation in Home Assistant without necessarily restarting the entire system. I wouldn't let it make these changes without approval, though, because even a small mistake could affect other routines.\n\nThere is one limitation worth mentioning. The add-on requires Home Assistant OS, so if you're running Home Assistant in Docker, you can't install it directly. You'd need to run Home Assistant OS instead, potentially in a virtual machine. A VM isn't necessary if you're already running Home Assistant OS on dedicated hardware.",
+  "begyujtve": "2026-11-13T19:19:11.247189+00:00",
+  "prioritas": {
+    "pont": 33,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 25,
+      "hirertek": 25,
+      "egyediseg": 90,
+      "hitelesseg": 62,
+      "aktualitas": 24,
+      "kozossegi": 54
+    },
+    "elofeszures": 63,
+    "tanult": 68,
+    "indok": "Személyes blogbejegyzés a Codex és a Home Assistant integrációjáról, alacsony általános hírértékkel. Forrás-tapasztalat: -8.",
+    "tema": "codex home assistant coding",
+    "cim_hu": "Otthonautomatizálásba integrált AI-kódoló ágenssel kísérletezett a fejlesztő",
+    "lead_hu": "Egy fejlesztő a Codex számítógép-használati funkcióját integrálta a Home Assistant rendszerbe, így jelentősen leegyszerűsítette az okosotthon-automatizációk írását.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T19:19:31+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-13T19:19:37+00:00"
+}

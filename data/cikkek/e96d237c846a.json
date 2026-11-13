@@ -1,0 +1,49 @@
+{
+  "id": "e96d237c846a",
+  "slug": "introducing-plamo-based-ai-translation-for-bioconductor-lessons",
+  "forras_id": "dailydev",
+  "forras_nev": "R-bloggers (daily.dev)",
+  "url": "https://www.r-bloggers.com/2026/11/introducing-plamo-based-ai-translation-for-bioconductor-lessons",
+  "publikalva": "2026-11-13T00:00:00+00:00",
+  "cim": "Introducing PLaMo-based AI translation for Bioconductor lessons",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 36 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/c7af74d8f7935b6227a97b31d338f6ea?_a=AQAEuop"
+  },
+  "cim_eredeti": "Introducing PLaMo-based AI translation for Bioconductor lessons",
+  "szoveg_eredeti": "In the report on our Japanese workshops, I explained why our Crowdin integration had become difficult to maintain. Keeping executable R Markdown lessons in sync required file conversions, translation synchronisation and reconstruction of buildable lessons. I remain grateful for Crowdin’s support. We are now moving to PLaMo-based AI translation directly in the lesson repositories, with code and markup protected and community review on GitHub.\n\nI am introducing a new AI-assisted translation workflow in the bioconductor-translations organisation, built around PLaMo 3 Translate and review on GitHub. The first lesson is Introduction to data analysis with R and Bioconductor, with published editions in Japanese, Spanish, Simplified Chinese, French and Urdu. These editions are open for community review and improvement.\n\nPLaMo 3 Translate is a family of large language models developed by Preferred Networks (PFN) specifically for translation. PFN’s November 5, 2026 technical article, PLaMo 3 Translate: World-Class Translation with Open Weights—Here’s How We Built It, explains the development process and the release of downloadable model weights.\n\nPFN trains the models on source–translation pairs and further refines them to prefer better translations. Smaller models also learn from the 31B model through distillation. The family supports 53 languages and can take surrounding context and a glossary into account. These features fit our lesson workflow: we can supply nearby explanations and preferred technical terminology when translating a passage.\n\nThe models come in four sizes: 0.8B, 2B, 8B and 31B parameters. Our workflow uses pfnet/plamo-3-translate-8b-MLX-4bit, the 8B model in a 4-bit MLX format that reduces memory use for local generation on Apple silicon Macs. The model weights are distributed under the PLaMo Community License.\n\nThe introductory lesson covers organising data in spreadsheets, using R and RStudio, manipulating data with dplyr, and visualising data. Each language edition has a lesson website for learners and a repository for contributors:\n\nOur Crowdin project also received Portuguese translation contributions, and I am grateful to everyone who contributed them. I am sorry that Portuguese is not included among these editions: the PLaMo translation model we currently use does not support Portuguese, which is absent from its supported-language list.\n\nTranslation coverage and review are still in progress. Some setup pages and interface labels remain in English. At the time of writing, the published Urdu episodes are available, but that repository’s updater configuration and translation guide still refer to Japanese and need adaptation before being used to regenerate Urdu text.\n\nEach repository keeps its preferred terminology in translation/glossary.json. For example, the Japanese repository’s translation/glossary.json contains source and target term pairs, mapping “data frame” to “データフレーム” and keeping “Bioconductor” unchanged. The translator passes these pairs to the model to guide terminology consistently across episodes. Contributors can propose glossary changes through pull requests. A glossary change requires fresh generation for machine records on the next update; matching reviewed records retain their wording, so terminology corrections must also be applied to the reviewed translation memory where needed.\n\nTo update a translation yourself, follow translation/README.md in the repository for your language. These documents cover environment setup, fetching the English source, previewing changes, generating translations, reviewing the results and building the lesson:\n\nFor Urdu, the updater configuration and documentation caveat above still applies.\n\nFor example, in the Japanese repository, after configuring the upstream remote as described in its guide, a maintainer can run:\n\nThe dry run shows which passages can be reused and which need translation, without generating new text or writing lesson files. The --update-memory option saves new translation records to translation/seed-cache.json and source provenance to translation/source-manifest.json for review. The local runtime cache under .cache/translation/ is ignored by Git. Other editions may use a different remote name, so follow translation/README.md in the repository you are updating.\n\nThe translator also checks for local edits and stops before overwriting an edited lesson. Small build adaptations are recorded separately with checks against the expected source. Images, datasets and episode ordering still need separate maintenance when the English lesson changes.\n\nThe workflow pins the model revision and locks its Python dependencies, recording the source revision and model provenance with the translation resources.\n\nGenerating new translations with the current implementation requires an Apple silicon Mac, Python 3.12 and uv; the first model download is about 6 GB. Planning updates and replaying cached translations can run with Python 3.12 alone on other platforms. Reading lessons and contributing a review on GitHub require no model installation.\n\nThe translation memory gives community review a lasting role. You can inspect the records in the Japanese translation repository’s translation/seed-cache.json. Newly generated records are marked machine. After checking a record in translation/seed-cache.json, a reviewer can mark it reviewed so that its wording is retained for matching source text in the same episode and language pair, even when model or glossary settings change. The French translation repository’s translation/README.md explains this review process.\n\nA successful build shows that the lesson can be rendered, but readers and instructors still need to check its meaning. A translation can sound fluent while changing an exercise condition, using an unfamiliar technical term, or losing an important distinction. The Simplified Chinese translation repository’s translation/README.md explicitly identifies its initial translation memory as machine generated and needing review.\n\nIf you use one of these languages, please try an episode and compare it with the English lesson. We especially welcome help with:\n\nOpen an issue in the relevant repository with the episode name, the passage you are referring to, and a suggested correction or explanation. Pull requests are welcome too; please follow that repository’s contribution and translation guides. If you are interested in reviewing translations, adding support for another language, or translating another lesson, join the discussion in the #documentation-translation channel on the Bioconductor community chat.\n\nThank you to the original lesson authors and maintainers, and to everyone translating, reviewing and teaching these materials. This work builds on the community’s translation efforts described in the Japanese workshop report and is supported by the Bioconductor Developer Champions Program.\n\n© 2026 Bioconductor. Content is published under Creative Commons CC-BY-4.0 License for the text and BSD 3-Clause License for any code. | R-Bloggers",
+  "begyujtve": "2026-11-13T19:19:11.246519+00:00",
+  "prioritas": {
+    "pont": 36,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 20,
+      "hirertek": 30,
+      "egyediseg": 90,
+      "hitelesseg": 68,
+      "aktualitas": 67,
+      "kozossegi": 50
+    },
+    "elofeszures": 78,
+    "tanult": 88,
+    "indok": "Niche nyílt forráskódú projektfrissítés a PLaMo fordítási munkafolyamatokról. Forrás-tapasztalat: -8.",
+    "tema": "plamo bioconductor translation",
+    "cim_hu": "PLaMo-alapú AI-fordításra vált a Bioconductor tananyagprojektem",
+    "lead_hu": "A Bioconductor oktatóanyagok szerkesztői a Crowdin platformról áttérnek a PLaMo modell által segített közvetlen AI-fordítási munkafolyamatra.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T19:19:31+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-13T19:19:37+00:00"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "f20aa0a9a1f2",
+  "slug": "attention-to-mamba-a-recipe-for-cross-architecture-distillation",
+  "forras_id": "dailydev",
+  "forras_nev": "Hacker News (daily.dev)",
+  "url": "https://machinelearning.apple.com/research/attention-mamba-distillation",
+  "publikalva": "2026-11-11T17:31:18.958000+00:00",
+  "cim": "Attention to Mamba: A Recipe for Cross-Architecture Distillation",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 54 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/8dda20dea5f9a8a0e25a1b7bb36a1a20?_a=AQAEuop"
+  },
+  "cim_eredeti": "Attention to Mamba: A Recipe for Cross-Architecture Distillation",
+  "szoveg_eredeti": "Attention to Mamba: A Recipe for Cross-Architecture Distillation\n\nAuthorsAbhinav Moudgil†**, Ningyuan Huang‡**, Eeshan Gunesh Dhekane, Pau Rodríguez Lopez, Luca Zappella, Federico Danieli\n\nState Space Models (SSMs) such as Mamba have become a popular alternative to Transformer models, due to their reduced memory consumption and higher throughput at generation compared to their Attention-based counterparts. On the other hand, the community has built up a considerable body of knowledge on how to train Transformers, and many pretrained Transformer models are readily available. To facilitate the adoption of SSMs while leveraging existing pretrained Transformers, we aim to identify an effective recipe to distill an Attention-based model into a Mamba-like architecture. In prior work on cross-architecture distillation, however, it has been shown that a naïve distillation procedure from Transformers to Mamba fails to preserve the original teacher performance, a limitation often overcome with hybrid solutions combining Attention and SSM blocks. The key argument from our work is that, by equipping Mamba with a principled initialization, we can recover an overall better recipe for cross-architectural distillation. To this end, we propose a principled two-stage approach: first, we distill knowledge from a traditional Transformer into a linearized version of Attention, using an adaptation of the kernel trick. Then, we distill the linearized version into an adapted Mamba model that does not use any Attention block. Overall, the distilled Mamba model retains most of the original Pythia-1B Transformer performance, reaching a perplexity of 14.01 close to the teacher’s 13.86. This largely carries over to downstream tasks, although some gaps appear on tasks relying more on in-context recall. To show the efficacy of our recipe, we conduct thorough ablations at 1B scale with 10B tokens varying sequence mixer architecture, scaling analysis on model sizes and total distillation tokens, and a sensitivity analysis on tokens allocation between stages.\n\nUnderstanding Input Selectivity in Mamba\n\nJuly 4, 2025research area Methods and Algorithms, research area Speech and Natural Language Processingconference ICML\n\nState-Space Models (SSMs), and particularly Mamba, have recently emerged as a promising alternative to Transformers. Mamba introduces input selectivity to its SSM layer (S6) and incorporates convolution and gating into its block definition. While these modifications do improve Mamba’s performance over its SSM predecessors, it remains largely unclear how Mamba leverages the additional functionalities provided by input selectivity, and how these…\n\nJuly 1, 2025research area Methods and Algorithms, research area Speech and Natural Language Processingconference ICML\n\nWe propose a distillation scaling law that estimates distilled model performance based on a compute budget and its allocation between the student and teacher. Our findings mitigate the risks associated with large-scale distillation by enabling compute-optimal allocation for both the teacher and student to maximize student performance. We provide compute-optimal distillation recipes for two key scenarios: when a teacher already exists, and when a…\n\nOur research in machine learning breaks new ground every day.",
+  "begyujtve": "2026-11-13T19:19:11.246923+00:00",
+  "prioritas": {
+    "pont": 54,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 60,
+      "egyediseg": 90,
+      "hitelesseg": 70,
+      "aktualitas": 42,
+      "kozossegi": 47
+    },
+    "elofeszures": 64,
+    "tanult": 50,
+    "indok": "Akadémiai kutatási cikk az architektúrák közötti modellpárolásról Mamba és Attention között. Forrás-tapasztalat: -8.",
+    "tema": "mamba transformer distillation research",
+    "cim_hu": "Új eljárást dolgoztak ki a Transformer modellek Mamba architektúrára történő lepárlására",
+    "lead_hu": "Kutatók egy olyan módszert mutattak be, amellyel az Attention-alapú modellek tudása hatékonyan átültethető a memória- és számításkímélőbb Mamba architektúrába.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T19:19:31+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-13T19:19:41+00:00"
+}
