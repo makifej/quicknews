@@ -57,11 +57,18 @@ module.exports = async (req, res) => {
     if (!gk0 || !process.env.KV_REST_API_URL) return jsonValasz(res, 503, { ok: false, uzenet: "A jóváhagyás most nem érhető el." });
     const b = await torzs(req);
     const slug = String(b.slug || ""), d = String(b.d || ""), t = String(b.t || "");
-    if (!/^[a-z0-9-]{3,120}$/.test(slug) || !["mehet", "elvet", "general"].includes(d)) return jsonValasz(res, 400, { ok: false, uzenet: "Hibás kérés." });
+    if (!/^[a-z0-9-]{3,120}$/.test(slug) || !["mehet", "elvet", "general", "cim", "kep"].includes(d)) return jsonValasz(res, 400, { ok: false, uzenet: "Hibás kérés." });
     // r: az újranyitás sorszáma (egy elvetett elemzés újra jóváhagyásra kerülhet, új aláírással)
     const r = Math.max(0, parseInt(b.r, 10) || 0);
     const vart = crypto.createHmac("sha256", gk0).update(`elemzes|${slug}|urlap` + (r ? `|${r}` : "")).digest("hex");
     if (!egyezik(t, vart)) return jsonValasz(res, 403, { ok: false, uzenet: "Ez az űrlap nem érvényes." });
+    if (d === "cim" || d === "kep") {
+      // részjóváhagyás: csak a címet vagy csak a képet menti, a cikk még nem kerül ki (Heni 2026-11-13)
+      const cim1 = String(b.cim || "").replace(/\s*[\u2013\u2014]\s*/g, ": ").replace(/\s+/g, " ").trim().slice(0, 160);
+      const kep1 = Math.max(0, Math.min(2, parseInt(b.kep, 10) || 0));
+      await kv("RPUSH", "qn:elemzes:dontes", JSON.stringify(d === "cim" ? { slug, d, cim: cim1, ido: new Date().toISOString() } : { slug, d, kep: kep1, ido: new Date().toISOString() }));
+      return jsonValasz(res, 200, { ok: true, resz: true, uzenet: d === "cim" ? "A cím elmentve. A képről külön dönthetsz." : "A kép elmentve. A címről külön dönthetsz." });
+    }
     if (d === "general") {
       // képgenerálás: nem végleges döntés, a Mac 3 új borítót generál, és új jóváhagyó levelet küld (új aláírással)
       const gk = `qn:elemzes:general:${slug}:${r}`;
