@@ -33,8 +33,42 @@ function oldal(res, kod, cim, szoveg) {
 <p><a href="https://quicknews.hu/elemzesek" style="color:#f5a524">Elemzések</a></p></div></body></html>`);
 }
 
+async function torzs(req) {
+  if (req.body && typeof req.body === "object") return req.body;
+  if (typeof req.body === "string") { try { return JSON.parse(req.body); } catch (e) { return {}; } }
+  const darabok = [];
+  for await (const d of req) darabok.push(d);
+  try { return JSON.parse(Buffer.concat(darabok).toString("utf8") || "{}"); } catch (e) { return {}; }
+}
+
+function jsonValasz(res, kod, adat) {
+  res.statusCode = kod;
+  res.setHeader("Content-Type", "application/json; charset=utf-8");
+  res.setHeader("Cache-Control", "no-store");
+  res.end(JSON.stringify(adat));
+}
+
 module.exports = async (req, res) => {
   const u = new URL(req.url, "https://quicknews.hu");
+  // POST: az előnézeti oldal jóváhagyó űrlapja (Heni 2026-11-13: a címet és a borítót egyszerre lehessen választani).
+  // Törzs: {slug, d: "mehet"|"elvet", t: HMAC(GEP_KULCS, "elemzes|<slug>|urlap"), cim, kep: 0-2}
+  if (req.method === "POST") {
+    const gk0 = process.env.GEP_KULCS || "";
+    if (!gk0 || !process.env.KV_REST_API_URL) return jsonValasz(res, 503, { ok: false, uzenet: "A jóváhagyás most nem érhető el." });
+    const b = await torzs(req);
+    const slug = String(b.slug || ""), d = String(b.d || ""), t = String(b.t || "");
+    if (!/^[a-z0-9-]{3,120}$/.test(slug) || !["mehet", "elvet"].includes(d)) return jsonValasz(res, 400, { ok: false, uzenet: "Hibás kérés." });
+    const vart = crypto.createHmac("sha256", gk0).update(`elemzes|${slug}|urlap`).digest("hex");
+    if (!egyezik(t, vart)) return jsonValasz(res, 403, { ok: false, uzenet: "Ez az űrlap nem érvényes." });
+    const voltKulcs = `qn:elemzes:dontve:${slug}`;
+    const volt = await kv("GET", voltKulcs);
+    if (volt) return jsonValasz(res, 200, { ok: false, uzenet: `Erről az elemzésről már döntöttél: ${volt === "mehet" ? "mehet" : "elvetve"}.` });
+    const cim = String(b.cim || "").replace(/[\u2013\u2014]/g, ":").replace(/\s+/g, " ").trim().slice(0, 160);
+    const kep = Math.max(0, Math.min(2, parseInt(b.kep, 10) || 0));
+    await kv("SET", voltKulcs, d, "EX", 60 * 60 * 24 * 30);
+    await kv("RPUSH", "qn:elemzes:dontes", JSON.stringify({ slug, d, cim, kep, ido: new Date().toISOString() }));
+    return jsonValasz(res, 200, { ok: true, uzenet: d === "mehet" ? "Mehet, köszönöm! Pár percen belül kikerül, a választott címmel és képpel." : "Elvetve, ez az elemzés nem kerül ki." });
+  }
   const gk = process.env.GEP_KULCS || "";
   if (!gk || !process.env.KV_REST_API_URL) return oldal(res, 503, "Nincs beállítva", "A jóváhagyás most nem érhető el.");
   if (u.searchParams.get("mi") === "dontesek") {
