@@ -1,0 +1,49 @@
+{
+  "id": "df68f01c5e2e",
+  "slug": "rubyllm-2-2-the-ai-framework-for-coding-agents",
+  "forras_id": "dailydev",
+  "forras_nev": "RUBYLAND (daily.dev)",
+  "url": "https://paolino.me/rubyllm-2-2",
+  "publikalva": "2026-11-10T22:15:00+00:00",
+  "cim": "RubyLLM 2.2: The AI Framework for Coding Agents",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 47 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/4ef6e780cc9d5a8d4509fcf1acf6ec50?_a=AQAEuop"
+  },
+  "cim_eredeti": "RubyLLM 2.2: The AI Framework for Coding Agents",
+  "szoveg_eredeti": "RubyLLM 2.2 is out! I released it on stage at SF Ruby, and it’s the release I’m proudest of.\n\nThe code a model writes now runs in a sandbox on your own servers, and skills and file stores build on it. Tools can ask a person and wait for the answer. A chat survives a deploy. And there are context budgets, tests without a provider, and four new providers.\n\nIt’s also the first release I built for a new kind of user: the coding agent. More and more of the code that uses RubyLLM is written by Claude Code, Codex and Cursor, so I spent as much time making RubyLLM easy for them to use as I did on features. The talk was about that, and about the idea that you don’t need frameworks anymore. I wrote the whole story up, with the benchmark: How I Optimized RubyLLM for Coding Agents.\n\nA model that can run code calculates exactly, reshapes your data, and makes charts, spreadsheets and PDFs. But that code was written by a model, so it should never run in your app’s process.\n\nSo I made a new gem, mxc: Microsoft’s MXC, from Ruby, and improved. It uses the operating system’s own isolation, Bubblewrap on Linux and Seatbelt on macOS, and you can bound everything: files, network, CPU time, memory. I think it’s really beautiful code:\n\nThe files the code makes come back as attachments. See Code Execution.\n\nSome tasks need a procedure, not a sentence: how your company formats an invoice, or the script that turns a spreadsheet into slides. Skills keep them in folders, in the open format every coding agent speaks, and the model loads one only when a task needs it. With code execution, their scripts run in the sandbox.\n\nAnd why should we use npx skills when we have Ruby? I made the skill gem. It installs skills into your coding agent, and into your Rails app, with a skills.lock. RubyLLM ships its own skill inside the gem, so Claude Code, Codex or Cursor learn the RubyLLM way with one command:\n\nThat 40-page PDF you attached to the first question? It used to travel with every question after it. With a file store, the model sees it once and then works with it through tools, like a coding agent does: list, search, read, write, edit.\n\nWith code execution, the code runs in the store’s folder, like a coding agent’s workspace, and what it writes is saved back. See File Stores.\n\nWindow or aisle? A tool can now ask the person running the chat, and carry on with the answer. The call pauses, no process sits there waiting, and when they answer, execute runs again from the top. So: ask first, then act.\n\nAn approval is just a question with yes and no, and MCP servers ask theirs the same way. From any process, three verbs: answer, approve, or decline with a note so the model knows why.\n\nremember: true means your users don’t get asked again for that tool. Asking a Person has the rest.\n\nChats are long-running background jobs. So what happens when you deploy in the middle of a reply?\n\nNow a persisted chat runs in one process at a time, so a double click never runs a tool twice. If a deploy or a crash cuts off a reply, Chat.interrupted finds it, and the generated ResumeInterruptedChatsJob picks it up as soon as the server boots:\n\nAnd a tool call that had already started never runs again. The model hears it may have partly run, and decides what to do. See Agents in Background Jobs.\n\nOne giant tool result used to break the whole chat. Not anymore:\n\nResults longer than their share get cut, and the oldest ones are left out of a request that would be too big, while keeping the prompt cache warm. New Rails apps get this line from the generator.\n\nA really requested one. Script what the model says, and test your real chats, agents and pages with no provider and no API key:\n\nAgents, tools, schemas, MCP servers, skills, sandboxes, evaluations and judges:\n\nAnd the generated chat UI now lets you switch models in the middle of a conversation, and shows a card for every question a tool asks.\n\nMoonshot AI, MiniMax, Z.ai and Meta join. That’s twenty-three providers and 518 provider features built in, each checked against the provider’s own docs. The coverage table has every one.\n\nThere’s a lot more, like queued messages, subagents and exclusive tools, in What’s New in 2.2.\n\nDHH didn’t design a web framework in a room. He built Basecamp and pulled out what kept working. RubyLLM comes from Chat with Work the same way. Every feature in 2.2 earned its place there first: bots that ask before they act, survive deploys, run code and work with your files.\n\nA few names changed: pending_questions replaces the separate lists of approvals and inputs, and decline replaces deny. The upgrade guide has each one.\n\nStill on 1.16? You’re missing a lot: tool approvals, cancel, fallbacks and the cost ledger in 2.0, then a real MCP client, judgments, evaluations and OpenTelemetry in 2.1. Upgrade one release at a time.\n\nI don't post often, but when I do, it tends to be like this. Subscribe so the algorithm doesn't decide for you.",
+  "begyujtve": "2026-11-13T15:05:25.142624+00:00",
+  "prioritas": {
+    "pont": 47,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 55,
+      "egyediseg": 90,
+      "hitelesseg": 70,
+      "aktualitas": 31,
+      "kozossegi": 47
+    },
+    "elofeszures": 74,
+    "tanult": 50,
+    "indok": "Egy Ruby-alapú AI keretrendszer frissítése főleg a fejlesztői réteget érdekli Forrás-tapasztalat: -8.",
+    "tema": "rubyllm 22 release",
+    "cim_hu": "Megjelent a RubyLLM 2.2 keretrendszer kódolási AI-ágensekhez",
+    "lead_hu": "A RubyLLM legújabb verziója homokozóban futtatott kódot, megszakítható munkafolyamatokat és négy új AI-szolgáltatót hoz a fejlesztőknek.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T15:05:58+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-13T15:06:05+00:00"
+}
