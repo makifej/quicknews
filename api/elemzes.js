@@ -58,12 +58,14 @@ module.exports = async (req, res) => {
     const b = await torzs(req);
     const slug = String(b.slug || ""), d = String(b.d || ""), t = String(b.t || "");
     if (!/^[a-z0-9-]{3,120}$/.test(slug) || !["mehet", "elvet"].includes(d)) return jsonValasz(res, 400, { ok: false, uzenet: "Hibás kérés." });
-    const vart = crypto.createHmac("sha256", gk0).update(`elemzes|${slug}|urlap`).digest("hex");
+    // r: az újranyitás sorszáma (egy elvetett elemzés újra jóváhagyásra kerülhet, új aláírással)
+    const r = Math.max(0, parseInt(b.r, 10) || 0);
+    const vart = crypto.createHmac("sha256", gk0).update(`elemzes|${slug}|urlap` + (r ? `|${r}` : "")).digest("hex");
     if (!egyezik(t, vart)) return jsonValasz(res, 403, { ok: false, uzenet: "Ez az űrlap nem érvényes." });
-    const voltKulcs = `qn:elemzes:dontve:${slug}`;
+    const voltKulcs = r ? `qn:elemzes:dontve:${slug}:${r}` : `qn:elemzes:dontve:${slug}`;
     const volt = await kv("GET", voltKulcs);
     if (volt) return jsonValasz(res, 200, { ok: false, uzenet: `Erről az elemzésről már döntöttél: ${volt === "mehet" ? "mehet" : "elvetve"}.` });
-    const cim = String(b.cim || "").replace(/[\u2013\u2014]/g, ":").replace(/\s+/g, " ").trim().slice(0, 160);
+    const cim = String(b.cim || "").replace(/\s*[\u2013\u2014]\s*/g, ": ").replace(/\s+/g, " ").trim().slice(0, 160);
     const kep = Math.max(0, Math.min(2, parseInt(b.kep, 10) || 0));
     await kv("SET", voltKulcs, d, "EX", 60 * 60 * 24 * 30);
     await kv("RPUSH", "qn:elemzes:dontes", JSON.stringify({ slug, d, cim, kep, ido: new Date().toISOString() }));
