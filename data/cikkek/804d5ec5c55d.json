@@ -1,0 +1,49 @@
+{
+  "id": "804d5ec5c55d",
+  "slug": "stop-calling-the-big-models-for-everything-anatomy-of-a-high",
+  "forras_id": "dailydev",
+  "forras_nev": "Codemotion (daily.dev)",
+  "url": "https://www.codemotion.com/magazine/ai-ml/stop-calling-the-big-models-for-everything-anatomy-of-a-high-performance-and-compliant-sub-agent-llm-architecture",
+  "publikalva": "2026-11-12T12:16:41+00:00",
+  "cim": "Stop Calling the “Big Models” for Everything: Anatomy of a High-Performance (and Compliant) Sub-Agent LLM Architecture",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 61 pont, tendencia 20%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/7fc8516efe94faf65253efb154b25ed7?_a=AQAEuop"
+  },
+  "cim_eredeti": "Stop Calling the “Big Models” for Everything: Anatomy of a High-Performance (and Compliant) Sub-Agent LLM Architecture",
+  "szoveg_eredeti": "Diego PetrecollaNovember 12, 2026 6 min read\n\nEvery time a developer sends a 2 + 2 or a JSON formatting task to a proprietary 400-billion-parameter model, somewhere in the world an H100 GPU weeps and a CFO gets an over-budget notification.\n\nAt the monthly meetup hosted by ENG (Engineering) thanks to Andrea Raponi, Daniele Scasciafratte and Eugenio Petullà took apart, piece by piece, the rhetoric of the “one model to rule them all.” The message is clear: to scale AI-based products without bleeding money on compute or being crushed by European compliance requirements, we need to stop treating AI as a black box and start doing what we do best: software and systems engineering.\n\nWhen we call an LLM, the tokenizer breaks the text into minimal units. These units are converted into vector embeddings and processed by the GPU. This is where the first systemic bottleneck appears: the KV Cache (Key-Value Cache).\n\nTo avoid recomputing attention over all previous tokens for every single word generated in streaming, the inference engine stores the key and value tensors in the graphics card’s VRAM. The longer the context grows (up to the million tokens promised by the market), the more video memory is cannibalized by the cache, at the expense of the throughput of concurrent batches:\n\nThe middle layer that governs all this is the inference engine. Today the standard is played out on two platforms:\n\nAn enterprise application doesn’t fail only because of latency; it fails when the Legal department blocks the deployment.\n\nBetween the GDPR and the gradual rollout of the EU AI Act, relying on foreign endpoints whose Terms of Service reserve the right to retain logs for fine-tuning exposes companies to sanctions and trade secret violations. The AI Act draws a sharp distinction between those who train foundation models from scratch and those who simply serve inference on already validated open-weights models.\n\nTo guarantee full compliance, the inference infrastructure must respect a few iron pillars:\n\nSending an entire code review or architectural analysis task to a giant “generalist” model generates unsustainable bills and watered-down answers.\n\nThe most efficient engineering approach is to split roles across specialized models coordinated asynchronously:\n\nAn LLM released a year ago is a model that doesn’t know the latest patches, the new framework releases or your repository’s internal practices. How do you avoid the prohibitive cost of continually fine-tuning on hardware? With modular Skills injected into the context as specialized Markdown files.\n\nAn empirical experiment by Daniele Scasciafratte illustrates how it works in practice:\n\nThe benchmark results speak for themselves:\n\nTo put this strategy into practice without rewriting the entire application codebase, the starting point is decoupling:\n\nStopping the waste of tokens is not just a gesture of respect toward the company budget: it is the prerequisite for building AI software that is resilient, responsive and compliant before the next cloud provider notification arrives.",
+  "begyujtve": "2026-11-13T11:04:39.327391+00:00",
+  "prioritas": {
+    "pont": 61,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 60,
+      "egyediseg": 90,
+      "hitelesseg": 68,
+      "aktualitas": 65,
+      "kozossegi": 42
+    },
+    "elofeszures": 67,
+    "tanult": 16,
+    "indok": "Fejlesztői vélemény és architektúra-ajánlás a nagy nyelvi modellek túlzott használata ellen. A forrás P3-as híreiből eddig kb. 20%-ot fogadtál el.",
+    "tema": "llm subagent architecture",
+    "cim_hu": "Ne hívjuk a legnagyobb AI-modelleket minden apró feladatra",
+    "lead_hu": "A fejlesztői szakértők a specializált, kisebb sub-agent architektúrák mellett érvelnek, mivel a gigantikus nyelvi modellek felesleges használata rendkívül drága és erőforrás-igényes.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T11:05:08+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-13T11:05:27+00:00"
+}

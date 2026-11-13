@@ -1,0 +1,49 @@
+{
+  "id": "5c22692cd464",
+  "slug": "jelentes-kinai-mi-modellek-tiltott-nvidia-chipeket-hasznalhattak",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/report-says-chinese-ai-models-p7w1AJ61SZOp6C_YxEvngw",
+  "publikalva": "2026-11-13T01:03:20.030424+00:00",
+  "cim": "Jelentés: kínai MI-modellek tiltott Nvidia-chipeket használhattak",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 84 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--nbdy-8OC--/t_limit/https://qz.com/cdn-cgi/image/width%3D1200%2Cquality%3D85%2Cformat%3Dauto/https://assets.qz.com/media/2de4e6003f9013c1844b9105c93c0912.jpg"
+  },
+  "cim_eredeti": "Jelentés: kínai MI-modellek tiltott Nvidia-chipeket használhattak",
+  "szoveg_eredeti": "November 12-én Will DePue, az OpenAI korábbi kutatója elemzést tett közzé, amely szerint négy vezető kínai MI-labor hat nyílt súlyozású modelljének numerikus ujjlenyomata egyezik az Nvidia Blackwell GPU-ival. Az amerikai szabályok tiltják ezeknek a chipeknek a Kínába irányuló exportját. Az Unemployment Labs jelentése név szerint a DeepSeek-V4-Flash és a DeepSeek-V4-Pro modellt, a Moonshot AI Kimi K3 és Kimi K3.1-Pro modelljét, a MiniMax-M3-at, valamint az Ant Group Ling-3.1-flash modelljét említi. Azt is állítja, hogy ugyanezen cégek korábbi modelljei az Nvidia régebbi, Hopper generációjával egyeznek.\n\nA szerzők óvatosan fogalmaznak azzal kapcsolatban, mit bizonyít az eredmény. Úgy írnak, hogy az ujjlenyomat „azonosítja, hogyan jöttek létre a súlyok, és támogatja – bár nem bizonyítja – azt a következtetést, hogy a tanítást is Blackwell végezte\". DePue az X-en azt írta, hogy az OpenAI és az Anthropic vezető kutatói önállóan ellenőrizték az eredményt, a jelentés azonban nem nevez meg külső lektorokat. A munkát nem lektorálták.\n\nA módszer a modell kezdeti súlyaira épül. DePue szerint ezeknek a kezdőértékeknek az elrendezése a pontos GPU-konfigurációtól és a véletlen magértéktől (seed) függ, és ennek a mintázatnak a nyomai megmaradnak a közzétett modellben. Nagyjából hatbillió seed- és chipelrendezés-kombinációt vizsgált át. A jelentés szerint a legerősebb, pusztán a véletlenből adódó egyezés körülbelül 8 szigma, a hat modell pontszáma viszont 49 és 1385 szigma között van.\n\nA csapat az egyezéseket fizikai chipeken is letesztelte. Egy B300-on a módosítatlan PyTorch a DeepSeek visszafejtett seedjével bitre pontosan reprodukálta a V4-Flash 445 sorát. Egy bérelt GB200 a Kimi K3 mind a 13 megőrzött sorát reprodukálta. Ha bármelyik seedet eggyel módosították, egyetlen egyezést sem kaptak. A szerzők szerint egy különleges beállítású AMD MI300X elméletileg hasonló elrendezéseket tudna létrehozni, ezt a magyarázatot azonban nagyon valószínűtlennek tartják. Azt is közlik, hogy módszerük mind a 24 olyan esetben egyezett a valósággal, amikor a fejlesztő nyilvánosan elárulta, milyen hardvert használt.\n\nA jelentés szerint az Alibaba, a Zhipu AI, a Tencent, a Xiaomi és a StepFun legújabb, vizsgálható modelljei továbbra is a Hopper-architektúrára utalnak. A jelentés becslése szerint a legnagyobb végső tanítási futtatások mindegyikéhez több ezer Blackwell GPU-t használtak, a fürtök együttes költsége pedig meghaladja az 500 millió dollárt. A szerzők ezeket a számokat durva becslésnek nevezik.\n\nA bizonyítékokból nem derül ki, hol voltak a chipek, ki birtokolta őket, és hogyan jutottak hozzájuk a laborok. A Blackwell-rendszereket Kínán kívül is lehet bérelni, a jelentés szerint pedig az eredmények „nem azt jelentik, hogy bármilyen jogszabályt megsértettek volna\".\n\nA jelentés tovább növeli a figyelmet, amely már eddig is kísérte, hogyan jutnak a kínai laborok Nvidia-chipekhez. Júliusban Michael Kratsios, a Fehér Ház tudományos tanácsadója azt mondta, hogy a Moonshot „GB300-akhoz fért hozzá Thaiföldön\". Az Nvidia és a négy labor a megjelenés időpontjáig nem kommentálta az ügyet.",
+  "begyujtve": "2026-11-13T11:03:01.214985+00:00",
+  "prioritas": {
+    "pont": 84,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 90,
+      "hirertek": 90,
+      "egyediseg": 80,
+      "hitelesseg": 72,
+      "aktualitas": 90,
+      "kozossegi": 84
+    },
+    "elofeszures": 86,
+    "tanult": 82,
+    "indok": "Kritikus AI-kutatási bizonyíték a kínai csúcsmodellek (DeepSeek, Kimi) tiltott Nvidia hardverhasználatára. Forrás-tapasztalat: -2.",
+    "tema": "nvidia china export restrictions",
+    "cim_hu": "Súlyos elemzés szerint tiltott Nvidia Blackwell chipeken képezték ki a vezető kínai AI-modelleket",
+    "lead_hu": "Egy korábbi OpenAI-kutató elemzése szerint négy kínai laboratórium hat nyílt AI-modelljének kimeneti mintázatai megegyeznek az USA által exporttilalom alá helyezett Nvidia Blackwell GPU-k ujjlenyomataival.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T11:05:08+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-13T11:05:20+00:00"
+}
