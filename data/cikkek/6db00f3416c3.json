@@ -1,0 +1,78 @@
+{
+  "id": "6db00f3416c3",
+  "slug": "exporttilalmak-ellenere-nvidia-blackwell-chipek-nyomait-talaltak",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/former-openai-researcher-says-he-found-nvidia-blackwell-fingerprints-hidden-inside-six-chinese-ai-models/",
+  "szerzo": "Maximilian Schreiner",
+  "publikalva": "2026-11-13T15:21:04+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/06/china_vs_usa_ai_race.png"
+  },
+  "cim_eredeti": "Former OpenAI researcher says he found Nvidia Blackwell fingerprints hidden inside six Chinese AI models",
+  "forrasok": [],
+  "szoveg_eredeti": "AI researcher Will DePue says a forensic analysis has turned up the first technical evidence that leading Chinese AI labs have access to Nvidia's latest Blackwell hardware despite US export controls. He says senior researchers at OpenAI and Anthropic have already checked the method.\n\nAccording to a forensic investigation by Will DePue, Chinese AI companies DeepSeek, Moonshot AI, MiniMax, and Ant Group are using Nvidia's export-controlled Blackwell GPUs. DePue played a key role at OpenAI in building the Sora and Sora 2 video models as well as GPT-4o, o3, and GPT-5 before founding the nonprofit research group Unemployment Labs.\n\nHis analysis, he says, provides the first technical evidence of this access. US officials and news outlets had suspected that DeepSeek and Moonshot AI were using Blackwell chips but never published proof. DePue wrote on X that senior researchers at OpenAI and Anthropic have already independently checked and confirmed his findings. According to DePue, six Chinese models released since April 2026 carry the distinct signature of Nvidia's Blackwell generation, while earlier models such as DeepSeek-V3 and Kimi K2.5 show traces of Nvidia's older Hopper generation.\n\nThe evidence comes directly from the published language models. An AI model consists of billions of numerical values called weights. Before training starts, PyTorch, the standard software framework, fills these empty slots with random numbers generated from a starting value called a seed. To distribute this massive amount of data quickly, the GPU splits the work across its individual compute cores. Because different chip models have different core counts, the filling process produces a characteristic pattern, according to the report. Older Hopper chips such as the H100 and H800 use 132 compute cores, while the newer Blackwell chips use exactly 148 or 152 cores depending on the model (B200/B300 or GB200/GB300).\n\nTraining then adjusts these values millions of times, but some slots for unused words or symbols keep their initial random values. Even in heavily trained parts of the model, a faint statistical echo of the initial distribution survives, according to DePue. He says he worked the pattern backward and reproduced the results for DeepSeek-V4-Flash and Kimi K3 exactly on real Blackwell chips. He has published the verification code on GitHub.\n\nThe analysis maps DeepSeek-V4-Flash and MiniMax-M3 to B200 or B300 chips (148 cores). DeepSeek-V4-Pro, Kimi K3, Kimi K3.1-Pro, and Ant Group's Ling-3.1-flash show, according to the analysis, the 152-core pattern of Nvidia's liquid-cooled GB200 or GB300 flagship rack systems. DePue says chance can be ruled out statistically and that the method correctly identified all 24 control models with known hardware, including Meta's Llama 3.1 (H100).\n\nDePue's report estimates that the five training runs he examined required about 12,000 Blackwell GPUs combined, as much computing power as roughly 30,000 older H100 chips. Kimi K3 alone required an estimated 4,500 Blackwell processors over about 70 days, and DeepSeek-V4-Pro about 3,000. At a unit price of about $70,000, each of those clusters would cost $200 million to $300 million, and all five systems together more than half a billion dollars.\n\nThe findings also align with analysis from Dylan Patel, chief analyst at SemiAnalysis. In an interview with Sequoia Capital, Patel said DeepSeek-V3's model architecture was still specifically tailored for Nvidia's Hopper chips, while DeepSeek-V4's architecture was built for Blackwell GPUs and Huawei's Ascend chips. According to DePue's report, models from other Chinese labs, including Alibaba's Qwen3.8 and those from Zhipu, Tencent, Xiaomi, and StepFun, still show only Hopper signatures, while Meituan's LongCat-2.0 points to Huawei hardware.\n\nStrictly speaking, the method shows only which hardware initialized the weights, though the training itself very likely ran on the same systems. The only other technical explanation would be an AMD MI300X, which is also restricted, artificially throttled so it produces the same pattern. DePue says he ruled out AMD for DeepSeek-V4-Flash using tiny rounding differences between the chips.\n\nThe data doesn't reveal where the GPUs are or who owns them, according to the investigation. Because Chinese companies can rent computing capacity at data centers outside China, the report says its technical evidence shows access to Nvidia's top hardware but does not by itself prove physical smuggling or a violation of US export law.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Exporttilalmak ellenére Nvidia Blackwell chipek nyomait találták kínai AI-modellekben",
+  "lead": "Egy volt OpenAI-kutató technikai bizonyítékot talált arra, hogy hat vezető kínai AI-modell inicializálásához a legújabb Nvidia Blackwell hardvereket használták.",
+  "osszefoglalo": "Will DePue, az Unemployment Labs kutatója a kiadott nyílt AI-modellek súlyaiban található statisztikai mintázatok alapján azonosította az Nvidia Blackwell processzorok egyedi „ujjlenyomatát”. A vizsgálat szerint a DeepSeek-V4-Pro, a Kimi K3, a MiniMax-M3 és az Ant Group Ling-3.1-flash modelljei mind a szigorúan korlátozott Blackwell chipek architektúrájára jellemző számítási magszámmal lettek feltöltve a tanítás kezdetén. A kutató a felismeréshez használt ellenőrző kódot a GitHubon is megosztotta.\n\nA módszer a PyTorch keretrendszer inicializálási folyamatát elemzi: a Blackwell chipek 148 vagy 152 magos szerkezete olyan egyedi véletlenszám- eloszlást hagy maga után a modell súlyaiban, amely a tanítás után is kimutatható marad. A mérések szerint a kínai laborok az öt vizsgált tanításhoz összesen mintegy 12 000 Blackwell GPU-t használtak fel, ami a becslések alapján több mint félmilliárd dolláros hardverparkot jelent.\n\nAz elemzés kizárólag azt bizonyítja, hogy a modellek inicializálása a tiltott hardvereken történt, de azt nem deríti ki, hogy a chipek fizikai csempészet útján kerültek-e Kínába, vagy azokat kínai cégek külföldi adatközpontokból bérlik.",
+  "miert_szamit": "A felfedezés megkérdőjelezi az amerikai exportkorlátozások hatékonyságát, és azt mutatja, hogy a **kínai fejlesztők továbbra is a legfejlettebb AI-hardverekhez férnek hozzá**, így nem maradnak le a nemzetközi modellfejlesztési versenyben.",
+  "cimkek": [
+    "Nvidia",
+    "Blackwell",
+    "DeepSeek",
+    "Moonshot AI"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "DeepSeek-V4-Pro",
+    "Kimi K3",
+    "MiniMax-M3",
+    "Ling-3.1-flash"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 91,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 90,
+      "hirertek": 95,
+      "egyediseg": 95,
+      "hitelesseg": 82,
+      "aktualitas": 98,
+      "kozossegi": 77
+    },
+    "elofeszures": 90,
+    "tanult": 58,
+    "indok": "Komoly geopolitikai és iparági hír az amerikai exporttilalom kijátszásáról kínai AI-modellben.",
+    "tema": "nvidia blackwell china leak",
+    "cim_hu": "Nvidia Blackwell chipnyomokat találtak hat kínai AI-modellben",
+    "lead_hu": "Egy volt OpenAI-kutató technikai bizonyítékokat talált arra, hogy vezető kínai AI-laborok az amerikai exporttilalom ellenére Nvidia Blackwell GPU-kat használnak.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-13T15:35:39+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-13T15:35:54+00:00",
+  "megjelent": "2026-11-13T15:35:54+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-13T15:35:59+00:00",
+    "esemeny": "Will DePue, az Unemployment Labs kutatója (korábbi OpenAI-kutató) megjelentette elemzését, amely szerint hat kínai AI-modell súlyaiban az exportkorlátozás alatt álló Nvidia Blackwell GPU-k egyedi inicializálási mintázata és ujjlenyomata található meg.",
+    "forrasok": [
+      "https://unemploymentlabs.com/checkpoint-forensics.pdf"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-13T15:36:32+00:00"
+}
