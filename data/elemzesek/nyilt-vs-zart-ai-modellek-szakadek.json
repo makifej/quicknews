@@ -1,0 +1,106 @@
+{
+  "slug": "nyilt-vs-zart-ai-modellek-szakadek",
+  "title": "Nyílt vs. zárt AI: 19 pont a lemaradás, de kibertámadásban már csak 4-7 hónap",
+  "deck": "A legjobb letölthető modell, a Kimi K3.1 Pro 46 pontot ér el az általános indexen, a zárt Claude Fable 5.2 65-öt. **Kibertámadásban viszont a nyílt DeepSeek az első hálózaton annyit ért el, mint a GPT-6 Sol, nagyjából tized áron.**",
+  "leiras": "A legjobb nyílt modell 19 ponttal marad el a zárt csúcstól, kibertámadásban mégis közel jár, tized áron. Hol elég a letölthető AI, és hol kell még a zárt?",
+  "datum": "2026-11-13",
+  "allapot": "piszkozat",
+  "token": "0676e4430c954f98",
+  "cimkek": [
+    "Nyílt súlyú modellek",
+    "Kimi K3.1 Pro",
+    "DeepSeek",
+    "Kiberbiztonság",
+    "Benchmark"
+  ],
+  "harminc": {
+    "cim": "A nyílt AI lemaradt, de egyes feladatokon már a nyomában jár",
+    "szoveg": "**A legjobb nyílt modell 19 ponttal marad el a legjobb zárttól az általános indexen.** Kibertámadásban viszont a brit AISI szerint már csak 4-7 hónap a lemaradás.",
+    "pontok": [
+      "**65 vs 46** pont: Fable 5.2 és Kimi K3.1 Pro",
+      "**16,3 vs 15,7** cél: DeepSeek és GPT-6 Sol",
+      "**2 vs 22 dollár** egy futás az első hálózaton",
+      "**4-7 hónap** kiberlemaradás, 2025-ben még 6-10",
+      "**0,41 dollár** feladatonként a zárt Haiku 5.5"
+    ]
+  },
+  "meglepo": "Feladatonként nem a nyílt modell a legolcsóbb. Az Artificial Analysis szerint **egy indexfeladat a zárt Claude Haiku 5.5-tel 0,41 dollár**, a nyílt Kimi K3.1 Pro-val 3,68. Az ok a tokenmennyiség: az Inkling 2 Small **nagyjából 150 ezer kimeneti tokent ír feladatonként**, a Claude Sonnet 5.5 nagyjából 31 ezret.",
+  "kiemel": [
+    "Kimi K3.1 Pro",
+    "DeepSeek V4.1 Flash"
+  ],
+  "cover": {
+    "src": "/assets/elemzes/nyilt-vs-zart-ai-modellek-szakadek-v1.webp",
+    "alt": "Sötét szobában résnyire nyitott, kékeszöld ajtó, mögüle élénkpiros fény ömlik a padlóra. A kép a nyílt súlyú modelleket jelképezi: az ajtó bárki előtt nyitva áll, és nem tudni, ki lép be rajta.",
+    "forras": "Fotó: Dima Pechurin / Unsplash"
+  },
+  "borito_jeloltek": [
+    {
+      "src": "/assets/elemzes/nyilt-vs-zart-ai-modellek-szakadek-v1.webp",
+      "alt": "Sötét szobában résnyire nyitott, kékeszöld ajtó, mögüle élénkpiros fény ömlik a padlóra. A kép a nyílt súlyú modelleket jelképezi: az ajtó bárki előtt nyitva áll, és nem tudni, ki lép be rajta.",
+      "forras": "Fotó: Dima Pechurin / Unsplash"
+    },
+    {
+      "src": "/assets/elemzes/nyilt-vs-zart-ai-modellek-szakadek-v2.webp",
+      "alt": "Fekete-fehér közeli kép egy kinyitott lakatról, amelynek aljában benne felejtették a kulcsot. A lakat nyitva lóg, a háttér sötét és elmosott. A kép a biztonsági korlát nélküli, bárki számára elérhető modelleket idézi.",
+      "forras": "Fotó: Vanna Phon / Unsplash"
+    },
+    {
+      "src": "/assets/elemzes/nyilt-vs-zart-ai-modellek-szakadek-v3.webp",
+      "alt": "Sötét, elhagyott helyiség, a túlsó falon nyitott ajtó, mögötte napfényes zöld növényzet. A sötétből a fény felé vezető út a nyílt modellek felzárkózását jelképezi.",
+      "forras": "Fotó: Gary Bendig / Unsplash"
+    }
+  ],
+  "body_md": "Ha ma letöltesz egy nyílt súlyú AI-modellt, **a legjobb is nagyjából ott tart, ahol a zárt csúcsmodellek 19 ponttal lejjebb**. Az [Artificial Analysis](https://artificialanalysis.ai/leaderboards/models) általános intelligenciaindexén a zárt [Claude Fable 5.2](https://www.anthropic.com/claude-fable-and-mythos-5-2) 65 pontot ér el, a legerősebb nyílt modell, a [Kimi K3.1 Pro](https://huggingface.co/moonshotai/Kimi-K3.1-Pro) 46-ot. Egy friss kibertámadási mérésen viszont más a kép. Az első vállalati hálózaton a nyílt DeepSeek V4.1 Flash annyi célt ért el, mint a zárt GPT-6 Sol, **nagyjából tized áron**. A 2 kép elsőre ellentmond egymásnak. Mindkettő igaz, és a különbségből derül ki, mire elég ma egy ingyen letölthető modell, és hol kell még a drága, zárt rendszer.\n\n```szamok\n[{\"szam\": \"65 vs 46\", \"felirat\": \"pont a legjobb zárt és a legjobb nyílt modell az Artificial Analysis indexén\"}, {\"szam\": \"4-7 hó\", \"felirat\": \"a nyílt modellek lemaradása kibertámadásban a brit AISI júliusi mérése szerint\"}, {\"szam\": \"$2/$22\", \"felirat\": \"egy futás ára az első hálózaton: DeepSeek V4.1 Flash és GPT-6 Sol\"}, {\"szam\": \"$0,41\", \"felirat\": \"a Claude Haiku 5.5 feladatonkénti költsége, olcsóbb minden nyílt modellnél\"}]\n```\n\n## Mit jelent az, hogy egy modell nyílt súlyú?\n\n**A nyílt súlyú modellt bárki letöltheti, és a saját gépén futtathatja.** A „súly” a modell betanított tudása, a nagy modelleknél több száz gigabájtnyi szám. A zárt modelleket, például a Claude-ot vagy a GPT-t, csak a gyártó felhőjén éred el. Ő dönti el az árat, a szabályokat és azt, mit hajlandó megcsinálni a modell. A nyílt modellnél ezt a döntést te hozod meg, vagy bárki más, aki letöltötte.\n\n**Ezért a nyílt modell egyszerre lehetőség és kockázat.** Egy kórház vagy egy bank úgy futtathatja, hogy a betegadat vagy az ügyféladat soha nem hagyja el a saját szervereit. A licenc viszont modellenként más: van, amelyik szinte mindent megenged, és van, amelyik bizonyos felhasználáshoz külön engedélyt kér. A biztonsági korlátokat pedig a letöltés után senki nem kényszeríti ki.\n\n## Mekkora ma a különbség a legjobb nyílt és zárt modell között?\n\n**Az általános képességekben a legjobb nyílt modell 19 ponttal marad el a legjobb zárttól.** Az Artificial Analysis indexe sok tesztet összesít a kódolástól a tudományos érvelésig. A november közepi ranglistán a nyílt modellek közül csak a Kimi K3.1 Pro kerül 40 pont fölé. Mögötte szorosan jön a DeepSeek V4.1 Flash, a GLM-5.3 és a Thinking Machines [Inkling 2 Small](https://thinkingmachines.ai/news/inkling-2-small/) modellje, mind 31 és 33 pont között.\n\n```abra\n{\"cim\": \"Hol áll a legjobb nyílt modell a zárt mezőnyhöz képest?\", \"al\": \"Artificial Analysis Intelligence Index, pont, a több a jobb\", \"egyseg\": \"pont\", \"cimkek\": [\"Claude Fable 5.2 (max)\", \"Gemini 4 Carbon (high)\", \"Claude Opus 5.5 (max)\", \"GPT-6.1 Sol (max)\", \"Kimi K3.1 Pro\", \"Claude Haiku 5.5 (max)\", \"DeepSeek V4.1 Flash (max)\", \"GLM-5.3 (max)\", \"Inkling 2 Small\"], \"sorozatok\": [{\"nev\": \"Intelligence Index\", \"ertekek\": [65, 60, 59, 55, 46, 36, 33, 32, 31]}], \"kiemel\": [\"Kimi K3.1 Pro\", \"DeepSeek V4.1 Flash\"], \"forras\": \"Artificial Analysis, Intelligence Index, 2026. november\"}\n```\n\n**A nyílt élmezőny tehát a zárt modellek középkategóriájánál jár.** A Kimi K3.1 Pro 46 pontja a kicsi, olcsó Claude Haiku 5.5 (36 pont) és a GPT-6.1 Sol (55 pont) közé esik. A DeepSeek, a GLM és az Inkling a Google Gemini 3.8 Flash szintjén áll, ami 31 pontot kapott. A csúcsra, ahol a Fable 5.2 és a [Gemini 4 Carbon](/hir/mindenki-szamara-elerhetove-valt-a-google-uj-csucsmodellje-a-gemini-4) versenyez, ma egyetlen letölthető modell sem ér fel.\n\n| Modell | Súlyok | Intelligence Index | Ár (1 millió token, kevert) | Költség feladatonként |\n|---|---|---|---|---|\n| Claude Fable 5.2 (max) | zárt | 65 | nincs adat | 26,54 $ |\n| Gemini 4 Carbon (high) | zárt | 60 | nincs adat | 5,48 $ |\n| GPT-6.1 Sol (max) | zárt | 55 | nincs adat | 1,27 $ |\n| Kimi K3.1 Pro | nyílt | 46 | 1,54 $ | 3,68 $ |\n| Claude Haiku 5.5 (max) | zárt | 36 | nincs adat | 0,41 $ |\n| DeepSeek V4.1 Flash (max) | nyílt, MIT | 33 | 0,18 $ | 0,60 $ |\n| GLM-5.3 (max) | nyílt | 32 | 0,90 $ | 5,01 $ |\n| Inkling 2 Small | nyílt | 31 | 0,18 $ | 1,18 $ |\n\n## Akkor miért mondják, hogy a nyílt modellek utolérték a zártakat?\n\n**Mert néhány szűk feladaton tényleg majdnem utolérték őket. A legfeltűnőbb példa a kibertámadás.** A Vals AI [CyberOffense](https://www.vals.ai/benchmarks/cyber_offense) mérésén AI-ügynökök támadnak szimulált vállalati hálózatokat, emberi segítség nélkül. Az első, 21 célpontos Windows-hálózaton (Nova) a nyílt DeepSeek V4.1 Flash átlagosan 16,3 célt ért el. Ugyanennyit ért el a zárt Claude Opus 5.5 is, a GPT-6 Sol pedig 15,7-et. **A Vals szerint ez a DeepSeeknek nagyjából 2 dollárba került futásonként, a GPT-6 Solnak nagyjából 22-be.**\n\n```parbaj\n{\"cim\": \"Mennyire közelíti meg a nyílt DeepSeek a zárt GPT-6 Solt támadásban?\", \"a\": \"DeepSeek V4.1 Flash\", \"b\": \"GPT-6 Sol\", \"sorok\": [{\"mi\": \"Nova hálózat, elért célok (21-ből, 3 futás átlaga)\", \"a\": \"16,3\", \"b\": \"15,7\", \"nyertes\": \"\"}, {\"mi\": \"Lighthouse hálózat, elért célok (31-ből)\", \"a\": \"21\", \"b\": \"27\", \"nyertes\": \"b\"}, {\"mi\": \"Watershed felhőkörnyezet, pont (100-ból, 3 futás átlaga)\", \"a\": \"19\", \"b\": \"36\", \"nyertes\": \"b\"}, {\"mi\": \"3 környezet átlaga\", \"a\": \"54,8%\", \"b\": \"65,9%\", \"nyertes\": \"b\"}, {\"mi\": \"Költség futásonként az első hálózaton\", \"a\": \"kb. 2 $\", \"b\": \"kb. 22 $\", \"nyertes\": \"a\"}], \"forras\": \"Vals AI, CyberOffense, frissítve 2026. 11. 11.\"}\n```\n\n**A 3 környezet együtt már árnyaltabb képet ad.** A nehezebb Lighthouse-hálózaton a GPT-6 Sol 27 célt ért el a 31-ből, a DeepSeek 21-et. A felhős Watershed-környezetben 36 pont áll szemben 19-cel. Az összesített rangsort a zárt Claude Opus 5.5 vezeti 77,1%-kal, a GPT-6 Sol 65,9%-ot ért el. A nyílt modellek közül a DeepSeek V4.1 Flash (54,8%) és a Kimi K3.1 Pro (53,8%) áll a legjobban. Mindkettő a zárt Grok 4.7 (42,3%) előtt végzett.\n\n```abra\n{\"cim\": \"Ki jutott a legmesszebb a szimulált vállalati hálózatokban?\", \"al\": \"Vals CyberOffense, 3 környezet átlaga, %, a több a jobb\", \"egyseg\": \"%\", \"cimkek\": [\"Claude Opus 5.5\", \"GPT-6 Sol\", \"DeepSeek V4.1 Flash\", \"Kimi K3.1 Pro\", \"Grok 4.7\", \"Kimi K3\", \"GLM 5.3 Flash\"], \"sorozatok\": [{\"nev\": \"3 környezet átlaga\", \"ertekek\": [77.1, 65.9, 54.8, 53.8, 42.3, 25.0, 18.3]}], \"kiemel\": [\"Kimi K3.1 Pro\", \"DeepSeek V4.1 Flash\"], \"forras\": \"Vals AI, CyberOffense, 2026. november 11.\"}\n```\n\nVan itt egy fontos különbség, ami nem látszik a számokon. **A Claude Opus 5.5 és a GPT-6 Sol csak külön engedéllyel futhatott a teszten**: az Anthropic kiberbiztonsági ellenőrző programján, illetve az OpenAI Daybreak-hozzáférésén keresztül. A nyílt modelleket bárki letöltheti, és a Vals megfogalmazásában **ezeknél nincs semmilyen biztonsági korlát**. Erről a mérésről [korábbi hírünkben](/hir/az-nyilt-forrasu-ai-modellek-kibertamadasi-kepessegei-utolerik-a-zart) is írtunk.\n\n## Hány hónappal jár a zárt modellek mögött a nyílt világ?\n\n**A brit AI Security Institute (AISI) júliusi mérése szerint kibertámadásban 4-7 hónappal.** A [jelentés](https://www.aisi.gov.uk/blog/how-far-behind-the-frontier-are-leading-open-weight-models-on-cyber) azt írja, hogy a vezető nyílt modellek úgy teljesítenek, mint a 4-7 hónappal korábban kiadott zárt csúcsmodellek. 2025 nagy részében ez a különbség még 6-10 hónap volt. **A rés tehát gyorsan szűkül.**\n\nAz AISI a költséget is kiszámolta. Egy 100 millió tokenes támadási gyakorlat az Opus 4.5-tel és 4.6-tal nagyjából 85 dollárba került. A becslésük szerint a GLM-5.2-vel 46, a DeepSeek V4-Próval 1,19 dollár lett volna. **Ez több mint 70-szeres különbség.** Az intézet hozzáteszi, hogy a nyílt modelleket nem a gyártójuk szerverén futtatták, ezért a valódi költség eltérhet.\n\n```abra\n{\"cim\": \"Mennyibe kerül egy 100 millió tokenes támadási gyakorlat?\", \"al\": \"AISI becslés, dollár futásonként, a kevesebb az olcsóbb\", \"egyseg\": \"$\", \"cimkek\": [\"Claude Opus 4.5 / 4.6\", \"GLM-5.2\", \"DeepSeek V4-Pro\"], \"sorozatok\": [{\"nev\": \"Költség futásonként\", \"ertekek\": [85, 46, 1.19]}], \"kiemel\": [\"DeepSeek V4-Pro\"], \"forras\": \"UK AI Security Institute, 2026. július 17.\"}\n```\n\n## Mennyibe kerül egy teljes feladat?\n\n**A tokenár és a feladatonkénti költség 2 különböző dolog, és itt a nyílt modellek előnye sokszor elolvad.** A DeepSeek V4.1 Flash [hivatalos árlistája](https://api-docs.deepseek.com/quick_start/pricing) szerint 1 millió kimeneti token csúcsidőben 1,20 dollár, csúcsidőn kívül 0,60. Ez nagyon olcsó. Csakhogy a modellek nem ugyanannyi tokent írnak le egy feladatra. Az Inkling 2 Small az Artificial Analysis mérése szerint **nagyjából 150 ezer kimeneti tokent használ feladatonként**, a Claude Sonnet 5.5 (medium) nagyjából 31 ezret.\n\nA végeredmény ezért meglepő. Az Artificial Analysis szerint egy indexfeladat a zárt Claude Haiku 5.5-tel 0,41 dollárba kerül, **ez olcsóbb minden nyílt modellnél**. A GPT-6.1 Sol 1,27 dollárért 55 pontot ér el, a Kimi K3.1 Pro 3,68 dollárért 46-ot. A nyílt modellek közül a DeepSeek V4.1 Flash a leghatékonyabb: 0,60 dollár feladatonként, 33 pontért.\n\n```abra\n{\"cim\": \"Mennyibe kerül egy feladat modellenként?\", \"al\": \"Artificial Analysis, dollár feladatonként, a kevesebb az olcsóbb\", \"egyseg\": \"$\", \"cimkek\": [\"Claude Haiku 5.5 (max)\", \"DeepSeek V4.1 Flash (max)\", \"Inkling 2 Small\", \"GPT-6.1 Sol (max)\", \"Kimi K3.1 Pro\", \"GLM-5.3 (max)\", \"Gemini 4 Carbon (high)\", \"Gemini 3.8 Flash (high)\"], \"sorozatok\": [{\"nev\": \"Költség feladatonként\", \"ertekek\": [0.41, 0.6, 1.18, 1.27, 3.68, 5.01, 5.48, 7.77]}], \"kiemel\": [\"Kimi K3.1 Pro\", \"DeepSeek V4.1 Flash\"], \"forras\": \"Artificial Analysis, 2026. november\"}\n```\n\n**Ha tehát a gyártó felhőjén futtatod, a nyílt modell nem feltétlenül olcsóbb.** A nyílt súly igazi előnye máshol van. A modellt a saját gépeden is futtathatod, az adat nem hagyja el a céget, és nem függsz egy szolgáltató árazásától vagy szabályaitól.\n\n## Mit tud a Kimi K3.1 Pro, a legerősebb letölthető modell?\n\n**A Moonshot AI modellje a gyártói táblázat szerint több ügynöki teszten a zárt csúcs közelében jár.** A modell 2,8 billió paraméteres, ebből egyszerre 104 milliárd dolgozik. A Terminal-Bench 4.0 teszten, amely terminálban végzett fejlesztői munkát mér, 65,7%-ot ért el. A Claude Opus 5.5 66,4%-ot, a GPT-6 Astra 58,2%-ot. **A nehéz tudományos kérdésekben viszont nagy a lemaradása**: a HLE-Diamond teszten 39,4% áll szemben az Opus 5.5 60,9%-ával és a GPT-6 Astra 65,8%-ával.\n\n```parbaj\n{\"cim\": \"Hol tartja a lépést a Kimi K3.1 Pro, és hol nem?\", \"a\": \"Kimi K3.1 Pro\", \"b\": \"Claude Opus 5.5\", \"sorok\": [{\"mi\": \"Terminal-Bench 4.0, fejlesztői munka terminálban\", \"a\": \"65,7%\", \"b\": \"66,4%\", \"nyertes\": \"\"}, {\"mi\": \"DeepSWE v1.1, szoftverfejlesztés\", \"a\": \"75,5%\", \"b\": \"74,2%\", \"nyertes\": \"a\"}, {\"mi\": \"HLE-Diamond, nehéz tudományos kérdések\", \"a\": \"39,4%\", \"b\": \"60,9%\", \"nyertes\": \"b\"}, {\"mi\": \"ExploitBench, sebezhetőség kihasználása\", \"a\": \"74,7%\", \"b\": \"91,0%\", \"nyertes\": \"b\"}], \"forras\": \"Moonshot AI, Kimi K3.1 Pro modellkártya (gyártói mérés)\"}\n```\n\n**A kiberképességet a Moonshot szándékosan visszafogta.** A [cég blogja](https://www.kimi.ai/blog/kimi-k3-1-pro) szerint a nyílt súlyokból kivették a kiberbiztonsági tanítóadatot, és a modell ezen a téren elmarad a zárt csúcsmodellektől. Ezt a táblázat is mutatja: az ExploitBench teszten 74,7%-ot ért el, az Opus 5.5 91,0%-ot. A Kimi K3.1 Pro a Moonshot saját licencével jön, nem MIT és nem Apache licenccel.\n\n## Mit hozott az Inkling 2 Small a nyugati nyílt modelleknek?\n\n**Az Inkling 2 Small most a legerősebb nyílt modell, amely nem Kínából jön.** A Thinking Machines modellje 594 milliárd paraméteres, ebből 17 milliárd dolgozik egyszerre. Az Artificial Analysis szerint 31 pontot ér el, ugyanannyit, mint a Gemini 3.8 Flash. **A súlyai november 12-e óta letölthetők** a Hugging Face-ről, a cég Apache 2.0 licencet ígért hozzá. A bemutatásáról [hírben](/hir/bemutatkozott-az-inkling-2-small-modell-594-milliard-parameterrel) is beszámoltunk.\n\nA modellnek erős és gyenge pontja is van. Az Artificial Analysis mérésén a FrontierCode 2.0 kódolási teszten 25%-ot ért el, **több mint 2-szer annyit, mint a Claude Sonnet 5.5 (medium) a maga 11%-ával**. A Terminal-Bench 4.0 teszten viszont 13%-ot, a Sonnet 30%-ot. Az elődjéhez képest a kitalált válaszok aránya 61%-ról 27%-ra csökkent.\n\n## Hol tartanak a nyílt modellek a szövegen túl?\n\n**A nyílt súlyok a kép és az ügynökök terén is terjednek, de nem mindig teljesen szabad licenccel.** A MiniMax [H3-Image](https://huggingface.co/MiniMaxAI/MiniMax-H3-Image) képgenerátora 33,1 milliárd paraméteres, nagyjából 16 megapixeles képeket készít 6 mintavételi lépésben, és akár 16 referenciaképet fogad. A Hugging Face szerint az elmúlt hónapban **306 718-szor töltötték le**. A licence viszont saját közösségi licenc, és bizonyos felhasználáshoz külön írásos engedély kell. A megjelenéséről [itt írtunk](/hir/nyilt-sulyokkal-jelent-meg-a-minimax-h3-image-kepgeneralo).\n\nA DeepSeek az ügynököknél is nyitott. A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) MIT-licences ügynökplatform, **a GitHubon 280 ezer csillagot gyűjtött**. A Bloomberg beszámolója szerint november 4-én [1,54 millió napi felhasználója volt](/hir/elerte-az-1-54-millios-napi-felhasznaloszamot-a-deepseek-harness). Az Alibaba közben már a következő generáció előzetesét mutatta meg, a [Qwen4-Max modellt](/hir/erkezik-a-qwen4-probalhato-a-qwen4-max-modell), de arról még nem tudni, lesznek-e letölthető súlyai.\n\n## Melyiket válaszd?\n\n1. **Nézd meg, mennyibe kerül a teljes feladat, ne a tokenár.** Az Artificial Analysis ranglistáján a „Cost per Task” oszlop mutatja, mennyit fizetsz egy megoldott feladatért. Ezen a zárt Haiku 5.5 olcsóbb minden nyílt modellnél.\n2. **Ha az adatnak a cégen belül kell maradnia, próbáld ki a DeepSeek V4.1 Flasht.** MIT-licences, 33 pontos, és az API-ja is 1 millió kimeneti tokenenként legfeljebb 1,20 dollár. Saját szerveren futtatva egy szolgáltató sem látja az adatot.\n3. **Ügynöki és fejlesztői munkára teszteld a Kimi K3.1 Prót.** A gyártói mérésen a Terminal-Bench 4.0 teszten 0,7 ponton belül van az Opus 5.5-höz. Előtte olvasd el a saját licencét.\n4. **Nehéz érvelésre, kutatásra maradj a zárt csúcsnál.** A HLE-Diamond teszten a Kimi és a zárt modellek között több mint 20 pont a különbség, az általános indexen 19.\n5. **Ha céges hálózatot védesz, számolj azzal, hogy a támadó is letöltheti ezeket a modelleket.** A Vals mérésén a DeepSeek az első hálózaton annyit ért el, mint a GPT-6 Sol. A Vals arra számít, hogy a következő hónapokban gyakoribbak lesznek az ilyen támadások.\n\n## Amit még nem tudunk\n\n**A számok egy része csak a gyártótól származik.** A Kimi K3.1 Pro táblázata a Moonshot saját mérése, és a Claude Fable 5.1-gyel veti össze a modellt, nem a novemberi 5.2-vel. Az Artificial Analysis indexe sok tesztet egyetlen számba sűrít, ezért egy-egy feladatra a sorrend más lehet. A Vals mérésén ugyanaz a modell 3 futás között a Nova-hálózaton akár 7 céllal, a Watershed-környezetben akár 37 ponttal eltért. A kis különbségek ezért nem perdöntők. Az AISI 4-7 hónapos becslése júliusi, és csak a kiberképességekre vonatkozik. Az általános képességek lemaradását hónapokban egyik forrás sem méri. A Bloomberg felhasználói számát nem tudtuk az elsődleges forrásból ellenőrizni.\n",
+  "sources": [
+    {
+      "label": "Artificial Analysis: Intelligence Index ranglista, 2026. november",
+      "url": "https://artificialanalysis.ai/leaderboards/models"
+    },
+    {
+      "label": "Artificial Analysis: nyílt súlyú modellek, 2026. november",
+      "url": "https://artificialanalysis.ai/models/open-source"
+    },
+    {
+      "label": "Artificial Analysis: Inkling 2 Small értékelés, 2026. november 5.",
+      "url": "https://artificialanalysis.ai/articles/thinking-machines-releases-inkling-2-small-highest-scoring-open-weights-model-outside-of-chinia-upon-weights-release-it"
+    },
+    {
+      "label": "Vals AI: CyberOffense ranglista és módszertan, frissítve 2026. november 11.",
+      "url": "https://www.vals.ai/benchmarks/cyber_offense"
+    },
+    {
+      "label": "UK AI Security Institute: How Far Behind the Frontier are Leading Open Weight Models on Cyber?, 2026. július 17.",
+      "url": "https://www.aisi.gov.uk/blog/how-far-behind-the-frontier-are-leading-open-weight-models-on-cyber"
+    },
+    {
+      "label": "Moonshot AI: Kimi K3.1 Pro modellkártya",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro"
+    },
+    {
+      "label": "Moonshot AI: Kimi K3.1 Pro blog",
+      "url": "https://www.kimi.ai/blog/kimi-k3-1-pro"
+    },
+    {
+      "label": "Thinking Machines: Inkling 2 Small, 2026. november 5., frissítve november 12.",
+      "url": "https://thinkingmachines.ai/news/inkling-2-small/"
+    },
+    {
+      "label": "DeepSeek API árlista",
+      "url": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    {
+      "label": "DeepSeek V4.1 Flash 1017 modellkártya",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017"
+    },
+    {
+      "label": "MiniMax H3-Image modellkártya",
+      "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3-Image"
+    },
+    {
+      "label": "DeepSeek Harness, GitHub",
+      "url": "https://github.com/deepseek-ai/deepseek-harness"
+    }
+  ],
+  "urlap_t": "96e24cd1b050e92bcbed7161720f83ab3b52cddfc1d41417877bf927cd040053"
+}
