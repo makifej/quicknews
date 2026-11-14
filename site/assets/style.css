@@ -2022,3 +2022,17 @@ html.kapu-nyitva, html.kapu-nyitva body { overflow: hidden; }
 .app-kapu-lista ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .app-kapu-lista li { position: relative; padding-left: 16px; font-size: 14.5px; line-height: 1.4; font-weight: 600; color: var(--szoveg); }
 .app-kapu-lista li::before { content: ""; position: absolute; left: 0; top: .55em; width: 6px; height: 6px; border-radius: 50%; background: var(--kiemelo); }
+/* Heni 2026-11-14: vékony piros app-banner (fejléc alatt, címlapon, hírek végén); iPhone-on és az appban rejtve */
+.app-banner { display: none; align-items: center; gap: 12px; padding: 9px 14px; margin: 12px 0; border-radius: 12px; background: linear-gradient(90deg, #c8102e, #ff4d4f); color: #fff; text-decoration: none; font-size: 14.5px; line-height: 1.35; box-shadow: 0 6px 18px rgba(200,16,46,.25); }
+html.os-android .app-banner, html.os-asztal .app-banner { display: flex; }
+.app-banner:hover { filter: brightness(1.06); color: #fff; }
+.app-banner-cimke { flex: 0 0 auto; font-size: 11px; font-weight: 900; letter-spacing: .08em; background: #fff; color: #c8102e; padding: 3px 7px; border-radius: 999px; }
+.app-banner-szoveg { flex: 1 1 auto; min-width: 0; }
+.app-banner-szoveg b { font-weight: 800; }
+.app-banner .ab-android { display: none; }
+html.os-android .app-banner .ab-android { display: inline; }
+html.os-android .app-banner .ab-asztal { display: none; }
+.app-banner .ab-al { opacity: .88; }
+.app-banner-gomb { flex: 0 0 auto; font-weight: 900; white-space: nowrap; background: rgba(0,0,0,.18); padding: 6px 11px; border-radius: 999px; }
+.app-banner-keret .app-banner { margin: 10px 0 0; }
+@media (max-width: 640px) { .app-banner .ab-al { display: none; } .app-banner { font-size: 14px; padding: 8px 10px; gap: 9px; } }
