@@ -1,0 +1,49 @@
+{
+  "id": "0f966990125a",
+  "slug": "hybrid-artificial-intelligence-framework-boosts-mammographic-breast",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/hybrid-artificial-intelligence-framework-boosts-mammographic-breast-cancer-detection-across-distinct-imaging-datasets/",
+  "publikalva": "2026-11-14T08:58:59+00:00",
+  "cim": "Hybrid Artificial Intelligence Framework Boosts Mammographic Breast Cancer",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 51 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-11772.png"
+  },
+  "cim_eredeti": "Hybrid Artificial Intelligence Framework Boosts Mammographic Breast Cancer",
+  "szoveg_eredeti": "Hybrid Artificial Intelligence Framework Boosts Mammographic Breast Cancer Detection Across Distinct Imaging Datasets\n\nA computational framework that unifies deep convolutional neural networks, vision transformers, and mathematical radiomics descriptors has demonstrated robust performance in classifying malignant and benign lesions across disparate mammographic imaging sources. Developed to overcome the pronounced performance degradation commonly observed when automated detection systems are evaluated outside their original training domains, the architecture couples localized texture extraction with expansive contextual modeling and handcrafted morphology. In experimental evaluations encompassing both digitized film and full-field digital mammography, the multi-branch design maintained high sensitivity and specificity even under bidirectional domain shifts, addressing a persistent challenge in computer-aided oncology screening where differences in scanner hardware, patient cohorts, and acquisition protocols often hinder clinical reliability.\n\nMammography serves as the standard radiological tool for population-level breast cancer screening, where prompt identification of neoplastic changes substantially improves therapeutic outcomes. Despite widespread adoption, interpreting mammographic examinations remains technically demanding due to subtle structural abnormalities, dense fibroglandular parenchyma that can obscure suspicious findings, and significant reader variability among practicing radiologists. Conventional automated screening approaches have predominantly relied on convolutional neural network architectures. While convolutional models excel at isolating localized pixel patterns and fine-grained microcalcifications, they frequently falter when deployed across multi-center settings where image contrast, scanner calibration, and noise profiles vary from the training data. This fundamental lack of domain transferability has historically limited the deployment of deep learning tools in prospective clinical workflows.\n\nTo establish a rigorous experimental foundation, the investigators evaluated the framework using two prominent, publicly accessible mammography benchmark datasets representing distinct acquisition modalities: CBIS-DDSM and INbreast. CBIS-DDSM comprises approximately 3,000 digitized film mammograms characterized by scanning artifacts, diverse scanner resolutions spanning 2,000 to 4,000 pixels per dimension, and pathology-confirmed labels. Conversely, the INbreast dataset contains 410 full-field digital mammograms acquired at higher spatial resolution with consistent digitization quality, accompanied by detailed radiological annotations and biopsy outcomes. Following preprocessing and cohort structuring, CBIS-DDSM presented an approximately balanced cohort of 52 percent malignant and 48 percent benign cases, while INbreast comprised 51 percent malignant and 49 percent benign cases. This balanced distribution minimized statistical skewing and permitted dependable tracking of sensitivity, specificity, and correlation metrics across independent validation folds.\n\nTo guarantee complete data integrity and prevent subtle forms of data leakage, the researchers instituted a patient-level stratified five-fold cross-validation scheme. Under this protocol, all mammographic projections, views, and lesion annotations associated with a specific patient identifier were strictly confined to a single fold, ensuring that no patient contributed data to both the training and testing subsets simultaneously. All upstream preprocessing routines, including z-score intensity normalization, histogram equalization to accentuate structural contrast, and extensive data augmentations such as translations, rotations, and vertical or horizontal flips, were computed exclusively using the assigned training partitions. For cross-dataset domain harmonization, histogram matching and intensity clipping between the 0.5th and 99.5th percentiles were applied to align feature distributions and suppress acquisition-specific numerical outliers across digitized film and direct digital images.\n\nThe system’s feature extraction architecture is engineered around three complementary analytical pathways operating on standardized 224 by 224 pixel regions of interest. The first branch utilizes a pre-trained DenseNet-121 convolutional neural network, leveraging dense skip connections to facilitate iterative feature reuse and combat vanishing gradients while isolating localized textural irregularities, margin spiculation, and clustered microcalcifications. Operating concurrently, the second branch deploys a pre-trained ViT-Base vision transformer that divides the input into sixteen-by-sixteen non-overlapping patches, mapping them across twelve multi-head self-attention layers to model broad structural distortions, global breast density variations, and bilateral parenchymal asymmetries. The third branch bypasses deep neural learning entirely, using the PyRadiomics library to extract twelve mathematically defined shape, intensity, and Gray-Level Co-occurrence Matrix texture descriptors, including contrast, correlation, energy, homogeneity, compactness, and eccentricity directly from the segmented lesion coordinates.\n\nIntegration of these heterogeneous data streams is governed by a differentiable, attention-weighted fusion module that dynamically reconciles the differing dimensionalities of the constituent representations. Rather than relying on simple concatenation, the 1024-dimensional DenseNet vector, the 768-dimensional transformer class-token representation, and the handcrafted radiomics array are projected into a shared latent space where learned attention weights dynamically score the diagnostic contribution of each branch. The weighting parameters are optimized via backpropagation against an auxiliary classification head during an initial fusion-training phase. Once converged, the optimized latent representations are extracted as fixed inputs for downstream inference, successfully decoupling the differentiable representation learning phase from subsequent non-differentiable classification algorithms and preventing redundant computational noise from degrading decision boundaries.\n\nDownstream diagnostic classification is conducted by a stacked ensemble architecture specifically formulated to control model variance and prevent overfitting across heterogeneous cohorts. The ensemble deploys three distinct base learners: an extreme gradient boosting model (XGBoost) with depth and tree regularization, a LightGBM classifier utilizing leaf-wise tree growth and gradient-based sampling to rapidly capture higher-order feature interactions, and a Support Vector Machine operating with a radial basis function kernel to establish non-linear separating hyperplanes. Each base learner independently generates class-probability estimates indicating the likelihood of malignancy. These probabilistic outputs are concatenated into a three-dimensional meta-feature vector and passed to a logistic regression meta-learner with L2 regularization, which dynamically balances the base predictions to reach a final, consolidated diagnostic determination.\n\nWhen assessed under combined-dataset cross-validation pooling both benchmark cohorts into a unified population, the hybrid architecture demonstrated marked performance gains over individual baseline models. Standalone evaluation revealed that isolated handcrafted radiomics achieved an accuracy of 94.8 percent and an area under the receiver operating characteristic curve of 0.972, whereas the standalone vision transformer and standalone convolutional neural network reached accuracies of 93.6 percent and 92.8 percent, respectively. Merging the two deep learning branches produced an accuracy of 95.1 percent, which further climbed to 96.0 percent upon the integration of radiomics features. Processing this fully fused representation through the stacked ensemble yielded a",
+  "begyujtve": "2026-11-14T09:04:11.711362+00:00",
+  "prioritas": {
+    "pont": 51,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 50,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 32
+    },
+    "elofeszures": 74,
+    "tanult": 20,
+    "indok": "Tudományos kutatási eredmény a mellrák szűréséről, ami hasznos, de specifikus orvosi alkalmazás. Forrás-tapasztalat: -6.",
+    "tema": "ai breast cancer detection",
+    "cim_hu": "Hibrid mesterséges intelligencia javítja a mellrák korai felismerését",
+    "lead_hu": "Egy új számítási keretrendszer a mély tanulás és a meglévő képalkotó adatbázisok ötvözésével hatékonyabban képes azonosítani a jó- és rosszindulatú daganatokat.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-14T09:04:20+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-14T09:04:24+00:00"
+}
