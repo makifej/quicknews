@@ -2007,3 +2007,13 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .esti-eq b i { opacity: .55; transition: opacity .3s var(--gorbe); }
 .esti.szol .esti-eq b i { opacity: 1; }
 .esti:not(.szol) .esti-eq b s { opacity: 0; }
+/* Heni 2026-11-14: androidos mobilböngészőben az elemzések csak az appban: kapu-ablak */
+.app-kapu { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: flex-end; justify-content: center; background: rgba(0,0,0,.62); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.app-kapu-lap { width: 100%; max-width: 520px; background: var(--bg-2); border: 1px solid var(--keret); border-bottom: 0; border-radius: 22px 22px 0 0; padding: 28px 24px calc(24px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 14px; animation: kapuBe 320ms cubic-bezier(.2,.8,.2,1); }
+.app-kapu-cimke { align-self: flex-start; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--kiemelo-szoveg); background: var(--kiemelo); padding: 4px 10px; border-radius: 999px; }
+.app-kapu h2 { margin: 0; font-size: 24px; line-height: 1.2; font-weight: 800; color: var(--szoveg); }
+.app-kapu p { margin: 0; font-size: 16px; line-height: 1.5; color: var(--szoveg-2); }
+.app-kapu-gomb { display: block; text-align: center; margin-top: 6px; padding: 15px 18px; border-radius: 14px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font-weight: 800; font-size: 17px; text-decoration: none; }
+.app-kapu-masod { display: block; text-align: center; padding: 12px; border: 0; background: none; font: inherit; font-size: 15px; font-weight: 600; color: var(--szoveg-2); text-decoration: none; cursor: pointer; }
+html.kapu-nyitva, html.kapu-nyitva body { overflow: hidden; }
+@keyframes kapuBe { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
