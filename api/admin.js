@@ -21,6 +21,15 @@ async function kv(...parancs) {
   return j.result;
 }
 
+// APK letöltések (api/apk.js számolja): összesen és naponta (Heni 2026-11-14)
+async function apkAdat() {
+  const osszesen = Number((await kv("GET", "qn:apk_letoltes")) || 0);
+  const k = (await kv("HGETALL", "qn:apk_letoltes_nap")) || [];
+  const napok = {};
+  for (let i = 0; i < k.length; i += 2) napok[k[i]] = Number(k[i + 1]);
+  return { osszesen, napok };
+}
+
 // a pultból kért műveletek (szerkesztés, hirdetés indítása, címsorcsere): a Mac 3 percenként hajtja végre őket
 async function muveletFelvesz(b) {
   const tipus = String(b.tipus || "");
@@ -364,6 +373,7 @@ module.exports = async (req, res) => {
         const { id, b64 } = await torzs(req);
         return json(res, 200, await kepFeltolt(id, b64));
       }
+      if (mi === "apk_letoltes_gep") return json(res, 200, await apkAdat());
       if (mi === "hirlevel_gep") return json(res, 200, await hirlevelAdat());
       if (mi === "jovahagyasok_gep") return json(res, 200, { dontesek: await jovahagyasok() });
       if (mi === "prioritas_gep") return json(res, 200, await prioritasAdat());
@@ -540,15 +550,7 @@ module.exports = async (req, res) => {
       }
       return json(res, 200, adat);
     }
-    if (mi === "apk_letoltes") {
-      // APK letöltések (api/apk.js számolja): összesen és naponta (Heni 2026-11-14)
-      const osszesen = Number((await kv("GET", "qn:apk_letoltes")) || 0);
-      const k = (await kv("HGETALL", "qn:apk_letoltes_nap")) || [];
-      const napok = {};
-      for (let i = 0; i < k.length; i += 2) napok[k[i]] = Number(k[i + 1]);
-      return json(res, 200, { osszesen, napok });
-    }
-    if (mi === "torles" && req.method === "POST") {
+    if (mi === "apk_letoltes") return json(res, 200, await apkAdat());    if (mi === "torles" && req.method === "POST") {
       const { pid, felulet, cim } = await torzs(req);
       if (!/^[a-f0-9]{24}$/.test(pid || "")) return json(res, 400, { hiba: "Rossz posztazonosító." });
       if (!["Facebook", "LinkedIn", "Hirdetés"].includes(felulet)) return json(res, 400, { hiba: "Rossz felület." });
