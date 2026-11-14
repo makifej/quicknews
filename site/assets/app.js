@@ -527,6 +527,30 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     var t2=document.querySelector('[data-tema-tobb]'); if(t2) t2.addEventListener('click', function(){ g.click(); var d=t2.closest('details'); if(d) d.open=false; });
     var tm=document.querySelector('[data-tobb]'); if(tm) document.addEventListener('click', function(e){ if(tm.open && !tm.contains(e.target)) tm.open=false; });
   })();
+  (function(){
+    // Heni 2026-11-14: androidos mobilböngészőben az elemzések csak az appban olvashatók (az app WebView-ja: „; wv)”)
+    var ua=navigator.userAgent||'';
+    if(!/Android/i.test(ua) || /; wv\)|quicknews-android|bot|crawl|spider|Lighthouse/i.test(ua)) return;
+    var ut=location.pathname;
+    function kapu(zarhato){
+      if(document.querySelector('.app-kapu')) return;
+      var d=document.createElement('div'); d.className='app-kapu'; d.setAttribute('role','dialog'); d.setAttribute('aria-modal','true'); d.setAttribute('aria-labelledby','app-kapu-cim');
+      d.innerHTML='<div class="app-kapu-lap"><span class="app-kapu-cimke">Csak az appban</span>'+
+        '<h2 id="app-kapu-cim">Az elemzéseket az alkalmazásban olvashatod</h2>'+
+        '<p>A hosszabb, utánajárt elemzések a quicknews Android-alkalmazásban érhetők el. Ingyenes, és pár másodperc alatt telepíthető.</p>'+
+        '<a class="app-kapu-gomb" href="/alkalmazas">Alkalmazás letöltése</a>'+
+        (zarhato?'<button type="button" class="app-kapu-masod" data-kapu-zar>Most nem</button>':'<a class="app-kapu-masod" href="/">Vissza a hírekhez</a>')+'</div>';
+      document.body.appendChild(d); document.documentElement.classList.add('kapu-nyitva');
+      var z=d.querySelector('[data-kapu-zar]'); if(z) z.addEventListener('click',function(){ d.remove(); document.documentElement.classList.remove('kapu-nyitva'); });
+      if(typeof gtag==='function') try{ gtag('event','elemzes_app_kapu',{oldal:ut}); }catch(e){}
+    }
+    if((ut==='/elemzesek'||ut.indexOf('/elemzes/')===0) && ut.indexOf('/elemzes/elonezet')!==0){ kapu(false); return; }
+    document.addEventListener('click',function(e){
+      var a=e.target.closest&&e.target.closest('a[href]'); if(!a) return;
+      var h=a.getAttribute('href')||''; h=h.replace(/^https?:\/\/(www\.)?quicknews\.hu/,'');
+      if(h==='/elemzesek'||h.indexOf('/elemzes/')===0){ if(h.indexOf('/elemzes/elonezet')===0) return; e.preventDefault(); kapu(true); }
+    },true);
+  })();
   document.querySelectorAll('.lejatszo').forEach(function(box){
     var gomb = box.querySelector('.lejatszas'); if (!gomb) return;
     gomb.addEventListener('click', function(){

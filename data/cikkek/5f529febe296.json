@@ -1,0 +1,49 @@
+{
+  "id": "5f529febe296",
+  "slug": "artificial-intelligence-lung-models-in-preterm-infants-show-high",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/artificial-intelligence-lung-models-in-preterm-infants-show-high-methodological-bias/",
+  "publikalva": "2026-11-14T21:30:19+00:00",
+  "cim": "Artificial Intelligence Lung Models in Preterm Infants Show High Methodological Bias",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 51 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-12121.png"
+  },
+  "cim_eredeti": "Artificial Intelligence Lung Models in Preterm Infants Show High Methodological Bias",
+  "szoveg_eredeti": "Artificial Intelligence Lung Models in Preterm Infants Show High Methodological Bias\n\nA systematic review evaluating artificial intelligence and machine learning models designed to predict bronchopulmonary dysplasia in preterm infants has revealed that despite demonstrating encouraging discriminative capacity, the existing literature is undermined by substantial methodological weaknesses and unproven clinical superiority over conventional statistics. Published in Frontiers in Pediatrics by pediatric researchers Alejandro Avila-Alvarez, Rossana Valentina Martínez-González, and Sara María Fernández-González, the investigation synthesized eighteen studies evaluating computational architectures forecasting chronic lung disease in newborns born below thirty-two weeks of gestation or weighing under fifteen hundred grams. Across the included publications, reported area under the receiver operating characteristic curve values for top-performing algorithms ranged from 0.80 to a theoretically perfect 1.00. However, structured evaluation using the Prediction model Risk Of Bias ASsessment Tool demonstrated that 72.2 percent of the studies had an overall high risk of bias, predominantly stemming from pervasive analytical shortcomings such as unhandled missing data and absent calibration metrics.\n\nBronchopulmonary dysplasia remains the most prevalent chronic respiratory complication confronting infants born at extreme prematurity, presenting a persistent clinical challenge in neonatal care. The condition is biologically characterized by an arrest in alveolar and vascular development, triggered by complex interactions between profound pulmonary immaturity and cumulative postnatal trauma, including mechanical ventilation, hyperoxia exposure, and systemic inflammatory cascades. Despite substantial historical advances in perinatal medicine—most notably the widespread administration of antenatal corticosteroids, exogenous surfactant replacement therapy, and the adoption of less invasive ventilatory strategies—the overall incidence of bronchopulmonary dysplasia has failed to decline significantly, with several cohorts documenting an upward trajectory. Affected newborns face elevated rates of late mortality, extended hospitalizations, and long-term sequelae including pulmonary hypertension, neurodevelopmental impairments, and compromised adult lung function. Because curative therapies remain unavailable once structural lung damage occurs, clinicians prioritize early risk identification to establish a therapeutic window wherein individualized preventive regimens, optimized pharmacological decisions, and respiratory support adjustments can mitigate disease severity.\n\nEfforts to anticipate respiratory morbidities in premature neonates have traditionally relied on clinical prediction tools, yet traditional statistical models assume linear relationships that struggle to capture the complex, non-linear interactions of pulmonary pathogenesis. In addition, many existing tools have suffered from inadequate accounting of competing risks such as mortality, restricted external transportability, and high vulnerability to bias. These limitations accelerated interest in artificial intelligence and machine learning frameworks capable of parsing high-dimensional clinical inputs. To establish whether these computational techniques deliver meaningful clinical progress beyond standard statistical modeling, the review authors executed a structured protocol adhering to the Preferred Reporting Items for Systematic Reviews and Meta-Analyses guidelines. The team searched PubMed, Scopus, and the Cochrane Library up to February 28, 2026, targeting observational studies published in English or Spanish from 2010 onward developing or validating algorithmic models in preterm populations born before thirty-two weeks or under fifteen hundred grams, registering the protocol retrospectively in PROSPERO under registration CRD420261466494.\n\nThe systematic literature search retrieved 247 initial records, which two reviewers screened independently down to thirty-five candidate publications before finalizing eighteen eligible studies published between 2016 and 2026. Geographically, China accounted for five studies, the United States contributed four, South Korea conducted two, and the remaining investigations originated across Canada, Denmark, France, Italy, Poland, Turkey, and Japan. Retrospective cohort designs predominated, characterizing 83.3 percent of the analyzed papers, while cohort sizes ranged from thirty patients to large registry analyses exceeding forty thousand neonates. The systematic review refrained from conducting a quantitative meta-analysis because the included literature evaluated substantially disparate algorithms, clinical populations, outcome definitions, prediction timeframes, and validation methodologies. Consequently, quantitative pooling was deemed statistically inappropriate, prompting the authors to compile a detailed narrative and tabular synthesis that systematically compared algorithm selections, timing, reported area under the curve metrics, and underlying demographic characteristics.\n\nA diverse assortment of machine learning algorithms appeared across the eighteen studies, with tree-based ensemble architectures proving the most prevalent. Random Forest models were developed in eleven studies, while XGBoost algorithms were featured in eight separate investigations. Other utilized methods included gradient boosting decision trees, AdaBoost, CatBoost, LightGBM, support vector machines, Naive Bayes, multilayer perceptrons, and lasso-penalized regression models. Specialized architectures included Long Short-Term Memory networks applied by Chhabra and colleagues to capture dynamic longitudinal variables, alongside deep convolutional neural networks such as DenseNet121 and ResNet18 trained on medical imaging. All evaluated models incorporated core clinical features, particularly gestational age, birth weight, and respiratory support requirements. Furthermore, several models introduced specialized biological or imaging predictors, including proteomic markers, serum interleukins, prenatal Doppler parameters, whole-exome sequencing profiles, chest radiographs, retinal photography, and spectral data extracted from neonatal gastric aspirates obtained shortly after birth.\n\nReported model discrimination appeared exceptionally strong across the reviewed literature, with most algorithms achieving area under the curve metrics exceeding 0.80. Notable high-performing models included a retrospective study by Montagna and colleagues attaining an area under the curve of 0.92 through an ensemble incorporating antenatal, perinatal, and postnatal indicators. Dai and colleagues combined clinical variables with exome sequencing performed within seven days of birth, yielding a lasso model with area under the curve values of 0.915 for overall disease and 0.907 for severe disease. In a nationwide cohort from South Korea comprising 11,177 infants, Hwang and colleagues trained a multilayer perceptron that achieved discriminative values between 0.895 and 0.897. Yoneda and collaborators evaluated gradient boosting decision trees across 40,291 Japanese infants within six hours of birth, reporting an area under the curve of 0.873 for death or severe disease. Similarly, Leigh and associates reported an internal validation area under the curve of 0.841 for a perinatal Random Forest model, which reached 0.899 within an ensemble framework.\n\nThese high discrimination statistics concealed critical caveats regarding statistical overestimation and model complexity. The highest reported discrimination across the review was an area under the curve of 1.00 achieved by Amatya and colleagues using a Naive Bayes classifier; however, this extreme result was derived from an exploratory cohort of only thirty infants, indicating substantial overfitting due to an inadequate ratio of events per variable. Moreover, when machine l",
+  "begyujtve": "2026-11-14T21:34:06.331227+00:00",
+  "prioritas": {
+    "pont": 51,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 60,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 29
+    },
+    "elofeszures": 73,
+    "tanult": 12,
+    "indok": "Szakmai elemzés a mesterséges intelligencia koraszülötteknél történő alkalmazásának hiányosságairól. Forrás-tapasztalat: -6.",
+    "tema": "ai medical bias research",
+    "cim_hu": "Módszertani hibákra világított rá egy elemzés a koraszülöttek tüdejét vizsgáló AI-modellben",
+    "lead_hu": "Egy új elemzés szerint bár a mesterséges intelligencia ígéretes eredményeket mutat a koraszülöttek tüdőbetegségeinek előrejelzésében, a jelenlegi modellek súlyos módszertani hiányosságokkal küzdenek.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-14T21:34:36+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-14T21:34:40+00:00"
+}
