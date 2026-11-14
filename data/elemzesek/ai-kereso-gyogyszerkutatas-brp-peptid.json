@@ -1,0 +1,87 @@
+{
+  "slug": "ai-kereso-gyogyszerkutatas-brp-peptid",
+  "title": "Új étvágycsökkentő peptidet talált a Stanford algoritmusa: de a keresést nem AI végezte",
+  "deck": "A Stanford algoritmusa 2 683 eddig le nem írt emberi peptidet jósolt meg, és az egyik elhízott egerekben visszafordította a hízást. **A keresést viszont nem gépi tanulás végezte, hanem egy reguláris kifejezés.**",
+  "leiras": "A Stanford algoritmusa 2 683 emberi peptidet jósolt meg, és az egyik erős étvágycsökkentő lett. Hol gyorsít tényleg az AI a gyógyszerkutatásban, és hol nem?",
+  "datum": "2026-11-14",
+  "allapot": "piszkozat",
+  "token": "256033d7efddf8db",
+  "cimkek": [
+    "Gyógyszerkutatás",
+    "Peptid",
+    "Stanford",
+    "GLP-1",
+    "Kutatás"
+  ],
+  "harminc": {
+    "cim": "Keresőprogram talált étvágycsökkentő hormont az emberi fehérjékben",
+    "szoveg": "**A Stanford algoritmusa 2 683 eddig le nem írt emberi peptidet jósolt meg, és az egyik erősen csökkenti az étvágyat.** A keresést nem gépi tanulás végezte.",
+    "pontok": [
+      "**2 683** megjósolt peptid 373 előfehérjéből",
+      "**100** peptidet teszteltek élő sejteken",
+      "**12** aminosav: ennyi a megtalált BRP",
+      "**50%** kevesebb evés minipigben 1 óra alatt",
+      "**10 perc** alatt lebomlik a vérben"
+    ]
+  },
+  "meglepo": "A találatot adó Peptide Predictor **nem gépi tanulásos modell, hanem egy reguláris kifejezés**, és a kódja nyilvánosan elérhető a GitHubon. A kutatók úgy ellenőrizték a programot, hogy ráengedték a proglukagonra. **Magától megtalálta benne a GLP-1-et**, vagyis azt a hormont, amelynek a mintájára az Ozempic hatóanyaga készült.",
+  "kiemel": [
+    "BRP",
+    "GLP-1"
+  ],
+  "cover": {
+    "src": "/assets/elemzes/ai-kereso-gyogyszerkutatas-brp-peptid-v1.webp",
+    "alt": "Végtelenbe nyúló, sötét könyvtárterem alulról fényképezve: a mennyezetig érő polcokon több ezer egyforma, bőrkötésű könyv sorakozik, fölöttük aranyozott keretben címerek. Ilyen tereppel indult a keresés az emberi fehérjék katalógusában.",
+    "forras": "Fotó: Jez Timms / Unsplash"
+  },
+  "borito_jeloltek": [
+    {
+      "src": "/assets/elemzes/ai-kereso-gyogyszerkutatas-brp-peptid-v1.webp",
+      "alt": "Végtelenbe nyúló, sötét könyvtárterem alulról fényképezve: a mennyezetig érő polcokon több ezer egyforma, bőrkötésű könyv sorakozik, fölöttük aranyozott keretben címerek. Ilyen tereppel indult a keresés az emberi fehérjék katalógusában.",
+      "forras": "Fotó: Jez Timms / Unsplash"
+    },
+    {
+      "src": "/assets/elemzes/ai-kereso-gyogyszerkutatas-brp-peptid-v2.webp",
+      "alt": "Fekete háttér előtt lebegő, halvány rozsdaszínű DNS-kettős spirál, éles fénnyel kiemelve. Az emberi genom a szöveg, amelyben a program a vágási helyek mintáját kereste.",
+      "forras": "Fotó: Ekke Krosing / Unsplash"
+    },
+    {
+      "src": "/assets/elemzes/ai-kereso-gyogyszerkutatas-brp-peptid-v3.webp",
+      "alt": "Sötét könyvtár polcai előtt támasztott régi falétra, a polcokon számozott gerincű kötetek sorakoznak. Valakinek fel kellett másznia, hogy több ezer kötetből kivegye az egyetlen jót.",
+      "forras": "Fotó: enrico bet / Unsplash"
+    }
+  ],
+  "body_md": "Van egy mondat, amit az elmúlt években ezerszer hallottál: az AI felgyorsítja a gyógyszerkutatást. Általában valami ilyesmit képzelsz mögé. Egy óriási modell végiggondolja a betegséget, és kitalál rá egy molekulát. **A valóság sokkal prózaibb, és pont ezért tanulságos.** A Stanford egyik legtöbbet idézett ilyen eredménye mögött nem egy gondolkodó modell áll, hanem egy kereső. Olyasféle, mint amikor Ctrl+F-fel végigfutsz egy hosszú szövegen. Csak itt a szöveg az emberi fehérjék betűsora volt, a keresett minta pedig egy enzim vágási helye.\n\nA találat egy 12 aminosavból álló peptid, a BRP. Egérben és minipigben csökkentette az evést, elhízott egerekben pedig visszafordította a hízást, méghozzá **a GLP-1-receptor megkerülésével**. A munka a [Nature-ben jelent meg](https://doi.org/10.1038/s41586-025-08683-y), 2025 márciusában. Nem új hír tehát, és főleg nem kész gyógyszer. Elemzésnek viszont pont most érdemes elővenni, mert tisztán megmutatja, hol gyorsít tényleg a számítógépes keresés, és hol áll meg.\n\n```szamok\n[{\"szam\": \"2 683\", \"felirat\": \"eddig le nem írt emberi peptidet jósolt meg a program\"}, {\"szam\": \"100\", \"felirat\": \"peptidet szintetizáltak és próbáltak ki sejteken\"}, {\"szam\": \"12\", \"felirat\": \"aminosavból áll a megtalált BRP\"}, {\"szam\": \"10 perc\", \"felirat\": \"ennél rövidebb a BRP féléletideje a vérplazmában\"}]\n```\n\n## Mit csinált pontosan az algoritmus?\n\n**Mintát keresett egy szövegben.** A szervezet sok hormont nem készen gyárt le, hanem egy hosszú előfehérjéből vág ki. A vágást enzimek végzik. Az egyik legfontosabb, a PCSK1, mindig ugyanazoknál a betűpároknál hasít: KR, RR, RK vagy KK. Ezek után még egy harmadik típusú aminosav következik. Ez a minta egy keresőkifejezéssel leírható.\n\nPontosan ezt tette a kutatócsoport. A [Peptide Predictor](https://github.com/Svensson-Lab/pro-hormone-predictor) nevű saját programjuk a UniProt adatbázisból letöltött emberi szekretómon futott, vagyis azokon a fehérjéken, amelyeket a sejt kijuttat magából. **A 2 082 szekretált fehérjéből 373 olyat talált, amelyben legalább 4 vágási hely van**, és ezekből 2 683 peptidet jósolt meg. A legtöbb jelölt az agyból jött, szám szerint 423, utána a máj következett 322-vel.\n\n```abra\n{\"cim\": \"Hány emberi fehérjéből lett a végén 1 működő jelölt?\", \"al\": \"A számítógépes szűrés lépései a Nature-cikk szerint, darabszámban\", \"egyseg\": \"db\", \"cimkek\": [\"Szekretált fehérje\", \"Jelölt prohormon\", \"Laborban tesztelt peptid\", \"Állatban is hatott\"], \"sorozatok\": [{\"nev\": \"Jelöltek száma\", \"ertekek\": [2082, 373, 100, 1]}], \"forras\": \"Coassolo és mtsai, Nature 641:192-201 (2025)\"}\n```\n\nA módszer önmagában semmit nem bizonyít, ezért a kutatók leellenőrizték egy olyan fehérjén, amelynek a feldolgozását régóta ismerjük. A proglukagonra engedték rá, és **a program 6 peptidet jósolt belőle, köztük a GLP-1-et**. Vagyis magától megtalálta azt a hormont, amelynek a mintájára az Ozempic hatóanyaga készült. Ez a legjobb védjegye egy keresőnek: visszatalálja azt, amit már tudunk.\n\n## Hol van ebben egyáltalán az AI?\n\n**Nem ott, ahol a hírek alapján várnád.** Maga a Peptide Predictor nem gépi tanulásos modell, hanem reguláris kifejezéssel dolgozó mintaillesztő, és a kódja bárki számára elérhető. Nincs benne tanítás, nincs benne súlyfájl.\n\nGépi tanulás 2 helyen jelenik meg a munkában, és mindkettő segédszerep. A 2 683 peptid várható hatásosságát 2 osztályozóval, a PeptideRanker és a MultiPep nevű modellel becsülték meg, ezek szerint a jelöltek **21-23%-a lehet biológiailag aktív**. A megtalált peptid térszerkezetét pedig az [AlphaFold](https://alphafold.ebi.ac.uk/entry/Q9C0B6) jósolta meg. A döntő lépés, a keresés maga, hagyományos programozás volt.\n\nÉrdemes ezt összevetni azzal, amit ma a nagy laborok csinálnak. A DeepMind [AlphaGenome 2 nevű modellje](/hir/megjelent-az-alphagenome-2-a-google-deepmindtol) sejttípusonként jósolja meg, mit okoz egy DNS-változat, az OpenAI és a Scripps pedig [külön modellt épít az agykutatásra](/hir/az-openai-es-a-scripps-gpt-rosalind-alapon-kutatja-az-agyat). Ezek valóban tanult modellek. A BRP esete viszont azt mutatja, hogy **a gyógyszerkutatás szűk keresztmetszete sokszor nem az okosság, hanem a rendszeres átfésülés**. A keresési teret addig senki nem járta végig.\n\nA gyakorlatban is számít, melyik eszköz kerül elő. Egy tanult modell akkor segít, ha nehezen átlátható összefüggést kell megsejteni. Ilyen volt az az eset is, amikor a Claude [egy ismeretlen sejtszerkezet térbeli felépítését segített megfejteni](/hir/a-claude-segitsegevel-hataroztak-meg-egy-titokzatos-sejtstruktura-3d). **Egy keresőprogram viszont akkor hoz újat, ha a terep nagy, a szabály egyszerű, és eddig senkinek nem volt türelme végigmenni rajta.** Az emberi szekretóma pontosan ilyen terep volt.\n\n## Mit találtak, és mennyire erős?\n\nA 2 683 jelöltből 100-at választottak ki, szintetizálták őket, és megnézték, felpörgetik-e az idegsejteket. A mérés a Fos nevű gén bekapcsolását figyelte 2 sejtvonalon, egy idegsejt jellegűn és egy hasnyálmirigy-béta-sejten. **A BRP mindkettőben több mint 10-szeresére emelte a Fos-szintet.** A peptid a BRINP2 nevű, főként agyi fehérjéből származik, és a sorrendje THRILRRLFNLC. A hatásához elengedhetetlen a 8. pozícióban álló leucin: ha azt kicserélték, a peptid teljesen hatástalan lett.\n\nItt kell egy pontosítást tenni. A Stanford sajtóközleménye úgy fogalmaz, hogy a GLP-1 3-szorosára, a BRP 10-szeresére emelte a sejtaktivitást. **A 2 érték azonban nem ugyanabban a sejtvonalban született**, így közvetlenül nem vethető össze. A cikk szerint a GLP-1 3-szoros hatását a béta-sejteken mérték. A 10-szeres összehasonlítási alap pedig egy idegi növekedési faktor volt az idegsejteken.\n\nA peptid nem laborban kitalált műtermék. A kutatók tömegspektrometriával **emberi agy-gerincvelői folyadékban is kimutatták a BRP-t, 700 pikomól és 3 nanomól közötti koncentrációban**. Egerek agyában 16-140 pikomólt mértek belőle, olyan egerekben viszont, amelyekben a PCSK1 enzim hibás, szinte nyoma sem volt. **Ez bizonyítja, hogy a szervezet tényleg elvégzi azt a vágást, amelyet a program megjósolt.**\n\nÁllatban a hatás viszont látványos. Éheztetett egereknek hasüregbe adva 5 mg/kg BRP azonnal visszafogta az evést, 20 mg/kg pedig 3 órára szinte teljesen leállította. Minipigben 2 mg/kg izomba adva **1 óra alatt 50%-kal kevesebb táplálékot ettek meg az állatok**. Elhízott egerek 14 napos kezelésénél a BRP-vel kezelt csoport átlagosan 4 grammal lett könnyebb a kontrollnál. A testösszetétel-mérés szerint a súlyvesztés teljes egészében a zsírtömeget érintette, az izomtömeget nem. A vércukor- és az inzulintolerancia is javult.\n\n```abra\n{\"cim\": \"Mekkora adag kellett a BRP-ből ugyanahhoz a hatáshoz?\", \"al\": \"A BRP és a GLP-1-alapú összehasonlító szer adagja ugyanabban a kísérletben, mikrogramm/testsúlykilogramm\", \"egyseg\": \"µg/kg\", \"cimkek\": [\"Minipig, 1 órás etetés\", \"Egér, 14 napos kezelés\"], \"sorozatok\": [{\"nev\": \"BRP\", \"ertekek\": [2000, 5000]}, {\"nev\": \"GLP-1-analóg (liraglutid)\", \"ertekek\": [8, 100]}], \"forras\": \"Coassolo és mtsai, Nature 641:192-201 (2025)\"}\n```\n\nAz ábra a cikk egyik legfontosabb korlátját mutatja. **A minipigben a BRP 250-szer, az egérben 50-szer nagyobb adagban kellett ahhoz, hogy a liraglutidhoz mérhető hatást adjon.** A kutatók maguk is kimondják, hogy a peptid vegyészi optimalizálásra szorul.\n\n## Miben más, mint a GLP-1-es szerek?\n\n**A BRP nem a GLP-1 útvonalán hat, és ezt több oldalról is ellenőrizték.** Ha a GLP-1-receptort egy blokkoló szerrel kikapcsolták, a GLP-1 hatása megszűnt, a BRP-é viszont megmaradt. Leptinhiányos és MC4R-hiányos egerekben is működött, vagyis az étvágyszabályozás 3 legismertebb központi kapcsolóját megkerüli. Ismeretlen maradt viszont a saját receptora.\n\n```parbaj\n{\"cim\": \"BRP és GLP-1 ugyanabban a kísérletsorozatban\", \"a\": \"BRP\", \"b\": \"GLP-1\", \"sorok\": [{\"mi\": \"Étvágycsökkentés akut egérteszten\", \"a\": \"hasonló mértékű\", \"b\": \"hasonló mértékű\", \"nyertes\": \"\"}, {\"mi\": \"Hatás a vércukorra és az inzulinra\", \"a\": \"nincs\", \"b\": \"van\", \"nyertes\": \"\"}, {\"mi\": \"Blokkolt GLP-1-receptor mellett\", \"a\": \"tovább hat\", \"b\": \"nem hat\", \"nyertes\": \"a\"}, {\"mi\": \"Hatékony koncentráció sejten (EC50)\", \"a\": \"kb. 30 µM\", \"b\": \"kb. 100 µM\", \"nyertes\": \"a\"}, {\"mi\": \"Együtt adva a másikkal\", \"a\": \"összeadódik\", \"b\": \"összeadódik\", \"nyertes\": \"\"}], \"forras\": \"Coassolo és mtsai, Nature 641:192-201 (2025)\"}\n```\n\nAzt, hogy a BRP az agyban dolgozik, több oldalról is alátámasztották. A peptid akkor is visszafogta az evést, amikor orron át adták be, és akkor is, amikor közvetlenül az agykamrába. **Az agykamrába 20-szor kisebb adag is elég volt, mint a hasüregbe.** A sejten belüli jelút is megvan. A BRP a cAMP, a PKA és a CREB fehérje útján kapcsolja be a Fos gént, ami Gs-típusú receptorra vall.\n\nA másik eltérés a hányinger. A GLP-1-es fogyasztószerek legismertebb mellékhatása a rosszullét, és ez sok embert el is tántorít tőlük. A BRP az agyban a hipotalamusz több magjában kapcsolt be jelzéseket, **az agytörzsben viszont nem**, márpedig a hányingert az agytörzs közvetíti. A viselkedési próbák ezzel egybevágtak: a kezelt állatok mozgása, vízfogyasztása, széklettermelése és szorongása nem változott, és egy ízundorteszten sem mutatták a rosszullét jeleit. Ez a cikk egyik legígéretesebb megfigyelése, de egerekre és patkányokra vonatkozik.\n\n## Miért nem gyógyszer ez még?\n\n**Mert a 2025 márciusa óta eltelt idő alatt sem lett belőle emberi vizsgálat.** A cikk maga sorolja fel az akadályokat, és ezek mind komolyak.\n\n**A BRP a vérben 10 percnél rövidebb idő alatt lebomlik**, és a kutatók a 2 bomlástermékét ki is mutatták. Egy heti egyszer adagolt készítményhez képest ez óriási távolság. A sejten mért hatékony koncentráció, nagyjából 30 mikromól, hormonhoz képest gyenge. A receptort, amelyen a peptid hat, máig nem azonosították, pedig e nélkül nem lehet tudni, melyik idegsejtcsoport felelős a hatásért. Végül: a kutatók megmutatták, hogy a BRP beadva visszafordítja az elhízást, de azt nem, hogy a szervezet saját BRP-jének bármi szerepe lenne a testsúly szabályozásában.\n\nÉrdemes tudni azt is, hogy **a cikk 2 szerzője, Katrin Svensson és Laetitia Coassolo feltalálóként szerepel a BRP-peptidekre vonatkozó szabadalmakon**. Svensson emellett a Merrifield Therapeutics társalapítója. Ez nyíltan szerepel a Nature-cikk érdekeltségi nyilatkozatában, és nem teszi érvénytelenné az eredményt, de a lelkes hangvételű sajtóanyagok olvasásakor jó fejben tartani.\n\n## Mit érdemes most kipróbálni?\n\n1. **Nézd meg, hogy a hírben szereplő „AI” keres vagy tanul.** A kettő nem ugyanaz. A Peptide Predictor kódja nyílt, bárki megnézheti, és abból azonnal kiderül, hogy mintaillesztésről van szó.\n2. **Keresd meg az eredeti közleményt a sajtóanyag helyett.** Itt a kettő között ott volt a sejtvonalak felcserélése és a 4 grammos súlykülönbség, amiből a közleményben 3 gramm fogyás és 3 gramm hízás lett.\n3. **Nézd meg, milyen fajon mérték.** Egér, patkány és minipig. Ez erős állatkísérletes bizonyíték, de emberi adat egy sor sincs mögötte.\n4. **Olvasd el az érdekeltségi nyilatkozatot.** A Nature-cikkek alján mindig ott van, és 10 másodperc.\n5. **Keresd a dátumot.** Ez a munka 2025 márciusában jelent meg, csak idén novemberben futott újra a hírfolyamokon.\n\n## Amit még nem tudunk\n\n**A legfontosabb nyitott kérdés a receptor.** Amíg nem tudjuk, mihez kötődik a BRP, addig a hatásmechanizmus leírása hiányos marad, és a mellékhatások sem jósolhatók meg. Nem tudjuk, mit csinál a szervezet saját BRP-je, hogyan változik a szintje éhezéskor vagy túlevéskor, és hogy egyáltalán szükség van-e rá a testsúly szabályozásához. Nem tudjuk, hogy a hányingermentesség emberben is megmarad-e, mert ezt eddig csak rágcsálókon mérték. És nem tudjuk, sikerül-e a peptidet annyira stabillá tenni, hogy gyógyszer legyen belőle. A Nature-cikk utolsó mondata is ennyit állít: a módszer bizonyítottan alkalmas arra, hogy számítógéppel hatóanyagjelölteket találjunk. A többi ezután jön.\n\n**Ez az írás nem orvosi tanács, és a BRP nem elérhető készítmény.**",
+  "sources": [
+    {
+      "label": "Coassolo L, Svensson KJ és mtsai: Prohormone cleavage prediction uncovers a non-incretin anti-obesity peptide, Nature 641:192-201, 2025. március 5.",
+      "url": "https://doi.org/10.1038/s41586-025-08683-y"
+    },
+    {
+      "label": "A cikk teljes szövege a PubMed Centralban (PMC12043402)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12043402/"
+    },
+    {
+      "label": "A Peptide Predictor forráskódja a GitHubon",
+      "url": "https://github.com/Svensson-Lab/pro-hormone-predictor"
+    },
+    {
+      "label": "Stanford Medicine: Ozempic rival? Stanford Medicine-led study identifies molecule that curbs appetite, 2025. március 5.",
+      "url": "https://med.stanford.edu/news/all-news/2025/03/ozempic-rival.html"
+    },
+    {
+      "label": "A közlemény PubMed-rekordja (PMID 40044869)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40044869/"
+    },
+    {
+      "label": "ScienceDaily: AI uncovers a hidden molecule that could rival Ozempic, 2026. november 4.",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261104004909.htm"
+    },
+    {
+      "label": "A BRINP2 fehérje szerkezeti előrejelzése az AlphaFold adatbázisában",
+      "url": "https://alphafold.ebi.ac.uk/entry/Q9C0B6"
+    }
+  ],
+  "urlap_t": "27df9b92bb5be1a491db26710d1e4b8b7a7d67c00d56669e75c0a0bd286871c1",
+  "cim_jova": true
+}
