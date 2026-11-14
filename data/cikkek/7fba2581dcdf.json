@@ -1,0 +1,49 @@
+{
+  "id": "7fba2581dcdf",
+  "slug": "the-dawn-of-the-data-intelligence-engineer",
+  "forras_id": "dailydev",
+  "forras_nev": "MotherDuck (daily.dev)",
+  "url": "https://motherduck.com/blog/the-data-intelligence-engineer",
+  "publikalva": "2026-11-12T04:13:38.442000+00:00",
+  "cim": "The dawn of the Data Intelligence Engineer",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 36 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/c58819edc7c49925ca37aa69af8038da?_a=AQAEuop"
+  },
+  "cim_eredeti": "The dawn of the Data Intelligence Engineer",
+  "szoveg_eredeti": "I asked Nick Ursa, our lead data engineer (and MotherDuck co-founder), how AI had changed his job. His answer: \"This is the first time in my career with no backlog.\"\n\nYou'd think that would leave him with plenty of time on his hands, but he's busier than ever. While the backlog is gone, the answers still have to be right, and a human still has to decide how much quality control to do. Whereas once upon a time his job was to make sure the numbers he was computing were right, now his job is to make sure that the numbers that an LLM or agent comes up with are right.\n\nThat's a different job from working a ticket queue. At Data Outpost on November 4, I proposed a name for this new role: the Data Intelligence Engineer. I think it's now the emergent role on an AI-enabled data team, and I’d like to share why.\n\nA data team has one job: enable the business to make good decisions. The faster they can make those decisions, based on a more accurate picture of what is happening, the better those decisions can be.\n\nThe hard part has been the route a question takes to become an answer. It moves like a relay. A marketing leader comes into work on Monday and notices that there was a spike in churn over the last week. Why did that happen? They file a ticket with the data team to investigate. An analyst picks up the ticket, and as they dig in, they realize some key data is not exported from one of the data sources. They file a ticket to ask a data engineer to look into it. That needs a change in one of the data pipelines, so the data engineer makes the change, tests it, runs the backfill, tests the backfill, and resolves the ticket. Then the ball is back in the court of the analyst, who can build the dashboard that was needed. By the time it ships, the marketing person can no longer remember why they asked in the first place. The churn rate recovered a couple of weeks later on its own.\n\nThis isn’t calling anyone out as not operating effectively or urgently; nobody in that relay did anything wrong. But every handoff means waiting, context is lost, and the half-life of the ability to effectively act on the answer to the question slowly decays.\n\nAs an aside, we should note that there was a whole generation of AI enabled tools that didn’t really help; the co-pilot era made some of the turnarounds faster, but the problem was that there were too many handoffs to be able to act quickly enough.\n\nBefore December 2025, the case against AI for analytics was easy to make. LLMs wrote bad SQL. Business logic was unknowable. The sensible conclusion was that this was never going to work. In fact, I used to talk about how data teams were more or less exempt from the disruption that was happening in other areas of software.\n\nThen, all of a sudden, the ground moved. New models got better at SQL. Business logic turned out to be something an agent can figure out with some helpful context. And agents went multi-turn, which means they don't have to get it right the first time. They can try a query, look at what came back, and try again, just like a human analyst would do. Put those together and it … just … works.\n\nSelf-service BI has been right around the corner for decades, what makes this different? Well, as a bit of an existence proof, here’s an example; the presentation I gave at Data Outpost was not created as a powerpoint deck or Google Slides, it was an app that I built using MotherDuck and Claude. I used live datasets from four different data sources, built a number of interactive and animated visualizations. Anything I did could be done by virtually anyone; I didn’t look at a single line of code or SQL.\n\nIt is important to stress that this isn’t just a way to automate building your dashboards. BI is typically pretty static, with maybe a couple of drill-downs. But with AI, you can build much richer visualizations. And what’s more, if you can build a dashboard with a prompt, you can go beyond that and also build a full-blown app.\n\nAllowing business stakeholders to answer questions with data on their own has an even broader benefit than just shortening the data team’s backlog; it actually allows them to make better decisions. By cutting down the amount of time it takes and the number of handoffs involved, they can ask more questions. They can ask follow up questions while they still have all of the context in their heads. This means they can make confident decisions faster.\n\nAI is dramatically changing the job information workers perform. Software engineers often find their time being spent babysitting Claude sessions and rubber stamping agent-written code. What about the traditional roles of the data team? Which of their jobs, to put it a bit provocatively, can be a prompt?\n\nAs uncomfortable as the answer might be, rather a lot can be done via a prompt. In the not too distant future, writing SQL queries, creating dashboards, and building dbt pipelines are not going to be things that require specialized knowledge to do. Agents are likely better than humans at these tasks already, and they’re only going to get better. Our Data Engineer, Nick, moved us from one version of Airflow to another in a weekend, with minimal supervision, which once would have taken a week.\n\nWriting code or SQL or building dashboards was never the whole job, though. The need for accurate data and the ability to understand it doesn’t go away. And someone has to be accountable, who can sign off and say “yes, this is right”. That takes a human in the loop. Quoth Nick, one more time, “Data eng, regardless of tooling or who does it, is an accountability function.\"\n\nOnce agents are writing the code, what’s left in the data world? It turns out quite a lot. Humans need to make sure that other stakeholders without the word “Data” in their title are able to solve problems with data. That means they need to ensure a clean data model with appropriate context and annotations, a clear ontology to ensure that terms and concepts are being applied consistently throughout, and also they need to make sure that things continue to work.\n\nThese aren’t things that a model can intuit from data or history. A model knows SQL. It doesn't know how your company counts revenue, or which of several similar-looking tables is the real one (it is revenue_cpx_new_revised_v2_use_this_one ) . A model doesn’t know that when the sales team talks about revenue they mean commissionable revenue, and the finance team uses something different.\n\nContext is a crutch that is difficult to maintain. What’s even better is just building a clean data model in the first place. There is a good analogy with software; I tend to consider it a user experience failure any time your user has to read the manual; a cleaner design would have made whatever they were trying to do obvious. Context is just a manual for agents; if you can make the data model simple and clear enough, it can save them a lot of time and energy (and tokens).\n\nThe jobs to be done for a data person in the age of AI don’t really match any of the typical responsibilities of other data team members. I think it is different enough to merit a new title, which I hereby dub the “Data Intelligence Engineer”\n\nThe Data Intelligence Engineer automates the data engineer's work (ingestion) and the analytics engineer's work (transformation and modeling) by creating and conducting software agents. They encode their knowledge of the system into shared context that can be used by other agents to answer questions about the organization. These include things like which fields are joinable but also what someone in the company means when they say “ARR”.\n\nEvals are another big part of their responsibility; these are the system tests that validate that when you ask questions with a known answer, the answer is correct. A good eval suite can give confidence that the types of questions that users ask of the system are going to be answered correctly by the agent. Evals also are a way of knowing when something breaks.\n\nThe goal",
+  "begyujtve": "2026-11-14T19:34:43.127576+00:00",
+  "prioritas": {
+    "pont": 36,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 30,
+      "egyediseg": 85,
+      "hitelesseg": 62,
+      "aktualitas": 37,
+      "kozossegi": 37
+    },
+    "elofeszures": 62,
+    "tanult": 24,
+    "indok": "Egyes személyes tapasztalat alapú blogbejegyzés az adatmérnöki munka átalakulásáról Forrás-tapasztalat: -8.",
+    "tema": "ai data engineering",
+    "cim_hu": "Hogyan alakítja át a mesterséges intelligencia az adatmérnökök munkáját",
+    "lead_hu": "A MotherDuck társalapítója szerint az AI használatával eltűnt a feladatok torlódása, de a minőségellenőrzés továbbra is emberi feladat maradt.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-14T19:35:13+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-14T19:35:14+00:00"
+}
