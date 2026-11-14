@@ -1,5 +1,29 @@
 [
   {
+    "i": "d586df59cc4d",
+    "p": "/assets/kep/d586df59cc4d.webp",
+    "c": "A Gemini 4 Carbon átvette a vezetést a MathArena matematikai tesztjén",
+    "b": "A Google új modellje megelőzte az OpenAI-t a matematikai benchmark élén, de a számítási teljesítményért tizenötszörös árat kell fizetni.",
+    "k": "The Decoder",
+    "g": "modell",
+    "u": "/hir/a-gemini-4-carbon-atvette-a-vezetest-a-matharena-matematikai-tesztjen",
+    "sz": "Hosszú idő után először taszította le egy nem OpenAI fejlesztésű modell a GPT-6.1 Sol-t a MathArena AI matematikai teszt első helyéről. A Gemini 4 Carbon szerezte meg a vezető pozíciót, míg a második helyre az Anthropic-féle Claude Fable 5.2 került, így jelenleg ez a két leginkább teljesítő nyilvánosan elérhető modell az összetett matematikai feladatoknál.\n\nA tesztek során a Gemini 4 Carbon leggyakoribb hibája az időkeret túllépése volt. A modell szinte soha nem adja fel a feladatot: az egyik esetben egy szkriptje több mint 11 órán keresztül futott anélkül, hogy ellenőrizte volna annak állapotát.\n\nEz a rendkívüli kitartás és teljesítmény viszont komoly költségekkel jár. A tesztelés során használt beállítások mellett a Carbon használata nagyjából 15-ször többe kerül, mint a GPT-6.1 Sol, míg a Claude Fable 5.2 ára a negyvenszeresét is eléri. Gemini 4 Carbon Google MathArena OpenAI",
+    "d": "nov. 14. 17:48",
+    "t": "2026-11-14T16:48:01+00:00"
+  },
+  {
+    "i": "470ab561f6f8",
+    "p": "/assets/kep/470ab561f6f8.webp",
+    "c": "Saját szerveren futtatja a DeepSeek V4.1-et egy amerikai ügyvéd",
+    "b": "Nick Mermiges 8 darab használt Nvidia V100 GPU-ból épített saját AI-szervert, amelyen helyben, adatvédelmi aggályok nélkül futtatja a jogi AI-modelljét.",
+    "k": "Tom's Hardware",
+    "g": "eszköz",
+    "u": "/hir/sajat-szerveren-futtatja-a-deepseek-v4-1-et-egy-amerikai-ugyved",
+    "sz": "Egy dél-karolinai ügyvéd, Nick Mermiges egyedi, 8 darab használt Nvidia V100 videókártyára épülő AI-szerverét bővítette 1 TB RAM-mal és egy RTX 3090 GPU-val. A rendszert arra használja, hogy a DeepSeek V4.1 Flash modellt saját, kifejezetten jogi feladatokra fejlesztett ellenőrző kódjával ötvözve futtassa az irodáján belül.\n\nA fejlesztés során a modell által használt szakértői modulok csaknem 40 százalékát sikerült 2-bites pontosságról 4-bites NVFP4 precizitásra emelni. Ez lényegesen jobb válaszminőséget eredményez, mivel a modell lekéréseinek több mint 80 százalékát a pontosabb szakértői rétegek szolgálják ki.\n\nA finomhangolási és kódolási munkát Claude Code segítségével végezte el. A szerver átlagos generálási sebessége másodpercenként 150-180 token, és a gépen a bizalmas ügyféladatok végig helyi hálózaton, az iroda elhagyása nélkül maradnak. DeepSeek Nvidia hardver adatvédelem",
+    "d": "nov. 14. 13:50",
+    "t": "2026-11-14T12:50:00+00:00"
+  },
+  {
     "i": "e2d674adf4bc",
     "p": "/assets/kep/e2d674adf4bc.webp",
     "c": "Az Anthropic az eredeti erőforrás töredékéből újra tudja tanítani csúcsmodelljét",
