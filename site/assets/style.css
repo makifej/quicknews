@@ -2036,3 +2036,11 @@ html.os-android .app-banner .ab-asztal { display: none; }
 .app-banner-gomb { flex: 0 0 auto; font-weight: 900; white-space: nowrap; background: rgba(0,0,0,.18); padding: 6px 11px; border-radius: 999px; }
 .app-banner-keret .app-banner { margin: 10px 0 0; }
 @media (max-width: 640px) { .app-banner .ab-al { display: none; } .app-banner { font-size: 14px; padding: 8px 10px; gap: 9px; } }
+/* kapu: a látható képernyőbe férjen (Brave/Chrome sávjai mellett is), 2026-11-14 */
+.app-kapu { top: 0; bottom: auto; height: 100vh; height: 100dvh; align-items: center; padding: 12px; box-sizing: border-box; }
+.app-kapu-lap { max-height: calc(100dvh - 24px); overflow-y: auto; border-radius: 20px; border-bottom: 1px solid var(--keret); padding: 20px 20px 14px; gap: 10px; box-sizing: border-box; }
+.app-kapu h2 { font-size: 21px; }
+.app-kapu p { font-size: 15px; line-height: 1.45; }
+.app-kapu-lista { max-height: 24dvh; }
+.app-kapu-gomb { margin-top: 2px; padding: 13px 16px; }
+.app-kapu-masod { padding: 8px; }
