@@ -649,6 +649,16 @@ details.eredeti .eredeti-szoveg { padding: 0 0 16px; font-size: 14px; line-heigh
 .fb-gomb:hover { background: var(--keret); color: var(--kiemelo-szin); }
 .fb-gomb svg { width: 21px; height: 21px; }
 .fb-gomb:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
+.app-gomb { color: var(--kiemelo-szin); }
+.app-gomb:hover { color: var(--kiemelo-szin); }
+.app-gomb svg { width: 21px; height: 21px; }
+/* mobilra külön ikonsor (a felső sorban a FB/TikTok 460 alatt elrejtve): Alkalmazás · Facebook · TikTok */
+.fej-mobik { display: none; }
+@media (max-width: 460px) {
+  .fej-mobik { display: flex; gap: 10px; margin: 12px 0 2px; }
+  .fej-mobik .fb-gomb { display: grid; width: 42px; height: 42px; }
+  .fej-mobik .fb-gomb svg { width: 20px; height: 20px; }
+}
 .tema-gomb { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; flex: 0 0 auto; color: var(--szoveg); background: var(--bg-3); border: 1px solid var(--keret); border-radius: 50%; cursor: pointer; transition: background-color 700ms var(--gorbe); }
 .tema-gomb:hover { background: var(--keret); }
 .tema-gomb svg { width: 21px; height: 21px; }
