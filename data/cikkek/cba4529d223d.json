@@ -1,0 +1,49 @@
+{
+  "id": "cba4529d223d",
+  "slug": "six-studies-show-artificial-intelligence-can-augment-obstetric-and",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/six-studies-show-artificial-intelligence-can-augment-obstetric-and-pediatric-clinical-decisions/",
+  "publikalva": "2026-11-14T01:07:42+00:00",
+  "cim": "Six Studies Show Artificial Intelligence Can Augment Obstetric and Pediatric Clinical Decisions",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 64 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-10979.png"
+  },
+  "cim_eredeti": "Six Studies Show Artificial Intelligence Can Augment Obstetric and Pediatric Clinical Decisions",
+  "szoveg_eredeti": "Six Studies Show Artificial Intelligence Can Augment Obstetric and Pediatric Clinical Decisions\n\nA collection of six original research studies highlights how artificial intelligence, pharmacometric models, and wearable digital devices can augment clinical decision-making in obstetric and pediatric pharmacology by integrating routinely gathered patient data with pharmacological principles. Writing in an editorial for Frontiers in Pharmacology, researchers Jeffrey S. Barrett, Catherine M. Sherwin, and Samuel L. Seward Jr. synthesized findings spanning individualized antibiotic dosing, neonatal laboratory prediction, wearable maternal monitoring, labor analgesia efficacy, post-puncture pain reduction, and hospital-wide intelligent prescribing systems.\n\nObstetric and pediatric pharmacology historically represent two of the most evidence-poor areas of clinical practice, where dynamic physiological changes across pregnancy and childhood alter drug disposition. Because clinical trials in these populations remain limited, healthcare providers have frequently relied on empirical, weight-based dosing regimens that fail to account for biological variability. The editorial outlines how machine learning algorithms, predictive risk analytics, and clinical decision-support infrastructure are increasingly investigated to address these historical data gaps, while cautioning that clinical utility depends strictly on population-specific evidence rather than generalized technological expectations.\n\nIn one of the pediatric evaluations, Zhang and colleagues developed a hybrid model that integrated a population pharmacokinetic framework of linezolid with machine learning algorithms for critically ill children. The investigators utilized SHapley Additive exPlanations, known as SHAP, to determine the relative contribution of model features, identifying drug clearance, administered dose, patient weight, and renal function as central predictive determinants. Notably, the study authors observed that their strong internal validation metrics were optimistic because pharmacokinetic parameters used as model inputs were derived from the same drug concentration datasets being predicted, illustrating the necessity of prospective, leakage-free validation before deploying hybrid dosing models to clinical bedsides.\n\nAddressing neonatal metabolic stability, Westvik and colleagues analyzed routinely collected clinical data to estimate serum phosphate concentrations in very preterm infants. The investigators examined blood gas measurements, anthropometric metrics, and nutritional intake variables without imposing additional procedural burdens on fragile patients. Their analysis revealed that small-for-gestational-age status represented the dominant clinical risk factor associated with early hypophosphatemia, demonstrating how standard electronic health documentation can support timely risk stratification in neonatal intensive care units.\n\nDigital health applications in perioperative maternal care were demonstrated by Li and colleagues, who assessed a consumer smartwatch for detecting spinal anesthesia-induced hypotension among women undergoing cesarean delivery. At a clinically relevant blood pressure threshold, the wearable device demonstrated moderate accuracy, recording an area under the receiver operating characteristic curve of 0.87, a sensitivity of 79.2 percent, and a specificity of 82.0 percent. However, the device exhibited reduced sensitivity when applied to milder blood pressure drops, leading the researchers to position the consumer wearable as an adjunct screening aid rather than an autonomous diagnostic replacement for standard hemodynamic monitoring.\n\nPredictive modeling of labor pain management was investigated by Wang and He, who compared logistic regression, Naive Bayes, random forest, support vector machine, and XGBoost architectures to forecast intrapartum labor analgesia efficacy. Evaluating a cohort of 137 parturients using preoperative demographic, clinical, ultrasound, and psychological parameters, their XGBoost model delivered strong discrimination during internal training with an area under the receiver operating characteristic curve of 0.875. That performance declined to an area under the curve of 0.759 during validation, underscoring that algorithmic discrimination can drop when tested outside primary training sets.\n\nIn a prospective cohort of 473 women undergoing cesarean delivery, He and colleagues evaluated an analgesic intervention consisting of nalbuphine-ropivacaine infiltration along the epidural puncture tract. The researchers reported lower rates of post-neuraxial puncture-site pain compared with ropivacaine infiltration alone, supported by an interpretable XGBoost risk model that achieved an area under the receiver operating characteristic curve of 0.912. The study authors explicitly noted that the calculated SHAP values reflected statistical associations within the algorithmic structure rather than definitive biological mechanisms, pointing to the ongoing requirement for confirmation through prospective, controlled clinical trials.\n\nTransitioning from predictive models to institutional healthcare execution, Wu and colleagues constructed China’s first Pediatric Rational Medication Intelligent Decision System. The comprehensive knowledge platform comprises more than 400,000 structured database entries covering 1,030 individual medications, with curated guidelines for dosing rules, drug-drug interactions, intravenous infusion parameters, pharmacogenomic indicators, and compatibility with traditional Chinese medicines. Directly connected to the hospital information system with continuous access to patient disease diagnoses and laboratory biochemistry, the platform was associated with a significant decrease in higher-severity prescription warnings across clinical services.\n\nThe editorial authors emphasize that institutional databases and predictive algorithms are complementary components of modern clinical workflows rather than competing methodologies. Advanced algorithmic dosing models require access to structured, pediatric-specific, and rigorously maintained medication knowledge bases to reach patient care areas safely. Furthermore, successful clinical adoption depends heavily on governance, institutional workflow integration, and health information system interoperability aimed at mitigating clinician alert fatigue and improving measurable health outcomes.\n\nLooking toward future translation, the editorial authors concluded that artificial intelligence applications in obstetric and pediatric medicine must advance from retrospective single-center analyses into prospective multicenter evaluations. Critical validation priorities include assessing calibration, transportability across diverse health systems and developmental stages, clinical workflow impact, and direct effects on maternal and pediatric outcomes. Above all, the authors stressed that human clinical oversight must be preserved whenever algorithmic systems inform drug selection, precision dosing, or therapeutic interventions.\n\nBeyond individual study findings, the editorial synthesizes how artificial intelligence, pharmacometric frameworks, and digital health tools can systematically address historical data voids in maternal and child medicine. These modalities encompass personalized dosing regimens, predictive risk analytics, intelligent prescription screening, and digital monitoring systems. The editorial authors stress that clinical value cannot rely on generalized enthusiasm, but depends entirely on rigorous, population-specific evidence. Rather than replacing clinical judgment, the greatest opportunity for artificial intelligence in obstetric and pediatric pharmacology resides in augmenting clinical decision-making through integrating routinely collected clinical data with fundamental pharmacological knowledge.\n\nMethodologically, the predictive dosing and metabolic investigations demonstra",
+  "begyujtve": "2026-11-14T07:18:57.234360+00:00",
+  "prioritas": {
+    "pont": 64,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 70,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 90,
+      "kozossegi": 46
+    },
+    "elofeszures": 75,
+    "tanult": 26,
+    "indok": "Hat tanulmány igazolja az mesterséges intelligencia hatékonyságát a szülészeti és gyermekgyógyászati döntéshozatalban. Forrás-tapasztalat: -6.",
+    "tema": "ai clinical decision support",
+    "cim_hu": "Mellékhatás nélkül segíti az orvosokat az mesterséges intelligencia a szülészeten",
+    "lead_hu": "Hat új kutatás mutatja be, miként támogathatja a mesterséges intelligencia és a hordható okoseszközök klinikai adatintegrációja a szülészeti és gyermekgyógyászati döntéshozatalt.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-14T07:19:03+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-14T07:19:10+00:00"
+}
