@@ -524,6 +524,8 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
       g.setAttribute('aria-label', t==='light'?'Sötét téma bekapcsolása':'Világos téma bekapcsolása'); if(meta) meta.setAttribute('content', t==='light'?'#ffffff':'#181818'); }
     alkalmaz(document.documentElement.getAttribute('data-theme')==='light'?'light':'dark');
     g.addEventListener('click', function(){ var uj=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light'; alkalmaz(uj); try{ localStorage.setItem('qn-tema', uj); }catch(e){} });
+    var t2=document.querySelector('[data-tema-tobb]'); if(t2) t2.addEventListener('click', function(){ g.click(); var d=t2.closest('details'); if(d) d.open=false; });
+    var tm=document.querySelector('[data-tobb]'); if(tm) document.addEventListener('click', function(e){ if(tm.open && !tm.contains(e.target)) tm.open=false; });
   })();
   document.querySelectorAll('.lejatszo').forEach(function(box){
     var gomb = box.querySelector('.lejatszas'); if (!gomb) return;
