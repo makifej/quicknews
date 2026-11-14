@@ -1,0 +1,49 @@
+{
+  "id": "ab27c98eea35",
+  "slug": "artificial-intelligence-reconstructs-damaged-ships-to-rapidly",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/artificial-intelligence-reconstructs-damaged-ships-to-rapidly-evaluate-seaworthiness-in-emergencies/",
+  "publikalva": "2026-11-14T21:30:19+00:00",
+  "cim": "Artificial Intelligence Reconstructs Damaged Ships to Rapidly Evaluate Seaworthiness in Emergencies",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 50 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-12122.png"
+  },
+  "cim_eredeti": "Artificial Intelligence Reconstructs Damaged Ships to Rapidly Evaluate Seaworthiness in Emergencies",
+  "szoveg_eredeti": "Artificial Intelligence Reconstructs Damaged Ships to Rapidly Evaluate Seaworthiness in Emergencies\n\nWhen commercial vessels and offshore platforms suffer structural deformations from accidental collisions, grounding incidents, or cumulative seawater corrosion, determining whether the compromised vessel can safely navigate or withstand ambient sea states is an urgent operational requirement. Conventional post-accident assessment methods struggle to deliver both quantitative rigor and rapid turnaround during emergency response operations. Visual surveys conducted manually or via remotely operated vehicles capture qualitative cosmetic damage and coarse dimensional extents, yet they lack the capability to compute changes in hydrodynamic forces, wave loads, or dynamic motion responses. High-precision scaled testing inside towing tanks and wave flumes demands weeks of model fabrication and specialized facility access, making it entirely impractical for time-critical field scenarios. Single-point numerical simulations solve some computational bottlenecks but remain strictly constrained by their reliance on preexisting, pristine computer-aided design files that fail to reflect irregular physical buckling, member distortion, or localized hull indentation. To bridge this critical technical gap, a research team developed a rapid evaluation framework that integrates field optical imaging, artificial intelligence-driven three-dimensional geometric reconstruction, linear potential flow boundary element analysis, and structured emergency decision-making.\n\nThe engineering workflow establishes an uninterrupted computational bridge connecting initial on-site data gathering with actionable navigational advisories through four consecutive technical phases. In the opening stage, an image acquisition scheme captures multi-view overlapping optical data focusing specifically across undamaged and buckled structural zones, followed by photometric and geometric preprocessing. In the second stage, these photographic inputs are fed into the HunYuan3D foundation model architecture to synthesize a complete spatial representation, which subsequently undergoes automated topological repairs and surface mesh regularization to guarantee numerical suitability. In the third stage, this repaired volumetric mesh is transferred directly into an open-source hydrodynamic solver that applies the frequency-domain boundary element method to quantify how the geometric distortion degrades vessel seakeeping and hydrostatic stability reserves. In the final phase, an automated decision tree synthesizes these hydrodynamic performance metrics alongside significant wave heights and structural deformation severities to yield definitive risk classifications and vessel-handling recommendations. By establishing an automated computational chain across disparate software environments, the framework eliminates the traditional modeling bottlenecks that have historically prevented real-time hydrodynamic safety assessments in salvage and emergency response.\n\nHigh-fidelity three-dimensional geometric generation from physical marine assets operating in volatile environments requires rigorous field acquisition protocols designed to overcome visual occlusions, wave interference, and marine lighting degradation. The multi-view imaging strategy organizes camera trajectories across four primary hull quadrants comprising bow, stern, port, and starboard sets, supplemented by dense, redundant viewpoints surrounding localized damage zones. Above-water hull sections exposed to open air are documented using unmanned aerial vehicles, whereas submerged underwater hull sections are documented using remotely operated vehicles equipped with dedicated artificial illumination arrays. Because real marine vessels undergo continuous oscillatory motions in surrounding waves, exposing variable vertical swaths of the outer shell plating over time, optical recording is conducted repeatedly over a specified temporal window. The resulting image sets captured across asynchronous intervals and differing vantage points are subsequently registered using the observable waterline position and physical reference markers distributed along the hull. Every acquired optical frame undergoes automated quality screening against established criteria for exposure, contrast, and edge sharpness, and any substandard or occluded frames are immediately discarded and re-acquired.\n\nSurviving optical frames are processed using the open-source OpenCV computer vision library, where filtering algorithms execute sensor denoising, particle speckle suppression, lens distortion correction, and global brightness equalization to balance uneven marine lighting and compensate for refractive disturbances. The unified two-dimensional frames then enter the HunYuan3D modeling platform, an artificial intelligence generation framework developed by Tencent Hunyuan that reconstructs volumetric object geometry through a two-stage architecture coupling the LATTICE shape foundation model with a physically based rendering texture engine. Within the multi-view feature encoding stage, a Convolutional Neural Network and Transformer hybrid network extracts multi-scale visual features, while three-dimensional-aware Rotary Position Embedding encodes viewpoint spatial orientations. A multi-view attention mechanism operating with a shared attention mask synchronizes features across distinct camera positions without requiring prior explicit camera-pose registration. The fused visual latent representations are projected into a shape latent space structured by 3DShape2Vecset to define constrained latent variables. Reverse denoising sampling within a denoising diffusion probabilistic model framework generates shape latent vectors that are decoded into dense point clouds, from which Poisson surface reconstruction extracts a preliminary polygon mesh.\n\nBecause raw generated surface meshes frequently contain topological anomalies that derail hydrodynamic boundary element solvers, the pipeline subjects the preliminary geometry to automated optimization within MeshLab software. Automated hole-filling algorithms driven by region-growing methods close structural apertures while maintaining overall surface curvature continuity. Diagnostic routines detect and eliminate non-manifold edges, isolated degenerate facets, and duplicate polygonal faces to establish a closed, watertight manifold boundary. The mesh undergoes edge-collapse simplification to achieve manageable element densities and Laplacian smoothing to suppress non-physical high-frequency surface artifacts while preserving macro-scale hull contours. Once the outer surface mesh is exported as a watertight stereolithography file, the coordinates are scaled to match actual vessel physical dimensions based on known baseline parameters including designed draft and waterline length. The aligned model is imported into the hydrodynamic solver environment and clipped precisely at the design waterline, isolating the submerged wetted hull surface whose outward-pointing triangular boundary facets serve directly as computation panels for subsequent boundary integral formulations.\n\nThe hydrodynamic simulation engine utilizes Capytaine, an open-source frequency-domain numerical package derived from the well-established Nemoh boundary element solver code. Operating under linear potential flow theory, the solver treats the ambient seawater as inviscid, incompressible, and irrotational, ensuring the flow velocity potential satisfies the Laplace governing equation throughout the computational fluid domain. The fluid kinematics are subject to standard physical constraints, including the body surface non-penetration condition along the hull panels and linearized free-surface boundary conditions on the undisturbed waterplane. Green’s second identity transforms the domain Laplace equation into a boundary integral equation restricted solely to the discretized wetted surfa",
+  "begyujtve": "2026-11-14T21:49:22.493838+00:00",
+  "prioritas": {
+    "pont": 50,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 50,
+      "egyediseg": 90,
+      "hitelesseg": 70,
+      "aktualitas": 92,
+      "kozossegi": 26
+    },
+    "elofeszures": 76,
+    "tanult": 12,
+    "indok": "Niche tudományos és ipari alkalmazás a hajózásban, korlátozott hírértékkel a szélesebb AI-közönség számára. Forrás-tapasztalat: -6.",
+    "tema": "ai ship damage assessment",
+    "cim_hu": "Mesterséges intelligencia értékeli a sérült hajók tengerállóságát vészhelyzetben",
+    "lead_hu": "Egy új mesterséges intelligencia alapú módszer gyorsan rekonstruálja a sérült hajótesteket, így segítve a tengerállóság gyors felmérését balesetek és szerkezeti károsodások után.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-14T21:49:53+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-14T21:49:58+00:00"
+}

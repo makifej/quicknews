@@ -528,6 +528,11 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     var tm=document.querySelector('[data-tobb]'); if(tm) document.addEventListener('click', function(e){ if(tm.open && !tm.contains(e.target)) tm.open=false; });
   })();
   (function(){
+    var ua=navigator.userAgent||'', h=document.documentElement;
+    h.classList.add(/; wv\)|quicknews-android/i.test(ua)?'os-app':/iPhone|iPad|iPod/i.test(ua)?'os-ios':/Android/i.test(ua)?'os-android':'os-asztal');
+    document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('[data-app-banner]'); if(a&&typeof gtag==='function') try{ gtag('event','app_banner',{hely:a.getAttribute('data-app-banner')}); }catch(x){} });
+  })();
+  (function(){
     // Heni 2026-11-14: androidos mobilböngészőben az elemzések csak az appban olvashatók (az app WebView-ja: „; wv)”)
     var ua=navigator.userAgent||'';
     if(!/Android/i.test(ua) || /; wv\)|quicknews-android|bot|crawl|spider|Lighthouse/i.test(ua)) return;
@@ -538,11 +543,18 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
       d.innerHTML='<div class="app-kapu-lap"><span class="app-kapu-cimke">Csak az appban</span>'+
         '<h2 id="app-kapu-cim">Az elemzéseket az alkalmazásban olvashatod</h2>'+
         '<p>A hosszabb, utánajárt elemzések a quicknews Android-alkalmazásban érhetők el. Ingyenes, és pár másodperc alatt telepíthető.</p>'+
+        '<div class="app-kapu-lista" data-kapu-lista hidden><small data-kapu-db></small><ul></ul></div>'+
         '<a class="app-kapu-gomb" href="/alkalmazas">Alkalmazás letöltése</a>'+
         (zarhato?'<button type="button" class="app-kapu-masod" data-kapu-zar>Most nem</button>':'<a class="app-kapu-masod" href="/">Vissza a hírekhez</a>')+'</div>';
       document.body.appendChild(d); document.documentElement.classList.add('kapu-nyitva');
       var z=d.querySelector('[data-kapu-zar]'); if(z) z.addEventListener('click',function(){ d.remove(); document.documentElement.classList.remove('kapu-nyitva'); });
       if(typeof gtag==='function') try{ gtag('event','elemzes_app_kapu',{oldal:ut}); }catch(e){}
+      fetch('/app/v1/elemzesek.json').then(function(r){return r.json();}).then(function(j){
+        var L=((j&&j.elemzesek)||[]).slice().reverse(); if(!L.length) return; var box=d.querySelector('[data-kapu-lista]'), ul=box.querySelector('ul');
+        box.querySelector('[data-kapu-db]').textContent='Eddigi elemzéseink ('+L.length+')';
+        L.forEach(function(x){ var li=document.createElement('li'); li.textContent=x.cim||''; ul.appendChild(li); });
+        box.hidden=false;
+      }).catch(function(){});
     }
     if((ut==='/elemzesek'||ut.indexOf('/elemzes/')===0) && ut.indexOf('/elemzes/elonezet')!==0){ kapu(false); return; }
     document.addEventListener('click',function(e){
