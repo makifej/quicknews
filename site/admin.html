@@ -173,6 +173,7 @@ button.torol:disabled{opacity:.5}
 @media (max-width:900px){.ap-ketto{grid-template-columns:minmax(0,1fr)}.ap-sor{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:560px){.ap-sor2{flex-wrap:wrap;gap:8px}}
 .ads-kap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;border:1px solid var(--vonal);border-radius:12px;padding:16px 20px;margin-bottom:24px;max-width:720px}
+.apk-szam{display:flex;align-items:baseline;gap:10px}.apk-szam b{font-size:32px;line-height:1;font-weight:700}.apk-szam span{color:var(--halk);font-size:15px}
 .ads-kap b{display:block;font-size:17px}.ads-kap .ads-al{display:block;color:var(--halk);margin-top:4px}.ads-kap .be{color:var(--amber)}.ads-kap button[disabled]{opacity:.6;cursor:wait}
 .hibasav{background:#2a1515;color:var(--hiba);border-radius:12px;padding:16px 20px;margin-bottom:24px;font-weight:600}
 .lab{color:var(--halkabb);font-size:16px;margin-top:32px}
@@ -465,6 +466,7 @@ if(/quicknews-android-admin/.test(navigator.userAgent))document.documentElement.
 <div id="h-lista"></div>
 </section>
 <section id="p-app" hidden>
+<div class="ads-kap" id="apk-mert"><div><b>APK letöltések</b><span class="ads-al">Betöltés…</span></div></div>
 <p class="a-bev">Az Android-app push-értesítései. Válassz egy hírt vagy írj saját szöveget, nézd meg az előnézetet, és küldd ki most vagy időzítve.</p>
 <div class="hibasav" id="ap-fcm" hidden>Az értesítések küldése még nincs bekötve: ehhez a Firebase-projekt kell. Az időzítés és a beállítások már menthetők.</div>
 <p class="hl-cimke">Új értesítés</p>
@@ -595,7 +597,7 @@ const U={statisztika:ADMIN?"/api/admin?mi=statisztika":"/statisztika.json",poszt
  ajanlott:ADMIN?"/api/admin?mi=ajanlott":"/ajanlott.json",prioritas:ADMIN?"/api/admin?mi=prioritas":"/prioritas.json",prDontes:ADMIN?"/api/admin?mi=prioritas_dontes":"/prioritas_dontes",kijeloles:ADMIN?"/api/admin?mi=kijeloles":"/kijeloles",
  kartya:f=>ADMIN?"/api/admin?mi=kartya&f="+encodeURIComponent(f):"/kartya/"+encodeURIComponent(f),
  kep:id=>ADMIN?"/api/admin?mi=kep&id="+id:"/kep?id="+id, kepFel:ADMIN?"/api/admin?mi=kep_feltolt":"/kep_feltolt",
- torles:ADMIN?"/api/admin?mi=torles":"/torles",bekuldesek:ADMIN?"/api/admin?mi=bekuldesek":"/bekuldesek.json",hirdetok:ADMIN?"/api/admin?mi=hirdetok":"/hirdetok.json",hirdAll:ADMIN?"/api/admin?mi=hirdeto_allapot":"/hirdeto_allapot",bekDontes:ADMIN?"/api/admin?mi=bekuldes_dontes":"/bekuldes_dontes",kisopor:ADMIN?"/api/admin?mi=kisopor":"/kisopor",muvelet:ADMIN?"/api/admin?mi=muvelet":"/muvelet",hirlevel:ADMIN?"/api/admin?mi=hirlevel":"/hirlevel.json",hlMuvelet:ADMIN?"/api/admin?mi=hirlevel_muvelet":"/hirlevel_muvelet",hlUtolso:ADMIN?"/api/admin?mi=hirlevel_utolso":"/hirlevel_utolso",boo:ADMIN?"/api/admin?mi=boo":"/boo.json",utm:ADMIN?"/api/admin?mi=utmutato":"/utmutato.json",utmMuvelet:ADMIN?"/api/admin?mi=utmutato_muvelet":"/utmutato_muvelet",booMuvelet:ADMIN?"/api/admin?mi=boo_muvelet":"/boo_muvelet",push:ADMIN?"/api/push?mi=lista":"/push.json",pushMuv:mi=>ADMIN?"/api/push?mi="+mi:"/push"};
+ torles:ADMIN?"/api/admin?mi=torles":"/torles",bekuldesek:ADMIN?"/api/admin?mi=bekuldesek":"/bekuldesek.json",hirdetok:ADMIN?"/api/admin?mi=hirdetok":"/hirdetok.json",hirdAll:ADMIN?"/api/admin?mi=hirdeto_allapot":"/hirdeto_allapot",bekDontes:ADMIN?"/api/admin?mi=bekuldes_dontes":"/bekuldes_dontes",kisopor:ADMIN?"/api/admin?mi=kisopor":"/kisopor",muvelet:ADMIN?"/api/admin?mi=muvelet":"/muvelet",hirlevel:ADMIN?"/api/admin?mi=hirlevel":"/hirlevel.json",hlMuvelet:ADMIN?"/api/admin?mi=hirlevel_muvelet":"/hirlevel_muvelet",hlUtolso:ADMIN?"/api/admin?mi=hirlevel_utolso":"/hirlevel_utolso",boo:ADMIN?"/api/admin?mi=boo":"/boo.json",utm:ADMIN?"/api/admin?mi=utmutato":"/utmutato.json",utmMuvelet:ADMIN?"/api/admin?mi=utmutato_muvelet":"/utmutato_muvelet",booMuvelet:ADMIN?"/api/admin?mi=boo_muvelet":"/boo_muvelet",push:ADMIN?"/api/push?mi=lista":"/push.json",pushMuv:mi=>ADMIN?"/api/push?mi="+mi:"/push",apk:ADMIN?"/api/admin?mi=apk_letoltes":"/apk.json"};
 /* a választások (fül, nap, nézet, időszak) megmaradnak frissítés után is */
 const TAR=(k,v)=>{try{if(v===undefined)return JSON.parse(localStorage.getItem("qn-pult-"+k));localStorage.setItem("qn-pult-"+k,JSON.stringify(v))}catch(e){return null}};
 async function lekér(u,opt){const r=await fetch(u,Object.assign({cache:"no-store",credentials:"same-origin"},opt||{}));
@@ -1120,7 +1122,10 @@ async function apmuv(mi,b){try{const r=await lekér(U.pushMuv(mi),{method:"POST"
 function apElonezet(){document.getElementById("ap-e-cim").textContent=document.getElementById("ap-cim").value||"Az értesítés címe";
  document.getElementById("ap-e-szoveg").textContent=document.getElementById("ap-szoveg").value||"Az értesítés szövege";
  const k=document.getElementById("ap-e-kep");const kp=APKEP||(APVAL&&APVAL.kep)||"";k.hidden=!kp;if(kp)k.src=kp}
+async function apkMert(){try{const j=await lekér(U.apk);const ma=(j.napok||{})[new Intl.DateTimeFormat("sv-SE",{timeZone:"Europe/Budapest"}).format(new Date())]||0;
+ const n=document.getElementById("apk-mert");n.innerHTML=`<div><b>APK letöltések</b><span class="ads-al">quicknews.hu/alkalmazas (api/apk.js)</span></div><div class="apk-szam"><b>${(j.osszesen||0).toLocaleString("hu-HU")}</b><span>összesen · ma ${ma}</span></div>`}catch(e){const n=document.getElementById("apk-mert");n.innerHTML=`<div><b>APK letöltések</b><span class="ads-al">Most nem elérhető.</span></div>`}}
 async function aptolt(){let d;try{d=await lekér(U.push)}catch(e){d={hiba:"Az értesítések most nem érhetők el."}}
+ apkMert();
  const I=document.getElementById("ap-idozitett"),E=document.getElementById("ap-elozmeny");
  if(d.hiba){E.innerHTML=`<div class="hibasav">${esc(d.hiba)}</div>`;I.innerHTML="";return}
  document.getElementById("ap-fcm").hidden=!!d.fcm;

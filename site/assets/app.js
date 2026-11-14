@@ -556,6 +556,8 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     else if (a.classList.contains('kereso-tetel')) ev('kereses_talalat', {link_url: a.href});
     else if (a.classList.contains('ertesit-gomb')) ev('ertesites_keres');
     else if (a.classList.contains('fb-gomb')) ev('facebook_kattintas', {hely: 'fejlec'});
+    else if (a.classList.contains('app-gomb')) ev('alkalmazas_menu', {hely: 'fejlec'});
+    else if (a.href && /\/api\/apk(\?|$)/.test(a.href)) ev('apk_letoltes', {link_url: a.href});
     else if (a.classList.contains('tema-gomb')) ev('tema_valtas', {tema: document.documentElement.getAttribute('data-theme') === 'light' ? 'sotet' : 'vilagos'});
     else if (a.closest('.rovatsor')) ev('rovat_menu', {rovat: (a.textContent||'').trim()});
     var lj = e.target.closest && e.target.closest('.lejatszo'); if (lj && !lj.dataset.mert) { lj.dataset.mert = '1'; ev('video_inditas', {tipus: lj.dataset.video ? 'mp4' : 'beagyazott'}); }
