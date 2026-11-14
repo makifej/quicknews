@@ -1,0 +1,49 @@
+{
+  "id": "87b8686439b2",
+  "slug": "vercel-releases-ui-sdk-50-ui-behaviors-for-ai-coding-agents",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/13/vercel-ui-sdk-agent-ui-behaviors/",
+  "publikalva": "2026-11-14T06:38:14+00:00",
+  "cim": "Vercel Releases UI SDK: 50+ UI Behaviors for AI Coding Agents",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 64 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-19999-1-2-scaled.png"
+  },
+  "cim_eredeti": "Vercel Releases UI SDK: 50+ UI Behaviors for AI Coding Agents",
+  "szoveg_eredeti": "Vercel Labs has released UI SDK , an open-source beta library of interface behaviors built for coding agents. Vercel UI SDK is a headless library that ships behaviors, not finished components. Agents combine those behaviors into accessible components for React, Vue, Svelte, Solid and Web Components. You can check the deployment options and specs here through our GPULeaderboard.com chrome extension .\n\n TL;DR \n\n Size: 50+ behaviors, 51 component modules in the repo, 6 npm packages at 0.1.0-beta.1 \n\n Runs on: Any modern browser, no GPU. React 19+, Vue 3.5+, Svelte 5.33+, Solid 2 RC, or plain Web Components\n\n Performance: In Vercel’s own test, an agent used 69% fewer tool calls on a settings task\n\n Best: Task time fell 61%, from 41 s to 16 s, with the agent bridge (self-reported)\n\n Worst: That benchmark covers 1 task and 3 runs, and beta APIs may still change\n\n What is Vercel UI SDK? \n\n UI SDK is a library of UI behaviors from Vercel Labs that agents assemble into components. The README lists keyboard navigation, focus, selection, dismissal, popups, drag and drop, and the ARIA they need. All of it lives in @ui-sdk/core . Thin adapters render it in each framework.\n\n The project site explains the idea with a Select. You do not hand the agent a finished Select. You hand it a popup, a selection model and typeahead. Those same parts can produce an autocomplete, a combobox, or a component nobody has designed yet.\n\n How does UI SDK work? \n\n Components start as primitives defined with definePrimitive . A primitive declares state, an API and slots. Slots attach attributes, events and behaviors to DOM parts. The README example builds a search field with createFocusRecovery . Its Clear button appears only when there is text.\n\n Each framework then renders the primitive with createParts . The README says the parts are the same in all 5 adapters. So 1 behavior definition can serve a React app and a Svelte app.\n\n Which behaviors ship? \n\n Behaviors shown on ui-sdk.dev include: \n\n createRovingFocus : arrow keys move through a list with 1 Tab stop\n\n createTypeahead : type a few letters to jump to an item\n\n createPopup : opens next to its trigger and stays on screen\n\n createSelection : select 1 or many, with Shift and Ctrl\n\n createReorder , createResize , createViewport and createVirtualizer \n\n The docs group behaviors into 10 categories, from Focus and Keys to Canvas. Prebuilt components include Select, Combobox, Date Picker, Menu, Tree and Color Picker.\n\n How do agents learn it? \n\n Setup is a prompt you paste into your agent . It installs the packages and adds a note to AGENTS.md . That note points the agent to the ui-sdk skill and to llms.txt inside the package docs. The skill installs with npx skills add vercel-labs/ui --skill ui-sdk . Pages without a build step can load web.js and web.css from ui-sdk.dev, per the skill listing .\n\n Can agents operate the UI directly? \n\n Yes, the agent docs describe a bridge created with createAgent() before the page renders. agent.snapshot() lists components, their state and available actions. agent.act() runs an action, such as renaming a project with setValue . Apps can pass an allow callback to approve or refuse actions. Change callbacks receive source: \"agent\" and can cancel the change. Tools can also be registered with supported browsers through WebMCP.\n\n UI SDK benchmark: agent bridge vs browser tools \n\n Vercel compared its bridge against browser tools on 1 project-settings task. The agent renamed a project, updated members and notification settings, then saved. Both agents used Sonnet through Claude Code, with the same task and system prompt. Figures are medians of 3 runs .\n\n Metric Browser tools UI SDK + bridge Change Tool calls 16 5 -69% Text read (characters) 39.8k 6.8k -83% Time 41 s 16 s -61% Cost $0.073 $0.032 -56% \n\n Treat these as directional. The sample is 1 task, and the browser-tools run used a different component library. Vercel does not name the Sonnet version. \n\n Deployment and availability \n\n All 6 packages are on npm at 0.1.0-beta.1 , published November 12, 2026, under Apache-2.0. Install with npm install @ui-sdk/react @ui-sdk/core , swapping the adapter per framework. Peer requirements are strict: React 19+ , Vue 3.5+ , Svelte 5.33+ and Solid 2.0.0-rc.14+ . An optional web.css file gives components a default look.\n\n How does UI SDK compare with Radix, React Aria, Base UI and Ark UI? \n\n Metrics UI SDK Radix Primitives React Aria Components Base UI Ark UI Model Behaviors composed by agents Unstyled components Hooks and components Unstyled components Components on Zag.js state machines Frameworks React, Vue, Svelte, Solid, Web Components React React React React, Vue, Solid, Svelte License Apache-2.0 MIT Apache-2.0 MIT MIT Latest npm version 0.1.0-beta.1 1.8.1 1.22.1 1.9.0 5.40.0 React peer range 19+ 16.8 to 19 16.8 to 19 17 to 19 18+ Agent skill and runtime bridge Yes (skill, llms.txt, createAgent, WebMCP) Not disclosed Not disclosed Not disclosed Not disclosed \n\n Versions and peer ranges are from npm as of November 13, 2026. React Aria hooks and Ark UI’s Zag.js machines already separate behavior from markup. UI SDK’s difference is the agent layer: a skill, bundled llms.txt and a runtime bridge\n\n Key Takeaways \n\n 50+ behaviors, 1 core, 5 framework adapters.\n\n Agents compose components from behaviors, not templates.\n\n createAgent lets agents act on UI state without screenshots.\n\n Self-reported: 61% faster and 56% cheaper on 1 task.\n\n Beta at 0.1.0-beta.1, with React 19 as the minimum.\n\n Check out the GitHub repo , docs and npm package . You can check the deployment options and specs here through our GPULeaderboard.com chrome extension .\n\n Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Vercel Releases UI SDK: 50+ UI Behaviors for AI Coding Agents appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-14T08:20:06.444418+00:00",
+  "prioritas": {
+    "pont": 64,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 70,
+      "egyediseg": 85,
+      "hitelesseg": 76,
+      "aktualitas": 95,
+      "kozossegi": 63
+    },
+    "elofeszures": 92,
+    "tanult": 60,
+    "indok": "A Vercel új nyílt forráskódú fejlesztői eszköze az kódoló AI-ágensek felületkezelését segíti. Forrás-tapasztalat: -6.",
+    "tema": "vercel ui sdk launch",
+    "cim_hu": "A Vercel kiadta az UI SDK-t az kódoló AI-ágensek támogatására",
+    "lead_hu": "A Vercel Labs közzétett egy nyílt forráskódú béta könyvtárat, amely több mint 50 interfész-viselkedéssel segíti az AI-ágenseket a React, Vue és más keretrendszerek komponenseinek megépítésében.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-14T08:20:22+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-14T08:20:35+00:00"
+}
