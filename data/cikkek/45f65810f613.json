@@ -1,0 +1,86 @@
+{
+  "id": "45f65810f613",
+  "slug": "az-aws-devops-agent-hibaelharitast-es-eroforras-letrehozast-kapott",
+  "forras_id": "dailydev",
+  "forras_nev": "AWS (daily.dev)",
+  "url": "https://aws.amazon.com/about-aws/whats-new/2026/11/ec2-image-builder-devops-agent-integration",
+  "szerzo": null,
+  "publikalva": "2026-11-12T00:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/e82c8cceed8771f89f06dfc50fa9305d?_a=AQAEuop"
+  },
+  "cim_eredeti": "EC2 Image Builder console now integrates with the DevOps Agent for troubleshooting and resource creation",
+  "forrasok": [],
+  "szoveg_eredeti": "EC2 Image Builder now integrates with the AWS DevOps Agent directly in the Image Builder console, enabling you to troubleshoot failed image pipelines and create resources directly from the console chat panel. You can diagnose up to 50 failed pipelines at once and ask follow-up questions in the same conversation. You can also choose to create resources by describing what you want, and the agent populates the console with values the service has already validated.\n\nWith this integration, diagnosing a failed pipeline no longer requires manually inspecting build logs, cross-referencing error codes, or iterating through configuration fixes, saving you significant time and expertise. The agent reads build logs, workflow steps, components, and network configuration, then provides the root cause and the steps to fix it. For resource creation, the agent verifies the configuration before populating the console for you to review and submit. If you troubleshoot or build with your own AI agents, the new EC2 Image Builder skill in the AWS Agent Toolkit provides you the same troubleshooting and creation capabilities.\n\nThis feature is available in all commercial regions. To get started, open the EC2 Image Builder console and use the DevOps Agent from the console panel. For more information, see the EC2 Image Builder documentation and for pricing refer DevOps agent Pricing page.",
+  "modell": "gemini-3.5-flash",
+  "cim": "AI-alapú hibaelhárítást kapott az AWS EC2 Image Builder",
+  "lead": "Az AWS EC2 Image Builder konzoljában elérhetővé vált az AI-alapú DevOps Agent integrációja.",
+  "osszefoglalo": "Az AWS beépítette a [DevOps Agent](https://docs.aws.amazon.com/devopsagent/?icmpid=docs_homepage_mgmtgov) mesterségesintelligencia-asszisztenst az [EC2 Image Builder konzoljába](https://aws.amazon.com/about-aws/whats-new/2026/11/ec2-image-builder-devops-agent-integration). Az eszköz automatikusan elemzi a build naplófájlokat, a munkafolyamat-lépéseket és a hálózati beállításokat, majd megadja a hiba gyökerét és a javítási lépéseket.\n\nA rendszer képes akár **50 meghiúsult folyamat egyidejű diagnosztizálására**, és a beszélgetésben összetett követő kérdéseket is fel lehet tenni neki. Az erőforrások létrehozásakor elég leírni a kívánt konfigurációt, a DevOps Agent pedig automatikusan kitölti az előzetesen ellenőrzött értékeket.\n\nA funkció az **összes kereskedelmi AWS-régióban** elérhető. A fejlesztők a saját AI-ügynökeikbe is beépíthetik a képességet az [AWS Agent Toolkit](https://docs.aws.amazon.com/agent-toolkit/?icmpid=docs_homepage_devtools)-ben megjelent új EC2 Image Builder skill segítségével.",
+  "miert_szamit": "A fejlesztők és üzemeltetők **jelentős időt spórolhatnak** a manuális naplóelemzés kiváltásával, mivel az AI automatikusan megtalálja a hibákat és kitölti a helyes beállításokat.",
+  "cimkek": [
+    "AWS",
+    "DevOps Agent",
+    "EC2 Image Builder",
+    "cloud"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "DevOps Agent",
+    "EC2 Image Builder",
+    "AWS Agent Toolkit"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 70,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 95,
+      "hitelesseg": 72,
+      "aktualitas": 69,
+      "kozossegi": 69
+    },
+    "elofeszures": 73,
+    "tanult": 67,
+    "indok": "Érdekes elemzés Sam Bankman-Fried elszalasztott milliárdos Anthropic részesedéséről Forrás-tapasztalat: -8.",
+    "tema": "anthropic sbf investment analysis",
+    "cim_hu": "Sam Bankman-Fried 37 milliárd dolláros nyereségtől esett el az Anthropic miatt",
+    "lead_hu": "A korábbi 500 milliós Anthropic-befektetés hatalmasat ért volna a cég tervezett tőzsdére lépésével, de SBF korábban áron alul eladta azt.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-14T07:06:02+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-14T07:07:22+00:00",
+  "megjelent": "2026-11-14T07:07:22+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-14T07:09:19+00:00",
+    "esemeny": "Az AWS integrálta a DevOps Agentet az EC2 Image Builder konzoljába, amellyel a felhasználók közvetlenül a chatpanelen keresztül háríthatják el a meghiúsult image-folyamatok hibáit és hozhatnak létre erőforrásokat.",
+    "forrasok": [
+      "https://aws.amazon.com/about-aws/whats-new/2026/11/ec2-image-builder-devops-agent-integration"
+    ],
+    "hibak": [
+      "Pontatlan cím: A cím azt sugallja, hogy a DevOps Agent kapott új funkciókat, miközben az EC2 Image Builder konzolja kapta meg a DevOps Agent integrációját."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Az AWS DevOps Agent hibaelhárítást és erőforrás-létrehozást kapott",
+      "lead": "Az AWS EC2 Image Builder konzoljában elérhetővé vált az AI-alapú DevOps Agent integrációja.",
+      "osszefoglalo": "Az AWS beépítette a **DevOps Agent** mesterségesintelligencia-asszisztenst az EC2 Image Builder konzoljába. Az eszköz automatikusan elemzi a build naplófájlokat, a munkafolyamat-lépéseket és a hálózati beállításokat, majd megadja a hiba gyökerét és a javítási lépéseket.\n\nA rendszer képes akár **50 meghiúsult folyamat egyidejű diagnosztizálására**, és a beszélgetésben összetett követő kérdéseket is fel lehet tenni neki. Az erőforrások létrehozásakor elég leírni a kívánt konfigurációt, a DevOps Agent pedig automatikusan kitölti az előzetesen ellenőrzött értékeket.\n\nA funkció az **összes kereskedelmi AWS-régióban** azonnal elérhető. A fejlesztők a saját AI-ügynökeikbe is beépíthetik a képességet az AWS Agent Toolkit-ben megjelent új EC2 Image Builder skill segítségével.",
+      "miert_szamit": "A fejlesztők és üzemeltetők **jelentős időt spórolhatnak** a manuális naplóelemzés kiváltásával, mivel az AI automatikusan megtalálja a hibákat és kitölti a helyes beállításokat."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-14T07:10:04+00:00",
+  "linkek_ellenorizve": true
+}

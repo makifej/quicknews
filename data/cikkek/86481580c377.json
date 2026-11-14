@@ -1,0 +1,49 @@
+{
+  "id": "86481580c377",
+  "slug": "the-roundup-by-bytebytego",
+  "forras_id": "dailydev",
+  "forras_nev": "ByteByteGo (daily.dev)",
+  "url": "https://blog.bytebytego.com/p/the-roundup-by-bytebytego",
+  "publikalva": "2026-11-11T16:30:53+00:00",
+  "cim": "The Roundup by ByteByteGo",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/d3504e6019f1a03973f56daaa870a43b?_a=AQAEuop"
+  },
+  "cim_eredeti": "The Roundup by ByteByteGo",
+  "szoveg_eredeti": "Writing code is fast, shipping it is still hard. Railway’s push-button compute, storage, and networking is built for both small and hyperscale software.\n\nHumans and agents alike operate on one vertically integrated system on our own hardware. Get superior speed, better economics, and a lot more calm.\n\nSign up with the link below for free cloud credits and let your agents cook.\n\nThe Roundup covers insights and trends from the world of software development.\n\nToday, we’ll cover the following topics:\n\nMore and more Agents are writing the 1st draft of most new code. According to GitHub, more than 40% of PRs in September have originated with an agent doing the work.\n\nAnthropic has gone as far as replacing Git to keep up with a constant stream of changes.\n\nAnthropic’s S1 filing gives an inside look at the real worth of AI coding.\n\nBeyond AI, the very foundation of the World Wide Web has had a pretty rough time when it comes to security. PHP had to ship emergency fixes for two critical remote-code-execution bugs that attackers were already exploiting.\n\nDisclaimer: This post is based on publicly shared details from various sources. Please comment if you notice any inaccuracies.\n\nGit was designed in 2005 for the Linux kernel. At that time, you had 1000s of human developers. Each of them committed code a few times a day. Patches were swapped over email. For a couple of decades, these things were the normal way of doing stuff because writing code was a slow exercise.\n\nThis month, two data points have turned up that show that these norms are changing. GitHub’s Octoverse 2026 reports that more than 40% of pull requests in September started as a first draft using agents. This is up from 17% in March. For perspective, this comes to around 110 million PRs in a single month that have been started by agents.\n\nAlso, Anthropic recently released an article talking about how they replaced Git in its monorepo with an in-house system known as Scion. Daily merges in Scion grew from about 2500 in May to more than 30000 in September. A team of 7 developers moved the whole monorepo off Git in five months. The team says that the new setup uses 200X less CPU and memory than the Git mirror fleet it replaced.\n\nOf course, there are still some questions that numbers might not answer adequately.\n\nFirst, who is reviewing 110 million PRs a month? Octoverse says 90% of agent-involved PRs were merged within 2 weeks. You can think of faster merging as a sign of better code. But it could also mean that reviews are not good enough.\n\nSecond, how is GitHub even able to find out if something has been started by an agent? You can also have agents that commit stuff using a human’s account without any trace of their real identity. So it’s possible that the true share of agent work is even higher.\n\nThe third question is about Anthropic’s move to Scion. Of those 30000 daily merges, how many were later reverted? Throughput without a defect rate can’t give a complete picture.\n\nMy take is that building your own version control tool used to be a sign of a huge company because doing so required a ton of resources and bandwidth. For example, Google built Piper, and Meta built Sapling, for tens of thousands of engineers.\n\nAnthropic solved that scale problem with a fraction of the people. They were able to do so because agents did all the coding. This is where the change has happened. Generating code is now the relatively cheaper part of software engineering. The scarce resources are time for human code review, CI capacity, and merge rate. I expect the next wave of developer tooling to be about verifying code and not writing it because that’s where the bottleneck is shifting.\n\nGetting an agent to work in a perfect demo environment is easy. Keeping it working in the messy real world is where things get… interesting.\n\nGet a live technical demo of Redis Iris, the unified, real-time context engine. This free session explores six capabilities that keep your agents resilient at scale.What you’ll learn:\n\nRoute requests by intent with reusable playbooks\n\nTrace failures to their source with less custom glue\n\nCome build agents with the context, memory, and messaging they need to stay accurate, accountable, and efficient in prod at scale.\n\nUntil now, using an AI coding tool meant you had to choose a model. For example, you might select Claude for one task, GPT for another, and Gemini for something else. With the greater adoption of a model router, you can get rid of this choice. The router looks at a task and decides which model (or which mix of models) should handle each step.\n\nAt GitHub Universe, GitHub made its router, Copilot Fusion, generally available. GitHub says that Fusion Max scored within two points of Claude Opus 5.5 Max on the Artificial Analysis Coding Agent Index, at about half the cost and 40% less time per task. GitHub also shipped Copilot projects, which run agents across multiple repos in parallel.\n\nCloud agent sessions can now go between your phone, VS Code, the CLI, and the web. So developers can basically handle their work on any device. Also, GitHub Enterprise customers can use every Copilot feature without any separate subscription. They only need to pay for the AI credits that they consume.\n\nNow, this development opens some interesting thoughts. Earlier, the choice of the model was with the developer. But now it’s decided by another process.\n\nCan you now see which model handled which part of your code? Many teams have rules about where code is allowed to go. But that might be decided by a router silently.\n\nIn my view, this is pretty similar to the cloud adoption story repeating itself from years ago. For example, AWS moved organizations from owning servers to simply paying for usage. With seat-based licensing, AI spend became predictable and difficult to optimize. With usage-based billing, you make it variable. But agents that might run for hours can make things quite spiky. And hence, teams need to be a lot more thoughtful in building AI workflows.\n\nStrategically, Fusion aims to make GitHub a model-neutral layer above the labs. This turns your models into interchangeable parts that sit behind a router. In a way, this might be good for buyers, but it might also be a little uncomfortable for any AI lab that counted on their model being the default choice. It also raises the pressure on GitHub’s reliability because a platform that runs your agents has to always stay up.\n\nAn S-1 is the document a US company has to file before it can get listed on the stock market. Unlike a funding announcement, it contains audited financials and a long list of things that might go wrong. This is quite interesting because till now, the economics of AI coding tools were mostly guesswork based on leaks. This filing helps replace some of the guesswork with real numbers.\n\nAnthropic filed its S-1 on October 26 under the planned ticker “ANT”. Revenue for H1 2026 was $16.3B, up from $1.2B a year earlier. It has 14K+ enterprise customers, and about 250 of them are spending $10M+ a year. Also, trading could begin as soon as November. There are reports of an operating profit in Q2 and 900% net revenue retention: existing customers spent nine times more in Q3 2026 than in Q3 2025.\n\nRecently, Anthropic also shipped reporting tools that show customers what their token spend is giving them. They also provided pooled team budgets.\n\nThere were also some important disclosures. Four models were able to reach external systems during 3rd-party security testing because a misconfiguration left access to the internet open. Anthropic also seemingly delayed pre-training a new model by more than a month to strengthen protection of its model weights.\n\nA key question is about how much of that 9X growth per customer comes from agents running for hours, versus more people actually using the model. Also, how much of the experimental budget could be cut next year? And it’s also quite possible that the decision to launch ROI dashboards the same",
+  "begyujtve": "2026-11-14T07:04:14.121206+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 15,
+      "hirertek": 15,
+      "egyediseg": 95,
+      "hitelesseg": 68,
+      "aktualitas": 32,
+      "kozossegi": 32
+    },
+    "elofeszures": 70,
+    "tanult": 50,
+    "indok": "Általános szoftverfejlesztési hírlevél és szponzorált tartalom",
+    "tema": "bytebytego newsletter roundup",
+    "cim_hu": "Heti összefoglalóval jelentkezett a ByteByteGo",
+    "lead_hu": "A szoftverfejlesztési trendeket bemutató hírlevél ezúttal az infrastruktúra és az ágensek kapcsolatát érinti.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-14T07:06:02+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-14T07:08:08+00:00"
+}
