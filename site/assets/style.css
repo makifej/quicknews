@@ -1260,14 +1260,21 @@ html.hl-nyitva { overflow: hidden; }
 }
 /* keskeny telefonon a Mentett hírek gomb miatt nem fér ki minden: a Facebook-ikon ott a láblécben marad */
 @media (max-width: 460px) { .fejlec-felso .fb-gomb { display: none; } }
-/* mobil: App · Facebook · TikTok ikon a rovatsor elején (Heni 2026-11-14), asztalon a fejlécben vannak */
-.rovatsor a.rov-ikon, .fejlec nav.rovatsor a.rov-ikon { display: none; }
+/* mobil: egy „Továbbiak” gomb a téma helyén, lenyíló menüvel: App · Facebook · TikTok · Téma (Heni 2026-11-14) */
+.tobb-menu { display: none; position: relative; flex: 0 0 auto; }
+.tobb-gomb { list-style: none; display: grid; place-items: center; width: 44px; height: 44px; color: var(--szoveg); background: var(--bg-3); border: 1px solid var(--keret); border-radius: 50%; cursor: pointer; }
+.tobb-gomb::-webkit-details-marker { display: none; }
+.tobb-gomb svg { width: 20px; height: 20px; }
+.tobb-menu[open] .tobb-gomb { background: var(--keret); }
+.tobb-panel { position: absolute; right: 0; top: calc(100% + 8px); z-index: 60; min-width: 220px; padding: 6px; background: var(--bg-2); border: 1px solid var(--keret); border-radius: 14px; box-shadow: 0 12px 32px rgba(0,0,0,.35); display: flex; flex-direction: column; }
+.tobb-sor { display: flex; align-items: center; gap: 12px; width: 100%; padding: 11px 12px; border-radius: 10px; font: inherit; font-size: 15px; font-weight: 600; color: var(--szoveg); background: none; border: 0; text-align: left; cursor: pointer; }
+.tobb-sor:hover, .tobb-sor:focus-visible { background: var(--bg-3); }
+.tobb-sor svg { width: 20px; height: 20px; flex: 0 0 20px; }
+.tobb-app svg { color: var(--kiemelo-szin); }
 @media (max-width: 460px) {
   .fej-mobik { display: none !important; }
-  .fejlec nav.rovatsor a.rov-ikon, .rovatsor a.rov-ikon { display: grid !important; place-items: center; align-self: center; width: 36px; height: 36px; min-width: 36px; padding: 0 !important; margin: 0; border: 1px solid var(--keret) !important; border-radius: 50% !important; background: var(--bg-3) !important; color: var(--szoveg) !important; flex: 0 0 auto; }
-  .rovatsor a.rov-ikon svg { width: 18px; height: 18px; }
-  .fejlec nav.rovatsor a.rov-ikon-app, .rovatsor a.rov-ikon-app { color: var(--kiemelo-szin) !important; }
-  .rovatsor a.rov-ikon + a:not(.rov-ikon) { margin-left: 4px; }
+  .fejlec-felso .tema-gomb { display: none; }
+  .tobb-menu { display: block; }
 }
 /* a Kipróbálom gomb mellett nagyobb térköz, egy vonalban (Heni 2026-10-13) */
 .kiprobal { vertical-align: middle; }
