@@ -2059,3 +2059,7 @@ html.os-android .app-banner .ab-asztal { display: none; }
 .elz-napracs { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 24px; }
 @media (max-width: 1100px) { .elz-napsor { grid-template-columns: repeat(2, minmax(0, 1fr)); } .elz-napcsop { grid-column: span min(var(--n), 2); } .elz-napracs { grid-template-columns: repeat(min(var(--n), 2), minmax(0, 1fr)); } }
 @media (max-width: 700px) { .elz-napsor { grid-template-columns: 1fr; } .elz-napcsop { grid-column: auto; } .elz-napracs { grid-template-columns: 1fr; } }
+/* Kiemelt elemzés (Heni 2026-11-15): finom arany keret és címke */
+.hir.elz-kiemelt .hkep { position: relative; outline: 3px solid var(--kiemelo); outline-offset: 3px; border-radius: 12px; }
+.elz-kiemelt-cimke { position: absolute; top: 10px; left: 10px; z-index: 2; font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--kiemelo-szoveg); background: var(--kiemelo); padding: 4px 9px; border-radius: 999px; box-shadow: 0 4px 12px rgba(0,0,0,.35); }
+.hir.elz-kiemelt h3 { color: var(--kiemelo-szin); }
