@@ -1,0 +1,49 @@
+{
+  "id": "d832598b094e",
+  "slug": "we-promised-three-months-it-took-nine",
+  "forras_id": "dailydev",
+  "forras_nev": "Tech World With Milan (daily.dev)",
+  "url": "https://newsletter.techworld-with-milan.com/p/we-promised-three-months-it-took",
+  "publikalva": "2026-11-12T16:02:49+00:00",
+  "cim": "We Promised Three Months. It Took Nine.",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/a5e4db79eff9fc2feffb71cd9c7af339?_a=AQAEuop"
+  },
+  "cim_eredeti": "We Promised Three Months. It Took Nine.",
+  "szoveg_eredeti": "It was a Monday, and our CTO told us we needed to rewrite our 12-year-old billing system. It was a real legacy system, with a lot of technical debt. The CTO said, \"I think we could probably rewrite this in three months, but let’s check the feasibility with a PoC first.\" And one of our senior engineers, Ana, did this in an afternoon. The CTO concluded, \"Yes, we can do it, and I will tell the board.\"\n\nThen, when we started the project, we found 140 special cases that failed in the new system, and it was clear it wouldn't be easy. A bit later, our CTO split us into three teams and put up a token board to see whether we were really spending AI tokens as promised. After 6 months, five new engineers and 10 new AI agents joined us, and soon we had 40 microservices implemented. Then, in month nine, we shipped the new system, but our largest customer’s import was broken.\n\nThis is a Monday I had more than once in my career, and at this year’s Heapcon I gave this talk. During this time, it was obvious that we had different laws pulling in opposite directions. Brooks’s Law says that adding new people makes a late project take longer, while Linus’s Law says that with enough eyeballs, every bug becomes easier to detect. In April, I talked about 20 Software Engineering Laws and said some of them contradict each other, and today we will learn what to do about it.\n\nLaws can contradict each other. Two laws can disagree because they operate in different contexts and are affected by different forces.\n\nEvery law has an operating range. We need to understand and check each law's assumptions.\n\nMeasure, then measure the cost. How Goodhart and Gilb laws work together.\n\nLaws sometimes work better in groups. Five key questions for a team that has a problem.\n\nAI makes the laws more emphasized than before. What will change when agents write most of the code?\n\nName the force before you fix it. How you can use three steps to detect issues and solve problems in your team.\n\nWe have many examples of laws that seem to contradict each other. For example, Brooks’s Law and Linus’s Law. They basically explain the same thing: what happens if you add more people to the project. Eric Raymond (who coined Linus’s Law after Linus Torvalds) said in The Cathedral and the Bazaar that if we considered only Brooks’s Law, Linux would not have been possible.\n\nAnd why is this? Because they describe different work. When we talk about Brooks’s Law, it’s mostly about increased coordination costs and more communication lines. With 10 people, there are 45 communication paths, and when you have 15, there are 105. So, if you add one more person, everyone needs to spend time coordinating with that person, onboarding them, etc.\n\nWhy doesn’t this affect Linus’s Law? Because it describes debugging open-source projects, where more people can help, and you don’t need as much coordination.\n\nOne law I found outside the software world (actually, it came from coaching) is that the Map is not the territory. Real life is the territory, with different forces pulling in different directions, but the laws are the map that explains them in software projects. Although they may look contradictory, that only means we don’t yet know which force is strongest.\n\nWhen we look at these software laws, note that they depend on your specific situation, and you need to check them in your case.\n\nWe all know that Knuth said “Premature optimization is the root of all evil”, and this is true in most of the cases, but not in all cases. It assumes most code is not on the critical path, so optimization may be premature. But in some cases, e.g., a high-frequency trading system, latency matters a lot.\n\nAnother example of Postel’s Law says, “be conservative in what you send, but be liberal in what you accept from others.” This law helped us to build the Internet as it is today, and it was possible back then when it was much friendlier and smaller. But many of these parsers were overly flexible and introduced security issues, such as HTTP request smuggling, and RFC 9413 in 2023 describes how tolerance makes interoperability basically worse over time.\n\nAlso, YAGNI is one of my favorite principles, but it doesn’t hold in all cases, e.g., if I need that feature later and it would take much more to implement (and I’m confident I will want it).\n\nAs a CTO, I often ask myself: should we measure developer productivity at all? Gilb’s Law says it’s better to measure anything than nothing, but Goodhart says we should be careful not to make our measures targets. So, they seem contradictory, but from the right angle, they help us measure properly. The right thing to do is measure outcomes, not outputs, and keep a counter-metric in mind for every metric you define.\n\nIn the recent State of Developer Experience report by Atlassian (from October 2026), we still see that most leaders use wrong metrics that could easily be gamed (mostly measuring outputs). If your company created a leaderboard measuring how many tokens each developer spends, token usage will increase (called tokenmaxxing). But your product quality probably won't.\n\nTo address this problem properly, you can add another metric that shows, e.g., which features your users actually use (and are satisfied with), how much it costs you, whether that code is removed or rewritten, etc.\n\nWhat I recommend to leaders when they define any metric: first, ask their team, is this something you can game? If yes, don’t make it a target.\n\nEven though all of this may seem reasonable, our industry has a long history of measuring the wrong things (see the image below). Only in the last year have we seen many companies use token boards. We tend to measure outputs instead of outcomes, and outputs are easy to game. And I’m sure we will see this in the future. Keep this in mind when you set your team's next targets.\n\nIf you have a problem in your project or team, it's hard to explain it with only one law. If your team has issues with productivity or morale, here are a few questions you can ask before you change anything in their work or processes:\n\nConway’s Law: Does your team organization reflect your system architecture, or have you divided responsibilities in a way that's now making communication difficult?\n\nBrooks’s Law: Have you added new people to your team recently in order to go faster, and did this slow your team down?\n\nThe Ringelmann Effect: Has your team grown so large that everyone's individual productivity has dropped?\n\nGoodhart’s Law: Do you have a metric that measures the wrong thing? Not the one you really wanted to measure.\n\nBroken Windows: Does your project have many small issues that no one wants to fix? It’s piling up your technical debt. Your environment shapes behavior in your project. So if you just replace people, you will not gain anything.\n\nUsually, more than one issue happens at the same time. You solve it by debugging to find the main issue and solving that one first. We'll see how exactly in the next sections.\n\nMost of these laws are really old, some over 50 years, and they will stay with us for our lifetime and much more. Why? Because they are bound to the roots of human nature. AI makes them only stronger now.\n\nIn our project, after three months, two of our teams didn’t communicate properly as before because AI agents could build their systems faster by integrating via API. And when two services (and two teams) communicate via API, we can see another set of problems. For example, we had a case where one side sends the amount in cents, and the other receives it in euros. So the invoice was charged incorrectly.\n\nThis is the basis of Conway’s Law. Now we talk more with agents than people, and the system reflects this gap.\n\nWe solved this by putting these teams in the room so they sit and agree on the contracts first, before AI writes any code.\n\nAs our project continued, our AI agents generated a lot of code, but we couldn’t review it all. Yet, only one of our engineers knew the Payments module deep",
+  "begyujtve": "2026-11-15T11:04:16.351493+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 15,
+      "hirertek": 30,
+      "egyediseg": 85,
+      "hitelesseg": 62,
+      "aktualitas": 24,
+      "kozossegi": 50
+    },
+    "elofeszures": 63,
+    "tanult": 66,
+    "indok": "Általános szoftverfejlesztési tapasztalat megosztása, nincs köze a mesterséges intelligenciához.",
+    "tema": "legacy system rewrite story",
+    "cim_hu": "Három hónapot ígértek a számlázási rendszer újraírására, de kilenc lett belőle",
+    "lead_hu": "Egy fejlesztőcsapat története arról, hogyan húzódott el egy 12 éves számlázási rendszer újraírása a váratlan kivételek és a technológiai adósságok miatt.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-15T11:04:27+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-15T11:04:38+00:00"
+}
