@@ -1,0 +1,49 @@
+{
+  "id": "0f0daa4a50c5",
+  "slug": "cyber-chaos-monkey-staying-ahead-of-security-threats-with-ai-agents",
+  "forras_id": "dailydev",
+  "forras_nev": "RUBYLAND (daily.dev)",
+  "url": "https://shopify.engineering/cyber-chaos-monkey",
+  "publikalva": "2026-11-12T16:23:27+00:00",
+  "cim": "Cyber Chaos Monkey: Staying ahead of security threats with AI agents (2026)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 47 pont, tendencia 20%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/9ef20a40e9dabed18f7d35a97d6278ee?_a=AQAEuop"
+  },
+  "cim_eredeti": "Cyber Chaos Monkey: Staying ahead of security threats with AI agents (2026)",
+  "szoveg_eredeti": "How we pair AI agents with our knowledge of Shopify’s systems to safely attack our production infrastructure, find bugs, and reduce risks.\n\nWe're obsessed with protecting merchant and buyer data. We reinvent our security programs relentlessly, throwing away what doesn't keep pace with the evolving landscape and challenging ourselves to multiply both the depth and coverage of our capabilities with AI.\n\nEarlier in 2026, we described our agentic approach to discovering and fixing vulnerabilities in our software. Since then, we've developed an agentic vulnerability hunter that runs live against our production infrastructure. We hand this system live credentials and every possible thing we know about the system (like bugs, infrastructure, and source), then steer it using the most capable cyber models available to find novel ways to bypass our safeguards.\n\nSo far, our agents have executed tens of thousands of offensive engagements, identified and acted on dozens of impactful findings, without causing an outage or incident. We call this system the Cyber Chaos Monkey (CCM), and here's how we built it.\n\nAcross the industry, we’ve seen an explosion in vulnerability reports as frontier models drive the cost of vulnerability discovery towards zero.\n\nWe see evidence of this in Shopify’s bug bounty program, which has seen almost a 300% increase in reports since 2024. Needing to review, validate, and act on this volume of reports makes the program much harder to operate.\n\nOur hypothesis is that, although frontier models give our adversaries unprecedented capabilities, those models are a rising tide that lifts all boats. We believe that, since we have a massive informational advantage when it comes to our own software systems, we can harness that asymmetry along with frontier models to: (1) find many of the most impactful security issues in our system before anyone else; and (2) make it prohibitively expensive for adversaries to find any issues we miss. Attackers target our production systems, so our testing has to as well. We built CCM so that testing doesn't put availability or merchant data at risk.\n\nConceptually, CCM is a graph-engineered agentic bug-bounty researcher with access to source code, threat intelligence, past reports, and infrastructure/deployment records. Just like a bug-bounty researcher, CCM has the ability to call live Shopify production infrastructure using live test shops and organizations.\n\nThe name is an homage to Chaos Monkey, a tool Netflix introduced in 2011 to randomly shut down production instances, ensuring their services could survive real failures without customer impact as they moved to AWS. The practice has since grown into the discipline of chaos engineering, which focuses on experimenting on production systems to build confidence in their behavior under adverse conditions. Tobi regularly releases Chaos Monkeys across Shopify, like an annual deletion of recurring meetings from our team’s calendars.\n\nWith CCM, we are applying chaos engineering to security by deliberately attacking our own production systems to find weaknesses before they can impact our merchants and buyers.\n\nArchitecturally, we separate the system into two basic components: Discovery and Sandbox.\n\nEach CCM engagement is an investigation into a potential vulnerability or an attempt to achieve a specific security objective. That can start with an idea, hypothesis, or report originating from a human security engineer; other upstream security agents; or feedback loops within our Discovery tool itself. These can be specific (“find similar risks to a bug bounty report in other places”) or abstract (“achieve RCE on Shopify admin”), and they kick off six steps:\n\nRecent incidents, where AI agents in security testing reached systems they were never meant to touch, show why containment has to be built in from the start. We have engineered a set of layered security controls that address both technical risks (e.g., leaking credentials, breaking out of the network) and fundamental risks to alignment (e.g., the agent not following our Rules of Engagement).\n\nCCM is a standard containerized workload and we use best-practice security controls throughout the architecture. Every CCM engagement has a corresponding k8s job. The Job pod has a handful of containers running, and the application controller is a state-machine-based orchestrator. Everything else is deferred to sidecar containers (like maintenance tasks and the offensive agent itself).\n\nWe manage alignment risks in two ways. First, we supply a strict set of Rules of Engagement (RoE) to every agent. The rules leave the agent free to try any exploit against its target, and set hard limits on what it may do once an exploit works, such as moving to other systems or retaining access.\n\nSecond, we don't trust that the execution agent will maintain alignment throughout its task execution. Instead, we rely on two-person integrity (TPI), the idea that a second party must review the work of the acting party to confirm it does not pose a security risk. TPI is commonly used to protect the most sensitive information in governments, and to conduct the most risky red team operations. For CCM, our novel twist on TPI is to use a second agent that is differently prompted and aligned than the agent executing the engagement.\n\nIn practice, we do this by feeding the session logs from our offensive agent into a separately aligned agent (i.e., using a different model) in real time. If that agent identifies risky behavior that's incompatible with the RoE, the second agent makes a tool call that instantly kills the offensive agent. The \"judge\" agent reads all events from the \"executor\" session, including responses, thinking, tool calls, and tool call results.\n\nWe’ve designed our system to require explicit positive control as diagrammed above: if the \"judge\" times out, crashes, or fails to adjudicate messages from the \"executor,\" the run ends. The orchestrator that implements this TPI is the pod’s main application container, with the \"executor\" and \"judge\" running as native sidecar containers within the same pod. The orchestrator maintains a heartbeat signal with both “executor” and “judge.” If either dies, the orchestrator container will exit. The pod's restart policy prevents the orchestrator from restarting, so k8s tears down both sidecars and the job terminates.\n\nKeeping everything pod-local (but isolated) reduces the risk of network partitions disrupting the communication between the “orchestrator,” “executor,” and “judge.” Similarly, an eviction triggered by k8s will terminate every container in the pod, so evictions can’t leave “execution” containers running without their paired “judge” and TPI is never at risk.\n\nCCM is a bet on asymmetry. Frontier models lower the cost of finding vulnerabilities for everyone, but we know our own systems better than any outside attacker ever will.\n\nUsing the same class of models with that informational advantage lets us reach the most impactful issues first. It simultaneously drives up the cost for external parties to achieve the same result, by forcing attackers to compete with agents that work around the clock and start with the full picture.",
+  "begyujtve": "2026-11-15T07:04:06.389690+00:00",
+  "prioritas": {
+    "pont": 47,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 60,
+      "egyediseg": 70,
+      "hitelesseg": 70,
+      "aktualitas": 27,
+      "kozossegi": 42
+    },
+    "elofeszures": 59,
+    "tanult": 29,
+    "indok": "Érdekes mérnöki esettanulmány az AI-ágensek használatáról, de korábbi vagy régebbi keltezésű Forrás-tapasztalat: -8. A forrás P3-as híreiből eddig kb. 20%-ot fogadtál el.",
+    "tema": "shopify ai security agents",
+    "cim_hu": "AI-ágensekkel teszteli saját rendszereinek biztonságát a Shopify",
+    "lead_hu": "A vállalat mesterséges intelligenciára épülő ágensekkel szimulál támadásokat a saját infrastruktúrája ellen, hogy még a sebezhetőségek kihasználása előtt felfedezze a hibákat.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-15T07:05:17+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-15T07:05:28+00:00"
+}
