@@ -2076,3 +2076,6 @@ html.os-android .app-banner .ab-asztal { display: none; }
 .app-banner-cimke svg { width: 18px; height: 18px; flex: 0 0 18px; }
 /* ANDROID APP címke: márkaszín (borostyán) háttér, sötét szöveg; a zöld kivéve (Heni 2026-11-15) */
 .app-banner-cimke { background: var(--kiemelo) !important; color: #181818 !important; box-shadow: 0 2px 8px rgba(0,0,0,.25) !important; }
+/* a banner elemei a banner lekerekítéséhez igazodnak (12px sáv -> 7px belső elemek), nem pirula alakúak */
+.app-banner-cimke { border-radius: 7px !important; }
+.app-banner-gomb { border-radius: 7px; }
