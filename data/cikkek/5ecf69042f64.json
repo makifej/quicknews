@@ -1,0 +1,89 @@
+{
+  "id": "5ecf69042f64",
+  "slug": "sajat-hardverre-epitett-1600-milliard-parameteres-ai-ugynokot-adott",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/meituan-releases-a-1-6-trillion-parameter-agent-model-that-never-touched-an-nvidia-gpu/",
+  "szerzo": "Jonathan Kemper",
+  "publikalva": "2026-11-15T10:06:06+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/11/meituan-logo-wall-chatgpt-5.6.jpg"
+  },
+  "cim_eredeti": "Meituan releases a 1.6-trillion-parameter agent model that never touched an Nvidia GPU",
+  "forrasok": [],
+  "szoveg_eredeti": "Meituan releases the weights for LongCat-2.5, a 1.6-trillion-parameter model built for AI agents. It was trained entirely on Chinese hardware and performs at the level US models like Claude Opus 5 reached a few months ago on coding benchmarks.\n\nThe LongCat team at Chinese food delivery company Meituan has released the weights for LongCat-2.5, one week after the model's official unveiling. LongCat-2.5 is built for agents that work through long, multi-step tasks autonomously, particularly coding. According to Meituan, it comes close to top Western models on several benchmarks.\n\nLongCat-2.5 is a mixture-of-experts model that activates only a subset of its specialized subnetworks for each token it processes. Out of 1.6 trillion total parameters, roughly 48 billion are active per token. Through the API, the model handles up to one million tokens at once and generates responses up to 128,000 tokens long. It understands text, images, and video, responds in text, and lets users toggle reasoning on and off.\n\nLongCat-2.5 builds on its predecessor LongCat-2.0 and adds image understanding. Many multimodal models bolt on a separate image encoder after the fact. LongCat-2.5 instead converts images into tokens that the model processes alongside text, as is standard practice for today's LLMs. The approach draws on the research model LongCat-Next and aims to improve visual coding, design, and 3D tasks.\n\nFor reinforcement learning, the team used real software tasks from GitHub pull requests along with recreated agent failures. To make sure the model actually solved the tasks during training, the developers blocked internet access in the training environments, removed Git history and cached files, and had a language model check its solutions for tricks. The team also distilled the capabilities of several specialized teacher models for agent work, reasoning, and dialog into LongCat-2.5.\n\nMeituan quantizes the experts' weights and activations to 4-bit precision, which Chinese chips can process natively. In Meituan's load tests, throughput rises 43.3 percent for prompt processing and 42.77 percent for response generation compared with an 8-bit version. Meituan says accuracy stays on par with the uncompressed model.\n\nThis version is available in a separate repository. The self-hosting guide describes a cluster of 194 Huawei Ascend accelerators from the Atlas A2 series. Two handle image processing, 64 handle prompt ingestion, and 128 handle response generation. There's no guidance for Nvidia GPUs.\n\nThe LongCat team reports 88.4 points on Terminal Bench v2.1, a benchmark that measures how well agents solve command-line tasks. Meituan lists Claude Opus 5 at 89.1, GPT-5.6 Sol at 88.8, and Deepseek-V4.1-Flash at the top of the table with 90.6.\n\nDeepSWE tests how well models fix bugs in real code repositories. Here LongCat-2.5 jumps from 9.7 to 64.6 points, placing it behind every other model in the table except Claude Opus 4.8, with Deepseek-V4.1-Flash leading at 74.2 and GPT-5.6 Sol at 72.7. The more recent Claude Opus 5.5 and GPT-6.1 Sol are not included in the table.\n\nTerminal Bench v4.0, the harder variant, puts LongCat-2.5 at 38.5 points, slightly above GPT-5.6 Sol's 37.3 but well below Opus 5's 53.9. The model posts 91.9 on the web search benchmark BrowseComp, the highest score in the table, though Meituan ran this test in its own environment.\n\nThe weights are available under the MIT license, which allows commercial use, modification, and redistribution. Users can also try LongCat-2.5 in a chat interface at https://longcat.ai/. Its API supports both the OpenAI and Anthropic formats and plugs into agent harnesses like Claude Code, Codex, and Hermes. At launch, Meituan is charging a limited-time promotional price equivalent to roughly €0.27 per million input tokens and €1.07 per million output tokens.\n\nMeituan says it trained the predecessor LongCat-2.0 in late June entirely on a cluster of more than 50,000 Chinese AI chips. Before that, the model ran anonymously as \"Owl Alpha\" on OpenRouter. Chinese open-weight models like Kimi K3.1 and GLM-5.3 have largely caught up with top US models on common benchmarks.\n\nOpen-weight models optimized for Chinese chips from the start make that hardware more attractive outside China too. Beyond multimodal agent models, Meituan is also working on image generators. The company previously released LongCat-Image, an open-source text-to-image model that gets by with just 6 billion parameters and prioritizes efficiency over sheer model size.\n\nSubscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive \"AI Radar\" frontier report six times a year, full archive access, and access to our comment section.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Saját hardveres, 1600 milliárd paraméteres AI-ügynököt kiadott a Meituan",
+  "lead": "A LongCat-2.5 nyílt súlyokkal jelent meg, és kódolási feladatokban megközelíti a legfejlettebb modellek teljesítményét.",
+  "osszefoglalo": "A Meituan kiadta a **LongCat-2.5** nevű, 1,6 trillió (1600 milliárd) paraméteres mixture-of-experts modelljét, amelyből tokenenként 48 milliárd paraméter aktív. Az autonóm AI-ügynököknek és kódolási feladatoknak szánt modellt teljes egészében kínai hardveren, Nvidia chipek használata nélkül tanították. Az eszköz 1 millió tokenes kontextust kezel, megérti a szöveget, a képeket és a videókat is.\n\nA fejlesztők a kínai chipek sajátosságaihoz igazítva 4 bites kvantálást alkalmaztak, ami több mint **40 százalékos teljesítménynövekedést** hozott. A tesztek alapján a kódolási és parancssori feladatokat mérő benchmarkokon a modell megközelíti a piacvezető modellek szintjét, míg a webes keresési teszteken kifejezetten kiemelkedő pontszámot ért el.\n\nA [LongCat-2.5 modell súlyai](https://huggingface.co/meituan-longcat/LongCat-2.5) MIT-licenc alatt tölthetők le és üzleti célra is felhasználhatók. A Meituan saját webes felületet is biztosít a kipróbálásra, az API pedig kompatibilis az OpenAI és az Anthropic formátumaival.",
+  "miert_szamit": "A **nyílt licencű modell** saját szerveren futtatható és üzletileg felhasználható, így a vállalkozások költséghatékonyan integrálhatják meglévő kódolói és ügynökrendszereikbe.",
+  "cimkek": [
+    "LongCat-2.5",
+    "Meituan",
+    "AI-ügynök",
+    "kódolás"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "LongCat-2.5",
+    "url": "https://longcat.ai/"
+  },
+  "linkelendo_nevek": [
+    "LongCat-2.5"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 89,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 88,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 88,
+      "aktualitas": 99,
+      "kozossegi": 71
+    },
+    "elofeszures": 97,
+    "tanult": 51,
+    "indok": "Jelentős mérföldkő az amerikai chipektől független kínai AI-fejlesztésben egy 1,6 trillió paraméteres modellel. Forrás-tapasztalat: +1.",
+    "tema": "meituan longcat agent model",
+    "cim_hu": "Nvidia chipek nélkül tanítottak be egy 1,6 trillió paraméteres AI-modellt Kínában",
+    "lead_hu": "A kínai Meituan kiadta a LongCat-2.5 súlyait. A kifejezetten AI-ágenseknek szánt, 1,6 trillió paraméteres modellt teljesen kínai hardvereken trénelték, és a kódolási teszteken kimagaslóan teljesít.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-15T10:19:23+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-15T10:19:34+00:00",
+  "megjelent": "2026-11-15T10:19:34+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-15T10:19:40+00:00",
+    "esemeny": "A kínai Meituan közzétette a LongCat-2.5 nevű, 1600 milliárd paraméteres AI-ügynök modelljének súlyait, amelyet teljes egészében kínai hardveren, Nvidia GPU-k használata nélkül tanítottak.",
+    "forrasok": [
+      "https://longcat.ai/blog/longcat-2.5/",
+      "https://huggingface.co/meituan-longcat/LongCat-2.5",
+      "https://the-decoder.com/meituan-releases-a-1-6-trillion-parameter-agent-model-that-never-touched-an-nvidia-gpu/"
+    ],
+    "hibak": [
+      "Tényhiba a miért számít szekcióban: A cikk állításával ellentétben a modell fizetős API-szolgáltatásként is fut, így a használata nem teljesen ingyenes. Továbbá az eredeti cikk és a hivatalos árazási adatok szerint az API fizetős (promóciós áron kb. 0,27 € / millió input token és 1,07 € / millió output token), így a tisztán ingyenes használat sugallása félrevezető.",
+      "Bár a nyílt súlyok MIT-licenc alatt tölthetők le, a miért számít bekezdésben az ingyenességet általánosító megfogalmazás javításra szorul."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Saját hardverre épített, 1600 milliárd paraméteres AI-ügynököt adott ki a Meituan",
+      "lead": "A LongCat-2.5 nyílt súlyokkal jelent meg, és kódolási feladatokban megközelíti a legfejlettebb modellek teljesítményét.",
+      "osszefoglalo": "A Meituan kiadta a **LongCat-2.5** nevű, 1,6 trillió (1600 milliárd) paraméteres mixture-of-experts modelljét, amelyből tokenenként 48 milliárd paraméter aktív. Az autonóm AI-ügynököknek és kódolási feladatoknak szánt modellt teljes egészében kínai hardveren, Nvidia chipek használata nélkül tanították. Az eszköz 1 millió tokenes kontextust kezel, megérti a szöveget, a képeket és a videókat is.\n\nA fejlesztők a kínai chipek sajátosságaihoz igazítva 4 bites kvantálást alkalmaztak, ami több mint **40 százalékos teljesítménynövekedést** hozott. A tesztek alapján a kódolási és parancssori feladatokat mérő benchmarkokon a modell megközelíti a piacvezető modellek szintjét, míg a webes keresési teszteken kifejezetten kiemelkedő pontszámot ért el.\n\nA modell súlyai MIT-licenc alatt ingyenesen letölthetők és üzleti célra is felhasználhatók. A Meituan saját webes felületet is biztosít a kipróbálásra, az API pedig kompatibilis az OpenAI és az Anthropic formátumaival.",
+      "miert_szamit": "A nyílt forrású modell ingyenesen letölthető és üzletileg felhasználható, így a vállalkozások **olcsón integrálhatják meglévő kódolói és ügynökrendszereikbe**."
+    }
+  },
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-15T10:20:07+00:00",
+  "linkek_ellenorizve": true
+}
