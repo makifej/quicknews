@@ -2063,3 +2063,11 @@ html.os-android .app-banner .ab-asztal { display: none; }
 .hir.elz-kiemelt .hkep { position: relative; outline: 3px solid var(--kiemelo); outline-offset: 3px; border-radius: 12px; }
 .elz-kiemelt-cimke { position: absolute; top: 10px; left: 10px; z-index: 2; font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; color: var(--kiemelo-szoveg); background: var(--kiemelo); padding: 4px 9px; border-radius: 999px; box-shadow: 0 4px 12px rgba(0,0,0,.35); }
 .hir.elz-kiemelt h3 { color: var(--kiemelo-szin); }
+/* Alkalmazás oldal: jól látható letöltő gomb (Heni 2026-11-15) */
+.apk-gomb { display: inline-flex; align-items: center; gap: 16px; margin: 8px 0 24px; padding: 18px 26px; border-radius: 16px; background: var(--kiemelo); color: var(--kiemelo-szoveg) !important; text-decoration: none !important; box-shadow: 0 10px 28px rgba(255,178,36,.28); transition: transform 300ms var(--gorbe), box-shadow 300ms var(--gorbe); }
+.apk-gomb:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(255,178,36,.38); }
+.apk-gomb svg { width: 30px; height: 30px; flex: 0 0 30px; }
+.apk-gomb span { display: flex; flex-direction: column; gap: 2px; text-align: left; }
+.apk-gomb b { font-size: 20px; line-height: 1.2; font-weight: 900; }
+.apk-gomb small { font-size: 14px; font-weight: 600; opacity: .8; }
+@media (max-width: 520px) { .apk-gomb { display: flex; width: 100%; box-sizing: border-box; justify-content: center; } }
