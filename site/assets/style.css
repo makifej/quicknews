@@ -2079,3 +2079,5 @@ html.os-android .app-banner .ab-asztal { display: none; }
 /* a banner elemei a banner lekerekítéséhez igazodnak (12px sáv -> 7px belső elemek), nem pirula alakúak */
 .app-banner-cimke { border-radius: 7px !important; }
 .app-banner-gomb { border-radius: 7px; }
+/* ANDROID APP címke: fekete háttér, narancs felirat (Heni 2026-11-15) */
+.app-banner-cimke { background: #111 !important; color: var(--kiemelo) !important; }
