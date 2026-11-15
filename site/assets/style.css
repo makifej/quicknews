@@ -2071,3 +2071,6 @@ html.os-android .app-banner .ab-asztal { display: none; }
 .apk-gomb b { font-size: 20px; line-height: 1.2; font-weight: 900; }
 .apk-gomb small { font-size: 14px; font-weight: 600; opacity: .8; }
 @media (max-width: 520px) { .apk-gomb { display: flex; width: 100%; box-sizing: border-box; justify-content: center; } }
+/* App-banner: jól látható ANDROID APP címke sötét háttérrel (Heni 2026-11-15) */
+.app-banner-cimke { display: inline-flex; align-items: center; gap: 6px; background: #111 !important; color: #3ddc84 !important; font-size: 12.5px !important; font-weight: 900; letter-spacing: .08em; padding: 6px 12px 6px 9px !important; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(61,220,132,.45); }
+.app-banner-cimke svg { width: 18px; height: 18px; flex: 0 0 18px; }
