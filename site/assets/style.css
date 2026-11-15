@@ -2050,3 +2050,12 @@ html.os-android .app-banner .ab-asztal { display: none; }
 .elz-nap .gyujto-fej { margin-bottom: 22px; }
 .elz-nap .gyujto-fej h2 { margin: 0; font-size: 15px; line-height: 22px; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; color: var(--szoveg); padding-bottom: 10px; border-bottom: 4px solid var(--kiemelo); }
 .elz-nap .gyujto-fej p { font-size: 16px; }
+/* Elemzések: a napok egymás mellett, lyuk nélkül (Heni 2026-11-15) */
+.elz-napsor { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 24px; margin-top: 28px; }
+.elz-napcsop { grid-column: span var(--n); min-width: 0; }
+.elz-napfej { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; }
+.elz-napfej h2 { margin: 0; font-size: 15px; line-height: 22px; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; color: var(--szoveg); padding-bottom: 10px; border-bottom: 4px solid var(--kiemelo); }
+.elz-napfej span { margin-left: auto; color: var(--szoveg-2); font-size: 14px; }
+.elz-napracs { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 24px; }
+@media (max-width: 1100px) { .elz-napsor { grid-template-columns: repeat(2, minmax(0, 1fr)); } .elz-napcsop { grid-column: span min(var(--n), 2); } .elz-napracs { grid-template-columns: repeat(min(var(--n), 2), minmax(0, 1fr)); } }
+@media (max-width: 700px) { .elz-napsor { grid-template-columns: 1fr; } .elz-napcsop { grid-column: auto; } .elz-napracs { grid-template-columns: 1fr; } }
