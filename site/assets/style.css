@@ -2044,3 +2044,9 @@ html.os-android .app-banner .ab-asztal { display: none; }
 .app-kapu-lista { max-height: 24dvh; }
 .app-kapu-gomb { margin-top: 2px; padding: 13px 16px; }
 .app-kapu-masod { padding: 8px; }
+/* Elemzések lista a Napok nézet szerint (Heni 2026-11-15) */
+.elz-lista-fej { padding-top: 28px; padding-bottom: 8px; }
+.elz-nap { margin-top: 28px; }
+.elz-nap .gyujto-fej { margin-bottom: 22px; }
+.elz-nap .gyujto-fej h2 { margin: 0; font-size: 15px; line-height: 22px; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; color: var(--szoveg); padding-bottom: 10px; border-bottom: 4px solid var(--kiemelo); }
+.elz-nap .gyujto-fej p { font-size: 16px; }
