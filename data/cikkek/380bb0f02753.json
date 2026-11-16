@@ -1,0 +1,49 @@
+{
+  "id": "380bb0f02753",
+  "slug": "partner-content-has-ais-black-october-changed-the-way-you-secure-your",
+  "forras_id": "dailydev",
+  "forras_nev": "The Register (daily.dev)",
+  "url": "https://www.theregister.com/security/2026/11/16/partner-content-has-ais-black-october-changed-the-way-you-secure-your-code/5309775",
+  "publikalva": "2026-11-16T00:00:00+00:00",
+  "cim": "PARTNER CONTENT: Has AI’s ‘Black October’ changed the way you secure your code?",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 36 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/f3b9be72a14f4aab1d66e79dd6798d06?_a=AQAEuop"
+  },
+  "cim_eredeti": "PARTNER CONTENT: Has AI’s ‘Black October’ changed the way you secure your code?",
+  "szoveg_eredeti": "PARTNER CONTENT: AI agents are making security vulnerabilities easier to find and exploit in your code. Software engineering and application security teams need new ways to find and fix them\n\nOctober ’26 might be remembered as a seminal moment for software developers and application security teams. AI agents are investigating unfamiliar systems, testing ways to get in and adjusting their next move when an attempt fails. Anyone with a credit card can use that capability to come after your application.\n\nCoding agents and their tool integrations have introduced new entry points and surface areas that can be exploited. Pillar’s OpenCode disclosure in October showed how a malicious Model Context Protocol (MCP) server could execute commands on a developer’s Windows or WSL machine during authentication. A server-supplied URL reached a shell without tricking the model. In the same month, the discovery of the two PHP2Shell vulnerabilities, remote code execution bugs in the PHP runtime uncovered with the help of OpenAI’s models, brought new urgency to securing longstanding code across much of the internet.\n\nMicrosoft revealed that an agent moved from searching GitHub for exposed credentials to stealing Azure Key Vault data in five minutes. When its cloud API requests failed, the agent corrected the API versions and tried again until they succeeded.\n\nA report by Anthropic described individual operators using agent frameworks for multi-victim campaigns that previously required specialist teams. Agents carried out reconnaissance, exploitation and data theft across targets in parallel, making sophisticated operations accessible with less hands-on work.\n\nIn a recent analysis, Tomasz Tunguz estimated the model cost of a 100-million-token attack workload using GLM-5.3, a low-cost model: 100 million tokens × $0.902 per million = $90.20. That is roughly 98% to 99% below the $5,000 to $10,000 frontier-model estimate cited by Bank for International Settlements (BIS) for a comparable cyber attack. Tunguz’s figure covers model usage only, not the full cost of an attack. Even still, it shows how trivially cheap it is now for attackers to go after any codebase, with the spend falling from thousands of dollars to under $100.\n\nThese new agentic attacks should make every team take another look at the code they’ve been running for years. Engineering and security teams need to find and fix weaknesses in their own applications before an attacker with an army of AI agents gets there first.\n\nTraditional AppSec checks such as rule-based static analysis, dependency scanning and secret detection are no longer enough on their own. Developers, engineering leaders, and security teams also need defensive AI agents that trace attack paths, uncover missing safeguards and business-logic vulnerabilities, and help fix them.\n\nDevelopers’ responsibility doesn’t stop at the code they’re writing now. An application already in production without known vulnerabilities might still get exploited by an AI agent looking for ways to skip a permission check or business rule. The gap only shows up when a request is traced through the codebase and checked against what users should be allowed to do.\n\nCodeRabbit Secure uses semantic analysis to understand your codebase and reason about it the way a security engineer would, tracing requests and checking whether permissions and business rules are enforced. Agents investigate potential attack paths and verify findings independent of the developer or agent that wrote the code, while CodeRabbit Agent generates reviewable fixes.\n\nThree main use cases that improve your code security: this works across the SDLC:\n\nreviewing each commit in a new PR and flag its security risks;\n\nfinding vulnerabilities across the repo with a Deep Scan;\n\nrechecking code with incremental scans and validating findings at runtime.\n\nDeep Scan examines the repository, including older paths outside the latest PR. Agents map entry points, access controls, and sensitive operations, then investigate across functions and files. Linked repositories, when configured, supply context from shared services and libraries. A separate agent challenges each suspected vulnerability, checking reachability, exploitation conditions, and safeguards that could disprove it.\n\nI tried CodeRabbit Secure Deep Scan against ast-grep and was impressed by its precision. Proving vulnerabilities before flagging them makes every finding far more actionable.\n\nHerrington Darkholme, creator of ast-grep\n\nPR security reviews assess each incoming change, including agent-generated code, for vulnerabilities that are reachable and exploitable in the existing application.\n\nCodeRabbit’s Security Architecture Review examines how architecture-level changes affect permissions, sensitive data flows, and trust boundaries. The Security Blast Radius map connects changed components to their dependencies and the code that relies on them, helping reviewers trace the potential security impact beyond the PR diff.\n\nOn GitHub, administrators can enable CodeRabbit Security check and require it through branch protection or a ruleset. It blocks merges when PR security comments at or above the configured severity threshold remain unresolved.\n\nEach Deep Scan builds an attack surface map of the repository, showing which security-relevant entry points have been verified, which have gone stale as the code changed, and which have never been examined. Delta scans then check changed files and areas of the map that are out of date or unverified, so teams know how much of the codebase has been security-reviewed and when it was last reviewed. Individual findings can also be rechecked to determine whether a fix addressed them.\n\nFor eligible Deep Scan findings on GitHub Cloud with CodeRabbit Cloud, runtime verification generates a reproduction guide and can run it in an isolated environment to confirm whether the vulnerable path is reached. Results are “reproduced”, “not reproduced” or “inconclusive” for the tested revision and environment, however a failure to reproduce may not mean the finding is fixed.\n\nDevelopers can ask CodeRabbit Agent to implement a fix and open a PR, then inspect the finding, proposed fix, and supporting evidence. Teams can also configure severity thresholds to create Jira or Linear tickets automatically and track remediation in their existing workflow.\n\nConnecting the vulnerability finding, its supporting evidence, and a proposed fix helps engineering and security teams act while the context is still fresh and carry the change through review, testing and release. Teams can use CodeRabbit Agent to act on that context or easily hand it off to your preferred coding agent with a shareable markdown file.\n\nCodeRabbit recently committed up to $1 million in free Deep Scans to help organizations find and fix hidden vulnerabilities. In Deep Scans created over a 10-day period in early November, CodeRabbit Secure recorded about 53,000 High or Critical findings across some 2,000 organizations. More than 10,000 findings have already been fixed, including 1,049 rated High or Critical.\n\nSome of the security fixes implemented by CodeRabbit included preventing:\n\nembedded JavaScript in a repository document’s metadata from running arbitrary code.\n\nemail subject lines from being interpreted as executable templates and running JavaScript with an API server’s privileges.\n\nunauthenticated transfer requests from injecting SQL and triggering unauthorized database operations.\n\nAs agents produce more code and attackers become more capable, investigation using semantic analysis needs to become a regular part of how software is built and maintained, alongside existing security checks.\n\nAs attackers use AI agents to investigate unfamiliar systems and adapt their next move, engineering and security teams need the same capacity to investigate their code and carry findings through to tested fixes.\n\nStart with a repository your organization cares most about and run a Deep",
+  "begyujtve": "2026-11-16T19:35:55.668165+00:00",
+  "prioritas": {
+    "pont": 36,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 20,
+      "hirertek": 15,
+      "egyediseg": 90,
+      "hitelesseg": 52,
+      "aktualitas": 62,
+      "kozossegi": 32
+    },
+    "elofeszures": 75,
+    "tanult": 50,
+    "indok": "Szponzorált PR-tartalom kiberbiztonságról és MI-ágensekről",
+    "tema": "ai security code",
+    "cim_hu": "Fizetett hirdetésben elemzik az MI-ágensek kiberbiztonsági veszélyeit",
+    "lead_hu": "Egy szponzorált cikk szerint az MI-ágensek megkönnyítik a szoftveres sérülékenységek felderítését és kihasználását.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T19:36:25+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-16T19:36:26+00:00"
+}

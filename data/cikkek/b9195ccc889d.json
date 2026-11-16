@@ -1,0 +1,49 @@
+{
+  "id": "b9195ccc889d",
+  "slug": "getting-started-with-docker-for-machine-learning-and-mlops",
+  "forras_id": "dailydev",
+  "forras_nev": "PyImageSearch (daily.dev)",
+  "url": "https://pyimagesearch.com/2026/11/16/getting-started-with-docker-for-machine-learning-and-mlops",
+  "publikalva": "2026-11-16T00:00:00+00:00",
+  "cim": "Getting Started with Docker for Machine Learning and MLOps",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 35 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/2510351f31c4a28cbcf482aaf5d2dd43?_a=AQAEuop"
+  },
+  "cim_eredeti": "Getting Started with Docker for Machine Learning and MLOps",
+  "szoveg_eredeti": "In this lesson, we will learn how to use Docker for MLOps, starting with why Docker matters in machine learning (ML), then exploring Docker fundamentals and architecture, running basic Docker commands, building reproducible ML environments, and containerizing an ML project. We will also cover best practices for ML images, finish with a hands-on exercise, and briefly look at some popular Docker alternatives.\n\nThis lesson is the 2nd in a 3-part series on Machine Learning Operations (MLOps):\n\nTo learn how to use Docker for MLOps, from fundamentals and commands to best practices and containerizing your first ML project, just keep reading.\n\nA common phrase in machine learning is “It works on my machine.” That is because ML projects are uniquely fragile. A model that runs fine on a laptop may fail completely on a production server.\n\nWhy does this happen? Machine learning brings extra challenges:\n\nFor traditional software, these mismatches are frustrating. For ML, they are crippling. Reproducibility requires consistency in both research and production.\n\nDocker solves this by letting you package code, dependencies, drivers, and configuration into a container image. That image runs the same way everywhere: on a laptop, on a teammate’s machine, or inside a Kubernetes cluster.\n\nA Real Example: Imagine a PyTorch model is trained locally with PyTorch 2.2 + CUDA 12.1. The production server, however, has PyTorch 2.1 + CUDA 11.8. When you try to deploy, your code fails because the CUDA kernels do not match. The result? Debugging hell, wasted hours, and frustrated teammates.\n\nNow enter Docker. With Docker, we package our code, dependencies, and runtime into a container image. This image provides a consistent software environment across compatible hosts in development and production. The CUDA runtime travels with the code. The server still needs a compatible NVIDIA driver.\n\nIn the context of MLOps, Docker is not just a convenience. It is the foundation. MLOps requires reproducibility, scalability, and collaboration. If experiments cannot be reproduced, deployment cannot be trusted, and monitoring and retraining are meaningless. Docker makes reproducibility and portability non-negotiable, which is why every modern ML pipeline starts here.\n\nTo follow this guide, you only need Docker installed on your system. That is it!\n\nThe beauty of containerization is that all Python dependencies (e.g., PyTorch and Lightning) are installed inside the container, so the host machine does not need them.\n\nThat is all you need! The container handles everything else. Python, PyTorch, datasets, and dependencies are all managed inside the isolated environment.\n\nThen join PyImageSearch University today!\n\nGain access to Jupyter Notebooks for this tutorial and other PyImageSearch guides pre-configured to run on Google Colab’s ecosystem right in your web browser! No installation required.\n\nAnd best of all, these Jupyter Notebooks will run on Windows, macOS, and Linux!\n\nWe first need to review our project directory structure.\n\nStart by accessing this lesson’s “Downloads” section to retrieve the source code and example images.\n\nFrom there, take a look at the directory structure:\n\nThis simple structure contains everything needed for containerizing a machine learning project.\n\nBefore we start running commands, it is important to understand what Docker actually is and how it works under the hood. Many new ML engineers use Docker without really grasping its fundamentals, but in MLOps, a clear mental model will save countless hours of debugging later.\n\nAt a glance, containers and virtual machines (VMs) may look similar. Both isolate applications so they can run in their own environments. But there is a crucial difference:\n\nAnalogy: Think of a VM as a full house with its own foundation, walls, plumbing, and electricity. A container is more like a furnished apartment in a building. It is lighter, starts faster, and is easier to move.\n\nThis efficiency is one reason Docker became so popular in machine learning. We can spin up lightweight, isolated environments quickly without waiting minutes for a VM to boot.\n\nDocker follows a client–server architecture. When we type commands (e.g., docker run or docker build), we interact with the Docker client, which communicates with the Docker daemon.\n\nWorkflow Example: When we run docker run hello-world, the client sends the request to the daemon. The daemon checks whether the image exists locally and pulls it from a registry if needed. It then creates and runs a container from the image.\n\n⚠️ Common error: If we see Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?, it means the client cannot talk to the daemon. This usually happens if Docker Desktop (on macOS or Windows) is not running or the Docker service (on Linux) has not started.\n\nWhile Docker remains one of the most widely adopted container platforms, alternatives are gaining traction. Podman, backed by Red Hat, offers a daemonless architecture and supports running containers without root privileges. It is also compatible with Docker-built images that follow the Open Container Initiative (OCI) image standard. We will stick with Docker throughout this course, but it is useful to be aware of the broader container ecosystem.\n\nWith these fundamentals in mind, we can see how Docker uses a client–server architecture to run lightweight, portable containers from images that can be distributed through registries.\n\nNow that we understand the fundamentals, let us get hands-on. Docker is a command-line tool at its core, and learning a few key commands will give you immediate confidence. We will start with the basics: running containers, listing them, inspecting them, and jumping inside.\n\nRun the following command to test Docker.\n\nIf the image is missing locally, Docker pulls it from Docker Hub by default. Docker then runs a container from the image and displays Hello from Docker!\n\nAn interactive Bash shell opens inside the Ubuntu container.\n\nDocker keeps track of all containers we run:\n\nWe will see container identifiers (IDs), names, and status.\n\nRun the following command to stop a container.\n\nRun the following command to remove a stopped container.\n\ndocker images lists locally stored images. By default, docker inspect returns details about a container or image in JavaScript Object Notation (JSON).\n\ninspect is especially useful for debugging environment variables, volumes, and networking.\n\nIf a running container includes Bash, we can open a shell inside it.\n\nThis is handy for debugging ML jobs, checking logs, or verifying that our dependencies are installed correctly inside the container.\n\nThe following error means the Docker client could not connect to the daemon.\n\nWith the Docker commands covered so far, we can:\n\nThis is the muscle memory every ML engineer needs before moving into Dockerfiles.\n\nNow that we can run and inspect containers, let us package an actual ML project. We will containerize a small PyTorch Lightning script that trains on MNIST. The goal is a reproducible CPU image that runs the same on any machine.\n\nTip: pin versions to keep results stable across machines.\n\nThis script downloads the MNIST training dataset to ./data if needed and trains for 1 epoch.\n\nOnce we have written the Dockerfile, it is useful to understand how it becomes something we can actually run. Docker does not execute the Dockerfile directly. Instead, it uses the instructions in the Dockerfile to build a Docker image. When we run that image, Docker creates and starts a container from it.\n\nKeep images small and builds fast by excluding junk.\n\nWe should see the dataset download and training logs. If we prefer to persist data on the host, we can try:\n\nWe can specify the command at runtime without changing the Dockerfile.\n\nNext, we will discuss best practices for ML images and then move to handling data and environments before jumping into multi-stage builds and Compose in the next lesson.\n\nN",
+  "begyujtve": "2026-11-16T19:35:55.668544+00:00",
+  "prioritas": {
+    "pont": 35,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 15,
+      "hirertek": 10,
+      "egyediseg": 95,
+      "hitelesseg": 65,
+      "aktualitas": 62,
+      "kozossegi": 39
+    },
+    "elofeszures": 74,
+    "tanult": 74,
+    "indok": "Általános MLOps és Docker oktatóanyag, nem aktuális hír",
+    "tema": "docker mlops tutorial",
+    "cim_hu": "Oktatóanyag jelent meg a Docker használatáról gépi tanulási projektekben",
+    "lead_hu": "A cikk a Docker alapjait és a gépi tanulási környezetek reprodukálható konténerizációját mutatja be fejlesztőknek.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T19:36:25+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-16T19:36:54+00:00"
+}
