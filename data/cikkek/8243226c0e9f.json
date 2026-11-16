@@ -1,0 +1,78 @@
+{
+  "id": "8243226c0e9f",
+  "slug": "emberi-beavatkozas-nelkul-hozott-letre-tamadokodot-egy-ai",
+  "forras_id": "techmeme",
+  "forras_nev": "SiliconANGLE",
+  "url": "https://siliconangle.com/2026/11/16/google-says-an-ai-framework-turned-security-patches-into-exploits-with-no-human-in-the-loop/",
+  "szerzo": null,
+  "publikalva": "2026-11-16T14:40:01+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://images.siliconangle.com/blogs.dir/1/files/2026/11/gtignov26.png"
+  },
+  "cim_eredeti": "Google's TIG reports the first observed instance of attackers using an autonomous AI framework with no human in the loop to turn security patches into exploits (Duncan Riley/SiliconANGLE)",
+  "forrasok": [],
+  "szoveg_eredeti": "A new report out today from Google LLC’s Google Threat Intelligence Group finds that for the first time, attackers have used an artificial intelligence framework running with no human in the loop to turn security patches into exploits.\n\nCalled exploit_agent, the framework turned up on an exposed staging server, where it was wired into several frontier and locally hosted large language models. Its job, according to GTIG, is continuous comparison of popular web application code before and after each patch announcement. Once a likely flaw is identified, the exploit it drafts is executed automatically.\n\nData taken from victims was sitting on the same server, alongside scripts for brute-forcing, installing webshells and even removing webshells left by rival attackers. Victim telemetry suggests the operator was most interested in French websites tied to media, entertainment and education. Written in Russian, one comment in the framework’s configuration file tells whoever set it up to enter the keys “right here, not in the chat.”\n\nIn the previous edition of the quarterly tracker two months ago, GTIG said it had not observed fully autonomous attack pipelines deployed against targets in the wild. That changed over the past quarter, according to the new report, titled “Agentic Threat Activity Crosses a Significant Threshold.” Because the source material for a patched flaw is finite, GTIG believes attackers may find it more efficient to point LLMs at n-day vulnerabilities than to hunt for zero-days.\n\nHow quickly the gap between disclosure and a working exploit can close shows in the case of two flaws in print management servers from PaperCut Software Pty Ltd., chained together and exploited as zero-days in late August. Security researchers and Huntress Labs Inc. used large language models to generate working exploits within a day of disclosure.\n\nA campaign tracked by GreyNoise Intelligence Inc. four days after disclosure is believed to have relied on LLMs to build its exploits before it hit hundreds of organizations. One foothold in that campaign reached domain administrator within minutes, GreyNoise found.\n\nElsewhere, open-source agentic penetration testing frameworks are being used to automate discrete steps of live intrusions. During one intrusion against the U.S. aerospace sector, a threat actor was observed using the multi-agent framework CAIRN.\n\nAnother actor ran a customized platform built on PentAGI between late August and early October to scan a wide range of organizations in Asia for vulnerabilities. For now, the noisy forensic trail left by unrestricted autonomous execution is said to make the frameworks easier to detect.\n\nAccording to GTIG, influence operations now use models for far more than writing posts. Using cloud phone farms, a turnkey platform that one commercial contractor was building with help from the Gemini API is designed to run more than 100,000 social media accounts. To make generated photos pass as smartphone shots, prompts behind a separate platform, which targeted political sentiment across Europe and the Middle East, are said to have called for deliberate camera flaws.\n\nAmong government-backed actors, photos on the fake recruiter profiles that a suspected North Korean group tracked as UNC6836 used to approach cryptocurrency organizations in North America and Europe were found to carry Google’s SynthID watermarks. By way of altered .claude/settings.json files in internal code repositories, the group later rigged each launch of Anthropic PBC’s Claude Code to download its SOMBERMEME backdoor.\n\nGoogle said it disabled the accounts and assets tied to the Gemini misuse it found. Google DeepMind has also used the findings to strengthen its classifiers.\n\nSupport our mission to keep content open and free by engaging with theCUBE community. Join theCUBE’s Alumni Trust Network, where technology leaders connect, share intelligence and create opportunities.\n\nFounded by tech visionaries John Furrier and Dave Vellante, SiliconANGLE Media has built a dynamic ecosystem of industry-leading digital media brands that reach 15+ million elite tech professionals. Our new proprietary theCUBE AI Video Cloud is breaking ground in audience interaction, leveraging theCUBEai.com neural network to help technology companies make data-driven decisions and stay at the forefront of industry conversations.\n\nSumo Logic expands AWS Observability Solution with one-click deployment and new regions\n\nGoodbye, manual work: AI-native CRM platform Dreamteam raises $53M to automate enterprise sales\n\nPalo Alto Networks report finds organizations struggle to track and secure AI agents in the cloud\n\nExaforce's ExaU lets security staff spin up a personal team of AI agents\n\nDetectify's Agentic Tooling lets AI agents test suspected flaws in running applications\n\nAT&T uses agentic AI to reinvent business processes from the ground up\n\nSumo Logic expands AWS Observability Solution with one-click deployment and new regions\n\nCLOUD - BY DUNCAN RILEY . 30 MINUTES AGO\n\nGoodbye, manual work: AI-native CRM platform Dreamteam raises $53M to automate enterprise sales\n\nAPPS - BY MIKE WHEATLEY . 31 MINUTES AGO\n\nPalo Alto Networks report finds organizations struggle to track and secure AI agents in the cloud\n\nSECURITY - BY DUNCAN RILEY . 2 HOURS AGO\n\nExaforce's ExaU lets security staff spin up a personal team of AI agents\n\nSECURITY - BY DUNCAN RILEY . 3 HOURS AGO\n\nDetectify's Agentic Tooling lets AI agents test suspected flaws in running applications\n\nSECURITY - BY DUNCAN RILEY . 7 HOURS AGO\n\nAT&T uses agentic AI to reinvent business processes from the ground up\n\nWe use cookies for analytics and measurement. You can accept or reject tracking cookies. See our Privacy Policy.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Emberi beavatkozás nélkül hozott létre támadókódot egy AI-keretrendszer",
+  "lead": "A Google elemzése szerint a támadók most először használtak teljesen autonóm AI-rendszert arra, hogy biztonsági javításokból kártékony kódokat írjanak.",
+  "osszefoglalo": "A [Google Threat Intelligence Group jelentése](https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold) szerint felfedeztek egy **exploit_agent** nevű keretrendszert, amely emberi felügyelet nélkül működött egy nyitott szerveren. Az eszköz folyamatosan figyelte a népszerű webes alkalmazások frissítéseit, összehasonlította a kódokat a javítások előtt és után, majd a talált sérülékenységekre automatikusan támadókódot generált és futtatott.\n\nA szakértők szerint a támadók számára hatékonyabbá vált a kiadott javítások elemzésére utasítani a nagy nyelvi megbízottakat, mint teljesen új, ismeretlen hibákat keresni. Az autonóm támadóeszközök a tapasztalatok alapján lényegesen lecsökkentik a biztonsági frissítések megjelenése és a működő kártékony kódok elterjedése közötti időt.\n\nA feltárt szerveren a felkészített AI-eszközök mellett már kiszivárgott áldozati adatok és automatizált behatolási fájlok is voltak. A nyomok alapján az üzemeltető elsősorban francia médiaszolgáltatók, szórakoztatóipari és oktatási intézmények weboldalait célozta meg.",
+  "miert_szamit": "A szoftverfrissítések és biztonsági javítások azonnali telepítése kritikus fontosságúvá vált, mert az AI segítségével a támadók **percek alatt automatizált támadást indíthatnak** a frissen nyilvánosságra hozott sérülékenységek ellen.",
+  "cimkek": [
+    "kiberbiztonság",
+    "Google",
+    "AI-ügynök",
+    "sérülékenység"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 87,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 92,
+      "hirertek": 95,
+      "egyediseg": 90,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 71
+    },
+    "elofeszures": 86,
+    "tanult": 50,
+    "indok": "Kiemelkedő kibervédelmi mérföldkő az első emberi beavatkozás nélküli AI-támadás. Forrás-tapasztalat: -3.",
+    "tema": "google threat intelligence exploit_agent",
+    "cim_hu": "A Google először észlelt teljesen autonóm AI által végrehajtott kiber-támadást",
+    "lead_hu": "A Google biztonsági kutatói felfedezték az első olyan esetet, amikor egy mesterséges intelligencia keretrendszer emberi beavatkozás nélkül hozott létre működő támadóikódot a biztonsági frissítésekből.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T14:50:04+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-16T14:50:22+00:00",
+  "megjelent": "2026-11-16T14:50:22+00:00",
+  "tenyellenorzes": {
+    "ok": false,
+    "ido": "2026-11-16T14:50:25+00:00",
+    "esemeny": null,
+    "forrasok": [],
+    "hibak": [
+      "a javított változat hibás vagy hiányos",
+      "üres cim",
+      "üres lead",
+      "üres osszefoglalo",
+      "üres miert_szamit"
+    ],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-16T14:51:33+00:00",
+  "linkek_ellenorizve": true
+}
