@@ -1,28 +1,37 @@
 {
   "id": "b48fa85ce7b1",
-  "slug": "artificial-intelligence-aids-multi-omics-data-integration-in-cancer",
+  "slug": "az-mesterseges-intelligencia-atalakitja-a-rakkutatast-a-multi-omikai",
   "forras_id": "google-news-ai",
   "forras_nev": "Nature",
   "url": "https://www.nature.com/articles/s41401-026-01958-8",
+  "szerzo": null,
   "publikalva": "2026-11-16T12:49:43+00:00",
-  "cim": "Artificial intelligence aids multi-omics data integration in cancer drug discovery and development: from targets to drug synergy",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P3: 60 pont, tendencia 20%, jóváhagyás után fordul",
   "media": {
     "tipus": "kep",
     "kep": "https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41401-026-01958-8/MediaObjects/41401_2026_1958_Fig1_HTML.png"
   },
   "cim_eredeti": "Artificial intelligence aids multi-omics data integration in cancer drug discovery and development: from targets to drug synergy",
+  "forrasok": [],
   "szoveg_eredeti": "The emergence of multi-omics technologies has enabled the integration of genomic, transcriptomic, epigenomic, proteomic, and metabolomic data to characterize the molecular complexity of cancer. Single-cell and spatial profiling further resolve intratumoral heterogeneity, cell–cell interactions, and the microenvironmental determinants of therapeutic responses. In parallel, artificial intelligence (AI) provides computational approaches for integrating these heterogeneous data types across target identification, drug response prediction, toxicity assessment, and drug-combination modeling. Across these domains, the available evidence indicates that multi-omics integration is most beneficial when the included layers provide complementary biological information; that single-cell and spatial omics analyses reveal treatment-resistant populations and niches but remain largely research-grade and thus not ready for routine clinical deployment; and that although foundation models support some representation-learning tasks, their advantages in perturbation-response prediction require confirmation via stringent evaluation. By distinguishing externally validated advances from retrospective proof-of-concept studies, we provide a practical framework for evaluating the translational readiness of AI-driven multi-omics tools in precision oncology.\n\nOver the past two decades, advances in high-throughput technologies have driven substantial progress in biomedical research and established the foundation for multi-omics [1,2,3]. Multi-omics represents a holistic systems-biology approach that integrates diverse layers of molecular data to investigate the complexities of biological systems in health and disease. This paradigm, involving the parallel acquisition of datasets, fosters structured, interdependent analyses that aim to uncover causality, dynamic interactions, and actionable insights across molecular strata.\n\nThe principal components of multi-omics include genomics, epigenomics, transcriptomics, proteomics, and metabolomics, each offering a distinct yet interconnected view of the cellular machinery. While these omics layers provide valuable insights when examined in isolation [4], their potential value increases when they are integrated, forming a framework for investigating tumorigenesis, cancer progression, and therapeutic responses. Recent developments in multi-omics, including single-cell and spatial approaches, have increased their analytical resolution, enabling a detailed understanding of cancer at both the microscopic and architectural levels. However, the interpretive complexity and high dimensionality of such data require analytical paradigms beyond conventional bioinformatics. In this context, deep learning (DL) has emerged as a valuable analytical framework, offering scalable, expressive, and increasingly interpretable models capable of capturing nonlinear relationships, latent structures, and cross-modal patterns within massive multi-omics datasets [5,6,7,8].\n\nRecent advances have broadened the application of DL in multi-omics research [9,10,11,12]. By leveraging neural networks and other AI-driven methodologies, DL can extract complex patterns from vast and diverse multi-omics datasets that traditional computational approaches may miss. These models can effectively integrate genomic, transcriptomic, proteomic, and metabolomic data, supporting the prediction of tumor behavior, drug efficacy, and resistance mechanisms. Notably, advanced architectures such as transformers, variational autoencoders (VAEs), and graph neural networks (GNNs) are increasingly being applied to model molecular interactions, identify therapeutic targets, and predict drug–drug interactions (DDIs), supporting scalable analyses in drug discovery and precision oncology.\n\nIn recent years, many reviews have addressed the application of multi-omics in cancer research, with a particular focus on target identification, drug discovery, and therapeutic monitoring [13,14,15]. However, challenges remain in effectively integrating the diverse omics layers, and many aspects of tumor biology remain elusive owing to the inherent complexity and heterogeneity of cancer. Furthermore, despite promising developments in predictive models, robust, universally applicable computational frameworks for leveraging multi-omics data for drug development remain lacking [16,17,18]. This gap underscores the need for more in-depth and cohesive reviews to bridge existing knowledge and identify areas that warrant further investigation.\n\nThis review aims to provide a comprehensive overview of multi-omics, focusing on its applications in drug discovery and target identification. We examine the role of artificial intelligence (AI), and particularly of DL methods, in precision oncology. Unlike prior reviews that have primarily surveyed computational methods or focused on isolated applications, this review provides a critical synthesis organized around evaluable claims and a practical hierarchy of the available evidence. To ensure conceptual clarity, we distinguish between single-omics modeling (using one molecular layer), multi-modal modeling (combining omics with non-omics data such as chemical structures), and multi-omics integration (joint modeling of at least two omics layers with explicit cross-modal interactions)—a distinction that is often unclear in the literature—and explicitly flag the validation status of the cited models. By incorporating recent benchmarking studies that challenge the prevailing assumptions about foundation models and perturbation prediction, we offer a more cautious and evidence-grounded perspective on translational readiness. We introduce phenotype-based drug discovery as a complement to the target-centric paradigm and evaluate what is currently feasible and what remains research-grade, with attention to real-world constraints including cost, throughput, and regulatory expectations.\n\nWithin this framework of distinctions and evaluative principles, we advance three central claims that guide both the structure of this review and the critical appraisal presented here: First, that multi-omics integration improves cross-cohort generalization when the omics layers are biologically complementary (e.g., genomics + transcriptomics for pathway-level inference), but achieves diminishing returns when they are highly correlated (e.g., transcriptomics + proteomics in bulk analyses conducted without post-translational modification information); second, that single-cell and spatial omics are particularly valuable for resolving therapy-resistant subpopulations and resistance niches, although they remain at research grade, owing to constraints associated with costs, throughput levels, standardization, and interpretability, and are thus not ready for routine clinical deployment; and third, that although foundation model embeddings reduce the labeling required for downstream tasks such as cell annotation and gene imputation, their advantages over simpler baselines for perturbation-response prediction still require stringent evaluation and confirmation. Collectively, these claims provide a framework for distinguishing well-supported advances from promising but unproven applications across the four domains of therapeutic development examined in this review.\n\nGenomics provides the foundational blueprint for cancer by identifying mutations, copy number variations, and chromosomal rearrangements across the genome [19]. Genomic-based insights have enabled the development of targeted therapies such as EGFR inhibitors for EGFR-mutant lung cancer and PARP inhibitors for BRCA-mutant tumors, marking a shift toward genotype-driven treatment [20]. However, the functional execution of this blueprint is mediated by downstream molecular mechanisms.\n\nEpigenomics captures reversible modifications, including DNA methylation, histone changes, and chromatin remodeling, that regulate gene expression independently of genome-sequen",
-  "begyujtve": "2026-11-16T13:19:28.971384+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "A mesterséges intelligencia átalakítja a rákkutatást a multi-omikai adatokkal",
+  "lead": "A Nature-ben megjelent tanulmánykeret szerint az AI-alapú multi-omikai adatfeldolgozás felgyorsíthatja a daganatos betegségek elleni gyógyszerfejlesztést.",
+  "osszefoglalo": "A rákkutatásban az **összetett molekuláris adatok** biológiai megértése jelentős kihívást jelent. A Nature szaklapban megjelent áttekintő tanulmány azt elemzi, miként segíti a mélytanulás és az AI a genomikai, transzkriptomikai és proteomikai adatok együttes integrálását. Az elemzés szerint a multi-omikai adatok egyesítése új célpontok azonosítását és a gyógyszer-kombinációk hatékonyságának pontosabb becslését teszi lehetővé.\n\nA kutatók kiemelik, hogy a mélytanulási modellek, mint a **transzformátorok és grafikus neurális hálók**, segítik a sejtszintű kölcsönhatások feltérképezését. Ugyanakkor a cikk rámutat a korlátokra is: az egysejtes és térbeli omikai vizsgálatok bár azonosítani tudják a terápiarezisztens sejtcsoportokat, jelenleg még kutatási fázisban vannak, így a napi klinikai gyakorlatban való alkalmazásuk még várat magára.",
+  "miert_szamit": "Az AI-alapú multi-omikai adatfeldolgozás **új korszakot nyit a precíziós medicinában**, ami hosszú távon lényegesen hatékonyabb célzott terápiák és gyógyszer-kombinációk kifejlesztéséhez vezet.",
+  "cimkek": [
+    "rákkutatás",
+    "egészségügy",
+    "mélytanulás",
+    "adatfúzió"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
   "prioritas": {
     "pont": 60,
     "szint": "P3",
@@ -45,5 +54,18 @@
     "ido": "2026-11-16T13:19:41+00:00"
   },
   "jovahagyas_kell": true,
-  "megjelent": "2026-11-16T13:19:43+00:00"
+  "forditva": "2026-11-16T13:26:08+00:00",
+  "megjelent": "2026-11-16T13:24:48.147Z",
+  "nevelo_javitva": "2026-11-16T13:26:08+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-16T13:26:11+00:00",
+    "esemeny": "A Nature-csoportba tartozó Acta Pharmacologica Sinica folyóiratban megjelent áttekintő tanulmány az mesterséges intelligencia és a mélytanulás szerepét elemzi a multi-omikai adatok integrálásában a rákkutatás és a gyógyszerfejlesztés területén.",
+    "forrasok": [
+      "https://www.nature.com/articles/s41401-026-01958-8"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  }
 }
