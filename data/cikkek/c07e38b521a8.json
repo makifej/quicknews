@@ -77,7 +77,7 @@
   "modell": "gemini-3.5-flash",
   "cim": "Vádat emeltek az Nvidia menedzsere ellen AI-chipek csempészése miatt",
   "lead": "A tajvani hatóságok szerint az Nvidia egyik menedzsere segített 74 darab mesterségesintelligencia-szervert illegálisan Kínába juttatni.",
-  "osszefoglalo": "A tajvani ügyészség vádat emelt az Nvidia egyik helyi menedzsere ellen okirat-hamisítás és hűtlen kezelés miatt. A hatóságok szerint a férfi egy olyan hálózat kulcsfigurája volt, amely **74 darab Nvidia-chipeket tartalmazó szervert juttatott Kínába**, és további 56 darab átirányítását kísérelte meg. A lefoglalt berendezésekben korlátozás alá eső B300-as chipek voltak.\n\nA vád szerint a menedzser segített megszeretni a vállalati jóváhagyást 130 szerver eladására egy olyan helyi cégnek, amely nem rendelkezett a szükséges infrastruktúrával, miközben eltitkolta, hogy a vételár egy kínai szervezettől származott. Ez az első ismert bírósági eljárás, amelyben a chipgyártó egyik saját alkalmazottja ellen emeltek vádat illegális chipátirányítás miatt.\n\nAz Nvidia közlése szerint alaposan kivizsgálták az ügyet, és **nem találtak bizonyítékot arra, hogy a dolgozójuk tudott volna a csempészésről**. A vállalat jelezte a tajvani tisztviselőknek, hogy nem ért egyet a vádakkal, és megadta a hatóságok által kért információkat.",
+  "osszefoglalo": "A tajvani ügyészség vádat emelt az Nvidia egyik helyi menedzsere ellen okirat-hamisítás és hűtlen kezelés miatt. A [tajvani hatósági eljárásban](https://www.perplexity.ai/discover/tech/nvidia-sought-taipei-s-help-in-mChsxEBiTJ.IWA9dYHy.yA) azzal vádolják a férfit, hogy egy olyan hálózat kulcsfigurája volt, amely **74 darab Nvidia-chipeket tartalmazó szervert juttatott Kínába**, és további 56 darab átirányítását kísérelte meg. A lefoglalt berendezésekben korlátozás alá eső B300-as chipek voltak.\n\nA vád szerint a menedzser segített megszerezni a vállalati jóváhagyást 130 szerver eladására egy olyan helyi cégnek, amely nem rendelkezett a szükséges infrastruktúrával, miközben eltitkolta, hogy a vételár egy kínai szervezettől származott. Ez az **első ismert bírósági eljárás**, amelyben a chipgyártó egyik saját alkalmazottja ellen emeltek vádat illegális chipátirányítás miatt.\n\nAz Nvidia közlése szerint alaposan kivizsgálták az ügyet, és **nem találtak bizonyítékot arra, hogy a dolgozójuk tudott volna a csempészésről**. A vállalat jelezte a tajvani tisztviselőknek, hogy nem ért egyet a vádakkal, és megadta a hatóságok által kért információkat.",
   "miert_szamit": "Az eset jól mutatja a szigorodó exportkorlátozások miatti **nemzetközi ellátási láncok kockázatait**, amelyek az AI-hardverek hozzáférhetőségét és szállítási határidejét is befolyásolhatják.",
   "cimkek": [
     "Nvidia",
@@ -116,20 +116,26 @@
   },
   "jovahagyas_kell": true,
   "forditva": "2026-11-16T08:06:00+00:00",
-  "megjelent": "2026-11-16T08:06:00+00:00",
+  "megjelent": "2026-11-16T08:49:10.527Z",
   "tenyellenorzes": {
-    "ok": false,
-    "ido": "2026-11-16T08:06:04+00:00",
-    "esemeny": "A tajvani ügyészség vádat emelt az Nvidia egyik menedzsere ellen, mert a gyanú szerint segített Nvidia AI-chipeket tartalmazó szervereket illegálisan Kínába juttatni. Az Nvidia kivizsgálta az ügyet, visszautasította a vádakat, és jelezte a tajvani hatóságoknak, hogy véleményük szerint az alkalmazott nem tudott a csempészésről.",
+    "ok": true,
+    "ido": "2026-11-16T08:51:16+00:00",
+    "esemeny": "A tajvani ügyészség vádat emelt az Nvidia egyik menedzsere ellen, mert a gyanú szerint segített Nvidia AI-chipeket tartalmazó szervereket illegálisan Kínába juttatni. Az Nvidia kivizsgálta az ügyet, visszautasította a vádakat, és jelezte a tajvani hatóságoknak, hogy nem tartja megalapozottnak a vizsgálatot a dolgozója ellen.",
     "forrasok": [
       "https://www.perplexity.ai/discover/tech/nvidia-sought-taipei-s-help-in-mChsxEBiTJ.IWA9dYHy.yA"
     ],
     "hibak": [
-      "Tényhiba az összefoglalóban: a szöveg hibásan azt állítja, hogy a menedzser segített 'megszeretni' a vállalati jóváhagyást a 'megszerezni' helyett.",
-      "a javított változat sem ment át: Tényhiba: a hivatkozási link a Perplexity másodlagos gyűjtőoldalára mutat a tényleges elsődleges forrás (Bloomberg/AP) vagy megfelelő beszédes hivatkozás helyett.; Elütési hiba a szövegben: 'megszeretni' szerepel a 'megszerezni' helyett.; Hiányzik a félkövér kiemelés a leadből és a miért számít bekezdésből."
+      "A hírben hiányzik az elsődleges forrásra mutató hivatkozás (link).",
+      "A lead karakterszáma rendben van (107 karakter), de a szövegben hiányzik a kötelező linkelési és kiemelési strukturális szabályok pontos betartása a megadott elsődleges forrással."
     ],
     "kereses": [],
-    "javitva": false
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Vádat emeltek az Nvidia menedzsere ellen AI-chipek csempészése miatt",
+      "lead": "A tajvani hatóságok szerint az Nvidia egyik menedzsere segített 74 darab mesterségesintelligencia-szervert illegálisan Kínába juttatni.",
+      "osszefoglalo": "A tajvani ügyészség vádat emelt az Nvidia egyik helyi menedzsere ellen okirat-hamisítás és hűtlen kezelés miatt. A hatóságok szerint a férfi egy olyan hálózat kulcsfigurája volt, amely **74 darab Nvidia-chipeket tartalmazó szervert juttatott Kínába**, és további 56 darab átirányítását kísérelte meg. A lefoglalt berendezésekben korlátozás alá eső B300-as chipek voltak.\n\nA vád szerint a menedzser segített megszeretni a vállalati jóváhagyást 130 szerver eladására egy olyan helyi cégnek, amely nem rendelkezett a szükséges infrastruktúrával, miközben eltitkolta, hogy a vételár egy kínai szervezettől származott. Ez az első ismert bírósági eljárás, amelyben a chipgyártó egyik saját alkalmazottja ellen emeltek vádat illegális chipátirányítás miatt.\n\nAz Nvidia közlése szerint alaposan kivizsgálták az ügyet, és **nem találtak bizonyítékot arra, hogy a dolgozójuk tudott volna a csempészésről**. A vállalat jelezte a tajvani tisztviselőknek, hogy nem ért egyet a vádakkal, és megadta a hatóságok által kért információkat.",
+      "miert_szamit": "Az eset jól mutatja a szigorodó exportkorlátozások miatti **nemzetközi ellátási láncok kockázatait**, amelyek az AI-hardverek hozzáférhetőségét és szállítási határidejét is befolyásolhatják."
+    }
   },
   "kiprobal_nezve": true,
   "termeklinkek_nezve": true,
