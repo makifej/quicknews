@@ -1,0 +1,49 @@
+{
+  "id": "1e58b5bb0c0b",
+  "slug": "ai-written-patches-are-becoming-attack-maps-for-hackers",
+  "forras_id": "google-news-ai",
+  "forras_nev": "CSO Online",
+  "url": "https://www.csoonline.com/article/4248687/ai-written-patches-are-becoming-attack-maps-for-hackers.html",
+  "publikalva": "2026-11-16T08:29:01+00:00",
+  "cim": "AI-written patches are becoming attack maps for hackers",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 74 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.csoonline.com/wp-content/uploads/2026/11/4248687-0-91857500-1794817650-geojango-maps-Z8UgB80_46w-unsplash.jpg?quality=50&strip=all&w=1024"
+  },
+  "cim_eredeti": "AI-written patches are becoming attack maps for hackers",
+  "szoveg_eredeti": "This summer, the maintainers of vm2, an open-source JavaScript sandboxing library with 1 million downloads per week, shipped fixes for 34 separate sandbox-escape vulnerabilities and Anthropic’s Claude co-wrote 19 of them. Weeks later, a security researcher pointed an AI agent at one of the advisories and asked for a way around the patch. The agent delivered.\n\nShayaun Nejad, lead product security engineer at Rubrik, ran vulnerability variant analysis on the vm2 patch while preparing for a talk he held at the recent [un]prompted AI security conference in San Francisco. He wanted to highlight the challenges his development team faced when dealing with a flood of AI-discovered vulnerabilities, and noted that the same bugs kept being rediscovered later in new testing runs despite being fixed by AI-assisted pipelines.\n\n“Sometimes the [vulnerability] variant wouldn’t be caught until the model variation got better or the model used chaining analysis at a higher degree once it improved in order to find those variants,” he said. “Sometimes it was in the exact same spot, sometimes it was something that was related, that was a neighbor, but variant analysis is basically something that has been popping up, and it’s a context magnet, too.”\n\nWith the rate of published CVEs higher than ever due to AI assistance, software developers are actually disclosing the types of vulnerabilities their platforms are susceptible to, and the patches for these flaws can serve as blueprints for attackers, Nejad warned. Sometimes it’s as simple as pointing an AI agent at a codebase with its historical vulnerabilities as context and telling it to go hunt for variants, he said.\n\nRubrik’s experience reflects a broader asymmetry that other researchers have observed in recent months: AI models have become very good at offense — finding vulnerabilities and building exploits — while their defensive skills, such as writing secure code and correct patches, have lagged behind.\n\nAlso at the [un]prompted conference, OpenAI security researcher Tim de Waal showed how an AI agent patched two vulnerabilities in the firmware of a network access point. For one issue, the agent rebuilt the vulnerable function without the stack canaries the original code had, silently removing a defensive protection. For the other, the generated patch filtered out double-quote characters in the attacker input but missed that using single quotes would have bypassed the fix.\n\nControlled studies found the same issue at scale. When researchers at 1Password’s Off-by-1 Labs used AI agents to repeatedly generate patches for the same six known vulnerabilities in complex open-source projects, about half of the 6,080 resulting patch candidates left at least one attack path open, with agents sometimes missing identical instances of the same bug in other parts of the code.\n\nMore recently, in a benchmark test called P2Patch, researchers pitted two AI agents against each other: one wrote exploits for 101 real vulnerabilities, and the other patched the code until the exploits stopped working. Then the first agent attacked the patched programs again, looking for a different way to trigger the same flaw. In 41 of the 101 cases, it succeeded, sometimes multiple times for subsequent patches.\n\nOf course, human-written patches are not infallible either. Security firm Trail of Bits reviewed the fixes developers submitted for 2,265 vulnerabilities found during its consulting assessments over several years and one in eight failed to fully resolve the reported issues.\n\nIn one case the company documented, a human maintainer and an AI agent working as part of the Patch the Planet initiative separately wrote patches for the same memory-safety bug in the freenginx web server, and both patches introduced the same crash during request cleanup.\n\nThe issue is not that AI always writes worse patches than humans, although the failure rate of AI-written patches might be higher, but that the rate of vulnerability discovery is now so fast that humans alone can’t keep up. This is combined with the offensive capabilities of AI agents that enable attackers to analyze and reverse engineer patches at machine speed.\n\nSeven months after launching its Mythos-powered Glasswing vulnerability-hunting program, Anthropic’s public ledger counted 37,966 findings. Only 217 of the 7,349 flaws that were made public had been fixed, according to a recent analysis from vulnerability intelligence firm VulnCheck. Not all findings turn out to be security vulnerabilities, but Anthropic claims a true positive rate of 94.2%, which, given the small number of fixes, highlights the deluge of reports that maintainers have to triage and deal with.\n\n“Progress on software security used to be limited by how quickly we could find new vulnerabilities,” Anthropic wrote in its initial Glasswing update. “Now it’s limited by how quickly we can verify, disclose, and patch the large numbers of vulnerabilities found by AI.”\n\nAnd this is not just a problem for open-source projects. After Bank of America let Anthropic’s models loose on its own systems, the bank added 1,000 outside contractors in the second quarter of this year to help with the patching work, on top of the roughly 3,000 existing staff. They were still on the job in October, CEO Brian Moynihan told CNBC.\n\nBy July, Meta was using AI to write fixes for 40% of its critical vulnerabilities, and almost half of those patches landed in production unchanged. Despite that, the exposure time did not go down, Meta software engineer David Molnar said in a separate presentation at [un]prompted. That’s because the AI-proposed patches still had to be reviewed by humans, while the amount of new code grew more than 100% year over year, with more than 80% of it attributed to AI coding agents.\n\n“Everyone is drowning in stuff to review,” Molnar said, adding that his team has worked with directors and product managers internally to find more places where automation can be introduced, including in the review process, shifting it from human-in-the-loop to human-on-the-loop.\n\n“You can automate everything upstream of AI, and then just completely overwhelm your poor humans on the other end,” he said. “Which is why you have to take a look at the entire pipeline and automate all of it.”\n\nIn June, the Forum of Incident Response and Security Teams (FIRST) projected around 66,000 CVE assignments for this year. With two months left, the number is already approaching 100,000. Microsoft’s October Patch Tuesday alone addressed 1,415 vulnerabilities compared to only 180 in October 2025.\n\nIf AI agents are scouring code repositories for vulnerability variants, one might be inclined to think that closed-source sofware, where the patch is usually inside a compiled binary, are safer. That’s not necessarily the case given that AI models are now also great at reverse engineering, and some people use them to create open-source replicas of complex proprietary products, for example Adobe Photoshop.\n\nIn June, when Anthropic’s researchers tested what an attacker can do with AI-assisted patch diffing, they gave a model nothing beyond what’s public on patch day. It produced a working exploit within an hour of a Firefox fix landing. On Windows, given vulnerable and patched binaries plus decompilation output, the same approach built eight full privilege-escalation chains from 21 kernel vulnerabilities for roughly $2,000 each.\n\n“In some ways, N-days are the more dangerous of the two [compared to zero-days], because the patch itself provides a roadmap to the bug,” the Anthropic researchers said at the time.\n\nA team of researchers from Fudan University in Shanghai, China, built an LLM-assisted binary diffing framework and analyzed 76 recent patches from 62 closed-source applications across 25 vendors. According to their paper published this month, the framework flagged 63 of the patches as incomplete and manually confirmed 56, of which 26 could be bypassed into new vulnerabilities, resulti",
+  "begyujtve": "2026-11-16T10:34:36.675871+00:00",
+  "prioritas": {
+    "pont": 74,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 80,
+      "hitelesseg": 72,
+      "aktualitas": 95,
+      "kozossegi": 77
+    },
+    "elofeszures": 91,
+    "tanult": 79,
+    "indok": "Súlyos információbiztonsági kockázatra mutat rá, ahol az AI által írt javítások segítenek a támadóknak. Forrás-tapasztalat: -6.",
+    "tema": "ai cybersecurity patch vulnerabilities",
+    "cim_hu": "Támadási térképként használják a hakkerek az AI által írt javításokat",
+    "lead_hu": "Kutatók rávilágítottak, hogy a mesterséges intelligenciával írt kódjavításokból a támadók gyorsan képesek megkerülő megoldásokat generálni AI-ágensek segítségével.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T10:34:47+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-16T10:34:48+00:00"
+}

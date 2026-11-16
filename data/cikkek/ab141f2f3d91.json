@@ -1,0 +1,49 @@
+{
+  "id": "ab141f2f3d91",
+  "slug": "artex-how-cybercriminals-use-ai-agents-to-scale-their-attacks",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Security Affairs",
+  "url": "https://securityaffairs.com/203188/ai/artex-how-cybercriminals-use-ai-agents-to-scale-their-attacks.html",
+  "publikalva": "2026-11-16T10:12:26+00:00",
+  "cim": "ARTEX: How Cybercriminals Use AI Agents to Scale Their Attacks",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 68 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://securityaffairs.com/wp-content/uploads/2026/11/image-36.png"
+  },
+  "cim_eredeti": "ARTEX: How Cybercriminals Use AI Agents to Scale Their Attacks",
+  "szoveg_eredeti": "Amazon’s threat intelligence team published findings on criminals running offensive campaigns with ARTEX, an open-source agentic AI penetration testing framework. Between 3 October and 5 November, Amazon’s MadPot network of decoy sensors caught requests from ARTEX agents. Some sensors posed as popular large language model APIs, and the agents sent them their own campaign records.\n\n“The ARTEX agents sent these requests to MadPot sensors configured to present as popular large language model (LLM) inference APIs, and the requests carried the agents’ own records of their campaigns.” reads the report. “Amazon Threat Intelligence assessed threat activity referencing potentially affected AWS customers and notified them as appropriate.”\n\nThese records reveal what the attackers were doing. AI agent frameworks save previous conversations, so a single request often contained details of the entire operation, including instructions, tool activity, shared information and results reported by the agents. Amazon did not observe the attacks in real time and could not confirm whether the agents had actually achieved their goals. However, the records showed what the attackers were trying to do.\n\nAmazon believes with moderate confidence that the attackers used ARTEX, based on references to the framework in their prompts and other technical evidence. It also believes with moderate confidence that several separate groups with links to China were involved. The evidence includes prompts written in Simplified Chinese, time-zone settings linked to China, targets matching Chinese interests and tools commonly used by China-linked groups. Some instructions told the agents to avoid targets in mainland China and government domains, and to route all outgoing traffic through proxy servers.\n\nOperators set the mission and left the rest to the agents. Planner, worker, verification and compression agents shared a persistent knowledge graph, so each picked up where the others stopped. In one campaign, operators told agents to work through a fixed list of countries, favor enterprise production sites over personal projects and grade every credential. Keys exposed publicly for more than 30 days counted as low-value inventory.\n\nThe biggest campaign stole credentials for AI models, and it paid for itself. Stolen keys went into the framework’s own model gateway and powered the agents hunting for more keys. Agents also validated cloud identities, listed storage, checked permissions and went after managed AI services, secrets stores and application identities, with premium frontier models first.\n\nThe agents focused on applications that store API keys from multiple providers. A single poorly protected admin page could expose credentials for many accounts. The targets included API gateways and proxies such as One API, New API, Veloera, Sub2API and LiteLLM, as well as AI development platforms such as Dify, FastGPT, Langflow, RAGFlow, Open WebUI, LobeChat and Ollama.\n\nThe framework included a set of instructions for attacking each product. These covered common weaknesses, such as installations that had not been properly configured, exposed admin pages, open provider settings and default passwords, including LiteLLM’s default master key. The agents also looked for known vulnerabilities, including CVE-2025-3248 in Langflow and CVE-2026-28797 in RAGFlow. Other techniques included bypassing authentication in One API-related systems by abusing the isCliRequest header, exploiting server-side request forgery (SSRF) to access cloud metadata services, and finding exposed secrets in JavaScript code, source maps, debug pages and environment files.\n\nDiscovery used internet scanners, certificate transparency logs and public code sources. Those included GitHub repositories and event archives, where secrets sat outside automated revocation, plus npm and PyPI packages, container layers, notebooks, model-hosting spaces, paste sites and Telegram channels. Credentials got a grade: L1 for a lead, L2 for a working API call, L3 for measured impact such as readable data or spendable balance.\n\nThe second campaign went after identity checks at two cryptocurrency exchanges, using real-time deepfakes.\n\n“In this campaign, threat actors used AI agents to defeat the identity verification (KYC) checks at two cryptocurrency exchanges with deepfakes.” continues the report. “The agents’ records show generating real-time deepfake video to pass live selfie checks and forged ID document photos to pass document checks.”\n\nThe agents reverse-engineered one vendor’s liveness check, which confirms a living person is present, and documented its face-detection events and coordinate system. Their best attempt put the face within 7 pixels of the target, and the vendor’s server still rejected the deepfake every time they recorded. Another session built a live deepfake pipeline on a single consumer GPU that reached 11.5 frames per second, close to what a live check expects.\n\nThey worked on ID photos too. The agents built fake camera metadata matching the real image dimensions and kept the original compression tables that re-saving would normally replace, so an edited image looked like an untouched camera photo at file level. At least four sessions ran at once, covering cash-out options, clearing balances, the deepfake pipeline and the bypass itself, and they swapped findings through shared tools. Nobody needed a coffee break.\n\nAmazon informed the AWS customers it believed were affected by these campaigns. However, it could not confirm whether other organizations had been targeted. The company also published the IP addresses used in both campaigns, which were observed between 14 October and 2 November. Organizations can use these addresses to check their own systems for signs of activity.\n\nAmazon advises companies to assume that attackers can quickly find exposed secrets and security weaknesses. AI applications, model gateways and inference endpoints should receive the same security protections as other production systems. Companies should also monitor unexpected costs and unusual usage.\n\nThe attacks took advantage of basic security weaknesses, including default passwords, exposed API keys, open interfaces and outdated software.\n\n“None of the techniques in these campaigns were new. What AI agents change is the speed and persistence of the attacker. The agents succeeded where basic security hygiene was missing, including default or hardcoded credentials, keys left in code and public artifacts, unauthenticated interfaces and inference endpoints, and unpatched software.” concludes the report. “Getting those fundamentals right remains the most effective defense.”\n\nFollow me on Twitter: @securityaffairs and Facebook and Mastodon\n\nArtificial Intelligence / November 16, 2026\n\nLaws and regulations / November 15, 2026",
+  "begyujtve": "2026-11-16T10:34:38.920314+00:00",
+  "prioritas": {
+    "pont": 68,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 70,
+      "hirertek": 80,
+      "egyediseg": 75,
+      "hitelesseg": 75,
+      "aktualitas": 98,
+      "kozossegi": 54
+    },
+    "elofeszures": 80,
+    "tanult": 31,
+    "indok": "Az Amazon biztonsági csapata konkrét bizonyítékot talált az AI-ágensekkel végrehajtott tömeges kibertámadásokra. Forrás-tapasztalat: -6.",
+    "tema": "artex ai cyberattacks amazon",
+    "cim_hu": "Az Amazon leleplezte, hogyan skálázzák a bűnözők a kibertámadásokat AI-ágensekkel",
+    "lead_hu": "Az Amazon fenyegetésfelderítő csapata szerint a bűnözők az nyílt forráskódú ARTEX keretrendszer segítségével automatizálják és skálázzák a kibertámadásokat.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T10:34:47+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-16T10:34:48+00:00"
+}
