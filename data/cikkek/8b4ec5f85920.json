@@ -1,0 +1,49 @@
+{
+  "id": "8b4ec5f85920",
+  "slug": "artificial-intelligence-framework-integrates-multi-omics-data-to",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/artificial-intelligence-framework-integrates-multi-omics-data-to-target-cardiac-regeneration-barriers/",
+  "publikalva": "2026-11-16T19:56:32+00:00",
+  "cim": "Artificial Intelligence Framework Integrates Multi-Omics Data to Target Cardiac Regeneration Barriers",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 63 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-13802.png"
+  },
+  "cim_eredeti": "Artificial Intelligence Framework Integrates Multi-Omics Data to Target Cardiac Regeneration Barriers",
+  "szoveg_eredeti": "Artificial Intelligence Framework Integrates Multi-Omics Data to Target Cardiac Regeneration Barriers\n\nThe analysis, conducted by researchers at the First Affiliated Hospital of Guangxi Medical University and published in Frontiers in Cell and Developmental Biology, establishes that while the adult mammalian heart possesses virtually no capacity to regenerate lost cardiomyocytes following injury, machine learning algorithms applied to high-dimensional biological data offer a systematic strategy to map the complex regulatory networks governing repair. The authors caution, however, that direct experimental validation of artificial intelligence in cardiac regeneration remains scarce, positioning their work as a methodological roadmap rather than a synthesis of settled clinical conclusions.\n\nHeart failure represents the terminal stage of numerous cardiovascular conditions and remains a principal cause of mortality globally, with an escalating disease burden driven by population ageing. Following myocardial infarction, the vast majority of adult cardiomyocytes withdraw permanently from the cell cycle, leading to permanent scar formation, progressive ventricular remodelling, and irreversible loss of contractile function. While lower vertebrates like adult zebrafish retain lifelong regenerative capacity and neonatal mice exhibit a brief window of complete myocardial regeneration that closes during the first postnatal week, the adult mammalian heart keeps this regenerative machinery strictly restrained. Previous cell-based therapies, including bone marrow-derived cell and cardiosphere infusions, yielded only modest clinical efficacy in clinical trials and meta-analyses due to poor graft survival, inefficient engraftment, imprecise control over lineage fate, and active suppression exerted by the hostile host microenvironment.\n\nThe biological barriers preventing effective cardiac regeneration span multiple regulatory layers, ranging from transcriptional circuits and post-translational protein interactions to spatial cell-to-cell communication networks within the damaged tissue niche. Single-cell RNA sequencing, spatial transcriptomics, and high-throughput proteomics each illuminate distinct facets of this regulatory landscape, but single modalities examined in isolation cannot resolve the integrated biology hidden within high-dimensional, sparse, and heterogeneous datasets. To address this challenge, deep learning architectures, variational autoencoders, and graph neural networks are being deployed to model multi-omics layers jointly. Frameworks such as Weighted Nearest Neighbour, Graph-Linked Unified Embedding, and foundation models like scGPT project distinct modalities into unified latent spaces, enabling investigators to align disparate data types, reconstruct gene regulatory networks, and infer cell state transitions across complex tissues.\n\nIn resolving the cellular composition of the heart, the review evaluates how unsupervised dimensionality reduction algorithms, including Uniform Manifold Approximation and Projection and consensus clustering via SC3, identify distinct atrial, ventricular, and conduction-system cardiomyocyte populations. In parallel, spatially aware computational models like BayesSpace, GraphST, and Tangram combine spatial adjacency matrices with transcriptomic profiles to map local border-zone niches and deconvolute spot-level spatial transcriptomic data. These analytical tools allow investigators to explore the fate microenvironment of cardiac lineage cells, declining to rely on controversial notions of adult endogenous cardiac stem cells and instead focusing on human induced pluripotent stem cell-derived cardiomyocytes as primary in vitro models. Nevertheless, the authors emphasize that spatial co-localisation and computational neighbourhood enrichments establish descriptive statistical associations rather than proven causal mechanisms.\n\nDirect experimental evidence indicates that manipulating core transcription factor hierarchies and signalling cascades can modify cardiomyocyte proliferative capacity and reprogram cell identity. The delivery of transcription factors GATA4, MEF2C, and TBX5 converts fibroblasts into cardiomyocyte-like cells in vitro and enhances ventricular function in animal models of myocardial injury. Concurrently, the Hippo-YAP pathway, Neuregulin1 and ErbB4 signalling, Meis1 expression, and metabolic shifts away from fatty acid oxidation act as molecular switches that control cardiomyocyte cell-cycle exit and re-entry. However, the review identifies a persistent structural gap in the field: while transcriptional and genetic manipulations are well documented, proteomic and phosphoproteomic validations lag substantially behind. Because alternative splicing and post-translational modifications cause widespread discordance between transcript abundance and functional protein complexes, transcriptomic models frequently underestimate regulatory complexity at the protein level.\n\nRecent breakthroughs demonstrate that machine learning models can identify actionable cellular communication axes within the damaged heart that withstand rigorous in vivo validation. In one notable investigation highlighted in the review, interpretable machine learning applied to spatial transcriptomics and in silico gene perturbations revealed distinct macrophage-niche regulatory programmes that drive pathological fibrosis; targeted in vivo gene silencing of these specific niche programmes using lipidoid nanoparticles significantly attenuated myocardial fibrosis and preserved cardiac function in mice after infarction. In a parallel study, an artificial intelligence model trained on thousands of cardiac fibrosis publications mapped ten nodal pathways, identifying distinct temporal peaks for JAK-STAT and TGF-beta signalling and confirming that fibroblast-specific deletion of Jak1 and Jak2 prevents pressure-overload fibrosis. These cardiac studies provide direct experimental proof that computational candidate prioritisation can guide successful molecular interventions.\n\nTo track continuous differentiation trajectories across time, computational frameworks such as Monocle, diffusion pseudotime, and CellRank leverage RNA velocity and Markov chains to predict cell state transitions and directional fate biases. Yet applying standard trajectory inference to adult cardiac regeneration introduces significant biological limitations: regenerative cells in adult myocardium exhibit extremely low basal proliferation, leaving few intermediate transition states available for computational capture. Furthermore, cardiac repair involves non-linear biological jumps, such as dedifferentiation, proliferation bursts, and redifferentiation, which violate the mathematical assumption of continuous, smooth developmental progression. While spatiotemporal coupling models utilizing high-resolution platforms like Stereo-seq and Slide-seqV2 have charted mouse organogenesis and brain development, longitudinal spatiotemporal profiling of the injured adult heart remains exceptionally scarce, limiting the direct transferability of these algorithms.\n\nCross-system biological evidence from skin repair, salamander brain regeneration, and stem cell ageing reveals that regeneration bottlenecks frequently stem from reversible epigenetic and metabolic states, such as the activation status of fibroblasts or glutathione metabolism, rather than absolute cell deficits. Nevertheless, the review stresses that findings from other regenerating organs cannot be directly assumed to function identically in the heart due to three profound cardiac-specific physiological constraints: avascular ischaemic core zones that restrict vital substrate delivery, continuous cyclic mechanical strain that destabilises immature cardiomyocytes in the border zone, and a unique resident macrophage ontogeny distinct from monocyte-dominated tissue repair. Consequently, while general computational frameworks transfer r",
+  "begyujtve": "2026-11-16T20:05:51.114539+00:00",
+  "prioritas": {
+    "pont": 63,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 70,
+      "egyediseg": 85,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 38
+    },
+    "elofeszures": 74,
+    "tanult": 21,
+    "indok": "Specifikus orvosi kutatás a gépi tanulás szívregenerációs alkalmazásáról. Forrás-tapasztalat: -6.",
+    "tema": "ai medical cardiac regeneration",
+    "cim_hu": "Mesterséges intelligenciával kutatják a szívizom-regenerációt kínai tudósok",
+    "lead_hu": "A Guangxi Orvostudományi Egyetem kutatói gépi tanulási algoritmusokat és multi-omikai adatokat használnak a szívizom-sejtek megújulási folyamatainak feltárásához.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T20:06:03+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-16T20:06:06+00:00"
+}
