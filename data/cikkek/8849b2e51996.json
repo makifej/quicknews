@@ -1,0 +1,49 @@
+{
+  "id": "8849b2e51996",
+  "slug": "ai-finds-zero-day-flaws-for-just-4-now-even-mediocre-hackers-can-cash",
+  "forras_id": "google-news-ai",
+  "forras_nev": "ZDNET",
+  "url": "https://www.zdnet.com/innovation/ai-finds-zero-day-security-flaws-for-cheap-hackers/",
+  "publikalva": "2026-11-16T13:14:25+00:00",
+  "cim": "AI finds zero-day flaws for just $4 now – even mediocre hackers can cash in",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 82 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.zdnet.com/wp-content/uploads/sites/3/GettyImages-1346600545.jpg"
+  },
+  "cim_eredeti": "AI finds zero-day flaws for just $4 now – even mediocre hackers can cash in",
+  "szoveg_eredeti": "The best AI models on the market couldn’t find zero-days earlier this year, but now they can in less than 15 minutes and at a cost of a few bucks, according to a new report from penetration testing firm Xint.io. The findings raise questions about how vulnerabilities will be discovered and exploited in the future.\n\nEvery major AI developer is working at breakneck speed to improve model effectiveness. At the same time, token prices continue to fall, with studies showing that the average cost of tokens, which varies by domain, has dropped by about 47% per quarter since 2023 and 15% last month alone, due to intense competition among companies including OpenAI and Anthropic.\n\nThis is good news for businesses trying to harness AI for productivity and new services, but as token prices fall, it has also become cheaper for attackers to launch AI-assisted attacks, including software breaches caused by exploiting unknown vulnerabilities.\n\nAlso: How AI security failures are endangering your supply chain\n\nA report published by Xint.io examines how popular AI models have evolved over the past year to the point where cybersecurity tasks that would have failed only months ago now succeed. The team analyzed seven models launched since February 2026: two from OpenAI, three from Anthropic, and two open-source models from DeepSeek and Z.ai. The team tracked, over time, how they performed in finding a target vulnerability.\n\nThe target of this research was a security flaw in Google’s V8 engine. Tracked as CVE-2026-102321, the type confusion bug leading to remote code execution (RCE) was disclosed to the Google Vulnerability Reward Program (VRP) by Xint researcher Taisic Yun and so was not present in the AI models’ training datasets.\n\nThe research scope was limited to a set of source files, including the file containing the vulnerability, and each model was instructed to search for security issues within these files.\n\nXint’s first test was conducted in February. After 25 hours and $350 of scanning, the best models then available still couldn’t find the critical vulnerability.\n\nIn July, GPT 5.6 Sol found the zero-day flaw for $22 in 44 minutes.\n\nAlso: Finding Linux bugs is easy – fixing them is another story\n\nBy September, GPT 6 Sol discovered the bug in 13 minutes for only $4.24 with its first guided prompt.\n\nOnly three of the seven models found the bug: GPT 6 Sol, GPT 5.6 Sol, and Claude Opus 5, all launched from July onward. GPT 5.6 Sol needed two prompts, while Claude Opus 5 found it on its first try but at a higher cost of $43.40.\n\nDeepSeek’s and Z.ai’s models failed the task.\n\nThe researchers say that the combination of AI model development and low token prices means that “mediocre hackers” can now use frontier models effectively to discover and potentially exploit vulnerabilities, and “while we are still far from complete amateurs using unharnessed models to hack systems and applications, what used to be considered too hard and costly to be worth the effort of the average hacker is now reachable.”\n\nAs a result, organizations need to adjust their security posture accordingly — but falling token costs and evolving AI skills and speed can also work in your favor.\n\nAlso: How I safely run my OpenClaw AI agent 24/7 on a Mac\n\nThere’s nothing stopping an organization’s security team or pentesters from running the same checks themselves to find vulnerabilities before threat actors do. AI-assisted tests, arguably, are no longer something that can be pushed back to next year’s budgetary review. By performing a risk assessment that focuses on likely weak spots, such as public-facing services or a digital supply chain that hasn’t been audited for years, organizations can mitigate the risk AI-enabled cyberattacks pose.\n\nZero-day vulnerabilities are unknown to vendors, and a patch might not be available when they go public or are actively exploited in the wild. So, AI can only go so far, but it can free up your defenders for tasks that need the human touch. Furthermore, maintaining zero-trust access controls, segmenting and shoring up your network’s defenses, and monitoring endpoints for signs of suspicious behavior can do as much as, or more than, AI.\n\nAs Xint notes, “expertise still matters” when it comes to instructing AI models to discover vulnerabilities. In some cases, the models couldn’t find the target vulnerability without guidance, so additional runs were needed, increasing time and cost.\n\n“Software breaches still require some level of technical proficiency,” the researchers say, “but no longer top-of-the-distribution expertise.”\n\nPlease accept cookies to view the comments powered by Disqus.",
+  "begyujtve": "2026-11-16T13:19:30.564383+00:00",
+  "prioritas": {
+    "pont": 82,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 90,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 72,
+      "aktualitas": 99,
+      "kozossegi": 78
+    },
+    "elofeszures": 84,
+    "tanult": 60,
+    "indok": "A zéró napi sérülékenységek olcsó és gyors MI-alapú feltárása súlyos kiberbiztonsági mérföldkő. Forrás-tapasztalat: -6.",
+    "tema": "ai cybersecurity zero day",
+    "cim_hu": "Már négy dollárból találhatnak súlyos biztonsági réseket az MI-modellek",
+    "lead_hu": "A legújabb kutatások szerint a vezető mesterséges intelligencia modellek mindössze néhány perc alatt és párezer forintos költséggel képesek zéró napi sérülékenységeket felderíteni.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T13:19:41+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-16T13:19:42+00:00"
+}
