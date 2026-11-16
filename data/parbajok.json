@@ -1,239 +1,265 @@
 {
-  "_leiras": "A Szavazás menü párbajai (Heni 2026-10-14). Minden párbaj két, ugyanarra a feladatra szolgáló eszköz híre. A tények kizárólag a két cikk szövegéből jönnek. nyit/zar: budapesti idő; a nyitás előtt „Hamarosan”, a zárás után lezárt, győztessel.",
-  "parbajok": [
-    {
-      "id": "pb-ugynok-gep",
-      "kerdes": "Melyik AI-ügynököt engednéd a gépedre?",
-      "nyit": "2026-10-14T07:00:00+02:00",
-      "zar": "2026-10-21T08:00:00+02:00",
-      "a": {
-        "cikk": "2832eac5e51d",
-        "nev": "Xiryn",
-        "egy": "Ingyenes, nyílt forráskódú ügynök, amely izolált Docker-környezetben dolgozik a háttérben.",
-        "tenyek": [
-          "Nyílt forráskódú, ingyenes",
-          "Nem kell hozzá fiók",
-          "Telegramról is irányítható"
-        ]
-      },
-      "b": {
-        "cikk": "f6161c15dfce",
-        "nev": "Agibot",
-        "egy": "Ingyenes, Macen futó, mindig aktív személyi ügynök, Telegramon és Slacken is elérhető.",
-        "tenyek": [
-          "Teljesen ingyenes",
-          "Kockázatos lépés előtt engedélyt kér",
-          "Napi költési limit állítható"
-        ]
-      }
-    },
-    {
-      "id": "pb-hirdetesgyar",
-      "kerdes": "Melyik gyártsa a következő hirdetésedet?",
-      "nyit": "2026-10-14T07:00:00+02:00",
-      "zar": "2026-10-21T08:00:00+02:00",
-      "a": {
-        "cikk": "6f88033784f2",
-        "nev": "Higgsfield Ads Studio",
-        "egy": "A márkád elemzéséből és a friss trendekből gyárt statikus hirdetéseket.",
-        "tenyek": [
-          "Kutatja a márkádat és a trendeket",
-          "Statikus hirdetésekre szabott",
-          "Ingyen kipróbálható"
-        ]
-      },
-      "b": {
-        "cikk": "6d1141c2529c",
-        "nev": "Runway Ads",
-        "egy": "Önálló teljesítménymarketing-motor, amely maga készíti és optimalizálja a hirdetéseket.",
-        "tenyek": [
-          "A Runway mérése: 34%-kal jobb konverzió",
-          "41%-kal kisebb szerzési költség",
-          "Egyelőre csak korai hozzáféréssel"
-        ]
-      }
-    },
-    {
-      "id": "pb-kodoloagensek",
-      "kerdes": "Hol futtatnád egyszerre a kódolóügynökeidet?",
-      "nyit": "2026-10-14T07:00:00+02:00",
-      "zar": "2026-10-21T08:00:00+02:00",
-      "a": {
-        "cikk": "d6bf3fefe1e9",
-        "nev": "Farol",
-        "egy": "Ingyenes, nyílt forráskódú macOS-terminál több kódolóügynök párhuzamos futtatására.",
-        "tenyek": [
-          "Minden feladat saját Git worktree-t kap",
-          "Diff, commit és PR az appból",
-          "Ingyenes, nyílt forráskódú"
-        ]
-      },
-      "b": {
-        "cikk": "659408cc563c",
-        "nev": "Hypervibe",
-        "egy": "Egyetlen végtelen vizuális táblára gyűjti a párhuzamosan dolgozó kódolóügynököket.",
-        "tenyek": [
-          "Végtelen vizuális tábla",
-          "Indítás, követés, irányítás egy helyen",
-          "Átláthatóbb feladatfelosztás"
-        ]
-      }
-    },
-    {
-      "id": "pb-fajlrendezes",
-      "kerdes": "Ki tegyen rendet a fájljaid között?",
-      "nyit": "2026-10-21T08:00:00+02:00",
-      "zar": "2026-10-28T08:00:00+02:00",
-      "a": {
-        "cikk": "1464a8b2a89d",
-        "nev": "Sorted",
-        "egy": "Privát, mesterséges intelligenciával működő fájlrendszerező Macre.",
-        "tenyek": [
-          "Macen fut",
-          "Teljesen privát rendezés",
-          "AI rendszerezi a fájlokat"
-        ]
-      },
-      "b": {
-        "cikk": "2ad4c6f33e71",
-        "nev": "The Drive AI",
-        "egy": "Felhőtárhelyeket összekötő AI-ügynök, amely közvetlenül dolgozik a dokumentumokon.",
-        "tenyek": [
-          "Google Drive, OneDrive, Dropbox",
-          "Lépés előtt jóváhagyást kér",
-          "A módosítások visszavonhatók"
-        ]
-      }
-    },
-    {
-      "id": "pb-terminal-kodolo",
-      "kerdes": "Melyik terminálos kódolót választanád?",
-      "nyit": "2026-10-21T08:00:00+02:00",
-      "zar": "2026-10-28T08:00:00+02:00",
-      "a": {
-        "cikk": "0834eb1e56a9",
-        "nev": "Reika",
-        "egy": "Parancssoros kódoló asszisztens, helyben futtatott kis modellekhez és gyengébb gépekhez.",
-        "tenyek": [
-          "Helyi, kis modellekre szabva",
-          "16 GB-os M2 MacBook Airen tesztelve",
-          "Felhős modellekkel is megy"
-        ]
-      },
-      "b": {
-        "cikk": "4b46c27e8b6f",
-        "nev": "Dropstone CLI",
-        "egy": "Terminálos kódolóügynök, amely a teljes kódalapot átlátja és megjegyzi a javításaidat.",
-        "tenyek": [
-          "Megjegyzi a korábbi javításokat",
-          "Ingyenes alapcsomag",
-          "Fizetős csomag 5 dollártól"
-        ]
-      }
-    },
-    {
-      "id": "pb-asztali-asszisztens",
-      "kerdes": "Melyik asztali asszisztens kezelje a gépedet?",
-      "nyit": "2026-10-21T08:00:00+02:00",
-      "zar": "2026-10-28T08:00:00+02:00",
-      "a": {
-        "cikk": "e5d1b19822b0",
-        "nev": "Hark Pro",
-        "egy": "A géped helyett kattint, és egy kis ablakban élőben mutatja, mit csinál.",
-        "tenyek": [
-          "Élőben mutatja a lépéseit",
-          "Az adatokat nem adja el",
-          "Ingyen kipróbálható"
-        ]
-      },
-      "b": {
-        "cikk": "582857f0f019",
-        "nev": "OpenPilot",
-        "egy": "Nyílt forráskódú asztali AI-ügynök, bármilyen választott modellel.",
-        "tenyek": [
-          "Nyílt forráskódú",
-          "Bármilyen AI-modellel összeköthető",
-          "A saját gépeden fut"
-        ]
-      }
-    },
-    {
-      "id": "pb-videovago-sajat-ai",
-      "kerdes": "Melyik videóvágóban dolgozzon a saját AI-od?",
-      "nyit": "2026-10-29T16:00:00+01:00",
-      "zar": "2026-11-04T08:00:00+01:00",
-      "a": {
-        "cikk": "c3893d4c765c",
-        "nev": "WeftCut",
-        "egy": "Ingyenes, nyílt forrású videóvágó, amelyben a saját AI-ügynököd vág a szemed előtt.",
-        "tenyek": [
-          "Ingyenes, MIT-licences",
-          "macOS, Windows és Linux",
-          "Claude, Cursor vagy Codex köthető be"
-        ]
-      },
-      "b": {
-        "cikk": "677c4eaf7d0b",
-        "nev": "Rushilo",
-        "egy": "Asztali videószerkesztő, amelyet a Claude Code vagy a Codex vezérel szöveges utasításokkal.",
-        "tenyek": [
-          "Egyszeri 99 dollár, 3 gépre",
-          "Mac és Windows",
-          "A feliratozás helyben, Whisperrel megy"
-        ]
-      }
-    },
-    {
-      "id": "pb-mac-asszisztens",
-      "kerdes": "Melyik személyes AI-asszisztens dolgozzon a Maceden?",
-      "nyit": "2026-11-04T08:00:00+01:00",
-      "zar": "2026-11-11T08:00:00+01:00",
-      "a": {
-        "cikk": "1f36396830da",
-        "nev": "Gerty",
-        "egy": "Teljesen privát AI-asszisztens Macre, amely felhő és internet nélkül fut.",
-        "tenyek": [
-          "Nem kell hozzá fiók",
-          "Maga választja és telepíti a modelleket",
-          "Egyszeri 49 svájci frank, 7 nap ingyen"
-        ]
-      },
-      "b": {
-        "cikk": "3fbb4a75edfa",
-        "nev": "ShogunAI",
-        "egy": "Macen futó személyes asszisztens, amely megjegyzi a munkáid hátterét.",
-        "tenyek": [
-          "A munkamemória helyben, titkosítva",
-          "A szöveget felhős modell írja",
-          "Küldés előtt mindig jóváhagyást kér"
-        ]
-      }
-    },
-    {
-      "id": "pb-kepmodell",
-      "kerdes": "Melyik képmodell készítse a következő grafikádat?",
-      "nyit": "2026-11-11T08:00:00+01:00",
-      "zar": "2026-11-18T08:00:00+01:00",
-      "a": {
-        "cikk": "7429ec7256c3",
-        "nev": "Krea 3",
-        "egy": "Gyors képszerkesztő modell, amely a logókat és a feliratokat változatlanul hagyja.",
-        "tenyek": [
-          "2K-ban 8 másodpercen belül szerkeszt",
-          "Akár 6 referenciaképpel dolgozik",
-          "Egy 2K-s szerkesztés 0,06 dollár"
-        ]
-      },
-      "b": {
-        "cikk": "afbb328c263f",
-        "nev": "Canva Craft",
-        "egy": "A Canva első saját képmodellje, amely olvasható szöveggel tervez.",
-        "tenyek": [
-          "Plakátokon és sablonokon tanították",
-          "Szerkeszthető, rétegezett tervvé alakítható",
-          "Minden Canva-felhasználónak elérhető"
-        ]
-      }
-    }
-  ]
+ "_leiras": "A Szavazás menü párbajai (Heni 2026-10-14). Minden párbaj két, ugyanarra a feladatra szolgáló eszköz híre. A tények kizárólag a két cikk szövegéből jönnek. nyit/zar: budapesti idő; a nyitás előtt „Hamarosan”, a zárás után lezárt, győztessel.",
+ "parbajok": [
+  {
+   "id": "pb-ugynok-gep",
+   "kerdes": "Melyik AI-ügynököt engednéd a gépedre?",
+   "nyit": "2026-10-14T07:00:00+02:00",
+   "zar": "2026-10-21T08:00:00+02:00",
+   "a": {
+    "cikk": "2832eac5e51d",
+    "nev": "Xiryn",
+    "egy": "Ingyenes, nyílt forráskódú ügynök, amely izolált Docker-környezetben dolgozik a háttérben.",
+    "tenyek": [
+     "Nyílt forráskódú, ingyenes",
+     "Nem kell hozzá fiók",
+     "Telegramról is irányítható"
+    ]
+   },
+   "b": {
+    "cikk": "f6161c15dfce",
+    "nev": "Agibot",
+    "egy": "Ingyenes, Macen futó, mindig aktív személyi ügynök, Telegramon és Slacken is elérhető.",
+    "tenyek": [
+     "Teljesen ingyenes",
+     "Kockázatos lépés előtt engedélyt kér",
+     "Napi költési limit állítható"
+    ]
+   }
+  },
+  {
+   "id": "pb-hirdetesgyar",
+   "kerdes": "Melyik gyártsa a következő hirdetésedet?",
+   "nyit": "2026-10-14T07:00:00+02:00",
+   "zar": "2026-10-21T08:00:00+02:00",
+   "a": {
+    "cikk": "6f88033784f2",
+    "nev": "Higgsfield Ads Studio",
+    "egy": "A márkád elemzéséből és a friss trendekből gyárt statikus hirdetéseket.",
+    "tenyek": [
+     "Kutatja a márkádat és a trendeket",
+     "Statikus hirdetésekre szabott",
+     "Ingyen kipróbálható"
+    ]
+   },
+   "b": {
+    "cikk": "6d1141c2529c",
+    "nev": "Runway Ads",
+    "egy": "Önálló teljesítménymarketing-motor, amely maga készíti és optimalizálja a hirdetéseket.",
+    "tenyek": [
+     "A Runway mérése: 34%-kal jobb konverzió",
+     "41%-kal kisebb szerzési költség",
+     "Egyelőre csak korai hozzáféréssel"
+    ]
+   }
+  },
+  {
+   "id": "pb-kodoloagensek",
+   "kerdes": "Hol futtatnád egyszerre a kódolóügynökeidet?",
+   "nyit": "2026-10-14T07:00:00+02:00",
+   "zar": "2026-10-21T08:00:00+02:00",
+   "a": {
+    "cikk": "d6bf3fefe1e9",
+    "nev": "Farol",
+    "egy": "Ingyenes, nyílt forráskódú macOS-terminál több kódolóügynök párhuzamos futtatására.",
+    "tenyek": [
+     "Minden feladat saját Git worktree-t kap",
+     "Diff, commit és PR az appból",
+     "Ingyenes, nyílt forráskódú"
+    ]
+   },
+   "b": {
+    "cikk": "659408cc563c",
+    "nev": "Hypervibe",
+    "egy": "Egyetlen végtelen vizuális táblára gyűjti a párhuzamosan dolgozó kódolóügynököket.",
+    "tenyek": [
+     "Végtelen vizuális tábla",
+     "Indítás, követés, irányítás egy helyen",
+     "Átláthatóbb feladatfelosztás"
+    ]
+   }
+  },
+  {
+   "id": "pb-fajlrendezes",
+   "kerdes": "Ki tegyen rendet a fájljaid között?",
+   "nyit": "2026-10-21T08:00:00+02:00",
+   "zar": "2026-10-28T08:00:00+02:00",
+   "a": {
+    "cikk": "1464a8b2a89d",
+    "nev": "Sorted",
+    "egy": "Privát, mesterséges intelligenciával működő fájlrendszerező Macre.",
+    "tenyek": [
+     "Macen fut",
+     "Teljesen privát rendezés",
+     "AI rendszerezi a fájlokat"
+    ]
+   },
+   "b": {
+    "cikk": "2ad4c6f33e71",
+    "nev": "The Drive AI",
+    "egy": "Felhőtárhelyeket összekötő AI-ügynök, amely közvetlenül dolgozik a dokumentumokon.",
+    "tenyek": [
+     "Google Drive, OneDrive, Dropbox",
+     "Lépés előtt jóváhagyást kér",
+     "A módosítások visszavonhatók"
+    ]
+   }
+  },
+  {
+   "id": "pb-terminal-kodolo",
+   "kerdes": "Melyik terminálos kódolót választanád?",
+   "nyit": "2026-10-21T08:00:00+02:00",
+   "zar": "2026-10-28T08:00:00+02:00",
+   "a": {
+    "cikk": "0834eb1e56a9",
+    "nev": "Reika",
+    "egy": "Parancssoros kódoló asszisztens, helyben futtatott kis modellekhez és gyengébb gépekhez.",
+    "tenyek": [
+     "Helyi, kis modellekre szabva",
+     "16 GB-os M2 MacBook Airen tesztelve",
+     "Felhős modellekkel is megy"
+    ]
+   },
+   "b": {
+    "cikk": "4b46c27e8b6f",
+    "nev": "Dropstone CLI",
+    "egy": "Terminálos kódolóügynök, amely a teljes kódalapot átlátja és megjegyzi a javításaidat.",
+    "tenyek": [
+     "Megjegyzi a korábbi javításokat",
+     "Ingyenes alapcsomag",
+     "Fizetős csomag 5 dollártól"
+    ]
+   }
+  },
+  {
+   "id": "pb-asztali-asszisztens",
+   "kerdes": "Melyik asztali asszisztens kezelje a gépedet?",
+   "nyit": "2026-10-21T08:00:00+02:00",
+   "zar": "2026-10-28T08:00:00+02:00",
+   "a": {
+    "cikk": "e5d1b19822b0",
+    "nev": "Hark Pro",
+    "egy": "A géped helyett kattint, és egy kis ablakban élőben mutatja, mit csinál.",
+    "tenyek": [
+     "Élőben mutatja a lépéseit",
+     "Az adatokat nem adja el",
+     "Ingyen kipróbálható"
+    ]
+   },
+   "b": {
+    "cikk": "582857f0f019",
+    "nev": "OpenPilot",
+    "egy": "Nyílt forráskódú asztali AI-ügynök, bármilyen választott modellel.",
+    "tenyek": [
+     "Nyílt forráskódú",
+     "Bármilyen AI-modellel összeköthető",
+     "A saját gépeden fut"
+    ]
+   }
+  },
+  {
+   "id": "pb-videovago-sajat-ai",
+   "kerdes": "Melyik videóvágóban dolgozzon a saját AI-od?",
+   "nyit": "2026-10-29T16:00:00+01:00",
+   "zar": "2026-11-04T08:00:00+01:00",
+   "a": {
+    "cikk": "c3893d4c765c",
+    "nev": "WeftCut",
+    "egy": "Ingyenes, nyílt forrású videóvágó, amelyben a saját AI-ügynököd vág a szemed előtt.",
+    "tenyek": [
+     "Ingyenes, MIT-licences",
+     "macOS, Windows és Linux",
+     "Claude, Cursor vagy Codex köthető be"
+    ]
+   },
+   "b": {
+    "cikk": "677c4eaf7d0b",
+    "nev": "Rushilo",
+    "egy": "Asztali videószerkesztő, amelyet a Claude Code vagy a Codex vezérel szöveges utasításokkal.",
+    "tenyek": [
+     "Egyszeri 99 dollár, 3 gépre",
+     "Mac és Windows",
+     "A feliratozás helyben, Whisperrel megy"
+    ]
+   }
+  },
+  {
+   "id": "pb-mac-asszisztens",
+   "kerdes": "Melyik személyes AI-asszisztens dolgozzon a Maceden?",
+   "nyit": "2026-11-04T08:00:00+01:00",
+   "zar": "2026-11-11T08:00:00+01:00",
+   "a": {
+    "cikk": "1f36396830da",
+    "nev": "Gerty",
+    "egy": "Teljesen privát AI-asszisztens Macre, amely felhő és internet nélkül fut.",
+    "tenyek": [
+     "Nem kell hozzá fiók",
+     "Maga választja és telepíti a modelleket",
+     "Egyszeri 49 svájci frank, 7 nap ingyen"
+    ]
+   },
+   "b": {
+    "cikk": "3fbb4a75edfa",
+    "nev": "ShogunAI",
+    "egy": "Macen futó személyes asszisztens, amely megjegyzi a munkáid hátterét.",
+    "tenyek": [
+     "A munkamemória helyben, titkosítva",
+     "A szöveget felhős modell írja",
+     "Küldés előtt mindig jóváhagyást kér"
+    ]
+   }
+  },
+  {
+   "id": "pb-kepmodell",
+   "kerdes": "Melyik képmodell készítse a következő grafikádat?",
+   "nyit": "2026-11-11T08:00:00+01:00",
+   "zar": "2026-11-18T08:00:00+01:00",
+   "a": {
+    "cikk": "7429ec7256c3",
+    "nev": "Krea 3",
+    "egy": "Gyors képszerkesztő modell, amely a logókat és a feliratokat változatlanul hagyja.",
+    "tenyek": [
+     "2K-ban 8 másodpercen belül szerkeszt",
+     "Akár 6 referenciaképpel dolgozik",
+     "Egy 2K-s szerkesztés 0,06 dollár"
+    ]
+   },
+   "b": {
+    "cikk": "afbb328c263f",
+    "nev": "Canva Craft",
+    "egy": "A Canva első saját képmodellje, amely olvasható szöveggel tervez.",
+    "tenyek": [
+     "Plakátokon és sablonokon tanították",
+     "Szerkeszthető, rétegezett tervvé alakítható",
+     "Minden Canva-felhasználónak elérhető"
+    ]
+   }
+  },
+  {
+   "id": "pb-ai-munkatars",
+   "kerdes": "Melyik AI-munkatársat engednéd dolgozni helyetted?",
+   "nyit": "2026-11-18T08:00:00+01:00",
+   "zar": "2026-11-25T08:00:00+01:00",
+   "a": {
+    "cikk": "1e4697a88d79",
+    "nev": "Rakazo",
+    "egy": "Nyílt forráskódú bot, amelyet a saját gépeden vagy szervereden futtathatsz.",
+    "tenyek": [
+     "Nyílt forráskódú Grok Bot-alternatíva",
+     "A saját infrastruktúrádon fut, teljes adatkontrollal",
+     "A kódja szabadon testreszabható"
+    ]
+   },
+   "b": {
+    "cikk": "6305294f969c",
+    "nev": "AppuBot",
+    "egy": "AI-munkatársak, amelyek a már meglévő programjaidat kezelik helyetted.",
+    "tenyek": [
+     "Közvetlenül a meglévő alkalmazásokat használja",
+     "Macen és felhőben is futtatható",
+     "Nem kell átalakítani a munkafolyamatokat"
+    ]
+   }
+  }
+ ]
 }
