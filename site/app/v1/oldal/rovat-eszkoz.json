@@ -1,7 +1,7 @@
 {
   "cim": "Eszközök",
   "leiras": "Appok, bővítmények, funkciók, amiket ma ki lehet próbálni.",
-  "alcim": "463 hír, fontossági sorrendben",
+  "alcim": "465 hír, fontossági sorrendben",
   "blokkok": [
     {
       "t": "nagy",
@@ -28,6 +28,28 @@
     {
       "t": "kiemelt",
       "h": {
+        "id": "690a9aa8938d",
+        "cim": "Az FBI szerint alig 3 óra alatt tör be a hálózatokba az Artex AI",
+        "lead": "A hatóságok arra figyelmeztetnek, hogy a kibertámadók nyílt forráskódú AI-eszközökkel hajtanak végre önálló és meglepően gyors behatolásokat.",
+        "slug": "az-fbi-szerint-alig-3-ora-alatt-tor-be-a-halozatokba-az-artex-ai",
+        "forras": "TechCrunch AI",
+        "kat": "eszköz",
+        "rovat": "eszkoz",
+        "ido": "2026-11-16T17:59:44.725Z",
+        "ido_hu": "nov. 16. 18:59",
+        "kep": "https://quicknews.hu/assets/kep/690a9aa8938d.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/690a9aa8938d.webp",
+        "video": false,
+        "fontossag": 4,
+        "felkapott": false,
+        "forraskep": false,
+        "url": "https://quicknews.hu/hir/az-fbi-szerint-alig-3-ora-alatt-tor-be-a-halozatokba-az-artex-ai",
+        "jova": true
+      }
+    },
+    {
+      "t": "kiemelt",
+      "h": {
         "id": "a2b6dcbf0a01",
         "cim": "Megjelent a llama.cpp v1, a helyi AI-futtatás legnépszerűbb eszköze",
         "lead": "A Hugging Face és Georgi Gerganov kiadta a llama.cpp első teljesen stabil, v1-es főverzióját.",
@@ -44,28 +66,6 @@
         "felkapott": false,
         "forraskep": true,
         "url": "https://quicknews.hu/hir/megjelent-a-llama-cpp-v1-a-helyi-ai-futtatas-legnepszerubb-eszkoze",
-        "jova": true
-      }
-    },
-    {
-      "t": "kiemelt",
-      "h": {
-        "id": "afe8073449f8",
-        "cim": "Látványos munkafelületeket kapott a Claude",
-        "lead": "Az Anthropic elindította a Claude Whiteboards, Claude Sheets és Claude Data funkciókat az adatok vizualizálására és a közös tervezésre.",
-        "slug": "latvanyos-munkafeluleteket-kapott-a-claude",
-        "forras": "Claude (X)",
-        "kat": "eszköz",
-        "rovat": "eszkoz",
-        "ido": "2026-11-10T20:27:54.405Z",
-        "ido_hu": "nov. 10. 21:27",
-        "kep": "https://quicknews.hu/assets/kep/afe8073449f8.webp",
-        "kep_nagy": "https://quicknews.hu/assets/kep/afe8073449f8-n.webp",
-        "video": true,
-        "fontossag": 4,
-        "felkapott": false,
-        "forraskep": false,
-        "url": "https://quicknews.hu/hir/latvanyos-munkafeluleteket-kapott-a-claude",
         "jova": true
       }
     },
@@ -238,7 +238,7 @@
       "t": "rovat",
       "cim": "Kódolás és fejlesztés",
       "link": null,
-      "osszes": 109,
+      "osszes": 110,
       "fo": {
         "id": "4a19f47c8250",
         "cim": "AI-kulcs ellopásával fertőzték meg a Cursor fejlesztői környezetét",
@@ -279,6 +279,25 @@
           "jova": false
         },
         {
+          "id": "2e4299b08e3f",
+          "cim": "Interaktív weboldalakat épít Claude az új HTML-in-Canvas funkcióval",
+          "lead": "Az Anthropic mesterséges intelligenciája komplex 3D grafikákba és látványos vizuális elemekbe ágyaz be valódi HTML-kódot.",
+          "slug": "interaktiv-weboldalakat-epit-claude-az-uj-html-in-canvas-funkcioval",
+          "forras": "The Decoder",
+          "kat": "eszköz",
+          "rovat": "eszkoz",
+          "ido": "2026-11-16T18:00:10.724Z",
+          "ido_hu": "nov. 16. 19:00",
+          "kep": "https://quicknews.hu/assets/kep/2e4299b08e3f.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/2e4299b08e3f-n.webp",
+          "video": false,
+          "fontossag": 3,
+          "felkapott": false,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/interaktiv-weboldalakat-epit-claude-az-uj-html-in-canvas-funkcioval",
+          "jova": true
+        },
+        {
           "id": "77aacaa11cd6",
           "cim": "A Revolut 90 százalékkal csökkentette az AI-kódolás költségeit saját modellekkel",
           "lead": "A fintech óriás nyílt súlyú modellekre váltott a zárt rendszerek helyett, amivel jelentősen gyorsította a fejlesztést.",
@@ -315,7 +334,9 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/az-epic-games-mar-ai-val-fejleszti-az-unreal-engine-kodjat",
           "jova": true
-        },
+        }
+      ],
+      "tobb": [
         {
           "id": "1e8ba9106ed8",
           "cim": "Bárki bekötheti saját alkalmazását a Google Geminibe és a Keresőbe",
@@ -334,9 +355,7 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/barki-bekotheti-sajat-alkalmazasat-a-google-geminibe-es-a-keresobe",
           "jova": true
-        }
-      ],
-      "tobb": [
+        },
         {
           "id": "becd12354f28",
           "cim": "Harmadik féltől származó AI-ügynökökkel bővül az Android Studio",
@@ -6815,7 +6834,7 @@
       "t": "rovat",
       "cim": "Asszisztensek és irodai munka",
       "link": null,
-      "osszes": 98,
+      "osszes": 99,
       "fo": {
         "id": "8b0602aea2d1",
         "cim": "Ingyenes, magyar fejlesztésű Chrome-bővítmény gyűjti ki a terméklistákat, szövegeket és képeket",
@@ -6894,6 +6913,27 @@
           "jova": false
         },
         {
+          "id": "afe8073449f8",
+          "cim": "Látványos munkafelületeket kapott a Claude",
+          "lead": "Az Anthropic elindította a Claude Whiteboards, Claude Sheets és Claude Data funkciókat az adatok vizualizálására és a közös tervezésre.",
+          "slug": "latvanyos-munkafeluleteket-kapott-a-claude",
+          "forras": "Claude (X)",
+          "kat": "eszköz",
+          "rovat": "eszkoz",
+          "ido": "2026-11-10T20:27:54.405Z",
+          "ido_hu": "nov. 10. 21:27",
+          "kep": "https://quicknews.hu/assets/kep/afe8073449f8.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/afe8073449f8-n.webp",
+          "video": true,
+          "fontossag": 4,
+          "felkapott": false,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/latvanyos-munkafeluleteket-kapott-a-claude",
+          "jova": true
+        }
+      ],
+      "tobb": [
+        {
           "id": "155d33cae726",
           "cim": "Az egészségügybe is megérkezett a Google Cloud Gemini",
           "lead": "A Google Cloud bemutatta az egészségügyi rendszereket egyesítő és az adminisztrációt automatizáló Gemini for healthcare platformot.",
@@ -6911,9 +6951,7 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/az-egeszsegugybe-is-megerkezett-a-google-cloud-gemini",
           "jova": true
-        }
-      ],
-      "tobb": [
+        },
         {
           "id": "90b41198b624",
           "cim": "Dokumentumokat és prezentációkat is szerkeszthetünk a Geminiben",
