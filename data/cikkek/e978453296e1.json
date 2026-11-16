@@ -1,0 +1,49 @@
+{
+  "id": "e978453296e1",
+  "slug": "how-moengage-built-agentic-customer-engagement-on-amazon-bedrock",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/how-moengage-built-agentic-customer-engagement-on-amazon-bedrock-agentcore/",
+  "publikalva": "2026-11-16T18:16:07+00:00",
+  "cim": "How MoEngage built agentic customer engagement on Amazon Bedrock AgentCore",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 40 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/06/ML-21091-featured-image.png"
+  },
+  "cim_eredeti": "How MoEngage built agentic customer engagement on Amazon Bedrock AgentCore",
+  "szoveg_eredeti": "This post was co-written with Ashwin Srinivasan, Nishan Das and Karthik Baile from MoEngage.\n\nA marketing or product team member planning a weekend flash sale often opens three tools before writing a single line of copy. First they open the analytics dashboard to see what worked last time, then the content library to find the right tone, and then the campaign builder to build the campaign itself. Repeat that across email, push, SMS, and WhatsApp, and much of a marketing team’s week goes to navigating tools instead of making decisions.\n\nThe MoEngage Model Context Protocol (MCP) Connector gives an MCP-compatible assistant, such as Claude or ChatGPT, secure, tenant-scoped access to a brand’s segments, campaign history, and content library.\n\nThis capability points to a broader shift in software platforms. Beyond a user interface for business users and an API for engineering teams, a third layer is emerging, where a user describes an outcome in plain language and an agent carries out the steps across the platform. For a customer engagement platform, that means a capability already exposed as an API can become a tool an agent calls, and a campaign that once moved across several tools can move through one conversation instead.\n\nMoEngage, the agentic customer engagement platform that more than 1,350 consumer brands use across channels including push, email, in-app, SMS, WhatsApp, and Rich Communication Services (RCS), set out to build this layer. MoEngage built Merlin AI, a set of artificial intelligence (AI) agents that work with live platform data. Marketing and product teams can now draft, analyze, and adjust campaigns from a single conversation, while agents decide what to send each customer. One customer, Glance, saw a 38% uplift in push notification click-through rates as a result.\n\nMoEngage treated this as an architecture problem. The question was how to give agents secure, tenant-scoped access to live data without rebuilding hundreds of existing APIs. In this post, we walk through how MoEngage solved it with Amazon Bedrock and Amazon Bedrock AgentCore, a platform to build, connect, and optimize AI agents at scale with any framework or model. The post covers the four agent modes in Merlin AI, how MoEngage exposed its existing APIs as MCP tools, and how the architecture keeps each tenant’s data isolated. It closes with the results MoEngage customers have seen and the pattern other software providers can reuse.\n\nMerlin AI runs four kinds of agents. All four share the same foundation: foundation models in Amazon Bedrock for reasoning and generation, AgentCore runtime, a capability of Amazon Bedrock AgentCore, for hosting, and MCP for standardized access to data. Across all four modes, Merlin AI uses Anthropic Claude Sonnet 4.6, Claude Sonnet 5, and Claude Sonnet 5.5 on Amazon Bedrock for reasoning, tool-call planning, and content generation. For the full list of models, see Supported foundation models in Amazon Bedrock.\n\nMerlin AI Studio places purpose-built agents at the exact point in the workflow where marketing and product teams do that piece of work:\n\nConversational agents work across campaigns, analytics, segments, and flows. A user can ask a question in plain language and the agent calls the right tools to answer it or act on it. The Campaign Insights Agent, embedded on the analytics page, delegates to specialized sub-agents. One sub-agent runs analysis across several metrics at once. A second diagnoses why a metric is underperforming, and a third compares performance across time periods or segments. A final step formats the findings into a clear answer.\n\nCustom agents let lifecycle and customer relationship management (CRM) teams design agents that run continuously on MoEngage data and tools, inside rules the product and marketing team defines. Every agent shows its work through an activity log of the data it pulled, the decisions it made, the channels it touched, and the content it sent. Teams can run an agent with full autonomy or require human review before anything executes.\n\nDecisioning agents act for each individual customer. Each agent decides what to say, when, how often, and on which channel, and it learns from every outcome. Product and marketing teams set the content, goals, and guardrails, and the agents handle the rest, with visibility into every decision. Offer Decisioning selects the best offer on web and app surfaces. Campaign Decisioning delivers 1:1 decisions across email, push, SMS, and WhatsApp. Together with workflow agents, this puts both halves of agentic marketing in one system.\n\nThe architecture has four layers. Each layer has a single responsibility and can change without affecting the others.\n\nIn a typical request, a user signs in to MoEngage and asks a question. The client sends the request with the user’s existing JSON Web Token (JWT). AgentCore runtime validates the token and starts an isolated session for that user. The agent asks a model in Amazon Bedrock which tools to call. The MCP server calls the MoEngage APIs with the user’s tenant context and returns the results. The agent then composes the answer.\n\nThe following diagram shows how these components connect.\n\nFigure 1: MoEngage Merlin AI architecture on Amazon Bedrock and AgentCore runtime.\n\nMoEngage opens its platform to agents through an MCP server and agent-callable APIs. Its platform APIs for campaigns, analytics, segments, content, and flows were already OpenAPI 3.0-compatible, so MoEngage used the FastMCP framework to generate MCP tools from those specifications. Each operation becomes a tool with a structured schema, a description, and parameter validation.\n\nThe following simplified example shows the pattern:\n\nThe tools come from the specifications, so they stay in sync with the APIs. When a team updates a specification, the tool definitions update with it.\n\nA multi-tenant system cannot let a model decide whose data it is reading. MoEngage made three design choices to help prevent that. First, the MCP server reuses the existing authentication model, accepting the same JWT-based authentication that MoEngage APIs already use, and AgentCore runtime validates each token before a request reaches the server. Second, workspace and user context travel in request headers that AgentCore runtime forwards to the server rather than as tool arguments, so the model does not see these values and cannot change them. Third, AgentCore runtime runs each user session in its own isolated environment, so one user’s conversation cannot read another’s session state.\n\nOn top of this, Amazon Bedrock Guardrails apply content safety and personally identifiable information (PII) filters to agent responses. A backend-for-frontend layer then validates the structure of generated content before the MoEngage interface renders it.\n\nGive users control over agents. Users set guardrails on what each agent can do, review every action in its activity log, and choose between autonomous and human-reviewed execution.\n\nAgentCore runtime provides the production capabilities that a multi-tenant MCP server needs, and each one addresses a specific requirement of MoEngage’s workload. AgentCore runtime scales sessions as demand changes, so MoEngage does not plan capacity for traffic bursts across its customer workspaces. Each session runs in its own isolated environment by default, which keeps one brand’s conversation and data separate from another’s. The built-in JWT authorizer validates tokens against MoEngage’s existing identity provider, so the MCP server uses the same authentication model as the APIs.\n\nHosting on AgentCore runtime is also framework-agnostic. MoEngage can change models or agent frameworks without touching the MCP server, which matters as the agent layer evolves. Built-in metrics, logs, and traces through Amazon CloudWatch give MoEngage engineers visibility into every session. Together, these capabilities let the team focus on agent logic and marketing intelligence rather than hosti",
+  "begyujtve": "2026-11-16T18:49:44.131663+00:00",
+  "prioritas": {
+    "pont": 40,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 25,
+      "egyediseg": 90,
+      "hitelesseg": 78,
+      "aktualitas": 96,
+      "kozossegi": 33
+    },
+    "elofeszures": 80,
+    "tanult": 46,
+    "indok": "Technikai jellegű vállalati esettanulmány az AWS blogján, alacsony általános hírértékkel. Forrás-tapasztalat: -6.",
+    "tema": "aws bedrock moengage integration",
+    "cim_hu": "Így épített ágensalapú ügyfélbevonást a MoEngage az AWS Amazon Bedrock segítségével",
+    "lead_hu": "A MoEngage bemutatta, miként integrálta az Amazon Bedrock AgentCore technológiát a marketingkampányok automatizálására és a döntéshozatal megkönnyítésére.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T18:49:54+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-16T18:50:07+00:00"
+}
