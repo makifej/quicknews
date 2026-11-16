@@ -1,0 +1,49 @@
+{
+  "id": "0aaa2045436b",
+  "slug": "explainable-artificial-intelligence-framework-targets-formability-and",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/explainable-artificial-intelligence-framework-targets-formability-and-performance-trade-off-in-additive-alloys/",
+  "publikalva": "2026-11-15T22:40:55+00:00",
+  "cim": "Explainable Artificial Intelligence Framework Targets Formability and Performance Trade-Off in Additive Alloys",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 40 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-5159.jpg"
+  },
+  "cim_eredeti": "Explainable Artificial Intelligence Framework Targets Formability and Performance Trade-Off in Additive Alloys",
+  "szoveg_eredeti": "Explainable Artificial Intelligence Framework Targets Formability and Performance Trade-Off in Additive Alloys\n\nLaser powder bed fusion enables the additive manufacturing of complex metallic components with demanding geometry, yet coordinating forming quality with post-solidification mechanical performance remains a persistent engineering challenge. In a review published in Advanced Materials Joining, researchers led by Minghao Liu, Wei Xu, and colleagues evaluate how explainable artificial intelligence can bridge the historical divide between defect suppression and mechanical optimization. Additive manufacturing processes rely on focused laser beams melting consecutive powder layers, where highly localized energy deposition and rapid cooling rates reaching 10⁴ to 10⁶ K/s create severe thermal gradients. Traditional data-driven machine learning models frequently correlate raw process inputs directly with bulk properties, but these purely statistical correlations lack metallurgical interpretability and fail when extrapolated beyond narrow experimental boundaries.\n\nThe review systematically categorizes how physical interpretability has been established across metallic materials through four foundational knowledge domains: physical metallurgy principles, cross-scale numerical information, microstructural image data, and causal physical mechanisms. The first domain introduces classical metallurgical laws as regularizing constraints within statistical algorithms, thereby preventing predictions from violating physical principles. For example, physical metallurgy-guided support vector machines utilize thermodynamic driving forces and equilibrium phase fractions to constrain process schemes, while deep data-mining convolutional neural networks integrate thermodynamic mechanisms to predict martensite start temperatures with high out-of-distribution stability. By establishing physics-guided boundaries, these models balance statistical fitting freedom against extrapolation stability in small-sample metallurgical datasets.\n\nThe second knowledge domain incorporates cross-scale numerical descriptors derived from atomic, mesoscopic, and macroscopic simulations without necessarily altering the underlying neural network architecture. At the atomic scale, first-principles calculations supply formation enthalpies and cohesive energies to inform high-entropy alloy designs, while at the mesoscopic scale, Calculation of Phase Diagrams methods supply quantitative descriptors such as non-equilibrium phase fractions, solidification intervals, and transformation temperatures. At the macroscopic continuum level, finite element modeling and molecular dynamics provide thermal stress distributions and solidification cooling rates. The third domain captures microstructural image data directly from scanning electron microscopy, electron backscatter diffraction, and optical microscopy using deep learning networks like U-Net and variational autoencoders, achieving automated phase segmentation and spatial feature extraction without relying on manual parameterization.\n\nCausal physical mechanisms form the fourth domain by embedding governing equations and causal directions directly into loss functions and structural model graphs. Physics-informed neural networks incorporate fundamental partial differential equations, such as the conservation of mass, momentum, and energy, to simulate molten-pool geometry and Marangoni convection. Similarly, phase-field dynamics modeled via the Allen-Cahn and Cahn-Hilliard equations describe dendritic growth and solute segregation during solidification, while mechanics-based fatigue formulations incorporate Basquin’s law and stress-dependent variance rules. Incorporating causal transfer learning has allowed researchers to predict fatigue strength in low-alloy steels from tensile data with as few as thirty training sets, achieving a verified 50 MPa fatigue strength increase by ensuring algorithmic decisions respect physical cause and effect.\n\nIn laser powder bed fusion practice, research has historically split into two distinct paradigms dictated by the dominant physical bottlenecks of specific materials. Steels and titanium alloys represent the performance-first paradigm, where components readily achieve near-full density across broad processing windows, but suffer from anisotropic microstructures, cyclic thermal reheating, and non-equilibrium phase evolution. In LPBF steels, rapid cooling triggers complex sequences of austenite-to-martensite transformation and cyclic partial tempering, where statistical models paired with physical metallurgy descriptors have successfully mapped linear energy inputs to density and nanohardness with classification accuracies reaching 92.4%. Similarly, combining extreme gradient boosting with SHAP interpretability and NSGA-III multi-objective optimization enabled the rapid design of ultra-high-strength stainless compositions balancing strength, toughness, and corrosion resistance.\n\nFor LPBF titanium alloys, such as Ti-6Al-4V, directional heat extraction along the build direction induces coarse prior-beta columnar grains with strong <001> fiber textures, while rapid cooling forms brittle acicular alpha-prime martensite. Explainable machine learning strategies have targeted these anisotropic failure modes through physics-informed fatigue modeling. Incorporating threshold stress intensity factors and Kitagawa-Takahashi envelope constraints into neural network loss functions improved fatigue strength prediction coefficients of determination from 0.70 to 0.82 while reducing mean absolute errors from 40.5 MPa to 29.9 MPa across 143 experimental samples. Furthermore, combining three-dimensional micro-computed tomography defect volumes with deep neural networks identified maximum defect circumscribed sphere diameter and sphericity as the primary determinants of fatigue life, attaining a test coefficient of determination of 0.946.\n\nConversely, aluminum alloys and nickel-based superalloys represent the formability-first paradigm, where severe hot tearing, liquation cracking, high laser reflectivity, and wide freezing intervals dominate processing challenges. High-strength aluminum alloys, including 2xxx and 7xxx series, feature freezing ranges exceeding 100 K, which prolong exposure to the vulnerable mushy zone where interdendritic liquid cannot accommodate thermal contraction stresses. To resolve these challenges, researchers developed graph attention networks integrated with physical metallurgy knowledge graphs, designing an additive aluminum alloy that achieved 99.98% relative density without substrate preheating, accompanied by an ultimate tensile strength of 454 MPa and an elongation of 9.5%. In nickel-based superalloys, dual-parameter criteria evaluating heat resistance and deformation resistance successfully mapped cracking susceptibility by quantifying elemental microsegregation, explaining why trace additions of boron, zirconium, and hafnium severely aggravate cracking by depressing the solidus temperature.\n\nDespite these individual successes, the authors emphasize that contemporary studies remain predominantly task-specific and single-objective, focusing either on defect mitigation or on mechanical strength. Because both formability and mechanical properties arise from the identical composition-process-thermal history pathway, adjusting processing parameters to eliminate porosity inevitably alters grain morphology, crystallographic texture, and residual stress states. To overcome this limitation, the authors propose a unified multi-objective optimization framework structured around shared thermal history descriptors, such as local thermal gradient G, solidification front velocity R, cooling rate, and remelting depth. Coupling physics-constrained models with standardized multimodal databases and causal discovery algorithms will allow researchers to determine whether formability and performance objectives are driven by coo",
+  "begyujtve": "2026-11-16T07:04:51.694366+00:00",
+  "prioritas": {
+    "pont": 40,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 35,
+      "egyediseg": 90,
+      "hitelesseg": 70,
+      "aktualitas": 78,
+      "kozossegi": 21
+    },
+    "elofeszures": 72,
+    "tanult": 14,
+    "indok": "Szuper-specifikus kohászati és anyagtudományi AI kutatás, kevés általános olvasói értékkel. Forrás-tapasztalat: -6.",
+    "tema": "materials science ai",
+    "cim_hu": "Magyarázható AI-keretrendszer segíti az új fémötvözetek fejlesztését",
+    "lead_hu": "Kutatók egy új magyarázható mesterséges intelligencia modellt alkalmaznak az ötvözetek formálhatósága és teljesítménye közötti egyensúly megteremtésére.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T07:05:38+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-16T07:05:40+00:00"
+}

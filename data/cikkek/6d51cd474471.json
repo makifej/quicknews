@@ -1,0 +1,49 @@
+{
+  "id": "6d51cd474471",
+  "slug": "artificial-intelligence-analyzes-biopsy-slides-to-forecast",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/artificial-intelligence-analyzes-biopsy-slides-to-forecast-nasopharyngeal-carcinoma-recurrence-risk/",
+  "publikalva": "2026-11-15T22:30:55+00:00",
+  "cim": "Artificial Intelligence Analyzes Biopsy Slides to Forecast Nasopharyngeal Carcinoma Recurrence Risk",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 53 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-12751.png"
+  },
+  "cim_eredeti": "Artificial Intelligence Analyzes Biopsy Slides to Forecast Nasopharyngeal Carcinoma Recurrence Risk",
+  "szoveg_eredeti": "Artificial Intelligence Analyzes Biopsy Slides to Forecast Nasopharyngeal Carcinoma Recurrence Risk\n\nA multicenter retrospective study conducted across three Chinese tertiary medical centers has demonstrated that a weakly supervised deep-learning computational pathology framework can extract robust prognostic signals directly from routine hematoxylin and eosin stained biopsy whole-slide images to stratify progression-free survival in patients diagnosed with locally advanced nasopharyngeal carcinoma. Developing reliable individualized risk assessments in locally advanced nasopharyngeal carcinoma remains an ongoing clinical challenge because traditional clinicopathological factors and standard tumor-node-metastasis staging provide limited resolution for predicting patient-level disease trajectories. Although nasopharyngeal carcinoma demonstrates marked radiosensitivity and standard treatment relies primarily on definitive radiotherapy paired with platinum-based chemotherapy, treatment responses and recurrence patterns vary widely even among patients sharing identical clinical stages. Researchers developed an attention-based multiple-instance learning model inspired by the clustering-constrained attention multiple-instance learning architecture, designed to evaluate whole-slide biopsy images obtained prior to treatment initiation without requiring laborious manual annotation of tumor margins or cellular regions, achieving validated prognostic discrimination across independent patient cohorts.\n\nNasopharyngeal carcinoma represents an epithelial malignancy characterized by aggressive local invasion and a strong propensity for regional lymph node and distant systemic dissemination, displaying its highest global incidence across populations in southern China, East and Southeast Asia, and North Africa. Approximately seventy percent of newly diagnosed individuals present with locoregionally advanced disease classified as stage III to IVA under the American Joint Committee on Cancer and Union for International Cancer Control staging guidelines. While induction chemotherapy followed by concurrent chemoradiotherapy forms the therapeutic standard of care, alongside emerging integrations of adjuvant systemic therapy and immune checkpoint inhibitors in selected higher-risk subgroups, clinicians still struggle to determine which patients require treatment intensification versus those who could safely avoid excessive therapy-related toxicities. Conventional pathological examinations capture abundant morphological information, cellular architecture, and immune infiltration profiles from tissue biopsies, yet visual evaluation remains inherently qualitative, subjective, and unable to systematically parse high-dimensional spatial microenvironmental characteristics across entire slide surfaces.\n\nTo overcome these clinical limitations, the research team assembled a retrospective multicenter cohort comprising two hundred and fifty-three unique patients newly diagnosed with histologically confirmed stage III to IVA undifferentiated non-keratinizing nasopharyngeal carcinoma between 2012 and 2025. Across the entire cohort, patients contributed two hundred and sixty-five pretreatment whole-slide images. The patient population was partitioned across three major tertiary institutions: Nanfang Hospital affiliated with Southern Medical University designated as Center 1, Jiangsu Cancer Hospital designated as Center 2, and Shandong Cancer Hospital and Institute designated as Center 3. Slides from Centers 1 and 2 were combined into a development cohort and randomly assigned to an initial training cohort consisting of one hundred and forty-nine patients contributing one hundred and sixty whole-slide images and an internal validation cohort of fifty-two patients contributing fifty-three whole-slide images. Center 3 served as a completely locked, independent external test cohort comprising fifty-two patients who each contributed exactly one whole-slide image, ensuring that external slide-level performance was mathematically equivalent to patient-level evaluation.\n\nThe study cohorts exhibited diverse baseline clinical profiles, allowing the researchers to rigorously evaluate the generalizability of their computational pathology model across distinct institutional environments. Across the cohorts, the median ages were 49.0 years in the training cohort, 47.0 years in the internal validation cohort, and 53.5 years in the external test cohort, with male patients representing the majority in all three groups at 75.6 percent, 75.5 percent, and 73.1 percent, respectively. The prevalence of locally extensive T3 to T4 primary tumors remained relatively consistent across the groups, accounting for 73.1 percent of training cases, 75.5 percent of validation cases, and 71.2 percent of external test cases. However, statistically significant differences were observed across cohorts regarding smoking history, N stage distribution, and baseline Epstein-Barr virus DNA copy counts, confirming meaningful clinical heterogeneity between the development cohorts and the external testing dataset. Median follow-up durations estimated through the reverse Kaplan-Meier method reached 60.7 months in the training group, 58.4 months in internal validation, and 48.0 months in the external test cohort.\n\nThe computational pipeline began by digitizing routine pretreatment biopsy slides at forty times optical magnification, yielding high-resolution whole-slide images with a resolution of approximately 0.25 micrometers per pixel. Following automated tissue segmentation and foreground detection, slides were divided into non-overlapping image patches measuring 1024 by 1024 pixels. For feature extraction, the researchers utilized a ResNet-50 convolutional neural network pre-trained on ImageNet, freezing all lower layers and updating only the final residual block during training to produce a dense 2048-dimensional feature vector for every tissue patch. Within the weakly supervised multiple-instance learning framework, each whole slide was handled as a single bag composed of numerous image patches, supervising the network entirely with overall progression-free survival outcomes rather than labor-intensive patch annotations. A gated attention pooling mechanism employing parallel hyperbolic tangent and sigmoid mathematical transformations computed slide-level attention distributions, which were subsequently passed through layer normalization, dropout, and a classifier head to generate an individualized continuous risk score reflecting the probability of disease progression.\n\nDuring model training, the investigators applied random horizontal and vertical flipping, color perturbations in the hue-saturation-value color space, and random sampling of sixty-four patches per slide bag to enhance generalizability across varying laboratory staining conditions, while utilizing an auxiliary instance-level classification branch evaluating the top eight highest and lowest attention patches. During evaluation on internal validation and external testing sets, a deterministic inference protocol analyzed a fixed subset of one hundred and twenty-eight patches per slide without data augmentation. Optimization was performed over one hundred and fifty epochs using the AdamW algorithm paired with a cosine-annealing warm-restart learning rate schedule. A binary risk score cutoff of 0.450 was established strictly within the internal validation cohort to dichotomize patients into high-risk and low-risk strata, and this precise threshold was subsequently transferred without modification or recalibration to the independent external validation cohort.\n\nIn the internal validation cohort, the primary attention-based multiple-instance learning model achieved strong discriminative performance, recording an area under the receiver operating characteristic curve of 0.883 with a 95 percent confidence interval spanning 0.762 to 0.969, alongside a Harrell concordance",
+  "begyujtve": "2026-11-16T07:04:52.640768+00:00",
+  "prioritas": {
+    "pont": 53,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 55,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 78,
+      "kozossegi": 28
+    },
+    "elofeszures": 72,
+    "tanult": 11,
+    "indok": "Rákdiagnosztikai AI kutatás, szakmai anyag korlátozott hírértékkel. Forrás-tapasztalat: -6.",
+    "tema": "cancer diagnosis ai",
+    "cim_hu": "AI segíthet a daganatos betegségek kiújulási kockázatának előrejelzésében",
+    "lead_hu": "Egy kínai klinikai kutatás szerint a mélytanulási algoritmusok szövettani mintákból képesek pontosan felbecsülni a rák kiújulásának valószínűségét.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T07:05:38+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-16T07:06:41+00:00"
+}
