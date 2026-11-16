@@ -1,0 +1,49 @@
+{
+  "id": "b4b282d7c953",
+  "slug": "best-practices-for-writing-denied-topics-in-amazon-bedrock-guardrails",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/best-practices-for-writing-denied-topics-in-amazon-bedrock-guardrails/",
+  "publikalva": "2026-11-16T15:48:01+00:00",
+  "cim": "Best practices for writing Denied Topics in Amazon Bedrock Guardrails",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 43 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/03/ML-21785-featured-image.png"
+  },
+  "cim_eredeti": "Best practices for writing Denied Topics in Amazon Bedrock Guardrails",
+  "szoveg_eredeti": "With Denied Topics in Amazon Bedrock Guardrails, you block a content category by describing it in plain language, and the guardrail applies that description to every request by meaning rather than by keyword. That same mechanism can also match more than you intend. A topic named Finance, meant to keep an assistant out of investment advice, also blocks “When does my direct deposit clear?”. Inputs close in meaning to the topic can get caught, not only the requests you intended.\n\nWhen Denied Topics blocks too much or too little, the cause is usually one of four authoring patterns:\n\nThe rest of this post is a practical guide to avoiding these patterns. It presents eight best practices for describing a topic precisely enough that the guardrail blocks what you mean and passes what you don’t.\n\nTo ground the following practices in something concrete, we use one running example throughout this post: a fictional bank we call AnyCompany Bank. AnyCompany Bank is two weeks from launching its first customer-facing AI assistant, and its first pass at the Denied Topics policy is blocking the wrong things.\n\nApplication: AnyCompany Bank’s chatbot is embedded in the AnyCompany Bank mobile and web app. It answers questions about accounts, statements, transfers, cards, and mortgages. It hands off to a human for account changes, dispute filings, and questions outside its scope.\n\nMust-block list (from legal and compliance):\n\nMust-pass list (the things the assistant exists to do):\n\nAgainst that target, AnyCompany Bank’s team first drafted four topics, all of them currently blocking legitimate queries:\n\nEvery one of these topics names a subject domain the assistant works in, rather than the intention the bank needs to refuse. Fixing this is what the rest of the post is about. The next eight sections work through the practices, most of them closing with a “Back at AnyCompany Bank” subsection that shows the fix applied to this scenario. The post then closes with the one limitation to plan for regardless of how well you follow the practices: results are not fully deterministic.\n\nNote: Denied Topic structure in Standard tier. A topic has three parts, a name, a definition, and up to five examples, and the guardrail evaluates all three together as a single unit, not the definition alone. The name can be up to 100 characters. The definition can be up to 1,000 characters, with 100–300 as the practical sweet spot. Each example can be up to 100 characters, and a guardrail can hold up to 30 topics.\n\nThis practice sets the general frame. Best practices 2 through 4 apply it to each part of a topic in turn: the name, the definition, and the examples.\n\nA frequent reason a topic blocks legitimate queries is that the topic describes a subject domain rather than what the user wants from the exchange. Two queries in the same domain can carry different intentions. “When does my direct deposit clear?” and “How much does an L5 engineer earn?” both concern pay, but only the second is a salary comparison. A domain-framed topic collapses those distinctions and can block queries semantically near the domain. A topic framed around the user’s intention matches only queries where that intention is present.\n\nIntention is the framing lens. To make it operational, name the topic after the specific action or content type that expresses the intention on the surface, such as a request, a claim, or a piece of generated content. Intention tells you what to catch, and action gives you a concrete shape the guardrail can evaluate.\n\nThe guardrail evaluates both the topic name and its definition together. When either component names a domain, the topic matches too broadly. When both name an action that expresses a specific intention, the topic is precise.\n\nThe next few best practices apply this idea to AnyCompany Bank’s own topics, with concrete examples. Best practice 2 renames them, and Best practice 3 tightens their definitions to match.\n\nThe topic name has a meaningful effect on what is matched, often greater than expected. A broad category name (Finance, Security, Legal) can lead the guardrail to associate the topic with vocabulary in that category, even when the definition attempts to narrow the scope. A specific action name (Investment Recommendations, Hacking Instructions, Suing for Damages) helps narrow the scope before the definition is read.\n\nOne of AnyCompany Bank’s first-draft topics was named Legal:\n\nThis is why “Can you help me modify my mortgage?” got blocked. Mortgages are legal instruments, so queries about them live in the semantic neighborhood of legal. Renaming solves half the problem before we even touch the definition:\n\nThe new name uses a verb-derived noun (litigation), names a second specific behavior (non-servicing legal advice), and makes clear by contrast that servicing questions, such as modifications, forbearance, and escrow, are outside the topic. The name itself now carries some of the work the definition would otherwise do alone.\n\nAnyCompany Bank applied the same logic to the Fraud topic, renaming it to Fraud Investigation Requests. The assistant should still let customers report fraud, which gets routed to a human, but must not attempt to investigate fraud claims itself.\n\nAfter these three renames, AnyCompany Bank’s topic list is:\n\nThe definition should describe the user’s action on a specific object, rather than the general subject of that action.\n\nWe recommend the following structure:[Action or content-type opener] for [specific objects] by [qualifying constraint or purpose]. Includes [one or two sub-cases].\n\nAnyCompany Bank’s first-draft topic was named Finance, with a definition to match:\n\nThis is exactly why “Where can I find my payoff quote?” was blocked. Payoff is a financial term, quote concerns money, and the input is “related to” the finance domain, even though the customer’s intention, retrieving a servicing figure, has nothing to do with what AnyCompany Bank wanted to refuse.\n\nFollowing Best practice 1, the team renamed the topic to Investment Recommendations and adjusted the definition’s vocabulary to match, without yet making it action-scoped:\n\nThis was still domain-framed even though the name had improved. General education (“Explain what a mutual fund is”), historical financial news (“Why did rates rise last quarter?”), and portfolio review (“Show me my holdings”) all matched. The assistant should answer all of them.\n\nThe team applied the structural template, with an action opener, specific objects, a qualifying constraint, and one or two sub-cases:\n\nEvery piece of the template serves a specific purpose. “Asking for a personalized recommendation to…” is the action opener. “Stocks, bonds, mutual funds, ETFs, or cryptocurrencies” are the specific objects. “For the user’s own investment returns” is the qualifying constraint that excludes educational and third-party discussion. The “Includes…” clause names two sub-cases: a specific-security question and an allocation-percentage question.\n\nAnyCompany Bank applied the same template to the Litigation and Non-Servicing Legal Advice and Fraud Investigation Requests topics:\n\nThe team now had three named topics with action-scoped definitions.\n\nExamples teach the guardrail where the boundaries of your topic are. Not every example does this equally well. Five paraphrases of the same idea teach the guardrail nothing new, while five carefully chosen examples can draw the outline of the topic with much less definition text. The examples that carry the most weight are the ones sitting near the topic’s edge, close enough to a plausible non-match that they show the guardrail where to draw the line. We call these boundary examples. A good boundary example has three properties. First, it’s inside the topic’s scope. Second, it’s close to a plausible non-match, using vocabulary or structure that resembles inputs the topic should not match. Third, it differs from your other examples in sub-case, sentence shape, and vocabulary.\n\nThe team’s",
+  "begyujtve": "2026-11-16T17:04:48.265450+00:00",
+  "prioritas": {
+    "pont": 43,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 35,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 90,
+      "kozossegi": 27
+    },
+    "elofeszures": 74,
+    "tanult": 22,
+    "indok": "Technikai jellegű útmutató és tanácsadás AWS Bedrockot használó fejlesztőknek. Forrás-tapasztalat: -6.",
+    "tema": "aws bedrock guardrails guide",
+    "cim_hu": "Gyakorlati tanácsokat adott az AWS a Bedrock Guardrails hatékony használatához",
+    "lead_hu": "Az Amazon Web Services leírta, hogyan kerülhetők el a téves szűrések a letiltott témakörök beállításakor.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T17:05:11+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-16T17:05:26+00:00"
+}
