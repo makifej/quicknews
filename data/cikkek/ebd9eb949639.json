@@ -1,0 +1,49 @@
+{
+  "id": "ebd9eb949639",
+  "slug": "our-first-phase-of-embedded-assessments",
+  "forras_id": "openai",
+  "forras_nev": "OpenAI",
+  "url": "https://openai.com/index/our-first-phase-of-embedded-assessments",
+  "publikalva": "2026-11-16T08:00:00+00:00",
+  "cim": "Our first phase of embedded assessments",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 70 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://images.ctfassets.net/kftzwdyauwt9/1KkjAzVSr4nz5D67tGCxVH/8a47206051b698db4cbdad829eff241b/embedded-assessments-neutral-023-social-revised.png?w=1600&h=900&fit=fill"
+  },
+  "cim_eredeti": "Our first phase of embedded assessments",
+  "szoveg_eredeti": "We have signed agreements with four independent assessors—Apollo Research, METR, Transluce, and Goodfire—for our first phase of embedded assessments. As AI capabilities advance rapidly and the potential risks grow, public reporting from independent assessments can give people a clearer view of how labs are evaluating and managing those risks.\n\nEmbedded assessments give independent experts deep access to a lab’s internal models and systems to assess model alignment and the effectiveness of safeguards over an extended period of time, especially where relevant to our safety cases. Based on what each evaluation needs, assessors receive access to some of the same internal resources our researchers use, including model checkpoints, source code, training and evaluation data, monitoring systems, technical documentation, and discussions with the researchers and engineers responsible for the work. This access gives assessors the evidence and context to pursue independent evaluations and uncover failures we may not have anticipated.\n\nOur initial assessments focus on alignment and safeguards for models during training and internal use, complementing our safety cases. They build on our priorities and principles for third party assessments and years of work with third party evaluators, including a recent pilot assessment of our internal monitoring systems⁠(opens in a new window) with deep internal access and an investigation of the Hugging Face incident⁠(opens in a new window). We’ll use what we learn to deepen our work with independent experts in the coming months. These efforts also support our commitments under the White House Accord on Super Intelligence, where we agreed to independent assessments of our safety controls. These collaborations can contribute to stronger shared standards for independent assessment and public transparency across the industry.\n\nIn this pilot assessment, Apollo Research⁠(opens in a new window) will assess whether models could covertly work against their developers’ intentions and whether our safeguards would detect such behavior. Drawing on evidence from training, safety testing, and internal use. Apollo will assess four claims in two stages:\n\nTraining did not incentivize subversion.\n\nStrong evaluations and red teaming do not elicit subversion.\n\nModels have not attempted subversion during internal use.\n\nReasoning behind subversion would be detectable.\n\nFor the first stage of Apollo’s assessment, we’ll provide access to selected public and unreleased models and training checkpoints, relevant training data and evaluation results, training intervention records, monitoring systems and flagged behaviors, and researchers who can provide context, alongside the tools and compute needed to conduct independent testing.\n\nGoodfire⁠(opens in a new window) will embed interpretability researchers and use the Goodfire platform to analyze model internals. The main objective of their assessment is training run monitoring, debugging, and alignment. The primary audience for their assessments are internal OpenAI researchers, who will use their findings to make safety improvements. Goodfire will also publish learnings and findings as the collaboration progresses.\n\nWe intend to conduct two assessments with METR⁠(opens in a new window), focused on model alignment and monitoring:\n\nAlignment assessment: For the first phase, METR will assess misaligned behavior in our largest reinforcement learning run to date, including failures that our existing tests and monitors may have missed. Within the selected run and agreed access, resources, and safety arrangements, METR would independently set assessment priorities and iterate on searches, analyses, and elicitation experiments. Access will include sampling relevant checkpoints, training and eval rollouts, and misalignment monitoring records for this run. For this first phase, the assessment will focus on our largest frontier RL run.1\n\nMonitor assessment: We recently worked with METR to conduct a monitor stress testing exercise2. We have preliminarily agreed to conduct another monitor assessment⁠(opens in a new window) which we intend to be broader, but this is pending mutual agreement on the assessment scope.\n\nTransluce⁠(opens in a new window) will conduct an initial assessment of our post-training alignment evaluations, examining their quality and coverage. For the initial assessment, we will provide Transluce with access to selected public and unreleased models, our post-training alignment evaluations and relevant results, supporting model behavior data and safety case documentation, and researchers who can provide context, alongside the tools and compute needed to conduct independent testing.\n\nOpenAI and Transluce also share the intent to conduct a follow-on assessment of approximately eight weeks in early 2027, with broader access to additional models, deeper access to our alignment evaluations, and information on how evaluation results inform model release decisions.\n\nWe’ve developed protocols and processes with input from the assessors to balance deep access with security, confidentiality, oversight, and the independence and integrity of assessments. We are sharing them to shed light on how we will work with embedded assessors, and to advance discussion about norms for embedded assessments, which have yet to be standardized. We expect that these will need to evolve as we learn more about how to best conduct these assessments. Especially in the early stages of embedded assessments, we expect technical access challenges, space constraints, evolving security protocols, and other unexpected issues to arise. We hope to work through these challenges collaboratively with our embedded assessors and share lessons learned.\n\nEach engagement begins with an agreed scope and the access, resources, and safety arrangements needed to conduct a rigorous assessment. Some assessments test specific safety claims; others give assessors room to discover unexpected failure modes within a defined system or training run. In both cases, assessors need the freedom to follow evidence, refine their methods, and propose further assessments when findings warrant it. We also have a process for addressing additional access needs as assessments develop. When direct access could expose our most sensitive IP, such as model weights or architecture, we will consider alternatives, including pairing assessors with OpenAI researchers to run analyses.\n\nAssessors who need access to sensitive confidential information will work on site at OpenAI offices and be provided OpenAI devices to conduct their work. The primary purpose is to protect the security of the information they access. Working onsite also gives assessors the opportunity to engage with dedicated staff who can help them navigate their access and provide context for their assessments. We also expect our embedded assessors to follow at minimum3 the same security standards as OpenAI employees when running experiments and evaluations.\n\nOur Safety and Security Committee (SSC), an independent oversight committee of the OpenAI Foundation’s Board, will have visibility into the embedded assessment and the ability to exercise their oversight responsibilities before, during, and at their conclusion. They will receive unredacted reports, and both the assessors and the SSC will be able to speak with each other during the assessment, including privately. Disagreements among OpenAI and any evaluator will be escalated to the Safety Advisory Group and OpenAI executives, who will have a specified time period to resolve them, and the SSC will be notified of any such disagreements promptly when escalated. If a disagreement remains, the matter will be referred to the SSC for resolution.\n\nDiscussions with employees help assessors understand internal information and the context behind the work. OpenAI will authorize and provide guidance to staff members who can speak to assessors, and assessors may request addi",
+  "begyujtve": "2026-11-16T17:47:49.518083+00:00",
+  "prioritas": {
+    "pont": 70,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 85,
+      "egyediseg": 35,
+      "hitelesseg": 92,
+      "aktualitas": 72,
+      "kozossegi": 71
+    },
+    "elofeszures": 90,
+    "tanult": 66,
+    "indok": "Fontos biztonsági és transzparencia lépés az OpenAI-tól független ellenőrző szervezetek bevonásáról. Hasonló hír már van: 7fe5b398c573. Forrás-tapasztalat: -6.",
+    "tema": "openai embedded safety assessments independent experts",
+    "cim_hu": "Független szakértőknek ad közvetlen hozzáférést belső modelljeihez az OpenAI",
+    "lead_hu": "Az OpenAI négy független értékelő szervezettel kötött megállapodást, hogy mélyrehatóan vizsgálhassák a modellek igazodását és a kockázatkezelési rendszerek hatékonyságát.",
+    "klaszter": "7fe5b398c573",
+    "ai": true,
+    "ido": "2026-11-16T17:50:57+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-16T17:51:29+00:00"
+}
