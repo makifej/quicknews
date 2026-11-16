@@ -1,0 +1,49 @@
+{
+  "id": "8bd11e7b523c",
+  "slug": "a-microsoft-egy-juliusi-hibat-okol-a-vilagszerte-jelentkezo-microsoft",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/microsoft-blames-july-bug-for-Cn57F3e2SIugjq71L.7Hdw",
+  "publikalva": "2026-11-16T16:18:07.485792+00:00",
+  "cim": "A Microsoft egy júliusi hibát okol a világszerte jelentkező Microsoft 365-leállásért",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/upload/t_limit/v1794845829/getty_uploads/2304467779_wxv72l.jpg"
+  },
+  "cim_eredeti": "A Microsoft egy júliusi hibát okol a világszerte jelentkező Microsoft 365-leállásért",
+  "szoveg_eredeti": "A Microsoft a múlt heti, világszintű Microsoft 365-leállás okát egy júliusban bekerült, rejtett szoftverhibában találta meg. A leállás miatt az Outlook és az Exchange Online sok felhasználónál csaknem egész napra elérhetetlenné vált. A hiba csak akkor jött elő, amikor a Teams forgalmának átterelése és egy kapacitáshiány egyszerre érte a vállalat hálózati átjáróját. Charles Lamanna, a Microsoft Copilotért, az ügynökökért és a platformért felelős ügyvezető alelnöke november 16-án, hétfőn egy X-bejegyzésben ismertette az okot. Azt írta, hogy a november 12-i incidenst „három fő tényező együttes hatása okozta, amelyek globális leállást idéztek elő a számos Microsoft 365-szolgáltatást kiszolgáló hálózati átjárón.\"\n\nLamanna bejegyzése szerint az első tényező egy lappangó hiba volt, amely egy belső folyamaton belül zárolási versengést (lock contention) okozott. Emiatt a szerverek bizonyos terhelés alatt túlterheltté váltak, és nem válaszoltak. A hiba egy kifejezetten a Microsoft 365 átjárószervereihez készült javításból származott, és szerinte nem érinti a szélesebb körű Windows-környezeteket. A változtatást júliusban kezdték bevezetni, és több mint három hónapig problémamentesen futott világszerte. A terheléses tesztek nem vették észre, mert a tesztek a kevesebb maggal rendelkező, gyengébb hardverekre összpontosítottak, a hiba viszont az újabb, több magos gépeken súlyosbodik.\n\nA második tényező nagyjából 15 órával a leállás előtt jelentkezett: a Teams egy alternatív átjáróról átváltott az elsődleges átjáróra, amelyet az Exchange Online is kiszolgál. Ez többletterhelést jelentett, és megváltoztatta a forgalmi mintákat. A harmadik tényező az volt, hogy az átjáró szerverkapacitásának csaknem 14%-a nem működött egy előző napi, független hiba miatt. A Microsoft közlése szerint ezek önmagukban egyike sem okozott volna kárt.\n\nA hiba az Egyesült Államok csúcsforgalmi idején kezdődött. Ahogy a nem válaszoló szerverek kiestek, a forgalmat az épen maradt szerverekre irányították át, ezeket viszont ugyanaz a hiba érte el. „Kevesebb mint két óra alatt a korábban ismeretlen hiba az egész szerverparkunkban jelentkezett” – írta Lamanna, hozzátéve, hogy „a mélypontnál a szerverek több mint 80%-a nem válaszolt”. A Teams, a OneDrive, a SharePoint és az Office-alkalmazások átálltak a hibás átjáróról, így gyorsabban helyreálltak, az Exchange Online azonban nem tudott erre átállni.\n\nA helyreállítás lassan haladt, mert a visszaállított szervereket azonnal elárasztotta a várakozó forgalom. A hiba ráadásul hónapok óta megvolt a kódban, ezért egyszerű visszaállítással (rollbackkel) nem lehetett megoldani a problémát. A mérnökök ehelyett olyan frissítést írtak, amely a kódot visszaállította a korábbi állapotába.\n\nA Microsoft előzetes jelentése szerint a monitorozási rendszerük november 12-én 16:03-kor (UTC) jelzett kapcsolódási problémákat. A hibaelhárítási lépést november 13-án 07:20-kor (UTC) alkalmazták, a Microsoft pedig még aznap 16:10-kor (UTC) megerősítette, hogy a szolgáltatások ismét megfelelően működnek. Lamanna közölte, hogy a végleges, részletesebb incidens utáni értékelés a hét későbbi részében érkezik. A The Register beszámolója szerint ezt november 20-ra várják. „Őszintén sajnáljuk, hogy ez minden ügyfelünket érintette\" – írta Lamanna.",
+  "begyujtve": "2026-11-16T17:19:13.470177+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 45,
+      "egyediseg": 40,
+      "hitelesseg": 72,
+      "aktualitas": 88,
+      "kozossegi": 57
+    },
+    "elofeszures": 83,
+    "tanult": 82,
+    "indok": "Infrastruktúra- és szoftverhiba miatti leállás, amely nem kifejezetten az MI-technológiáról szól.",
+    "tema": "microsoft 365 outage cause",
+    "cim_hu": "Egy júliusi rejtett szoftverhiba okozta a Microsoft 365 globális leállását",
+    "lead_hu": "A Microsoft tisztázta a múlt heti világszintű fennakadást, amelyet a Teams forgalmának átterelésekor felbukkanó, hónapok óta megbúvó kódhiba váltott ki.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T17:21:11+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-16T17:21:24+00:00"
+}

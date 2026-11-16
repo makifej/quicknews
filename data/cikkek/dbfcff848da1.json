@@ -1,0 +1,49 @@
+{
+  "id": "dbfcff848da1",
+  "slug": "az-nvidia-az-ibm-es-a-fermilab-kvantum-kodizajn-platformot-tervez",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/nvidia-ibm-fermilab-plan-quant-h578vUjgS82ao9RMoOqdjA",
+  "publikalva": "2026-11-16T16:20:36.472581+00:00",
+  "cim": "Az NVIDIA, az IBM és a Fermilab kvantum-kodizájn platformot tervez",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 76 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--HqaSNQB8--/t_limit/https://xiilab.com/_next/static/media/intro-dgx.2483tj9-71uvh.jpg"
+  },
+  "cim_eredeti": "Az NVIDIA, az IBM és a Fermilab kvantum-kodizájn platformot tervez",
+  "szoveg_eredeti": "Az NVIDIA, az IBM és az amerikai Energiaügyi Minisztérium Fermi Országos Gyorsítólaboratóriuma (Fermilab) hétfőn, november 16-án bejelentette, hogy moduláris kvantumszámítási kodizájn platformot tervez. A platform NVIDIA DGX B200 rendszereket helyez IBM kvantumszámítógépek mellé, hogy a kutatók a hibajavítással, illetve a nagyenergiájú fizika és a magfizika problémáival foglalkozhassanak. Az IBM gépei között vannak IBM Quantum Nighthawk rendszerek is, amelyet az IBM eddigi legerősebb processzorának nevez. A Nighthawk 120 kubiten akár 7500 kétkubites műveletet tartalmazó áramköröket is képes futtatni.\n\nA partnerek azt szeretnék kidolgozni, hogyan lehet több kvantumprocesszort összekapcsolni, hogy olyan számításokat is elvégezhessenek, amelyek túl nagyok egyetlen eszköznek. Ez kulcsfontosságú lépés a hibatűrő gépek felé.\n\nA Fermilab azt tervezi, hogy a platformot a nagyenergiájú fizika és a magfizika kutatóinak központjává fejleszti. Algoritmusokat és teljesítménymérő teszteket (benchmarkokat) fejlesztenek majd olyan problémákhoz, mint a részecskekölcsönhatások, a neutrínófizika és a magfizikai szimulációk. A Fermilab emellett a HEPCloud infrastruktúráján keresztül kezeli majd a kutatók hozzáférését. Kezdetben a kutatók az összekapcsolt processzorok közötti kommunikációt szimulálják, hogy megvizsgálják, miként befolyásolják a teljesítményt a kapcsolati hibák és a késleltetés. Később a laboratórium Szupravezető Kvantumanyagok és -rendszerek (SQMS) Központja saját szupravezető üregrezonátoros hardverét is hozzáadná, amelyet kvantummemóriaként lehetne használni.\n\n„A tudomány néhány legalapvetőbb problémája pusztán klasszikus számítógépekkel egyelőre megoldhatatlan” – mondta Jerry Chow, az IBM kvantumközpontú számítástechnikáért felelős műszaki igazgatója. Anna Grassellino, a Fermilab műszaki igazgatója szerint a kezdeményezés „fontos lépés a jövőbeli, amerikai Energiaügyi Minisztérium (DOE) által működtetett kvantumszámítógépes felhasználói létesítményhez szükséges képességek és közösség felé”. A projekt kiegészítené az IBM, az Oak Ridge Nemzeti Laboratórium és az AMD által működtetett meglévő közös tervezési (codesign) platformot.\n\nAz NVIDIA külön bejelentette a TCBP-JOBS nevű új dekódolóalgoritmust, amely a CUDA-Q QEC 0.9.0 könyvtár része. A cég közlése szerint akár 13 000-szer gyorsabban dekódol a jelenlegi élvonalbeli algoritmusoknál, így az új kvantumarchitektúrák kutatásához szükséges számítási idő 12 hétről 45 percre csökken. A dekódolók a kubitek mérési adataiból határozzák meg a valószínű hibákat, hogy ki lehessen javítani őket. Gyorsabb működésükkel a kutatók hamarabb tesztelhetik a jelölt hibajavító kódokat.\n\nA cégek a Slurmöt is kibővítették. Ez az a nyílt forráskódú ütemező, amelyet sok nagy szuperszámítógépen használnak. Így már kvantumprocesszorokat is képes kezelni. Az integráció az IBM nyílt forráskódú, gyártófüggetlen Quantum Resource Management Interface felületére épül, amelyet az NVIDIA-val és a Pasqallal közösen fejlesztettek ki. A szuperszámítógép-központok így a kvantumprocesszorokat a CPU-k és a GPU-k mellett, hétköznapi feladatokként ütemezhetik.\n\nAz IBM a RIKEN-nel és az NVIDIA-val közösen egy kapcsolódó eredményről is beszámolt. Egy vas-kén klaszter hibrid szimulációja kvantumhardvert kombinált GPU-kkal, és 79-szer pontosabb volt, mint ugyanennek a kísérletnek a korábbi futtatásai. „A kvantumszámítás lehetőségeinek kiaknázásához a kvantumprocesszoroknak és a gyorsított számítástechnikának együtt kell fejlődniük” – mondta Krysta Svore, az NVIDIA kvantumszámítási alkalmazott kutatásért felelős alelnöke.",
+  "begyujtve": "2026-11-16T17:19:13.469944+00:00",
+  "prioritas": {
+    "pont": 76,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 78,
+      "egyediseg": 85,
+      "hitelesseg": 78,
+      "aktualitas": 92,
+      "kozossegi": 57
+    },
+    "elofeszures": 79,
+    "tanult": 53,
+    "indok": "Jelentős hardveres és kutatási együttműködés a kvantumszámítás és az MI-szuperszámítógépek között. Forrás-tapasztalat: -1.",
+    "tema": "nvidia ibm fermilab quantum",
+    "cim_hu": "Az Nvidia, az IBM és a Fermilab közös kvantumszámítási platformot fejleszt",
+    "lead_hu": "Az Nvidia DGX B200 rendszereit kötik össze az IBM kvantumszámítógépeivel, hogy a fizikai kutatásokat és a kvantumos hibajavítást gyorsítsák.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T17:21:11+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-16T17:21:25+00:00"
+}

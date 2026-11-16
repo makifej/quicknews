@@ -1,0 +1,49 @@
+{
+  "id": "853b24ff0d6e",
+  "slug": "hugging-face-and-openrouter-join-forces-to-make-open-weight-models",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/openrouter",
+  "publikalva": "2026-11-16T00:00:00+00:00",
+  "cim": "Hugging Face and OpenRouter join forces to make open-weight models easy to run",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 76 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://huggingface.co/blog/assets/openrouter/thumbnail.jpg"
+  },
+  "cim_eredeti": "Hugging Face and OpenRouter join forces to make open-weight models easy to run",
+  "szoveg_eredeti": "Hugging Face and OpenRouter are teaming up to make open-weight models easy to run. Every major open-weight release is already being published on the Hugging Face Hub, and OpenRouter serves those models at scale, routing each request across 80+ providers based on live measurements of each one. Together, every open-weight model on the Hub that a provider serves can be called with your Hugging Face token, through the same API, with the best provider picked for each request.\n\nToday, we are switching Inference Providers from our own custom router to OpenRouter's. Requests made to language models now go through OpenRouter, which picks the best provider for each call based on live price, speed and reliability, and retries on another provider if the first one fails. Your code stays the same.\n\nThe router supports OpenAI's Chat Completions and Responses APIs and Anthropic's Messages API for every chat model, whatever the provider behind it. Pick your coding agent or SDK and a model, then copy the steps, or copy the whole setup as a prompt for your agent:\n\nSetup guides for Claude Code, Codex, OpenCode, Pi and Hermes Agent\n\nThe same Hugging Face token also gives you storage with Storage Buckets, compute with Jobs and dedicated inference with Inference Endpoints. PRO, Team and Enterprise plans include monthly credits for compute and inference.\n\nOn OpenRouter, open-weight models went from 26.8% of the tokens served in October 2025 to 71.7% at the end of September 2026, after peaking at 77.5% in July (OpenRouter, October 2026). Over the same period, weekly open-weight volume grew more than 60-fold, against almost tenfold for closed models. This week, the most used model on OpenRouter is an open-weight one, DeepSeek V4.1 Flash 1017, with 59.2 trillion tokens (rankings).\n\nOpen-weight models cost about four times less on average: $0.28 per million input tokens and $1.62 per million output tokens, against $1.27 and $6.36 for closed models.\n\nThe best open-weight models still trail the best proprietary ones on the hardest benchmarks. On the Artificial Analysis Intelligence Index, Kimi K3.1 Pro, the best open-weight model, scores 46 against 65 for Claude Fable 5.2, at about a seventh of the cost per task ($3.68 against $26.54). For a lot of workloads, that trade-off is worth it.\n\nOpenRouter serves more than 800 trillion tokens a month to over 10 million users, across 600+ models from 80+ providers. Its routing is based on live measurements of every provider across that traffic.\n\nOpenRouter recently rebuilt its provider routing: instead of only looking at the lowest list price, it sends each request to the provider with the best mix of price, speed and reliability.\n\nWhen a provider slows down or starts failing, traffic moves away from it until it recovers, and a failed try is retried on the next best provider inside the same call. In OpenRouter's measurements, the new routing cut capacity errors by 46% and improved time to first token by 16.9% and throughput by 16.3%.\n\nBefore, Inference Providers picked one provider for your request and returned its error if it failed. Now, the request is retried on another provider. You can still choose a policy or a provider with a suffix on the model id:\n\nRouting is also cache-aware: a conversation stays on the provider that holds its prompt cache. To make it explicit, send a stable UUID per conversation in the X-HF-Session-Id header (see the prompt caching guide).\n\nPricing doesn't change: you pay the provider's price on your Hugging Face bill, and Hugging Face doesn't add a markup on top of it. PRO users get $2 of credits every month, and Team and Enterprise organizations get $2 per seat. See Pricing and Billing for the details.\n\nImage, video, and audio generation continue to work exactly as before, directly through Hugging Face Inference Providers without going through OpenRouter. You can keep using the same token and API, and access tens of thousands of LoRAs.\n\nOn model pages, you can chat with the model right away in the widget. Two new tabs show what's behind it: Providers lists every provider OpenRouter can route the model to, with its input and output price, speed and uptime over the last 24 hours, and Metrics shows the best price, throughput, time to first token, context length and uptime among them:\n\nYour usage overview breaks your spend down by the provider each request went to:\n\nIn your settings, you can turn off any provider you don't want: the router never sends your requests there. Organizations have the same settings, and they apply to every request billed to the organization.\n\nRequests to language models now go through OpenRouter and are billed to your Hugging Face account or organization, so you can no longer use your own API key for a provider with these models. You can still pick a provider with a suffix on the model id (model:provider) or turn providers off in your settings, and your code stays the same. Custom keys for image and video providers keep working.\n\nThis is the first step of our partnership with OpenRouter. Next:\n\nTry a model, or read the Inference Providers docs to get started.",
+  "begyujtve": "2026-11-16T17:18:26.913960+00:00",
+  "prioritas": {
+    "pont": 76,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 78,
+      "hirertek": 80,
+      "egyediseg": 90,
+      "hitelesseg": 90,
+      "aktualitas": 83,
+      "kozossegi": 70
+    },
+    "elofeszures": 96,
+    "tanult": 59,
+    "indok": "Fontos infrastruktúra-fejlesztés az nyílt kódú MI-modellek futtatásának egyszerűsítésére. Forrás-tapasztalat: -5.",
+    "tema": "huggingface openrouter partnership",
+    "cim_hu": "Együttműködik a Hugging Face és az OpenRouter a nyílt MI-modellek futtatásáért",
+    "lead_hu": "A két platform egyesíti erejét, így a Hugging Face Hubon elérhető nyílt súlyú modellek közvetlenül és dinamikus szolgáltatóválasztással hívhatók meg egyetlen API-n keresztül.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T17:21:11+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-16T17:21:24+00:00"
+}

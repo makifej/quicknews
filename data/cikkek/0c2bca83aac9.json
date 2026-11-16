@@ -1,0 +1,49 @@
+{
+  "id": "0c2bca83aac9",
+  "slug": "anthropic-cuts-its-coordinated-vulnerability-disclosure-window-from",
+  "forras_id": "techmeme",
+  "forras_nev": "Anthropic",
+  "url": "https://www.anthropic.com/research/coordinated-vulnerability-disclosure-timelines",
+  "publikalva": "2026-11-16T17:20:03+00:00",
+  "cim": "Anthropic cuts its coordinated vulnerability disclosure window from 90 to 30 days for high- and critical-severity issues, in response to AI-driven bug discovery (Anthropic)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 82 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://assets.claude.com/87317c13cd86cd0b62244c430e91d0bb13b920a1.jpg"
+  },
+  "cim_eredeti": "Anthropic cuts its coordinated vulnerability disclosure window from 90 to 30 days for high- and critical-severity issues, in response to AI-driven bug discovery (Anthropic)",
+  "szoveg_eredeti": "Over the last several months, frontier models have become much better at discovering vulnerabilities. We remain optimistic that this will help defenders find and fix vulnerabilities faster than ever before. However, the speed at which AI is improving has changed how we think about our own disclosure practices.\n\nWe’re shortening the disclosure window in our coordinated vulnerability disclosure (CVD) policy from 90 days to 30 days for high- and critical-severity issues, and to 45 days for all other issues. The new timelines apply to vulnerabilities reported to vendors and maintainers on or after January 1, 2027. In-progress reports as of that date will keep their existing deadlines.\n\nIn addition to shortening the disclosure window, we are making two related changes. First, we will aim to escalate to an external vulnerability coordinator after 15 days instead of 30 if a maintainer does not respond to our initial vulnerability report. Second, we will wait 30 days instead of 45 after a patch is available before sharing full technical details. The rest of our policy remains the same.\n\nFinally, there are high- and critical-severity vulnerabilities that we reported over 90 days ago and that now exceed the deadline in our current CVD policy that have not yet been disclosed publicly. We are now notifying the maintainers of these projects that we are providing them an additional 30 days, after which time we will publish these reports on our dashboard in line with our updated policy starting January 1, 2027.\n\nMany coordinated disclosure norms, including those found in our own policy, were developed well before AI could discover vulnerabilities. These policies assumed that fixes moved at human speed and that independent rediscovery of the same bug was unlikely. Neither assumption holds today. Models can now help develop fixes, and a bug that one model can find is increasingly likely to be found by another. We are seeing a higher rate of vulnerability rediscovery as these capabilities increase. A 90-day window made sense when a vulnerability could be expected to stay private for months. We no longer believe it can, and these changes are intended to keep pace with progress in AI capabilities and strike the right balance for defenders.\n\nSome vulnerabilities still can’t be fixed quickly. Flaws in hard-to-deploy software, such as critical infrastructure, and flaws that require changes to a specification or RFC can’t always be resolved in 30 or 45 days. In these cases, we will work with the vendor on a remediation timeline. Our seven-day disclosure window for any vulnerability under active exploitation remains unchanged. This new policy update will not apply to AI-discovered findings that have not received human review, such as those found by OSS Scanner.\n\nWe recognize that shorter timelines may put more pressure on software maintainers. To reduce that burden, we will continue to include actionable guidance with each report, along with a patch or mitigation where possible, to best enable the maintainer to confirm a finding and fix the vulnerability. We will also continue to agree on a sustainable pace with maintainers before sending a large volume of findings to a single project.\n\nWe offer programs to help maintainers and defenders work at this new pace. Maintainers of critical open-source projects can apply to OSS Scanner, a no-cost service that periodically scans their code with our strongest models and sends them findings directly. Eligible maintainers and contributors can apply to the Claude for Open Source Program for six months of Claude Ultra at no cost. And security professionals, including open-source maintainers, can apply to our Cyber Verification Program, which tailors Claude’s safeguards to enable legitimate defensive work.",
+  "begyujtve": "2026-11-16T17:20:48.205315+00:00",
+  "prioritas": {
+    "pont": 82,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 82,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 74
+    },
+    "elofeszures": 90,
+    "tanult": 72,
+    "indok": "Az Anthropic radikálisan megrövidíti a hibabejelentési időablakot az MI által felgyorsult sebezhetőség-keresés miatt. Forrás-tapasztalat: -3.",
+    "tema": "anthropic vulnerability disclosure change",
+    "cim_hu": "Az Anthropic 30 napra csökkenti a hibák közzétételi határidejét a fejlett MI miatt",
+    "lead_hu": "Az Anthropic 90-ről 30 napra rövidíti a kritikus biztonsági hibák javítására adott időt, mivel a legújabb MI-modellek egyre gyorsabban képesek megtalálni a szoftveres sebezhetőségeket.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T17:21:11+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-16T17:21:12+00:00"
+}
