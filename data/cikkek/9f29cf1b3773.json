@@ -1,0 +1,49 @@
+{
+  "id": "9f29cf1b3773",
+  "slug": "multimodal-artificial-intelligence-accurately-evaluates-sarcopenia",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/multimodal-artificial-intelligence-accurately-evaluates-sarcopenia-using-human-balancing-dynamics/",
+  "publikalva": "2026-11-16T07:41:07+00:00",
+  "cim": "Multimodal Artificial Intelligence Accurately Evaluates Sarcopenia Using Human Balancing Dynamics",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 58 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-13149.png"
+  },
+  "cim_eredeti": "Multimodal Artificial Intelligence Accurately Evaluates Sarcopenia Using Human Balancing Dynamics",
+  "szoveg_eredeti": "Multimodal Artificial Intelligence Accurately Evaluates Sarcopenia Using Human Balancing Dynamics\n\nA research team led by scientists from The University of Hong Kong has introduced an interpretable multimodal machine learning framework, designated as three-level balancing assessment or TLBass, that integrates physical sensor data with biomechanical human dynamics models to objectively evaluate sarcopenia in older adults. Evaluated across an internal cohort of 255 older adults in Hong Kong, the composite framework achieved an area under the receiver operating characteristic curve of 0.92 for surrogate sarcopenia evaluation, substantially exceeding the performance of traditional single-modality clinical assessments. Sarcopenia is a geriatric condition characterized by progressive loss of skeletal muscle mass and function, frequently linked to heightened fall risks and adverse health outcomes in aging populations. Despite its clinical importance, conventional diagnostic methods often suffer from high diagnostic variability and low sensitivity across diverse healthcare settings, driven by varying diagnostic algorithms and uncalibrated individual differences in height and body mass.\n\nThe study specifically addresses diagnostic simplifications introduced by the Asian Working Group for Sarcopenia in their 2025 consensus update, which defines sarcopenia by the concurrent presence of low muscle mass and reduced muscle strength, while repositioning physical performance measures as secondary clinical outcome indicators. Although this definition streamlines diagnosis, the researchers noted that reliance on static single-cutoff thresholds frequently overlooks individual biomechanical variations, such as patient stature and body mass, which can skew diagnostic accuracy. Sensing technologies and artificial intelligence offer an avenue to capture dynamic physical performance, but conventional models often struggle with aligning disparate data streams across physiological, functional, and behavioral domains. To bridge these gaps, the investigators established TLBass to systematically ingest, align, and interpret three distinct levels of clinical data, converting heterogeneous measurements into normalized, comparable representations grounded in mechanical principles.\n\nTo build the diagnostic architecture, the investigators collected laboratory and hospital datasets encompassing 355 elderly participants across Hong Kong between 2021 and 2024, operating under approval from the Human Research Ethics Committee of The University of Hong Kong. For model training and internal validation, multimodal evaluations were conducted on an internal cohort of 255 community-dwelling older adults comprising 77 men and 178 women, with an observed sarcopenia prevalence of 14.9 percent. This internal group was partitioned into four cohorts: Cohort O, consisting of 157 individuals, was allocated for core diagnostic classification training and testing, while Cohorts F, M, and B were reserved for independent evaluation of specific musculoskeletal outcomes. In parallel, a separate external clinical validation cohort of 100 older adults, comprising 77 men and 23 women with a sarcopenia prevalence of 21.0 percent, was recruited at Tsan Yuk Hospital to test the clinical viability of rapid single-modality screening.\n\nThe three-level balancing assessment model constructs three foundational base classifiers corresponding to distinct physical tiers: muscle mass assessment, muscle strength assessment, and standing balance assessment. At the physiological level, the muscle mass assessment base model was developed using appendicular skeletal muscle mass measured across the left and right arms and legs using a TANITA MC780 multi-frequency bioelectrical impedance body composition analyzer. At the functional level, the muscle strength assessment model processed handgrip strength alongside peak isometric knee-extensor torques recorded during maximal voluntary contractions across joint angles of 30, 52, and 73 degrees using a Biodex System 3 Pro dynamometer. At the behavioral level, the standing balance assessment model analyzed standing center-of-pressure trajectories captured by a custom high-resolution balance sensor over a static stance lasting up to 20 seconds. Each foundational model utilized logistic regression to prevent overfitting within the sample size and ensure clinical interpretability.\n\nCentral to the framework is the application of human balancing dynamics models to normalize raw sensor metrics prior to machine learning pre-training, directly mitigating anthropometric variability across individuals. For modeling upright balance during standing assessments, the team deployed an inverted pendulum model to convert raw center-of-pressure trajectories into subject-specific center-of-gravity dynamics, eliminating the confounding artifacts caused by body height and mass variations. Upper and lower limb appendicular skeletal muscle mass and maximal knee torques were similarly scaled by specific dynamic normalization indices. In single-modality benchmark tests, this physics-guided normalization yielded dramatic improvements over unnormalized data: the area under the curve climbed from 0.66 to 0.85 for the muscle mass model, from 0.50 to 0.85 for the muscle strength model, and from 0.65 to 0.82 for the standing balance model, underscoring the critical necessity of mechanical calibration in medical data processing.\n\nFollowing independent training of the base models, the full TLBass architecture was constructed by fusing the three base estimators via an optimized weighted linear aggregation scheme. Model hyperparameters and fusion weights were calculated and locked entirely within a 70 percent training partition using tenfold cross-validation, keeping the remaining 30 percent test set strictly isolated to prevent data leakage. The resulting optimal aggregation weights were established at 0.242 for the muscle mass model, 0.414 for the muscle strength model, and 0.344 for the standing balance model. In the final internal evaluation, the fused TLBass framework achieved an overall area under the curve of 0.92, with a 95 percent confidence interval spanning 0.877 to 0.962. This composite performance outperformed the isolated muscle mass and strength models by 8.2 percent, exceeded the standalone standing balance model by 12.2 percent, and demonstrated statistically significant superiority over traditional clinical assessments including handgrip dynamometry and timed physical tests.\n\nBeyond binary disease classification, the researchers evaluated the interpretability and quantitative capacity of the foundational models against specific biological and functional outcomes in independent laboratory cohorts. In Cohort F, consisting of 22 participants, the muscle mass assessment model was applied to evaluate proxy electrophysiological indicators of fast-twitch muscle fiber characteristics, measured via electromyographic median frequencies of lower limb muscles during functional reach tests using an ankle strategy. The muscle mass model scores exhibited statistically significant positive correlations with chronological age and significant associations with median frequencies of the biceps femoris and gastrocnemius lateralis muscles. These electromyographic measures showed marked inverse relationships with bioelectrical phase angles and skeletal muscle index, demonstrating that the normalized muscle mass model captured aging-related physiological degeneration that conventional phase angle metrics failed to isolate.\n\nFunctional muscle strength decline was further validated within Cohort M, comprising 39 older adults subjected to isometric knee and ankle torque tests alongside single-hand and double-hand functional reach tasks. While raw reach distance and peak knee torques showed no statistically significant linear correlation with age, torques normalized by body height and mass demonstrated robust relationships wit",
+  "begyujtve": "2026-11-16T07:49:35.912829+00:00",
+  "prioritas": {
+    "pont": 58,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 60,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 35
+    },
+    "elofeszures": 76,
+    "tanult": 21,
+    "indok": "Specifikus orvosi kutatási eredmény az AI diagnosztikai alkalmazásáról, szűk szakmai célközönséggel. Forrás-tapasztalat: -6.",
+    "tema": "multimodal ai sarcopenia detection",
+    "cim_hu": "Multimodális AI segítségével mérhető pontosabban az izomtömeg-vesztés",
+    "lead_hu": "A Hongkongi Egyetem kutatói egy új multimodális gépi tanulási keretrendszert fejlesztettek ki, amely az egyensúlyozási dinamika alapján méri fel az időskori izomtömeg-vesztést.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-16T07:49:43+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-16T07:49:58+00:00"
+}
