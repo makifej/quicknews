@@ -187,8 +187,16 @@ async function nyersTest(req) {
   try { return JSON.parse(Buffer.concat(d).toString("utf8") || "{}"); } catch (e) { return {}; }
 }
 
+// Heni 2026-11-17: a szerkesztők (ELO_SZERKESZTO környezeti változó, vesszővel elválasztott e-mail-címek) előfizetés
+// nélkül is olvasnak; ugyanúgy e-mail-kóddal lépnek be. A címek nincsenek a kódban, mert a repó nyilvános.
+const szerkesztok = () => String(process.env.ELO_SZERKESZTO || "").split(",").map(normEmail).filter(Boolean);
+async function emailSub(email) {
+  return szerkesztok().includes(email) ? "szerk:" + email : kv("GET", "qn:elo:email:" + email);
+}
+
 async function jogosult(req) {
   const sub = ellenoriz(sutik(req).qn_elo);
+  if (sub && sub.startsWith("szerk:")) return szerkesztok().includes(sub.slice(6)) ? { email: sub.slice(6), allapot: "active", eddig: most() + EV } : null;
   const a = sub ? await elo(sub) : null;
   return ervenyes(a) ? a : null;
 }
@@ -247,8 +255,8 @@ module.exports = async (req, res) => {
         // óránként legfeljebb 5 kód egy címre; nem áruljuk el, van-e ilyen előfizető
         const db = await kv("INCR", "qn:elo:kodszam:" + email);
         if (db === 1) await kv("EXPIRE", "qn:elo:kodszam:" + email, 3600);
-        const sub = await kv("GET", "qn:elo:email:" + email);
-        if (db <= 5 && sub && ervenyes(await elo(sub))) {
+        const sub = await emailSub(email);
+        if (db <= 5 && sub && (sub.startsWith("szerk:") || ervenyes(await elo(sub)))) {
           const kod = String(crypto.randomInt(0, 1e6)).padStart(6, "0");
           await kv("SET", "qn:elo:kod:" + email, JSON.stringify({ kod, probak: 0 }), "EX", 900);
           await level(email, `Belépőkód: ${kod}`,
@@ -265,7 +273,7 @@ module.exports = async (req, res) => {
         return json(res, 400, { hiba: "Ez a kód nem jó. Nézd meg újra a levélben." });
       }
       await kv("DEL", "qn:elo:kod:" + email);
-      const sub = await kv("GET", "qn:elo:email:" + email);
+      const sub = await emailSub(email);
       sutiAd(res, "qn_elo", alairt(sub), EV);
       return json(res, 200, { rendben: true });
     }
