@@ -2089,3 +2089,11 @@ html.os-android .app-banner .ab-asztal { display: none; }
 /* mobilon a banner a szlogen alá kerül (Heni 2026-11-16) */
 .nyertes-banner--mobil { display: none; }
 @media (max-width: 640px) { .nyertes-banner--fej { display: none; } .nyertes-banner--mobil { display: block; margin-top: 4px; margin-bottom: 8px; } }
+/* lenyíló szakasz a jogi/info oldalakon (Heni 2026-11-17) */
+.jogi details.lenyilo { margin: 4px 0 18px; border: 1px solid var(--keret); border-radius: 12px; background: var(--bg-2); }
+.jogi details.lenyilo summary { cursor: pointer; padding: 12px 16px; font-weight: 700; color: var(--szoveg); list-style: none; display: flex; align-items: center; gap: 10px; }
+.jogi details.lenyilo summary::-webkit-details-marker { display: none; }
+.jogi details.lenyilo summary::before { content: "✓"; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--kiemelo); color: var(--kiemelo-szoveg); font-size: 13px; font-weight: 900; }
+.jogi details.lenyilo summary::after { content: "+"; margin-left: auto; font-size: 20px; color: var(--szoveg-2); }
+.jogi details.lenyilo[open] summary::after { content: "−"; }
+.jogi details.lenyilo p { margin: 0; padding: 0 16px 14px; }
