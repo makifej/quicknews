@@ -92,7 +92,7 @@ async function fcmKuld(e) {
   const fiok = JSON.parse(process.env.FCM_SZOLGALTATAS);
   const token = await fcmToken(fiok);
   // data-üzenet: az app maga rajzolja ki, így a csendes órát és a csatornát ő kezeli
-  const data = { pid: e.id, cim: e.cim, szoveg: e.szoveg, hir_id: e.hir_id || "", kep: e.kep || "", link: e.link || "", tema: e.tema };
+  const data = { pid: e.id, cim: e.cim, szoveg: e.szoveg, hir_id: e.hir_id || "", kep: e.kep || "", link: e.link || "", tema: e.tema, app_verzio: e.app_verzio || "" };
   const r = await fetch(`https://fcm.googleapis.com/v1/projects/${fiok.project_id}/messages:send`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
@@ -162,7 +162,9 @@ function ertesites(b, forras) {
     const u = new URL(String(b.link || ""));
     if (u.protocol === "https:" && !u.username && !u.password && /(^|\.)(quicknews\.hu|adverr\.hu|adverr\.io)$/.test(u.hostname)) link = u.toString().slice(0, 400);
   } catch { /* nincs vagy rossz link */ }
-  return [{ id: crypto.randomBytes(6).toString("hex"), cim, szoveg, hir_id, kep, link, tema, forras, kert: new Date().toISOString() }, null];
+  // app-frissítésről szóló értesítés (Heni 2026-11-17): az ennél újabb vagy azonos verziójú app nem jeleníti meg
+  const app_verzio = /^\d{1,6}$/.test(String(b.app_verzio || "")) ? String(b.app_verzio) : "";
+  return [{ id: crypto.randomBytes(6).toString("hex"), cim, szoveg, hir_id, kep, link, tema, forras, app_verzio, kert: new Date().toISOString() }, null];
 }
 
 module.exports = async (req, res) => {
