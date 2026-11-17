@@ -63,7 +63,7 @@ window.qnMetaBetolt=function(){if(window.fbq)return;!function(f,b,e,v,n,t,s){if(
 <header class="fejlec" data-fejlec><div class="fejlec-felso"><div class="keret">
   <a class="logo" href="/"><span class="pont"></span><span class="nev">quicknews<span class="hu">.hu</span></span></a>
   <p class="szlogen">AI hírek, hogy <mark>ne maradj le</mark></p>
-  <div class="fejlec-info"><span class="fejdatum"><span>2026. november 17., kedd</span><span>frissítve 17:07</span></span><span class="frissit"><button type="button" class="frissit-gomb" hidden>Frissítés most</button><span class="frissit-allapot" aria-live="polite"></span></span></div>
+  <div class="fejlec-info"><span class="fejdatum"><span>2026. november 17., kedd</span><span>frissítve 17:19</span></span><span class="frissit"><button type="button" class="frissit-gomb" hidden>Frissítés most</button><span class="frissit-allapot" aria-live="polite"></span></span></div>
   <div class="kereso" data-kereso>
     <form class="kereso-mezosor" role="search" onsubmit="return false">
       <svg class="kereso-ikon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72 72.08 72.08 0 0 1-72-72Z"/></svg>
@@ -107,8 +107,9 @@ window.qnMetaBetolt=function(){if(window.fbq)return;!function(f,b,e,v,n,t,s){if(
 .elo-terv.f{border-color:var(--kiemelo)}
 .elo-terv[aria-disabled=true]{opacity:.45;cursor:not-allowed}
 .elo-terv .jel{align-self:flex-start;background:var(--kiemelo);color:#141414;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:800}
-.elo-beleegy{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--halvany);line-height:1.5}
-.elo-beleegy input{margin-top:3px;width:18px;height:18px;flex:none;accent-color:var(--kiemelo)}
+.elo-beleegy{display:flex;gap:12px;align-items:flex-start;font-size:15px;font-weight:600;color:var(--szoveg);line-height:1.5;padding:14px 16px;border-radius:12px;background:rgba(255,178,36,.14);border:1px solid rgba(255,178,36,.55);border-left:4px solid var(--kiemelo);cursor:pointer}
+.elo-beleegy input{margin-top:2px;width:22px;height:22px;flex:none;accent-color:var(--kiemelo);cursor:pointer}
+.elo-beleegy.hiba{animation:elo-rezeg .35s}@keyframes elo-rezeg{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 .elo-beleegy a{color:var(--szoveg)}
 .elo-gomb{align-self:flex-start;padding:12px 20px;border-radius:12px;border:0;background:var(--kiemelo);color:#141414;font:inherit;font-weight:800;cursor:pointer}
 .elo-gomb.m{background:transparent;color:var(--szoveg);border:1px solid var(--keret)}
