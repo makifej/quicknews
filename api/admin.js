@@ -30,6 +30,14 @@ async function apkAdat() {
   return { osszesen, napok };
 }
 
+// hirdetés-banner kattintások (api/hirdetes.js számolja): összesen, helyenként, naponta (Heni 2026-11-17)
+async function hirdetesAdat() {
+  const h = "boo-nyertes-tudatos-ember";
+  const osszesen = Number((await kv("GET", `qn:hird:${h}`)) || 0);
+  const par = async (k) => { const l = (await kv("HGETALL", k)) || []; const o = {}; for (let i = 0; i < l.length; i += 2) o[l[i]] = Number(l[i + 1]); return o; };
+  return { hirdetes: h, nev: "Tudatos ember az AI korában (BOO-nyertes)", ig: "2026-12-16", osszesen, helyek: await par(`qn:hird:${h}:hely`), napok: await par(`qn:hird:${h}:nap`) };
+}
+
 // a pultból kért műveletek (szerkesztés, hirdetés indítása, címsorcsere): a Mac 3 percenként hajtja végre őket
 async function muveletFelvesz(b) {
   const tipus = String(b.tipus || "");
@@ -550,7 +558,8 @@ module.exports = async (req, res) => {
       }
       return json(res, 200, adat);
     }
-    if (mi === "apk_letoltes") return json(res, 200, await apkAdat());    if (mi === "torles" && req.method === "POST") {
+    if (mi === "apk_letoltes") return json(res, 200, await apkAdat());
+    if (mi === "hirdetes_katt") return json(res, 200, await hirdetesAdat());    if (mi === "torles" && req.method === "POST") {
       const { pid, felulet, cim } = await torzs(req);
       if (!/^[a-f0-9]{24}$/.test(pid || "")) return json(res, 400, { hiba: "Rossz posztazonosító." });
       if (!["Facebook", "LinkedIn", "Hirdetés"].includes(felulet)) return json(res, 400, { hiba: "Rossz felület." });
