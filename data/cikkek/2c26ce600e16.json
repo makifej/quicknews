@@ -1,0 +1,49 @@
+{
+  "id": "2c26ce600e16",
+  "slug": "5-agent-skills-for-ai-coding-agents-in-production-web-apps",
+  "forras_id": "dailydev",
+  "forras_nev": "Telerik (daily.dev)",
+  "url": "https://www.telerik.com/blogs/5-agent-skills-production-web-apps-teach-ai-coding-agent-slow-down",
+  "publikalva": "2026-11-16T21:07:38+00:00",
+  "cim": "5 Agent Skills for AI Coding Agents in Production Web Apps",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 40 pont, tendencia 20%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/f4a7830ce14d64cbcc89ed7247f6a784?_a=AQAEuop"
+  },
+  "cim_eredeti": "5 Agent Skills for AI Coding Agents in Production Web Apps",
+  "szoveg_eredeti": "Explore five Agent Skills, plus a bonus, that make AI coding agents act like 10x engineers.\n\nCoding agents have become a daily tool for most people. They give you a useful prototype to convince your team or management of a new feature or product, but soon after, you have to ship and maintain that prototype in production. Six months down the line, you’re struggling to ship a quality product despite the initial productivity gains. Why?\n\nMost likely because your coding agent has turned the codebase into a big ball of spaghetti where fixing one issue quietly surfaces another bug. Features are partially done, and bug fixes are shallow and sometimes brittle.\n\nThe media is full of hype that AI will replace coding and software engineers, showing apps that were created (one-shotted?) with a single prompt. These hype-driven apps paint a different reality to what those of us who have to maintain and continuously ship products to customers experience. While some people are suffering from AI slop, there are others who are shipping quality products with AI. Large Language Models have improved a lot in the past few months, but so has the tooling around AI, which is what makes it either valuable or useless.\n\nOne of those capabilities for AI Agents is Agent Skills.\n\nAgent Skills are a way to make agents more capable and smart by giving them special knowledge or a defined workflow for specific tasks. In this post, I’m going to share five skills to take you from ideation/prototype to production. With them, you can build a loop/lifecycle— specify → build → measure → secure → diagnose → repeat 🔁 —for high-quality agentic web development with any coding agents. The following sections list five Agent Skills I recommend today.\n\nClaims about one-shot prompts are only worthy of media attention. They don’t work for real issues in the real world. To get your agent to consistently produce quality work, you need to document the requirements of the product or feature.\n\nMost software teams already have a practice of writing a product specification to manage a product’s development and verify the right product gets delivered. Agents benefit from such a document as well because it helps them avoid hallucinations.\n\nTherefore, the first recommendation is Addy Osmani’s spec-driven-development skill. You use it to create requirement document(s) for a project, new features, big changes, vague tickets or older codebases where the agent needs to learn the boundaries before it touches anything.\n\nYou can add it to your project using the skills CLI command below:\n\nCoding agents are good at generating lots of code, which can be overwhelming for a “human in the loop” to review. They add more code than they remove, which leads to code/architecture complexity. My second recommendation, the incremental-implementation skill, is a way to guide the agent toward delivering changes incrementally. Using it breaks up work into thin, end-to-end slices you can test and revert, with safe defaults and feature flags where they fit.\n\nSay you’re adding passkeys to an existing login system. The tempting move by the agent could be one big change that cuts across database schema, sign-up and login screen, settings, account recovery, API types and tests. It might not even work properly. This skill steers the agent toward iterative development such that you might discover cross-functional concerns as the work progresses.\n\nYou can add this skill to your project using the command:\n\nPerformance is an important aspect of delivering a great product and user experience. I’ve consulted for teams that usually leave out performance until after a product is shipped and their users are complaining. Coding agents and skills make it easier to adopt performance as part of your engineering process, rather than an afterthought. You should add it to your product requirement when drafting a PRD with the spec-driven-development skill, and measure it at various milestones.\n\nThe web-perf skill can be used to measure, diagnose or optimize your web application’s performance. The agent gets smarter with tools to record a trace, read the Core Web Vitals, diagnose with Chrome DevTools and report or fix issues found. Use this skill when you want to audit and fix, or to optimize web performance.\n\nRun the command below to add it to your project:\n\nJust like performance, security is an important component of the web. My fourth skills recommendation is the security-audit made by the folks at Cloudflare. It turns your agent into a security auditor that orchestrates isolated agents through reconnaissance, coverage-led hunting, candidate validation, structured output, independent record verification and target-neutral reporting. You could even build a custom security harness out of it.\n\nReach for this skill when you need to audit/review authentication or authorization changes, public API, periodic security analysis and other security related needs.\n\nYou can install it with the Skills CLI using the command below:\n\nLLMs will give you a solution to any problem you throw at it, but it’s very likely to produce a poor-quality result. They can easily solve simple problems, but fail when the problem is a complex one in a large codebase. Just as you developed a structure when debugging as a programmer, you need to give your agents a process if you want quality results.\n\nThat’s where the debug-plan agent skill comes in. It is a skill that gives the agent a structure for diagnosing problems and exploring solutions.\n\nYou can add it to your project using the Skills CLI:\n\nI have given you five Agent Skills to give various expertise to your AI agent. You can apply them to develop an agentic product engineering lifecycle that looks like the following:\n\nYou start by creating a product requirement document or specification for a feature. Then move to iterative development, and afterward a performance and security audit before deploying to production. Here are the five Agent Skills at a glance:\n\nThere’s one bonus skill I’d recommend in addition to the other five—the doubt-driven-development skill. It is a skill that spawns a fresh-context reviewer for important decisions where multiple rounds of review could better reduce possible mistakes in your design or code. It looks for wrong assumptions, edge cases, hidden coupling and failure modes. You can add it to your project by running the command npx skills add addyosmani/agent-skills --skill doubt-driven-development.\n\nYou should consider using the doubt-driven-development agent skill when you’re in an unfamiliar codebase where the stakes are high, or verifying now beats debugging later.\n\nIn reality, good Agent Skills don’t make your AI coding agent faster. They make them produce better results by giving them the right context and structure.\n\nYou don’t need 50 skills to get started. Pick one of the six I suggested and gradually integrate them to your project. Here are a few more resources for further reading and exploration:\n\nPeter is a software consultant, technical trainer and OSS contributor/maintainer with excellent interpersonal and motivational abilities to develop collaborative relationships among high-functioning teams. He focuses on cloud-native architectures, serverless, continuous deployment/delivery, and developer experience. You can follow him on Twitter.\n\nSubscribe to be the first to get our expert-written articles and tutorials for developers!\n\nProgress collects the Personal Information set out in our Privacy Policy and the Supplemental Privacy notice for residents of California and other US States and uses it for the purposes stated in that policy.\n\nYou can also ask us not to share your Personal Information to third parties here: Do Not Sell or Share My Info\n\nBy submitting this form, I understand and acknowledge my data will be processed in accordance with Progress' Privacy Policy.\n\nI agree to receive marketing communications from Progress Software or its Partners, containing information about Progress So",
+  "begyujtve": "2026-11-17T07:04:43.116137+00:00",
+  "prioritas": {
+    "pont": 40,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 35,
+      "egyediseg": 80,
+      "hitelesseg": 65,
+      "aktualitas": 78,
+      "kozossegi": 52
+    },
+    "elofeszures": 78,
+    "tanult": 55,
+    "indok": "Fejlesztői oktatóanyag és PR-típusú cikk az MI kódolási ágensekről. Forrás-tapasztalat: -9. A forrás P3-as híreiből eddig kb. 20%-ot fogadtál el.",
+    "tema": "ai coding agents developer tips",
+    "cim_hu": "Öt készség az MI kódolási ágensek hatékony használatához",
+    "lead_hu": "A kódoló ágensek gyors prototípus-készítést tesznek lehetővé, de hosszabb távon kihívást jelenthet a velük írt kód karbantartása.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-17T07:06:20+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-17T07:06:43+00:00"
+}

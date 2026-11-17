@@ -1,0 +1,49 @@
+{
+  "id": "f054a54f8228",
+  "slug": "how-revolut-raises-ambition-without-lowering-the-bar",
+  "forras_id": "openai",
+  "forras_nev": "OpenAI",
+  "url": "https://openai.com/business/customer-stories/revolut",
+  "publikalva": "2026-11-16T09:30:00+00:00",
+  "cim": "How Revolut raises ambition without lowering the bar",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 46 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://images.ctfassets.net/kftzwdyauwt9/41tqM423rl34f77g33NcJB/df1ae54cfce7ec525cea365c54358579/revolut-social.png?w=1600&h=900&fit=fill"
+  },
+  "cim_eredeti": "How Revolut raises ambition without lowering the bar",
+  "szoveg_eredeti": "With OpenAI models and Codex, Revolut is giving its teams more room to solve complex problems—from software engineering to financial crime.\n\nReduction in coding time from task start to feature merge\n\nTo turn seven years of design documentation into AI-readable context\n\nSaved on security code review with Codex\n\nRevolut⁠(opens in a new window) was built to challenge the way people interact with money. That ambition now stretches across more than 40 markets, 800,000 businesses and a consumer base that’s grown by 23% in the last 12 months.\n\nAdd to that a company culture that expects small, lean teams to move quickly and it’s no surprise that ChatGPT and Codex have proven a natural fit.\n\n“The perfect description for a high-caliber Revolut person is someone who can identify a problem really quickly, deduce the solution, design four scenarios, identify the best one of those four then take it to market,” says Kim Maniovich, Revolut’s Global Head of Business Marketing.\n\n“Partnering with OpenAI enables us to build a lot of these solutions in a way that’s incredibly lean, cost-efficient and really tailored to the unique way that we work.”\n\nBut moving faster is only part of the opportunity. For Revolut, the bigger question is what becomes possible when talented people spend less time on the mechanics of getting things done—and more time tackling problems that could fundamentally change financial services.\n\nAs Revolut grows, so does the complexity of protecting its customers. According to one report⁠(opens in a new window), over half of adults worldwide reported a scam encounter in 2025.\n\nFor Revolut, every transaction creates another opportunity to identify suspicious activity, investigate potential risks and implement robust and tailored protections for its customers. But the sheer volume of those transactions far outstrips the human resources available to any bank.\n\n“The biggest problem we can tackle with AI today is the scaling of humans versus the demand that we get,” says AI Lead David Abitbol. That’s why one of Revolut’s largest AI applications is a FinCrime agent powered by OpenAI models.\n\nRather than requiring investigators to work through every eligible case manually, the agent can examine information, apply Revolut’s rules and complete the defined process automatically.\n\nThe release of GPT‑5.5 was a turning point. It was then, says Abitbol, that the models had become capable and cost-effective enough for Revolut to delegate screening and investigation workflows entirely to the agent. The result is greater capacity to monitor transactions without increasing investigator headcount at the same rate as demand.\n\nThat, adds Information Security Engineer Mo Amiri, “translates directly into stronger protection and a more resilient system our customers can trust.”\n\n‘Move fast but build trust’ could easily be Revolut’s internal engineering slogan. While Abitbol points out that Codex has delivered a 30-60% reduction in coding time, he’s also clear that certain guardrails are non-negotiable.\n\n“We have a systematic framework where anyone in the company who’s building anything with AI has the same set of standards across development, A/B testing, and business metric prediction,” he says. “So every engineer is held to the same standard of quality across the company. We started to get enough intelligence for reasonable costs where we could increasingly delegate initial investigations and screenings to the agent.”\n\nFor Senior Platform Engineer Dmitry Pitik, that 30-60% reduction in coding time became tangible while he was building an internal code-review service. He designed the system, broke it into features and initially assumed he’d need a development team to implement it.\n\n“I realised I don’t need a whole team of developers to implement this,” he recalls. “I can just launch different agents and assign each of them a particular task.” Codex became his implementation team, while Dmitry spent more time designing the system, planning the work and reviewing what came back.\n\nThis is a pattern that Abitbol has seen across Revolut. As Codex returns capacity to engineers they’re using that reclaimed time “to spend more time discussing design and the best solution. So we spend more time designing instead of implementing.”\n\nThat doesn’t remove the need for engineering expertise, it just changes where that expertise is applied. “Every developer is responsible for the code they produce, and we don’t blindly trust AI,” Pitik says. The result is a different division of work: AI can help with implementation, while engineers devote more attention to the decisions that determine whether the software is useful, reliable and worth building.\n\nThat overhead is worth it. As Codex works on one task, Pitik can work in parallel on another. That kind of multitasking is essential in a company where, as Kim Maniovich explains, the average employee has “three different jobs.” Using Codex creates a virtuous (if challenging) flywheel where “month on month the targets we’re setting get more aggressive, but also more attainable. And so the bar keeps moving up. AI is making that possible.”\n\nExamples of what Revolut has been able to do with this new-found capacity include developing a tool to build web UIs for internal apps and external-facing products.\n\nOr turning seven years of design documentation into AI-readable context in a single day, creating a foundation for tools intended to help designers work more effectively. The exercise illustrates how AI can make accumulated organisational knowledge more accessible, reducing the effort required to work with complex systems. “We can shift focus from the things which are important but hard to do without AI to the things which matter for customers,” says Senior Designer Dmytro Pavlov.\n\nMo Amiri’s job is to make sure all of this speed is matched by security—not just for customers but for Revolut’s own employees. That gives him two views of AI at once: how it can help Revolut investigate a problem, and what teams need before they can deploy it safely.\n\nIn a phishing investigation, for example, an analyst once had to gather an email, inspect its links and attachments, trace the sender and assemble the evidence manually. “With stronger AI tools, we can uncover those connections instantly, and dig deeper into the questions that really matter,” he says.\n\nWhile AI does the legwork and presents an investigator with a structured case, it’s still down to the individual to review the original records, decide whether the explanation makes sense and approve any action.\n\nAmiri applies the same thinking when teams bring new AI applications into Revolut. He follows the complete chain: what information the system sees, where that information goes, which tools it can reach, what it can do with that access and what happens when something fails. He also tests whether apparently convincing conclusions are actually supported by the evidence.\n\n“The most critical decision is always about accountability,” he says. “If an AI tool suggests a code change, a human engineer needs to understand that change well enough to stand by it. That directly drives how we design the review process, giving developers the context they need without cluttering their everyday workflow.”\n\nFor Revolut, safeguards aren’t separate from innovation. They help establish the conditions under which teams can confidently adopt more capable technology. “That’s how you earn real confidence in AI,” he explains, “by making thoughtful decisions upfront and testing as you go.”\n\n30–60% reduction in coding time from task start to feature merge\n\nOne engineer built an internal code-review service by delegating implementation tasks to multiple Codex agents\n\nOne day to transform existing design-system documentation developed over roughly seven years into AI-readable context\n\nOne to two days saved on one substantial security code-review task\n\nMore transactions screened through the FinCrime agent without scaling investiga",
+  "begyujtve": "2026-11-17T07:02:27.851907+00:00",
+  "prioritas": {
+    "pont": 46,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 30,
+      "egyediseg": 90,
+      "hitelesseg": 90,
+      "aktualitas": 61,
+      "kozossegi": 41
+    },
+    "elofeszures": 87,
+    "tanult": 42,
+    "indok": "Az OpenAI promóciós esettanulmánya a Revolut MI-használatáról, PR jellegű tartalom. Forrás-tapasztalat: -6.",
+    "tema": "openai revolut case study",
+    "cim_hu": "Az OpenAI modeljeivel gyorsítja szoftverfejlesztését a Revolut",
+    "lead_hu": "A digitális bankcsoport a Codex és az OpenAI egyéb modelljeinek használatával csökkenti a kódolási és biztonsági ellenőrzési időt.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-17T07:06:20+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-17T07:08:20+00:00"
+}

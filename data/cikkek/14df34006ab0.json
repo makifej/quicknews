@@ -1,0 +1,49 @@
+{
+  "id": "14df34006ab0",
+  "slug": "putting-better-before-faster-fatbobman-s-swift-weekly-162",
+  "forras_id": "dailydev",
+  "forras_nev": "Fatbobman (daily.dev)",
+  "url": "https://fatbobman.com/en/weekly/issue-162",
+  "publikalva": "2026-11-16T14:00:00+00:00",
+  "cim": "Putting “Better” Before “Faster” -- Fatbobman's Swift Weekly #162",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 39 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/e13ab48086f6f6bcec09be05927f9dd1?_a=AQAEuop"
+  },
+  "cim_eredeti": "Putting “Better” Before “Faster” -- Fatbobman's Swift Weekly #162",
+  "szoveg_eredeti": "Even at 80, my mother remains actively involved in various community and social activities. A few days ago, I learned that she was preparing to give a talk based on a newly released government report running over 10,000 Chinese characters. I couldn’t help but worry about her. After all, reading and distilling such a lengthy, rather dry document is no small task. But as we talked, I discovered that she had already been using AI to organize the material, identify key points, and even compare previous versions to trace how the report had evolved. I was genuinely surprised. I knew she had started using AI to some extent, but I hadn’t expected her to incorporate it so naturally into her everyday work.\n\nAlmost without us noticing, AI has become part of more and more people’s daily lives. As a tool, it not only improves efficiency but also frees us from much of the tedious work that consumes our time, giving us more room to think, create, and ultimately produce better results. Yet this potential to make the outcome better seems to receive far less attention than it deserves. For now, much of the public conversation remains focused on how much more efficiently AI allows us to work.\n\nOver the past few months, I’ve been working on a small project. When I first started, I gave serious thought to a question: Should I use AI to finish development faster, or should I use it to achieve a level of polish and maturity that would have been beyond my reach as a solo developer before AI? In the end, I chose the latter.\n\nGiven the project’s scope, I probably could have built a basic version in two or three weeks if I’d written all the code myself two years ago. Yet here I am, two or three months later, barely past the halfway point. And I have no regrets. I can genuinely feel that AI is helping me build something more solid, with results that are much closer to what I originally envisioned. Although I no longer write every line of code myself, I still maintain control over the details by moving forward in small steps and continuously verifying the results.\n\nOn the surface, development has slowed down. But looked at another way, much of the research, design, and refinement I’m doing now would previously have been abandoned or rushed through simply because I lacked the time and energy. Today, AI makes it possible for me to take on that additional work. It hasn’t made me less productive. Instead, it has allowed me to turn greater productivity into a higher level of quality and polish.\n\nOf course, not everyone or every team will choose to invest the productivity gains from AI into improving quality. In a commercial environment especially, greater productivity often translates into tighter delivery deadlines. Last week’s widespread disruption to Microsoft’s email services, along with the nationwide ground stop imposed by the U.S. Federal Aviation Administration (FAA) following a failure in its air traffic control communications system, served as reminders of just how important the reliability of large-scale technical systems is. There is no evidence that either incident was caused by AI-generated code. Nevertheless, as AI continues to accelerate software development and delivery, whether testing, verification, and quality assurance can keep pace is a question the entire industry needs to take seriously.\n\nI believe AI’s value should not be measured solely by how much time it saves or how much it reduces costs, but also by what it enables us to create. When efficiency becomes the easiest metric to measure, perhaps we should remind ourselves from time to time that the time and energy AI frees up can be used not only to do more and move faster, but also to do things better.\n\nMy hope is that everyone using AI, whether individuals or organizations, will continue to put “better” before “faster,” even as they pursue greater efficiency.\n\nNot long after Shopify announced its return to native development in September, the company delivered an impressive result. In this article, Remi Vanhee explains how Shopify used coding agents to rebuild its mobile app from React Native into native Swift and Kotlin applications in just 12 weeks. Following the rewrite, Android startup time decreased by approximately 50%, app size shrank by 40%, and peak memory usage on iOS dropped by 70%.\n\nAs code generation becomes dramatically faster, development bottlenecks are shifting toward build resources, code review, merging, and team coordination. To give agents faster and more reliable feedback, Shopify introduced the Reflex architecture, which allows business logic to run independently of devices. Through a CLI, developers can load ViewModels, trigger Actions, and verify state in milliseconds. An internal tool called Helix uses the original app as a reference, breaking migration tasks into small, verifiable steps. Meanwhile, the team adjusted its development workflow through remote development environments, agent-assisted preliminary reviews, and pair programming, gradually shifting engineers’ focus from writing implementations to architecture design, verification mechanisms, and final decision-making.\n\nThe rewrite has sparked considerable discussion in the community. Did the 12 weeks include the initial architecture and tooling work? Could similar performance improvements have been achieved by investing equivalent resources in optimizing the original React Native app? And what will the long-term maintenance costs look like for two native codebases largely generated by agents? These questions will take time to answer. But Shopify’s experience demonstrates at least one thing: when code generation is no longer the primary bottleneck, architectural constraints, observability, and verification become even more important.\n\nAfter enabling Tuist’s compile cache in Xcode 27.1, Lee YoungJun found that his app built and ran normally, but breakpoints remained greyed out and never triggered. After investigating, he discovered that the problem wasn’t the cache itself, but a missing LLDB source file mapping for the virtual paths used in debugging information.\n\nTo make the compile cache independent of a project’s absolute path, Xcode 27 replaces source file paths in debugging information with virtual prefixes such as /^src. Although Tuist generates an LLDB initialization file containing cache-related configuration, the version the author was using lacked the target.source-map setting needed to map /^src back to the actual project directory. Ultimately, adding a single LLDB command restored the breakpoints.\n\nSwift has published its November roundup of project and community updates, written by Dave Verwer and Dave Lester. The article opens with a reminder of an important approaching deadline: after a two-year transition period, CocoaPods will officially stop accepting new pods and version updates on December 2, 2026, entering read-only mode. While this won’t immediately break existing projects, teams that haven’t migrated yet should seriously consider moving to SwiftPM. As for SwiftPM’s own evolution, I’m particularly interested in SE-0545 (build performance debugging) and SE-0547 (SwiftPM compile caching), both of which have been accepted. Meanwhile, SE-0560 proposes introducing conditional dependencies based on build configurations such as Debug and Release.\n\nAs an independent developer, I rarely worried about compilation or testing times back when I wrote all my code by hand. But with agents working in parallel and test coverage expanding, the development process is undergoing a structural shift. Build efficiency, observability, and verification capabilities are becoming increasingly important. As CocoaPods approaches its official farewell, these recent SwiftPM improvements seem particularly well-timed, addressing emerging needs in modern development workflows at the toolchain level.\n\nGlassEffectContainer is an important SwiftUI component for creating the merging and morphing animations of Liquid Glass elements. It not",
+  "begyujtve": "2026-11-17T07:04:43.116584+00:00",
+  "prioritas": {
+    "pont": 39,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 20,
+      "hirertek": 25,
+      "egyediseg": 85,
+      "hitelesseg": 62,
+      "aktualitas": 64,
+      "kozossegi": 30
+    },
+    "elofeszures": 78,
+    "tanult": 31,
+    "indok": "Személyes anekdota az MI mindennapi használatáról, alacsony hírértékkel.",
+    "tema": "ai everyday adoption anecdote",
+    "cim_hu": "Személyes példa mutatja az MI hétköznapi terjedését",
+    "lead_hu": "Egy fejlesztő hírlevelében mesélte el, miként használja idős édesanyja a mesterséges intelligenciát terjedelmes dokumentumok feldolgozására.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-17T07:06:20+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-17T07:06:21+00:00"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "8c801cc2c22f",
+  "slug": "how-duco-transforms-financial-data-automation-with-amazon-bedrock",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/how-duco-transforms-financial-data-automation-with-amazon-bedrock-agentcore/",
+  "publikalva": "2026-11-16T22:06:08+00:00",
+  "cim": "How Duco transforms financial data automation with Amazon Bedrock AgentCore",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 41 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/02/ML-20525-featured-image.png"
+  },
+  "cim_eredeti": "How Duco transforms financial data automation with Amazon Bedrock AgentCore",
+  "szoveg_eredeti": "Financial institutions face a critical challenge: processing massive volumes of data with speed, accuracy, and compliance while operating under some of the world’s strictest regulatory frameworks. Duco is the agentic Operations platform for financial services, serving tier-one banks and other financial institutions. It processes 20 billion transactions monthly for 200+ clients, including 7 of the top 20 banks and 10 of the top 20 asset managers. To keep pace as data processing demands grew, Duco evolved from traditional machine learning models to the agentic AI capabilities of Amazon Bedrock and Amazon Bedrock AgentCore. In this post, we share how Duco rebuilt its agentic AI stack on these services, cutting deployment time and onboarding costs while keeping each bank’s data isolated.\n\nDuco’s platform empowers teams to automate mission-critical data processes using AI and no-code models, handling everything from data extraction to downstream publication. It already used traditional machine learning models for predictive labeling and pattern recognition, helping banks consolidate and automate over 20,000 processes.\n\nHowever, these classical machine learning approaches had inherent limitations. They required extensive historical data for training, struggled with novel scenarios, and demanded significant customization for each new use case. Most critically, they couldn’t adapt quickly to the diverse, constantly evolving data formats and business rules that characterize modern financial operations.\n\n“The classical prediction models worked to an extent, but they weren’t agile or flexible enough. Traditional machine learning models can only amplify what they’ve already learned — they can’t help with the next step or find new problems.”\n\n— Rob Gates, Chief Architect and Innovation Officer, Duco\n\nDuco made a strategic decision to adopt Amazon Bedrock for managed access to foundation models, and Amazon Bedrock AgentCore to run agents at scale. This was more than a technology upgrade. It was a fundamental shift in how its system could understand, reason about, and act on financial data.\n\nAbout Amazon Bedrock and Bedrock AgentCore\n\nAmazon Bedrock is a fully managed service that offers a choice of high-performing foundation models from leading AI companies through a single API, along with a broad set of capabilities to build generative AI applications with security, privacy, and responsible AI. Learn more about Amazon Bedrock.\n\nAmazon Bedrock AgentCore is the platform to build, connect, and optimize AI agents at scale. Build with any open source framework and any model. Connect agents to your tools and data with authentication and access controls built in. Monitor and improve agents in production with tracing and evaluation. AgentCore handles the infrastructure so you focus on agent logic, not backend plumbing, and you get enterprise security and reliability without giving up open source flexibility.\n\nLearn more on the Amazon Bedrock AgentCore product page.\n\nSeveral factors made Amazon Bedrock the ideal choice for Duco’s regulated financial services industry (FSI) environment:\n\nDuco’s existing agent infrastructure was built on LangChain and LangGraph, both of which were already in production. When evaluating runtime options for its agentic workloads, AgentCore emerged as the clear choice for three key reasons:\n\nDuco’s platform operates as a multi-tenant software as a service (SaaS) offering with strict tenant isolation (figure 1). This is a non-negotiable requirement for regulated institutions. The architecture reflects this at every layer, from the underlying cloud infrastructure right up to the AI agent runtime.\n\nIsolation is enforced through identity as well as infrastructure, with every hop between the user and their data authenticated (figure 2):\n\nThe isolation principle extends fully into the agent architecture:\n\nThe architecture helps maintain a model where each agent only has access to one bank’s data, context, and reasoning, facilitating real isolation of context across banks.\n\nRather than committing to a single foundation model, Duco uses the right model for each job, assigning each role in its agent design to the model best suited to it. This approach delivers both quality and cost efficiency by matching the right model capability to each specific workload:\n\nThis multi-model approach is architecturally designed to allow model swapping without disrupting the stack, which is critical in a landscape where model capabilities evolve rapidly.\n\nOne of Duco’s most significant technical innovations addresses a challenge familiar to anyone building production agent systems: context window management.\n\nWith 300–400 tools exposed per tenant through AgentCore Gateway (which fronts a separate MCP server for each underlying Duco service), approximately 200,000 tokens of tool descriptions were loaded into context before work began. This caused context overloading: response quality degraded as conversations lengthened, and the model lost the thread of earlier reasoning. The team emphasized that a feeling an agent is becoming less capable isn’t enough evidence on its own. Evaluations must be run before engineering decisions are made.\n\nDuco created a skills architecture using MCP resource types to move tool descriptions out of the static context and load them only when needed:\n\nThree new meta-tools, implemented in Duco’s agent harness, replaced the bloated tool description payload:\n\nFigure 3: Context loading and MCP connectivity\n\nA key architectural decision was implementing MCP tool discovery at boot time. When a new service is deployed, its MCP server is registered as a target on the tenant’s AgentCore Gateway as part of the deployment. When an agent boots, the harness builds a registry of every tool the Gateway exposes and shares just the tool names. The agent then uses find_tool and invoke_tool to discover the details and invoke tools on demand. As a result, the agent automatically gains that capability with no redeployment or agent reconfiguration required. Access control is enforced by the underlying services themselves: because the user’s identity is passed through the Gateway, each tool call succeeds only if that user is permitted to perform the action.\n\nThis provides operational agility: the platform team can ship new capabilities to agents by deploying a new microservice, without touching the agent configuration or requiring downtime. For a platform that serves 200+ clients with diverse and evolving operational needs, this dynamic capability model is a significant competitive advantage.\n\nDuco implemented Amazon Bedrock and Bedrock AgentCore to power two critical workflows that previously required extensive manual effort:\n\nPreviously, onboarding new reconciliation processes was a manual, time-intensive exercise requiring significant professional services resources. Banks would take years to migrate thousands of processes, moving at a pace of roughly one per week.\n\nWith Amazon Bedrock and Bedrock AgentCore, Duco can now:\n\nOne global bank experienced a 70% decrease in onboarding costs for new reconciliations and achieved an increase of over 20% in straight-through processing through better match rates and allocation rules.\n\nFinancial institutions run thousands of quality gates between systems, generating countless exceptions daily. Traditionally, armies of analysts manually investigate each break to determine if it’s worth worrying about, already being investigated, or represents a new risk.\n\nDuco’s agents now handle the “first mile” of investigation:\n\nThis agentic approach excels because financial workflows involve highly variable paths through information, exactly the kind of complex, context-heavy reasoning that foundation models handle well.\n\nDeploying AI agents in financial services requires more than technical capability. It demands rigorous compliance, auditability, and risk management. Duco’s implementation on Amazon Bedrock addresses these requirements",
+  "begyujtve": "2026-11-17T07:05:33.249474+00:00",
+  "prioritas": {
+    "pont": 41,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 30,
+      "egyediseg": 80,
+      "hitelesseg": 72,
+      "aktualitas": 73,
+      "kozossegi": 31
+    },
+    "elofeszures": 80,
+    "tanult": 32,
+    "indok": "Az AWS PR-esettanulmánya az Amazon Bedrock pénzügyi alkalmazásáról. Forrás-tapasztalat: -6.",
+    "tema": "aws bedrock duco financial automation",
+    "cim_hu": "Az Amazon Bedrock segítségével automatizálja a pénzügyi adatokat a Duco",
+    "lead_hu": "A pénzügyi szolgáltató platform az AWS mesterséges intelligenciás ágenseit használja a havi több milliárd tranzakció feldolgozására.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-17T07:06:20+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-17T07:07:30+00:00"
+}
