@@ -1,0 +1,50 @@
+{
+  "id": "612b724877c1",
+  "slug": "harness-adapters-new-release",
+  "forras_id": "linkedin",
+  "forras_nev": "Hugging Face (LinkedIn)",
+  "url": "https://www.linkedin.com/feed/update/urn:li:activity:7528457172410699776/",
+  "publikalva": "2026-11-17T14:01:01.873000+00:00",
+  "cim": "Harness adapters new release!",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 72 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.licdn.com/dms/image/v2/D4D22AQHF4HK6hmPB-g/feedshare-image-high-res/B4DaHpucinJMAQ-/0/1794922629621?e=2147483647&v=beta&t=slxcXBcnBPGxwDKPhdzd1atd1iRiKqfd5VIemhKM7dI",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7528457172410699776"
+  },
+  "cim_eredeti": "Harness adapters new release!",
+  "szoveg_eredeti": "Harness adapters new release! \n\nSame model, same harness but almost 2x the perfs on coding tasks while being 50% more efficient.\n\nWe're releasing the first of our Qwen3.8-27B harness adapters: a small LoRA that makes Qwen3.8-27B a much stronger model behind the pi coding agent!\n\nThe results, evaluated under pi: \n- SWE-bench Pro (hard 51): 29% → 63% of tasks solved\n- Terminal-Bench 2.1: 40% → 56% (16 tasks newly solved vs 2 lost) \n55–62% fewer tool calls per task, so faster and cheaper agent runs\n\nOn one real SWE-bench Pro task (the one you see in the figure), the base model searched and re-ran snippets until it hit the 100-step limit. The harness adapter version found completed the full task, in only 8 tool calls.\n\nThe final model is a ~300 MB adapter on a frozen base model, so it runs wherever Qwen3.8-27B already runs: vLLM, transformers serve, llama.cpp (GGUF included) or Llama.app on macOS. It can also be merged into the base in a few lines with PEFT.\n\nBuilt with TRL's AsyncGRPOTrainer and OpenEnv, with every tool call screened by safeagents.\n\nThis is the first of several: adapters for more harnesses are coming in the next few days, and on Friday we'll share the full recipe in a comprehensive blog post, so anyone can train and release adapters for their own harness.\n\nLinks in comments !",
+  "begyujtve": "2026-11-17T14:04:34.298896+00:00",
+  "prioritas": {
+    "pont": 72,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 70,
+      "hirertek": 75,
+      "egyediseg": 90,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 66
+    },
+    "elofeszures": 97,
+    "tanult": 53,
+    "indok": "Nyílt forráskódú modell számottevő teljesítménynövekedése kódolási feladatokban a Hugging Face-től. Forrás-tapasztalat: -5.",
+    "tema": "qwen3.8 harness adapter release",
+    "cim_hu": "Jelentős kódolási teljesítménynövekedést hoztak a Hugging Face új adaptőrei",
+    "lead_hu": "A Hugging Face megjelentette a Qwen3.8-27B modellhez szánt legújabb LoRA-adaptőröket, amelyek közel megduplázzák a modell hatékonyságát a kódolási és ágensalapú feladatok során.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-17T14:04:58+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-17T14:05:08+00:00"
+}
