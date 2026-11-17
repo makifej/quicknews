@@ -314,8 +314,9 @@ var io=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIn
 .elo-terv.f{border-color:var(--kiemelo)}
 .elo-terv[aria-disabled=true]{opacity:.45;cursor:not-allowed}
 .elo-terv .jel{align-self:flex-start;background:var(--kiemelo);color:#141414;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:800}
-.elo-beleegy{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--halvany);line-height:1.5}
-.elo-beleegy input{margin-top:3px;width:18px;height:18px;flex:none;accent-color:var(--kiemelo)}
+.elo-beleegy{display:flex;gap:12px;align-items:flex-start;font-size:15px;font-weight:600;color:var(--szoveg);line-height:1.5;padding:14px 16px;border-radius:12px;background:rgba(255,178,36,.14);border:1px solid rgba(255,178,36,.55);border-left:4px solid var(--kiemelo);cursor:pointer}
+.elo-beleegy input{margin-top:2px;width:22px;height:22px;flex:none;accent-color:var(--kiemelo);cursor:pointer}
+.elo-beleegy.hiba{animation:elo-rezeg .35s}@keyframes elo-rezeg{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 .elo-beleegy a{color:var(--szoveg)}
 .elo-gomb{align-self:flex-start;padding:12px 20px;border-radius:12px;border:0;background:var(--kiemelo);color:#141414;font:inherit;font-weight:800;cursor:pointer}
 .elo-gomb.m{background:transparent;color:var(--szoveg);border:1px solid var(--keret)}
@@ -333,7 +334,7 @@ z.hidden=false;ga('elofizetes_fal',{slug:slug})}).catch(function(){z.hidden=fals
 betolt();
 var be=document.getElementById('elo-beleegy');
 z.addEventListener('click',function(ev){var t=ev.target.closest('[data-elo]');if(!t)return;var m=t.dataset.elo;
-if(m==='terv'){if(!be.checked){ev.preventDefault();u.textContent='Előbb jelöld be, hogy kéred az azonnali indítást.';be.focus();return}try{sessionStorage.setItem('qn_elo_vissza',location.pathname)}catch(e){}ga('elofizetes_kattintas',{slug:slug,terv:t.href.indexOf('fZu00')>0?'eves':'havi'})}
+if(m==='terv'){if(!be.checked){ev.preventDefault();u.textContent='Előbb jelöld be, hogy kéred az azonnali indítást.';var l=be.closest('label');l.classList.remove('hiba');void l.offsetWidth;l.classList.add('hiba');be.focus();return}try{sessionStorage.setItem('qn_elo_vissza',location.pathname)}catch(e){}ga('elofizetes_kattintas',{slug:slug,terv:t.href.indexOf('fZu00')>0?'eves':'havi'})}
 else if(m==='belep'){var fo=document.getElementById('elo-belep');fo.hidden=false;fo.email.focus()}});
 be.addEventListener('change',function(){z.querySelectorAll('[data-elo=terv]').forEach(function(a){a.setAttribute('aria-disabled',be.checked?'false':'true')});if(be.checked)u.textContent=''});
 document.getElementById('elo-belep').addEventListener('submit',function(ev){ev.preventDefault();var fo=ev.target,kodos=!fo.kod.hidden,gomb=fo.querySelector('button');gomb.disabled=true;
