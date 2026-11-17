@@ -1,0 +1,49 @@
+{
+  "id": "c3a9d2c8f56d",
+  "slug": "nvidia-open-sources-nvke-and-nvkr-for-managed-kubernetes-on-gpu",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/17/nvidia-nvke-nvkr-managed-kubernetes-gpu/",
+  "publikalva": "2026-11-17T10:37:11+00:00",
+  "cim": "NVIDIA Open-Sources NVKE and NVKR for Managed Kubernetes on GPU Infrastructure",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 74 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-1231-1-scaled.png"
+  },
+  "cim_eredeti": "NVIDIA Open-Sources NVKE and NVKR for Managed Kubernetes on GPU Infrastructure",
+  "szoveg_eredeti": "NVIDIA has released 2 open-source projects for running managed Kubernetes on GPU infrastructure: NVIDIA Kubernetes Engine (NVKE) and NVIDIA Kubernetes Recipes (NVKR) . Both were recently announced as components of the NVIDIA DSX AI Factory Platform . NVKE is the control plane for a managed Kubernetes service. NVKR builds the OS images, container images and packages those clusters depend on. Both ship under Apache 2.0 and are in public preview.\n\n TL;DR \n\n Size / footprint: 3 CPU servers for the management cluster, 3 CPU servers per workload control plane, plus a pool of GPU worker nodes. A local evaluation needs 6 CPUs, 12 GiB RAM, 100 GiB disk and no GPU.\n\n Runs on: your own NVIDIA GPU bare-metal servers, provisioned through NVIDIA Infra Controller (NICo). Node images build for amd64 and arm64.\n\n Performance: no throughput or provisioning-time benchmarks are published. Quality signal is certification, not speed.\n\n Best: Certified Kubernetes AI Platform and Certified Kubernetes Installer, conformance tested on Kubernetes 1.36.\n\n Worst: after install, the NVKE API serves plain HTTP on port 30080 with authentication off, and there is no management-plane upgrade or backup procedure.\n\n Bottom line: best thing: open, attested, upstream Kubernetes for GPU clouds. Worst thing: preview-grade security and lifecycle gaps; not for production yet.\n\n What is NVIDIA Kubernetes Engine (NVKE)? \n\n NVKE is open-source software that an AI factory installs to run a managed Kubernetes service on its own NVIDIA GPU infrastructure . The repo calls it ‘a self-hosting factory for Kubernetes clusters,’ not a distribution. It exposes a REST API and controllers on a management cluster. Customers get standard clusters and use kubectl . The operator manages them through the NVKE API or the nvkectl CLI.\n\n NVKE uses upstream Kubernetes, kubeadm and Cluster API . It is written in Go and has no runtime dependency on NVKR.\n\n What does NVIDIA Kubernetes Recipes (NVKR) do? \n\n NVKR is a build system with declarative Definitions . It produces executables, container images, Helm charts and node images for amd64 and arm64. ‘Recipes’ define validated combinations of software versions and GPU generations. Hosted workflows attach signatures, SBOMs and provenance to digest-pinned OCI references. NVKR can also build artifacts for other Kubernetes management systems.\n\n How does the NVKE architecture work? \n\n The NVIDIA technical blog walkthrough describes 5 stages: \n\n Bootstrap: nvkectl bootstrap site starts a temporary single-node kind cluster on a bootstrap host.\n\n Management cluster: NVKE requests 3 servers from NICo, which boots them from the node image. The temporary cluster is then deleted.\n\n Machine provisioning: NICo handles bare-metal lifecycle. CAPNICo , a Cluster API provider, connects NICo to NVKE.\n\n Release sets: operators publish a machine image, a cluster release and a node pool release. Customers pick a release by name.\n\n Workload clusters: each customer cluster has its own control plane, etcd and node pools. NVKE installs OVN-Kubernetes and NodeLocal DNSCache.\n\n A node must present an attested SPIFFE identity before it gets join credentials. The README says SPIRE uses TPM for this. Per-cluster etcd encryption is available. An OpenTelemetry-based Helm chart exports logs, metrics and traces over OTLP.\n\n Inside workload clusters, 3 companion projects plug in: AI Cluster Runtime (AICR) for the GPU runtime, NodeWright for node packages and NVSentinel for break-fix automation.\n\n How does NVKE compare with Gardener and Kamaji? \n\n NVKE + NVKR ( NVIDIA ) Gardener ( SAP ) Kamaji ( Clastix ) What it is Managed Kubernetes management plane plus artifact builder Kubernetes clusters as a service Hosted control plane manager Control plane model Dedicated per cluster: own control plane, etcd, node pools Runs as pods in seed clusters Runs as pods; shared Datastore possible Target infrastructure NVIDIA GPU bare metal via NICo AWS, Azure, GCP, OpenStack, Alicloud (conformance table); extensible Works alongside Cluster API providers License Apache 2.0 Apache 2.0 Apache 2.0 Conformance Certified Kubernetes AI Platform and Installer; tested on 1.36 Certified up to v1.35 Described as CNCF-compliant Node identity SPIFFE/SPIRE attestation with TPM Not disclosed Not disclosed Signed build pipeline Yes (NVKR: signatures, SBOMs, provenance) Not disclosed Not disclosed Maturity Public preview, not for production Self-described production-ready Not disclosed \n\n Who is adopting NVKE and NVKR? \n\n NVIDIA Cloud Partners Firmus and SK Telecom are integrating both projects into AI factories. Mirantis, Rafay, Spectro Cloud, OpenNebula Systems and vCluster are adding components to managed Kubernetes offerings. Netris is enabling NVKE for its network automation. \n\n How do you try NVKE? \n\n A local quickstart runs on 1 Linux host or VM, amd64 or arm64. It needs at least 6 CPUs, 12 GiB free memory, 100 GiB free disk, Docker and virtual TPM support. No GPU or NVIDIA account is required. A real install needs a NICo deployment with enrolled capacity, a build host with KVM, an HTTP server and a registry.\n\n NVKR has no qualified Release yet .\n\n Key Takeaways \n\n NVKE manages clusters; NVKR builds and signs what they run.\n\n Both are Apache 2.0, in public preview, not for production.\n\n Conformance tested on Kubernetes 1.36, with TPM-attested node identity.\n\n Default API is HTTP on port 30080 with auth off.\n\n Local evaluation needs 6 CPUs, 12 GiB RAM and no GPU.\n\n Check out the NVKE repo , NVKR repo , docs and technical blog . You can check the deployment options and specs here through our GPULeaderboard.com chrome extension .\n\n Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post NVIDIA Open-Sources NVKE and NVKR for Managed Kubernetes on GPU Infrastructure appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-17T10:49:25.883411+00:00",
+  "prioritas": {
+    "pont": 74,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 78,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 78,
+      "aktualitas": 99,
+      "kozossegi": 54
+    },
+    "elofeszures": 86,
+    "tanult": 38,
+    "indok": "Az Nvidia open-source infrastruktúra-eszközöket tett közzé a GPU-alapú MI-fürtök kezelésére. Forrás-tapasztalat: -7.",
+    "tema": "nvidia open source kubernetes",
+    "cim_hu": "Nyílt forráskódúvá tette GPU-infrastruktúrát kezelő eszközeit az Nvidia",
+    "lead_hu": "Az Nvidia kiadta az NVKE és NVKR nevű nyílt forráskódú projektjeit, amelyek megkönnyítik a felhős Kubernetes-fürtök és GPU-infrastruktúrák üzemeltetését a cég MI-platformján.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-17T10:49:39+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-17T10:49:40+00:00"
+}
