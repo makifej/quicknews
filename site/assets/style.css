@@ -2100,3 +2100,6 @@ html.os-android .app-banner .ab-asztal { display: none; }
 /* Újdonságok: 3 látszik, a többi a dobozon belül görgethető, keret nélkül (Heni 2026-11-17) */
 .jogi .lenyilo-lista { max-height: 216px; overflow-y: auto; overscroll-behavior: contain; padding-right: 6px; margin-bottom: 24px; scrollbar-width: thin; scrollbar-color: var(--keret) transparent; -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent); }
 .jogi .lenyilo-lista details.lenyilo { margin: 0 0 10px; }
+/* „Mi van az appban?” lista: kiemelt címkék (Heni 2026-11-17) */
+.jogi ul li > strong:first-child { display: inline-block; margin: 0 8px 2px 0; padding: 2px 10px; border-radius: 6px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font-size: 15px; font-weight: 800; }
+.jogi ul li { margin-bottom: 10px; }
