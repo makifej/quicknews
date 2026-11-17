@@ -1,0 +1,49 @@
+{
+  "id": "28b3b94e3834",
+  "slug": "build-whatsapp-ai-agents-with-amazon-bedrock-agentcore",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/build-whatsapp-ai-agents-with-amazon-bedrock-agentcore/",
+  "publikalva": "2026-11-17T18:48:50+00:00",
+  "cim": "Build WhatsApp AI agents with Amazon Bedrock AgentCore",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 48 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/13/ML-21698-featured-image.png"
+  },
+  "cim_eredeti": "Build WhatsApp AI agents with Amazon Bedrock AgentCore",
+  "szoveg_eredeti": "Across Latin America, India, and Southeast Asia, WhatsApp is one of the most widely used messaging applications. That makes it an obvious place to build an AI agent. For many end users, it is how they expect to interact with businesses. However, it is also a genuinely difficult surface to build for, even when your agent already runs on Amazon Bedrock AgentCore.\n\nThe agent is rarely the hard part. The integration is. Inbound messages arrive as deeply nested, type-dependent payloads that must be authenticated and normalized before your agent can read them. Media such as voice notes, images, and documents each require their own processing pipeline. Beyond message handling, you need conversation memory that survives sessions, durable schedules for reminders, and an authenticated path for external systems to trigger outbound messages. And anything you send more than 24 hours after the end user’s last message must use a pre-approved Meta message template.\n\nWiring that up means configuring more than 10 AWS services and learning a set of WhatsApp system behaviors that most teams discover only by hitting them. None of it is visible to a customer, but all of it has to work. Most teams either build it from scratch or hand the integration to a third-party service.\n\nSMART (Social Messaging Agent Runtime Toolkit) is a third option: an open source Python SDK and Terraform stack that gives you the full channel layer. You provide an agent that runs on Amazon Bedrock AgentCore runtime, and SMART handles the rest. One command deploys the entire infrastructure to your AWS account.\n\nTeams are already running on SMART with Amazon Bedrock AgentCore. Webmotors, originally scoped as a two-month engagement, compressed delivery to six weeks and moved their internal team into controlled production ahead of a full launch.\n\nWhether you are starting from scratch or migrating an existing agent, you own the agent’s logic. You let SMART handle the channel.\n\nThe following table compares what each concern costs to build yourself against what SMART provides.\n\nAmazon Bedrock AgentCore is a platform to build, connect, and optimize agents at scale, with any framework or model. SMART builds on two of its main capabilities:\n\nBecause AgentCore is framework-agnostic, so is SMART. Strands Agents gets memory wired automatically. LangGraph, Pydantic-AI, or another framework that gives you control over the conversation loop can integrate too. The SDK exposes the same memory and session hooks regardless of framework. You keep full control over the elements that differentiate your product: framework, model, prompt, and business logic.\n\nThe contract between SMART and your agent is deliberately small. Your agent receives the inbound message and returns text, optionally with rich message attachments. Everything else, session wiring, memory binding, delivery scheduling, is handled for you.\n\nThe following example is a complete agent.py for a SMART project. The scaffolding command (socialagent init) creates the project structure and configuration around it. This file is where your agent logic lives.\n\nThe create_session_manager() function binds the agent to AgentCore memory scoped to that phone number, so history survives across sessions and deployments for the memory retention period (7 days by default).\n\nThe socialagent_notify_context() wrapper is the other pattern worth keeping. Tools sometimes need to send something while the agent is still working, such as a button list or a progress update. Sending it immediately corrupts the conversation history, and the user’s next message fails. The wrapper collects those messages instead, and they go out in order once the turn finishes. Your tools send messages normally and do not deal with the timing.\n\nThe following diagram shows how an inbound message travels from WhatsApp to your agent and back, and where the shared infrastructure sits.\n\nFigure 1: How an inbound WhatsApp message flows through the SMART channel layer to the agent and back\n\nThe SMART core stack is organized into distinct layers: message processing, an agent layer, and a service layer. AWS End User Messaging Social receives inbound WhatsApp messages and routes them to the processing layer. An AWS Lambda function handles the channel logic, while Amazon Bedrock AgentCore provides the runtime, memory, and observability for the agent itself. Supporting services such as Amazon DynamoDB (optional, for per-user state), AWS Secrets Manager, Amazon CloudWatch, and Amazon Simple Storage Service (Amazon S3) supply state management, credentials, monitoring, and storage across the stack.\n\nInbound events arrive through Amazon Simple Notification Service (Amazon SNS). On each event, the webhook Lambda function verifies the SNS message signature, normalizes the payload, and rate-limits each user (20 messages per minute by default, with the DynamoDB state table enabled). It then fires a read receipt and typing indicator, so the conversation feels alive before the model finishes. Voice notes go through Amazon Transcribe. Other media becomes a descriptor or goes to a hook you register if you want custom handling. When the agent throttles or fails, the user receives a readable message that you can customize, rather than silence.\n\nAgents built on SMART interact directly with end users, so production deployments should include appropriate safeguards. The Terraform stack creates and configures an Amazon Bedrock Guardrails resource by default. With a single guardrail variable in your environment configuration, you can use the stack’s default guardrail, bring your own, or opt out entirely. The controls that you apply are up to you. SMART makes sure the wiring is already in place.\n\nAfter the message is ready, the webhook function passes it to AgentCore runtime. AgentCore memory maintains conversation context across sessions, and AgentCore Observability, a capability of Amazon Bedrock AgentCore, traces every step for debugging and audit.\n\nThe webhook function sends the reply and messages your tools queued during the turn. A notification function handles sends outside a turn, such as proactive or scheduled messages. External systems trigger your event handlers by posting to an Amazon API Gateway endpoint protected by an API key and a Lambda authorizer. The event is published to Amazon SNS and the event Lambda runs your handler. Amazon EventBridge Scheduler handles time-based outreach, such as reminders and recurring check-ins. With message templates managed through AWS End User Messaging, you can send structured notifications outside the 24-hour WhatsApp session window.\n\nA single socialagent deploy provisions the following resources (it runs terraform apply under the hood).\n\nThe agent container image and the Lambda layer build in AWS CodeBuild during the apply. Docker isn’t required locally.\n\nBefore you deploy, confirm that you have the following.\n\nNote: This is sample code, for non-production usage. You should work with your security and legal teams to meet your organizational security, regulatory and compliance requirements before deployment.\n\nStart by cloning the repository and scaffolding a project.\n\nThe --blueprint flag selects a project blueprint. Three blueprints ship, and minimal is the default if you don’t pass an argument:\n\nYou get a project with your agent.py, socialagent.dev.yaml (the project’s deployment configuration), handler stubs for the webhook, notification, event, and scheduler paths, and a vendored copy of socialagent_runtime/. The personal assistant and appointment-scheduler blueprints also bring tools, skills, and a templates.yaml for your message templates. minimal ships none of those, so you add them as required.\n\nNext, iterate locally, with no infrastructure at all.\n\nThe socialagent dev command runs your real agent loop and real tools in a terminal read-eval-print loop (REPL), with AWS channel I/O stubbed. Memory becomes a local file-backed session, and state becomes a local JSON file shared acro",
+  "begyujtve": "2026-11-17T19:15:33.596374+00:00",
+  "prioritas": {
+    "pont": 48,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 60,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 39
+    },
+    "elofeszures": 82,
+    "tanult": 39,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -6.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-17T19:15:42+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-17T19:15:44+00:00"
+}
