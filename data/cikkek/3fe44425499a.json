@@ -1,0 +1,49 @@
+{
+  "id": "3fe44425499a",
+  "slug": "review-evaluates-artificial-intelligence-and-computational-pathology",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/review-evaluates-artificial-intelligence-and-computational-pathology-in-triple-negative-breast-cancer/",
+  "publikalva": "2026-11-17T07:29:42+00:00",
+  "cim": "Review Evaluates Artificial Intelligence and Computational Pathology in Triple-Negative Breast Cancer",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 57 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-14377.png"
+  },
+  "cim_eredeti": "Review Evaluates Artificial Intelligence and Computational Pathology in Triple-Negative Breast Cancer",
+  "szoveg_eredeti": "Review Evaluates Artificial Intelligence and Computational Pathology in Triple-Negative Breast Cancer\n\nA comprehensive narrative review published in Frontiers in Oncology examines how computational pathology and artificial intelligence are transitioning traditional histopathology into quantitative decision-support frameworks for triple-negative breast cancer, while underscoring that current evidence remains largely retrospective and exploratory. Triple-negative breast cancer accounts for approximately 10 to 15 percent of all breast cancer diagnoses and is clinically defined by the absence of estrogen receptor, progesterone receptor, and human epidermal growth factor receptor 2 expression. Characterized by aggressive tumor biology, high recurrence rates within five years, and early visceral and central nervous system metastases, the disease presents substantial diagnostic and therapeutic challenges for clinical teams. Investigators led by researchers at the University of Cagliari and collaborating international institutions reviewed developments spanning handcrafted pathomic feature extraction, end-to-end deep learning, whole-slide image analysis, vision-language systems, and multimodal platforms. Throughout their evaluation, the authors applied a pragmatic six-level evidence framework ranging from small proof-of-concept investigations to demonstrated clinical utility, highlighting that artificial intelligence tools currently serve to complement rather than replace qualified pathologists and oncologists.\n\nThe biological and clinical urgency surrounding triple-negative breast cancer is further intensified by significant demographic and epidemiological disparities documented across clinical populations. Recent epidemiological data indicate a rising incidence of triple-negative breast cancer among younger individuals, particularly women born after 1980 compared with cohorts born before 1950. Substantial racial disparities persist in both incidence and survival outcomes, with incidence rates approximately two to three times higher in Black women than in other demographic groups. Triple-negative disease represents approximately 19 percent of breast cancer cases diagnosed in Black women, compared to 9 to 11 percent in other populations, alongside lower five-year relative survival rates of 73 percent compared with 76 to 81 percent across all ethnic groups. These adverse outcomes are shaped by a complex interplay of socioeconomic factors, healthcare access hurdles, later stage at presentation, and distinct genetic backgrounds, including West African ancestry and high frequencies of germline BRCA1 mutations. The review emphasizes that AI models trained on narrow institutional cohorts risk perpetuating demographic biases if training sets fail to represent these diverse patient groups.\n\nUnderstanding tumor histology and the surrounding microenvironment remains central to assessing prognosis and treatment selection in triple-negative disease. Standard therapeutic management relies heavily on systemic chemotherapy, with platinum compounds demonstrating particular activity in patients harboring germline BRCA1 or BRCA2 mutations that impair homologous recombination DNA repair. The therapeutic landscape was reshaped by the phase III KEYNOTE-522 trial, which evaluated neoadjuvant pembrolizumab added to chemotherapy in 1,174 patients with stage II or III disease, demonstrating a pathological complete response rate of 64.8 percent compared to 51.2 percent with placebo and improving 60-month overall survival to 86.6 percent from 81.7 percent. While programmed death-ligand 1 testing is necessary to select patients for immune checkpoint inhibitors in the metastatic setting, pembrolizumab is administered in early-stage disease regardless of biomarker expression. Concurrently, stromal tumor-infiltrating lymphocytes scored on hematoxylin and eosin slides according to International TILs Working Group standards provide valuable prognostic information, categorizing tumors into low, intermediate, and high infiltration tiers where higher stromal immune cell presence correlates with improved pathological response and better overall survival.\n\nWithin digital pathology, computational approaches process digitized whole-slide images to uncover morphological patterns that elude standard microscopic review. The review establishes essential taxonomic distinctions between traditional pathomics and modern deep learning methodologies. Classical pathomics follows concepts originating in radiomics, relying on the explicit, handcrafted extraction of engineered mathematical features that capture cellular morphology, tissue architecture, staining intensity, and spatial relationships before running conventional machine learning classifiers. In contrast, deep learning systems such as convolutional neural networks and vision transformers automatically learn hierarchical feature representations directly from image pixels without predefined morphological descriptors. More recently, pathology foundation models such as UNI, Virchow, and Prov-GigaPath have been pretrained via self-supervised learning on millions of image tiles or whole-slide images across multiple tissue types. These large-scale models generate reusable, generalizable mathematical embeddings that can be fine-tuned across diverse downstream tasks, while vision-language architectures like CONCH and PathChat combine visual embeddings with textual clinical knowledge to support tasks such as automated captioning and report generation.\n\nApplying computational pathology directly to triple-negative breast cancer has focused prominently on predicting pathological complete response following neoadjuvant systemic therapy. Achieving complete pathological eradication of invasive disease at the time of definitive surgery serves as one of the strongest clinical surrogates for long-term survival in this subtype. Early proof-of-concept investigations explored deep learning models designed to predict neoadjuvant chemotherapy response directly from baseline biopsy specimens. For example, a spatial attention-guided convolutional neural network evaluated serial biopsy sections stained with hematoxylin and eosin, Ki67, and PHH3 in 73 patients, reporting a patient-level test accuracy of 93 percent across a 30-patient holdout set. However, the study was constrained by a small single-center cohort, lacked external validation, and required three specialized serial stains not routinely prepared in standard practice. Most critically, published response-prediction models were developed primarily in cohorts receiving neoadjuvant chemotherapy alone, leaving their performance unknown in modern patient cohorts treated with standard pembrolizumab-chemotherapy combinations.\n\nQuantitative characterization of the tumor microenvironment represents another area of active computational investigation in triple-negative breast cancer. Visual assessment of stromal tumor-infiltrating lymphocytes by pathologists is often subject to substantial inter-observer variability and subjective discordance. Deep learning-based image analyzers have demonstrated external validity in standardizing immune infiltration scoring, effectively narrowing diagnostic discordance across pathologists reviewing digitized slides. In an external validation cohort examining 402 breast cancer slides, assisted scoring produced reproducible evaluations, and automated scores among a subset of 55 patients with triple-negative disease receiving neoadjuvant chemotherapy were higher in clinical responders than non-responders. Beyond simple lymphocyte enumeration, spatial deep learning algorithms generate heatmaps delineating immune-rich and immune-cold geographical compartments across the tissue section. Additional investigations have correlated computational indices combining tertiary lymphoid structures and tumor budding with overall and relapse-free survival across training and validation cohorts, demonstrating",
+  "begyujtve": "2026-11-17T08:19:31.047123+00:00",
+  "prioritas": {
+    "pont": 57,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 60,
+      "egyediseg": 70,
+      "hitelesseg": 72,
+      "aktualitas": 95,
+      "kozossegi": 43
+    },
+    "elofeszures": 76,
+    "tanult": 33,
+    "indok": "Tudományos elemzés az MI szerepéről a mellrák diagnosztikájában és a számítógépes patológiában. Forrás-tapasztalat: -6.",
+    "tema": "ai breast cancer pathology",
+    "cim_hu": "Az mesterséges intelligencia szerepét vizsgálták a tripla-negatív mellrák diagnosztikájában",
+    "lead_hu": "A Frontiers in Oncology lapban megjelent áttekintés szerint a számítógépes patológia és az MI alapvető döntéstámogató eszközzé válhat a mellrák kezelésében.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-17T08:19:49+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-17T08:20:22+00:00"
+}
