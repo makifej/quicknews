@@ -26,6 +26,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .logo span{color:var(--amber)}
 .app-ban .logo{display:none}.app-ban .sav-bel{gap:0}
 .fulek{display:flex;gap:24px;height:100%;min-width:0;overflow-x:auto;scrollbar-width:none}
+/* Heni 2026-11-17: minden fül férjen ki (az App lelógott) */
+.sav-bel{max-width:1400px;gap:24px}.fulek{gap:20px;flex:1 1 auto}.frissult{flex:0 0 auto;white-space:nowrap}
+@media (max-width:1180px){.frissult{display:none}.fulek{gap:16px}}
 .fulek::-webkit-scrollbar{display:none}
 .fulek button{flex:0 0 auto;white-space:nowrap}
 .logo{flex:0 0 auto}
