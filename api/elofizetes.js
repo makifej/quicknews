@@ -214,7 +214,11 @@ module.exports = async (req, res) => {
       const fajl = path.join(__dirname, "_privat", "elemzes", slug + ".html");
       if (!fs.existsSync(fajl)) return json(res, 404, { hiba: "nincs ilyen elemzés" });
       const ad = () => json(res, 200, { html: fs.readFileSync(fajl, "utf8") });
-      if (await jogosult(req)) return ad();
+      if (await jogosult(req)) {
+        // Heni 2026-11-17: „tőlem többet ne kérje a kódot”: minden olvasás újraindítja a süti 400 napját
+        sutiAd(res, "qn_elo", sutik(req).qn_elo, EV);
+        return ad();
+      }
       return json(res, 402, { elofizeto: false });
     }
 
