@@ -1800,8 +1800,8 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .gyu-gomb:hover { transform: translateY(-2px); }
 .gyu-gomb:active { transform: scale(.98); }
 .gyu-gomb:focus-visible { outline: 2px solid var(--kiemelo); outline-offset: 2px; }
-.gyu-fizet { margin: auto 0 12px; padding-top: 16px; font-size: 14px; line-height: 20px; color: #a8a8a8; }
-.gyu-fizet + .gyu-gomb { margin-top: 0; }
+.gyu-test .gyu-fizet { margin: auto 0 12px; padding-top: 16px; font-size: 14px; line-height: 20px; color: #a8a8a8; }
+.gyu-test .gyu-fizet + .gyu-gomb { margin-top: 0; }
 .gyu-lapozo[hidden] { display: none; }
 .gyu-szamlalo { display: none; min-width: 64px; text-align: center; color: var(--gyu-akcent, var(--kiemelo)); font-size: 16px; line-height: 24px; font-weight: 800; font-variant-numeric: tabular-nums; }
 @media (max-width: 640px) { .gyu-pontok { display: none; } .gyu-szamlalo { display: block; } .gyu-lapozo { margin-left: auto; } }
