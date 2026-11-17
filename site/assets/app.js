@@ -594,6 +594,7 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     else if (a.classList.contains('kereso-tetel')) ev('kereses_talalat', {link_url: a.href});
     else if (a.classList.contains('ertesit-gomb')) ev('ertesites_keres');
     else if (a.classList.contains('fb-gomb')) ev('facebook_kattintas', {hely: 'fejlec'});
+    else if (a.hasAttribute('data-nyertes-banner')) ev('hirdetes_kattintas', {hirdetes: 'boo-nyertes-tudatos-ember', hely: a.closest('.nyertes-banner--mobil') ? 'web-mobil' : 'web-asztali'});
     else if (a.classList.contains('app-gomb')) ev('alkalmazas_menu', {hely: 'fejlec'});
     else if (a.classList.contains('rov-ikon-app')) ev('alkalmazas_menu', {hely: 'rovatsor'});
     else if (a.classList.contains('rov-ikon')) ev(a.host === 'www.facebook.com' ? 'facebook_kattintas' : 'tiktok_kattintas', {hely: 'rovatsor'});
