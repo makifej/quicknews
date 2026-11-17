@@ -2097,3 +2097,6 @@ html.os-android .app-banner .ab-asztal { display: none; }
 .jogi details.lenyilo summary::after { content: "+"; margin-left: auto; font-size: 20px; color: var(--szoveg-2); }
 .jogi details.lenyilo[open] summary::after { content: "−"; }
 .jogi details.lenyilo p { margin: 0; padding: 0 16px 14px; }
+/* Újdonságok: 3 látszik, a többi a dobozon belül görgethető, keret nélkül (Heni 2026-11-17) */
+.jogi .lenyilo-lista { max-height: 216px; overflow-y: auto; overscroll-behavior: contain; padding-right: 6px; margin-bottom: 24px; scrollbar-width: thin; scrollbar-color: var(--keret) transparent; -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent); }
+.jogi .lenyilo-lista details.lenyilo { margin: 0 0 10px; }
