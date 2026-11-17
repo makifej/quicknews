@@ -94,5 +94,10 @@
       "source": "/.well-known/assetlinks.json",
       "destination": "/app/assetlinks.json"
     }
-  ]
+  ],
+  "functions": {
+    "api/vasarlas.js": {
+      "includeFiles": "api/_privat/**"
+    }
+  }
 }

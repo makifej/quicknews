@@ -1,0 +1,36 @@
+<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Köszönjük a vásárlást · quicknews.hu</title><meta name="robots" content="noindex">
+<style>
+body{margin:0;background:#181818;color:#f2f2f2;font:16px/1.6 Manrope,system-ui,sans-serif}
+main{max-width:560px;margin:0 auto;padding:64px 24px}
+.logo{font-weight:800;font-size:20px;margin:0 0 48px}.logo b{color:#ffb224}
+.cimke{color:#ffb224;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 8px}
+h1{font-size:30px;line-height:1.2;margin:0 0 16px}
+p{margin:0 0 16px;color:#bdbdbd}
+.gomb{display:inline-flex;min-height:48px;align-items:center;padding:12px 24px;border-radius:12px;background:#ffb224;color:#141414;font-weight:800;text-decoration:none;margin:8px 0 24px}
+.rejt{display:none}
+</style></head><body><main>
+<p class="logo">quick<b>news</b>.hu</p>
+<p class="cimke">Gyakorlati útmutató</p>
+<h1 id="cim">Fizetés ellenőrzése…</h1>
+<p id="szoveg">Egy pillanat, a Stripe-nál ellenőrizzük a fizetést.</p>
+<a id="gomb" class="gomb rejt" href="#">Letöltöm az útmutatót (PDF)</a>
+<p id="utana" class="rejt">A letöltési linket és a számlát e-mailben is elküldtük. Ha nem találod, nézd meg a Promóciók vagy a Spam mappát, vagy írj az info@adverr.hu címre.</p>
+<p><a href="/" style="color:#bdbdbd">Vissza a quicknews.hu-ra</a></p>
+</main>
+<script>
+(function(){
+  var s=new URLSearchParams(location.search).get("s")||"", n=0;
+  var cim=document.getElementById("cim"), sz=document.getElementById("szoveg");
+  function hiba(t){cim.textContent="Valami nem stimmel";sz.textContent=t;}
+  if(!/^cs_(live|test)_/.test(s)){hiba("Hiányzik a rendelés azonosítója. Ha fizettél, a letöltési linket e-mailben elküldtük.");return;}
+  function probal(){
+    fetch("/api/vasarlas?s="+encodeURIComponent(s),{cache:"no-store"}).then(function(r){return r.json();}).then(function(j){
+      if(j.fizetve&&j.letolt){cim.textContent="Köszönjük a vásárlást!";sz.textContent=j.cim||"";var g=document.getElementById("gomb");g.href=j.letolt;g.classList.remove("rejt");document.getElementById("utana").classList.remove("rejt");}
+      else if(++n<8){setTimeout(probal,2500);}
+      else hiba("A fizetés még nem igazolt. Ha a kártyádat megterhelték, pár percen belül e-mailben megkapod a letöltési linket.");
+    }).catch(function(){if(++n<8)setTimeout(probal,2500);else hiba("Átmeneti hiba. A letöltési linket e-mailben is elküldjük.");});
+  }
+  probal();
+})();
+</script></body></html>

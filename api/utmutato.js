@@ -96,7 +96,7 @@ module.exports = async (req, res) => {
     const b = await torzs(req);
     const azon = String(b.anyag || "");
     const a = Object.prototype.hasOwnProperty.call(ANYAGOK, azon) ? ANYAGOK[azon] : null;
-    if (!a || !a.aktiv) return json(res, 400, { rendben: false, uzenet: "Ez az útmutató már nem kérhető." });
+    if (!a || !a.aktiv || a.fizetos) return json(res, 400, { rendben: false, uzenet: "Ez az útmutató már nem kérhető." });
     const email = tisztit(b.email);
     if (!email) return json(res, 400, { rendben: false, uzenet: "Ez a cím nem tűnik érvényesnek." });
 
