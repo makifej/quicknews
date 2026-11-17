@@ -107,10 +107,12 @@ function vevoLevel(a, link) {
 <p style="margin:0 0 16px">Szia! Köszönjük a vásárlást. Itt a letöltési linked, ez a te személyes linked, kérjük, ne oszd meg.</p>
 <p style="margin:0 0 32px"><a href="${esc(link)}" style="display:inline-block;padding:14px 24px;border-radius:12px;background:#ffb224;color:#141414;font-weight:800;text-decoration:none">Letöltöm az útmutatót (PDF)</a></p>
 <p style="margin:0 0 16px">A számlát külön levélben küldjük. Ha elakadsz, válaszolj erre a levélre nyugodtan.</p>
+<p style="margin:0 0 16px;font-size:13px;color:#8a8a8a">Visszaigazoljuk: a vásárláskor kifejezetten kérted, hogy az útmutatót azonnal elérhetővé tegyük, és tudomásul vetted, hogy a teljesítés megkezdésével elveszíted az elállási jogodat (45/2014. (II. 26.) Korm. rendelet 29. § (1) m) pont). A vásárlás feltételei: <a href="https://quicknews.hu/aszf" style="color:#bdbdbd">quicknews.hu/aszf</a>.</p>
 <p style="margin:32px 0 0;font-size:13px;color:#8a8a8a">Még több AI-eszköz és hír: <a href="https://quicknews.hu" style="color:#bdbdbd">quicknews.hu</a></p>
 </div></body></html>`;
   const text = ["Szia! Köszönjük a vásárlást. Itt a letöltési linked (személyes, kérjük, ne oszd meg):", "", a.anyag, link, "",
-    "A számlát külön levélben küldjük. Ha elakadsz, válaszolj erre a levélre nyugodtan.", "", "quicknews.hu"].join("\n");
+    "A számlát külön levélben küldjük. Ha elakadsz, válaszolj erre a levélre nyugodtan.", "",
+    "Visszaigazoljuk: a vásárláskor kifejezetten kérted, hogy az útmutatót azonnal elérhetővé tegyük, és tudomásul vetted, hogy a teljesítés megkezdésével elveszíted az elállási jogodat (45/2014. (II. 26.) Korm. rendelet 29. § (1) m) pont). A vásárlás feltételei: https://quicknews.hu/aszf", "", "quicknews.hu"].join("\n");
   return [html, text];
 }
 
