@@ -214,6 +214,9 @@ module.exports = async (req, res) => {
       const fajl = path.join(__dirname, "_privat", "elemzes", slug + ".html");
       if (!fs.existsSync(fajl)) return json(res, 404, { hiba: "nincs ilyen elemzés" });
       const ad = () => json(res, 200, { html: fs.readFileSync(fajl, "utf8") });
+      // Heni 2026-11-17: az Android-appban ingyen olvasható (a WebView jele; a közösségi appok beépített böngészője nem számít)
+      const ua = String(req.headers["user-agent"] || "");
+      if (/; wv\)|quicknews-android/.test(ua) && /Android/.test(ua) && !/FBAN|FBAV|FB_IAB|Instagram|musical_ly|TikTok|Bytedance|Snapchat|LinkedInApp|Twitter|Line\//i.test(ua)) return ad();
       if (await jogosult(req)) {
         // Heni 2026-11-17: „tőlem többet ne kérje a kódot”: minden olvasás újraindítja a süti 400 napját
         sutiAd(res, "qn_elo", sutik(req).qn_elo, EV);
