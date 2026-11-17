@@ -21,3 +21,6 @@ data/feltoltes/** filter=git-crypt diff=git-crypt
 data/gsc/** filter=git-crypt diff=git-crypt
 data/vektor_hu/** filter=git-crypt diff=git-crypt
 data/slug_tortenet.json merge=slugunio
+# előfizetős tartalom: az elemzések zárolt része és a fizetős PDF (Heni 2026-11-17)
+api/_privat/** filter=git-crypt diff=git-crypt
+data/elemzesek/** filter=git-crypt diff=git-crypt

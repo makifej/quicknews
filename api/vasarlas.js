@@ -162,6 +162,11 @@ module.exports = async (req, res) => {
       const test = await nyers(req);
       if (!webhookRendben(test, req.headers["stripe-signature"])) return json(res, 400, { hiba: "érvénytelen aláírás" });
       const e = JSON.parse(test);
+      // az előfizetés eseményei ugyanide jönnek (egy végpont, egy titok), azokat az elofizetes.js kezeli
+      if (e.type === "invoice.paid" || e.type.startsWith("customer.subscription.")) {
+        await require("./elofizetes").webhook(e);
+        return json(res, 200, { rendben: true });
+      }
       if (e.type === "checkout.session.completed" || e.type === "checkout.session.async_payment_succeeded") {
         // a webhook tartalmában nem bízunk vakon: a Stripe-tól kérjük le újra
         await teljesit(await stripeSession(e.data.object.id));
