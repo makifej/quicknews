@@ -287,7 +287,6 @@ window.qnMetaBetolt=function(){if(window.fbq)return;!function(f,b,e,v,n,t,s){if(
 <p class="c">Előfizetőknek</p>
 <h2>A&nbsp;teljes elemzés előfizetéssel olvasható</h2>
 <p>Minden elemzés mérésekre és forrásokra épül. Előfizetéssel az&nbsp;összeset elolvashatod, regisztráció nélkül, a&nbsp;weben és az&nbsp;appban is.</p>
-<div class="elo-sor" id="elo-ingyen" hidden><button class="elo-gomb" type="button" data-elo="ingyen">Elolvasom ingyen</button><p>Havonta 1 elemzés ingyenes ezen az&nbsp;eszközön.</p></div>
 <label class="elo-beleegy"><input type="checkbox" id="elo-beleegy"><span>Kérem, hogy az&nbsp;előfizetés azonnal induljon. Tudomásul veszem, hogy ezzel elveszítem a&nbsp;14 napos elállási jogomat. <a href="/aszf">Feltételek</a></span></label>
 <div class="elo-tervek">
 <a class="elo-terv" href="https://buy.stripe.com/3cI9AS8cSdCxaPl7a2cjS01" data-elo="terv" aria-disabled="true"><strong>1490 Ft / hó</strong><span>Havi előfizetés, bármikor lemondható</span></a>
@@ -328,21 +327,20 @@ var io=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIn
 @media(max-width:560px){.elo-tervek{grid-template-columns:1fr}.elo-doboz{padding:22px 18px}}
 </style><script>(function(){var z=document.getElementById('elo-zar');if(!z)return;var slug=z.dataset.slug,f=document.getElementById('elo-folytatas'),u=document.getElementById('elo-uzenet');
 function ga(n,p){try{window.gtag&&gtag('event',n,p||{})}catch(e){}}
-function betolt(ingyen){return fetch('/api/elofizetes?mi=tartalom&slug='+encodeURIComponent(slug)+(ingyen?'&ingyen=1':''),{credentials:'same-origin',cache:'no-store'}).then(function(r){return r.json().then(function(j){return[r.status,j]})}).then(function(x){
-if(x[0]===200){f.innerHTML=x[1].html;z.hidden=true;if(ingyen)ga('elemzes_ingyen',{slug:slug});return}
-z.hidden=false;document.getElementById('elo-ingyen').hidden=!(x[1]&&x[1].ingyen);ga('elofizetes_fal',{slug:slug})}).catch(function(){z.hidden=false})}
-betolt(false);
+function betolt(){return fetch('/api/elofizetes?mi=tartalom&slug='+encodeURIComponent(slug),{credentials:'same-origin',cache:'no-store'}).then(function(r){return r.json().then(function(j){return[r.status,j]})}).then(function(x){
+if(x[0]===200){f.innerHTML=x[1].html;z.hidden=true;return}
+z.hidden=false;ga('elofizetes_fal',{slug:slug})}).catch(function(){z.hidden=false})}
+betolt();
 var be=document.getElementById('elo-beleegy');
 z.addEventListener('click',function(ev){var t=ev.target.closest('[data-elo]');if(!t)return;var m=t.dataset.elo;
-if(m==='ingyen'){betolt(true)}
-else if(m==='terv'){if(!be.checked){ev.preventDefault();u.textContent='Előbb jelöld be, hogy kéred az azonnali indítást.';be.focus();return}try{sessionStorage.setItem('qn_elo_vissza',location.pathname)}catch(e){}ga('elofizetes_kattintas',{slug:slug,terv:t.href.indexOf('fZu00')>0?'eves':'havi'})}
+if(m==='terv'){if(!be.checked){ev.preventDefault();u.textContent='Előbb jelöld be, hogy kéred az azonnali indítást.';be.focus();return}try{sessionStorage.setItem('qn_elo_vissza',location.pathname)}catch(e){}ga('elofizetes_kattintas',{slug:slug,terv:t.href.indexOf('fZu00')>0?'eves':'havi'})}
 else if(m==='belep'){var fo=document.getElementById('elo-belep');fo.hidden=false;fo.email.focus()}});
 be.addEventListener('change',function(){z.querySelectorAll('[data-elo=terv]').forEach(function(a){a.setAttribute('aria-disabled',be.checked?'false':'true')});if(be.checked)u.textContent=''});
 document.getElementById('elo-belep').addEventListener('submit',function(ev){ev.preventDefault();var fo=ev.target,kodos=!fo.kod.hidden,gomb=fo.querySelector('button');gomb.disabled=true;
 fetch('/api/elofizetes?mi='+(kodos?'belep':'kod'),{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:fo.email.value,kod:fo.kod.value})}).then(function(r){return r.json().then(function(j){return[r.ok,j]})}).then(function(x){gomb.disabled=false;
 if(!x[0]){u.textContent=x[1].hiba||'Valami nem sikerült, próbáld újra.';return}
 if(!kodos){fo.kod.hidden=false;fo.kod.focus();gomb.textContent='Belépek';u.textContent='Ha ezzel a címmel van élő előfizetés, elküldtük a kódot. Nézd meg a leveleidet (a spam mappát is).';return}
-u.textContent='';betolt(false)}).catch(function(){gomb.disabled=false;u.textContent='Valami nem sikerült, próbáld újra.'})})})();</script>
+u.textContent='';betolt()}).catch(function(){gomb.disabled=false;u.textContent='Valami nem sikerült, próbáld újra.'})})})();</script>
 </main>
 <div class="uj-hirek" aria-live="polite"></div>
 <button type="button" class="fel-gomb" data-fel-gomb aria-label="Vissza a lap tetejére" title="Vissza a tetejére"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M205.66 117.66a8 8 0 0 1-11.32 0L136 59.31V216a8 8 0 0 1-16 0V59.31l-58.34 58.35a8 8 0 0 1-11.32-11.32l72-72a8 8 0 0 1 11.32 0l72 72a8 8 0 0 1 0 11.32Z"/></svg></button>

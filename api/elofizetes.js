@@ -1,8 +1,8 @@
 // Elemzések előfizetés (Heni 2026-11-17): havi 1490 Ft vagy évi 6990 Ft, Stripe, regisztráció nélkül.
 // Az elemzés eleje nyilvános, a folytatás az api/_privat/elemzes/<slug>.html fájlban van (git-crypttel titkosítva),
-// és csak ez a függvény adja ki: előfizetőnek, vagy eszközönként havonta 1 ingyenes elemzésre.
+// és csak ez a függvény adja ki, előfizetőnek. Ingyenes teljes elemzés nincs (Heni 2026-11-17: a süti törlésével kijátszható volt).
 //
-//   GET  ?mi=tartalom&slug=<slug>[&ingyen=1]  a zárolt rész; 402: {ingyen: true|false} ha nincs jogosultság
+//   GET  ?mi=tartalom&slug=<slug>             a zárolt rész; 402, ha nincs élő előfizetés
 //   GET  ?mi=kesz&s=<checkout session>        a /elofizetes oldal hívja fizetés után: ellenőrzi és beállítja a sütit
 //   GET  ?mi=allapot                          {elofizeto, eddig, email}
 //   POST ?mi=kod   {email}                    belépőkód e-mailben (másik eszközre, az appra)
@@ -47,7 +47,6 @@ const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": 
 const alair = (x) => crypto.createHmac("sha256", process.env.LETOLT_TITOK).update("elo|" + x).digest("hex").slice(0, 32);
 const egyezik = (a, b) => typeof a === "string" && a.length === b.length && crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b));
 const most = () => Math.floor(Date.now() / 1000);
-const honap = () => new Date(Date.now() + 3600e3).toISOString().slice(0, 7); // magyar idő szerint elég pontos
 const normEmail = (e) => String(e || "").trim().toLowerCase();
 
 function sutik(req) {
@@ -208,15 +207,7 @@ module.exports = async (req, res) => {
       if (!fs.existsSync(fajl)) return json(res, 404, { hiba: "nincs ilyen elemzés" });
       const ad = () => json(res, 200, { html: fs.readFileSync(fajl, "utf8") });
       if (await jogosult(req)) return ad();
-      const ingy = ellenoriz(sutik(req).qn_ingyen);
-      const [ho, islug] = ingy ? [ingy.slice(0, 7), ingy.slice(8)] : ["", ""];
-      if (ho === honap() && islug === slug) return ad();
-      if (ho === honap()) return json(res, 402, { ingyen: false });
-      if (u.searchParams.get("ingyen") === "1") {
-        sutiAd(res, "qn_ingyen", alairt(`${honap()}.${slug}`), 40 * 86400);
-        return ad();
-      }
-      return json(res, 402, { ingyen: true });
+      return json(res, 402, { elofizeto: false });
     }
 
     if (mi === "kesz") {
