@@ -15,7 +15,7 @@
   "fontossag": 1,
   "video_szoveg": "",
   "relevans": false,
-  "kihagyva": "P2: 79 pont, napi P2-keret (10) betelt",
+  "kihagyva": "P2: 75 pont, napi P2-keret (10) betelt",
   "media": {
     "tipus": "kep",
     "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-14534-scaled.png"
@@ -24,26 +24,26 @@
   "szoveg_eredeti": "OpenAI has released GPT-6.2 Astra and GPT-6.2 Sol , twp closed models aimed at professional and agentic work. The GPT-6.2 Astra model is the new frontier tier for hard, long-horizon tasks. GPT-6.2 Sol is the efficient everyday tier. For developers, the key point is cost per task. Astra’s token prices fall 20%, and OpenAI says both models finish tasks with fewer output tokens. Both are live in the OpenAI API as gpt-6.2-astra and gpt-6.2-sol .\n\n TL;DR \n\n Size: 1,050,000-token context window, 922,000 max input, 128,000 max output.\n\n Runs on: OpenAI’s hosted API, ChatGPT Work and Codex only. \n\n Performance: Astra scores 62 on the Artificial Analysis Intelligence Index, second behind Claude Fable 5.2 (65).\n\n Best: Astra ranks #1 on AA-3D with 1,318 Elo, ahead of Fable 5.2 (1,271).\n\n Worst: Astra posts a 59% AA-Omniscience hallucination rate (Sol: 55%). Sol’s Coding Agent Index drops 3 points.\n\n Bottom line: Best: frontier results at much lower cost per task. Worst: no coding gains, and hallucination stays high.\n\n What is GPT-6.2 Astra? \n\n GPT-6.2 Astra is OpenAI’s frontier reasoning model for complex professional work. It succeeds GPT-6 Astra. OpenAI says it produces cleaner slides, spreadsheets and documents that follow templates and field conventions. It also builds better frontends, games and 3D scenes.\n\n GPT-6.2 Sol replaces GPT-6.1 Sol as the everyday model. \n\n How do the two models differ? \n\n Both accept text and image input and return text. Both share the same context limits . The split is cost and depth.\n\n Astra: knowledge cutoff May 18, 2026. Built for the hardest multistep work.\n\n Sol: knowledge cutoff June 1, 2026. Built for fast, versatile everyday tasks.\n\n Neither model accepts reasoning effort none . OpenAI recommends keeping prompt prefixes unchanged and appending new instructions. That improves cache reuse and preserves reasoning across turns.\n\n What do the benchmarks show? \n\n OpenAI’s own claims focus on cost-adjusted gains: \n\n Agents’ Last Exam v1.1: Astra scores 5.2 points above GPT-6 Astra at under a third of the cost. It leads Claude Fable 5.2 by 5.5 points at 5% of the cost.\n\n Terminal-Bench-Science 0.1: Astra gains 9 points over GPT-6 Astra at under a third of the cost.\n\n GDPval v2 (internal): Astra gains 6.2 points with 22% fewer output tokens. Sol gains 5.3 points over GPT-6.1 Sol.\n\n FrontierCode 2.0: Sol lands within 0.5 points of Astra at about one-fifth the cost.\n\n AA-AnalystAgent: Astra answers 62.5% of questions correctly on all 5 attempts.\n\n Independent results from Artificial Analysis mostly hold up. Astra scores 62 at max effort, with a $4.00 cost per Intelligence Index task. Fable 5.2 scores 65, Gemini 4 Carbon 60, Claude Opus 5.5 59 and Sol 57 . Sol matches GPT-6 Astra’s score at about 15% of its cost per task.\n\n On Harvey LAB-AA , Astra passes 15.0% of legal assignments. The Astra for Law configuration passes 20.8%. Epoch’s Capabilities Index puts Astra at 174, tied with Fable 5.2.\n\n How much does GPT-6.2 cost in the API? \n\n Rate (per 1M tokens) GPT-6.2 Astra GPT-6.2 Sol Input $8.00 $2.00 Cached input $0.40 $0.10 Output $40.00 $10.00 \n\n Astra’s input and output prices are 20% below GPT-6 Astra. Cached input is 60% cheaper. Sol keeps GPT-6.1 Sol’s rates. Requests over 272K input tokens double input and cache rates, and output costs 1.5x. Batch is 50% of standard. Ultrafast is 3x standard through February 28, 2027, then 6x.\n\n How does it compare with competitors? \n\n Feature GPT-6.2 Astra GPT-6.2 Sol Claude Fable 5.2 Gemini 4 Carbon Parameters Not disclosed Not disclosed Not disclosed Not disclosed Context window 1,050,000 1,050,000 1,000,000 1,048,576 Max output 128,000 128,000 128,000 Not disclosed Input / output price $8 / $40 $2 / $10 $8 / $40 $2 / $10 (until Nov 30), then $4 / $20 Cached input $0.40 $0.10 $0.20 $0.10 (intro) AA Intelligence Index 62 57 65 60 AA-3D Elo 1,318 1,259 1,271 Not disclosed AA-Robotics v0.1 79 78 75 Not disclosed Weights Closed Closed Closed Closed \n\n Index, AA-3D and robotics figures for competitors come from Artificial Analysis as reported by The Decoder .\n\n Astra is also OpenAI’s first released model to meet the High threshold for AI self-improvement.\n\n Key Takeaways \n\n Astra drops to $8/$40 per 1M tokens, 20% below GPT-6 Astra.\n\n Astra ranks #2 on the AA Intelligence Index with 62 points.\n\n Sol nearly matches Astra on FrontierCode 2.0 at one-fifth the cost.\n\n Coding agent scores did not improve, and Sol slipped 3 points.\n\n Both models ship with a 1.05M-token context and 128K max output.\n\n Check out the OpenAI announcement , the GPT-6.2 Astra model page and the GPT-6.2 Sol model page . You can check the deployment options and specs here through our GPULeaderboard.com chrome extension .\n\n Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post OpenAI Releases GPT-6.2 Astra and Sol With a 20% Cheaper Astra API appeared first on MarkTechPost .",
   "begyujtve": "2026-11-18T07:05:30.072931+00:00",
   "prioritas": {
-    "pont": 79,
+    "pont": 75,
     "szint": "P2",
     "reszpont": {
-      "hatas": 92,
-      "hirertek": 90,
-      "egyediseg": 70,
+      "hatas": 90,
+      "hirertek": 85,
+      "egyediseg": 60,
       "hitelesseg": 78,
-      "aktualitas": 94,
-      "kozossegi": 84
+      "aktualitas": 86,
+      "kozossegi": 81
     },
     "elofeszures": 93,
-    "tanult": 74,
-    "indok": "Ugyanaz a kiemelt GPT-6.2 bejelentés mint az előző tétel, fejlesztői és árazási adatokkal Forrás-tapasztalat: -7.",
-    "tema": "openai gpt-6-2 launch",
-    "cim_hu": "Elindult a GPT-6.2 Astra és Sol, 20 százalékkal olcsóbb API-árakkal",
-    "lead_hu": "Az OpenAI megjelentette a komplex ágensfeladatokra szánt GPT-6.2 Astra és a mindennapi használatra szánt Sol modellt, amelyek lényegesen kevesebb tokenből oldják meg a feladatokat.",
+    "tanult": 76,
+    "indok": "Az OpenAI GPT-6.2 kiadás részletei és az API árcsökkentés fontos a fejlesztőknek Forrás-tapasztalat: -7.",
+    "tema": "openai gpt-6.2 release",
+    "cim_hu": "Kiadta a GPT-6.2 Astra és Sol modelleket az OpenAI, 20 százalékkal olcsóbb az API",
+    "lead_hu": "Az OpenAI elérhetővé tette új modelljeit a fejlesztők számára, amelyek közül az összetett feladatokra szánt Astra API-token ára 20 százalékkal csökkent.",
     "klaszter": null,
     "ai": true,
-    "ido": "2026-11-18T09:10:09+00:00"
+    "ido": "2026-11-18T09:34:16+00:00"
   },
   "jovahagyas_kell": false,
-  "megjelent": "2026-11-18T09:16:39+00:00"
+  "megjelent": "2026-11-18T09:36:45+00:00"
 }

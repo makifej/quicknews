@@ -15,7 +15,7 @@
   "fontossag": 1,
   "video_szoveg": "",
   "relevans": false,
-  "kihagyva": "duplikátum: 018423c1db27",
+  "kihagyva": "P2: 68 pont, napi P2-keret (10) betelt",
   "media": {
     "tipus": "kep",
     "kep": "https://pbs.twimg.com/profile_images/2106484435382333440/vXOVE8EX_400x400.jpg"
@@ -24,27 +24,26 @@
   "szoveg_eredeti": "During early testing, I found myself so frustrated with this model that I spent a day writing a letter to OpenAI about it. They fixed a small handful of my complaints, but not enough for me to recommend using it.\n\nI'm currently sick in bed and I'm not gonna be able to film a video about it today, so I've chosen to post the letter in full.\n\nI feel bad about this, but I know you guys will listen and use this feedback to make a better model. Slight crash out incoming.\n\nBelieve it or not, I wrote this all by hand with no assistance from any LLM. (sorry for the early send, never drafting an essay in Slack again).\n\nI do not like 6.2 Astra. I would not choose this over Opus 5.5 for my work as a developer.\n\n- Great reviewer, catches things other models miss\n\n- Occasionally comes up with novel solutions that are genuinely great. It helped me cook a new reverse proxy that will save me $25k/month, Opus didn't have the balls to explore enough options.\n\n- Code quality has improved meaningfully\n\nNow I need you to understand that this comes from a place of love. I really want you guys to make something I choose in the model picker every day. With that said:\n\nI genuinely hate everything else about this model.\n\nIt's hard for me to pick which problems to emphasize because I have so many. Some of the problems have existed in OpenAI models before, I'm gonna ignore those.\n\nThere's a new set of unbelievably bad behaviors that make it miserable to use.\n\nWhen this model is working on long tasks, it can pull in a lot of subagents and manage them pretty well. It will then proceed to randomly *ask you some weird internal implementation detail bullshit that you could not under any earthly circumstance understand, much less have input on*.\n\nI sent \"/goal make a new level for Outer Wilds\". 2 hours in, it's \"blocked\" because it wanted to ask me \"does r24's reviewer write it's clips to 24_g521.mp4 or 24_p11.mp4?\"\n\nI have never in my life had a model do this. GPT-5.6 Sol didn't do this. I have no idea where this behavior came from, but it is horrible and it makes me never ever want to have it drive long haul work. It has made it significantly harder for me to get this model to do anything cool. It has forced me to set up other agents on crons just to check if 6.2 Astra asked another stupid question and blocked itself.\n\nIs this happening more because I'm using T3 Code? Maybe, but unlikely. I tried Codex just to check and still ran into these issues.\n\n2. It speaks in tongues that only 6.2 Astra understands.\n\nThis model has the most unparsable outputs of any llm I've used this year.\n\nI've shared examples before, but it just doesn't know how to explain a thing after doing a thing. Every single \"explainer\" I get it to give is SO deep in the details that it borders on incorrect in the response. It misses the forest for the trees, then says the trees are the only living creatures in the forest. It's so hard to describe but it happens almost every time I give it a complex task.\n\nI've already built the habit of switching to opus 5.5 at the end of a long 6.2 Astra run, just to get a readable summary of what it said. Without that it is genuinely impossible to parse what it did on anything beyond a small bug fix.\n\nThe worst part: it doesn't seem like you can prompt it out.\n\nI've tried system prompt adjustments. I've BEGGED it to \"eli5\".\n\nI asked it why worktrees were slow on one machine but fast on 3 others. We did everything from benching pnpm to reimaging the machine on a new file system. I eventually said: \"I think I'm going insane, can you just tell me why it's so slow?\"\n\n6.2 Astra did a 4 paragraph rant about pnpm internals and cache behaviors\n\nOpus 5.5 said \"it's because the ssd is slow\"\n\n`ts-rust` (rewrite of ts in rust) is a project I started to bench new OpenAI models during early access (ty for the unlimited tokens btw).\n\nNo OpenAI model could even break ground on this, even after $300k+ in tokens were spent on it.\n\nI decided to throw Opus at it, and it was done in under 2 weeks for ~$20k in tokens.\n\nI was really, really excited to throw the new Astra at this to see if it could burn down some of the gap between ts-rust and other rust rewrites.\n\nIt ran for 7 days and landed 0 improvements. It got super fixated on the \"also make it smaller\" part of the request, and ended up making the compiler 56% SLOWER.\n\nI told it to stop working on the size, and instead burn down the performance gap.\n\nRan for 4 more days and landed 0 changes.\n\nThis model is clearly super smart. It is insufferable to work with on real projects. It feels like it just lives in it's own world and randomly decides what parts of it's brain are shown to us.\n\nOn long tasks, it either blocks itself for stupid reasons or runs in circles and gets nowhere.\n\nOn short tasks, it writes fine code and then explains it in terms more complex than the code it wrote. I spend more tokens parsing it's outputs than it spends making them in the first place.\n\nIt \"regresses to the mean\" far too often. Ben and I both had it make a unique level in different video games. We both got water + music + bell themed levels named \"bellwether\". Entirely different games, prompts, setups, etc, and we both got the same name and theme somehow.\n\nMy prediction as to how this launch will go:\n\nDay 1, people will love it. Twitter will explode with all the crazy one shots. People will make it port projects from one language to another, or finish decompiling legendary projects that have been stuck for years. It will be used for awesome stuff and people will be hyped.\n\nDay 2, people will start to turn. They'll see how much usage it burns and how much less it got done compared to Opus. They'll start merging bad code because they couldn't actually understand what 6.2 Astra said about it, but trusted it was fine. They'll see loops they forgot about running since launch that have made zero progress.\n\nDay 5, people will mostly be over it. There will be viral posts saying \"Is SOL secretly BETTER than Astra??\", \"Did ASTRA get DUMBER ALREADY??\" etc.\n\nDay 14, this model will be mostly forgotten.\n\nI really, really, REALLY hope I'm wrong about all this. I am likely overreacting (I am admittedly known for that). I could have chosen to calm down, wait a bit, and give you a more measured take, but instead I am dumping this here because I wanted you guys to know how I actually feel about this model.\n\nDuring early testing, I found myself so frustrated with this model that I spent a day writing a letter to OpenAI about it. They fixed a small handful of my complaints, but not enough for me to recommend using it.\n\nI'm currently sick in bed and I'm not gonna be able to film a video about it today, so I've chosen to post the letter in full.\n\nI feel bad about this, but I know you guys will listen and use this feedback to make a better model. Slight crash out incoming.\n\nBelieve it or not, I wrote this all by hand with no assistance from any LLM. (sorry for the early send, never drafting an essay in Slack again).\n\nI do not like 6.2 Astra. I would not choose this over Opus 5.5 for my work as a developer.\n\n- Great reviewer, catches things other models miss\n\n- Occasionally comes up with novel solutions that are genuinely great. It helped me cook a new reverse proxy that will save me $25k/month, Opus didn't have the balls to explore enough options.\n\n- Code quality has improved meaningfully\n\nNow I need you to understand that this comes from a place of love. I really want you guys to make something I choose in the model picker every day. With that said:\n\nI genuinely hate everything else about this model.\n\nIt's hard for me to pick which problems to emphasize because I have so many. Some of the problems have existed in OpenAI models before, I'm gonna ignore those.\n\nThere's a new set of unbelievably bad behaviors that make it miserable to use.\n\nWhen this model is working on long tasks, it can pull in a lot of subagents and manage them pretty well. It will then proceed to randomly *ask you some we",
   "begyujtve": "2026-11-17T20:04:14.507492+00:00",
   "prioritas": {
-    "pont": 60,
-    "szint": "X",
+    "pont": 68,
+    "szint": "P2",
     "reszpont": {
-      "hatas": 50,
-      "hirertek": 65,
-      "egyediseg": 65,
-      "hitelesseg": 74,
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 70,
+      "hitelesseg": 76,
       "aktualitas": 86,
-      "kozossegi": 66
+      "kozossegi": 69
     },
     "elofeszures": 89,
     "tanult": 59,
-    "indok": "Duplikátum: 018423c1db27",
-    "tema": "openai gpt-6-2 astra launch",
-    "cim_hu": "Kritikus vélemény jelent meg a GPT-6.2 Astráról",
-    "lead_hu": "Egy korai tesztelő szerint az OpenAI új modellje nehezen használható, és komoly problémái vannak a hosszú feladatok kezelésével.",
+    "indok": "Releváns kritikai visszajelzés az új GPT-6.2 Astra modellről egy ismert fejlesztőtől. Forrás-tapasztalat: -3.",
+    "tema": "openai gpt-6.2 astra feedback",
+    "cim_hu": "Komoly hiányosságokra hívta fel a figyelmet egy tesztelő a GPT-6.2 Astra modellnél",
+    "lead_hu": "Egy korai tesztelő nyílt levélben részletezte a GPT-6.2 Astra modell korlátait, kiemelve, hogy a rendszer nehezen kezeli a tudáshiányt és a hosszabb feladatokat.",
     "klaszter": null,
     "ai": true,
-    "ido": "2026-11-18T09:10:09+00:00"
+    "ido": "2026-11-18T09:34:16+00:00"
   },
-  "jovahagyas_kell": true,
-  "megjelent": "2026-11-18T09:15:22+00:00",
-  "dupla_of": "018423c1db27"
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-18T09:36:15+00:00"
 }

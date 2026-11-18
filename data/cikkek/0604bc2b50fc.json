@@ -1,6 +1,6 @@
 {
   "id": "0604bc2b50fc",
-  "slug": "az-openai-kiadta-a-jogi-feladatokra-optimalizalt-astra-for-law",
+  "slug": "az-openai-frissitette-a-jogi-feladatokra-szant-astra-for-law-modellt",
   "forras_id": "openai",
   "forras_nev": "OpenAI",
   "url": "https://openai.com/index/astra-law-6-2",
@@ -14,17 +14,17 @@
   "forrasok": [],
   "szoveg_eredeti": "Our latest model configuration earned leading marks on multiple benchmarks. Every ChatGPT Enterprise customer can now request access.\n\nToday, we're releasing an updated Astra for Law that is state-of-the-art on Harvey LAB-AA and a top performer on LAB: USCL (co-developed by Harvey⁠(opens in a new window) and Grubel⁠(opens in a new window)) and Vals AI’s Legal Research Bench. We are also enabling all ChatGPT Enterprise customers to request access through the Trusted Access Program, including through the API.\n\nAstra for Law is a model configuration of GPT‑6.2 Astra⁠, our latest, most powerful frontier model. It pairs GPT‑6.2 Astra with an expanded legal search index and instructions for researching a question, weighing the authorities, and writing the answer. Today’s configuration earned full credit on the LAB-AA tests nearly 40% more often than did the runner-up, GPT‑6.2 Astra.\n\nSince we introduced Astra for Law in September⁠ to a small group of firms, including Cooley⁠, Ropes & Gray⁠ and Sullivan & Cromwell⁠, our research team has made rapid innovations to improve its legal reasoning and expand its legal search index by over a third. On Vals AI’s Legal Research Bench⁠(opens in a new window), the share of research answers that passed every check rose from about 46% to 53.8% in less than two months.\n\nAs the world grows more complex, lawyers occupy an increasingly important role. They shape nearly every system we rely on: they negotiate the agreements that move commerce, defend people’s rights in courts, and draft the laws we all live by. That’s why we’ve made law a research priority at OpenAI: to put the best intelligence in the hands of the best lawyers.\n\nHarvey’s Legal Agent Benchmark (LAB) tests whether a model can take a legal assignment from start to finish. LAB-AA⁠(opens in a new window) is Artificial Analysis’s version of that test. It puts the models through a ringer of 120 assignments developed by Harvey across 24 areas of law – everything from drafting deposition outlines to reviewing commercial leases to strategizing ownership changes in acquisitions. To earn full credit, an answer must meet every requirement of an assignment without hallucinating, i.e. making a material claim that is not supported by the source documents.\n\nAstra for Law ranked first, earning full credit on 20.8% of assignments, ahead of GPT‑6.2 Astra at 15.0% and Muse Wonder Full at 13.1%.\n\nAstra for Law ranked first at 20.8%, earning full credit about 59% more often than Muse Wonder Full, the highest-scoring non-OpenAI model.\n\nAstra for Law also earned that top score with 54% less output per assignment than the highest-scoring non-OpenAI model in the evaluation, averaging about 64,000 output tokens per assignment, compared with 139,000 for Muse Wonder Full. For legal teams paying by usage, this can mean the difference between staying within budget and blowing through it.\n\nEach dot is a model configuration. Higher means more assignments earned full credit; farther left means fewer output tokens, which include the text a model generates as it reasons and writes. Astra for Law averaged about 64,000 output tokens per assignment and earned full credit on 20.8%, compared with 139,000 and 13.1% for Muse Wonder Full. No configuration shown matched Astra for Law’s score using fewer output tokens.\n\nHallucinations are unacceptable in legal work. A single invented citation can cost a lawyer a client’s trust, credibility in court, and a reputation built over years. That’s why reducing hallucinations has been a priority for Astra for Law. In Artificial Analysis’s latest LAB-AA comparison, Astra for Law tied (with GPT‑6) for the lowest rate of material hallucinations: 0.03 per assignment, compared with 0.59 for Claude Opus 5.5 (the next lowest non-OpenAI model). Notably, Astra for Law's performance on this eval included zero material hallucinations for tasks that met the all-pass criteria.\n\nAstra for Law averaged 0.03 material and 0.06 minor hallucinations per assignment. Claude Opus 5.5 averaged 0.59 material and 0.51 minor hallucinations per assignment, about 20 times as many material hallucinations and 8.5 times as many minor ones.\n\nAcross the same 120 assignments, Artificial Analysis counted hallucinated claims that could mislead a reader on a substantive point. Astra for Law averaged 0.03 such errors per assignment, tied for the lowest rate in the comparison and roughly half the rate for regular GPT‑6.2 Astra (0.06).\n\nEvery OpenAI configuration tested had fewer hallucinations than Claude Opus 5.5, the best non-OpenAI result on this measure. Opus 5.5 averaged 0.59 material hallucinations per assignment, about 20 times as many as Astra for Law.\n\nBrief writing is one of the most complex long-horizon processes in law, requiring clear reasoning, research, and writing to come together to produce an excellent argument.\n\nHarvey and Grubel⁠(opens in a new window) co-developed LAB: USCL⁠(opens in a new window) to test whether a model can research and write a brief in a real U.S. federal case. Each model steps in just before a brief was filed and writes for the same party on the same issue. In one version, the model has to find the relevant cases itself. In the other, it gets the record and the precedents the original lawyer cited. AI graders compare the briefs head to head using criteria lawyers reviewed and calibrated. Astra for Law earned one of the top scores in both versions.\n\nFarther right means the briefs earned higher ratings. When the models researched the law themselves, Astra for Law scored 1,844 to Opus 5.5’s 1,817. Given the precedents, they were effectively even at 1,883 and 1,882.\n\nThe first result (“Research and draft,” on the left) matters because better legal research is one of the core improvements in this release. We focused on improving this result because a litigator rarely starts with a list of the right cases. Here, each model had to work out which decisions mattered and use them to write an argument the court could follow. On that assignment, Harvey’s graders preferred the briefs from today’s Astra for Law to those from other leading frontier models, such as Opus 5.5 and Gemini 4 Argon. We can see more noticeable improvements in legal research in the Vals AI evaluation, discussed next.\n\nWe've made law a research priority at OpenAI, dedicating a team of researchers to accelerate innovation for frontier legal intelligence. One early measure of their progress comes from Vals AI’s Legal Research Bench⁠(opens in a new window), where practicing lawyers set questions about U.S. federal and state law. An answer has to cover every required point and pass the source checks. In September, Astra for Law earned full credit on about 46% of questions. In Vals AI’s November 16 evaluation, it earned full credit on 112 of 208 questions (53.8%), a gain of about eight percentage points in under two months. Across all questions, it earned 90.9% of the available points, including partial credit.\n\nIn less than two months, the share of legal research questions on which Astra for Law earned full credit rose from about 46% to 53.8%, a gain of about eight percentage points.\n\nAstra for Law (green) sits in the small cluster of top performers on Vals AI’s Legal Research Bench.\n\nBuilding Astra for Law as a model configuration lets us stay on the bleeding edge of the frontier, in this case GPT‑6.2 Astra⁠. On top of this foundation, we iteratively refine Astra for Law’s specific settings and instructions in response to practitioner feedback, teaching it how to reason and write like a seasoned lawyer. We also continuously hone its tools, such as the legal search index. Since September, we’ve grown the index by 34%, adding over 80 million new URLs, including across international jurisdictions such as the UK, Australia and Canada. Today, the updated index spans over 310 million URLs and covers more than 99.9% of published U.S. precedential case law⁠(opens in a new window).\n\nThe below chart shows how th",
   "modell": "gemini-3.5-flash",
-  "cim": "Az OpenAI kiadta a jogi feladatokra optimalizált Astra for Law frissítését",
-  "lead": "Az OpenAI GPT-6.2 Astra alapú jogi AI-modellje kimagasló pontossággal teljesíti az összetett jogi elemzéseket és kutatásokat.",
-  "osszefoglalo": "Az OpenAI frissítette az [Astra for Law](https://openai.com/index/astra-for-law/) elnevezésű modellkonfigurációját, amely a legújabb GPT-6.2 Astra modellre épül. A jogi feladatokra és kutatásokra szabott rendszer több mint 310 millió URL-t tartalmazó adatbázisból dolgozik, lefedve az amerikai precedentális joggyakorlat 99,9 százalékát, valamint nemzetközi jogi forrásokat is. A teszteken a korábbiaknál lényegesen alacsonyabb tévesztési arányt ért el.\n\nAz [OpenAI közleménye](https://openai.com/index/astra-law-6-2) szerint a [Harvey LAB-AA](https://artificialanalysis.ai/evaluations/harvey-lab-aa) benchmark felmérésében az eszköz a feladatok 20,8 százalékánál ért el teljesen hibátlan eredményt, ami a legmagasabb pontszám a mezőnyben. A rendszer feladatonként átlagosan 64 000 output tokent használt fel, ami kevesebb mint a fele a legjobb nem OpenAI versenytárs erőforrás-igényének. Az elemzések során a kritikus tévedések száma 0,03-ra csökkent feladatonként.\n\nA frissített modellhez mostantól minden **ChatGPT Enterprise** ügyfél igényelhet hozzáférést a Trusted Access Programon keresztül, emellett az API-n keresztül is elérhetővé válik.",
-  "miert_szamit": "A kifejezetten jogi területre finomhangolt AI-modell használatával a jogi és vállalati ügyfélszolgálati csapatok **drasztikusan csökkenthetik a kutatási időt és a halucinációs kockázatot**, ráadásul a kevesebb tokenhasználat miatt jelentős költséget spórolhatnak meg.",
+  "cim": "Az OpenAI frissítette a jogi feladatokra szánt Astra for Law modellt",
+  "lead": "Elérhetővé vált a GPT-6.2 Astra alapjára épülő Astra for Law frissített változata a ChatGPT Enterprise ügyfelek számára.",
+  "osszefoglalo": "Az OpenAI közzétette az [Astra for Law](https://openai.com/index/astra-for-law/) frissített kiadását, amely a GPT-6.2 Astra modellre épülő, kifejezetten jogi elemzésre és kutatásra optimalizált konfiguráció. Az új verzió kibővített keresési adatbázissal dolgozik, és a felmérések szerint szignifikánsan alacsonyabb hibarátával végez komplex jogi feladatokat, mint a korábbi rendszerek.\n\nA fejlesztés során a **jogi keresőindex méretét 34 százalékkal növelték**, így az már több mint 310 millió URL-t tartalmaz, lefedve az amerikai precedentális esetjog több mint 99,9 százalékát, emellett brit, ausztrál és kanadai forrásokat is magában foglal. A teszteken a modell feladatonként átlagosan 0,03 érdemi tévedést ( hallucinációt ) produkált, ami töredéke a piacon lévő más nagy nyelvi modellek hibaarányának.\n\nA frissítéshez a [ChatGPT Enterprise](https://chatgpt.com/business/enterprise/) előfizetők és API-felhasználók a Trusted Access Programon keresztül igényelhetnek hozzáférést.",
+  "miert_szamit": "A jogi és üzleti szektorban dolgozó szakemberek számára az új modell **több mint feleannyi zseton (token) felhasználásával** nyújt pontosabb válaszokat, ami jelentősen csökkenti az automatizált jogi kutatások költségét.",
   "cimkek": [
     "OpenAI",
+    "GPT-6.2 Astra",
     "Astra for Law",
-    "GPT-6.2",
     "jogi AI"
   ],
-  "kategoria": "eszköz",
+  "kategoria": "modell",
   "forras_tipus": "bejelentés",
   "fontossag": 4,
   "video_szoveg": "",
@@ -35,52 +35,42 @@
   ],
   "linkszabaly": 3,
   "prioritas": {
-    "pont": 66,
+    "pont": 71,
     "szint": "P2",
     "reszpont": {
-      "hatas": 70,
-      "hirertek": 70,
+      "hatas": 75,
+      "hirertek": 80,
       "egyediseg": 85,
       "hitelesseg": 92,
-      "aktualitas": 74,
-      "kozossegi": 40
+      "aktualitas": 69,
+      "kozossegi": 53
     },
     "elofeszures": 86,
-    "tanult": 25,
-    "indok": "Az Astra jogi szakkiadása a teszteken az élen végzett, és megnyílt a vállalati ügyfelek előtt. Forrás-tapasztalat: -6.",
+    "tanult": 27,
+    "indok": "A jogi szektorra specializalt Astra modell frissitese es elerhetosege fontos vállalati bejelentes. Forrás-tapasztalat: -6.",
     "tema": "openai astra for law",
-    "cim_hu": "Jogi specialistává képezte ki az OpenAI a legújabb Astra modelljét",
-    "lead_hu": "Az OpenAI kiadta az Astra for Law modellt, amely kiemelkedő eredményeket ért el a jogi AI-teszteken. A ChatGPT Enterprise ügyfelek már kérhetnek hozzáférést a rendszerhez.",
+    "cim_hu": "Elérhetővé vált az OpenAI kifejezetten jogi feladatokra tervezett Astra modellje",
+    "lead_hu": "Az OpenAI frissítette a jogi intelligenciában élen járó Astra for Law modellt, amelyhez mostantól minden ChatGPT Enterprise ügyfél hozzáférést kérhet.",
     "klaszter": null,
     "ai": true,
-    "ido": "2026-11-18T09:10:09+00:00"
+    "ido": "2026-11-18T09:34:16+00:00"
   },
   "jovahagyas_kell": true,
-  "forditva": "2026-11-18T09:10:57+00:00",
-  "megjelent": "2026-11-18T09:10:57+00:00",
+  "forditva": "2026-11-18T09:34:30+00:00",
+  "megjelent": "2026-11-18T09:34:30+00:00",
   "tenyellenorzes": {
     "ok": true,
-    "ido": "2026-11-18T09:20:02+00:00",
-    "esemeny": "Az OpenAI kiadta a GPT-6.2 Astra alapú Astra for Law frissített változatát, amely kiemelkedő eredményeket ért el jogi benchmarkokon (pl. Harvey LAB-AA). A cég emellett minden ChatGPT Enterprise ügyfél számára elérhetővé tette a modell iránti hozzáférési kérelem benyújtását a Trusted Access Programon és az API-n keresztül.",
+    "ido": "2026-11-18T09:38:17+00:00",
+    "esemeny": "Az OpenAI frissítette a GPT-6.2 Astra alapjára épülő Astra for Law modellt, és lehetővé tette a hozzáférés igénylését a ChatGPT Enterprise ügyfelek számára.",
     "forrasok": [
       "https://openai.com/index/astra-law-6-2"
     ],
-    "hibak": [
-      "Az összefoglaló tévesen azt állítja, hogy az eszköz a feladatok 20,8 százalékánál ért el hibátlan eredményt, és ez 'lényegesen jobb teljesítmény a piacon elérhető többi modellnél'. A 20,8% a teljesítés (full credit / hibátlan válasz) aránya volt, nem pedig a hibázási arány (a hibátlan feladatok aránya volt a legmagasabb).",
-      "Az összefoglaló azt állítja, hogy az új frissítést minden ChatGPT Enterprise előfizető elérheti. A valóságban a ChatGPT Enterprise ügyfelek csak a hozzáférési kérelem benyújtásának lehetőségét kapták meg (request access) a Trusted Access Programon keresztül, a hozzáférés jóváhagyáshoz kötött.",
-      "A hír nem tartalmazza a kötelező beszédes elsődleges forráslinket."
-    ],
+    "hibak": [],
     "kereses": [],
-    "javitva": true,
-    "javitas_elotti": {
-      "cim": "Az OpenAI kiadta a jogi feladatokra optimalizált Astra for Law frissítését",
-      "lead": "Az OpenAI GPT-6.2 Astra alapú jogi AI-modellje kimagasló pontossággal teljesíti az összetett jogi elemzéseket és kutatásokat.",
-      "osszefoglalo": "Az OpenAI frissítette az **Astra for Law** elnevezésű modellkonfigurációját, amely a legújabb GPT-6.2 Astra modellre épül. A jogi feladatokra és kutatásokra szabott rendszer több mint 310 millió URL-t tartalmazó adatbázisból dolgozik, lefedve az amerikai precedentális joggyakorlat 99,9 százalékát, valamint nemzetközi jogi forrásokat is. A teszteken a korábbiaknál lényegesen alacsonyabb tévesztési arányt ért el.\n\nA Harvey LAB-AA benchmark felmérésében az eszköz a feladatok 20,8 százalékánál ért el hibátlan eredményt, ami lényegesen jobb teljesítmény a piacon elérhető többi modellnél. A rendszer feladatonként átlagosan 64 000 output tokent használt fel, ami több mint a fele a versenytársak erőforrás-igényének. Az elemzések során a kritikus tévedések száma 0,03-ra csökkent feladatonként.\n\nAz új frissítést minden **ChatGPT Enterprise** előfizető elérheti a Trusted Access Programon keresztül, valamint az API-n keresztül is beépíthető a meglévő rendszerekbe.",
-      "miert_szamit": "A kifejezetten jogi területre finomhangolt AI-modell használatával a jogi és vállalati ügyfélszolgálati csapatok **drasztikusan csökkenthetik a kutatási időt és a halucinációs kockázatot**, ráadásul a kevesebb tokenhasználat miatt jelentős költséget spórolhatnak meg."
-    }
+    "javitva": false
   },
   "kiprobal_nezve": true,
   "termeklinkek_nezve": true,
-  "kep_minoseg_kesz": "2026-11-18T09:21:05+00:00",
+  "kep_minoseg_kesz": "2026-11-18T09:39:22+00:00",
   "linkek_ellenorizve": true
 }

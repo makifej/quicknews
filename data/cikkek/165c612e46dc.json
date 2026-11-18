@@ -1,6 +1,6 @@
 {
   "id": "165c612e46dc",
-  "slug": "ai-modell-segitsegevel-talaltak-sulyos-biztonsagi-rest-a-java-ban",
+  "slug": "mesterseges-intelligenciaval-talaltak-sulyos-biztonsagi-rest-a-javaban",
   "forras_id": "techmeme",
   "forras_nev": "New York Times",
   "url": "https://www.nytimes.com/2026/11/17/us/politics/ai-security-bug-java.html?unlocked_article_code=1.RFE.J4uR.JL0Qv-280ALN",
@@ -14,15 +14,15 @@
   "forrasok": [],
   "szoveg_eredeti": "A cybersecurity start-up revealed on Tuesday it had used a new A.I. model to uncover a critical software bug in Java, a popular programming language that is used by government agencies and about 90 percent of Fortune 500 companies.\n\nIt was the latest evidence of a reality facing companies and the government, as A.I. is revolutionizing the field of discovery in computer vulnerabilities, identifying flaws in code so rapidly that cybersecurity professionals are struggling to keep up.\n\nUsing leading A.I. models, the start-up Calif has now unearthed a string of serious vulnerabilities in recent months. The start-up’s latest effort exposed a flaw, using OpenAI’s recently released GPT-6 Cyber model, in Java, which is widely used by banks, hospitals, the aviation industry and technology giants, as well as government agencies, including those with national security missions.\n\n“Java is the beating heart of the modern economy,” said Bruce Dang, a senior researcher at Calif. “Practically speaking, all major companies” will be affected by the bug, he added.\n\nMr. Dang and his colleagues have worked in recent days to coordinate with all government agencies in the intelligence-sharing alliance known as Five Eyes — which consists of the United States, Canada, Australia, New Zealand and Britain — and major vendors in the private sector, including Google and Microsoft.\n\nThe National Security Agency, whose classified network went down on Tuesday for what it described as “routine software maintenance,” did not respond to a request for comment. It was not clear whether that disruption was related to addressing the Java bug.\n\nWe are having trouble retrieving the article content.\n\nPlease enable JavaScript in your browser settings.\n\nThank you for your patience while we verify access. If you are in Reader mode please exit and log into your Times account, or subscribe for all of The Times.\n\nThank you for your patience while we verify access.",
   "modell": "gemini-3.5-flash",
-  "cim": "AI-modell segítségével találtak súlyos biztonsági rést a Java-ban",
-  "lead": "A Calif kibervédelmi startup a GPT-6 Cyber modellt használta a Java4Shell névre keresztelt távoli kódfuttatási sérülékenység feltárására.",
-  "osszefoglalo": "A Calif nevű kibervédelmi startup az OpenAI [GPT-6 Cyber](https://openai.com/index/gpt-6-cyber/) modelljét hívta segítségül, amellyel egy kritikus, távoli kódfuttatást lehetővé tevő hiba jelenlétét mutatta ki a Java programozási nyelvben. A Java4Shell néven emlegetett sérülékenység a Fortune 500-as vállalatok mintegy 90 százalékát, valamint bankokat, kórházakat és kormányzati szerveket is érinthet.\n\nA felfedezést követően a kutatók felvették a kapcsolatot a legfontosabb technológiai szereplőkkel, köztük a Google-lel és a Microsofttal, az **Oracle pedig kiadta a szükséges javítást** a hiba elhárítására. Az eset jól mutatja, hogy a mesterséges intelligencia radikálisan felgyorsítja a szoftveres hiányosságok felismerését.",
-  "miert_szamit": "A mesterséges intelligencia alkalmazása a kiberbiztonságban gyorsabb hibakeresést teszt lehetővé, így a szoftverfejlesztőknek és üzemeltetőknek **kiemelten fontos a rendszereik azonnali frissítése** a felfedezett sérülékenységek elleni védekezéshez.",
+  "cim": "Mesterséges intelligenciával találtak súlyos biztonsági rést a Javában",
+  "lead": "A Calif kibervédelmi cég a GPT-6 Cyber modell segítségével azonosította a Java4Shell névre keresztelt kritikus sérülékenységet.",
+  "osszefoglalo": "A Calif nevű kibervédelmi startup az OpenAI új [GPT-6 Cyber](https://openai.com/index/gpt-6-cyber) AI-modelljének segítségével egy kritikus távoli kódfuttatási hibahelyet fedezett fel a Java programozási nyelvben. A Java4Shell névre keresztelt sérülékenység a Fortune 500-as vállalatok mintegy 90 százalékát, valamint számos kormányzati szervet, bankot és technológiai óriást érint.\n\nA biztonsági kutatók az elmúlt napokban egyeztettek az úgynevezett Five Eyes szövetség védelmi szerveivel, valamint a Microsofttal és a Google-lel a hiba elhárításáról. Az Oracle már kiadta a biztonsági javítást a rés megszüntetésére.\n\nAz eset jól szemlélteti, hogy az új generációs AI-modellek radikálisan felgyorsítják a szoftveres sérülékenységek feltárását, amivel a kiberbiztonsági szakembereknek is lépést kell tartaniuk.",
+  "miert_szamit": "A Java4Shell sérülékenység a legtöbb vállalati rendszert érinti, ezért a fejlesztőknek és IT-üzemeltetőknek **azonnal frissíteniük kell az Oracle legújabb javítására** a rendszereik védelmében.",
   "cimkek": [
     "Java",
-    "GPT-6 Cyber",
+    "GPT-6",
     "kiberbiztonság",
-    "OpenAI"
+    "Oracle"
   ],
   "kategoria": "kutatás",
   "forras_tipus": "elemzes",
@@ -31,39 +31,40 @@
   "relevans": true,
   "kiprobalhato": null,
   "linkelendo_nevek": [
-    "GPT-6 Cyber"
+    "GPT-6 Cyber",
+    "Java4Shell"
   ],
   "linkszabaly": 3,
   "prioritas": {
-    "pont": 88,
-    "szint": "P1",
+    "pont": 84,
+    "szint": "P2",
     "reszpont": {
-      "hatas": 90,
-      "hirertek": 95,
-      "egyediseg": 95,
+      "hatas": 88,
+      "hirertek": 90,
+      "egyediseg": 85,
       "hitelesseg": 88,
-      "aktualitas": 92,
+      "aktualitas": 91,
       "kozossegi": 75
     },
     "elofeszures": 95,
-    "tanult": 59,
-    "indok": "Kritikus Java sérülékenységet fedezett fel egy új AI-modell; mérföldkő a kiberbiztonságban. Forrás-tapasztalat: -3.",
-    "tema": "gpt-6 cyber java vulnerability discovery",
-    "cim_hu": "Kritikus Java-sebezhetőséget talált az új GPT-6 Cyber modell",
-    "lead_hu": "A Calif kiberbiztonsági cég a GPT-6 Cyber segítségével fedezte fel a Java4Shell névre keresztelt súlyos hibát, amelyet az Oracle gyorsan javított.",
+    "tanult": 60,
+    "indok": "Egy új AI-modell kritikus szoftverhibát talált a Javában, a hírnek jelentős a kiberbiztonsági hatása. Forrás-tapasztalat: -3.",
+    "tema": "gpt-6 cyber java4shell vulnerability",
+    "cim_hu": "A GPT-6 Cyber segítségével találtak kritikus biztonsági rést a Javában",
+    "lead_hu": "A Calif kiberbiztonsági cég egy AI-modell segítségével fedezte fel a Java4Shell névre keresztelt sérülékenységet, melyre az Oracle már kiadta a javítást.",
     "klaszter": null,
     "ai": true,
-    "ido": "2026-11-18T09:10:09+00:00"
+    "ido": "2026-11-18T09:34:16+00:00"
   },
   "jovahagyas_kell": true,
-  "forditva": "2026-11-18T09:11:53+00:00",
-  "megjelent": "2026-11-18T09:11:53+00:00",
+  "forditva": "2026-11-18T09:34:51+00:00",
+  "megjelent": "2026-11-18T09:34:51+00:00",
   "tenyellenorzes": {
     "ok": true,
-    "ido": "2026-11-18T09:19:39+00:00",
-    "esemeny": "A Calif nevű kibervédelmi startup az OpenAI GPT-6 Cyber AI-modelljével egy kritikus sérülékenységet tárggyal fel a Java programozási nyelvben, az Oracle pedig kiadta a javítást.",
+    "ido": "2026-11-18T09:37:54+00:00",
+    "esemeny": "A Calif nevű kiberbiztonsági cég az OpenAI GPT-6 Cyber modelljét használva fedezett fel egy Java4Shell nevű, kritikus távoli kódfuttatást lehetővé tévő kiberbiztonsági hibát a Java programozási nyelvben, amelyre az Oracle kiadta a biztonsági javítást.",
     "forrasok": [
-      "https://www.nytimes.com/2026/11/17/us/politics/ai-security-bug-java.html"
+      "https://www.nytimes.com/2026/11/17/us/politics/ai-security-bug-java.html?unlocked_article_code=1.RFE.J4uR.JL0Qv-280ALN"
     ],
     "hibak": [],
     "kereses": [],
@@ -71,6 +72,6 @@
   },
   "kiprobal_nezve": true,
   "termeklinkek_nezve": true,
-  "kep_minoseg_kesz": "2026-11-18T09:21:05+00:00",
+  "kep_minoseg_kesz": "2026-11-18T09:39:22+00:00",
   "linkek_ellenorizve": true
 }
