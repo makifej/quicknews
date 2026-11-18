@@ -24,6 +24,18 @@ module.exports = async (req, res) => {
       const nap = budapestNap();
       await kv("INCR", "qn:apk_letoltes");
       await kv("HINCRBY", "qn:apk_letoltes_nap", nap, 1);
+      // Heni 2026-11-18: minden letöltés a GA4-be is (Measurement Protocol, minden alkalommal új, véletlen azonosító,
+      // ugyanúgy, mint a bannerkattintásnál). Külön eseménynév, hogy ne duplázza a weboldal hozzájárulásos apk_letoltes-ét.
+      const ua = String(req.headers["user-agent"] || "");
+      if (process.env.GA4_API_SECRET && !/bot|crawl|spider|preview|facebookexternalhit|slurp|curl|wget|python/i.test(ua)) {
+        try {
+          await fetch(`https://www.google-analytics.com/mp/collect?measurement_id=G-MXSE5QFHHY&api_secret=${process.env.GA4_API_SECRET}`, {
+            method: "POST",
+            body: JSON.stringify({ client_id: `apk.${Date.now()}.${Math.floor(Math.random() * 1e9)}`,
+              events: [{ name: "apk_letoltes_osszes", params: { honnan: /; wv\)|quicknews-android/.test(ua) ? "app" : "web" } }] }),
+          });
+        } catch (e) { /* GA-hiba ne akadályozza a letöltést */ }
+      }
     } else if (req.method !== "HEAD") {
       res.statusCode = 405;
       res.setHeader("Content-Type", "application/json; charset=utf-8");
