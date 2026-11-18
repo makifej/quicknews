@@ -1,0 +1,49 @@
+{
+  "id": "0f9be8abc397",
+  "slug": "how-meta-uses-ai-agents-to-scale-ml-innovations-across-ads-ranking",
+  "forras_id": "dailydev",
+  "forras_nev": "Facebook Engineering\n (daily.dev)",
+  "url": "https://engineering.fb.com/2026/11/18/ml-applications/ai-agents-to-scale-ml-innovations-across-ads-ranking-models",
+  "publikalva": "2026-11-18T00:00:00+00:00",
+  "cim": "How Meta Uses AI Agents to Scale ML Innovations Across Ads Ranking Models",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 44 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/d9d9f2ecde6e257b62497d0751c048ac?_a=AQAEuop"
+  },
+  "cim_eredeti": "How Meta Uses AI Agents to Scale ML Innovations Across Ads Ranking Models",
+  "szoveg_eredeti": "Meta’s ads recommendation system is powered by a large number of distinct ads ranking models, each serving different product surfaces and advertiser objectives, and each with its own architecture, training data, and serving constraints.\n\nAcross this portfolio, ML researchers and engineers are continuously advancing the state-of-the-art through innovations we call “techniques.” A technique is anything that makes a ranking model better such as architectural advancements like Wukong factorization layers, Interformer interaction networks, richer data representations, training optimizations, or efficiency improvements in training and inference.\n\nHowever, because each model has its own architecture, data, and training and serving constraints, a technique proven on one model almost never copy-pastes onto the next. At the same time, speed matters because ML techniques have a shelf life. An innovation that delivers gains today may be superseded within a couple of model development cycles. The faster proven techniques reach the full model fleet, the more value they deliver before the next generation of techniques arrive.\n\nSo how do we propagate a technique to a diverse fleet of models as quickly as possible, while minimizing engineering bandwidth and compute?\n\nPropagating a growing inventory of proven techniques across a large fleet of diverse models creates a combinatorially expanding space of technique-model combinations to explore, where both engineering bandwidth and compute become significant constraints.\n\nThe standard way to adapt a technique is to have engineers who are domain experts manually execute adaptation. An engineer studies how a technique interacts with a specific model’s architecture, generalizes it, and tunes it to that model’s constraints. This produces the strongest results, and is still the process for our highest-revenue models, but it does not scale to all of the models in the space. Each adaptation is effort-intensive and demands deep familiarity with both the technique and the target model. So throughput is capped by engineering bandwidth while the opportunity for adaptation grows much faster.\n\nThe second constraint on propagation is compute. Every adaptation attempt requires a training run, and with a finite compute budget the question is not only which techniques to try but how to navigate the combinatorial space of configurations without spending the budget on attempts (most of which will produce suboptimal gains).\n\nBoth constraints point to the same requirement: To propagate techniques to a large number of diverse models quickly, propagation has to become standardized, automated, and able to make judgment calls.\n\nWe started by standardizing model design and automating propagation: a template-driven approach organizes models into a small set of reusable and composable building blocks, so a technique validated once at the template level propagates automatically to every model built from that template. Over the last 2 years, through standardization and automation, we have shipped 5,000+ technique-model combinations across our large, diverse fleet of models while reducing per-model engineering time by 92%. You can read more about it in our post on Standard Model Templates (SMT).\n\nStandardization and automation handle the deterministic steps, but successful and efficient propagation still requires making judgment calls, such as which technique is worth propagating to which model, how wide a hyperparameter search should be, why a model is not showing gains, or how to detect and resolve failures. Those decisions still required significant human bandwidth, which prevented us from scaling further and from reaching a state where all techniques reached all applicable models within a few weeks of being proven.\n\nOur technique propagation system is built around three capabilities:\n\nToday, AI agents supercharge all the above capabilities by taking on the judgment-heavy, non-deterministic decision making and bringing deep intelligence to the system. They combine LLM-based reasoning with specialized ML tooling to handle the work of deciding which adaptations to try, diagnosing why something failed and automatically mitigating it, navigating hyperparameter search spaces efficiently, and managing capacity across hundreds of concurrent jobs. The agents share a common knowledge base, an accumulated record of prior training runs, model architectures, and technique outcomes, so they build on what has already been learned rather than starting from scratch.\n\nDiscovery answers two questions: What proven techniques exist, and how applicable are they to each model in the model fleet? Until recently, domain experts answered both, working through the assessments one model at a time. They tracked research and results across the organization, spotted the techniques worth propagating, and relied on their domain knowledge to judge applicability.\n\nAgents aren’t constrained by the same knowledge or engineering bandwidth limitations as domain experts. Instead of relying on what any one expert knows, they draw on the shared knowledge base, and they make assessments across the entire model fleet at once rather than one model at a time. They systematically identify which proven techniques exist, estimate their transferability across the model fleet, and produce prioritized technique lists ranked by expected impact. Engineers now only have to review the agents’ assessments and make a decision from there.\n\nGeneralization is the process of re-implementing a technique proven on one model so it applies to models with different architectures, feature representations, training data, and serving constraints. The core idea usually transfers, but the implementation almost never does. The customization needed depends on the technique and the target model, ranging from retuning hyperparameters, to adapting features to what the target model already consumes or resizing the architecture to fit its inference budget, to redesigning the technique outright. Deciding what a given model needs, and how far to go, is a judgment call.\n\nDepending on whether a model is built from standardized templates or customized individually, generalization comes in two flavors, and agents assist with both:\n\nDrawing on millions of prior training runs and each target model’s own properties, agents start from the configurations most likely to work, use the results of each round of training runs to narrow the hyperparameter search space for the next, and decide which experiments are worth continuing and which to stop early. As a result, when measured across select technique-model combinations, we have seen a median 4x reduction in training compute.\n\nAt the adoption stage, agents ship generalized techniques model-by-model. They launch experiments, manage asynchronous multi-day training runs, fine-tune each model, monitor convergence, recover from failures, and assemble validated proposals.\n\nFine-tuning happens differently depending on how the technique arrived. For techniques applied individually, agents help find the best configuration of technique bundles for that particular model. For models built from a shared template, an auto-research loop searches on top of the template, tuning each model for the gains the shared configuration alone does not deliver.\n\nWhen failures occur, whether from an infrastructure issue, training divergence, or a data pipeline error, integrated debugging and recovery diagnose the root cause and apply targeted fixes or retries.\n\nRunning hundreds of these workflows at once raises the question of which jobs get priority, and which runs are worth continuing or stopping early. Getting the most out of a fixed compute budget is a global optimization problem, and it is where we are currently investing. Agents monitor concurrent training jobs, rank them by revenue importance, technique potential, and deadline proximity, and reclaim capacity from stalled or low-value runs, so GPUs stay poin",
+  "begyujtve": "2026-11-18T19:19:39.944231+00:00",
+  "prioritas": {
+    "pont": 44,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 40,
+      "egyediseg": 80,
+      "hitelesseg": 70,
+      "aktualitas": 72,
+      "kozossegi": 38
+    },
+    "elofeszures": 88,
+    "tanult": 50,
+    "indok": "Technikai jellegű mérnöki cikk a Meta hirdetési ajánlórendszereiről, szűk szakmai közönségnek szól. Forrás-tapasztalat: -8.",
+    "tema": "meta ai ads recommendation",
+    "cim_hu": "Így használja a Meta az MI-ágenseket a hirdetésajánló modellek fejlesztésére",
+    "lead_hu": "A Meta mérnöki csapata részletezte, miként skálázzák az gépi tanulási újításokat a különböző hirdetési felületeken MI-ágensek segítségével.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-18T19:19:57+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-18T19:20:10+00:00"
+}
