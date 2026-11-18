@@ -1,0 +1,79 @@
+{
+  "id": "7e7b45614cd1",
+  "slug": "sajat-olcsobb-ai-modellekre-csereli-a-kulso-megoldasokat-a-microsoft",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/microsoft-is-replacing-outside-ai-models-in-its-own-products-with-cheaper-in-house-alternatives/",
+  "szerzo": "Jonathan Kemper",
+  "publikalva": "2026-11-18T18:47:36+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/06/microsoft_logo_red_pink.png"
+  },
+  "cim_eredeti": "Microsoft is replacing outside AI models in its own products with cheaper in-house alternatives",
+  "forrasok": [],
+  "szoveg_eredeti": "Microsoft AI (MAI) is targeting always-on AI agents with new models for code, security, images, speech, and routing. The main yardstick is the lineup of its own partner, OpenAI.\n\nAt its Ignite conference, MAI unveiled seven new models, releasing them in a single batch rather than spread across the year, just as it did at Build in June. Microsoft is positioning the new lineup primarily on price-to-performance. The company cites rapidly rising token spending among customers that want to run AI agents around the clock. Its code models target everyday enterprise coding tasks and aren't yet optimized for harder work such as foundational research or long-horizon agentic workflows, Microsoft says.\n\nAccording to Microsoft, MAI Code 2 averages 98 percent of GPT-6.1 Sol's performance across four benchmarks at 40 percent of the cost. Against Claude Opus 5.5, it reaches 96 percent of the performance at 5 percent of the cost. Microsoft tested on DeepSWE 1.1, Terminal Bench 2.1, SWE-Atlas, and FrontierCode v1.1. Three of the tests ran on Microsoft's internal MSBench platform using the GitHub Copilot CLI without sub-agents. Microsoft is calculating a 50 percent promotional discount for its own model.Ad\n\nIn blind comparisons of frontend work such as UIs, games, data visualizations, and SVG graphics, human evaluators preferred MAI Code 2's output 64 percent of the time over GPT-6 Sol, Microsoft says.Ad\n\nThe successor to MAI-Code-1.1-Flash, MAI Code 2 Flash, is designed for code explanations, targeted edits, and routine fixes. It's said to match GPT-6 Luna and Claude Haiku 5.5 at 65 and 20 percent of their respective costs.\n\nMicrosoft derived MAI Work Flash from the Flash model. It runs in Microsoft 365 and Fabric IQ. On internal Excel and PowerPoint benchmarks, it matches GPT-6 Luna, Microsoft says. In Word, it performs similarly to GPT-6.1 Sol while consuming about 42 percent fewer input tokens. For generating DAX queries in Power BI, it outperforms GPT-5.6 Sol, GPT-6 Astra, and Opus 5.5.Ad\n\nIn GitHub Copilot, MAI Code 2 costs $0.50 per million input tokens and $2.50 per million output tokens at the promotional price through May 17, 2027, then $1 and $5. MAI Code 2 Flash costs $0.05 and $0.25 until then, rising to $0.10 and $0.50.\n\nMAI Cyber 2 Flash solves 92.3 percent of the tasks in the CyberGym-E2E vulnerability benchmark, Microsoft says. GPT-6 Astra reaches 91.5 percent but needs twice the reasoning budget. Per task, the MAI model costs less than 2 percent of GPT-6 Astra, with per-token costs at one hundredth. On WebExploitBench, it scores 40.4 percent, ahead of GPT-5.6 Cyber at 38.4 percent.Ad\n\nDuring evaluation, Microsoft found that 10 percent of the roughly 900 CyberGym tasks draw on the same open-source projects and vulnerability reports as parts of its own training data. The reference solutions never entered training, the company says. Microsoft removed those tasks for all models anyway and scored only the rest.Ad\n\nA comparison with GPT-6 Cyber is missing so far. The model is available only to selected customers. Agentic benchmarks with tools still need extra safety measures, Microsoft says. The company plans to publish those results in the coming weeks.\n\nThe context window spans one million tokens, four times the size of MAI Cyber 1.1 Flash. Output tokens cost 86 percent less than the predecessor's. MAI Cyber models already handle nearly 40 percent of scans on Microsoft's security platform MDASH, the press release states.\n\nMicrosoft lists MAI Cyber 2 Flash at $0.10 per million input tokens and $0.50 per million output tokens, compared with $10 and $50 for GPT-6 Astra. On CyberGym-E2E, that works out to $0.45 per task instead of $34.38.\n\nMicrosoft-Decision-1.1 handles routing, classification, prioritization, and workflow control. The model picks from developer-approved actions and returns calibrated confidence scores. When uncertainty is high, apps can escalate instead of acting on a wrong decision. If information is incomplete, the model is designed to abstain.\n\nIts foundation is Google's mixture-of-experts model Gemma 4 26B A4B. The predecessor was built on Qwen3.5-9B. Microsoft trained the new model with supervised fine-tuning and reinforcement learning on hundreds of synthetic and licensed datasets and runs it on a proprietary inference engine.\n\nOn the Decision Index v2.1 from Artificial Analysis, Decision 1.1 scores 68 points. That's six more than its predecessor and above Jev 1.14, Gemini Decision 1, and GPT-6 Luna (Decisions). Microsoft also tested it on 102 internal benchmarks with more than 385,000 questions, where it achieves the highest average accuracy among eight decision models.\n\nThe model now accepts images, including screenshots. In Copilot, it decides whether a request goes to Copilot or Cowork. It performs as accurately as a large language model but 2.2 times faster and 4.4 times cheaper, Microsoft says. In Cowork, its Auto function controls how much reasoning effort a task receives.\n\nMicrosoft charges $0.042 per million input tokens, or $0.05 in the EU data zone. Output tokens are free.\n\nAnother specialized model appears in the Book of News for Ignite. Microsoft-Retriever-1 gathers relevant information from enterprise documents for agents in Foundry IQ. Instead of running a single search, the model plans its queries, evaluates the results, and issues follow-ups until it has enough material for a well-grounded answer. Microsoft says that's faster and more efficient than previous methods. Retriever-1 launches as a preview. The Model Router in Foundry now also selects automatically from an expanded pool of models.\n\nMAI Image 2.7 leads the Artificial Analysis image-editing leaderboard with 1,215 Elo points from 5,478 votes. It's four points ahead of GPT Image 2.6 Sunburst (max) at one-fifth the cost. For text-to-image generation, the model ranks fourth on that leaderboard. MAI Image 2.7 costs about $35 per 1,000 images. Flash costs about $10.\n\nThe model can change the color, material, or position of individual objects without altering the rest of the image. It also generates transparent backgrounds. The smaller Flash variant costs less than a third and powers Canvas, a new image editor in MAI Labs. MAI Image has been the default model in Bing Image Creator since June. Adobe, Figma Weave, Minute (Sports Illustrated), Wirestock, and Manus work with MAI Image, Microsoft says.\n\nMAI Realtime 1 is Microsoft's first speech-to-speech model. It's designed to handle interruptions, wait until speakers finish, and recognize requests even with background noise. For harder tasks, it falls back to a more powerful reasoning engine billed per token. The base rate is charged per audio minute. On Big Bench Audio, τ-Voice, and tests with Dynamics 365, it outperforms GPT Realtime 2.1, Microsoft says.\n\nBecause it's compatible with the OpenAI Realtime API, existing voice apps can switch over easily. Agoda and Reservations.ai are testing the model. Microsoft also plans to bring it to the Dynamics 365 Contact Center and Dragon Copilot, where nurses would use it to practice patient conversations.\n\nDragon Copilot Transcribe, based on MAI Transcribe 2, now handles all doctor-patient transcriptions in Dragon Copilot. That amounts to 10 million conversations per month, Microsoft says. In multilingual workflows, the error rate drops by half. For its own large models, Microsoft now uses the Maia 200 chip, the second generation of its AI accelerator, said to deliver 1.7 times more tokens per watt.\n\nMicrosoft charges one US cent per audio minute. Reasoning costs an extra $1 per million input tokens and $5 per million output tokens.\n\nWith MAI Licensed Weights, companies can fine-tune MAI models with their own data and run them in their own Azure environment. Data and customizations stay with the customer. Microsoft says it will use them for training its own models only with explicit consent.\n\nThe company positions the offering as an alternative to open weights, whose provena",
+  "modell": "gemini-3.5-flash",
+  "cim": "Saját, olcsóbb AI-modellekre cseréli a külső megoldásokat a Microsoft",
+  "lead": "A Microsoft AI hét új saját modellt mutatott be, amelyek lényegesen olcsóbban kínálnak a konkurenciával összemérhető teljesítményt.",
+  "osszefoglalo": "A Microsoft AI az Ignite konferencián egyetlen csomagban mutatott be **hét új saját fejlesztésű modellt**, amelyeket kifejezetten a folyamatosan futó vállalati AI-ügynökök kiszolgálására és az üzemeltetési költségek csökkentésére terveztek. A felhozatal kódolási, információkeresési, döntési, biztonsági, képgenerálási és valósidejű hangalapú feladatokra kínál alternatívát.\n\nA kiadott modellek közül a **MAI Code 2** a gyártó szerint a [GPT-6.1 Sol](https://openai.com/index/introducing-gpt-6-1-sol/) teljesítményének 98 százalékát hozza annak ára 40 százalékáért, míg a böngészős és felületi kódolási teszteken felül is múlja azt. A biztonsági elemzésekre tervezett **MAI Cyber 2 Flash** a [GPT-6 Astra](https://openai.com/index/gpt-6-astra/) árának töredékéért ér el hasonló hatékonyságot, a **MAI Realtime 1** pedig az OpenAI Realtime API-jával kompatibilis hangmodellt kínál közvetlen kiváltásra.\n\nA modellek többsége már elérhető a Microsoft vállalati felületein, például a GitHub Copilotban, a Microsoft 365-ben és a Fabric IQ-ban. A cég bevezette a MAI Licensed Weights opciót is, amellyel a vállalkozások saját Azure környezetükben, saját adatokkal finomhangolhatják a modelleket.",
+  "miert_szamit": "A vállalati AI-fejlesztésekben az egyik legnagyobb akadály a magas tokenköltség: a Microsoft új modelljeivel a cégek **töredékáron üzemeltethetnek éjjel-nappal futó ügynököket** és kódolói asszisztenseket.",
+  "cimkek": [
+    "Microsoft",
+    "GitHub Copilot",
+    "Azure",
+    "AI-modell"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "Microsoft AI Labs",
+    "url": "https://go.adverr.hu/U8Astr",
+    "eredeti": "https://labs.microsoft.ai/?model=mai-realtime-1"
+  },
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 86,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 85,
+      "aktualitas": 100,
+      "kozossegi": 72
+    },
+    "elofeszures": 98,
+    "tanult": 60,
+    "indok": "Jelentős stratégiai váltás a Microsoftnál az OpenAI-tól való függőség csökkentésére saját olcsóbb modellekkel.",
+    "tema": "microsoft in-house ai models",
+    "cim_hu": "A Microsoft saját olcsóbb MI-modelljeire cseréli a külső alternatívákat a termékeiben",
+    "lead_hu": "A Microsoft hét új saját fejlesztésű modellt mutatott be az Ignite konferencián, hogy csökkentse az OpenAI-tól való függőségét és az üzleti ügyfelek költségeit.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-18T18:49:37+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-18T18:49:48+00:00",
+  "megjelent": "2026-11-18T18:49:48+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-18T18:49:52+00:00",
+    "esemeny": "A Microsoft AI az Ignite konferencián hét új saját modellt mutatott be (többek között kódolási, biztonsági és hangalapú feladatokra), amelyekkel a külső partnerek (például az OpenAI és az Anthropic) modelljeit kívánják költséghatékonyabb saját alternatívákra cserélni.",
+    "forrasok": [
+      "https://the-decoder.com/microsoft-is-replacing-outside-ai-models-in-its-own-products-with-cheaper-in-house-alternatives/",
+      "https://blogs.microsoft.com/blog/2026/11/17/ignite-2026-building-the-frontier-ecosystem/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-18T18:50:21+00:00",
+  "linkek_ellenorizve": true
+}
