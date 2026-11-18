@@ -1,0 +1,49 @@
+{
+  "id": "00974c847642",
+  "slug": "post-training-nvidia-nemotron-to-increase-accuracy-in-your-scientific",
+  "forras_id": "dailydev",
+  "forras_nev": "NVIDIA Developer (daily.dev)",
+  "url": "https://developer.nvidia.com/blog/post-training-nvidia-nemotron-to-increase-accuracy-in-your-scientific-domain",
+  "publikalva": "2026-11-16T16:00:00+00:00",
+  "cim": "Post-Training NVIDIA Nemotron to Increase Accuracy in Your Scientific Domain",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 45 pont, tendencia 20%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/d55e4e424a8b6c4257a2fcf6922c19c3?_a=AQAEuop"
+  },
+  "cim_eredeti": "Post-Training NVIDIA Nemotron to Increase Accuracy in Your Scientific Domain",
+  "szoveg_eredeti": "Agentic AI is reshaping scientific research and innovation. Researchers communicate complex scientific hypotheses in natural language and let autonomous agents independently plan tasks, execute simulations, evaluate results, and self-correct across multiple iterations. Scientific agents are taking on longer, more complex, and increasingly visual workflows.\n\nAccuracy and inference efficiency matter at every step. Without verification, errors compound across the workflow, while latency and compute costs multiply with continued operation.\n\nNVIDIA Nemotron for Science, a collection of models, datasets, tools, and recipes for accelerating agentic scientific workloads, addresses these hurdles. It includes Nemotron 3.5 Super VL—an open, customizable, multimodal model for these specialized workflows—and the NVIDIA Nemotron Litmus-Bench V2.0, an open source chemistry-reasoning dataset and benchmark that was designed to train and evaluate LLMs and agentic AI models on molecular properties. Out of the box, Nemotron delivers frontier level accuracy for scientific benchmarks (see Figure 1 below), along with the fastest time to solution for scientific coding.\n\nAn important benefit of Nemotron models is NVIDIA post-training support. You can customize models for your specific research domain to increase accuracy.\n\nThis blog provides a practical recipe for post-training Nemotron 3.5 Super VL for scientific use cases. Starting from a raw experimental dataset, you’ll walk through how to build a custom reinforcement learning (RL) environment using NVIDIA NeMo Gym, apply RL, and measure improvement using molecular similarity scoring. NeMo Gym supplies the environment infrastructure, and NVIDIA NeMo RL supplies the post-training framework.\n\nThis guide uses drug-metabolism prediction as a practical example. Given a parent compound, the starting molecule, and its transforming enzyme, the model predicts the resulting metabolite. The examples below use records from MetxBioDB, which is a comprehensive database of experimentally confirmed biotransformation reactions.\n\nThe blog first describes direct RL, then an optional distillation step that can be used before RL when a teacher model provides useful examples.\n\nThe starting point is a CSV file of existing experimental records such as sequences, Simplified Molecular Input Line Entry System (SMILES) strings, reaction conditions, and any other metadata paired with measured properties or outcomes. In this example, molecular structures are represented as SMILES strings, a text notation for describing a molecule’s atoms and bonds.\n\nThese input-output pairs are reformatted as question-answer or user/assistant prompt pairs, with the experimental ground truth serving as a verifier to score the model’s responses. This setup constitutes a basic reinforcement learning with verifiable rewards (RLVR) environment and requires no human preference labelling: The reward signal comes directly from the data.\n\nThe fidelity of that reward signal can be tuned to the task. A simple sequence-similarity function works as a lightweight verifier, while more sophisticated tools like cheminformatics libraries, molecular simulators, or even a live autonomous lab can be a tool call and can all be wired in as the environment’s scoring layer. The richer the tool, the more precisely the model is steered toward chemically or biologically meaningful outputs.\n\nFor the metabolism example, the model receives the parent molecule and enzyme, then submits a predicted metabolite. The verifier compares the predicted and reference molecular fingerprints—numerical representations of structural features—using Tanimoto similarity. Tanimoto similarity is a metric used to measure the overlap between two sets or binary vectors and is calculated by dividing the size of their intersection by the size of their union. For the bit fingerprints used here, the score ranges from 0 to 1; higher scores indicate more similar fingerprints.\n\nWith the environment in place, fine-tune the model using group relative policy optimization (GRPO) with low rank adapters (LoRA). The environment presents the model with an experimental input and asks it to reason through the problem step-by-step before submitting a predicted answer via a tool call. Each submission is scored automatically by the verifier, giving a dense reward signal that requires no further annotation. The training loop, reward server, harness, and rollout workers are fully self-contained, so the same pipeline generalizes to any domain that can return a scalar reward.\n\nAt a 16,384-token output budget on the drug-metabolism RLVR environment, supervised fine tuning (SFT) improved the accuracy of Nemotron for Science by 12% and RL post-trained lifted it a further 17%. It demonstrates that even a highly capable instruction-tuned model continues to improve meaningfully when given targeted RL feedback on a domain-specific task.\n\nIf the base model needs a capability boost before RL training or if RL convergence is slow, a distillation step can provide significant lift. A stronger teacher model (e.g. a larger frontier model or a specialist) is run against the same environment to generate high-quality reasoning traces. A reasoning trace is high quality if the teacher model’s step-by-step logic for identifying the enzyme, predicting the reaction site, and deriving the metabolite structure leads to a SMILES that matches the ground truth metabolite. It is a low-quality reasoning trace even if the reasoning looks fluent and plausible but has some flawed logic that resulted in the wrong prediction.\n\nThe high-quality reasoning traces are used to fine-tune the student model via SFT or direct on-policy distillation, giving it a much better starting point before the RL loop begins. This is known as a “warm-start” and it typically accelerates convergence and raises the performance floor, making the subsequent RL training more efficient and more likely to find a strong policy.\n\nThe distillation pipeline runs Anthropic’s Claude Sonnet 5.5 across the training set, scores each rollout by Tanimoto similarity (tool call) to the ground truth metabolite, and keeps only the (question, reasoning trace) pairs where the model got it right. Those become the SFT corpus for the smaller model.\n\nIn this environment 1,123 high-quality reasoning traces were filtered from 1,934 training prompts at Tanimoto threshold ≥ 0.7. Here is a distilled reasoning trace for a question-answer pair from Claude Sonnet 5.5. Note that a fixed system prompt is included with every request, which can be varied across environments. LLM requests are formatted as chat messages containing both the question and the system prompt.\n\nThe recipes below are drawn from the nemo-rl and nemo-gym training modules. Each snippet is self-contained and can be adapted to a new domain by replacing the corresponding configs.\n\nThe following snippets register a NemoGym RLVR environment from an experimental CSV. Registering the environment takes four pieces.\n\nEach CSV row becomes one JSONL row. The extra keys, ground_truth_smiles here, are passed to the server’s seed_session and verified.\n\n2. Resources server: resources_servers/metxbiodb/app.py\n\nThis is the only domain-specific code, and it has three parts:\n\nIt also needs a pyproject.toml with rdkit. To adapt it to a new domain, replace tanimoto_similarity and the tool schema.3. Registration yaml\n\nThe agent name must equal agent_ref.name in the JSONL rows.\n\nUse the following command to launch GRPO training:\n\nNote: grpo_metxbiodb_super_vl.yaml is the complete GRPO trainer config for the environment in this blog.\n\nThe following shows the policy portion of the GRPO trainer config. The full config includes rollout, reward server, and logging settings.\n\nNote: Set loss_fn.use_importance_sampling_correction=True to reduce variance between the vLLM rollout engine and the Megatron training engine. This is particularly important for mixture-of-experts (MoE) models.\n\nThe follo",
+  "begyujtve": "2026-11-18T07:05:55.469971+00:00",
+  "prioritas": {
+    "pont": 45,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 55,
+      "egyediseg": 60,
+      "aktualitas": 61,
+      "kozossegi": 64
+    },
+    "elofeszures": 74,
+    "tanult": 64,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -9. A forrás P3-as híreiből eddig kb. 20%-ot fogadtál el.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-18T07:07:23+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-18T07:07:24+00:00"
+}

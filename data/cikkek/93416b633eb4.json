@@ -1,0 +1,49 @@
+{
+  "id": "93416b633eb4",
+  "slug": "az-oracle-javitotta-a-java4shell-hibat-amelyet-a-calif-mesterseges",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/oracle-patches-java4shell-flaw-za5cnYJlSDqN8ktZTkQTuA",
+  "publikalva": "2026-11-17T22:52:55.585345+00:00",
+  "cim": "Az Oracle javította a Java4Shell hibát, amelyet a Calif mesterséges intelligenciával talált meg",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 52 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--_3jnD3rR--/t_limit/https://cyberscoop.com/wp-content/uploads/sites/3/2026/11/GettyImages-162794971-1.jpg"
+  },
+  "cim_eredeti": "Az Oracle javította a Java4Shell hibát, amelyet a Calif mesterséges intelligenciával talált meg",
+  "szoveg_eredeti": "A Calif nevű kiberbiztonsági startup kedden, november 17-én nyilvánosságra hozott egy kritikus sebezhetőséget a Javában. A cég közlése szerint az OpenAI nemrég kiadott GPT-6 Cyber modelljének segítségével találta meg a hibát, írja a The New York Times. A Javát kormányzati szervek és a Fortune 500 vállalatok nagyjából 90 százaléka használja. A Java4Shell névre keresztelt, CVE-2026-114938 azonosítójú hiba memóriasérülési probléma az OpenJDK Base64-dekóderében. Az OpenJDK a legnépszerűbb Java-futtatókörnyezet. A Calif szerint a CVSS 4.0 súlyossági skálán 10-ből 9,2 pontot kapott. Az Oracle kedden csendes-óceáni idő szerint 13 órakor adta ki a javítást, a Calif pedig arra kérte „az összes Java-felhasználót\", hogy azonnal frissítsen.\n\nA hiba az OpenJDK kézzel írt assembly kódjában van. Az OpenJDK ezt arra használja, hogy x86-64-es processzorokon AVX-512 utasításokkal gyorsítsa a Base64-dekódolást. A Calif magyarázata szerint a hibás formátumú bemenet, például 64 darab „A” karakter után egyetlen „=”, miatt a rutin a memóriapuffer vége után is ír. A cég közlése szerint bejelentkezési adatok nélkül, távoli kódfuttatást ért el a Keycloak, az Atlassian Jira és Confluence, a JFrog Artifactory, a Jenkins és a PingFederate alapbeállításaiban. Bejelentkezés után kódfuttatást ért el az Apache Kafkában, a Solrban és az Elasticsearchben is. A BreachHistory szerint az érintett verziók közé tartozik a Java 17, 21, 25 és 27, ha olyan szervereken futnak, amelyek processzorai támogatják az AVX-512 VBMI-t. A Semgrep megjegyezte, hogy átmeneti megoldás lehet a JVM letiltott AVX-512-vel való indítása, de azt javasolta, hogy a nem érintett hardvereken is telepítsék a javítást.\n\nA cég szerint Quang Luong, a Calif kutatója nagyjából egy óra alatt találta meg a hibát, és újabb két óra alatt elkészítette az első működő exploitot. Az MI-tokenek teljes költsége 200 dollár alatt maradt. A Times beszámolója szerint a cég a „heap grooming” nevű technikával rendezte el úgy a memóriát, hogy a sérülés teljes, jogosulatlan hozzáférést adott neki az alatta lévő rendszerhez. A Times szerint a Calif az elmúlt napokban a Five Eyes hírszerzési szövetség ügynökségeivel, valamint olyan cégekkel dolgozott együtt, mint a Google és a Microsoft.\n\nA Java4Shell a Calif második jelentős, mesterséges intelligenciával támogatott felfedezése néhány héten belül. A cég a múlt hónapban hozta nyilvánosságra a PHP2Shellt, vagyis két kritikus PHP-sebezhetőséget. Ezeket először augusztusban találta meg az OpenAI GPT-5.6 Sol modelljével, az OpenAI Patch the Planet programján keresztül – számolt be a Fortune. Az OpenAI szerint a Wiz is önállóan ráakadt ezekre a hibákra. A PHP-sebezhetőségek nyilvánosságra hozatala miatt sok cég offline állapotba helyezte a weboldalait a javítások idejére. A Forbes keddi beszámolója szerint a Calif a GPT-6 Cyber segítségével mintegy 35 sebezhetőséget talált az termékeiben.\n\nA Calif a megközelítését „kentaur hackerként”, vagyis részben emberi, részben mesterséges intelligenciára épülő munkaként jellemezte. „Az MI adja az erőt. A kutatóink hozzák a kontextust” – írta a cég.",
+  "begyujtve": "2026-11-18T07:03:54.671168+00:00",
+  "prioritas": {
+    "pont": 52,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 60,
+      "egyediseg": 60,
+      "aktualitas": 97,
+      "kozossegi": 42
+    },
+    "elofeszures": 80,
+    "tanult": 42,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -2.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-18T07:07:23+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-18T07:07:47+00:00"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "3dc0a12c6236",
+  "slug": "lancedb-which-makes-a-multimodal-lakehouse-for-ai-training-built-on",
+  "forras_id": "techmeme",
+  "forras_nev": "SiliconANGLE",
+  "url": "https://siliconangle.com/2026/11/17/lancedb-raises-57-5m-to-accelerate-ai-model-training-with-multimodal-data-platform/",
+  "publikalva": "2026-11-18T04:30:05+00:00",
+  "cim": "LanceDB, which makes a multimodal lakehouse for AI training, built on the open format Lance, raised a $57.5M Series B led by Bessemer and Innovation Endeavors (Kyt Dotson/SiliconANGLE)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 51 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://images.siliconangle.com/blogs.dir/1/files/2021/11/hand-data-globe.jpg"
+  },
+  "cim_eredeti": "LanceDB, which makes a multimodal lakehouse for AI training, built on the open format Lance, raised a $57.5M Series B led by Bessemer and Innovation Endeavors (Kyt Dotson/SiliconANGLE)",
+  "szoveg_eredeti": "LanceDB Inc., the developer of database technology designed to speed up artificial intelligence models, today announced it has raised $57.5 million in early-stage funding to bring a multimodal lakehouse to researchers, model builders and platform teams.\n\nBessemer Venture Partners and Innovation Endeavors led the Series B round. Other investors in the round included Theory Ventures, Dimension, Swift Ventures, CRV and Y Combinator, bringing the company’s total funding to $98.5 million.\n\nAI is making it easier to create and interpret increasingly complex forms of data, but creating it also brings an infrastructure problem. LanceDB is tackling this problem by providing a unified multimodal data lakehouse, giving researchers, enterprise outfits and AI agents a unified way to access, find, prepare and train on that data without spending weeks managing the underlying infrastructure.\n\n“Typically, research teams have to put different parts of their dataset in different places, and they lose weeks or months getting a whole training dataset ready for that single training run at the end of the day,” co-founder and Chief Executive Chang She told SiliconANGLE in an interview. “There’s a missing data layer for AI today, and that’s what we’re trying to build.”\n\nLanceDB’s technology is built on Lance, an open-source data format designed for AI workloads that combines structured information with images, video and other large files. Unlike traditional analytics formats optimized for processing entire tables, Lance supports the rapid retrieval and modification of individual records, making it particularly useful for searching and preparing massive training datasets.\n\nThe company built this format into a large-scale data lakehouse for retrieval, which is needed for the sheer scale of information needed to train modern AI models. A lakehouse combines the flexibility of a data lake, which can store enormous amounts of raw information, with database-style capabilities for organizing, querying and managing that data.\n\n“Part of what makes multimodal data different and more difficult is the size of the data,” She explained.\n\nBy bringing multimodality to the lakehouse format, LanceDB brings different forms of AI training data into a single platform, allowing developers to search, organize and prepare their datasets without maintaining separate systems for each data type. It can connect directly to customers’ existing cloud storage, where the data remains, while distributing computational workloads across the infrastructure required to process it.\n\nMultimodal AI involves more than combining text, audio, images and video. Autonomous vehicles, robotics and world models also involve three-dimensional sensor information, geospatial coordinates, time-series data and annotations that explain what the sensors are detecting.\n\nFor example, a self-driving car doesn’t merely capture an image. Its sensors might produce a three-dimensional representation of the surrounding environment, which then needs to be associated with information that identifies roads, pedestrians, vegetation and other objects.\n\nThe sheer amount of data included in lidar 3D clouds, images, video, audio and more can take up, on average, 10 to 20 petabytes of data in a single table for many large training workflows, with some becoming even larger – potentially approaching 80 to 100 petabytes. Researchers and model builders may maintain huge pools of data across different systems because conventional platforms weren’t designed around the requirements of multimodal AI.\n\nResearchers must then assemble, reconcile and store different components of a training dataset to enrich it for training. The curation itself can take weeks or months just to move, prepare and process. LanceDB’s answer is to manage the infrastructure itself without ever copying or moving data from enterprise or research storage, giving it a single unified access point.\n\n“The data stays in place,” She explained. “It remains yours. We don’t need to copy it.”\n\nIn short, LanceDB isn’t simply introducing a new way to store data; the objective is to provide a way to access the data less often, without needing to copy, convert or move it through network infrastructure. This greatly speeds up what She refers to as the “AI flywheel,” which is currently driven by feeding AI models good data as quickly as possible to mint and roll them out.\n\n“The faster we can make that spin, the faster research teams can get to higher quality models and allow us to make even more interesting AI applications,” She said.\n\nNotable customers include Runway AI Inc., which adopted LanceDB’s enterprise platform as its AI training needs expanded. Netflix Inc. built a media data lake on the technology for content creation. And Microsoft Corp. uses the platform as a data layer for training models on tens of billions of rows of image and code data. The platform lets these organizations consolidate data management, search, curation and feature engineering into a unified workflow, helping researchers prepare training datasets at petabyte scale without juggling separate infrastructure systems.\n\n“A training example at Runway doesn’t stay still,” said Runway Chief Technology Officer Kamil Sindi. “It starts as a video and a prompt, then we add embeddings, resolution and duration metadata, whatever the next experiment needs. We first started using the Lance format in 2024 because it was the only option that handled unstructured data, column appends, distributed reads and ad-hoc SQL all at once. We’ve since become a LanceDB Enterprise customer.”\n\nShe said LanceDB intends to use the new funding to expand its multimodal data platform and accelerate the AI model development cycle, particularly by improving large-scale data curation, feature engineering and data loading to keep thousands of graphics processing units supplied efficiently during training. The company will also deepen its support for emerging AI workloads, including video generation, world models and robotics, where researchers must manage growing volumes of first-person sensor data, synthetic data and other multimodal information.\n\nSupport our mission to keep content open and free by engaging with theCUBE community. Join theCUBE’s Alumni Trust Network, where technology leaders connect, share intelligence and create opportunities.\n\nFounded by tech visionaries John Furrier and Dave Vellante, SiliconANGLE Media has built a dynamic ecosystem of industry-leading digital media brands that reach 15+ million elite tech professionals. Our new proprietary theCUBE AI Video Cloud is breaking ground in audience interaction, leveraging theCUBEai.com neural network to help technology companies make data-driven decisions and stay at the forefront of industry conversations.\n\nCloudBackend grabs €6.6M to turn AI-generated prototypes into productive business applications\n\nAt Ignite 2026, Microsoft reinvents Copilot as the autonomous engine of enterprise work\n\nBrain implant technology startup Science Corp. raises $400M to bring its medical devices to market\n\nGeneral-purpose robot maker Genesis AI reels in $500M at $3.5B valuation\n\nAlphabet’s Isomorphic Labs raises $5B to accelerate drug discovery with AI\n\nBusiness as usual for Nvidia as it beats expectations in first earnings call after Huang's resignation\n\nCloudBackend grabs €6.6M to turn AI-generated prototypes into productive business applications\n\nAPPS - BY MIKE WHEATLEY . 48 MINUTES AGO\n\nAt Ignite 2026, Microsoft reinvents Copilot as the autonomous engine of enterprise work\n\nBrain implant technology startup Science Corp. raises $400M to bring its medical devices to market\n\nEMERGING TECH - BY MIKE WHEATLEY . 5 HOURS AGO\n\nGeneral-purpose robot maker Genesis AI reels in $500M at $3.5B valuation\n\nEMERGING TECH - BY MARIA DEUTSCHER . 5 HOURS AGO\n\nAlphabet’s Isomorphic Labs raises $5B to accelerate drug discovery with AI\n\nBusiness as usual for Nvidia as it beats expectations in first earnings call after Huang's",
+  "begyujtve": "2026-11-18T07:05:58.044650+00:00",
+  "prioritas": {
+    "pont": 51,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 82,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 13
+    },
+    "elofeszures": 97,
+    "tanult": 13,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -3.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-18T07:07:23+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-18T07:07:26+00:00"
+}
