@@ -1,0 +1,49 @@
+{
+  "id": "4ffcff840376",
+  "slug": "new-lora-adapter-lifts-qwen3-8-coding-success-from-39-to-65",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/18/hugging-face-qwen3-8-27b-pi-adapted-lora/",
+  "publikalva": "2026-11-18T16:07:50+00:00",
+  "cim": "New LoRA Adapter Lifts Qwen3.8 Coding Success From 39% to 65%",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 63 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-14534-4-scaled.png"
+  },
+  "cim_eredeti": "New LoRA Adapter Lifts Qwen3.8 Coding Success From 39% to 65%",
+  "szoveg_eredeti": "Hugging Face’s harness-hub team has released Qwen3.8-27B-pi-adapted , a LoRA adapter for Qwen3.8-27B . It was trained with reinforcement learning to work inside the pi coding agent . The Qwen3.8-27B-pi-adapted LoRA adapter targets one harness instead of general chat. For developers running local coding agents, that is the point. You keep the open base model and swap in a small, harness-specific adapter.\n\n TL;DR \n\n Size: LoRA rank 32 (alpha 64) on Qwen3.8-27B, a 27B dense hybrid with 262,144 native context. Merged BF16 checkpoint is about 54 GB.\n\n Runs on: vLLM with LoRA enabled, or llama.cpp with a GGUF adapter on a Q8_0 base. Inference VRAM is not disclosed. Training used 2x NVIDIA B200.\n\n Performance: Large pass@1 gains inside pi with thinking off, plus far shorter sessions.\n\n Best: 64.7% on SWE-bench Pro (hard 51), up from 39.2%.\n\n Worst: 55.8% on Terminal-Bench 2.1. The base model with thinking already reaches 64.7% on SWE-bench Pro.\n\n Bottom line: Best: thinking-level accuracy at about 4.5x fewer tokens. Worst: small eval sets, self-reported, pi only.\n\n What is Qwen3.8-27B-pi-adapted? \n\n Qwen3.8-27B-pi-adapted is a PEFT LoRA adapter that turns Qwen3.8-27B into a model tuned for pi. pi is an MIT-licensed agent toolkit with a coding agent CLI. The adapter is released under Apache-2.0 . It applies to the q, k, v, o, gate, up and down projections. It only works on Qwen3.8-27B.\n\n The base model is a dense hybrid . It alternates Gated DeltaNet linear-attention blocks with Gated Attention blocks across 64 layers.\n\n How does the harness adapter training work? \n\n The method comes from Hugging Face’s harness adapters post from November 6. The idea is 1 LoRA adapter per model and harness. Training runs inside the unmodified harness on verifiable tasks.\n\n For this checkpoint, the model card lists these details: \n\n Algorithm: AsyncGRPO from TRL , 8 rollouts per task at temperature 0.8.\n\n Tasks: 750 scale800 tasks interleaved with 300 TermGrade tasks.\n\n Reward: verifier correctness plus a tool-efficiency bonus with weight 0.1.\n\n Budget: up to 50 agent steps and 1,800 seconds per rollout, thinking off.\n\n Checkpoint: step 160. The run stopped at step 191 of 1,000 planned.\n\n Every tool call passes through safeagents , a rule-based proxy. It blocks calls such as fetching benchmark answers from the Hub. Blocked rollouts score 0, so RL pushes the model away from reward hacking.\n\n Benchmarks: how much does the LoRA adapter help? \n\n All numbers below are self-reported. They use the pi harness, 1 attempt per task.\n\n Benchmark (pi, thinking off) Base Qwen3.8-27B pi-adapted Change SWE-bench Pro (hard 51) 39.2% 64.7% +25.5 ± 14.2 pts (p = 0.0023) Terminal-Bench 2.1 (86 tasks) 39.5% 55.8% +16.3 ± 9.1 pts (p = 0.0013) \n\n The adapter solved 15 new SWE-bench Pro tasks and lost 2. On Terminal-Bench 2.1, it gained 16 and lost 2.\n\n Efficiency is the larger story. On tasks both models solved, median turns fell from 59 to 23 on SWE-bench Pro. On Terminal-Bench 2.1, they fell from 18 to 8. The adapter also generates about 4.5x fewer tokens than the base model with thinking.\n\n How does it compare with thinking mode and other adapters? \n\n With thinking on, the base model already scores 64.7% on SWE-bench Pro and 54.2% on Terminal-Bench 2.1. So the adapter matches thinking-level accuracy without paying for long reasoning traces. With thinking on, the adapter reaches 66.7% and 56.6%.\n\n Feature Qwen3.8-27B-pi-adapted Qwen3.8-27B base, thinking on Qwen3.8-27B-opencode-adapted bytkim/Qwen3.8-27B-pi Type LoRA r=32 Base model LoRA r=32 Full fine-tune, 28B Method AsyncGRPO RL None AsyncGRPO RL SFT then GRPO Harness pi pi OpenCode pi License Apache-2.0 Apache-2.0 Apache-2.0 Apache-2.0 SWE-bench Pro (hard 51) 64.7% 64.7% 51.0% (OpenCode) Not disclosed Terminal-Bench 2.1 55.8% 54.2% 53.0% (OpenCode) Not disclosed Token use ~4.5x fewer than base + thinking Baseline ~6x to 8x fewer than base + thinking ~41% fewer output tokens (Terminal-Bench) Training hardware 2x B200 Not disclosed 2x B200 Not disclosed \n\n OpenCode adapter numbers use a different harness and are not directly comparable.\n\n How do you deploy it? \n\n The model card gives 4 routes: \n\n vLLM: serve Qwen/Qwen3.8-27B with --enable-lora --max-lora-rank 32 , thinking disabled. Point pi at http://localhost:8000/v1 .\n\n llama.cpp: load the GGUF adapter on a Q8_0 base GGUF.\n\n Llama.app on macOS: register the adapter with a 32,768-token context.\n\n Merge: merge with PEFT on CPU, then serve the 54 GB BF16 result without LoRA flags.\n\n Because adapters share 1 base model, a single server can host pi and OpenCode adapters side by side.\n\n Key Takeaways \n\n Qwen3.8-27B-pi-adapted is an Apache-2.0, rank-32 RL LoRA for the pi agent.\n\n SWE-bench Pro hard-51 rises from 39.2% to 64.7%, thinking off.\n\n Median turns drop from 59 to 23 on SWE-bench Pro.\n\n It matches base-with-thinking accuracy at about 4.5x fewer tokens.\n\n Results are self-reported on small sets; the tweet’s 29.4% baseline was corrected.\n\n Check out the model card , GGUF adapter , methodology post and TRL training script . You can check the deployment options and specs here through our GPULeaderboard.com chrome extension .\n\n Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post New LoRA Adapter Lifts Qwen3.8 Coding Success From 39% to 65% appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-18T16:19:32.260888+00:00",
+  "prioritas": {
+    "pont": 63,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 70,
+      "egyediseg": 100,
+      "hitelesseg": 74,
+      "aktualitas": 98,
+      "kozossegi": 53
+    },
+    "elofeszures": 88,
+    "tanult": 57,
+    "indok": "Hasznos technikai fejlesztés nyílt kódos modellt használó fejlesztőknek. Forrás-tapasztalat: -7.",
+    "tema": "qwen3 lora adapter",
+    "cim_hu": "Új LoRA adapter növeli jelentősen a Qwen3.8 kódolási hatékonyságát",
+    "lead_hu": "A Hugging Face csapata kiadta a Qwen3.8-27B-pi-adapted LoRA adaptert, amely 39 százalékról 65 százalékra emeli a kódolási ágens sikeres működését.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-18T16:19:46+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-18T16:19:55+00:00"
+}
