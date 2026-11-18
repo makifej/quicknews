@@ -1,0 +1,49 @@
+{
+  "id": "d00afb5275b7",
+  "slug": "how-to-inspect-test-and-debug-mcp-servers-in-red-hat-openshift-console",
+  "forras_id": "dailydev",
+  "forras_nev": "Red Hat Developer (daily.dev)",
+  "url": "https://developers.redhat.com/articles/2026/11/18/how-to-inspect-test-and-debug-mcp-servers-in-red-hat-openshift-console",
+  "publikalva": "2026-11-18T00:00:00+00:00",
+  "cim": "How to inspect, test, and debug MCP servers in Red Hat OpenShift console",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 36 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/s--CxzD6vbw--/f_auto/v1722860399/public/Placeholder%2005"
+  },
+  "cim_eredeti": "How to inspect, test, and debug MCP servers in Red Hat OpenShift console",
+  "szoveg_eredeti": "Accelerate the development and deployment of enterprise AI solutions.\n\nExplore learning materials and tools, organized by task.\n\nClick through scenarios with Red Hat AI, including training LLMs and more.\n\nExpand your Red Hat OpenShift AI knowledge using these learning resources.\n\nFocused AI use cases designed for fast deployment on Red Hat AI platforms.\n\nRed Hat AI Factory with NVIDIA is a co-engineered, enterprise-grade AI solution for building, deploying, and managing AI at scale across hybrid cloud environments.\n\nFind answers, get step-by-step guidance, and learn how to use Red Hat products.\n\nExplore curated walkthroughs for common development tasks.\n\nReceive custom learning paths powered by our AI assistant.\n\nSpin up Red Hat's products and technologies without setup or configuration.\n\nLearn by doing in these hands-on, browser-based experiences.\n\nClick through product features in these guided tours.\n\nA downloadable, local development hub to experiment with our products and builds.\n\nSpin up Red Hat's products and technologies without setup or configuration.\n\nDownload Red Hat products and project builds, access support documentation, learning content, and more.\n\nWe'll recommend resources you may like as you browse. Try these suggestions for now.\n\nA subscription may be required for some services.\n\nTo help platform teams secure, manage, and scale AI agent systems behind a single endpoint, Red Hat Connectivity Link 1.5 brings the Model Context Protocol (MCP) gateway from Technology Preview to General Availability, and the new Connectivity Link MCP gateway console plug-in in Developer Preview. Powered by an Envoy-based proxy, the MCP gateway delivers enterprise-grade protection and traffic management for back-end MCP servers. With the new console plug-in, teams can create, configure, and visualize both MCP gateways and servers while interactively testing server capabilities directly from the Red Hat OpenShift console.\n\nSetting up an MCP gateway provides a single, managed entry point to secure and federate tool traffic across backend MCP servers. The setup wizard walks platform teams through a step-by-step guide to set up an MCP gateway without requiring manual YAML creation.\n\nChoose an existing Gateway or create one (Figure 1), then pick the listener that will carry MCP traffic. The wizard creates an MCPGatewayExtension, plus a ReferenceGrant if the Gateway is in another namespace, and waits until the extension is ready.\n\nRegistering your MCP servers with the gateway enables automated discovery, policy enforcement and routing across your AI agentic ecosystem. The server registration wizard provides a step-by-step guide to bind an MCPServerRegistration custom resource to an underlying HTTPRoute.\n\nChoose the HTTPRoute that points at your MCP server or create one (figure 2), then name the registration and set a tool prefix so tool names stay unique across servers. The wizard creates the MCPServerRegistration, plus the HTTPRoute if you made a new one, and waits until the server is ready.\n\nThe MCP Overview dashboard brings MCP gateway and server management together into a single pane of glass within the Red Hat OpenShift console. It provides real-time visibility into the health of MCP gateways and the connection status of registered servers (Figure 3), giving platform teams immediate insight into operational stability.\n\nFrom this unified dashboard, administrators can monitor active endpoints and manage core gateway infrastructure without jumping between different command-line tools or navigation menus, including:\n\nThe MCP Inspector (Figure 4) provides a built-in interactive client that automatically discovers the tools and prompts exposed by registered MCP servers through the gateway. From the console, you can view descriptions, inputs, and arguments for all available capabilities without leaving Red Hat OpenShift:\n\nThe Model Context Protocol gateway and its dedicated Red Hat OpenShift console plug-in bridge the gap between cluster administration and AI developer workflows, giving teams the confidence to scale agent tools with full visibility and governance.\n\nWe serve the builders. The problem solvers who create careers with code.\n\nJoin us if you’re a developer, software engineer, web designer, front-end designer, UX designer, computer scientist, architect, tester, product manager, project manager or team lead.",
+  "begyujtve": "2026-11-18T15:19:29.547598+00:00",
+  "prioritas": {
+    "pont": 36,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 30,
+      "egyediseg": 65,
+      "hitelesseg": 70,
+      "aktualitas": 84,
+      "kozossegi": 49
+    },
+    "elofeszures": 82,
+    "tanult": 77,
+    "indok": "Fejlesztői útmutató a Red Hat OpenShift konzol MCP szervereinek hibakereséséhez, ami inkább PR-oktatóanyag. Forrás-tapasztalat: -8.",
+    "tema": "red hat openshift mcp",
+    "cim_hu": "MCP szerverek tesztelése és hibakeresése a Red Hat OpenShift konzolban",
+    "lead_hu": "A Red Hat közzétette a legújabb fejlesztői útmutatóját az MCP szerverek vizsgálatára és tesztelésére az OpenShift AI platformon.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-18T15:19:43+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-18T15:19:44+00:00"
+}

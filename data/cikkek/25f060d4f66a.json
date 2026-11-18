@@ -1,0 +1,49 @@
+{
+  "id": "25f060d4f66a",
+  "slug": "securing-third-party-ai-agents-on-red-hat-ai-with-openshell",
+  "forras_id": "dailydev",
+  "forras_nev": "Red Hat Developer (daily.dev)",
+  "url": "https://developers.redhat.com/articles/2026/11/17/omnigent-case-study-securing-third-party-ai-agents-on-red-hat-ai-with-openshell",
+  "publikalva": "2026-11-17T00:00:00+00:00",
+  "cim": "Securing third-party AI agents on Red Hat AI with OpenShell",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 37 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/s--1KxV4ohY--/f_auto/v1722860400/public/Placeholder%2007"
+  },
+  "cim_eredeti": "Securing third-party AI agents on Red Hat AI with OpenShell",
+  "szoveg_eredeti": "Accelerate the development and deployment of enterprise AI solutions.\n\nExplore learning materials and tools, organized by task.\n\nClick through scenarios with Red Hat AI, including training LLMs and more.\n\nExpand your Red Hat OpenShift AI knowledge using these learning resources.\n\nFocused AI use cases designed for fast deployment on Red Hat AI platforms.\n\nRed Hat AI Factory with NVIDIA is a co-engineered, enterprise-grade AI solution for building, deploying, and managing AI at scale across hybrid cloud environments.\n\nFind answers, get step-by-step guidance, and learn how to use Red Hat products.\n\nExplore curated walkthroughs for common development tasks.\n\nReceive custom learning paths powered by our AI assistant.\n\nSpin up Red Hat's products and technologies without setup or configuration.\n\nLearn by doing in these hands-on, browser-based experiences.\n\nClick through product features in these guided tours.\n\nA downloadable, local development hub to experiment with our products and builds.\n\nSpin up Red Hat's products and technologies without setup or configuration.\n\nDownload Red Hat products and project builds, access support documentation, learning content, and more.\n\nWe'll recommend resources you may like as you browse. Try these suggestions for now.\n\nA subscription may be required for some services.\n\nThe AgentOps strategy in Red Hat AI 3.6 is bring your own agent (BYOA), providing a sandbox environment for running agent harnesses through the addition of the OpenShell open source project.\n\nIn this article, I demonstrate the Omnigent project, a \"meta-harness\" for AI agents that gives a common UI layer over Claude Code, Codex, Pi, Goose, and others. You can swap or combine harnesses without rewrites, keep them in check with policies and sandboxing, and collaborate in real time on the same live session, from any device.\n\nOmnigent can work in server mode so session data can be saved, shared between team members and forked, while preserving access to the underlying agent. Figure 1 provides an overview of the architecture.\n\nWhile Omnigent can work with many sandbox providers, this article focuses on running it through OpenShell on Red Hat OpenShift to take advantage of BYOA. The documented path for Omnigent on OpenShell gives a basic integration, but for Red Hat OpenShift extra steps are needed. You can follow along with this exercise by implementing everything in my example GitHub repository, referenced throughout this article.\n\nFirst, create a custom sandbox image using the components in the images directory in my GitHub repository, to ensure we're not exposing anything beyond what's needed. The requirements take compatibility and security into account.\n\nNext, configure these OpenShell profiles and providers to load credentials (through OpenShell terminal or API). While Omnigent works with several different harnesses, like Pi and Goose, this exercise focuses on 4, to demonstrate how OpenShell standardizes credential injection and governance across diverse tools.\n\nYou can think of a profile as a snippet of an OpenShell policy, with a placeholder for a credential. The provider then adds that credential.\n\nUse the script scripts/load-openshell-profiles.sh to automate the loading of these from your local environment variables.\n\nUsing Git, clone my Omnigent fork and modify the Kustomization overlay (openshift-openshell) in the branch scShiftShell.\n\nFirst inspect server-config.yaml, which allows us to specify how we want sandboxes to be created, setting the image to use, an optional OpenShell workspace, node selector labels, and optionally changing the runtime class. This config must include the names of OpenShell providers created in the previous step.\n\nCopy secrets.env.example to a secrets.env and adjust it to connect to a local OIDC server (for example, Keycloak). Alternatively, omit the OIDC values to allow the built in account manager to operate.\n\nTo enable access to Omnigent at an external URL, change the host name in route.yaml.\n\nAdjust IP addresses in the network policy as necessary. Deploy the Kustomization with:\n\nAccessing the UI at the URL configured in the route.yaml, and logging in as a pre-configured user (for example, Alice), allows you to start a session and share it with other logins (for example, Bob).\n\nAlice's new session (Figure 2) creates a new OpenShell sandbox instance with Codex as the main process. The important features of the integration are highlighted:\n\nFrom the OpenShell side, the configuration can be viewed in the OpenShell terminal, as shown in Figure 3.\n\nThe OpenShell terminal shows the dashboard for this omnigent workspace:\n\nThe integration of Omnigent with OpenShell is a comprehensive reference for the BYOA strategy of Red Hat AI. By integrating the OpenShell SDK directly, Omnigent can access the full breadth of OpenShell's features, without modifying agent source code.\n\nThe upcoming integration of OpenShell into Red Hat AI in 3.6 will add sandbox fast-provisioning, UX integration, the ability to choose the runtime class (like Kata containers), native multitenancy.\n\nFor Omnigent itself, there is a lot more to explore, like configuring MCP servers, how sharing of agentic sessions enables building Team Agents, and the many other ways in which you can connect to your sessions using mobile, terminal, and APIs.\n\nThe interface between Omnigent and OpenShell by design does not allow passing of files, only environment variables. This requires that the configuration files are present in the sandbox image when it is built, but can be tweaked with environment variables when required, as shown in the example for configuring LiteMaaS. This restriction creates a good separation of concerns, avoiding the inadvertent loading of files at runtime, even if it requires some more maintenance of sandbox images.\n\nInside an Omnigent host, agents are run with BubbleWrap, giving them further defense in depth on top of what OpenShell provides. This isolates the agent from the Omnigent host processes and the WebSocket it uses to call back to the Omnigent server.\n\nWhile Omnigent's integration is secure, I've suggested some feature requests to their roadmap, to improve the security posture:\n\nWhile Omnigent remains a community project rather than part of the Red Hat AI roadmap, it exemplifies the power of BYOA. Explore our proof-of-concept repo on Github to test these sandbox policies in your own development clusters, and the OpenShell docs on security best practices.\n\nWe serve the builders. The problem solvers who create careers with code.\n\nJoin us if you’re a developer, software engineer, web designer, front-end designer, UX designer, computer scientist, architect, tester, product manager, project manager or team lead.",
+  "begyujtve": "2026-11-18T15:19:29.548229+00:00",
+  "prioritas": {
+    "pont": 37,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 30,
+      "egyediseg": 70,
+      "hitelesseg": 70,
+      "aktualitas": 58,
+      "kozossegi": 48
+    },
+    "elofeszures": 73,
+    "tanult": 68,
+    "indok": "Vállalati promóciós anyag a Red Hat AI-ról és az OpenShell használatáról, alacsony közvetlen hírértékkel. Forrás-tapasztalat: -8.",
+    "tema": "red hat ai openshell",
+    "cim_hu": "Külső AI-ágensek védelme a Red Hat AI platformon az OpenShell segítségével",
+    "lead_hu": "A Red Hat bemutatta az OpenShell eszközt a harmadik féltől származó mesterségesintelligencia-ágensek biztonságos futtatásához és fejlesztéséhez a vállalati rendszerekben.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-18T15:19:43+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-18T15:19:44+00:00"
+}
