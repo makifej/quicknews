@@ -1,0 +1,49 @@
+{
+  "id": "bf1424b145e4",
+  "slug": "time-series-models-in-the-streamhouse-a-new-frontier-and-use-cases",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/ibm-research/time-series-powered-streamhouse",
+  "publikalva": "2026-11-18T15:00:23+00:00",
+  "cim": "Time-Series Models in the Streamhouse: A New Frontier and Use Cases",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 49 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/64e8143f6de557454220921e/yf6E9vJHIkGHG_toGSasb.gif"
+  },
+  "cim_eredeti": "Time-Series Models in the Streamhouse: A New Frontier and Use Cases",
+  "szoveg_eredeti": "Real-time forecasting, anomaly detection, and optimization, powered by IBM time-series models with more than 50 million downloads. Now available natively on Confluent, in the cloud and on premises, running on CPUs.\n\nEvery business generates a continuous record of change: a machine reading, a payment, a sale, an order, or a change in inventory. These observations form time series, and they carry signals that can help teams anticipate what happens next.\n\nThe challenge is turning those signals into decisions while they still matter. A forecast delivered after a production run, a stockout, or a payment authorization may be accurate, but too late to influence the outcome.\n\nIBM and Confluent are bringing time-series foundation models closer to the data as it flows. With Apache Flink, teams can apply forecasting , anomaly detection and semantic intelligence to streaming data using SQL, making model outputs available to the applications and people responsible for the next action.\n\nFoundation models have changed how organizations work with text, images, and documents. Time-series foundation models extend a similar idea to numerical data by learning general patterns from diverse historical data and then applying that knowledge to new series and tasks. The models can provide a starting point without requiring teams to train a separate model for every series. Depending on the task and deployment, teams can also fine-tune a model or combine its outputs with other data and business logic.\n\nFigure 1. More than 50 million downloads, and the family of four models behind them\n\nNow the time series foundation models run natively inside Confluent as built-in functions in the cloud and on premises. In Confluent Cloud they are fully managed, with nothing to deploy (documentation). On premises, the models can run within your own infrastructure using Confluent Platform for Apache Flink.(documentation). The models run on CPUs, without requiring GPUs.\n\nThe models can support a range of mission-critical use cases, from helping keep production lines in spec and detecting unusual store activity to improving product-level planning. They can also provide signals to assess card payments and forecast trading volume to help place large orders. These building blocks can be applied across manufacturing, retail, banking, and airlines, bringing insights closer to where decisions are made.\n\nSee how time series and real-time context come together to create value:\n\nBusinesses operate continuously. Orders are updated, payments arrive, shipments are delayed, and inventory changes throughout the day. Yet the information behind these events often sits across systems that update at different times or rely on periodic batch processes. When applications and AI agents act on outdated or inconsistent information, they risk making decisions that no longer reflect what is happening.\n\nA Streamhouse addresses this by continuously capturing, processing, governing, and serving current business context. Confluent’s Data Streaming Platform brings together five capabilities—connect, stream, process, govern, and query—to make that context available to applications, analytics, and agents. Apache Flink transforms and enriches data as it flows, while Lightning Tables provide low-latency access to the current state.\n\nFigure 2. The Streamhouse on Confluent: from existing data sources to current business context that agents, applications, analytics and lakehouses use anywhere.\n\nTime-series models add predictive power to this architecture. Flink can prepare the data, invoke forecasting and anomaly detection, and make the results available alongside the events that produced them. Other models—including large language models, statistical models, and specialized machine learning systems—can contribute where appropriate.\n\nFigure 3. The intelligence layer of the Streamhouse: time series models, large language models, and ML and statistical models, with orchestration across them.\n\nThis approach can help teams in three ways:\n\n-Scale model development. A pretrained model can provide a common starting point across many time series, reducing the need to develop and maintain a separate model for each one.\n\n-Refresh predictions as data changes. Forecasts can incorporate recent observations as part of a streaming workflow, subject to the model’s requirements and the pipeline’s configuration.\n\n-Put signals closer to decisions. Forecasts and anomalies can be routed to operational applications sooner, where teams can combine them with business context, rules, and human judgment.\n\n-Run compact models on CPUs. The models are small enough to run on standard CPUs alongside the streaming pipeline, in the cloud or on premises, which can reduce the need for dedicated GPU infrastructure and simplify deployment.\n\nFigure 4. Stream native time-series intelligence on Confluent\n\nThe following scenarios illustrate how organizations could combine time-series models, streaming data, and application logic.\n\nAn ice cream line’s quality depends on overrun—the amount of air whipped into the mix. Today, the process engineer and operator rely on QA lab measurements taken after the tubs are filled. If a new cream lot or a warm, humid day changes the process, hours of production may already need rework by the time the team sees the result.\n\nTo get ahead of the problem, a pretrained TTM model reads SCADA telemetry and QA measurements every 10 minutes. It forecasts the share of tubs expected to be in spec four hours ahead, along with a likely range.\n\nWhen the forecast falls below the plant’s target, an optimization process evaluates combinations of freezer draw temperature and airflow. Because the model takes these control variables as inputs, it can score each option before anything changes on the line. The operator approves the recommended setpoints, while routine adjustments can be automated within predefined guardrails.\n\nThe outcome is a more proactive process: less rework, lower energy use per tonne, and more consistent quality. The same approach can be applied to ovens, dryers, kilns, and mills.\n\nFigure 5. A forecast of product quality helps the operator evaluate freezer setpoints before making an adjustment.\n\nA store operations team monitors sales for thousands of products across hundreds of stores. Fixed thresholds often flag predictable weekend peaks while missing quieter changes, such as a product selling less than expected. As alerts accumulate, it becomes harder for the team to know where to focus.\n\nAI_DETECT_ANOMALIES gives each sales series an expected range based on its recent history. Each new reading is compared with that range at a confidence level the team chooses, without training a separate model for every product and store.\n\nWhen sales fall outside the expected range, the signal can be combined with inventory and store data to help identify a likely cause and recommend a next step—for example, checking the shelf or replenishing stock. The same approach can be applied to machine sensors, API telemetry, meter readings, and payment volumes.\n\nFigure 6. Store sales are compared with an expected range. In the view shown, recurring peaks remain within the range and no anomaly is flagged.\n\nA category planner and a replenishment team need to keep products available across every store without carrying excess inventory. But forecasts may be refreshed only once a week, often focusing on top-selling products, while the long tail is managed with simpler rules. When sales patterns change between planning cycles, one store can run out while another has too much stock.\n\nWith AI_FORECAST, a pretrained model can forecast demand across products and stores. In this example, it produces a 28-day forecast with a P10–P90 range, refreshed as new sales data arrives. The planning application combines the forecast with inventory, lead time, and the planner’s chosen service level to calculate a reorder point.\n\nWhen stock is projected to fall below that point, an",
+  "begyujtve": "2026-11-18T15:02:34.608570+00:00",
+  "prioritas": {
+    "pont": 49,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 35,
+      "egyediseg": 100,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 28
+    },
+    "elofeszures": 94,
+    "tanult": 24,
+    "indok": "Technikai jellegű vállalati PR-bejelentés az IBM idősoros modelljeinek integrációjáról. Forrás-tapasztalat: -5.",
+    "tema": "ibm time series confluent",
+    "cim_hu": "Natív IBM idősoros MI-modellek érkeztek a Confluent platformra",
+    "lead_hu": "A Confluent platformján már közvetlenül is elérhetők az IBM több mint 50 millió letöltéssel rendelkező idősoros MI-modelljei.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-18T15:04:26+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-18T15:04:32+00:00"
+}
