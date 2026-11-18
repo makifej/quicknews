@@ -1,0 +1,49 @@
+{
+  "id": "679cee5ea146",
+  "slug": "rumble-2-flash-an-open-0-5b-speech-model-for-40-languages",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/rumble-2-flash",
+  "publikalva": "2026-11-18T00:00:00+00:00",
+  "cim": "Rumble-2-Flash: an open 0.5B speech model for 40+ languages",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 69 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://huggingface.co/blog/assets/rumble-2-flash/thumbnail.png"
+  },
+  "cim_eredeti": "Rumble-2-Flash: an open 0.5B speech model for 40+ languages",
+  "szoveg_eredeti": "Today we're open sourcing Rumble-2-Flash under the Apache 2.0 license. It's a 0.5B-parameter speech recognition model for 40+ languages that competes with models 3-60x its size.\n\naudio accepts a local path, a URL, a NumPy array, or a list of these.\n\nRumble-2-Flash uses the Qwen3-ASR architecture for day-0 support. If your stack runs Transformers or vLLM, it runs Rumble-2-Flash, with no forked runtime or trust_remote_code.\n\nTo find out how small a model could get before accuracy dropped off, we distilled Rumble-2, our larger production model, into it with on-policy distillation. The student doesn't train on transcripts the teacher wrote. It transcribes the audio itself, and the teacher grades that transcript token by token: at every position, it gives its own probability for what should come next, and the student learns to match it. Because the student learns from its own outputs, it gets corrected on exactly the mistakes it makes, with feedback on every token instead of one score per clip.\n\nOn-policy distillation normally requires teacher and student to share a tokenizer, and ours don't: choosing Qwen3-ASR meant taking its vocabulary too. GOLD removes that restriction. It merges tokens where the two tokenizers split the text differently, so both models are compared over the same text. Tokens that exist in both vocabularies are compared directly, and the rest by their sorted probabilities.\n\nOn the Open ASR Leaderboard multilingual track, Rumble-2-Flash averages a 6.96% error rate across Chinese, German, French, Italian, Spanish, Portuguese, Hindi, Dutch and English. That's better than Meta's omniASR-LLM 7B, a model 15x larger, and ahead of Whisper large-v3. On the English track it averages 6.6% WER.\n\nRumble-2-Flash is also fast. Its throughput depends on how full the batches are: on the larger datasets in HF's Open ASR Leaderboard, where batches stay full, it reaches over 7,000 RTFx. That's an hour of audio in about half a second.\n\nClean audio is easy. Phone calls are compressed and noisy, and often have speakers with very different accents. On AppTek's call-centre benchmark (302 hours of helpline calls, 14 English accents, scored with AppTek's own script), Rumble-2-Flash reaches 7.86% WER, on par with NVIDIA's Nemotron 3.5 Transcribe (30B) at 7.78%. That's well ahead of Qwen3-ASR 0.6B (8.7%), from the same model family, and close to Qwen3-ASR 1.7B (7.4%), the only model in the comparison that does better.\n\nThe weights are on the Hub at Reson8/Rumble-2-Flash. It's also available through our API.\n\nWe're very curious what you'll build with it. Tell us in the Discussions tab what you've made, what you like, and what you'd like to see changed in a next version.",
+  "begyujtve": "2026-11-18T14:47:42.540419+00:00",
+  "prioritas": {
+    "pont": 69,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 75,
+      "egyediseg": 95,
+      "hitelesseg": 88,
+      "aktualitas": 70,
+      "kozossegi": 66
+    },
+    "elofeszures": 95,
+    "tanult": 89,
+    "indok": "Nyílt forráskódú beszédkezelő modell kiadása a Hugging Face-en Forrás-tapasztalat: -5.",
+    "tema": "rumble2flash open source speech model",
+    "cim_hu": "Megjelent a Rumble-2-Flash, a 40 nyelvben jártas nyílt forráskódú beszédmodell",
+    "lead_hu": "A mindössze félmilliárd paraméteres beszédfelismerő modell Apache 2.0 licenc alatt vált elérhetővé, és a jóval nagyobb modellekkel is felveszi a versenyt.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-18T14:50:09+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-18T14:50:10+00:00"
+}
