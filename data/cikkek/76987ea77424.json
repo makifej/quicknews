@@ -1,0 +1,49 @@
+{
+  "id": "76987ea77424",
+  "slug": "forbes-az-openai-kiberbiztonsagi-mi-je-tucatnyi-apple-hibat-talalt",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/openai-s-cyber-ai-found-dozens-CN.ZylduRTmfMgKwQhY9Jg",
+  "publikalva": "2026-11-18T17:33:17.180452+00:00",
+  "cim": "Forbes: az OpenAI kiberbiztonsági MI-je tucatnyi Apple-hibát talált",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 80 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/upload/t_limit/v1794955908/getty_uploads/2289413265_x1caip.jpg"
+  },
+  "cim_eredeti": "Forbes: az OpenAI kiberbiztonsági MI-je tucatnyi Apple-hibát talált",
+  "szoveg_eredeti": "Az OpenAI közlése szerint egy autonóm kutatási folyamat október közepén egyetlen futtatás alatt 948 működő, jogosultságot emelő helyi exploitot készített a Linux-kernelhez, és mindegyik mögöttes hibához javítási javaslatot is írt. A cég „A thousand fewer paths to root” (Ezerrel kevesebb út a root felé) című jelentése szerint az API teljes költsége 1 213 430 dollár volt, vagyis exploitonként nagyjából 1279 dollár. Az OpenAI ezt a jelentést november 4-én tette közzé. Az eredmények azért kerültek újra a hírekbe a héten, mert friss beszámolók szerint ugyanez a modell az Apple termékeiben is hibákat talált.\n\nAz OpenAI közlése szerint az ágensek először 5034 auditcélpontra szűkítették le a kernelt, vagyis azokra a részekre, amelyeket alacsony jogosultságú felhasználók is el tudnak érni. Ez nagyjából 2,8 millió sort jelent, a kódbázis körülbelül 7%-át. Az ágensek ezután 12 óra alatt 2308 lehetséges találatot állítottak elő, ezek közül 1724-et pedig 30 órán belül reprodukáltak. Az ágensek 1169 működő root exploitot és 291 információszivárgást bemutató proof of conceptet építettek. Az OpenAI szerint a 948-as szám azoknak a különálló javításoknak a száma, amelyeket az exploitok mögötti hibákra írtak. Az exploitokat egy alapértelmezett asztali disztribúción tesztelték, bekapcsolt szabványos védelmekkel, például KASLR-rel, SMEP-pel és SMAP-pel. Mielőtt bármi eljutott volna a kernelkarbantartókhoz, emberi kutatók átnézték az eredményeket.\n\nA futtatás mögött álló modellt kezdetben nem nevezték meg. Az OpenAI ezután november 5-én GPT-6 Cyber néven elérhetővé tette ellenőrzött felhasználók számára.\n\nA tíznapos átvizsgálás és felülvizsgálat végére más közreműködők 61 hibát már javítottak az upstreamben, 43-hoz pedig létezett javítócsomag a staging ágon. Az OpenAI nem tett közzé CVE-azonosítókat, és a javítások többségéről még folyamatosan érkeztek a jelentések. A Crypto Briefing szerint eddig nem hoztak összefüggésbe jelentős adatszivárgást a felfedezett hibákkal. Az OpenAI figyelmeztetett: egy nem teljesen frissített rendszeren egy alacsony jogosultságú fiók „egyelőre funkcionálisan egyenértékűnek tekintendő a root-hozzáféréssel egy jól felszerelt támadó számára\". A károk korlátozására olyan sandbox-megoldásokat javasolt, mint a Firecracker és a gVisor.\n\nA Forbes kedden arról számolt be, hogy az OpenAI és a Calif nevű biztonsági cég a GPT-6 Cyber segítségével nagyjából 35 sebezhetőséget talált az hardvereiben és szoftvereiben. Ezek között van egy olyan megoldás is, amellyel kijátszható a Lockdown Mode (Zárolási mód) védelme. Az Apple saját biztonsági közleményei az OpenAI Codex Security számlájára három WebKit-javítást írnak, vagyis egyelőre jóval kevesebb, mint 35 hibát tulajdonítanak nyilvánosan az OpenAI-nak.\n\nThai Duong, a Calif vezérigazgatója a Forbesnak azt mondta, hogy a helyzet előbb még rosszabb lesz, és csak utána javul. „Addig szerintem több hiba és több exploit kerül elő, és nem csak az iPhone-oknál, hanem az egész interneten” – fogalmazott.",
+  "begyujtve": "2026-11-18T19:33:21.551673+00:00",
+  "prioritas": {
+    "pont": 80,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 80,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 90,
+      "kozossegi": 75
+    },
+    "elofeszures": 80,
+    "tanult": 61,
+    "indok": "Rendkívül érdekes áttörés a kiberbiztonságban, ahol az OpenAI autonóm modellje tömegesen fedezett fel rendszerhibákat. Forrás-tapasztalat: -2.",
+    "tema": "openai cybersecurity exploits",
+    "cim_hu": "Közel ezer Linux-sebezhetőséget tárt fel az OpenAI kiberbiztonsági AI-ja",
+    "lead_hu": "Az OpenAI autonóm kutatási rendszere egyetlen futtatás során 948 működő exploitot állított elő a Linux-kernelhez, és mindegyikhez azonnali javítási javaslatot is generált.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-18T19:35:26+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-18T19:35:27+00:00"
+}

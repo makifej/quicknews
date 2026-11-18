@@ -1,0 +1,49 @@
+{
+  "id": "1a8c3e741bdf",
+  "slug": "kormanyok-surgetik-a-kritikus-java-hiba-azonnali-javitasat",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/governments-urge-urgent-patchi-gIqIidfdSMKA6LBOHvZzYg",
+  "publikalva": "2026-11-18T17:33:05.688717+00:00",
+  "cim": "Kormányok sürgetik a kritikus Java-hiba azonnali javítását",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--bJGo9IIc--/t_limit/https://images.ft.com/v3/image/raw/ftcms%253Ad7a72f63-cde3-46b3-9d49-7ba0ce41299d%3Fsource%3Dnext-article%26fit%3Dscale-down%26quality%3Dhighest%26width%3D1440%26dpr%3D1"
+  },
+  "cim_eredeti": "Kormányok sürgetik a kritikus Java-hiba azonnali javítását",
+  "szoveg_eredeti": "Szerdán több ország kormánya is sürgette a szervezeteket, hogy javítsák a Java egy kritikus hibáját, amely utat nyithat a hackereknek a számítógépes rendszerekbe. A kutatók szerint a „Java4Shell” becenévre keresztelt, CVE-2026-114938 azonosítójú hiba lehetővé teszi, hogy a támadók bejelentkezés nélkül futtassanak kódot széles körben használt vállalati szoftvereken, például a Jirán, a Jenkinsen és a Keycloakon. Az Oracle és az OpenJDK projekt november 17-én adta ki a javításokat. A Red Hat szerdáig még nem jelentetett meg javítást a saját Java-buildjeihez.\n\nAz Egyesült Államok, Dél-Korea, Németország és Nagy-Britannia hatóságai arra szólították fel a szervezeteket, hogy telepítsék a javítást, a holland kiberbiztonsági hivatal pedig közölte, hogy vizsgálja az ügyet. A dél-koreai elnöki hivatal kedden rendkívüli megbeszélést tartott a kormányzati szervekkel – írta a Yonhap nyomán a Reuters. Dél-Koreában a közszféra információs rendszereiben használt programozási nyelvek 72%-át a Java teszi ki. Az amerikai Kiberbiztonsági és Infrastruktúra-biztonsági Ügynökség (CISA) kedden kiadott figyelmeztetésében „határozottan sürgeti a szervezeteket, hogy azonnal javítsák” a hibát. Arra is figyelmeztetett, hogy a harmadik fél alkalmazásaiba, konténerképekbe és berendezésekbe csomagolt Java-példányok nem biztos, hogy szerepelnek a szoftverleltárakban.\n\nA német és a holland hatóságok közölték, hogy egyelőre nem tudnak sikeres támadásról. A brit kiberbiztonsági hivatal arra kérte a cégeket, hogy „ebben a példátlan időszakban” tartsák naprakészen rendszereiket. A CrowdStrike és a Palo Alto Networks részvényei emelkedtek a New York-i késő délelőtti kereskedésben.\n\nA Calif nevű biztonsági cég kedden hozta nyilvánosságra a sérülékenységet. Memóriasérülési hibáról van szó a Java hardveresen gyorsított Base64-dekódolójában, és már 64 darab „A” karakter után írt egyenlőségjel is kiválthatja. A hibát a Calif kutatója, Quang Luong találta meg nagyjából egy óra alatt az OpenAI Codexének segítségével. A Calif 10-ből 9,2-re értékeli a hibát, az Oracle viszont 8,1-es pontszámot adott neki, mert nehezen kihasználható.\n\nA hiba a Java 17.0.6-os és újabb verzióit érinti, köztük a Java 21-et, a 25-öt és a 27-et is. Csak az AVX-512 VBMI utasításkészletet támogató x86-64-es processzorokon jelentkezik, például a újabb Intel Xeon és az AMD Zen 4 processzorokon. A Calif nem hozta nyilvánosságra a támadókódját. Más laborok összeomlásokat és memóriaszivárgást már reprodukáltak, kódfuttatást viszont még nem sikerült elérniük.\n\nAz Oracle javított buildjei a 17.0.21.1, a 21.0.13.1, a 25.0.5.1 és a 27.0.1.1. Az már javította a Corretto buildjeit, az Azul pedig a Zulut. A Red Hat közleménye szerint a Red Hat Enterprise Linux 8, 9 és 10 verzióhoz, illetve a cég OpenJDK-buildjeihez egyelőre nem érhető el javítás. Átmeneti megoldásként a rendszergazdák kikapcsolhatják a sérülékeny kódot, ha a Javát a „-XX:-UseBASE64Intrinsics” kapcsolóval indítják.\n\nA nyilvánosságra hozatal egy hónappal azután történt, hogy a Calif által talált PHP-hiba miatt világszerte több üzemeltető offline módba kapcsolta a weboldalait. Egy sor technológiai leállás után érkezett, amelyeket a hivatalos nyilatkozatok szerint nem kapcsolódnak ehhez. A Surfshark munkatársa, Karolis Kaciulis arra figyelmeztetett, hogy a sietős javítgatásnak is megvan a maga kockázata: „Ha ennyi mindent ilyen gyorsan javítunk, azzal instabilabbá tesszük a rendszereket”.",
+  "begyujtve": "2026-11-18T19:33:21.551823+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 70,
+      "hirertek": 75,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 92,
+      "kozossegi": 50
+    },
+    "elofeszures": 78,
+    "tanult": 50,
+    "indok": "Általános kiberbiztonsági hír egy kritikus Java-hibáról, nem kifejezetten mesterséges intelligenciához kapcsolódik.",
+    "tema": "cybersecurity java vulnerability java4shell",
+    "cim_hu": "Kritikus Java-sebezhetőség azonnali javítását sürgetik a hatóságok",
+    "lead_hu": "Több ország kormánya is figyelmeztetést adott ki a Java4Shell néven ismert kritikus biztonsági rés miatt. A hiba lehetővé teszi a támadóknak, hogy bejelentkezés nélkül futtassanak kódot vállalati rendszereken.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-18T19:35:26+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-18T19:35:27+00:00"
+}
