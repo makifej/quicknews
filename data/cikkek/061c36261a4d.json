@@ -1,6 +1,6 @@
 {
   "id": "061c36261a4d",
-  "slug": "egyetlen-html-fajlba-kodoltak-egy-komplett-3d-s-tengermelyi-jatekot",
+  "slug": "egyetlen-html-fajlbol-futo-bongeszos-3d-s-jatekot-keszitett-a-fable-5",
   "forras_id": "x-aravsrinivas",
   "forras_nev": "Aravind Srinivas (X)",
   "url": "https://x.com/AravSrinivas/status/2122713692324384793",
@@ -19,20 +19,20 @@
   "forrasok": [],
   "szoveg_eredeti": "Teammate on Fable 5.2 made HADAL, a dive into the Mariana Trench you can play in a browser tab at http://mariana.pplx.app. You start as a scuba diver on a sunlit reef, board a submarine, and work your way down past shipwrecks, a whale fall and other things to Challenger Deep, scanning 18 discoveries as you go.\n\nEverything on screen is code. Teammate wrote the WebGPU renderer itself, with no game engine and no Three.js, and generated the terrain, kelp, creatures, submarine and sound without a single imported model, texture or audio file. It all fits in one 373 KB HTML file.\n\n36,000 Perplexity credits on Ultra Effort (Fable 5.2 High as orchestrator).",
   "modell": "gemini-3.5-flash",
-  "cim": "Egyetlen HTML-fájlba kódoltak egy komplett 3D-s tengermélyi játékot",
-  "lead": "A Fable 5.2 modell segítségével egyetlen 373 KB-os fájlban hoztak létre egy böngészőből futtatható WebGPU-s játékot.",
-  "osszefoglalo": "Aravind Srinivas megmutatta kollégája legújabb fejlesztését, a **HADAL** nevű böngészős játékot, amely a Mariana-árok mélyére kalauzolja a játékost. A programban a búvárkodástól a tengeralattjárós merülésig 18 különböző felfedezést lehet befejteni. A projekt elérhető a http://mariana.pplx.app címen.\n\nA fejlesztés különlegessége, hogy a teljes 3D-s grafikát és hangot **külső textúrák vagy hangfájlok nélkül**, közvetlenül kódból generálták. A fejlesztő nem használt meglévő játékos motorokat vagy Three.js könyvtárat, hanem a WebGPU rendererrel építette fel a teljes környezetet. A teljes kód elfér egyetlen 373 KB méretű HTML-fájlban.\n\nA teljes munka elkészítéséhez a Fable 5.2 modellt használták Ultra Effort üzemmódban, amely összesen 36 000 kreditet fogyasztott a folyamat során.",
-  "miert_szamit": "Ez a projekt jól mutatja, hogy az AI-kódgenerálással **rendkívül kis méretű és erőforrás-hatékony** 3D-s applikációk hozhatók létre külső szoftveres motorkészlet nélkül.",
+  "cim": "Egyetlen HTML-fájlból futó böngészős 3D-s játék készült Fable 5.2-vel",
+  "lead": "Egyetlen 373 kilobájtos HTML-fájlból álló, teljes böngészős 3D-s játékot készítettek a Fable 5.2 nevű AI-modell segítségével.",
+  "osszefoglalo": "A HADAL nevű [böngészős játék](http://mariana.pplx.app) a Mariana-árok mélyére vezeti a játékost, ahol a felszíni búvárkodástól a tengeralattjárós merülésig 18 felfedezést lehet bepásztázni. A teljes program **külső játékmotor és Three.js nélkül** készült, a fejlesztéshez WebGPU renderelőt használtak.\n\nA látvány és a hangok generálásához nem importáltak egyetlen külső modellt, textúrát vagy hangfájlt sem, a terep és az élőlények kód alapon jönnek létre. A teljes projekt mindössze **egy 373 kilobájtos HTML-fájlban** kapott helyet.\n\nA projekt elkészítéséhez 36 000 Perplexity kreditet használtak fel Ultra Effort beállítással, ahol a **Fable 5.2 High modell** működött orkesztrátorként.",
+  "miert_szamit": "A kísérlet megmutatja, hogy az AI-modellek már **külső keretrendszerek nélkül is képesek összetett 3D-s alkalmazásokat** és egyedi renderelőket generálni minimális fájlméret mellett.",
   "cimkek": [
     "Fable 5.2",
     "WebGPU",
     "játékfejlesztés",
-    "kódgenerálás"
+    "Perplexity"
   ],
   "kategoria": "eszköz",
   "forras_tipus": "bemutato",
   "fontossag": 3,
-  "video_szoveg": "A videóban a HADAL játékmenete látható, amint a búvár a felszínről a tengeralattjáróval a tenger legmélyebb pontja felé süllyed.",
+  "video_szoveg": "A videóban a böngészőben futó 3D-s játékmenet látható, ahogy a játékos a tengeralattjáróval a mélytengeri környezetben navigál és tárgyakat pásztáz be.",
   "relevans": true,
   "kiprobalhato": null,
   "linkelendo_nevek": [
@@ -62,17 +62,28 @@
     "ido": "2026-11-18T09:34:16+00:00"
   },
   "jovahagyas_kell": true,
-  "forditva": "2026-11-18T09:48:25+00:00",
+  "forditva": "2026-11-18T09:51:40+00:00",
   "megjelent": "2026-11-18T09:42:03.117Z",
   "tenyellenorzes": {
     "ok": true,
-    "ido": "2026-11-18T09:48:27+00:00",
-    "esemeny": "Aravind Srinivas megosztotta egy munkatársa projektjét: a Fable 5.2 (High mint orchesztrátor) és Ultra Effort segítségével készült HADAL egy 373 KB-os, böngészőben futó WebGPU-s 3D-s játék, amely textúrák, külső modellek és Three.js használata nélkül szimulálja a Mariana-árokba való lemerülést.",
+    "ido": "2026-11-18T09:51:42+00:00",
+    "esemeny": "Aravind Srinivas megosztotta, hogy a Teammate nevű fejlesztő (vagy eszköz) a Fable 5.2 AI-modell segítségével elkészítette a HADAL nevű, böngészőben futó 3D-s játékot, ami egyetlen 373 KB-os HTML-fájlból áll.",
     "forrasok": [
       "https://x.com/AravSrinivas/status/2122713692324384793"
     ],
-    "hibak": [],
+    "hibak": [
+      "Tényhiba a címben és a leadben: a játékot nem maga a Fable 5.2 modell készítette el önállóan, hanem a Teammate nevű fejlesztő készítette el a Fable 5.2 modell segítségével/használatával."
+    ],
     "kereses": [],
-    "javitva": false
-  }
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Egyetlen HTML-fájlból futó böngészős 3D-s játékot készített a Fable 5.2",
+      "lead": "Egyetlen 373 kilobájtos HTML-fájlból álló, teljes böngészős 3D-s játékot generált a Fable 5.2 nevű AI-modell.",
+      "osszefoglalo": "A HADAL nevű böngészős játék a Mariana-árok mélyére vezeti a játékost, ahol a felszíni búvárkodástól a tengeralattjárós merülésig 18 felfedezést lehet bepásztázni. A teljes program **külső játékmotor és Three.js nélkül** készült, a fejlesztéshez WebGPU renderelőt használtak.\n\nA látvány és a hangok generálásához nem importáltak egyetlen külső modellt, textúrát vagy hangfájlt sem, a terep és az élőlények kód alapon jönnek létre. A teljes projekt mindössze **egy 373 kilobájtos HTML-fájlban** kapott helyet.\n\nA projekt elkészítéséhez 36 000 Perplexity kreditet használtak fel Ultra Effort beállítással, ahol a Fable 5.2 High modell működött orkesztrátorként.",
+      "miert_szamit": "A kísérlet megmutatja, hogy az AI-modellek már **külső keretrendszerek nélkül is képesek összetett 3D-s alkalmazásokat** és egyedi renderelőket generálni minimális fájlméret mellett."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "linkek_ellenorizve": true
 }

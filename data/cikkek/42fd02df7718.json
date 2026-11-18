@@ -1,6 +1,6 @@
 {
   "id": "42fd02df7718",
-  "slug": "megjelent-a-perplexity-orchestrator-api",
+  "slug": "egyetlen-api-ba-tereli-a-vezeto-ai-modelleket-a-perplexity",
   "forras_id": "x-perplexity_ai",
   "forras_nev": "Perplexity (X)",
   "url": "https://x.com/perplexity_ai/status/2122785177135096053",
@@ -19,24 +19,24 @@
   "forrasok": [],
   "szoveg_eredeti": "Introducing the Perplexity Orchestrator API.\n\nOrchestrator lets you choose the right model for the right task, and automatically selects the provider based on availability, capacity, and latency.\n\nAll open-weight and proprietary models are in one API with unified billing.",
   "modell": "gemini-3.5-flash",
-  "cim": "Megjelent a Perplexity Orchestrator API",
-  "lead": "A Perplexity egyetlen API-ba gyűjtötte a nyílt és zárt AI-modelleket, amely automatikusan a feladathoz legmegfelelőbb motort választja ki.",
-  "osszefoglalo": "A Perplexity elindította az **Orchestrator API** szolgáltatást, amely lehetővé teszi a fejlesztőknek és cégeknek, hogy egyetlen felületen keresztül érjék el a különböző nyílt forráskódú és zárt AI-modelleket. A rendszer automatikusan választja ki az adott feladathoz legmegfelelőbb modellt, figyelembe véve az elérhetőséget, a kapacitást és a válaszidőt.\n\nA megoldás legnagyobb előnye az összevont számlázás és a központi kezelés. A felhasználóknak nem kell külön előfizetéseket és kulcsokat fenntartaniuk minden egyes AI-szolgáltatónál, mert az Orchestrator API egyetlen infrastruktúrán keresztül biztosít hozzáférést a piac meghatározó modelljeihez.",
-  "miert_szamit": "A fejlesztők és vállalkozások **egyetlen API-hívással és egyetlen számlával** érhetik el a legjobb AI-modelleket, így nem kell több szolgáltató rendszereit külön integrálniuk.",
+  "cim": "Egyetlen API-ba tereli a vezető AI-modelleket a Perplexity",
+  "lead": "A Perplexity Orchestrator API automatikusan a legmegfelelőbb és leggyorsabb modellt választja ki a feladatokhoz egyetlen közös számlázás mellett.",
+  "osszefoglalo": "A Perplexity kiadta a **Perplexity Orchestrator API** nevű fejlesztői felületét, amely egyetlen hozzáférésen keresztül teszi elérhetővé a nyílt forráskódú és a zárt AI-modelleket. A rendszer automatikusan választja ki a megadott feladathoz a legalkalmasabb modellt, figyelembe véve a pillanatnyi elérhetőséget, a kapacitást és a válaszidőt.\n\nA megoldás megszünteti a különféle modellfüggőségeket és a bonyolult integrációkat, mivel az összes támogatott AI-modell egyetlen felületen, **egységesített számlázással** érhető el a fejlesztők számára. Ez leegyszerűsíti a többmodelles rendszerek építését és az automatikus váltást a szolgáltatók között.",
+  "miert_szamit": "A fejlesztőknek és cégeknek nem kell külön előfizetéseket és API-kulcsokat kezelniük, így **költséget és fejlesztési időt spórolhatnak** az automatikus modellválasztással.",
   "cimkek": [
     "Perplexity",
     "API",
     "Orchestrator API",
-    "AI-modellek"
+    "fejlesztés"
   ],
   "kategoria": "eszköz",
   "forras_tipus": "bejelentés",
   "fontossag": 4,
-  "video_szoveg": "A videó a Perplexity Orchestrator API működését és az egységesített modell-hozzáférést mutatja be egy rövid animációval.",
+  "video_szoveg": "A videó a Perplexity Orchestrator API működését és a modellek közötti automatikus útválasztást mutatja be.",
   "relevans": true,
   "kiprobalhato": null,
   "linkelendo_nevek": [
-    "Orchestrator API"
+    "Perplexity Orchestrator API"
   ],
   "linkszabaly": 3,
   "prioritas": {
@@ -60,18 +60,21 @@
     "ai": true,
     "ido": "2026-11-18T09:34:16+00:00"
   },
-  "jovahagyas_kell": true,
-  "forditva": "2026-11-18T09:41:44+00:00",
+  "jovahagyas_kell": false,
+  "forditva": "2026-11-18T09:49:50+00:00",
   "megjelent": "2026-11-18T09:41:20.326Z",
   "tenyellenorzes": {
     "ok": true,
-    "ido": "2026-11-18T09:41:46+00:00",
-    "esemeny": "A Perplexity bejelentette a Perplexity Orchestrator API nevű új szolgáltatását, amely egyetlen központi felületen és összevont számlázással teszi elérhetővé a nyílt forráskódú és zárt AI-modelleket.",
+    "ido": "2026-11-18T09:49:52+00:00",
+    "esemeny": "A Perplexity bejelentette a Perplexity Orchestrator API nevű új fejlesztői felületét, amely egyetlen API-n és egységesített számlázáson keresztül teszi elérhetővé a nyílt forráskódú és a zárt AI-modelleket, miközben az infrastruktúra automatikusan választ szolgáltatót a válaszidő, az elérhetőség és a kapacitás alapján.",
     "forrasok": [
-      "https://x.com/perplexity_ai/status/2122785177135096053"
+      "https://x.com/perplexity_ai/status/2122785177135096053",
+      "https://perplexity.ai/hub/blog/introducing-perplexity-orchestrator-api"
     ],
     "hibak": [],
     "kereses": [],
     "javitva": false
-  }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true
 }
