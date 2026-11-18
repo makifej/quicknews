@@ -868,7 +868,7 @@ function arajzol(){if(!A)return;const L=document.getElementById("a-lista");
   const sajat=skUj?`<div class="kartyasor ${kh?"rossz":""}"><a href="${U.kep(s.id)}" target="_blank"><img src="${U.kep(s.id)}" alt="A feltöltött kép"></a>
    <div style="flex:1">${skSzoveg}</div></div>`:"";
   return fej+`<div class="ah ${k?"kerve":""} ${s.felkapott?"felk":""}" id="h-${s.id}" data-id="${s.id}"><div class="kp" style="background-image:url('${esc(s.kep)}')"></div>
-  <div><a class="cim" href="https://quicknews.hu/hir/${esc(s.slug)}" target="_blank" rel="noopener">${esc(s.cim)}</a><div class="lead">${esc(s.lead)}</div>
+  <div><a class="cim" href="https://quicknews.hu/${s.elemzes?"elemzes":"hir"}/${esc(s.slug)}" target="_blank" rel="noopener">${esc(s.cim)}</a><div class="lead">${esc(s.lead)}</div>
   <div class="cimkek">${s.uj?`<span class="cimke uj">Új</span>`:""}${s.felkapott?`<span class="cimke felk">Feltörekvő</span>`:""}<span class="cimke ${s.fontossag>=5?"fo5":""}">Fontosság ${s.fontossag}</span>
   <span class="cimke">${fmt(d,{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})}</span><span class="cimke">${esc(s.forras||"")}</span>${s.video?`<span class="cimke">videó</span>`:""}<a class="cimke link" href="${esc(s.url||"https://quicknews.hu/hir/"+s.slug)}" target="_blank" rel="noopener">Megnyitás ↗</a></div>${(s.tenyhiba||[]).length?`<div class="hibasav">Tényhiba-gyanú, jóváhagyás előtt nézd meg: ${s.tenyhiba.map(esc).join("; ")}</div>`:""}${feldolg}</div>${s.auto?autoSor(s.auto,s):""}
   <div class="kapcs">${["facebook","csoport","threads","linkedin","hirdetes"].map(gomb).join("")}${hlGomb}${jova}
@@ -1204,7 +1204,7 @@ const PRRESZ=[["hatas","Hatás"],["hirertek","Hírérték"],["hitelesseg","Hitel
 async function prtolt(){try{PR=await feltetelesen(U.prioritas,PR)}catch(e){document.getElementById("pr-lista").innerHTML=`<div class="hibasav">A beérkező hírek most nem érhetők el.</div>`;return}prrajzol();prNezet()}
 function prUt(s){
  if(s.allapot!=="jovahagyva")return "";
- if(s.kint)return `<div class="pr-ut kesz">✓ Kint van: <a href="https://quicknews.hu/hir/${esc(s.slug)}" target="_blank" rel="noopener" style="color:inherit">megnyitom ↗</a></div>`;
+ if(s.kint)return `<div class="pr-ut kesz">✓ Kint van: <a href="https://quicknews.hu/${s.elemzes?"elemzes":"hir"}/${esc(s.slug)}" target="_blank" rel="noopener" style="color:inherit">megnyitom ↗</a></div>`;
  if(!s.forditva)return `<div class="pr-ut">⏳ Jóváhagytad. A gép most lefordítja és ellenőrzi, néhány percen belül kint lesz.</div>`;
  if(s.tenyellenorzes==="var")return `<div class="pr-ut">⏳ Jóváhagytad, a tényellenőrzés után jelenik meg.</div>`;
  if(s.tenyellenorzes==="hiba")return `<div class="pr-ut" style="color:var(--hiba)">⚠ Jóváhagytad, de a tényellenőrzés hibát talált benne, ezért nem jelenik meg.</div>`;
@@ -1228,7 +1228,7 @@ function prrajzol(){if(!PR)return;const L=document.getElementById("pr-lista");co
  tm.innerHTML=lista.length?`<button class="gomb masod" id="pr-mind">${n===lista.length?"Kijelölés törlése":"Mind ("+lista.length+")"}</button>`+
   `<button class="gomb" id="pr-tjo" ${n?"":"disabled"} title="A kijelölt hírek jóváhagyása">Jóváhagyás${n?" ("+n+")":""}</button><button class="gomb masod" id="pr-tel" ${n?"":"disabled"} title="A kijelölt hírek elutasítása">Elutasítás${n?" ("+n+")":""}</button>`:"";
  L.innerHTML=lista.map(s=>{const sz=s.szint_tenyleges||s.szint;const r=s.reszpont||{};
-  const cimL=s.kint?`https://quicknews.hu/hir/${s.slug}`:s.url;
+  const cimL=s.kint?`https://quicknews.hu/${s.elemzes?"elemzes":"hir"}/${s.slug}`:s.url;
   const resz=PRRESZ.filter(([k])=>r[k]!==undefined).map(([k,n])=>`${n} ${r[k]}`).join(" · ");
   const te=s.tenyellenorzes==="ok"?`<span class="cimke kesz">Tényellenőrizve</span>`:s.tenyellenorzes==="hiba"?`<span class="cimke felk">Ténybeli hiba</span>`:s.tenyellenorzes==="var"?`<span class="cimke">Tényellenőrzésre vár</span>`:"";
   return `<div class="ah pr-sor ${s.allapot}"><div class="pr-bal"><b class="pr-pont num">${s.pont??"-"}</b><span class="pr-szint ${sz}">${s.dupla_of?"Dupla":sz==="X"?"40 alatt":sz}</span>
