@@ -1,0 +1,49 @@
+{
+  "id": "c059c1020c02",
+  "slug": "how-social-department-built-culture-aware-video-discovery",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/how-social-department-built-culture-aware-video-discovery/",
+  "publikalva": "2026-11-18T19:27:56+00:00",
+  "cim": "How Social Department built culture-aware video discovery",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 41 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/16/ML-21816-featured-image.png"
+  },
+  "cim_eredeti": "How Social Department built culture-aware video discovery",
+  "szoveg_eredeti": "This post is co-written by Mariah Miller and Sirajus Salekin from AWS and Nicholas Chase from Social Department.\n\nEntertainment marketing teams manage tens of thousands of video assets across studios, networks, and streaming applications. Most campaigns begin with the same video discovery problem: finding the one moment in the footage that will resonate with an audience. When a brief lands, the clock starts, and what they need is almost never something a database can describe.\n\nSemantic search, on its own, has a ceiling: It answers the question you can articulate. Ask it for a character holding a coffee mug and it will find every coffee mug in a thousand episodes. The queries that actually drive entertainment campaigns look nothing like that. They are questions of judgment: which moment in a show will travel, which line is quotable, and which single frame will work as a meme.\n\nThose questions can’t be typed into a search box. Answering them requires two things the search index doesn’t have: an editorial definition of what “quotable” or “memeable” means for a given library, and a continuously refreshed view of what is moving outside the library. Historically, answering them meant a person with deep knowledge of the show watching footage for a week, and that person doesn’t scale across a catalog.\n\nIn this post, we describe how Social Department, the AI operating system for entertainment marketing, set out to encode those editorial questions as executable retrieval pipelines. The result is QuickSearch, a set of single-action queries that return the clips a marketer is looking for without requiring them to describe it: Shareable Scenes, Quotable Quotes, Memeable Moments, and Trend Align.\n\nThe models in this solution run on Amazon Bedrock, so customer data stays within the AWS data boundary. It isn’t shared with model providers and isn’t used to train the underlying models.\n\nSocial Department’s approach to responsible AI is that AI proposes and people decide. In production, code checks generated output against the source material (for example, a quote is discarded if it isn’t in the episode transcript). Amazon Bedrock Guardrails helps screen customer search text for prompt attacks, and a person on the customer’s team approves every post before it publishes.\n\nSocial Department owns the pipeline architecture, the retrieval system, and the editorial criteria behind each action. TrackIt, an AWS Premier Tier Services Partner, implemented and delivered against that design. TwelveLabs’ Marengo 3.0 and Pegasus 1.2 models on Amazon Bedrock provide the scene-level video reasoning the pipeline builds on. AWS supplies the infrastructure, the model access including Anthropic’s Claude models, and Amazon OpenSearch Service, using its serverless option, Amazon OpenSearch Serverless, for retrieval.\n\nA note on scope: This post describes the AWS portions of the system: the ingest and indexing pipeline, the retrieval path, and the services that run them. The components Social Department owns, including its media and data backbone, content analysis and discovery engine, editorial criteria, and evaluation program, are described only to the depth needed to follow the architecture. The named services that follow are the ones this post is about, not an inventory of Social Department’s full system.\n\nSocial Department is the AI operating system for entertainment marketing, serving major studios, networks, streamers, and FAST applications. It automates campaign strategy, asset creation, publishing, and performance optimization across a client’s full content library. Most of those functions depend on locating the right moment inside the footage first, and semantic clip discovery has been core to the product from the beginning.\n\nEntertainment marketing operates under two constraints that a general-purpose search layer can’t satisfy.\n\nA marketer can describe an object, a location, or a line of dialogue, but not what will travel. That judgment, this moment lands and that one doesn’t, is the actual skill in the job. It was never automatable because it depends on knowing how an audience behaves rather than what a video contains. A search layer that only understands content requires a human to supply the intent, and supplying that intent well requires having already watched the show.\n\nNo amount of video understanding tells you what audiences are talking about this morning. That information is created outside the library and changes hourly, while a library changes only when new content is added. A system that answers these queries has to acquire trend signal continuously and reconcile it against the library at request time.\n\nThat distinction drove the core architectural decision: content understanding and trend acquisition run as independent pipelines on their own schedules and are joined only when a user selects a QuickSearch action.\n\nWith QuickSearch, teams can interact with a video library in a different way, one where the system proposes rather than waits. It provides four actions, each with its own retrieval strategy, editorial criteria, and ranking model. The walkthrough that follows describes how each is implemented. The list here introduces what they do.\n\nAlongside these, Social Department keeps natural-language search for everything the actions don’t cover, and image-based search, where a reference image returns visually similar content across the library.\n\nThe following diagram shows how the three parts of the architecture connect. The content understanding pipeline makes the library searchable, and the trend acquisition lanes pull in external trend signal. The QuickSearch job layer joins the two at request time.\n\nThe system has three parts that run on independent schedules. Two acquire and structure information. The third resolves a user’s single selection into a multi-stage retrieval operation across both.\n\nThis pipeline makes the library legible. It works asynchronously on ingest. An AWS Step Functions state machine orchestrates roughly two dozen Python AWS Lambda functions end to end. The following steps trace one video from upload to indexed clips.\n\nThe pipeline is event-driven end to end. Every Lambda task retries with exponential backoff. The scene-description stage adds a dedicated throttling retry with full jitter. Non-critical enrichment steps degrade gracefully rather than failing the run, and a hard failure routes to an error handler that records the reason and reports the asset as failed.\n\nSame-Region staging for Marengo. Marengo is available in a specific set of AWS Regions. Asynchronous invocation in Amazon Bedrock reads input from and writes output to an Amazon S3 bucket in the same Region as the endpoint. The pipeline is built around those parameters. It stages each video into a dedicated bucket in US East (N. Virginia) before invoking Marengo, then reads the embedding output back from the same bucket. The rest of the infrastructure stays in its home Region while each embedding job runs alongside the model. For model availability by Region, see Model support by AWS Region in Amazon Bedrock.\n\nThis pipeline operates continuously and independently of any library, and it is what makes Trend Align possible.\n\nQuotable Quotes draws on a second, narrower input: an external dialogue popularity signal, used strictly to weight lines that have already circulated. It’s optional by design, so if the signal is unavailable a line gets no boost rather than failing the job.\n\nThis layer is where a single selection becomes a retrieval strategy. It executes each action asynchronously and returns a ranked set of clips.\n\nThree choices made culturally informed retrieval tractable.\n\nA library changes when new content is added. Trends change daily, and early-stage trends faster than that. Coupling the two would mean either reprocessing content against fresh signal, which is computationally untenable, or serving stale trend judgment. Keeping them as independent pipelines joined at request",
+  "begyujtve": "2026-11-18T20:49:02.388005+00:00",
+  "prioritas": {
+    "pont": 41,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 30,
+      "egyediseg": 85,
+      "hitelesseg": 75,
+      "aktualitas": 85,
+      "kozossegi": 45
+    },
+    "elofeszures": 83,
+    "tanult": 83,
+    "indok": "Egyedi vállalati esettanulmány és AWS PR-poszt a szemantikus videókeresésről, alacsony közvetlen hírértékkel. Forrás-tapasztalat: -6.",
+    "tema": "aws video semantic search",
+    "cim_hu": "A Social Department MI-alapú kultúraérzékeny videókeresőt épített az AWS infrastruktúráján",
+    "lead_hu": "A Social Department az AWS segítségével fejlesztett ki szemantikus keresőrendszert. A megoldás segít a szórakoztatóipari marketingeseknek gyorsan megtalálni a megfelelő videós pillanatokat.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-18T20:49:10+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-18T20:49:15+00:00"
+}
