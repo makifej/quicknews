@@ -15444,6 +15444,18 @@
     "t": "2026-11-12T10:00:00"
   },
   {
+    "i": "el-nvidia-cuda-arok-amd-tpu-trainium",
+    "p": "/assets/kartya/elemzes-nvidia-cuda-arok-amd-tpu-trainium-v2.jpg",
+    "c": "Repedezik az Nvidia CUDA-fölénye, az adatközponti bevétele mégis 110%-kal megugrott",
+    "b": "Az Anthropic szerint a Claude egyik kulcsfeladatát a saját modellje 3 nap alatt átültette AMD-chipekre, a Google és az Amazon pedig natív PyTorch-támogatást adott a chipjeinek. **Az Nvidia adatközponti bevétele közben egy év alatt 110%-kal nőtt, 107,6 milliárd dollárra.**",
+    "k": "quicknews.hu elemzés",
+    "g": "elemzés",
+    "u": "/elemzes/nvidia-cuda-arok-amd-tpu-trainium",
+    "sz": "Az Anthropic szerint a Claude egyik kulcsfeladatát a saját modellje 3 nap alatt átültette AMD-chipekre, a Google és az Amazon pedig natív PyTorch-támogatást adott a chipjeinek. Az Nvidia adatközponti bevétele közben egy év alatt 110%-kal nőtt, 107,6 milliárd dollárra. Az AI napok alatt átírja a CUDA-kódot AMD-re, TPU-ra, Trainiumra, Kína Nvidia nélkül tanít. Mégis az Nvidia nő gyorsabban: számok és amit ez neked jelent. Nvidia AMD AI-chipek CUDA Anthropic Az Nvidia legerősebb védelme évekig a chipjei körüli szoftver volt. A CUDA nevű programozási környezetre épült szinte minden AI-fejlesztés, és aki másik chipre akart váltani, annak mérnökök tucatjai dolgoztak hónapokig az átállással. Novemberben ez a fal több helyen megrepedt. Az Anthropic befektetői szerint a Claude Mythos modell nagyjából 3 nap alatt átültette a Claude egyik kulcsfeladatát AMD-chipekre, szinte emberi segítség nélkül. A Google és az Amazon közben natív PyTorch-támogatást adott a saját chipjeinek. A számok mégis meglepnek: az Nvidia adatközponti bevétele egy év alatt 110 százalékkal nőtt, gyorsabban, mint az AMD-é.\n\n```szamok\n[{\"szam\": \"3 nap\", \"felirat\": \"kellett a Claude prompt-feldolgozásához AMD MI355X-en, a s",
+    "d": "nov. 18.",
+    "t": "2026-11-18T10:00:00"
+  },
+  {
     "i": "el-nvidia-huang-lemondas-reszvenypiac",
     "p": "/assets/kartya/elemzes-nvidia-huang-lemondas-reszvenypiac-v2.jpg",
     "c": "Huang lemondott: az Nvidia 30,5%-kal a csúcs alatt, az AMD a botrány hetében +30,3%",
@@ -15466,6 +15478,18 @@
     "sz": "A legjobb letölthető modell, a Kimi K3.1 Pro 46 pontot ér el az általános indexen, a zárt Claude Fable 5.2 65-öt. Kibertámadásban viszont a nyílt DeepSeek az első hálózaton annyit ért el, mint a GPT-6 Sol, nagyjából tized áron. A legjobb nyílt modell 19 ponttal marad el a zárt csúcstól, kibertámadásban mégis közel jár, tized áron. Hol elég a letölthető AI, és hol kell még a zárt? Nyílt súlyú modellek Kimi K3.1 Pro DeepSeek Kiberbiztonság Benchmark Ha ma letöltesz egy nyílt súlyú AI-modellt, a legjobb is nagyjából ott tart, ahol a zárt csúcsmodellek 19 ponttal lejjebb. Az Artificial Analysis általános intelligenciaindexén a zárt Claude Fable 5.2 65 pontot ér el, a legerősebb nyílt modell, a Kimi K3.1 Pro 46-ot. Egy friss kibertámadási mérésen viszont más a kép. Az első vállalati hálózaton a nyílt DeepSeek V4.1 Flash annyi célt ért el, mint a zárt GPT-6 Sol, nagyjából tized áron. A 2 kép elsőre ellentmond egymásnak. Mindkettő igaz, és a különbségből derül ki, mire elég ma egy ingyen letölthető modell, és hol kell még a drága, zárt rendszer.\n\n```szamok\n[{\"szam\": \"65 vs 46\", \"felirat\": \"pont a legjobb zárt és a legjobb nyílt modell az Artificial Analysis indexén\"}, {\"szam\": \"4-7 hó\", \"",
     "d": "nov. 13.",
     "t": "2026-11-13T10:00:00"
+  },
+  {
+    "i": "el-qwen4-max-ar-teljesitmeny-zart-sulyok",
+    "p": "/assets/kartya/elemzes-qwen4-max-ar-teljesitmeny-zart-sulyok-v2.jpg",
+    "c": "Qwen4-Max: harmadáron dolgozik az Opus 5.5-höz képest",
+    "b": "Az Alibaba új csúcsmodellje 43 pontot ér el a független indexen, és egy feladat 3,27 dollárba kerül vele. A súlyait már nem lehet letölteni, **a GPT-6.2 Sol pedig 57 ponttal, 1,01 dollárért és negyedannyi idő alatt végez ugyanazzal.**",
+    "k": "quicknews.hu elemzés",
+    "g": "elemzés",
+    "u": "/elemzes/qwen4-max-ar-teljesitmeny-zart-sulyok",
+    "sz": "Az Alibaba új csúcsmodellje 43 pontot ér el a független indexen, és egy feladat 3,27 dollárba kerül vele. A súlyait már nem lehet letölteni, a GPT-6.2 Sol pedig 57 ponttal, 1,01 dollárért és negyedannyi idő alatt végez ugyanazzal. A Qwen4-Max olcsó tokenárral jön, de sokat ír és lassú. Független számok: hol áll az Opus 5.5, a Kimi K3.1 Pro és a GPT-6.2 Sol mellett, és miért zárt. Qwen4-Max Alibaba Kínai AI-modellek Artificial Analysis AI-árak Ha ma kínai csúcsmodellt választanál, papíron a Qwen4-Max tűnik a legjobb vételnek. 1 millió kimeneti token 4,50 dollárba kerül vele, a Claude Opus 5.5-tel 20-ba. A független Artificial Analysis mérése szerint viszont a tokenár csak a történet fele. A modell sokat ír és lassan dolgozik, ezért egy átlagos tesztfeladat 3,27 dollárba kerül vele. Ugyanez a feladat az OpenAI GPT-6.2 Sol modelljével 1,01 dollár, és a Sol közben 14 ponttal jobb eredményt ér el. A másik fordulat: az előd, a Qwen3.8-Max súlyait augusztusban bárki letölthette. A Qwen4-Max súlyait az Alibaba nem adja ki.\n\n```szamok\n[{\"szam\": \"43\", \"felirat\": \"pont a Qwen4-Max az Artificial Analysis indexén, a csúcs 65 pont\"}, {\"szam\": \"$4,50\", \"felirat\": \"1 millió kimeneti token ára, a C",
+    "d": "nov. 18.",
+    "t": "2026-11-18T10:00:00"
   },
   {
     "i": "el-robotaxi-2026-tesla-waymo-europa",
