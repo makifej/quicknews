@@ -1,0 +1,49 @@
+{
+  "id": "a0b7616d9780",
+  "slug": "perplexity-computer-adds-multiagent-up-to-16-ai-agents-that-cross",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/17/perplexity-computer-multiagent-effort-level/",
+  "publikalva": "2026-11-17T22:52:04+00:00",
+  "cim": "Perplexity Computer Adds Multiagent: Up to 16 AI Agents That Cross-Check Work",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 75 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-14534-1-scaled.png"
+  },
+  "cim_eredeti": "Perplexity Computer Adds Multiagent: Up to 16 AI Agents That Cross-Check Work",
+  "szoveg_eredeti": "Perplexity has added Multiagent to Computer , its agent platform for research and multistep work. Perplexity Computer Multiagent is a new effort level that sits above Ultra. A lead agent runs a team of agents on different frontier models. Those agents work in parallel, share findings directly and check each other’s work. For developers and analysts, the change is structural. Supporting agents no longer report only to a single lead.\n\n TL;DR \n\n Size: Up to 16 agents per task, plus the lead. Context length: Not disclosed.\n\n Runs on: Perplexity’s cloud. Web only, Perplexity Max plan. No local or quantized option.\n\n Performance: Not benchmarked. Perplexity published no accuracy or speed numbers.\n\n Best: 16-agent cap with direct agent-to-agent checks across 3 default model families (Claude, GPT, Gemini).\n\n What is Perplexity Computer Multiagent? \n\n Multiagent is the highest effort level in Perplexity Computer. It coordinates AI models to analyze complex tasks and cross-check their work, per Perplexity’s announcement .\n\n It builds on effort controls launched on September 17, 2026 . That release added 4 settings: Light, Standard, High and Ultra. Each setting picks the orchestrator model and its reasoning depth. Lower settings use less expensive models.\n\n How does Multiagent work? \n\n The lead agent plans the task and assigns parts to supporting agents. It can assign up to 16 agents and also does part of the work itself.\n\n In Perplexity’s example, Claude Fable 5.2 plans the task. It splits work among agents running Claude Opus 5.5, GPT 6.1 Sol and Gemini 4 Carbon. Those 3 models form the default team. Fable 5.2 and GPT 6 Astra join as supporting agents only when requested or needed.\n\n Key mechanics from the launch post : \n\n Direct sharing: Agents use evidence found by others, question assumptions and flag discrepancies.\n\n Shared files: Agents coordinate edits to shared files. One agent can update revenue assumptions and notify another to reuse them in a valuation.\n\n Single point of contact: Users talk only to the lead. The lead merges findings into one response.\n\n Follow-ups: The lead tells affected agents what changed. The team continues its existing work.\n\n Control: Users see which agents and models are running. Stopping the thread stops the whole team.\n\n Model choice: Users can name specific models in their query.\n\n Multiagent vs Ultra vs Model Council \n\n Perplexity now offers 3 ways to put several models on 1 problem: \n\n Ultra: One lead delegates to supporting agents. Those agents report only to the lead.\n\n Multiagent: The same lead model as Ultra coordinates agents. They talk to each other and edit shared deliverables.\n\n Model Council: Several models answer the same question independently. Computer then shows where they agree and disagree. Model Council came to Computer in July 2026.\n\n Perplexity positions Multiagent for large, interconnected work that can run in parallel. Its examples include deal data room diligence, multi-scenario forecasts, annual report review, competing-hypothesis research and year-end tax preparation.\n\n How does it compare with other multi-agent products? \n\n Feature Perplexity Computer Multiagent Kimi Agent Swarm Manus Wide Research SuperGrok Heavy Max parallel agents 16 (plus lead) Up to 300 sub-agents “Hundreds”; tested up to 250 items Not disclosed Agent-to-agent communication Yes, direct, plus shared files Not disclosed Not disclosed (main agent assembles results) Agents compare work (per xAI launch claims) Models used Mixed vendors: Claude Opus 5.5, GPT 6.1 Sol, Gemini 4 Carbon (default) Kimi K3 (K3 Swarm) Not disclosed Grok 4 Heavy Published performance data None 4.5x faster than single-agent sequential (K2.6) None Not disclosed for current version Platforms Web only Web and mobile app Web Not disclosed Plan / price Perplexity Max, $167/month billed annually Not disclosed Not disclosed $300/month at launch \n\n The clearest difference is model diversity. Perplexity mixes Anthropic, OpenAI and Google models in 1 team. Kimi and Grok run their own model families. Kimi trades depth of debate for scale, with up to 300 sub-agents.\n\n Deployment and availability \n\n Multiagent is available to all Perplexity Max subscribers. It runs on the web only. Users select Multiagent in Computer’s effort slider when starting a new task.\n\n Perplexity’s pricing page lists Max at $167 per month billed annually. Max includes 10,000 Computer credits per month. The launch post does not state credit cost per Multiagent task.\n\n Key Takeaways \n\n Multiagent is a new Computer effort level above Ultra.\n\n A lead runs up to 16 agents that share findings directly.\n\n Default team: Claude Opus 5.5, GPT 6.1 Sol and Gemini 4 Carbon.\n\n Max-only, web-only, with no published benchmarks.\n\n Best fit: data room diligence and multi-scenario forecasting.\n\n Check out the official announcement , the effort controls post and Perplexity pricing . You can check the deployment options and specs here through our GPULeaderboard.com chrome extension .\n\n Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Perplexity Computer Adds Multiagent: Up to 16 AI Agents That Cross-Check Work appeared first on MarkTechPost .",
+  "begyujtve": "2026-11-18T07:05:28.959333+00:00",
+  "prioritas": {
+    "pont": 75,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 80,
+      "hirertek": 85,
+      "egyediseg": 88,
+      "hitelesseg": 76,
+      "aktualitas": 92,
+      "kozossegi": 76
+    },
+    "elofeszures": 87,
+    "tanult": 77,
+    "indok": "Jelentős architektúrális előrelépés a Perplexity ágensplatformján többmodelles ellenőrzéssel Forrás-tapasztalat: -7.",
+    "tema": "perplexity computer multiagent",
+    "cim_hu": "Akár 16 egymást ellenőrző AI-ágenst is csatatasorba állít a Perplexity új rendszere",
+    "lead_hu": "A Perplexity bemutatta a Computer Multiagent funkciót, ahol egy vezető ágens irányítása alatt több különböző csúcsmodell dolgozik párhuzamosan és ellenőrzi egymás eredményeit.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-18T09:10:09+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-18T09:16:49+00:00"
+}

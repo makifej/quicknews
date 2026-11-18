@@ -1,0 +1,49 @@
+{
+  "id": "d1d0cac17b52",
+  "slug": "foojay-podcast-105-security-is-your-job-owasp-ai-and-safer-java",
+  "forras_id": "dailydev",
+  "forras_nev": "Foojay.io (daily.dev)",
+  "url": "https://foojay.io/today/foojay-podcast-105",
+  "publikalva": "2026-11-16T00:00:00+00:00",
+  "cim": "Foojay Podcast #105: Security Is Your Job: OWASP, AI and Safer Java Dependencies with Jim Manico",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/29d4c6d8148e69f04d7ecbc54491e8a7?_a=AQAEuop"
+  },
+  "cim_eredeti": "Foojay Podcast #105: Security Is Your Job: OWASP, AI and Safer Java Dependencies with Jim Manico",
+  "szoveg_eredeti": "How safe is your Java application, and how safe are the dependencies it ships with? If you build software that handles sensitive data and you have no security process, Jim Manico has a blunt word for it: negligent.\n\nIn this episode, Jim Manico, founder of Manicode Security, Java Champion and OWASP project leader, explains what OWASP actually is and which of its projects matter to a Java developer. He recently brought three nearly abandoned libraries back to life, the OWASP Java Encoder, the OWASP Java HTML Sanitizer and the OWASP JSON Sanitizer, using AI-assisted workflows, and he shares what that taught him.\n\nWe cover when to use the encoder and the sanitizer, why untrusted input must be checked on both the client and the server, how a few kilobytes of nested CSS can cause a denial-of-service, and why small vulnerabilities become a major one when an attacker chains them together. Jim also argues for radically fewer third-party libraries, explains how to keep the ones you have up to date, and ends with what to do on Monday morning if your team has no security process yet.\n\nYou can listen and subscribe to the Foojay Podcast on:\n\nAutomatically generated from the audio, so it can contain errors in names and technical terms. Suggest a correction.\n\n[0:00] How safe is your Java application and the dependencies you are using?\n\n[0:04] Welcome to the Foojay podcast. All your news about OpenJDK.\n\n[0:11] Welcome to another episode of the Foojay podcast. Let’s talk about security again. Two weeks ago I talked with Simon Ritter in Foojay podcast episode 104 about the runtime site, a record number of fixes in the October Java updates, two emergency releases within a week, and why running unsupported OpenJDK has become a security risk. Most of these issues were found by AI, of course, these days, and some got exploited within hours, so keeping your runtime code and dependencies up to date is more critical than ever. And speaking of dependencies, today we look at the other side, the libraries and the code you write yourself. My guest is Jim Manico, founder of Manicode Security, Java champion, and OWASP project leader.\n\n[1:02] Welcome to the podcast, Jim, and thank you for your article on Foojay. So you asked everyone to update the OWASP Java Encoder and the Java HTML Sanitizer. With the security news of the last weeks, I think the timing could not be better. So for people who don’t know you, what’s the work you’re doing related to application security?\n\n[1:26] Well, I’ve been a Java programmer since the late ’90s. I began writing Java applets with Java 1.02 back in the late ’90s, so I’ve been a fan of Java and a Java programmer most of my life. But I switched primarily to security about 15 years ago where I work with my customers to build, review, architect all secure software as a focus. I got involved in a lot of like high-risk type situations, so I had to learn about secure coding at a time when there wasn’t much literature in that area. So\n\n[2:00] So last like 15 years I’ve either been writing secure code, reviewing secure code, or being as an educator, my main job now teaching developers how to write secure software.\n\n[2:11] Okay. And by the way, is it OWASP or is it O-double-U-ASP?\n\n[2:16] The Open Web Application Security Project, OWASP.\n\n[2:21] I heard about it. It has one of those rule sets you should know and apply to projects, but can you explain it in two sentences?\n\n[2:31] OWASP is an international charity that has conferences, documentation, and code libraries and tools to help developers build and assess software for the sake of security.\n\n[2:46] Okay. But most people may know it from the top 10 and those are applicable to everything in software development? Is it web development? What are those rules?\n\n[2:56] OWASP went from the Open Web Application Security Project to the Open Worldwide Application Security Project, a big name change because now we have mobile software, API software, web front ends and web software and all software. We’re now expanding our nonprofit to handle any kind of software security topic. And it’s it’s there’s not really a set of rules per se. It ’s a variety of projects with different projects that site rules. Like there’s once there’s the OWASP top 10 which is really made for awareness. That’s for education. But then there’s the ASVS, the Application Security Verification Standard. That’s more of a set of secure coding requirements. And I founded the AI SVS, the Artificial Intelligence Security Verification Standard around deploying and building your own AI models and agents. And so and just to be honest with you, OWASP is a little bit chaotic. It’s a nonprofit.\n\n[4:01] It’s not like a formal group like NIST. It’s more like a big group of smart cats doing all kinds of wild things.\n\n[4:10] With AI, isn’t that very hard to catch up with your rule set and how you should build something with AI that’s secure? Is it not evolving too fast?\n\n[4:22] Well, it’s a combination Well, the Artificial Intelligence Security Verification Standard, it’s bleeding edge, but the it’s I don’t do it by myself. I work with Dr. Russ, who’s a PhD in machine learning. I work with Rico Carmeda out of Germany and Otto Sallen out of Finland. All three of them have been deep in the AI, like literally building training models level of AI for many years now. And this is something I studied for about four years. So and between the four of us, we came up with Like I did the initial set of requirements. Rico and Otto jumped in and began issuing PRs. So I made them co-leads. They’re brilliant. And then we had Because it’s such an interesting topic, I’ve had contributors It’s from Apple, contributors from other very large areas who who’ve contributed issues and PRs because we’re not doing this as like a secret cabal in the basement somewhere. We’re doing this on GitHub in public where we’re getting slammed by other contributors helping us make it better.\n\n[5:27] The other thing is that AI SVS, Artificial Intelligence Security Verification Standard, we’re at version 1.02. And we’re working on that now. This is our third like small version of it. We agree that trying to put this out now, it’s going to be very imperfect, but Frank, you got This is so important to get right. We have got to start somewhere. And the more we put out and the more contribution we get, the more we fine-tune it. And we already agreed that we’re at the 1.02 making point releases to fine-tune the original version. When we move to AI SVS 2.0, we’re going to re-reshuffle the deck based on how things change. And think of the ASVS. That’s like 300 plus requirements for web and API security. They’re on version five. And that’s just they keep refining it every version. We intend to do the same, but we got to start somewhere. And so\n\n[6:25] Yeah, start somewhere. And it moves fast, so you have to keep up. so this podcast is mainly for people doing Java development. so AI is, yeah, a broad topic. So I guess it also applies to any Java application which uses AI. Are there other OWASP projects I should know about as a Java developer?\n\n[6:49] Well, Michael Samuel from Google and Jeff Ikinouski, who was a robotics expert and a and two of the best programmers in Java I’ve ever met in my life. I kind of corralled them like 15 years ago to build two projects, the OWASP Java Encoder and the OWASP HTML Sanitizer, which we’ll talk about in a bit. There’s another project called the OWASP JSON Sanitizer, which is being used as a preprocessor before you hit a JSON parser, which can have security vulnerabilities. And all three of these libraries had become defunct, but yet they were still being used in security products and high risk situations around the world. So as I study it and I don’t have time to like properly maintain three libraries, but then AI shows up.\n\n[7:38] And with respect, I use AI at like with spectrum in development, with multiple model reviews. I say with respect, I have a mature workflow i",
+  "begyujtve": "2026-11-18T07:05:55.470240+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 15,
+      "hirertek": 15,
+      "egyediseg": 95,
+      "hitelesseg": 65,
+      "aktualitas": 30,
+      "kozossegi": 22
+    },
+    "elofeszures": 53,
+    "tanult": 33,
+    "indok": "Régebbi szoftverfejlesztési és biztonsági podcast beszélgetés Java fejlesztőknek.",
+    "tema": "java owasp security podcast",
+    "cim_hu": "A Java-alkalmazások biztonságáról tanácskoztak a Foojay Podcast legújabb adásában",
+    "lead_hu": "Jim Manico biztonsági szakértő a nyílt forráskódú függőségek védelméről és az OWASP projektek jelentőségéről beszélt.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-18T09:10:09+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-18T09:18:40+00:00"
+}
