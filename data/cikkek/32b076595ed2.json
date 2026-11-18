@@ -1,0 +1,49 @@
+{
+  "id": "32b076595ed2",
+  "slug": "run-ai-agents-in-teamcity",
+  "forras_id": "dailydev",
+  "forras_nev": "JetBrains (daily.dev)",
+  "url": "https://blog.jetbrains.com/teamcity/2026/11/run-ai-agents-in-teamcity",
+  "publikalva": "2026-11-16T00:00:00+00:00",
+  "cim": "Run AI Agents in TeamCity",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 53 pont, tendencia 20%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/8a3eef013effb73c6f395d37dc8104da?_a=AQAEuop"
+  },
+  "cim_eredeti": "Run AI Agents in TeamCity",
+  "szoveg_eredeti": "AI coding agents don’t have to run only on a developer’s machine. You can also make them part of your CI/CD workflows to review code, investigate failed builds, update documentation, or handle other repository tasks.\n\nThe new experimental AI Agents plugin for TeamCity lets you run Codex and Claude Code directly in TeamCity builds and connect them to the LLM provider of your choice.\n\nThe plugin installs the coding agent on the TeamCity build agent, provides credentials safely for the duration of the build, and collects usage statistics and agent trajectories.\n\nWhen a build starts, the plugin checks whether the selected client is available and installs it if necessary. You can then call codex or claude from a regular TeamCity Command Line build step.\n\nThe plugin handles much of the setup needed to run coding agents reliably in CI.\n\nThe plugin stores your provider credentials as a TeamCity connection. It currently supports:\n\nThis is not limited to models provided directly by these services. Gateways such as OpenRouter and LiteLLM give you access to a much wider range of models, so you can choose models and providers that make sense for your team.\n\nYou don’t have to install Codex or Claude Code manually on every TeamCity build agent. When a build starts, the plugin checks whether the selected client is available and installs it if necessary. You can then call codex or claude from a regular TeamCity Command Line build step.\n\nTeamCity build agents are often reused across builds, so leaving provider credentials on an agent can be a security risk. The plugin provides the necessary credentials to the TeamCity agent only for the duration of the build and removes them afterward.\n\nYour provider credentials are managed through the TeamCity connection rather than permanently stored on individual build agents.\n\nThe plugin collects usage statistics from agent runs and publishes them as TeamCity statistical values, including prompt, completion, cached, and total token counts.\n\nBecause these are regular TeamCity statistics, you can use them to track AI usage over time and create charts. This can also help you spot unexpected changes in token consumption and investigate possible cost anomalies.\n\nWhen an AI agent does something unexpected, seeing its final response is often not enough. You need to understand what happened along the way.\n\nThe plugin records the agent trajectory and makes it available in two formats:\n\nThe JSON format is especially useful when you want to analyze multiple agent runs together, like to understand why an agent behaves a certain way or how to adjust the original prompt to get better results.\n\nYou can also use a local coding agent together with the TeamCity CLI to retrieve trajectories from multiple builds and analyze them in batches. This gives you a practical feedback loop: run an agent in CI, collect its trajectories, analyze what happened across multiple runs, adjust the prompt, and try again.\n\nThis makes trajectories useful both for debugging individual builds and improving the agent workflows you run in CI.\n\nInstall the plugin from JetBrains Marketplace and add it to your TeamCity server.\n\nFirst, you need to set up a connection. The plugin supports various LLM providers and gateways. Open Project Settings | Connections.\n\nEnter the credentials required for your connection and save it.\n\nIf you’re using JetBrains Air, enter your service account client ID and client secret. Each team can use its own service account, which makes it possible to track shared AI usage and spending.\n\nOpen the build configuration where you want to use the coding agent and add the AI Agent build feature.\n\nSelect Codex or Claude Code, then select the provider connection.\n\nAdd a Command Line build step and call codex or claude as usual.\n\ncodex exec --ephemeral --skip-git-repo-check \"summarize this repository\"\n\nThe plugin finds or installs the selected client and prepares its configuration for the build. You can replace these example prompts with whatever task you want the agent to perform as part of your build.\n\nAfter the build finishes, the plugin publishes telemetry and agent trajectory files as hidden build artifacts under: .teamcity/ai-agents/.\n\nIt also publishes statistical values, such as prompt, completion, cached, and total token counts.\n\nFor a more convenient view, the plugin generates an HTML report showing the agent’s messages, tool calls, and token usage.\n\nYou can make this report available directly from the TeamCity build results.\n\nGo to Project Settings | Report Tabs, create a build report tab, and use: .teamcity/ai-agents/trajectory.html as the start page and “AI Agent Trajectory” as the name. This gives you a tab where you can inspect what the agent did during the build.\n\nThe generated artifacts may contain prompts, source code, and model output. Treat them the same way you would other sensitive build artifacts and make sure access is appropriately restricted.\n\nThe plugin is currently experimental, and its functionality may change as we continue developing it.\n\nYou can install it from JetBrains Marketplace and try running Codex or Claude Code in your TeamCity builds.\n\nWe’d love to hear how you’re using it and what you’d like us to improve. Share your feedback in the TeamCity Slack community.\n\nBy submitting this form, I agree that JetBrains s.r.o. (\"JetBrains\") may use my name, email address, and location data to send me newsletters, including commercial communications, and to process my personal data for this purpose. I agree that JetBrains may process said data using third-party services for this purpose in accordance with the JetBrains Privacy Policy. I understand that I can revoke this consent at any time in my profile. In addition, an unsubscribe link is included in each email.\n\nTL;DR: At some point, we crossed an interesting threshold. AI agents can now set up TeamCity build configurations and even full build chains, add build features, and configure parameters. This works because TeamCity documentation is structured and accessible through MCP via Context7, and because …\n\nThis article references the data from several JetBrains researches in attempts to analyze how AI is currently used in DevOps and CI/CD areas.\n\nWhen it comes to legacy projects, how can we help AI agents see the bigger picture? In this article, we explore how we did it in TeamCity.",
+  "begyujtve": "2026-11-18T11:19:21.411289+00:00",
+  "prioritas": {
+    "pont": 53,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 60,
+      "egyediseg": 90,
+      "hitelesseg": 70,
+      "aktualitas": 39,
+      "kozossegi": 63
+    },
+    "elofeszures": 74,
+    "tanult": 59,
+    "indok": "Praktikus fejlesztői eszközfrissítés a JetBrainstől, de közepes általános hírértékkel bír. Forrás-tapasztalat: -9. A forrás P3-as híreiből eddig kb. 20%-ot fogadtál el.",
+    "tema": "jetbrains teamcity ai agents",
+    "cim_hu": "Már a CI/CD folyamatokban is futtathatók AI-ágensek a TeamCity frissítésével",
+    "lead_hu": "A JetBrains új kísérleti bővítménye lehetővé teszi a Codex és Claude Code ágensek futtatását a TeamCity build rendszerekben a kódellenőrzés és dokumentációfrissítés automatizálására.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-18T11:19:41+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-18T11:19:52+00:00"
+}

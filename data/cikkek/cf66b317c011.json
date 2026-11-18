@@ -1,0 +1,49 @@
+{
+  "id": "cf66b317c011",
+  "slug": "pre-training-without-learning-rate-decay",
+  "forras_id": "dailydev",
+  "forras_nev": "Sebastian Raschka (daily.dev)",
+  "url": "https://sebastianraschka.com/blog/2026/llm-pretraining-without-learning-rate-decay.html",
+  "publikalva": "2026-11-17T16:00:54+00:00",
+  "cim": "Pre-Training Without Learning Rate Decay",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 62 pont, tendencia 20%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/52c8f57c45a10e84d87150620490aeee?_a=AQAEuop"
+  },
+  "cim_eredeti": "Pre-Training Without Learning Rate Decay",
+  "szoveg_eredeti": "This could be the start of a trend in new pre-training recipes: No learning rate (LR) decay phase anymore. (Also seen in Kolibri.)\n\nInstead, use a constant LR plus averaging the last N checkpoints (or a running weight average).\n\nI guess that makes it easier in practice because you don’t have to commit to a total training length upfront.\n\nA little meta analysis based on those who share training details.\n\nSource: lightly edited website version of my X post, quoting DatologyAI’s note on weight averaging.",
+  "begyujtve": "2026-11-18T11:19:21.410844+00:00",
+  "prioritas": {
+    "pont": 62,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 70,
+      "egyediseg": 95,
+      "hitelesseg": 70,
+      "aktualitas": 72,
+      "kozossegi": 60
+    },
+    "elofeszures": 80,
+    "tanult": 75,
+    "indok": "Technikai elemzés az AI modellek előtanításának új módszertanáról szakmai közönségnek. Forrás-tapasztalat: -9. A forrás P3-as híreiből eddig kb. 20%-ot fogadtál el.",
+    "tema": "llm pre-training learning rate",
+    "cim_hu": "Új trend az AI-képzésben: az előtanítás már nem igényel tanulási ütem csökkentést",
+    "lead_hu": "Sebastian Raschka elemzése szerint az újabb nagy nyelvi modelleknél elhagyják a tanulási ütem fokozatos csökkentését, ami rugalmasabbá teszi a modellképzést.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-18T11:19:41+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-18T11:19:56+00:00"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "64a9cbe6d53f",
+  "slug": "claude-has-a-drift-problem-and-the-fix-wasn-t-better-prompting",
+  "forras_id": "dailydev",
+  "forras_nev": "XDA Developers (daily.dev)",
+  "url": "https://www.xda-developers.com/claude-has-drift-problem-the-fix-wasnt-better-prompting",
+  "publikalva": "2026-11-16T17:31:22+00:00",
+  "cim": "Claude has a drift problem, and the fix wasn't better prompting",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 47 pont, tendencia 20%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/183df63e9aa6fece8f6e531a323fe16d?_a=AQAEuop"
+  },
+  "cim_eredeti": "Claude has a drift problem, and the fix wasn't better prompting",
+  "szoveg_eredeti": "Anyone who's used Claude has probably encountered its drift problem from time to time. You set a rule in the first message, even something simple like how a reply should be formatted, it holds up for about a dozen turns then starts slipping. Further in, Claude seems to start answering a different question than the one you asked, or suddenly agrees with something it pushed back on earlier.\n\nAlthough drift is expected to happen when you run out of context, that's not what I'm talking about here. Claude drift can happen earlier in a session or in short sessions too. Drift is what users report as Claude gradually veering off the instructions you gave it, even though the session is nowhere near running out of room. I found a way to reel it back in, and it has nothing to do with writing better prompts.\n\nDrift simply means the chat drifts away from your instructions, specific nuggets of information you told it to keep in mind, or the theme of the session as a whole. Anthropic reports scores on a test that gets close to this issue, called MRCR v2, which hides eight near-identical requests across a million tokens of conversation and asks the model to repeat back its answer to one specific request. When Opus 4.6 launched in February, it scored 76% on that version of the test, while Sonnet 4.5 managed 18.5% on the same one.\n\nI use the Opus models for most of my tasks and it still happens to me though. I reckon a stronger model helps a bit, but honestly I can't say how much since MRCR checks whether Claude can find something buried in a chat and not whether it keeps doing what you asked. A Microsoft and Salesforce study that simulated over 200,000 conversations across 15 models, Claude 3.7 Sonnet among them, found the models performed about 39% worse on average when a task was spread over several messages instead of given all at once. The drop was about the same size for strong models as for weaker ones.\n\nThe Lost in the Middle paper found models use information best when it's at the start or end of what they're reading, and worst when it's somewhere in the middle. I reckon that's bad news for the reminders and corrections you send halfway through a session, since every one of them lands somewhere in that middle.\n\nFor me, one of the most annoying Claude drift problems is the em dash. I used to love the em dash and used it constantly before AI became a thing. But now it's so heavily associated with robotic AI responses, it's become really annoying to see in any response; it almost feels like the model is mocking me when it responds with em dashes. So I'm constantly finding myself telling Claude to not respond with em dashes because it seems to constantly lose that instruction somewhere in the middle of a session. But I've found a couple more effective ways of getting Claude to stick to my rules and stay on topic.\n\nProject instructions are the closest thing Claude chat has to the CLAUDE.md file people use in Claude Code. Whatever you write there applies to every conversation in that project, and these rules tend to hold much more reliably throughout a session than rules you add to the first message. If you'd rather skip projects, you could upload a rules document to an individual session, but you might find yourself having to remind Claude about the doc or uploading it again halfway through.\n\nThe reason projects are more effective than rules you type mid-chat comes back to that middle of the chat. A rule that gets typed into the conversation gets pushed back further and further as the chat grows, while project instructions are already in place when the chat starts and gets taken into account with every response. If you upload files to a project instead, keep in mind that once they get close, Claude switches to RAG and searches them only for the relevant bits instead of absorbing the full thing.\n\nMost of our instincts when a reply goes wrong is to type back a correction. The problem with this is that it leaves the bad reply in the chat along with your complaint right under it, so Claude rereads both for all the messages following them. That Microsoft and Salesforce multi-turn study I mentioned earlier found models lean heavily on assumptions they make early on, and a correction leaves that assumption in the chat.\n\nThe way around this is to use the editing function. Claude actually tells you right in the editor that saving the edited response will create a new conversation branch, and that branch keeps everything from before your edited message, then picks up from the new version of the message without the bad reply that came right after it the first time.\n\nThe old branch used to be accessible because you could navigate to it using arrows, but it seems a new UI update removed them. Major flaw in my opinion; users should be able to navigate through a forked conversation. Either way, the functionality still works the same in terms of getting a \"clean slate\".\n\nWhat Anthropic doesn't spell out is whether the old branch is completely left out of what Claude reads on the new one. I'd assume it is, since that's how branching usually works. For me, this seems to have improved the drift problem so I reckon that the bad replies before the editing get left out from the new branch at least somewhat.\n\nWhen I have to correct Claude a second time, that's when I know it's my cue to start fresh. I'll actually ask Claude for a little handoff summary of what the session was about, including what we were working on, what's already been decided, and where things currently stand. Then I paste that into a new chat inside the same project.\n\nStarting fresh might seem painfully obvious, but it's actually a fix that the research backs up. In that multi-turn study, giving models all the information in one fresh prompt got them back to around 95% of their best-case performance. Recapping everything at the end of the existing conversation helped by roughly 15 to 20%, but didn't get back to single-prompt levels, which is basically what tacking a summary onto the old chat would do.\n\nThere's a usage benefit, too. A new chat gets a fresh context window, and Anthropic says longer conversations use more of your usage limit once automatic context management kicks in. So this is like two birds one stone - you end up saving a little on your usage budget when you start fresh.\n\nThe funny thing is that getting better results with Claude doesn't really involve writing a better prompt. In my experience, Claude models are exceptionally capable of inferring what you mean even when you don't have the time, or perhaps the knowledge, to prompt engineer every single detail, so a lot of the time, getting better results doesn't involve writing smarter prompts. These fixes for drift are very simple, which is exactly what makes them overlooked. Next time your sessions start to drift, instead of getting frustrated and taking it out in the chat, consider starting a fresh branch or session and adding it to a project.",
+  "begyujtve": "2026-11-18T11:19:21.411078+00:00",
+  "prioritas": {
+    "pont": 47,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 50,
+      "egyediseg": 90,
+      "hitelesseg": 62,
+      "aktualitas": 54,
+      "kozossegi": 65
+    },
+    "elofeszures": 74,
+    "tanult": 79,
+    "indok": "Felhasználói megfigyelés a Claude kontextusvesztési problémáiról, korlátozott hírértékkel. Forrás-tapasztalat: -9. A forrás P3-as híreiből eddig kb. 20%-ot fogadtál el.",
+    "tema": "claude llm context drift",
+    "cim_hu": "Súlyos kontextustévesztési problémákkal küzd a Claude AI modell",
+    "lead_hu": "A felhasználói tapasztalatok szerint a Claude hosszabb beszélgetések során hajlamos elfelejteni a kezdeti szabályokat és eltérni az eredeti feladattól, amit a promptok sem oldanak meg.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-18T11:19:41+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-18T11:19:54+00:00"
+}
