@@ -1,6 +1,6 @@
 {
   "id": "0e8f29630590",
-  "slug": "arcot-es-teljes-karaktert-is-tud-cserelni-a-krea-uj-videos-funkcioja",
+  "slug": "megujult-a-krea-video-swap-szemely-es-karakterelem-csere-videokban",
   "forras_id": "krea",
   "forras_nev": "Krea",
   "url": "https://www.krea.ai/blog/how-to-face-swap-a-video-with-ai",
@@ -14,18 +14,18 @@
   "forrasok": [],
   "szoveg_eredeti": "To face swap a video with AI, you give a tool the clip you want to keep and a photo of the person you want in it. The tool redraws that person into every frame and leaves the rest alone: the movement, the camera, the cuts and the sound. On Krea that tool is Video Swap. You upload one video, add one to four reference images, and generate.\n\nThis guide walks through a full swap in Krea Video Swap, then covers what makes a clean result, how to swap a whole character instead of only a face, how to handle several people, how developers run the same swap through the API and MCP, and the consent rules that apply to all of it.\n\nBefore you start: Video Swap runs on a paid Krea plan. You can open it and look around without one, but you need to sign in and have a plan to generate. See Krea pricing for the plans.\n\nVideo Swap is built to keep the source clip’s performance and replace what is in it. Krea describes it as replacing people, outfits, objects or the setting in a video while keeping its motion, timing, camera and sound. The original audio is laid back onto the result, so dialogue and music stay as they were.\n\nThe part that matters for a face swap: Video Swap swaps the whole person shown in your reference, not only the face. If your reference photo shows a woman with short red hair in a denim jacket, the result is that woman, hair and jacket included, moving the way the original person moved. That is usually what people mean by “put me in this video”. If you only want to change a face and keep everything else, read Swap a whole character, an outfit, or just a face below.\n\nYou also do not have to tell the tool what each reference replaces. Krea plans that step for you: it looks at frames from the source and at your references, and works out which person (or object, outfit or background) each image should replace. A prompt only overrides that plan when you want a specific mapping.\n\nGo to krea.ai/apps/video-face-swap and open the tool, or go straight to Krea Video with Video Swap selected. Video Swap is the first mode in Krea Video’s mode menu.\n\nNo clip of your own yet? The Explore grid in Video Swap has example swaps you can open and recreate with your own references. It is a quick way to learn what kind of footage works before you shoot anything.\n\nThe source is the clip you want to keep: the movement, the framing, the camera, the sound. In the panel it is labeled Video to edit, with the hint “Upload a video to swap things in it.”\n\nLength limits depend on the model you pick in step 5:\n\nIf your clip is longer than the selected model takes, Krea opens a trim dialog so you can keep the part you need. Only the trimmed part is swapped, and only that part is priced. Switching to a model with a shorter limit marks the video “Too long” until you trim it.\n\nReferences are the photos of what you want to see in the video. The panel labels them References, with the hint “These will replace their closest match in your video.” You can add up to four.\n\nFor a face swap, the reference is a photo of the person who should appear. Use a sharp, well-lit image where the face is clearly visible. A head-and-shoulders shot works, and a full-body photo also tells the tool how the person is dressed. Each reference is treated as a complete description of the new person, so whatever the photo shows (hair, glasses, jacket) can come through in the result.\n\nOnly upload a photo of someone who agreed to it. More on that in Use video face swap responsibly.\n\nThe prompt field is labeled Prompt (optional). Your inputs appear as pills you can mention: the video is @vid-1 and the references are @img-1 to @img-4. The placeholder shows the kind of prompt that helps:\n\nMost single-person swaps need no prompt at all. Add one when the clip has several people and you care who becomes whom, or when the tool’s automatic choice picked the wrong person on a first run.\n\nIf one model gets a clip wrong, the same clip on another model is a reasonable second attempt.\n\nPick the quality (480p, 720p or 1080p on Standard and Lite; 768p or 1080p on Recast). The panel shows the cost in compute units before you click, and the price scales with the length of the source and the resolution. 720p is the default and a sensible first pass. Run 1080p once you know the swap works.\n\nThe finished video appears in your Krea Video history labeled Video Swap. It keeps the source’s length and audio. The aspect ratio follows the source; some renders snap to the nearest standard frame (16:9, 9:16, 4:3, 1:1, 3:4 or 21:9).\n\nWatch the whole clip at full size, not just the first second. Look at the frames right after a cut, the moments when the person turns away from the camera, and any close-up. Those are where a swap is most likely to slip.\n\nIf the result looks right but soft, run it through Krea’s video upscaler before you export. If you want to extend the scene with new shots of the same character, generate them with the AI video generator using the same reference image.\n\nUpload a clip, add up to four reference photos, and Video Swap replaces the person while keeping the motion, camera and sound.\n\nMost bad swaps trace back to the inputs. These are the habits that matter most:\n\nVideo Swap decides what each reference is for. Krea sorts every reference into one of four kinds: a character (a person to swap in), clothing, an object, or a background. That gives you a few different jobs from the same panel:\n\nOnly the face, keeping the original hair and clothes? Video Swap does not have a separate face-only mode. It treats a person reference as the whole person. The closest you can get is a tight headshot as the reference plus a prompt such as “keep the original clothes and hairstyle”, and then checking the result. Treat that as a request, not a guarantee. For still images, a true face-only swap is what Krea’s photo face swap does, and how to face swap a photo walks through it.\n\nYou can add up to four references, so one clip can have up to four new people. Two habits make it work:\n\nOn Recast, the order matters: add one photo per new person, ordered left to right as they appear in the frame.\n\nMulti-person swaps are the harder case. People who overlap, cross in front of each other or leave and re-enter the frame give the tool more chances to mix them up. Check every crossing, and if one person comes out wrong, a clearer mapping in the prompt is the first fix.\n\nThe same Video Swap runs outside the browser.\n\nKrea API. Send a POST to https://api.krea.ai/generate/video/krea/video-swap with your source video URL and one to four reference URLs. The full schema is in the Video Swap API reference.\n\nThe request returns a job. Poll it as described in the job lifecycle docs, or pass a webhook. The price is the chosen model’s price for the source’s length, plus a per-second swap fee on Standard and Lite. API calls draw on your API balance, which is separate from an app subscription.\n\nMCP. Krea’s MCP server exposes a swap_video tool with the same inputs (source video, one to four references, optional prompt, model and resolution). Connect it to Claude, Cursor or another MCP client and ask in plain language: “swap the person in this clip with the person in this photo.” The ChatGPT connector does not include swap_video.\n\nKrea Agent. Inside Krea, the Agent can run a video swap for you as part of a longer task, and it asks before it runs one.\n\nA good video face swap is easy to mistake for real footage. That is what makes it useful for creative work, and it is also why the rules are strict.\n\nKrea’s terms prohibit content that is fraudulent or deceptive, and name “actions and content which impersonate individuals without their consent (e.g. deepfakes)” as a specific case. They also prohibit using content you do not own without the owner’s prior consent. Sexually graphic content is prohibited. A violation is grounds for losing access.\n\nOne clip, up to four reference photos, and the original motion, camera and sound kept.",
   "modell": "gemini-3.5-flash",
-  "cim": "Arcot és teljes karaktert is tud cserélni a Krea új videós funkciója",
-  "lead": "A Krea Video Swap eszköze meglévő videókban cseréli ki a szereplőket referenciafotók alapján, miközben az eredeti mozgást és hangot megtartja.",
-  "osszefoglalo": "A Krea kiadta a [Video Swap](https://www.krea.ai/video?mode=video-swap) nevű funkciót, amellyel a felhasználók videókban cserélhetnek ki embereket, ruhákat vagy háttérelemeket. A rendszer a feltöltött forrásvideó mozgását, kameramozgását és eredeti hangját épségben hagyja, miközben maximum 4 referenciafotó alapján rajzolja újra a kívánt karaktereket.\n\nA funkció használatához egy videót és 1, 4 referenciaképet kell megadni. A Krea automatikusan elemzi a képeket, és eldönti, melyik szereplőt mire cserélje ki, de szükség esetén szöveges prompttal is pontosítható a párosítás. Egyszerre több ember cseréjére is van lehetőség, a végeredmény felbontása pedig 480p és 1080p között választható.\n\nA Video Swap használata **fizetős Krea-előfizetéshez** kötött. A webes felület mellett a funkció API-n keresztül, valamint MCP-szerveren (például Claude vagy Cursor integrációval) is elérhető a fejlesztők számára.",
-  "miert_szamit": "A videós tartalmakat gyártó marketingesek és kreatívok **egyetlen referenciafotóval cserélhetnek szereplőt vagy modellt meglévő videókban**, így drága újraforgatás nélkül hozhatnak létre új reklámverziókat.",
+  "cim": "Megújult a Krea Video Swap: személy- és karakterelem-csere videókban",
+  "lead": "A Krea Video Swap eszközzel akár négy referenciafotó alapján cserélhetünk ki embereket, ruhákat vagy háttérelemeket egy videóban a mozgás megőrzésével.",
+  "osszefoglalo": "A Krea részletes útmutatót adott ki a [Video Swap](https://www.krea.ai/video?mode=video-swap) funkció használatáról, amellyel egy meglévő videóban cserélhetők ki a szereplők vagy a környezeti elemek. Az eszköz a forrásvideó mozgását, a kameramozgást, a vágásokat és az eredeti hangot is érintetlenül hagyja, miközben a megadott fotó alapján az egész karaktert, a frizurát és a ruházatot is beleértve, újrarajzolja a képkockákon.\n\nA művelethez egy videót és 1-4 referenciafotót kell feltölteni, az összevetést pedig az eszköz automatikusan elvégzi, de tetszőleges prompt segítségével manuálisan is felülbírálható. A funkció használatához fizetős Krea-előfizetés szükséges, az elkészült videók felbontása pedig a választott modelltől függően akár 1080p is lehet.\n\nA funkció nemcsak a webes felületen érhető el, hanem a [Krea API](https://www.krea.ai/docs/api-reference/video/video-swap) végpontjain és az [MCP-szerverén](https://www.krea.ai/docs/mcp) keresztül is meghívható. Utóbbi segítségével például Claude-ból vagy Cursorból közvetlenül, természetes nyelven kiadott utasításokkal is elindítható a videók tartalmának cseréje.",
+  "miert_szamit": "A videós karaktercsere révén a marketingesek és tartalomkészítők **költséges forgatások nélkül cserélhetnek szereplőket vagy ruházatot** a meglévő videós anyagaikban.",
   "cimkek": [
     "Krea",
     "videógenerálás",
     "Video Swap",
-    "videószerkesztés"
+    "AI-videó"
   ],
   "kategoria": "eszköz",
-  "forras_tipus": "bejelentés",
+  "forras_tipus": "bemutato",
   "fontossag": 3,
   "video_szoveg": "",
   "relevans": true,
@@ -34,7 +34,9 @@
     "url": "https://krea.ai/apps/video-face-swap"
   },
   "linkelendo_nevek": [
-    "Video Swap"
+    "Video Swap",
+    "Krea API",
+    "MCP-szerverén"
   ],
   "linkszabaly": 3,
   "prioritas": {
@@ -59,13 +61,12 @@
     "ido": "2026-11-18T09:34:16+00:00"
   },
   "jovahagyas_kell": true,
-  "forditva": "2026-11-18T09:50:45+00:00",
+  "forditva": "2026-11-18T10:01:35+00:00",
   "megjelent": "2026-11-18T09:42:32.631Z",
-  "nevelo_javitva": "2026-11-18T09:50:45+00:00",
   "tenyellenorzes": {
     "ok": true,
-    "ido": "2026-11-18T09:50:48+00:00",
-    "esemeny": "A Krea részletes útmutatót tett közzé a Video Swap funkció működéséről, amely meglévő videókban cseréli ki a szereplőket referenciafotók alapján, megtartva az eredeti mozgást és hangot.",
+    "ido": "2026-11-18T10:01:36+00:00",
+    "esemeny": "A Krea részletes útmutatót tett közzé a Video Swap nevű videós arc- és karaktercsere funkciójának használatáról.",
     "forrasok": [
       "https://www.krea.ai/blog/how-to-face-swap-a-video-with-ai",
       "https://krea.ai/apps/video-face-swap"
@@ -75,6 +76,6 @@
     "javitva": false
   },
   "termeklinkek_nezve": true,
-  "kep_minoseg_kesz": "2026-11-18T09:52:35+00:00",
+  "kep_minoseg_kesz": "2026-11-18T10:03:13+00:00",
   "linkek_ellenorizve": true
 }
