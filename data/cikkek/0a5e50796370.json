@@ -1,0 +1,49 @@
+{
+  "id": "0a5e50796370",
+  "slug": "polyai-dialog-rsn-1-is-now-on-amazon-sagemaker-jumpstart",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/polyai-dialog-rsn-1-is-now-on-amazon-sagemaker-jumpstart/",
+  "publikalva": "2026-11-19T17:28:47+00:00",
+  "cim": "PolyAI Dialog-RSN-1 is now on Amazon SageMaker JumpStart",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 65 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/19/ML-22412-featured-image.png"
+  },
+  "cim_eredeti": "PolyAI Dialog-RSN-1 is now on Amazon SageMaker JumpStart",
+  "szoveg_eredeti": "Dialog-RSN-1, a reasoning model built for real-time complex dialog, is available today on AWS Marketplace and Amazon SageMaker JumpStart. It powers frontier dialog: agents that hear a live call, reason about it, and act in real time.\n\nAs an AWS customer, you can subscribe to Dialog-RSN-1 through AWS Marketplace and deploy it as a SageMaker endpoint inside your own AWS environment. You can also deploy directly from Amazon SageMaker Studio following the steps in Deploy and evaluate models with Amazon SageMaker JumpStart. That means the model designed to handle your customer conversations can be deployed like other Amazon SageMaker models with an AWS Marketplace subscription.\n\nDialog-RSN-1 is the first PolyAI model available through AWS Marketplace. It runs inside your own AWS environment on the same AWS cloud that powers PolyAI’s compute and model training and serving.\n\nAll in a single pass, Dialog-RSN-1 perceives a caller’s audio directly, reasons about what they need, and responds in real time. On SageMaker, it deploys as an endpoint like other models you run there. It is reachable from your own architecture, billed through your AWS account, and covered by the same virtual private cloud (VPC), AWS Identity and Access Management (IAM) roles, and monitoring you already have in place.\n\nYou keep ownership of orchestration, telephony integration, and business logic. Dialog-RSN-1 takes off your plate the hardest part to build yourself: understanding a live call and responding to it in real time. The endpoint speaks the OpenAI Realtime protocol, so an existing Realtime client connects through PolyAI’s bridge by changing its base URL. Audio in is 16-bit PCM mono at 16 or 24 kHz (transcode G.711 or Opus first). Connections last up to 30 minutes, and the model is English-only today.\n\nTo get started, find Dialog-RSN-1 on AWS Marketplace, then deploy it straight into an Amazon SageMaker endpoint in your own account. Or you can deploy directly from Amazon SageMaker JumpStart.\n\nWith Dialog-RSN-1 now onboarded to SageMaker JumpStart, deploying Dialog-RSN-1 takes one click. From the Amazon SageMaker AI console, open the Model Hub, select Dialog-RSN-1 from the JumpStart catalog, and choose Deploy. SageMaker JumpStart then spins up a real-time inference endpoint on a serving stack it has already tuned for you. No containers to wrangle, no instance types to second-guess, and no manual benchmarking. For automated workflows, the same one-click deployment also runs in a few lines of the SageMaker Python SDK.\n\nThe Dialog-RSN-1 endpoint runs entirely within your own AWS account. It is deployed in your VPC, accessed through your IAM roles, and monitored with the same Amazon CloudWatch logging and metrics you use for every other workload. Because inference happens inside your account, your callers’ audio and transcripts stay within a boundary you control. For a model handling live customer conversation, this helps support your data residency and auditability requirements.\n\nModels built for live calls may make you choose between speed and understanding. And models built for speed may miss the meaning, and ones built for reasoning may lead to wait time for callers. Dialog-RSN-1 avoids the tradeoff.\n\nWith PolyAI, you can build dialog agents that hear and handle calls the way your human agents would. These agents catch hesitation, hear frustration before it escalates, and know when to speak.\n\nReal-time customer conversation is the job PolyAI’s Dialog-RSN-1 is built for, and it is already handling live calls in production today. Because the model reasons directly over the caller’s audio, it picks up tone, hesitation, and timing, the signals a plain transcript loses, and decides for itself the right moment to respond.\n\nDialog-RSN-1 is a model focused on real-time conversations. There is no separate speech-to-text step and no reasoning model on the appropriate moment to talk, so thereby no multiple handoffs.\n\nIn practice, that means the callers get responses faster:\n\nAmazon SageMaker JumpStart is the machine learning hub inside Amazon SageMaker AI, and it exists to collapse the distance between choosing a model and running it in production. For Dialog-RSN-1, that means the frontier of real-time dialog is a few clicks away. You can discover it, prove it on your own data, and ship it to a secure endpoint, all in one place. Here is what you get.\n\nFigure 1: The Dialog-RSN-1 model card in SageMaker JumpStart\n\nThe code path using the SageMaker Python SDK is explained in our GitHub repository: Deploy PolyAI Dialog-RSN-1 on Amazon SageMaker AI.\n\nDialog-RSN-1 shows up in the SageMaker JumpStart catalog with overview and sample notebooks in one place, so your team can understand the model before spending a dollar on infrastructure. To try the model on your own calls, deploy the endpoint and run PolyAI’s sample notebook, which streams recorded caller audio and prints the model’s turn decisions, replies, and transcripts.\n\nFrom the same model card you choose Deploy, and Amazon SageMaker JumpStart stands up a real-time inference endpoint with a pre-configured serving stack. There is no manual container selection or instance guesswork. The real convenience is the named optimization profiles: instead of hand-tuning infrastructure, you pick the target that matches how you run Dialog-RSN-1. Latency optimized minimizes Time to First Token for interactive, real-time calls. Throughput optimized maximizes tokens per second for high call volumes. Cost optimized minimizes infrastructure cost per request. Balanced is an even tradeoff for general-purpose use.\n\nBecause Dialog-RSN-1 is built to respond in real time, you can use the latency-optimized profile to carry that responsiveness straight to your own endpoint. Before you deploy, SageMaker JumpStart surfaces the key performance metrics: P50 latency, Time to First Token, and throughput. This lets you right-size the ml.* instance for your traffic instead of benchmarking dozens of combinations by hand. You can run the whole flow from the console, or script it through the SageMaker Python SDK to wire deployments into continuous integration and continuous delivery (CI/CD).\n\nFigure 2: The Deploy workflow for Dialog-RSN-1 in SageMaker JumpStart\n\nFigure 3: Choosing an optimization profile for Dialog-RSN-1 in SageMaker JumpStart\n\nThe endpoint runs inside your own account boundary: in your VPC, under your IAM roles, with the CloudWatch logging and metrics you already have in place. For a model handling live customer conversations, that means your call audio and transcripts stay in an environment you control, which keeps data residency and auditability straightforward.\n\nThe result is a frontier voice model that deploys like the other workloads your machine learning team already runs, using the same hub, the same discovery and evaluation tools, and the same security posture. The hard part is the conversation Dialog-RSN-1 handles, not the infrastructure behind it.\n\nFor more detail on the architecture behind our frontier dialog model and the evaluation results behind our benchmarks, read our Dialog-RSN-1 launch post.\n\nGet started today with Dialog-RSN-1 on AWS Marketplace or directly deploy from Amazon SageMaker JumpStart. Also explore SageMaker JumpStart pretrained models.",
+  "begyujtve": "2026-11-19T18:04:05.466490+00:00",
+  "prioritas": {
+    "pont": 65,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 70,
+      "egyediseg": 90,
+      "hitelesseg": 78,
+      "aktualitas": 98,
+      "kozossegi": 48
+    },
+    "elofeszures": 77,
+    "tanult": 31,
+    "indok": "Valós idejű beszélgetési AI modell vált elérhetővé az AWS platformján, ami fontos a vállalati fejlesztőknek. Forrás-tapasztalat: -7.",
+    "tema": "polyai dialog-rsn-1 aws release",
+    "cim_hu": "Elérhetővé vált a PolyAI új beszélgetős modellje az Amazon SageMakerben",
+    "lead_hu": "A PolyAI valós idejű komplex párbeszédekre tervezett Dialog-RSN-1 modellje közvetlenül elérhetővé és felhőben futtathatóvá vált az AWS Marketplace-en és a SageMaker JumpStart felületén.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-19T18:04:14+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-19T18:04:15+00:00"
+}
