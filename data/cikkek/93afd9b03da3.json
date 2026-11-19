@@ -1,0 +1,49 @@
+{
+  "id": "93afd9b03da3",
+  "slug": "a-google-bemutatta-a-tukordimenziot-a-webes-tesztkornyezetet-mi",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/google-reveals-mirror-dimensio-kV9SkovtRieBLKp7VZp8RQ",
+  "publikalva": "2026-11-19T17:50:04.200048+00:00",
+  "cim": "A Google bemutatta a „Tükördimenziót”, a webes tesztkörnyezetet MI-ügynökök teszteléséhez",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 84 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--8Do-pDij--/t_limit/https://media.wired.com/photos/6aff2988bee7350f3da10056/master/w_2560%252Cc_limit/GettyImages-2229158642.jpg"
+  },
+  "cim_eredeti": "A Google bemutatta a „Tükördimenziót”, a webes tesztkörnyezetet MI-ügynökök teszteléséhez",
+  "szoveg_eredeti": "A Google létrehozott egy lezárt, szintetikus másolatot a webről „tükördimenzió” néven, hogy a Chrome böngészőjében működő MI-ügynököket tanítsa és tesztelje. A böngészőasszisztensek ebben a környezetben vásárolhatnak, közösségimédia-hírfolyamokat görgethetnek, és bankfelületeket használhatnak anélkül, hogy hozzáérnének a valódi internethez. A Chrome biztonsági csapata egy csütörtökön, 2026. november 19-én megjelent Google-blogbejegyzésben mutatta be először a rendszert. Ugyanezen a napon a Wired arról számolt be, hogy a Google szeretné megosztani a módszert más kutatócsoportokkal is.\n\nA projekt egy olyan problémára világít rá, amellyel minden ügynököket fejlesztő cég szembesül. Az ügynökök tesztelése az éles weben megbízhatatlan és kockázatos, az egyértelműen hamis környezetekben végzett tesztek eredményei viszont értelmetlenné válhatnak.\n\nAaron Selya és Charles Qian mérnökök leírták, hogy a környezettel a Chrome automatikus böngészési funkcióját értékelik több ezer szimulált weboldalon, amelyek hétköznapi feladatokat modelleznek. Az egyik fő cél az „eval awareness” elkerülése: az, hogy a modell észrevegye, hogy tesztelik, és ezért másképp viselkedjen. Az ágens ezért valódi címekre navigál, például a youtube.com-ra. Egy elszigetelt gVisor-sandboxban futó helyi proxy csendben elfogja a kérést, és egy generált oldalt szolgál ki helyette. A TLS-tanúsítványokat menet közben hozza létre, hogy a Chrome ne jelezze a kapcsolatot gyanúsnak.\n\nA Google közölte, hogy a csapat hangsúlyozta: az ilyen elfogás csak azért lehetséges, mert a teljes sandboxot ők irányítják. Egy külső támadó ezt nem tudná megtenni egy átlagos felhasználó eszközén. A hamis web feltöltéséhez a Google kutató-, építő- és kritikuságensekből álló rendszert használt, amely egyetlen promptból tervez meg és finomít oldalakat. Az így létrejött oldalak között vannak kuponkódos webáruházak és receptoldalak is.\n\nA homokozó (sandbox) az indirekt prompt injection tesztelésére is szolgál. Ennek során a webes tartalmakba rejtett utasítások próbálják átvenni az irányítást egy ágens felett. A Google szerint a legfejlettebb modellek „túlságosan érzékenyek\" voltak az első támadási felépítésére, amely az URL-ekbe helyezett jelölőket használta. A támadási payloadokat ezért most rejtett HTTP-fejléceken keresztül juttatják el a modellhez. A cég közlése szerint az automatizált folyamatuk biztonsági mérnökönként naponta több mint 1000 tesztjelöltet állít elő. Ez több mint harmincszorosa annak, amennyit egy mérnök kézzel meg tudna írni.\n\n„A feltárandó terület hatalmas, a web pedig ellenséges\" – mondta Qian a Wirednek.\n\nA hír egy nappal azután érkezett, hogy a Wired beszámolt arról, hogy a Google átszervezi a Project Mariner, vagyis a cég korábbi böngészőügynök-prototípusa mögött álló csapatot. A Google szerint az ehhez hasonló szintetikus internetek az ügynökök biztonsági kutatásának általános eszközévé válhatnak, a felépítés pedig kiterjeszthető a kódoló ügynökökre is.\n\n– Azért osztjuk meg ezt a megközelítést, hogy más csapatok, a cégen belül és kívül is, fontolóra vegyék, hogy így álljanak a feladathoz – mondta a Wirednek Doug Turner, a Google mérnöki igazgatója. – Ez az első lépés.",
+  "begyujtve": "2026-11-19T18:48:25.503557+00:00",
+  "prioritas": {
+    "pont": 84,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 98,
+      "kozossegi": 81
+    },
+    "elofeszures": 82,
+    "tanult": 74,
+    "indok": "Rendkívül érdekes és jelentős biztonsági tesztkörnyezet a Google-től autonóm MI-ügynökök számára. Forrás-tapasztalat: -2.",
+    "tema": "google chrome mirror dimension ai",
+    "cim_hu": "Szintetikus internetet hozott létre a Google az MI-ügynökök biztonságos tesztelésére",
+    "lead_hu": "A Google megalkotta a Tükördimenzió néven futó zárt webes környezetet, amelyben a Chrome MI-asszisztensei anélkül vásárolhatnak és bankolhatnak, hogy elérnék a valódi internetet.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-19T18:50:08+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-19T18:50:09+00:00"
+}
