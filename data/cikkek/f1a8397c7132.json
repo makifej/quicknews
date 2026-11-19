@@ -1,0 +1,49 @@
+{
+  "id": "f1a8397c7132",
+  "slug": "dual-model-artificial-intelligence-framework-accurately-detects-and",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/dual-model-artificial-intelligence-framework-accurately-detects-and-classifies-pomegranate-diseases/",
+  "publikalva": "2026-11-19T12:20:18+00:00",
+  "cim": "Dual-Model Artificial Intelligence Framework Accurately Detects and Classifies Pomegranate Diseases",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 43 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-18018.png"
+  },
+  "cim_eredeti": "Dual-Model Artificial Intelligence Framework Accurately Detects and Classifies Pomegranate Diseases",
+  "szoveg_eredeti": "Dual-Model Artificial Intelligence Framework Accurately Detects and Classifies Pomegranate Diseases\n\nAgricultural researchers have introduced an automated dual-model deep learning system designed to identify and localize pathological conditions in pomegranates by combining the real-time object detection architecture YOLOv11 with an iteratively refined MobileNet classifier. Pomegranate, recognized globally as Punica granatum, represents a commercially and nutritionally valuable horticultural crop whose production yields and fruit quality are routinely compromised by severe pathological infections. Conventional agricultural monitoring relies heavily on visual evaluations conducted manually by agronomists in orchard fields. However, these traditional manual inspections are labor-intensive, subjective, inherently prone to human diagnostic error, and frequently delay essential crop protection treatments. To resolve these operational limitations, the research team designed an integrated computational framework that couples localization with classification, establishing an automated protocol for agricultural disease management.\n\nPrior academic investigations frequently relied on generic fruit databases or small proprietary collections that lacked adequate ground truth bounding box annotations and failed to incorporate less prevalent but economically devastating infections. To establish a rigorous foundation for computational modeling, the investigators compiled the Pomegranate Fruit Diseases Dataset, designated as Dataset-I, comprising 5,099 carefully annotated digital images collected across diverse geographic regions in India. The curated photographic repository captures five distinct botanical classes: healthy pomegranate fruits alongside specimens afflicted by Alternaria fruit spot, Anthracnose, Bacterial blight, and Cercospora fruit spot.\n\nTo expose machine learning algorithms to realistic agricultural operating conditions, the newly developed dataset incorporates substantial environmental diversity, capturing fruit samples under shifting natural illumination, varied daylight hours, diverse maturity stages, and complex orchard backgrounds containing leaves, soil, overlapping canopies, and tree branches. The researchers also gathered a secondary complementary collection, designated as Dataset-II, which includes 90 fruits of the Ruby pomegranate cultivar categorized across three rigorous quality grading tiers to examine physical characteristics under controlled evaluation settings. Both image databases were made publicly available through online repositories under open access licensing to facilitate computational benchmarking and advance precision agriculture research.\n\nThe first core component of the computational architecture addresses image classification through an optimized MobileNet backbone utilizing inverted residual blocks with depthwise separable convolutions, known as MBConv units. This classifier operates on standardized 224 by 224 pixel input dimensions and retains an exceptionally compact profile of approximately 4.2 million learnable parameters, representing a sixfold reduction in parameter size relative to standard deep convolutional networks such as ResNet50. The model configuration incorporates ReLU6 activation functions to preserve mathematical generalization across embedded mobile processors, batch normalization layers to stabilize training trajectories, and global average pooling preceding a dropout layer configured with a regularization rate of 0.5. Class predictions across the five target categories are subsequently generated through a terminal softmax activation function.\n\nTraining the MobileNet classifier relied on a structured transfer learning methodology that adapted ImageNet pre-trained representations through sequential fine-tuning stages. The engineering pipeline initially froze foundational feature extraction layers to preserve learned low-level representations before progressively unfreezing higher network stages for task-specific optimization. To counter data constraints and class imbalances without injecting synthetic artifacts, the authors implemented an on-the-fly image augmentation pipeline incorporating random rotations within twenty degrees, horizontal and vertical flips, random crops, brightness and contrast perturbations of fifteen percent, hue adjustments, Gaussian blur, and random square erasing spanning two to twenty percent of image area. Parameter optimization utilized the Adam algorithm alongside cross-entropy loss functions, while Bayesian optimization systematically identified optimal hyperparameter configurations by maximizing expected improvement across consecutive training iterations.\n\nTo achieve high-speed spatial localization across complex orchard imagery, the secondary component of the framework deploys the single-stage YOLOv11 object detection architecture configured with an anchor-free detection head. The detection model incorporates an enhanced CSPDarknet53 backbone leveraging C3K2 building blocks with three-by-three convolutional kernels to preserve fine visual markers such as subtle lesion margins and early-stage surface spots. The network neck fuses hierarchical features using a Path Aggregation Network integrated with a Spatial Pyramid Pooling Fast module alongside C2PSA attention mechanisms, allowing the model to focus specifically on infected botanical tissue while suppressing irrelevant orchard backgrounds. Configured for 640 by 640 pixel inputs, the detection model utilizes a stochastic gradient descent optimizer with momentum set to 0.937, weight decay of 0.0005, and a cosine annealing learning rate scheduler operating over 300 training epochs.\n\nIn field deployment, the two computational models operate through an integrated serial workflow optimized for mobile hardware and edge computing systems. High-resolution input photographs first enter the YOLOv11 localization pipeline, where candidate disease regions are detected, evaluated using an initial confidence threshold of 0.25, and filtered through non-maximum suppression with an intersection-over-union cutoff of 0.45 to eliminate redundant bounding boxes. Extracted bounding boxes meeting physical size constraints of at least 50 by 50 pixels are expanded with a ten percent padding margin to retain local pathological context before being transferred in batches to the MobileNet classification engine. Final diagnostic determinations combine detection confidence scores and classification probabilities through a weighted mathematical formula where classification receives a sixty percent weighting factor and detection spatial confidence accounts for the remaining forty percent.\n\nExperimental validation of the MobileNet classification module on the 5,099-image repository demonstrated high diagnostic accuracy across all evaluated disease categories, achieving an overall accuracy of 95.50 percent and an average accuracy of 95.60 percent. For the economically destructive Cercospora fruit spot, the classifier achieved a precision of 1.000, recall of 0.976, an F1-score of 0.988, and a false positive rate of zero. The model recorded an F1-score of 0.950 for Anthracnose, 0.939 for Bacterial blight, 0.923 for Alternaria fruit spot, and 0.977 for uninfected healthy fruits. When evaluated against independent diagnoses performed by professional agronomists reviewing a representative sample of 500 test images, the computational model achieved comparable precision while executing diagnostic inferences in approximately 0.2 seconds per image compared to approximately 12 seconds per image required for manual expert assessment.\n\nThe detection framework attained an overall precision of 0.9253, recall of 0.8558, average precision at 50 percent intersection over union of 0.9453, mean average precision across the 50 to 95 percent intersection over union range of 0.8456, and an overall fitness metric of 0.8556. Analysis across developmental intervals revealed that",
+  "begyujtve": "2026-11-19T12:34:22.166702+00:00",
+  "prioritas": {
+    "pont": 43,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 40,
+      "egyediseg": 95,
+      "hitelesseg": 75,
+      "aktualitas": 99,
+      "kozossegi": 18
+    },
+    "elofeszures": 73,
+    "tanult": 16,
+    "indok": "Specifikus mechatronikai és mezőgazdasági AI kutatási eredmény, korlátozott közönségérdeklődéssel. Forrás-tapasztalat: -7.",
+    "tema": "ai agriculture pomegranate detection",
+    "cim_hu": "A gránátalma betegségeit felismerő kettős AI modellt fejlesztettek kutatók",
+    "lead_hu": "Agrárkutatók a YOLOv11 és MobileNet hálózatok ötvözésével hoztak létre mélytanulási rendszert a gránátalma betegségeinek pontos azonosítására.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-19T12:34:32+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-19T12:34:41+00:00"
+}
