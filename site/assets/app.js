@@ -43,6 +43,8 @@
 // SEC-001 (2026-10-11): a feed.json mezői külső tartalomból jönnek, innerHTML-be csak escape-elve kerülhetnek
 function qnEsc(t){ return String(t == null ? '' : t).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 function qnSlug(s){ return typeof s === 'string' && /^[a-z0-9-]{1,200}$/.test(s); }
+// a feed.json eleme hír vagy elemzés (Heni 2026-11-19: az elemzés is a csengőbe és az „Új hír” kártyára): a cél csak saját út lehet
+function qnHirUrl(h){ return qnSlug(h.slug) ? '/hir/' + h.slug : (typeof h.u === 'string' && /^\/elemzes\/[a-z0-9-]{1,200}$/.test(h.u) ? h.u : ''); }
 function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.test(k) || /^https:\/\/[^\s"'<>]+$/.test(k))) ? k : ''; }
 // mobilon (Heni 2026-10-20) a „Kérdezz!” gomb görgetéskor kerek ikonná húzódik össze, és pár másodpercenként megnő; fent újra kinyílik
 (function(){
@@ -363,8 +365,8 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     function ment(l){ try { localStorage.setItem(KULCS, JSON.stringify(l.slice(0, 400))); } catch(e){} }
     var elso = latott().length === 0;
     function kartya(h){
-      if (!qnSlug(h.slug)) return;
-      var a = document.createElement('a'); a.className = 'uj-kartya'; a.href = '/hir/' + h.slug;
+      var cel = qnHirUrl(h); if (!cel) return;
+      var a = document.createElement('a'); a.className = 'uj-kartya'; a.href = cel;
       var kep = qnKep(h.kep);
       a.innerHTML = (kep ? '<img src="'+qnEsc(kep)+'" alt="">' : '') + '<div><span class="uj-cimke">Új hír · '+qnEsc(h.forras)+(h.ido?' · '+qnEsc(h.ido):'')+'</span><strong>'+qnEsc(h.cim)+'</strong></div><button type="button" class="uj-zar" aria-label="Bezárás">×</button>';
       a.querySelector('.uj-zar').addEventListener('click', function(ev){ ev.preventDefault(); ev.stopPropagation(); a.remove(); });
@@ -375,7 +377,7 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
       setTimeout(function(){ a.classList.add('bent'); }, 30);
       setTimeout(function(){ a.classList.remove('bent'); setTimeout(function(){ a.remove(); }, 800); }, 30000);
       if (window.Notification && Notification.permission === 'granted') {
-        try { var n = new Notification('quicknews.hu: ' + h.forras, {body: h.cim, icon: '/assets/qn-ikon-192.png', tag: h.id}); n.onclick = function(){ window.focus(); location.href = '/hir/' + h.slug; }; } catch(e){}
+        try { var n = new Notification('quicknews.hu: ' + h.forras, {body: h.cim, icon: '/assets/qn-ikon-192.png', tag: h.id}); n.onclick = function(){ window.focus(); location.href = qnHirUrl(h); }; } catch(e){}
       }
     }
     function nez(){
@@ -501,13 +503,13 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
       if(napKulcs(d)===napKulcs(most)) return 'Ma, '+alap; if(napKulcs(d)===napKulcs(new Date(most.getTime()-864e5))) return 'Tegnap, '+alap; return alap.charAt(0).toUpperCase()+alap.slice(1); };
     var MENT='<svg viewBox="0 0 256 256" aria-hidden="true"><path class="mj-ures" d="M184 32H72a16 16 0 0 0-16 16v176a8 8 0 0 0 12.24 6.78L128 193.43l59.77 37.35A8 8 0 0 0 200 224V48a16 16 0 0 0-16-16Zm0 177.57-51.77-32.35a8 8 0 0 0-8.48 0L72 209.57V48h112Z"/><path class="mj-ures" d="M120 80h16v28h28v16h-28v28h-16v-28H92v-16h28Z"/><path class="mj-teli" d="M200 48v176a8 8 0 0 1-12.24 6.78L128 193.43l-59.77 37.35A8 8 0 0 1 56 224V48a16 16 0 0 1 16-16h112a16 16 0 0 1 16 16Z"/></svg>';
     var kirajzol=function(){ var ujId=ujak().map(function(h){return h.id;}), elozoNap=null;
-      var l=hirek.filter(function(h){ return qnSlug(h.slug); }).slice(0,20);
+      var l=hirek.filter(function(h){ return qnHirUrl(h); }).slice(0,20);
       var sorok=l.map(function(h,i){ var kep=h.fk?'':qnKep(h.kep), uj=ujId.indexOf(h.id)>=0, d=h.t?new Date(h.t):null, ok=d&&!isNaN(d.getTime()), nap='';
         if(ok&&napKulcs(d)!==elozoNap){ elozoNap=napKulcs(d); nap='<li class="hi-nap"><span>'+napCim(d)+'</span></li>'; }
         var ora=ok?bp(d,{hour:'2-digit',minute:'2-digit'}):'';
-        var ment=/^[a-z0-9]{6,40}$/.test(h.id||'')?'<button type="button" class="harang-ment" data-ment="'+h.id+'" data-ment-adat data-u="/hir/'+h.slug+'" data-c="'+biztos(h.cim)+'" data-k="'+biztos(kep)+'" data-f="'+biztos(h.forras)+'" aria-pressed="false" aria-label="Elolvasom később" title="Elolvasom később">'+MENT+'</button>':'';
+        var ment=/^[a-z0-9]{6,40}$/.test(h.id||'')?'<button type="button" class="harang-ment" data-ment="'+h.id+'" data-ment-adat data-u="'+qnHirUrl(h)+'" data-c="'+biztos(h.cim)+'" data-k="'+biztos(kep)+'" data-f="'+biztos(h.forras)+'" aria-pressed="false" aria-label="Elolvasom később" title="Elolvasom később">'+MENT+'</button>':'';
         return nap+'<li class="hi-sor'+(uj?' uj':'')+(kep?'':' nincs-kep')+(i===l.length-1?' utolso':'')+'"><div class="hi-sav"><span class="hi-ora" title="Nálunk megjelent">'+ora+'</span><span class="hi-pont"></span></div>'
-          +'<div class="hi-kartya"><a href="/hir/'+h.slug+'">'+(kep?'<span class="hi-kep"><img class="harang-kep" src="'+biztos(kep)+'" alt="" loading="lazy" decoding="async">'+(uj?'<span class="hi-cimke">ÚJ</span>':'')+'</span>':'')
+          +'<div class="hi-kartya"><a href="'+qnHirUrl(h)+'">'+(kep?'<span class="hi-kep"><img class="harang-kep" src="'+biztos(kep)+'" alt="" loading="lazy" decoding="async">'+(uj?'<span class="hi-cimke">ÚJ</span>':'')+'</span>':'')
           +'<span class="harang-szoveg"><span class="harang-forras">'+(h.rov?'<b>'+biztos(h.rov)+'</b>':'')+'<span>'+biztos(h.forras)+'</span></span><strong>'+biztos(h.cim)+'</strong></span></a>'+ment+'</div></li>'; }).join('');
       // Audit 2026-11-03: a jelvény, a felolvasott név és a fejléc ugyanazt a számot mutatja (az összes új hírt); ha a lista
       // ennél kevesebbet fér el, külön kiírjuk, hogy a legfrissebb hány látszik
