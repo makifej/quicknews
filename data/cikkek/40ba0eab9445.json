@@ -1,0 +1,49 @@
+{
+  "id": "40ba0eab9445",
+  "slug": "nine-places-to-use-decision-models-in-agentic-rag",
+  "forras_id": "dailydev",
+  "forras_nev": "SwirlAI (daily.dev)",
+  "url": "https://www.newsletter.swirlai.com/p/nine-places-to-use-decision-models",
+  "publikalva": "2026-11-18T16:13:25+00:00",
+  "cim": "Nine Places to Use Decision Models in Agentic RAG",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 32 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/a07117034ba7eda4a20dc384f6288b6b?_a=AQAEuop"
+  },
+  "cim_eredeti": "Nine Places to Use Decision Models in Agentic RAG",
+  "szoveg_eredeti": "👋 I am Aurimas. I write the SwirlAI Newsletter with the goal of presenting complicated AI Engineering related concepts in a simple and easy-to-digest way. My mission is to help You UpSkill and keep You updated on the latest news in AI Engineering, Data Engineering, Machine Learning and overall Data space.\n\nSwirlAI Newsletter is a reader-supported publication. To receive new posts and support my work, consider becoming a subscriber.\n\nDecision models as a product have been first released in September 2026. Honestly, we were achieving the utility they bring to the table with regular LLMs for quite some time already. However, the latency, cost and reliability improvements are what make these models really useful in modern agentic workflows.\n\nFor those who don’t know what these models are, here is a short description:\n\nYou pass state, text or JSON or images, plus questions whose answers you declare in code.\n\nYou get back a probability over those answers. No explanations or reasoning included.\n\nThere are two API shapes available in the market: TypeSafe AI System One API and OpenAI Decisions API. Apart from the output shape, the main differences:\n\nOpenAI uses input to name the context passed to the decision model. Also, in OpenAI API the first type of the question is named predicate.\n\nTypeSafe AI uses state to name the context passed to the decision model. In TypeSafe AI API the first type of the question is named noul.\n\nFor all code examples I will be using TypeSafe AI System One API because it is now the default standard that is being adopted.\n\nMost of the available APIs expose 3 types of questions:\n\npredicate/noul - together with input/state you pass instructions, that could include a statement or a questions. The model then scores the correctness/relevance of the instruction against the provided context. What you get back is a probability between 0 and 1. Example:\n\nchoice - together with input/state you pass instructions and a list of classes that you want your context classified as. The model classifies your context according to the classes that you have provided via the API, each class gets a probability. Example:\n\nscore - together with input/state you pass instructions and a list levels in increasing importance you want the context to be scored against. What you get back is a score between 0 and number_of_levels - 1 . The produced score points to a a specific level or between two levels. Example:\n\nIn this example, the score points closest to High severity as it has index of 2 .\n\nYou can explore the APIs in more detail in one of the Notebooks in my AI Engineers Handbook here.\n\nThis newsletter episode covers what LLM calls can be exchanged with reasoning models in Agentic RAG pipelines. You can learn more about differeent RAG architectures here:\n\nI try to keep it practical and useful by providing a short code snippet next to each use case.\n\nFor all code examples I will be using TypeSafe AI System One API because it is now the default standard that is being adopted. You can find executable Notebooks with TypeSafeAI and OpenAI implementations here:\n\nBefore we move forward, this episode is sponsored by me :)\n\nI run the End-to-end AI Engineering Bootcamp whee throughout 8 weeks we learn everything that is relevant to building production ready AI Systems. Hands-on.\n\nOnly this week you can get a 30% off by following this link:\n\nWe can add a decision model at the very front of the application. User query arrives and we route it according to:\n\nUser intent - which tool, subagent or index should handle this?\n\nComplexity - which size of the model do we use? Should we route to a self-hosted model for security reasons?\n\nBoth can be implemented as a choice type of question with state being the user message and potentially some last turns of the conversation.\n\nEvery request you send to an LLM can be guarded by the decision model twice:\n\nOn the draft response before it is exposed to the user (or the downstream system).\n\nHere we would implement a predicate type of question per each potential hazard. E.g.\n\nIt’s important to score each of these as a separate predicate since each can have different thresholds the system reacts on and should be calibrated separately. A single predicate over all of the potential hazards would force us to set a single shared tolerance level.\n\nWe place this step after the retrieval pipeline (including reranking and cutting off at top-k) and before the final generation.\n\nIt is not about checking if each of the passage is relevant to the user query but rather a single judgement about all retrieved passages - can the question be answered from what is shown to you.\n\nIt can be implemented as a predicate type of question or a choice over several options, e.g. sufficient, missing_specifics, stale, wrong_entity. predicate allows us to re-retrieve and the choice one gives additional context to the query rewrite step before any additional retrieval is executed.\n\nThis step goes between vector search and context assembly. It would replace a regular re-ranking step with more efficiency but potentially higher cost.\n\nYou send a user question together with a single retrieved passage as a predicate/noul question for each separate passage. You then ask if the passage can be used to answer the user query and sort by returned probability, then cut at top-k.\n\nThis can be very powerful, because contextual similarity measures if the topics are adjacent, with decision models you can provide more context, e.g. is the passage really useful for answering the user query rather than just being similar to it.\n\nThis step comes after generation and before the final answer is sent to the user. This can also be used offline as an eval in use case number 9 which we discuss later.\n\nHere we need an LLM acting together with the decision model:\n\nLLM decomposes the draft answer into atomic claims.\n\nThe above gets checked against sources for grounding.\n\nThis runs as a choice question for each claim against the used passages with choices potentially in the range of supports, contradicts, does_not_address .\n\nThe mechanic is a division of labour: the named build has the LLM locate the quote and the decision model score whether it supports the claim [7]. Finding the relevant span is extraction, which wants a generative model. Judging whether a span supports a claim is a three-way typed decision, which wants this one.\n\nDecompose the draft answer into atomic claims, then per claim plus its cited span, a choice over supports, contradicts, does_not_address. One claim per question, every claim in one request.\n\nThis happens inside the agent loop, between the tool call suggestions and them actually being executed.\n\nIt acts as sort of a guardrail against the kind of action the tool is about to do. State is the proposed call, its arguments and the conversation so far. Then you apply multiple independent predicate/noul API calls for the type of action to be performed. For example:\n\nirreversible - the tool action can not be undone.\n\nintended - the conversation led to this tool call correctly.\n\nAlways run multiple predicate/noul calls rather than a single one trying to answer “is this safe“ - the choice to block or escalate the tool call to human is usually a combination of multiple scores.\n\nThis step goes after each agent iteration. There can be multiple acceptance criteria that could be poorly classified as complete by the agent. The goal of having a decision model here is to reinforce that criteria.\n\nEven more so, if one of the acceptance criterion does not pass, we can send that information as additional context to the next agent loop. Check the additional_context variable in the below code snippet. This acts as an additional steering capability rather than only being able to terminate the loop.\n\nWe pass the action history so far and the original request via the state. And then loop through each of the acceptance criterion via a separate predicate/noul API call.\n\nThis step can be executed on",
+  "begyujtve": "2026-11-19T19:35:07.454569+00:00",
+  "prioritas": {
+    "pont": 32,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 25,
+      "hirertek": 25,
+      "egyediseg": 85,
+      "hitelesseg": 62,
+      "aktualitas": 52,
+      "kozossegi": 33
+    },
+    "elofeszures": 69,
+    "tanult": 53,
+    "indok": "Blogbejegyzés jellegű technikai oktatóanyag az agentic RAG döntési modelljeiről hírértek nélkül. Forrás-tapasztalat: -8.",
+    "tema": "rag architecture tutorial",
+    "cim_hu": "Döntési modellek használata a döntést hozó RAG rendszerekben",
+    "lead_hu": "Egy technikai útmutató bemutatja, milyen pontokon érdemes döntési modelleket beépíteni az AI-ágensekre épülő RAG architektúrákba.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-19T19:35:26+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-19T19:35:27+00:00"
+}

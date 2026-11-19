@@ -1,0 +1,49 @@
+{
+  "id": "a8f500d1761f",
+  "slug": "test-verification-technique-effectiveness-with-astra",
+  "forras_id": "dailydev",
+  "forras_nev": "Hacker News (daily.dev)",
+  "url": "https://danluu.com/astra-testing",
+  "publikalva": "2026-11-17T15:23:10.863000+00:00",
+  "cim": "Test/verification technique effectiveness with Astra",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 43 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/s--2-1xRawN--/f_auto/v1722860399/public/Placeholder%2011"
+  },
+  "cim_eredeti": "Test/verification technique effectiveness with Astra",
+  "szoveg_eredeti": "When we looked at how well agents used test/verification techniques in August1, we saw that GPT-5.6 Sol generally did what you might call a caricature of various techniques when asked to use a technique or library such as TDD, QuickCheck, Lean 4, etc.; not specifying any particular test method (which we'll call Default) resulted in many worthless unit tests, which was one of the best performing conditions because asking agents to test in specific ways mostly made them worse. In that eval, we gave agents the Zstd RFC and asked them to implement Zstd (with an addendum for how they should test for all conditions other than Default).\n\nOn re-running the same eval with GPT-6 Astra, we see two big differences:\n\nOn (1), we previously saw that, when implementing Zstd from the RFC with 5.6 Sol, on average, agents spent $3.50 on medium effort and $5.50 on xhigh effort to get full (holdout) test correctness about 63% and 77% of the time, respectively. With Astra, agents cost $1 to get full test correctness over 99% of the time at medium effort.\n\nOn (2), an example would be that when we asked 5.6 Sol to do fuzzing, it would generate many worthless random inputs, which would mostly hit the same code paths and not test anything interesting. With 6 Astra, we see agents that are asked to do fuzzing in a structured way that actually exercises code paths and finds non-trivial bugs, but we can't tell if this improved correctness or not because the Zstd implementation benchmark is saturated.\n\nWe also tried giving 5.6 Sol the IMAP RFC, but it was too hard for 5.6 Sol. When trying again with 6 Astra, we get the following distribution of results (the y-axis is the percent of runs where all tests pass; agents are not given the tests and the points are the results across 80 runs of each condition).\n\nDefault once again looks pretty good. Some conditions result in somewhat better correctness, but also with higher cost. Although the IMAP RFC isn't saturated, it would be nice to also see results on a harder task since most of my time goes to tasks that agents can't one-shot most of the time. To test this, we'll try the pandoc eval we looked at when comparing programming languages. A reason I want to see results on larger evals is that, as we observed when looking at caveman mode and as we saw with languages, models often perform fairly differently on larger tasks. With caveman mode, the large wins that people reported became smaller or disappeared and with languages, we saw this in multiple ways, such as C and C++ implementations of Zstd being at least somewhat ok on memory safety, whereas C and C++ implementations of Pandoc were plagued by memory safety issues.\n\nPandoc is significantly harder, and even after running multiple turns (roughly 14 on average), no condition reached 100% correctness, so we'll look at the fraction of tests passed instead of fraction of runs that got to 100%.\n\nFor this, we only ran each condition 25 times due to the cost involved. At MSRP, this cost about $90k.\n\nRecall that, in past evals we ran on languages and test/verification techniques, the failures were often idiosyncratic results of how agents operate, such as agents using Clojure writing incorrect byte conversion code by default or agents using Verus writing vacuous proofs. This kind of thing is quite different from the reasons I've seen people say that agents should use some particular language or test/verification technique, which are generally nice-sounding explanations for why something ought to be better that sound appealing in a very human way but appear to be unrelated to reality when we look at what agents actually did2.\n\nBecause we \"only\" ran $90k worth of evals here, we don't really have enough information to say why almost anything happened. We can observe that some conditions performed better than others, but it's difficult to say what it means. As a result, we shouldn't read too much into this, but we do see some things that seem consistent with what one might expect, in that we might expect most of the test techniques and libraries suggested to give better generalization, which would then give better holdout vs. test scores (result is up and to the left of the Default line when viewing visible vs. holdout test scores), with TDD giving worse generalization (down and to the right of the Default line).\n\nBut, if it's true that testing properties gives us better generalization and conditions like TDD that result in a lot of small tests give less general results, we'd expect the built-in condition to also have a low holdout:visible relative to Default and that's not what we saw. Why this is is unclear and I don't think we can really determine this without a lot more runs.\n\nFor the actual results, the line shown for cost vs. holdout and cost vs. visible show curves fitted to the shape of all graph trajectories across multiple turns, fit to Default. Things that are below / right of the line can be thought of as worse and above / left can be considered better. With 5.6 Sol, it was clear that the test conditions generally weren't doing useful work for a combination of reasons:\n\nHere, we have a situation where many different techniques have a better result than Default. The conceptual error bars on each condition are quite wide (more so than indicated by the bootstrap intervals shown on the plots), but the number of conditions that outperform Default makes it plausible that one or more conditions truly outperforms Default even if we don't know which ones exactly. Furthermore, some conditions likely truly outperform other conditions, but we don't really have sufficient data to tell which conditions are generally better. It's much simpler when almost everything looks bad across a wide variety of techniques.\n\nHere are some questions I have about the results:\n\nIf I really wanted to answer these questions, I'd want to run at least 100x what was run here to run the full matrix. Steve Yegge has mentioned using ~20 Claude subscriptions to spend ~$120k/mo of MSRP token spend. Getting to 100x isn't plausible with a setup like that, but 2x to 3x could be done with testing expanded in a limited fashion and some guesswork and extrapolation. I don't know that it really makes sense for me to do that given how much time it would take and how little spare time I have, but considering what kinds of things academics have looked at when studying programming productivity, maybe it makes sense for a grad student to do this, since it would be more informative than a number of widely cited studies. But, in industry, I'm not sure who would do this outside of an AI lab.\n\nThat being said, if you keep in mind that we don't know how well any of these results generalize, I'll note a few things that I thought were interesting.\n\n(1): I tried to get agents to do this with the hastily written skill I wrote for the 5.6 Sol Zstd eval; although the skill performed decently, agents basically didn't do this. However, for the Pandoc eval, differential testing did cause agents to closely examine boundary conditions and figure out how to write tests (and therefore how to write code) that correctly implements both sides of the boundary. I'm not confident that this generalize, but it would be interesting to see if it does generalize and what else can get agents to do this kind of thing systematically.\n\n(2): Although TDD underperforming is exactly what I'd expect (recall that I added TDD to the 5.6 Sol eval because I thought it would underperform), the lack of underperformance of other conditions that cause many small tests to get generated should reduce confidence in the plausible sounding reason that writing many small tests underperforms.\n\n(3): I've felt for a long time that ACL2 is underrated relative to other verification tools (it was heavily used to good effect in industry in some areas relative to the amount of academic work on it). I had low confidence in this opinion and continue to have low confidence, but it has performed w",
+  "begyujtve": "2026-11-19T19:35:07.454808+00:00",
+  "prioritas": {
+    "pont": 43,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 50,
+      "egyediseg": 85,
+      "hitelesseg": 60,
+      "aktualitas": 33,
+      "kozossegi": 49
+    },
+    "elofeszures": 75,
+    "tanult": 78,
+    "indok": "Technikai elemzés és tesztelési értékelés korábbi AI modellek kódellenőrzési hatékonyságáról. Forrás-tapasztalat: -8.",
+    "tema": "ai agent code verification",
+    "cim_hu": "Nem feltétlenül írnak jobb kódteszteket az AI-ágensek a szigorúbb utasításoktól",
+    "lead_hu": "Egy elemzés szerint az AI-ágensek tesztelési hatékonyságát mérve a túl konkrét módszertani elvárások gyakran rombolják a kódminőséget.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-19T19:35:26+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-19T19:35:41+00:00"
+}
