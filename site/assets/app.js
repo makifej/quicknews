@@ -912,7 +912,7 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     var sor = gy.querySelector('[data-gyu-sor]');
     var lapok = sor ? sor.querySelectorAll('.gyu-kartya') : [];
     if (lapok.length < 2) return;
-    var pontok = gy.querySelectorAll('[data-gyu-pont]'), lapozo = gy.querySelector('.gyu-lapozo'), akt = 0, ido = null, megall = false, lathato = false;
+    var pontok = gy.querySelectorAll('[data-gyu-pont]'), lapozo = gy.querySelector('.gyu-lapozo'), akt = 0, ido = null, lathato = false;
     var csendes = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     // ha minden kártya elfér (asztalon a kettő egymás mellett), nincs lapozó és nem lapoz magától
     function elfer(){ return sor.scrollWidth <= sor.clientWidth + 2; }
@@ -926,7 +926,10 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
       jelol(i);
     }
     function megy(){ return [].some.call(sor.querySelectorAll('video'), function(v){ return !v.paused; }); }
-    function ujra(){ clearInterval(ido); ido = setInterval(function(){ if (!csendes && lathato && !megall && !megy() && !elfer()) ugrik(akt + 1); }, 8000); }
+    // Heni 2026-11-19: amíg az egér a blokkban áll, nem lapoz (a :hover a pillanatnyi állapotot nézi, a videó
+    // megállítása utáni fókuszváltás nem kapcsolja vissza); billentyűzetes fókusznál sem
+    function all_(){ return gy.matches(':hover') || !!gy.querySelector(':focus-visible'); }
+    function ujra(){ clearInterval(ido); ido = setInterval(function(){ if (!csendes && lathato && !all_() && !megy() && !elfer()) ugrik(akt + 1); }, 8000); }
     gy.querySelector('[data-gyu-elozo]').addEventListener('click', function(){ ugrik(akt - 1); ujra(); });
     gy.querySelector('[data-gyu-kov]').addEventListener('click', function(){ ugrik(akt + 1); ujra(); });
     pontok.forEach(function(p){ p.addEventListener('click', function(){ ugrik(+p.dataset.gyuPont); ujra(); }); });
@@ -934,10 +937,8 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting && e.intersectionRatio > 0.6) jelol([].indexOf.call(lapok, e.target)); }); }, {root: sor, threshold: [0.6]});
     lapok.forEach(function(l){ io.observe(l); });
     new IntersectionObserver(function(es){ lathato = es[0].isIntersecting; }, {threshold: 0.4}).observe(gy);
-    gy.addEventListener('mouseenter', function(){ megall = true; });
-    gy.addEventListener('mouseleave', function(){ megall = false; });
-    gy.addEventListener('focusin', function(){ megall = true; });
-    gy.addEventListener('focusout', function(){ megall = false; });
+    gy.addEventListener('mouseleave', ujra);  // kilépés után teljes 8 másodperc, mielőtt lapoz
+    sor.querySelectorAll('video').forEach(function(v){ v.addEventListener('pause', ujra); });
     if (window.ResizeObserver) new ResizeObserver(igazit).observe(sor);
     window.addEventListener('resize', igazit);
     igazit();
