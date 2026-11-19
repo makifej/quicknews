@@ -1,0 +1,49 @@
+{
+  "id": "12bf433ac2f9",
+  "slug": "issue-811-the-top-10-things-ai-gets-wrong-in-web-development",
+  "forras_id": "dailydev",
+  "forras_nev": "JavaScript Weekly (daily.dev)",
+  "url": "https://javascriptweekly.com/issues/811",
+  "publikalva": "2026-11-17T00:00:00+00:00",
+  "cim": "Issue #811: The top 10 things AI gets wrong in web development — JavaScript Weekly",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 49 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/s--foaA6JGU--/f_auto/v1722860399/public/Placeholder%2004"
+  },
+  "cim_eredeti": "Issue #811: The top 10 things AI gets wrong in web development — JavaScript Weekly",
+  "szoveg_eredeti": "npkill 1.0: Not Just for node_modules Anymore — npx npkill has long offered a way to find and remove waste from node_modules folders. Its first release in two years now also hunts down caches and build outputs like .next and .turbo, with 'profiles' for 20 ecosystems. If you're new to the tool, its homepage provides a good introduction.\n\nAgents Didn’t Clear Your Plate. They Dumped Reviews on It — Your agents write PRs in minutes, then eat your afternoon in review. When did ‘saving time’ start to mean babysitting agents’ work? Meticulous shows the exhaustive impact of every PR, with no developer effort. Devs at Dropbox & ElevenLabs have their afternoons back. You can too.\n\nUI SDK: Headless UI Behaviors for React, Vue, Svelte, & Solid — A new library from shadcn and Vercel that provides 50+ accessible, low-level behaviors, like roving focus, typeahead, popups, and drag and drop, that you compose into components (for several frameworks, plus Web Components).\n\n💡 𝕏 As shadcn says: \"You and I don't need the same interfaces. We need the same interface behaviors.\" The idea is an agent, say, can generate whatever UI suits a task, with reusable focus, keyboard, and accessibility behaviors built in.\n\nSolid 2.0 is now stable, with 2.0.0 now on npm and the docs updated to match. There's no official announcement post (beyond the earlier Solid 2.0 RC posts) so expect more on this soon.\n\nThe Chrome team has proposed a Cross-Origin Storage API for sites to share large assets like AI models and WASM modules, so users would only have to download them once.\n\nThe cloud-based JavaScript hosting service Val Town is winding down with services ending January 10 and the code being open sourced in February.\n\nThe Bun team has published a dense technical tour of how its in-development ahead-of-time compiler works.\n\nPrettier 3.10 – The code formatter now supports the latest JavaScript proposals and new Flow syntax, and adds an opt-in plugin that swaps in the Zig-based Yuku's JS/TS parsers for speed.\n\n🎨 p5.js 2.4 – The creative coding library expands its SVG and 3D model support. Here's a starter sketch if you want to play quickly.\n\n🔒 Node.js v26.13.1 (LTS), v24.22.3 and v22.23.5 – The security releases we mentioned last week fix an HTTP/2 flaw that lets clients crash a server and an HTTPS bug that can leak other connections' memory.\n\nPixiJS 3D – The popular 2D rendering library's official 3D engine is now in open beta. It's WebGPU-first, with a WebGL 2 fallback.\n\n📊 e18e's Ongoing Benchmarks of JavaScript Meta-Frameworks — The e18e performance initiative tracks releases of frameworks across the ecosystem (e.g. Nuxt, Astro, SvelteKit, SolidStart, and more), measuring everything from install size and build times to rendering speed. This dashboard is the place to dive in.\n\n🤖 The Top 10 Things AI Gets Wrong in Web Development — The Chrome team examines where coding agents fall back on dated techniques, like hand-rolled focus traps instead of inert and JS overlays instead of popover, alongside gaps in passkey implementations and XSS defenses. A handy checklist for humans too.\n\nAI Security for Modern JavaScript & TypeScript — Traditional tools miss logic gaps. SonarQube Hunter Agent catches broken access control in your JS/TS CI/CD pipeline.\n\nHow a Third-Party Script Turned Malicious on Major Sites — An attacker exploited a flaw in Optimizely's A/B testing platform to inject a (now removed) malicious script into pages served to end users. Scott's analysis found it on sites including Zoom, the BBC, and GitLab, and shows how CSP can, and did, help.\n\n💡 Third-party scripts are an increasingly common attack vector, as Polymarket's users recently found. If you load any, brush up on CSP and Subresource Integrity, and if you provide them, see how Fathom secures theirs.\n\nHow Promises Really Resolve, Explained via a WebKit Bug — A contrived promise that should have thrown instead caused Bun and Safari (both of which use JavaScriptCore) to hang. Alistair fixed the bug and uses it to explain what resolve() actually does and why resolved isn't 'a real promise state'.\n\nThe Web Is More Than Enough — A reminder of how the vast array of powerful web platform APIs enables the development of complex apps in the browser, particularly as AI reduces the headaches involved in tying them together.\n\nYour JS Error Is Lying to You — Why can JSON.stringify(err) unexpectedly leave you with {}? Gabor presents a tour of what an Error holds, and how much of that makes it through stack traces, cause chains, worker boundaries, and loggers like Pino and Winston.\n\n📄 How 13,000 Local Variables in a Function Overflowed V8's Stack – And why would that ever happen? It was the output of an OCaml to JS transpiler… :-) Jérôme Vouillon\n\n📄 A Universal XSS in uBlock Origin via Its Element Picker – Leans on an interesting (and now fixed) postMessage and iframe exploit chain. Smitty van Bodegom\n\n📄 Migrating 10,144 Tests from Jest to Vitest in Three Weeks Daniele Rossino\n\nBrowserPod 4.0: A Linux-Like MicroVM for the Browser — A WASM-powered sandbox that runs Node, npm, git, and bash in the browser. Previously a metered service, v4.0 is free for any use, though it's not open source, and you must load it via their CDN (but no account or API key is needed).\n\n💡 Going somewhat deeper, Nitro creator Pooya Parsa has compiled the actual Linux kernel to WebAssembly (repo). It boots to a shell in under a second in modern browsers, or via npx unkernel (tip: use halt to exit!).\n\nDebug Errors and Agents Faster: Sentry Changelog Live — A walkthrough of what’s new in debugging, from fixing prod bugs with Seer to tracing your agents. Register today.\n\nKitesurf: Cloudflare's Browser Engine Now Open Source — An experimental browser for agents we featured in August. Mostly written in TypeScript and runs JavaScript in V8 isolates on Workers, with Rust compiled to WASM for layout and painting. There's no Chromium, and Puppeteer can drive it.\n\nFile Viewer: A Multi-Format File Viewer for Internal Apps — Read-only views for Office, PDF/OFD, CAD, archives, email and other complex formats, with integrations for React, Vue, and Svelte. The docs site has demos showing off the formats covered.\n\nFlashwright: A Faster, API-Compatible Playwright Fork — Keeps Playwright's API and test runner, but reuses a browser context per worker and doesn't wait for animations to settle, plus similar tricks. Benchmarks show a ~2-4x speedup, while this post explains how it works.\n\nReact Flow 13: The Node-Based UI Library Gets Faster — The first major release in two years cuts re-renders in large flows, with new useNode and useEdge hooks. Vue Flow has joined the xyflow family too.\n\nSlickGrid 6.0 (above) – Long-standing data grid component. Now with zero dependencies, plus pinning on all four sides and sticky rows and columns. Examples and introductions on the project homepage.\n\nXState v6 Beta – First beta of the state machine/actor library's next major version. The core API is considered stable and you can try it with xstate@beta.\n\n🕹️ Excalibur 1.0 – After 13 years, the 2D TypeScript game engine reaches v1 with 2D lighting, a plugin API, and a rebuilt Web Audio mixer. Sample games here.\n\n🕹️ JSNES 3.0 – JavaScript NES emulator. Now has a cycle-accurate core that passes all 134 'AccuracyCoin' tests. There are playable demos here.\n\ntype-fest 6.0 – Popular collection of essential TypeScript types (listed here). v6.0 adds 120 new types and requires TypeScript 6.\n\nFontkit 3.0 – Advanced font engine for Node and the browser. Now ESM-only, with a new core export so you can ship only the formats needed.\n\ndts-bundle-generator 10.0 – A tool to tree-shake and bundle a project's TypeScript declarations into one file.\n\n📄 Parsing PDFs for a RAG or invoice pipeline? Foxit compares 10 document parsing APIs on output format, billing units and accuracy claims.\n\n🌙 Agents can test mobile code at 3am. Expo Simulators gives them cloud simulators, so the loop runs while you sleep.\n\nStop being the middle ma",
+  "begyujtve": "2026-11-19T15:20:34.797210+00:00",
+  "prioritas": {
+    "pont": 49,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 50,
+      "egyediseg": 100,
+      "hitelesseg": 68,
+      "aktualitas": 37,
+      "kozossegi": 62
+    },
+    "elofeszures": 70,
+    "tanult": 66,
+    "indok": "Hírlevél gyűjtemény a szoftverfejlesztési AI-ágensek kihívásairól, korlátozott hírértékkel és régebbi aktualitással. Forrás-tapasztalat: -8.",
+    "tema": "ai agent code review challenges",
+    "cim_hu": "A kódgeneráló AI-ágensek nem kevesebb munkát, hanem több kódellenőrzést hoznak a fejlesztőkre",
+    "lead_hu": "A fejlesztői hírlevél rávilágít, hogy bár az AI-ágensek percek alatt megírják a kódmódosításokat, a fejlesztők idejét felemészti a generált kódok átvizsgálása.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-19T15:21:20+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-19T15:21:26+00:00"
+}
