@@ -2105,3 +2105,10 @@ html.os-android .app-banner .ab-asztal { display: none; }
 /* „Mi van az appban?” lista: kiemelt címkék (Heni 2026-11-17) */
 .jogi ul li > strong:first-child { display: inline-block; margin: 0 8px 2px 0; padding: 2px 10px; border-radius: 6px; background: var(--kiemelo); color: var(--kiemelo-szoveg); font-size: 15px; font-weight: 800; }
 .jogi ul li { margin-bottom: 10px; }
+
+/* Találati oldal: a gyakorlati útmutató külön, a főoldali zöld útmutató-doboz színeivel (.gyu változói), a hírek alatta (2026-11-19) */
+.kt-utm{margin:0 0 40px;gap:16px}
+.kt-utm .hir-kicsi{padding:12px;background:var(--gyu-kartya);border:1px solid var(--gyu-keret);border-radius:var(--sugar)}
+.kt-utm .hir-kicsi .kat,.kt-utm .hir-kicsi .forras{color:var(--gyu-akcent)}
+.kt-utm-cimke{align-self:flex-start;margin:0;padding:4px 12px;border-radius:999px;background:var(--gyu-akcent);color:var(--gyu-akcent-szoveg);font-size:14px;line-height:20px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.kt-hirek-cim{margin:0 0 16px;font-size:24px;line-height:32px;font-weight:800}
