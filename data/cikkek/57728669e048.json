@@ -22,7 +22,7 @@
   },
   "cim_eredeti": "Introducing Tool Retrieval in the Gemini API",
   "szoveg_eredeti": "Tool Retrieval is now in preview in the Gemini Interactions API. Load tool parameter schemas on demand instead of sending your full tool library in every prompt,designed to reduce input tokens and keep tool selection accurate as your agent scales.\n\nYour browser does not support the audio element.\n\nWe are launching Tool Retrieval in the Gemini API to help your agents manage large tool libraries more efficiently. By loading parameter schemas only when needed, you reduce latency and input token costs for complex tasks. You can try this feature today in the Interactions API by adding a tool_search tool and setting defer_loading to true in your requests.\n\nWe are introducing Tool Retrieval to help developers manage large collections of software tools more efficiently. Instead of loading every tool at once, your agent now keeps a library on standby and only pulls in the specific details it needs for a task. This reduces data usage, speeds up performance, and improves accuracy. You can start using this feature today with our latest Gemini models to build more capable and responsive applications.\n\nToday we're launching Tool Retrieval in the Gemini API, available in preview in the Interactions API.\n\nWhen an agent connects to dozens or even hundreds of tools, sending every full parameter schema on every request adds up fast. It inflates input token counts, adds latency, and lowers tool-selection accuracy as the candidate list grows. Tool Retrieval lets your agent keep its full tool library on standby and load parameter schemas only when the current task needs them.\n\nTo turn on Tool Retrieval, add a tool_search tool to your request and set defer_loading: true on the tools you want to hold back. The model still sees the name and description of every deferred tool, so it knows what's available, but the parameter schemas stay out of context. When the model needs a tool, it asks for it by name, the API loads the full schema, and the model calls the function, all inside the same request.\n\nInside that single API call, the model searches for issue_refund, the API loads its schema, and the model emits the function_call. All three steps appear in interaction.steps, making it easy to inspect which tools the model considered when debugging tool names or descriptions:\n\nFrom here it's normal function calling: your code runs the refund and sends back a function_result.\n\nThere's no index to build or host. Gemini runs the search on the server, so the only changes to your code are the new tool and a flag on the tools you want to defer. You can keep your most-used tools loaded up front and defer the long tail.\n\nTool Retrieval also plays well with prefix caching. Deferred schemas stay out of the start of the prompt, and the schemas the model loads are added later in the conversation, so the cached prefix stays the same from turn to turn.\n\nTool Retrieval also works with remote MCP servers in the Gemini API. Set defer_loading: true on an mcp_server tool and every tool that server exposes is loaded on demand, so you can connect a large server without listing its tools one by one.\n\nIf you maintain your own tool registry, embedding index, or per-user permission filter, declare the tool_search with \"execution\": \"client\" and define your search parameters. Client-side retrieval adds one round trip per search, because your app runs the lookup. Tools do not need to be declared upfront, so you can also expose new tools mid-conversation when a user connects an integration:\n\nTool Retrieval has no separate charge. Input and output tokens are billed at the standard rates for the model you call. Turning on tool_search adds a small, fixed block of input tokens, and each schema the model loads is billed as input for the rest of the conversation, the same as a tool declared up front. You save tokens when the schemas you never load outweigh the ones you do, which is the usual case for large libraries. Measure it against your own traffic.\n\nTool Retrieval works with Gemini 3.6 and later models, including all Gemini 4 models, in the Interactions API.\n\nSign up for our newsletters with product updates, event information, special offers, and more.\n\nCheck your inbox to confirm your subscription.\n\nYou can also subscribe with a different email address.\n\nYour information will be used in accordance with Google's privacy policy. You may opt out at any time.",
-  "begyujtve": "2026-11-19T18:47:39.445460+00:00",
+  "begyujtve": "2026-11-19T18:55:36.503934+00:00",
   "prioritas": {
     "pont": 77,
     "szint": "P2",
@@ -32,18 +32,18 @@
       "egyediseg": 90,
       "hitelesseg": 92,
       "aktualitas": 98,
-      "kozossegi": 72
+      "kozossegi": 78
     },
     "elofeszures": 100,
     "tanult": 90,
-    "indok": "Technikai jellegű, de fontos fejlesztői újítás a Gemini API-hoz a költségek és tokenhasználat csökkentésére.",
+    "indok": "A Google hivatalos fejlesztői újítása jelentősen csökkenti a tokenköltségeket a Gemini API használatakor.",
     "tema": "google gemini tool retrieval",
-    "cim_hu": "Új funkcióval csökkenti a fejlesztők költségeit a Google a Gemini API-ban",
-    "lead_hu": "Elérhetővé vált a Tool Retrieval funkció előnézete a Gemini API-ban, amellyel az MI-ügynökök dinamikusan tölthetik be az eszközeiket a teljes könyvtár folyamatos küldése helyett.",
+    "cim_hu": "Megérkezett a Tool Retrieval funkció a Gemini API-ba",
+    "lead_hu": "A Google előnézeti változatban elérhetővé tette a Tool Retrieval funkciót a Gemini Interactions API-ban, ami csökkenti az input tokenek számát és a késleltetést a nagy eszköztárak kezelése során.",
     "klaszter": null,
     "ai": true,
-    "ido": "2026-11-19T18:50:08+00:00"
+    "ido": "2026-11-19T18:57:25+00:00"
   },
   "jovahagyas_kell": false,
-  "megjelent": "2026-11-19T18:50:09+00:00"
+  "megjelent": "2026-11-19T18:57:26+00:00"
 }
