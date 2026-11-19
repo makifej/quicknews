@@ -1,0 +1,49 @@
+{
+  "id": "46f4075cd34b",
+  "slug": "neutrosophic-framework-decomposes-echo-chamber-propensity-in",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/neutrosophic-framework-decomposes-echo-chamber-propensity-in-artificial-intelligence-conversations/",
+  "publikalva": "2026-11-19T09:03:06+00:00",
+  "cim": "Neutrosophic Framework Decomposes Echo Chamber Propensity in Artificial Intelligence Conversations",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 48 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-17714.png"
+  },
+  "cim_eredeti": "Neutrosophic Framework Decomposes Echo Chamber Propensity in Artificial Intelligence Conversations",
+  "szoveg_eredeti": "Neutrosophic Framework Decomposes Echo Chamber Propensity in Artificial Intelligence Conversations\n\nA computational investigation led by researchers at the Vellore Institute of Technology has introduced a three-part mathematical framework designed to unpack how conversational artificial intelligence reinforces or challenges user viewpoints. Rather than treating echo chamber formation as an indivisible and static bias, the researchers modeled conversational exchanges using single-valued and bipolar neutrosophic sets. This logic separates a system’s tendency to endorse an interlocutor’s stance from its presentation of multiple viewpoints and its expression of epistemic uncertainty. Testing the framework across controlled multi-turn dialogues revealed that instructing an assistant to actively challenge a user significantly reduces measurable conversational echo propensity across diverse commercial model architectures, though the underlying components behave with marked statistical and operational differences.\n\nTo evaluate these dynamics, the study operationalized each conversational turn as an ordered triple within a reinforcement-bipolar neutrosophic set, corresponding to perspective diversity, expressed uncertainty, and stance reinforcement. Within this formal architecture, perspective diversity is mapped onto a truth-membership score bounded between zero and one, capturing the presence of contrastive conjunctions, viewpoint framings, and perspective-shift phrases from a curated twelve-marker lexicon. Expressed uncertainty is represented as an indeterminacy-membership score, calculated as a normalized count over twenty distinct epistemic hedges such as modal auxiliaries, approximators, and evidential verbs. Stance reinforcement occupies a falsity-membership dimension that is uniquely extended across a bipolar range from negative one to positive one. This bipolar axis permits the mathematical scoring to distinguish between affirmative echo, neutrality, and active counter-reinforcement.\n\nCombining these three terms yielded a scalar metric termed the EchoIndex, which operates across a closed interval spanning negative one to positive three when evaluated under equal unit weights. At its neutral anchor, corresponding to an ideal state characterized by maximal perspective diversity, complete expressed uncertainty, and zero stance reinforcement, the EchoIndex evaluates exactly to zero. Values above zero indicate progressively stronger conversational echo formation, peaking at positive three when a response exhibits total perspective collapse, an absence of hedging, and complete alignment with the user. Conversely, negative index values reflect an over-corrected conversational regime where the model actively contradicts the user while preserving diverse viewpoints and calibrated linguistic caution, demonstrating an algebraic extension of weighted Hamming distances on non-negative domains.\n\nBefore conducting controlled experiments, the investigators examined an exploratory baseline comprising twelve multi-turn dialogues and fifty-one turns across default web interfaces for ChatGPT, Claude, Gemini, and DeepSeek across three contested topics: menstrual leave, gig-economy labor classification, and immigration. In this descriptive sample, the mean EchoIndex reached 1.978, with individual product averages spanning from 1.705 for DeepSeek to 2.367 for Gemini. Arithmetic decomposition of this exploratory baseline indicated that signed reinforcement accounted for roughly ten percent of the aggregate index, while perspective deficits and uncertainty deficits contributed the remaining ninety percent. However, the authors explicitly emphasized that this preliminary baseline relied on single unversioned generations and varying conversational depths, serving strictly as a qualitative motivation for systematic experimental evaluation.\n\nThe canonical controlled experiment evaluated seven distinct model configurations, crossing DeepSeek R1 distilled 7B, Gemma 4, GPT-OSS 120B, MiniMax M3, Nemotron Super, Qwen3.6-27B, and Gemini 3.5 Flash Lite against the same three contested topics. The experimental design implemented a balanced structure featuring five independent replications per cell across two matched system-instruction conditions: a consonant condition directing the model to support the user with arguments and evidence, and a dissonant condition instructing it to challenge the user’s position with counter-perspectives. Across 210 conversations comprising 1,260 assistant turns, the fixed six-turn dialogue format eliminated variable-depth attrition and enabled direct comparisons across conversational indices, producing 105 strictly matched pairs between identical model configurations and topic replications.\n\nAcross the primary regression model incorporating model and topic fixed effects with heteroskedasticity-consistent standard errors, the challenge instruction produced a statistically significant reduction in the mean EchoIndex of negative 0.677, falling from 2.284 under consonant instructions to 1.606 under dissonant conditions. This downward shift yielded a paired Cohen’s d of negative 2.23, with a 95 percent confidence interval spanning negative 0.715 to negative 0.640. The negative difference remained uniform across all seven model configurations and persisted under five alternative cluster-bootstrap schemes, including the strict crossed model-topic resampling scheme which returned a confidence interval between negative 0.895 and negative 0.485. Individual model contrasts displayed substantial heterogeneity, ranging from a reduction of negative 0.352 for Qwen3.6-27B to negative 0.934 for Nemotron Super.\n\nAn arithmetic decomposition of the automated components showed that all three constituent dimensions shifted in the direction that lowers the overall EchoIndex. Signed reinforcement decreased by negative 0.456, while perspective diversity increased by 0.152 and expressed uncertainty rose by 0.070. The three automated metrics exhibited low inter-component correlation, peaking at a Pearson correlation of 0.364 between diversity and uncertainty, with reinforcement showing near-zero correlations of negative 0.093 and 0.012 with diversity and uncertainty respectively. Although dissonant responses were systematically longer than consonant responses, averaging 176.0 words compared to 132.2 words, regression analysis against log word counts demonstrated that response length explained only 8.6 percent of the observed treatment contrast, confirming that length-induced marker accumulation did not drive the primary effect.\n\nTo establish ground-truth validity, two independent human coders evaluated 300 turns for diversity and uncertainty and 200 turns for stance, achieving high pre-adjudication inter-rater reliability with Cohen’s kappa values of 0.966 for diversity and 0.953 for uncertainty. However, when the automated hand-specified proxies were evaluated against human consensus, substantial discrepancies emerged. The twelve-marker lexical diversity proxy achieved a Cohen’s kappa of only 0.535, demonstrating high precision of 0.964 but missing nearly half of human-identified diverse turns with a recall of 0.519. Similarly, the lexical uncertainty proxy achieved a kappa of 0.561, frequently flagging non-epistemic adverbs. The prompt-relative stance classifier, derived from a pre-trained natural language inference model, agreed least with human annotators, registering a kappa of only 0.214 for topic stance and 0.190 for immediate support.\n\nMachine-learning scorers trained on human consensus labels significantly enhanced measurement fidelity. Logistic models regularized with cross-validated penalties raised testing kappa values to 0.698 for diversity and 0.673 for uncertainty, while area under the receiver operating characteristic curve rose to 0.923 and 0.930 respectively. A continuously specified stance model elevated agreement to 0.638 for topic stance and 0.681 for immediat",
+  "begyujtve": "2026-11-19T09:04:21.325962+00:00",
+  "prioritas": {
+    "pont": 48,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 50,
+      "egyediseg": 100,
+      "hitelesseg": 70,
+      "aktualitas": 100,
+      "kozossegi": 28
+    },
+    "elofeszures": 77,
+    "tanult": 39,
+    "indok": "Tudományos kutatás a visszhangkamra-hatásról a társalgási AI-kban, amely a nagyközönség számára túl elvont. Forrás-tapasztalat: -6.",
+    "tema": "ai echo chamber research",
+    "cim_hu": "Új matematikai keretrendszerrel vizsgálják az AI-visszhangkamrákat",
+    "lead_hu": "Az indiai Vellore Intézet kutatói egy háromrészes matematikai modell segítségével elemzik, miként erősítik vagy kérdőjelezik meg a chatbotok a felhasználók véleményét.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-19T09:04:27+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-19T09:04:31+00:00"
+}
