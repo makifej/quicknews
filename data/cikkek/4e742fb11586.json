@@ -1,0 +1,49 @@
+{
+  "id": "4e742fb11586",
+  "slug": "using-nvidia-run-ai-gpu-fractioning-on-amazon-eks",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/using-nvidia-runai-gpu-fractioning-on-amazon-eks/",
+  "publikalva": "2026-11-19T16:13:51+00:00",
+  "cim": "Using NVIDIA Run:ai GPU Fractioning on Amazon EKS",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 48 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/19/ML-22238-featured-image.png"
+  },
+  "cim_eredeti": "Using NVIDIA Run:ai GPU Fractioning on Amazon EKS",
+  "szoveg_eredeti": "GPU sharing is not new: Multi-Instance GPU (MIG), time-slicing, and Multi-Process Service (MPS) address different isolation and utilization needs. NVIDIA Run:ai GPU Fractioning builds on MPS with Kubernetes-integrated scheduling, per-Pod memory contracts, enforcement, and metrics.\n\nNVIDIA Run:ai is AI workload orchestration software for Kubernetes. Its GPU Fractioning Operator can help several teams share one or two GPUs on Amazon Elastic Kubernetes Service (Amazon EKS). Notebooks, model evaluations, and small inference services can leave teams waiting even when GPU memory remains available. In this walkthrough’s baseline, the NVIDIA device plugin exposes the single GPU as one nvidia.com/gpu resource, with GPU sharing disabled. Two Pods each requesting nvidia.com/gpu: 1 cannot run concurrently on that node, even when their combined GPU-memory demand fits.\n\nNVIDIA Run:ai GPU Fractioning adds Kubernetes scheduling integration, enforced GPU-memory limits, and per-Pod metrics to software-based sharing. The approach applies to NVIDIA GPUs that meet the GPU Fractioning Operator’s hardware and software requirements, including GPUs without MIG. We use one Amazon Elastic Compute Cloud (Amazon EC2) g5.xlarge instance with an NVIDIA A10G Tensor Core GPU as the validated example. Other configurations require compatibility checks and validation.\n\nNVIDIA announced the open source release of NVIDIA Run:ai on October 13, 2026. This example uses two of its four modular components: KAI Scheduler and GPU Fractioning Operator. KAI Resource Management and Workload Map address organizational governance and additional workload types, outside this walkthrough’s scope.\n\nIn this post, we show how to build a custom Amazon Linux 2023 (AL2023) image and configure GPU-memory sharing on Amazon EKS. In the validated G5/A10G example, you establish a whole-GPU baseline, give each Pod an 8 GiB memory contract, and verify 6 GiB allocations. You then inspect per-Pod metrics, test rejection of a 9 GiB allocation, and clean up the disposable environment.\n\nMIG provides hardware partitions on supported GPUs. Device-plugin time-slicing shares a GPU without replica memory or fault isolation. MPS permits concurrent CUDA processes. Fault containment depends on configuration. NVIDIA Run:ai GPU Fractioning adds enforced per-container memory limits and supports time-slicing (default) or sm-sharing compute modes. NVIDIA documents separate workload error domains for its default mode and a shared error domain for sm-sharing. These are not security guarantees. This walkthrough tests memory limits, not fault containment or compute performance. A memory limit does not reserve proportional compute.\n\nAmazon EKS documents several GPU sharing options: MIG, time-slicing with the NVIDIA device plugin, and time-slicing with the NVIDIA DRA driver and Karpenter. For guidance on choosing among them, see the GPU sharing guidance in the Amazon EKS Best Practices Guide. Choose GPU fractioning when you need enforced per-Pod GPU-memory limits on GPUs without MIG and can run fixed-size GPU node groups.\n\nDynamic Resource Allocation (DRA) provides Kubernetes APIs for requesting and allocating devices. GPU sharing and isolation depend on the device driver’s implementation and enabled features. KAI Scheduler and GPU Operator support DRA. This walkthrough uses NvFractions annotations, not DRA.\n\nGPU fractioning can help interactive notebooks with idle periods, short evaluation jobs, GPU compatibility tests, and small inference services. Choose each GPU-memory request from measured peak usage plus overhead, then test latency under concurrent load. The demonstrated density improvement does not establish a throughput gain or a universal cost reduction.\n\nThe following diagram shows the validated single-GPU environment in the US East (Ohio) Region (us-east-2). You use the AWS Command Line Interface (AWS CLI), eksctl, Helm, and Packer to build and operate it. The Amazon EKS control plane runs Kubernetes version 1.36 in an AWS managed Amazon Virtual Private Cloud (Amazon VPC), separate from the customer VPC. It connects to EC2 workers in private subnets of the customer VPC.\n\nAn m7i.large system node hosts the operator controllers and KAI Scheduler. KAI Scheduler places both Pods on a tainted g5.xlarge with one A10G containing 23,028 MiB of GPU memory.\n\nEach Pod has an 8 GiB GPU-memory limit and allocates 6 GiB of GPU memory. The GPU worker uses custom AL2023 with the NVIDIA R615 driver branch, NVIDIA Container Toolkit, and containerd. It runs fractiond with Node Resource Interface (NRI) integration and MPS for sharing. The metricsd daemon exports per-Pod GPU-memory metrics.\n\nFigure 1: Validated example of two GPU-memory contracts on one A10G in Amazon EKS\n\nThe walkthrough uses the AWS Samples repository. Confirm the prerequisites and validated component versions, then complete Steps 1 through 10.\n\nUse an AWS account with permissions for Amazon EKS, AWS CloudFormation, Amazon VPC, Amazon EC2, Amazon Elastic Block Store (Amazon EBS), AWS Identity and Access Management (IAM), and AWS Systems Manager for Amazon Machine Image (AMI) discovery. Confirm quota and capacity for g5.xlarge, the system node, and a temporary m5.xlarge image builder. Install AWS CLI v2, eksctl, kubectl, Helm, Packer, Git, jq, and curl.\n\nUse your normal AWS credential provider: a named profile, AWS IAM Identity Center, an assumed role, or access-key environment variables. Prefer temporary credentials. AWS_SESSION_TOKEN is required when using temporary access keys. The examples use us-east-2. Another Region must support the selected Amazon EKS version and instance types.\n\nBefore choosing another GPU, check NVIDIA’s GPU Operator hardware list, the selected driver’s hardware support, and the GPU Fractioning Operator prerequisites. Hardware support alone does not establish fractioning compatibility. This walkthrough validates the G5/A10G configuration only. The AMI build targets x86_64. Check CUDA compatibility and memory headroom: The two 8 GiB contracts require room for both contracts and runtime overhead. Smaller devices need smaller contracts and adjusted probes.\n\nThe walkthrough creates billable resources, including an Amazon EKS control plane, a NAT gateway, instances, volumes, and an AMI snapshot. Use a disposable environment and complete cleanup when validation finishes.\n\nAt the time of validation, the EKS-optimized AL2023 NVIDIA image provided R580 and R595 driver branches. GPU Fractioning Operator v0.1.7 requires R615 or newer. R615 is short-lived and is not the GPU Operator default. This example builds a custom standard Amazon EKS 1.36 AL2023 image with AMI-owned driver and toolkit. It does not use an operator-managed driver container on another OS. The table records lab validation, not vendor support certification.\n\nWe validated this walkthrough on October 22, 2026, using NVIDIA driver 615.71.10. On November 18, 2026, after updating the GPU node taint, we repeated every step except the Step 3 image build, using an image with the same driver. The results matched. The table lists the tested component versions, not a permanent support matrix. Recheck the Amazon EKS AMI documentation and NVIDIA prerequisites before changing any component.\n\nClone the repository, then create a local configuration file from the provided example and restrict its permissions:\n\nAfter cloning, use walkthrough.env for configuration and run.sh for each stage. Generated files and kubeconfig stay in the ignored .state directory. GPU_INSTANCE_TYPE selects the instance type. Changing it alone does not establish compatibility.\n\nDefaults and optional authentication settings in walkthrough.env\n\nNever commit credentials. The local configuration file is ignored by Git. Confirm the active identity before provisioning:\n\nRun stages separately to inspect results, or use ./run.sh walkthrough to run through the memory-limit test. Cleanup is always a separate action.\n\nRun the following command to cr",
+  "begyujtve": "2026-11-19T17:04:30.041457+00:00",
+  "prioritas": {
+    "pont": 48,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 40,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 88,
+      "kozossegi": 37
+    },
+    "elofeszures": 79,
+    "tanult": 48,
+    "indok": "Rendkívül technikai jellegű AWS és Nvidia infrastruktúra útmutató fejlesztőknek. Forrás-tapasztalat: -7.",
+    "tema": "nvidia runai aws eks integration",
+    "cim_hu": "Új Nvidia GPU megosztási technológia érhető el az Amazon EKS platformon",
+    "lead_hu": "Az Nvidia Run:ai GPU Fractioning segíti a fejlesztőcsapatokat abban, hogy hatékonyabban osszák meg a GPU-erőforrásokat az Amazon Kubernetes szolgáltatásában.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-19T17:04:47+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-19T17:05:01+00:00"
+}
