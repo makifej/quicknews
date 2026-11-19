@@ -1,0 +1,49 @@
+{
+  "id": "a2b7f42905cf",
+  "slug": "optimize-ai-economics-on-amazon-bedrock-with-accentures-sequenced",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/optimize-ai-economics-on-amazon-bedrock-with-accentures-sequenced-approach/",
+  "publikalva": "2026-11-19T18:48:55+00:00",
+  "cim": "Optimize AI economics on Amazon Bedrock with Accenture’s sequenced approach",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 43 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/18/ML-22007-featured-image.png"
+  },
+  "cim_eredeti": "Optimize AI economics on Amazon Bedrock with Accenture’s sequenced approach",
+  "szoveg_eredeti": "As enterprises scale AI on Amazon Bedrock, token spend often grows even as per-token prices fall. Without cost allocation tags in place, your cloud invoice shows AI spend as a single line item rather than by team, workload, agent, or model. Cheaper tokens expand adoption, and agentic workloads multiply invocations. As successful AI use cases scale, consumption can rise faster than unit prices drop. The economic question is whether the business value generated grows faster than the cost of the intelligence required to produce it. The Linux Foundation has launched the Tokenomics Foundation to develop open standards for AI cost economics, a sign that managing the economics of AI is now an industry discipline.\n\nIn this post, you will learn about six levers for optimizing token spend, how Accenture applied them in production, and how to apply them using Amazon Bedrock.\n\nAccenture applied these levers in four client engagements across telecom, insurance, mining, and a large enterprise deployment. The same levers are available natively on Amazon Bedrock as described in this post. Where savings were measured, token spend fell by about 40–85 percent. Results are specific to each client’s workload and may vary. Client names are withheld by Accenture to protect client confidentiality.\n\nBefore you optimize anything, you need to see where consumption is occurring, who owns it, and what business value it produces. Cost allocation tags at the team, workload, and agent level are the prerequisite for connecting consumption to accountable owners and, ultimately, to business outcomes. You apply them through Amazon Bedrock application inference profiles, one profile per application or workload, tagged by team, cost center, and environment. After you activate them as cost allocation tags in the AWS Billing and Cost Management console, you can use these tags to trace which teams, applications, and agents are driving spend. They also make it possible to measure the impact of each change you introduce.\n\nThree AWS services provide the underlying telemetry. AWS Cost and Usage Reports (CUR 2.0), delivered through AWS Data Exports, handle financial attribution, breaking down billed inference cost by workload and team after your cost allocation tags are active. Amazon CloudWatch captures operational signals such as invocation counts and latency. Amazon Bedrock model invocation logging records request-level detail, including the model used and the input and output token counts for each call.\n\nTelemetry alone isn’t enough. Engineers can read cost per invocation on a dashboard, but product owners and program leaders need a metric expressed in business terms. Accenture’s Cost per Business Transaction (CpBT) framework bridges this gap. CpBT aggregates all the model invocations, retries, tool calls, and agent handoffs that contribute to one successful business output into a single fully loaded cost figure. It surfaces the true cost of producing a result, including the failed attempts that raw token pricing hides. Tracked against the business value each workflow delivers, CpBT distinguishes a growing bill that reflects scaling success from one that reflects waste.\n\nThe goal of these six levers isn’t to minimize tokens at all costs. It’s to use the right amount and level of intelligence to deliver each business outcome at the appropriate cost, quality, and risk. The levers are organized into three phases based on the complexity of the change and the investment it requires. AWS and Accenture recommend working through the phases in order, and you can apply each phase independently to the workloads where it will have the most impact.\n\nWith Amazon Bedrock prompt caching, the model reuses the parts of a prompt that repeat across requests, such as system instructions, tool definitions, and reference documents, so you stop paying full price to process the same content again. Amazon Bedrock stores the key-value state of previously computed prompt prefixes and is designed to skip recomputation on later requests. This is designed to reduce cached input token costs by up to 90 percent for supported models (see Amazon Bedrock Prompt Caching).\n\nAmazon Bedrock batch inference processes non-urgent workloads asynchronously as a group at 50 percent lower cost than on-demand pricing for select models (see Amazon Bedrock Pricing). You submit inference requests as a batch job, and results are written to Amazon Simple Storage Service (Amazon S3) when processing completes. Batch inference suits nightly reports, document processing pipelines, and evaluation runs that don’t need an immediate response.\n\nBoth levers add configuration to your existing setup. Prompt caching requires cache checkpoint markers in your prompts, and batch inference requires submitting eligible requests as a batch job instead of calling the on-demand API. Apply caching to interactive, on-demand traffic and batch inference to asynchronous work. Neither requires new infrastructure or architecture changes.\n\nAmazon Bedrock intelligent prompt routing directs requests across models within the same family, matching each task to the level of intelligence its business value, complexity, and risk require, rather than defaulting every request to the most powerful model. Intelligent prompt routing can reduce costs by up to 30 percent without compromising accuracy (see Amazon Bedrock intelligent prompt routing). Check Amazon Bedrock Pricing for any routing charges. In the following engagements, Accenture’s model tiering and triage routing apply this same routing lever.\n\nRetrieval Augmented Generation (RAG) optimization tunes the retrieval step in the RAG process so that fewer unnecessary context tokens reach the model. Techniques such as hierarchical chunking, metadata-based filtering, and reranking narrow the retrieved context to the most relevant chunks, so you pay primarily for content that improves the answer.\n\nTwo complementary Accenture patterns work alongside these AWS native levers. Context scoping limits the data each agent receives to the document slice relevant to its step of the workflow, rather than passing the full case context at every handoff. Context compression summarizes or filters documents before they reach the model. Both reduce input token volume, especially across multi-agent chains.\n\nSemantic caching stores responses and reuses them when a new request is semantically similar to one already answered, even if the wording differs. This avoids redundant model invocations and reduces both cost and latency. On AWS, you can implement it with a vector store such as Amazon ElastiCache in front of the model. In an AWS benchmark on 63,796 real chatbot queries, a 0.90 similarity threshold produced a 74.5 percent cache hit rate, 92.3 percent accuracy, and 72.5 percent cost savings (see ElastiCache semantic caching benchmarks). As you apply routing and semantic caching, keep Amazon Bedrock Guardrails on every route, and set semantic cache expiry so that users don’t receive outdated answers.\n\nModel distillation transfers knowledge from a large teacher model to a smaller, faster student model. Distilled models in Amazon Bedrock are up to 500 percent faster and up to 75 percent less expensive than original models, with less than 2 percent accuracy loss for use cases such as RAG. Distillation is best suited to stable, high-volume workloads where the transaction volume justifies the training investment.\n\nAccenture applied these levers in four client engagements. Each engagement targeted a different cost pattern. In two of them, Accenture applied several changes together, so those results reflect the combined effect rather than any single lever.\n\nThe first engagement was a large enterprise deployment where every request went to a frontier model, with no caching, model tiering, or batching. Accenture applied three changes together: model tiering to match each task to the smallest model that could handle it well, prompt caching for repeated con",
+  "begyujtve": "2026-11-19T19:19:21.177597+00:00",
+  "prioritas": {
+    "pont": 43,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 30,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 95,
+      "kozossegi": 34
+    },
+    "elofeszures": 80,
+    "tanult": 47,
+    "indok": "PR-ízű vállalati blogposzt az AWS és az Accenture költségoptimalizálási megoldásáról. Forrás-tapasztalat: -7.",
+    "tema": "aws accenture ai economics",
+    "cim_hu": "Így foghatók meg az elszabaduló AI-költségek az Amazon Bedrock felhőben",
+    "lead_hu": "Az Accenture és az AWS közös módszertant dolgozott ki az AI-ágensek és -modellhívások költségeinek nyomon követésére és optimalizálására.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-19T19:19:32+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-19T19:19:41+00:00"
+}
