@@ -1,0 +1,74 @@
+{
+  "id": "2a01bbcb107b",
+  "slug": "parhuzamos-internetet-epitett-a-google-a-bongeszougynokok-tesztelesere",
+  "forras_id": "techmeme",
+  "forras_nev": "Wired",
+  "url": "https://www.wired.com/story/google-built-a-giant-mirror-dimension-internet-to-test-its-chrome-ai-agents/",
+  "szerzo": null,
+  "publikalva": "2026-11-19T17:25:02+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.wired.com/photos/6aff2988bee7350f3da10056/191:100/w_1280,c_limit/GettyImages-2229158642.jpg"
+  },
+  "cim_eredeti": "Google built a \"Mirror Dimension\", an isolated internet with simulated environments like social media and banking dashboards, to test AI browsing agents (Lily Hay Newman/Wired)",
+  "forrasok": [],
+  "szoveg_eredeti": "As the Google Chrome team has worked to develop AI browsing features using the company's Gemini models, they realized they need to go the extra mile to keep things from going haywire. So they did the only thing they could think to do—they built an expansive alternate-universe internet that they completely control.\n\n“Web-use” agents need to be familiar with the open internet, how to navigate real websites and platforms, and how to be hardened against web attacks. So training them in limited test environments is only so effective. Plus, models can develop what's known as “eval awareness” where they behave differently because they have determined that they are in a test or simulation. On the other hand, setting unrefined agents loose on the open internet is a bad idea. That’s where the alternate-universe internet comes in.\n\nThe “Mirror Dimension,” which Google is detailing in a blog post today for the first time, is a sweeping and diverse but isolated web ecosystem that the Chrome team entirely controls. It includes a vast array of websites and platforms—including social media sites, shopping, and bank dashboards—that are built with all the components and attributes of real websites. Browsing assistant agents must interact with the sites and complete tasks in Chrome the way they would on the real internet. And they face resilience tests as they go, like hidden prompt-injection attacks, to test their defenses.\n\n“Agents are not programmed so you can’t predict every possible thing an agent might see, the exploration space that we have to address is huge and the web is hostile,” says Charles Qian, a software engineer on the Chrome AI security team. “Any user can ask any prompt on any website, so we really need to explore that space as thoroughly as we can. And we’ve seen the agent start to develop a mature sense of judgement when it comes to knowing what information is actually needed for a task and when to punt back to the user for a confirmation.”\n\nBuilding out and populating the Mirror Dimension was a challenge in itself, because it needed to be vast and varied enough to represent the scale of the real web while being developed quickly. To construct it, the Chrome team gathered armies of website and web app development agents guided by a purpose-built AI harness to quickly create realistic web services and data flows—down to details like entering promo codes on a shopping site or populating social media pages.\n\nEven though the entire environment is controlled by Google, Chrome is built with so many user protections and validity checks that in order to allow the agents to use real Chrome (which is crucial for accurate training), the researchers essentially had to hack the browser and take elaborate steps like making forged web certificates for validity checks so the agents could have a normal experience. The team emphasizes, though, that none of these attacks would be possible against regular Chrome users on the open internet. They were all facilitated by the god-mode type access and privilege the team inherently has because they control the entire environment and network.\n\nThe researchers say that while the browsing assistant agents they have been testing are benign and do not have cyber capabilities, their goal is to make the Mirror Dimension available to teams across Google so more researchers have access to the safe and controlled environment for testing.\n\n“We’re sharing this approach so other teams both internally and externally think about doing it this way,” says Doug Turner, Google’s director of engineering. “This is the first step, there’s going to be continued investment in this approach to train models. And I would imagine as they become more sophisticated we’ll have to continue working on this environment to make it more and more realistic.”",
+  "modell": "gemini-3.5-flash",
+  "cim": "Párhuzamos internetet épített a Google a böngészőügynökök tesztelésére",
+  "lead": "A Mirror Dimension nevű elszigetelt hálózat valósághű weboldalakkal és biztonsági tesztekkel képzi a Chrome AI-ügynökeit.",
+  "osszefoglalo": "A Google Chrome fejlesztőcsapata egy teljesen zárt, mesterséges internetet hozott létre **Mirror Dimension** néven a böngészőügynökök biztonságos betanítására. A rendszerben közösségi oldalak, webáruházak és banki felületek szimulált változatai találhatók, ahol az ügynökök valós feladatokat hajtanak végre anélkül, hogy kárt tennének az igazi weben.\n\nA mesterséges környezet kifejlesztéséhez a Google speciális AI-fejlesztőket használt, amelyek automatikusan generálták a kódokat és az adatfolyamokat. Az AI-ügynököket a tesztek során rejtett támadásokkal, például **prompt-injection** trükkökkel is tesztelik, hogy felkészítsék őket a hálózati veszélyekre.\n\nA tesztelési környezetet a Chrome csapata a jövőben a Google más fejlesztői számára is elérhetővé tervezi tenni, hogy biztonságos keretek között fejleszthessenek önálló AI-funkciókat.",
+  "miert_szamit": "Az önállóan böngésző AI-ügynökök **biztonságos tesztelése** elengedhetetlen ahhoz, hogy a jövőben megbízható automatizációkat használhassunk a mindennapi munkában és a marketingben.",
+  "cimkek": [
+    "Google",
+    "Chrome",
+    "AI ügynök",
+    "kiberbiztonság"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 86,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 100,
+      "hitelesseg": 86,
+      "aktualitas": 98,
+      "kozossegi": 77
+    },
+    "elofeszures": 92,
+    "tanult": 66,
+    "indok": "Rendkívül érdekes és egyedi megközelítés a Google részéről az AI böngészőágensek biztonságos tesztelésére. Forrás-tapasztalat: -3.",
+    "tema": "google mirror dimension ai",
+    "cim_hu": "A Google létrehozott egy szimulált internetet az AI-ágensek tesztelésére",
+    "lead_hu": "A Chrome csapata egy zárt alternate-universe környezetet épített Mirror Dimension néven, hogy a Gemini-alapú böngészőágenseket biztonságosan képezhessék ki a webes feladatokra és támadásokra.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-19T17:35:07+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-19T17:35:25+00:00",
+  "megjelent": "2026-11-19T17:35:25+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-19T17:35:34+00:00",
+    "esemeny": "A Google Chrome AI-biztonsági csapata létrehozta a Mirror Dimension nevű elszigetelt, szimulált webszolgáltatásokból álló környezetet, ahol a cég böngészőügynökeit tesztelik és fejlesztik a nyílt internet kockázatai nélkül.",
+    "forrasok": [
+      "https://www.wired.com/story/google-built-a-giant-mirror-dimension-internet-to-test-its-chrome-ai-agents/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-19T17:35:58+00:00",
+  "linkek_ellenorizve": true
+}
