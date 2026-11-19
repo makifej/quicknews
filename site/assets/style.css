@@ -2112,3 +2112,7 @@ html.os-android .app-banner .ab-asztal { display: none; }
 .kt-utm .hir-kicsi .kat,.kt-utm .hir-kicsi .forras{color:var(--gyu-akcent)}
 .kt-utm-cimke{align-self:flex-start;margin:0;padding:4px 12px;border-radius:999px;background:var(--gyu-akcent);color:var(--gyu-akcent-szoveg);font-size:14px;line-height:20px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
 .kt-hirek-cim{margin:0 0 16px;font-size:24px;line-height:32px;font-weight:800}
+/* a zöld doboz csak a videókártya(k)ig tart, nem a teljes szélességig (Heni 2026-11-19) */
+.kt-utm{width:fit-content;max-width:100%;padding:16px}
+.kt-utm .racs-4{display:flex;flex-wrap:wrap;gap:16px}
+.kt-utm .hir-kicsi{width:320px;max-width:100%;box-sizing:border-box}
