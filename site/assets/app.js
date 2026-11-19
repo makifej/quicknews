@@ -1128,16 +1128,21 @@ document.addEventListener('click', function(ev){
       + '<div class="htorzs"><div class="hmeta"><span class="forras">' + qnEsc(x.k) + '</span> ' + (x.d ? '<span>' + qnEsc(x.d) + '</span> ' : '')
       + (x.g ? '<span class="kat">' + qnEsc(x.g) + '</span>' : '') + '</div><h3>' + qnEsc(x.c) + '</h3>' + (x.b ? '<p class="hlead">' + qnEsc(x.b) + '</p>' : '') + '</div></a>'; }
   function rajzol(){
-    var l = talalat.filter(function(x){ return !rovat || x.g === rovat; });
+    // a gyakorlati útmutató külön, zöld keretben felül, a hírek alatta (Heni 2026-11-19: „különítsd el a találatokat”)
+    var utm = talalat.filter(function(x){ return x.u.indexOf('/utmutato/') === 0; });
+    var l = talalat.filter(function(x){ return x.u.indexOf('/utmutato/') !== 0 && (!rovat || x.g === rovat); });
     if (rend === 'uj') l = l.slice().sort(function(a, b){ return (b.t || '').localeCompare(a.t || ''); });
-    var rovatok = {}; talalat.forEach(function(x){ if (x.g) rovatok[x.g] = (rovatok[x.g] || 0) + 1; });
+    var hirek = talalat.length - utm.length, rovatok = {}; talalat.forEach(function(x){ if (x.g && x.u.indexOf('/utmutato/') !== 0) rovatok[x.g] = (rovatok[x.g] || 0) + 1; });
     if (db) { db.textContent = l.length + ' hír'; db.hidden = false; }
     var vez = '<div class="kt-vezerlo">'
       + '<div class="kt-rend" role="group" aria-label="Rendezés"><button type="button" data-rend="rel" aria-pressed="' + (rend === 'rel') + '">Legjobb találat</button><button type="button" data-rend="uj" aria-pressed="' + (rend === 'uj') + '">Legfrissebb</button></div>'
-      + (Object.keys(rovatok).length > 1 ? '<label class="kt-rovat"><span>Rovat</span><select data-rovat><option value="">Mind (' + talalat.length + ')</option>'
+      + (Object.keys(rovatok).length > 1 ? '<label class="kt-rovat"><span>Rovat</span><select data-rovat><option value="">Mind (' + hirek + ')</option>'
         + Object.keys(rovatok).sort(function(a, b){ return rovatok[b] - rovatok[a]; }).map(function(g){ return '<option value="' + qnEsc(g) + '"' + (g === rovat ? ' selected' : '') + '>' + qnEsc(g) + ' (' + rovatok[g] + ')</option>'; }).join('') + '</select></label>' : '')
       + '</div>';
-    oldal.innerHTML = (jav ? '<p class="kt-javaslat">Erre nem találtunk hírt, ezért a hasonló szóra keresünk: <strong>' + qnEsc(jav) + '</strong>.</p>' : '') + vez
+    oldal.innerHTML = (jav ? '<p class="kt-javaslat">Erre nem találtunk hírt, ezért a hasonló szóra keresünk: <strong>' + qnEsc(jav) + '</strong>.</p>' : '')
+      + (utm.length ? '<section class="gyu kt-utm" aria-label="Gyakorlati útmutató"><p class="kt-utm-cimke">Gyakorlati útmutató videóval</p><div class="racs-4">' + utm.map(kartya).join('') + '</div></section>' : '')
+      + (utm.length && l.length ? '<h2 class="kt-hirek-cim">Hírek</h2>' : '')
+      + (l.length ? vez : '')
       + '<div class="racs-4">' + l.slice(0, mutat).map(kartya).join('') + '</div>'
       + (l.length > mutat ? '<div class="kt-tovabb"><button type="button" data-tovabb>Továbbiak (' + (l.length - mutat) + ')</button></div>' : '');
   }
