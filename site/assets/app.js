@@ -401,7 +401,7 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
     var alap = function(t){ return (t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); };
     var egys = function(t){ return alap(t).replace(/[-_./+:,;'"()!?]+/g, ' ').replace(/\s+/g, ' ').trim(); };
     var tomor = function(t){ return t.replace(/ /g, ''); };
-    function elokeszit(d){ return d.map(function(x){ x._c = egys(x.c); x._b = egys(x.b); x._sz = egys(x.sz); x._k = egys(x.k + ' ' + x.g);
+    function elokeszit(d){ return d.map(function(x){ x._c = egys(x.c); x._b = egys(x.b); x._sz = egys(x.sz); x._k = egys(x.k + ' ' + x.g); x._kw = ' ' + egys(x.kw) + ' ';
       x._cc = tomor(x._c); x._mind = x._c + ' ' + x._b + ' ' + x._k + ' ' + x._sz; x._mindc = tomor(x._mind); return x; }); }
     function pontoz(mutato, nyers){
       var kif = egys(nyers), szavak = kif.split(' ').filter(function(w){ return w.length >= 1; }), kc = tomor(kif);
@@ -411,6 +411,9 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
         var p = 0;
         if (x._c.indexOf(kif) >= 0 || x._cc.indexOf(kc) >= 0) p += 100;
         if (x._c.indexOf(kif) === 0) p += 40;
+        if (x._kw.indexOf(' ' + kif + ' ') >= 0) p += 500;  // útmutató kulcsszava (AUTOMATA, REPLIKA): a videó legfelül
+        else if (x._kw.length > 2 && kc.length >= 3) x._kw.trim().split(' ').some(function(w){  // elírva vagy csonkán is (automta, replka, automat)
+          if (w.indexOf(kc) === 0 || csere(kc, w) || tav(kc, w, w.length >= 6 ? 2 : 1) <= (w.length >= 6 ? 2 : 1)) { p += 450; return true; } return false; });
         if (x._k.indexOf(kif) >= 0) p += 30;
         if (x._b.indexOf(kif) >= 0) p += 20;
         if (x._sz.indexOf(kif) >= 0) p += 10;
@@ -422,6 +425,9 @@ function qnKep(k){ return (typeof k === 'string' && (/^\/assets\/[\w.\/-]+$/.tes
       });
       return ki.sort(function(a, b){ return b[0] - a[0]; });
     }
+    // két szomszédos betű felcserélve (flim, vidoe, xmnid): a tav() ezt 2 hibának számolná
+    function csere(a, b){ if (a.length !== b.length) return false; var i = 0; while (i < a.length && a[i] === b[i]) i++;
+      return i < a.length - 1 && a[i] === b[i + 1] && a[i + 1] === b[i] && a.slice(i + 2) === b.slice(i + 2); }
     function tav(a, b, max){ if (Math.abs(a.length - b.length) > max) return max + 1; var e = [], i, j;
       for (j = 0; j <= b.length; j++) e[j] = j;
       for (i = 1; i <= a.length; i++) { var bal = e[0], kis = i; e[0] = i;
@@ -1141,7 +1147,7 @@ document.addEventListener('click', function(ev){
   });
   oldal.addEventListener('change', function(e){ if (e.target.matches('[data-rovat]')) { rovat = e.target.value; mutat = LAP; rajzol(); } });
   fetch('/kereso.json', {cache: 'no-cache'}).then(function(r){ return r.json(); }).then(function(d){
-    var m = qnKereso.elokeszit(d.filter(function(x){ return /^\/hir\/[a-z0-9-]{1,200}$/.test(x.u || ''); }));
+    var m = qnKereso.elokeszit(d.filter(function(x){ return /^\/(hir|utmutato|elemzes)\/[a-z0-9-]{1,200}$/.test(x.u || ''); }));  // a videós útmutató és az elemzés is (2026-11-19)
     var p = qnKereso.pontoz(m, q);
     if (!p.length) { jav = qnKereso.javasol(m, q); if (jav) p = qnKereso.pontoz(m, jav); }
     talalat = p.map(function(t){ return t[1]; });
