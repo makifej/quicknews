@@ -1,0 +1,49 @@
+{
+  "id": "5a8fb5424af3",
+  "slug": "design-responsible-ai-controls-for-amazon-aurora-postgresql",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/design-responsible-ai-controls-for-amazon-aurora-postgresql/",
+  "publikalva": "2026-11-18T21:38:22+00:00",
+  "cim": "Design responsible AI controls for Amazon Aurora PostgreSQL",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 41 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/16/ML-20463-featured-image.png"
+  },
+  "cim_eredeti": "Design responsible AI controls for Amazon Aurora PostgreSQL",
+  "szoveg_eredeti": "A customer support chatbot that queries historical tickets and knowledge base articles stored in Amazon Aurora PostgreSQL-Compatible Edition can deliver fast, context-aware answers. However, it also introduces challenges around privacy, accuracy, safety, and governance, especially when the underlying data contains sensitive customer information. In this post, we map the eight AWS Responsible AI (RAI) dimensions to Aurora PostgreSQL capabilities. We then walk through a design pattern for the Explainability dimension, using a Retrieval Augmented Generation (RAG) based customer support chatbot as the reference use case. This post implements one dimension, Explainability, in depth. Treat it as Part 1 of a series rather than a full build-out of all eight.\n\nAmazon Aurora PostgreSQL-Compatible Edition makes it more straightforward to operationalize responsible AI through its native Aurora Machine Learning (Aurora ML) capabilities. With Aurora ML, you can invoke Amazon SageMaker endpoints and Amazon Bedrock foundation models directly from SQL, without data movement, custom extract, transform, and load (ETL) pipelines, or complex integrations. This post uses Aurora ML to generate vector embeddings from SQL, keeping the embedding pipeline inside the database layer.\n\nAWS defines eight core Responsible AI dimensions, published through the AWS Well-Architected Responsible AI Lens, Amazon Bedrock Guardrails, and the Responsible Use of AI Guide. These dimensions (Fairness, Explainability, Privacy and Security, Safety, Controllability, Veracity and Robustness, Governance, and Transparency) provide a structured framework for evaluating and implementing trustworthy AI systems.\n\nCustomer support systems often struggle to provide accurate, context-aware responses while maintaining privacy and compliance. Consider a customer support chatbot built on Amazon Aurora PostgreSQL that uses RAG with pgvector embeddings, Amazon Bedrock model inference, and AWS Responsible AI guardrails to deliver grounded, explainable responses.\n\nA customer can ask questions such as “Why was my last bill high?” or “Where is my last order?” and receive accurate answers with citations, while sensitive data remains obscured through personally identifiable information (PII) redaction and access controls.\n\nThe following table maps the eight AWS Responsible AI dimensions to practical implementation strategies for a customer support chatbot built on Amazon Aurora PostgreSQL-Compatible Edition. It highlights how database features, AWS AI services, and governance controls work together to deliver a trustworthy, secure, and explainable RAG-based chatbot.\n\nNote: These are example approaches and may vary by use case.\n\nThis reference architecture shows how Responsible AI controls map to each component of a RAG-based chatbot on Amazon Aurora PostgreSQL-Compatible Edition.\n\nAn ingestion pipeline redacts PII from support tickets, FAQs, and product documents, then converts them into vector embeddings. When a user submits a query, AWS Lambda runs a semantic search over Aurora PostgreSQL, applies Amazon Bedrock Guardrails for privacy and grounding, sends the guarded context to an Amazon Bedrock foundation model (FM), and logs every interaction for explainability and governance.\n\nLambda grounds responses in enterprise data, redacts PII and applies Row-Level Security (RLS) for privacy, records citations and interaction logs for explainability, and writes audit records for governance.\n\nWhen to build this versus use a managed service: Amazon Bedrock Knowledge Bases provides built-in RAG with citations and is the simpler choice when default retrieval and citation behavior meets your needs. Build the custom logging design in this post when you need provenance stored in your own schema. That provenance includes retrieved versus cited sources, similarity scores, and guardrail traces that you can query with SQL and retain under your own policies.\n\nThe following diagram illustrates the end-to-end architecture of this solution, showing the data ingestion flow (left), the query and response flow (center), and the responsible AI controls applied at each stage (center and right).\n\nFigure 1: Architecture of RAG-based customer support chatbot with Responsible AI controls on Amazon Aurora PostgreSQL\n\nAn ingestion pipeline loads historical support tickets, FAQs, and product documentation into Amazon Aurora PostgreSQL after redacting PII, using the pgvector and aws_ml extensions for vector operations and Aurora ML integration.\n\nThe Aurora ML aws_bedrock.invoke_model_get_embeddings function transforms the text into Amazon Titan Text Embeddings V2 vectors (1,024 dimensions), and pgvector stores them.\n\nAurora PostgreSQL functions as both a relational store for structured customer data and a vector database for semantic search.\n\nWhen a user asks a question, the chatbot follows these steps (see Figure 1):\n\nSupporting operations run separately from each request:\n\nBefore you begin, make sure you have the following in place:\n\nNote: The prerequisites listed here focus on the database layer. Your application layer (for example, AWS Lambda, Amazon API Gateway, and a chat UI) is separate and depends on your deployment architecture.\n\nThis section presents the database-layer design patterns that make every AI-generated response traceable, from the user query, through retrieval and guardrail evaluation, to the final answer and its citations.\n\nCreate the core tables for customer data, chat sessions, interaction logging, and feedback:\n\nStart by creating the schema and the tables you need. Each table serves a specific Responsible AI dimension:\n\nThe customers table stores profiles for tenant-aware access control:\n\nThe chat_interactions table is the core of the Explainability implementation. It logs every query-response cycle with full RAG provenance, including retrieved chunk IDs, similarity scores, cited versus retrieved sources, guardrail traces, and the model used:\n\nBecause chat_interactions stores raw request_text and response_text, protect it the same way as the source data: redact PII before the INSERT (reusing the ingestion-time guardrail), or encrypt those columns with pgcrypto, and apply Row-Level Security to the log tables so tenants cannot read each other’s interactions. Logging unprotected customer content would undercut the Privacy and Security control this design is meant to demonstrate.\n\nThe chat_feedback table captures user ratings and comments on chatbot responses, which supports the Controllability dimension. The ON DELETE CASCADE clause makes sure the 90-day retention purge does not fail with foreign key violations:\n\nCreate the retrieval layer with vector embeddings, tenant isolation, and Aurora ML integration:\n\nCreate an HNSW index for fast approximate nearest neighbor search:\n\nEnforce tenant isolation with Row-Level Security so that vector search results are scoped to the current tenant before data leaves the database:\n\nGenerate vector embeddings directly from SQL using Aurora ML, keeping the embedding pipeline inside the database layer:\n\nAlways redact PII before inserting data into the knowledge base. Use Amazon Bedrock Guardrails (the ApplyGuardrail API) or Amazon Comprehend (the detect_pii_entities API) to identify and mask PII in your ingestion pipeline, as shown in the following example:\n\nWhen a query reaches your application layer, retrieve the top matching knowledge chunks using the pgvector cosine similarity operator. The following SQL query shows this pattern:\n\nNote: The 0.7 cosine-similarity cutoff drops weakly related chunks so the model is not grounded on noise. Tune it against your own data. The category filter and this threshold both post-filter HNSW results and may return fewer than 5 rows. Raise hnsw.ef_search or use iterative index scans (pgvector 0.8.0+) to compensate.\n\nThe following pseudocode shows the key patterns for contextual grounding, guardrail-intervention handling, citation parsing, and interaction lo",
+  "begyujtve": "2026-11-19T07:20:51.040259+00:00",
+  "prioritas": {
+    "pont": 41,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 30,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 88,
+      "kozossegi": 25
+    },
+    "elofeszures": 77,
+    "tanult": 26,
+    "indok": "Műszaki jellegű útmutató az AWS adatbázis-biztonsági funkcióiról Forrás-tapasztalat: -6.",
+    "tema": "aws aurora postgresql responsible ai",
+    "cim_hu": "Felelős MI-kontrollokat mutatott be az Amazon Aurora adatbázisokhoz az AWS",
+    "lead_hu": "Az AWS részletes dizájnmintát tett közzé az Aurora PostgreSQL adatbázisok biztonságos használatához. A megoldás segít megvédeni az adatvédelmi és biztonsági kockázatokat tartalmazó ügyféladatokat.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-19T07:22:28+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-19T07:24:18+00:00"
+}

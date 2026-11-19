@@ -1,0 +1,49 @@
+{
+  "id": "4d21e756021a",
+  "slug": "hackers-compromised-microsoft-s-agent-framework-python-package-on",
+  "forras_id": "techmeme",
+  "forras_nev": "BleepingComputer",
+  "url": "https://www.bleepingcomputer.com/news/security/microsofts-agent-framework-pypi-package-compromised-to-steal-credentials/",
+  "publikalva": "2026-11-19T02:50:01+00:00",
+  "cim": "Hackers compromised Microsoft's Agent Framework Python package on PyPI, publishing two versions designed to steal cloud credentials and other information (Bill Toulas/BleepingComputer)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 76 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.bleepstatic.com/content/hl-images/2025/03/12/Microsoft-headpic.jpg"
+  },
+  "cim_eredeti": "Hackers compromised Microsoft's Agent Framework Python package on PyPI, publishing two versions designed to steal cloud credentials and other information (Bill Toulas/BleepingComputer)",
+  "szoveg_eredeti": "Hackers compromised Microsoft's official Agent Framework Python package on PyPI, publishing two malicious versions designed to steal cloud credentials and other sensitive information from developers' systems.\n\nMicrosoft Agent Framework is Microsoft's open-source toolkit for building AI agents and coordinating them in workflows. It's a fairly popular tool with roughly 200,000 monthly downloads on PyPI.\n\nThe malicious releases, versions 1.26.1 and 1.26.2, were published on November 17, 2026, and contained a credential stealer that executed automatically during normal Python startup in affected environments, even when the Agent Framework package was not imported.\n\nBoth versions retained their dependency on the legitimate agent-framework-core 1.26.0 package, allowing the framework to function normally while the malware ran in the background.\n\nMultiple security firms discovered and documented the attack, including Socket, Step Security, and Ox Security.\n\nVersion 1.26.1 contained a credential stealer that harvested secrets from environment variables, local configuration files, and other running processes where permissions allowed, targeting Azure, AWS, GitHub, Docker, Hugging Face, OpenAI, and other services.\n\nThe malware also attempted to obtain Azure managed identity access tokens and Azure DevOps OIDC tokens, potentially giving attackers access to additional cloud resources.\n\nVersion 1.26.2 added GitHub Actions OIDC token requests and searches of GitHub runner directories.\n\nAccording to Socket and StepSecurity, the first malicious release used agent_framework_meta.pth to execute the credential stealer in agent_framework_meta/_telemetry.py during Python startup.\n\nThe second release restored the original package initializer and moved the malicious code into af_runtime_diag.pth and af_runtime_diag.py.\n\nBoth versions exfiltrated collected data to the same attacker-controlled endpoint, https://webhook[.]site/d381fd80-ec62-42ad-8f5c-d1b15103c9bb.\n\nPyPI quarantined the first malicious release, but the attacker published a second version roughly 2.5 minutes later, which was also quarantined about eight minutes afterward. The second release indicates that the attacker still had publishing access after the initial quarantine.\n\nIt remains unclear how the attacker gained access to publish malicious releases under Microsoft's official PyPI project.\n\nBleepingComputer has contacted Microsoft to learn what the point of breach was, but we have not received a response by publication time.\n\nDevelopers who installed either malicious version should isolate affected environments, avoid running Python or pip until they are secured, and rebuild from a known-clean environment using the safe 1.26.0 release.\n\nAny potentially exposed credentials that were within the reach of the compromised environment should be rotated immediately.\n\nTo determine the exact level of compromise, investigators should look for the specific webhook URL path in egress logs and distinguish blocked requests from completed transfers.\n\nAdaptive Security's AI agents analyze email intent, context, and behavior to uncover phishing, business email compromise, and invoice fraud.\n\nSee what's getting through with a 14-day read-only scan of Microsoft 365 or Google Workspace, with no MX changes.\n\nLiteLLM release pipeline hacked to distribute info-stealer malware\n\nOVHcloud CLI releases backdoored on GitHub to steal developer secrets\n\nNIKKE PC game launcher hacked to spread remote access, data-stealing malware\n\nVercel rolls out new protection against stolen session cookie attacks\n\nHackers hijack AOMEI update servers to secretly spread malware",
+  "begyujtve": "2026-11-19T07:20:09.469836+00:00",
+  "prioritas": {
+    "pont": 76,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 85,
+      "hitelesseg": 86,
+      "aktualitas": 95,
+      "kozossegi": 66
+    },
+    "elofeszures": 93,
+    "tanult": 61,
+    "indok": "Súlyos kiberbiztonsági incidens a Microsoft népszerű MI keretrendszerében Forrás-tapasztalat: -3.",
+    "tema": "microsoft agent framework pypi hack",
+    "cim_hu": "Kártevőt rejtettek el a Microsoft hivatalos MI-fejlesztői csomagjában",
+    "lead_hu": "Hacker támadás érte a Microsoft Agent Framework Python-csomagját a PyPI tárhelyen. A feltört verziók célja a fejlesztők felhős hozzáférési adatainak és bizalmas információinak megszerzése volt.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-19T07:22:28+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-19T07:24:16+00:00"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "9fa731b0ef6c",
+  "slug": "research-acceleration-the-jagged-frontier",
+  "forras_id": "openai",
+  "forras_nev": "OpenAI",
+  "url": "https://openai.com/index/research-acceleration-jagged-frontier",
+  "publikalva": "2026-11-18T08:00:00+00:00",
+  "cim": "Research acceleration: The jagged frontier",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 68 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://images.ctfassets.net/kftzwdyauwt9/2YS8yWiGpKflhlEnAkcLU/f51ead4391706f6c3198f0d61a0f147a/research-acceleration-the-jagged-frontier-social.png"
+  },
+  "cim_eredeti": "Research acceleration: The jagged frontier",
+  "szoveg_eredeti": "Over the course of this year, AI systems have become increasingly capable, potentially increasing their ability to contribute to AI research and development themselves. Today, we’re providing an update on the state of research acceleration at OpenAI, based on internal measurements of how coding agents have accelerated and changed the AI development cycle.\n\nThis report builds on our September blog post on research acceleration at OpenAI⁠, adding new quantitative and qualitative measures of (1) AI uplift across research domains and (2) how humans remain involved in the research process. Overall, we believe this update provides a broader, though still partial, picture of how research at OpenAI is changing.\n\nWe are sharing this work because, as we wrote in our frontier policy blueprint⁠⁠ and reiterated in our first research acceleration report⁠, we believe that AI labs should be required to track and publicly report indicators of recursive self-improvement (RSI)—the process by which AI accelerates the development of future AI systems.\n\nAs capabilities improve and dramatic AI-driven research acceleration becomes increasingly possible, we will need to solve novel technical and governance issues to maintain human oversight and safely scale AI systems⁠. Transparency about indicators of RSI is therefore essential to inform a public discussion of the capabilities, risks, and required safeguards for increasingly powerful AI; however, our reporting should not be read as an intention to pursue full RSI. We have been heartened to see that several other organizations have recently contributed to the growing body of work measuring AI R&D acceleration1. Our hope is that this expanded report will help sustain and advance these shared measurement norms across the industry.\n\nWe structure this report in three sections, each focused on a different aspect of AI research:\n\nWe believe organizing the results in this way provides a useful framework for reasoning about how AI is used in research and how that use might contribute to improvements in model capabilities.\n\nAI research uses several inputs, including data, AI tools (e.g., coding agents), human labor, and compute. In this report, we focus on AI tools as an input to research. Specifically, we document how the intensity of coding-agent use varies across teams and changes over time. Further, while we do not directly report changes in labor costs, we examine how the share of spending on research labor has changed relative to spending on other factors over time.\n\nSince our first report⁠, agentic AI usage within the research organization has continued to increase exponentially. At API list prices, the median researcher now uses around $2,400 USD per day on agentic AI tools, and the 90th percentile researcher now around $23,000 USD per day, up 62% and 105% respectively from $1,500 and $11,000 in September.2 This trend in increased agentic usage captures a wide variety of changes including increased activity, shifts to more expensive models, and changes to model behavior and agentic harnesses.\n\nWe next turn to the average number of “agent workdays” per researcher per day, where we define every eight hours of agent use as one agent workday. In contrast to agentic spend, agent workdays better capture the amount of “wall clock time” agents spend working, but do not account for changes in model capabilities or pricing.\n\nOverall, agent workdays per researcher have risen from 0.5 agent workdays per researcher to 5.7 agent workdays per researcher, an elevenfold increase, with the largest increase in teams focused on pretraining and posttraining. On those teams, agent runtime averaged roughly eight workdays per researcher per calendar day. In scaling and infrastructure, the average was roughly four. We note that this workday metric generally includes interactive use only, so it may undercount automations.\n\nOur September analysis⁠ highlighted increasing use of concurrent agents by researchers, including subagents and multiple sessions. We extend this analysis further in time and provide more granular bucketing. By mid-October, more than two-thirds of included researchers averaged a daily peak of at least four agents working concurrently and more than 10% averaged at least sixteen concurrent agents.\n\nWe next compare monthly API-equivalent spending on agentic AI use with monthly non-equity compensation for human researchers. We track this ratio to see how the allocation between agent and human labor changes as models become more capable. Although the ratio we report excludes equity, which generally accounts for 70 to 80% of target compensation for researchers at OpenAI, we believe it still provides a partial yet informative view of this spending allocation.\n\nAs of September 2026, the API-equivalent value of agentic AI use in OpenAI’s research organization was about twice its non-equity compensation, with higher ratios in pretraining and posttraining than in other parts of the research organization. Despite this, internal deployment, which combines internal Codex, ChatGPT, and API usage, accounts for only 2% of total research compute.\n\nLabor costs include salary, overtime, bonuses, benefits, and employer taxes. Equity, which generally accounts for 70 to 80% of target compensation for researchers, is excluded.\n\nFinally, we examine how researchers allocate their time across research areas. We first collected individual-level contributions from researchers in the form of company-public Slack posts, pull requests, and internal documents from January through September 2026. We then used classifiers to group these contributions into research areas, and each researcher-week was divided equally across that researcher’s verified projects for the week. This provides a proxy for where researchers were directing their attention.\n\nImportantly, unlike our other analyses, the “research area” we classify here does not correspond to formal reporting lines. For example, a researcher on a posttraining team who spends half their time on infrastructure improvements would be estimated as contributing half a workweek to Scaling / Infrastructure Contributions and half to Posttraining Contributions. This allows us to create a robust measurement of where researchers are actively spending time even if they do not formally shift teams.\n\nWe find that the amount of researcher time dedicated to each of the areas we identify has grown over the course of 2026. Notably, using this methodology, we find that Safety & Alignment saw the largest absolute increase across any research area, almost doubling in documented workweek contributions since the start of the year due to a combination of new hires and existing researchers shifting their focus toward safety projects. This research area covers workstreams such as alignment evals, monitorability, and reward hacking research. A notable inflection point that we measure in the growth of Safety & Alignment coincides with the aftermath of the Hugging Face incident⁠ in July, and OpenAI’s subsequent work to develop and improve safety cases for frontier AI training⁠.\n\nWe note that the distinction between research areas, and especially posttraining versus safety and alignment, is nontrivial and we may iterate on the definition over time. The methods section below describes examples of high-level workstreams.\n\nTo better understand how agent use might affect research productivity, we next examine how the process of conducting AI research at OpenAI is changing. The productivity gains from new technologies depend in part on how work is reorganized around them. As agents improve, researchers may change which tasks they delegate to AI, how they oversee and coordinate agents’ work, and which projects they pursue. Below, we report both quantitative and qualitative measures of how AI is changing the process of conducting AI research at OpenAI. Together, these different types of data contribute to a (partial) view of how researchers are reorg",
+  "begyujtve": "2026-11-19T07:17:18.850461+00:00",
+  "prioritas": {
+    "pont": 68,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 80,
+      "hirertek": 85,
+      "egyediseg": 50,
+      "hitelesseg": 92,
+      "aktualitas": 70,
+      "kozossegi": 41
+    },
+    "elofeszures": 80,
+    "tanult": 12,
+    "indok": "Hivatalos OpenAI jelentés a fejlesztési ciklusok felgyorsulásáról AI-ügynökök használatával. Forrás-tapasztalat: -6.",
+    "tema": "openai research acceleration report",
+    "cim_hu": "Jelentést adott ki az OpenAI a kutatási folyamatok felgyorsulásáról",
+    "lead_hu": "Az OpenAI mérései szerint az autonóm kódoló ügynökök egyre nagyobb szerepet vállalnak a mesterséges intelligencia belső fejlesztési ciklusaiban.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-19T07:22:28+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-19T07:24:41+00:00"
+}
