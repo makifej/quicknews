@@ -1,0 +1,50 @@
+{
+  "id": "0a736fb6096d",
+  "slug": "automated-echocardiography-artificial-intelligence-cuts-analysis-time",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/automated-echocardiography-artificial-intelligence-cuts-analysis-time-while-preserving-ejection-fraction-accuracy/",
+  "publikalva": "2026-11-19T10:15:01+00:00",
+  "cim": "Automated Echocardiography Artificial Intelligence Cuts Analysis Time While Preserving Ejection Fraction Accuracy",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "duplikátum: 630f32aacb79",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-17832.png"
+  },
+  "cim_eredeti": "Automated Echocardiography Artificial Intelligence Cuts Analysis Time While Preserving Ejection Fraction Accuracy",
+  "szoveg_eredeti": "Automated Echocardiography Artificial Intelligence Cuts Analysis Time While Preserving Ejection Fraction Accuracy\n\nA fully automated artificial intelligence system evaluated in a prospective pilot study completed comprehensive transthoracic echocardiography analyses in a median time of 94 seconds per examination compared with 490 seconds required by a trained human sonographer, while achieving noninferior diagnostic accuracy for left ventricular ejection fraction against an expert cardiologist reference standard. Published in the Journal of Cardiovascular Imaging, the investigation examined whether integrating automated quantitative measurement algorithms with automated qualitative visual interpretation modules could alleviate the operational burden imposed by escalating imaging volumes in clinical cardiology laboratories without compromising diagnostic fidelity. In routine cardiovascular care, comprehensive transthoracic echocardiography requires clinicians and sonographers to integrate numerous manual quantitative measurements, spanning chamber dimensions, volumes, and blood flow velocities, with visual qualitative interpretations of myocardial wall motion, pericardial abnormalities, and valvular pathologies. Because conventional manual analyses remain inherently operator-dependent and resource-intensive, previous automated attempts often addressed isolated quantitative tasks rather than combining quantitative calculations with visual interpretation, leaving end-to-end clinical workflow efficiency largely unaddressed under standardized conditions.\n\nTo evaluate the real-world feasibility of end-to-end automation, researchers at Seoul National University Bundang Hospital assembled an exploratory cohort of forty transthoracic echocardiography examinations obtained from adult patients between November and December 2025 under Institutional Review Board approval. The study design employed a prospective, paired comparison protocol using identical, deidentified Digital Imaging and Communications in Medicine datasets provided independently to both a human analyst and an automated software pipeline. Eligible examinations were required to fulfill a rigorous core acquisition checklist comprising standard B-mode views, including parasternal long-axis, parasternal short-axis at the great vessels, mitral valve, and papillary muscle levels, a right ventricular-focused view, and apical four-chamber, two-chamber, and three-chamber views. In addition, qualifying datasets included M-mode recordings of the aortic root, left atrium, and left ventricle, alongside spectral Doppler acquisitions covering continuous-wave Doppler across the aortic valve, pulsed-wave Doppler of the left ventricular outflow tract, continuous-wave Doppler of tricuspid regurgitation, and septal tissue Doppler imaging.\n\nThe study protocol applied strict exclusion criteria to eliminate confounding factors, potential data leakage, and unmeasurable imaging artifacts. The investigators excluded repeat examinations from identical patients during the screening window and discarded examinations missing fundamental demographic or anthropometric metadata, such as age, sex, height, or weight. Furthermore, examinations were excluded if image quality was determined to be unmeasurable to the extent that expert adjudication of core measurements or qualitative assessments could not be established. To prevent artificial performance inflation resulting from training data leakage, the researchers explicitly excluded patients known to have been registered in the Open AI Dataset Project supported by the Korean Ministry of Science and ICT, as the evaluated commercial software had incorporated data from that national repository during its development. For eligible datasets, all previous measurement annotations, graphical overlays, and derived report texts were stripped from the digital files before anonymized files were assigned unique study codes for parallel distribution.\n\nThe automated software platform evaluated in the trial comprised two specialized functional components developed by Ontact Health: a quantitative measurement module designated SoniX EchoQuant and an investigational qualitative visual interpretation module designated SoniX EchoVerse. While SoniX EchoQuant was commercially available as part of SONIX Health version 2.0 and already operating routinely at the host institution, SoniX EchoVerse was deployed experimentally during the study while undergoing regulatory review. The investigative team incorporated the unapproved visual interpretation module specifically to establish an equitable operational comparison against human practice, noting that sonographers simultaneously evaluate qualitative visual findings while measuring quantitative indices, meaning an evaluation restricted solely to quantitative automation would underestimate human work scope. Both algorithmic components functioned autonomously without operator intervention, executing automatic view recognition and producing up to seventy-five quantitative indices and one hundred sixty-two qualitative assessment items when required acoustic views were available.\n\nThe computational pipeline executed within a dedicated local computing environment equipped with a forty-eight-core Intel Xeon w7-3455 central processing unit and an NVIDIA RTX A6000 graphics processing unit. For the human comparison arm, a single trained cardiac sonographer with six years of clinical experience performed independent manual quantitative measurements and visual assessments using the hospital’s clinical INFINITT Cardiology PACS workstation. The human reader remained completely blinded to original clinical reports and all artificial intelligence outputs throughout the protocol. Human analysis duration was captured objectively by logging the elapsed time between the initial loading of a digital examination into the picture archiving software and the formal completion of a standardized core checklist matching the institution’s clinical reporting structure. To establish the ground-truth reference standard, an experienced board-certified cardiologist possessing more than fifteen years of echocardiographic experience independently adjudicated the complete image series, re-measuring quantitative parameters and grading qualitative findings under strict blinded conditions.\n\nThe study cohort encompassed diverse clinical presentations across forty adult examinations, reflecting purposeful sampling designed to evaluate algorithmic stability across varying cardiac rhythms, image clarities, and functional states. The median patient age was 73.5 years, with an interquartile range of 62.0 to 83.0 years, and twelve patients, representing 30.0 percent of the cohort, were male. The median body surface area measured 1.69 square meters, with an interquartile range of 1.56 to 1.85 square meters. Sinus rhythm was documented in twenty-seven examinations, or 67.5 percent, while thirteen examinations, representing 32.5 percent, presented with atrial fibrillation. Subjective acoustic image quality among included studies was rated as good in nineteen cases, average in seventeen cases, and poor in four cases. Left ventricular systolic function varied across the cohort: twenty-eight examinations showed an ejection fraction exceeding 55 percent, nine examinations ranged between 35 and 55 percent, and three examinations demonstrated severe systolic dysfunction with values below 35 percent.\n\nStatistical evaluation of workflow duration demonstrated a significant efficiency advantage for the automated computational pipeline. Across all forty examinations, both the human reader and the dual-module artificial intelligence platform achieved a 100 percent processing completion rate without analytical failures. The human workflow exhibited a median completion time of 490 seconds, with an interquartile range spanning 438 to 626 seconds and total durations ranging from 370 to 1,127 seconds. In contrast, the full",
+  "begyujtve": "2026-11-19T10:19:37.157356+00:00",
+  "prioritas": {
+    "pont": 52,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 55,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 35
+    },
+    "elofeszures": 76,
+    "tanult": 36,
+    "indok": "Duplikátum: 630f32aacb79",
+    "tema": "medical ai echocardiography",
+    "cim_hu": "Harmadára csökkenti a szívultrahang elemzési idejét az új MI-rendszer",
+    "lead_hu": "Egy új klinikai tanulmány szerint az automatizált MI-rendszer 94 másodperc alatt végzi el a szívultrahang elemzését a humán szakemberek 490 másodperces idejével szemben.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-19T10:19:44+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-19T10:19:47+00:00",
+  "dupla_of": "630f32aacb79"
+}
