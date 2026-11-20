@@ -1,0 +1,49 @@
+{
+  "id": "ba5f0f18f1ba",
+  "slug": "genie-zeroops-now-in-public-beta-an-autonomous-agent-that-fixes-data",
+  "forras_id": "dailydev",
+  "forras_nev": "databricks (daily.dev)",
+  "url": "https://www.databricks.com/blog/genie-zeroops-now-public-beta-autonomous-agent-fixes-data-pipelines-lessons-80000-customer",
+  "publikalva": "2026-11-19T21:30:00+00:00",
+  "cim": "Genie ZeroOps, now in public beta: An autonomous agent that fixes data pipelines, with lessons from 80,000 customer issues",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 52 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/c6668a1bd055bffd5334ed0851258be1?_a=AQAEuop"
+  },
+  "cim_eredeti": "Genie ZeroOps, now in public beta: An autonomous agent that fixes data pipelines, with lessons from 80,000 customer issues",
+  "szoveg_eredeti": "In June we introduced Genie ZeroOps, an autonomous agent that detects, investigates, and resolves data pipeline issues, such as upstream schema changes or data quality anomalies. Based on extensive private preview testing with hundreds of customers, we’ve added new features to help data teams triage issues faster - including inbox sharing, notifications, one-click PR creation, and the ability to add custom business instructions to follow specific company workflows. Today, Genie ZeroOps is available in Public Beta, and your workspace admin can turn it on from the workspace Previews page.\n\nData engineering teams are underwater, managing many thousands of pipelines a day. Some pipeline failures are easy to find and fix - a job fails, a pipeline update errors out, and someone gets paged. Others are silent - a table stops updating, or last night's load arrives with half its usual rows, and nobody notices until a dashboard shows the wrong number.\n\nEither way, the work that follows typically looks the same: a notification is sent, an engineer spends the next few hours manually investigating logs, upstream tables, and related assets, and finally a PR gets generated with the fix.\n\nGenie ZeroOps automates this entire manual workflow while maintaining security, governance, and recommendation quality, specifically guiding teams from initial issue alert to a pull request across five core steps:\n\nDuring the limited private preview, ZeroOps observed over 80,000 real customer issues across hundreds of companies, highlighting just how painful pipeline maintenance has become. We found that over half of issues require organization-specific knowledge to properly triage, rank, and resolve, which speaks to the fundamental need for custom context. Through this feedback, we identified and built several critical features every team needs to succeed with ZeroOps:\n\nDuring our private preview, we spoke with customers who were prototyping internal AI triage tools. We learned that while building a simple prototype has become easier, scaling automated triage across production environments introduces complex operational challenges that compound over time:\n\nGenie ZeroOps handles these complexities natively - leveraging direct access to your Unity Catalog, metadata, and pipeline lineage to resolve issues with full context.\n\nTry ZeroOps out for yourself! Have a workspace admin enable the ZeroOps feature. Then find the ZeroOps banner on the top of the pipelines page:\n\nRead the documentation here for more details on how to get started.\n\nIf your team needs help onboarding ZeroOps to production, reach out to your account team to inquire about any workshops that we offer.\n\nNo, ZeroOps will never change your code or data without your direct approval. Today, it investigates the failure, proposes a fix and can push that fix to a new branch for a pull request. It never changes production code or data without a person reviewing it first.\n\nIt uses Data Quality Monitoring to flag tables whose commits arrive unusually late (freshness) or whose row counts fall below the expected range (completeness).\n\nZeroOps automatically triggers as soon as an issue is detected, without a prompt, so the analysis is ready before anyone looks. It also has built-in access to run history, Unity Catalog lineage, Delta history and DQM signals, and it works within your Unity Catalog permissions.\n\nFrom the documentation, It reads run logs, source code, upstream table metadata and samples, while respecting Unity Catalog permissions. It uses models hosted by Databricks inside our security perimeter. Model calls stay in your workspace's region, and the model provider doesn't retain prompts or responses.\n\nYes. Add a custom instruction to filter out unwanted notifications, or mark an insight as \"not an issue.\"\n\nSubscribe to our blog and get the latest posts delivered to your inbox.",
+  "begyujtve": "2026-11-20T15:19:27.102241+00:00",
+  "prioritas": {
+    "pont": 52,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 55,
+      "egyediseg": 85,
+      "hitelesseg": 72,
+      "aktualitas": 76,
+      "kozossegi": 51
+    },
+    "elofeszures": 78,
+    "tanult": 68,
+    "indok": "Nyilvános bétába lépett egy adatvezeték-javító autonóm ágens, közepes iparági jelentőséggel. Forrás-tapasztalat: -8.",
+    "tema": "databricks genie zeroops beta",
+    "cim_hu": "Nyilvános béta fázisba lépett a Databricks adatcsővezeték-javító AI-ágense",
+    "lead_hu": "A Genie ZeroOps nevű autonóm ágens automatikusan észleli és javítja az adatproblémákat, mostantól pedig több tízezer éles ügyfél-tapasztalat alapján mindenki számára elérhető bétaként.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T15:19:45+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-20T15:20:01+00:00"
+}

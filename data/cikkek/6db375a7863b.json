@@ -1,0 +1,49 @@
+{
+  "id": "6db375a7863b",
+  "slug": "introducing-genie-migrate-for-serverless",
+  "forras_id": "dailydev",
+  "forras_nev": "databricks (daily.dev)",
+  "url": "https://www.databricks.com/blog/introducing-genie-migrate-serverless",
+  "publikalva": "2026-11-19T16:00:00+00:00",
+  "cim": "Introducing Genie Migrate for Serverless",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 45 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/9ade8f1f4d320b741710b28c378b47e5?_a=AQAEuop"
+  },
+  "cim_eredeti": "Introducing Genie Migrate for Serverless",
+  "szoveg_eredeti": "Serverless compute in Databricks offers a simpler, faster way to run your data and AI workloads. It removes the operational burden of managing infrastructure, automatically handling provisioning, scaling, and optimization so teams can focus on their business outcomes. With serverless, organizations can move faster, improve efficiency, and unlock the benefits of cloud-native compute without managing and maintaining complex clusters.\n\nOur serverless usage has grown multifold just in the past year, and today thousands of customers run notebooks and jobs on it. Most teams still have a classic fleet they want to migrate over to the serverless world in order to get the cost and operational benefits without managing infrastructure themselves. The work of moving each workload one at a time often prevents our customers from unlocking serverless benefits for their existing workloads.\n\nYou have probably watched this happen. You pick a job, flip it to serverless, and then get hit with an error, an access-mode incompatibility, a Spark config that does not apply, a library that is installed on classic but not on serverless. What should take an afternoon stretches into weeks, and most of the time goes to translation you have done many times before.\n\nNot any more! Today we are excited to announce the launch of Genie Migrate for Serverless (in Beta), the Databricks agent that migrates your jobs and notebooks from classic to serverless compute - easily and effortlessly. A workload migration becomes a review-and-approve step rather than a research project.\n\nUntil now, migrating a workload to serverless was manual. The knowledge of how a classic cluster config maps to serverless, which libraries resolve, which Spark confs still apply, and which access mode a workload needs lived in the practitioner's head and in the trial-and-error of running the notebook or job and reading the failure.\n\nGenie Migrate for Serverless moves that translation off you and onto the platform, the same way serverless moved provisioning and scaling onto the platform. What stays with you is judgment: whether to migrate a workload now, whether the proposed changes look right, and whether the migrated run is healthy. The agent handles the translation itself, proposing as a diff you review before anything changes.\n\nIn order to build successful serverless migration tooling, we kept these critical principles in mind:\n\nThose three needs shape how the migration agent works, and the workflow below defines how it executes the migration: assess what can move, translate it, and apply the change reversibly.\n\nThe agent runs from the /compute migrate slash command inside Genie on any job or notebook. It is fully managed, and you need no setup to start scanning. Because Databricks manages it, the agent reads your job config and workload code inside your own workspace.\n\nLet’s dive a bit deeper into each of these areas listed above.\n\nBefore you touch anything, the agent scans your Jobs and Notebooks and marks each workload with its serverless readiness. You see which workloads are ideal candidates for migration instead of auditing the fleet by hand - eliminating painstaking manual discovery and triage work\n\nA quick note on external sources: if a workload's source of truth lives outside the workspace, for example a job managed by Databricks Asset Bundles or a notebook in a Git folder, the agent cannot migrate it yet. Support for those is coming soon.\n\nOnce you pick an eligible workload, the migration agent proposes the changes it needs for serverless and presents them for review before anything is written. Nothing is applied until you approve it.\n\nThe migration agent effectively translates the pieces that differ between classic and serverless:\n\nEvery change, including the code rewrites, is presented as a reviewable diff. Before applying, the agent shows a side-by-side comparison of what will change and what will not, an explicit contract you can hand to a manager or an on-call rotation.\n\nCheck out the latest demo on how to migrate classic workloads easily using Genie Migrate for Serverless.\n\nIf the agent is unsure about something, for example whether a Spark conf is still needed, it reports the conf rather than removing it. A conf can look unused to a static scan while a listener loaded at runtime depends on it. Silent removal would drop the telemetry a team relies on. The agent leaves that decision with you.\n\nApplying a migration is where you are most exposed, so Genie Migrate for Serverless is most conservative here. It performs deterministic checks for correctness today, and deeper runtime validation is coming next.\n\nIf you opt not to migrate, cloned jobs or suggested changes to notebooks will not be applied.\n\nOne thing to be cautious about: this does not undo data that serverless runs wrote to production tables in the meantime if you tested with the changed versions.\n\nToday the validation is static. It confirms the translation is sound without running the workload, and it is honest about what it has and has not proven. The deeper check is coming next via Sandbox validation. With this, the agent will be able to run the migrated workload in an isolated sandbox without affecting your production tables and compare its output against the classic baseline – so you see a runtime and correctness signal on a critical job before Apply, not after.\n\nMigrating one workload at a time in Genie works well for a handful of jobs. For a larger fleet, you can run Genie Migrate for Serverless in the background with the Databricks CLI. Start a migration for multiple jobs from a script using the compute-migrations command group, and the agent builds a serverless working copy of each job without an open Genie session. Your original job does not change until you review and approve its migration, and approving keeps the job's ID, schedule, and permissions. Bulk migration supports jobs today (support for notebooks coming soon) and requires Databricks CLI version 1.24.0 or above.\n\nLet’s put the three key capabilities of the Genie Migrate for Serverless back together:\n\nHere is a quick summary of what workloads are good fit today to migrate using the agent, and what’s coming in the future.\n\nYou can start moving workloads to serverless today using Genie Migrate for Serverless. Here is how to get going:\n\nThe Genie Migrate for Serverless is available today via the /compute migrate command in Genie, on any job or notebook. We are actively shaping the sandbox-validation capability with preview customers, and we continue to evolve the agent to make serverless migrations faster, simpler and easier.\n\nSubscribe to our blog and get the latest posts delivered to your inbox.",
+  "begyujtve": "2026-11-20T15:19:27.102393+00:00",
+  "prioritas": {
+    "pont": 45,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 40,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 65,
+      "kozossegi": 53
+    },
+    "elofeszures": 85,
+    "tanult": 88,
+    "indok": "Rutin infrastruktúra-frissítés a Databricks platformján, kevés általános hírértékkel. Forrás-tapasztalat: -8.",
+    "tema": "databricks serverless genie migrate",
+    "cim_hu": "Szervermentes migrálási eszközt mutatott be a Databricks",
+    "lead_hu": "Megjelent a Genie Migrate for Serverless, amely leegyszerűsíti a vállalati adat- és AI-munkaterhelések futtatását a Databricks felhős infrastruktúráján.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T15:19:45+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-20T15:19:55+00:00"
+}

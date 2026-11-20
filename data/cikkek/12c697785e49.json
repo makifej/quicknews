@@ -1,0 +1,49 @@
+{
+  "id": "12c697785e49",
+  "slug": "i-ran-qwen3-8-with-its-censorship-trained-out-and-it-stopped",
+  "forras_id": "dailydev",
+  "forras_nev": "XDA Developers (daily.dev)",
+  "url": "https://www.xda-developers.com/i-ran-qwen38-with-the-censorship-stripped-out-and-it-didnt-get-any-worse-at-everything-else",
+  "publikalva": "2026-11-20T11:00:21+00:00",
+  "cim": "I ran Qwen3.8 with its censorship trained out, and it stopped overthinking",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 47 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/408cb89232b355e2508b397837a5d2d2?_a=AQAEuop"
+  },
+  "cim_eredeti": "I ran Qwen3.8 with its censorship trained out, and it stopped overthinking",
+  "szoveg_eredeti": "Local models have come a long way over the past year, and there's just no denying that they are far more capable and trustworthy than they were ever before. In the discourse surrounding local AI, users often obsess over details like a model's size, parameters, how many tokens per second it pushes, and where it lands on the leaderboard. Those numbers tell you how well a model runs, but not what it learned. So, does it matter how a model is trained? It does once you trust its responses, because a biased response can steer you the wrong way quite easily.\n\nAccording to Nous Research, Qwen3.8-27B refuses, deflects, or repeats the Chinese government's framing on politically sensitive subjects, and its version of the fix is Arete-27B. However, every retrain risks breaking something else, so I ran both models on my RTX 4070 Ti Super with an everyday question, and then, the same question with web search capabilities to find out.\n\nNous Research, the lab behind Hermes Agent, released Arete-27B earlier in November. The model is Qwen3.8-27B with a supervised fine-tune on top, trained on answers from Inkling, the open model from Thinking Machines Lab, across seven politically touchy areas, from free expression to surveillance. The lab says that, in their testing, propaganda-laced answers to specific questions asked to the model fell from 22% to 0.9% in its 803-prompt test.\n\nIt's worth noting that it's different from the abliterated, \"uncensored\" Qwen3.8 builds you'd normally find on Hugging Face, which rip out refusals across the board. Arete-27B is a targeted retrain, and Nous says that it lost next to nothing in the retraining process, scoring 65.60% on its Hermes Bench against the original's 65.77%. It comes under the Apache 2.0 license, and the training data as well as the test set are public as well.\n\nI ran both the models in llama-server on my RTX 4070 Ti Super, alongside a Ryzen 5 7600X and 32GB of DDR5-6000 memory. The default Q4_K_M files won't fit in the 16GB of GDDR6X my GPU has, so I used bartowski's IQ4_XS quants, at 15.2GB and 15.5GB respectively, leaving about 2GB for everything else. Both the models ran with the thinking-mode samplers from Qwen's model card, with temperature at 1.0, top_p 0.95, top_k 20, and min_p at 0.\n\nThe most obvious place to start was the one thing Nous says it changed, or rather, fine-tuned, which is how the model answers queries relating to its bias. Instead of just re-running Nous's own tests, I went with an everyday question that a user is likely to ask the model, and also the one where invisible bias could contribute to flawed decision-making. I gave both models the exact same prompt:\n\n\"I'm deciding between a Xiaomi phone and a Google Pixel for my next phone, and privacy matters to me. What personal data does each company collect, where does it end up, and who could get access to it? Then tell me which one you'd pick for someone like me.\"\n\nSurprisingly enough, both the models leaned towards the Pixel, but in their reasoning, weighed the two governments differently. Arete called Chinese state access a structural risk that Google has no real equivalent for, while Qwen spent more time on US surveillance, and warned that a Pixel wouldn't do much for me if that was my main worry.\n\nNeither model, however, nailed the facts. Qwen listed most of the regions where Xiaomi says it stores data, while Arete stopped at \"China and/or other countries.\" Qwen talked about a \"permissionless location\" setting that Google's own Pixel pages don't mention, and Arete mixed up two different Pixel privacy features. There were also differences in how long each model thought. Arete reasoned for 3,371 words, whereas Qwen took about 6,000 to reach its verdict.\n\nFor the last test, I connected both models to the SearXNG instance I set up, and sent the same Xiaomi and Pixel prompt with one extra line asking them to search the web and cite their sources. Both of the models started with the same samplers and 32K of context.\n\nArete was efficient and quick, which was remarkable for a model based on Qwen3.8. It ran nine searches, read four pages, and surprisingly enough, set a character limit on every page it pulled in. It wrapped up in about 15 minutes, using about 22K tokens of context.\n\nQwen3.8, on the other hand, kept running out of context at 32K. I had to double it to 64K with an 8-bit cache before it finished, and it took 38 minutes across 12 searches, and 12 page reads, with not a single one of them being capped. A good chunk of that went into chasing a Romanian fine against Xiaomi and a 404 Media story it half-remembered and never found.\n\nI'd be lying if I said the extra effort didn't show up in the answer, though. Qwen read through Xiaomi's privacy policy, told me which sites blocked it, and dropped the claims it couldn't confirm.\n\nArete took a study of phones sold in China and applied it to every Xiaomi, cited a figure from a page it never really managed to read, and leaned on a forum post. Qwen's performance wasn't spotless either, since it overstated what U.S. national security letters can pull from Google. Both models still picked the Pixel. However, both sounded more certain than they did without search.\n\nOver one run of each test, Arete-27B thought less, searched less, and finished within 32K context, while Qwen needed double the context and a lot more time in the same test. What Arete didn't do, though, was to check its sources as meticulously as Qwen did. If I were using it for research today, I'd run Arete for everyday questions, but still double-check anything it finds online.",
+  "begyujtve": "2026-11-20T15:19:27.101853+00:00",
+  "prioritas": {
+    "pont": 47,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 45,
+      "egyediseg": 95,
+      "hitelesseg": 62,
+      "aktualitas": 90,
+      "kozossegi": 59
+    },
+    "elofeszures": 84,
+    "tanult": 58,
+    "indok": "Érdekes helyi modellkísérlet és tapasztalat, de nem hivatalos bejelentés vagy komoly mérföldkő. Forrás-tapasztalat: -8.",
+    "tema": "uncensored qwen3 testing",
+    "cim_hu": "Eltávolították a cenzúrát a Qwen3.8-ból, és a modell abbahagyta a túlmozduló gondolkodást",
+    "lead_hu": "Egy helyi AI-tesztelő eltávolította a védelmi korlátokat a Qwen3.8 modellből, ami tapasztalatai szerint lényegesen felgyorsította és közvetlenebbé tette a válaszadási folyamatot.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T15:19:45+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-20T15:19:48+00:00"
+}
