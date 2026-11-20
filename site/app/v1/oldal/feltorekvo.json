@@ -2,7 +2,7 @@
   "cim": "Feltörekvő",
   "leiras": "Az elmúlt 14 nap hírei közül azok, amelyekről több forrás is beszámolt, vagy amelyek legalább 2 pontot kaptak az olvasóktól. Sorrend: elöl a szerkesztőség kiemelései, utána pontszám szerint. A pontszám a szavazatokból és abból adódik, hány forrás írt a hírről, és 2 naponta a felére csökken, így a friss hír előrébb kerül.",
   "leiras_cimke": "Hogyan áll össze a lista?",
-  "alcim": "17 hír, pontszám szerint",
+  "alcim": "18 hír, pontszám szerint",
   "blokkok": [
     {
       "t": "nagy",
@@ -51,6 +51,25 @@
     {
       "t": "cimsor",
       "hirek": [
+        {
+          "id": "be807c04d898",
+          "cim": "A Signal alapértelmezés szerint letiltja a képernyőképeket az AI-ügynökök ellen",
+          "lead": "A Signal frissítése megnehezíti az operációs rendszerbe épített AI-asszisztenseknek a privát üzenetek beolvasását.",
+          "slug": "a-signal-alapertelmezes-szerint-letiltja-a-kepernyokepeket-az-ai",
+          "forras": "Reuters",
+          "kat": "eszköz",
+          "rovat": "eszkoz",
+          "ido": "2026-11-20T11:15:45.675Z",
+          "ido_hu": "nov. 20. 12:15",
+          "kep": "https://quicknews.hu/assets/kep/be807c04d898.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/be807c04d898-n.webp",
+          "video": false,
+          "fontossag": 3,
+          "felkapott": true,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/a-signal-alapertelmezes-szerint-letiltja-a-kepernyokepeket-az-ai",
+          "jova": true
+        },
         {
           "id": "a526ce676010",
           "cim": "Megjelent a Gemini 4 Neon szoftverfejlesztéshez és komplex feladatokhoz",
@@ -107,27 +126,55 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/egyetlen-api-ba-tereli-a-vezeto-ai-modelleket-a-perplexity",
           "jova": false
-        },
+        }
+      ]
+    },
+    {
+      "t": "rovat",
+      "cim": "Ügynökök",
+      "link": null,
+      "osszes": 2,
+      "fo": {
+        "id": "0fc744e43d60",
+        "cim": "Több százmillió felhasználónak tette ingyenessé a Google a Gemini Tasks funkciót",
+        "lead": "A Google széles körben elérhetővé tette a Gemini új üzemmódját, amellyel az AI képes felhívni vállalkozásokat, időpontot foglalni és vásárolni.",
+        "slug": "tobb-szazmillio-felhasznalonak-tette-ingyenesse-a-google-a-gemini",
+        "forras": "TechCrunch AI",
+        "kat": "ügynök",
+        "rovat": "ugynok",
+        "ido": "2026-11-18T09:41:04.695Z",
+        "ido_hu": "nov. 18. 10:41",
+        "kep": "https://quicknews.hu/assets/kep/0fc744e43d60.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/0fc744e43d60.webp",
+        "video": false,
+        "fontossag": 4,
+        "felkapott": true,
+        "forraskep": false,
+        "url": "https://quicknews.hu/hir/tobb-szazmillio-felhasznalonak-tette-ingyenesse-a-google-a-gemini",
+        "jova": true
+      },
+      "kis": [
         {
-          "id": "0fc744e43d60",
-          "cim": "Több százmillió felhasználónak tette ingyenessé a Google a Gemini Tasks funkciót",
-          "lead": "A Google széles körben elérhetővé tette a Gemini új üzemmódját, amellyel az AI képes felhívni vállalkozásokat, időpontot foglalni és vásárolni.",
-          "slug": "tobb-szazmillio-felhasznalonak-tette-ingyenesse-a-google-a-gemini",
-          "forras": "TechCrunch AI",
+          "id": "47f553706de3",
+          "cim": "Az AI által felfedezett hibák miatti kapkodó javítások okoztak leállásokat az USÁ-ban",
+          "lead": "Nem kibertámadás, hanem a mesterséges intelligencia által feltárt biztonsági rések sürgős javítása terhelte túl a bankok és az NSA rendszereit.",
+          "slug": "az-ai-altal-felfedezett-hibak-miatti-kapkodo-javitasok-okoztak",
+          "forras": "The Washington Sun",
           "kat": "ügynök",
           "rovat": "ugynok",
-          "ido": "2026-11-18T09:41:04.695Z",
-          "ido_hu": "nov. 18. 10:41",
-          "kep": "https://quicknews.hu/assets/kep/0fc744e43d60.webp",
-          "kep_nagy": "https://quicknews.hu/assets/kep/0fc744e43d60.webp",
+          "ido": "2026-11-18T08:47:50.942Z",
+          "ido_hu": "nov. 18. 09:47",
+          "kep": "https://quicknews.hu/assets/kep/47f553706de3.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/47f553706de3-n.webp",
           "video": false,
           "fontossag": 4,
           "felkapott": true,
           "forraskep": false,
-          "url": "https://quicknews.hu/hir/tobb-szazmillio-felhasznalonak-tette-ingyenesse-a-google-a-gemini",
+          "url": "https://quicknews.hu/hir/az-ai-altal-felfedezett-hibak-miatti-kapkodo-javitasok-okoztak",
           "jova": true
         }
-      ]
+      ],
+      "tobb": []
     },
     {
       "t": "rovat",
@@ -306,33 +353,6 @@
           "jova": true
         }
       ],
-      "tobb": []
-    },
-    {
-      "t": "rovat",
-      "cim": "Ügynökök",
-      "link": null,
-      "osszes": 1,
-      "fo": {
-        "id": "47f553706de3",
-        "cim": "Az AI által felfedezett hibák miatti kapkodó javítások okoztak leállásokat az USÁ-ban",
-        "lead": "Nem kibertámadás, hanem a mesterséges intelligencia által feltárt biztonsági rések sürgős javítása terhelte túl a bankok és az NSA rendszereit.",
-        "slug": "az-ai-altal-felfedezett-hibak-miatti-kapkodo-javitasok-okoztak",
-        "forras": "The Washington Sun",
-        "kat": "ügynök",
-        "rovat": "ugynok",
-        "ido": "2026-11-18T08:47:50.942Z",
-        "ido_hu": "nov. 18. 09:47",
-        "kep": "https://quicknews.hu/assets/kep/47f553706de3.webp",
-        "kep_nagy": "https://quicknews.hu/assets/kep/47f553706de3-n.webp",
-        "video": false,
-        "fontossag": 4,
-        "felkapott": true,
-        "forraskep": false,
-        "url": "https://quicknews.hu/hir/az-ai-altal-felfedezett-hibak-miatti-kapkodo-javitasok-okoztak",
-        "jova": true
-      },
-      "kis": [],
       "tobb": []
     },
     {
