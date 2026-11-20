@@ -1,0 +1,49 @@
+{
+  "id": "e02aa7f35fb5",
+  "slug": "run-your-whole-selling-business-in-aws-quick",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/run-your-whole-selling-business-in-aws-quick/",
+  "publikalva": "2026-11-19T22:16:22+00:00",
+  "cim": "Run your whole selling business in AWS Quick",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 45 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/19/ML-22255-featured-image.png"
+  },
+  "cim_eredeti": "Run your whole selling business in AWS Quick",
+  "szoveg_eredeti": "Most sellers do not need another AI product to learn. They need the tools and information they already use brought together, so they can see what is happening in their business and act on it.\n\nAWS Quick and the Amazon Selling Partner plugin do that together. Quick brings an Amazon seller’s sales data, inventory signals, and marketplace intelligence into one place, where questions become answers and answers become actions. It understands the seller’s full business context, so the seller does not need to re-explain their catalog, their margins, or their competitive landscape in every conversation. It is built on AWS, the same infrastructure Amazon uses to run its own marketplace.\n\nAt Amazon Accelerate on September 23, 2026, Amazon announced the Selling Partner plugin and launched it in beta in AWS Quick. This post covers what launched, how to claim the free AWS Quick offer, and what the experience looks like day to day. It also covers how the skills and connectors work when a seller puts them to use.\n\nLimited-time offer: 12 months of AWS Quick Plus, free. Every primary selling account holder worldwide can claim a free 12-month subscription, plus access for 10 additional users you delegate. Sign up by December 31, 2026. Claim your free AWS Quick Plus offer.\n\nFour things make Quick a fit for how Amazon sellers already work: it learns the business, it reaches beyond the Amazon store, it turns data into decisions, and it protects seller data on infrastructure sellers already trust.\n\nQuick and the Selling Partner plugin connect to a seller’s inventory feeds, sales data, and operational documents. From these, Quick builds a living understanding of the catalog structure, margin thresholds, seasonality, and competitive position. Ask Quick to audit your ASINs for Q4, and it returns a ranked recommendation built on the seller’s real margin data, historical conversion, and inventory availability. Its recommendations get sharper the more the seller works with it.\n\nA seller’s business runs across many tools: a storefront on another channel, an email inbox, an accounting system, spreadsheets, a supplier portal. Quick connects to where the seller already works and pulls context from across the whole operation. It is a business assistant that happens to know Amazon deeply, so the seller grows overall, not on one channel alone.\n\nSellers are not short on data. They have Brand Analytics, Search Query Performance, advertising reports, inventory health, and listing quality data. The problem is turning those signals into one clear action. Quick does the synthesis. It watches for change, flags what matters, builds the analysis, and presents the decision with the evidence behind it.\n\nQuick runs on AWS and does not use seller data to train models, not for general improvement and not for anything else. Seller data stays in the seller’s environment and never informs anyone else’s models. For a seller already operating on the Amazon marketplace, there is no new security posture to evaluate. The infrastructure is the same one protecting the seller account today, and the seller’s chosen AWS Region governs where data stays.\n\nThe Selling Partner plugin connects AWS Quick directly to live Seller Central data. After one sign-in with a Seller Central account, the plugin gives conversational access to product listings, inventory, and sales data, pulled live rather than exported and reassembled by hand. It installs like an app, with no coding required. It ships with curated Amazon skills, and it pairs with Amazon Ads MCP so campaign performance and spend sit next to the selling data. The plugin is in beta for US stores.\n\nFigure 1: The Selling Partner plugin consent screen, where the seller grants None, View, or Edit access per data category\n\nThe permission screen is worth a pause. The seller grants access per data category, choosing None, View, or Edit for each, and reviews an agreement before authorizing. Nothing is all-or-nothing, and access can be narrowed or revoked later.\n\nFigure 2: Connecting the Selling Partner plugin from the AWS Quick sign-up flow\n\nAfter the plugin is connected, the work happens in a conversation. You ask in plain language, Quick pulls the relevant live data, and it comes back with an answer and a recommended next step. Instead of checking a dashboard, exporting a report, and reconciling it in a spreadsheet, you move from a question to an answer to an action in one place. You review what Quick proposes before anything is sent.\n\nFigure 3: Quick diagnosing whether a sales dip comes from traffic or conversion, using live selling data\n\nAt the Accelerate workshop we had sellers build real agents live, from a plain-language description, in a few minutes. Quick turns the description into a working agent, which the seller then refines in conversation.\n\nThe seller is staging a new product into Amazon and wants the lowest total landed cost. The agent reads supplier data and weighs the fulfillment options per SKU on inbound cost, storage, and speed to sellable. It walks through placement choices and returns the output the seller picks: a shipping plan, a cost comparison, or a combined packet. It explains its reasoning and confirms before it creates anything.\n\nFigure 4: The Inventory Launch Prep agent comparing FBA and AWD fulfillment per factor and recommending a hybrid approach\n\nAfter the launch, the agent reads four signal families through the Selling Partner plugin: listing health, inventory, sales, and traffic. It connects them to find the cause rather than just reporting numbers. Flat sales with healthy traffic points to a conversion problem. Flat sales with falling traffic points to discoverability. Good conversion with falling units points to supply. It returns a health summary per ASIN, the diagnosis with evidence, and a ranked fix list, labeling any low-confidence call.\n\nFigure 5: The Post-Launch Product Health agent’s weekly summary, with week-over-week sales evidence\n\nOne honest limit, handled honestly: the selling data does not include cost of goods, so the agent reports margin after Amazon fees and labels it that way. When the seller wants true gross margin, the agent asks them to bring their cost numbers into the conversation. It never presents after-fees margin as if it were gross margin.\n\nThe Selling Partner plugin and Amazon Ads MCP bring the Amazon selling and advertising data into Quick. Other connectors in AWS Quick bring in the rest of how the business runs, organized by role. These include a second storefront (orders and products from another channel), email and calendar (draft a supplier note, track what is due), team messaging (share an update), and accounting and inventory systems (cost and stock context the selling data does not carry). Because the pieces sit together, the seller can ask one question that reaches across Amazon data and the tools around it.\n\nAt Accelerate, Richard Brown, who runs the sneaker care brand Proof Culture and sells across five stores including Amazon, showed what this looks like. He had built his own AI assistant over time, and the hard part was never the AI. It was getting his selling data connected in real time.\n\n“The hard part was never the AI. The hard part was getting my selling data into it, and that is the part that is now simple with the plugin. With Quick and the Selling Partner plugin, just connect your account and start asking questions.”\n\n— Richard Brown, Proof Culture, at Amazon Accelerate 2026\n\nIn his demo, Richard asked Quick about upcoming sneaker drops and checked whether he had enough FBA stock to cover a major release. He had Quick model how far his current inventory would carry him. Then he asked it to draft a reorder purchase order and a message to his team. A morning of research across different tools took a few minutes.\n\nMedia captured from the Amazon Accelerate 2026 workshop ‘Build It Live: Automate New Product Launch in AWS Quick.’ Non-Amazon tools referred to by role, not brand.",
+  "begyujtve": "2026-11-20T07:04:28.168423+00:00",
+  "prioritas": {
+    "pont": 45,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 35,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 90,
+      "kozossegi": 43
+    },
+    "elofeszures": 78,
+    "tanult": 54,
+    "indok": "Egy vállalati AWS e-kereskedelmi bővítmény termékbejelentése, amely korlátozott hírértékű PR-anyag. Forrás-tapasztalat: -7.",
+    "tema": "aws quick amazon plugin",
+    "cim_hu": "Integrált e-kereskedelmi AI-eszközt mutatott be az AWS az Amazon-eladóknak",
+    "lead_hu": "Az AWS Quick és az Amazon Selling Partner bővítmény egyetlen felületre gyűjti össze az értékesítési adatokat és a készletinformációkat az eladók számára.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T07:05:23+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-20T07:07:48+00:00"
+}

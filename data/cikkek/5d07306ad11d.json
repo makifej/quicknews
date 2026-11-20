@@ -1,0 +1,84 @@
+{
+  "id": "5d07306ad11d",
+  "slug": "a-google-deepmind-kutatoi-szerint-az-ai-hamar-tullephet-az-agi",
+  "forras_id": "techmeme",
+  "forras_nev": "DeepMind Institute",
+  "url": "https://institute.deepmind.com/essays/what-comes-after-agi/",
+  "szerzo": null,
+  "publikalva": "2026-11-20T01:50:51+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://lh3.googleusercontent.com/MtcSyuy2GVyxylszKhwxAUP_OVh-e9ETmOtE5kLDGL8AIl59WmqxO5QJjRU3NDBnLsjBPmR3Wn5c4V0gVeOKge7MOF1oXMhqB5WWz8MCb89aH_e2=w1200-h630-n-nu-rw"
+  },
+  "cim_eredeti": "Google DeepMind researchers argue AI development is on pace to move beyond human-level AGI to ASI, which consistently outperforms groups of human experts (Tim Genewein/DeepMind Institute)",
+  "forrasok": [],
+  "szoveg_eredeti": "For decades, AI research has been focused on a monumental milestone: building artificial general intelligence, or AGI - machines that match humans across nearly all cognitive tasks. It was always clear that, in principle, intelligence could progress beyond human level, but the prospect of AGI was far enough off, and surrounded by ample uncertainties of its own, that looking past it felt premature.\n\nNow that AGI is coming within reach, we can no longer put off seriously considering what comes next. While far from certain, AI could continue to advance at its current pace - and possibly even accelerate - towards artificial general superintelligence, or ASI. It could have a profound impact on science, the economy, and society at a scale and speed much greater than AGI itself. Preparing for that potential shift requires mapping the possible roads from AGI to ASI and building rigorous, reliable ways to track progress.\n\nTo examine how the development of advanced AI might unfold, it helps to think of general intelligence, whether biological or artificial, as existing on a continuum. Human-level AGI is just one point along that spectrum.\n\nASI sits further along as an advanced system that consistently outperforms large groups of human experts on tasks that could take them years to complete, using fewer resources and less time. Examples would be making the same scientific progress as an entire research field in a fraction of the time, or achieving technological developments, such as in chip design, on par with what large companies can do in a year. ASI would need to meet this bar across virtually all tasks of human interest, not just some in narrow domains (which is already the case with some AI systems today that can beat any human in Chess and Go, predict the structure of proteins from their amino acid sequences, or prove theorems that resisted human mathematicians for decades).\n\nInterestingly, we have a good mathematical understanding of the very upper end of the intelligence continuum - the theoretical limits of general intelligence. We also know about hard physical, logical, and complexity-theoretic limits to what AI can achieve, such as predicting how real-world complex systems - from climate to immune systems to human societies - play out with arbitrary precision.\n\nYet knowing those upper limits doesn’t tell us what comes before them. Even in theory, it’s hard to predict how capable a ‘good enough’ approximation of general intelligence can be. For example, solving chess perfectly requires far more computing power than exists on Earth, yet a thumbnail-sized chip can play the game well enough to defeat any human.\n\nWhat we do know is that fundamental limits lie far beyond both today’s AI systems and humans. But the vast space between human-level AI and theoretical limits to intelligence, which encompasses expert AGI and a whole regime of more and more advanced superintelligent systems, is largely uncharted.\n\nEven if you are pessimistic that progress at the frontier of AI capabilities will continue, consider what happens if AI hardware and software continue to become more efficient.\n\nOver the last ten years, AI progress was fueled by steady growth in effective compute, driven by three compounding factors:\n\nMultiplying all three factors gives an overall growth rate of global effective compute stock of at least 10x per year - a factor of 10 billion over ten years. Imagine that this trend holds. A decade from now, for each single AI agent you could run today, you would hypothetically be able to run more agents of the same quality than there are people in the world.\n\nAt the same time, continued hardware and software (inference) efficiency improvements alone would reduce the compute demand to run an AI workload by about 4x per year. A cognitive workload that can be performed by today’s AI systems for $1 billion in compute tokens would cost just $1000 in ten years. Looking only at the last few years gives even steeper estimates: a recent Epoch study finds the consumer price for achieving a fixed score on a set of benchmarks has fallen by more than 13x per year since 2023.\n\nExtrapolating both trends into the next decade raises the prospect of a dramatically larger global effective compute stock combined with equally dramatic cost reductions for cognitive work performed by AI. Increasingly, many cognitive tasks may therefore soon become commoditised. Much like mechanical industrialization turned routine physical labor into a commodity, this shift will lead to cognitive industrialization characterized by rapidly increasing standardization and automation of cognitive work across sectors, industrial-scale infrastructure build-out, and an abundance of (certain) cognitive outputs and services.\n\nIs such a dramatic proliferation of intelligence realistic? It’s certainly not a given, but practical ceilings on compute build-out, and more speculative ceilings on algorithmic efficiency, together might allow the effective population of today’s AI agents to scale up by more than a thousand-fold by 2030, and more than a billion-fold within ten years from now.\n\nWould cognitive industrialization alone be enough to achieve ASI? If we froze other dimensions of AI progress and only scaled up today’s AIs in speed and number, the result might not even count as full AGI: there may still be cognitive tasks that AI cannot do without human help. Nonetheless, sheer scale can have a quality of its own. Suppose that we do achieve broadly human-level AI. Then there is clearly a major difference between human-level AIs that are slow and expensive to run, and a world where billions of agents act much faster than humans. That quantitative leap in speed and scale might itself be enough to bridge the qualitative gap from AGI to (weak) ASI.\n\nUnlike humans, digital intelligence directly benefits from more and faster compute in several fundamental ways:\n\nDramatically more efficient AI and larger compute stocks can scale up the speed and number of AI agents at a given capability level. But some missing capabilities may be hard - or impossible - to patch over with sheer volume. While Einstein did figure out general relativity, a conference of one hundred thousand Ptolemaic astronomers probably wouldn’t have.\n\nAI could follow four potential technological pathways to unlock previously unavailable cognitive capabilities. (For an in-depth discussion, see our From AGI to ASI report.)\n\nSo far, qualitative capabilities have improved with remarkable consistency alongside model and data scale. This trend is captured by scaling laws that relate model performance to training compute, training data, and more recently, test-time compute (giving a model extra computing power to reason through a problem before answering).\n\nThese scaling “laws,” however, are extrapolations of observed trends that hold only within familiar boundaries, such as a particular model architecture, type of training data, and family of evaluations. They can’t confidently predict the scale required for AGI or ASI, but we can identify potential bottlenecks to continued scaling of models and data:\n\nToday’s dominant AI paradigm is to train large transformers to predict the next symbol in a long sequence across vast datasets, then refine them to learn to reason and follow instructions, and give them extra test-time compute. Recent research suggests this paradigm can, in principle, produce models that can run complex algorithms, including powerful learning algorithms, via their prompts - that is, without requiring retraining. This is a key ingredient for building AI systems at the theoretical upper limit of intelligence.\n\nBut today’s models fall short of humans on a few fundamental dimensions, including continual learning, certain forms of world modeling, decision-making, and sample efficiency - meaning that AI models need to be initially trained on much more data than humans to reach roughly the same intelligence level. They may also be missing the",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Google DeepMind kutatója szerint az AI hamar túlléphet az AGI szintjén",
+  "lead": "A Google DeepMind kutatójának elemzése szerint a mesterséges általános intelligenciát gyorsan követheti a **szuperintelligencia**, amely a gazdaságot is átalakítja.",
+  "osszefoglalo": "Tim Genewein, a Google DeepMind kutatója a [DeepMind Institute elemzésében](https://institute.deepmind.com/essays/what-comes-after-agi/) vizsgálja az **általános szuperintelligenciához (ASI)** vezető lehetséges technológiai utakat. Érvelése szerint a fejlesztések jelenlegi tempója alapján az emberi szintű AGI elérése után a fejlődés nem áll meg, hanem az emberi szakértői csoportok teljesítményét is messze felülmúló rendszerek jelenhetnek meg.\n\nA tanulmány kiemeli, hogy a számítási kapacitás növekedése és a szoftveres hatékonyság javulása miatt a kognitív feladatok elvégzése drasztikusan olcsóbbá és automatizálhatóvá válik. Ez a **kognitív iparosodási folyamat** oda vezethet, hogy a ma még dollármilliárdokba kerülő számítási feladatok 10 éven belül töredékáron valósulhatnak meg.\n\nA szakértők négy fő technológiai útvonalat azonosítottak a szuperintelligencia elérésére: a meglévő modellek és adatok skálázását, az architektúra és a tanítási algoritmusok áttöréseit, az autonóm AI-kutatást, valamint a fizikai világban szerzett tapasztalati tanulást.",
+  "miert_szamit": "A kognitív feladatok tömeges automatizálása és olcsóvá válása miatt a szellemi és kreatív munkák értéke átalakul, így a jövőben a **szellemi folyamatok ipari méretű skálázására** kell készülni.",
+  "cimkek": [
+    "Google DeepMind",
+    "AGI",
+    "ASI",
+    "kutatás"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 85,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 88,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 88,
+      "aktualitas": 95,
+      "kozossegi": 78
+    },
+    "elofeszures": 87,
+    "tanult": 57,
+    "indok": "A Google DeepMind kutatói az emberi szintet meghaladó szuperintelligencia eljöveteléről publikáltak. Forrás-tapasztalat: -3.",
+    "tema": "deepmind agi to asi transition",
+    "cim_hu": "Már az emberi szuperintelligencia elérésére figyelmeztetnek a Google DeepMind kutatói",
+    "lead_hu": "A Google DeepMind szakértői szerint az AI fejlődése hamarosan túlmutat az emberi szintű AGI-n, és belép a szakértői csoportokat is felülmúló szuperintelligencia korába.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T07:05:23+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-20T07:07:12+00:00",
+  "megjelent": "2026-11-20T07:07:12+00:00",
+  "nevelo_javitva": "2026-11-20T07:07:12+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-20T07:07:50+00:00",
+    "esemeny": "Tim Genewein, a Google DeepMind kutatója esszét publikált a DeepMind Institute oldalon, amelyben az általános mesterséges intelligenciát (AGI) követő szuperintelligenciához (ASI) vezető utakat és a kognitív iparosodás folyamatát elemzi.",
+    "forrasok": [
+      "https://institute.deepmind.com/essays/what-comes-after-agi/"
+    ],
+    "hibak": [
+      "Hiányzik az elsődleges forrásra mutató hivatkozás a magyar szövegből.",
+      "A meglévő szövegben nem volt kötelező félkövér kiemelés a leadben."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "A Google DeepMind kutatói szerint az AI hamar túlléphet az AGI szintjén",
+      "lead": "A Google DeepMind elemzése szerint a mesterséges általános intelligenciát gyorsan követheti a szuperintelligencia, ami alapjaiban alakítja át a gazdaságot.",
+      "osszefoglalo": "A Google DeepMind kutatói egy átfogó elemzésben vizsgálják az **általános szuperintelligenciához (ASI)** vezető lehetséges technológiai utakat. Érvelésük szerint a fejlesztések jelenlegi tempója alapján az emberi szintű AGI elérése után a fejlődés nem áll meg, hanem az emberi szakértői csoportok teljesítményét is messze felülmúló rendszerek jelenhetnek meg.\n\nA tanulmány kiemeli, hogy a számítási kapacitás növekedése és a szoftveres hatékonyság javulása miatt a kognitív feladatok elvégzése drasztikusan olcsóbbá és automatizálhatóvá válik. Ez a **kognitív iparosodási folyamat** oda vezethet, hogy a ma még dollármilliárdokba kerülő számítási feladatok 10 éven belül töredékáron valósulhatnak meg.\n\nA szakértők négy fő technológiai útvonalat azonosítottak a szuperintelligencia elérésére: a meglévő modellek és adatok skálázását, az architektúra és a tanítási algoritmusok áttöréseit, az autonóm AI-kutatást, valamint a fizikai világban szerzett tapasztalati tanulást.",
+      "miert_szamit": "A kognitív feladatok tömeges automatizálása és olcsóvá válása miatt a szellemi és kreatív munkák értéke átalakul, így a jövőben a **szellemi folyamatok ipari méretű skálázására** kell készülni."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-20T07:09:04+00:00",
+  "linkek_ellenorizve": true
+}

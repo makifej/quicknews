@@ -1,0 +1,49 @@
+{
+  "id": "c7ff6fba9cb1",
+  "slug": "amazon-sagemaker-inference-2026-launches-in-review-part-2",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Amazon Web Services (AWS)",
+  "url": "https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-inference-2026-launches-in-review-part-2/",
+  "publikalva": "2026-11-20T00:34:07+00:00",
+  "cim": "Amazon SageMaker Inference: 2026 launches in review, part 2",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 39 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/19/ML-22497-featured-image.png"
+  },
+  "cim_eredeti": "Amazon SageMaker Inference: 2026 launches in review, part 2",
+  "szoveg_eredeti": "Once a model is in production, the questions change. Teams want to know which configuration the model should run on now that traffic is real, how to fit more models onto GPUs they already pay for, what to do when the next model is too large for one machine, why requests wait in one Region while GPUs sit idle in another, and why latency rose when nobody changed anything. This post takes those questions in the order teams usually meet them.\n\nFor HyperPod Inference, it listed additional routing strategies, broader support for model serving frameworks, and expanded multi-Region networking. The Inference Gateway delivers the routing, and managed NVIDIA Dynamo is a new serving framework. For managed endpoints, the roadmap pointed to deeper integration with the rest of the AWS AI landscape. Inference recommendations now run from Amazon SageMaker AI Studio, the SageMaker Python SDK, and the coding agents engineers already use, and endpoints can now route requests across Regions and accounts.\n\nTo keep each section concrete, we follow one hypothetical team through the blog post. In the spring, they launched a customer support assistant on a 70B-parameter model behind a single SageMaker AI endpoint, using the launches from part 1. By the fall, they need to support more product lines, adopt a larger reasoning model, serve customers in a second Region, and keep their GPU bill flat.\n\nFigure 1: The five stages in this post and the launches in each\n\nThe team picked its first configuration from a benchmark run in April. Since then, they have added four LoRA (Low-Rank Adaptation) adapters, one for each product line, and the product team has set a target of 500 milliseconds for time to first token (TTFT) at peak load. The April configuration was never tested against either change. The engineers who will re-run the analysis work in notebooks and coding agents, and few of them use the console.\n\nInference recommendations launched in April as an API. Four updates since then make it available in more of the places teams work, and let it answer two harder questions: how many adapters an endpoint can carry, and how much concurrency it can take before it misses a latency target. A new agent skill brings the same expertise into coding agents.\n\nBlog: Launching UI for generative AI inference recommendations in Amazon SageMaker AI\n\nThe April launch automated instance, container, and optimization selection through APIs. Inference recommendations are now also available in SageMaker AI Studio as a guided, low-code workflow. In Studio, choose Jobs, then Inference optimization. Choose a use-case profile (Interact, Generate, Summarize, or Custom), an optimization goal (minimize latency, maximize throughput, or minimize cost), and a model from SageMaker JumpStart, Amazon Simple Storage Service (Amazon S3), the Model Registry, or an existing SageMaker model.\n\nSageMaker AI benchmarks candidate configurations on real GPU infrastructure using NVIDIA AIPerf and applies techniques that match the goal, such as speculative decoding for throughput or kernel tuning for latency. You compare the ranked results by TTFT, inter-token latency, throughput, and cost, and then deploy the chosen configuration to a real-time endpoint from Studio.\n\nBlog: LLM optimization integration for Amazon SageMaker Python SDK\n\nBenchmarking and recommendations previously required SageMaker AI Studio or direct Boto3 calls. They are now part of the SageMaker Python SDK v3 (version 3.17.0 and later), the same interface teams use for training and deployment, so the workflow fits into notebooks, CI pipelines, and MLOps workflows. You can benchmark a live endpoint against your workload traffic, generate ranked recommendations for a latency, throughput, or cost goal, and deploy the top-ranked configuration to a real-time endpoint in a single call.\n\nThe SDK also supports longer workflows. You can run recommendation jobs in parallel to compare serving frameworks such as LMI and vLLM, and you can resume from a completed job so that deployment happens in a different notebook or pipeline stage without re-running the benchmarks.\n\nDeveloper guide: Get recommendations for models with LoRA adapters\n\nMany teams use LoRA adapters to specialize one foundation model for several use cases. Each adapter kept in GPU memory reduces the number of concurrent requests the endpoint can serve, and the right balance depends on the instance type, the number of adapters, and the traffic profile.\n\nInference recommendations now accept adapters as Model Package Amazon Resource Names (ARNs), for adapters produced by SageMaker fine-tuning, or as S3 URIs, for adapters from external pipelines such as Hugging Face PEFT. SageMaker AI benchmarks combinations of adapter count and concurrency on real GPU infrastructure and returns ranked results for your workload. The output lists both formats for every adapter. The recommended deployment uses SageMaker Inference Components, with one component for the base model and one for each adapter, so you can add, update, or remove an adapter without disrupting the base model or the other adapters.\n\nBlog: Right-size generative AI endpoints with concurrency sweeps on Amazon SageMaker AI\n\nRight-sizing an endpoint means finding the highest concurrency it can sustain without breaching latency or error targets. Until now, that meant picking concurrency levels by hand, running a sweep, checking the results against the service level agreement (SLA), and repeating with a narrower range whenever the model or instance changed.\n\nInference recommendations now include a search that finds that boundary directly. Set search_recipe to max-concurrency-under-sla and supply targets for any combination of maximum TTFT, maximum time per output token, maximum end-to-end latency, and maximum error rate. The benchmarking engine (AIPerf) starts from a broad range, narrows it based on which probes pass or fail, and converges in fewer iterations than a linear sweep. The result reports the largest passing concurrency (feasible_max) or, if no level qualifies, the smallest failing one (infeasible_min).\n\nThe search uses the same CreateAIWorkloadConfig and CreateAIBenchmarkJob APIs as concurrency sweeps. Optional parameters (concurrency_min, concurrency_max, search_max_iterations, and search_initial_points) bound the cost and speed up convergence.\n\nBlog: New agent skill: Amazon SageMaker optimized generative AI inference for your coding agent\n\nEngineers increasingly ask their coding agent which instance and container to use. Without grounded knowledge and access to real benchmarks, the agent can only guess, and a wrong instance choice shows up later as missed latency targets or wasted spend.\n\nThe aws-ai-ml skill, available through the Agent Toolkit for AWS, gives coding agents such as Kiro built-in SageMaker AI inference expertise. Engineers describe what they need in plain language, and the agent can do the following:\n\nAnswers are grounded in measured performance and delivered as SageMaker Python SDK v3 code that engineers review and run under their own credentials. Setup takes about 10 minutes. The skill works with any agent that supports the Model Context Protocol (MCP) and in SageMaker AI Studio JupyterLab spaces.\n\nFor the support team, one recommendation job that includes all four adapters, followed by a concurrency search against the 500 millisecond TTFT target, replaces the manual sweeps they ran in April. The engineer who owns it can start the job from a notebook or ask a coding agent to run it.\n\nThe support assistant does not run alone. An embedding model, a reranker, and a small classifier that routes tickets live in the same account, and each uses a fraction of a GPU. On a standard endpoint, each model copy still held a whole accelerator, so the team ran out of placement slots while GPU memory sat unused.\n\nWith Inference Components, you can host several models on one endpoint and size and scale each model separately. Until now, they were availa",
+  "begyujtve": "2026-11-20T07:04:27.405742+00:00",
+  "prioritas": {
+    "pont": 39,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 30,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 92,
+      "kozossegi": 29
+    },
+    "elofeszures": 79,
+    "tanult": 34,
+    "indok": "Fejlesztői infrastruktúra-bejegyzés az AWS SageMaker futtatási opcióiról. Forrás-tapasztalat: -7.",
+    "tema": "aws sagemaker inference updates",
+    "cim_hu": "Összegezte a SageMaker modellfuttatási fejlesztéseit az Amazon",
+    "lead_hu": "Az AWS elemzésben mutatja be a termelésbe állított AI-modellek GPU-optimalizációját és terheléselosztási megoldásait.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T07:05:23+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-20T07:07:43+00:00"
+}
