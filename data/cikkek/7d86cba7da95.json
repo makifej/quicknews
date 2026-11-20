@@ -1,0 +1,49 @@
+{
+  "id": "7d86cba7da95",
+  "slug": "agentic-sql-benchmarks",
+  "forras_id": "dailydev",
+  "forras_nev": "DoltHub Blog (daily.dev)",
+  "url": "https://dolthub.com/blog/2026-11-19-agentic-sql-benchmarks",
+  "publikalva": "2026-11-19T00:00:00+00:00",
+  "cim": "Agentic SQL Benchmarks",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 47 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/5df3aad9f7a830b0502830c2e3912678?_a=AQAEuop"
+  },
+  "cim_eredeti": "Agentic SQL Benchmarks",
+  "szoveg_eredeti": "It seems like every other week one of the frontier AI labs announces a new flagship model. These announcements always come with claims that their new model outperforms its competitors by a wide margin. These claims are then “proven” with fun graphs that show how much better and cheaper the new model is than whatever you were using before. Here’s one such graph from this week’s announcement of GPT 6.2 Astra and Sol.\n\nThis graph highlights Astra’s performance on the Agents’ Last Exam benchmark, which, as OpenAI graciously informs us in the text below the figure, evaluates models on “long-horizon professional workflows.” When I read this announcement, my first thought was not “wow, this new model must be exceptional.” It was “what the hell is a long-horizon professional workflow?”\n\nFrom the outside, the benchmarks used to judge models range from vague to indecipherable. At DoltHub we build databases, and lots of people these days are pointing agents at them. In an effort to better understand the current state-of-the-art agentic SQL benchmarks and dispel some of the mystique surrounding benchmarks in general, I dug into the internals of several of the more popular SQL benchmarks used to evaluate models. These are my findings.\n\nOne of the first major SQL benchmarks came before we had general-purpose models like those created by OpenAI and Anthropic. In 2018, Yale researchers came out with Spider, a dataset consisting of 10,000+ natural language questions corresponding to handwritten SQL queries. An example question-answer pair from Spider 1.0 looked something like this:\n\nAt the time, the types of models evaluated on Spider were specifically trained on Spider’s data and tested on a set of databases they’d never seen, which forced them to generalize to new schemas. In the original paper, the best-performing model scored only 12.4%. By the time the Spider 1.0 leaderboard closed in 2024, that number had shot up to over 80%.\n\nBy 2023, the rise of general-purpose models made Spider-like benchmarks less meaningful. The original BIRD benchmark functioned as a spiritual successor to Spider 1.0, with messier, more realistic data, but the format was largely the same. The one-shot text-to-SQL system that worked for evaluating specialized machine learning models was not geared toward the humanlike engineering tasks targeted by generalized LLMs like Claude and ChatGPT. Models could now operate in “agentic” loops, where they repeatedly run queries, read the results, and try again. At this point, Spider 1.0 was solved. Its creators closed the leaderboard, and later that year pointed everyone to Spider 2.0, which dropped agents into complex, enterprise-like databases. On Spider 2.0’s release in late 2024, the best models scored only 21%.\n\nToday, the landscape around agentic SQL benchmarks has split off in several different directions. Some test an agent’s ability to navigate and understand enormous databases. Some give agents vague requests and require them to use their environment to clarify requirements. Some test DBA-related tasks, like keeping a database running and diagnosing issues. Some test ETL tasks, which require pulling from sources and mapping data to tables.\n\nIt’s pretty clear that the core tasks have evolved from one-shot SQL generation to more realistic problems. I investigated several of these benchmarks and picked five of the more interesting ones.\n\nSpider 2.0 is the follow-up to the original Spider benchmark, and it comes with a sharp jump in difficulty. There’s no longer a simple four-table schema paired with a straightforward answer query. Instead, agents are given real Snowflake, BigQuery, DuckDB, and SQLite databases, often with upwards of 1,000 columns. They also have access to documentation that is usually necessary to solve the problem. Here’s an example from the real benchmark:\n\nSpider-2.0 is still fundamentally a text-to-SQL benchmark, but the route one must take to arrive at a correct answer is multi-stepped and requires agentic reasoning. Grading also works by execution, rather than exact-match SQL. In the example above, the correct answer is 12212.\n\nMost people use Spider-2.0-lite, which is a smaller version with 547 tasks like the one above. When the paper came out in 2024, the best method scored 12.6%. Now, the top score is 76.2%.\n\nSpider-2.0 ensures that all problems are solvable with the information at hand. BIRD-Interact is unique in that it makes no such assurances. The problems are structured similarly to Spider’s, but requisite information is deliberately withheld. The problems are set up in a way that requires the agent to realize that it cannot complete the task without clarification. For example, here’s the starting prompt for a BIRD-Interact task:\n\nThere’s no way for any agent to understand what “highly digital” means in this context without following up with the user. If the agent asks for clarification, the benchmark provides a response from the simulated user. The simulated user in this example knows that the intent behind the original prompt was:\n\nThe definition for ‘Digital First Customer’ has been deleted from the agent’s knowledge base, so the only way to get it is to ask. That missing entry looks like this:\n\nLike Spider 2.0, answers are scored via execution. For BIRD-Interact, answers aren’t public, but the benchmark’s annotations include these fragments:\n\nThe paper states that agents preferred “costly trial-and-error over strategic resource exploration.” The top score at the time was GPT-5, which completed 17% of the tasks. The best agent on the leaderboard today still only completes about 25%.\n\nLiveSQLBench is built by the same team behind BIRD-Interact, and it’s unique in two different ways. First, its data is refreshed over time. The goal of this is to prevent benchmark data from entering a model’s corpus, making it harder for models to memorize the answers. Second, many LiveSQLBench tasks require agents to actually change the database, rather than just reading it. Here’s an example question with a fragment from the answer:\n\nAgain, SNQI isn’t a column in a table anywhere. The agent has to explore its environment to determine how to solve the problem. For scoring, read-only tasks are graded by execution accuracy, and write tasks by inspecting the state of the database afterward. LiveSQLBench launched in 2025 with a top score around 25%, and it’s now up to 57%.\n\nDataAgentBench, developed out of UC Berkeley, spreads tasks across multiple database systems. To solve a problem, an agent might need to combine results across PostgreSQL, SQLite, DuckDB, and MongoDB databases. Here’s an example:\n\nFor this problem, book information is stored in Postgres, and the reviews are in SQLite. The agent has to pull from both and synthesize them into an answer. Also, the label isn’t a query here. It’s just a value. Questions are graded using scripts that check the agent’s output text.\n\nOn release, the best agent in the paper scored 57%. Now, the top five spots on the leaderboard all score over 95%. This is interesting because it means the benchmark is effectively saturated. I’ll elaborate more on that later, but it’s worth looking at how those scores were actually achieved. Each of the top five uses a prompt or harness specifically tuned for DataAgentBench. Also, the benchmark provides an optional “hints” file, and all five use it.\n\nThis one is perhaps the most unique because it doesn’t involve answering a question. Instead, ELT-Bench asks agents to build data pipelines. In each of the problems, the source data is scattered across several systems and agents have to extract it. Then, they have to come up with a mechanism for loading that data into a target database (like Snowflake), and write data transformations that map them into the requested tables. Here’s an excerpt from an example task where the agent has to search for data across Postgres, Mongo, S3, a CSV file, and a custom API:\n\nThe label is the finished table with the real data:",
+  "begyujtve": "2026-11-20T19:34:24.418604+00:00",
+  "prioritas": {
+    "pont": 47,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 50,
+      "egyediseg": 90,
+      "hitelesseg": 65,
+      "aktualitas": 43,
+      "kozossegi": 44
+    },
+    "elofeszures": 76,
+    "tanult": 42,
+    "indok": "Elemzés az MI-laborok benchmarking gyakorlatairól és az adatbázis-ügynökök teszteléséről. Forrás-tapasztalat: -8.",
+    "tema": "agentic sql benchmark ai",
+    "cim_hu": "Új mérésekkel tesztelik az MI-ügynökök SQL-képességeit",
+    "lead_hu": "A DoltHub részletes elemzésben vizsgálja, miként teljesítenek a legújabb nyelvi modellek a komplex adatbázis-lekérdezési feladatokban.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T19:34:38+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-20T19:34:52+00:00"
+}
