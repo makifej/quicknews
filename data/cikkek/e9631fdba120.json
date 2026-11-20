@@ -1,0 +1,138 @@
+{
+  "id": "e9631fdba120",
+  "slug": "mi-ugynokok-talaltak-es-hasznaltak-ki-nulladik-napi-sebezhetoseget",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/amazon-says-chinese-hackers-ai-XgYd9TIyTxSgb95PqvSWaQ",
+  "szerzo": "Perplexity Discover",
+  "publikalva": "2026-11-20T20:23:22.772320+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s---omJ3Cwu--/t_limit/https://mlq.ai/media/news_images/amazon-says-china-linked-hackers-used-the-open-source-ai-tool-cairn-to-find-an-a.jpg"
+  },
+  "cim_eredeti": "Az Amazon szerint kínai hackerek MI-ügynökei zero-day sérülékenységet találtak",
+  "forrasok": [
+    {
+      "nev": "Chinese-nexus actor’s Cairn AI agents found a zero-day on their own | Amazon Web Services",
+      "url": "https://aws.amazon.com/blogs/security/chinese-nexus-actors-cairn-ai-agents-found-a-zero-day-on-their-own/",
+      "domain": null
+    },
+    {
+      "nev": "Hackers use autonomous AI tool Cairn to find zero-day, take over server",
+      "url": "https://www.bleepingcomputer.com/news/security/hackers-use-autonomous-ai-tool-cairn-to-find-zero-day-take-over-server/",
+      "domain": null
+    },
+    {
+      "nev": "China attackers deployed AI agents that autonomously found and exploited a 0-day to take over a university server",
+      "url": "https://www.theregister.com/security/2026/11/20/china-attackers-deployed-ai-agents-that-autonomously-found-and-exploited-a-0-day-to-take-over-a-university-server/5311382",
+      "domain": null
+    },
+    {
+      "nev": "Amazon: Chinese hackers used Cairn AI tool to discover apparent zero-day during attack on university",
+      "url": "https://therecord.media/amazon-research-cairn-ai-university-attacks-possible-zero-day",
+      "domain": null
+    },
+    {
+      "nev": "TLP:CLEAR",
+      "url": "https://www.ic3.gov/CSA/2026/261113.Pdf",
+      "domain": null
+    },
+    {
+      "nev": "This FBI Cyber advisory on ARTEX was released last Friday, 11/13. It is not a ...",
+      "url": "https://x.com/FBI/status/2122787930926145616",
+      "domain": null
+    },
+    {
+      "nev": "FBI warns hackers using AI-powered tool to automate cyberattacks worldwide",
+      "url": "https://f.aa.com.tr/en/americas/fbi-warns-hackers-using-ai-powered-tool-to-automate-cyberattacks-worldwide/4128312",
+      "domain": null
+    },
+    {
+      "nev": "Virginia Sen. Mark Warner warns of more outages after disruptions hit banks, airlines, and federal agencies",
+      "url": "https://www.wsls.com/news/local/2026/11/20/major-tech-outages-disrupt-banks-airlines-federal-agencies-senator-warns-more-could-be-coming/",
+      "domain": null
+    },
+    {
+      "nev": "How AI-assisted cyberattacks threaten critical infrastructure",
+      "url": "https://www.business-standard.com/technology/artificial-intelligence/ai-assisted-cyberattacks-critical-infrastructure-india-126112000288_1.html",
+      "domain": null
+    },
+    {
+      "nev": "Amazon Says AI Agents Found and Exploited a Zero-Day | Frontier",
+      "url": "https://thedefiant.io/frontier/ai/amazon-says-ai-agents-found-and-exploited-a-zero-day",
+      "domain": null
+    },
+    {
+      "nev": "BleepingComputer",
+      "url": "https://www.bleepingcomputer.com/news/security/fbi-warns-artex-ai-hacking-tool-is-powering-global-cyberattacks/",
+      "domain": null
+    },
+    {
+      "nev": "Cairn MONAI Label Zero-Day: Amazon Threat Intel | Beam Blog",
+      "url": "https://www.agentbeam.com/blog/amazon-cairn-monai-label-zero-day-east-asia-universities-november-2026",
+      "domain": null
+    }
+  ],
+  "szoveg_eredeti": "Feltehetően kínai államhoz köthető hackerek egy rövid utasítást adtak egy MI-ügynökökből álló csoportnak: „szerezzetek shell-hozzáférést”. Az Amazon Threat Intelligence szerint az ügynökök ezután maguktól találtak egy ismeretlen hibát egy orvosi képalkotó szoftverben, és ennek kihasználásával átvették az irányítást egy egyetemi szerver felett. Az Amazon a megállapításait pénteken, november 20-án tette közzé. A jelentés a nagy technológiai leállások hetében jelent meg. Mark Warner szenátor szerint az MI gyorsabban tárja fel a biztonsági réseket, mint ahogy a cégek biztonságosan be tudnák foltozni őket.\n\nA támadók a Cairn nevű, nyílt forráskódú penetrációstesztelő keretrendszert használták, amely több MI-ágens munkáját hangolja össze. Az Amazon azután bukkant a kampány nyomára, hogy az üzemeltetők hitelesítés nélkül, az interneten hagyták a Cairn-példányukat – számolt be a BleepingComputer. A tevékenység szeptember 8. és 10. között zajlott, és főleg a szárazföldi Kínán kívüli kelet-ázsiai egyetemeket érte. Sok kísérlet kudarcot vallott, köztük egy 16 órás próbálkozás egy Redis-szerver ellen.\n\nA MONAI Label nevű, nyílt forráskódú orvosiképalkotó-alkalmazás ellen viszont sikerrel jártak az ágensek. Egy path traversal típusú sebezhetőséget találtak, és nagyjából 11 perc alatt eljutottak az API feltérképezésétől a tetszőleges fájlok szerverre írásáig. Egy későbbi munkamenetben ugyanezzel a hibával rootként futó reverse shellt szereztek – közölte az Amazon. Az üzemeltető ezután ugyanazt a szoftvert futtató második egyetem ellen irányította az ágenseket – írta a The Record. A karbantartók november 18-án tettek közzé biztonsági közleményt a The Register szerint.\n\nNovember 13-án, pénteken az FBI FLASH-figyelmeztetést adott ki az ARTEX-ről, egy önálló, mesterséges intelligenciával működő tesztelési keretrendszerről. A hivatal közölte, hogy bűnözők és államhoz kötődő szereplők legalább augusztus óta használják pénzügyi, kormányzati, védelmi és egészségügyi célpontok ellen. Az FBI szerint az ARTEX „a kezdeti megcélzástól három órán belül képes kiemelt jogosultsághoz jutni” – számolt be róla az Anadolu Ügynökség. Egy későbbi bejegyzésében az FBI azt írta, hogy azóta nem adott ki újabb figyelmeztetést.\n\nRövid időn belül több leállás is történt egymás után. A Microsoft rendszerei november 12-én álltak le, az amerikai légiközlekedési hatóság (FAA) pedig november 13-án országos földi forgalmi leállítást rendelt el. November 16-án a Chase, a Bank of America és a Wells Fargo ügyfelei nem tudtak hozzáférni a számláikhoz, a United Airlines rendszerében pedig külön üzemzavar volt. November 17-én az Apple szolgáltatásai és az NSA belső rendszerei akadtak el – számolt be a WSLS.\n\nWarner szerint nincs bizonyíték arra, hogy kibertámadások okozták a leállásokat. Az FAA-leállítást berendezések frissítésével hozta összefüggésbe. Megítélése szerint az MI-eszközök olyan gyorsan tárnak fel hibákat, hogy a cégek kapkodva adják ki a javításokat, és nem tesztelik őket eléggé. „Akár száz szivárgás is lehet egyetlen nap alatt” – mondta. Az amerikai tisztviselők semmilyen kapcsolatot nem találtak az esetek között, az NSA pedig ütemezett karbantartásra fogta a saját zavarát – írta a Business Standard. A Microsoft közölte, hogy nem talált rosszindulatú tevékenységre utaló jelet.\n\nA Palo Alto Networks vezérigazgatója, Nikesh Arora másképp látja a helyzetet. A Business Standard szerint úgy fogalmazott, hogy a hét eseményei „nem véletlenek”. Warner szerint a helyzet javulása előtt még további gondokra lehet számítani. „Attól tartok, átmegyünk egy olyan időszakon, amikor a cégek sietős javításai miatt leállások lesznek” – fogalmazott. „A nap végén viszont a rendszereink biztonságosabbak lesznek.”",
+  "modell": "gemini-3.5-flash",
+  "cim": "MI-ügynökök találtak és használtak ki nulladik napi sebezhetőséget",
+  "lead": "Az Amazon biztonsági elemzői szerint autonóm MI-ügynökök önállóan fedeztek fel és használtak ki egy eddig ismeretlen sérülékenységet egy egyetemi szerver ellen.",
+  "osszefoglalo": "Az Amazon Threat Intelligence elemzése alapján kínai hackerek a **Cairn** nevű nyílt forráskódú penetrációstesztelő keretrendszert használták. Az üzemeltetők mindössze annyi utasítást adtak az MI-ügynököknek, hogy szerezzenek hozzáférést, a rendszerek pedig önállóan feltártak egy ismeretlen hibát a nyílt forráskódú [MONAI Label](https://github.com/Project-MONAI/MONAILabel/security/advisories/GHSA-qc22-rmgc-vg94) orvosi alkalmazásban.\n\nA támadás során az ágensek mindössze 11 perc alatt jutottak el a célpont feltérképezésétől a fájlok szerverre írásáig, végül pedig teljes root hozzáférést szereztek. Az incidens rávilágít arra, hogy az automatizált mesterséges intelligencia eszközök drasztikusan lecsökkentik a biztonsági rések felfedezéséhez és kihasználásához szükséges időt.\n\nSzakértők szerint a vállalatok védelmi rendszerei nehezen tartják a lépést a támadó MI-eszközök sebességével. Mivel a szoftverfrissítéseket a cégek kénytelenek kapkodva kiadni, a nem megfelelően tesztelt javítások a jövőben több rendszerszintű leálláshoz is vezethetnek.",
+  "miert_szamit": "A támadások automatizálása miatt a **szoftverfejlesztőknek és üzemeltetőknek** fel kell készülniük arra, hogy a sebezhetőségek felderítése és kihasználása percek kérdése lett.",
+  "cimkek": [
+    "kiberbiztonság",
+    "ügynök",
+    "Amazon",
+    "Cairn"
+  ],
+  "kategoria": "ügynök",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Cairn",
+    "MONAI Label"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 85,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 72,
+      "aktualitas": 95,
+      "kozossegi": 82
+    },
+    "elofeszures": 83,
+    "tanult": 77,
+    "indok": "Nagyon komoly kibernetikai és AI-biztonsági esemény önállóan sérülékenységet feltáró ágensekről. Forrás-tapasztalat: -2.",
+    "tema": "amazon cyber attack ai agents zeroday",
+    "cim_hu": "Kínai cybertámadók AI ügynökei önállóan fedeztek fel egy súlyos szoftverhibát",
+    "lead_hu": "Az Amazon biztonsági jelentése szerint feltételezhetően állami hátterű kínai hackerek által utasított AI ügynökök maguktól találtak meg és használtak ki egy ismeretlen biztonsági rést egy orvosi szoftverben.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T20:35:55+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-20T20:36:23+00:00",
+  "megjelent": "2026-11-20T20:36:23+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-20T20:36:31+00:00",
+    "esemeny": "Az Amazon Threat Intelligence jelentése szerint autonóm MI-ügynökök a Cairn nevű penetrációstesztelő keretrendszert használva önállóan találtak és használtak ki egy eddig ismeretlen sérülékenységet (zero-day) a MONAI Label nyílt forráskódú orvosi szoftverben, majd átvették az irányítást egy egyetemi szerver felett.",
+    "forrasok": [
+      "https://aws.amazon.com/blogs/security/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-20T20:37:23+00:00",
+  "linkek_ellenorizve": true
+}
