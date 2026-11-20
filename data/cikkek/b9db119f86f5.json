@@ -1,0 +1,76 @@
+{
+  "id": "b9db119f86f5",
+  "slug": "megjelent-az-inkling-2-mini-nyilt-ai-modell-ami-laptopon-is-elfut",
+  "forras_id": "techmeme",
+  "forras_nev": "Thinking Machines Lab",
+  "url": "https://thinkingmachines.ai/news/inkling-2-mini/",
+  "szerzo": null,
+  "publikalva": "2026-11-20T21:15:02+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://thinkingmachines.ai/news/inkling-2-mini/images/cover-social.png"
+  },
+  "cim_eredeti": "TML releases Inkling 2 Mini, an open-weights 26.4B-parameter transformer that loops middle layers three times per token for better reasoning with fewer tokens (Thinking Machines Lab)",
+  "forrasok": [],
+  "szoveg_eredeti": "Today we are releasing Inkling 2 Mini, a fast, powerful model that’s small enough to run on your laptop.\n\nInkling 2 Mini is a looped transformer, running the middle layers of the model three times for every token. This allows the model to apply more reasoning and reach the right answer with fewer tokens, especially on tasks such as agentic coding that depend on reasoning quality. Inkling 2 Mini leads every open-weights model with less than 100B total parameters on benchmarks such as DeepSWE v1.1 (48.2%) and Vals Index v2.2 (46.5%). It runs faster than similarly performing models as well.\n\nInkling 2 Mini is a Mixture-of-Experts model with 26.4B total parameters, 3.4B active, and 5.4B weight activations per token to account for looping. Looping allows the model to reason longer without writing its reasoning down, which matters for monitoring: our ability to oversee and understand what the model does by reading its chain of thought (CoT).\n\nWe measured the impact of looping on both performance and monitorability with Inkling 2 Mini and a research-specific variable-loop variant we are releasing alongside it. The variable-loop model’s no-CoT time horizon improved from 16 seconds at one pass to 37 seconds with three, and its performance on a benchmark of serial reasoning kept improving out to ten loops—twice as many as it was trained with. The model’s chain of thought grew shorter with more loops but stayed legible throughout. The model didn’t trend higher on tests of agentic sabotage as loops were added.\n\nWe’re excited to offer some of the first models with looped architecture available to researchers. The variable-loop model was used for our monitorability experiments as it allows for cleaner comparisons between different looping depths.\n\nMost of Inkling 2 Mini’s weights were trained and are deployed natively in NVFP4, with the last four layers in MXFP8. The total memory footprint of Inkling 2 Mini is ~20GB, allowing it to run on local devices such as consumer laptops and desktop AI computers. Our researchers took Inkling 2 Mini on a flight, where it ran offline on a MacBook Pro and built a playable flight simulator in a few minutes.\n\nInkling 2 Mini is released with open weights and is available on Tinker today for inference and customization.\n\nInkling 2 Mini’s strengths mirror those of Inkling 2 Small: it does best on long-horizon agentic work and is the best among open-weights models of similar size on most tasks we measured.\n\nInkling 2 Mini scores ahead of every comparable model on agentic coding benchmarks such as DeepSWE v1.1 and SWE-bench Pro v2, and is behind only Qwen3.8-27B on others. On PMPP-Hard, a kernel-optimization benchmark, it approaches the score of the much larger Inkling 2 Small.\n\nWhile looping improves the model’s reasoning, it doesn’t enable its weights to store more facts—knowledge is mostly a function of total parameter count. Inkling 2 Mini’s score on AA-Omniscience, a measure of factuality, is in line with other models of the same size. Studying the variable-loop model, we saw that performances on long-context benchmarks improve with more passes, such as GraphWalks BFS and MRCR v2; but knowledge-intensive benchmarks doesn’t improve with more passes, such as AA-Omniscience, SimpleQA Verified, SimpleVQA, and WorldVQA.\n\nInkling 2 Mini overcomes the knowledge gap by efficiently using search and tools. It leads open-weights models of similar size on BrowseComp, DeepSearchQA, and MCP Atlas. It is also strong on knowledge work benchmarks that incorporate search and tool use.\n\nResearchers at Stanford measure intelligence per joule: how much energy an LLM needs per query to reach a given level of performance.Researchers at Stanford’s Hazy Research Lab and Scaling Intelligence Lab got early testing access to Inkling 2 Mini. Inkling 2 Mini scored 0.703 running on NVIDIA DGX Spark, significantly higher than other models: 0.430 for Qwen3.6-35B-A3B, 0.159 for Gemma-4-26B-A4B and 0.036 for Qwen3.5-27B.Intelligence per Watt: Measuring Intelligence Efficiency of Local AI, Saad-Falcon and Narayan et al., 2025Inkling 2 Mini ran on NVIDIA DGX Spark (128GB) at MXFP8 precision with low reasoning effort in this experiment. The other models ran at NVFP4 (Qwen3.6-35B-A3B and Gemma-4-26B-A4B) and INT4 (Qwen3.5-27B).\n\nEfficiency combined with performance makes Inkling 2 Mini a strong choice for running multiple persistent agents on local hardware. All 20 residents of the energy-conscious village of Thinkyville are managed by Inkling 2 Mini running on a single offline MacBook.\n\nInkling 2 Mini is not the strongest small model for multi-turn chat or for instructions with many constraints: it scores 50.0% on MultiChallenge and 33.4% on ComplexConstraints v1.1, behind Qwen3.8-27B on both. It also trails larger models on reasoning-intensive benchmarks such as CritPt v2 and HLE-Diamond.\n\nInkling 2 Mini is a 24-layer model derived from our mainline predictive scaling ladder. The main changes from the mainline recipe were pruning two-thirds of the experts to reduce the model’s size and the introduction of looping to improve reasoning. The rest of training, including quantization and the data mix, followed our mainline recipe.\n\nInkling 2 Mini has 24 layers, divided into four blocks of six layers each. The two middle blocks run three times, while the first and last blocks each run once. This design builds on prior work on looped transformers and is motivated by the intuition that the middle layers of the model carry more abstract reasoning, while the first and last few layers devote more space to translating between embeddings and internal representations.Universal Transformers, Dehghani et al., 2018 In our experiments, looping the middle 12 layers resulted in larger gains in accuracy than looping the last 12 on 27 out of 28 different evaluations.\n\nCompute-equivalent gain by loop position\n\nOur model uses attention residuals.Attention Residuals, Kimi Team: Guangyu Chen et al., 2026 Instead of adding every layer’s output into one running sum, each layer reads the outputs of the earlier blocks and learns its own mix of them. This allows richer information to pass between loops. Every pass starts with the output of the prelude (the first block). The second and third passes through the middle blocks also read the middle blocks’ outputs from the previous pass, which we call the message.\n\nThe previous loop’s message is merged with the prelude’s output via a gate that scales these along with the output of the previous layers in the block. This gate is learned during training: it initially blocks the entire message—which makes each loop start the same as in a non-looping model—and increases the gain on the message over time. This allows us to introduce looping during training in a stable manner.\n\nTo evaluate the impact of looping, we compared an unpruned looping version to the unpruned non-looping model on our scaling ladder. The non-looping model cost 7.5% less compute to train, but required 140% more inference compute to match the looped version’s loss on 512k-token agentic traces.\n\nInkling 2 Mini was trained with 4-bit precision, which we describe in a recent article on Connectionism. We use 4-bit NVFP4 precision in the expert layers on all forward passes from pretraining through RL, bolstered by a dedicated kernel and hardware-accelerated on NVIDIA’s GB300 platform. The final 4 layers’ forward passes ran in 8-bit (MXFP8).\n\nInkling 2 Mini’s weights are deployed in the same numeric precision they were trained on—20 layers in NVFP4 and 4 in MXFP8—so there is no conversion loss from quantization.\n\nInkling 2 Mini started training with a sparsity of 48, with 8 experts being chosen out of 384. At a single point during midtraining, we pruned two-thirds of the experts, leaving the 128 experts that were most used in each layer. This was done to cut the total parameter count of the model, allowing it to run faster and on local hardware.\n\nAfter pruning, the model trained on 1T token",
+  "modell": "gemini-3.5-flash",
+  "cim": "Megjelent az Inkling 2 Mini: nyílt AI-modell, ami laptopon is elfut",
+  "lead": "A Thinking Machines Lab kiadta az Inkling 2 Mini nyílt súlyú AI-modellt, amely a középső rétegek többszöri futtatásával hatékonyabban gondolkodik.",
+  "osszefoglalo": "A Thinking Machines Lab közzétette az [Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/) nyílt súlyú modellt. A 26,4 milliárd paraméteres Mixture-of-Experts architektúrájú eszköz különlegessége, hogy a középső rétegeit tokenenként háromszor futtatja le, így kevesebb token generálásával éri el a pontosabb logikai eredményeket.\n\nA hurokszerű működésnek köszönhetően a modell hosszas belső gondolkodást képes végezni anélkül, hogy mindent le kellene írnia. A teljes memóriaigénye nagyjából **20 GB**, ezért helyben is futtatható egy átlagos laptopon vagy asztali AI-számítógépen, internetkapcsolat nélkül.\n\nAz eszköz leginkább a komplex, több lépésből álló programozási és keresési feladatokban jeleskedik. Mivel a rétegek újrahasznosítása a tárgyi tudást nem növeli, a hiányzó ténybeli ismereteket külső keresőeszközök és kiegészítők használatával pótolja. A súlyok a Tinker felületén már elérhetők kipróbálásra és finomhangolásra.",
+  "miert_szamit": "A helyben futtatható modell lefedheti a **helyi fejlesztési és adatvédelmi igényeket**, így a vállalkozások felhős előfizetés nélkül, saját gépen futtathatnak komplex kódolási feladatokat.",
+  "cimkek": [
+    "Inkling 2 Mini",
+    "Thinking Machines Lab",
+    "LLM",
+    "nyílt forrás"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Inkling 2 Mini"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 85,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 90,
+      "hitelesseg": 86,
+      "aktualitas": 100,
+      "kozossegi": 85
+    },
+    "elofeszures": 99,
+    "tanult": 86,
+    "indok": "Új nyílt súlyú modell egyedi architektúrával, ami helyben is futtatható Forrás-tapasztalat: -3.",
+    "tema": "inkling 2 mini release",
+    "cim_hu": "Megjelent az Inkling 2 Mini, a hordozható gépeken is futó nyílt MI-modell",
+    "lead_hu": "A Thinking Machines Lab kiadta a 26,4 milliárd paraméteres Inkling 2 Mini modellt, amely a középső rétegek többszöri futtatásával hatékonyabb érvelést ér el kevesebb token felhasználásával.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T21:19:47+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-20T21:20:03+00:00",
+  "megjelent": "2026-11-20T21:20:03+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-20T21:20:05+00:00",
+    "esemeny": "A Thinking Machines Lab kiadta az Inkling 2 Mini nevű nyílt súlyú AI-modellt, amely a középső rétegeit tokenenként háromszor lefuttató architektúrájával helyi eszközökön biztosít hatékonyabb gondolkodást.",
+    "forrasok": [
+      "https://thinkingmachines.ai/news/inkling-2-mini/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-20T21:20:26+00:00",
+  "linkek_ellenorizve": true
+}
