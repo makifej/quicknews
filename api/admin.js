@@ -740,11 +740,12 @@ module.exports = async (req, res) => {
       const regi = await kv("HGET", P + "kitenni", id);
       const e = regi ? JSON.parse(regi) : {};
       const most = new Date().toISOString();
-      if (["facebook", "linkedin", "hirdetes", "csoport", "threads"].includes(mezo)) {
+      if (mezo === "csoport") return json(res, 403, { hiba: "Csoportba a gép nem posztol, azt Heni intézi." }); // 2026-11-20
+      if (["facebook", "linkedin", "hirdetes", "threads"].includes(mezo)) {
         if (ertek) e[mezo] = { kerve: most }; else delete e[mezo];
       } else if (mezo === "jovahagyas") {
         // a pipa önmagában nem indít semmit: csak a jóváhagyott felületekhez készül időzített elem (Heni 2026-10-12)
-        const feluletek = ["facebook", "linkedin", "hirdetes", "csoport", "threads"].filter((f) => e[f]);
+        const feluletek = ["facebook", "linkedin", "hirdetes", "threads"].filter((f) => e[f]);
         if (ertek) {
           if (!feluletek.length) return json(res, 400, { hiba: "Előbb pipáld be, hova menjen ki." });
           e.jovahagyas = { ido: most, feluletek };
