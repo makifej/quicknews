@@ -1,0 +1,49 @@
+{
+  "id": "bdfdc8b86df6",
+  "slug": "avoiding-the-aiceberg-how-blindly-trusting-tech-hurts-us-all",
+  "forras_id": "dailydev",
+  "forras_nev": "Christian Heilmann (daily.dev)",
+  "url": "https://christianheilmann.com/2026/11/19/avoiding-the-aiceberg",
+  "publikalva": "2026-11-19T00:00:00+00:00",
+  "cim": "Avoiding the AIceberg - How blindly trusting tech hurts us all",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/1198a9f049476f7e05692adf81c510f5?_a=AQAEuop"
+  },
+  "cim_eredeti": "Avoiding the AIceberg - How blindly trusting tech hurts us all",
+  "szoveg_eredeti": "The Titanic disaster is a wonderful example of how a lot of technologies fail. It is a story of hubris, greed and over-competitiveness, which accumulated into a horrible tragedy and an overrated movie.\n\nWhen re-telling the tale, the story often goes as this:\n\nExcept, none of these things are true to the full extent.\n\nThe Titanic was a victim of its own marketing. For starters, it couldn't have been the fastest ship as it only had three engines, despite having four funnels. They built the last one to make the ship appear more, well, titanic. The biggest problem that lead to its sinking wasn't that there was a huge gash ripped open by the iceberg. It was that the different hull plates weren't riveted yet but connected with screws that didn't hold up in the cold. The dent by the iceberg caused hundreds of leaks in between the plates, so even the different compartments and security doors didn't help.\n\nIn essence, most of the victims didn't go down with the ship but died of hypothermia treading water afterwards. People refused to board the lifeboats despite the crew telling them to - after all the journey was expensive and the ship unsinkable, right? It is a classic case of blind marketing belief and a sunk cost fallacy. Why get into a rickety life-boat with lots of people when you can stay on the big ship that is sure to not sink because it is such a marvel of technology?\n\nCurrently we're at a mad scramble to not falling behind when it comes to using AI in our work. So much so that companies don't bother to listen to their own experts but force new and shiny tools on people instead.\n\nIt was interesting to see when the CEO of Shopify, Tobias Lütke, talked about how that backfired for him. In an interview he talked about Slop Grenades emerging in his company.\n\nWorkslop is a term that came out of that. It is polished-looking AI output that ends up dragging down productivity because it needs revision. Unlike low-quality work done by humans workslop looks legitimate on the surface but lacks the components making it useful.\n\nWorkslop also take a toll on company relationships. Employees said they viewed their colleagues who sent it in as less competent and less friendly. Of those who had received workslop, over a third (36%) also reported wanting to avoid working with those colleagues in the future.\n\nThis is also something I see myself doing. If I see an email that obviously was written by AI, I don't give it any attention. It is \"AI;DR\" - AI, didn't read - for a lot of people.\n\nIn essence, it turned out that forcing your employees to use AI results in malicious compliance as a service. People go through the motions, but don't create anything useful. It is more important to be seen to use it rather than see what it can do to improve your work.\n\nThe other big thing that is happening right now is that everything breaks. Cloudflare had a huge outage, Microsoft and Apple also followed. Security problems like PHP2Shell and Java4Shell discovered by AI shows how for decades we hoped that security issues won't be found. This is nothing new. The amount of times I wanted to run an extra security check on products and was asked to \"ship now and get time later to do that\" is staggering. \"We will give you more time to do proper checks later\" is as big a lie as \"I read the terms and conditions\".\n\nThe most annoying thing to me is that in the current world of AI, we're going backwards when it comes to being dependent on others. The web was meant to be a resilient way to deliver content and functionality, with in-built fault tolerance and decentralised by design. Now we keep saying that we should use a service of one company and give it all our content.\n\nWe invented the internet specifically to be resilient through decentralisation, then spent the last twenty years cramming the whole thing into three cloud providers and calling it \"progress.\" Ukraine just reminded us in real-time why single points of failure are a bad idea, yet somehow, we’ll still act shocked the next time one outage takes down half the planet.\n\nReminds of trusting a ship to be unsinkable, hard to think that's possible.\n\nThe number of Common Vulnerabilities and Exposures (CVEs) found and disclosed so far in 2026 surpassed 100,000 - more than double 2025’s total - and the reason can be summed up in two letters: AI.\n\nIf you want to know more about that, check out Darko Mesaros' talk from WeAreDevelopers World Congress San Jose I Don't Trust AI Agents (And Neither Should You): Building Production-Ready Architectures.\n\nI just spent some time in the Silicon Valley and tried to reach developers to attend our events. Turned out, it was much harder than I thought as all I met was builders. Instead of writing code to create a product, people use AI to get the product generated for them. This is the big promise of AI, to democratise software development. The thing that ailed me was that talking to these builders, I found a lot of blind trust in the AI to do the right thing rather than any focus on building something reliable, secure and maintainable. Getting investment for the company was much more important than any of the inner workings of the tool.\n\nThis is alright though, and I do really think that there is a lot of good in enabling people to build their own tools using AI without having to know how to code. And this means that we as developers need to step up and make sure that the tools these people use to build software are creating high quality code.\n\nAs Werner Vogels, CTO of Amazon said it when I had him as a guest on our podcast:\n\nAI won't replace engineers, but demands they evolve into system architects. Human judgment remains your ultimate defense against automated threats.\n\nCassidy Williams of GitHub put it similarily in her Our brains in the AI Era talk:\n\nWe have a duty in tech to be the stewards of the future\n\nIn other words, code won't go away but needs good stewards to make sure we have enough life boats and preservers. Let's point people to the boats and to safety. Some starting ideas are:\n\nNothing is unsinkable, and nothing is \"too big to fail\".\n\nThis was delivered as a talk at the GDS in Berlin - here are the slides as a PDF.",
+  "begyujtve": "2026-11-20T11:05:02.151068+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 20,
+      "hirertek": 25,
+      "egyediseg": 85,
+      "hitelesseg": 65,
+      "aktualitas": 66,
+      "kozossegi": 27
+    },
+    "elofeszures": 64,
+    "tanult": 23,
+    "indok": "Személyes véleménycikk a technológiába vetett vak hitről.",
+    "tema": "ai hype opinion essay",
+    "cim_hu": "A technológia vakon követésének veszélyeire figyelmeztet egy új elemzés",
+    "lead_hu": "Egy esszé a Titanic katasztrófájának példáján keresztül mutatja be, miért veszélyes, ha a társadalom kritikátlanul bízik a fejlett technológiákban és az AI-ban.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T11:05:32+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-20T11:05:48+00:00"
+}

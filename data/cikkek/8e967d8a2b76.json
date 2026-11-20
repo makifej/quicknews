@@ -1,0 +1,49 @@
+{
+  "id": "8e967d8a2b76",
+  "slug": "incident-pipelines-with-spooler",
+  "forras_id": "dailydev",
+  "forras_nev": "Awesome Go (daily.dev)",
+  "url": "https://sergey.kamardin.org/articles/incident-pipelines-with-spooler",
+  "publikalva": "2026-11-19T21:16:11.875000+00:00",
+  "cim": "Incident pipelines with Spooler",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 38 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/bac361899f2f231869e66e03eae51673?_a=AQAEuop"
+  },
+  "cim_eredeti": "Incident pipelines with Spooler",
+  "szoveg_eredeti": "Hi there! As some of you might know, I recently launched spooler.sh – a simple, managed message queue.\n\nIn this article, I’d like to show you how simple it can be to build pipelines with clear consistency and durability properties.\n\nThe project we’re going to build is small, though very much in line with the trends of today: LLMs are involved.\n\nWe’ll build a distributed agentic AI swarm that would perform multi-step actions with limited or no human supervision to investigate…\n\nIn fact, we’ll build a simple program that spins up and shuts down workers depending on a queue backlog. The workers would pull incidents from a queue and ask an LLM to investigate them.\n\nBuilding the tool I’m going to describe in this article took a couple of days, but then I realized it had taken a pretty nice shape and might be worth sharing with the world as a tool on its own, rather than just a showcase example.\n\nSo I called it Pagedog – a funny name rhyming with “watchdog” but for pages coming from a pager. It is written in Go, and so are the snippets below, though nothing in the design depends on the language.\n\nA page, for those who have never been on call, is the alert that wakes up whoever is on call at the moment: something monitoring decided a human must see. The pager is whatever sends it, PagerDuty, incident.io and Alertmanager alike.\n\nOn one side, we have a webhook handler for your observability stack – it receives pages from Prometheus Alertmanager, incident.io, PagerDuty, or whatever else you want to integrate with.\n\nIn many implementations I’ve seen, including systems I’ve built myself and approaches I’ve discussed with other engineers, the incoming page is usually stored somewhere before further processing. On the other hand, some of the implementations do not store it at all and simply process it straight away.\n\nThe risk of the latter approach is that you can lose the page, possibly along with wasted compute and LLM tokens. Depending on your observability stack and its retry behavior, the page might never arrive again, or arrive too late.\n\nSo what we’re going to do in this article is store the page in a message queue – specifically, a Spooler queue (what a nice coincidence!). This gives us useful guarantees around durability and delivery.\n\nOnce we’ve received the page and stored it in the queue as an incident, that’s already one half of our project. The second half is to pull it back from the queue and feed it to an LLM of our choice – we ask the LLM to analyze the incident and investigate what might have gone wrong.\n\nOf course, we also need to give it access to some of our infrastructure observability tools. Otherwise, it won’t be able to do much beyond rephrasing the incident’s description. So we give the LLM access to our metrics, logs, and whatever else we want to provide.\n\nHere is what this design gives us; the sections below deliver them one by one:\n\nThe webhook server is the plainest part here. It serves one route per source, e.g. /webhook/alertmanager, and the handler is anything that can turn an HTTP request into incidents:\n\nEach source first checks the page really comes from its pager: a bearer Authorization token, a signature over the body or anything else the source’s spec provides.\n\nThen it reads the incidents out of the payload and passes them up the stack to be sent into the incidents queue: our system’s “edge” queue holding the input. Only when every send has succeeded does it answer 200 OK, confirming the input is in and is durable:\n\nThat ordering is the entire durability story of this part: the pager hears “got it” only once the incident is on the queue, and retries otherwise. The status codes are how we tell it: pagers retry on a 5xx and give up on a 4xx, so a bad token or a payload we can’t parse gets a 403 or a 400, which a retry wouldn’t fix, and a failed send gets a 502, so that the pager tries again.\n\nThis is where the first Spooler property shows up: deduplication. Every incident has a key the source derives from the page (in case of Alertmanager, the alert’s fingerprint and the time it started firing) and the queue is told to dedup by it:\n\nA second send with the same key within the queue’s dedup window – a setting of the queue, seconds to minutes long – is not a second message: a repeated page or a retried one comes down to one investigation. A page repeated after the window, as Alertmanager does for an alert still firing hours later, is a new message and a fresh investigation, and that’s intended: by then the picture may well have changed.\n\nThe Spool field above is, in SQL terms, a database: an isolation unit holding its queues, with its own write-ahead log, I/O and limits, so one spool never slows down another. Every account starts with one named default, and for Pagedog that one is enough.\n\nOnce the incident is on the queue, we need something that pumps it further down the pipeline: we need to spin up workers to do so.\n\nIn Pagedog, workers are, deliberately, a rather vague concept: the actual execution mechanism is hidden behind a runtime interface:\n\nA runtime implementation can range from goroutines running inside the process to separate containers or pods running on your platform, or functions for a serverless one. The interface allows us to keep these execution details separate from the rest of the system and plug in any compute.\n\nTo understand when it needs to spin up another worker, Pagedog checks a few simple metrics from the Spooler queue: the number of currently visible messages in the incidents queue – that is, waiting to be received – and the number of messages already being processed by workers – that is, messages in pending state.\n\nThe sum gives us an estimate of how many workers we would ideally want to run to process all the available incidents. The number of running workers is bounded by configuration:\n\nThe desired() is called from the runtime reconciler loop: periodically, it compares the number of running workers with the desired one, and launches or shuts down the difference.\n\nThe worker itself is very simple. It pulls messages from the incidents queue, where each message represents one incident that needs to be investigated.\n\nFor every incident, the worker talks to the configured LLM through its API:\n\nThe LLM API is stateless, so every call carries the whole conversation. Along with it we send the specs of the tools: a name, a description and the schema of the input. The model answers either with text, or with a request to call one of the tools. In the latter case our code runs the tool, appends its output to the conversation and asks the model again. This repeats until the model answers with text alone – that is the report. Each round trip is a turn, and since every turn re-sends the conversation, turns are what the investigation costs.\n\nAs you can see, we pass the LLM the available tools’ specs, letting it use them in the interest of the investigation – for example, to fetch logs around the incident or read the source code involved in the logged activities.\n\nMany systems today have MCP servers that can serve these needs. Pagedog has a generic MCP tool implementation that connects to those, as well as direct integrations with Prometheus and Loki as the built-in tools.\n\nMCP, the Model Context Protocol, is a protocol between a program driving a model and a server offering it tools. The server lists its tools, each with a name, a description and a JSON schema of its input, and runs a tool when asked, returning text. That listing is the same shape as the ToolSpec below, which is why Pagedog can hand an MCP server’s tools to the model without knowing what they do.\n\nThe built-in tools are read-only queries, while for MCP the model gets only the tools you list – the list is required, so nothing is granted by omission. The model’s reach into your infrastructure is exactly as far as you let it.\n\nAdding a new tool requires implementing the Tool interface and wiring it up in the configuration:\n\nToolSpec defines the stru",
+  "begyujtve": "2026-11-20T11:05:02.150849+00:00",
+  "prioritas": {
+    "pont": 38,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 25,
+      "hirertek": 35,
+      "egyediseg": 85,
+      "hitelesseg": 68,
+      "aktualitas": 83,
+      "kozossegi": 40
+    },
+    "elofeszures": 86,
+    "tanult": 54,
+    "indok": "Fejlesztői blogposzt és saját projekt bemutatása egy AI raj rajzolásához. Forrás-tapasztalat: -8.",
+    "tema": "spooler ai swarm agent",
+    "cim_hu": "Mesterséges intelligencia rajok építése a Spooler üzenetsor segítségével",
+    "lead_hu": "Egy fejlesztő bemutatja, hogyan építhető elosztott AI-ügynökökből álló raj a spooler.sh üzenetsor használatával összetett feladatok elvégzésére.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T11:05:32+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-20T11:05:40+00:00"
+}

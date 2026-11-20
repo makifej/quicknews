@@ -1,0 +1,49 @@
+{
+  "id": "50d6027fa155",
+  "slug": "november-2026-newsletter",
+  "forras_id": "dailydev",
+  "forras_nev": "ClickHouse (daily.dev)",
+  "url": "https://clickhouse.com/blog/202611-newsletter",
+  "publikalva": "2026-11-20T09:50:28.361000+00:00",
+  "cim": "November 2026 newsletter",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/553fa4e88acc5c12a4b4725c67aa9c90?_a=AQAEuop"
+  },
+  "cim_eredeti": "November 2026 newsletter",
+  "szoveg_eredeti": "Hello and welcome to the November ClickHouse newsletter!\n\nThis month, we did our biggest launch since ClickHouse Cloud, with Managed Postgres going GA, ClickHouse Observability and the Langfuse AI Gateway entering public beta, and ClickHouse Security launching in private preview.\n\nGroeneAI gets stuck into bug fixes, Loom helps coding agents with those “didn’t we already work this out?” moments, and the billion-document JSON benchmark is back.\n\nAnd AWS re:Invent is nearly here, which means it's time for us to throw another party with the Chainsmokers in Las Vegas!\n\nThis month’s featured community member is Ana Lacruz, Data Engineer at Infinitas Learning.\n\nAna works on the Results & Insights team, supporting educational platforms used by 1.6 million learners. The team uses ClickHouse Managed Postgres to record assignment results and learner progress, alongside ClickHouse Cloud for analytics.\n\nAt Open House Amsterdam, Ana shared the team’s journey from ClickHouse Cloud to self-hosting and back again. She explained how cache misses caused unpredictable query latency, and how self-hosting improved performance but brought maintenance and recovery responsibilities.\n\nWorking with ClickHouse’s support team, they optimized their queries and table settings before adopting distributed cache. In load tests, P99 query latency reached 410 milliseconds, meeting their 500-millisecond target. Ana also described how the team can now take a dashboard from proof of concept to production-ready, using real data, in hours.\n\nThe Chainsmokers are back for our third House Party at AWS re:Invent.\n\nJoin us at Intrigue Nightclub in Las Vegas on Tuesday, December 1 for music and drinks after a day of conference sessions.\n\nClickHouse 26.10 introduces function composition for more readable SQL, JOINs with arbitrary conditions, and direct import and export of SQLite files.\n\nQueries grouping by multiple LowCardinality columns get faster, while large IN subqueries can now spill to disk to reduce memory use. There’s also an experimental columns cache that reuses decoded column data across queries, avoiding repeated decompression and deserialization.\n\nOur latest platform launch spanned transactions, observability, security, and AI engineering.\n\nManaged Postgres is now generally available on AWS, with Xata’s branching, cloning, and scale-to-zero capabilities planned for integration.\n\nClickHouse Observability enters public beta for investigating logs, metrics, traces, and session data.\n\nAnd finally, ClickHouse Security launches in private preview with AI-assisted threat investigations, while the open-source Langfuse AI Gateway enters public beta to help teams track model usage and costs.\n\nThis month brings Managed Postgres GA and the Xata acquisition, plus hands-on replication tests, failover engineering, query diagnostics, and lessons from customer migrations.\n\n➡️ Register for the live webinar on November 23 to learn more!\n\nTom Schreiber and Lionel Palacin wrap up the CostBench series with an illustrated tour of the architecture behind ClickHouse Cloud.\n\nThey show how sorting and pre-aggregation during ingestion reduce query work, and how parallel execution spreads the remaining work across machines and CPU cores. The authors also explain how ClickHouse Cloud lets teams scale ingestion and queries separately, so each workload gets the resources it needs.\n\nAnd across the blog post, they also share customer examples of the architecture in practice: faster data preparation at Appcues, real-time decisions at Buildkite, and AI-powered security investigations at Artemis.\n\nJSONBench is an open-source benchmark that compares the query performance of different databases on large datasets of nested JSON documents. It now covers 27 database engines, up from five, with ClickHouse leading the published billion-document comparisons.\n\nTom Schreiber and Mark Needham walk through the results, including a cold-run aggregation over nested Bluesky events that took 661 milliseconds in ClickHouse and more than 32 minutes in MongoDB under the benchmark’s configurations. They also explain recent improvements to ClickHouse’s JSON type and how to reproduce the benchmark.\n\nJames Cunningham, Artem Brustovetskii and Alex Soffronow Pagonidis introduce GroeneAI, an autonomous contributor that investigates failures, writes and tests fixes, and follows pull requests through CI and human review.\n\nBuilt on the open-source Nerve runtime, it uses persistent memory to carry work across sessions and learn from maintainer feedback. By October 25, it had contributed more than 3,100 merged pull requests, with ClickHouse maintainers deciding which changes to merge.\n\nJames Cunningham and Lareb Zafar introduce Loom, an open-source memory and code-search system built on ClickHouse. It lets coding agents share findings across sessions and teams, so they can build on earlier investigations.\n\nLoom records where memories came from, tracks code renames, and flags notes that may be stale when the underlying code changes. In the authors’ benchmark of questions about the ClickHouse codebase, Loom improved answer quality while lowering the average cost per question.\n\n➡️ Browse all ClickHouse events · Follow the ClickHouse calendar on Luma\n\nInterested in seeing how ClickHouse works on your data? Get started with ClickHouse Cloud in minutes and receive $300 in free credits.",
+  "begyujtve": "2026-11-20T11:05:02.150481+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 15,
+      "hirertek": 20,
+      "egyediseg": 85,
+      "hitelesseg": 70,
+      "aktualitas": 95,
+      "kozossegi": 35
+    },
+    "elofeszures": 85,
+    "tanult": 64,
+    "indok": "Céges hírlevél és termékfrissítések gyűjteménye, PR töltelék.",
+    "tema": "clickhouse monthly update",
+    "cim_hu": "Megjelent a ClickHouse adatbázis-szolgáltató novemberi hírlevele",
+    "lead_hu": "A ClickHouse bejelentette a Managed Postgres általános elérhetőségét, valamint a Langfuse AI Gateway nyilvános béta verzióját a legújabb hírlevelében.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T11:05:32+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-20T11:05:39+00:00"
+}

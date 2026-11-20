@@ -1,0 +1,49 @@
+{
+  "id": "0c06dab31b51",
+  "slug": "evals-for-ai-engineers",
+  "forras_id": "dailydev",
+  "forras_nev": "ByteByteGo (daily.dev)",
+  "url": "https://blog.bytebytego.com/p/evals-for-ai-engineers",
+  "publikalva": "2026-11-18T16:31:02+00:00",
+  "cim": "Evals for AI Engineers",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/e70e78fbd30f3c04ec5137c1270796f8?_a=AQAEuop"
+  },
+  "cim_eredeti": "Evals for AI Engineers",
+  "szoveg_eredeti": "Getting AI agents into production at enterprise scale raises hard questions: what data they can reach, how fresh it needs to be, and how to keep them in bounds. At the Agentic Data Summit on December 9, Vishal Mehra, SVP & CIO at GlobalFoundries, shares how one of the world’s leading semiconductor manufacturers is putting agentic AI to work. Hear why GlobalFoundries chose Redpanda, what the team built, the results so far, and lessons for peers. Catch GlobalFoundries live at 10:00 AM PT. The summit is free and virtual and runs 8:30 AM–2:00 PM PT.\n\nAI evals are one of the most important and hardest parts of building AI products. Getting started can feel like navigating a maze of conflicting advice.\n\nI reached out to Hamel Husain, an ML engineer at OpenAI with 20 years of experience, to share a practical introduction to AI evaluation. Previously at Airbnb and GitHub, Hamel has helped more than 35 companies build and evaluate real-world AI products. He coauthored Evals for AI Engineers: Systematically Measuring and Improving AI Applications with Shreya Shankar, an ML systems researcher and PhD candidate at UC Berkeley focused on LLM evaluation and data quality. Together, they’ve trained more than 4,500 engineers and product managers through their AI evals course.\n\nIn today’s issue, we’re featuring an excerpt that introduces the Three Gulfs of LLM Application Development: understanding your data, making your requirements explicit, and getting the model to follow them consistently.\n\nExcerpted from Evals for AI Engineers by Shreya Shankar and Hamel Husain. Copyright © 2027 Hamel Husain and Shreya Shankar. Published by O’Reilly Media, Inc. Used with permission.\n\nAt the application stage, the model has already been trained. The work is in building around it. You have to decide what the product should achieve, translate that goal into prompts and agent logic, and then verify that the model’s outputs are acceptable. Each of these steps introduces its own difficulties:\n\nObjectives are vague at first. A goal like “summarize emails” sounds simple, but only when you inspect outputs do the ambiguities appear: how detailed, in what format, and with what exclusions?\n\nInstructions might have gaps. Prompts and agent logic expressed in natural language rarely capture the full intent, which leads to inconsistent or incomplete behavior.\n\nBehavior changes on new data. A setup that works on a handful of test cases may fail once it encounters the variability of real inputs.\n\nIn practice, these issues show up again and again when building LLM applications. To reason about these challenges more systematically, we use the Three Gulfs framework, which names three places where development tends to break down—comprehension, specification, and generalization. Each gulf highlights a different point where development typically goes wrong, and each requires a different strategy to address, a theme we will return to throughout this book.\n\nAs mentioned, a useful way to understand the challenges of building with LLMs is the Three Gulfs model (Figure 1-1), adapted from Shankar et al. (2025) and inspired by Norman (1988). The model highlights three common gaps that developers face when building and evaluating applications. We call these gaps comprehension, specification, and generalization.\n\nThroughout this book, we will use this framework to diagnose why an application is failing, and select the most appropriate strategy to fix it.\n\nConsider an agent that processes incoming emails sent to an organization. The goal is to extract the sender’s name, summarize the key requests, and categorize the email. At first glance, this seems straightforward. But each stage of development exposes different challenges across the Three Gulfs.\n\nThe first gulf is between the developer and the data. To build effective prompts and agents, you need a solid grasp of what your inputs actually look like. Without that, you will design against an imagined version of the task, not the real one.\n\nConsider the email processing example. If you only look at a handful of clean, well-written emails when drafting your prompt, you might write instructions that work fine on those cases. But the production data will also include forwards, replies with long quoted threads, messages with signatures in multiple languages, and poorly formatted text copied from PDFs. A prompt that ignores these realities might lead the LLM to, for example, summarize an entire quoted thread instead of the new message, or mistake a signature block for the main request.\n\nThe Gulf of Comprehension applies to outputs too, not just inputs. We also need a clear sense of how the LLM behaves on those inputs. You cannot read every output it generates, but you still need to recognize the common ways it succeeds and the common ways it fails. Otherwise, it’s easy to be misled by a few good examples and miss the patterns that only show up at scale. In the email agent, for example, the LLM might usually extract the sender and write a decent summary. But when you look closer, you may notice recurring mistakes. The LLM might pull the wrong name when several are mentioned, drop key details in longer messages, or copy boilerplate like confidentiality notices into the summary. These failures may only happen occasionally, but if they occur, the system will feel unreliable to users.\n\nBridging the Gulf of Comprehension means developing strategies to characterize both your inputs and your outputs at scale, so you know what the data really looks like, and how the system actually behaves, without having to inspect everything by hand.\n\nThe second gulf is between what we want and what we actually tell the LLM to do. Our intent (the task we have in mind) is often only loosely captured by the prompts or agent logic we write. Natural language is imprecise, and small gaps in how we phrase things can lead to large differences in behavior.\n\nExtract the sender’s name and summarize the key requests in this email.\n\nAt first glance it looks specific, but important details are left unstated. Should the summary be a paragraph or a bulleted list? Should the sender be the display name, the full email address, or both? Should implicit requests be included, or only explicit ones? How concise should the summary be?\n\nThe LLM cannot fill in these choices for you. If you don’t make them explicit, the system will guess, and those guesses will not always line up with what you expect. That’s why two runs of the same agent might produce outputs in different formats, with varying levels of detail, or with inconsistent handling of edge cases.\n\nThe Gulf of Specification is this gap between our intent and our instructions. Closing it requires making expectations explicit and aligning them closely with the data the agent will actually see.\n\nMost enterprises hesitate to connect AI agents to production infrastructure. It feels risky, so they keep agents out of production or approve every step by hand.\n\nTrusted runtimes for AI agents in production\n\nAgents propose execution plans for human or LLM judgement\n\nSeparate runtime executes with only approved access\n\nTrace actions and LLM conversations, flag behavior that drifts from intent, and terminate agents and their connections with a kill switch.\n\nThe third gulf is between the data your system sees and how the LLM generalizes to it. Even if you have a solid grasp of your inputs and have written a clear, well-scoped prompt, the LLM is still prone to errors. LLMs are not perfect, and they will make mistakes.\n\nFor example, imagine you’ve clearly specified that the system should extract the sender’s name from the email header. Most of the time the LLM follows this instruction. But occasionally, when the body of the email mentions another person (say, a public figure), the LLM will incorrectly return that name instead. Nothing about your understanding of the data or your prompt was wrong. The LLM simply failed to apply the instructions consistently. Maybe the LLM",
+  "begyujtve": "2026-11-20T11:05:02.151450+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 20,
+      "hirertek": 25,
+      "egyediseg": 85,
+      "hitelesseg": 68,
+      "aktualitas": 54,
+      "kozossegi": 34
+    },
+    "elofeszures": 69,
+    "tanult": 47,
+    "indok": "Egy vállalati konferencia és termékpromóció bejelentése, nem valódi hír.",
+    "tema": "ai evals conference promo",
+    "cim_hu": "AI-ügynökök értékelése a chipgyártásban a GlobalFoundries előadásán",
+    "lead_hu": "A GlobalFoundries informatikai vezetője bemutatja, hogyan használják az agentic AI rendszereket a félvezetőgyártásban a Redpanda megoldásaival.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T11:05:32+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-20T11:05:39+00:00"
+}
