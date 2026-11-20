@@ -1,0 +1,49 @@
+{
+  "id": "211fbe8009a4",
+  "slug": "introducing-harness-adapters-adapt-your-favorite-model-to-your",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/harness-adapters-at-scale",
+  "publikalva": "2026-11-20T00:00:00+00:00",
+  "cim": "Introducing harness adapters: adapt your favorite model to your harness to improve performance and cost",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 68 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://huggingface.co/blog/assets/harness-adapters-at-scale/thumbnail.png"
+  },
+  "cim_eredeti": "Introducing harness adapters: adapt your favorite model to your harness to improve performance and cost",
+  "szoveg_eredeti": "Combining RL on a custom task distribution with your favorite agent harness yields more accurate and efficient models for that target harness and task distribution.\n\nModels are not fully optimized for all harnesses and the tasks you’re doing. Instead, they target general performance. So when you combine a model and harness, you’re leaving performance and efficiency on the table for the stuff you’re actually doing. With RL, you can train a custom harness adapter that squeezes everything out of your model for your harness and task combination.\n\nTake Qwen3.8-27B, its Terminal-Bench 2.1 score with the pi harness is 39% which uses on average 2.9K tokens per task. If we freeze those weights and add a custom RL-trained LoRA adapter we can get 55% pass@1, with average token usage of 1.5K. Most of this is down to the model reasoning less, calling less tools, and performing better first time.\n\nOur earlier work (multi-harness RL, harness adapters) showed that RL on your own task distribution, inside your own harness, gives a more accurate and more efficient model. Those experiments covered data-analysis and code-building tasks. Here we wanted to push this further by exploring whether the result holds at 27B, on harder real-world software engineering tasks, across three harnesses: Pi, OpenCode and Hermes Agent. And most of all, share a fully reusable recipe, so you can reproduce this on your own task, harness, model combinations.\n\nWe leverage the Harbor integration in OpenEnv and TRL’s OpenEnv guide to train the model inside the harnesses we chose for the final training. We have built ready-to-use docker images for all our RL tasks that come with the target harnesses already pre-installed inside. In our final docker images, we use Pi 1.5.2, OpenCode 2.2.7 and Hermes Agent v0.22.6. The diagram below from the aforementioned blogpost explains well the entire protocol:\n\nMost RL frameworks train a re-implementation of the agent loop: the agent is written against the framework's own interface, such as verl's AgentLoop, SkyRL-Gym environments, rLLM's agent and environment classes, slime's custom rollout functions, or ART's client inside your own Python agent. Here the harness runs exactly as it ships, and the trainer learns from the exact tokens it produced, recorded by a proxy between the harness and vLLM. Recent work moves in the same direction: Agent Lightning v1.0 keeps the deploy-time harness in the loop through a proxy (\"harnessed agentic RL\"), and SkyRL's Harbor integration trains on Harbor trials, converting their chat histories into tokens for the trainer.\n\nFor this recipe we created a custom dataset for agentic coding with the Hub, OpenEnv, and Repo2RLEnv. We combined together task retrieval of existing RL envs, task generation with Repo2RLEnv, task validation with OpenEnv, and sampling into a single data pipeline. This gave us the highest quality set of validated and relevant tasks to improve Qwen3.8-27B on agentic coding. In this section, we’ll walk through how we built it, so you can try it out on your own domains.\n\nRL training needs tasks the agent can attempt, a verifier that scores each attempt, and evidence that the verifier is right. A verifier that accepts wrong answers teaches the wrong behavior. A task that is already feasible will not teach the model anything.\n\nThis section describes how we built the task set from three sources: two on the Hugging Face Hub and a third generated with Tasksmith, a pipeline in Repo2RLEnv. Every task passes an eligibility screen with openenv validate, and the same difficulty check against the base model, Qwen3.8-27B.\n\nEach task uses the Harbor format, which Terminal-Bench 2.1 also uses. A broad search of the Hub for Harbor environments returned about 59,000 tasks, but they included duplicates, evaluation sets and tasks marked as not for training. We filtered down to just two Hub sources built for training and generated a third set ourselves:\n\nWe used Tasksmith to target gaps. We mapped the skills that our target benchmarks test (Terminal-Bench 2.1, the hard subset of SWE-bench Pro, and DeepSWE), then chose pull requests that exercise them, such as HTTP streaming, filesystem operations and serialization. From 30 merged pull requests, Tasksmith produced 24 tasks in 10 Python repositories that passed its checks, 17 of them on a second run. Its checks do not replace ours, so these tasks go through the same pipeline as the rest.\n\nA metadata screen runs first. It keeps tasks from training splits with permissive licenses. It drops duplicates, tasks marked as not for training, the 253 tasks in our target benchmarks, and any task from a repository those benchmarks use. We then ran the semantic checks from openenv validate on every task in fresh trials:\n\nEach trial ran as its own Hugging Face Job, which let us validate dozens of tasks at once. openenv validate offers the same option for any Harbor task:\n\n858 of 1,127 Hub candidates passed. Wrong-answer controls caught defects, including a Tasksmith task that accepted an incomplete implementation and a Terminal-Bench 2.1 verifier (regex-log) that accepted known-wrong answers. Most failures were infrastructure problems, such as images that did not start. Failed tasks stay in a rejected split with the failing check recorded.\n\nA valid task can still teach nothing. GRPO (group relative policy optimization) scores each attempt against the other attempts at the same task, so a task where every attempt passes, or every attempt fails, gives no learning signal. Before training, Qwen3.8-27B attempted each task 4 times, or 8 times for a stratified sample of six tasks per repository.\n\nOf 442 scored tasks, Qwen3.8-27B solved 151 every time and 120 never. The 171 tasks it solved only sometimes form the qualified set. The figure below shows how the scores pile up at both ends and how they differ by source. The model solves most Go tasks every time, fails every attempt on more than a third of the SWE-smith Python tasks, and lands in the middle on 73% of the SWE-Gym tasks.\n\nQwen3.8-27B results on 442 scored tasks. Green marks the qualified tasks, which the model solves on some attempts but not all.\n\nThis example shows how we filtered and validated 1,127 tasks to 278 which we included directly in the final dataset. The pipeline then took the remaining 522 rejected tasks, repaired and complexified them with Tasksmith and repeated validation.\n\nThe pipeline applies two filters: validation removes broken tasks, and the difficulty check keeps tasks the base model solves only sometimes. This section tests whether those filters change what the model learns. We trained four short runs of up to 50 steps, each on tasks from a different stage of the pipeline, and compared them with the base model on Terminal-Bench 2.1.\n\nEach run trains Qwen3.8-27B with LoRA and GRPO, using TRL's AsyncGRPOTrainer, on 32 tasks. All four use the same agent harness (OpenCode with up to 48 model calls), the same settings and one 8×H200 Hugging Face Job, and the reward is the verifier's pass or fail. The task sets differ in how they were filtered:\n\nThe figure below shows how the tasks impacted model learning. The table lists each run's steps and the checkpoint we evaluate. The chart tracks training reward across subsets of tasks with differing validation status.\n\nharness-hub/agentic-coding-envs holds 871 tasks from 35 repositories. Hub tasks are capped at 40 per repository, so no single project dominates. The table below shows what each source contributes. The dataset has two views: every accepted task, and the qualified subset for GRPO training. Rejected attempts stay in a separate config.\n\nWe leveraged the stable version of AsyncGRPOTrainer from TRL, with the main advantage of the trainer being that it does not wait until all rollouts are completed before moving to the next training optimization step.\n\nFor more detailed reading on the trainer and its building blocks, please refer to the AsyncGRPO blogpost.\n\nTo obtain our fina",
+  "begyujtve": "2026-11-20T13:47:36.908824+00:00",
+  "prioritas": {
+    "pont": 68,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 70,
+      "egyediseg": 85,
+      "hitelesseg": 90,
+      "aktualitas": 86,
+      "kozossegi": 63
+    },
+    "elofeszures": 100,
+    "tanult": 68,
+    "indok": "Technikai jellegű, de hasznos nyílt forráskódú fejlesztés az AI-ágensek hatékonyságának és költségeinek optimálására. Forrás-tapasztalat: -5.",
+    "tema": "huggingface harness adapters",
+    "cim_hu": "Bemutatkoznak a Hugging Face keretrendszer-adapterei az AI-modellek hatékonyságának növelésére",
+    "lead_hu": "A Hugging Face új megoldása lehetővé teszi a modellek egyedi ágens-keretrendszerekhez igazítását megerősítéses tanulással, ami növeli a pontosságot és csökkenti a költségeket.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T13:49:24+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-20T13:49:25+00:00"
+}
