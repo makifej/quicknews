@@ -1,0 +1,49 @@
+{
+  "id": "49973232093d",
+  "slug": "openai-makes-it-much-harder-for-attackers-to-extract-how-its-latest",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/openai-makes-it-much-harder-for-attackers-to-extract-how-its-latest-ai-models-think/",
+  "publikalva": "2026-11-20T20:31:50+00:00",
+  "cim": "OpenAI makes it much harder for attackers to extract how its latest AI models think",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 84 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/02/ai_model_distill.jpeg"
+  },
+  "cim_eredeti": "OpenAI makes it much harder for attackers to extract how its latest AI models think",
+  "szoveg_eredeti": "OpenAI has sharply tightened safeguards against extracting internal reasoning from GPT-6.2 Astra and GPT-6.2 Sol. In internal automated tests, attacks pulling protected reasoning from prior requests dropped from a 54.0 percent success rate on GPT-6 Astra to 0.2 percent on GPT-6.2 Astra. Attacks on active requests fell from 22.9 to 0.9 percent, OpenAI says. The company is now bringing selected improvements to GPT-6 Astra, too.\n\nThe defenses work on two levels. For individual requests, the systems combine targeted training, input and output filters for messages and tool calls, and API blocks that stop older models from reading protected reasoning. Against coordinated campaigns, OpenAI bans thousands to tens of thousands of accounts weekly.\n\nAttack success rate (ASR) in adaptive black-box red teaming against GPT-6 Astra and GPT-6.2 Astra, aggregated across six attacker models. Lower is better.Ad\n\nAnthropic is fighting systematic distillation attacks as well, also banning tens of thousands of accounts to curb the theft of internal reasoning, reportedly succeeding in 90 to 99 percent of cases. Anthropic has also called for a coordinated response from industry and policymakers.Ad",
+  "begyujtve": "2026-11-20T20:49:36.766062+00:00",
+  "prioritas": {
+    "pont": 84,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 57
+    },
+    "elofeszures": 86,
+    "tanult": 30,
+    "indok": "Jelentős biztonsági előrelépés az OpenAI legújabb modelljeinek védelmében",
+    "tema": "openai model safety reasoning",
+    "cim_hu": "Az OpenAI drasztikusan megnehezítette a GPT-6.2 gondolkodási folyamatainak ellopását",
+    "lead_hu": "Szigorúbb védelmi rendszert vezetett be az OpenAI, amellyel a korábbi 54 százalékról 0,2 százalékra csökkentette a belső gondolkodási lépések kiszivárogtatását célzó támadások sikerességét.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T20:50:11+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-20T20:50:18+00:00"
+}
