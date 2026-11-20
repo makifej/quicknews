@@ -1,0 +1,49 @@
+{
+  "id": "d0574c08093f",
+  "slug": "we-taught-robots-to-carve-marble-sculptures",
+  "forras_id": "dailydev",
+  "forras_nev": "Hacker News (daily.dev)",
+  "url": "https://eleanorwiesler.com/blog/robotic-stone-carving",
+  "publikalva": "2026-11-19T15:10:56.751000+00:00",
+  "cim": "We taught robots to carve marble sculptures",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 67 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/fba58da439d253f0bf68ce76a6ddef9b?_a=AQAEuop"
+  },
+  "cim_eredeti": "We taught robots to carve marble sculptures",
+  "szoveg_eredeti": "Autonomous Toolpathing at Monumental Labs\n\nWe taught KUKA KR240 robots how to carve marble sculptures.\n\nThis month, my team and I at Monumental Labs announced the first end-to-end autonomous CNC stone carving system of its kind. Sebastian Marino, James Darby, and I presented it at Embodied AI NYC, hosted by NY Robotics and ZeroSpace Labs in Brooklyn. This post is a written version of our talk: how our system turns a 3D model and a block of marble into a finished sculpture, with no human in the loop.\n\nCivic buildings like Penn Station and Grand Central were once expected to be monumental. Stone carving never disappeared, but rising costs pushed it out of ordinary construction. At Monumental Labs we use machine learning, computational geometry, and optimization to cut that cost: de-extinction, not displacement.\n\nOur goal is zero humans in the loop during the robotic manufacturing process: a fully automated, end-to-end pipeline built for “lights-out” manufacturing. We will continue to work with artists and designers to decide on the final desired sculpture. After robotic manufacturing, we intend to continue to use a hand finishing carving team for final surface quality refinements.\n\nMonumental Labs has been carving stone with classic CNC machining techniques for a couple of years, without our automated system. A few of those pieces are below, from restoring landmarked New York facades to life-size figures.\n\nSo what is new? Each of these pieces took our digital fabrication team weeks to months of manually programming toolpaths in CAM software like Autodesk PowerMill. That largely drag-and-drop software was built for parts like injection molds and engine blocks, where one toolpath gets reused thousands of times. Our sculptures are the opposite: intricate, complex, and bespoke every time. Programming each one by hand won’t scale as we open more factories. Our proprietary autonomous toolpathing system runs completely unsupervised, turning a 3D model and a block of stone into millions of toolpath points and tool orientations, complete with kinematics and simulations. Available compute is now the only limit to the number of sculptures that could be programmed each day.\n\nMaking this fully autonomous meant solving various open problems in computer graphics and robotics.\n\nCarving happens in two broad phases. Roughing is about material removal rate: getting as much stone off the block as quickly and safely as possible. Finishing is about surface quality: tracing the final form closely enough that what comes off the robot matches the design. The two phases call for different tools, different strategies, and different algorithms.\n\nThe running example in the talk was a magic trick: start with a block, carve a top hat, and pull a rabbit out of it. The rabbit is the Stanford bunny, a classic test model in computer graphics. We carved the top hat first partly for fun, and partly as a reminder of the magic that happens when robots and art come together.\n\nEverything starts with a voxel representation of the stone. Voxels let us accept arbitrary mesh inputs and store them in a sparse data structure, which matters because a dense grid scales cubically with resolution. From the voxels we compute a signed distance field, along with normals and gradients. That gives us a natural basis for constructive solid geometry, which is exactly what subtractive manufacturing is: the stone minus everything the tool has removed.\n\nThe first job is primary bulk material removal: clearing the large volume of stone between the raw block and the rough shape of the part.\n\nA toolpath is the route the cutting tool follows through the material, eventually written out as G-code that the machine executes point by point. A roughing toolpath has its own anatomy: isoplanar passes that step down through the stone one level at a time, with each pass planned around how much of the tool is engaged in the material.\n\nThen the trick continues, and the same machinery starts working the bunny out of the hat.\n\nAs we get closer to the final surface, we switch to smaller tools and finer passes. Some geometry can’t be reached by cutting straight down, so off-axis roughing cuts along tilted planes to clear material under ears, chins, and other overhangs.\n\nAt the end of roughing, the trick is complete in real stone: block, top hat, rabbit.\n\nFinishing is where the problem gets hard. The system takes two inputs: the simulated output of roughing, and the target design model. Its job is to close the gap between them.\n\nWe use voxel grid dilation and mesh intersection cuts to solve for optimal finishing layers, taking the remaining stone down in a sequence of offset surfaces until the last layer is the design itself.\n\nEach layer is then automatically segmented into regions that can be machined together, so every region gets its own toolpath and its own tool orientation.\n\nWithin a segment, we generate the toolpath from geodesic distances. Euclidean distance is a straight line, which on a curved part would pass through the stone. Geodesic distance is measured along the surface. The result is a set of curvature-informed isolines on the bunny’s surface, evenly spaced in a way that is optimal for toolpathing. We pair this geometry with machine learning to plan toolpaths that adapt to each sculpture.\n\nThe isolines on their own are separate curves. We solve for a continuous, smooth, and optimally connected toolpath per segment, so the tool stays in the material and moves predictably instead of lifting and repositioning between passes. Machine learning helps inform how these connections are made.\n\nEvery segment also needs a tool orientation the robot can actually reach. We solve for collision-free tool orientations by segment, using access directions and tool tilt along the toolpath.\n\nFrom there, we solve for safe, smooth, and collision-free joint angles for every point on the toolpath. In our proprietary toolpathing app below called Hilbert, we monitor joint angle health and visualize the kinematics limits of our various policies.\n\nBecause the whole pipeline is simulated, we can see the expected stone result before anything goes on the robot. That matters when the machine in question costs a million dollars.\n\nHere are the finishing toolpaths next to the carved marble they produced.\n\nSince Greg Turk and Marc Levoy scanned a ceramic rabbit at Stanford in 1994, the Stanford Bunny has been graphics’ shared test model for three decades of research in reconstruction, mesh processing, and rendering. Our work would not have been possible without the computational geometry that grew up around it: signed distance fields, volumetric shape representations, and geodesic distances on surfaces, often tested on this very bunny. After milling ours in marble, we came across two old SIGGRAPH proceedings covers: the bunny rendered as stone in 2000, and a marble bust in 2001. We like to think this work makes us a small part of both graphics and robotics history, and we can’t wait to keep advancing the field.\n\nYou can learn more about our work at monumentallabs.co.\n\nConnect with me at eleanorwiesler.com or at my socials below! :)",
+  "begyujtve": "2026-11-20T15:28:20.155133+00:00",
+  "prioritas": {
+    "pont": 67,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 80,
+      "egyediseg": 100,
+      "hitelesseg": 70,
+      "aktualitas": 69,
+      "kozossegi": 59
+    },
+    "elofeszures": 73,
+    "tanult": 36,
+    "indok": "Érdekes fizikai robotikai és autonóm CNC áttörés a szobrászatban. Forrás-tapasztalat: -8.",
+    "tema": "monumental labs robot marble carving",
+    "cim_hu": "Autonóm szobrászkodásra tanítottak meg ipari robotokat",
+    "lead_hu": "A Monumental Labs bemutatta az első teljesen autonóm CNC kőfaragó rendszert, amely 3D modellekből készít márványszobrokat emberi beavatkozás nélkül.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-20T15:28:39+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-20T15:29:01+00:00"
+}
