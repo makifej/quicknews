@@ -1,0 +1,77 @@
+{
+  "id": "45ed7d00bf21",
+  "slug": "penzmozgatasi-jogot-kaptak-az-ai-ugynokok-a-stripe-rendszereben",
+  "forras_id": "dailydev",
+  "forras_nev": "Stripe (daily.dev)",
+  "url": "https://stripe.com/blog/give-your-agents-controlled-access-to-analyze-your-data-and-move-funds",
+  "szerzo": null,
+  "publikalva": "2026-11-19T08:00:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/b0acb6cd5dc827ae01adf9d2f336f037?_a=AQAEuop"
+  },
+  "cim_eredeti": "Give your agents controlled access to analyze your data and move funds",
+  "forrasok": [],
+  "szoveg_eredeti": "Stripe businesses increasingly use agents to automate individual financial tasks so they can spend more time building their companies. More than 24,000 businesses already use Stripe Treasury for agents, giving agents read access to financial data to work on those tasks, including reviewing transactions, building cash flow models, and reconciling payments. Now, we’re adding write access and customizable controls that enable agents to move money on Stripe.\n\nFor agents to take on more operational work alongside humans, they need access to the right capabilities but also clear limits on what they can do. With Stripe Treasury, you can allow agents to transfer funds, convert currencies, and pay vendors within limits you set. Agents can complete end-to-end financial workflows on Stripe. They don’t just analyze your business, but also help run it.\n\nA payables agent could monitor balances across accounts, transfer funds to keep bill pay accounts topped up, and prepare vendor payments. Or you can build a payroll agent that converts currencies and moves money into the right accounts so employees are paid on time.\n\nStripe businesses grant access by connecting a compatible AI tool, such as Claude or Codex, through Stripe’s Model Context Protocol (MCP) server and choosing what Stripe data the agent can see, which actions it can take, and when human approval is required.\n\nWhen your business uses Stripe for both payment processing and banking through Treasury, agents can see incoming payments, funds across your business’s Stripe balances and financial accounts, and outgoing transfers. That gives them a clearer picture of how money moves through your business.\n\nFor example, you can ask your agent to create a daily financial report combining incoming payments, balances, card spend, and bills paid. Your team gets a current, unified view of its finances without having to pull and reconcile data from separate systems.\n\nYour payables agent could use this connected view to link incoming payments to upcoming bills. It could anticipate a shortfall, prioritize overdue invoices, and follow up with customers. As payments settle, the agent could reconcile them to invoices, update the cash forecast, look up the vendor recipient’s details, and ready vendor payments for approval.\n\nYour business can connect agents to Stripe in two ways:\n\n1. Connect an agent through an authorized user\n\nWhen you connect an agent to Stripe MCP through OAuth, the agent acts as an extension of that user and inherits their permissions. You need to confirm every action that moves money, including a refund or payout, before it’s completed.\n\n2. Give an agent its own identity and rules\n\nYou can give an agent its own identity and persistent access to Stripe through an agent API key. You set the key’s permissions, expiration date, and rotation schedule. Instead of waiting for a user to prompt it, the agent can work in the background, such as preparing reports overnight.\n\nBy default, agent-initiated refunds, payouts, and outbound transfers require human approval. An agent could prepare a vendor payment in the background and route it to a designated approver before funds move.\n\nUnlike with OAuth, businesses can adapt these rules for agents using agent API keys. For example, an agent could process an ACH transfer under $50 automatically but route larger transfers for approval. Businesses can also create custom approval rules for other agent actions, such as adding or removing an account administrator or updating a bank account.\n\nStripe’s agentic money movement capabilities are now available in public preview. Next, we’ll expand the financial actions agents can take, including creating cards with spending limits.\n\nWe’re building toward a Treasury experience that does more than answer, “What’s my balance?” With time, agents will proactively identify what needs attention and help take care of it, with businesses deciding how far agents can go.\n\nLearn more about Stripe Treasury or start automating money movement with agents today.\n\nRead more: Step-by-step advice for giving agents more responsibility",
+  "modell": "gemini-3.5-flash",
+  "cim": "Pénzmozgatási jogot kaptak az AI-ügynökök a Stripe rendszerében",
+  "lead": "A Stripe Treasury felületén az AI-ügynökök már nemcsak adatokat olvashatnak, hanem tranzakciókat és utalásokat is végrehajthatnak.",
+  "osszefoglalo": "A Stripe kiadta a [Stripe Treasury](https://docs.stripe.com/treasury/agents) új funkcióját, amely lehetővé teszi, hogy az AI-ügynökök közvetlenül pénzt mozgassanak a platformon. Az ügynökök a beállított korlátokon belül képesek összegeket átutalni, devizát váltani és beszállítói számlákat kifizetni. A rendszer teljes körű pénzügyi folyamatokat tud automatizálni az egyenlegek figyelésétől a bérszámfejtés előkészítéséig.\n\nA hozzáférést a [Model Context Protocol](https://docs.stripe.com/mcp) (MCP) szerverén keresztül lehet biztosítani olyan eszközöknek, mint a Claude vagy a Codex. A cégek kétféleképpen kapcsolhatják be az ügynököket: OAuth azonosítással, ahol minden pénzmozgatáshoz emberi jóváhagyás kell, vagy saját API-kulccsal, aminél egyedi szabályok adhatók meg, például az 50 dollár alatti utalások automatikus jóváhagyása.\n\nAz új pénzmozgatási funkciók jelenleg **nyilvános tesztfázisban** érhetők el. A fejlesztők következő lépésben az ügynökök általi bankkártya-generálást teszik majd lehetővé beállítható költési limitekkel.",
+  "miert_szamit": "A vállalkozások ezentúl **automatikussá tehetik a rutin utalásokat és számlakifizetéseket**, miközben a nagyobb összegeknél megőrzik a manuális jóváhagyás feletti ellenőrzést.",
+  "cimkek": [
+    "Stripe",
+    "fintech",
+    "AI-ügynök",
+    "MCP"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Stripe Treasury",
+    "Model Context Protocol"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 70,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 78,
+      "hirertek": 82,
+      "egyediseg": 88,
+      "hitelesseg": 72,
+      "aktualitas": 56,
+      "kozossegi": 68
+    },
+    "elofeszures": 69,
+    "tanult": 58,
+    "indok": "Jelentős pénzügyi-technológiai lépés a Stripe részéről, amely szabályozott hozzáférést ad az AI-ügynököknek a pénzmozgatáshoz. Forrás-tapasztalat: -8.",
+    "tema": "stripe ai agents financial access",
+    "cim_hu": "A Stripe lehetővé teszi az AI-ügynökök számára a közvetlen pénzmozgatást",
+    "lead_hu": "A Stripe új vezérlési lehetőségeket vezet be, amelyek segítségével az AI-ügynökök a pénzügyi adatok elemzésén túl már önállóan is utalhatnak pénzt a vállalkozások számláin.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-21T15:05:55+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-21T15:06:07+00:00",
+  "megjelent": "2026-11-21T15:06:07+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-21T15:06:10+00:00",
+    "esemeny": "A Stripe bejelentette, hogy a Stripe Treasury felületén az AI-ügynökök a korábbi csak olvasási hozzáférés mellett mostantól írási jogot is kaphatnak, így beállított korlátok között utalásokat hajthatnak végre, devizát válthatnak és számlákat egyenlíthetnek ki.",
+    "forrasok": [
+      "https://stripe.com/blog/give-your-agents-controlled-access-to-analyze-your-data-and-move-funds"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-21T15:06:33+00:00",
+  "linkek_ellenorizve": true
+}
