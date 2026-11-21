@@ -1,0 +1,49 @@
+{
+  "id": "a80afcb1d850",
+  "slug": "cairn-ai-framework-used-in-autonomous-zero-day-exploitation",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Security Affairs",
+  "url": "https://securityaffairs.com/203664/ai/cairn-ai-framework-used-in-autonomous-zero-day-exploitation.html",
+  "publikalva": "2026-11-21T16:55:27+00:00",
+  "cim": "Cairn AI Framework Used in Autonomous Zero-Day Exploitation",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 80 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://securityaffairs.com/wp-content/uploads/2026/11/image-56.png"
+  },
+  "cim_eredeti": "Cairn AI Framework Used in Autonomous Zero-Day Exploitation",
+  "szoveg_eredeti": "Amazon’s threat intelligence team found a Chinese-nexus actor running Cairn, an open-source AI pentesting framework, with one instruction for the agents: obtain shell access. No human chose the next step after that. The agents planned, executed, and adjusted on their own, and along the way they found a real zero-day in an open-source medical imaging application.\n\nThe discovery happened because the operator left their own server exposed. On 10 September, Amazon spotted a publicly hosted Cairn instance running with no authentication, which meant anyone could see the project configurations, the prompts, and the AI’s output. The prompts were in Simplified Chinese, and script timestamps matched China Standard Time, over a roughly 48-hour campaign against university IP addresses in East Asia, outside mainland China.\n\n“On September 10, 2026, Amazon Threat Intelligence identified a server with a publicly hosted instance of Cairn, an open-source autonomous AI penetration-testing framework, running without authentication. Because the operator left the server publicly accessible, the operational history of the platform was visible to anyone on the internet, including project configurations, actor prompts, and AI output. The operator wrote prompts in Simplified Chinese, and the timestamps in executed scripts were configured to China Standard Time.” reads the report published by Amazon. “Analysis of the instance revealed a campaign targeting IP addresses associated with universities in East Asia outside mainland China over an approximately 48-hour period beginning September 8, 2026.”\n\nNot all targets were vulnerable. At one university, the agents found a Redis server that did not require a password. They spent about 16 hours trying 148 different actions to break in. These included using Redis replication to load code, bypassing its security protections, changing configuration files, damaging memory, and exploiting Log4Shell in a nearby service. When these attempts failed, they tried another approach. They exploited an SSRF vulnerability in a Qdrant server on the same network to explore internal systems. They then tried different passwords against PostgreSQL, SSH, and other services. None of these attempts succeeded, but the AI agents kept changing their tactics and trying new approaches.\n\nIn another attack, the agents targeted a university GPU server for more than six hours. They collected about 80 real usernames from university websites, faculty directories, research lab pages, archived websites, and academic papers. They then tried more than 30,000 username and password combinations against SSH and other systems, including a VPN server and the university portal. These attempts also failed to gain access.\n\nThe medical imaging target is where it worked. The agents mapped the application’s framework and API endpoints, found an upload parameter, tested it for path traversal, and had it: a working file-write vulnerability. From first mapping the API to writing arbitrary files took about 11 minutes.\n\n“Against a target running an open-source medical imaging AI application, the outcome was different. The agents identified the application’s framework, mapped its API endpoints, and found an upload endpoint with a filename parameter.” continues the report. “They tested that parameter for path traversal, and the parameter was vulnerable. In about 11 minutes, the agents went from mapping the application’s API to arbitrarily writing files on the server.”\n\nA later session turned that access into something worse. The agents wrote a Python reverse shell to sitecustomize.py, a file Python loads automatically on startup, then triggered a training endpoint that spawned a new process and imported the payload. That gave them a root shell with no human picking each step. Amazon assesses with high confidence this was a genuine zero-day, since no fix, advisory, or prior mention existed anywhere for the affected project.\n\nThe human operator came back once the agents had proven the bug worked. They handed the agents a proxy tunnel into a second university’s network, where a server ran the same vulnerable software, and told them to use that foothold to reach other machines. Amazon infers the actor had already used the same zero-day to set up that tunnel, which means one AI-found bug became the key to a second network.\n\nAmazon notified the project’s maintainers, who shipped a fix and a security advisory. The affected universities weren’t AWS customers, so Amazon routed the warning through a government partner instead of reaching them directly. Separately, researchers at Gambit Security documented a different, financially motivated actor using the same framework against online retailers, so this isn’t a one-off experiment confined to espionage.\n\nThe speed of these operations is the most important point. An AI agent that can find and exploit a zero-day in just a few minutes can move faster than most security teams can investigate a single alert. Even when the attacks failed, the agents kept working for 16 hours without breaks or time limits.\n\nAmazon uses honeypots and network traffic analysis to automatically detect some of this activity at no extra cost. The wider lesson is that defenders need to focus on reliable threat detection and fast responses.\n\n“To keep pace, organizations should prioritize high-confidence detections that trigger automated response, with humans overseeing outcomes rather than reviewing every individual action.” concludes the report.\n\nFollow me on Twitter: @securityaffairs and Facebook and Mastodon\n\nArtificial Intelligence / November 21, 2026",
+  "begyujtve": "2026-11-21T17:50:18.962668+00:00",
+  "prioritas": {
+    "pont": 80,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 75,
+      "aktualitas": 98,
+      "kozossegi": 75
+    },
+    "elofeszures": 85,
+    "tanult": 59,
+    "indok": "Kínai hackerek autonom AI-ügynökökkel találtak valódi zero-day sérülékenységet, ami jelentős biztonsági mérföldkő. Forrás-tapasztalat: -7.",
+    "tema": "ai zero day cyberattack",
+    "cim_hu": "Autonóm AI-ügynök talált valódi zero-day sérülékenységet egy kínai támadás során",
+    "lead_hu": "Az Amazon biztonsági csapata felfedezte, hogy egy kínai hackercsoport a Cairn AI-keretrendszerrel teljesen autonóm módon talált meg és használt ki egy korábban ismeretlen biztonsági rést.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-21T17:50:24+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-21T17:50:25+00:00"
+}
