@@ -1,0 +1,49 @@
+{
+  "id": "86db41def986",
+  "slug": "scaling-airflow-pipelines-with-ai-agents-on-managed-airflow",
+  "forras_id": "dailydev",
+  "forras_nev": "Google Cloud (daily.dev)",
+  "url": "https://cloud.google.com/blog/products/data-analytics/scaling-airflow-pipelines-with-ai-agents-on-managed-airflow",
+  "publikalva": "2026-11-21T00:00:00+00:00",
+  "cim": "Scaling Airflow pipelines with AI agents on Managed Airflow",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 36 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/d9c0622b5f8757632d94ccd5f5445d1c?_a=AQAEuop"
+  },
+  "cim_eredeti": "Scaling Airflow pipelines with AI agents on Managed Airflow",
+  "szoveg_eredeti": "Sr. Product Manager, Managed Service, Apache Airflow\n\nSoftware Engineer, Managed Service, Apache Airflow\n\nWhen an Airflow pipeline fails in production, the hard part is rarely the fix. It's finding out what to fix. A task dies without a traceback. Is it the code, the data, or the environment? Hard to say, as clues are scattered across task logs, scheduler logs, and worker metrics. And once you know what the problem is, the question becomes whether to add memory, rewrite the DAG, or finally take on the major version upgrade you've been putting off. Answering these questions takes time and deep Airflow expertise, usually while you're on call in the middle of an incident.\n\nAI agents can increasingly do much of this legwork. Managed Service for Apache Airflow (formerly Cloud Composer) now offers agentic help across a pipeline's entire lifecycle. In the Google Cloud console, Managed Airflow Agent investigates failed tasks, recommends improvements to your environment, and checks whether your DAGs are ready for a newer Airflow version. In your IDE or coding agent, Data Agent Kit writes, migrates, and deploys DAGs. In this post, we take you on a tour of these features through a story of a fictional company, Cymbal Shops.\n\nAmira is a data engineer at Cymbal Shops, an online retailer running cymbal-prod, a production Managed Airflow (Gen 3) environment whose workers have 2 vCPUs, 4 GB of memory, and that autoscale between 1 and 6. Every click, search, and add-to-cart on Cymbal's website and mobile app goes to a Pub/Sub topic. A Cloud Storage subscription writes the events as newline-delimited JSON files into hourly folders under gs://cymbal-clickstream-landing/events/. It writes files in parallel and starts new ones every 5 minutes or every 128 MB, whichever comes first.\n\nAnalysts, meanwhile, want these events in BigQuery, cleaned and with personal data hashed — and they want them fast. Ideally, each file would be processed the moment it lands. But Cymbal's Airflow environment runs Airflow 2.11.1, and Airflow 2 has no native way to start a DAG run when something happens outside Airflow. You can get close: Schedule a DAG every few minutes and let a sensor wait for new files, or build an extra service that triggers runs through the Airflow REST API. However, the team doesn't want all those moving parts, so they settle for the next best thing: an hourly batch.\n\nAmira writes her DAGs with an agent. She works in Antigravity with the Data Agent Kit plugin, which adds Google Data Cloud skills and tools to the agent, and she uses Gemini as her model. Setup takes a few minutes: She installs the plugin, signs in with her Google account, and selects her project and region.\n\nIn the agent panel, she describes what she needs with this prompt:\n\n\"Write a DAG named clickstream_hourly for the Managed Airflow environment cymbal-prod in us-central1. Every hour, load the previous hour of clickstream events into the BigQuery table clickstream.events. The events are newline-delimited JSON files in gs://cymbal-clickstream-landing/events/YYYY-MM-DD/HH/. Transform them with pandas: read each file into a DataFrame with the nested context object kept as a JSON string, combine the files with pd.concat, then drop malformed records, deduplicate on event_id (Pub/Sub delivers at least once), and hash user_email and ip_address. Re-running an hour must not create duplicates. If a run fails, email data-oncall@example.com. Validate the DAG and deploy it.\"\n\nData Agent Kit inspects the target Managed Airflow environment in Antigravity, generates an Airflow 2.11-compatible DAG, and deploys it.\n\nThe agent checks the target environment before it writes any code. Because cymbal-prod runs Airflow 2.11.1, the agent produces the code aligned to that version. It then deploys the DAG to cymbal-prod and confirms that Airflow loads it without errors.\n\nAmira reviews the code, and the DAG goes live in early August. It's good code: readable, idempotent, and correct for Airflow 2.11. A busy hour sees about 200 files and 350 MB, and the task peaks below 2 GB — well under the 4 GB worker limit.\n\nLook at how the task builds its input, though. It lists every file in the hour's folder, reads each one into a DataFrame, and then pd.concat combines them into a single DataFrame. The unit of work is a clock hour, so the task needs more memory as traffic grows. That's fine until traffic changes...\n\nThe hourly task loads every JSON file from the previous hour into memory and combines them into a single DataFrame with pd.concat.\n\nLate October brings two changes in the same week. Cymbal launches its \"Fall Into Savings\" campaign, and a new mobile app release adds much more detailed event tracking. Events from the new app version are about three times larger than their predecessors, and the campaign brings more traffic on top, so an hour of clicks grows from about 350 MB to about 1.4 GB. Holding a whole hour in pandas takes several times its raw size, so load_previous_hour_clickstream now needs more memory than a worker’s allotted 4 GB. Autoscaling doesn't help here: It adds workers when tasks queue up, but each task still runs on a single worker and can't use more memory than that worker has.\n\nOn October 23, the 14:00 UTC run of clickstream_hourly fails. All three attempts die the same way, with no error in the task log.\n\nAmira opens cymbal-prod in the console, where Managed Airflow Agent is built in. It diagnoses the problem and recommends a fix; Amira decides what to change.\n\nShe goes to the DAGs tab, selects clickstream_hourly, and opens Run history. Next to the failed 14:00 run there's an Investigate button with a sparkle icon. She clicks it, and a short ‘Investigate DAG run failure’ dialog asks her to confirm her choice. The Ask agent panel then opens next to the page, and the agent starts investigating.\n\nManaged Airflow Agent investigates the failed run in the console, correlates worker memory metrics with task retries, and recommends fixes.\n\nAt the end of the report, the agent recommends three fixes: load the files straight into BigQuery, process them in batches, or give the workers more memory.\n\nLook at what the agent delivers! Every conclusion includes the evidence that led to it, so Amira can check the reasoning herself.\n\nTwo of the recommendations are code changes, and code changes take time to write and test. With every hourly run now failing, Amira needs the quick fix first: more memory for the workers. But how much? The right number depends on the whole environment, not on one task. So she asks the agent in the same panel:\n\n\"clickstream_hourly runs out of memory on 4 GB workers. Analyze the cymbal-prod environment and recommend how much worker memory it needs, along with any other improvements.\"\n\nManaged Airflow Agent analyzes environment-wide telemetry, recommends 8 GB worker memory, and flags resilience and retention gaps.\n\nThe agent recommends increasing worker memory from 4 GB to 8 GB, and flags three production-readiness gaps: Database retention is disabled, the environment isn't highly resilient, and it has no scheduled snapshots.\n\nAmira acts on the first recommendation right away. The agent is read-only, so she makes the change herself and increases worker memory to 8 GB.\n\nShe schedules the other two recommendations for the next change window. With 8 GB workers, the pipeline gets through the rest of the campaign.\n\nBut that only buys time. Black Friday traffic is forecast at 8 to 10 times a normal peak hour, and at that volume the hourly batch will need well over 8 GB. The troubleshooting report had already named the real problem: a unit of work that grows with traffic. That brings Amira back to what the team wanted in the first place, which was to process each file as soon as it lands.\n\nAirflow 3 makes that much easier, because it supports event-driven scheduling natively. An asset watcher listens to an external source, such as a Pub/Sub subscription. When new messages arrive, it updates an asset, and any",
+  "begyujtve": "2026-11-21T11:05:03.046889+00:00",
+  "prioritas": {
+    "pont": 36,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 25,
+      "egyediseg": 80,
+      "hitelesseg": 72,
+      "aktualitas": 82,
+      "kozossegi": 40
+    },
+    "elofeszures": 66,
+    "tanult": 56,
+    "indok": "Specifikus felhős termékfrissítési blogposzt, szűk szakmai közönségnek szól. Forrás-tapasztalat: -8.",
+    "tema": "google cloud airflow ai",
+    "cim_hu": "AI-ágensekkel skálázza az Airflow-adatfolyamokat a Google Cloud",
+    "lead_hu": "A Google Cloud bemutatta, miként segíthetnek az intelligens ágensek az Apache Airflow munkafolyamatok hibaelszigetelésében és skálázásában.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-21T13:51:23+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-21T13:52:18+00:00"
+}

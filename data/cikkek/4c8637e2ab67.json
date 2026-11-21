@@ -1,0 +1,49 @@
+{
+  "id": "4c8637e2ab67",
+  "slug": "hybrid-artificial-intelligence-framework-calibrates-urban-traffic",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/hybrid-artificial-intelligence-framework-calibrates-urban-traffic-fundamental-diagrams-in-jordan/",
+  "publikalva": "2026-11-21T07:37:08+00:00",
+  "cim": "Hybrid Artificial Intelligence Framework Calibrates Urban Traffic Fundamental Diagrams in Jordan",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 34 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-21620.png"
+  },
+  "cim_eredeti": "Hybrid Artificial Intelligence Framework Calibrates Urban Traffic Fundamental Diagrams in Jordan",
+  "szoveg_eredeti": "Hybrid Artificial Intelligence Framework Calibrates Urban Traffic Fundamental Diagrams in Jordan\n\nTransportation engineers have developed and tested a hybrid calibration framework combining video trajectory analytics, mobile smartphone telemetry, and machine learning optimization to measure how vehicles move along congested urban roadways. The study, conducted by researcher Laith D. Alomari and published in the Journal of King Saud University – Engineering Sciences, evaluated macroscopic traffic fundamental diagrams across thirty heterogeneous road segments in Irbid, Jordan. Fundamental diagrams mathematically describe the macroscopic relationships linking speed, flow, and density, serving as structural foundations for roadway capacity planning, level-of-service evaluations, and traffic control design. Classical analytical expressions, originally introduced decades ago under assumptions of uniform vehicular streams and strict lane compliance, often diverge from empirical observations in rapidly growing developing cities. In these environments, mixed fleets, weak lane discipline, and volatile flow transitions complicate standard theoretical assumptions, creating an operational need for low-cost, localized calibration methods.\n\nThe experimental campaign gathered empirical field observations across thirty distinct locations throughout Irbid, including major arterials, intersection approaches, roundabouts, and mid-block road segments. These sites encompassed operational states ranging from uninterrupted free-flow movement to dense, stop-and-go congestion. Across the observation windows, each site was monitored for thirty to sixty minutes during multiple weekdays, covering both peak and off-peak travel periods. The vehicular mix mirrored standard developing urban streams, comprising passenger automobiles, minibuses, motorcycles, and light commercial vehicles. In total, the field deployments produced approximately 3,000 validated observation points. Rather than merging all data points into a single city-wide macroscopic fundamental diagram, the investigation treated each monitored road segment and intersection approach as an independent link-level traffic system, thereby preserving location-specific geometry, operational controls, and local vehicular interactions.\n\nData collection relied on a dual-modality sensing strategy designed to bypass expensive fixed roadway detectors such as inductive loops or radar systems. The primary monitoring apparatus consisted of thirty high-definition video cameras recording at 1080p resolution and thirty frames per second across the survey sites. Video frames were processed using a computer vision pipeline that combined the You Only Look Once version 8 (YOLOv8) object detector with the Deep Simple Online and Realtime Tracking (Deep SORT) algorithm. Each camera perspective underwent geometric calibration using roadway reference markers, such as visible lane lines and established spatial segment lengths, establishing a direct pixel-to-world coordinate conversion. By tracking vehicle centroids frame to frame, the computer vision pipeline derived displacement vectors, calculated instantaneous speeds from elapsed frame timings, and classified vehicles while filtering out occluded trajectories and anomalous tracking noise.\n\nTo cross-validate and supplement the optical vehicle tracking, the research team gathered independent mobile sensor telemetry from volunteer drivers operating approximately twenty participating vehicles. These drivers utilized a custom mobile application on standard Android and iOS smartphones to log consumer-grade Global Positioning System coordinates and internal accelerometer signals at a continuous sampling frequency of 1 Hz. Trajectory records were filtered to eliminate signal dropouts and map-matched against segment geometry using spatial buffer geofencing established around each camera installation. By synchronizing smartphone readings with video timestamps through coordinated system clocks, the researchers directly corroborated video-extracted travel speeds against independent satellite positioning measurements, confirming that the computer vision extraction method remained stable and representative of ground conditions.\n\nThe validated microscopic trajectory records were aggregated into macroscopic traffic variables using fifteen-second observation intervals, balancing sub-hourly temporal granularity against random frame-level noise. For each discrete interval, mean vehicle speed and traffic flow were computed directly, while traffic density was calculated mechanically through the hydrodynamic identity dividing flow by speed. The resulting empirical points underwent outlier filtering via the interquartile range technique and smoothing through a Savitzky–Golay filter. When mapped across all thirty monitoring locations, the aggregated field data demonstrated classic macroscopic traffic relationships. Speed curves remained steady under light volumes before declining sharply once traffic density reached approximately 35 to 40 vehicles per kilometer, while flow-density plots exhibited characteristic parabolic profiles peaking within a critical density boundary of 30 to 35 vehicles per kilometer.\n\nTo establish baseline benchmarks, the investigators initially fitted four canonical analytical formulations using standard nonlinear least-squares regression: the linear model proposed by Greenshields, Greenberg’s logarithmic formulation, Underwood’s exponential decay structure, and the multi-regime exponential-polynomial model introduced by Drake and colleagues. These baseline formulations yielded site-level operational coefficients, with free-flow speeds generally estimated between 62 and 68 kilometers per hour and jam densities clustering around 130 to 160 vehicles per kilometer. At a representative arterial monitoring location, designated as Site S02, the baseline Underwood model achieved the closest analytical fit to observed data, posting a coefficient of determination of 0.93 and a root mean square error of 4.9 kilometers per hour, outperforming the linear and logarithmic alternatives whose rigid curves struggled to capture gradual driver deceleration in dense traffic.\n\nBecause traditional nonlinear least-squares regression remains vulnerable to initial starting values and premature entrapment within local mathematical minima, the researchers implemented a sequential, artificial intelligence-assisted optimization routine. This hybrid stage paired a Genetic Algorithm with Bayesian Optimization to systematically refine the model parameters while maintaining their physical interpretability. In the first phase, the Genetic Algorithm conducted a global parameter search, encoding variables as chromosomes and evolving populations over successive generations to minimize root mean square error within physically bounded constraints, such as capping free-flow speed between 40 and 120 kilometers per hour and jam density between 80 and 250 vehicles per kilometer. Subsequently, Bayesian Optimization applied a Gaussian process surrogate model with exploration-exploitation acquisition functions to locate optimal basins of convergence with high numerical stability.\n\nThe two-stage evolutionary optimization routine resolved parameter instability across all thirty locations, yielding parameter variance of less than 8 percent across test iterations and showing smooth convergence within fifteen to twenty-five generations. This parameter refinement process reduced root mean square errors by approximately 15 to 25 percent across the evaluated sites compared with standard baseline regression, while lifting the coefficient of determination for the Underwood formulation up to 0.96. The optimization systematically adjusted the curvature coefficients of the models without modifying their core underlying equations, enabling the analytical curves to mirror subtle driver behaviors, such as gradual speed reductions and anticipatory decel",
+  "begyujtve": "2026-11-21T07:50:25.549523+00:00",
+  "prioritas": {
+    "pont": 34,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 20,
+      "hirertek": 25,
+      "egyediseg": 95,
+      "hitelesseg": 72,
+      "aktualitas": 90,
+      "kozossegi": 17
+    },
+    "elofeszures": 74,
+    "tanult": 20,
+    "indok": "Nagyon specifikus helyi közlekedési gépi tanulási tanulmány Jordániából Forrás-tapasztalat: -7.",
+    "tema": "urban traffic machine learning",
+    "cim_hu": "Hibrid mesterséges intelligenciával elemzik a városi forgalmat Jordániában",
+    "lead_hu": "Közlekedési mérnökök videóanalitikát és okostelefonos telemetriát kombináló gépi tanulási modellt teszteltek a torlódások felmérésére.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-21T13:51:23+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-21T13:52:10+00:00"
+}
