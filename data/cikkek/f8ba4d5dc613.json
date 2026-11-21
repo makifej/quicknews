@@ -1,0 +1,49 @@
+{
+  "id": "f8ba4d5dc613",
+  "slug": "pediatric-bone-age-artificial-intelligence-matches-atlases-overall",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/pediatric-bone-age-artificial-intelligence-matches-atlases-overall-but-shows-individual-variability/",
+  "publikalva": "2026-11-21T05:07:16+00:00",
+  "cim": "Pediatric Bone Age Artificial Intelligence Matches Atlases Overall but Shows Individual Variability",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 41 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-21425.png"
+  },
+  "cim_eredeti": "Pediatric Bone Age Artificial Intelligence Matches Atlases Overall but Shows Individual Variability",
+  "szoveg_eredeti": "Pediatric Bone Age Artificial Intelligence Matches Atlases Overall but Shows Individual Variability\n\nEvaluating skeletal maturity in children forms a foundational pillar of pediatric clinical practice, guiding diagnostic pathways in endocrinology, orthopedics, and orthodontics. In routine healthcare, determining whether a child’s biological development aligns with their chronological age provides vital evidence for identifying growth-related conditions and monitoring therapeutic interventions over time. A retrospective investigation conducted at Independent Public Clinical Hospital Number 1 in Zabrze, affiliated with the Medical University of Silesia, has evaluated how modern artificial intelligence compares against established radiological reference atlases when determining bone age from hand and wrist radiographs. The comparative analysis focused on 376 pediatric patients whose skeletal maturity was assessed across three distinct methodologies: the traditional Greulich and Pyle Atlas, the simplified Pocket Atlas of Skeletal Age, and the educational Hand Bone Age artificial intelligence web tool developed by researchers at Stanford University. The results demonstrate that while the machine learning system and conventional visual atlases achieve high concordance at the population level, automated estimates present substantial individual-level dispersion that is significantly influenced by patient sex.\n\nFor decades, standard pediatric bone age determination has relied on examining plain radiographs of the non-dominant hand and wrist, with radiologists comparing patient images against standardized reference plates. The Greulich and Pyle method, established during the mid-twentieth century and modeled on a historical Caucasian cohort, has long persisted as the most prevalent approach favored by pediatric imaging specialists. Nevertheless, researchers have recognized its inherent practical constraints, which encompass subjective image interpretation, interobserver variability, and potential inaccuracies when applied to modern populations that diverge from the original reference demographic. To overcome practical hurdles associated with extensive manual atlases during busy clinical workflows, alternative instruments like the Pocket Atlas of Skeletal Age were introduced to offer concise schematic descriptions and reference plates for expedited clinical orientation. Concurrently, machine learning architectures trained on annotated pediatric imaging datasets have emerged, aiming to deliver standardized, automated pattern recognition that replicates expert assessment while mitigating human observer inconsistencies.\n\nThe investigative team in Zabrze constructed their retrospective analytical cohort by retrieving archived DICOM radiographs from the hospital picture archiving and communication system collected between April 2024 and June 2025. The initial screening identified 473 clinical cases evaluated during routine hospital care for clinical indications including short stature, precocious puberty, delayed puberty, and growth hormone deficiency managed with recombinant growth hormone therapy. Radiographs met eligibility criteria only if they depicted the non-dominant hand with proper positioning and possessed complete clinical records documenting chronological age, sex, and pediatric endocrinologist-determined pubertal status. Exclusion criteria eliminated cases resulting from acute hand or wrist trauma, radiographs demonstrating insufficient diagnostic image quality, cases with contradictory data, and patients with diagnosed skeletal dysplasias such as achondroplasia. Furthermore, because the evaluated Stanford web platform was constructed to operate within an established validation boundary of 72 to 192 months of skeletal age, patient inclusion required both reference atlases to produce estimates within that exact six-to-sixteen-year span, yielding a final cohort of 376 patients.\n\nWithin the final analytical dataset, chronological age averaged 142.9 months with a standard deviation of 35.0 months, a median of 146 months, and an interquartile range spanning 114 to 173 months across an absolute chronological range of 47 to 220 months. Reflecting the methodological focus on skeletal maturity ranges rather than chronological boundaries, 22 participants fell outside the 72 to 192 months range chronologically, with four children younger than 72 months and 18 older than 192 months. The study group maintained equal sex representation, comprising 188 female and 188 male patients. Regarding developmental stage, 250 patients representing 66.5 percent were clinically categorized as pubertal, whereas 126 patients representing 33.5 percent were classified as prepubertal. An experienced pediatric radiologist performed expert evaluations using both the Greulich and Pyle method and the Pocket Atlas of Skeletal Age by visually identifying the closest matching developmental image plates, while the automated web tool independently predicted age values from identical digital radiographs.\n\nStatistical evaluation in R software version 4.5.3 revealed that central tendency across the 376 participants was virtually identical among the three modalities, with the Pocket Atlas, the Greulich and Pyle atlas, and the Stanford algorithm all yielding an identical median bone age estimate of 144 months. The interquartile range was 114 to 165 months for the Pocket Atlas, 120 to 162 months for the Greulich and Pyle atlas, and 120 to 156 months for the artificial intelligence application. Normality evaluations via the Shapiro-Wilk test demonstrated significant departure from normal distributions for the Pocket Atlas at W equals 0.96, the Greulich and Pyle atlas at W equals 0.96, and the automated model at W equals 0.93, with all probability values below 0.001. Pairwise differences similarly exhibited non-normal distributions. A global paired comparison using the Friedman test detected a statistically significant overall divergence among the modalities, characterized by a test statistic of 29.55 and a probability value below 0.001.\n\nSubsequent post-hoc Wilcoxon signed-rank testing with Bonferroni correction pinpointed that global differences were driven by the automated application rather than disagreement between human atlas evaluations. The comparison between the Pocket Atlas and the artificial intelligence system reached statistical significance with an adjusted probability value of 0.001, and the Greulich and Pyle comparison against artificial intelligence yielded an adjusted probability value of 0.044. Conversely, the direct comparison between the Pocket Atlas and the Greulich and Pyle atlas demonstrated no statistically significant difference, recording an adjusted probability value of 0.13. Median pairwise discrepancies were centered at zero months across all comparisons. However, mean pairwise differences and standard deviations demonstrated narrower variation between the two physical atlases, measuring 0.69 plus or minus 6.82 months for the Pocket Atlas relative to Greulich and Pyle, compared to 2.22 plus or minus 13.66 months for the Pocket Atlas relative to artificial intelligence and 1.53 plus or minus 12.73 months for Greulich and Pyle relative to artificial intelligence.\n\nEvaluating concordance through a two-way mixed-effects intraclass correlation coefficient for absolute agreement, denoted as ICC(A,1), demonstrated high global consistency across all three modalities at 0.93 with a 95 percent confidence interval extending from 0.92 to 0.94. Pairwise intraclass correlation values reached 0.98 with a 95 percent confidence interval of 0.97 to 0.98 between the Pocket Atlas and the Greulich and Pyle atlas, compared to 0.90 with a confidence interval of 0.89 to 0.92 between the Pocket Atlas and artificial intelligence, and 0.92 with a confidence interval of 0.90 to 0.93 between Greulich and Pyle and artificial intelligence. Bland-Altman agreement analysis revealed an average bias of 0",
+  "begyujtve": "2026-11-21T07:05:47.458390+00:00",
+  "prioritas": {
+    "pont": 41,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 40,
+      "egyediseg": 85,
+      "hitelesseg": 72,
+      "aktualitas": 90,
+      "kozossegi": 23
+    },
+    "elofeszures": 74,
+    "tanult": 20,
+    "indok": "Niche orvosi AI alkalmazási kutatás gyermekkori csontkor meghatározására. Forrás-tapasztalat: -7.",
+    "tema": "pediatric bone age ai",
+    "cim_hu": "A gyermekgyógyászati csontkort felmérő mesterséges intelligencia egyéni eltéréseket mutat",
+    "lead_hu": "A gyermekkori csontfejlődést elemző MI-rendszerek összességében hozzák a megszokott atlaszok pontosságát, de az egyéni méréseknél még ingadozást mutatnak.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-21T07:06:16+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-21T07:07:28+00:00"
+}

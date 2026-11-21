@@ -1,0 +1,49 @@
+{
+  "id": "1339dc756952",
+  "slug": "smartphone-edge-artificial-intelligence-detects-earthquakes-but-faces",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/smartphone-edge-artificial-intelligence-detects-earthquakes-but-faces-bandwidth-tradeoffs/",
+  "publikalva": "2026-11-21T06:52:06+00:00",
+  "cim": "Smartphone Edge Artificial Intelligence Detects Earthquakes but Faces Bandwidth Tradeoffs",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 44 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-21559.png"
+  },
+  "cim_eredeti": "Smartphone Edge Artificial Intelligence Detects Earthquakes but Faces Bandwidth Tradeoffs",
+  "szoveg_eredeti": "Smartphone Edge Artificial Intelligence Detects Earthquakes but Faces Bandwidth Tradeoffs\n\nA new comparative evaluation shows that deep learning models deployed directly on edge devices can detect earthquake signals from smartphone accelerometers, but achievable performance depends heavily on sensor sampling rates and false alarm budgets. Researchers evaluated five neural network architectures to address long-standing hurdles in crowd-sourced earthquake early warning systems, including severe data imbalance, edge computational limits, and temporal modeling constraints.\n\nCrowd-sourced earthquake early warning leverages accelerometers embedded in consumer smartphones to expand seismic monitoring networks across earthquake-prone regions. However, practical deployment has been hindered by massive class imbalance between continuous non-seismic human vibrations and rare earthquake events, as well as the computational limitations of running deep temporal models on low-power mobile devices.\n\nTo rigorously benchmark edge architectures, investigators constructed a unified dataset comprising 35.4 million two-second windows drawn from approximately 186,000 recordings. This benchmark encompassed broadband seismometer traces, shake-table smartphone experiments, and human-activity datasets, totaling a 60-gigabyte archive of vibration data.\n\nThe team addressed training challenges using a stratified majority-class under-sampling approach based on a sampling index. This strategy preserved the original 60-gigabyte archive while balancing the test-set positive-to-negative ratio from 79.74 to 1 down to a 1 to 1 distribution, simultaneously cutting the volume of training windows per epoch by a factor of 8.6.\n\nModel comparisons revealed contrasting strengths across candidate architectures. An attention-augmented network combining convolutional layers, bidirectional recurrent units, and Bahdanau attention achieved an area under the curve of 0.9617 while demonstrating the smallest generalization gap with an absolute difference in area under the curve of 0.004. In contrast, a dilated temporal convolutional network attained a higher overall area under the curve of 0.9688.\n\nBecause broadband seismometers accounted for 99.99 percent of the positive test windows, the researchers stratified model validation by sensor provenance. Discrimination remained robust at 0.944 to 0.962 when both seismic and non-seismic classes shared the same instrument type. However, discriminatory accuracy dropped to between 0.86 and 0.92 when detecting earthquakes recorded on 50-hertz smartphones.\n\nPerformance further declined to chance levels on devices sampling at 25 hertz, where the crucial 0.5 to 20 hertz seismic frequency band is only partially observable. On the deployment side, 8-bit quantized models occupied between 44 and 138 kilobytes, while built-in operator variants deployed on Android devices required 239 to 486 kilobytes and executed inferences in 3.2 to 6.4 milliseconds per window.\n\nOperational evaluation showed that detection capabilities diverge sharply under realistic operating constraints. When evaluated under a budget allowing 100 false alarms per device-day, the Bahdanau attention architecture detected 76 percent of seismometer-recorded events and 61 percent of smartphone-recorded events. In comparison, the dilated temporal convolutional network detected 53 percent and 33 percent respectively, reversing the ranking established by unconstrained receiver operating metrics.\n\nSubject of Research: Edge artificial intelligence for smartphone earthquake early warning\n\nArticle Title: Real-time seismic detection with edge-AI: a balanced comparison\n\nArticle References: Şara, M., Almaqtari, A., Eken, S., Koç, İ., Arslan, B., Kahveci, T., & Atay, Y. (2027). Real-time seismic detection with edge-AI: a balanced comparison. Cluster Computing, 30(1), Article 47. https://doi.org/10.1007/s10586-026-06833-z\n\nKeywords: earthquake early warning, edge artificial intelligence, smartphone accelerometers, seismic detection, deep learning, temporal convolutional network, Bahdanau attention, model quantization, Android edge deployment, false alarm budget, seismology, sensor bandwidth, class imbalance, bidirectional LSTM, accelerometer data, vibration analysis, seismic monitoring\n\nNews Source: Blake Davidson. (November 21, 2026). Smartphone Edge Artificial Intelligence Detects Earthquakes but Faces Bandwidth Tradeoffs. Scienmag.\n\nWe bring you the latest biotechnology news from best research centers and universities around the world. Check our website.\n\nEnter your email address to subscribe to this blog and receive notifications of new posts by email.\n\nBioengineer.org © Copyright 2023 All Rights Reserved.\n\nPlease enter your username or email address to reset your password.\n\nBioengineer.org © Copyright 2023 All Rights Reserved.",
+  "begyujtve": "2026-11-21T07:05:48.104904+00:00",
+  "prioritas": {
+    "pont": 44,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 50,
+      "egyediseg": 80,
+      "hitelesseg": 68,
+      "aktualitas": 95,
+      "kozossegi": 22
+    },
+    "elofeszures": 73,
+    "tanult": 11,
+    "indok": "Érdekes technológiai alkalmazás okostelefonokon, de korlátozott az általános iparági hatása. Forrás-tapasztalat: -7.",
+    "tema": "edge ai earthquake detection",
+    "cim_hu": "Mobiltelefonos MI-vel detektálnának földrengéseket",
+    "lead_hu": "Friss kutatások szerint a közvetlenül okostelefonokon futó mélytanulási modellek képesek érzékelni a földrengéseket.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-21T07:06:16+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-21T07:06:22+00:00"
+}

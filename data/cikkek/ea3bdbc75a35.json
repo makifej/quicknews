@@ -1,0 +1,49 @@
+{
+  "id": "ea3bdbc75a35",
+  "slug": "guest-post-when-will-quantum-computing-become-useful-for-insurance",
+  "forras_id": "dailydev",
+  "forras_nev": "The Quantum Insider (daily.dev)",
+  "url": "https://thequantuminsider.com/2026/11/20/guest-post-when-will-quantum-computing-become-useful-for-insurance",
+  "publikalva": "2026-11-20T00:00:00+00:00",
+  "cim": "Guest Post: When Will Quantum Computing Become Useful for Insurance?",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/f58a2ab5586127db6751f7ce5aefd9f9?_a=AQAEuop"
+  },
+  "cim_eredeti": "Guest Post: When Will Quantum Computing Become Useful for Insurance?",
+  "szoveg_eredeti": "Guest Post Dr. Kris Naudts, Zeynep Koruturk, and Donald Harmitt @ Firgun Ventures.\n\nFirgun Ventures is a VC firm investing in Series A/B quantum scale-ups globally.\n\nInsurance is, at its core, the business of putting a price on uncertainty, and computationally intensive simulations underpin much of how insurers assess risk. US insurer Allstate can run around 100,000 simulated scenarios to assess outcomes across its homeowners’ portfolio, yet the worst 1%, representing the extreme losses that influence capital requirements, leaves only about 1,000 simulated outcomes from which to estimate rare events across different hazards and geographies. Problems like this are drawing insurers’ attention to quantum computing, where the usual question is when error-corrected machines will run full actuarial risk models.\n\nInsurance contains several distinct computational problems, each mapping onto different quantum algorithms and hardware, with varying levels of reliability. (1) Hybrid quantum machine learning (QML), (2) quantum randomness processing, and (3) quantum-assisted optimisation can already be tested on today’s devices. Within these nearer-term use cases, commercial products, named enterprise customers, and insurance-specific experiments exist. The most demanding uses, including (4) detailed quantum generative risk distributions and (5)quantum amplitude estimation for actuarial simulation, face far steeper hurdles. Quantum commercialisation within insurance is therefore likely to arrive in overlapping waves, and innovative insurers who adopt quantum early instead of waiting for the final wave stand to gain expertise, proprietary data, and commercially beneficial partnerships.\n\nFigure 1. Five quantum hardware use cases and insurance applications, grouped by the maturity of the hardware each requires. Time horizons are indicative, and the potential benefits reflect early results or theoretical advantages rather than proven insurance outcomes. Firgun Ventures analysis.\n\nThe first commercial opportunities do not require the same quantum computers as the most ambitious actuarial applications. Of the five routes summarised in Figure 1, hybrid QML, quantum randomness processing, and quantum-assisted optimisation run on today’s processors; in the medium term, quantum generative risk distributions form the bridge, and quantum amplitude estimation awaits fault-tolerant machines (computers that continuously correct their own errors).\n\nThe three near-term routes each strengthen an established workflow rather than replacing it. Hybrid quantum machine learning generates additional features from existing data to support predictive models, while quantum randomness hardware accelerates and improves the accuracy of Monte Carlo simulation (estimating outcomes by running many randomised scenarios) for stress testing and Value-at-Risk (the loss a portfolio should not exceed at a given confidence level over a set period). Quantum-assisted optimisation already runs on today’s annealers and hybrid circuits, evidenced in pilots by D-Wave and CaixaBank, making it one of the routes on which insurers hold the most direct evidence.\n\nFurther out, quantum generative models aim to capture the dependencies and heavy tails of loss distributions, and early work by IBM Research and ETH Zurich has shown such models loading learned probability distributions into a quantum computer, addressing the data-loading bottleneck that more advanced processes such as amplitude estimation require. Amplitude estimation changes the simulation algorithm itself, and IBM Research’s 2019 paper “Quantum Risk Analysis” demonstrated that it can estimate Value-at-Risk with near quadratically fewer samples. In principle, a calculation needing a million classical scenarios might need around a thousand quantum queries. However, the method requires loading full risk distributions into quantum states and running deep, error-corrected circuits, placing it on the longest path of the five routes.\n\nFigure 2. The five routes side by side, using 2026 as the evidence baseline and distinguishing purchasable products, named customer experiments, insurance-specific proofs of concept, and research demonstrations. Firgun Ventures analysis.\n\nQuantum reservoir computing, which combines quantum computing with neural networks and represents a leading form of hybrid QML and feature generation, illustrates why a small quantum system can already add value to a large classical workflow, well before fault tolerance. Within quantum reservoir computing, the natural dynamics of the quantum system perform most of the complex transformation, so training concentrates on a simple classical model at the output rather than on deep quantum circuits. A 2026 study using Qatar Insurance Company’s motor claims applied the approach with only three to five simulated qubits and reported lower prediction errors than leading classical machine learning models (XGBoost and CatBoost). The results support the notion that small specialist quantum systems working alongside existing classical models in a hybrid approach are where quantum value in insurance is expected to emerge in the near term.\n\nEarly Commercial Evidence Is Building, But Unevenly\n\nCommercial evidence across optimisation, machine learning, and simulation infrastructure already shows narrow quantum components adding value inside existing classical workflows. In 2022, VidaCaixa, CaixaBank’s life and pensions arm, used D-Wave’s hybrid solvers to cut portfolio hedging calculations from hours to minutes, a reported reduction of up to 90%. In May 2026, Allstate and IBM brought optimisation into underwriting, running circuits on up to 150 qubits of an IBM Heron processor to select simulated homeowners’ policies within catastrophe loss limits, keeping pace with the strongest classical heuristic and edging ahead on tightly constrained problems.\n\nQuantum-enhanced machine learning supplies further evidence from outside insurance, where named enterprise customers are testing physical hardware on prediction tasks that resemble actuarial work. Firgun Ventures’ portfolio company Silicon Quantum Computing leveraged their Watermelon system to improve Schneider Electric’s next-day energy forecasts by an average of 20% against a classical benchmark in October 2026, having earlier matched the accuracy of telecommunications company Telstra’s deep learning model with days rather than weeks of model training and tuning. Another related example includes London-based ORCA Computing’s photonic processor strengthening an anomaly detection model developed in collaboration with Novo Nordisk and the Technical University of Denmark. Within QRNG classical-assisted simulation, QRNG startup Quside sells a Randomness Processing Unit built to accelerate financial Monte Carlo workloads. Forecasting and anomaly detection are commonplace tasks in pricing and claims, hence, these results give insurers a ready template for structuring their own trials.\n\nWhy Full Actuarial Modelling Remains the Longest Climb\n\nA full underwriting or capital model must represent many uncertain risk factors, their dependencies, and the financial consequences of each scenario, all in the form a quantum computer can process. Full catastrophe modelling is expected to require fault-tolerant machines, and resource estimates from finance demonstrate the challenge. In derivative pricing, a narrower calculation, Goldman Sachs and IBM estimated in 2021 that benchmark contracts would need around 8,000 logical qubits (error-corrected qubits built from many physical ones). A fuller implementation in Microsoft’s Q# language put one subroutine alone at 19,200 in 2022, before a 2024 method based on quantum signal processing reduced the total to 4,700 (75% reduction). Full actuarial models involve additional risks and dependencies, yet these figures show algorithms moving the target as quickly as hardware.\n\nHardware roadmaps supply the other half of the comparison, and the",
+  "begyujtve": "2026-11-21T07:05:01.489283+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 15,
+      "hirertek": 15,
+      "egyediseg": 80,
+      "hitelesseg": 62,
+      "aktualitas": 50,
+      "kozossegi": 28
+    },
+    "elofeszures": 73,
+    "tanult": 47,
+    "indok": "Kvantumszámítástechnikai elemzés a biztosítási szektorról mesterséges intelligencia releváció nélkül.",
+    "tema": "quantum computing insurance risk",
+    "cim_hu": "Mikor válik hasznossá a kvantumszámítógép a biztosítási szektorban",
+    "lead_hu": "Egy kockázatitőke-befektető elemzése azt vizsgálja, hogyan alakíthatják át a kvantumszimulációk a biztosítók kockázatértékelési modelljeit.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-21T07:06:16+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-21T07:07:25+00:00"
+}
