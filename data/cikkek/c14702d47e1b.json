@@ -1,0 +1,49 @@
+{
+  "id": "c14702d47e1b",
+  "slug": "simulation-roadmap-uses-artificial-intelligence-to-advance-gas-solid",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/simulation-roadmap-uses-artificial-intelligence-to-advance-gas-solid-reactor-design/",
+  "publikalva": "2026-11-21T06:47:06+00:00",
+  "cim": "Simulation Roadmap Uses Artificial Intelligence to Advance Gas-Solid Reactor Design",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 48 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-21546.png"
+  },
+  "cim_eredeti": "Simulation Roadmap Uses Artificial Intelligence to Advance Gas-Solid Reactor Design",
+  "szoveg_eredeti": "Simulation Roadmap Uses Artificial Intelligence to Advance Gas-Solid Reactor Design\n\nModern chemical engineering faces significant hurdles in scaling up reactors and supporting carbon neutrality, particularly in systems where gas-solid multiphase flows govern operations. In industrial applications such as fluidized bed reactors, packed bed catalytic units, and facilities conducting thermochemical conversion of biomass and plastics, solid materials rarely consist of ideal spheres. Because most actual particles feature non-spherical geometries, capturing their complex multi-scale behavior remains fundamentally challenging for engineers seeking process intensification and reliable scale-up.\n\nTo address these challenges, computational modeling must successfully bridge microscopic particle interactions with macro-scale reactor dynamics. The discrete element method coupled with computational fluid dynamics, commonly designated as DEM-CFD, serves as an established technique for resolving particle-level collisions, hydrodynamics, heat transfer, and mass exchange. However, extending these methods to non-spherical particles by incorporating the superquadric equation—an approach known as SuperDEM—introduces severe mathematical and computational complications across coupled transport phenomena and chemical reactions.\n\nIn a peer-reviewed review published in ENGINEERING Chemical Engineering, researchers systematically evaluated the current state of SuperDEM-CFD technology and identified four critical bottlenecks restricting industrial deployment. The first barrier involves anisotropic contact hydrodynamics and persistent numerical singularities that arise at sharp particle edges. The remaining three obstacles encompass incomplete frameworks for modeling heat transfer, immature reaction models tailored to non-spherical surfaces, and exceptionally heavy computational expenses when simulating systems containing massive particle counts.\n\nTo overcome contact mechanics failures, the researchers proposed adopting a reduced-space Newton iteration method designed to circumvent numerical singularities at sharp edges. For thermal modeling, where standard formulations fail to capture asymmetric geometries, the roadmap recommends developing generalized shape-factor Nusselt correlations.\n\nModeling chemical transformations in irregularly shaped particles also requires specialized formulations. The authors put forward a shrinking core reaction model adapted directly to superquadric coordinates to accurately capture progressing reaction fronts. To tackle the prohibitive computational burden of simulating large-scale particulate systems, the roadmap outlines a strategy combining coarse-grained particle models with graphics processing unit acceleration to drastically expand accessible system sizes.\n\nThe roadmap emphasizes the transformative role of artificial intelligence in overcoming existing simulation limits. Deep learning algorithms can construct universal drag and heat transfer correlations by training on detailed direct numerical simulation datasets. Furthermore, AI techniques can generate interpretable chemical reaction kinetics while accelerating stiff numerical solvers to significantly reduce computational overhead during intensive calculations.\n\nBeyond direct physical surrogates, modern artificial intelligence tools offer valuable support for algorithm design itself. The review highlights how machine learning workflows can assist engineers in analyzing numerical convergence and optimizing mathematical stability when formulating new computational solvers.\n\nTogether, these mathematical formulations and computational strategies provide a clear development roadmap for next-generation SuperDEM-CFD modeling platforms. By resolving longstanding physical and numerical bottlenecks, researchers aim to advance predictive reactor design and establish real-time digital twins for industrial gas-solid reactors, supporting more sustainable and efficient chemical processing systems.\n\nSubject of Research: Multi-scale SuperDEM-CFD simulation roadmap for non-spherical particles in gas-solid chemical reactors\n\nArticle Title: Ai-powered simulation roadmap set to advance the design of gas-solid reactors\n\nArticle References: Ai-powered simulation roadmap set to advance the design of gas-solid reactors. Original publication (Bibliographic details unavailable.)\n\nKeywords: chemical engineering, gas-solid reactors, multiphase flow, fluidized bed reactors, packed bed reactors, biomass conversion, plastics conversion, non-spherical particles, discrete element method, computational fluid dynamics, SuperDEM, superquadric equation, direct numerical simulation, GPU acceleration, digital twins, artificial intelligence, deep learning, heat transfer\n\nNews Source: Blake Davidson. (November 21, 2026). Simulation Roadmap Uses Artificial Intelligence to Advance Gas-Solid Reactor Design. Scienmag.\n\nWe bring you the latest biotechnology news from best research centers and universities around the world. Check our website.\n\nEnter your email address to subscribe to this blog and receive notifications of new posts by email.\n\nBioengineer.org © Copyright 2023 All Rights Reserved.\n\nPlease enter your username or email address to reset your password.\n\nBioengineer.org © Copyright 2023 All Rights Reserved.",
+  "begyujtve": "2026-11-21T07:20:58.245279+00:00",
+  "prioritas": {
+    "pont": 48,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 50,
+      "egyediseg": 85,
+      "hitelesseg": 70,
+      "aktualitas": 98,
+      "kozossegi": 29
+    },
+    "elofeszures": 75,
+    "tanult": 28,
+    "indok": "Nagyon specifikus vegyipari szimulációs hírecske, nem általános AI-érdekeltségű. Forrás-tapasztalat: -7.",
+    "tema": "ai chemical engineering simulation",
+    "cim_hu": "Mesterséges intelligencia segíti a gáz-szilárd reaktorok tervezését",
+    "lead_hu": "Új szimulációs úttérkép készült a vegyipari reaktorok hatékonyságának és skálázhatóságának növelésére.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-21T07:21:28+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-21T07:22:01+00:00"
+}
