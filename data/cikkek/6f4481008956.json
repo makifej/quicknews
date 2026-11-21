@@ -1,0 +1,49 @@
+{
+  "id": "6f4481008956",
+  "slug": "heterogeneous-provenance-graphs-enable-compliance-by-construction-in",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/heterogeneous-provenance-graphs-enable-compliance-by-construction-in-artificial-intelligence-systems/",
+  "publikalva": "2026-11-21T11:57:46+00:00",
+  "cim": "Heterogeneous Provenance Graphs Enable Compliance by Construction in Artificial Intelligence Systems",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 45 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-21960.png"
+  },
+  "cim_eredeti": "Heterogeneous Provenance Graphs Enable Compliance by Construction in Artificial Intelligence Systems",
+  "szoveg_eredeti": "Heterogeneous Provenance Graphs Enable Compliance by Construction in Artificial Intelligence Systems\n\nA computational framework that transforms machine learning lineage records into a learnable substrate for automated risk reasoning and regulatory governance has outperformed twelve mainstream audit and fairness baselines across gold-standard tabular benchmarks. Developed by researcher Yan Li and published in the Journal of King Saud University Computer and Information Sciences, the Data-Regulatory Provenance and Governance framework for AI, known as DRPG-AI, replaces manual retrospective checklists with proactive, compliance-by-construction optimization. Across extensive evaluations on the UCI Adult and COMPAS datasets, the system attained an overall risk-detection F1-score of 0.8763, an area under the receiver operating characteristic curve of 0.9180, and a regulatory compliance coverage rate of 0.9561. These figures reflect statistically significant performance margins over the strongest composite baseline, Themis coupled with W3C PROV, including a 6.13 percent improvement in detection F1-score, a 5.02 percent gain in discrimination area, and a 14.31 percent increase in compliance coverage, demonstrating that structural lineage modeling can systematically anticipate and remediate hidden operational hazards.\n\nModern artificial intelligence systems increasingly mediate high-stakes determinations spanning judicial recidivism assessments, consumer credit scoring, clinical diagnostics, and organizational hiring. When defective data inputs or uncalibrated transformations enter these computational pipelines, the resulting predictive distortions can induce discriminatory treatment, utility degradation, and non-compliance with binding legal instruments like the European Union Artificial Intelligence Act and the General Data Protection Regulation. Remediation costs escalate exponentially when failures remain undetected until after model deployment, often exceeding the cost of pre-training intervention by an order of magnitude. Existing governance paradigms struggle because they treat data provenance as static historical documentation rather than an active mathematical structure capable of inference. Furthermore, conventional toolkits report aggregate demographic disparities without tracing the precise upstream transformations responsible for the bias, enforce compliance through uncoupled audit spreadsheets, and treat data lineage, operational risk metrics, and statutory compliance artifacts as isolated institutional silos.\n\nTo overcome these structural limitations, DRPG-AI formalizes pipeline execution as a heterogeneous, directed provenance graph denoted mathematically by five distinct node classes and six admissible edge relations. The structural topology categorizes entities into data nodes that encapsulate raw datasets, validation splits, and individual feature columns; transformation nodes that record cleaning, categorical encoding, synthetic augmentation, and mathematical feature engineering; model nodes that track trained parameters, checkpoints, and optimization trajectories; prediction nodes that house instance-level inferences and subgroup metrics; and policy nodes that instantiate precise statutory articles. Directed connections between these elements follow a strict schema restricted to derived_from, used_by, trained_on, produces, governed_by, and audited_by edge types. Rather than forcing these heterogeneous components into a single shared projection space, the architecture maps each entity through type-conditioned linear projections, ensuring that column-level demographic distributions and algorithmic hyperparameters do not corrupt one another during geometric representation.\n\nBuilding upon this typed foundation, the architecture implements attribute-level provenance tracing to track how specific sensitive fields propagate through multistage operational lifecycles. Protected variables such as race, sex, age, and historical criminal records frequently dissolve into engineered numerical representations, one-hot vectors, or composite interaction terms that mask their origin from coarse asset trackers. DRPG-AI computes an attribute provenance set for each graph node using a recursive closure formulation that applies relational rewriting operators across incoming lineage paths while tracking newly generated synthetic dimensions. The attribute tracing module learns relation-consistent semantic embeddings through a self-supervised provenance reconstruction loss grounded in negative triple sampling. By optimizing bilinear score functions against sampled corrupted connections, the framework forces connected pipeline stages to exhibit higher similarity than disconnected components, enabling the representation space to capture fine-grained dependency structures without requiring expensive manual annotations at every operational step.\n\nQuantitative risk quantification operates through an integrated graph neural network combining Graph Convolutional Networks, Graph Attention Networks, and Temporal Convolutional Networks across four edge-typed message-passing layers. Each relational edge type utilizes independent parameter matrices and multi-head attention vectors with eight attention heads and a hidden dimension of 128, allowing the network to distinguish how fairness risks travel along trained_on relations while privacy concerns propagate along derived_from edges. Layer normalization and residual skip connections stabilize the forward pass, preventing gradient decay across the multi-layer architecture. To respect the irreversible temporal sequence of pipeline transformations, the system routes ordered sequences of ancestor embeddings along the longest incoming lineage paths through three causal dilated convolutional layers with kernel width three and dilation factors of one, two, and four. This causal masking prevents future operational steps from leaking informational signals into upstream representations.\n\nThe risk engine produces complementary dual outputs consisting of a scalar local severity score derived from a logistic regression head and a five-dimensional categorical risk vector computed via a softmax layer. To evaluate detection performance without subjective bias, the research protocol generated deterministic ground-truth labels across disjoint node subsets using established algorithmic thresholds. Algorithmic bias was assigned to data or prediction nodes exhibiting a statistical parity difference exceeding 0.10 on any protected attribute; label noise was introduced via Bernoulli flips matching empirical benchmark rates; distributional drift was marked when Kullback-Leibler divergence between training and testing feature distributions exceeded 0.05; membership-inference leakage was flagged when shadow-model confidence gaps exceeded 0.15; and adversarial contamination was identified when Fast Gradient Sign Method perturbations induced label flips in five percent or more of samples. The remaining 75 percent of graph entities served as negative class observations.\n\nRecognizing that deep neural architectures frequently exhibit miscalibrated overconfidence when identifying rare operational vulnerabilities, the investigators integrated a temperature-scaling calibration head into the quantification pipeline. Optimization of a single scalar temperature parameter against the negative log-likelihood of held-out validation predictions preserved the ranking order of flagged nodes while aligning confidence magnitudes with observed empirical precision. Evaluated across fifteen equal-mass confidence bins, temperature scaling reduced the Expected Calibration Error from an uncalibrated baseline of 0.1455 to 0.0380 across the benchmarks, achieving a 3.84-fold improvement in probability reliability. Calibrated confidence scores then propagated along directed ancestor chains through an uncertainty-weighted recursion with a validated mixing parameter of 0.62. To i",
+  "begyujtve": "2026-11-21T12:35:34.659707+00:00",
+  "prioritas": {
+    "pont": 45,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 60,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 23
+    },
+    "elofeszures": 78,
+    "tanult": 23,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -7.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-21T12:35:41+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-21T12:35:43+00:00"
+}
