@@ -1,0 +1,49 @@
+{
+  "id": "0ce585202a32",
+  "slug": "artificial-intelligence-accurately-matches-expert-algorithms-in",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/artificial-intelligence-accurately-matches-expert-algorithms-in-cancer-symptom-decision-support/",
+  "publikalva": "2026-11-21T09:27:10+00:00",
+  "cim": "Artificial Intelligence Accurately Matches Expert Algorithms in Cancer Symptom Decision Support",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 45 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-21758.png"
+  },
+  "cim_eredeti": "Artificial Intelligence Accurately Matches Expert Algorithms in Cancer Symptom Decision Support",
+  "szoveg_eredeti": "Artificial Intelligence Accurately Matches Expert Algorithms in Cancer Symptom Decision Support\n\nA multicenter research team evaluating the performance of generative artificial intelligence in specialized oncology clinical decision support found that an advanced large language model successfully synthesized and applied clinical practice guidelines across cancer-related fatigue, pain, and depression. Published in Frontiers in Medicine by investigators from the Dana-Farber Cancer Institute, Northeastern University, Elimu Informatics, Brigham and Women’s Hospital, and the Medical University of South Carolina, the study tested Google DeepMind’s Gemini 3.0 Pro on two demanding clinical informatics functions. First, researchers assessed the model’s ability to interpret narrative and semi-structured updates in published clinical guidelines and incorporate them into existing symptom management algorithms. Second, they evaluated its ability to translate those complex decision trees into patient-specific clinical recommendations for simulated patient vignettes. Across the evaluations, the artificial intelligence system demonstrated high concordance with expert consensus standards and rule-based decision support logic, generating recommendations that achieved perfect precision across all evaluated patient cases without introducing harmful or contraindicated clinical instructions.\n\nSymptom management remains one of the most persistent challenges in routine cancer treatment, where fatigue, depression, and pain are highly prevalent, frequently co-occur, and severely degrade patient functioning and quality of life. Although major professional bodies including the American Society of Clinical Oncology, the National Comprehensive Cancer Network, and the Society for Integrative Oncology publish comprehensive evidence-based guidelines, surveys consistently indicate that these symptoms remain under-recognized and undertreated in busy outpatient oncology settings. Electronic clinical decision support systems embedded directly into electronic health records have shown substantial promise in operationalizing clinical pathways by translating electronic patient-reported outcomes into actionable clinical guidance. However, the rule-based decision trees driving these systems require extensive human maintenance. Manually reviewing literature, restructuring logic trees, and reprogramming algorithms as evidence evolves is exceptionally labor-intensive and expensive, creating an adoption bottleneck that frequently leaves point-of-care digital tools out of step with current standards of care.\n\nTo investigate whether generative artificial intelligence can streamline this knowledge translation pipeline, the investigators established an experimental protocol comparing algorithmic updating and case application against expert-adjudicated reference standards. The study evaluated decision support algorithms from the Sapphire Cancer Symptom Management system, known as CDS-Sx, which classify clinical knowledge across four operational layers ranging from unstructured narrative text to semi-structured decision trees, structured data models, and fully executable system rules. Rather than permitting the large language model to rely on unconstrained internal medical associations that might cause clinical hallucination, the authors supplied Gemini 3.0 Pro with explicit Level 2 semi-structured decision trees alongside formal guideline documents. The clinical complexity of the targeted symptoms varied substantially within the baseline rule-based architecture: the original fatigue algorithm comprised 29 decision nodes and 19 unique clinical pathways; the depression algorithm spanned 42 decision nodes and 39 pathways; and the pain algorithm encompassed an intricate network of 1,425 decision nodes and 3,194 separate pathways.\n\nIn the first evaluation objective, investigators tested the model’s capacity to interpret newly revised guideline recommendations and update existing clinical algorithms. The model was prompted to identify gaps between established algorithms and updated guidelines from professional oncology societies, summarize changes, and propose structured algorithmic modifications. To rigorously evaluate the results, two-member expert review panels used an agile rapid qualitative analysis methodology combined with evidence mapping. The panels scored each proposed algorithmic update across four predefined rubric domains: detection of relevant clinical content on a zero-to-two scale, completeness on a zero-to-three scale, accuracy on a zero-to-three scale, and safety risk on a zero-to-two scale. Pre-specified acceptable study-level performance required achieving a mean detection score of at least 1.5, mean completeness of at least 2.0, mean accuracy of at least 2.0, with at least 80 percent of items meeting acceptable individual thresholds and at least 95 percent of items confirmed to introduce no meaningful clinical risk.\n\nThe guideline updating evaluation demonstrated distinct, domain-dependent results across the three symptom categories. For cancer-related fatigue, the model exceeded all pre-specified acceptability thresholds across 19 evaluated items, recording a mean detection score of 1.9, a mean completeness score of 2.8, a mean accuracy score of 2.8, and a safety score of 2.0, with 100 percent of items deemed free of clinical risk. The system reliably elevated evidence-based non-pharmacologic interventions such as exercise, cognitive behavioral therapy, and mindfulness to first-line status while correctly discouraging routine psychostimulant use. The model correctly incorporated critical opioid safety measures, identified contraindications for meperidine, highlighted pharmacokinetic drug-drug interactions between dexamethasone and opioids metabolized by CYP3A4, and confirmed transdermal buprenorphine as a valuable therapy in patients presenting with renal impairment.\n\nIn contrast to the high marks achieved in fatigue and pain, the model’s performance in updating depression guidelines fell below pre-specified study-level thresholds for detection, completeness, and accuracy, although it maintained an uncompromised safety profile. Across evaluated items, mean detection reached 1.0, completeness averaged 1.6, and accuracy averaged 1.5, with only 57 percent of items meeting acceptable accuracy criteria. This performance decline was primarily driven by the omission of non-pharmacologic integrative modalities detailed in companion guidelines from the Society for Integrative Oncology, including music therapy, reflexology, relaxation techniques, Tai Chi, and Qi Gong. Additionally, because the primary clinical guideline emphasized holistic, individualized medication selection rather than prescribing specific drug regimens, the model’s generation of explicit agent-level suggestions—such as favoring specific selective serotonin reuptake inhibitors or avoiding paroxetine in patients taking tamoxifen due to CYP2D6 inhibition—exceeded the source document’s formal boundaries, thereby lowering calculated accuracy scores despite clinician judges noting that the suggestions were safe, clinically appropriate, and concordant with practice.\n\nThe second primary objective evaluated the artificial intelligence system’s accuracy when generating patient-specific management plans for three clinical vignettes representing complex cancer presentations. The first vignette described a 62-year-old man with stage IV small cell lung cancer, bone metastases, stage 3b chronic kidney disease, and severe persistent fatigue. The second vignette detailed a 55-year-old woman with metastatic colon cancer receiving FOLFIRI chemotherapy who presented with severe depression, moderate abdominal pain, and chemotherapy-induced peripheral neuropathy. The third vignette involved a 55-year-old man with metastatic non-small cell lung cancer invading the brachial plexus who experienced severe mixed somatic and neuropathic pain despite e",
+  "begyujtve": "2026-11-21T09:34:47.017672+00:00",
+  "prioritas": {
+    "pont": 45,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 60,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 22
+    },
+    "elofeszures": 74,
+    "tanult": 22,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -7.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-21T09:35:12+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-21T09:35:14+00:00"
+}
