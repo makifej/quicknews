@@ -1,0 +1,49 @@
+{
+  "id": "d1949d517509",
+  "slug": "lessons-from-building-sashiko-an-agentic-code-review-system",
+  "forras_id": "dailydev",
+  "forras_nev": "Google Cloud (daily.dev)",
+  "url": "https://cloud.google.com/blog/products/application-development/lessons-from-building-sashiko-an-agentic-code-review-system",
+  "publikalva": "2026-11-19T00:00:00+00:00",
+  "cim": "Lessons from building Sashiko, an agentic code review system",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 56 pont, tendencia 17%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/0d3c3f99a07a991217ef31a77864ea64?_a=AQAEuop"
+  },
+  "cim_eredeti": "Lessons from building Sashiko, an agentic code review system",
+  "szoveg_eredeti": "VP, Infrastructure & Google Fellow, AI & Infrastructure\n\nThe speed of development in large open-source projects has always been limited by code review, not code generation. Even as coding agents get better at writing code, they do not accelerate development on their own. This is especially true of patches to the Linux kernel. Without a way to build trust in proposed changes, more generated code simply piles up in front of the same small group of human maintainers. Some of those patches are solid changes, just written faster; many others are plausible-looking \"AI slop\" sent by contributors who do not fully understand the systems they are modifying. And the influx of AI-generated security reports, many of which are duplicates or inaccurate, only adds to maintainers’ load.\n\nLinux runs billions of Android phones, most cloud providers, and nearly every supercomputer. It spans more than 35 million lines of code, and over 85,000 changes land every year. Automated build bots and fuzzers like Syzkaller catch build errors and crashes, but code review has always been the main way to guarantee the stability and safety of the kernel. Every day, maintainers read hundreds and hundreds of proposed patches by hand to catch memory leaks, deadlocks, race conditions, and security bugs.\n\nTo help maintainers handle the load and catch bugs before they land, the Google AI & Infrastructure team built Sashiko, an open-source, agentic code review system powered by Gemini. We named the project after the Japanese word 刺し子, a stitching technique for artistically reinforcing worn cloth, and donated it to the Linux Foundation earlier this year.\n\nIn this blog, we cover the problem Sashiko was designed to solve, how it works, what the data shows, and what we learned from building and running it in the wild.\n\nReviewing a change in a complex code base is objectively hard, both for humans and LLMs. It often requires a deep understanding of how the system works in general, well outside the proposed change. In fact, it’s pretty common to see patches that engineers claim perfectly solve the problem, but if they were to be merged, would actually introduce even worse problems (albeit subtle). Traditionally, only experienced maintainers have been able to spot and prevent these issues. The same is true for agentically generated code.\n\nTo verify the correctness of a change, a potentially large number of invariants should be proven, which is often a much larger and harder task than developing the change itself. This is true for both human and agentic reviewers. However, LLM-based reviewers have some unique properties, both positive and negative:\n\nTo avoid these failure modes, Sashiko separates finding candidate bugs from verification of those bugs, and requires each pass to record what it ruled out:\n\nGather context and plan: Sashiko first pulls in the code around the diff (modified functions, struct definitions, and direct callers) and loads the subsystem's domain guides, so the changed lines are never judged in isolation. A planner then decides which specialist passes are needed (skipping hardware checks on pure software code, for example) and sets a reasoning budget for each pass based on patch complexity.\n\nParallel specialist sessions: Up to seven specialist sessions run in parallel, each focused on a single class of problems: commit intent, implementation match, control flow, resource lifetimes, locking, security, and hardware. Giving each pass a single focus prevents one type of bug from crowding out another. Each session searches and reads the repository with git tools (averaging about 100 tool calls per review) and outputs two lists: concerns it believes are real, and candidate concerns it investigated and ruled out, along with the code that supports that conclusion.\n\nTriage: A lead verifier audits those two lists together. Clear-cut bugs already proven by the code in front of it pass straight through; dismissals proven by a local check are dropped. Everything else deserves additional investigation. Crucially, that includes not only contested bugs where specialists disagreed, but also shaky self-dismissals — cases where a specialist spotted a real bug and dismissed it by assuming, without proof, that some unseen caller or lock would prevent it.\n\nPer-bug deep checks: Instead of checking all difficult cases in one shared prompt, Sashiko gives each difficult case its own verification agent that runs in parallel. Each agent gets one specific question to answer with git tools under a symmetrical rule: Neither a bug claim nor a dismissal is accepted without concrete code proof across all call sites. If a specialist talks itself out of a real bug based on a false assumption, this step catches it and promotes it back to a real finding.\n\nReview report: Sashiko generates a report that sounds like a human maintainer asking questions about the proposed change, matching the style expected on a Linux mailing list.\n\nAll this happens at no cost for developers. Deep agentic reviews at scale require a substantial token budget. If developers had to pay for them with their own API keys, many important contributors would be pushed away. Instead, Sashiko reviews patches sent to public Linux kernel mailing lists, and Google runs the service at sashiko.dev. Everything runs in the open: every prompt, tool call, reasoning step, and ruled-out bug is public. The project initially used the open-source Linux review prompts started by Chris Mason, and more than 100 contributors, including prominent kernel maintainers and engineers, have since helped to improve prompts and Sashiko itself. Recently, Sashiko switched to a different prompt system that combines per-tree or per-version auto-generated notes on code with subjective maintainers notes, which contain directions and instructions from maintainers that can’t be derived from the code.\n\nThe real test of an automated reviewer is whether maintainers pay attention to the reports it sends out, and whether those reports track actual software quality. Seven months of Sashiko production data from the kernel mailing lists give a clear picture of both these questions.\n\nIt is part of the daily workflow. Sashiko completes roughly 1200 reviews a day across over 100 kernel mailing lists. It sends review emails only to lists whose maintainers opt in, and already over 70 of them have done so. Developers also engage directly with the reports: More than 1500 kernel developers have replied on the mailing lists, and their pushback on false alarms has directly driven improvements to Sashiko's prompts and verification engine. In fact, LWN.net recently wrote that Sashiko has already become an important part of the kernel's development process and was the top bug reporter of issues in the 7.2 release cycle.\n\nIt prevents new bugs and uncovers old ones. When Sashiko flags a bug in a proposed patch, the author typically fixes it in the next revision before the change is ever merged. Many developers run Sashiko locally or in corporate private instances. The bugs that Sashiko helped to prevent leave no trace in the git commit log, making them hard to count directly. What can be counted are fixes for preexisting bugs that Sashiko finds and reports as a byproduct of reviewing new changes: Sashiko is cited in over 2000 mainline kernel commits and in over 500 of this year's official Linux kernel CVEs, spanning drivers, core kernel code, networking, GPUs, memory management, and virtualization.\n\nFewer bugs are slipping into mainline releases. Across the 18 kernel releases prior to Sashiko (Linux 6.2 through 6.19, covering 254000 commits), an average of 3.4% of merged commits required a follow-up fix within 60 days. Since Sashiko rolled out, that 60-day fix rate has fallen to 2.8% in Linux 7.1 and 2.2% in Linux 7.2, a 35% drop (with the 30-day fix rate falling from 2.3% to 1.4%). It’s too early to make strong claims, and obviously many other factors can influence release-to-release numbers, so we can",
+  "begyujtve": "2026-11-21T19:05:33.628005+00:00",
+  "prioritas": {
+    "pont": 56,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 70,
+      "egyediseg": 85,
+      "hitelesseg": 72,
+      "aktualitas": 30,
+      "kozossegi": 49
+    },
+    "elofeszures": 70,
+    "tanult": 48,
+    "indok": "Technikai beszámoló a Google-től egy ágensekre épülő kódellenőrző rendszerről. Forrás-tapasztalat: -8. A forrás P3-as híreiből eddig kb. 17%-ot fogadtál el.",
+    "tema": "google sashiko agentic code-review",
+    "cim_hu": "A Google bemutatta a Sashiko kódellenőrző AI-ágens tapasztalatait",
+    "lead_hu": "A Google Cloud mérnökei megosztották tanulságaikat a Sashiko rendszerről, amely az automatizált kódellenőrzéssel gyorsítja fel a nyílt forráskódú projektek fejlesztését.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-21T19:06:12+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-21T19:06:20+00:00"
+}
