@@ -162,6 +162,52 @@ async function booMuvelet(b) {
 // ---- Videós útmutató-kérések (Heni 2026-11-02): ki melyik videóhoz kérte a gyakorlati útmutatót (api/utmutato.js) ----
 const UTM = "qn:utmutato";
 const UTM_ANYAGOK = require("./_utmutatok.json");
+
+// ---- Előfizetők és útmutató-vásárlások (Heni 2026-11-22), csak olvasás
+const ELO_TERV = { havi: "Havi (1 490 Ft)", eves: "Éves (6 990 Ft)" };
+async function hgetall(kulcs) {
+  const k = (await kv("HGETALL", kulcs)) || [];
+  const ki = [];
+  for (let i = 0; i < k.length; i += 2) { try { ki.push([k[i], JSON.parse(k[i + 1])]); } catch (e) { /* hibás sor kimarad */ } }
+  return ki;
+}
+async function elofizetokAdat() {
+  // qn:elofizetesek: Stripe-számlánként egy sor (első fizetés és megújítások); előfizetésenként összevonjuk
+  const szamlak = await hgetall("qn:elofizetesek");
+  const subok = {};
+  for (const [, s] of szamlak) {
+    if (!s.sub) continue;
+    const e = (subok[s.sub] = subok[s.sub] || { sub: s.sub, email: s.email, terv: s.terv, kezdet: s.ido, fizetve: 0, szamlak: [] });
+    if (s.ido && s.ido < e.kezdet) e.kezdet = s.ido;
+    e.fizetve += Number(s.osszeg || 0);
+    e.szamlak.push({ ido: s.ido, osszeg: s.osszeg, szamla: s.szamla || "", szamla_hiba: s.szamla_hiba ? "nem készült (Billingo)" : "" });
+  }
+  const most = Math.floor(Date.now() / 1000);
+  const sorok = [];
+  for (const e of Object.values(subok)) {
+    const r = await kv("GET", "qn:elo:" + e.sub);
+    const a = r ? JSON.parse(r) : {};
+    const aktiv = ["active", "trialing", "past_due"].includes(a.allapot || "active") && (a.eddig || 0) + 3 * 86400 > most;
+    sorok.push({ email: a.email || e.email, nev: a.nev || "", terv: a.terv || e.terv, terv_nev: ELO_TERV[a.terv || e.terv] || (a.terv || e.terv || ""),
+                 kezdet: e.kezdet, eddig: a.eddig ? new Date(a.eddig * 1000).toISOString() : null, allapot: a.allapot || "", aktiv,
+                 lemondva: !!a.lemondva, fizetve: e.fizetve, szamlak: e.szamlak.sort((x, y) => String(y.ido).localeCompare(String(x.ido))) });
+  }
+  sorok.sort((x, y) => String(y.kezdet).localeCompare(String(x.kezdet)));
+  return { sorok, aktiv: sorok.filter((s) => s.aktiv).length };
+}
+async function vasarlasokAdat() {
+  // qn:vasarlasok: Stripe-munkamenetenként a teljesítés (útmutató, e-mail, számla); a név és az összeg a qn:vasarlas:<id>-ben
+  const sorok = [];
+  for (const [sid, v] of await hgetall("qn:vasarlasok")) {
+    let r = {};
+    try { r = JSON.parse((await kv("GET", "qn:vasarlas:" + sid)) || "{}"); } catch (e) { /* nincs */ }
+    const u = UTM_ANYAGOK[v.anyag] || {};
+    sorok.push({ ido: v.ido || r.ido, email: v.email || r.email, nev: r.nev || "", anyag: v.anyag, cim: u.anyag || u.cim || v.anyag,
+                 osszeg: r.osszeg ?? null, szamla: v.szamla || "", szamla_hiba: v.szamla_hiba ? "nem készült (Billingo)" : "", level: !!v.level });
+  }
+  sorok.sort((x, y) => String(y.ido).localeCompare(String(x.ido)));
+  return { sorok };
+}
 const UTM_MEGORZES = 365 * 864e5; // az adatvédelmi tájékoztató szerint a kéréseket 1 évig őrizzük (Heni 2026-11-02)
 async function utmutatoAdat() {
   const k = (await kv("HGETALL", UTM)) || [];
@@ -571,6 +617,10 @@ module.exports = async (req, res) => {
       }
       return json(res, 200, adat);
     }
+    // Heni 2026-11-22: „adminba is rakd be, hogy lássam az előfizetőket, mettől meddig tart, mire fizetett elő, és az
+    // útmutatókat is, külön fülön”. Csak olvasás.
+    if (mi === "elofizetok") return json(res, 200, await elofizetokAdat());
+    if (mi === "vasarlasok") return json(res, 200, await vasarlasokAdat());
     if (mi === "apk_letoltes") return json(res, 200, await apkAdat());
     if (mi === "hirdetes_katt") return json(res, 200, await hirdetesAdat());    if (mi === "torles" && req.method === "POST") {
       const { pid, felulet, cim } = await torzs(req);
