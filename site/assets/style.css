@@ -1821,8 +1821,10 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
 .gyu-lejatszo { display: none; }
 /* asztalon a két útmutató egymás mellett, lapozás nélkül (Heni 2026-11-02); ha több lesz, a lapozó magától visszajön */
 @media (min-width: 1280px) {
-  .gyu-kartya { flex-basis: calc((100% - 24px) / 2); grid-template-columns: min(40%, 260px) minmax(0, 1fr); gap: 24px; }
-  .gyu-video { width: 100%; }
+  /* Heni 2026-11-22: „kicsit legyen szélesebb a videó box, mert kilógnak a szövegek”. A doboz szélesebb, és a videó a
+     saját 9:16-os arányában marad (align-self: start), így a magasabb szövegoszlop nem nyújtja meg, és a borító széle nem vágódik le. */
+  .gyu-kartya { flex-basis: calc((100% - 24px) / 2); grid-template-columns: min(44%, 300px) minmax(0, 1fr); gap: 24px; }
+  .gyu-video { width: 100%; align-self: start; height: auto; aspect-ratio: 9 / 16; }
   .gyu-kep { width: 100%; }
   .gyu-test { gap: 8px; padding-block: 4px; }
   .gyu-test h3 { font-size: 24px; line-height: 32px; }
