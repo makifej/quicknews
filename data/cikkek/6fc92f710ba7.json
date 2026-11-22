@@ -1,0 +1,49 @@
+{
+  "id": "6fc92f710ba7",
+  "slug": "i-stopped-hitting-claude-s-usage-limits-after-changing-one-habit-in",
+  "forras_id": "dailydev",
+  "forras_nev": "XDA Developers (daily.dev)",
+  "url": "https://www.xda-developers.com/i-stopped-hitting-claudes-usage-limits-after-changing-one-habit-in-how-i-start-sessions",
+  "publikalva": "2026-11-21T15:30:20+00:00",
+  "cim": "I stopped hitting Claude's usage limits after changing one habit in how I start sessions",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 40 pont, tendencia 33%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/6e60bd65fd2e07078ada2933f2061274?_a=AQAEuop"
+  },
+  "cim_eredeti": "I stopped hitting Claude's usage limits after changing one habit in how I start sessions",
+  "szoveg_eredeti": "When it comes to AI tools available today, there is hardly a better deal than Claude, and that isn't blind faith in the countless agentic coding benchmarks. I've experienced it firsthand by putting Anthropic's models against some of the best offerings from Google and OpenAI, and nearly every single time, Claude has come out on top. In my workflow, I use it for things like coding OS maintenance utilities, Python scripts, and occasionally, racers where I chase my own best lap times on a DualSense.\n\nIt's easy to understand how a user might get deeply accustomed to Claude. But the problem with getting deeply accustomed is that long coding sessions, even on the Pro tier, can run straight into 5-hour and weekly limits. In one bad month, I spent over $300 to get past the limits by buying usage credits.\n\nSure, a sensible decision would be to buy Claude Max, but it's $100 a month, and that's something I can't justify on my lighter months. What I needed was a middle path that stretched the Pro plan that I already pay for, and I found it buried deep in Anthropic's very own help center.\n\nA bottleneck facing every workflow that's centered around Claude is the fact that it caps you in two different ways. One of them is a session limit that kicks in with your first message and refills five hours later, and a weekly limit, with its own, separate reset.\n\nBoth of these are shared across the Claude app and Claude Code, so a long coding session in Claude Code will eat into the same usage allowance you used to ask Claude about the recipe for banana bread on chat. It's easy to lose track of both sometimes.\n\nWhat Anthropic doesn't give you, or rather, possibly can't estimate, is a number, since every message costs a different amount. In this case, a fixed number can't hold up in every case. Instead, each plan is sized against the one directly below it, with Pro offering at least 5x the free tier's usage, and Max offering 5x the Pro tier's usage. Now, how far that stretches, depends on how long the conversation runs, which model you're on, and the effort level you run your models on.\n\nThe closest and most precise way to keep track is your Usage page in settings, or /usage in Claude Code. Even there, the meters are percentages, not messages, and a lot depends on how you send those messages, what effort level you use, and which model you use. With those three variables in mind, I started digging for a workaround.\n\nAnthropic's help center has a deceptively simple tip for stretching Claude Code usage, and that's division of labor across Claude Opus and Sonnet. The principle is that the thinking is where the more expensive Opus justifies its extra cost, and Sonnet is more than capable of executing a well-made plan for a lot less.\n\nClaude Code even has a setting for it, known as opusplan. Opus does the planning, and the moment you approve the plan, Sonnet takes over. Of the three things that I mentioned that decide how far your usage stretches on a limited plan, the model itself is the easiest to control, and opusplan only brings in the more expensive one while Claude is planning.\n\nThe building itself, where the actual coding happens, is executed by Sonnet, so each task draws less from your 5-hour and weekly allowance than it would on Opus alone.\n\nJust like how I don't put much stock in benchmarks and how they apply to real-world use-cases, I was skeptical of whether a tip from Anthropic's help center would hold up well on an actual build.\n\nTo test its advice out, I gave Claude Code the same barebones prompt twice, which was to build a basic Tetris game as a single HTML file. One run used Opus throughout, and the other used opusplan. Both started in plan mode at medium effort, each in its empty folder, back to back in the same five-hour window.\n\nIn both the outputs, the games launch, clear lines and end perfectly when the blocks pile up, although I must mention I preferred opusplan's version a touch more for the visual polish around the blocks. Another major factor working in favor of Opusplan was the fact that it cost 16% less by Claude Code's estimate (which prices each run at API rates) and it wrote 239 lines compared to Opus's 431.\n\nThe catch that Anthropic mentioned also appeared on the cue. The handover to Sonnet caused the test's only cache miss, and /usage listed a model change among its likely causes, with 19.3k tokens re-read. Both runs added two points to my session bar and nothing to my weekly one.\n\nHowever, this is where I would argue that, where the difference will count, is when it comes to a full day of builds, and not a single, small Tetris clone. Besides, Opusplan's run came in at $0.34 against Opus's $0.40, and more than half of that $0.34 went into Opus's planning alone. The bigger the build, the more of work will go to Sonnet at half of Opus's price, while the handover will still cost a single re-read per task.\n\nClaude Max makes sense for anyone who can run through Pro every week, but for someone like me, the usage swings far too much from month to month to justify an extra $80 on my subscription. Opusplan lets me keep Opus on the part where it genuinely justifies its cost, and hands the coding to Sonnet for less. It doesn't make the limits a non-issue, but it does provide me exactly the middle path I went looking for.",
+  "begyujtve": "2026-11-22T15:05:41.477599+00:00",
+  "prioritas": {
+    "pont": 40,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 35,
+      "egyediseg": 85,
+      "hitelesseg": 62,
+      "aktualitas": 70,
+      "kozossegi": 56
+    },
+    "elofeszures": 78,
+    "tanult": 57,
+    "indok": "Egyéni felhasználói tipp a Claude korlátozásainak elkerülésére, alacsony általános hírértékkel. Forrás-tapasztalat: -8. A forrás P3-as híreiből eddig kb. 33%-ot fogadtál el.",
+    "tema": "claude usage tips",
+    "cim_hu": "Egyetlen szokás megváltoztatásával elkerülhetők a Claude használati korlátai",
+    "lead_hu": "Egy fejlesztő megosztotta tapasztalatait arról, hogyan tudja hatékonyabban kihasználni az Anthropic Claude modelljeit a munkamenetek tudatosabb indításával.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-22T15:05:51+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-22T15:05:58+00:00"
+}
