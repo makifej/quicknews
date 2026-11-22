@@ -359,6 +359,19 @@ module.exports = async (req, res) => {
       }
       // Upstash-forgalom (2026-10-23): a változatlan pillanatképet a gép nem tölti fel újra, csak az idejét frissíti,
       // ehhez előbb lekéri a tárolt lenyomatokat (néhány bájt a 0,3-0,9 MB-os csomagok helyett)
+      // 2026-11-22 (Heni: „ellenőrizd, hogy hozzáfér-e”): csak olvasó lekérdezés, aktív-e egy e-mail-cím előfizetése.
+      // Ugyanaz az érvényességi szabály, mint az api/elofizetes.js ervenyes() függvényében.
+      if (mi === "elofizeto_gep") {
+        const email = String(url.searchParams.get("email") || "").trim().toLowerCase();
+        if (!email) return json(res, 400, { hiba: "email kell" });
+        const sub = await kv("GET", "qn:elo:email:" + email);
+        const r = sub && (await kv("GET", "qn:elo:" + sub));
+        const a = r ? JSON.parse(r) : null;
+        const most = Math.floor(Date.now() / 1000);
+        const aktiv = !!a && ["active", "trialing", "past_due"].includes(a.allapot || "active") && (a.eddig || 0) + 3 * 86400 > most;
+        return json(res, 200, { email, van: !!a, aktiv, terv: a && a.terv, allapot: a && a.allapot, eddig: a && a.eddig,
+                                lemondva: !!(a && a.lemondva), udvozolve: !!(sub && (await kv("GET", "qn:elo:udv:" + sub))) });
+      }
       if (mi === "pult_hash_gep") {
         const ki = {};
         for (const k of PULT_KULCSOK) ki[k] = (await kv("GET", P + "pult:" + k + ":hash")) || null;
