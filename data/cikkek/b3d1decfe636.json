@@ -1,0 +1,49 @@
+{
+  "id": "b3d1decfe636",
+  "slug": "workflow-lab-turning-context-into-a-plan-with-specs-and-the-figma",
+  "forras_id": "dailydev",
+  "forras_nev": "Figma (daily.dev)",
+  "url": "https://www.figma.com/blog/workflow-lab-specs-and-the-figma-agent",
+  "publikalva": "2026-11-20T22:17:00+00:00",
+  "cim": "Workflow lab: Turning context into a plan with Specs and the Figma agent",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 46 pont, tendencia 20%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/bc319713a4b0644af623822dcc32e4f5?_a=AQAEuop"
+  },
+  "cim_eredeti": "Workflow lab: Turning context into a plan with Specs and the Figma agent",
+  "szoveg_eredeti": "Bringing scattered context onto the canvas helps teams connect the diagrams, designs, and technical decisions they need to build, all in one place. This workflow shows how Specs and the Figma agent provide a container for that context so implementation is easy.\n\nBringing code onto the canvas gives teams a shared space to compare working prototypes side by side, refine a direction, and collaborate on ideas with teammates. This workflow shows how a designer uses code layers and the Figma agent to explore a new feature.\n\nWhen teams are going from prototype to production faster than ever, it’s easy for important context to get lost along the way. Written requirements, design details, and engineering guidance are critical to making sure teams are sprinting toward the right outcomes, but these inputs often end up scattered across separate documents and links.\n\nWe’re launching Specs, a container for your context that lives on the Figma canvas.\n\nFrom making designs more expressive and automating busywork, to exploring more possibilities on the canvas, here are six ways to push designers further with the Figma agent.\n\nRead all about using Markdown as a medium with Specs.\n\nToday, code layers moves into open beta. Now teams can explore and build prototypes backed by code on the canvas.\n\nA code layer is an interactive prototype on the canvas backed by running code.\n\nThe engineer combs through the PRD and notices that the team plans to pilot the new delivery feature in a single city, but haven’t identified which one yet. The engineer doesn’t want to start implementing code until they know which city’s map they’re building for, so they decide to look into where Pickup’s demand is highest based on the app’s usage data. That data lives in Hex, the team’s data analytics platform, but the engineer wants designers and other teammates to be able to view and react to the data in a shared space.\n\nConnectors let the agent access information from a tool outside Figma.\n\nThe engineer turns to the Figma agent to help add the data to the canvas in the form of a spec. They open the agent, add the Hex connector to the conversation, and prompt: Go find where we have the most usage of Pickup and create a spec breaking that down. Also, update this map code layer to show usage data for the top cities.\n\nThe agent produces a spec that contains a table with app usage and order volume by city, along with code layers showing maps for each of the top four cities. The engineer and their collaborators review the Hex data and the screens on the canvas. The team decides to launch in Bengaluru, India, the city that clearly has the highest density of customers and demand.\n\nThe engineer opens the team’s technical spec. It explains how the app will store information about deliveries, how the team will make the feature available to customers, and how they’ll monitor it for problems after launch. They then drag in an existing FigJam diagram showing the delivery process and what the seller, buyer, and driver each do.\n\nElsewhere on the canvas, designers are reviewing the final screens. The team has added annotations on the frames to call out key details, and both design and engineering approved the designs.\n\nThe engineer also includes an interactive version of the Bengaluru map as a code layer so the agent can see how it should work—for example, how nearby items group together and how they animate as someone moves around the map.\n\nLastly, the engineer reviews a new component from the design systems team. A code layer shows how the component works, and a written spec beside it explains when to use it instead of the existing component.\n\nThe engineer selects the technical spec, annotated design frames, interactive map code layer, new component, and design system guidance on the canvas, then opens the Figma agent. They prompt the team’s previously configured build-implementation-plan skill—a reusable set of instructions for the agent. The agent creates a new spec that brings those inputs together into a plan for a coding agent to build the feature, including how it should look and behave.\n\nBefore handing the plan off to a coding agent, the engineer reviews it to make sure the details are right, expanding the spec to its full width. They check that the spec includes the team’s design system, testing and observability requirements, rollout details, and a table outlining what needs to be done to build and ship the feature, along with references back to the specs, designs, and code layers it draws from.\n\nThe engineer spots a detail in the spec that isn’t quite right, leaves a comment on the spec with the problem, then prompts the Figma agent: Read my comment and reply to it with a solution. The agent comments back with an edit for the engineer to review. Reading on, the engineer notices another detail that needs adjustment, but this one requires input from a designer on the team, who the engineer tags in a comment. The designer receives a notification, jumps into the spec, and makes the change in real time.\n\nFigma’s MCP server brings your design decisions into the tools where code gets written—so what gets built actually matches what was designed. Here’s what that unlocks for everyone who builds products.\n\nSpecs is in open beta on all plans and available on web, desktop, and mobile. Get started here, and learn more in the help center.\n\nJohnny Dallas is the tech lead for Specs, and is based in NYC. He joined Figma in early 2026 as part of the Gather.town team.\n\nBy clicking “Subscribe” you agree to our TOS and Privacy Policy.",
+  "begyujtve": "2026-11-22T19:06:15.646257+00:00",
+  "prioritas": {
+    "pont": 46,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 40,
+      "egyediseg": 95,
+      "hitelesseg": 70,
+      "aktualitas": 42,
+      "kozossegi": 55
+    },
+    "elofeszures": 75,
+    "tanult": 63,
+    "indok": "A Figma ügynök funkciójának munkafolyamat-bemutatója, átlagos termék-frissítési PR tartalom. Forrás-tapasztalat: -8. A forrás P3-as híreiből eddig kb. 20%-ot fogadtál el.",
+    "tema": "figma ai agent workflow",
+    "cim_hu": "A Figma MI-ügynöke és a Specs segítségével tervezhetőbbé válnak a fejlesztési folyamatok",
+    "lead_hu": "A Figma bemutatta, hogyan segít az integrált MI-ügynök a specifikációk és a kódrétegek összekapcsolásában, közös térbe hozva a tervezési és fejlesztési döntéseket.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-22T19:06:32+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-22T19:06:40+00:00"
+}
