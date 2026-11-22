@@ -1,49 +1,78 @@
 {
   "id": "7bb6862f6214",
-  "slug": "perplexity-s-new-monitor-api-turns-web-search-from-a-one-off-query",
+  "slug": "a-perplexity-monitor-api-ja-automatikusan-figyeli-a-webes-valtozasokat",
   "forras_id": "the-decoder",
   "forras_nev": "The Decoder",
   "url": "https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/",
+  "szerzo": "Jonathan Kemper",
   "publikalva": "2026-11-22T14:20:28+00:00",
-  "cim": "Perplexity's new Monitor API turns web search from a one-off query into a nonstop watchdog",
-  "lead": "",
-  "osszefoglalo": "",
-  "miert_szamit": "",
-  "cimkek": [],
-  "kategoria": "egyéb",
-  "forras_tipus": "elemzes",
-  "fontossag": 1,
-  "video_szoveg": "",
-  "relevans": false,
-  "kihagyva": "P2: 84 pont, napi P2-keret (10) betelt",
   "media": {
     "tipus": "kep",
     "kep": "https://the-decoder.com/wp-content/uploads/2026/06/Perplexity-Logo-Silhouette-Nano-Banana-Pro.jpg"
   },
   "cim_eredeti": "Perplexity's new Monitor API turns web search from a one-off query into a nonstop watchdog",
+  "forrasok": [],
   "szoveg_eredeti": "Perplexity is expanding its developer business with a new API that wakes agents only when relevant changes occur.\n\nPerplexity's new Monitor API watches the web on a schedule and sends updates to apps and agents via webhook. Until now, engineering teams have had to trigger recurring searches themselves and maintain custom code to remove duplicates and detect changes. Perplexity says that approach becomes nearly impossible to maintain across hundreds of topics and pages.\n\nThe API has two modes. Web monitors run a search query through Perplexity's web and news search on a regular schedule to catch developments like new funding rounds at AI infrastructure companies. Page monitors track up to 10 pages, such as pricing pages, changelogs, or policies. On the first run, they store a baseline version and return a text diff of any changes after that.Ad\n\nPerplexity evaluates results with its own decision model against a goal that developers define in natural language. Web search results must clear checks for relevance, source credibility, novelty, and timeliness, while page changes are judged on whether they matter to the goal. The service sends an update with a confidence score only when every threshold is met. Developers can adjust thresholds for each check individually and change the goal without recreating the monitor.Ad\n\nMonitors run on schedules ranging from every 15 minutes to weekly, or on a custom cron schedule. Each run picks up where the last one left off, and the service filters out duplicate results. Webhooks are signed, and Perplexity automatically retries delivery after temporary errors. Developers can pause, resume, or manually trigger monitors through the API or the API console.\n\nPerplexity tested its API against monitoring services from Firecrawl, Exa, and Parallel across 60 topics drawn from real Search API queries, including company news, tech releases, and regulation. Each provider ran with its own schedules and settings, and a separate model scored each result on relevance and recency.Ad\n\nIn the first eight hours, Perplexity says it delivered 63 fresh, relevant pages, compared with 20 for Firecrawl, 15 for Exa, and 10 each for Parallel Core and Lite. Perplexity describes those figures as early internal results. Those same three competitors led an August Artificial Analysis benchmark of traditional search APIs for AI agents, though Perplexity wasn't included in that test.\n\nPerplexity points to use cases such as sales teams tracking funding rounds and staffing changes at target accounts, along with analysts watching quarterly earnings and acquisitions. Other agents are designed to flag competitor price changes or summarize new regulatory rules for compliance teams.Ad\n\nWeb monitors cost $1 per 1,000 successful runs, and page monitors cost $1 per 1,000 fetched URLs. The Monitor API is available now through the API and the API console and uses the same key as the Search, Context, and Agent APIs.Ad\n\nPerplexity was one of the first AI search engines, but web search has since become a standard feature in chatbots like ChatGPT, Claude, and Gemini. In August, The Information reported that Nvidia is in talks for an investment at a valuation of more than $30 billion, which means Perplexity needs to find profitable business models. The company is betting on agents like Computer and its always-on Teammates, along with developer tools like Search as Code.",
-  "begyujtve": "2026-11-22T14:33:09.065011+00:00",
+  "modell": "gemini-3.5-flash",
+  "cim": "A Perplexity Monitor API-ja automatikusan figyeli a webes változásokat",
+  "lead": "Az új Monitor API időzítve keresi a webes frissítéseket, és csak a lényegi változásokról küld értesítést az AI-ügynököknek.",
+  "osszefoglalo": "A Perplexity kiadta a **Monitor API-t**, amely automatizálja a weboldalak és a keresési találatok folyamatos figyelését. A fejlesztőknek eddig saját kódra és időzített lekérdezésekre volt szükségük a duplikációk kiszűrésére, a friss eszköz viszont önállóan végzi a folyamatot, és csak lényegi változás esetén küld értesítést webhookon keresztül.\n\nAz API két üzemmódot kínál: a Web Monitor beállított időköznél keres rá új hírekre vagy eseményekre, míg a Page Monitor legfeljebb 10 konkrét aloldalt követ, és a kiindulási állapothoz képest felmerülő szöveges eltéréseket jelzi. A rendszer a beépített értékelő modell segítségével ellenőrzi a találatok relevanciáját, frissességét és megbízhatóságát, megelőzve a felesleges riasztásokat.\n\nA monitorok 15 perces és egyhetes gyakoriság között vagy egyedi ütemezéssel futtathatók. A Web Monitor ára 1 000 sikeres futtatásért 1 dollár, míg a Page Monitor 1 000 lekért URL-ért fizettet 1 dollárt. A funkció már **elérhető az API-konzolon** keresztül.",
+  "miert_szamit": "A marketingesek és elemzők automatizálhatják a **versenytársak árainak és termékfrissítéseinek figyelmét**, így nem kell manuálisan ellenőrizniük a weboldalakat.",
+  "cimkek": [
+    "Perplexity",
+    "Monitor API",
+    "API",
+    "automatizáció"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Monitor API"
+  ],
+  "linkszabaly": 3,
   "prioritas": {
-    "pont": 84,
-    "szint": "P2",
+    "pont": 85,
+    "szint": "P1",
     "reszpont": {
-      "hatas": 75,
+      "hatas": 78,
       "hirertek": 85,
       "egyediseg": 95,
-      "hitelesseg": 85,
+      "hitelesseg": 86,
       "aktualitas": 99,
       "kozossegi": 80
     },
     "elofeszures": 92,
     "tanult": 79,
-    "indok": "Gyakorlati szempontból fontos új API a Perplexitytől, ami jelentősen egyszerűsíti az MI-ügynökök fejlesztését.",
-    "tema": "perplexity monitor api launch",
-    "cim_hu": "Folyamatos webes figyelővé alakítja a keresést a Perplexity új Monitor API-ja",
-    "lead_hu": "A Perplexity új fejlesztői eszközével az MI-ügynökök automatikusan értesülnek a webes változásokról. Az új API megszünteti a manuális beállítások és a duplikált keresések szükségességét.",
+    "indok": "A Perplexity új API-ja lényeges fejlesztői eszköz az MI-ügynökök folyamatos adatfigyeléséhez.",
+    "tema": "perplexity monitor api agents",
+    "cim_hu": "Új Monitor API-t indított a Perplexity az MI-ügynökök folyamatos adatfigyeléséhez",
+    "lead_hu": "A Perplexity új Monitor API-ja segítségével a fejlesztők és MI-ügynökök automatikusan értesülhetnek a webes változásokról ahelyett, hogy folyamatosan manuális kereséseket futtatnának.",
     "klaszter": null,
     "ai": true,
-    "ido": "2026-11-22T14:33:19+00:00"
+    "ido": "2026-11-22T14:41:23+00:00"
   },
-  "jovahagyas_kell": false,
-  "megjelent": "2026-11-22T14:33:19+00:00"
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-22T14:41:34+00:00",
+  "megjelent": "2026-11-22T14:41:34+00:00",
+  "tenyellenorzes": {
+    "ok": false,
+    "ido": "2026-11-22T14:41:37+00:00",
+    "esemeny": "A Perplexity kiadta a Monitor API-t, amely automatizálja a weboldalak és a keresési találatok időzített figyelését, és webhookon keresztül küld értesítést a lényeges változásokról az AI-ügynököknek.",
+    "forrasok": [
+      "https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/"
+    ],
+    "hibak": [
+      "A meglévő félkövér kiemelések és a kötelező linkek hiányoznak a szöveg egyes részeiből, illetve nem szerepel beszédes link az elsődleges forrásra.",
+      "a javított változat sem ment át: A hír harmadik bekezdésében a 'Page Monitor 1 000 lekért URL-ért fizettet 1 dollárt' megfogalmazás stílustalan/hibás ragozású, és a magyar szövegből hiányzik az elsődleges forrásra mutató beszédes link, ehelyett egy harmadlagos híroldalra (The Decoder) mutató nem beszédes hivatkozás szerepel."
+    ],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-22T14:42:06+00:00"
 }
