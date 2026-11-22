@@ -1,0 +1,49 @@
+{
+  "id": "6ed1dae5249a",
+  "slug": "signal-is-blocking-ai-agents-from-reading-your-screen",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Security Affairs",
+  "url": "https://securityaffairs.com/203742/ai/signal-is-blocking-ai-agents-from-reading-your-screen.html",
+  "publikalva": "2026-11-22T18:24:42+00:00",
+  "cim": "Signal Is Blocking AI Agents From Reading Your Screen",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 81 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://securityaffairs.com/wp-content/uploads/2016/08/signal-app.png"
+  },
+  "cim_eredeti": "Signal Is Blocking AI Agents From Reading Your Screen",
+  "szoveg_eredeti": "Signal is restricting new AI agents built into iOS 27 and Android from capturing its data, president Meredith Whittaker announced. The company already did something similar on Windows last year, blocking screenshots to stop Microsoft’s Recall from capturing Signal messages by default. Now it’s doing the same wherever it can detect an AI assistant trying to read the Signal screen.\n\nThe process is simple, but it raises serious privacy concerns. Operating system-level AI agents, such as Google’s Gemini Intelligence and Apple’s Onscreen Awareness with Siri AI, scan the content displayed on your screen so they can answer questions and perform tasks for you.\n\nThis means these AI agents can capture your Signal data and use it to answer your questions and carry out your requests.\n\n“In order to gain access to information about you, these OS AI agents “scan” the information that’s on your screen. In doing so, your Signal data is captured, then made available to these agentic systems in order to allow them to answer your questions and do your bidding.” reads the announcement. “The net result is that these AI capabilities in the operating system are undermining Signal’s ability to independently guarantee privacy.”\n\nSignal’s security model is based on open-source code and encryption that has been formally checked and reviewed by independent researchers for more than a decade. However, this protection can’t help if an AI agent reads your messages directly from the screen before encryption becomes relevant. Once captured, the data may be stored in a local database or sent to a remote server used by the AI agent, completely outside Signal’s control.\n\nGoogle, Apple, and Microsoft aren’t just three companies among many here.\n\n“these three operating systems are the oceans in which Signal, and other applications, must swim; they dictate the conditions of life for the application ecosystem.” continues the report. “Right now, these agentic AI integrations are changing this environment in a way that’s making it increasingly hostile to privacy.”\n\nWhen the ocean starts working against the fish swimming in it, the fish can’t simply find a different ocean.\n\nSignal’s fix is narrow: block screenshots on iOS 27, and block AI assistant screen capture attempts on Android. Users can turn the protection off in settings if they want to take screenshots, but doing so exposes their messages, and their contacts’ messages, to the same agents Signal is trying to keep out. The company is upfront that this doesn’t close every door, since an agent could still reach app data through the filesystem rather than the screen.\n\nMacOS gets no protection at all right now, because Apple and Microsoft don’t give developers a clean way to block AI access without wrecking the normal user experience. Signal says it spent real engineering time just doing forensic work across Android and iOS to figure out what these AI systems actually do with app data, because the documentation isn’t there. That’s a strange place for a company Signal’s size to be: reverse-engineering the privacy behavior of the platforms it depends on.\n\nSignal is asking Apple, Google, and Microsoft to take two specific steps. First, they should give app developers a clear way to prevent AI agents from accessing their data, including information on the screen, files, notifications, and APIs. Second, they should explain exactly how these AI agents access, collect, and process user data.\n\nSignal also raises concerns about third-party AI agents such as Meta’s Muse, which can use accessibility permissions that users originally granted for other purposes. The company adds that confidential computing doesn’t solve the problem because the platform still controls the privacy decision, not the app developer or the user.\n\nSignal says it’s already talking with Google and Apple about better support for apps that handle sensitive information. The company is cautiously optimistic, but whether these discussions lead to real changes will depend on what the two companies actually do over the coming year.\n\nSignal frames the stakes plainly for anyone tempted to see this as one company’s problem.\n\n“We all need to recognize that the current integration of AI agents into the operating system, without these common-sense remedies, represents an existential threat to privacy at the application layer, and the ability of independent developers like Signal to protect your sensitive data.” the report cocludes. “Signal is the canary in the coal mine, but this affects the entire ecosystem and should galvanize anyone who cares about these fundamental rights.”\n\nFollow me on Twitter: @securityaffairs and Facebook and Mastodon\n\nArtificial Intelligence / November 22, 2026\n\nArtificial Intelligence / November 22, 2026\n\nArtificial Intelligence / November 21, 2026",
+  "begyujtve": "2026-11-22T18:34:46.841352+00:00",
+  "prioritas": {
+    "pont": 81,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 100,
+      "hitelesseg": 78,
+      "aktualitas": 99,
+      "kozossegi": 81
+    },
+    "elofeszures": 93,
+    "tanult": 70,
+    "indok": "Kiemelkedő adatvédelmi hír egy népszerű platformról az operációs rendszer szintű AI-ágensek ellen. Forrás-tapasztalat: -7.",
+    "tema": "signal ai privacy blocking",
+    "cim_hu": "A Signal blokkolja a képernyőt olvasó MI-ágenseket iOS-en és Androidon",
+    "lead_hu": "A Signal korlátozza az operációs rendszerekbe épített MI-asszisztensek hozzáférését az alkalmazás adataihoz a felhasználói adatvédelem megőrzése érdekében.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-22T18:34:51+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-22T18:34:52+00:00"
+}
