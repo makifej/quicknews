@@ -407,6 +407,16 @@ module.exports = async (req, res) => {
       // ehhez előbb lekéri a tárolt lenyomatokat (néhány bájt a 0,3-0,9 MB-os csomagok helyett)
       // 2026-11-22 (Heni: „ellenőrizd, hogy hozzáfér-e”): csak olvasó lekérdezés, aktív-e egy e-mail-cím előfizetése.
       // Ugyanaz az érvényességi szabály, mint az api/elofizetes.js ervenyes() függvényében.
+      // kézzel (Billingo-felületen) kiállított számla számának rögzítése egy előfizetés- vagy vásárlás-sorhoz
+      if (mi === "szamla_kezi_gep" && req.method === "POST") {
+        const { tipus, id, szamla } = await torzs(req);
+        const kulcs = tipus === "elofizetes" ? "qn:elofizetesek" : tipus === "vasarlas" ? "qn:vasarlasok" : "";
+        if (!kulcs || !/^(in|cs)_[A-Za-z0-9_]{8,120}$/.test(id || "") || !/^[0-9A-Za-z\-\/]{4,40}$/.test(szamla || "")) return json(res, 400, { hiba: "rossz adat" });
+        const r = await kv("HGET", kulcs, id);
+        if (!r) return json(res, 404, { hiba: "nincs ilyen sor" });
+        await kv("HSET", kulcs, id, JSON.stringify({ ...JSON.parse(r), szamla, szamla_hiba: "", szamla_kezi: true }));
+        return json(res, 200, { ok: true });
+      }
       if (mi === "elofizetok_gep") return json(res, 200, await elofizetokAdat());
       if (mi === "vasarlasok_gep") return json(res, 200, await vasarlasokAdat());
       if (mi === "elofizeto_gep") {
