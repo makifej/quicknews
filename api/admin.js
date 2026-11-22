@@ -407,6 +407,8 @@ module.exports = async (req, res) => {
       // ehhez előbb lekéri a tárolt lenyomatokat (néhány bájt a 0,3-0,9 MB-os csomagok helyett)
       // 2026-11-22 (Heni: „ellenőrizd, hogy hozzáfér-e”): csak olvasó lekérdezés, aktív-e egy e-mail-cím előfizetése.
       // Ugyanaz az érvényességi szabály, mint az api/elofizetes.js ervenyes() függvényében.
+      if (mi === "elofizetok_gep") return json(res, 200, await elofizetokAdat());
+      if (mi === "vasarlasok_gep") return json(res, 200, await vasarlasokAdat());
       if (mi === "elofizeto_gep") {
         const email = String(url.searchParams.get("email") || "").trim().toLowerCase();
         if (!email) return json(res, 400, { hiba: "email kell" });
