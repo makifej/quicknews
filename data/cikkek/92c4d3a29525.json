@@ -1,0 +1,50 @@
+{
+  "id": "92c4d3a29525",
+  "slug": "in-case-anyone-is-curious",
+  "forras_id": "x-elonmusk",
+  "forras_nev": "Elon Musk (X)",
+  "url": "https://x.com/elonmusk/status/2124458557525397780",
+  "publikalva": "2026-11-22T11:02:45+00:00",
+  "cim": "In case anyone is curious:",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 65 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "x",
+    "kep": null,
+    "x_url": "https://x.com/elonmusk/status/2124458557525397780"
+  },
+  "cim_eredeti": "In case anyone is curious:",
+  "szoveg_eredeti": "In case anyone is curious:\n\nWe’ve had a ~pixel-perfect world model since last year, which is critical for synthetic data generation. \n\nThe (much) smaller version of that in the car is a conditional mean-flow model, based on the recent sequence of Tesla Universal Vision Encoder features, which are the same ones that are plugged into the 3B encoder model that produces the driving actions. \n\nWe fork off from these UVE features, then run a separate ~1B diffusion model. This takes in the previous reality-view generation with added noise and then denoises it to the current visualization. \n\nIt then produces a small video chunk (8 images at 36 fps, at the resolution of the UI screen). This work is done by 1/2 of a TRIP engine every UVE frame at 18 hz and is spread over 4 cycles. \n\nCurrently, the latency is a bit high due to compute constraints, but we have ways to interleave newer UVE features along the diffusion transformer layers to cut roughly 35% of the latency.",
+  "begyujtve": "2026-11-22T21:02:05.015055+00:00",
+  "prioritas": {
+    "pont": 65,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 60,
+      "hirertek": 65,
+      "egyediseg": 90,
+      "hitelesseg": 81,
+      "aktualitas": 78,
+      "kozossegi": 49
+    },
+    "elofeszures": 81,
+    "tanult": 32,
+    "indok": "Musk technikai részleteket osztott meg a Tesla fejlett világmodelljéről és az önvezetéshez használt szintetikus adatokról. Forrás-tapasztalat: -3.",
+    "tema": "tesla autonomous driving AI",
+    "cim_hu": "Elon Musk elárulta a Tesla önvezető rendszerének technikai részleteit",
+    "lead_hu": "A Tesla tavaly óta egy képpont-pontos világmodellt használ a szintetikus adatok generálására, ami kulcsfontosságú az önvezető autóik döntéshozó modelljének képzésében.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-22T21:20:06+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-22T21:20:07+00:00"
+}
