@@ -2125,3 +2125,6 @@ html.os-android .app-banner .ab-asztal { display: none; }
 /* cikkoldali hirdetés a „Miért számít” helyén (Heni 2026-11-23) */
 .cikk-hird { display: flex; flex-direction: column; gap: 6px; }
 .cikk-hird img { display: block; width: 100%; height: auto; border-radius: var(--sugar); }
+/* Adverr lapos banner a főoldalon (Heni 2026-11-23) */
+.adverr-fo { margin: 40px 0; }
+.adverr-fo img { display: block; width: 100%; height: auto; border-radius: 10px; }
