@@ -1,0 +1,49 @@
+{
+  "id": "f0fd49ae71f3",
+  "slug": "analysis-details-how-artificial-intelligence-transforms-medical",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/analysis-details-how-artificial-intelligence-transforms-medical-multiple-choice-assessment-design/",
+  "publikalva": "2026-11-23T09:11:15+00:00",
+  "cim": "Analysis Details How Artificial Intelligence Transforms Medical Multiple Choice Assessment Design",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 42 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-23364.png"
+  },
+  "cim_eredeti": "Analysis Details How Artificial Intelligence Transforms Medical Multiple Choice Assessment Design",
+  "szoveg_eredeti": "Analysis Details How Artificial Intelligence Transforms Medical Multiple Choice Assessment Design\n\nPreparing competent healthcare practitioners requires rigorous assessment methodologies, yet health science educators face persistent bottlenecks when constructing reliable multiple-choice examinations. A comprehensive review published in Current Research in Physiology by researchers Matthew Reid, Michelle French, Stavroula Andreopoulos, Christine Wong, and Nohjin Kee examines the promises, technical mechanisms, and implementation safeguards surrounding artificial intelligence in assessment development. Within medical education, multiple-choice questions serve as foundational evaluation instruments, providing quantifiable metrics to gauge student competence across extensive cohorts. While existing literature frequently explores student-facing tools such as adaptive learning platforms or automated tutoring systems, direct machine integration into assessment authoring presents unique opportunities to alleviate severe faculty workload constraints. However, because assessment quality directly influences clinical competence and subsequent patient safety, the authors emphasize that deploying generative models requires meticulous verification protocols, clear institutional governance, and an uncompromising commitment to expert human oversight across every stage of the test development lifecycle.\n\nDeveloping psychometrically sound multiple-choice questions has historically proven demanding and resource-intensive for health science faculties. Writing a single validated question routinely requires up to an hour of focused effort by subject specialists, compounding workloads for educators balancing clinical duties and academic research. Compounding this challenge, most instructional faculty lack formal training in psychometric item construction, leading to documented flaw rates of up to 85 percent in examinations authored by experienced teachers. Studies evaluating professional medical licensing and entrance examinations, such as Spain’s medical residency evaluations, have revealed structural flaws in 70 percent of evaluated items, with comparable defect rates reported across nursing and pharmacology curricula. Typical defects include unintentional grammatical cueing, conceptual convergence, and implausible distractors that fail to distinguish varying levels of student mastery. Furthermore, with medical knowledge expanding at an exponential rate estimated to double every 73 days, educators struggle to revise question banks continually, while commercial repositories remain prohibitively costly and misaligned with local institutional curricula.\n\nLarge language models and advanced generative architectures introduce programmatic capabilities capable of drafting complete examination items, including complex question stems and plausible distractors. Current generative systems leverage deep linguistic representations to evaluate semantic similarity, identifying clinical concepts that are related to but distinct from the correct keyed response. By deliberately selecting choices that share partial conceptual overlap while introducing specific reasoning errors, artificial intelligence simulates the cognitive missteps typically anticipated by seasoned medical educators. Early single-turn prompting approaches often produced erratic outputs characterized by superficial phrasing and significant item-writing defects, but structured prompting techniques have substantially improved question validity. Implementing chain-of-thought prompting forces the underlying model to delineate an explicit reasoning pathway, first articulating the targeted core concept, systematically generating plausible misconceptions for distractors, and critically reviewing the complete item against intended learning objectives before finalizing output, thereby achieving superior pedagogical alignment and consistent structural rigor across generated drafts.\n\nA critical technical advancement in educational question generation is retrieval-augmented generation, which anchors model output in designated reference texts rather than unconstrained training weights. By restricting question formulation to verified lecture transcripts, institutional course notes, or peer-reviewed clinical guidelines, retrieval-augmented systems substantially mitigate the incidence of factual fabrications and algorithmic hallucinations. Minimizing factual distortions is uniquely paramount within health disciplines, where subtle inaccuracies or outdated therapeutic recommendations could inadvertently instill enduring clinical misconceptions among trainees. The emergence of specialized reasoning models, such as OpenAI o1, Claude 3.7 Sonnet with extended thinking capabilities, and DeepSeek R1, further expands algorithmic utility by allocating test-time compute toward deep reasoning chains. These reasoning-focused systems excel on advanced doctoral-level benchmarks, suggesting enhanced proficiency in authoring challenging clinical scenario questions that assess higher-order analytical problem solving rather than mere rote memorization of isolated biological facts or definitions.\n\nBeyond high-stakes summative evaluations, generative technologies offer significant pedagogical utility by enabling the rapid production of abundant practice question banks for formative learning. Grounding assessment within cognitive science frameworks, extensive testing supports targeted retrieval practice, which empirical research demonstrates is substantially more effective for long-term memory retention than passive textbook review. On-demand formative item generation enables individualized mastery learning, allowing health science students to systematically identify and remediate idiosyncratic knowledge deficits across complex physiological mechanisms. Regular self-directed testing additionally acclimates students to formal assessment structures, reducing examination anxiety while cultivating rapid clinical pattern recognition essential for urgent diagnostic decision-making in real-world hospital environments. To preserve academic value, the review highlights that all generated practice items must remain rigorously calibrated to established taxonomies such as Bloom’s Taxonomy of cognitive domains, ensuring questions explicitly measure clinical application and complex synthesis rather than trivial factual recall.\n\nIntroducing machine-generated assessments inevitably influences the educational environment and shapes student perceptions regarding academic equity and institutional integrity. As student populations increasingly embrace artificial intelligence—with recent surveys indicating that 92 percent of surveyed higher education learners utilize artificial intelligence tools and 88 percent apply them toward academic coursework—transparency regarding instructional use becomes essential for maintaining institutional trust. Educational institutions that prohibit student generative tool usage while permitting faculty to automate examination drafting risk cultivating perceptions of academic hypocrisy unless the pedagogical rationale is transparently articulated. Furthermore, assessments must address the needs of diverse learners, particularly non-native English speakers who may encounter linguistic barriers when questions incorporate culturally specific idioms or unnecessarily ornate phrasing. Clear communication policies that inform cohorts of general artificial intelligence assistance without labeling individual questions help prevent student bias, ensuring that trainees engage thoughtfully with all clinical scenarios regardless of technical origin.\n\nThe logistical mechanisms chosen to deliver machine-generated assessments introduce critical operational considerations regarding software accessibility, interface familiarity, and institutional data governance. The authors strongly recommend embedding generated assessment items directly within pre-existing, stan",
+  "begyujtve": "2026-11-23T11:35:09.057977+00:00",
+  "prioritas": {
+    "pont": 42,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 40,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 95,
+      "kozossegi": 23
+    },
+    "elofeszures": 74,
+    "tanult": 20,
+    "indok": "Nagyon specifikus orvosi oktatási és tesztkészítési elemzés, alacsony általános hírértékkel. Forrás-tapasztalat: -7.",
+    "tema": "ai medical exam design",
+    "cim_hu": "Így alakítja át a mesterséges intelligencia az orvosi vizsgáztatást",
+    "lead_hu": "Egy új kutatás részletesen bemutatja, miként segít az MI az egészségügyi többlépcsős feleletválasztós tesztek összeállításában.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-23T11:35:37+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-23T11:35:58+00:00"
+}
