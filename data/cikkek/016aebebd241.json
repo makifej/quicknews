@@ -1,0 +1,49 @@
+{
+  "id": "016aebebd241",
+  "slug": "retinal-artificial-intelligence-predicts-systemic-disease-risk-but",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/retinal-artificial-intelligence-predicts-systemic-disease-risk-but-lacks-clinical-validation/",
+  "publikalva": "2026-11-23T08:48:17+00:00",
+  "cim": "Retinal Artificial Intelligence Predicts Systemic Disease Risk but Lacks Clinical Validation",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 54 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-23319.png"
+  },
+  "cim_eredeti": "Retinal Artificial Intelligence Predicts Systemic Disease Risk but Lacks Clinical Validation",
+  "szoveg_eredeti": "Retinal Artificial Intelligence Predicts Systemic Disease Risk but Lacks Clinical Validation\n\nA critical review published in Discover Imaging evaluates artificial intelligence models trained to predict systemic diseases directly from retinal images. Authored by A. Pavithra and V. Bhanumathi, the evaluation examines how machine learning, deep learning, and multimodal algorithms utilize the microvascular window of the eye to detect chronic kidney disease, cardiovascular disease, and diabetes mellitus. While published studies consistently demonstrate positive discriminatory performance when identifying systemic disorders from non-invasive ocular scans, reported performance indicators vary dramatically across individual works. Discrepancies in diagnostic metrics, including the area under the receiver operating characteristic curve, sensitivity, and specificity, stem from widespread heterogeneity in study cohorts, clinical outcome definitions, imaging hardware, sample sizes, and validation protocols. Consequently, the review warns that current predictive figures cannot be legitimately pooled or used to establish a definitive methodological hierarchy, highlighting that substantial translational hurdles must be resolved before retinal artificial intelligence can transition into clinical practice.\n\nThe fundamental rationale supporting image-based systemic disease prediction lies in shared anatomical and physiological characteristics linking retinal microvasculature to distant organ systems, particularly the kidneys and heart. Because the small vessels of the retina can be directly visualized through fundus photography and optical coherence tomography, they provide a measurable reflection of systemic vascular integrity without surgical intervention. The review outlines how conditions like hypertension, metabolic syndrome, and vascular deterioration trigger shared pathophysiological cascades, including endothelial dysfunction, chronic low-grade inflammation, oxidative stress, and impaired vascular autoregulation. Within both the ocular fundus and the renal parenchyma, these injurious processes induce microvascular remodeling, basement membrane thickening, luminal narrowing, and compromised perfusion. However, the authors caution that observed retinal abnormalities, including altered arteriolar and venular caliber, microaneurysms, and localized retinopathy, should be interpreted as surrogate phenotypic traits associated with systemic vascular strain rather than direct evidence of target-organ disease itself.\n\nIn chronic kidney disease, the review synthesizes literature demonstrating that retinal vascular parameters correspond closely with renal functional decline. Research by Charumathi Sabanayagam and colleagues showed that integrating retinal features with routine clinical risk factors improves chronic kidney disease detection over ocular scans alone. Deep learning systems trained by Kang Zhang and colleagues across multi-center cohorts confirmed automated models reliably identify renal impairment across diverse populations. Explorations by Eugene Yu-Chuan Kang and colleagues indicated that microvascular alterations signal early functional renal impairment before overt pathology manifests. Additional innovations detailed in the survey encompass wide-field imaging evaluated by Xinyu Zhao, Random Forest algorithms by Shi and colleagues for diabetic kidney disorders, bilateral image analysis by Chuan-Fan Hsu, and deep learning by Wu and colleagues targeting histological kidney subgroups. Furthermore, Youngmin Bhak and colleagues established that combining fundus photographs with urine dipsticks improves diagnostic precision, while Songyang An and colleagues underscored that algorithmic accuracy fluctuates heavily depending on how glomerular filtration rate thresholds are operationalized.\n\nParallel developments in cardiovascular disease risk assessment reveal that ocular imaging captures latent physiological signatures reflecting systemic arterial health. Investigative teams, including K. Ramesh Babu and colleagues as well as Anjali and colleagues, utilized convolutional neural networks to extract vascular patterns from routine fundus photographs to predict heart attack vulnerability. Comparative investigations led by Karma M. Fathalla demonstrated that automated retinal vessel analysis could estimate cardiovascular risk with discriminatory capability comparable to established clinical calculators like the Framingham Risk Score and QRISK. Specific vascular changes, such as arteriolar narrowing examined by Cynthia Ciwei Lim and colleagues in chronic kidney disease cohorts, predicted cardiovascular events even after controlling for traditional risk factors, while Chan Joo Lee and colleagues established predictive correlations using Reti-CVD. Structural optical coherence tomography analyzed by Sona M. Al-Younis and colleagues differentiated heart failure phenotypes through retinal thickness measurements. Furthermore, population-scale analyses by Ryan Poplin and colleagues leveraging the UK Biobank and EyePACS revealed embedded coronary risk indicators, complemented by automated vessel profiling by Cheung and colleagues and transfer learning architectures by Deepthi and colleagues.\n\nThe evaluation of diabetes mellitus prediction highlights substantial diagnostic promise alongside a critical methodological distinction frequently conflated in computational literature. Works led by Min, Islam, Hamada, Ragab, and Rom demonstrated the capacity of retinal imaging to capture metabolic disturbances, including identifying diabetic status in individuals without clinically observable diabetic retinopathy. Investigations by Yun and colleagues within the UK Biobank, alongside the DART study on Asian Indian cohorts by Kaup and colleagues and multi-ethnic modeling by Zhang and colleagues, showed computational models detect subtle metabolic alterations and reflect circulating glycemic indicators. In addition, transfer learning architectures by Enosegbe and colleagues demonstrated early detection capabilities using processed fundus scans. Nevertheless, the review stresses a vital distinction between automated diabetic retinopathy grading and true de novo diabetes prediction. While diabetic retinopathy classification merely identifies secondary microvascular complications in patients already diagnosed with diabetes, true diabetes prediction models must accurately identify undiagnosed disease in general cohorts. Because retinopathy inherently confirms existing diabetes, models validated on cohorts with established diabetic complications cannot demonstrate an ability to screen for early, undiagnosed metabolic disease.\n\nTo process retinal imagery into diagnostic predictions, computational researchers have primarily deployed three distinct methodological frameworks: handcrafted machine learning, end-to-end deep learning, and multimodal data fusion. Traditional machine learning pipelines rely on deliberate feature engineering, extracting explicit anatomical descriptors such as vessel caliber, arteriolar-to-venular ratios, tortuosity, branching angles, fractal dimensions, and optic disc localization, though some pipelines utilize holistic statistical descriptors without formal vessel segmentation. In contrast, modern deep learning architectures deploy deep convolutional neural networks—predominantly Inception, ResNet, DenseNet, and EfficientNet—that learn hierarchical image representations directly from raw pixels through stacked convolutional and pooling layers. Studies frequently implement image enhancement workflows, such as contrast-limited adaptive histogram equalization, normalization, and geometric data augmentation, prior to feeding scans through transfer learning backbones. While end-to-end convolutional networks eliminate the requirement for handcrafted vascular measurements, hybrid workflows combining explicit vascular extraction with deep spatial embeddings offer greater inter",
+  "begyujtve": "2026-11-23T09:19:57.861288+00:00",
+  "prioritas": {
+    "pont": 54,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 60,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 36
+    },
+    "elofeszures": 75,
+    "tanult": 14,
+    "indok": "Tudományos elemzés a szemfenéki képek alapján működő AI hiányzó klinikai validációjáról Forrás-tapasztalat: -7.",
+    "tema": "retinal ai medical research",
+    "cim_hu": "A szemfenéki képekből jósoló AI még hiányolja a klinikai validációt",
+    "lead_hu": "Egy új átfogó kutatás szerint bár az AI-modell képes felmérni a szisztémás betegségek kockázatát a retina alapján, a klinikai gyakorlatban való alkalmazáshoz még hiányoznak a megfelelő validációs vizsgálatok.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-23T09:20:13+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-23T09:20:18+00:00"
+}
