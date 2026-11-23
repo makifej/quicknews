@@ -1,0 +1,49 @@
+{
+  "id": "22f36dd254ab",
+  "slug": "artificial-intelligence-and-quantitative-imaging-advance-radiation",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/artificial-intelligence-and-quantitative-imaging-advance-radiation-pneumonitis-risk-prediction/",
+  "publikalva": "2026-11-23T15:17:47+00:00",
+  "cim": "Artificial Intelligence and Quantitative Imaging Advance Radiation Pneumonitis Risk Prediction",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 47 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-24006.png"
+  },
+  "cim_eredeti": "Artificial Intelligence and Quantitative Imaging Advance Radiation Pneumonitis Risk Prediction",
+  "szoveg_eredeti": "Artificial Intelligence and Quantitative Imaging Advance Radiation Pneumonitis Risk Prediction\n\nRadiation pneumonitis represents a critical dose-limiting toxicity in thoracic radiotherapy, significantly impairing patient quality of life and presenting substantial clinical risks of respiratory failure or mortality. Across clinical practice in lung cancer and other thoracic malignancies, the reported incidence of grade two or higher radiation pneumonitis typically ranges between five percent and thirty percent under standard scoring frameworks such as the Common Terminology Criteria for Adverse Events and the Radiation Therapy Oncology Group scales. Clinicians face an enduring therapeutic dilemma when attempting to maximize tumor control while simultaneously preserving normal lung tissue from debilitating radiation injury. In a comprehensive narrative review published in Frontiers in Oncology, an oncology research team led by Yiyuan Wang, Yuantao Zhang, Zhichao Wang, and Jun Cai from The First Affiliated Hospital of Yangtze University systematically evaluated the historical progression of radiation pneumonitis risk modeling, charting the transition from classical dose-volume analysis to high-dimensional radiomics, dosiomics, and multimodal artificial intelligence frameworks.\n\nThe quantitative modeling of pulmonary radiation tolerance originated with early clinical observations and empirical radiobiology, which demonstrated clear dose-response relationships between radiation exposure, irradiated lung volume, fractionation schedules, and pulmonary function deterioration. A critical milestone emerged in 1985 when Lyman introduced the normal tissue complication probability mathematical formulation, which established a formal foundation for evaluating normal tissue damage under uniform radiation exposures. Subsequent algorithmic innovations by Kutcher and colleagues introduced dose-volume histogram reduction methods, allowing clinicians to translate nonuniform clinical dose distributions into uniform equivalent exposures. With the broad clinical adoption of three-dimensional conformal radiotherapy, dose-volume histogram analysis became the standard benchmark for radiotherapy treatment planning. Among these physical dose parameters, the percentage of total lung volume receiving at least twenty Gray, known as V20, alongside the mean lung dose, emerged as the most widely used predictive variables in routine clinical practice, showing consistent prognostic associations across conventional chemoradiotherapy, hypofractionated radiotherapy, and combined modality protocols.\n\nDespite their pervasive clinical implementation, conventional dose-volume metrics exhibit fundamental methodological limitations that restrict their ability to capture individual susceptibility to radiation pneumonitis. Traditional parameters compress complex, three-dimensional spatial dose distributions into simplified, low-dimensional cumulative volume statistics, discarding vital geometric and spatial arrangement details. Consequently, two treatment plans yielding identical V20 and mean lung dose values can exhibit dramatically different regional dose depositions across the pulmonary parenchyma. Furthermore, healthy lung tissue demonstrates marked functional and anatomical heterogeneity in radiosensitivity. Historic clinical investigations demonstrated that irradiating caudal lung regions produced significantly higher pneumonitis rates than irradiating cranial regions, observing toxicity frequencies of forty percent versus eleven percent, respectively. Early attempts to combine dose-volume parameters with clinical factors such as patient age, performance status, smoking history, and baseline pulmonary function modestly improved statistical stratification, yet regression models remained vulnerable to cohort-specific fitting and exhibited reduced discriminative performance when subjected to external validation.\n\nTo overcome the loss of spatial information inherent in conventional dose metrics, researchers introduced radiomics as an objective approach to extract hundreds of high-dimensional quantitative descriptors directly from standard computed tomography scans. By mathematically evaluating spatial voxel intensity distributions, shapes, and complex textural relationships through tools like gray-level co-occurrence matrices, radiomics quantifies underlying tissue microstructures and parenchymal heterogeneity that elude visual radiological inspection. Seminal investigations demonstrated that baseline lung texture features and post-treatment textural changes significantly correlate with the subsequent manifestation of radiation-induced lung damage. In comparative modeling studies, incorporating whole-lung CT radiomic features into baseline clinical and dosimetric models substantially boosted discriminative ability, elevating the area under the receiver operating characteristic curve from 0.51 to 0.68. Later implementations utilizing automated feature selection strategies, such as the least absolute shrinkage and selection operator, confirmed the independent predictive value of pretreatment parenchymal texture across diverse thoracic radiation cohorts.\n\nThe methodological design of radiomics workflows underwent further refinement through the strategic evolution of regions of interest selected for feature extraction. While initial investigations extracted imaging metrics from whole-lung segmentations, researchers recognized that evaluating global lung parenchyma frequently diluted local injury signals due to the disproportionate volume of nonirradiated or low-dose tissue. Investigators consequently focused feature extraction on distinct physical dose regions, such as the V20 or V30 volumes, and combined anatomical boundaries minus the planning target volume. Models incorporating these high-dose spatial masks achieved superior discriminative performance, reaching an area under the curve of 0.930 compared to 0.798 for purely dosimetric models. Methodologists advanced this concept further by incorporating biological dose guidance through biologically effective dose calculations. Formulating regions of interest guided by biologically effective dose boundaries yielded an area under the curve of 0.816, outperforming models limited strictly to anatomical boundaries or physical dose thresholds alone.\n\nParallel to anatomical imaging advancements, dosiomics emerged to analyze three-dimensional radiation dose distributions as quantitative images rather than low-dimensional histograms. Instead of reducing spatial radiation deposition to isolated volume thresholds, dosiomics applies mathematical texture, shape, and spatial variation algorithms directly to spatial dose matrices, capturing intricate three-dimensional dose gradients and localized spatial patterns. In direct clinical comparisons, dosiomics models consistently surpassed standard dose-volume histogram metrics, achieving discriminative values of 0.837 versus 0.660 in stereotactic body radiotherapy cohorts. Large-scale methodological reviews synthesizing more than one hundred predictive studies involving over twenty-three thousand patients identified dosiomics as achieving the highest methodological quality scores among quantitative imaging modalities. Furthermore, multicenter investigations into feature stability identified subsets of robust dosiomics metrics capable of maintaining spatial consistency across varying dose calculation algorithms, treatment planning systems, and dose grid resolutions.\n\nRecognizing that radiation pneumonitis represents an evolving biological process rather than an instantaneous event, investigators introduced delta radiomics to track longitudinal tissue changes across serial imaging sessions. Rather than relying exclusively on static pretreatment scans, delta radiomics calculates the trajectory of feature variations between baseline simulation scans and repeat mid-treatment computed tomography or on-board cone-beam com",
+  "begyujtve": "2026-11-23T15:20:00.193057+00:00",
+  "prioritas": {
+    "pont": 47,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 45,
+      "egyediseg": 90,
+      "hitelesseg": 70,
+      "aktualitas": 98,
+      "kozossegi": 28
+    },
+    "elofeszures": 75,
+    "tanult": 17,
+    "indok": "Niche orvosi kutatási eredmény alacsony általános hírértékkel és korlátozott közönségérdeklődéssel. Forrás-tapasztalat: -7.",
+    "tema": "ai medical imaging radiation",
+    "cim_hu": "Mesterséges intelligencia segíti a tüdőrák-kezelés kockázatainak előrejelzését",
+    "lead_hu": "Kkutatók mesterséges intelligenciát és kvantitatív képalkotást alkalmaznak a sugárkezelés okozta tüdőgyulladás kockázatának hatékonyabb felmérésére.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-23T15:20:29+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-23T15:20:37+00:00"
+}
