@@ -1,0 +1,78 @@
+{
+  "id": "159f7e3e33df",
+  "slug": "onalloan-ellenorzi-es-fogadja-el-a-kodmodositasokat-a-claude-ship",
+  "forras_id": "techmeme",
+  "forras_nev": "ZDNET",
+  "url": "https://www.zdnet.com/innovation/claude-ship-code-how-to-try/",
+  "szerzo": null,
+  "publikalva": "2026-11-23T21:25:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.zdnet.com/wp-content/uploads/sites/3/GettyImages-2271847888.jpg"
+  },
+  "cim_eredeti": "Anthropic unveils Claude Ship, letting Claude review, fix, and approve GitHub pull requests based on team policies, in beta for Claude Team and Enterprise tiers (Radhika Rajkumar/ZDNET)",
+  "forrasok": [],
+  "szoveg_eredeti": "Developers are already using Claude Code and other AI-powered coding tools like OpenAI’s Codex in droves, but some still want to check code themselves before pushing it. A new feature from Anthropic is banking on more adventurous, agent-first coders being comfortable with handing even that last step off to AI.\n\nWith Claude Ship, announced in beta Monday, “Claude can now review pull requests, fix them, and approve the ones that a team’s policy allows,” Anthropic said. The feature is geared toward developers who want to move faster or already delegate a significant amount of coding tasks to agents.\n\nAlso: How I made a paid Mac app in 11 days with Claude – without writing a single line of code\n\n“Teams stay in control of where it runs and which changes need a person,” Anthropic said. “The goal: ship code as fast as teams write it.”\n\nThe new feature uses two new agents alongside Code Review, which Anthropic released in March for Teams and Enterprise plans. Code Review first collects, organizes, and posts findings to a PR. Then, Anthropic said, the agents, PR Steward and Claude Approvals, guide a PR “through review, fixes, and an approval decision so teams don’t have to manage each step manually.”\n\nPR Steward can’t approve or merge pull requests, designed instead to participate “on failing CI checks, merge conflicts, and review feedback from Code Review, other review tools, or team members.” It also documents what it changed in each push through comments and provides instructions for how to undo it, should developers want to. Throughout the process, developers can give Claude instructions or tell it to stop by commenting @claude.\n\nAlso: I tried replacing Claude Code with a local AI stack that’s completely free – how it went\n\nAs a final step, Claude Approvals references whatever policy the team abides by (which developers provide as a repo file), and additional signals developers set, like Code Review findings, before approving changes autonomously if allowed. If not, it will seek out “deeper human sign-off,” Anthropic said.\n\n“It works like a smarter CODEOWNERS file,” the release added. Anthropic said it recommends that most customers enable those additional checks “first in observe-only mode to build confidence before configuring branch protection to require Claude Approvals’ green light.”\n\nAdmins can select which repos the feature runs in and adjust settings as needed.\n\nBut Claude Ship isn’t meant for everyone.\n\n“Most teams want a person to approve every change, and that’s easy to keep up with when people write every line. But a lot of developers build with agents now,” Anthropic said in the release, noting that its own Claude Code team uses Claude to write a majority of the code it needs.\n\nZDNET senior contributing editor David Gewirtz said the idea of shipping code at the speed of writing it “raises the hair on the back of my neck.” But he added that, given how impressive Claude Code has been thus far, he wouldn’t be surprised if Anthropic’s deployment tools were equally effective.\n\nAlso: Claude Code vs. Codex: Why I use both and how to choose one (if you must)\n\n“But, it does depend on the team’s workflow and the kind of development they’re doing,” he said. “It’s not something for every team and certainly not for every indy developer, but for certain deployment processes, it could shave a ton of time off turnaround, saving money and potentially sending fixes to customers much faster. ‘Tis cool.”\n\nUltimately, Gewirtz said he has reasons to both trust the tool and be concerned about what it means for younger developers in the workplace.\n\n“Since that workflow is often assigned to less experienced members of the team, it’s likely that Claude would be as accurate, although it’s one more way to shut the junior members out of where they add value to the company and grow their skills to become senior decision makers,” he said.\n\nDeveloper platforms overall are adapting to the new state of the industry. Entire, a GitHub competitor started by the Microsoft-owned platform’s former CEO, is built around the expectation that developers are working side-by-side with agents.\n\nClaude Team and Enterprise plan users can try the new feature using the /ship command now available in Claude Code. The feature uses tokens, so your overall bill may change, but it depends on the number of PRs users are putting through Claude Ship — to avoid any surprises, admins can set spending limits for both Code Review and the new PR Steward agent. They can also turn Claude Ship on for an entire repo, meaning developers won’t need the /ship command.\n\nAnthropic added that certain Enterprise organizations “can claim at least $10,000 in Claude Ship credits to use within 30 days of claiming” by Jan. 15, 2027.\n\nAlso: How I safely run my OpenClaw AI agent 24/7 on a Mac – with Claude Code standing guard\n\nAs with other Claude features, like the still-to-come Meetings, customers with a zero-data-retention policy and other privacy configurations don’t have access to Claude Ship.\n\nPlease accept cookies to view the comments powered by Disqus.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Önállóan ellenőrzi és fogadja el a kódmódosításokat a Claude Ship",
+  "lead": "Az Anthropic új béta funkciója automatikusan javítja és jóváhagyja a GitHub pull requesteket a csapatok által megadott szabályzat alapján.",
+  "osszefoglalo": "Az Anthropic bejelentette a **Claude Ship** béta verzióját, amely képes áttekinteni, javítani és a megadott szabályok szerint automatikusan elfogadni a GitHub pull requesteket. A megoldás két új ágentre épül: a PR Steward a sikertelen ellenőrzéseket és összevonási konfliktusokat kezeli, míg a Claude Approvals a megadott elvárások alapján dönt az automatikus jóváhagyásról.\n\nA fejlesztők a GitHub-tárolókban közzétett szabályfájlokkal határozhatják meg az AI hatáskörét, így a rendszer csak az engedélyezett módosításokat fogadja el önállóan, a többit emberi felülvizsgálatra küldi. A funkció használata beállítástól függően zsetonokat fogyaszt, de az adminisztrátorok költési korlátokat is megadhatnak a váratlan költségek elkerülése érdekében.\n\nA Claude Ship a Claude Team és az Enterprise csomagok előfizetői számára érhető el a Claude Code felületén a **/ship** parancs kiadásával.",
+  "miert_szamit": "A fejlesztői és termékcsapatok jelentős időt takaríthatnak meg a manuális kódellenőrzés automatizálásával, így **gyorsabban élesíthetik az új funkciókat és javításokat**.",
+  "cimkek": [
+    "Claude",
+    "Anthropic",
+    "GitHub",
+    "fejlesztés"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Claude Ship",
+    "PR Steward",
+    "Claude Approvals",
+    "Claude Code"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 85,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 90,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 78
+    },
+    "elofeszures": 100,
+    "tanult": 75,
+    "indok": "Jelentős új Anthropic funkció fejlesztőknek, amely önállóan kezeli a GitHub pull requesteket. Forrás-tapasztalat: -3.",
+    "tema": "anthropic claude ship github",
+    "cim_hu": "Megérkezett a Claude Ship: automatikusan felülvizsgálja és elfogadja a kódmódosításokat a GitHubon",
+    "lead_hu": "Az Anthropic bemutatta a Claude Ship béta verzióját, amely a csapatok szabályai alapján önállóan képes átnézni, javítani és jóváhagyni a GitHub pull requesteket.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-23T21:50:34+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-23T21:50:44+00:00",
+  "megjelent": "2026-11-23T21:50:44+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-23T21:50:56+00:00",
+    "esemeny": "Az Anthropic bejelentette a Claude Ship béta verzióját, amely három AI-ágens segítségével képes áttekinteni, javítani és a csapatok által meghatározott szabályok alapján jóváhagyni a GitHub pull requesteket.",
+    "forrasok": [
+      "https://www.zdnet.com/innovation/claude-ship-code-how-to-try/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-23T21:51:16+00:00"
+}
