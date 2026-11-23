@@ -1,0 +1,77 @@
+{
+  "id": "1e76c0b8d109",
+  "slug": "mi-agensek-terveztek-uj-tipusu-processzort-az-architect-labsnel",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/23/architect-labs-frostbite-ai-designed-cpu-interaction-nets/",
+  "szerzo": "Michal Sutter",
+  "publikalva": "2026-11-23T10:05:47+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-1113454-2-scaled.png"
+  },
+  "cim_eredeti": "Architect Labs Unveils Frostbite, an Interaction Net CPU Designed by AI",
+  "forrasok": [],
+  "szoveg_eredeti": "Architect Labs has introduced Frostbite , an AI-designed CPU with a new instruction set built around interaction nets. The company states that its AI agents designed Frostbite from interaction net theory down to final GDS. In pre-silicon tests, it reports 4.59x the performance per watt of a modern in-order CPU core. \n\n TL;DR \n\n Size: 1 quad (2×2 tiles) plus 4 L3 nodes takes 0.792 mm² on 7 nm. No parameter count (it is a CPU).\n\n Runs on: Pre-silicon only. Final GDS closes at 500 MHz on 7 nm. An FPGA-hosted playground is planned.\n\n Performance: 4.59x perf per watt (geomean, 25 workloads) and 8.77x perf per area vs 1 in-order core.\n\n Best: 23.12x perf per watt on conv2d.\n\n What is Frostbite? \n\n Frostbite is a CPU from Architect Labs that executes programs as interaction nets in hardware. Programs are written in Vine , a Rust-like language, and compiled to an IR called Ivy. The chip is a mesh of tiles, each with its own small local memory. The launch post on X states that the AI agents co-designed the ISA and chip architecture given only interaction net theory.\n\n How do interaction nets enable parallelism? \n\n Interaction nets were introduced by Yves Lafont at POPL 1990 . A program is a graph of nodes. Computation rewrites pairs of nodes connected through their ports. Each node has 1 principal port, so active pairs never overlap and can fire in any order. Every value is used exactly once, so there is no shared mutable state to guard.\n\n A 5-queens net has 3,183 interactions and a 262-step critical path. About 12 interactions are ready per step. Software runtimes such as HVM2 already run interaction nets on GPUs. Frostbite moves the model into the ISA itself.\n\n How is the Frostbite hardware organized? \n\n The chip is built from tiles grouped into 2×2 quads. Each tile has front end, engine, memory and system blocks. A runtime domain adds a frame manager, scheduler, work queue and outlet. Its ISA adds wide bundles, hardware loop counters, streams, and ops that take, peek or copy values.\n\n Each tile runs its own queued work first. If idle, it takes work from a neighbor. If none is found, it goes inactive to save power. The company says this work stealing emerged during design and was not hand-specified.\n\n How did AI agents design the chip? \n\n Agents first synthesized papers and built Python models. Their output was a 141-page PDF. It was deleted after the first RTL pass because its estimates were physically unrealistic.\n\n The research team then used ASL, an in-house, machine-checkable specification language. ASL is the single source of truth for the ISA, the Arcmodel system model, RTL and verification. The spec translates to Lean , and the project passed 800k lines of Lean.\n\n Arcmodel first diverged from RTL by almost 250% in the worst case. An automated fitting pipeline cut that to under 6% worst case and about 1.5% median. Arcmodel simulates the full chip 660x faster than RTL. Across 4 searches and an ablation round, agents tried 58 ideas and kept 37. The design targets 7 nm, timing at 800 MHz in synthesis and 500 MHz in final GDS.\n\n It follows Redwood , an edge AI accelerator the company announced in August 2026.\n\n How does Frostbite perform on benchmarks? \n\n The baseline is ‘TCPU,’ 1 core of a modern dual-issue, in-order superscalar CPU. Architect Labs does not name it, citing legal reasons. 1 Frostbite quad plus 4 L3 nodes occupies 0.792 mm². TCPU occupies 0.895 mm² on the same process.\n\n Across 25 workloads, geomean performance per watt is 4.59x. The 10-workload search set scores 6.02x, and the 15-workload held-out set 3.83x. Results range from 23.12x on conv2d to 1.15x on fib. Performance per area averages 8.77x.\n\n Fetch, decode and issue fall from 27% of TCPU energy to 6% in a quad. The on-chip network and scheduler take 26% instead. The fft, radixsort and LU kernels follow SPLASH-2 , scaled down 64x.\n\n How does Frostbite compare with other approaches? \n\n Metrics Frostbite TCPU baseline HVM2 Arm Cortex-A55 (same core class, not confirmed as TCPU) Type Research CPU, new ISA Commercial CPU core (name undisclosed) Software runtime Commercial CPU core Compute model Interaction nets in hardware Conventional ISA Interaction combinators on CPU/GPU ARMv8.2-A Pipeline / issue Tiled mesh, spatial pipelining Dual-issue, in-order Not applicable Dual-issue, in-order, 8-stage Unit compared 1 quad (2×2 tiles) + 4 L3 nodes 1 core Not applicable 1 core Area 0.792 mm² 0.895 mm² Not applicable Not disclosed Process 7 nm Same process Runs on existing chips Varies by licensee Clock 500 MHz (final GDS) Not disclosed Host dependent 1.25 to 2.31 GHz Parallelism source Program graph, work stealing Instruction-level, 2 slots Up to 32,768 GPU threads Instruction-level, 2 slots Headline number 4.59x perf/watt vs TCPU (pre-silicon) 1.0x baseline ~74,000 MIPS on RTX 4090 Not disclosed Status Pre-silicon, GDS Shipping silicon Open source on GitHub Shipping since 2017 \n\n Key Takeaways \n\n Frostbite runs interaction nets in hardware, with no threads or locks.\n\n AI agents took the design from theory to 7 nm GDS.\n\n 4.59x perf per watt geomean, but 3.83x on held-out workloads.\n\n Best case 23.12x (conv2d), worst case 1.15x (fib).\n\n Pre-silicon only, against an undisclosed baseline core.\n\n Check out the full Frostbite technical post , the Vine language docs and Lafont’s original paper . You can check the deployment options and specs here through our GPULeaderboard.com chrome extension .\n\n Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post Architect Labs Unveils Frostbite, an Interaction Net CPU Designed by AI appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "MI-ágensek terveztek új típusú processzort az Architect Labsnél",
+  "lead": "Az Architect Labs bemutatta a Frostbite nevű processzort, amelyet mesterséges intelligencia tervezett az elmélettől egészen a fizikai chiptervig.",
+  "osszefoglalo": "Az Architect Labs kifejlesztette a Frostbite nevű processzort, amelynek teljes architektúráját és utasításkészletét MI-ágensek tervezték. A chip nem a megszokott rendszert követi, hanem interakciós hálózatokat futtat közvetlenül a hardveren. A programokat egy Vine nevű nyelven írják, a chip pedig csempékből álló hálózatként működik, ahol a feladatokat a feldolgozók automatikusan osztják meg egymás között.\n\nA szimulációs tesztek alapján a 7 nm-es technológiára tervezett lapka átlagosan **4,59-szeres teljesítményt nyújt wattonként** egy hagyományos processzormaghoz képest. Bizonyos gépi tanulási feladatoknál a hatékonyságnövekedés a 23-szoros értéket is eléri. A fejlesztés során az ágensek 58 tervezési ötletet teszteltek, és 37-et építettek be a végleges modellbe.\n\nA processzor jelenleg még csak szimulációs fázisban létezik, fizikai chip még nem készült belőle. A cég a jövőben egy FPGA-alapú tesztkörnyezet elindítását tervezi, ahol a fejlesztők kipróbálhatják az új architektúrát.",
+  "miert_szamit": "A fejlesztés megmutatja, hogy a **mesterséges intelligencia már nemcsak szoftvert, hanem komplex hardvert is képes önállóan tervezni**, ami a jövőben drasztikusan felgyorsíthatja a specializált AI-chipek piacra kerülését.",
+  "cimkek": [
+    "Architect Labs",
+    "Frostbite",
+    "hardver",
+    "processzor"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Frostbite",
+    "Vine"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 75,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 74,
+      "aktualitas": 95,
+      "kozossegi": 62
+    },
+    "elofeszures": 87,
+    "tanult": 51,
+    "indok": "Technológiai áttörés, mesterséges intelligencia által tervezett teljesen új architektúrájú CPU. Forrás-tapasztalat: -6.",
+    "tema": "architect labs frostbite ai cpu",
+    "cim_hu": "Bemutatták a Frostbite-ot, a teljesen AI által tervezett új processzort",
+    "lead_hu": "Az Architect Labs bemutatta a Frostbite CPU-t, amelyet az alapoktól kezdve AI-ágensek terveztek. Az előzetes tesztek szerint a processzor 4,59-szeres energiahatékonyságot ér el a hagyományos magokhoz képest.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-23T10:51:13+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-23T10:51:30+00:00",
+  "megjelent": "2026-11-23T10:24:18.361Z",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-23T10:51:40+00:00",
+    "esemeny": "Az Architect Labs bemutatta a Frostbite nevű processzort, amelynek architektúráját és utasításkészletét interakciós hálózatok elmélete alapján MI-ágensek tervezték meg egészen a végleges GDS chiptervig.",
+    "forrasok": [
+      "https://www.marktechpost.com/2026/11/23/architect-labs-frostbite-ai-designed-cpu-interaction-nets/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-23T10:52:04+00:00",
+  "linkek_ellenorizve": true
+}
