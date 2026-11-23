@@ -1,0 +1,49 @@
+{
+  "id": "ae9c5d3609f0",
+  "slug": "opencode-and-a-local-llm-handle-the-boring-80-of-my-coding-so-claude",
+  "forras_id": "dailydev",
+  "forras_nev": "XDA Developers (daily.dev)",
+  "url": "https://www.xda-developers.com/opencode-and-a-local-llm-handle-the-boring-80-of-my-coding-so-claude-only-gets-the-hard-part",
+  "publikalva": "2026-11-21T19:00:20+00:00",
+  "cim": "OpenCode and a local LLM handle the boring 80% of my coding, so Claude only gets the hard part",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 39 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/49f9480d7cff3306f87e8b5da484557e?_a=AQAEuop"
+  },
+  "cim_eredeti": "OpenCode and a local LLM handle the boring 80% of my coding, so Claude only gets the hard part",
+  "szoveg_eredeti": "OpenCode has been making its name lately as the open-source alternative to Claude Code, and there's no doubt that you'll find many guides online that'll tell you that it's possible to replace Claude with this free alternative already. Personally, I have a hard time believing in such extreme propositions, having seen what Claude's models are capable of, even on models like Sonnet 5.5, that are free to use.\n\nTwo weeks ago, I put OpenCode and a local model up against Claude Code on my RTX 4070 Ti Super, and the open-source pair came out of it better than I thought it would. I have no qualms about the capability of the right model paired with OpenCode, yet I do wonder if it's premature to hand a local model everything at once and expect it to ace it all. In my newest setup, Opus 5.5 now plans the work and fixes what breaks, while Qwen3.6-35B-A3B on my GPU handles the coding almost completely free of cost.\n\nWhenever I wanted to get started on a new project, I'd get Claude to plan, execute, and fine-tune all the aspects of it on its own, which I assume is the general impulse of anyone with a paid subscription. But the problem is, most of that work doesn't need the capability of a flagship model. Menus, settings, and other files make up most of a new project, and I'd much rather save Claude's usage for the two jobs that justify it the most, and catch local models off-guard, which is planning, and fixing whatever breaks.\n\nThat meant that I needed a planner, a local model that could write and test code, and a harness to run it in. I already had all three, and two of them worked free of cost. The planner would obviously be Claude Code with Opus 5.5 on my Pro plan, Qwen3.6-35B-A3B on my RTX 4070 Ti Super through llama.cpp, and OpenCode, which I set up a few months ago.\n\nFor my latest project, I wanted to build a block-breaker game. I delivered a basic prompt stating what I wanted, and Opus turned it into a detailed brief with specifications around game mechanics, scoring, and level progression. It took under two minutes for Opus 5.5 to write 393 lines, and it flagged the three challenges which were most likely to trip up my local model, including collision handling, the paddle's bounce angle, and the testing.\n\nThe next part of the development journey was as straightforward as you'd assume it to be, but with some rather astonishing results. I handed PLAN.md to Qwen3.6-35B-A3B in OpenCode, running the UD-IQ4_XS quant with a 65K context window, and told it to follow the steps in order. It read all 393 lines before writing, and used Opus's constants exactly as provided, and called step 7 the hardest one before building the collision system the way the plan described.\n\nStep 14 is where it did things that I have never seen it do on its own. Its first test failed 6 of 13 tests, so it wrote its own diagnostic scripts and traced the ball's position through every sub-step until it found the bugs, including a side-collision check that fired even when the ball wasn't moving sideways in the game. The failures then dropped to two, then one, and then none.\n\nIt did hit a wall at two failures, though, when the session outgrew its 65K context. I restarted llama-server with a 131K window and told it to continue where it left off, and the whole build took about 42 minutes with the restart included. Every single line of it ran on my own GPU, but by then, the savings weren't what I was paying most attention to. All 13 tests passed, and Qwen got there on its own, with nothing from me but a restart.\n\nThe most astonishing aspect of this test wasn't exactly Qwen's work, because this specific model had proven its worth when it came to coding tasks on my machine time and again. The bit that had me going back to this experiment was how well Opus had predicted the roadblocks.\n\nThe F1 key, the speed jump between levels, and the high score file all passed on Qwen's first test run without a hitch, and all six of the failures sat in the steps that Opus specifically had flagged as hard. This included the ball slipping through bricks and the paddle, along with its bounce angle.\n\nThe test also made me privy to exactly where a local model cuts corners. Since Qwen can't see a game window, for most of the build, it treated a step that ran without crashing as a step that worked. Those two aren't the same, at least by the methodology that Opus 5.5 operates upon in my experience. Further, when one of its own tests didn't add up, it rewrote the test to check a different situation, and a couple of its \"fixes\" exist mostly to keep its tests happy.\n\nI still don't completely buy the idea that OpenCode and a local model can replace Claude outright, at least not on my hardware, and not in present day. This test didn't change my mind, and it's not something that I was looking to test anyway. What I was more curious about was whether the two could work together to create a more economical workflow, and everything that I've looked at seems to suggest that they most certainly can if you give Claude what it does best, which is planning, and let your local LLM handle the execution.",
+  "begyujtve": "2026-11-23T07:50:43.654155+00:00",
+  "prioritas": {
+    "pont": 39,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 35,
+      "egyediseg": 85,
+      "hitelesseg": 62,
+      "aktualitas": 42,
+      "kozossegi": 61
+    },
+    "elofeszures": 76,
+    "tanult": 62,
+    "indok": "Egyéni fejlesztői vélemény és munkafolyamat-bemutató az OpenCode és a Claude használatáról Forrás-tapasztalat: -8.",
+    "tema": "opencode claude local llm workflow",
+    "cim_hu": "Nyílt forráskódú AI-modellre bízható a kódolási feladatok nagy része",
+    "lead_hu": "Egy fejlesztő tapasztalatai alapján az OpenCode és egy helyi nyelvi modell hatékonyan elvégzi a rutin kódolási feladatokat, így a drágább Claude modell csak a komplex kihívásokhoz szükséges.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-23T07:52:54+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-23T07:54:29+00:00"
+}
