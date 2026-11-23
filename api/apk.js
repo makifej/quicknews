@@ -40,17 +40,38 @@ async function aktiv(req, res) {
     await kv("HSET", "qn:app_teszt_eszkoz", e, v);
     res.statusCode = 200; res.end(JSON.stringify({ ok: true, teszt: true, mi })); return;
   }
+  // frissítési esemény: csak a frissítés számlálóit növeli, új telepítésként soha nem szerepel. Napi, verziónkénti
+  // bontás (qn:app_frissites_nv:<nap>), és a frissítő készülékek egyedi halmaza (qn:app_frissito).
+  const frissitesEsemeny = async () => {
+    const fn = frissitve ? napja(frissitve) : nap;
+    await kv("HINCRBY", "qn:app_frissites_nap", fn, 1);
+    await kv("HINCRBY", "qn:app_frissites_verzio", v || "?", 1);
+    await kv("HINCRBY", "qn:app_frissites_nv:" + fn, v || "?", 1);
+    await kv("EXPIRE", "qn:app_frissites_nv:" + fn, 400 * 86400);
+    await kv("SADD", "qn:app_frissito", e);
+  };
   if (regiV === null || regiV === undefined) {
     if (telepitve && Math.abs(frissitve - telepitve) < 1000) {
-      await kv("HINCRBY", "qn:app_telepites_nap", napja(telepitve), 1);
+      // új telepítés: a telepítés napja szerinti számláló és kohorsz (visszatérés-mérés)
+      const tn = napja(telepitve);
+      await kv("HINCRBY", "qn:app_telepites_nap", tn, 1);
+      await kv("SADD", "qn:app_cohort:" + tn, e);
+      await kv("EXPIRE", "qn:app_cohort:" + tn, 130 * 86400);
     } else {
-      await kv("HINCRBY", "qn:app_frissites_nap", frissitve ? napja(frissitve) : nap, 1);
-      await kv("HINCRBY", "qn:app_frissites_verzio", v || "?", 1);
+      // korábbról meglévő telepítés, amely most frissült (a pultban frissítésként, nem telepítésként)
+      await frissitesEsemeny();
       await kv("INCR", "qn:app_regi_telepites");
     }
   } else if (regiV !== v) {
-    await kv("HINCRBY", "qn:app_frissites_nap", frissitve ? napja(frissitve) : nap, 1);
-    await kv("HINCRBY", "qn:app_frissites_verzio", v || "?", 1);
+    await frissitesEsemeny();
+  }
+  // visszatérés: ha ma egy k napja telepített készülék jelzett, a (telepítés napja, k) párba kerül, egyszer
+  for (const k of [1, 7, 30]) {
+    const d = napja(Date.now() - k * 86400000);
+    if (await kv("SISMEMBER", "qn:app_cohort:" + d, e)) {
+      await kv("SADD", `qn:app_vissza:${k}:${d}`, e);
+      await kv("EXPIRE", `qn:app_vissza:${k}:${d}`, 130 * 86400);
+    }
   }
   if (v) await kv("HSET", "qn:app_eszkoz_verzio", e, v);
   await kv("SADD", `qn:app_aktiv:${nap}`, e);
@@ -74,6 +95,13 @@ module.exports = async (req, res) => {
       const kulcs = frissites ? "qn:apk_frissites" : "qn:apk_letoltes";
       await kv("INCR", kulcs);
       await kv("HINCRBY", kulcs + "_nap", nap, 1);
+      // APK-letöltés forrás szerint: web (alap) vagy banner (az oldalsáv/cikk-banner ?forras=banner linkje)
+      const forras = /[?&]forras=banner\b/.test(req.url || "") ? "banner" : "web";
+      if (!frissites) {
+        await kv("INCR", "qn:apk_forras:" + forras);
+        await kv("HINCRBY", "qn:apk_forras_nap:" + nap, forras, 1);
+        await kv("EXPIRE", "qn:apk_forras_nap:" + nap, 400 * 86400);
+      }
       // Heni 2026-11-18: minden letöltés a GA4-be is (Measurement Protocol, minden alkalommal új, véletlen azonosító,
       // ugyanúgy, mint a bannerkattintásnál). Külön eseménynév, hogy ne duplázza a weboldal hozzájárulásos apk_letoltes-ét.
       const ua = String(req.headers["user-agent"] || "");

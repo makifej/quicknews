@@ -21,6 +21,40 @@ async function kv(...parancs) {
   return j.result;
 }
 
+// Budapest szerinti nap, d nappal ezelőtt (0 = ma)
+function pestiNap(d) {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Budapest" }).format(new Date(Date.now() - d * 86400000));
+}
+
+// Redis HGETALL -> { mező: szám } (számlálókhoz)
+async function hashSzam(k) {
+  const l = (await kv("HGETALL", k)) || [];
+  const o = {};
+  for (let i = 0; i < l.length; i += 2) o[l[i]] = Number(l[i + 1]);
+  return o;
+}
+
+// Redis HGETALL -> { mező: szöveg } (verziókhoz)
+async function hashSzoveg(k) {
+  const l = (await kv("HGETALL", k)) || [];
+  const o = {};
+  for (let i = 0; i < l.length; i += 2) o[l[i]] = String(l[i + 1]);
+  return o;
+}
+
+// Egyedi darabszám több halmaz uniójából. A teljes lista nem jön vissza: a Redisben SUNIONSTORE, majd SCARD.
+async function egyediSzam(kulcsok) {
+  const tmp = "qn:tmp:uniq:" + Math.random().toString(36).slice(2);
+  await kv("SUNIONSTORE", tmp, ...kulcsok);
+  await kv("EXPIRE", tmp, 60);
+  const n = Number((await kv("SCARD", tmp)) || 0);
+  await kv("DEL", tmp);
+  return n;
+}
+
+// Az app-mérés kezdete (api/apk.js mi=aktiv): az 1.3.61-es verzió, 2026. november 23. A régebbi telefonok nem jeleznek.
+const APP_MERES_KEZDETE = "2026-11-23";
+
 // APK letöltések (api/apk.js számolja): összesen és naponta (Heni 2026-11-14)
 async function apkAdat() {
   const osszesen = Number((await kv("GET", "qn:apk_letoltes")) || 0);
@@ -40,29 +74,89 @@ async function apkAdat() {
   const frissites = Number((await kv("GET", "qn:apk_frissites")) || 0);
   const mind_napok = { ...napokNyers };
   for (const [n, db] of Object.entries(frissites_napok)) mind_napok[n] = (mind_napok[n] || 0) + db;
-  return { osszesen: osszesen - vegyes, napok, frissites, frissites_napok, vegyes, mind: osszesen + frissites, mind_napok, aktiv: await aktivAdat() };
+  // forrás szerint (az 1.3.61-es oldal óta, 2026. november 23-tól): weboldal (web) és cikk-banner (banner)
+  const forrasWeb = Number((await kv("GET", "qn:apk_forras:web")) || 0);
+  const forrasBanner = Number((await kv("GET", "qn:apk_forras:banner")) || 0);
+  const forrasNapok = await Promise.all(Array.from({ length: 14 }, (_, i) => hashSzam("qn:apk_forras_nap:" + pestiNap(i))));
+  const forras_napok = {};
+  forrasNapok.forEach((o, i) => { forras_napok[pestiNap(i)] = { web: o.web || 0, banner: o.banner || 0 }; });
+  return { osszesen: osszesen - vegyes, napok, frissites, frissites_napok, vegyes, mind: osszesen + frissites, mind_napok,
+    forras: { kezdet: APP_MERES_KEZDETE, web: forrasWeb, banner: forrasBanner, frissites, napok: forras_napok },
+    aktiv: await aktivAdat(), push: await pushAdat() };
 }
 
-// napi aktív app-készülékek (api/apk.js mi=aktiv, Heni 2026-11-23): ma, 7 nap, 30 nap, összes, és az utolsó 14 nap
+// App-felhasználók (api/apk.js mi=aktiv): napi, 7 és 30 napos aktív, telepítés és frissítés külön, verziók,
+// elhagyók, visszatérés. Minden szám a 2026. november 23-i méréstől számít.
 async function aktivAdat() {
-  const nap = (d) => new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Budapest" }).format(new Date(Date.now() - d * 86400000));
-  const kulcsok = Array.from({ length: 30 }, (_, i) => `qn:app_aktiv:${nap(i)}`);
-  const szamok = await Promise.all(kulcsok.slice(0, 14).map((k) => kv("SCARD", k)));
+  const napKulcsok = (n) => Array.from({ length: n }, (_, i) => `qn:app_aktiv:${pestiNap(i)}`);
+  // napi aktív: az utolsó 30 nap
+  const napiSzamok = await Promise.all(napKulcsok(30).map((k) => kv("SCARD", k)));
   const napok = {};
-  szamok.forEach((n, i) => { napok[nap(i)] = Number(n || 0); });
-  const het = ((await kv("SUNION", ...kulcsok.slice(0, 7))) || []).length;
-  const ho = ((await kv("SUNION", ...kulcsok)) || []).length;
-  const par = async (k) => { const l = (await kv("HGETALL", k)) || []; const o = {}; for (let i = 0; i < l.length; i += 2) o[l[i]] = Number(l[i + 1]); return o; };
-  const telepites_napok = await par("qn:app_telepites_nap"), frissites_napok = await par("qn:app_frissites_nap");
+  napiSzamok.forEach((n, i) => { napok[pestiNap(i)] = Number(n || 0); });
+  const het = await egyediSzam(napKulcsok(7));
+  const ho = await egyediSzam(napKulcsok(30));
+  const osszes = Number((await kv("SCARD", "qn:app_eszkozok")) || 0);
+  // telepítések és frissítések
+  const telepites_napok = await hashSzam("qn:app_telepites_nap");
+  const frissites_napok = await hashSzam("qn:app_frissites_nap");
   const osszeg = (o) => Object.values(o).reduce((a, b) => a + b, 0);
+  const frissites_nv = {};
+  const nvNapok = await Promise.all(Array.from({ length: 30 }, (_, i) => hashSzam("qn:app_frissites_nv:" + pestiNap(i))));
+  nvNapok.forEach((o, i) => { if (Object.keys(o).length) frissites_nv[pestiNap(i)] = o; });
+  const frissito = Number((await kv("SCARD", "qn:app_frissito")) || 0);
+  // verzióeloszlás: az utolsó 7 nap aktív készülékei, mindegyik a legutóbbi ismert verziójával
+  const verzioNapok = await Promise.all(Array.from({ length: 7 }, (_, i) => hashSzoveg("qn:app_verzio:" + pestiNap(6 - i))));
+  const legutobbi = {};
+  verzioNapok.forEach((o) => Object.assign(legutobbi, o)); // régebbi napok előbb, az újabb felülírja
   const verziok = {};
-  const ev = (await kv("HGETALL", "qn:app_eszkoz_verzio")) || [];
-  for (let i = 1; i < ev.length; i += 2) verziok[ev[i]] = (verziok[ev[i]] || 0) + 1;
-  return { ma: napok[nap(0)] || 0, het, ho, osszes: Number((await kv("SCARD", "qn:app_eszkozok")) || 0), napok,
-    telepites: osszeg(telepites_napok), telepites_ma: telepites_napok[nap(0)] || 0, telepites_napok,
-    frissites: osszeg(frissites_napok), frissites_ma: frissites_napok[nap(0)] || 0, frissites_napok,
-    frissites_verzio: await par("qn:app_frissites_verzio"), verziok, regi_telepites: Number((await kv("GET", "qn:app_regi_telepites")) || 0),
-    teszt_utolso: JSON.parse((await kv("GET", "qn:app_teszt_utolso")) || "null") };
+  Object.values(legutobbi).forEach((v) => { verziok[v] = (verziok[v] || 0) + 1; });
+  const frissites_verzio = await hashSzam("qn:app_frissites_verzio");
+  // visszatérés: a telepítés napja szerinti kohorszok, és hány készülék jelzett a telepítés után 1, 7, 30 nappal
+  const kohorszok = await Promise.all(Array.from({ length: 30 }, (_, i) => i).map(async (i) => {
+    const d = pestiNap(i);
+    const [meret, v1, v7, v30] = await Promise.all([
+      kv("SCARD", "qn:app_cohort:" + d), kv("SCARD", `qn:app_vissza:1:${d}`), kv("SCARD", `qn:app_vissza:7:${d}`), kv("SCARD", `qn:app_vissza:30:${d}`),
+    ]);
+    return { nap: d, telepites: Number(meret || 0), vissza1: Number(v1 || 0), vissza7: Number(v7 || 0), vissza30: Number(v30 || 0) };
+  }));
+  // csak azok a kohorszok számítanak, ahol a k napos nap már eltelt (i >= k)
+  const visszaArany = (k) => {
+    let m = 0, v = 0;
+    kohorszok.forEach((c, i) => { if (i >= k) { m += c.telepites; v += c[`vissza${k}`]; } });
+    return { telepites: m, vissza: v, arany: m ? Math.round((v / m) * 1000) / 10 : null };
+  };
+  const teszt = JSON.parse((await kv("GET", "qn:app_teszt_utolso")) || "null");
+  return {
+    kezdet: APP_MERES_KEZDETE, verzio_kezdet: "1.3.61",
+    ma: napok[pestiNap(0)] || 0, het, ho, osszes, napok,
+    elhagyo7: Math.max(0, osszes - het), elhagyo30: Math.max(0, osszes - ho),
+    telepites: osszeg(telepites_napok), telepites_ma: telepites_napok[pestiNap(0)] || 0, telepites_napok,
+    frissites: osszeg(frissites_napok), frissites_ma: frissites_napok[pestiNap(0)] || 0, frissites_napok,
+    frissito, frissites_verzio, frissites_nv,
+    verziok, verzio_aktiv_7: Object.keys(legutobbi).length,
+    kohorszok, visszater: { 1: visszaArany(1), 7: visszaArany(7), 30: visszaArany(30) },
+    regi_telepites: Number((await kv("GET", "qn:app_regi_telepites")) || 0),
+    teszt_utolso: teszt,
+  };
+}
+
+// Push-értesítések az utolsó 30 napban, értesítésenként: FCM elfogadta (topik-küldés), megnyitás, egyedi készülék
+async function pushAdat() {
+  const sorok = ((await kv("LRANGE", "qn:push:elozmeny", 0, 199)) || []).map((s) => { try { return JSON.parse(s); } catch (e) { return null; } }).filter(Boolean);
+  const kezdet = Date.now() - 30 * 86400000;
+  const utolso = sorok.filter((e) => e.kuldve && Date.parse(e.kuldve) >= kezdet);
+  const megnyitas = utolso.length ? ((await kv("HMGET", "qn:push:megnyitas", ...utolso.map((e) => e.id))) || []) : [];
+  const reszletek = await Promise.all(utolso.map(async (e, i) => ({
+    cim: e.cim || "", tema: e.tema || "", kuldve: e.kuldve,
+    fcm_elfogadta: !!e.fcm,
+    megnyitas: Number(megnyitas[i] || 0),
+    egyedi_keszulek: Number((await kv("SCARD", "qn:push:nyito_eszk:" + e.id)) || 0),
+  })));
+  return {
+    idoszak: "az utolsó 30 nap", kuldott: reszletek.length, fcm_elfogadta: reszletek.filter((r) => r.fcm_elfogadta).length,
+    megnyitas: reszletek.reduce((a, r) => a + r.megnyitas, 0), egyedi_keszulek: reszletek.reduce((a, r) => a + r.egyedi_keszulek, 0),
+    reszletek: reszletek.slice(0, 12),
+  };
 }
 
 // hirdetés-banner kattintások (api/hirdetes.js számolja): összesen, helyenként, naponta (Heni 2026-11-17)

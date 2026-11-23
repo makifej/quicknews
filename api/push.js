@@ -197,6 +197,11 @@ module.exports = async (req, res) => {
       if (db > 60) return json(res, 429, { hiba: "Túl sok kérés." });
       if (!(await kv("SISMEMBER", P + "pidek", b.pid))) return json(res, 200, { ok: false });
       await kv("HINCRBY", P + "megnyitas", b.pid, 1);
+      // egyedi készülék: az app küldi az anonim készülékazonosítót (e); a régi verzió nélküle is számol, csak az összeset
+      if (/^[a-z0-9]{24}$/.test(String(b.e || ""))) {
+        await kv("SADD", P + "nyito_eszk:" + b.pid, String(b.e));
+        await kv("EXPIRE", P + "nyito_eszk:" + b.pid, 120 * 86400);
+      }
       return json(res, 200, { ok: true });
     }
 
