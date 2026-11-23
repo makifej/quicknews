@@ -1,0 +1,49 @@
+{
+  "id": "3c48108d99f0",
+  "slug": "graph-engineering-what-comes-after-loop-engineering-for-ai-agents",
+  "forras_id": "dailydev",
+  "forras_nev": "All Things Open (daily.dev)",
+  "url": "https://allthingsopen.org/articles/graph-engineering-ai-agents",
+  "publikalva": "2026-11-23T07:00:00+00:00",
+  "cim": "Graph engineering: What comes after loop engineering for AI agents",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 41 pont, tendencia 20%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/4d5345ef9af89d5061a7bc29e7337b23?_a=AQAEuop"
+  },
+  "cim_eredeti": "Graph engineering: What comes after loop engineering for AI agents",
+  "szoveg_eredeti": "Be the first to know and get exclusive access to offers by signing up for our mailing list(s).\n\nIn my previous post on how we moved from prompt engineering to context engineering to loop engineering, I said that what truly matters in AI systems is how you design the loops around the models you’re working with, not just what you feed into them. But a question was left hanging: What happens when a single loop isn’t enough?\n\nSimilarly, here’s an example of a research agent:\n\nThese patterns help us accomplish a wide variety of tasks. However, for larger, more complex workflows, they fall flat. When a multi-agent system has to support those workflows, the single-agent loop falls apart. Instead of having multiple agents with different capabilities all operating under the same loop, we need to define a structural framework for the agents to operate within. That structural framework is called a graph. And designing these systems has given us a new buzzword: graph engineering.\n\nThe developer community broadly started using the term graph engineering on July 18, 2026, after Peter Steinberger (creator of OpenClaw) asked on X whether developers were still talking about loops or whether the community had already shifted to graphs.\n\nBy July 25, 2026, the term had appeared in numerous blog posts and conference talks, as well as an arXiv paper.\n\nBut as Rick Hightower noted, graph engineering is really two concepts wearing a trench coat. The first is orchestration graphs. An orchestration graph is an abstraction that describes a system of multiple specialized agents acting as nodes, connected through type-routed edges and sharing state through a common structure. A single loop is the simplest possible graph: one node, one cycle. Graph engineering is what you’re doing when the work requires more than one node, conditional routing, parallel execution, human checkpoints, or any other structure your workflow needs.\n\nThe second concept is knowledge graphs. This idea goes back to Andrej Karpathy’s autoresearch project and Google Cloud’s Open Knowledge Format, released in June 2026. In this case, “graph” refers to structured knowledge that agents can traverse: linked concept files, formalized relationships, and machine-readable context. It’s less about how agents communicate and more about how agents understand their environment.\n\nBoth concepts offer value, and both were developed before anyone labeled them as graph engineering. But for open source developers building agent systems today, the emphasis is clearly on orchestration: the problem of coordinating multiple agents through a predetermined workflow.\n\nLaurie Voss and Aparna Dhinakaran at Arize identified several ways to tell when loops will no longer suffice, starting with at least four distinct types of loop architecture: execution loops (timescale: minutes), task loops (timescale: hours), product loops (timescale: continuous), and system loops (timescale: days to weeks). A single agent running a single loop at one timescale is very simple to build. The agent takes action, measures the outcome, makes adjustments based on that measurement, and then takes action again. Most production workloads can’t function with that kind of simplicity.\n\nMigrating code from one version to the next, for example, involves identifying the best way to migrate the current codebase, modifying individual files as needed, testing after each file change, and documenting the changes. Each of these is a distinct activity that requires different context, tools, and methods of assessment.\n\nAn agent responsible for long-term strategic decisions should not also be writing code. An agent responsible for migrating code should not need knowledge of the overall context. An agent testing software should be able to test in isolation. An agent responsible for documenting migrations should be able to describe the diff in a way humans can read. You may try to combine all of these tasks into one increasingly complex loop, but you ultimately end up building a graph disguised as a loop. You hide the routing inside your logic, in prompts or conditionals, instead of exposing the graph’s structure so you can see it, debug it, and modify it.\n\nLooping becomes graphing at the point where you recognize that many loops, each running at its own timescale with its own agent and its own assessment criteria, need a coordinating layer above them.\n\nGraph engineering gained traction as a practice because real production systems were already being built this way. One of the first widely available open source examples was LangGraph, which represents an agent’s workflow as a stateful graph, with explicit nodes, edges, and conditional routes. Companies including LinkedIn, Uber, Replit, AppFolio, and Elastic use LangGraph in production.\n\nUber is an excellent example. It uses a network of agents to migrate large amounts of code. No single agent can do all of the necessary work. Instead, many agents specialize in different parts of the migration, and they communicate through a predefined structure that handles handoffs and shared state across the entire migration.\n\nLinkedIn’s AI recruiter is built on a hierarchical multi-agent system. A supervisor manages a set of specialist agents that handle candidate sourcing, matching candidates to jobs, and messaging candidates. AppFolio reports that its agent copilot saves property managers about 10 hours per week on their workflows. It uses a multi-agent system where different agents handle different parts of the property manager’s workflow.\n\nEach of these examples follows the same basic architecture: break complex workflows down into highly specialized agents, structure communication between agents as fixed routes, provide mechanisms for shared state throughout the workflow, and let humans intervene when the risk becomes unacceptable.\n\nMicrosoft’s AutoGen (with its GraphFlow abstraction) and Google’s Agent Development Kit (ADK) appear to take a similar approach. The open source community seems to be recognizing that multi-agent coordination needs an established structure, rather than relying solely on creative prompt design.\n\nAs you add agents to your system, your attack surface grows. This is the area of graph engineering that deserves serious thought.\n\nOn July 22, 2026, the Cloud Security Alliance published research on multiple sandbox escapes in AI coding tools, including Cursor, Codex, and Gemini CLI. In a single-agent loop, the attack surface is limited by the number of tools available to that agent. In a graph, the number of agents working together, and the number of tools each one can use, create additional attack surfaces. And each time an agent hands control to another agent, it’s another opportunity to modify context or break a trust boundary.\n\nMore agents mean more places to attack, but that doesn’t mean you should rule out graph-based approaches entirely. Instead, establish clear trust boundaries between agents when you design your graph. Some security tooling exists today to monitor trust boundary violations as agents pass control back and forth, but this area is woefully underdeveloped.\n\nDevelopers have moved from prompting to context, then to loops, and now to orchestrating graphs. As developers move to higher levels of abstraction, their focus shifts from individual models to the overall structure of the system. At each level, open source communities can provide lasting building blocks.\n\nLangGraph, AutoGen, and Google ADK are early examples of graph-based orchestration, but significant gaps remain. Evaluation frameworks for multi-agent systems are underdeveloped. Tools for debugging graphs and visualizing them at runtime are still primitive. Security tooling that maps trust boundaries across agent handoffs does not exist today.\n\nOpen source communities have a track record of building infrastructure around persistent problems. Models will keep getting cheaper and better. The structures that carry those models into stable, r",
+  "begyujtve": "2026-11-23T17:05:17.290717+00:00",
+  "prioritas": {
+    "pont": 41,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 30,
+      "egyediseg": 95,
+      "hitelesseg": 68,
+      "aktualitas": 78,
+      "kozossegi": 50
+    },
+    "elofeszures": 86,
+    "tanult": 66,
+    "indok": "Technikai jellegű véleménycikk és hírlevél-promóció, alacsony hírértékkel. Forrás-tapasztalat: -8. A forrás P3-as híreiből eddig kb. 20%-ot fogadtál el.",
+    "tema": "graph engineering ai agents",
+    "cim_hu": "A gráfműködtetés jelentheti az AI-ágensek fejlesztésének következő lépcsőfokát",
+    "lead_hu": "Egy elemzés szerint az egyedi hurokvezérlésen túl a gráfalapú architektúrák határozzák meg a komplex AI-ágensek hatékonyságát.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-23T17:05:31+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-23T17:05:37+00:00"
+}

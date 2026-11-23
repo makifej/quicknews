@@ -1,0 +1,49 @@
+{
+  "id": "3797d0e6f4df",
+  "slug": "configure-red-hat-openshift-lightspeed-autonomous-agents",
+  "forras_id": "dailydev",
+  "forras_nev": "Red Hat Developer (daily.dev)",
+  "url": "https://developers.redhat.com/articles/2026/11/23/configure-red-hat-openshift-lightspeed-autonomous-agents",
+  "publikalva": "2026-11-23T00:00:00+00:00",
+  "cim": "Configure Red Hat OpenShift Lightspeed autonomous agents",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 36 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/s--qPvKM23u--/f_auto/v1722860399/public/Placeholder%2009"
+  },
+  "cim_eredeti": "Configure Red Hat OpenShift Lightspeed autonomous agents",
+  "szoveg_eredeti": "Accelerate the development and deployment of enterprise AI solutions.\n\nExplore learning materials and tools, organized by task.\n\nClick through scenarios with Red Hat AI, including training LLMs and more.\n\nExpand your Red Hat OpenShift AI knowledge using these learning resources.\n\nFocused AI use cases designed for fast deployment on Red Hat AI platforms.\n\nRed Hat AI Factory with NVIDIA is a co-engineered, enterprise-grade AI solution for building, deploying, and managing AI at scale across hybrid cloud environments.\n\nFind answers, get step-by-step guidance, and learn how to use Red Hat products.\n\nExplore curated walkthroughs for common development tasks.\n\nReceive custom learning paths powered by our AI assistant.\n\nSpin up Red Hat's products and technologies without setup or configuration.\n\nLearn by doing in these hands-on, browser-based experiences.\n\nClick through product features in these guided tours.\n\nA downloadable, local development hub to experiment with our products and builds.\n\nSpin up Red Hat's products and technologies without setup or configuration.\n\nDownload Red Hat products and project builds, access support documentation, learning content, and more.\n\nCheck out popular resources, tools, and information from Red Hat. We'll recommend more as you browse.\n\nA subscription may be required for some services.\n\nWith Red Hat OpenShift Lightspeed 2 on Red Hat OpenShift 5, you can configure autonomous agents to start troubleshooting when a cluster alert fires. An agent can inspect cluster resources, read logs and events, and propose a fix. With the required approvals, the workflow can then apply the fix and verify the result.\n\nIn this article, you'll learn how this workflow works, how to enable it, and how to control its level of automation. We'll then test it with a cluster failure, following the investigation from the initial alert to remediation and verification.\n\nOpenShift Lightspeed autonomous agents follow a workflow with 4 tasks: analyzing the problem, applying a fix, checking the result, and escalating when you need further help. You can use the same agent across stages or configure different agents for each one.\n\nThe process starts when OpenShift Lightspeed detects a firing alert that matches its configuration. It creates an AgenticRun, a custom resource that tracks the investigation and its progress through the workflow:\n\nAn approval policy controls whether each stage requires manual approval or starts automatically. By default, every stage waits for approval. Later in this article, we'll configure a policy that lets analysis and verification run automatically while keeping execution under your control.\n\nFigure 1 shows an example of an AgenticRun in the Red Hat OpenShift web console after the agent diagnoses an alert and executes a fix.\n\nOpenShift Lightspeed autonomous agents are available as a Technology Preview. Red Hat doesn't support Technology Preview features with production service level agreements (SLAs), and they might not be functionally complete. Red Hat doesn't recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n\nFor details, see Technology Preview Features Support Scope.\n\nIn the Red Hat OpenShift web console, go to Ecosystem → Software Catalog and search for OpenShift Lightspeed, as shown in Figure 2. Accept the default settings, and select Install.\n\nInstalling the operator prepares the controllers. We'll configure alert filtering next, then create the OLSConfig custom resource that deploys the Lightspeed services.\n\nBy default, no alerts trigger an automatic investigation. To enable this behavior, configure the alerts-adapter-config ConfigMap and specify which Alertmanager receivers the agents should monitor.\n\nAlertmanager uses routing rules to assign alerts to named receivers based on labels such as severity or namespace. By listing receiver names under allowedReceivers, you reuse those rules to select which alerts can trigger an investigation. This example allows alerts routed to the Critical receiver:\n\nCritical is a receiver name, rather than a severity label. The default OpenShift Alertmanager configuration routes alerts with severity: critical to this receiver. If your cluster uses different routing rules, adjust the receiver name accordingly.\n\nThe tools.skills section shows how to add optional skills to guide the agent during analysis. This example uses the cluster-troubleshoot skill from the openshift/agentic-skills repository, packaged as an Open Container Initiative (OCI) image and published at quay.io/openshiftanalytics/agentic-skills.\n\nIn the next step, we'll reference this ConfigMap in the OLSConfig to enable alert processing. For more configuration options, see Autonomous agentic troubleshooting.\n\nThe alert configuration is now in place. Next, we'll create the OLSConfig that deploys the Lightspeed services and connects them to this configuration.\n\nOpenShift Lightspeed intelligent assistant and OpenShift Lightspeed autonomous agents currently use separate LLM credential configurations. We'll configure the credentials for intelligent assistant here, then configure those for autonomous agents in the next step.\n\nNow create the OLSConfig with the alerts adapter enabled:\n\nWait for the app server to become available. The initial image downloads can take several minutes:\n\nOpenShift Lightspeed autonomous agents require an LLM provider and a model. The following configuration creates the provider credentials, connects them through an LLMProvider, and defines the default agent used by the workflow:\n\nThe workflow uses the default agent unless you select another agent. You can define additional Agent resources to use different models or settings for specific stages.\n\nThe agent now has a model, but it also needs access to cluster data. We'll grant read access for investigation and give the controller permissions to create remediation sandboxes.\n\nThe agent service account needs cluster-wide read access. The operator doesn't create these bindings automatically. Keep lightspeed-agent in the subjects of both bindings: the controller uses this account to find the reader bindings and grant read permissions to sandbox service accounts. Without the reader binding, analysis fails before the agent starts, with an error such as \"no ClusterRoleBinding found with subject openshift-lightspeed/lightspeed-agent.\" Apply both bindings before starting an AgenticRun:\n\nFor this walkthrough, we grant the controller cluster-admin access so it can create the roles that remediation sandboxes need. Each sandbox receives the permissions defined for its task:\n\nFor a more restricted setup, limit the controller permissions to the operations you intend to allow. The controller permissions and the permissions assigned to each temporary sandbox are separate parts of the access model.\n\nWith credentials and permissions in place, we can decide where the workflow should pause for review. Without an ApprovalPolicy, every stage waits for manual approval.\n\nFor this example, we'll let analysis, verification, and escalation run automatically. Execution will still require your approval, so you can review the diagnosis and proposed changes before the agent applies them:\n\nApproval is at the stage level: you approve or reject an entire stage, not individual commands within it. With this policy, only execution pauses for your sign-off.\n\nThe configuration is complete. We'll now deploy an application with an incorrect image name and follow the workflow through investigation, approval, and verification.\n\nThe following manifest creates the deployment and an alert that detects its image-pull failure:\n\nThe image name origin-ehllo-openshift is a typo—the correct name is origin-hello-openshift. The pods enter ImagePullBackOff, and the WebServerImagePullFailure alert fires after the condition has remained true for 1 minute, plus evaluation",
+  "begyujtve": "2026-11-23T17:05:17.290451+00:00",
+  "prioritas": {
+    "pont": 36,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 20,
+      "egyediseg": 95,
+      "hitelesseg": 72,
+      "aktualitas": 64,
+      "kozossegi": 41
+    },
+    "elofeszures": 75,
+    "tanult": 66,
+    "indok": "Vállalati PR-anyag és dokumentációs ajánló, nem valódi hír. Forrás-tapasztalat: -8.",
+    "tema": "red hat openshift ai",
+    "cim_hu": "Önálló AI-ágensek konfigurálása a Red Hat OpenShift Lightspeed platformon",
+    "lead_hu": "A Red Hat új oktatóanyagokkal és eszközökkel segíti a vállalati AI-megoldások fejlesztését és skálázását.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-23T17:05:31+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-23T17:05:35+00:00"
+}

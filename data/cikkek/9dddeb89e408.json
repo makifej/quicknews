@@ -1,0 +1,49 @@
+{
+  "id": "9dddeb89e408",
+  "slug": "finding-faster-quantum-algorithms-with-agents-and-formal-verification",
+  "forras_id": "deepmind",
+  "forras_nev": "Google DeepMind",
+  "url": "https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/",
+  "publikalva": "2026-11-23T16:59:40+00:00",
+  "cim": "Finding faster quantum algorithms with agents and formal verification",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 84 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://lh3.googleusercontent.com/jIoM2lo98EDqLMQjIaXBlXPmXgPbUPpM2GgtXcDsGekZBOPUY41IjBsnuZIhLac7MSOuRkklNBsp20a5M25oDz-xTIY0BIqoBxUqmmXvEHwlM3MJJw=w528-h297-n-nu-rw-lo"
+  },
+  "cim_eredeti": "Finding faster quantum algorithms with agents and formal verification",
+  "szoveg_eredeti": "Sergey Shirobokov, Ben Jaderberg and Ryan Babbush\n\nHow using agent teams and formal verification can improve quantum algorithms for modelling fusion energy, chemistry and enzymes\n\nQuantum computers could soon solve problems beyond the reach of classical supercomputers. However, there is a catch: even when using the best quantum algorithms, some important applications still require more resources than early quantum hardware will be able to support.\n\nIn a new paper, we used teams of Gemini 4 agents to improve well-known quantum algorithms, creating highly efficient quantum circuits. These optimized circuits, which are instructions for how a quantum computer should carry out an algorithm, could one day help us run simulations that solve complex scientific challenges, from fusion energy to drug design. To help the community build on this work, we are open-sourcing our Lean library, problem specifications, and verified solutions on GitHub.\n\nBecause we cannot test resource-intensive quantum circuits on classical computers or today's small quantum processors, we have to prove that they work mathematically. Our agent teams proved each result using Lean, a formal theorem prover.\n\nImproving quantum algorithms using agentic teams For each problem, we tasked separate, independent agent teams with finding algorithmic improvements. These ideas were then verified with Lean, before entering a shared notebook. Every four hours, agents from each team met at a virtual conference to trade, debate and compare ideas. As teams produced more effective ideas over time, the computational cost gradually fell until the experiment finished.\n\nWe chose to focus on applications that could one day impact some of humanity’s greatest challenges, such as clean energy and drug design, but our method is not limited to these problem areas.\n\nRunning these algorithms in scientific simulations would still demand more computational resources than the first error-corrected quantum computers are likely to provide, but these improvements are significant.\n\nWe are also excited by the way in which we found them. We built a new, open-source library, in Lean for quantum algorithms which could be used by teams of collaborating agents, so their ideas were backed by mathematical correctness guarantees. We could then set the research direction by specifying the problems for our agent teams and supervise their progress. Our knowledge of quantum algorithms, combined with the way we set up our agent teams, led to real scientific results.\n\nThe same approach could also accelerate other aspects of quantum computing research, and scientific discovery more broadly. Proof-checked AI search compresses work that once took years of manual design, empowering researchers to focus on choosing problems and interpreting results.\n\nThis research was a collaboration between Google DeepMind and Google Quantum AI. The work reflects the contributions of the paper's authors: Sergey Shirobokov, Ben Jaderberg, Katerina Hristova, George Tsoukalas, Johannes Bausch, Eric Wieser, Francisco J. H. Heras, Nicholas C. Rubin, Guang Hao Low, Sébastien Racanière, Nenad Tomašev, Lei M. Zhang, James D. Watson, Tanuj Khattar, Aws Albarghouthi, Stavan Jain, Harun Khan, Leopoldo Sarra, Andrew W. Senior, Michael Broughton, Hussain Masoom, Sergio Boixo, Ryan Babbush, Swarat Chaudhuri, and Pushmeet Kohli.\n\nWe also thank Kevin Ishimwe, Ibrahim Alkhashem, and Matthew Harrigan for feedback and discussions on the Lean library, Emilien Dupont and Sebastian Nowozin for manuscript feedback, and Brendan Tracey for advice on the fusion application. Finally, we thank Uchechi Okereke, Ali Douraghy, and Andy Song for legal and policy support, and Alex Wilkins, Evie Gray, Danielle Breen, Dimple Vijaykumar, Muinat Abdul, Jason Freidenfelds, Chris Kwaku-Abdullahi, and Rob Ashley for their help with visuals and communicating this work.",
+  "begyujtve": "2026-11-23T17:03:03.583273+00:00",
+  "prioritas": {
+    "pont": 84,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 50,
+      "hitelesseg": 94,
+      "aktualitas": 99,
+      "kozossegi": 62
+    },
+    "elofeszures": 90,
+    "tanult": 42,
+    "indok": "Jelentős kutatási áttörés a kvantumszámítás és AI ötvözésében a DeepMindtól. Forrás-tapasztalat: +3.",
+    "tema": "deepmind gemini quantum algorithms",
+    "cim_hu": "A Gemini 4 ágensei gyorsabb kvantumalgoritmusokat fedeztek fel a DeepMind kutatásában",
+    "lead_hu": "A Google DeepMind AI-ágensei a Lean formális ellenőrzőrendszerrel karöltve akár tízszeresére csökkentették a kvantumszimulációk erőforrásigényét.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-23T17:05:31+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-23T17:05:37+00:00"
+}
