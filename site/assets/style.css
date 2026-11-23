@@ -2130,3 +2130,11 @@ html.os-android .app-banner .ab-asztal { display: none; }
 /* Heni 2026-11-23: vékony, körbefutó quicknews-sárga keret, a párbaj- és útmutató-blokkok sarkaival */
 .adverr-fo a { display: block; border: 2px solid var(--kiemelo); border-radius: var(--sugar); overflow: hidden; }
 .adverr-fo img { display: block; width: 100%; height: auto; }
+/* Heni 2026-11-23: mobilon az app-banner szövege szavanként tört, mert az „ANDROID APP” címke elvette a helyet.
+   640 px alatt a címkéből csak az Android-ikon marad, a fehér szöveg legfeljebb 2 sor. */
+@media (max-width: 640px) {
+  .app-banner-cimke span { display: none; }
+  .app-banner-cimke { padding: 7px !important; }
+  .app-banner-gomb { padding: 6px 9px; font-size: 13.5px; }
+  .app-banner-szoveg { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 14px; line-height: 1.3; }
+}
