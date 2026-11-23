@@ -6,7 +6,7 @@
 const HIRDETESEK = {
   "boo-nyertes-tudatos-ember": "https://ai.budalaszlo.hu/landing/aikonyv/quicknews",
   // Heni 2026-11-23: az Adverr applikációfejlesztés hirdetése a cikkoldalakon, a „Miért számít” doboz helyén
-  "adverr-app": "https://adverr.hu/szolgaltatasok",
+  "adverr-app": "https://adverr.hu/sajat_fejlesztesu_alkalmazasok",  // Heni 2026-11-23: „maradjon csak ez”
 };
 const HELYEK = ["web-asztali", "web-mobil", "app", "web-cikk"];
 const GA_ID = "G-MXSE5QFHHY";
