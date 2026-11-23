@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "Kibertámadás érte az **[OpenCode](https://opencode.ai/) Console** felületét, amelynek következtében a felhasználók 1,4 százalékának API-kulcsai szivároghattak ki. A támadók az ellopott hozzáférésekkel futtattak műveleteket, ami több felhasználónál több száz vagy akár ezer dolláros jogosulatlan levonásokat eredményezett az OpenAI, az Anthropic és a Google AI fiókjaikban.\n\nA cég társalapítója, Dax Raad közölte, hogy a probléma kizárólag a Console felületét érintette, a nyílt forráskódú alkalmazás és a parancssori eszköz nem sérült. A védekezést nehezítette, hogy a védelmi feladatokra használt AI-modellek a biztonsági szűrőik miatt **megtagadták a kártékony kódok elemzését**. A helyzetet végül az OpenAI speciális, alacsonyabb korlátozású Daybreak Blue hozzáférése segítségével tudták rendezni.\n\nAz érintett szolgáltatók letiltották a kiszivárgott kulcsokat, az OpenAI és az OpenCode pedig már megkezdte az érintett ügyfelek kártalanítását. A cég arra kéri az érintetteket, hogy haladéktalanul cseréljék ki az API-kulcsaikat.",
   "miert_szamit": "Ha felhős felületeken tárolsz API-kulcsokat, **érdemes azonnal ellenőrizni a költési limiteket** és a hozzáféréseket, mert a kiszivárgott kulcsokkal a támadók órák alatt jelentős anyagi kárt okozhatnak.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-19T19:28:34+00:00",
   "forras_url": "https://techcrunch.com/2026/10/19/hackers-hit-ai-coding-tool-opencode-running-up-charges-on-users-ai-accounts/",
   "cimkek": [

@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "Az ElevenLabs bemutatta az [Eleven Realtime](https://elevenlabs.io/realtime) modellcsaládot, amelyet kifejezetten valós idejű hangalapú kommunikációra és hangügynökök fejlesztésére terveztek. A független tesztelések alapján az Eleven Realtime v1 Max modell 0,57 másodperces válaszidővel indítja el a beszédet, miközben a logikai kérdések 98,8 százalékára pontos választ ad.\n\nA rendszer automatikusan kezeli a természetes beszéd sajátosságait, mint a szünetek időzítését, a megszakításokból való visszatérést és a visszajelző hangokat. A fejlesztés két különálló modellváltozatban érhető el a felhasználók számára.\n\nA **v1 Mini** változatot a természetes párbeszédekre, például oktatási és asszisztens funkciókra optimalizálták. A **v1 Max** modell a bonyolultabb ügyfélszolgálati feladatokra, több lépéses kérésekre és adatbázis-lekérdezésekre szolgál. A modellek az [ElevenAgents](https://elevenlabs.io/docs/eleven-agents/overview) felületén és a [Realtime API](https://elevenlabs.io/docs/api-reference/speech-to-text/v-1-speech-to-text-realtime)-n keresztül azonnal elérhetők.",
   "miert_szamit": "A magyar vállalkozások **emberi hatású ügyfélszolgálati hangügynököket** építhetnek be a rendszereikbe, amelyek késleltetés nélkül, pontosan intézik a komplex vásárlói megkereséseket.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-20T14:27:52.831000+00:00",
   "forras_url": "https://www.linkedin.com/feed/update/urn:li:activity:7518317069021392897/",
   "cimkek": [
@@ -40,6 +44,25 @@
     "x_url": null
   },
   "kapcsolodo": [
+    {
+      "id": "106e5d1cffec",
+      "cim": "A Walmart felületén már vásárolhat helyettünk a Meta Muse ügynöke",
+      "lead": "A Walmart élesítette az Agent Gateway rendszert, amellyel a Meta Muse AI-ügynöke önállóan válogathat és vásárolhat a felhasználók fiókjával.",
+      "slug": "a-walmart-feluleten-mar-vasarolhat-helyettunk-a-meta-muse-ugynoke",
+      "forras": "The Verge AI",
+      "kat": "ügynök",
+      "rovat": "ugynok",
+      "ido": "2026-11-23T12:00:22.566Z",
+      "ido_hu": "nov. 23. 13:00",
+      "kep": "https://quicknews.hu/assets/kep/106e5d1cffec.webp",
+      "kep_nagy": "https://quicknews.hu/assets/kep/106e5d1cffec-n.webp",
+      "video": false,
+      "fontossag": 4,
+      "felkapott": false,
+      "forraskep": false,
+      "url": "https://quicknews.hu/hir/a-walmart-feluleten-mar-vasarolhat-helyettunk-a-meta-muse-ugynoke",
+      "jova": true
+    },
     {
       "id": "95f930266064",
       "cim": "Nyílt forráskódú AI-ügynökök tesztelik a mobilalkalmazásokat",
@@ -76,25 +99,6 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/hermes-agent-es-gemini-spark-osszehasonlitottak-a-szemelyi-ai",
-      "jova": true
-    },
-    {
-      "id": "aa247165c663",
-      "cim": "Saját asztali AI-csapatot kínál a most megjelent oovi app",
-      "lead": "Az oovi néven megjelent alkalmazás saját mesterségesintelligencia-csapatot hoz létre a felhasználó számítógépének asztalán.",
-      "slug": "sajat-asztali-ai-csapatot-kinal-a-most-megjelent-oovi-app",
-      "forras": "Product Hunt",
-      "kat": "ügynök",
-      "rovat": "ugynok",
-      "ido": "2026-11-22T10:05:19.454Z",
-      "ido_hu": "nov. 22. 11:05",
-      "kep": "https://quicknews.hu/assets/kep/aa247165c663.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/aa247165c663.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/sajat-asztali-ai-csapatot-kinal-a-most-megjelent-oovi-app",
       "jova": true
     }
   ],

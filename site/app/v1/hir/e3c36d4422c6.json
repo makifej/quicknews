@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "A Swiss AI Initiative megjelentette az [Apertus 1.5](https://apertus-ai.org/showcase/) nyílt forráskódú nyelvi modellt 8B és 70B paraméteres méretben. Az új verzió a korábbi kiadáshoz képest kép- és hangértelmezési képességet, opcionális gondolkodási módot (**thinking mode**), négyszer hosszabb kontextusablakot és jobb utasításkövetést kapott. A modellek Apache 2.0 licenc alatt tölthetők le a Hugging Face platformról.\n\nA fejlesztés során a multimodalitást korai fúziós eljárással integrálták: a képek és a hangok közvetlenül diszkrét tokenként lépnek be a modellbe a szöveges adatokkal együtt, külön vizuális enkóder használata nélkül. Ennek köszönhetően a tanítás a csak szöveges feldolgozás sebességével zajlott. A modell képeket és hangot is megért, kimenetként viszont kizárólag szöveget generál.\n\nA teljes kiadás nyitott: a modellsúlyok, a köztes ellenőrzési pontok, a tanítási adatok és a technikai részletek is nyilvánosan elérhetők. A független kiértékelést az **EvalEval** keretrendszerén keresztül tették transzparenssé, amely illeszkedik az Európai Unió AI Act szabályozásának előírásaihoz is. A modellek API-n keresztül és több felhőszolgáltatónál is elérhetők.",
   "miert_szamit": "A nyílt forráskódú, teljesen átlátható adatokkal edzett nyelvi modellek révén a fejlesztők és vállalkozások **saját infrastruktúrán, licencdíj nélkül** futtathatnak olyan rendszereket, amelyek szöveg mellett képeket és hanganyagokat is fel tudnak dolgozni.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-15T09:08:45+00:00",
   "forras_url": "https://huggingface.co/blog/swiss-ai/apertus-v15-release-notes",
   "cimkek": [

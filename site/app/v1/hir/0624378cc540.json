@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "A Microsoft és a Hongkongi Városi Egyetem kutatói létrehozták a [Taste-Bench](https://huggingface.co/datasets/wenbopan/taste-bench) nevű benchmarkot, amely azt méri, hogyan hoznak stratégiai döntéseket az AI-ügynökök a hosszabb folyamatok során. A tesztben 14 különböző AI-modellnek kellett két lehetőség közül kiválasztania a jobb megoldási útvonalat programozási és kutatási feladatok közben.\n\nA tesztek alapján a legjobb teljesítményt nyújtó **GPT-5.6 Sol** modell is mindössze **59,7 százalékos** pontosságot ért el az egyszerű, kétválasztásos kérdéseknél. A kutatásból kiderült az is, hogy a modellek gondolkodási idejének növelése nem javította az eredményeket, és a hibás döntések hosszú távon jelentős erőforrás-pazarláshoz vezetnek.\n\nA kutatók azt is bebizonyították, hogy a jó döntési képesség tanítható. Egy kisebb, finomhangolt **Qwen3.6-27B** modellnek adott tanácsok segítségével egy önállóan dolgozó AI-ügynök sikeres feladatmegoldási aránya **14,6 százalékról 33,7 százalékra** emelkedett a gyakorlati teszteken. A benchmark és a hozzá kapcsolódó kód nyilvánosan elérhető.",
   "miert_szamit": "A többnapos vagy összetett folyamatokat végző AI-ügynökök **még a korai szakaszban rossz irányt választhatnak**, ami jelentős idő- és költségveszteséget okoz. A döntési képesség szándékos tanításával azonban **több mint kétszeresére növelhető** a komplex feladatok sikeres teljesítése.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-18T08:49:41+00:00",
   "forras_url": "https://the-decoder.com/ai-agents-have-bad-taste-in-long-term-decisions-and-a-new-benchmark-proves-it/",
   "cimkek": [

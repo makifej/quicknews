@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "Niko Matsakis programozásinyelv-tervező elemzésében kifejti, hogy az AI-ügynökök elterjedése ellenére a fejlesztők és a nyelvtervezők szerepe megmarad. A **Rust** különösen alkalmas az ügynökvezérelt kódolásra, mivel a teljesítmény precíz finomhangolását teszi lehetővé, miközben a szigorú típusrendszere megakadályozza, hogy az AI nehezen észrevehető hibákat vigyen a rendszerbe.\n\nAz ügynökalapú szoftverfejlesztés 3 pillére a tervezés, a megvalósítás és az optimalizálás. Az AI kifejezetten ügyes a kód gyorsaságának növelésében és a párhuzamos futási problémák felderítésében, a **típusrendszerkorlátok** pedig segítik a helyes irányban tartani a generált kódot. A tesztelés önmagában már nem elég, a típusok viszont garantálják bizonyos hibatípusok teljes hiányát.\n\nA szerző szerint a típusrendszereken túlmutató bizonyítóeszközök, mint a [Verus](https://github.com/verus-lang/verus), a [Creusot](https://creusot.rs), az [Aeneas](https://aeneasverif.github.io) vagy a [Kani](https://model-checking.github.io/kani/), segíthetnek a nem biztonságos kódok ellenőrzésében. A cél egy olyan jövő, ahol a **nem biztonságos kódok** teljesen mentesek a nem definiált viselkedéstől, a legkülső még megoldandó feladat pedig a szoftverarchitektúra és a fejlesztői szándék pontos átadása az ügynököknek.",
   "miert_szamit": "A fejlesztőknek és cégeknek a Rust használatával **biztonságosabb és gyorsabb kódalap** érhető el, ha AI-ügynökökre bízzák a programkód írását és finomhangolását.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-14T00:00:00+00:00",
   "forras_url": "https://smallcultfollowing.com/babysteps/blog/2026/10/14/agentic-dev-and-rust",
   "cimkek": [

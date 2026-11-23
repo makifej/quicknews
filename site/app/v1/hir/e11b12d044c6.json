@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "A [Reason Machines](https://reasonmachines.com) nyílt forráskódúvá tette az [Aspen](https://place.reasonmachines.com/) nevű Git-szervert, amely az OpenAI Pando néven ismert architektúráját valósítja meg független formában. Az eszközt kifejezetten arra tervezték, hogy kiszolgálja azokat a fejlesztői környezeteket, ahol egyszerre akár több száz AI-ügynök végez folyamatos módosításokat. A rendszer a hagyományos szerverekkel ellentétben nem tárhelyenként, hanem áganként skálázza az írási műveleteket, így megelőzi a push-kérések sorban állását.\n\nTechnikai felépítését tekintve az Aspen egyetlen Rust binárisból áll. A metaadatokat és az ágak előzményeit PostgreSQL vagy SQLite adatbázisban tárolja, míg a kódcsomagokat S3-kompatibilis objektumtárba menti. Mivel a szerver soha nem tömöríti ki újra a beérkező csomagokat, a letöltések során közvetlenül a tárolt csomagokat továbbítja a klienseknek, kiküszöbölve a felesleges szerveroldali számítási kapacitást.\n\nA cég mérései szerint egyetlen 8 magos szerveren az Aspen másodpercenként **567 tartós push-kérést** tudott feldolgozni hiba nélkül. A projekt a [GitHubon elérhető](https://github.com/reason-machines/aspen) nyílt forráskódú szoftverként, és a meglévő Git-kliensek módosítás nélkül használhatják HTTPS vagy SSH protokollon keresztül.",
   "miert_szamit": "Az AI-kódgeneráló ügynökök folyamatos automatikus módosításai könnyen túlterhelik a hagyományos Git-infrastruktúrát. Az Aspen segítségével a fejlesztőcsapatok **saját infrastruktúrán akadálytalanul skálázhatják az AI-ügynökök párhuzamos munkáját**, megszüntetve a verziókezelési szűk keresztmetszeteket.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-11-09T08:20:20+00:00",
   "forras_url": "https://www.marktechpost.com/2026/11/09/reason-machines-aspen-open-source-git-server-ai-agents/",
   "cimkek": [

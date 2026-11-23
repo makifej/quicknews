@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "A [Coalition for Language Equity](https://clear-languages.org/blog/the-tokenizer-tax) in AI Research elemzése rámutatott egy rejtett jelenségre, amit **tokenizációs adónak** neveznek. Mivel az AI-modellek a szöveget tokenekre bontva dolgozzák fel, a nem angol nyelvű vagy ritkább írásrendszereket használó bemenetek feldolgozásához lényegesen több tokenre van szükségük. A 20 legnépszerűbb internetes nyelv között is 1,5-szörös és 5-szörös közötti a különbség, míg 200 nyelv bevonásakor egyes modelleknél akár 17-szeres eltérés is adódott.\n\nA nagyobb tokenszám nemcsak közvetlen pluszköltséget jelent a felhasználóknak és fejlesztőknek, hanem a **kontextusablak gyorsabb betelését** és magasabb válaszidőt is eredményez. A latin betűs nyelvek előnyben vannak a hasonló nyelvcsaládok miatt, míg a ritkább írásmódok lényegesen hátrányosabb helyzetből indulnak. A szakértők szerint a puszta adatbővítés nem elég, a jövőbeli tokenizálókat tudatosan a többnyelvűségre kell tervezni.",
   "miert_szamit": "A magyar nyelvű promptok és dokumentumok feldolgozása is **több tokent fogyaszthat az angolnál**, ami növeli az API-költségeket és lecsökkenti a hasznos kontextusméretet a komplex feladatoknál.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-27T12:30:19+00:00",
   "forras_url": "https://restofworld.org/2026/ai-tokenizer-tax-non-english-languages-cost-inequity/",
   "cimkek": [

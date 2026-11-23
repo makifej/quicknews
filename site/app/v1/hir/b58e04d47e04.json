@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "Egy r/cursor Reddit-bejegyzésben számolt be egy fejlesztő arról, hogy az AI-ágense **több mint 2000 dolláros költséget** generált mindössze két óra alatt, mert beragadt egy hibás eszközhívási ciklusba. Mivel a legtöbb LLM SDK nem tartalmaz beépített megszakítót az ágensszintű ciklusokra, a modell automatikusan újrapróbálkozik a hibát dobó eszközökkel, ami végtelen tokenfogyasztáshoz vezet.\n\nA probléma kezelésére a SitePoint egy szolgáltatófüggetlen **TypeScript-alapú védelmi rendszert** mutat be, amely négy különálló korlátot alkalmaz. A rendszer eszközönkénti próbálkozási korlátot, futási időkorlátot (timeout), folyamatosan számolt dolláralapú tokenköltség-keretet, valamint egy alkalmazásszintű tervezetállapot-mentést (DraftResult) használ a részleges eredmények megőrzésére.\n\nA megvalósítás Zod-alapú sémaellenőrzést használ a hallucinált argumentumok kiszűrésére, és tetszőleges LLM-klienssel (OpenAI, Anthropic, Google) kombinálható. A megközelítés lényege, hogy hiba esetén az ágens nem egyszerűen leáll, hanem elmenti az eddigi beszélgetési előzményeket és eszközválaszokat a későbbi emberi ellenőrzéshez.",
   "miert_szamit": "Az AI-ágenseket fejlesztők és üzemeltetők **megelőzhetik a váratlan és extrém magas API-számlákat**, miközben stabilabbá és biztonságosabbá tehetik az automatizált munkafolyamatokat.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-11T15:47:00.788000+00:00",
   "forras_url": "https://www.sitepoint.com/ai-agent-tool-calling-typescript-guardrails",
   "cimkek": [

@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "A ServiceNow CoreAI bemutatta az [AutoSynthData](https://huggingface.co/blog/ServiceNow-AI/autosynthdata) nevű keretrendszert, amely automatikusan generál kiváló minőségű szintetikus tanítóadatokat vállalati AI-ügynökök számára. A rendszer felméri, hogy a célmodell milyen munkafolyamatoknál vagy eszközöknél hibázik, majd egy erősebb tanítómodell segítségével **új, egyedi feladatokat hoz létre** a hiányosságok pótlására.\n\nA generált feladatoknak egyszerre kell megvalósíthatónak, valósághűnek és a modell számára kihívást jelentőnek lenniük. Az AutoSynthData nemcsak létrehozza a teszthelyzeteket, hanem egy **beépített ellenőrzővel validálja is** azokat, kiszűrve a hibás vagy megoldhatatlan küldetéseket. A folyamat végén a sikeres mintákból újabb variációkat készít, így növelve a tanító adatbázis méretét.\n\nA módszerrel a vállalatok saját belső rendszereikre és **egyedi szabályaikra szabhatják** az AI-asszisztenseket anélkül, hogy manuálisan kellene több ezer tesztesetet megírniuk. A kutatók az EnterpriseOps Gym környezetben végzett kísérletekkel bizonyították a rendszer hatékonyságát.",
   "miert_szamit": "A vállalkozások végre **saját belső munkafolyamataikra szabhatják az AI-ügynököket** anélkül, hogy méregdrága, manuális adatgyűjtésre kellene költeniük. Ez drasztikusan leegyszerűsíti az egyedi céges asszisztensek betanítását.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-02T04:01:31+00:00",
   "forras_url": "https://huggingface.co/blog/ServiceNow-AI/autosynthdata",
   "cimkek": [

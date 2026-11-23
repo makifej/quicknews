@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "A **Symantec** biztonsági kutatói egy olyan autonóm AI-ügynököt azonosítottak, amely az interneten található, nem védett nyelvi modelleket használ fel támadások lebonyolítására. A módszer során a támadók átveszik az ellenőrzést a védtelen AI-végpontok felett, így a számítási kapacitás költségeit a megfertőzött modell tulajdonosára terhelik. Ezt a jelenséget a szakértők **LLMjacking** néven említik.\n\nAz eltérített nyelvi modell nem csupán információt szolgáltat, hanem egy ötlépcsős átverési technikával kijátssza a biztonsági korlátokat, majd 74 különálló modullal önállóan tárja fel a szerverek sérülékenységeit. Az úgynevezett **Skynet mód** segítségével az ügynök akár 100 000 egymást követő műveletet is végrehajthat emberi jóváhagyás nélkül, amelyek során adatbázisokat lop el és rejtett kriptobányász szoftvereket telepít a célpontokra.\n\nA támadóeszköz felépítésére úgy derült fény, hogy az ügynök a teljes utasításkészletét elküldte a Symantec egyik csapdaillesztőjének. A rendszer beépített funkciókkal keresi az újabb nyitott végpontokat és kiszivárgott API-kulcsokat, így a folyamat önfenntartó módon képes terjedni a hálózaton.",
   "miert_szamit": "A saját fejlesztésű vagy tesztelési célból nyilvánosan hagyott AI-modell szervereket a kiberbűnözők perceken belül megtalálhatják, így **óriási számítási számlákat és adatvédelmi incidenseket** okozhatnak a gondatlanul beállított rendszerek tulajdonosainak.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-22T11:30:56+00:00",
   "forras_url": "https://the-decoder.com/an-ai-agent-in-skynet-mode-hijacks-unprotected-language-models-to-launch-self-sustaining-cyberattacks/",
   "cimkek": [

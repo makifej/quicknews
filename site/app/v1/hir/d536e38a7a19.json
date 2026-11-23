@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "Az OpenAI közzétette a legújabb **prompt sablonjait**, amelyek a GPT-6.2 Astra és Sol használata során felmerülő tipikus hibák kiküszöbölésére szolgálnak. Az új kiadások alapértelmezetten tömörebben fogalmaznak, mint a korábbi modellek, így a korábbi tanácsokkal ellentétben a fejlesztőknek érdemes elhagyniuk a leegyszerűsítésre vonatkozó utasításokat. A sablonok segítenek megakadályozni, hogy a modell feleslegesen kérdezzen vissza ahelyett, hogy önállóan elvégezné a feladatot.\n\nA kódolási folyamatoknál a friss útmutatás arra ösztönzi a modelleket, hogy a meglévő kódbázist használják újra, ne hozzanak létre felesleges segédfüggvényeket, és csak a legszükségesebb esetekben írjanak új teszteket. Az OpenAI emellett a [Responses API](https://platform.openai.com/docs/api-reference/responses) működését is módosította: a beszélgetési előzmények szerkesztésekor a modell elveszítheti a korábbi gondolkodási folyamat részleteit, ami ronthatja a válaszminőséget és növelheti a tokenfogyasztást.\n\nA november 17-én megjelent GPT-6.2 Astra az API-n keresztül 8 dollárba kerül egymillió bemeneti tokenenként és 40 dollárba egymillió kimeneti tokenenként. A Sol modell a komplex feladatokat lényegesen alacsonyabb költség mellett végzi el.",
   "miert_szamit": "A GPT-6.2-re váltó fejlesztőknek érdemes **teljesen átnézniük a rendszerszintű utasításaikat**, mert a modell kevesebb kérdéssel és kevesebb felesleges tesztkóddal gyorsabb, olcsóbb munkafolyamatokat tesz lehetővé.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-11-21T13:32:35+00:00",
   "forras_url": "https://the-decoder.com/openai-shares-new-prompting-tips-for-gpt-6-2-astra-and-sol-to-fix-brief-answers-and-unnecessary-questions/",
   "cimkek": [

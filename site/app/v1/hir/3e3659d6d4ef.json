@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "A személyi AI-ügynökök (personal AI agents) kategóriája rohamosan bővült: a folyamatosan futó, munkamenetek között emlékező rendszerek piaca mára két nagy táborra oszlott. A **saját szerveren vagy gépen futtatható nyílt forráskódú megoldások** (mint a [Hermes Agent](https://github.com/NousResearch/hermes-agent) vagy az [OpenClaw](https://github.com/openclaw/openclaw)) teljes rugalmasságot biztosítanak, míg a **felhős, kezelt ügynökök** (mint a Gemini Spark, az OpenAI dots vagy a Meta Muse) előfizetéses modellben kínálnak kényelmes infrastruktúrát.\n\nA tesztek alapján a fejlesztők számára a **Hermes Agent** nyújtja a legalaposabb memóriakezelést és a legbiztonságosabb alapbeállításokat, míg az átlagos felhasználóknak a Google Workspace-be integrált **Gemini Spark** és az ingyenesen kipróbálható [Meta Muse](https://ai.meta.com/muse/) jelenti a legegyszerűbb belépési pontot. A nyílt forráskódú opcióknál ugyanakkor kiemelten fontos a védett konténerek (sandbox) használata a biztonsági kockázatok elkerülésére.\n\nA költségek tekintetében a saját gépes rendszereknél a szoftver ingyenes, ám a modellhasználatért (tokenekért) fizetni kell, amennyiben nem helyi modellt futtat az olvasó. A felhős platformok fix havi díjat kérnek, ami tartalmazza az ügynök futtatásának és a modellek hívásának díját is.",
   "miert_szamit": "A feladataikat önállóan végző AI-ügynökök automatizálhatják a napi adminisztrációt és a kutatást, de a céges adatok védelméhez **kritikus a megfelelő biztonsági korlátok és memóriakezelés megválasztása**.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-11-22T10:36:17+00:00",
   "forras_url": "https://www.marktechpost.com/2026/11/22/best-personal-ai-agents-2026/",
   "cimkek": [
@@ -37,6 +41,25 @@
     "x_url": null
   },
   "kapcsolodo": [
+    {
+      "id": "106e5d1cffec",
+      "cim": "A Walmart felületén már vásárolhat helyettünk a Meta Muse ügynöke",
+      "lead": "A Walmart élesítette az Agent Gateway rendszert, amellyel a Meta Muse AI-ügynöke önállóan válogathat és vásárolhat a felhasználók fiókjával.",
+      "slug": "a-walmart-feluleten-mar-vasarolhat-helyettunk-a-meta-muse-ugynoke",
+      "forras": "The Verge AI",
+      "kat": "ügynök",
+      "rovat": "ugynok",
+      "ido": "2026-11-23T12:00:22.566Z",
+      "ido_hu": "nov. 23. 13:00",
+      "kep": "https://quicknews.hu/assets/kep/106e5d1cffec.webp",
+      "kep_nagy": "https://quicknews.hu/assets/kep/106e5d1cffec-n.webp",
+      "video": false,
+      "fontossag": 4,
+      "felkapott": false,
+      "forraskep": false,
+      "url": "https://quicknews.hu/hir/a-walmart-feluleten-mar-vasarolhat-helyettunk-a-meta-muse-ugynoke",
+      "jova": true
+    },
     {
       "id": "95f930266064",
       "cim": "Nyílt forráskódú AI-ügynökök tesztelik a mobilalkalmazásokat",
@@ -73,25 +96,6 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/sajat-asztali-ai-csapatot-kinal-a-most-megjelent-oovi-app",
-      "jova": true
-    },
-    {
-      "id": "01945f6a907c",
-      "cim": "Új AI-ügynökök költöznek a chatalkalmazásokba az SMS-től az iMessage-ig",
-      "lead": "Egyre több fejlesztő készít olyan AI-asszisztenseket, amelyeket külön app letöltése nélkül, közvetlenül üzenetben vagy SMS-ben lehet irányítani.",
-      "slug": "uj-ai-ugynokok-koltoznek-a-chatalkalmazasokba-az-sms-tol-az-imessage",
-      "forras": "TechCrunch AI",
-      "kat": "ügynök",
-      "rovat": "ugynok",
-      "ido": "2026-11-21T18:59:35.509Z",
-      "ido_hu": "nov. 21. 19:59",
-      "kep": "https://quicknews.hu/assets/kep/01945f6a907c.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/01945f6a907c.webp",
-      "video": false,
-      "fontossag": 3,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/uj-ai-ugynokok-koltoznek-a-chatalkalmazasokba-az-sms-tol-az-imessage",
       "jova": true
     }
   ],

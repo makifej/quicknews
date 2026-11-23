@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "Will DePue, az Unemployment Labs kutatója a kiadott nyílt AI-modellek súlyaiban található statisztikai mintázatok alapján azonosította az Nvidia Blackwell processzorok egyedi „ujjlenyomatát”. A vizsgálat szerint a DeepSeek-V4-Pro, a Kimi K3, a MiniMax-M3 és az Ant Group Ling-3.1-flash modelljei mind a szigorúan korlátozott Blackwell chipek architektúrájára jellemző számítási magszámmal lettek feltöltve a tanítás kezdetén. A kutató a felismeréshez használt ellenőrző kódot a GitHubon is megosztotta.\n\nA módszer a PyTorch keretrendszer inicializálási folyamatát elemzi: a Blackwell chipek 148 vagy 152 magos szerkezete olyan egyedi véletlenszám- eloszlást hagy maga után a modell súlyaiban, amely a tanítás után is kimutatható marad. A mérések szerint a kínai laborok az öt vizsgált tanításhoz összesen mintegy 12 000 Blackwell GPU-t használtak fel, ami a becslések alapján több mint félmilliárd dolláros hardverparkot jelent.\n\nAz elemzés kizárólag azt bizonyítja, hogy a modellek inicializálása a tiltott hardvereken történt, de azt nem deríti ki, hogy a chipek fizikai csempészet útján kerültek-e Kínába, vagy azokat kínai cégek külföldi adatközpontokból bérlik.",
   "miert_szamit": "A felfedezés megkérdőjelezi az amerikai exportkorlátozások hatékonyságát, és azt mutatja, hogy a **kínai fejlesztők továbbra is a legfejlettebb AI-hardverekhez férnek hozzá**, így nem maradnak le a nemzetközi modellfejlesztési versenyben.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-11-13T15:21:04+00:00",
   "forras_url": "https://the-decoder.com/former-openai-researcher-says-he-found-nvidia-blackwell-fingerprints-hidden-inside-six-chinese-ai-models/",
   "cimkek": [

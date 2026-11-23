@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "Az OpenAI mérnöki csapata Pando néven új hátteret épített a cég központi Git-kódraktárához, miután a Codex AI-modell tömeges használata miatti lekérdezések és módosítások túlterhelték a korábbi rendszereket. Az [OpenAI fejlesztői bejelentése](https://openai.com/index/scaling-git-at-openai) szerint az új architektúra teljesen kompatibilis marad a meglévő Git-kliensekkel és munkafolyamatokkal, így sem a fejlesztőknek, sem az autonóm AI-ügynököknek nem kellett változtatniuk a szokásaikon.\n\nA rendszer a független ágak felé indított módosításokat párhuzamosan dolgozza fel, a letöltési kéréseket pedig előre csomagolt adategységekből és gyorsítótárból szolgálja ki. Ez a megközelítés megszünteti a torlódásokat a több ezres párhuzamos kódkiadások során.\n\nÉles környezetben a Pando közel ötödére csökkentette a módosítások beküldésének válaszidejét, miközben naponta közel **1 petabájtnyi** adatforgalmat bonyolít le. Az OpenAI az elért kliensoldali fejlesztéseket tervezi visszatáplálni a nyílt forráskódú Git-projektbe is.",
   "miert_szamit": "Az AI-alapú kódgeneráló eszközök terjedésével a fejlesztői csapatoknak fel kell készülniük a **párhuzamosan futó automatizált kódmódosítások** és a kódraktárakat érő terhelés radikális növekedésére.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-11-02T15:30:00+00:00",
   "forras_url": "https://openai.com/index/scaling-git-at-openai",
   "cimkek": [

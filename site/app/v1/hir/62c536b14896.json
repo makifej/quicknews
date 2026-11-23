@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "Az Amazon nyilvános bétaként tette elérhetővé a [TorchNeuron](https://aws.amazon.com/pt/ai/machine-learning/neuron/) nevű szoftvert, amely lehetővé teszi, hogy a fejlesztők átírás nélkül futtassák meglévő PyTorch-kódjukat a [Trainium2](https://aws.amazon.com/ec2/instance-types/trn2/) és [Trainium3](https://www.aboutamazon.com/news/aws/trainium-3-ultraserver-faster-ai-training-lower-cost) AI-chipeken. Az eszközt az Amazon chipfejlesztő részlege, az Annapurna Labs fejlesztette ki, és Apache 2.0 licenc alatt nyílt forráskódúvá is teszik.\n\nA TorchNeuron a PyTorch beépített rendszerét használja a hardver regisztrálására, így a meglévő tesztelési, hibakeresési és skálázási munkafolyamatok változatlanul működnek. Az Amazon az eszközt a Hugging Face több mint **100 000 modelljén** teszteli, és a rendszer teljes mértékben együttműködik a PyTorch elosztott betanítási keretrendszerével, a TorchTitannel is.\n\nA fejlesztés célja az Nvidia szoftveres fölényének csökkentése a felhős infrastruktúrákban. A beszédfelismeréssel foglalkozó Deepgram mérései szerint a Trainium használatával dolláronként nagyjából **60 százalékkal több** hanganyagot tudnak feldolgozni a korábbi GPU-s rendszerekhez képest.",
   "miert_szamit": "A PyTorch alapú AI-modelleket fejlesztő csapatok **költséges kódátírás nélkül** válthatnak az Amazon saját chipjeire, amivel jelentős infrastruktúra-költséget spórolhatnak meg.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-19T16:12:35.804981+00:00",
   "forras_url": "https://www.perplexity.ai/discover/tech/amazon-opens-trainium-ai-chips-2vgO_H7cScm3SH3BsHd7mg",
   "cimkek": [

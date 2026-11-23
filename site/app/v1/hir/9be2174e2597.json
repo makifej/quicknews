@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "A Krea egymás mellett tesztelte a ByteDance-féle [Seedance 2.5](https://seed.bytedance.com) és az Alibaba-féle [Wan 3.0](https://www.krea.ai/models/wan30) videómodellt. Mindkét modell képes akár 30 másodperces, hanggal ellátott videók előállítására egyetlen generálással. A próbatesztek során a Wan 3.0 gyorsabban renderelt és pontosabban követte a vizuális effektekre vonatkozó utasításokat, míg a Seedance 2.5 jobban tartotta magát a megadott mozgási irányokhoz és a vágás nélküli jelenetekhez.\n\nA specifikációk terén is jelentős az eltérés. A Seedance 2.5 legfeljebb **30 képreferencia** megadását teszi lehetővé, támogatja a 21:9-es szélesvásznú formátumot, és kínál egy alacsony felbontású próbalehetőséget a végső generálás előtt. A Wan 3.0 ezzel szemben harmadával olcsóbb másodpercenként, akár 2 másodperces klipeket is készít, és a generált hang kikapcsolható benne.\n\nA tesztekben a Wan 3.0 hangkimenete átlagosan 9-14 decibellel volt hangosabb a Seedance-nél. A generálási árak tekintetében a Wan 3.0 jelentős előnyben van, főleg 1080p felbontásnál, ahol nagyjából féláron működik a konkurenciához képest.",
   "miert_szamit": "A 30 másodperces, vágás nélküli generálás megkönnyíti a **hosszabb reklámok és jelenetek** előállítását. Az olcsóbb Wan 3.0 a költségérzékeny projekteknél, míg a Seedance 2.5 a szigorúbb rendezői utasításoknál nyújt jobb alternatívát.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-26T00:00:00+00:00",
   "forras_url": "https://www.krea.ai/blog/seedance-2-5-vs-wan-3-0",
   "cimkek": [

@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "Az Atlassian mérnökei a nagy, közös kódraktárukban (monorepo) tapasztalták, hogy ha egyetlen AI-modellkapja meg az összes csapat szabályzatát, irreleváns javítási javaslatokat tesz. Ezért a Bitbucket **Agentic Pipelines** segítségével két külön ügynökre bontották a feladatot.\n\nAz első **szűrő ügynök** összekapcsolja a módosított fájlokat a konkrét csapathoz tartozó útmutatókkal. A második **ellenőrző ügynök** csak ezeket a kiválasztott dokumentumokat olvassa el, és kizárólag a kritikus hibákra tesz közvetlen megjegyzést a kódban. A folyamat mindössze 7 percig tart a korábbi fél-egy napos várakozás helyett.\n\nA tapasztalatok szerint a visszajelzések pontossága nem a modell választásától vagy a promptoktól, hanem a **pontosan megírt csapatútmutatóktól** függ. A rendszer a Bitbucket Cloud béta verziójában érhető el, és [Rovo Dev](https://www.atlassian.com/rovo), Claude vagy Codex modellekkel is működik.",
   "miert_szamit": "A fejlesztőcsapatok **drasztikusan lecsökkenthetik a kódellenőrzési időt**, ha az AI-ügynököket nem általános feladatokra, hanem célzott feladatmegosztásra és pontos belső dokumentációra építik.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-14T20:28:07+00:00",
   "forras_url": "https://www.atlassian.com/blog/bitbucket/how-we-accelerated-code-review-in-a-large-monorepo-with-two-agents-in-agentic-pipelines",
   "cimkek": [

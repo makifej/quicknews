@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "Henry Yuan egy [ESP32-S3 mikrokontrollert](https://www.espressif.com/en/products/socs/esp32-s3) használt arra, hogy billentyűzetet és egeret szimulálva AI-ágenssel vezéreljen egy iPhone-t. A [nyílt forráskódú megoldáshoz](https://github.com/onehumanbeing/esp32-iphone-agent) nincs szükség jailbreakre, Apple Developer fiókra, Xcode-ra vagy Mac számítógépre.\n\nA rendszer úgy működik, hogy a telefon képernyőjét [AirPlay tükrözéssel](https://support.apple.com/102661) és az [UxPlay](https://github.com/FDH2/UxPlay) eszközzel továbbítja egy Gstreamer csatornán keresztül, amely JPEG-képfolyamként adja át a kijelző tartalmát az AI-nak. A telefonon bekapcsolt iOS AssistiveTouch funkció segítségével az ESP32 panel USB-HID eszközként küldi el a kattintásokat és gombnyomásokat, így a modell tetszőleges műveleteket tud végrehajtani a kijelzőn.\n\nA módszer előnye, hogy a **fejlesztő teljesen megkerüli** az Apple szigorú szoftveres korlátozásait, így az AI-ágens közvetlenül a felhasználói felületen keresztül tud feladatokat elvégezni.",
   "miert_szamit": "Ez a gyakorlatban megmutatja, hogy **drága fejlesztői eszközök nélkül is automatizálható** bármilyen iOS-applikáció tesztelése vagy használata egy olcsó mikrokontroller segítségével.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-14T00:00:00+00:00",
   "forras_url": "https://hackaday.com/2026/10/14/ai-controls-iphone-via-esp32",
   "cimkek": [

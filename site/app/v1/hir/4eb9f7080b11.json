@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "Az NVIDIA kiadta a [Cosmos3-H-Dreams](https://huggingface.co/nvidia/Cosmos3-H-Dreams) elnevezésű generatív világmodelljét, amely klinikai műtétek valós idejű, interaktív szimulációjára képes. A rendszer nem fizikai modellezést használ, hanem a videókból és a robot kinematikai adataiból tanulja meg a szövetek deformációját és a műszerek mozgását.\n\nA [CMR Surgical Versius](https://cmrsurgical.com) platform epehólyag-eltávolítási felvételein betanított modell [FlashDreams](https://github.com/NVIDIA/flashdreams) gyorsítókönyvtárral fut, így egyetlen NVIDIA RTX PRO 6000 GPU-n is képes valós időben reagálni az irányításra. A fejlesztők 4 lépéses és 2 lépéses verziót is elérhetővé tettek a vizuális minőség és a generálási sebőség egyensúlyozásához.\n\nA nyílt forráskódú recept segítségével a kutatók saját videóikra és robotrendszereikre is adaptálhatják a modellt. A Cosmos3-H-Dreams egyelőre kutatási eszköz, nem klinikailag validált orvosi rendszer.",
   "miert_szamit": "A valós idejű videógenerálás már a **komplex orvosi robotikában** is megjelent, ami jelentősen felgyorsíthatja az AI-alapú műtéti eszközök és szimulációk fejlesztését.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-20T18:17:47+00:00",
   "forras_url": "https://huggingface.co/blog/nvidia/cosmos3-h-dreams",
   "cimkek": [

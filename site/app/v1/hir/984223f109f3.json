@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "A Multiverse Computing bemutatta a **ProvenanceGuard** nevű ellenőrző rendszert, amely az összetett feladatokat végző AI-ügynökök válaszait vizsgálja. A mai modern asszisztensek a Model Context Protocol (MCP) segítségével egyszerre több adatbázisból, keresőből és dokumentumból dolgoznak, így könnyen összekeverhetik, hogy melyik információ honnan származik. A rendszer kifejezetten ezt a forrás-összemosási hibát hivatott kiküszöbölni.\n\nA hagyományos ellenőrzők csak azt nézik, hogy az állítás igaz-e az összesített adatok alapján, de azt nem, hogy az AI a **megfelelő forráshoz** társította-e azt. A ProvenanceGuard utólagos ellenőrző rétegként működik: mondatokra bontja a választ, megkeresi a leginkább releváns forrást, és összeveti a hivatkozással. Ha hibát talál, blokkolja a választ, vagy megpróbálja automatikusan javítani azt.\n\nA fejlesztők orvosi adatokon tesztelték a rendszert, ahol a hibás forrásmegjelölés kritikus lehet. A szakértők által kiszűrt 139 hibás állításból a szoftver **138 forrástévesztést sikeresen azonosított**. A kutatás részletei a [Hugging Face](https://huggingface.co/blog/MultiverseComputingCAI/getting-the-source-right-not-just-the-fact-source) oldalán olvashatók.",
   "miert_szamit": "Az AI-ügynökök üzleti alkalmazásakor a téves hivatkozás ugyanolyan káros lehet, mint a konkrét hazugság. Az új megoldással **biztonságosabban építhetünk ügyfélszolgálati vagy adatelemző asszisztenseket**, mert minimalizálhatjuk a félrevezető hivatkozásokból eredő jogi és üzleti kockázatokat.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-09-29T13:07:00+00:00",
   "forras_url": "https://huggingface.co/blog/MultiverseComputingCAI/getting-the-source-right-not-just-the-fact-source",
   "cimkek": [

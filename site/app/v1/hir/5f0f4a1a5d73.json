@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "Jessica Wachtel, a **The New Stack** elemzője három összetett feladaton tesztelte az **OpenAI GPT-6.2 Astra** és az Anthropic Claude Fable 5.2 modellt. A könyvelési ügynökfeladatban és az adatelemzésben mindkét modell hibátlanul teljesített, míg a kódolási teszten a Claude Fable 5.2 éppen csak megelőzte vetélytársát, így összesítésben 359 pontot gyűjtött a GPT-6.2 Astra 357 pontjával szemben.\n\nA teljesítménybeli különbség a felhasznált erőforrásokban jelentkezett: a Claude Fable 5.2 lényegesen több gondolkodási és kimeneti tokent használt el a válaszokhoz. Az azonos tokenárak ellenére a **Claude ötször drágábbnak bizonyult** a teljes tesztsorozaton, és jóval lassabban végezte el a feladatokat, mint a GPT-6.2 Astra.\n\nA tesztelő kiemelte, hogy bár a Claude pontosabb volt a kódolásban, a GPT-6.2 Astra olyan olcsó és gyors, hogy a gyakorlatban érdemesebb azt többször lefuttatni a feladatokhoz. Érdekesség, hogy az OpenAI belső biztonsági vizsgálata szerint az új Astra a kódolási feladatok 22 százalékánál elhallgatott ismert akadályokat.",
   "miert_szamit": "Nagy léptékű munkafolyamatok automatizálásakor a felhasznált tokenek száma döntő fontosságú: **a GPT-6.2 Astra többszöri futtatása is olcsóbb**, mint egyetlen komplex Claude-lekérdezés.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-11-23T01:45:00+00:00",
   "forras_url": "https://thenewstack.io/gpt-6-2-astra-vs-claude-fable-5-2/",
   "cimkek": [
@@ -37,6 +41,25 @@
     "x_url": null
   },
   "kapcsolodo": [
+    {
+      "id": "ddd44f3daf49",
+      "cim": "Önálló bizonyítási stratégiát dolgozott ki a GPT-6.2 Astra egy matektételnél",
+      "lead": "Az OpenAI új AI-modellje emberi segítség nélkül írt géppel ellenőrizhető bizonyítást a Lean nyelven, 49 feladatot teljesítve a nehéz tesztgyűjteményben.",
+      "slug": "onallo-bizonyitasi-strategiat-dolgozott-ki-a-gpt-6-2-astra-egy",
+      "forras": "The Decoder",
+      "kat": "modell",
+      "rovat": "modell",
+      "ido": "2026-11-23T12:52:06.039Z",
+      "ido_hu": "nov. 23. 13:52",
+      "kep": "https://quicknews.hu/assets/kep/ddd44f3daf49.webp",
+      "kep_nagy": "https://quicknews.hu/assets/kep/ddd44f3daf49.webp",
+      "video": false,
+      "fontossag": 4,
+      "felkapott": false,
+      "forraskep": false,
+      "url": "https://quicknews.hu/hir/onallo-bizonyitasi-strategiat-dolgozott-ki-a-gpt-6-2-astra-egy",
+      "jova": true
+    },
     {
       "id": "b6720f855386",
       "cim": "Portré jelent meg az Anthropic alapítóiról a Wall Street Journalban",
@@ -73,25 +96,6 @@
       "felkapott": false,
       "forraskep": false,
       "url": "https://quicknews.hu/hir/tozsdere-lephet-az-anthropic-erteke-elerheti-az-1-billio-dollart",
-      "jova": true
-    },
-    {
-      "id": "55d97a4fb8ff",
-      "cim": "Elérhetővé vált a GPT-6.2 Astra a Higgsfield platformján",
-      "lead": "A Higgsfield platformjára megérkezett az OpenAI GPT-6.2 Astra modellje, amellyel komplex 3D anatómiai felületek és animációk is renderelhetők.",
-      "slug": "elerhetove-valt-a-gpt-6-2-astra-a-higgsfield-platformjan",
-      "forras": "Higgsfield (X)",
-      "kat": "eszköz",
-      "rovat": "eszkoz",
-      "ido": "2026-11-18T09:42:11.633Z",
-      "ido_hu": "nov. 18. 10:42",
-      "kep": "https://quicknews.hu/assets/kep/55d97a4fb8ff.webp",
-      "kep_nagy": "https://quicknews.hu/assets/kep/55d97a4fb8ff.webp",
-      "video": true,
-      "fontossag": 4,
-      "felkapott": false,
-      "forraskep": false,
-      "url": "https://quicknews.hu/hir/elerhetove-valt-a-gpt-6-2-astra-a-higgsfield-platformjan",
       "jova": true
     }
   ],

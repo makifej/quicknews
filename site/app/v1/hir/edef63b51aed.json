@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "Az OpenAI mérnökei részletesen ismertették a ChatGPT hirdetési architektúráját, amely gyökeresen eltér a hagyományos keresőmotorok reklámrendszereitől. A ChatGPT nem egyes keresési kifejezésekre reagál, hanem egy **állapottartó munkafolyamatban** követi a több lépésből álló beszélgetések kontextusát és a felhasználó változó céljait.\n\nA hirdetési folyamatot egy külön erre a célra finomhangolt **ágens alapú nyelvi modell** irányítja, amely eszközhívásokkal végzi a releváns hirdetések keresését, rangsorolását és az aukciók lebonyolítását. Ez az ágens képes megkülönböztetni a korábbi kontextust a felhasználó aktuális szándékától, így elkerüli, hogy minden említett termékre azonnal reklámot jelenítsen meg.\n\nA rendszer legfontosabb szerkezeti eleme a teljes elkülönítés: a hirdetési motor független infrastruktúrán és külön modellen fut. Ez garancia arra, hogy a reklámok nem torzítják a ChatGPT válaszait, és ha nem található **megfelelő minőségű hirdetés**, a rendszer egyszerűen nem jelenít meg semmit. A megoldás sikeresnek bizonyult, a ChatGPT Ads üzletág éves bevétele az indulást követő 200 napon belül elérte az 1 milliárd dollárt.",
   "miert_szamit": "A marketingesek számára ez azt jelenti, hogy a hirdetések célzása a **felhasználói szándék mélyebb megértésén** alapul, így a reklámok nem zavarják a felhasználói élményt, miközben magasabb konverziót érhetnek el.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-21T07:00:00+00:00",
   "forras_url": "https://openai.com/index/building-chatgpt-ad-stack",
   "cimkek": [

@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "Az Anthropic kiadta a **Message Threads** funkciót nyílt béta verzióban a Claude platform Messages API-jához. A rendszer korábban minden egyes kérésnél újra elküldte a teljes beszélgetési előzményt az API-n keresztül. Az új megoldás ezzel szemben csak a legutóbbi üzenet óta történt változásokat továbbítja.\n\nA fejlesztés a nagy terjedelmű feladatoknál fejti ki a legnagyobb hatást: 500 000 és 1 millió token közötti kéréseknél a válaszadás megkezdéséig eltelt idő **mintegy 35 százalékkal csökken**. Az Anthropic szerint az újításból leginkább a kódoló és számítógép-használó ügynökök, valamint a nagy mennyiségű dokumentumot vagy képet feldolgozó munkafolyamatok profitálnak.\n\nA beszélgetési szál a kérések között titkosítva marad a memóriában, és 5 perc tétlenség után törlődik. A felhasznált tokenek száma nem változik, mivel a Claude továbbra is átolvassa a teljes előzményt. A funkció a Claude platform mellett elérhető az **AWS, a Microsoft Foundry és a Google Cloud** felületein is.",
   "miert_szamit": "A fejlesztők és automatizálási szakemberek **lényegesen gyorsabb AI-ügynököket és komplex munkafolyamatokat** építhetnek anélkül, hogy a tokenköltségük megváltozna.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-11-03T12:35:49+00:00",
   "forras_url": "https://the-decoder.com/anthropics-message-threads-cut-time-to-first-token-by-35-percent-for-long-conversations/",
   "cimkek": [

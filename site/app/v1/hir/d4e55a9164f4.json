@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "A [Hugging Face](https://huggingface.co) bejelentette, hogy a TRL könyvtár legújabb verziójában elérhetővé válik a **LoRA-támogatás** az AsyncGRPOTrainer eszközben. Ez a frissítés lehetővé teszi, hogy a megerősítéses tanulásos finomhangolás során ne a teljes modellt, hanem csak egy apró adaptert kelljen tanítani.\n\nA technológia legnagyobb előnye, hogy a **tanítás és a generálás teljesen különválasztható** egymástól, így akár különböző gépeken is futhatnak. Mivel a LoRA adapter mindössze néhány megabájtos, a szinkronizációhoz nincs szükség méregdrága hálózati összeköttetésre, hanem egyszerű felhős tárhelyeken keresztül is megoldható.\n\nA megoldás zökkenőmentesen együttműködik a vLLM motorral, amely egyszerre **több adapterverziót is képes kezelni** a memóriában. A fejlesztés már elérhető a TRL v1.14-es verziójában a fejlesztők számára.",
   "miert_szamit": "Ez a fejlesztés drasztikusan **lecsökkenti az egyedi AI-modellek betanításának költségét**, mivel nem kell méregdrága, összekapcsolt infrastruktúrát bérelni. A kreatívok és vállalkozások így sokkal olcsóbban szabhatják testre a nyílt forráskódú modelleket a saját feladataikra.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-09-10T00:00:00+00:00",
   "forras_url": "https://huggingface.co/blog/asyncgrpo-lora-hfjobs",
   "cimkek": [

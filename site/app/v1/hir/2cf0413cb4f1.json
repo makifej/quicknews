@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "A Google a Meta PyTorch-csapatával együttműködve **nyílt forráskódúvá tette a TorchTPU-t**, amely natív PyTorch támogatást hoz a Cloud TPU chipcsoportokra. Az új rendszer a korábbi PyTorch/XLA helyébe lép, és lehetővé teszi, hogy a meglévő PyTorch kódokat közvetlenül a `torch.device(\"tpu\")` utasítással futtassák a fejlesztők, bonyolult átalakítások nélkül.\n\nA TorchTPU alapértelmezés szerint **eager módban fut**, ami megkönnyíti a hibakeresést, míg a maximális teljesítményt a `torch.compile` használatával éri el. A tesztek során a rendszer akár 8 192 [Ironwood TPU](https://cloud.google.com/tpu/docs/tpu7x) chipig skálázódott, és a [TorchTitan](https://github.com/pytorch/torchtitan) keretrendszerrel 52 százalékos MFU kihasználtságot ért el a Qwen 3 8B modell tanítása során.\n\nAz új eszköz teljes körű integrációt kapott a legnépszerűbb keretrendszerekkel: a Hugging Face Transformers v5, a vLLM és az SGLang is közvetlenül támogatja. A TorchTPU **Apache 2.0 licenc alatt érhető el** a GitHubon, a pip csomagkezelőn keresztül pedig a `torch_tpu` csomagként telepíthető Python 3.11 felett.",
   "miert_szamit": "A magyar AI-fejlesztők és cégek mostantól **könnyebben és olcsóbban válthatnak Google TPU hardverekre**, mert a PyTorch-alapú modelljeiket kódátírás nélkül, azonnal futtathatják és skálázhatják Cloud TPU-kon.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-20T15:22:03+00:00",
   "forras_url": "https://www.marktechpost.com/2026/10/20/google-torchtpu-open-source-native-pytorch-tpu/",
   "cimkek": [

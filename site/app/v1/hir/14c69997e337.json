@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "A Microsoft mérnöki elemzése 5 gyakorlati példán keresztül mutatja be a [Durable Task keretrendszer](https://learn.microsoft.com/azure/durable-task/) használatát. A példák között szerepel a számla-jóváhagyás, az Azure-környezetek telepítése, az előfizetői fizetési kísérletek, a híreket feldolgozó CMS-rendszerek és az AI-alapú incidenskezelő ügynökök. A keretrendszer abban segít, hogy a hosszan tartó vagy megszakadó folyamatok automatikusan ott folytatódjanak, ahol félbeszakadtak.\n\nA cikk kiemeli, hogy a Durable Task nem csodaszer: nyomon követi a folyamat állapotát, de nem garantálja a külső rendszerek pontosan egyszeri végrehajtását. A nem determinisztikus műveleteket, mint az **AI-modellhívások**, mindig el kell különíteni az orchestrációs logikától.\n\nA fejlesztők a **[Durable Task .NET SDK](https://github.com/microsoft/durabletask-dotnet) v1.26.0** verzióját használhatják a DTS ütemezővel. A beszámoló előrevetíti a készülő [Durable Agents](https://learn.microsoft.com/azure/durable-task/sdks/durable-agents-microsoft-agent-framework) és Durable Workflows kiegészítőket is a Microsoft Agent Frameworkhöz.",
   "miert_szamit": "A **hosszabb ideig futó automatizációk** és AI-ügynökök fejlesztésénél nem kell saját komplex állapotkövető rendszert építeni, mert a keretrendszer kezeli az újrapróbálkozásokat és a folyamatok folytatását.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-12T16:30:00+00:00",
   "forras_url": "https://devblogs.microsoft.com/dotnet/durable-task-in-the-real-world",
   "cimkek": [

@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "Az IBM bemutatta a **Granite Switch 4.1** modellt, amely moduláris felépítésének köszönhetően egyetlen GPU-memóriacímke alatt egyesíti a szöveges válaszadást, a specializált döntéshozatalt és a beszédátírást. A rendszer a Granite-Switch-4.1-8B és -30B változatokban érhető el, és a speciális adapterek használatával szinte nullára csökkenti az erőforrás-igényt a váltások során.\n\nA technológia alapja az **Activated LoRA** adapterek használata, amelyek megosztják a nyelvi modell gyorsítótárát. Ez lehetővé teszi, hogy a rendszer valós időben váltogasson az audioátírás, a tartalommoderálás, a szövegösszegzés és az egyedi osztályozási feladatok között anélkül, hogy külön modelleket kellene betölteni a memóriába.\n\nA fejlesztők a gyári összeállítások mellett saját adapterekkel is kiegészíthetik a rendszert. A Granite Switch modellek nyíltan elérhetők, és a rugalmasságuknak köszönhetően lényegesen hatékonyabb működést biztosítanak az összetett üzleti munkafolyamatokban.",
   "miert_szamit": "A vállalkozások **jelentős szerverköltséget spórolhatnak meg**, mivel nem kell külön modelleket üzemeltetniük a beszédátírásra, moderálásra és döntéshozatalra.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-15T20:34:01+00:00",
   "forras_url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1",
   "cimkek": [

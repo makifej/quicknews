@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "Egy dél-karolinai ügyvéd, **Nick Mermiges** egyedi, 8 darab használt Nvidia V100 videókártyára épülő AI-szerverét bővítette 1 TB RAM-mal és egy RTX 3090 GPU-val. A rendszert arra használja, hogy a **DeepSeek V4.1 Flash** modellt saját, kifejezetten jogi feladatokra fejlesztett ellenőrző kódjával ötvözve futtassa az irodáján belül.\n\nA fejlesztés során a modell által használt szakértői modulok csaknem 40 százalékát sikerült 2-bites pontosságról 4-bites NVFP4 precizitásra emelni. Ez lényegesen jobb válaszminőséget eredményez, mivel a modell lekéréseinek több mint **80 százalékát** a pontosabb szakértői rétegek szolgálják ki.\n\nA finomhangolási és kódolási munkát Claude Code segítségével végezte el. A szerver átlagos generálási sebessége másodpercenként 150-180 token, és a gépen a bizalmas ügyféladatok végig helyi hálózaton, az iroda elhagyása nélkül maradnak.",
   "miert_szamit": "A projekt megmutatja, hogy egy kisvállalkozás vagy ügyvédi iroda **saját hardveren is képes nagy pontosságú AI-modellt futtatni**, garantálva az érzékeny adatvédelmet és a teljes adatbiztonságot.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-11-14T12:50:00+00:00",
   "forras_url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/lawyer-upgrades-eight-v100-private-ai-server-to-run-80-percent-of-deepseek-v4-1-flash-at-4-bit-nvfp4-precision-adds-1tb-of-ram-an-nvidia-rtx-3090-and-fixes-crashes-caused-by-a-bad-psu",
   "cimkek": [

@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "Az Anthropic Frontier Red Team nevű egysége kiadta a [FlashProve](https://github.com/anthropics/FlashProve) nyílt forráskódú kutatási prototípust. Az Apache 2.0 licenc alatt megjelent rendszer zkSNARK technológiával kriptográfiai bizonyítékot hoz létre arról, hogy egy adott válasz valóban az elvárt modellből származik, miközben a modell súlyait teljesen rejtve tartja. Ez megoldást kínál arra a problémára, hogy az API-hívások során a felhasználó jelenleg nem tudja ellenőrizni, hogy a szolgáltató nem cserélte-e olcsóbb modellre a kért rendszert.\n\nA rendszer a tesztek során a 400 milliárd paraméteres Llama 4 Maverick modellt egyetlen Nvidia H100-as GPU-n futtatva **110 token/másodperc** teljesítményt ért el. A generált bizonyíték mérete 18,78 megabájt, amelyet a felhasználói oldalon GPU nélkül, egy sima CPU-n 17 másodperc alatt be lehet ellenőrizni. A kérések hossza jelenleg legfeljebb 1024 token lehet.\n\nA FlashProve használata a sima vLLM-futtatáshoz képest nagyjából 70-95-szörös GPU-idővel jár, a biztonsági protokoll matematikai helyességét pedig a Lean formalizációs nyelvvel igazolták a fejlesztők. Az eszköz forráskódja és dokumentációja ingyenesen elérhető a GitHubon.",
   "miert_szamit": "A jövőben a vállalkozások **bizonyíthatóan ellenőrizhetik az AI-válaszok eredetét**, így megelőzhetővé válik, hogy az API-szolgáltatók olcsóbb modellekre cseréljék a kért kimenetet.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-11-03T22:08:22+00:00",
   "forras_url": "https://www.marktechpost.com/2026/11/03/anthropic-flashprove-provable-inference-zksnark/",
   "cimkek": [

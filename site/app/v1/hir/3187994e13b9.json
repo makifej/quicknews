@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "A Cloudflare megjelentette a Clef döntési modellcsalád legújabb nyílt tagját, a [Clef-omni](https://blog.cloudflare.com/introducing-clef-omni)-t. Az eszköz a generált szöveg helyett valószínűségeket és strukturált válaszokat ad vissza. A modell **egyetlen kéréssel dolgozza fel** a szöveget, képeket, hanganyagokat és videókat, így nincs szükség külön átírási vagy feliratozási lépésekre. A teljes infrastruktúrát átültették SGLang alapperemre is, ami duplájára gyorsította a válaszidőket.\n\nA Qwen3-Omni-30B-A3B modellre épülő rendszer 30 milliárd teljes és 3 milliárd aktív paraméterrel működik. A [Workers AI](https://developers.cloudflare.com/workers-ai/) platformon **64 000 tokenes kontextust** támogat, de a nyílt licencnek köszönhetően saját szerveren (például egyetlen H200-as GPU-n) is futtatható. A tesztek alapján a szándékfelismerési feladatokban kifejezetten erős, míg az összetettebb logikai érvelésben kissé elmarad a csak szöveges változatok mögött.\n\nA Clef-omni használati díja 0,15 dollár 1 millió bemeneti tokenenként a Workers AI-on. Ezzel párhuzamosan a kisebb Clef-flash árát 0,038 dollárra csökkentették, a modell súlyai pedig elérhetők az **Apache-2.0 licenc** alatt.",
   "miert_szamit": "A multimodális döntési modell segítségével **előzetes adatátalakítás nélkül osztályozhatsz** ügyfélvisszajelzéseket, képeket és hanganyagokat, amivel lényegesen olcsóbbá és gyorsabbá teheted a komplex automatizációkat.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-11T23:15:52+00:00",
   "forras_url": "https://www.marktechpost.com/2026/10/11/cloudflare-clef-omni-multimodal-decision-model/",
   "cimkek": [

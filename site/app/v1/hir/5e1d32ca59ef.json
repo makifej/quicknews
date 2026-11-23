@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "A Fish Audio bejelentette a [Drama 3](https://huggingface.co/fishaudio/drama-3) szövegfelolvasó modellt, amely természetes nyelvű utasítások alapján képes érzelmeket és színészi játékot vinni a beszélt szövegbe. A felhasználók a mondatok közé szögletes zárójelekben írt jelekkel, például `[közel áll a síráshoz]` vagy `<suttogás>` címkékkel szabályozhatják a megszólalás hangulatát. A **35 milliárd paraméteres** Mixture-of-Experts modell egyetlen kérésben akár 16 különböző beszélőt is fel tud dolgozni, és összesen 83 nyelvet támogat.\n\nA rendszer a Qwen3.5 alapjaira épül, és tokenenként nagyjából 3 milliárd aktív paramétert használ. Az új Codebook-MTP dekódernek köszönhetően a kiejtési pontossága jelentősen javult a korábbi verziókhoz képest, a **márkanevek és szakszavak pontos ejtésében 95,9 százalékos** eredményt ért el a méréseken. Ugyanakkor a számsorok, elérési utak és e-mailek pontos felolvasásában még akadnak hiányosságai.\n\nA Drama 3 nyílt súlyai letölthetők, a helyi futtatáshoz azonban legalább **48 GB VRAM-mal rendelkező NVIDIA videókártyára** van szükség FP8 precizitás mellett. A modell elérhető az API-ban is, ahol a listaár 50 dollár egymillió karakterenként, de 2026. november 12-ig akcióban 10 dollárért érhető el. A nyílt licenc ingyenes kutatási és kereskedelmi használatot engedélyez évi 500 000 dolláros árbevétel alatt.",
   "miert_szamit": "A magyar fejlesztők és tartalomgyártók **természetesebb hangalapú tartalmakat és audiókönyveket állíthatnak elő**, mivel az utasítások nyelve független a beszéd nyelvétől, a nyílt súlyoknak köszönhetően pedig a saját szervereikre is telepíthetik a rendszert.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-14T22:52:17+00:00",
   "forras_url": "https://www.marktechpost.com/2026/10/14/fish-audio-drama-3-open-weight-tts-model/",
   "cimkek": [

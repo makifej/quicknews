@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "Az [MIT CSAIL](https://www.csail.mit.edu) kutatói egy új kísérletben bemutatták, hogy a GPT-6 Astra **tanítás nélkül javította ki** az Alibaba nyílt forráskódú Qwen3.5-0.8B modelljét. Az ügynök a hálózat súlyainak mindössze 0,016 százalékát módosította, ami által a modell MATH-500-as teszteredménye 7,9 százalékról 48,1 százalékra nőtt. A módszert a kutatók súlytér-programozásnak nevezik.\n\nA javulást nem az hozta létre, hogy a modell új ismereteket tanult, hanem egy beragadó **gondolkodási hurok eltávolítása**. Az Astra Python-környezetben elemzi a neurális hálózatok súlyait, majd a programkódokhoz hasonlóan módosítja őket. Ugyanakkor a ritkán hurkolódó [Gemma 3 270M](https://huggingface.co/google/gemma-3-270m) esetében a módszer nem hozott változást, vagyis hiányzó képességeket nem tud hozzáadni az architektúrához.\n\nA közzétett naplók alapján független fejlesztők is reprodukálni tudták a MATH-500-as eredményeket. A kutatók célja, hogy a kísérleti folyamatot a jövőben reprodukálható mérnöki tudományággá alakítsák.",
   "miert_szamit": "A technológia megmutatja, hogy a jövőben az AI-modellek **újratanítás nélkül, percek alatt javíthatók**, ami radikálisan csökkentheti az újraképzési költségeket.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-11-03T16:19:53.123079+00:00",
   "forras_url": "https://www.perplexity.ai/discover/tech/mit-researchers-say-gpt-6-astr-mA_cX1F.QpqWYXSZycYdZQ",
   "cimkek": [

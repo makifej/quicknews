@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "A Microsoft és a Salesforce közös kutatása szerint a nyelvi modellek teljesítménye átlagosan **39 százalékkal romlik**, ha egy feladatot nem egyben, hanem több üzenetre bontva kapnak meg. Ennek fő oka a kontextus közepén lévő információk elvesztése, így a beszélgetés közben küldött javítások vagy emlékeztetők a legkevésbé hatékonyak.\n\nA probléma megelőzésére a leghatékonyabb módszer a szabályok projektszintű utasításokba foglalása, mivel ezek minden üzenetnél érvényesülnek. Ha egy válasz mégis rosszul sikerül, a mid-chat javító üzenet helyett a korábbi **üzenet szerkesztése** a megoldás, ami új ágat nyit a beszélgetésben, és kitorli a hibás választ a kontextusból.\n\nAmennyiben a modell másodszor is eltér az utasításoktól, érdemes összefoglalót kérni az addigiakról, majd **új beszélgetést indítani**. Egy friss chatben az összes információt egyetlen promptba sűrítve a modell a legjobb teljesítményének közel 95 százalékát nyújtja, miközben az elhasznált kontextusablak és a költségek is csökkennek.",
   "miert_szamit": "Beszélgetés közbeni javítgatás helyett az **üzenetek szerkesztésével vagy új chat indításával** sokkal pontosabb válaszokat kapsz és kevesebb tokent fogyasztasz.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-11-16T17:31:22+00:00",
   "forras_url": "https://www.xda-developers.com/claude-has-drift-problem-the-fix-wasnt-better-prompting",
   "cimkek": [

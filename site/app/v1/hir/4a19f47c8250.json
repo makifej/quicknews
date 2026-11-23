@@ -18,6 +18,10 @@
   "jova": true,
   "osszefoglalo": "Biztonsági incidens érte a Fireworks AI-infrastruktúra-szolgáltatót, aminek következtében támadók hozzáfértek a Cursor egyik közös adattárolójához. A megszerzett adatok segítségével a hacker-csoport jogosulatlanul módosította a **Claude Code bővítményt** a Cursor bővítményboltjának gyorsítótárában, ami tartós hátsó kaput próbált telepíteni az érintett fejlesztők gépeire.\n\nA fertőzött verzió nagyjából 11 órán keresztül volt elérhető, és a becslések szerint akár 5000 fejlesztőt is érinthetett. A támadás nem elszigetelt eset: a Fireworks rendszerein keresztül az Uber sofőrjeinek jogosítványadatai, valamint a Notion egyes AI-csevegéseinek átiratai is kiszivárogtak.\n\nA Cursor a fertőzés észlelése után leállította a Fireworks felé irányuló inferenciaforgalmat, míg a Notion és az Uber szintén megszakította a kapcsolatot a szolgáltatóval. A szakértők szerint a behatolások egy szélesebb, AI-fejlesztői platformokat célzó támadási hullám részét képezik.",
   "miert_szamit": "Ha a Cursor fejlesztői környezetet használod, **azonnal frissítsd a rendszert és a bővítményeket**, mert a kompromittálódott kódoló ügynökökön keresztül érzékeny API-kulcsok és hozzáférések szivároghattak ki.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-11-15T02:38:09.424236+00:00",
   "forras_url": "https://www.perplexity.ai/discover/tech/cursor-says-fireworks-ai-breac-E.3t5QlaT.OvJ0y8JO0idQ",
   "cimkek": [

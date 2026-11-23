@@ -18,6 +18,10 @@
   "jova": false,
   "osszefoglalo": "Az **NVIDIA nyílt forráskódúvá tette** a teljes [Run:ai](https://github.com/dsx-ai-factory/run-ai) platformot, ami lehetővé teszi a fejlesztőcsapatok számára a GPU-kapacitások beosztását és kezelését fizetős előfizetés nélkül. A megoldás a Kubernetesre épül, és négy önállóan is használható komponensre van osztva, köztük a [KAI Scheduler](https://github.com/kai-scheduler/KAI-Scheduler) ütemezőre és a CUDA 13.4-alapú GPU-megosztó operátorra.\n\nA rendszer futtatható Kubernetes és OpenShift klasztereken, a helyi fejlesztéshez pedig egy előkészített szkript áll rendelkezésre. Ez hardware-es GPU jelenléte nélkül, **8 szimulált Tesla-A10 GPU-val** hoz létre tesztkörnyezetet macOS vagy Linux rendszereken. A platformot emellett egy webes felületen, parancssoron, REST API-n és egy AI-asszisztensekhez tervezett MCP-szerveren keresztül is el lehet érni.\n\nA kiadás nyílt forráskódú közösségi változata nem tartalmazza az NVIDIA vállalati támogatását, de a csomag forráskódból vagy a hivatalos NGC Community Helm chart segítségével is telepíthető. A csomag mellett elérhetővé vált a [Model Streamer](https://github.com/dsx-ai-factory/model-streamer) is, amely akár 3-6-szor gyorsabb modelltöltést tesz lehetővé a GPU-memóriába.",
   "miert_szamit": "A platform nyílttá tételével a cégek **ingyenesen építhetnek saját GPU-klaszterkezelő rendszert**, amivel hatékonyabban oszthatják meg a drága hardveres erőforrásokat a fejlesztőcsapatok között.",
+  "hirdetes": {
+    "kep": "https://quicknews.hu/assets/hirdetes/adverr-app-1200x1000-v2.jpg",
+    "link": "https://quicknews.hu/api/hirdetes?h=adverr-app&hely=app"
+  },
   "publikalva": "2026-10-19T03:19:18+00:00",
   "forras_url": "https://www.marktechpost.com/2026/10/18/nvidia-runai-open-source-gpu-orchestration-kubernetes/",
   "cimkek": [
