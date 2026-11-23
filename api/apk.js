@@ -17,7 +17,53 @@ function budapestNap() {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Budapest", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
 }
 
+// Napi aktív készülékek (Heni 2026-11-23): az app naponta egyszer POST /api/apk?mi=aktiv {"e": névtelen készülék-azonosító,
+// "v": verzió}. qn:app_aktiv:<nap> halmaz (120 napig), qn:app_eszkozok (minden valaha jelzett készülék),
+// qn:app_verzio:<nap> (verziónként). Személyes adat nincs benne.
+async function aktiv(req, res) {
+  let b = req.body;
+  if (typeof b === "string") { try { b = JSON.parse(b); } catch (e) { b = {}; } }
+  const e = String((b || {}).e || ""), v = String((b || {}).v || "").slice(0, 20);
+  res.setHeader("Content-Type", "application/json; charset=utf-8");
+  if (!/^[a-z0-9]{24}$/.test(e)) { res.statusCode = 400; res.end('{"ok":false}'); return; }
+  const nap = budapestNap();
+  // telepítés vagy frissítés (Heni 2026-11-23: pontos mérés kell). Az app a rendszer szerinti első telepítési és
+  // utolsó frissítési időt küldi. Új készülék: ha a kettő egyezik, új telepítés (a telepítés napjára), különben
+  // korábbról meglévő telepítés, amely most frissült. Ismert készülék: ha a verziója változott, frissítés.
+  const telepitve = Number((b || {}).telepitve) || 0, frissitve = Number((b || {}).frissitve) || 0;
+  const napja = (ms) => new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Budapest" }).format(new Date(ms));
+  const regiV = await kv("HGET", (b || {}).teszt === true ? "qn:app_teszt_eszkoz" : "qn:app_eszkoz_verzio", e);
+  if ((b || {}).teszt === true) {
+    // emulátoros próba: csak kiértékeljük, a valódi számokba nem kerül (az utolsó eredmény 1 napig a pultnak)
+    const mi = regiV === null || regiV === undefined ? (telepitve && Math.abs(frissitve - telepitve) < 1000 ? "telepites" : "frissites (korabbi telepites)") : (regiV !== v ? "frissites" : "aktiv");
+    await kv("SET", "qn:app_teszt_utolso", JSON.stringify({ mi, v, ido: new Date().toISOString() }), "EX", 86400);
+    await kv("HSET", "qn:app_teszt_eszkoz", e, v);
+    res.statusCode = 200; res.end(JSON.stringify({ ok: true, teszt: true, mi })); return;
+  }
+  if (regiV === null || regiV === undefined) {
+    if (telepitve && Math.abs(frissitve - telepitve) < 1000) {
+      await kv("HINCRBY", "qn:app_telepites_nap", napja(telepitve), 1);
+    } else {
+      await kv("HINCRBY", "qn:app_frissites_nap", frissitve ? napja(frissitve) : nap, 1);
+      await kv("HINCRBY", "qn:app_frissites_verzio", v || "?", 1);
+      await kv("INCR", "qn:app_regi_telepites");
+    }
+  } else if (regiV !== v) {
+    await kv("HINCRBY", "qn:app_frissites_nap", frissitve ? napja(frissitve) : nap, 1);
+    await kv("HINCRBY", "qn:app_frissites_verzio", v || "?", 1);
+  }
+  if (v) await kv("HSET", "qn:app_eszkoz_verzio", e, v);
+  await kv("SADD", `qn:app_aktiv:${nap}`, e);
+  await kv("EXPIRE", `qn:app_aktiv:${nap}`, 120 * 86400);
+  await kv("SADD", "qn:app_eszkozok", e);
+  if (/^[0-9.]+$/.test(v)) { await kv("HSET", `qn:app_verzio:${nap}`, e, v); await kv("EXPIRE", `qn:app_verzio:${nap}`, 120 * 86400); }
+  res.statusCode = 200; res.end('{"ok":true}');
+}
+
 module.exports = async (req, res) => {
+  if (req.method === "POST" && /[?&]mi=aktiv\b/.test(req.url || "")) {
+    try { return await aktiv(req, res); } catch (e) { res.statusCode = 500; res.end('{"ok":false}'); return; }
+  }
   const cel = "/alkalmazas/quicknews.apk";
   try {
     if (req.method === "GET") {
