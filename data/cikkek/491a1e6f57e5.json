@@ -1,0 +1,49 @@
+{
+  "id": "491a1e6f57e5",
+  "slug": "inside-the-black-market-for-americas-artificial-intelligence",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Lawfare",
+  "url": "https://www.lawfaremedia.org/article/inside-the-black-market-for-america-s-artificial-intelligence",
+  "publikalva": "2026-11-23T19:09:53+00:00",
+  "cim": "Inside the Black Market for America’s Artificial Intelligence",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 70 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://lawfare-assets-new.azureedge.net/assets/images/default-source/article-images/cybersec.jpg?sfvrsn=a81c685_7"
+  },
+  "cim_eredeti": "Inside the Black Market for America’s Artificial Intelligence",
+  "szoveg_eredeti": "In an office building in Beijing’s Haidian district, about six tenants spend their days selling access to American artificial intelligence (AI) models, including Claude and ChatGPT. Although the American companies that make these models ban their use in China, resellers like these advertise openly on GitHub, Taobao, and Telegram, take payment in yuan over WeChat or Alipay, and forward each customer’s request to Claude and ChatGPT through accounts registered abroad. They are part of a growing“token black market”—an illicit distribution layer built to meet Chinese demand to use America’s most advanced AI models.\n\nThese resellers create ChatGPT and Claude accounts by the tens of thousands with fake email addresses, stolen or virtual credit cards, and other people’s home internet connections to disguise where the accounts are run from. They then resell that access to Chinese customers. By taking advantage of free trials, they can sell Claude at 70 to 90 percent below what Americans pay. In September, the network intelligence firm Team Cymru counted more than 80,000 servers enabling illicit access to America’s best AI models.\n\nThis black market gives America’s adversaries largely unfettered access to American AI, and in doing so it creates three distinct national security risks.\n\nFirst, it allows Chinese AI companies to copy American models at industrial scale—a practice known as distillation, which narrows the U.S. lead in AI. Second, it gives China access to the world’s best AI for writing code, doing science, and more, even though American companies refuse to sell the technology to them. Third, it lets malicious actors get around AI safeguards and use the most advanced models for cyberattacks, mass fraud, dangerous biological research, military planning, and weapons development.\n\nU.S. policymakers must make it a priority to cripple this black market. Fortunately, the tools to do so already exist, even without new legislation. The Department of Justice should prosecute these services for wire fraud; the Department of Homeland Security can set up a system for companies to warn one another about fraudulent accounts; and the Treasury Department can sanction the relay networks and their suppliers, freezing their assets and cutting them off from the American financial system.\n\nThe black market has been critical to China’s ability to narrow the U.S. lead in the AI race by enabling industrial-scale distillation. Distillation is the process of training a weaker AI model on the outputs of a stronger “teacher” AI. Put simply, it lets a company catch up to a rival’s model without having to do the research to develop it. To do this, a Chinese AI company sends the American “teacher” millions of questions, records its answers, and trains its own model to imitate them, capturing the teacher’s capability at a fraction of the cost.\n\nDistillation itself is a common practice. American labs distill their own large models into smaller, cheaper ones. And they have distilled from one another: Elon Musk testified in April that xAI had “partly” distilled OpenAI’s models. The White House’s own memorandum calls legitimate distillation “a vital part” of the AI ecosystem. What sets the Chinese labs’ distillation campaign apart—besides the sheer scale—is how they gain access, and why that gives them a significant edge over American labs that attempt to distill the frontier.\n\nAnthropic has identified seven Chinese labs—Alibaba, Moonshot, DeepSeek, Zhipu, Xiaomi, SenseTime, and MiniMax—that distill through intermediaries that “create thousands of new accounts using false identities, fake or stolen credit cards, and stolen API keys.” Between May and July alone, Alibaba, Moonshot, and DeepSeek ran more than 185 million exchanges with Claude through over 10,000 fraudulent accounts on the black market.\n\nWhen OpenAI concluded that Musk’s companies had broken its terms, it knew whom it was dealing with and was able to quickly cut them off. Anthropic did the same with OpenAI. But a Chinese lab cannot be cut off that way, because it was never actually a customer. Instead, China gains access through thousands of illicit accounts opened under false identities.\n\nThe black market also allows China to distill in a way that American labs can’t. Distillation works best when the questions sent to the teacher model reflect the full range of questions people actually ask. That is why distillation from conversations with real users is the best training data there is, because a company writing its own artificial questions has a hard time replicating that variety.\n\nThe black market allows Chinese AI companies to do exactly that. Moonshot, the Chinese AI company that makes Kimi, silently forwarded its customers’ requests to Claude through the black market and served Claude’s answers back as though Kimi had written them—almost 300,000 requests in 10 days, through 5,380 fraudulent accounts. DeepSeek did the same, allowing its models to be distilled from Claude on real user traffic.\n\nThe ability to use the black market to route user requests to Claude, and then have models mimic those outputs, is part of why no American open-source lab has distilled from Anthropic or OpenAI as successfully as China: American developers buy their access lawfully and cannot route millions of strangers’ requests through this black market.\n\nIt is no surprise, then, that the White House denounced these “deliberate, industrial-scale campaigns”—made possible by the black market that gives advanced AI to China en masse. For its part, China’s Ministry of Commerce has called American distillation charges “groundless and legally unsound” and has warned that China “will resolutely take countermeasures” if Washington targets Chinese AI companies.\n\nAccess to frontier AI also means significant uplift across the economy. The best models can now do much of the work of programmers, analysts, and researchers in a fraction of the time: In OpenAI’s tests on real tasks from 44 occupations, frontier models worked “roughly 100x faster and 100x cheaper than industry experts,” with quality approaching the experts’ own. Almost every industry is uplifted by that kind of work—hence why the White House’s Council of Economic Advisers calls AI “a profound economic inflection point with the potential to significantly increase the GDP of countries that embrace it.” As of today, American models remain significantly ahead of Chinese models. For example, the Commerce Department’s AI testing center found in May that China’s most capable model lagged the American frontier “by about 8 months.” But this lead hardly matters if every new frontier model we build is cheaply available in China.\n\nAnd our AI models aren’t just powering Chinese hobbyists. They are a vital tool for sectors of national importance: China’s best universities, chip designers, military researchers, and most important companies are all using the best American AI models to fuel their ambitions. Reuters has documented a state-backed chip-design center buying an overseas cloud account “for the purpose of accessing Claude,” and Chinese military researchers using OpenAI’s and Anthropic’s models to build systems of their own. A House committee found a black market relay that serves Alibaba, Tencent, Baidu, Tsinghua University, and Peking University as customers. In other words, because of the token black market, American models are raising the Chinese economic tide.\n\nPerhaps most concerningly, the black market also lets Chinese labs use American models for an especially valuable use case: building better Chinese AI. AI companies increasingly use their own models to write the code and run the experiments for the next generation of models. For instance, as of May, more than 80 percent of the code merged into Anthropic’s codebase was written by Claude. Chinese labs get a similar uplift because of the black market. Alibaba, working through fraudulent accounts, used Claude to build its internal infrastruct",
+  "begyujtve": "2026-11-23T19:35:23.762452+00:00",
+  "prioritas": {
+    "pont": 70,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 70,
+      "hirertek": 80,
+      "egyediseg": 95,
+      "hitelesseg": 72,
+      "aktualitas": 95,
+      "kozossegi": 57
+    },
+    "elofeszures": 83,
+    "tanult": 30,
+    "indok": "Érdekes tényfeltáró cikk az amerikai MI-modell korlátozások kijátszásáról Kínában Forrás-tapasztalat: -7.",
+    "tema": "china us ai black market",
+    "cim_hu": "Virágzik az amerikai MI-modell hozzáférések feketepiaca Pekingben",
+    "lead_hu": "Bár a fejlesztők tiltják a használatot Kínában, kínai viszonteladók tömegei értékesítenek feketepiaci hozzáférést a Claude és ChatGPT modellekhez.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-23T19:36:01+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-23T19:36:06+00:00"
+}
