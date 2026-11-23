@@ -27,7 +27,17 @@ async function apkAdat() {
   const k = (await kv("HGETALL", "qn:apk_letoltes_nap")) || [];
   const napok = {};
   for (let i = 0; i < k.length; i += 2) napok[k[i]] = Number(k[i + 1]);
-  return { osszesen, napok };
+  // Heni 2026-11-23: a frissítés nem új letöltés. A javítás előtt a frissítés-értesítésekből jött letöltések is ide
+  // számolódtak; a frissítés-pusht kapott napok (nov. 17., 20., 23.) addigi számai nem választhatók szét, ezért
+  // ezek nem számítanak új letöltésnek (vegyes). Azóta a frissítést az api/apk.js külön számolja.
+  const VEGYES = { "2026-11-17": 7, "2026-11-20": 6, "2026-11-23": 13 };
+  let vegyes = 0;
+  for (const [n, db] of Object.entries(VEGYES)) { const le = Math.min(db, napok[n] || 0); napok[n] = (napok[n] || 0) - le; vegyes += le; }
+  const fk = (await kv("HGETALL", "qn:apk_frissites_nap")) || [];
+  const frissites_napok = {};
+  for (let i = 0; i < fk.length; i += 2) frissites_napok[fk[i]] = Number(fk[i + 1]);
+  const frissites = Number((await kv("GET", "qn:apk_frissites")) || 0);
+  return { osszesen: osszesen - vegyes, napok, frissites, frissites_napok, vegyes };
 }
 
 // hirdetés-banner kattintások (api/hirdetes.js számolja): összesen, helyenként, naponta (Heni 2026-11-17)

@@ -22,8 +22,12 @@ module.exports = async (req, res) => {
   try {
     if (req.method === "GET") {
       const nap = budapestNap();
-      await kv("INCR", "qn:apk_letoltes");
-      await kv("HINCRBY", "qn:apk_letoltes_nap", nap, 1);
+      // Heni 2026-11-23: a frissítés nem új letöltés. Az app frissítés-értesítése ?frissites=1-gyel jön
+      // (build/app_kiadas.py), ezt külön számoljuk (qn:apk_frissites), az új letöltések közé nem kerül.
+      const frissites = /[?&]frissites=1\b/.test(req.url || "");
+      const kulcs = frissites ? "qn:apk_frissites" : "qn:apk_letoltes";
+      await kv("INCR", kulcs);
+      await kv("HINCRBY", kulcs + "_nap", nap, 1);
       // Heni 2026-11-18: minden letöltés a GA4-be is (Measurement Protocol, minden alkalommal új, véletlen azonosító,
       // ugyanúgy, mint a bannerkattintásnál). Külön eseménynév, hogy ne duplázza a weboldal hozzájárulásos apk_letoltes-ét.
       const ua = String(req.headers["user-agent"] || "");
@@ -32,7 +36,7 @@ module.exports = async (req, res) => {
           await fetch(`https://www.google-analytics.com/mp/collect?measurement_id=G-MXSE5QFHHY&api_secret=${process.env.GA4_API_SECRET}`, {
             method: "POST",
             body: JSON.stringify({ client_id: `apk.${Date.now()}.${Math.floor(Math.random() * 1e9)}`,
-              events: [{ name: "apk_letoltes_osszes", params: { honnan: /; wv\)|quicknews-android/.test(ua) ? "app" : "web" } }] }),
+              events: [{ name: frissites ? "apk_frissites" : "apk_letoltes_osszes", params: { honnan: /; wv\)|quicknews-android/.test(ua) ? "app" : "web" } }] }),
           });
         } catch (e) { /* GA-hiba ne akadályozza a letöltést */ }
       }
