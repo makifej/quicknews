@@ -1,0 +1,49 @@
+{
+  "id": "6fd4c32fe34a",
+  "slug": "how-to-build-and-maintain-an-agentic-evaluation",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/agentic-evals",
+  "publikalva": "2026-11-23T00:00:00+00:00",
+  "cim": "How to build and maintain an agentic evaluation",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 48 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://huggingface.co/blog/assets/agentic-evals/thumbnail.png"
+  },
+  "cim_eredeti": "How to build and maintain an agentic evaluation",
+  "szoveg_eredeti": "AI evaluations help shape which systems people build, adopt, and trust. An evaluation gives a system tasks, checks its answers or actions, and produces a score. Building and maintaining a useful evaluation therefore takes real work: defining tasks that reflect domain expertise, scoring them reliably, and checking that the results support the claims made. When methods, code, and data stay private, that work is harder for others to scrutinize or build on.\n\nOpen source offers a means to build stronger, more frequently updated, and more comparable evaluations and the infrastructure around them. Existing tasks, environments, and tools give builders a starting point, so their effort can go to domain expertise and validation. Sharing how an evaluation was built, including what went wrong, lets others find errors, improve it, and reuse it.\n\nThe Hugging Face hub is the home for AI evaluation: we host around 3500 eval leaderboards and have seen about a 16X growth in eval datasets on the hub in the past year, to about 17000 datasets. In recent months, we have also incorporated support for agentic abstractions that are relevant to evaluation. For example, Traces that store an agent’s work in an easily reviewable and sharable way; Benchmarks that highlight datasets used to evaluate models with leaderboards; and Environments that show datasets used as agentic RL or evaluation environments.\n\nIn the research community, AI evaluation terminology is notoriously inconsistent. The glossary at the end defines each term we use and notes the other names you may come across.\n\nAI evaluation design has evolved in three forms as language models have become more capable and able to perform more complex work: question answer, agentic, and teams or swarms. Question-answer benchmarks such as MMLU (2020) and GPQA (2023) measure knowledge and reasoning through the answers models produce. As models became capable of planning and using tools, agentic benchmarks such as SWE-bench and WebArena expanded the scope to resolving software issues and completing tasks on websites. These tasks require evaluation setups that account for the environment in which the system operates and the changes it makes.\n\nLately, research on multi-agent systems has started to add another dimension: how agents coordinate and what they accomplish together. This includes decentralized swarms, teams managed by an orchestrator, and specialized agents collaborating on scientific work. Figure 1 shows a rough timeline of these three eras of evaluations.\n\nFigure 1. Three types of language model evals. Question-and-answer benchmarks check a response against a key. Agentic benchmarks check what an agent changed in an environment. Team and swarm benchmarks score what a group of agents produced.\n\nWe’ll focus on agentic evaluations in this article for two reasons. First, they are becoming increasingly the most prominent type in model release announcements due to high user and enterprise interest in agentic deployment. Second, they offer a useful starting point for understanding how evaluation design affects model performance. Team and swarm evaluations introduce further complexity through interactions between agents, which we leave outside the scope of this guide. Once an agent uses tools to complete a task, each part of the surrounding software can affect its score. For instance, in an audit of Terminal-Bench, researchers kept the model fixed and changed the agent harness. Accuracy varied by up to 29.9 percentage points. To understand differences like that, we examine the anatomy of an agentic evaluation and follow one task from the instructions the agent receives to the checks that determine whether it passed.\n\nFigure 2. The different components of an agentic evaluation.\n\nThere are various parts to an agentic evaluation. A task gives the agent its instruction. The agent harness wraps the model and its tools, letting it work inside a pinned environment. During one rollout, the agent attempts the task from start to finish: it may run several commands, inspect their output, and try again before it stops. The evaluation harness runs several rollouts for each task. When a rollout ends, the verifier grades the environment's final state. Each rollout also leaves a trace, and traces and scores together become part of the final published evidence. Each part can be published, inspected, and reused separately.\n\nDemand for independent evaluation is growing. Policymakers, enterprises, and researchers want evaluations they can verify, and today they mostly cannot: 98.2% of model-benchmark scores are reported by only one party, and researchers have argued that in-house evaluation is not enough.\n\nAt the same time, more benchmarks are holding back test items to reduce contamination: questions or solutions entering training data, so scores may reflect prior exposure. Artificial Analysis says 60% of its Intelligence Index v5, announced in October 2026, rests on evaluations with private test sets or held-out answers. Google DeepMind recently piloted double-blind evaluations, where a secure enclave hides an outside evaluator's test prompts from the model provider and the model's weights from the evaluator. While that can reduce contamination, privacy by itself does not guarantee quality, and withholding supporting materials can make expert review harder. We argue that builders can and should still share infrastructure, grading methods, and evidence about task design. Scrutiny depends on giving others a way to question the measurement and correct mistakes, including controlled review where public release is unsuitable.\n\nWith the anatomy in place, we now build one agentic evaluation for a real use case: an agent that analyzes measurements for a physics lab. Rather than starting from scratch, we adapt an open task, so most of our effort goes into domain expertise and validation.\n\nWe work through eight steps: define the claim, find a task, run it unchanged, adapt it, check the evaluation, read the traces, report the score, and compare models. We then take stock of what we reused. The full walkthrough is in Appendix A. Figure 3 maps the steps and what each produced in our example.\n\nFigure 3. The eight steps of building an agentic evaluation. The left panel highlights each step in turn, and the right panel shows what it involved in our example. Yellow steps work on the evaluation itself, and orange steps run models and read the results.\n\nClaim. Consider a physics lab that wants an agent to fit peaks in a Raman spectrum. A Raman spectrum is a measurement whose peaks reveal properties of a material, here graphene. The agent's job is ordinary coding: read the data file, fit a curve to each peak, and save the results (Figure 5 in Appendix A). For the purposes of this article, our claim is deliberately narrow: fit the specified peaks, calculate the requested D-to-G ratio (the intensity of one peak relative to another, which can indicate defects in the material; we also call it the defect ratio), and save accurate results consistently. Reviewing a whole lab report would need additional skills and evidence.\n\nStarting task and baseline. We reused the Harbor task format and Terminal-Bench's raman-fitting task. Harbor is an open source evaluation harness, and Terminal-Bench is an open benchmark of tasks that an agent completes in a terminal. We first ran the task's reference solution, which passed, and then ran the original task three times with Terminus-2, a terminal agent harness, and gpt-oss-120b, an open-weight model from OpenAI. Harbor ran inside an HF Job, each rollout used its own HF Sandbox, and Inference Providers supplied the model responses. Reusing the runner and task format let us concentrate on the physics, grading, and review. Only the agent harness needed no new work. Every other component needed checking or new work, which we list part by part at the end of Appendix A.\n\nAdaptation. We built raman-lab: eight synthetic spectra with known par",
+  "begyujtve": "2026-11-23T14:03:42.722499+00:00",
+  "prioritas": {
+    "pont": 48,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 40,
+      "egyediseg": 100,
+      "hitelesseg": 90,
+      "aktualitas": 75,
+      "kozossegi": 28
+    },
+    "elofeszures": 85,
+    "tanult": 24,
+    "indok": "Általános technikai útmutató az AI ágensek értékelési módszertanáról Forrás-tapasztalat: -5.",
+    "tema": "ai agentic evaluation guide",
+    "cim_hu": "Így építhető és tartható karban az AI-ágensek értékelési rendszere",
+    "lead_hu": "A Hugging Face részletes útmutatót tett közzé az ágens alapú mesterségesintelligencia-rendszerek nyílt forráskódú teszteléséről és értékeléséről.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-23T14:05:46+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-23T14:06:04+00:00"
+}
