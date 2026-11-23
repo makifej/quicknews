@@ -160,11 +160,14 @@ async function pushAdat() {
 }
 
 // hirdetés-banner kattintások (api/hirdetes.js számolja): összesen, helyenként, naponta (Heni 2026-11-17)
-async function hirdetesAdat() {
-  const h = "boo-nyertes-tudatos-ember";
+// Heni 2026-11-23: az Adverr applikációfejlesztés hirdetés (cikkoldalak, web és app) kattintásai is: ?h=adverr-app
+const HIRD_NEV = { "boo-nyertes-tudatos-ember": ["Tudatos ember az AI korában (BOO-nyertes)", "2026-12-16"],
+                   "adverr-app": ["Adverr applikációfejlesztés (cikkoldalak)", ""] };
+async function hirdetesAdat(kert) {
+  const h = HIRD_NEV[kert] ? kert : "boo-nyertes-tudatos-ember";
   const osszesen = Number((await kv("GET", `qn:hird:${h}`)) || 0);
   const par = async (k) => { const l = (await kv("HGETALL", k)) || []; const o = {}; for (let i = 0; i < l.length; i += 2) o[l[i]] = Number(l[i + 1]); return o; };
-  return { hirdetes: h, nev: "Tudatos ember az AI korában (BOO-nyertes)", ig: "2026-12-16", osszesen, helyek: await par(`qn:hird:${h}:hely`), napok: await par(`qn:hird:${h}:nap`) };
+  return { hirdetes: h, nev: HIRD_NEV[h][0], ig: HIRD_NEV[h][1], osszesen, helyek: await par(`qn:hird:${h}:hely`), napok: await par(`qn:hird:${h}:nap`) };
 }
 
 // a pultból kért műveletek (szerkesztés, hirdetés indítása, címsorcsere): a Mac 3 percenként hajtja végre őket
@@ -763,7 +766,7 @@ module.exports = async (req, res) => {
     if (mi === "elofizetok") return json(res, 200, await elofizetokAdat());
     if (mi === "vasarlasok") return json(res, 200, await vasarlasokAdat());
     if (mi === "apk_letoltes") return json(res, 200, await apkAdat());
-    if (mi === "hirdetes_katt") return json(res, 200, await hirdetesAdat());    if (mi === "torles" && req.method === "POST") {
+    if (mi === "hirdetes_katt") return json(res, 200, await hirdetesAdat(String(url.searchParams.get("h") || "")));    if (mi === "torles" && req.method === "POST") {
       const { pid, felulet, cim } = await torzs(req);
       if (!/^[a-f0-9]{24}$/.test(pid || "")) return json(res, 400, { hiba: "Rossz posztazonosító." });
       if (!["Facebook", "LinkedIn", "Hirdetés"].includes(felulet)) return json(res, 400, { hiba: "Rossz felület." });
