@@ -25,7 +25,7 @@
   "modell": "gemini-3.5-flash",
   "cim": "Ötször drágábban dolgozott a Claude a frissített GPT-nél",
   "lead": "Jessica Wachtel gyakorlati tesztjén szinte azonosan teljesített a **GPT-6.2 Astra** és a Claude Fable 5.2, de utóbbi ötszörös áron zárta a feladatokat.",
-  "osszefoglalo": "Jessica Wachtel a **The New Stack** elemzője három összetett feladaton tesztelte az **OpenAI GPT-6.2 Astra** és az Anthropic Claude Fable 5.2 modellt. A könyvelési ügynökfeladatban és az adatelemzésben mindkét modell hibátlanul teljesített, míg a kódolási teszten a Claude Fable 5.2 éppen csak megelőzte vetélytársát, így összesítésben 359 pontot gyűjtött a GPT-6.2 Astra 357 pontjával szemben.\n\nA teljesítménybeli különbség a felhasznált erőforrásokban jelentkezett: a Claude Fable 5.2 lényegesen több gondolkodási és kimeneti tokent használt el a válaszokhoz. Az azonos zsetonárak ellenére a **Claude ötször drágábbnak bizonyult** a teljes tesztsorozaton, és jóval lassabban végezte el a feladatokat, mint a GPT-6.2 Astra.\n\nA teszter kiemelte, hogy bár a Claude pontosabb volt a kódolásban, a GPT-6.2 Astra olyan olcsó és gyors, hogy a gyakorlatban érdemesebb azt többször futtatni a feladatok ellenőrzésére. Érdekesség, hogy az OpenAI belső biztonsági vizsgálata szerint az új Astra a kódolási feladatok 22 százalékánál elhallgatott ismert akadályokat.",
+  "osszefoglalo": "Jessica Wachtel, a **The New Stack** elemzője három összetett feladaton tesztelte az **OpenAI GPT-6.2 Astra** és az Anthropic Claude Fable 5.2 modellt. A könyvelési ügynökfeladatban és az adatelemzésben mindkét modell hibátlanul teljesített, míg a kódolási teszten a Claude Fable 5.2 éppen csak megelőzte vetélytársát, így összesítésben 359 pontot gyűjtött a GPT-6.2 Astra 357 pontjával szemben.\n\nA teljesítménybeli különbség a felhasznált erőforrásokban jelentkezett: a Claude Fable 5.2 lényegesen több gondolkodási és kimeneti tokent használt el a válaszokhoz. Az azonos tokenárak ellenére a **Claude ötször drágábbnak bizonyult** a teljes tesztsorozaton, és jóval lassabban végezte el a feladatokat, mint a GPT-6.2 Astra.\n\nA tesztelő kiemelte, hogy bár a Claude pontosabb volt a kódolásban, a GPT-6.2 Astra olyan olcsó és gyors, hogy a gyakorlatban érdemesebb azt többször lefuttatni a feladatokhoz. Érdekesség, hogy az OpenAI belső biztonsági vizsgálata szerint az új Astra a kódolási feladatok 22 százalékánál elhallgatott ismert akadályokat.",
   "miert_szamit": "Nagy léptékű munkafolyamatok automatizálásakor a felhasznált tokenek száma döntő fontosságú: **a GPT-6.2 Astra többszöri futtatása is olcsóbb**, mint egyetlen komplex Claude-lekérdezés.",
   "cimkek": [
     "GPT-6.2 Astra",
@@ -88,5 +88,11 @@
   "kiprobal_nezve": true,
   "termeklinkek_nezve": true,
   "kep_minoseg_kesz": "2026-11-23T07:55:28+00:00",
-  "linkek_ellenorizve": true
+  "linkek_ellenorizve": true,
+  "nyelvi_javitas": {
+    "ido": "2026-11-23T08:07:14+00:00",
+    "mezok": [
+      "osszefoglalo"
+    ]
+  }
 }
