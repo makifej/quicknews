@@ -1,0 +1,49 @@
+{
+  "id": "13cb307b8704",
+  "slug": "artificial-intelligence-at-amgen-two-use-cases",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Emerj Artificial Intelligence Research",
+  "url": "https://emerj.com/artificial-intelligence-at-amgen-two-use-cases/",
+  "publikalva": "2026-11-23T11:01:02+00:00",
+  "cim": "Artificial Intelligence at Amgen – Two Use Cases",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 41 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://emerj.com/wp-content/uploads/2026/11/Ed_Article_Header-image_AI@Amgen.png"
+  },
+  "cim_eredeti": "Artificial Intelligence at Amgen – Two Use Cases",
+  "szoveg_eredeti": "Amgen develops, manufactures, and markets medicines for cancer, inflammatory conditions, rare diseases, cardiovascular disease, and obesity.\n\nAs of December 31, 2025, the company employed approximately 31,500 people across more than 50 countries. Amgen reported total revenues of $36.75 billion for full-year 2025, an increase of 10% over 2024.\n\nIn May 2024, Amgen outlined an Artificial Intelligence Vision covering both the development of trustworthy AI tools and their responsible use.\n\nIn April 2026, the company announced a reorganization around what it calls “convergent innovation,” naming James Bradner executive vice president of Research and Development (R&D), Artificial Intelligence and Data.\n\nAmgen has also invested in AI infrastructure, installing an NVIDIA DGX SuperPOD supercomputer named Freyja at its deCODE genetics subsidiary in Reykjavik, Iceland, in 2024.\n\nThis article examines two internal AI use cases at Amgen:\n\nWe begin by examining how Amgen applies machine learning to address slow and unrepresentative clinical trial enrollment.\n\nAmgen states that about 80% of clinical trials fail to enroll enough participants to move forward, and estimates that almost half the time needed to bring a medicine through clinical trials is spent on enrollment. That makes enrollment speed a direct lever on how soon a new medicine can reach patients.\n\nAmgen describes site selection as historically a largely manual process with no centralized source of data and no consistent method for following all the information available.\n\nMatt Austin, executive director of Data Sciences at Amgen, said enrollment was often limited by the human ability to integrate everything needed to choose the best sites. Site choice also shapes whether participants reflect the populations affected by a disease, which Amgen considers essential for results that apply in real-world settings.\n\nTo address both problems, Amgen developed the Analytical Trial Optimization Module (ATOMIC), a machine learning model that predicts how quickly potential sites will enroll participants by learning local and global recruitment patterns across hundreds of factors, producing ranked lists of potential sites, predicted enrollment rates, and supporting country and investigator information.\n\nAccording to Drug Discovery & Development, the team built it largely in-house with open-source Python tools.\n\nAmgen describes several types of data used to inform ATOMIC’s site recommendations, including:\n\nWorking with Amgen’s Center for Observational Research, the ATOMIC team used real-world data to locate trial sites near patients with high levels of lipoprotein(a) (Lp(a)), a form of cholesterol linked to increased cardiovascular risk.\n\nAmgen reports that this can help investigators testing an investigational Lp(a)-lowering drug screen 50% fewer patients (no baseline reported) to find one with elevated Lp(a).\n\nWith Amgen’s Representation in Clinical Research (RISE) team, the ATOMIC team collected anonymized or aggregated geographic, demographic, provider, and patient data for a scorecard that identifies high-potential sites with higher concentrations of populations historically underrepresented in clinical research.\n\nThe workflow below shows how Amgen’s clinical study team uses ATOMIC’s enrollment predictions and a representation scorecard to choose trial sites.\n\nClinical study teams still choose the sites, but Amgen’s account shows three changes in how they prepare that decision:\n\nSean Bruich described where the model stops, and the study team’s judgment takes over:\n\n“ATOMIC leverages powerful machine learning technology. But it certainly does not remove the role and expertise of the study team. It is simply a tool that helps them more efficiently evaluate large amounts of data quickly, augmenting their decision-making abilities.”\n\n– Sean Bruich, then Senior Vice President of Artificial Intelligence and Data at Amgen\n\nAfter a pilot in an ulcerative colitis trial, ATOMIC has supported site selection for studies of potential treatments for cardiometabolic diseases, atopic dermatitis, and several types of cancer. Amgen says it is also developing machine learning models that monitor enrollment in more detail, though it has not described these as deployed.\n\nIn a 2025 internal analysis of 13 Amgen-sponsored studies, Amgen reported that sites at the top of ATOMIC’s rankings enrolled participants “up to three times faster, on average” than lower-ranked sites. The analysis compared sites by rank. Amgen did not report a before-and-after comparison or quantify how much time ATOMIC saved across an entire trial.\n\nIn January 2024, Drug Discovery & Development had reported early results indicating that enrollment at ATOMIC sites was more than twice as fast.\n\nSheryl Jacobs, vice president of Global Development Operations at Amgen, emphasized pairing clinical operations experts with data scientists through people who can translate clinical needs into technical requirements, and the ATOMIC team works with each study team to curate the data relevant to its trial’s protocol, adding new sources as they come up.\n\nDrug development depends on institutional knowledge: past trial designs, information about specific molecules, regulatory precedents, and colleagues who have worked on similar problems. At Amgen, that knowledge was spread across multiple formats and systems.\n\nBryan Yee, executive director of R&D Knowledge and Learning at Amgen, described the search experience drug developers faced:\n\n“A drug developer might search our intranet for past trial designs or resources about a specific molecule. They would get a set of links to hunt down and sort through: PowerPoints, PDFs, articles, reports, SharePoint folders. This can take hours, days, even. We wanted to make this a more intelligent, intuitive process, the same way you would ask a colleague a question.”\n\n– Bryan Yee, Executive Director of R&D Knowledge and Learning at Amgen\n\nAmgen’s knowledge management and technology teams built Catalyst Copilot in about six weeks using Microsoft Copilot Studio and embedded it in Catalyst, Amgen’s existing knowledge management platform. The agent gives R&D staff access to curated knowledge, training videos, and product databases organized by therapeutic area.\n\nYee emphasized that the most important step was having a carefully curated collection of information in place first. His team had already curated and organized lessons learned, articles, and presentations, and Copilot added the ability to analyze, classify, and reason over that material, which changes how drug developers search in three ways:\n\nEmployees’ questions also help Amgen’s knowledge management team understand what researchers are trying to find and curate content more precisely.\n\nMicrosoft’s case study describes how Catalyst Copilot could help researchers find information and relevant colleagues more quickly. The case study gives no figures for search time saved, adoption, or answer accuracy.\n\nAmgen also expanded access to ChatGPT Enterprise across the company as its capabilities improved, using a phased rollout to test the technology and integrate it into existing workflows.\n\nAmgen plans to add agents in other areas of the business, and Scott Skellenger, Amgen’s senior vice president and chief information officer, describes a future with a single interface that routes employees to the agents they need.\n\nAmgen’s two use cases point to three strategic insights for leaders deciding where AI can shorten drug development:\n\nAI applications for automating processes in clinical trials are among the most prominent AI applications…\n\nThe clinical trial is a foundational pillar of the pharmaceutical drug discovery process. Essentially, clinical…\n\nThis article is sponsored by Medable and was written, edited, and published in alignment with…\n\nYou’ve reached a category page only available to Emerj Plus Members.\n\nMembers receive full access to Emerj’s library of interviews, articles, and use-case b",
+  "begyujtve": "2026-11-23T11:20:25.116672+00:00",
+  "prioritas": {
+    "pont": 41,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 30,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 26
+    },
+    "elofeszures": 80,
+    "tanult": 28,
+    "indok": "Tipikus vállalati esettanulmány és PR-jellegű áttekintés, alacsony közvetlen hírértékkel. Forrás-tapasztalat: -7.",
+    "tema": "amgen ai use cases",
+    "cim_hu": "Az Amgen gyógyszergyártó AI-stratégiája és gyakorlati alkalmazásai",
+    "lead_hu": "A több mint 36 milliárd dolláros bevételű Amgen bemutatta, hogyan alkalmazza a mesterséges intelligenciát a gyógyszerfejlesztésben és a belső folyamatokban.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-23T11:20:56+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-23T11:21:09+00:00"
+}
