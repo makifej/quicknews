@@ -1,0 +1,50 @@
+{
+  "id": "47345f2f9937",
+  "slug": "artex-demonstrates-growing-risks-of-ai-powered-cyberattacks",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Clark Hill",
+  "url": "https://www.clarkhill.com/news-events/news/artex-ai-powered-cyberattacks-cybersecurity-risks/",
+  "publikalva": "2026-11-23T17:40:18+00:00",
+  "cim": "ARTEX Demonstrates Growing Risks of AI-Powered Cyberattacks",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "duplikátum: 690a9aa8938d",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.clarkhill.com/wp-content/uploads/2020/10/05134526/ClarkHillSocial.png"
+  },
+  "cim_eredeti": "ARTEX Demonstrates Growing Risks of AI-Powered Cyberattacks",
+  "szoveg_eredeti": "For cybersecurity professionals and businesses of all sizes, it feels like the world is on fire. For illustrative purposes, insurance broker Marsh said that in the last two weeks of May the number of cybersecurity incidents reported by its clients was 48. In the last two weeks of October, that number has more than doubled to 105.[1] This increase is being driven by using Artificial Intelligence in cyber attacks, but not in the way you might expect. It’s driven not by a massive increase in zero-day exploits discovered by a threat actor’s use of Artificial Intelligence, but by Artificial Intelligence making the exploitation of known vulnerabilities much easier and efficient. Nowhere is this dynamic more clearly illustrated than the case of ARTEX.\n\nCybersecurity professionals have always dealt with a familiar problem: Tools designed to help organizations test their defenses can also be used by attackers. For those who have been following cybersecurity for a while, Cobalt Strike is a good example. Originally developed for legitimate security testing, it has become a tool frequently used in real-world attacks.\n\nNow, AI-powered penetration-testing frameworks (or “harnesses”) are raising similar concerns. These tools take automation a step further, allowing attackers to carry out multiple stages of an attack with less hands-on involvement. The harness is essentially a software layer that manages tools, memory, context, and execution that allows an LLM to act as an agent.\n\nARTEX, an open-source Chinese AI harness that was initially developed for penetration-testing purposes, has reportedly been used by both nation-state and financially motivated threat actors to efficiently execute cyber attacks. Its growing capabilities highlight how quickly AI is changing the cyber security landscape.\n\nARTEX is a harness written in Go that uses large language models (LLMs) to automate offensive security tasks. Unlike traditional tools that rely heavily on an operator to direct each step, ARTEX uses AI agents to carry out different activities with limited human involvement.\n\nAccording to Microsoft Threat Intelligence, the framework can perform a range of activities, including:\n\nARTEX also builds a graph of the assets and vulnerabilities it discovers. This allows its agents to use information gathered during an assessment to determine what to investigate or target next.\n\nAutomation isn’t new to cybersecurity. Security teams and attackers have relied on scripts, scanners, and penetration-testing frameworks for years to speed up repetitive tasks.\n\nWhat makes ARTEX different is how it uses AI to make decisions as an operation progresses. Rather than simply following a predefined list of commands, its agents can respond to new information, adjust their approach, and continue working toward an objective with less direction from a human operator. A good example is how ARTEX responds when confronted with a CAPTCHA. ARTEX has been documented establishing an outside email account to get around CAPTCHA challenges in the wild.\n\nMicrosoft researchers described an AI-enabled attack chain that went from searching GitHub for exposed secrets to extracting data from an Azure Key Vault in approximately five minutes.\n\nThat’s a significant concern for defenders. Tasks that once required considerable technical knowledge and manual effort can now be completed much faster with the help of AI. This doesn’t mean attackers no longer need technical expertise, but it does mean the barrier to carrying out certain types of attacks is getting lower.\n\nAlthough tools like ARTEX introduce new capabilities, the underlying attack techniques aren’t necessarily new. Many of the same weaknesses that attackers have exploited for years are still at the center of these incidents.\n\nIdentity security is a good place to start. Organizations should enforce multi-factor authentication (MFA), use conditional access policies, implement privileged access management, and regularly review service accounts and OAuth applications. It’s also important to monitor for unusual Microsoft Graph activity, unexpected privilege changes, and modifications to application credentials. As more business operations move to cloud platforms, monitoring identity and application activity is becoming just as important as traditional endpoint monitoring.\n\nThird-party and supply chain security deserve attention as well. The ConnectWise incident is a reminder of the risks that come with relying on external vendors and trusted software providers. A compromise of one vendor can potentially expose multiple customer environments. Organizations should maintain an inventory of approved third-party applications, review the permissions those applications have been granted, and remove integrations that are no longer needed. Applying least-privilege access to applications and regularly auditing SaaS connections can help limit the damage if an account or integration is compromised.\n\nOrganizations should also prepare for attacks to move faster. Continuous monitoring, effective threat detection and response, regular threat hunting, and proactive vulnerability management all play an important role. Security teams may have less time to identify and contain an attack as AI makes it easier to automate different stages of an intrusion.\n\nUltimately, AI doesn’t eliminate the security weaknesses attackers have relied on for years. Exposed credentials, excessive permissions, misconfigured cloud environments, vulnerable internet-facing systems, and poorly managed third-party integrations remain attractive targets.\n\nARTEX is another example of how attackers can use existing technology in new ways. The tools may be changing, but many of the security fundamentals organizations need to get right haven’t.\n\n[1] https://www.reuters.com/legal/litigation/ai-advances-coincide-with-sharp-rise-cyber-incidents-marsh-data-shows-2026-11-17/\n\nIf you have questions or concerns regarding how Artificial Intelligence or Super Intelligence is changing the cybersecurity landscape, please reach out to Victoria Okraszewski at VOkraszewski@clarkhill.com or Rick Halm at rhalm@clarkhill.com. If you are experiencing a cybersecurity incident and need immediate help, you can email Rick or Victoria, but please also call Clark Hill’s 24/7 Breach Hotline at 877.912.9470 or email breachresponse@clarkhill.com.\n\nThis publication is intended for general informational purposes only and does not constitute legal advice or a solicitation to provide legal services. The information in this publication is not intended to create, and receipt of it does not constitute, a lawyer-client relationship. Readers should not act upon this information without seeking professional legal counsel. The views and opinions expressed herein represent those of the individual author only and are not necessarily the views of Clark Hill PLC. Although we attempt to ensure that postings on our website are complete, accurate, and up to date, we assume no responsibility for their completeness, accuracy, or timeliness.\n\nThe Eighth Circuit invalidated Regulation II, putting the federal debit card interchange fee cap in doubt and creating uncertainty for banks and merchants.\n\nThe EEOC rescinded its 2012 criminal history guidance, but Title VII, FCRA, and fair-chance laws still affect employers’ background check and hiring practices.\n\nA federal court vacated the DHS F-1/J-1/I fixed-term rule, preserving Duration of Status, current grace periods, and existing rules for OPT and STEM OPT.\n\nThe Clark Hill approach is equally pragmatic and growth-minded, which is why we understand our clients’ toughest business challenges. Our multidisciplinary, global team of advisors focuses on smart legal solutions, delivered simply.",
+  "begyujtve": "2026-11-23T18:51:14.440605+00:00",
+  "prioritas": {
+    "pont": 44,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 30,
+      "egyediseg": 100,
+      "hitelesseg": 68,
+      "aktualitas": 88,
+      "kozossegi": 36
+    },
+    "elofeszures": 77,
+    "tanult": 38,
+    "indok": "Duplikátum: 690a9aa8938d",
+    "tema": "ai cyberattacks risk growth",
+    "cim_hu": "Megduplázódott az MI-vel támogatott kibertámadások száma a szakértők szerint",
+    "lead_hu": "A biztosítási adatok szerint az őszi hónapokban meredeken emelkedett az incidensek száma. A támadók a meglévő sérülékenységeket használják ki gyorsabban az MI segítségével.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-23T18:51:58+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-23T18:52:17+00:00",
+  "dupla_of": "690a9aa8938d"
+}
