@@ -5,8 +5,10 @@
 // Measurement Protocollal megy a GA4-be ugyanazzal az eseménynévvel (hirdetes_kattintas).
 const HIRDETESEK = {
   "boo-nyertes-tudatos-ember": "https://ai.budalaszlo.hu/landing/aikonyv/quicknews",
+  // Heni 2026-11-23: az Adverr applikációfejlesztés hirdetése a cikkoldalakon, a „Miért számít” doboz helyén
+  "adverr-app": "https://adverr.hu/sajat_fejlesztesu_alkalmazasok",
 };
-const HELYEK = ["web-asztali", "web-mobil", "app"];
+const HELYEK = ["web-asztali", "web-mobil", "app", "web-cikk"];
 const GA_ID = "G-MXSE5QFHHY";
 
 async function kv(...parancs) {

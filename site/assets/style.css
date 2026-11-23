@@ -2121,3 +2121,7 @@ html.os-android .app-banner .ab-asztal { display: none; }
 .kt-utm{width:fit-content;max-width:100%;padding:16px}
 .kt-utm .racs-4{display:flex;flex-wrap:wrap;gap:16px}
 .kt-utm .hir-kicsi{width:320px;max-width:100%;box-sizing:border-box}
+
+/* cikkoldali hirdetés a „Miért számít” helyén (Heni 2026-11-23) */
+.cikk-hird { display: flex; flex-direction: column; gap: 6px; }
+.cikk-hird img { display: block; width: 100%; height: auto; border-radius: var(--sugar); }
