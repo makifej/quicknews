@@ -1,0 +1,49 @@
+{
+  "id": "a8543da9a1cc",
+  "slug": "langchain-tutorial-from-prompts-to-rag-and-ai-agents",
+  "forras_id": "dailydev",
+  "forras_nev": "Real Python (daily.dev)",
+  "url": "https://realpython.com/langchain-tutorial",
+  "publikalva": "2026-11-23T14:00:00+00:00",
+  "cim": "LangChain Tutorial: From Prompts to RAG and AI Agents",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 36 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/656ba58e9612cc35c4aeb2e8552898db?_a=AQAEuop"
+  },
+  "cim_eredeti": "LangChain Tutorial: From Prompts to RAG and AI Agents",
+  "szoveg_eredeti": "LangChain is a framework for Python and JavaScript that lets you build applications powered by large language models (LLMs). Sending a single prompt to a model takes only a couple of lines of code. However, real apps also need reusable instructions, access to your own data, and a way for the model to call your Python code. In this tutorial, you’ll explore how LangChain’s Python library handles each of these.\n\nSay a group of hospitals just handed you a spreadsheet full of patient reviews, together with a short request: Find out what patients are saying about us. You could read through every row yourself, but by the time you’re done, the next batch of reviews will probably have arrived. Instead, you’ll teach an LLM to do the reading for you.\n\nAlong the way, you’ll cover chat models, prompt templates, chains, retrieval, and agents. Step by step, you’ll build up to a RAG app that answers questions about what patients said and an agent that picks the right tool to look up exact facts.\n\nBy the end of this tutorial, you’ll understand that:\n\nTo get the most out of this tutorial, you should be comfortable with Python functions, dictionaries, and comprehensions and have some familiarity with decorators and type hints. You don’t need any prior experience with LLMs, but a basic understanding of embeddings and vector databases will help in the RAG section. If you don’t have all of this background knowledge yet, that’s okay! You might learn more by going ahead and getting started.\n\nEach section covers one feature. You’ll run most examples in the Python REPL and a few as scripts from the command line. You’ll start by preparing your environment and installing LangChain.\n\nGet Your Code: Click here to download the free sample code you’ll use to build a RAG app and a tool-calling agent that answer questions about patient reviews with LangChain.\n\nTake the Quiz: Test your knowledge with our interactive “LangChain Tutorial: From Prompts to RAG and AI Agents” quiz. You’ll receive a score upon completion to help you track your learning progress:\n\nCheck your grasp of LangChain in Python, from chat messages and prompt templates to LCEL chains, RAG retrieval, and tool-calling agents.\n\nAI Agent From Scratch Live Course: Want to see what frameworks like LangChain do under the hood? In Real Python’s Build an AI Agent From Scratch in Python live course, you write the agent loop by hand, then recognize every piece of it in the tools you already use. Join the waitlist to hear about the next dates.\n\nTo get started, create a folder for this tutorial’s Python files. Set up a virtual environment to install the required tools and libraries. Make sure you have Python 3.10 or later.\n\nActivate your virtual environment and install the following libraries:\n\nWith this command, you install the langchain library, which is the main subject of this tutorial. You also install langchain-openai to use OpenAI’s services.\n\nYou’ll also need to install python-dotenv to help you manage environment variables:\n\nWith this package, you can load environment variables from .env files into your Python environment. You’ll find this handy for keeping your API key out of your code.\n\nYou’ll use OpenAI’s models, so make sure you have an OpenAI account, a valid API key, and credits in your account. Running the examples in this tutorial might cost only a small amount, but every model and embedding call is billed.\n\nCreate a file called .env in your working directory and add your key to it:\n\nEvery script or REPL session in this tutorial calls dotenv.load_dotenv() to read the .env file and load your key into the environment before using any OpenAI model.\n\nNote: Your .env file contains your API key in plain text. If your working directory is under version control, add .env to your .gitignore file so you don’t accidentally commit your key. If you commit your key and publish the repository, revoke the key and generate a new one.\n\nYou can run each section’s code on its own, but the concepts build on each other, so work through the sections in order if you’re new to LangChain. In the RAG and agent sections, you’ll create scripts and use reviews.csv from the tutorial’s materials.\n\nYou’re now ready to start exploring LangChain!\n\nAt the core of LangChain is the large language model (LLM) that powers its features. LangChain provides a modular interface for working with LLM providers, such as OpenAI, Anthropic, Google, and Hugging Face, as well as local models. In most cases, all you need is an API key from the provider to start using the LLM with LangChain.\n\nIn LangChain, you talk to an LLM through a model object, such as ChatOpenAI or ChatAnthropic. Instead of sending raw text, you usually send the model a list of messages, which represent the input and output of models.\n\nEvery message object has .type and .content attributes. The .type attribute tells the LLM who is sending the message (\"system\", \"human\", or \"ai\"), and .content holds the message itself.\n\nYou can also write messages as plain dictionaries, where a role key is equivalent to type:\n\nHere are the most commonly used message objects:\n\nNote that not all providers support SystemMessage. There’s also a ToolMessage, which carries the result of a tool call, but you’ll learn more about tools when you get to the section about building agents.\n\nNote: In practice, you can refer to a SystemMessage as a system prompt and a HumanMessage as a user prompt. You can refer to an AIMessage as an AI response.\n\nTo try chat models in LangChain, start a REPL session and run the following code:\n\nYou first import dotenv and ChatOpenAI. Then, you call dotenv.load_dotenv(), which reads your .env file and loads OPENAI_API_KEY into the environment, where ChatOpenAI looks for it.\n\nNext, you instantiate ChatOpenAI using GPT-6 Luna as the target LLM. The output_version argument tells the class to return replies in the format of OpenAI’s Responses API.\n\nNote: OpenAI offers a range of models with varying prices, capabilities, and performance. GPT-6 Luna is currently OpenAI’s most efficient model for focused, high-volume tasks, which makes it a low-cost fit for the examples in this tutorial.\n\nTo use chat_model, run the following code in the same REPL session:\n\nIn this block, you import HumanMessage and SystemMessage. You then define a list with a SystemMessage and a HumanMessage and run them through chat_model with chat_model.invoke(), storing the result in response.\n\nUnder the hood, chat_model sends a request to OpenAI’s Responses API serving gpt-6-luna, and the response comes back as an AIMessage, as the call to type() confirms. You read the model’s reply from that message with its .text attribute.\n\nAs you can see, the chat model answers the question What is a normal resting heart rate? provided in the HumanMessage. You might be wondering what the chat model does with the SystemMessage in this context. Notice what happens when you ask the following question:\n\nYour healthcare assistant stays in its lane! It won’t explain how to change a tire, but it still makes sure that you don’t get hurt while you wait for roadside assistance.\n\nAs described earlier, the SystemMessage tells the model how to behave. In this case, you tell the model to only answer healthcare-related questions, so it declines to walk you through the tire change. Using text instructions to control how an LLM interacts with the user is powerful and forms the foundation for creating customized chatbots through prompt engineering.\n\nWhile message classes provide a useful abstraction and help you give the LLM the right kind of message, you can also pass plain Python strings into chat models:\n\nIn this code block, you pass the string \"What is blood pressure?\" directly to chat_model.invoke(), and LangChain wraps it in a HumanMessage for you.\n\nYou can still steer the model by adding instructions to the string, such as \"You're an expert in medicine\". However, those instructions become part of the user’s message, so the model treats them as part o",
+  "begyujtve": "2026-11-24T11:35:15.397470+00:00",
+  "prioritas": {
+    "pont": 36,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 25,
+      "egyediseg": 85,
+      "hitelesseg": 72,
+      "aktualitas": 61,
+      "kozossegi": 44
+    },
+    "elofeszures": 75,
+    "tanult": 51,
+    "indok": "Oktatóanyag a LangChain keretrendszerről, nem friss hír Forrás-tapasztalat: -8.",
+    "tema": "langchain python tutorial rag",
+    "cim_hu": "LangChain útmutató: a promptoktól a RAG rendszerekig és az MI-ágensekig",
+    "lead_hu": "Egy részletes oktatóanyag mutatja be, hogyan használható a LangChain Python-könyvtára a nyelvi modellek egyedi adatokkal és kódhívásokkal való összekapcsolására.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-24T11:35:28+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-24T11:35:32+00:00"
+}
