@@ -1,0 +1,49 @@
+{
+  "id": "6e5f032fb046",
+  "slug": "even-the-best-ai-agents-struggle-with-everyday-life",
+  "forras_id": "techcrunch",
+  "forras_nev": "TechCrunch AI",
+  "url": "https://techcrunch.com/2026/11/24/even-the-best-ai-agents-struggle-with-everyday-life/",
+  "publikalva": "2026-11-24T21:33:29+00:00",
+  "cim": "Even the best AI agents struggle with everyday life",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 49 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://techcrunch.com/wp-content/uploads/2026/11/GettyImages-2296543552.jpg?w=1024"
+  },
+  "cim_eredeti": "Even the best AI agents struggle with everyday life",
+  "szoveg_eredeti": "AI companies have spent the last couple of months marketing personal AI agents as tools to take over the digital drudgery of human existence — and millions have been sold on the vision, handing over their shopping schedules, travel plans, and everyday responsibilities to AI assistants. But new research suggests that even the most advanced AI models struggle to reliably and safely navigate the messy details of people’s lives.\n\nAccording to ShellBench, a new benchmark for everyday agent work, even the most advanced models from OpenAI, Anthropic, and Meta failed more than a third of the time. Across all models tested, 15.7% of attempts failed at least one safety requirement, often leading to unintended consequences.\n\nShellBench was developed in collaboration with researchers at The OpenClaw Foundation, Parsewave, Hugging Face, Red Hat, and UC Berkeley, drawing on more than 10 million anonymized, real-world AI agent interactions to see how agents perform on the everyday work people actually delegate to them.\n\nThe research comes as personal AI assistants are finding new popularity among developers, with Meta, OpenAI, and Anthropic all fighting for a piece of the market with Muse, Dots, and Claude Duet, respectively.\n\nIn October, Meta said more than 10 million people in the U.S. and Canada had set up its personal AI agent, Muse, within six weeks of launch, with about a quarter using it daily. That number is expected to grow as Meta implants Muse directly into Instagram DMs. Despite growing popularity among consumers, we still have little evidence about how reliable AI personal assistant products actually are.\n\nShellBench suggests that the unreliable nature of most everyday data sources still causes problems for many state-of-the-art systems. A successful agent should be able to navigate messy personal workspaces containing emails, calendar entries, spreadsheets, receipts, chat logs, outdated information, and phishing attempts, and figure out which information is relevant, what is private, and how to deliver the requested outcome without creating new problems.\n\nIt seems many of today’s AI agents are still not up to the task. Not only did even the highest performing agents frequently fail to meet the requirements of a task, but they also lacked consistency. When researchers ran each task three times under identical conditions, OpenAI’s GPT-6 Astra, the highest-scoring model, nailed all three attempts less than half the time.\n\nFor autonomous assistants that are meant to run in the background without supervision, it’s a problem if users need to run an agent multiple times to get a result they trust.\n\nAdditionally, about 10% of otherwise correct attempts failed at least one safety criterion. Across the models and harnesses tested, agents failed to, for example, adequately account for a child’s school pickup 79.5% of the time. When handling laptop custody records, agents failed a requirement to identify and withhold a sensitive bank upload token in 18.6% of attempts. In another tasks, agents recommended duplicate or incorrect invoice payments 40.3% of the time.\n\nThe findings highlight a major issue for users adopting consumer personal AI assistants, namely that there’s always a risk that an agent can create more headaches in the course of trying to fulfill an otherwise ordinary request.\n\nWhile AI benchmarks have largely focused on coding, professional work, or testing on specific tasks, ShellBench is attempting to evaluate how models perform on multi-step personal tasks within different agent harnesses — the software that controls how a model accesses information, uses tools, and takes actions.\n\nWhile the researchers found model choice had a greater overall impact on performance than harness choice, among the more capable models, AI agent performance became more dependent on the harness.\n\nFor example, OpenAI’s GPT-6 Astra outperformed Anthropic’s Claude Fable 5.2 when operating within the Pi harness, but it performed worse when both models were tested within Claude Code.\n\nMeta’s Muse Wonder Full scored 56% in Pi, but only 38.1% in Claude Code. Meta’s Muse Wonder 1.0, meanwhile, averaged a success rate of 39.7% across the five harnesses tested.\n\nNotably, while the researchers tested models from Meta, OpenAI, and Anthropic, they didn’t evaluate them within the native harnesses of Muse, Dots, or Claude Duet, so the results may not be representative of the experience millions of consumers are having with the product today.\n\nTechCrunch has reached out to Meta, OpenAI, Anthropic and the researchers in the study.\n\nWhen you purchase through links in our articles, we may earn a small commission. This doesn’t affect our editorial independence.\n\nRebecca Bellan is a senior reporter at TechCrunch where she covers the business, policy, and emerging trends shaping artificial intelligence. Her work has also appeared in Forbes, Bloomberg, The Atlantic, The Daily Beast, and other publications.\n\nYou can contact or verify outreach from Rebecca by emailing [email protected] or via encrypted message at rebeccabellan.491 on Signal.\n\nGet an Early Peek at the Next TechCrunch DisruptDisrupt, Startup Battlefield, and more will return next year, and you can be at the front of the line.Sign up for our waitlist\n\nAnthropic launches Claude Ship, letting AI agents review, fix, and approve code changes Sarah Perez\n\nStartup sues Apple in India over tap-to-share contacts feature Jagmeet Singh\n\nAI claimed a solution to the 167-year-old Riemann hypothesis — and a human did, too Tim Fernholz\n\nAnthropic’s 7 founders cashed out nearly $2B in record-breaking IPO Julie Bort\n\nMicrosoft CEO Satya Nadella explains why he asked 60K employees to quit Julie Bort\n\nPalmer Luckey thinks China is ‘thrilled to have Jensen out,’ so he wants the ousted Nvidia CEO reinstated Amanda Silberling",
+  "begyujtve": "2026-11-24T21:47:51.272923+00:00",
+  "prioritas": {
+    "pont": 49,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 30,
+      "egyediseg": 80,
+      "hitelesseg": 81,
+      "aktualitas": 98,
+      "kozossegi": 31
+    },
+    "elofeszures": 93,
+    "tanult": 26,
+    "indok": "Általános elemző cikk az AI-ügynökök gyengeségeiről a ShellBench felmérés alapján, alacsony közvetlen hírértékkel.",
+    "tema": "ai agents shellbench research",
+    "cim_hu": "A legújabb kutatások szerint a legjobb AI-ügynökök is elvéreznek a hétköznapi feladatokon",
+    "lead_hu": "Bár a technológiai cégek a mindennapi feladatok átvételét ígérik, a ShellBench legújabb mérései szerint az AI-ügynökök még nehezen igazodnak el a való élet bonyolult részleteiben.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-24T21:49:41+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-24T21:50:03+00:00"
+}
