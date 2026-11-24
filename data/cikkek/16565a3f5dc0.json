@@ -1,0 +1,49 @@
+{
+  "id": "16565a3f5dc0",
+  "slug": "microduck-obstacle-avoidance-a-sim2real-workflow-with-isaac-lab-and",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/nvidia/microduck-obstacle-avoidance",
+  "publikalva": "2026-11-24T16:34:13+00:00",
+  "cim": "Microduck Obstacle Avoidance: A Sim2Real Workflow with Isaac Lab and Newton",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 51 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/6847ab8c06094fa4afb6ee38/M70tUMNd7N4KO5QGI37YZ.png"
+  },
+  "cim_eredeti": "Microduck Obstacle Avoidance: A Sim2Real Workflow with Isaac Lab and Newton",
+  "szoveg_eredeti": "Add local obstacle avoidance to Microduck while keeping its walking policy fixed. Build varied courses with reusable SimReady assets, model ToF sensing with Newton’s raycaster, and train a controller in Isaac Lab to adjust gamepad velocity commands around obstacles. This tutorial covers simulation training, evaluation, export, and real-robot deployment.\n\nA walking policy can keep Microduck balanced, but it does not tell the robot how to steer around an obstacle in its path. In this workflow, we reuse the walking policy from our first Microduck tutorial and keep its weights fixed. This follow-up trains a separate avoidance controller using time-of-flight (ToF) sensing. You choose a direction with a gamepad; the controller adjusts the velocity command before passing it to the walking policy.\n\nNVIDIA Isaac Lab is an open-source framework for training policies across thousands of GPU-parallel simulations and it provides the robot-learning environment. Newton simulates physics and the sensor’s depth measurements. We will cover the control architecture, train on varied obstacle layouts, evaluate the resulting policies, and prepare the interface for hardware testing.\n\nA Linux system with a compatible NVIDIA GPU and driver. See the Isaac Lab installation guide for platform requirements.\n\nGit with Git LFS, and the uv package manager.\n\nA configured Microduck. Load the same backlash walking-policy export used by the navigation task.\n\nA supported ToF sensor with its configuration recorded.\n\nA paired gamepad and a level test area with obstacles.\n\nInstall uv if it is not already installed. Then clone the exp/microduck branch of the Isaac Lab repository and install its dependencies:\n\nOnce setup is complete, list the available Microduck environments and presets:\n\nDownload and export the upstream backlash walking checkpoint once before training. The obstacle avoidance task loads the exported walking policy automatically.\n\nThe environment combines simple primitives with OpenUSD assets available through SimReady Central on Hugging Face. We use a cardboard box, office bin, bedside cabinet alongside cones. From the IsaacLab repository root, download the pinned box, bin and cabinet packages into assets/simready.\n\nAt each episode reset, the environment code automatically samples a layout, shuffles the props, and varies their placement and rotation. Most courses scatter obstacles ahead of the duck, with a smaller mix of clear paths, barriers and passages. The code also mirrors layouts and mixes aligned and staggered rows.\n\nGoals start ahead of the duck. Movement commands guide it toward the goal while the policy adjusts them around obstacles.\n\nFigure 1. Varied obstacle-course layouts with SimReady assets and primitive geometry.\n\nThe IsaacContrib-ObstacleAvoidance-Flat-MicroDuck task separates obstacle avoidance from balance. A navigation policy uses ToF sensing to adjust forward, lateral, and yaw commands at 50 Hz. The frozen walking policy then converts those commands into joint actions, allowing the robot to learn obstacle avoidance without retraining its walking behavior.\n\nDuring training, the navigation policy’s actor receives ToF history and body and controller state available on the real robot. Its critic has access to additional simulation state to guide learning, but is not needed for deployment.\n\nRewards encourage progress toward the goal, safe arrivals, and movement around obstacles. Following a movement command earns credit only when the robot makes progress with sufficient clearance; risky approaches reduce that credit. Penalties discourage fast approaches, abrupt command changes, collisions, and falls.\n\nThe obstacle-avoidance task lives in isaaclab_tasks.contrib.microduck_obstacle. Its configuration is in obstacle_avoidance_env_cfg.py, ToF sensing is in sensors.py, and actions, commands, observations and rewards are organized under mdp/.\n\nMicroDuckToFCamera extends Newton’s LegacyMultiMeshRayCasterCamera to model the VL53L5CX—a compact time-of-flight (ToF) sensor on the microduck that measures distance across an 8×8 grid at 15Hz. The simulated sensor has a 45° field of view and a 0.12–4 m range. It follows the duck’s head, with placement similar to the sensor on the real duck.\n\nReal recordings informed the sensor placement and floor readings in simulation. Training adds noise, delays and missing measurements—including near the grid’s edges—to expose the policy to imperfect data. The excerpt below shows selected sensor settings already included in the task configuration. You do not need to edit or run this code separately.\n\nTrain the navigation policy with PPO across 16,384 parallel environments for 1,500 training iterations. Its actor, critic, normalizers, and optimizer start fresh. The task configuration loads the fixed walking checkpoint, robot model, and obstacle assets.\n\nThe 16,384 environments shown here are configurable, not a minimum requirement. Lower --num_envs to fit your GPU’s available memory. With fewer environments collecting experience in parallel, reaching comparable policy performance may require more training iterations and longer training time. We also trained this policy on NVIDIA DGX Spark in approximately 6 hours using 4,096 parallel environments for 3,000 PPO updates, demonstrating a smaller-scale configuration for the same workflow.\n\nFigure 2. Parallel MicroDuck obstacle-avoidance simulation\n\nPlayback uses the same props, primitives, frozen walker and sensor randomization as training, with a different seed for new obstacle arrangements.\n\nNavigation checkpoints are saved under logs/rsl_rl/microduck_obstacle_avoidance_tof_flat_backlash/<timestamp>/ relative to the repository root. Choose a model_<iteration>.pt file from your run and replace /absolute/path/to/model.pt below with its path. This plays the policy, opens the Newton viewer and records 20 seconds of simulation. Set --viz to none for headless recording.\n\nPlayback saves TorchScript and ONNX models in the checkpoint’s exported folder. Keep the ONNX data file alongside the model.\n\nFigure 3. Cone-course evaluation with requested motion, policy steering, and ToF input overlays.\n\nThese deployment tools run the navigation model on a laptop and send adjusted gamepad commands to the walking policy on the robot. Use the same walking policy that was used during navigation training.\n\nSection 1 saves the walker’s ONNX export to .pretrained_checkpoints/rsl_rl/https/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/PretrainedCheckpoints/rsl_rl/exported/policy.onnx, relative to the Isaac Lab repository root.\n\nLoad that walking policy using Pollen’s policy-loading guide. The deployment README includes the transfer steps, including how to package an ONNX export that uses an external data file.\n\nFrom your Isaac Lab checkout, set up SSH access and check inference with the robot standing upright and still:\n\nDry-run copies the helpers and streams sensor data, but sends no movement commands. Watch the proposed commands as obstacles enter the sensor’s view. Keep the navigation ONNX and any companion .data file together.\n\nOnce those checks pass, start supervised gamepad navigation:\n\nHold the stick forward to request movement; the policy adjusts the command to avoid obstacles. Release the stick to stop, press X to toggle navigation, and use Ctrl-C to end the session. Forward speed is capped at 0.15 m/s by default, with an additional close-obstacle brake and stale-input stopping. Start in a clear area and verify stopping before testing a course.\n\nSee the deployment README for controls, logs and troubleshooting.\n\nFigure 4. Microduck steers around cones using its 8×8 ToF sensor, with real footage on the left and a 3D rebuild from its logs on the right. Blue shows the policy steering, purple shows the operator intervention.\n\nThe Microduck task collection includes velocity tracking on flat and rough terrain; stand-up recovery, sit–stand transitions, and walking with fall",
+  "begyujtve": "2026-11-24T16:48:28.492931+00:00",
+  "prioritas": {
+    "pont": 51,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 45,
+      "egyediseg": 95,
+      "hitelesseg": 92,
+      "aktualitas": 95,
+      "kozossegi": 43
+    },
+    "elofeszures": 88,
+    "tanult": 62,
+    "indok": "Technikai jellegű szakmai útmutató robotikai szimulációról kifejezetten fejlesztőknek. Forrás-tapasztalat: -5.",
+    "tema": "isaac lab robot learning tutorial",
+    "cim_hu": "Akadálykerülést oktató Sim2Real munkafolyamat érkezett a Microduck robotokhoz",
+    "lead_hu": "A Hugging Face részletes útmutatót tett közzé az Isaac Lab és a Newton segítségével végzett robotikai szimulációs oktatásról és akadálykerülésről.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-24T16:51:12+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-24T16:51:14+00:00"
+}
