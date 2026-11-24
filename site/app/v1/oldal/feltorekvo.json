@@ -2,10 +2,32 @@
   "cim": "Feltörekvő",
   "leiras": "Az elmúlt 14 nap hírei közül azok, amelyekről több forrás is beszámolt, vagy amelyek legalább 2 pontot kaptak az olvasóktól. Sorrend: elöl a szerkesztőség kiemelései, utána pontszám szerint. A pontszám a szavazatokból és abból adódik, hány forrás írt a hírről, és 2 naponta a felére csökken, így a friss hír előrébb kerül.",
   "leiras_cimke": "Hogyan áll össze a lista?",
-  "alcim": "14 hír, pontszám szerint",
+  "alcim": "15 hír, pontszám szerint",
   "blokkok": [
     {
       "t": "nagy",
+      "h": {
+        "id": "13a4e8707d8b",
+        "cim": "Az Anthropic belső Claude-modellje bizonyította Valiant sejtését",
+        "lead": "Egy belső Claude-modell írta azt a 70 oldalas matematikai tanulmányt és Lean 4 formalizációt, amely az algebrai komplexitáselmélet egy régi problémáját oldhatja meg.",
+        "slug": "az-anthropic-belso-claude-modellje-bizonyitast-adott-valiant-sejtesere",
+        "forras": "Perplexity Discover",
+        "kat": "kutatás",
+        "rovat": "kutatas",
+        "ido": "2026-11-24T08:04:47.395Z",
+        "ido_hu": "nov. 24. 09:04",
+        "kep": "https://quicknews.hu/assets/kep/13a4e8707d8b.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/13a4e8707d8b-n.webp",
+        "video": false,
+        "fontossag": 4,
+        "felkapott": true,
+        "forraskep": false,
+        "url": "https://quicknews.hu/hir/az-anthropic-belso-claude-modellje-bizonyitast-adott-valiant-sejtesere",
+        "jova": true
+      }
+    },
+    {
+      "t": "kozepes",
       "h": {
         "id": "f5aad627bf95",
         "cim": "Belső források szerint kiadhatatlanul megerősödtek a legújabb AI-modellek",
@@ -27,30 +49,27 @@
       }
     },
     {
-      "t": "kozepes",
-      "h": {
-        "id": "be9c8fb91e88",
-        "cim": "Jensen Huang azonnali hatállyal visszatért az Nvidia élére",
-        "lead": "Az Nvidia igazgatósága egyhangúlag szavazott Jensen Huang vezérigazgatói és elnöki tisztségének azonnali visszaállításáról.",
-        "slug": "jensen-huang-azonnali-hatallyal-visszatert-az-nvidia-elere",
-        "forras": "Nvidia Newsroom",
-        "kat": "üzlet",
-        "rovat": "uzlet",
-        "ido": "2026-11-23T14:17:48.625Z",
-        "ido_hu": "nov. 23. 15:17",
-        "kep": "https://quicknews.hu/assets/kep/be9c8fb91e88-kollazs-v1.webp",
-        "kep_nagy": "https://quicknews.hu/assets/kep/be9c8fb91e88-kollazs-v1.webp",
-        "video": false,
-        "fontossag": 5,
-        "felkapott": true,
-        "forraskep": false,
-        "url": "https://quicknews.hu/hir/jensen-huang-azonnali-hatallyal-visszatert-az-nvidia-elere",
-        "jova": true
-      }
-    },
-    {
       "t": "cimsor",
       "hirek": [
+        {
+          "id": "be9c8fb91e88",
+          "cim": "Jensen Huang azonnali hatállyal visszatért az Nvidia élére",
+          "lead": "Az Nvidia igazgatósága egyhangúlag szavazott Jensen Huang vezérigazgatói és elnöki tisztségének azonnali visszaállításáról.",
+          "slug": "jensen-huang-azonnali-hatallyal-visszatert-az-nvidia-elere",
+          "forras": "Nvidia Newsroom",
+          "kat": "üzlet",
+          "rovat": "uzlet",
+          "ido": "2026-11-23T14:17:48.625Z",
+          "ido_hu": "nov. 23. 15:17",
+          "kep": "https://quicknews.hu/assets/kep/be9c8fb91e88-kollazs-v1.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/be9c8fb91e88-kollazs-v1.webp",
+          "video": false,
+          "fontossag": 5,
+          "felkapott": true,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/jensen-huang-azonnali-hatallyal-visszatert-az-nvidia-elere",
+          "jova": true
+        },
         {
           "id": "1d0c151fefed",
           "cim": "Shirudo: nyílt forráskódú védelmet adott ki az OpenAI és a Cisco",
@@ -107,27 +126,55 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/750-milliard-parameteres-zaszloshajo-modellt-adott-ki-a-z-ai-glm-5-4",
           "jova": true
-        },
-        {
-          "id": "70c66d38ddc0",
-          "cim": "Új vizualizációt kap a Tesla FSD V15",
-          "lead": "A Tesla FSD V15 új vizualizációja folyamatos virtuális kamerafelvételt vetít a jármű fölé.",
-          "slug": "uj-vizualizaciot-kap-a-tesla-fsd-v15",
-          "forras": "Elon Musk (X)",
-          "kat": "eszköz",
-          "rovat": "eszkoz",
-          "ido": "2026-11-22T07:32:46.284Z",
-          "ido_hu": "nov. 22. 08:32",
-          "kep": "https://quicknews.hu/assets/kep/70c66d38ddc0.webp",
-          "kep_nagy": "https://quicknews.hu/assets/kep/70c66d38ddc0.webp",
-          "video": true,
-          "fontossag": 3,
-          "felkapott": true,
-          "forraskep": false,
-          "url": "https://quicknews.hu/hir/uj-vizualizaciot-kap-a-tesla-fsd-v15",
-          "jova": true
         }
       ]
+    },
+    {
+      "t": "rovat",
+      "cim": "Eszközök",
+      "link": null,
+      "osszes": 2,
+      "fo": {
+        "id": "70c66d38ddc0",
+        "cim": "Új vizualizációt kap a Tesla FSD V15",
+        "lead": "A Tesla FSD V15 új vizualizációja folyamatos virtuális kamerafelvételt vetít a jármű fölé.",
+        "slug": "uj-vizualizaciot-kap-a-tesla-fsd-v15",
+        "forras": "Elon Musk (X)",
+        "kat": "eszköz",
+        "rovat": "eszkoz",
+        "ido": "2026-11-22T07:32:46.284Z",
+        "ido_hu": "nov. 22. 08:32",
+        "kep": "https://quicknews.hu/assets/kep/70c66d38ddc0.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/70c66d38ddc0.webp",
+        "video": true,
+        "fontossag": 3,
+        "felkapott": true,
+        "forraskep": false,
+        "url": "https://quicknews.hu/hir/uj-vizualizaciot-kap-a-tesla-fsd-v15",
+        "jova": true
+      },
+      "kis": [
+        {
+          "id": "06210d668ac3",
+          "cim": "Saját AI-csapatot futtathatsz a gépeden az OpenBottal, otthoni használatra ingyen",
+          "lead": "A lengyel OpenBot egy asztali alkalmazásba fogja össze a Claude Code-ot, a Codexet, a Geminit és a helyi modelleket, és ezekből tartós AI-munkatársakat csinál, amelyek egymásnak is adnak ki feladatot. A GitHubon 3 hónap alatt 8800 csillagot gyűjtött.",
+          "slug": "sajat-ai-csapatot-futtathatsz-a-gepeden-az-openbottal",
+          "forras": "openbot.run",
+          "kat": "eszköz",
+          "rovat": "eszkoz",
+          "ido": "2026-11-18T08:59:17.267Z",
+          "ido_hu": "nov. 18. 09:59",
+          "kep": "https://quicknews.hu/assets/kep/06210d668ac3-openbot-v1.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/06210d668ac3-openbot-v1.webp",
+          "video": false,
+          "fontossag": 3,
+          "felkapott": false,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/sajat-ai-csapatot-futtathatsz-a-gepeden-az-openbottal",
+          "jova": true
+        }
+      ],
+      "tobb": []
     },
     {
       "t": "rovat",
@@ -198,33 +245,6 @@
         "felkapott": false,
         "forraskep": false,
         "url": "https://quicknews.hu/hir/kina-attol-tart-hogy-az-amerikai-ai-90-masodpercre-csokkenti-a",
-        "jova": true
-      },
-      "kis": [],
-      "tobb": []
-    },
-    {
-      "t": "rovat",
-      "cim": "Eszközök",
-      "link": null,
-      "osszes": 1,
-      "fo": {
-        "id": "06210d668ac3",
-        "cim": "Saját AI-csapatot futtathatsz a gépeden az OpenBottal, otthoni használatra ingyen",
-        "lead": "A lengyel OpenBot egy asztali alkalmazásba fogja össze a Claude Code-ot, a Codexet, a Geminit és a helyi modelleket, és ezekből tartós AI-munkatársakat csinál, amelyek egymásnak is adnak ki feladatot. A GitHubon 3 hónap alatt 8800 csillagot gyűjtött.",
-        "slug": "sajat-ai-csapatot-futtathatsz-a-gepeden-az-openbottal",
-        "forras": "openbot.run",
-        "kat": "eszköz",
-        "rovat": "eszkoz",
-        "ido": "2026-11-18T08:59:17.267Z",
-        "ido_hu": "nov. 18. 09:59",
-        "kep": "https://quicknews.hu/assets/kep/06210d668ac3-openbot-v1.webp",
-        "kep_nagy": "https://quicknews.hu/assets/kep/06210d668ac3-openbot-v1.webp",
-        "video": false,
-        "fontossag": 3,
-        "felkapott": false,
-        "forraskep": false,
-        "url": "https://quicknews.hu/hir/sajat-ai-csapatot-futtathatsz-a-gepeden-az-openbottal",
         "jova": true
       },
       "kis": [],
