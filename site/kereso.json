@@ -272,12 +272,12 @@
   {
     "i": "13a4e8707d8b",
     "p": "/assets/kep/13a4e8707d8b.webp",
-    "c": "Az Anthropic belső Claude-modellje bizonyítást adott Valiant-sejtésére",
-    "b": "Egy belső Claude-modell írta azt a 70 oldalas matematikatanulmányt és Lean 4 formalizációt, amely az algebrai komplexitáselmélet egy régi problémáját oldhatja meg.",
+    "c": "Az Anthropic belső Claude-modellje bizonyította Valiant sejtését",
+    "b": "Egy belső Claude-modell írta azt a 70 oldalas matematikai tanulmányt és Lean 4 formalizációt, amely az algebrai komplexitáselmélet egy régi problémáját oldhatja meg.",
     "k": "Perplexity Discover",
     "g": "kutatás",
     "u": "/hir/az-anthropic-belso-claude-modellje-bizonyitast-adott-valiant-sejtesere",
-    "sz": "Az Anthropic egy GitHub-repozitóriumban tette közzé azt a 70 oldalas matematikai tanulmányt és a hozzá tartozó 73 000 soros Lean 4-es kódot, amelynek egyetlen szerzőjeként a Claude van feltüntetve. A dokumentum Valiant 1979-es sejtését, a VP ≠ VNP állítást igyekszik bizonyítani minden test felett, amely a híres P versus NP probléma algebrai megfelelője.\n\nA cég hangsúlyozza, hogy a bizonyítást egy belső kutatási modell fedezte fel és írta meg, ám azt egyetlen emberi matematikus sem ellenőrizte még. Bár a Lean formális nyelvű ellenőrző folyamata lefutott, az még emberi felülvizsgálatra vár, hogy a formális kód pontosan a szándékolt matematikai állításokat fejezi-e ki.\n\nA publikáció nem dönti el a klasszikus P versus NP problémát, mivel az aritmetikai áramkörökre vonatkozó alsó korlátok nem terjednek ki automatikusan a Boole-áramkörökre. Az eredmény így is áttörést jelenthet, amennyiben a matematikai közösség igazolja a levezetést. Claude Anthropic Lean matematika",
+    "sz": "Az Anthropic egy GitHub-repozitóriumban tette közzé azt a 70 oldalas matematikai tanulmányt és a hozzá tartozó 73 000 soros Lean 4-es kódot, amelynek egyetlen szerzőjeként a Claude van feltüntetve. A dokumentum Valiant 1979-es sejtését, a VP ≠ VNP állítást igyekszik bizonyítani minden test felett, amely a híres P-NP probléma algebrai megfelelője.\n\nA cég hangsúlyozza, hogy a bizonyítást egy belső kutatási modell dolgozta ki és írta meg, ám azt egyetlen emberi matematikus sem ellenőrizte még. Bár a Lean formális nyelvű ellenőrző folyamata lefutott, még emberi felülvizsgálatra vár az, hogy a formális kód pontosan a szándékolt matematikai állításokat fejezi-e ki.\n\nA publikáció nem dönti el a klasszikus P-NP problémát, mivel az aritmetikai áramkörökre vonatkozó alsó korlátok nem terjednek ki automatikusan a Boole-áramkörökre. Az eredmény így is áttörést jelenthet, amennyiben a matematikai közösség igazolja a levezetést. Claude Anthropic Lean matematika",
     "d": "nov. 24. 04:37",
     "t": "2026-11-24T03:37:33.405152+00:00"
   },
@@ -301,7 +301,7 @@
     "k": "ZDNET",
     "g": "eszköz",
     "u": "/hir/onalloan-ellenorzi-es-fogadja-el-a-kodmodositasokat-a-claude-ship",
-    "sz": "Az Anthropic bejelentette a Claude Ship béta verzióját, amely képes áttekinteni, javítani és a megadott szabályok szerint automatikusan elfogadni a GitHub pull requesteket. A megoldás két új ágentre épül: a PR Steward a sikertelen ellenőrzéseket és összevonási konfliktusokat kezeli, míg a Claude Approvals a megadott elvárások alapján dönt az automatikus jóváhagyásról.\n\nA fejlesztők a GitHub-tárolókban közzétett szabályfájlokkal határozhatják meg az AI hatáskörét, így a rendszer csak az engedélyezett módosításokat fogadja el önállóan, a többit emberi felülvizsgálatra küldi. A funkció használata beállítástól függően zsetonokat fogyaszt, de az adminisztrátorok költési korlátokat is megadhatnak a váratlan költségek elkerülése érdekében.\n\nA Claude Ship a Claude Team és az Enterprise csomagok előfizetői számára érhető el a Claude Code felületén a /ship parancs kiadásával. Claude Anthropic GitHub fejlesztés",
+    "sz": "Az Anthropic bejelentette a Claude Ship béta verzióját, amely képes áttekinteni, javítani és a megadott szabályok szerint automatikusan elfogadni a GitHub pull requesteket. A megoldás két új ágensre épül: a PR Steward a sikertelen ellenőrzéseket és összevonási konfliktusokat kezeli, míg a Claude Approvals a megadott elvárások alapján dönt az automatikus jóváhagyásról.\n\nA fejlesztők a GitHub-tárolókban közzétett szabályfájlokkal határozhatják meg az AI hatáskörét, így a rendszer csak az engedélyezett módosításokat fogadja el önállóan, a többit emberi felülvizsgálatra küldi. A funkció használata beállítástól függően tokeneket fogyaszt, de az adminisztrátorok költési korlátokat is megadhatnak a váratlan költségek elkerülése érdekében.\n\nA Claude Ship a Claude Team és az Enterprise csomagok előfizetői számára érhető el a Claude Code felületén a /ship parancs kiadásával. Claude Anthropic GitHub fejlesztés",
     "d": "nov. 23. 22:25",
     "t": "2026-11-23T21:25:00+00:00"
   },
