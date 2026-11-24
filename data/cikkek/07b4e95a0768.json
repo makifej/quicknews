@@ -1,0 +1,74 @@
+{
+  "id": "07b4e95a0768",
+  "slug": "anthropic-kutatas-az-ai-igazi-erteket-a-felporgetett-teljesitmeny-adja",
+  "forras_id": "techmeme",
+  "forras_nev": "Anthropic",
+  "url": "https://www.anthropic.com/research/working-with-ai",
+  "szerzo": null,
+  "publikalva": "2026-11-24T11:40:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://assets.claude.com/cd30ce2e82eb423476801098073b39e025839018.jpg"
+  },
+  "cim_eredeti": "Study: most AI deployments derive value by expanding and accelerating output rather than reducing costs, with 80% of 100 AI-built apps automating manual tasks (Anthropic)",
+  "forrasok": [],
+  "szoveg_eredeti": "Nathan Wilmers, Maxim Massenkoff, Peter McCrory\n\nHow are businesses across the economy adopting AI? What bottlenecks and challenges have they faced? How can employers reorganize human expertise around increasingly capable models? To understand businesses’ experiences better, we conducted 66 interviews with 58 of Anthropic’s enterprise customers. We found:\n\nThe use of LLMs has exploded across the economy. How are human organizations reshaping around these strange new collaborators? Consider an employee at a midsize law firm that we spoke to. For years, the firm’s mailroom had followed the same protocol: a scanner sent PDFs of incoming correspondence to an inbox; a mail clerk opened each PDF, skimmed it, clicked “Save As,” renamed it, and placed it in the firm’s file system. The process took five minutes per letter. One day, a senior developer visited the mailroom to watch the mail being processed. In a month, he built an AI system that eventually became two API calls, which name the document based on its first page and then assign it a place in the firm’s document system. The mail clerks “were blown away.”\n\nAn employee at another law firm we interviewed hoped AI would create “a second brain” for the firm. (“For higher-level stuff, it just opens up possibilities.”) But the firm struggled to get everyone to use AI effectively. Demand letters to potential defendants were filled with excessive em dashes and occasional errors. Attorneys building apps kept “running into the wall based on hallucinated menus or buttons that don’t exist.” Others worried about confidentiality and data security, or they just didn’t “have time to get onto this AI train.” A few power users inundated the firm with AI prose, “casually sending Claude-prompted seven-page instructions to the IT team.”\n\nA third law firm we spoke to adopted AI early and achieved strong uptake. One of the firm’s early projects was an AI timekeeping system that saved attorneys work tracking billable hours. IT staff saw parts of their job automated, but they then focused on building secure infrastructure to host apps and manage context that served the rest of the firm. As AI tools spread, the firm realized that associates were no longer needed to write first drafts of certain legal documents. But without writing, “how does an associate know if that’s a good draft or a bad draft?” So it introduced a new workflow where junior lawyers were “required to really take that first [AI-written] draft and work with a senior attorney,” pairing off and marking up and editing the draft together.\n\nThese three firms applied the same technology in the same industry but in different ways. The first firm automated a workflow, creating efficiency gains but risking job displacement for the mail clerks. For the second, bottlenecks to adoption and effective implementation prevented job displacement but also blunted productivity gains that would benefit the firm. The third reorganized work without eliminating any jobs, because effective use of the technology required redeploying employees toward new tasks. The firm redesigned roles to maintain human expertise as a complement to increasingly capable AI models.\n\nIn this article, we explore the connections between AI-driven value and work reorganization through 66 face-to-face interviews conducted across 58 companies in the US, all of which are in the midst of adopting AI. We interviewed executives, managers, and individual contributors. We talked to employees at AI-native startups and 100-year-old businesses. We interviewed people at manufacturers and tech companies. We spoke with structural engineers, dentists, and accountants; employees at hedge funds, law firms, and private equity firms; a property manager, a trucking company, and a publisher. They’re all Anthropic customers, but many also use other AI tools. They were selected for this study because of their range across industry, size, and AI usage, though they are not a random or systematically representative sample.\n\nAs in other qualitative research, we present stories and a framework to organize them, with the expectation that follow-up quantitative research can test these ideas further. The interviews were done anonymously, both for the interviewees and their companies. Any names in the report are pseudonyms.\n\nIn our interviews, we gained insight into how AI has become embedded in businesses across the economy. Some of the AI agents we heard about are sending faxes back and forth, as doctors’ offices refer and intake patients. Other agents are giving advice to technicians when an X-ray machine breaks, and still others are then marking up the X-rays to help patients better understand them. Agents are reading property deeds from the 1800s and working out delivery routes for gaming machines. Recently, an AI agent analyzed a company’s organizational chart and suggested departments where the company could add headcount: “Three heads here, we need to add two there, zero here.”\n\nMostly, agents are writing code. Interviewees described 100 pieces of software that they wrote with AI in enough detail that we could categorize them. Eighty percent of this software automated previously manual work, like spreadsheet-based financial updates or taking meeting notes. Another 20% replaced existing software, often previously purchased from outside vendors. Agents are building apps for private parking enforcement, 401(k) audits, and trademark checks for new product names. They are making dashboards to track portfolio companies, equipment repairs, and debt collectors’ phone calls.\n\nHow have human organizations harnessed these new assistants? We use our interviews to explore several aspects of these deployments. We begin by estimating how much value interviewees ascribe to AI deployments and relate that to a measure of how much organizational change they required to implement. Figure 1 plots nearly 300 AI applications that interviewees discussed in detail. We define an application as a specific AI use case in a specific company. We coded discussions of each application according to the value interviewees attributed to it and the extent to which the organization had to make significant organizational changes to accommodate it. These value assessments are primarily qualitative descriptions on the part of interviewees, not typically based on A/B tests or other quantitative assessments.1\n\nFigure 1 shows that many light-touch AI applications can fit into an existing organizational structure, like ad hoc data analysis or slide deck design. However, many of the simplest applications were rated as relatively low value by the employees who described them. Higher-value deployments tend to require changes to processes, like AI review of every code commit, or roles, like a marketing manager who edits skill.mds containing branding guidelines instead of designing individual documents.\n\nSeveral interviewees described AI adoption as essentially a challenge of organizational change: flattening organizations, shifting reporting lines, or dropping functions. At one firm, for example, executives decided that junior analysts were no longer necessary because executives could complete their own SQL queries. As one accountant put it, “It’s a combination of process re-engineering and systematic discipline.”\n\nThere are several reasons why the most valuable applications led to significant organizational change. In some cases, the AI applications required a structural change in order to be successful, such as when a policy had to be clarified so that AI agents could rigorously apply it in an assessment workflow. In other cases, initial success spurred excitement about making larger organizational changes to further harness AI. In others, the success of using AI forced downstream changes. One commercial real estate company saw its staff start sending out client-facing documents themselves. But this meant they had violated company rules that asked employees to route externa",
+  "modell": "gemini-3.5-flash",
+  "cim": "Anthropic kutatás: az AI igazi értékét a felpörgetett teljesítmény adja",
+  "lead": "A cégek 80 százaléka manuális feladatok automatizálására épít AI-alkalmazásokat a munkahelyi folyamatok átalakításával.",
+  "osszefoglalo": "Az Anthropic 58 vállalati ügyfelével készített 66 mélyinterjút, hogy megértse a mesterséges intelligencia üzleti integrációjának valódi hatásait. A kutatás szerint a szervezetek nem a költségcsökkentésre, hanem a **termelés bővítésére és felgyorsítására** használják a technológiát.\n\nA megkérdezettek által részletezett 100 szoftveres megoldás 80 százaléka korábban manuálisan végzett feladatokat váltott ki, mint például a megbeszélések jegyzetelése vagy a pénzügyi adatok frissítése. A fennmaradó 20 százalék külső szoftverbeszállítók meglévő eszközeit cserélte le saját fejlesztésű AI-megoldásokra.\n\nA tanulmány rávilágít, hogy a legegyszerűbb, meglévő folyamatokba illesztett eszközök alacsonyabb értéket teremtenek. A legértékesebb alkalmazások kiaknázásához a cégeknek **át kell alakítaniuk a munkaköröket** és a belső folyamatokat.",
+  "miert_szamit": "A gyakorlatban az AI nem váltja ki a munkatársakat, hanem a **rutinfeladatok átvállalásával** felszabadítja a kapacitásukat a stratégiai és kreatív feladatok felé.",
+  "cimkek": [
+    "Anthropic",
+    "kutatás",
+    "automatizáció",
+    "termelékenység"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "kutatas",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 78,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 90,
+      "hitelesseg": 86,
+      "aktualitas": 98,
+      "kozossegi": 73
+    },
+    "elofeszures": 90,
+    "tanult": 77,
+    "indok": "Az Anthropic átfogó kutatása értékes betekintést nyújt a vállalati AI-használat valós hatásaiba. Forrás-tapasztalat: -3.",
+    "tema": "anthropic enterprise ai study",
+    "cim_hu": "Az Anthropic kutatása szerint az AI fő előnye nem a költségcsökkentés, hanem a hatékonyság növelése",
+    "lead_hu": "Az Anthropic 58 vállalati ügyfelével készült mélyinterjúk alapján a cégek elsősorban a manuális feladatok automatizálására és a termelés felgyorsítására használják a mesterséges intelligenciát.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-24T11:49:45+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-24T11:49:56+00:00",
+  "megjelent": "2026-11-24T11:49:56+00:00",
+  "nevelo_javitva": "2026-11-24T11:49:56+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-24T11:50:00+00:00",
+    "esemeny": "Az Anthropic kutatói (Nathan Wilmers, Maxim Massenkoff és Peter McCrory) felmérést tettek közzé 58 vállalati ügyfelükkel készített 66 mélyinterjú alapján a mesterséges intelligencia üzleti használatáról.",
+    "forrasok": [
+      "https://www.anthropic.com/research/working-with-ai"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-24T11:50:49+00:00"
+}
