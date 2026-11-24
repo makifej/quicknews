@@ -1,0 +1,49 @@
+{
+  "id": "2d4645499f83",
+  "slug": "scoping-review-shows-most-sarcoma-artificial-intelligence-studies",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/scoping-review-shows-most-sarcoma-artificial-intelligence-studies-lack-external-validation/",
+  "publikalva": "2026-11-24T09:07:40+00:00",
+  "cim": "Scoping Review Shows Most Sarcoma Artificial Intelligence Studies Lack External Validation",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 42 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-25553.png"
+  },
+  "cim_eredeti": "Scoping Review Shows Most Sarcoma Artificial Intelligence Studies Lack External Validation",
+  "szoveg_eredeti": "Scoping Review Shows Most Sarcoma Artificial Intelligence Studies Lack External Validation\n\nA comprehensive scoping review evaluating sixty-one peer-reviewed investigations published between 2018 and 2025 has established that automated artificial intelligence architectures applied to sarcoma imaging remain largely confined to exploratory, single-institution environments, with only thirteen percent of studies conducting independent validation on external cohorts. Sarcomas represent rare and highly differentiated malignant tumors originating in bone and soft tissues, accounting for approximately one percent of all adult malignancies. Across the broader oncology landscape documented in international health registries, cancer stands as the second leading cause of mortality worldwide, with nearly twenty million new cases and close to ten million deaths recorded globally in 2022. While common malignancies such as lung, breast, and colorectal cancers dominate incidence tables, rarer entities such as sarcomas account for a small fraction of overall diagnoses yet disproportionately afflict children, adolescents, and young adults. This biological demographic pattern means that patients affected by aggressive sarcoma subtypes often lose significantly more potential years of life compared to individuals diagnosed with adult-onset carcinomas. Furthermore, the 2020 World Health Organization classification delineates more than one hundred distinct histological subtypes characterized by pronounced molecular heterogeneity and histopathological mimicry, creating substantial clinical barriers to early, definitive identification.\n\nThe extensive anatomical and histological diversity of sarcomas directly influences how clinical diagnostic challenges manifest across healthcare settings. Approximately eighty percent of diagnosed cases are soft tissue sarcomas, fifteen percent are bone sarcomas, and five percent constitute gastrointestinal stromal tumors. Soft tissue sarcomas encompass approximately fifty distinct subtypes that emerge throughout connective tissues, most frequently in the trunk and extremities, with a minority situated in the retroperitoneal region. In pediatric populations, soft tissue sarcomas account for up to twenty-one percent of childhood cancers, predominantly represented by rhabdomyosarcomas and non-rhabdomyosarcoma soft tissue sarcomas. Bone sarcomas, while comparatively less frequent, span chondrosarcoma, osteosarcoma, fibrosarcoma, Ewing sarcoma, and chordoma, presenting complex relationships between patient age, histological lineage, and anatomical tumor site. Gastrointestinal stromal tumors form an additional specialized category of mesenchymal neoplasms arising within the digestive tract. Because early-stage sarcomas frequently progress without distinct or specific symptoms, diagnostic delays remain commonplace. In response, biomedical researchers have increasingly turned to computational image analysis to interpret medical imaging modalities, seeking to leverage machine learning algorithms to assist clinicians in distinguishing subtle patterns across complex radiologic and histopathologic examinations.\n\nTo rigorously examine how modern computational methodologies address these diagnostic hurdles, the scoping review systematically synthesized literature across five major electronic databases using predefined search strings and the PRISMA-ScR methodological framework. Following deduplication of seven hundred thirty-two database records and nineteen citations gathered from reference lists, four hundred ninety-seven unique investigations underwent formal title and abstract screening. Subsequent full-text evaluation of one hundred thirty-two candidate publications yielded sixty-one qualifying studies that specifically integrated machine learning, deep learning, vision Transformers, or large language models for sarcoma classification, detection, grading, or prognosis from imaging data. The research team extracted comprehensive parameters from every included paper, cataloging architectural frameworks, validation paradigms, dataset dimensions, public accessibility, evaluation metrics, and reported clinical constraints. The analysis established that twenty-two distinct analytical techniques have been implemented across the literature, reflecting a gradual architectural evolution from classical handcrafted radiomic pipelines toward convolutional neural networks, transformer models, and emergent generative foundation systems.\n\nWithin this analytical spectrum, convolutional neural networks and their deep architectural derivatives comprise forty-two percent of all deep learning applications documented across the sixty-one reviewed investigations. Common convolutional variants include ResNet, DenseNet, EfficientNet, Inception, VGGNet, and Xception architectures, which excel at directly extracting hierarchical spatial representations from raw, pixel-level medical imagery without relying on manual feature engineering. These deep neural networks have been applied extensively across modalities, ranging from bone tumor segmentation on magnetic resonance imaging and whole-body bone scintigraphy to histopathological whole-slide image classification in pediatric rhabdomyosarcoma. Traditional machine learning techniques represent twenty-nine percent of the surveyed literature, incorporating support vector machines, logistic regression, Random Forest, decision trees, and k-nearest neighbor classifiers. These classical algorithms frequently operate within radiomics pipelines, transforming manually or semi-automatically segmented tumor volumes into structured feature matrices reflecting tissue texture, geometry, and intensity distribution. While radiomic approaches require labor-intensive feature engineering and careful tumor boundary delineation, they retain practical value because they offer transparent feature interpretability and remain functional on comparatively smaller institutional sample cohorts.\n\nDespite reporting impressive diagnostic performance, the vast majority of reviewed models face critical methodological shortcomings that limit their clinical translation and diagnostic generalizability. Across the sixty-one studies, seventy-eight percent relied entirely on internal validation procedures, such as single train-test splits or internal cross-validation, while only thirteen percent evaluated algorithms on independent patient cohorts sourced from separate external medical institutions. The median sample size across all reviewed model development pipelines was only three hundred forty-four samples, a modest figure driven by the clinical rarity of sarcomas and the logistical challenge of assembling large annotated archives. Furthermore, eighty-two percent of studies relied exclusively on single-center datasets, and seventy-five percent utilized proprietary or private hospital data that remain entirely inaccessible to outside researchers. This widespread dependence on private, unshared data prevents independent verification, while repeated reuse of the same limited public cohorts across multiple separate publications risks inflating apparent scientific reproducibility.\n\nStatistical evaluation practices across the literature further complicate objective appraisal of algorithm efficacy. Although reported accuracy metrics ranged from 73.4% to 100%, with a median of 89.2%, and area under the receiver operating characteristic curve values ranged from 0.77 to 0.99, with a median of 0.89, investigations reporting accuracy figures exceeding ninety-five percent almost universally lacked external validation. The review team highlighted that models achieving near-perfect internal accuracy frequently suffer from severe overfitting, with literature indicating that internal model performance typically degrades by ten to fifteen percent when exposed to independent external patient cohorts. Compounding this challenge, approximately seventy percent of the reviewed studies ev",
+  "begyujtve": "2026-11-24T09:19:48.310817+00:00",
+  "prioritas": {
+    "pont": 42,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 45,
+      "egyediseg": 85,
+      "hitelesseg": 70,
+      "aktualitas": 92,
+      "kozossegi": 22
+    },
+    "elofeszures": 74,
+    "tanult": 17,
+    "indok": "Orvosi AI-kutatások áttekintése a szarkóma diagnosztikájában, külső validáció hiányával; szűk szakmai téma. Forrás-tapasztalat: -7.",
+    "tema": "medical ai sarcoma studies",
+    "cim_hu": "A szarkómával kapcsolatos mesterséges intelligencia kutatások többségéből hiányzik a külső ellenőrzés",
+    "lead_hu": "Egy átfogó szakmai elemzés szerint a szarkóma képalkotó diagnosztikájával foglalkozó AI-kutatások túlnyomó része egyetlen intézményre korlátozódik, és hiányzik a független validáció.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-24T09:19:59+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-24T09:20:17+00:00"
+}
