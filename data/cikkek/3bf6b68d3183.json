@@ -1,0 +1,49 @@
+{
+  "id": "3bf6b68d3183",
+  "slug": "a-tencent-nyilt-forraskoduva-tette-a-102-nyelvet-lefedo-hy-mt3",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/tencent-open-sources-hy-mt3-mo-pX5Vn785SPqpzOo02uq.Lw",
+  "publikalva": "2026-11-24T14:17:55.277500+00:00",
+  "cim": "A Tencent nyílt forráskódúvá tette a 102 nyelvet lefedő Hy-MT3 fordítómodelleket",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 81 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/upload/t_limit/v1795530348/url_uploads/fa6d4bfb-8f9a-490b-a1c9-b9999907eccd_bf239c3f_pail98.jpg"
+  },
+  "cim_eredeti": "A Tencent nyílt forráskódúvá tette a 102 nyelvet lefedő Hy-MT3 fordítómodelleket",
+  "szoveg_eredeti": "A Tencent november 24-én, kedden kiadta a Hy MT3-at, a Hunyuan fordítómodellek harmadik generációját, és nyilvánosan elérhetővé tette a modellek súlyait. A modellek a támogatott nyelvek számát 38-ról 102-re bővítik. Az IT Home szerint a Tencent azt állítja, hogy az új modellcsalád a valós használat során jóval kevesebb hibát vét, mint a Hy MT2.\n\nA kiadás három méretben érhető el. Van egy sűrű (dense) 1,8B-s és egy 7B-s változat, valamint egy 30B-A3B szakértői keverék (mixture-of-experts) modell, amelynek összesen 30 milliárd paramétere van, ebből 3 milliárd aktív az MLLLM szerint. A Tencent Hugging Face-en közzétett modellkártyája szerint a modelleket november 24-én tették közzé a Hugging Face-en és a ModelScope-on. A Tencent kiadta a TransRubric nevű, értékelési szempontrendszeren alapuló eszközt is, amely a fordítások automatikus értékelésére szolgál. A modellek Apache-2.0 licenccel rendelkeznek, és standard, FP8 és GGUF formátumban is elérhetők, számolt be az MLLLM.\n\nA Tencent valós adatokon tesztelte az új modelleket. Az IT Home beszámolója szerint a Hy MT2-höz képest 43%-kal csökkent a hibásan lefordított minták aránya, 74%-kal a kihagyások és a hozzáadások száma, az utasítások követésével kapcsolatos hibák száma pedig 40%-kal lett kevesebb. A Tencent közlése szerint a Hy MT3 jobban követi a felhasználói igényeket. Például képes kizárólag a fordítást kiadni, megőrizni az eredeti formázást és a sortöréseket, a tulajdonneveket és a HTML-címkéket pedig változatlanul hagyni.\n\nA Tencent azt is állítja, hogy a 30B-A3B modellje érte el a legjobb összesített eredményt a gyorsgondolkodású modellek között a saját teszteiben. A vállalat állítása szerint a modell megelőzte az olyan csúcsrendszereket, mint az Alibaba Qwen3.8-Max és a DeepSeek-V4.1-Flash modellje, és megközelítette a legerősebb zárt forráskódú következtető modelleket. Ezek az eredmények a Tencent saját méréseiből származnak, függetlenül nem igazolták őket. A modellek már elérhetők a Tencent Hy Translate alkalmazásban és mini-programban, az IT Home szerint pedig Kínán kívüli felhasználók is használhatják őket.\n\nA Tencent az X-en közölte, hogy két területre összpontosított: a játékok lokalizálására és a képfordításra. A játéklokalizációhoz a Tencent a Honor of Kings csapatával dolgozott együtt. A csapat játékspecifikus adatokat és egy értékelési rendszert biztosított, amely azt ellenőrzi, hogy a modell mennyire következetesen kezeli a helyőrzőket, a formázott szövegek címkéit és a játékbeli szakkifejezéseket. A hozzá tartozó kutatási tanulmány szerint a 30B-A3B modell a játékfordítás összes fő mutatójában felveszi a versenyt a zárt forráskódú modellekkel, például a Google Gemini 3.1 Pro modelljével, vagy felül is múlja azokat. A Honor of Kings csapata egy eszközláncot is nyílt forráskódúvá tett, amellyel a modell beépíthető a játékfejlesztési folyamatokba.\n\nA képfordítás terén a Tencent szerint a Hy MT3 jobban érti a szövegkörnyezetet, és hatékonyabban javítja a szövegfelismerési (OCR) hibákat. A Tencent Hy Translate nevű Chrome- és Edge-bővítménye helyi modellt is telepíthet, így az adatok az eszközön maradnak. A Tencent ezt a funkciót az AMD-vel közösen fejlesztette ki, hogy a fordítás a Ryzen AI PC-k NPU-chipjein fusson – számolt be az IT Home.",
+  "begyujtve": "2026-11-24T15:03:51.720583+00:00",
+  "prioritas": {
+    "pont": 81,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 82,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 98,
+      "kozossegi": 67
+    },
+    "elofeszures": 79,
+    "tanult": 51,
+    "indok": "Jelentős nyílt forráskódú modellkiadás a Tencent részéről, 102 nyelv támogatásával. Forrás-tapasztalat: -2.",
+    "tema": "tencent hy-mt3 release",
+    "cim_hu": "Nyílt forráskódúvá tette 102 nyelvű fordítómodelljét a Tencent",
+    "lead_hu": "A Tencent kiadta a Hy-MT3 fordítómodell-családot, amelynek súlyait nyilvánosan elérhetővé tette. A 102 nyelvet támogató modell több méretben, köztük MoE architektúrában is elérhető.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-24T15:05:43+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-24T15:05:44+00:00"
+}
