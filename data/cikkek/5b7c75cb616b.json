@@ -1,0 +1,49 @@
+{
+  "id": "5b7c75cb616b",
+  "slug": "artificial-intelligence-accurately-detects-temporomandibular-joint",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/artificial-intelligence-accurately-detects-temporomandibular-joint-disorders-on-advanced-scans/",
+  "publikalva": "2026-11-24T12:18:19+00:00",
+  "cim": "Artificial Intelligence Accurately Detects Temporomandibular Joint Disorders on Advanced Scans",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 43 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-25889.png"
+  },
+  "cim_eredeti": "Artificial Intelligence Accurately Detects Temporomandibular Joint Disorders on Advanced Scans",
+  "szoveg_eredeti": "Artificial Intelligence Accurately Detects Temporomandibular Joint Disorders on Advanced Scans\n\nArtificial intelligence algorithms applied to specialized medical imaging can detect structural markers of temporomandibular disorders with high sensitivity, yet marked variability in specificity and widespread study limitations mean these tools are not ready for stand-alone clinical diagnosis. According to a systematic review and meta-analysis published in the Digital Dentistry Journal, deep learning architectures and machine learning classifiers trained on three-dimensional cone-beam computed tomography and magnetic resonance imaging demonstrated pooled sensitivities reaching ninety-four percent across diagnostic accuracy evaluations. However, pooled specificities proved considerably lower and more variable, registering eighty-four percent for cone-beam scans and seventy-six percent for magnetic resonance scans, while conventional two-dimensional radiographs demonstrated noticeably lower diagnostic performance. Temporomandibular disorders represent a widespread family of musculoskeletal conditions that impair the jaw joint and masticatory structures, producing facial discomfort, limited mandibular excursion, joint clicking, and debilitating persistent pain. Affecting approximately thirty-four percent of the global population, primarily between the ages of eighteen and sixty, these disorders frequently elude rapid or uniform diagnosis because their multifactorial origin spans complex mechanical, biological, environmental, and psychological factors. Clinical assessment remains notoriously vulnerable to inter-observer divergence, creating substantial interest in developing automated computational frameworks that can objectively recognize subtle joint degeneration, osseous remodeling, and articular disc displacements.\n\nTo rigorously quantify the true diagnostic efficacy of computational methods across jaw imaging, an international team of dental and maxillofacial researchers carried out a systematic review and meta-analysis structured under PRISMA guidelines and prospectively registered within the PROSPERO database under accession CRD420251047311. Formulating their central research question through the PICOS framework, the investigators targeted clinical studies evaluating patients with suspected or confirmed temporomandibular disorders who underwent automated index testing with machine learning, deep learning, or radiomic analytical platforms. Eligible investigations were required to compare algorithm predictions directly against established clinical reference standards, including Diagnostic Criteria for Temporomandibular Disorders assessments or expert radiologist evaluations, while reporting empirical metrics that permitted the extraction of diagnostic accuracy, sensitivity, and specificity. The research team searched five major scholarly databases, including PubMed, Scopus, Web of Science, Cochrane Library, and Embase, filtering for peer-reviewed observational studies and randomized controlled trials published in English between January 2015 and January 2026. The initial literature sweep identified 791 unique bibliographic records after deduplication, which two independent reviewers screened using the Rayyan web application. Achieving high interrater agreement with a Cohen kappa coefficient of 0.89, the reviewers identified thirty investigations that satisfied criteria for qualitative synthesis, from which seventeen studies provided sufficient numerical detail to permit quantitative meta-analysis.\n\nThe quantitative meta-analysis revealed distinct diagnostic performance profiles across the three evaluated imaging modalities, with advanced cross-sectional techniques decisively outperforming standard projection radiography. Across the nine studies examining cone-beam computed tomography, random-effects modeling using logit transformations calculated a pooled sensitivity of 0.94 with a ninety-five percent confidence interval spanning from 0.84 to 0.98, alongside a pooled specificity of 0.84 with an exceptionally wide ninety-five percent confidence interval ranging from 0.45 to 0.97. For the five studies evaluating magnetic resonance imaging, the algorithms achieved an identical pooled sensitivity of 0.94 with a tight ninety-five percent confidence interval of 0.92 to 0.96, but specificity dropped to a pooled estimate of 0.76 with a confidence interval between 0.54 and 0.90. By contrast, the three studies examining conventional radiography, including panoramic orthopantomograms and lateral cephalograms, yielded a pooled sensitivity of only 0.77 with a confidence interval of 0.66 to 0.85, and a pooled specificity of 0.86 with a confidence interval of 0.79 to 0.91. Summary receiver operating characteristic curves constructed through the bivariate Reitsma model confirmed that data points for both cone-beam computed tomography and magnetic resonance imaging clustered densely in the upper-left corner of the coordinate space, establishing superior overall discriminatory capability relative to the scattered distribution of conventional radiography.\n\nWithin the cone-beam computed tomography literature, deep convolutional neural networks and object detection pipelines displayed remarkable proficiency in identifying osseous degenerative joint disease and condylar remodeling. In an extensive retrospective evaluation by Mao and colleagues in 2025, which analyzed 7,357 cone-beam images obtained from 1,018 patients, a YOLOv10 object detection network distinguished healthy joints from pathological structures with an accuracy of 0.98, a sensitivity of 0.97, and a specificity of 0.97. That specific architecture recognized cortical erosion with 0.91 accuracy, osteophytes with 0.96 accuracy, subchondral sclerosis with 0.91 accuracy, and subchondral cyst formation with 0.96 accuracy. Similarly, Mourad and colleagues in 2024 utilized a YOLOv5 convolutional framework across 3,134 cone-beam slices from 276 individuals, reporting diagnostic accuracies spanning 92.44 to 98.74 percent, sensitivities between 75 and 86.84 percent, and specificities between 94.39 and 99.48 percent, achieving substantial agreement with human specialists reflected in kappa statistics ranging from 0.776 to 0.836. Machine learning classifiers built upon mathematical radiomic features extracted from condylar bone marrow have also emerged; Choi and colleagues in 2025 demonstrated that a Random Forest classifier could predict disc displacement without reduction from cone-beam scans without needing soft-tissue magnetic resonance imaging, reaching an area under the curve of 0.86, sensitivity of 0.81, and specificity of 0.84.\n\nWhen analyzing soft-tissue articular structures on magnetic resonance imaging, artificial intelligence models proved adept at detecting internal derangements, anterior disc displacements, and disc perforations. Magnetic resonance imaging represents the accepted reference standard for visualizing the fibrocartilaginous articular disc, which is invisible on standard bony radiographs. In an evaluation conducted by Yu and colleagues in 2024 involving 618 patients and 840 magnetic resonance images, a deep learning platform constructed on the ResNet101_vd framework achieved an overall accuracy of 96.91 percent, precision of 96.93 percent, and an F1-score of 96.94 percent when utilizing automated segmentation. Yoon and colleagues in 2023 tested a combined RetinaNet and multi-input convolutional neural network that provided visual heat maps via Gradient-weighted Class Activation Mapping to illustrate the anatomical rationale underlying its automated decisions, yielding an internal test sensitivity of 96.8 percent and specificity of 94.9 percent, alongside an external validation sensitivity of 94.0 percent and specificity of 94.5 percent across independent clinical datasets. Furthermore, Kim and colleagues in 2021 proved that multilayer perceptron neural networks could predict mechanical disc perfo",
+  "begyujtve": "2026-11-24T12:20:16.692863+00:00",
+  "prioritas": {
+    "pont": 43,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 50,
+      "egyediseg": 70,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 23
+    },
+    "elofeszures": 73,
+    "tanult": 12,
+    "indok": "Részletes orvosi szakcikk az MI korlátairól egy szűk szakterületen, alacsony közvetlen hírértékkel. Forrás-tapasztalat: -7.",
+    "tema": "ai medical imaging tjd",
+    "cim_hu": "Az MI nagy pontossággal jelzi az állkapocsízületi problémákat, de klinikai használatra még nem kész",
+    "lead_hu": "Egy új elemzés szerint a mélytanulási algoritmusok hatékonyan mutatják ki az elváltozásokat a képalkotó vizsgálatokon, de a pontos diagnózishoz még nem elég megbízhatóak.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-24T12:20:28+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-24T12:20:35+00:00"
+}

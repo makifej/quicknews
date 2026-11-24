@@ -1,0 +1,49 @@
+{
+  "id": "bf13bfe50625",
+  "slug": "clinical-artificial-intelligence-in-lung-transplantation-faces",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/clinical-artificial-intelligence-in-lung-transplantation-faces-critical-validation-challenges/",
+  "publikalva": "2026-11-24T12:18:08+00:00",
+  "cim": "Clinical Artificial Intelligence in Lung Transplantation Faces Critical Validation Challenges",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 42 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-25888.png"
+  },
+  "cim_eredeti": "Clinical Artificial Intelligence in Lung Transplantation Faces Critical Validation Challenges",
+  "szoveg_eredeti": "Clinical Artificial Intelligence in Lung Transplantation Faces Critical Validation Challenges\n\nA comprehensive expert narrative review evaluating machine learning and artificial intelligence applications in lung transplantation reveals that while predictive algorithms demonstrate potential across donor assessment, surgical care, and long-term surveillance, clinical implementation remains obstructed by small retrospective cohorts, domain shifts, and widespread omissions of calibration data. Researchers synthesized clinical developments and policy reports from 2025 through early 2026 across major medical databases, analyzing how data-driven pattern discovery contrasts with traditional biostatistical paradigms. Whereas conventional biostatistics relies on explicit modeling assumptions and hypothesis-driven inference in smaller cohorts to quantify uncertainty, modern machine learning tools prioritize predictive modeling by uncovering complex non-linear relationships across high-dimensional datasets. However, evaluating these algorithmic systems across the transplantation ecosystem requires rigorous methodologies to prevent data leakage, including patient-level, time-based, or multi-center external splits, as well as strict attention to calibration and subgroup performance rather than standard discrimination metrics alone.\n\nEvaluating clinical model performance requires a clear distinction between discrimination metrics, classification thresholds, and real-world calibration. Standard discrimination measures such as the area under the receiver operating characteristic curve assign equal weight to healthy and sick classes, baseline at 0.5 for random guessing, and can present overly optimistic assessments in heavily imbalanced clinical populations. In contrast, the area under the precision-recall curve focuses specifically on positive events and heavily penalizes false positives, making it a substantially stricter standard when evaluating rare clinical events like acute graft failure. Classification metrics derived from confusion matrices—including precision, sensitivity or recall, and the harmonic F1 score—must align with specific clinical risk tolerances, particularly when screening donor lungs or attempting to avoid unnecessary invasive transbronchial biopsies. Critically, calibration measures whether a model’s predicted probability reflects true observed event frequencies; poor calibration risks misguiding therapy, prompting inappropriate immunosuppression augmentation, unnecessary diagnostic bronchoscopies, or the erroneous denial of donor organs.\n\nIn pre-transplant care and referral systems, artificial intelligence platforms are increasingly piloted to overcome delayed diagnosis, geographic barriers, and severe workforce shortages. Primary care workflows and community hospital referrals represent major bottlenecks, prompting several tertiary academic centers to pilot automated electronic health record systems that trigger referrals by evaluating clinical trajectories, including pulmonary function tests, chest imaging, echocardiograms, and supplemental oxygen requirements. Concurrently, natural language platforms and generative tools are adopted by millions of individuals for healthcare inquiries, potentially addressing literacy disparities but lacking lung-transplant-specific validation. On the administrative front, programs are evaluating ambient listening systems during outpatient encounters, automated pre-visit clinical note summarization, prior authorization tools, and triage chatbots to reduce clinician burnout. However, investigators emphasize that systematic evaluation of operational return on investment, transparency, and data quality remains necessary before automated triage and registry-level electronic integration can safely scale across transplant centers.\n\nIn the peri-transplant phase, machine learning algorithms show measurable success in evaluating organ suitability during ex-vivo lung perfusion, a domain well-suited to algorithmic integration due to continuous, longitudinal physiologic monitoring. The InsighTx model, developed using longitudinal physiologic measurements across 725 perfusion cases at a single high-volume center, employed extreme gradient boosting to achieve an area under the receiver operating characteristic curve of 0.90 for identifying unsuitable donor lungs and 0.80 for suitable organs with good clinical outcomes. Subsequent integration of deep convolutional neural networks applied to 1,300 longitudinal chest radiographs demonstrated enhanced predictive capability for outcomes including severe primary graft dysfunction and time to extubation. Despite these strong discrimination figures, researchers noted substantial constraints: the models depended on proprietary perfusates and cytokine measurements, calibration data were omitted, the clinical utility arm was underpowered with an odds ratio of 13 across only 20 cases, and lack of external validation across centers limits generalizability.\n\nPredicting severe primary graft dysfunction grade three at 72 hours post-transplantation represents another major research area, though single-center models demonstrate variable performance and structural limitations. An initial retrospective investigation utilizing electronic medical records and transplant registry variables across 576 patients found that a k-nearest neighbors classifier achieved an area under the receiver operating characteristic curve of 0.65 based on calibration data. A subsequent multimodal framework incorporated donor computed tomography imaging into a 3D ResNet fusion architecture, which improved the discrimination metric to 0.74 with 98 multimodal features. Nevertheless, this multimodal model was constrained by a small sample of 160 patients with only 44 severe graft dysfunction events, leading to diminished precision and recall despite a high negative predictive value of 0.82. In an intraoperative model assessing 477 patients, extreme gradient boosting achieved an area under the curve of 0.84 at second graft implantation, but heavily relied on extracorporeal membrane oxygenation use—a variable functioning as both predictor and treatment—risking algorithmic shortcutting without established clinical decision curves.\n\nAlgorithmic post-transplant survival modeling across registry datasets reveals that complex machine learning architectures frequently fail to outperform conventional statistical survival models. An evaluation of the national United Network for Organ Sharing registry applying a transformer-based EHRFormer alongside extreme gradient boosting yielded five-year survival prediction areas under the curve of approximately 0.63 for both architectures. While these models achieved better discrimination when predicting poor one-year allograft function defined as forced expiratory volume under 70 percent—producing areas under the curve of 0.74 and 0.76—they were acutely sensitive to registry batch effects, changes in organ allocation algorithms, and evolving extracorporeal support practices. Similarly, a nine-variable AutoScore-Survival framework trained on historical transplant data from 1987 to 2014 and tested on a 2015 to 2025 cohort demonstrated modest time-dependent discriminative values ranging between 0.59 and 0.72. Although this study adhered strictly to reporting guidelines and provided calibration plots, long-term calibration showed substantial variance, and retaining historical association coefficients raised interpretability concerns across evolving clinical eras.\n\nInternational registry studies and personalized pharmacological modeling further highlight the tension between reported statistical accuracy and practical clinical utility. An analysis by the Korean Organ Transplantation Registry applied multiple machine learning algorithms across 240 recipients to predict one-year graft failure using pre-transplant factors, identifying a nine-variable multilayer perceptron as the top performer with",
+  "begyujtve": "2026-11-24T12:20:15.864707+00:00",
+  "prioritas": {
+    "pont": 42,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 45,
+      "egyediseg": 70,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 21
+    },
+    "elofeszures": 73,
+    "tanult": 15,
+    "indok": "Orvostudományi áttekintés az MI tüdőtranszplantációs korlátairól, alacsony közösségi érdeklődéssel. Forrás-tapasztalat: -7.",
+    "tema": "ai lung transplantation challenges",
+    "cim_hu": "Klinikai kihívásokkal küzd a mesterséges intelligencia a tüdőátültetések területén",
+    "lead_hu": "Bár az algoritmusok segíthetnek a donorok értékelésében és a műtéteknél, a kisméretű adatbázisok és a validáció hiánya akadályozza a gyakorlati alkalmazást.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-24T12:20:28+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-24T12:20:40+00:00"
+}
