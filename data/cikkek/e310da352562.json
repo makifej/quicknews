@@ -1,0 +1,49 @@
+{
+  "id": "e310da352562",
+  "slug": "openai-and-cisco-launch-shirudo-an-open-source-runtime-that-helps",
+  "forras_id": "techmeme",
+  "forras_nev": "SiliconANGLE",
+  "url": "https://siliconangle.com/2026/11/23/cisco-and-openai-launch-shirudo-an-open-source-infrastructure-shield-to-protect-against-ai-driven-cyberattacks/",
+  "publikalva": "2026-11-24T04:15:00+00:00",
+  "cim": "OpenAI and Cisco launch Shirudo, an open-source runtime that helps teams protect running Linux systems without a reboot while they roll out patches (Mike Wheatley/SiliconANGLE)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 80 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://images.siliconangle.com/blogs.dir/1/files/2026/11/Screenshot-from-2026-11-23-08-48-22.png"
+  },
+  "cim_eredeti": "OpenAI and Cisco launch Shirudo, an open-source runtime that helps teams protect running Linux systems without a reboot while they roll out patches (Mike Wheatley/SiliconANGLE)",
+  "szoveg_eredeti": "Cybercriminals have gained the ability to discover vulnerabilities in software and take advantage of them in seconds, and it’s all thanks to artificial intelligence. Enterprises need a better way to defend themselves, so it’s fitting that one of the world’s top AI companies, OpenAI Group PBC, together with Cisco Systems Inc., is stepping up with a solution.\n\nThey’ve just announced a new, open-source and extremely ambitious initiative called the Secure Infrastructure Project, which aims to ensure that all AI computing infrastructure is secure by design and capable of defending against lightning-fast AI-driven attacks. The first project within that initiative is Shirudo, which is designed to protect infrastructure systems automatically from critical exploits before they can be patched.\n\nIn a blog post, Cisco Security Chief Technology Officer and Vice President of Engineering Thomas Graf explained that the industry has always treated security as an afterthought, essentially something that’s bolted onto systems after the fact. It has gotten away with this because much of the world’s computing infrastructure was built for workflows that proceed at human speeds. But with the emergence of AI models that can discover and work out how to exploit vulnerabilities in a matter of seconds, this kind of reactive security is no longer enough.\n\nAccording to Graf, even now, when a major vulnerability is discovered in widely used software, it can take weeks or even months to come up with a fix and ensure that every major system is patched against it. “That timeframe is no longer acceptable given that the mean time to exploitation has become negative, meaning that a growing number of vulnerabilities are now being exploited before they are publicly disclosed,” he said. “This will only accelerate with the further evolution of AI models and cybersecurity capabilities, becoming the norm in open-weight models.”\n\nTo counter these kinds of automated attacks, Cisco and OpenAI believe that infrastructure has to be rebuilt from scratch with security in mind. They argue that it’s time to abandon static defenses and embrace systems that are hardened by default, immutable and rebuildable from a previous “good” state, so users can quickly revert back in the event of an attack. To do this, infrastructure systems must be based on Trusted Platform Modules and utilize reinforcement learning techniques to safely test their own defenses so they can adapt when faced with novel cyberattacks from previously unknown vectors.\n\nGraf said the key to doing this is to secure workloads at runtime, which is why the initial focus of Cisco’s and OpenAI’s initiative is Shirudo, an evolution of the open-source Tetragon runtime security project that aims to provide autonomous defense for AI agents.\n\nShirudo, named after the Japanese word for “shield,” is based on extended Berkeley Packet Filter or eBPF, which is a Linux kernel technology that acts like a kind of sandbox within the operating system. Similar to how JavaScript makes web browsers programmable without a restart, eBPF enables small, verified programs to run inside the Linux kernel to observe an application’s activity and modify its behavior without altering its source code or rebooting it.\n\nGraf explained that Cisco and OpenAI chose to use eBPF because there are no other real alternatives. Human-focused security consoles and policy languages are simply too slow for AI agents, and will limit their productivity.\n\nBy exposing programmable kernel interfaces, eBPF enables AI agents to capture granular telemetry, evaluate mitigations in monitoring mode and deploy cryptographically-signed shields in milliseconds. So cyberattacks that exploit unknown vulnerabilities can be blocked in real time without causing disruption to their live workloads.\n\n“There is nothing more important than giving security teams the tools they need to match the speed of the AI-driven threats they are facing,” said Cisco President and Chief Product Officer Jeetu Patel. “We need self-defending infrastructure that acts at the speed of code, learns in real time and shields itself until patches are safely rolled out.”\n\nOpenAI’s role in this is to prove that eBPF is up to the job, and it has already deployed Shirudo as part of an agentic control plane that’s powered by its Codex coding agent. When given details of a new vulnerability, Codex can use Shirudo to autonomously build an exploit reproducer and then design a mitigation strategy. It then validates the mitigation code and deploys the cryptographically-signed shields across all affected nodes.\n\nThe two partners recently tested Shirudo against a critical new vulnerability in OpenJDK called Java4Shell, and it was able to rapidly generate Java bytecode that it injected directly into a running Elasticsearch agent to block malicious Base64 overwrites that would have compromised the system.\n\nOpenAI co-founder and President Greg Brockman said the goal of Shirudo is to help companies protect their systems from new threats until they can build and deploy a more durable patch. “When one team finds a better way to protect a system, others shouldn’t have to start from scratch,” he explained.\n\nTo that end, Cisco and OpenAI say they’re welcoming developers, kernel engineers, platform builders and security experts to collaborate on Shirudo and other initiatives within their broader Secure Infrastructure Project.\n\nSupport our mission to keep content open and free by engaging with theCUBE community. Join theCUBE’s Alumni Trust Network, where technology leaders connect, share intelligence and create opportunities.\n\nFounded by tech visionaries John Furrier and Dave Vellante, SiliconANGLE Media has built a dynamic ecosystem of industry-leading digital media brands that reach 15+ million elite tech professionals. Our new proprietary theCUBE AI Video Cloud is breaking ground in audience interaction, leveraging theCUBEai.com neural network to help technology companies make data-driven decisions and stay at the forefront of industry conversations.\n\nAmazon acquires key assets of AI startup Decart for reported $7.5B\n\nAnthropic's Claude Ship automates the final stage of the software development pipeline\n\nAI agent provider Sierra closes $1.75B investment amid rapid revenue growth\n\nHPE's stock slides despite record revenue growth and upbeat forecast\n\nMatters.AI raises $12M as it expands its data security business in North America\n\nCrowdStrike to buy Zscaler in record-setting $43.9B cybersecurity deal\n\nAmazon acquires key assets of AI startup Decart for reported $7.5B\n\nAnthropic's Claude Ship automates the final stage of the software development pipeline\n\nAI agent provider Sierra closes $1.75B investment amid rapid revenue growth\n\nHPE's stock slides despite record revenue growth and upbeat forecast\n\nMatters.AI raises $12M as it expands its data security business in North America\n\nSECURITY - BY DUNCAN RILEY . 9 HOURS AGO\n\nCrowdStrike to buy Zscaler in record-setting $43.9B cybersecurity deal\n\nSECURITY - BY MARIA DEUTSCHER . 10 HOURS AGO\n\nWe use cookies for analytics and measurement. You can accept or reject tracking cookies. See our Privacy Policy.",
+  "begyujtve": "2026-11-24T07:20:33.805739+00:00",
+  "prioritas": {
+    "pont": 80,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 80,
+      "hirertek": 85,
+      "egyediseg": 85,
+      "hitelesseg": 88,
+      "aktualitas": 95,
+      "kozossegi": 72
+    },
+    "elofeszures": 98,
+    "tanult": 67,
+    "indok": "Fontos nyílt forráskódú biztonsági kezdeményezés az OpenAI és a Cisco együttműködésében. Forrás-tapasztalat: -3.",
+    "tema": "openai cisco shirudo release",
+    "cim_hu": "Shirudo néven indított nyílt forráskódú védelmi projektet az OpenAI és a Cisco",
+    "lead_hu": "Az OpenAI a Ciscóval együttműködve kiadta a Shirudo nevű eszközt, amely lehetővé teszi a futó Linux rendszerek védelmét és javítását anélkül, hogy a szervereket újra kellene indítani.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-24T07:21:51+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-24T07:23:45+00:00"
+}

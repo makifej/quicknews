@@ -1,0 +1,86 @@
+{
+  "id": "a7879af84776",
+  "slug": "ot-nyilt-donteshozo-modellt-adott-ki-az-aws-a-google-gemma-4-re-epitve",
+  "forras_id": "techmeme",
+  "forras_nev": "The New Stack",
+  "url": "https://thenewstack.io/aws-strands-decider-v2/",
+  "szerzo": null,
+  "publikalva": "2026-11-24T04:25:01+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://images.unsplash.com/photo-1628296499994-70face79ab36?ixid=M3wxMTE2OTU0fDB8MXxzZWFyY2h8MXx8QVdTfGVufDF8MHx8fDE3OTU1MDUwOTB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=max",
+    "stock": {
+      "forras": "Unsplash",
+      "szerzo": "Mehmet Ali Peker",
+      "oldal": "https://unsplash.com/@mrpeker?utm_source=quicknews&utm_medium=referral",
+      "kep_oldal": "https://unsplash.com/photos/text-hfiym43qBpk?utm_source=quicknews&utm_medium=referral",
+      "licenc": "Unsplash License",
+      "kereses": "AWS"
+    },
+    "kep_kicsi": "https://cdn.thenewstack.io/media/2026/05/2f95a795-img_3509-scaled.jpg"
+  },
+  "cim_eredeti": "AWS debuts Strands Decider v2, a family of five open decision models based on Google's Gemma 4, ranging from 2B to 31B parameters, under the Apache 2.0 license (Frederic Lardinois/The New Stack)",
+  "forrasok": [],
+  "szoveg_eredeti": "We’re so glad you’re here. You can expect all the best TNS content to arrive Monday through Friday to keep you on top of the news and at the top of your game.\n\nCheck your inbox for a confirmation email where you can adjust your preferences and even join additional groups.\n\nFollow TNS on your favorite social media networks.\n\nCheck out the latest featured and trending stories while you wait for your first TNS newsletter.\n\nAWS on Monday launched Strands Decider v2, a family of five open decision models.\n\nThe release comes only seven weeks after Strands Labs, the experimental arm of AWS’s open source Strands Agents SDK, launched the first Strands Decider model. That was a 2-billion-parameter model built on Alibaba’s Qwen3.5.\n\nThe new version is based on Google’s Gemma 4 and comes in a range of sizes from the outset, starting at 2 billion parameters, all the way up to a 31-billion-parameter dense model (with a 4B model and a 26B-A4B mixture-of-experts model in the middle), all of which are available under the Apache 2.0 license.\n\nLike similar decision models, the idea behind Strands Decider is that it doesn’t generate text. Instead, it takes a state, like a support ticket or an agent trace, along with a question and a fixed set of possible answers, and then returns a probability for each answer.\n\nAWS VP and Distinguished Engineer Marc Brooker, who started the project, tells The New Stack, “We chose better training data or larger training sets, the usual kind of ML model generation journey, and came out with a set of models with significantly better accuracy and significantly better calibration, which are the things that really matter to customers in this space.”\n\nAnd indeed, the models clearly outperform v1. AWS says the 31B model averages 82.1 across six public text benchmarks, ahead of every rival it tested, including Google’s Gemini Decision 1 at 79.4. But it also trails some of its competitors on three of the six benchmarks — and Gemini still posts the lowest calibration error.\n\nThe 31B v2 model posts the top score on JevBench, the benchmark built around TypeSafe’s Jev, at 93.1 compared to Gemini’s 92.2. But it loses to Perplexity Decider v1.3 on PubMedQA and When2Call, and to vLLM Semantic Router’s open d3-ultra on a test based on New Yorker cartoon captions.\n\nThe 26B-A4B mixture-of-experts model averages 79.9, just ahead of Gemini Decision 1, and the E4B model jumps from 62.7 in v1 to 74.4. On image and video tasks, which AWS didn’t report for v1, the 31B model scores 90.1 on Mind2Web Multimodal and 70.2 on Video-MME, slightly behind Perplexity’s model on both.\n\nThe calibration error, which measures how closely a model’s confidence matches how often it’s right, drops to 0.027 for the new 31B model, down from 0.062 for v1. In this benchmark, only Gemini Decision 1 does better, at 0.025, while Jev 1.14 and Microsoft-Decision-1 come in at 0.062 and 0.066 respectively.\n\n“I think with V1 we were benchmark leading for about eight hours,” Brooker says. He thinks the benchmarks are getting “a little bit saturated” and mostly help customers decide whether a 4B model is good enough for their workload.\n\nIt’s worth noting that AWS opted for a different architecture with Strands Decider 2.\n\nMost LLMs today use causal attention, so each token only sees the tokens before it. Models need that to generate text, but since a decision model never generates text, the Strands team let every token in the state attend to the whole state in both directions. This means questions can then reuse that encoded state, so asking 20 questions about one agent trace costs little more than asking a single question.\n\nAs for why that works better, “I have some theories, but I would say that I’m not entirely sure,” Brooker says. The team tested both approaches across a diverse set of datasets, and “one outperformed the other, and I think that is the shape of the majority of ML research.”\n\nBrooker says Gemma’s somewhat more traditional architecture may have contributed to the results.\n\nInside Amazon, the company says, engineers on an internal ticketing system swapped Claude Sonnet 4.6 for the v1 E4B model to label tickets. Average time per call fell from 4,215 milliseconds to 897 milliseconds, and AWS estimates the cost dropped from about $22,200 to about $500 per million tickets at list prices. (The team hasn’t published accuracy figures.)\n\nAWS also says v2 cut costs by routing requests between Claude Haiku 5.5 and Sonnet 5.5, which moves spending away from Anthropic models that AWS sells through Amazon Bedrock.\n\nBrooker is most excited about hybrid workflows. “What’s really nice about these kinds of models is they’re just a cool tool for us to build workflows that are mostly deterministic and then have a decider model step, or mostly agentic, but on the easy routes, we can use decider models to drive down cost and latency,” he says.\n\nOddly enough, though, Strands Decider isn’t available on AWS’s Bedrock inference service yet. But then, the company’s annual re:Invent conference is happening a week from now and we will surely hear more about Bedrock there.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Öt nyílt döntéshozó modellt adott ki az AWS a Google Gemma 4-re építve",
+  "lead": "Az AWS bemutatta a nyílt forráskódú Strands Decider v2 modellcsaládot, amely szöveggenerálás helyett adatok alapján hoz valószínűségi döntéseket.",
+  "osszefoglalo": "Az AWS kiadta a **Strands Decider v2** nyílt forráskódú modellcsaládot, amely öt különböző méretű modellt tartalmaz 2 milliárdtól 31 milliárd paraméterig. A rendszerek a Google Gemma 4 alapjaira épülnek, és az [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) licenc alatt érhetők el. A modellek nem szöveget generálnak, hanem egy megadott állapot és rögzített válaszlehetőségek alapján kiszámítják a legvalószínűbb döntést.\n\nA fejlesztők a szokásos kauzális figyelem helyett **kétirányú figyelmi architektúrát** alkalmaztak, mivel a modellnek nem kell szöveget produkálnia. Ez a megoldás lehetővé teszi, hogy egy kódolt állapothoz kapcsolódóan több kérdést tegyünk fel minimális pluszköltséggel és erőforrás-igénnyel. A tesztek szerint a legnagyobb, 31 milliárdos modell átlagban felülteljesíti a versenytársakat a nyilvános szöveges teszteken.\n\nAz Amazon belső rendszereiben a korábbi verzió használatával a jegykezelési feladatok hívási ideje **4215 milliszekundumról 897 milliszekundumra csökkent**. A vállalat becslése szerint ezzel az eljárás költsége 1 millió jegyre vetítve 22 200 dolláról mindössze 500 dollárra esett vissza.",
+  "miert_szamit": "A döntéshozó modellek használatával **drasztikusan csökkenthetők az AI-munkafolyamatok költségei és válaszideje**, mivel a drága szöveggeneráló modelleket kiválthatják a strukturált feladatoknál.",
+  "cimkek": [
+    "AWS",
+    "nyílt forráskód",
+    "Gemma 4",
+    "Strands Decider"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Strands Decider v2"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 77,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 90,
+      "hitelesseg": 86,
+      "aktualitas": 95,
+      "kozossegi": 69
+    },
+    "elofeszures": 95,
+    "tanult": 67,
+    "indok": "Nagy felhőszolgáltató új nyílt forráskódú modellcsaládot mutatott be az Apache 2.0 licenc alatt. Forrás-tapasztalat: -3.",
+    "tema": "aws strands decider v2 open models",
+    "cim_hu": "Öt új nyílt döntési modellt adott ki az AWS",
+    "lead_hu": "Az Amazon Web Services megjelentette a Strands Decider v2 modellcsaládot, amelyek a Google Gemma 4-re épülnek és nyílt licencet kaptak.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-24T07:21:51+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-24T07:23:36+00:00",
+  "megjelent": "2026-11-24T07:23:36+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-24T07:24:17+00:00",
+    "esemeny": "Az AWS bemutatta a Strands Decider v2 nyílt forráskódú döntéshozó modellcsaládot, amely öt, a Google Gemma 4 architektúrájára épülő modellt tartalmaz (2 milliárdtól 31 milliárd paraméterig) Apache 2.0 licenc alatt.",
+    "forrasok": [
+      "https://strandsagents.com/blog/strands-decider-v2/",
+      "https://thenewstack.io/aws-strands-decider-v2/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-24T07:24:50+00:00",
+  "linkek_ellenorizve": true
+}

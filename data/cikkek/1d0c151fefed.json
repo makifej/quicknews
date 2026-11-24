@@ -1,0 +1,76 @@
+{
+  "id": "1d0c151fefed",
+  "slug": "shirudo-nyilt-forraskodu-vedelmet-adott-ki-az-openai-es-a-cisco",
+  "forras_id": "openai",
+  "forras_nev": "OpenAI",
+  "url": "https://openai.com/index/introducing-shirudo",
+  "szerzo": null,
+  "publikalva": "2026-11-23T21:20:00+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://images.ctfassets.net/kftzwdyauwt9/5K7gFDr3r8vgjdIcsW6RVY/aba5325ce7902e5d1499b907f8e78f0b/shirudo-partner-logos-landscape-2x.png?w=1600&h=900&fit=fill"
+  },
+  "cim_eredeti": "OpenAI and Cisco introduce Shirudo",
+  "forrasok": [],
+  "szoveg_eredeti": "An open-source runtime that helps operators protect running Linux systems without needing to wait for the patch or restarts\n\nOpenAI and Cisco are launching Shirudo, an open-source runtime that helps teams protect Linux systems while they roll out patches. In a controlled test⁠(opens in a new window), a Codex-generated shield blocked a Java4Shell exploit attempt against a running Elasticsearch service without requiring a restart.\n\nWe’re inviting developers, security researchers, and infrastructure operators across the industry to help develop the project further. The project brings together OpenAI’s frontier AI, security and infrastructure research and Cisco’s infrastructure and security expertise to help protect the systems people rely on every day.\n\nTesting and deploying a patch can still take days or weeks. Protecting a service in the meantime can be challenging because an exploit and a legitimate request may rely on the same Linux operation. Blocking that operation entirely could take the service offline.\n\nShirudo (Japanese for “shield”) is designed to help security teams navigate this tradeoff. Teams can test whether a temporary safeguard, called a shield, blocks the behavior that exposes a vulnerability while allowing legitimate requests through. Once an operator approves the shield, it can be deployed while the service continues running.\n\nShirudo uses eBPF, a Linux technology that allows small programs to run at specific points inside the operating system. This makes it possible to observe suspicious activity and apply targeted security protections to running systems.\n\nHow the guardian agent observes and protects a running system with eBPF.\n\nOpenAI and Cisco are designing Shirudo around four core capabilities:\n\nLive protection: eBPF shields can block vulnerable code paths without restarting the system. Security teams can monitor how a proposed shield would affect applications before enforcing it.\n\nDefense at machine speed: OpenAI and Cisco are designing Shirudo to give agents programmable controls to investigate vulnerabilities, develop targeted shields, and validate their effectiveness against exploits and real workloads. Security teams control what gets deployed.\n\nTrusted deployment: Shields are cryptographically signed and verified before loading. Linux's eBPF verifier checks eBPF programs against its safety rules, while kernel security controls restrict unauthorized changes.\n\nHardware-backed verification: Shirudo uses a Trusted Platform Module (TPM) to support a verifiable record of protections being loaded or removed. Operators can use this evidence to check whether systems meet their security requirements.\n\nThe Shirudo technical walkthrough⁠(opens in a new window) from the Linux Plumbers Conference shows how to apply a shield and verify it on the target host⁠(opens in a new window). The Java4Shell vulnerability is another example illustrating how a targeted shield can protect a running application while a permanent patch is being prepared. Using OpenAI's Codex, the team generated a shield that added an input check to Java's Base64 decoder and attached it directly to a running Elasticsearch process. When attempting to exploit the vulnerability, the shield rejected the malicious input, blocking the attack while Elasticsearch continued running. You can read more here⁠(opens in a new window).\n\nShirudo is a first step toward infrastructure that can adapt to emerging threats while remaining reliable. We want to strengthen the operating system foundations needed to deploy these protections at scale, including hardening the kernel and core services, limiting workload permissions, and making updates and recovery safer.\n\nOur long-term goal is to enable defenders and AI agents to quickly identify affected systems, validate protections, and deploy eBPF shields that block exploits without disrupting workloads. Applications should run with only the permissions they need, governed by policies that are automatically generated and maintained.\n\nWe will combine frontier AI with security and infrastructure research to discover vulnerabilities and test defenses against realistic attacks. We aim to make it easier for operators to detect and contain compromises, prevent attackers from moving across systems, and restore services to a verified, known-good state. Hardware-backed attestation and independent network controls provide additional assurance even if individual systems are compromised.\n\nOpenAI and Cisco are open-sourcing Shirudo⁠(opens in a new window) so developers, security researchers, and infrastructure operators can inspect the code, test protections, and contribute to its development. Shirudo is licensed under BSD 2-Clause, with its BPF programs dual-licensed under BSD and GPL.\n\nOur goal is to make tested shields available alongside vulnerability disclosures, giving operators a way to evaluate and deploy temporary protections while preparing permanent patches.\n\nTry Shirudo: Follow the VM quickstart⁠(opens in a new window) to sign, load, and verify a test protection.\n\nGet hands-on: Explore Shirudo through Isovalent's self-guided lab⁠(opens in a new window).\n\nJoin the technical deep dive: Register for the December 15 webinar⁠(opens in a new window).\n\nWe’re building Shirudo in the open with the people who build, run, and secure Linux systems. We welcome contributions to the runtime, new shields, and improvements to Linux and eBPF. If you'd like to get involved, take a look at the code on GitHub⁠(opens in a new window), read the docs⁠(opens in a new window), and let us know what you find⁠(opens in a new window).",
+  "modell": "gemini-3.5-flash",
+  "cim": "Shirudo: nyílt forráskódú védelmet adott ki az OpenAI és a Cisco",
+  "lead": "Az OpenAI és a Cisco kiadta a Shirudo nevű nyílt forráskódú eszközt, amellyel a futó Linux rendszerek védhetők meg újraindítás nélkül.",
+  "osszefoglalo": "Az OpenAI és a Cisco közösen fejlesztette ki a [Shirudo](https://github.com/shirudo-dev/shirudo) nevű nyílt forráskódú futtatókörnyezetet Linux rendszerekhez. Az eszköz segítségével a biztonsági csapatok ideiglenes védelmi pajzsokat alkalmazhatnak a sérülékenységek ellen anélkül, hogy a rendszert újra kellene indítani vagy meg kellene várni a végleges biztonsági frissítést.\n\nA megoldás a Linux **eBPF** technológiájára épül, amellyel kis méretű programok futtathatók az operációs rendszerben. A tesztek során a Codex segítségével generált pajzs sikeresen blokkolt egy éles támadást egy futó Elasticsearch szolgáltatáson, miközben a legitim kérések továbbra is átmentek.\n\nA Shirudo védelmei kriptografikusan aláírtak és ellenőrzöttek, a hardveres TPM támogatás pedig igazolja a védelmi intézkedések állapotát. A projekt forráskódja BSD 2-Clause licenc alatt érhető el a GitHubon.",
+  "miert_szamit": "Az eszközzel a rendszergazdák és fejlesztők **azonnal blokkolhatják a biztonsági réseket**, megelőzve az üzemidő-kiesést a frissítések tesztelése alatt.",
+  "cimkek": [
+    "OpenAI",
+    "Cisco",
+    "Shirudo",
+    "Linux"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "bejelentés",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Shirudo"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 72,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 80,
+      "hirertek": 85,
+      "egyediseg": 50,
+      "hitelesseg": 92,
+      "aktualitas": 85,
+      "kozossegi": 72
+    },
+    "elofeszures": 98,
+    "tanult": 59,
+    "indok": "Nagy horderejű nyílt forráskódú biztonsági kiadás az OpenAI és a Cisco együttműködésében. Forrás-tapasztalat: -6.",
+    "tema": "openai cisco shirudo launch",
+    "cim_hu": "Shirudo néven adott ki nyílt forráskódú Linux-védelmi eszközt az OpenAI és a Cisco",
+    "lead_hu": "Az OpenAI a Ciscóval közösen elindította a Shirudo rendszert, amely lehetővé teszi a Linux rendszerek valós idejű védelmét újraindítás vagy azonnali javítás nélkül.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-24T07:21:51+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-24T07:22:38+00:00",
+  "megjelent": "2026-11-24T07:22:38+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-24T07:23:58+00:00",
+    "esemeny": "Az OpenAI és a Cisco nyílt forráskódú biztonsági eszközt adott ki Shirudo néven, amellyel a futó Linux rendszereken újraindítás nélkül alkalmazhatók védelmi intézkedések a javítófoltok megjelenéséig.",
+    "forrasok": [
+      "https://openai.com/index/introducing-shirudo"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-24T07:24:50+00:00",
+  "linkek_ellenorizve": true
+}

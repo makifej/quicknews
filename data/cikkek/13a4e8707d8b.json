@@ -1,0 +1,135 @@
+{
+  "id": "13a4e8707d8b",
+  "slug": "az-anthropic-belso-claude-modellje-bizonyitast-adott-valiant-sejtesere",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/anthropic-s-claude-claims-proo-M5s.1iqfSaWM_C_hc5PKGQ",
+  "szerzo": "Perplexity Discover",
+  "publikalva": "2026-11-24T03:37:33.405152+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/fetch/s--DFZ3q6lS--/t_limit/https://cms.interestingengineering.com/wp-content/uploads/2026/11/Untitled-Design-19.jpg"
+  },
+  "cim_eredeti": "Az Anthropic Claude-ja szerint bebizonyította Valiant VP ≠ VNP sejtését",
+  "forrasok": [
+    {
+      "nev": "formal-math/vp-vnp at main · anthropics/formal-math",
+      "url": "https://github.com/anthropics/formal-math/tree/main/vp-vnp",
+      "domain": null
+    },
+    {
+      "nev": "Claude claims to prove VP ≠ VNP in Valiant's 47-year-old conjecture",
+      "url": "https://interestingengineering.com/ai-robotics/claude-proves-vp-not-vnp-valiant-conjecture",
+      "domain": null
+    },
+    {
+      "nev": "Anthropic's Claude claims a proof of VP ≠ VNP",
+      "url": "https://kingy.ai/blog/anthropic-claude-vp-vnp-proof/",
+      "domain": null
+    },
+    {
+      "nev": "Anthropic posts a claimed proof that VP is not equal to VNP, the algebraic version of ...",
+      "url": "https://vibemathlab.com/news/anthropic-vp-vnp-claim-2026-11",
+      "domain": null
+    },
+    {
+      "nev": "Anthropic announced the proof that Claude for VP ≠ VNP has not yet been verified by humans",
+      "url": "https://www.chaincatcher.com/en/article/2307474",
+      "domain": null
+    },
+    {
+      "nev": "Anthropic posts Claude-written proof of Valiant's conjecture, unchecked by mathematicians | BattleTown News",
+      "url": "https://battletown.com/news/anthropic-posts-claude-written-proof-of-valiant-s-conjecture-unchecked-by",
+      "domain": null
+    },
+    {
+      "nev": "Claude's VP ≠ VNP proof, what it means and what's been checked",
+      "url": "https://www.anchorterminal.com/blog/a-machine-that-says-vp-is-not-vnp",
+      "domain": null
+    },
+    {
+      "nev": "Anthropic Announces Claude Model's Proof of VP ≠ VNP; Yet to Be Verified ...",
+      "url": "https://www.techflowpost.com/en-US/newsletter/146433",
+      "domain": null
+    },
+    {
+      "nev": "Anthropic Posts Claude’s VP ≠ VNP Proof, With No Human ...",
+      "url": "https://www.binance.com/en/square/post/11-24-2026-anthropic-posts-claude-s-vp-vnp-proof-with-no-human-verification-391528098217740",
+      "domain": null
+    },
+    {
+      "nev": "Anthropic posts Claude-authored VP ≠ VNP proof, unverified",
+      "url": "https://aiweekly.co/alerts/anthropic-posts-claude-authored-vp-vnp-proof-unverified",
+      "domain": null
+    },
+    {
+      "nev": "Leeham on X: \"An internal Claude model claims to have found a proof of Valiant's ...",
+      "url": "https://x.com/Liam06972452/status/2124990562906304556",
+      "domain": null
+    },
+    {
+      "nev": "Internal Claude model claims proof of VP≠VNP… · AGI Hunt",
+      "url": "https://agihunt.info/en/p/1a20aac902fd87a895afd0d0a00",
+      "domain": null
+    }
+  ],
+  "szoveg_eredeti": "Az Anthropic közzétett egy tanulmányt, amelynek egyetlen szerzőjeként Claude szerepel, és amely állítása szerint megoldja Valiant sejtését. A sejtés az algebrai komplexitáselmélet egyik 1979-es problémája, amelyet gyakran a P versus NP probléma algebrai megfelelőjének neveznek. November 23-án az Anthropic feltöltött egy „vp-vnp” nevű mappát a GitHubon elérhető nyilvános formálismatematika-repozitóriumába. A mappában található egy „VP ≠ VNP over every field” (VP ≠ VNP minden test felett) című tanulmány, valamint a bizonyítás Lean 4-es formalizálása. A repozitórium README-je szerint „az eredményt egy belső kutatási Claude-modell fedezte fel”. A README azt is hozzáteszi, hogy a tanulmányt és a Lean-kódot egyaránt „MI-modellek írták, és egyetlen emberi matematikus sem ellenőrizte a bizonyítást”.\n\nA README világosan kimondja azt is, hogy a munka „nem dönti el a P versus NP problémát”. Ennek ellenére jelentős eredmény lenne, ha megállná a helyét. Az állítást egyelőre nem igazolták, és független szakértő sem erősítette meg nyilvánosan.\n\nA 70 oldalas tanulmány amellett érvel, hogy az aritmetikai áramkörök, amelyek csak összeadni és szorozni tudnak, bizonyos polinomokat nem képesek hatékonyan kiszámítani. Ilyen a permanens, a mátrixdeterminánssal szoros rokonságban álló polinom. Az állított korlát szerint elég nagy m esetén minden olyan áramkör, amely egy m×m-es mátrix permanensét számítja ki, több mint m^(c(log m)^(1/3)) kapuból áll. Ez azt jelentené, hogy a permanens kívül esik a VP osztályon, és a VP elválik a VNP-től – számolt be az Interesting Engineering.\n\nA kettes karakterisztikájú testekben a permanens megegyezik a determinánssal, ezért a tanulmány ott a Hamilton-kör polinomot használja helyette. A README szerint ugyanez a korlát igaz azokra az áramkörökre is, amelyek ezeket a polinomokat csak közelítik.\n\nA tanulmány szerint a permanenst kiszámító, korlátozás nélküli áramkörök eddigi legjobb alsó korlátja m² log m-mel volt arányos. A Kingy AI megjegyzi, hogy az új korlát minden polinomiális korlátnál nagyobb, de csak kvázipolinomiálisan. Így még mindig nagy a szakadék a köztünk és az ismerten működő, exponenciális méretű áramkörök között.\n\nAz eredmény egész testek feletti aritmetikai áramkörökre vonatkozik. A P versus NP probléma ezzel szemben bináris bemeneteken működő Boole-áramkörökről szól. Az egyik modellben igazolt alsó korlát nem terjed ki automatikusan a másikra – magyarázta az Interesting Engineering. A Kingy AI szerint a tanulmány 2.5. szakasza megmutatja, hol mondja fel a szolgálatot a kétesetes érvelés a Boole-áramkörök esetében.\n\nEgy független összesítés szerint a formalizáció 324 Lean-fájlból és nagyjából 73 000 sornyi kódból áll. A tárhely CI-folyamata egy második, önállóan megírt kernellel, a nanodával is újraellenőrzi a bizonyításokat, és a Kingy AI szerint a kiadás átment ezen az ellenőrzésen.\n\nA fő fenntartás maga a README-ben olvasható. Eszerint nincs olyan gépi ellenőrzés, amely megerősítené, hogy az állításokat tartalmazó fájl azt mondja ki, amit állítanak róla. Az olvasókat arra kérik, hogy vessék össze a fájlt a tanulmány Q függelékével, amely minden számozott eredményt a Lean-beli változatához rendel. A Kingy AI beszámolója szerint a tanulmány csak annyit közöl, hogy az említett formális állítások a szándékolt matematikát fejezik-e ki, azt eddig kizárólag mesterséges intelligenciát használó olvasók ítélték meg. Az, hogy Valiant 47 éves sejtése valóban eldőlt-e, azon múlik, hogy emberi matematikusok elolvassák-e ezt az állításfájlt.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Az Anthropic belső Claude-modellje bizonyítást adott Valiant-sejtésére",
+  "lead": "Egy belső Claude-modell írta azt a 70 oldalas matematikatanulmányt és Lean 4 formalizációt, amely az algebrai komplexitáselmélet egy régi problémáját oldhatja meg.",
+  "osszefoglalo": "Az Anthropic egy GitHub-repozitóriumban tette közzé azt a [70 oldalas matematikai tanulmányt](https://github.com/anthropics/formal-math/tree/main/vp-vnp) és a hozzá tartozó 73 000 soros Lean 4-es kódot, amelynek egyetlen szerzőjeként a Claude van feltüntetve. A dokumentum Valiant 1979-es sejtését, a VP ≠ VNP állítást igyekszik bizonyítani minden test felett, amely a híres P versus NP probléma algebrai megfelelője.\n\nA cég hangsúlyozza, hogy a bizonyítást egy belső kutatási modell fedezte fel és írta meg, ám azt **egyetlen emberi matematikus sem ellenőrizte** még. Bár a Lean formális nyelvű ellenőrző folyamata lefutott, az még emberi felülvizsgálatra vár, hogy a formális kód pontosan a szándékolt matematikai állításokat fejezi-e ki.\n\nA publikáció nem dönti el a klasszikus P versus NP problémát, mivel az aritmetikai áramkörökre vonatkozó alsó korlátok nem terjednek ki automatikusan a Boole-áramkörökre. Az eredmény így is áttörést jelenthet, amennyiben a matematikai közösség igazolja a levezetést.",
+  "miert_szamit": "A fejlemény azt mutatja, hogy az AI-modellek már a **legösszetettebb elméleti kutatásokban** is képesek önálló állításokat és formalizált bizonyításokat megfogalmazni, ami gyökeresen átalakíthatja a tudományos alapkutatások folyamatát.",
+  "cimkek": [
+    "Claude",
+    "Anthropic",
+    "Lean",
+    "matematika"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 88,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 90,
+      "hirertek": 95,
+      "egyediseg": 95,
+      "hitelesseg": 72,
+      "aktualitas": 95,
+      "kozossegi": 87
+    },
+    "elofeszures": 87,
+    "tanult": 82,
+    "indok": "Kiemelkedő teoretikus tudományos áttörés, ahol az MI önálló szerzőként oldott meg egy matematikai sejtést. Forrás-tapasztalat: -2.",
+    "tema": "anthropic claude math proof",
+    "cim_hu": "A Claude egyedüli szerzőként bizonyította Valiant matematikai sejtését",
+    "lead_hu": "Az Anthropic közzétett egy tanulmányt, amelyben a Claude MI önállóan igazolta az algebrai komplexitáselmélet 1979 óta nyitott VP ≠ VNP sejtését.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-24T07:21:51+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-24T07:22:21+00:00",
+  "megjelent": "2026-11-24T07:22:21+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-24T07:24:09+00:00",
+    "esemeny": "Az Anthropic közzétette belső Claude-modellje által felfedezett és megírt 70 oldalas matematikai tanulmányt, valamint annak Lean 4 nyelvű formalizációját, amely az algebrai komplexitáselmélet egy 1979-es feladványát, Valiant VP ≠ VNP sejtését hivatott bizonyítani.",
+    "forrasok": [
+      "https://github.com/anthropics/formal-math"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-24T07:24:50+00:00",
+  "linkek_ellenorizve": true
+}

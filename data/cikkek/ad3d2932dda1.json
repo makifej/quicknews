@@ -1,0 +1,49 @@
+{
+  "id": "ad3d2932dda1",
+  "slug": "openrouter-removes-together-ai-phala-and-novita-over-data-policy",
+  "forras_id": "techmeme",
+  "forras_nev": "BleepingComputer",
+  "url": "https://www.bleepingcomputer.com/news/security/openrouter-drops-ai-providers-over-leaked-prompts-and-secrets/",
+  "publikalva": "2026-11-24T06:55:01+00:00",
+  "cim": "OpenRouter removes Together AI, Phala, and Novita over data policy violations; Novita says a misconfiguration sent some MiniMax requests to MiniMax official API (Bill Toulas/BleepingComputer)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 81 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.bleepstatic.com/content/hl-images/2026/06/29/DataLeak.jpg"
+  },
+  "cim_eredeti": "OpenRouter removes Together AI, Phala, and Novita over data policy violations; Novita says a misconfiguration sent some MiniMax requests to MiniMax official API (Bill Toulas/BleepingComputer)",
+  "szoveg_eredeti": "OpenRouter removed three AI providers from its platform after discovering that they had violated their stated data-handling policies and exposed sensitive data.\n\nThe company also revoked Zero Data Retention (ZDR) eligibility for 125 endpoints as a precaution and notified all potentially affected customers.\n\nOpenRouter is an AI model broker that lets developers access AI models from different companies using a single API key.\n\nWhen an app sends a request, OpenRouter forwards it to a provider that runs the selected model and passes the answer back.\n\nOperational technology security company Dragos alerted OpenRouter after sending two million test prompts through the platform, each containing a unique tracking link or decoy credential, and detecting \"activity indicating that data from at least three AI providers was exposed.\"\n\nDragos discovered that, in some cases, those credentials were leaked to outsiders and used in the wild, indicating that the test prompts had escaped.\n\n“We observed activity indicating that data from at least three AI providers was exposed. Our seeded test prompts were used in attempts to access our controlled test systems and canary AWS accounts,” Dragos says.\n\nOpenRouter says there was no breach on its own systems, making the leak point at the provider level and leading to the decision to remove the three leaking inference providers: Together AI, Phala, and Novita.\n\nAnother provider, Atlas Cloud, said it would voluntarily withdraw its models from OpenRouter pending security testing, following a third-party security incident.\n\nThe other three published separate announcements responding to Dragos’ findings and explaining how the leaks occurred.\n\nTogether AI said an AI coding agent exposed a repository credential on GitHub, allowing an unauthorized party to download stored prompt samples from June and July involving MiniMax M3, GLM-5.2, and Kimi K2.6.\n\nPhala said an attacker compromised a server processing DeepSeek V4 Flash 0731 requests routed through OpenRouter between October 21 and 22, and possibly up to November 8, and obtained application credentials from affected virtual machines.\n\nNovita said a routing misconfiguration forwarded some MiniMax requests, including those sent through OpenRouter, to MiniMax’s official API between May 28 and November 11.\n\nAll four providers are tightening security controls, strengthening their zero data retention or data deletion policies, and advising potentially impacted users to rotate any secrets that may have been exposed in the leaked requests.\n\nOpenRouter is also adapting Dragos’ tests for ongoing use to check whether AI providers forward or leak user requests/responses to third parties, and will require validation before restoring ZDR eligibility.\n\nAdaptive Security's AI agents analyze email intent, context, and behavior to uncover phishing, business email compromise, and invoice fraud.\n\nSee what's getting through with a 14-day read-only scan of Microsoft 365 or Google Workspace, with no MX changes.\n\nHackers use autonomous AI tool Cairn to find zero-day, take over server\n\nResearchers hijack Hugging Face account for popular Kokoro AI model\n\nBarracuda links cloud breach to ARTEX AI-powered cyberattack\n\nGoogle warns that fully-automated AI attacks are coming soon\n\nAnthropic’s Claude Fable 5.2 blocks fewer security tasks, while Mythos gets better at finding bugs",
+  "begyujtve": "2026-11-24T07:20:32.630932+00:00",
+  "prioritas": {
+    "pont": 81,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 80,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 86,
+      "aktualitas": 98,
+      "kozossegi": 64
+    },
+    "elofeszures": 85,
+    "tanult": 39,
+    "indok": "Jelentős adatvédelmi kihágás és szankció egy népszerű MI-modell broker platformon. Forrás-tapasztalat: -3.",
+    "tema": "openrouter data policy breach providers removed",
+    "cim_hu": "Három szolgáltatót zárkózott ki az OpenRouter adatvédelmi sérintések miatt",
+    "lead_hu": "Az OpenRouter eltávolította a Together AI-t, a Phala-t és a Novitát a platformról, mert azok megszegték az adatkezelési szabályokat.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-24T07:21:51+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-24T07:23:38+00:00"
+}
