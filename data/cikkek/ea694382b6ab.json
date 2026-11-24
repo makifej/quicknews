@@ -1,0 +1,49 @@
+{
+  "id": "ea694382b6ab",
+  "slug": "simulation-can-tell-you-what-your-agents-are-actually-doing-a",
+  "forras_id": "dailydev",
+  "forras_nev": "InfoQ (daily.dev)",
+  "url": "https://www.infoq.com/podcasts/simulation-agents-actually-doing",
+  "publikalva": "2026-11-23T11:00:00+00:00",
+  "cim": "Simulation Can Tell You What Your Agents are Actually Doing: A Conversation with Zhou Yu",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 42 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/fae16464e9fdf610ae04cda562d2f4eb?_a=AQAEuop"
+  },
+  "cim_eredeti": "Simulation Can Tell You What Your Agents are Actually Doing: A Conversation with Zhou Yu",
+  "szoveg_eredeti": "InfoQ Homepage Podcasts Simulation Can Tell You What Your Agents are Actually Doing: A Conversation with Zhou Yu\n\nIn this podcast, Michael Stiefel spoke to Zhou Yu about using dynamic simulations to evaluate AI agents. One particular focus was conversational agents where actions depend on prior responses, and the non-deterministic nation of LLMs means you cannot rely on static, reference-based benchmarks.You need to test them using dynamic simulations that incorporate different personas, goals, and corner cases. You can simulate how conversations shift based on moods, preferences, accents, or environmental conditions such as factory background noise. Rather than relying on simply binary pass or fail, the rule based task verifiers can measure whether the task was completed as well as threshold metrics for cost, efficiency, safety, and compliance.\n\nSimulations can be used during the entire software lifecycle. Product managers can use them for prototyping and design. Engineers can use them for testing in CI/CD pipelines. They can also be used to test production for model drift or failure of third party tools. They can also be used to test compliance with the laws in different regions. Simulations can also be used with synthetic data to fine-tune models.\n\nPresented by: Kiran Gangadharappa - Engineering Advisor at Harness, and Scott Davis - Senior Engineering Manager at Harness\n\nMichael Stiefel: Welcome to the Architects Podcast where we discuss what it means to be an architect and how architects actually do their job. Today's guest is Zhou Yu, who is a computer science professor at Columbia University and co-founder of Arklex.ai. She obtained her PhD from Carnegie Mellon University. Dr. Yu was named one of the Forbes 30 Under 30 and has extensive research and product experience in conversational agents, computer user agents and LLM model training. Her company enables automated quality assurance testing for AI agents.\n\nIt's great to have you here on the podcast. And I'd like to start out by asking you, how did you get interested in conversational agents and simulation? I mean, it's not something you decided one morning when you woke up and decided to do it.\n\nZhou Yu: I have been working on AI for quite a long time. So I started my PhD in 2011 at Carnegie Mellon. So back then I was in the language technology institute. There are many professors working on natural language processing, speech-related questions. So I was always very interested about interaction. It's not just speech recognition or processing text, but how people interact with machines. To me, that was the ultimate AI, the moment a human can talk to a system or entity the same way that this person is talking to another human being in order to collaborate on various tasks or even negotiate, persuade each other. So to me, that was the ultimate goal of artificial intelligence.\n\nSo I was really interested in working on this interactive AI. So my PhD is focused on that. We worked a lot on multimodal conversational agents. How can we do better time taking? How can we, in real time, have agents to think and speak at the same time and various things like that?\n\nMichael Stiefel: So I guess the best way to start out talking about this is what's the importance of this simulation? I mean, to me, one of the important things is this simulation, in addition to testing, helps architects and designers actually to understand what their system is really doing because that's almost impossible to know otherwise.\n\nZhou Yu: Yes. To me, coming from a research background, the ultimate goal of building a new technology or a new research project is on how you evaluate it. Is there a standard way that you can repeatedly get the same answer? For example, the robustness matters and the standardized testing or evaluation matters. It's more, to me, the very fundamental base of a technology development is about evaluation.\n\nAnd then if you think about what I have been doing on conversational agents, evaluation has always been one piece of my major research direction. If you think about traditional software testing or website testing, a lot of times there are people are using a manual way to test it or there are automated tooling to support this, like how do you roll out different pages or websites and stuff like that. But the hard part is actually how do you make sure there is a good coverage of various behaviors?\n\nAnd then most importantly, if you think about agents, they're not single turn agents. They're multi-turn, multi-hub, multi-tool calling, long horizon traces kind of programs. Let's just take a simple application of chat bots. Chatbots, in some sense, why do we call them multi-turn, is if you say something, the agent says something back. Based on what the agent says, your next user's input is going to be different. So making the evaluation really difficult, it's like a moving target. If you change your system, you have to redo the evaluation. You can't rely on a static benchmark of what we call reference-based evaluation. This is the question, this is a gold data standard answer that you always can reference towards it because that reference will change based on how your agent changes because a user might ask a different question next time or maybe a user would ask for a clarification at this point.\n\nAnd then the hard part is also that different users might interact with the agent slightly differently because currently natural language is an input, which is exponential in terms of complexity and diversity. If you think about traditional software as this is a button, you press it and there are two actions, they can do swipe left or swipe right. So that makes the testing infinitely hard in various ways.\n\nSo that's why we started looking into it a long time ago, is how can we actually use agents to simulate user behaviors? So now you're not relying on standard static benchmarks, you're relying on standard personas or scenarios that you're testing and then you standardize these scenarios and then you build the app based on the standard golden CI/CD pipeline we built, which is these virtual scenarios with human profiles, different goals. And then you're tested consistently on these scenarios that have all the corner cases, has the diversity of the user dimensions that you want to simulate real user study testing where you have to recruit all these people, have them manually tested, now using AI to automate this.\n\nMichael Stiefel: From your response, multiple questions come to mind, so take them one by one. One of the first things that you said that struck me was there is a dependency on what came before. One of the most difficult things I think for architects, engineers, SREs, everybody, to wrap their head around is that these are non-deterministic systems, which we've never encountered anything like this before. Because in the past, even if there were more than one or two answers, there were some number of answers and you could check the input to know if this is right, is this wrong. But here, just forget about dialects and accents and all the differences that you can. The system itself is non-deterministic. So how do you build a test? What does a test look like and how does that fit into the CI/CD pipeline?\n\nZhou Yu: That's a really good question because if you think about these current agents, what makes it amazing is they're going to come up with plans in real time. And every time the plan is different, so you can't just look at it turn by turn, what is it doing? Give them all these kinds of shackles or guidelines. It's really about you have to do integrated tests, which means that did this agent ultimately complete the goal that the user wanted to complete? So that's why we use a general term called a goal completion. Once the interaction is finished, has the user actually completed this goal while we give them as sort of an original goal.\n\nSo if you think about the testing, we give different users with different",
+  "begyujtve": "2026-11-24T15:35:29.928084+00:00",
+  "prioritas": {
+    "pont": 42,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 40,
+      "egyediseg": 90,
+      "hitelesseg": 68,
+      "aktualitas": 50,
+      "kozossegi": 49
+    },
+    "elofeszures": 77,
+    "tanult": 85,
+    "indok": "Szakmai beszélgetés és podcast az MI-ágensek szimulációs teszteléséről, alacsony közvetlen hírértékkel. Forrás-tapasztalat: -8.",
+    "tema": "ai agent evaluation simulation",
+    "cim_hu": "Dinamikus szimulációkkal tesztelhető az MI-ágensek valós viselkedése",
+    "lead_hu": "Zhou Yu kutató egy szakmai interjúban kifejtette, miért nem elegendőek a statikus tesztek a nem determinisztikus nyelvi modellekre épülő ágensek vizsgálatához.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-24T15:35:47+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-24T15:35:55+00:00"
+}
