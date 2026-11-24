@@ -1,0 +1,49 @@
+{
+  "id": "07d721ca5d81",
+  "slug": "openai-o1-co-creator-noam-brown-urges-promising-students-to-drop-out",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/openai-o1-co-creator-noam-brown-urges-promising-students-to-drop-out-as-ai-enters-a-very-steep-rate-of-progress/",
+  "publikalva": "2026-11-24T17:58:44+00:00",
+  "cim": "OpenAI o1 co-creator Noam Brown urges promising students to drop out as AI enters a \"very steep rate of progress\"",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 72 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/11/openai_driscoll.png"
+  },
+  "cim_eredeti": "OpenAI o1 co-creator Noam Brown urges promising students to drop out as AI enters a \"very steep rate of progress\"",
+  "szoveg_eredeti": "At a poker bot tournament, OpenAI o1 co-creator Noam Brown explained why game theory's core assumption fails in practice and why AI models must think before acting. He also argued that talented students should drop out.\n\nBrown developed Libratus and Pluribus, the first poker AIs to beat human pros, and worked on Meta's Diplomacy AI, CICERO. He has been researching reasoning models at OpenAI since 2023. At the \"No Limit\" poker bot tournament, hosted by Sequoia Capital, Citadel Securities, and OpenAI, he outlined key lessons from more than a decade of research on games.\n\nThe biggest lesson from his work on Diplomacy, Brown said, is that game theory stops working once humans are involved. Its central premise, he explained, is that every player acts rationally and that this rationality is common knowledge. \"People are not actually rational,\" he said.\n\nHe illustrated the point with the ultimatum game, where one person splits $100 and the other can accept or reject the offer. Under game theory, the optimal move would be to offer just one cent. \"But I mean, you can imagine what would happen if you actually tried to offer somebody a penny in this game,\" Brown said.\n\nBrown's Diplomacy bots behaved the same way when they relied purely on game theory. The team first tried programming concepts like fairness and retaliation into the bots, but that proved too complex. Instead of assuming rationality, they trained AI models to imitate human behavior as closely as possible and then trained the AI against those \"imitation humans.\" That approach finally let the AI succeed when playing alongside real people.\n\nFor Brown, the failure of game theory in Diplomacy was a \"crisis of faith moment.\" All of his expertise up to that point had been in computational game theory. Still, the evidence convinced him that AI needed training on large amounts of human data and that models lacked reasoning, the ability to think before acting.\n\nHe decided to leave his specialty behind and switch to general reasoning, but he ran into pushback when interviewing at AI labs in 2022. The large language models of that generation couldn't play Go, chess, or poker. Brown argued that reasoning was the missing ingredient, while most labs countered that pretraining bigger models would solve those problems on its own. He pushed back, saying playing Go competently through pretraining alone would require scaling training by about six orders of magnitude. \"And that doesn't seem, you know, realistic,\" he said.\n\nOpenAI was the exception, Brown said. The company already had a team working to get general reasoning out of language models, though Brown didn't know that when he applied. He joined the effort and helped build what eventually became o1.\n\nAccording to Brown, the breakthrough came from using reinforcement learning to get models to think before answering. He said simple chain-of-thought prompting, telling a model to \"think step by step before answering,\" wasn't enough. It took reinforcement learning on chain of thought to make longer thinking reliably produce better results, he explained. \"And that that was I think the key unlock that was like okay now we have a way to scale up test time compute not just in these games but actually in a general purpose way with language models that can be applied to basically any domain,\" Brown said. Chain of thought is \"probably not the best solution,\" he added, because humans think in images, not just words, though the approach is good enough.\n\nBrown said we are in a \"centaur period\" where humans and AI work best together. He described current models as \"jagged,\" superhuman in some areas and surprisingly weak in others. They can write excellent partial poker solvers, he said, but fail at long-term planning, organization, and especially self-correction. Models can't tell when they are heading in the wrong direction, according to Brown, and struggle to pause and rethink their approach from the ground up. He watched one model spend hours trying to fix irrelevant numerical errors in an algorithm that already handles small inaccuracies well.\n\nIn this phase, Brown said, the key human skill is understanding a model's uneven strengths and weaknesses and breaking problems down accordingly. Good prompters, he said, can split tasks into ever smaller subproblems for the model to solve one by one. You delegate what the model handles well, and you break down the rest further or solve it yourself.\n\nEven so, progress is moving fast, and OpenAI's Astra model is \"able to make money playing online poker at this point,\" Brown said. He cited bottlenecks in available compute and in the skills models haven't mastered yet. Brown left open which specific methods would close those gaps, adding only that he expects some abilities to take much longer than others to reach human level.\n\nBrown described this momentum as accelerating recursive self-improvement, since LLMs are already being used to build the next generation of models. Over the next one to two years, he expects a \"very steep rate of progress.\"\n\nThat outlook led to his most provocative advice. \"Perhaps my most controversial take is that if somebody is a promising student, the best thing to do is actually to drop out and join the labs now,\" he said, Things are moving so quickly, he added, that it's \"not a great time to sit on the sidelines\", maybe already looking for new talent in the room, as OpenAI and other AI labs are still growing, fighting over the one thing they can't scale.",
+  "begyujtve": "2026-11-24T18:05:31.538114+00:00",
+  "prioritas": {
+    "pont": 72,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 70,
+      "egyediseg": 90,
+      "hitelesseg": 82,
+      "aktualitas": 95,
+      "kozossegi": 54
+    },
+    "elofeszures": 85,
+    "tanult": 23,
+    "indok": "Az OpenAI o1 társtervezőjének megszólalása az MI fejlődési sebességéről a szakma számára kiemelten érdekes.",
+    "tema": "openai o1 creator advice",
+    "cim_hu": "Az OpenAI o1 társtervezője az egyetem otthagyására biztatja a tehetséges hallgatókat",
+    "lead_hu": "Noam Brown az OpenAI kutatója szerint a mesterséges intelligencia rohamos fejlődése miatt a legtehetségesebb diákoknak érdemes lenne abbahagyniuk tanulmányaikat és a gyakorlatra összpontosítaniuk.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-24T18:05:51+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-24T18:05:52+00:00"
+}
