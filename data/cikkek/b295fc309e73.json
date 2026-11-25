@@ -1,0 +1,49 @@
+{
+  "id": "b295fc309e73",
+  "slug": "engineering-around-non-determinism-evals-grounding-and-release-gates",
+  "forras_id": "dailydev",
+  "forras_nev": "InfoQ (daily.dev)",
+  "url": "https://www.infoq.com/articles/llm-agent-architecture-evals-grounding",
+  "publikalva": "2026-11-24T09:30:00+00:00",
+  "cim": "Engineering Around Non-Determinism: Evals, Grounding, and Release Gates for AI-Drafted Suspicious Reports",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 46 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/11f71a8c6715012e55055d3e41334c32?_a=AQAEuop"
+  },
+  "cim_eredeti": "Engineering Around Non-Determinism: Evals, Grounding, and Release Gates for AI-Drafted Suspicious Reports",
+  "szoveg_eredeti": "InfoQ Homepage Articles Engineering Around Non-Determinism: Evals, Grounding, and Release Gates for AI-Drafted Suspicious Reports\n\nFinancial institutions must investigate potentially suspicious activity and prepare accurate, complete, and timely reports for Financial Intelligence Units. The process is sensitive, labor-intensive, and subject to strict deadlines. This article explains how non-deterministic Artificial Intelligence (AI) components can be incorporated into a dependable agentic system that reduces the cost of doing business, increases drafting and review speed, and maintains the quality of the final report.\n\nA Suspicious Activity Report (SAR) is a formal document submitted by regulated entities and financial institutions to law enforcement or financial intelligence units (such as the UK's National Crime Agency) to flag known or suspected instances of money laundering, fraud, or terrorist financing.\n\nSARs should give a clear and concise explanation of the reason(s) for the suspicion, identifying:\n\nThe Inverted Pyramid Plot Model for SAR narratives organizes information from most to least important, much like a news article.\n\nBecause the structure moves from the broadest, most critical information down to the narrowest, a reader can grasp the core of the case from the opening lines alone and turn to the later sections only for supporting detail.\n\nIn the following system context diagram, a human agent views the investigation notes prepared by another human agent and then drafts the suspicious activity report. Once the report is reviewed by another peer, it is submitted to a financial intelligence unit.\n\nSystem Context Diagram of Suspicious Activity Reports in a Financial Institution (Source: authors)\n\nIn the following diagram, there are 4 key timelines of any investigation:\n\nHigh-level diagram of a traditional reporting system (Source: authors)\n\nWe propose improving the traditional reporting system by using AI to automate selected tasks and generate high-quality SAR drafts, followed by specialized human review and minor edits where necessary. The goal is to increase throughput, reduce cost per case, and decrease reporting failures.\n\nIn the following system context diagram, human agent effort is shifted to review/edit the AI-assisted report drafting and review.\n\nSystem Context Diagram of Suspicious Activity Reports in a Financial Institution (Source: authors)\n\nWe changed the earlier design to support background automation of suspicious activity report generation. As soon as the investigation is complete, the case is sent to the queue for processing by the Agentic System. Before the human agent picks the case for drafting the report, the AI Agent has drafted the first version to speed up the report generation.\n\nHigh-level diagram of an AI-powered reporting system (Source: authors)\n\nThe non-deterministic nature of AI, particularly Large Language Models (LLMs), creates two central concerns:\n\nThe proposed solution is a multi-agent system, with access to selected LLMs via a gateway, and supported by a tailored knowledge graph built from operational data.\n\nGrounding is the foundation of trustworthy SAR generation. The system should make it easier to state only what the evidence supports, not merely make the prose more fluent.\n\nHigh-level diagram of the agentic system (Source: authors)\n\nSequence diagram of Drafter agent, Judge Agent and Human (Source: authors)\n\nQuality means more than well-written prose. It means a complete, internally consistent, reviewable narrative that meets institutional and jurisdictional requirements.\n\nUnlike traditional software, LLM outputs are non-deterministic, and \"quality\" is subjective. In the case of report writing, \"what does a good report look like?\" becomes more subjective. Hence, there is a need to test the \"subjective\" aspects against \"objective\" metrics, and here the Eval shines.\n\nEvals are like tests of regular software development practices, and they can be leveraged in the following processes:\n\nThere are a few broad focus areas where the model output has to be tested on a continuous basis:\n\nFor example, Evals can be written to assess different aspects of the generated narrative like:\n\nOnce we have scores from all the evals, either we can use a weighted average or a simple average of all the individual scores to figure out the final grading criteria. This is how the Evals can be leveraged to grade the quality of generated output\n\nSequence diagram of Evals grading (Source: authors)\n\nSince the model and prompt are bound to change, this adds another dimension of non-determinism to the system. With any production system, we need to have a regression run of all evals against the golden data set before any model upgrade or prompt/config change happens.\n\nThe golden data set has to be collected initially with different edge cases with defined input and output. This will help in testing the system during development. The Golden Data Set can be augmented with human feedback in production where they love the output generated by the AI system.\n\nEvals shall answer some of the generated report’s quality metrics like :\n\nTraditional testing is a deterministic process of verification - it asks, \"Did we build the product right?\" against a fixed specification. This approach fails when a system’s core logic is probabilistic, because non-deterministic output may be more likely to introduce subtle degradations of quality that do not result in explicit crashes and may not be repeatable. Hence, it is important to monitor the decision-making trajectory, from initial intent to final outcome.\n\nThe system is gradually improved by generating telemetry, understanding the system, and patching the underlying issues.\n\nHuman review remains a policy decision owned by the BSA/AML function. AI accelerates preparation; it does not replace accountable judgment.\n\nTreat models and prompts as regulated production changes. The release plane provides controlled progress rather than \"ship and hope.\"\n\nThe bottleneck in drafting a quality Suspicious Activity Report was qualified personnel. LLM-based systems can reduce that dependency, but only if they're engineered for it, with grounding and evals as the substitute for the judgment of a qualified investigator.\n\nThe mechanism we've described treats non-determinism as an engineering problem rather than an excuse. Grounding drafts in a case-specific knowledge graph and operational data keeps the Drafter Agent grounded in evidence. A Judge Agent and deterministic fact-checker turn \"does this read well?\" into measurable checks against factuality, completeness, and the Inverted Pyramid structure the FIU expects. Evals and a golden dataset give these subjective judgments an objective, regression-testable backbone, the same way unit tests do for deterministic code. And a release process that versions models, prompts, and configuration, gated with shadow/canary rollout and feature-flag rollback, treats every change to the system as a production release\n\nNone of this shifts accountability away from the humans who own it. The BSA/AML officer still decides what gets filed; the agentic system's job is to make sure that when a human reviews a draft, the evidence is already assembled, the uncertain claims are flagged, and the reviewer's time goes to judgment rather than transcription. Risk-tiered routing means the system earns trust on familiar, low-risk cases before it is ever allowed near the ones that matter most.\n\nSAR narratives can now be drafted at machine speed, by codifying what \"good\" looks like into evals a machine can check against. When a human reviews the output, they're not taking the narrative on faith; they can trace the reasoning and the evidence lineage behind it, and that traceability is what turns speed into trust.\n\nDecember 15–16, 2026. Examine how senior practitioners run agents, evals, model serving, and AI-assisted engineering in production, including what failed and what changed. Register Now.",
+  "begyujtve": "2026-11-25T11:19:59.605877+00:00",
+  "prioritas": {
+    "pont": 46,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 55,
+      "egyediseg": 60,
+      "aktualitas": 77,
+      "kozossegi": 60
+    },
+    "elofeszures": 80,
+    "tanult": 60,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -8.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-25T11:20:17+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-25T11:20:19+00:00"
+}
