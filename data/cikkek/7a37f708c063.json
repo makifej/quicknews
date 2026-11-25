@@ -1,0 +1,49 @@
+{
+  "id": "7a37f708c063",
+  "slug": "openai-publishes-a-preprint-that-claims-to-prove-that-the-matrix",
+  "forras_id": "techmeme",
+  "forras_nev": "alphaXiv",
+  "url": "https://www.alphaxiv.org/abs/2611.matrix-multiplication-exponent-lower-bound",
+  "publikalva": "2026-11-25T13:23:06+00:00",
+  "cim": "OpenAI publishes a preprint that claims to prove that the matrix multiplication exponent (ω) is exactly 9/4, addressing a major open problem in mathematics (alphaXiv)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 80 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://api.alphaxiv.org/open-graph/v1/paper/2611.matrix-multiplication-exponent-lower-bound.png?v=2"
+  },
+  "cim_eredeti": "OpenAI publishes a preprint that claims to prove that the matrix multiplication exponent (ω) is exactly 9/4, addressing a major open problem in mathematics (alphaXiv)",
+  "szoveg_eredeti": "We prove that the exponent of square matrix multiplication is 9/4 over every field.[p1]\n\nMultiplying two n×nn\\times nn×n matrices produces n2n^2n2 output numbers, yet computing each one as a separate dot product costs on the order of n3n^3n3 operations. Faster algorithms exist because the outputs can share work, and the question is how much sharing is possible. OpenAI's paper answers it exactly: over every field, the square matrix-multiplication exponent is 9/49/49/4, a quarter-power above the trivial output-size exponent of 222. [p1] The exponent is the infimum of sss for which multiplication takes O(ns)O(n^s)O(ns) scalar operations. The upper bound was already known; the new contribution is the matching lower bound. [p1]\n\nThe scope is formal arithmetic circuits: inputs are independent variables, gates use field constants and addition, subtraction, multiplication, or division by a nonzero rational function, and outputs must be identities of rational functions. For every n≥2n\\ge2n≥2, the paper also proves a finite-size bound of at least ⌈n9/4/2⌉\\lceil n^{9/4}/2\\rceil⌈n9/4/2⌉ nonscalar multiplication-or-division gates, even if linear operations are free. [p1][p1] This is a statement about circuit cost, not elapsed time, hardware, or any implementation.\n\nThe direct predecessor is work by Amanov, van den Berg, and Zuiddam, which explains how the 9/49/49/4 upper bound follows from polynomial multiplication and tensor-spectrum methods. Their paper presents an upper bound over every field and an operational barrier on improving that proof's ingredients, not an unrestricted lower bound. [p5]\n\nEarlier ordinary-rank and border-rank lower bounds do not settle the exponent. The cited bounds are of quadratic order in nnn, and a constant-factor improvement over n2n^2n2 disappears when taking roots along tensor powers. The new claim concerns asymptotic rank and unrestricted formal circuits. [p5]\n\nThe proof is by contradiction. If an exponent strictly below 9/49/49/4 held over a finite field, it would let one repeatedly compress exact networks that test whether a list of words is distinct, eventually contradicting a lower bound on the cost of that task. [p3] The argument has no experiments: the incompatibility between the compression theorem and the separate lower bound is the whole result.\n\nHow can a claim about matrix multiplication be tested against another task? The paper uses trivalent tensor networks: vertices carry tables on at most three bits, wires identify bit positions, and summing over internal wires gives the function represented on the exterior bits. The target task is list distinctness. A list has 2w2^w2w words, each 2w2w2w bits long, and the output is one exactly when all words are distinct. For ttt lists, the network must compute the product of their answers, and its wiring may connect work across lists.\n\nTheorem 2.2 gives the lower bound. Over each finite field there is a σ>0\\sigma>0σ>0 such that, for all sufficiently large www and every 1≤t≤2w1\\le t\\le2^w1≤t≤2w, the minimum trivalent volume exceeds t nw wσt\\,n_w\\,w^\\sigmatnw​wσ, where nw=2w(2w)n_w=2^w(2w)nw​=2w(2w) is the number of exterior bits per list. [p7] That the bound holds uniformly over batches of lists is essential, because compression increases the number of lists.\n\nOn the other side, Theorem 2.1 says that if ωk<9/4\\omega^k<9/4ωk<9/4, then for every η>0\\eta>0η>0, a sufficiently large trivalent network of size m≤n1.05m\\le n^{1.05}m≤n1.05 with at least nnn exterior bits has some tensor power of size at most d(mh−γ+ehη)d(mh^{-\\gamma}+eh^\\eta)d(mh−γ+ehη), where h=⌈log⁡2n⌉h=\\lceil\\log_2n\\rceilh=⌈log2​n⌉, γ>0\\gamma>0γ>0, and d≤no(1)d\\le n^{o(1)}d≤no(1). [p7] Start from a sorting network for distinctness, of size O(nww2)O(n_w w^2)O(nw​w2). A fixed number of compressions makes the cost per input bit O(wη)O(w^\\eta)O(wη) for any η<σ\\eta<\\sigmaη<σ, which violates the list lower bound for large www. [p8] The saving here is in network vertices and wires, not in running time.\n\nWhy should a matrix-multiplication exponent control tensor networks? The paper assigns tensors a \"price,\" a quantity monotone under local linear maps and additive under direct sums and tensor products. The logarithm of a shared index's price acts like a distance between the sites sharing it. For the multiplication tensor, the three pairwise-shared indices form a triangle, and a rank decomposition replaces them with one common label. The critical configuration is a tripod with unit arms, so tip-to-tip distances are two, and a shared-label rate of 8/38/38/3 gives 6/(8/3)=9/46/(8/3)=9/46/(8/3)=9/4. A strict saving below 9/49/49/4 excludes that critical configuration. [p3][p4]\n\nThe bridge uses specially constructed sphere tensors that depend on marked points; collisions of those points expand tensors into contractions through controlled-width legs. Under the same strict-saving hypothesis, prices become synchronized and these collision identities are useful across a family of tensors. The paper shows that sphere-tensor prices asymptotically match the cost of preparing a tensor at a cheapest common site and transporting its legs to their destinations. [p51] All of this is conditional input to the contradiction, not an independent demonstration of a fast algorithm.\n\nHow does the geometric input save volume? Under the strict hypothesis, the authors derive stable sorting of O(h)O(h)O(h)-bit records in size O(nhp)O(nh^p)O(nhp) for some 1<p<21<p<21<p<2; the exponent being below 222 matters because collision costs track squared leg widths. [p59]\n\nSeparately, sphere-tensor operations plant a network's wiring in two sphere forms, move insertions through sewn seams, and merge them so that large tables become concentrated while arity stays controlled. Batching and sorting queries amortizes table lookup across tensor copies, and iterating concentration and lookup gives the compression theorem. [p76] Both constructions hold only under ωk<9/4\\omega^k<9/4ωk<9/4.\n\nA hypothetical strict saving would compress exact distinctness networks below the volume threshold that the list lower bound proves unavoidable, so the exponent cannot lie below 9/49/49/4. Combined with the known upper bound, this closes the gap. [p107]\n\nThe result is bounded by its model: formal arithmetic circuits and gate counts, with no claims about wall-clock speed or practical algorithms. The authors' repository describes the manuscripts as raw research material that may have issues, and notes that the Lean formalization for this paper covers only division-free circuits, narrower than the manuscript's model, which allows division. Repository README",
+  "begyujtve": "2026-11-25T13:34:55.962794+00:00",
+  "prioritas": {
+    "pont": 80,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 92,
+      "hirertek": 95,
+      "egyediseg": 35,
+      "hitelesseg": 88,
+      "aktualitas": 98,
+      "kozossegi": 82
+    },
+    "elofeszures": 91,
+    "tanult": 85,
+    "indok": "Az OpenAI áttörést ért el egy komoly matematikai alapprobléma, a mátrixszorzás hatékonyságának igazolásában Hasonló hír már van: 3993e7068daa. Forrás-tapasztalat: -3.",
+    "tema": "openai matrix multiplication proof",
+    "cim_hu": "Az OpenAI kutatói megoldhatták a matematika egyik régóta nyitott alapproblémáját",
+    "lead_hu": "Az OpenAI közzétett egy tanulmányt, amelyben azt állítják, pontosan bebizonyították a mátrixszorzás kitevőjét. A felfedezés komoly áttörést jelenthet az algoritmikus matematikában és a számítási kapacitások kihasználásában.",
+    "klaszter": "3993e7068daa",
+    "ai": true,
+    "ido": "2026-11-25T13:35:48+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-25T13:36:01+00:00"
+}
