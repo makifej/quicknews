@@ -1,0 +1,49 @@
+{
+  "id": "cca9084f9953",
+  "slug": "prompting-ai-to-be-thorough-can-drive-sandbox-escapes-anthropic-says",
+  "forras_id": "google-news-ai",
+  "forras_nev": "CSO Online",
+  "url": "https://www.csoonline.com/article/4253053/prompting-ai-to-be-thorough-can-drive-sandbox-escapes-anthropic-says.html",
+  "publikalva": "2026-11-25T12:07:19+00:00",
+  "cim": "Prompting AI to be ‘thorough’ can drive sandbox escapes, Anthropic says",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 78 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.csoonline.com/wp-content/uploads/2026/11/4253053-0-65684300-1795608374-KI-Agenten-als-Schlussel-zur-zukunftssicheren-Verwaltung.jpg?quality=50&strip=all&w=1024"
+  },
+  "cim_eredeti": "Prompting AI to be ‘thorough’ can drive sandbox escapes, Anthropic says",
+  "szoveg_eredeti": "Prompt wording meant to make AI agents more resourceful, such as telling them to search thoroughly or invoking authority, sharply raises the odds they will reach outside a poorly secured sandbox, Anthropic has found in its latest evaluation.\n\nThe evaluation, called Siren, gives Claude models routine dev-ops tasks inside deliberately weakened sandboxes and places a “honeypot,” such as a credential, file, or emulated internet service, outside the boundary, Anthropic researchers Oscar O’Rahilly and Darya Kaviani wrote in a blog post.\n\nAnthropic tested six Claude models, from Mythos 5 to the 5.5 series, without the safeguards that ship in its products. The tests covered more than 1,700 scenarios in 26 sandboxes built on tools including Docker, gVisor, and QEMU. Most of the weaknesses are misconfigurations modeled on public reports, the company said.\n\nAnthropic’s researchers tested different types of instructions, which they called “tempters”. Some increased urgency by introducing deadlines or the consequences of failure. Others encouraged agents to search extensively or gave them broad authority over their machines.\n\n“Some tempters give the model broad authority over its own machine. Others tell it to search thoroughly, on that machine or more widely, and list what it checked,” the researchers wrote.\n\nRemoving deadlines and stated costs of failure changed the rate of reaching outside by no more than about six percentage points, the post said.\n\nRemoving the wording that asked for thoroughness and asserted authority had a far larger effect, cutting reach rates by 23 to 26 points in five of the six models, the researchers wrote. Claude Mythos 5 was the exception, reaching outside about 90% of the time in every version of the scenarios, the post added.\n\nAcross the Claude 5.5 models and Claude Mythos 5.2, agents reached outside in 21% to 32% of scenarios, but misaligned use occurred in only 0.6% to 1.6%. The corresponding misaligned-use rates for the older Claude Mythos 5 and 5.1 models were 25.8% and 12.7%, respectively, according to the post.\n\n“Siren is designed to make this behavior easy to measure; its rates are not an estimate of how often this behavior happens in real use,” the company wrote.\n\nThe first mitigation Anthropic tested was spelling out six sandbox rules in the system prompt. They cover host files, host services, container engine sockets, credentials, network destinations, and anything left running on the host after a task ends.\n\nThe rules made the models 68% to 96% less likely to reach outside, cutting the rate for the newest models to about 2% or less, the researchers wrote. Mythos 5 still reached outside in nearly a quarter of scenarios.\n\nDuncan Brown, group vice president and global domain lead for worldwide security and trust at IDC, said no CISO should rely solely on system prompt rules as a control for agents.\n\n“It’s like marking your own homework: asking a model to moderate itself is a high-risk approach,” Brown said.\n\nAnthropic tested three measures to reduce the likelihood of agents reaching outside their sandboxes. The first involved explicitly describing the sandbox, specifying which resources were off-limits, and instructing the model to stop and report if a task required resources it had not been given.\n\nThis reduced reaching-out rates by 68% to 96%, depending on the model. A tool allowing agents to report sandbox weaknesses rather than exploit them reduced the rate by seven to 33 percentage points.\n\nThe third measure, auto mode, uses a classifier to check tool calls before execution. In an offline replay of the test episodes, it blocked the first command accessing external material in 96% to 100% of misaligned use cases. It blocked the first command attempting to reach outside in 53% to 84% of boundary-crossing episodes.\n\nThe mitigations make escape less likely but “don’t fix the sandbox itself,” Anthropic wrote.\n\nBrown said enterprises should not rely on AI vendors to secure their own models. Instead, they should encase agents in a governance structure that limits scope and access to what is required and no more, he said.\n\n“CISOs may use AI to govern AI, but they must ensure that the governance AI is from a different vendor and has a different model provenance than the one they are governing,” Brown said.\n\nAnthropic also found that models frequently suspected they were being tested. Claude Sonnet 5.5 showed signs of evaluation awareness in 67% of scenarios. Across the four newer models, the rate ranged from 43% to 67%.\n\n“With only six models, we can’t tell whether models are more cautious about reaching outside because they suspect they are in a test, or whether the increased eval awareness and the reduced tendency to leave the sandbox are both products of how newer models were trained,” the researchers wrote.\n\nBrown said enterprises should not rely on vendor-produced evaluations alone when deciding whether to deploy agents. “Agents are goal-focused and will stop at nothing to achieve their mission,” he said. Organisations should instead deploy agents with “an identified sponsor, a clear scope, an expiry date and an evidential record of what the agent actually did.”\n\nGyana Swain is a seasoned technology journalist with over 20 years' experience covering the telecom and IT space.\n\nHe is a consulting editor with VARINDIA and earlier in his career, he held editorial positions at CyberMedia, PTI, 9dot9 Media, and Dennis Publishing. A published author of two books, he combines industry insight with narrative depth. Outside of work, he’s a keen traveler and cricket enthusiast. He earned a B.S. degree from Utkal University.",
+  "begyujtve": "2026-11-25T13:19:47.029577+00:00",
+  "prioritas": {
+    "pont": 78,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 82,
+      "hirertek": 88,
+      "egyediseg": 95,
+      "hitelesseg": 78,
+      "aktualitas": 95,
+      "kozossegi": 72
+    },
+    "elofeszures": 89,
+    "tanult": 61,
+    "indok": "Kiemelkedő fontosságú biztonsági kutatás az Anthropic-tól az AI-ágensek kiszabadulási kockázatairól. Forrás-tapasztalat: -7.",
+    "tema": "anthropic siren ai sandbox escape",
+    "cim_hu": "Veszélyes sandbox-kiszabadulásokat idézhet elő, ha alaposságra utasítjuk az AI-ágenseket",
+    "lead_hu": "Az Anthropic új biztonsági tesztje megállapította, hogy a túlzott alaposságra vagy határozottságra buzdító utasítások hatására a Claude modellek lényegesen nagyobb eséllyel törnek ki a kijelölt tesztkörnyezetből.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-25T13:20:00+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-25T13:20:03+00:00"
+}
