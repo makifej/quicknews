@@ -1,0 +1,49 @@
+{
+  "id": "39dc8263ce37",
+  "slug": "multimodal-artificial-intelligence-models-fail-exact-judo-kata",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/multimodal-artificial-intelligence-models-fail-exact-judo-kata-recognition-despite-high-confidence/",
+  "publikalva": "2026-11-25T21:35:03+00:00",
+  "cim": "Multimodal Artificial Intelligence Models Fail Exact Judo Kata Recognition Despite High Confidence",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 51 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-27840.png"
+  },
+  "cim_eredeti": "Multimodal Artificial Intelligence Models Fail Exact Judo Kata Recognition Despite High Confidence",
+  "szoveg_eredeti": "Multimodal Artificial Intelligence Models Fail Exact Judo Kata Recognition Despite High Confidence\n\nConsumer-oriented multimodal artificial intelligence systems can broadly identify the parent style of a formal martial arts movement from video roughly two-thirds of the time, yet they struggle dramatically when tasked with naming the exact technique. In an exploratory, cross-sectional evaluation conducted by sports scientists and engineers at Universidad Europea de Madrid, two prominent commercial language and vision platforms demonstrated severe diagnostic shortcomings when analyzing isolated judo kata actions. When presented with competition footage, the evaluated models frequently missed the specific sporting gesture, successfully identifying the exact technique in only 20.0 percent and 13.3 percent of evaluated video sequences under a primary majority aggregation rule. Even more strikingly, the systems exhibited pronounced metacognitive miscalibration, frequently reporting incorrect technical classifications with near-maximum subjective confidence ratings. The findings indicate that while modern multimodal assistants can offer coarse semantic orientation within structured movement environments, their inability to accurately distinguish fine motor dynamics makes them unsuitable as autonomous evaluators without rigorous human oversight.\n\nVideo-based analysis of athletic gestures has expanded substantially with the evolution of computer vision and markerless pose estimation frameworks. Traditional markerless pipelines extract geometric landmarks and kinematic coordinates directly from video feeds, bringing objective biomechanical measurement into applied sports science settings. However, these specialized architectures require calibrated camera installations, dedicated software configurations, and substantial biomechanical interpretation by domain experts. Multimodal large language models represent a fundamentally different paradigm by accepting natural video alongside text prompts and returning natural-language categorical judgments without requiring user-side calibration or kinematic coordinate extraction. This unprecedented accessibility lowers technical barriers for educators, athletes, referees, and coaches who seek rapid interpretations of athletic execution. Despite growing consumer deployment, the capacity of generalist vision-language models to interpret complex technical gestures and appropriately signal uncertainty when visual evidence is insufficient has remained largely unvalidated in formal movement science.\n\nTo rigorously test whether generalist systems can reliably categorize movement, researchers selected judo kata as a standardized experimental test bed. Unlike free-form sparring or randori, judo kata consists of strictly codified, sequentially organized, and formally judged techniques cataloged by the Kodokan Institute and evaluated under explicit International Judo Federation competitive standards. This formalization establishes an objective ground truth against which model assertions can be audited. The investigators assembled a stimulus set of 30 short competition clips drawn from publicly available YouTube broadcasts of official judo kata tournaments. The dataset comprised six distinct clips from each of five recognized katas: Nage-no-kata, Katame-no-kata, Ju-no-kata, Kime-no-kata, and Kodokan Goshin Jutsu. Each clip depicted an isolated, complete technical execution spanning five to fifty-five seconds from the establishment of grips to the final position, recorded from an unobstructed lateral viewing perspective capturing both tori and uke.\n\nThe study implemented an ecological experimental protocol designed to mirror how non-specialist users interact with commercial artificial intelligence tools. Researchers tested two desktop configurations: ChatGPT 5.5 Thinking running under an Enterprise account and Gemini 3.5 Flash accessed through its standard consumer desktop application with an unconfirmed tier. Because the configurations possessed inherent structural asymmetries in reasoning mode and compute allocation, the authors emphasized that all comparisons reflect the two specific products as configured rather than their underlying foundational model families. To examine reproducibility, each of the 30 clips was submitted across three independent sessions to each platform between June 16 and June 20, 2026, generating 180 total submissions. All sessions began from clean application states with cross-session memory disabled. For each video, models were prompted in English to report the technique name, the parent kata, the functional category, a brief justification, and an ordinal confidence rating from 0 to 5, alongside an explicit option to declare the movement not determinable.\n\nRigorous operational safeguards were introduced to prevent models from extracting technique labels from contextual text cues rather than visual action. Video files were scrubbed of embedded metadata and labeled with neutral numeric strings, and candidate clips were screened to eliminate visible scoreboards and identifying overlays. Despite these screening measures, a post-collection keyword audit revealed persistent scoreboard text in two Kodokan Goshin Jutsu clips, which ChatGPT noted in its justification text. Researchers conducted sensitivity analyses excluding both the affected submissions and the complete clips, confirming that the contextual leakage did not alter any statistical or substantive conclusions. Model outputs were evaluated by two independent judo experts blinded to the identity of the generating systems, with unresolved discrepancies settled by consensus. Coding reliability between the human judges was exceptionally strong, achieving a Cohen’s kappa of 1.00 for technique identification, 0.88 for parent kata, and 0.86 for technique category, confirming that evaluation errors stemmed from model outputs rather than human scoring ambiguities.\n\nThe primary accuracy outcome, established using a majority-of-three decision rule where a clip was considered correct if at least two of its three repeated runs matched the reference standard, revealed an identical performance gradient across both platforms. Both systems proved substantially more capable of naming the broader parent kata than the precise technique. ChatGPT correctly identified the parent kata in 19 of 30 clips, representing 63.3 percent accuracy, while Gemini identified the parent kata in 20 of 30 clips, achieving 66.7 percent accuracy. Functional category performance occupied an intermediate position, with ChatGPT correctly identifying 15 of 30 categories (50.0 percent) and Gemini identifying 11 of 30 (36.7 percent). However, both systems faltered when tasked with pinpointing the exact technique: ChatGPT succeeded in only 6 of 30 clips (20.0 percent), and Gemini identified only 4 of 30 clips (13.3 percent). Paired statistical differences between the platforms were statistically undetectable under the primary majority endpoint, yielding a paired technique difference of 6.7 percentage points that carried wide confidence intervals ranging from minus 8.6 to plus 22.4 percentage points.\n\nBeyond accuracy under majority voting, single-attempt evaluations and repeatability metrics highlighted severe operational instability in both models. When analyzing only the first submission per clip—the scenario most representative of applied user behavior—ChatGPT correctly identified 6 of 30 techniques (20.0 percent) while Gemini identified 3 of 30 (10.0 percent). First-attempt category recognition favored ChatGPT by 30.0 percentage points, with ChatGPT solving 16 of 30 clips compared to Gemini’s 7 of 30 clips. Across all three repeated runs, technique consistency remained remarkably fragile. ChatGPT provided identical technique labels across all three repetitions for only 5 of 30 clips, while Gemini achieved complete technique concordance in just 2 of 30 clips. Mean pairwise agreement between repeti",
+  "begyujtve": "2026-11-25T21:49:12.874175+00:00",
+  "prioritas": {
+    "pont": 51,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 65,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 29
+    },
+    "elofeszures": 78,
+    "tanult": 13,
+    "indok": "Érdekes tudományos felmérés a multimódális AI vizuális korlátairól, de szűk specifikus területről szól. Forrás-tapasztalat: -7.",
+    "tema": "multimodal ai judo recognition",
+    "cim_hu": "A multimódális AI-modell magabiztosan hibázik a dzsúdótechnikák felismerésénél",
+    "lead_hu": "Spanyol kutatók kimutatták, hogy a vezető multimódális AI-rendszerek gyakran tévednek a pontos küzdősport-technikák azonosításakor, miközben magas magabiztossági értéket mutatnak.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-25T21:49:24+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-25T21:49:29+00:00"
+}
