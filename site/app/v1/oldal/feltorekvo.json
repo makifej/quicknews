@@ -2,7 +2,7 @@
   "cim": "Feltörekvő",
   "leiras": "Az elmúlt 14 nap hírei közül azok, amelyekről több forrás is beszámolt, vagy amelyek legalább 2 pontot kaptak az olvasóktól. Sorrend: elöl a szerkesztőség kiemelései, utána pontszám szerint. A pontszám a szavazatokból és abból adódik, hány forrás írt a hírről, és 2 naponta a felére csökken, így a friss hír előrébb kerül.",
   "leiras_cimke": "Hogyan áll össze a lista?",
-  "alcim": "14 hír, pontszám szerint",
+  "alcim": "15 hír, pontszám szerint",
   "blokkok": [
     {
       "t": "nagy",
@@ -29,28 +29,47 @@
     {
       "t": "kozepes",
       "h": {
-        "id": "f5aad627bf95",
-        "cim": "Belső források szerint kiadhatatlanul megerősödtek a legújabb AI-modellek",
-        "lead": "Az Anthropic és az OpenAI dolgozói arra figyelmeztetnek, hogy a még kiadatlan belső modellek logikai képességei túlságosan gyorsan fejlődnek.",
-        "slug": "belso-forrasok-szerint-kiadhatatlanul-megerosodtek-a-legujabb-ai",
-        "forras": "Axios",
-        "kat": "modell",
-        "rovat": "modell",
-        "ido": "2026-11-24T13:00:55.070Z",
-        "ido_hu": "nov. 24. 14:00",
-        "kep": "https://quicknews.hu/assets/kep/f5aad627bf95.webp",
-        "kep_nagy": "https://quicknews.hu/assets/kep/f5aad627bf95-n.webp",
-        "video": false,
+        "id": "30225c7fe69b",
+        "cim": "Megjelent a MAGI-2 videómodell, érkezik a nyílt súlyú változat",
+        "lead": "A Higgsfield elindította a MAGI-2 modellt, amely akár 30 másodperces, 1080p felbontású videókat készít, és hamarosan nyílt súlyúként is elérhető lesz.",
+        "slug": "elerheto-a-400-milliard-parameteres-magi-2-videomodell",
+        "forras": "Higgsfield (X)",
+        "kat": "videó",
+        "rovat": "video",
+        "ido": "2026-11-25T07:29:15.154Z",
+        "ido_hu": "nov. 25. 08:29",
+        "kep": "https://quicknews.hu/assets/kep/30225c7fe69b.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/30225c7fe69b.webp",
+        "video": true,
         "fontossag": 4,
         "felkapott": true,
         "forraskep": false,
-        "url": "https://quicknews.hu/hir/belso-forrasok-szerint-kiadhatatlanul-megerosodtek-a-legujabb-ai",
+        "url": "https://quicknews.hu/hir/elerheto-a-400-milliard-parameteres-magi-2-videomodell",
         "jova": true
       }
     },
     {
       "t": "cimsor",
       "hirek": [
+        {
+          "id": "f5aad627bf95",
+          "cim": "Belső források szerint kiadhatatlanul megerősödtek a legújabb AI-modellek",
+          "lead": "Az Anthropic és az OpenAI dolgozói arra figyelmeztetnek, hogy a még kiadatlan belső modellek logikai képességei túlságosan gyorsan fejlődnek.",
+          "slug": "belso-forrasok-szerint-kiadhatatlanul-megerosodtek-a-legujabb-ai",
+          "forras": "Axios",
+          "kat": "modell",
+          "rovat": "modell",
+          "ido": "2026-11-24T13:00:55.070Z",
+          "ido_hu": "nov. 24. 14:00",
+          "kep": "https://quicknews.hu/assets/kep/f5aad627bf95.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/f5aad627bf95-n.webp",
+          "video": false,
+          "fontossag": 4,
+          "felkapott": true,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/belso-forrasok-szerint-kiadhatatlanul-megerosodtek-a-legujabb-ai",
+          "jova": true
+        },
         {
           "id": "be9c8fb91e88",
           "cim": "Jensen Huang azonnali hatállyal visszatért az Nvidia élére",
@@ -106,25 +125,6 @@
           "felkapott": true,
           "forraskep": false,
           "url": "https://quicknews.hu/hir/onalloan-ellenorzi-es-fogadja-el-a-kodmodositasokat-a-claude-ship",
-          "jova": true
-        },
-        {
-          "id": "5094532b4e2e",
-          "cim": "750 milliárd paraméteres zászlóshajó modellt adott ki a Z.ai GLM-5.4 néven",
-          "lead": "A Z.ai megjelentette a GLM-5.4 modellt, amely az új architektúrának köszönhetően a jóval nagyobb rendszerek teljesítményét hozza.",
-          "slug": "750-milliard-parameteres-zaszloshajo-modellt-adott-ki-a-z-ai-glm-5-4",
-          "forras": "Z.ai",
-          "kat": "modell",
-          "rovat": "modell",
-          "ido": "2026-11-23T12:00:18.404Z",
-          "ido_hu": "nov. 23. 13:00",
-          "kep": "https://quicknews.hu/assets/kep/5094532b4e2e.webp",
-          "kep_nagy": "https://quicknews.hu/assets/kep/5094532b4e2e.webp",
-          "video": false,
-          "fontossag": 4,
-          "felkapott": true,
-          "forraskep": false,
-          "url": "https://quicknews.hu/hir/750-milliard-parameteres-zaszloshajo-modellt-adott-ki-a-z-ai-glm-5-4",
           "jova": true
         }
       ]
@@ -221,6 +221,33 @@
           "jova": true
         }
       ],
+      "tobb": []
+    },
+    {
+      "t": "rovat",
+      "cim": "Modellek",
+      "link": null,
+      "osszes": 1,
+      "fo": {
+        "id": "5094532b4e2e",
+        "cim": "750 milliárd paraméteres zászlóshajó modellt adott ki a Z.ai GLM-5.4 néven",
+        "lead": "A Z.ai megjelentette a GLM-5.4 modellt, amely az új architektúrának köszönhetően a jóval nagyobb rendszerek teljesítményét hozza.",
+        "slug": "750-milliard-parameteres-zaszloshajo-modellt-adott-ki-a-z-ai-glm-5-4",
+        "forras": "Z.ai",
+        "kat": "modell",
+        "rovat": "modell",
+        "ido": "2026-11-23T12:00:18.404Z",
+        "ido_hu": "nov. 23. 13:00",
+        "kep": "https://quicknews.hu/assets/kep/5094532b4e2e.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/5094532b4e2e.webp",
+        "video": false,
+        "fontossag": 4,
+        "felkapott": true,
+        "forraskep": false,
+        "url": "https://quicknews.hu/hir/750-milliard-parameteres-zaszloshajo-modellt-adott-ki-a-z-ai-glm-5-4",
+        "jova": true
+      },
+      "kis": [],
       "tobb": []
     },
     {
