@@ -2145,3 +2145,6 @@ html.os-android .app-banner .ab-asztal { display: none; }
   .app-banner-gomb { padding: 6px 9px; font-size: 13.5px; }
   .app-banner-szoveg { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 14px; line-height: 1.3; }
 }
+/* Heni 2026-11-25: teljes képernyőn a videó két széle levágódott (object-fit: cover maradt). Teljes képernyőn az egész kép látszik. */
+.gyu-video:fullscreen { object-fit: contain !important; aspect-ratio: auto !important; border-radius: 0 !important; background: #000 !important; }
+.gyu-video:-webkit-full-screen { object-fit: contain !important; aspect-ratio: auto !important; border-radius: 0 !important; background: #000 !important; }
