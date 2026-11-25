@@ -1,0 +1,49 @@
+{
+  "id": "009d7e4c7709",
+  "slug": "dual-view-stereo-cameras-and-lightweight-artificial-intelligence",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/dual-view-stereo-cameras-and-lightweight-artificial-intelligence-accurately-estimate-yak-body-weight/",
+  "publikalva": "2026-11-25T21:15:38+00:00",
+  "cim": "Dual-View Stereo Cameras and Lightweight Artificial Intelligence Accurately Estimate Yak Body Weight",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 44 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-27807.png"
+  },
+  "cim_eredeti": "Dual-View Stereo Cameras and Lightweight Artificial Intelligence Accurately Estimate Yak Body Weight",
+  "szoveg_eredeti": "Dual-View Stereo Cameras and Lightweight Artificial Intelligence Accurately Estimate Yak Body Weight\n\nAgricultural engineers have developed a contactless, dual-view passive stereo vision system capable of estimating the live body weight of farmed yaks with high accuracy on resource-constrained edge computing hardware. Adapted to the challenging high-altitude conditions of the Qinghai–Tibetan Plateau, the domestic yak represents an essential livestock species whose growth, feed efficiency, reproduction, and health depend directly on regular body weight monitoring. Traditional weighing protocols demand physical restraint on dedicated scale platforms, a process that induces acute stress in livestock, presents safety hazards to animal handlers, and incurs prohibitive infrastructure expenses in remote alpine regions. To eliminate these physical handling bottlenecks, a research team formulated an integrated optical pipeline combining customized lightweight convolutional attention networks, regional stereo depth reconstruction, and view-tailored geometric projections. Evaluated on farmed yaks under an animal-disjoint cross-validation protocol, the automated framework achieved a coefficient of determination of 0.965, a root mean square error of 8.33 kilograms, and a mean absolute percentage error of 2.60 percent, establishing the viability of on-farm weight acquisition without active scale platforms.\n\nStandard agricultural monitoring on plateau facilities faces severe practical limitations when relying on mechanical scale platforms. Beyond facility construction costs and rough alpine terrain, driving yaks onto platform scales introduces substantial risks of injury for both operators and animals. Moreover, because yaks rarely remain completely stationary during handling, dynamic motion often distorts mechanical scale readings, while dense seasonal fur coats obscure body silhouettes and hinder conventional two-dimensional imaging systems. While earlier livestock computer vision applications investigated two-dimensional visual contours, time-of-flight cameras, light detection and ranging sensors, or structured-light depth cameras, each presents operational trade-offs in high-altitude outdoor farms. Active illumination sensors like structured-light and time-of-flight units suffer from restricted operating ranges and high vulnerability to fluctuating daytime solar illumination, whereas laser scanners impose prohibitive cost and power demands. To resolve these sensing obstacles, the researchers configured a passive stereoscopic arrangement utilizing ambient illumination, eliminating active emitters and reducing hardware complexity while maintaining robust disparity matching under variable outdoor lighting.\n\nExperimental data collection was conducted during three seasonal campaigns spanning 190 days at an indoor yak-fattening facility located in Ya’an, Sichuan, China. The longitudinal schedule encompassed summer sampling on July 7, 2025, early autumn sampling on September 5, 2025, and winter sampling on January 13, 2026. The investigated cohort comprised 29 male Maiwa yaks aged three to four years, presenting a scale-measured body weight range between 170.0 and 366.5 kilograms. Across the three measurement dates, researchers gathered 87 yak-by-date observations paired with manual physical reference measurements and scale weights obtained from an electronic livestock platform scale featuring a 0.5-kilogram division value. The physical measurement passage featured a 120-centimeter-wide experimental chute equipped with two independent binocular camera modules. A side-view stereo camera was positioned at a height of 120 centimeters and a lateral distance of 110 centimeters from the chute fence, providing an effective working distance of 120 to 150 centimeters to the animal flank, while an overhead dorsal-view stereo camera was installed at a height of 240 centimeters, establishing an operating clearance of 110 to 140 centimeters above the yak back.\n\nImage processing begins with an efficient top-down neural pipeline that detects the animal torso and localizes key anatomical measurement points. To enable low-latency inference on low-power agricultural processors, the authors redesigned the standard CSPNeXt backbone found in baseline real-time models into an architecture designated as MobileLKA. This backbone substitutes heavy attention mechanisms with Large Kernel Attention modules embedded within a five-stage hierarchical structure. The shallow network stages process local spatial details through conventional depthwise and pointwise convolutions, whereas deeper stages apply dilated large-kernel convolutions to extract expansive semantic receptive fields without exploding computational demand. Across multi-seed trials on side and dorsal test sets, the lightweight architecture secured a mean keypoint average precision of 0.970, outperforming heavier convolutional and vision transformer alternatives including ResNeSt-50 and PVT-Small while trimming parameter volume by more than 90 percent.\n\nUpstream animal localization is handled by MobileLKA-Det, which scans full frames downsampled to 224 by 224 pixels to isolate the yak torso. On single-precision Jetson Nano central processing unit benchmarks, detection latency decreased from 1413.1 milliseconds down to 217.3 milliseconds while maintaining a bounding-box mean average precision of 0.944, within 0.008 of the high-resolution baseline. Subsequent keypoint localization operates on cropped, affinely aligned bounding boxes resized to 256 by 192 pixels. Pairwise comparative tests revealed that passing detected bounding boxes instead of ground-truth boxes degraded keypoint accuracy by only 0.10 to 0.13 pixels, confirming that upstream detector imprecision does not meaningfully propagate into the downstream coordinate estimation phase.\n\nConverting two-dimensional landmark coordinates into three-dimensional anatomical dimensions requires stereoscopic depth extraction. The dual binocular cameras, calibrated with checkerboard targets, attained root mean square reprojection errors of 0.11 pixels for the side camera and 0.10 pixels for the dorsal camera. Epipolar image rectification aligned matching scanlines, after which disparity maps were generated via semi-global block matching and refined with edge-preserving weighted least squares filtering. The resulting disparity fields demonstrated high measurement integrity, maintaining between 90.23 percent and 92.74 percent valid pixels across animal body surfaces across all seasonal campaigns. Physical validation using rigid distance standards confirmed depth measurement accuracy, yielding a mean absolute error of 0.70 centimeters and a root mean square error of 0.81 centimeters across multiple test distances. These empirical errors remained well below the theoretical one-pixel disparity uncertainty thresholds of 2.6 centimeters at dorsal operating distances and 3.0 centimeters at lateral operating ranges.\n\nTo overcome irregular surface depth distortions introduced by long, shaggy coats, the authors devised view-differentiated trait extraction algorithms. For side-view imagery, where key landmarks span the longitudinal axis of the animal across variable depths, morphometric traits were extracted as direct three-dimensional Euclidean distances between reconstructed coordinate pairs. These measurements yielded height at withers, approximate chest depth, and approximate oblique body length. Conversely, applying three-dimensional Euclidean distances to dorsal views proved vulnerable to fur scatter, producing noisy abdominal width and body length estimates. Because the dorsal surface remains approximately fronto-parallel to the overhead camera, dorsal traits were derived by projecting keypoint coordinates onto a two-dimensional reference plane defined by the median depth of an eleven-by-eleven pixel patch centered on a fiducial dorsal landmark. In controlled ablation testing, switching dorsal",
+  "begyujtve": "2026-11-25T21:19:39.753831+00:00",
+  "prioritas": {
+    "pont": 44,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 25,
+      "hirertek": 50,
+      "egyediseg": 95,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 18
+    },
+    "elofeszures": 73,
+    "tanult": 14,
+    "indok": "Egyedi mezőgazdasági AI alkalmazás, de alacsony a széles körű társadalmi és iparági hatása. Forrás-tapasztalat: -7.",
+    "tema": "agricultural ai yak weight",
+    "cim_hu": "Könnyűsúlyú mesterséges intelligencia becsli meg a jakok testsúlyát",
+    "lead_hu": "Sztereó kamerákkal és kis erőforrás-igényű AI-val fejlesztettek ki érintésmentes súlybecslő rendszert kutatók a Qinghai-Tibet fennsík jakjai számára.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-25T21:19:51+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-25T21:19:54+00:00"
+}
