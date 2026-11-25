@@ -1,0 +1,142 @@
+{
+  "id": "5eec9c80205c",
+  "slug": "claude-irta-ujra-a-sajat-hatterrendszeret-rust-nyelven-az-anthropicnal",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/anthropic-details-claude-led-r-.ucDqybtQjqz3n6v6CyGxg",
+  "szerzo": "Perplexity Discover",
+  "publikalva": "2026-11-25T17:18:59.942722+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/upload/t_limit/v1795627330/url_uploads/7b547949804744dc62d37edbcc20382106143b4a_dez4pl.jpg"
+  },
+  "cim_eredeti": "Az Anthropic részletezte, hogyan írta újra a Claude a Messages API-t Rustban",
+  "forrasok": [
+    {
+      "nev": "Migrating our Messages API to Rust",
+      "url": "https://www.anthropic.com/research/migrating-api-to-rust",
+      "domain": null
+    },
+    {
+      "nev": "Anthropic moves its Messages API from Python to Rust with help from Claude",
+      "url": "https://cryptobriefing.com/anthropic-messages-api-python-to-rust/",
+      "domain": null
+    },
+    {
+      "nev": "Migrating our Messages API to Rust | TLDR",
+      "url": "https://tldr.tech/story/e24abe37-27e7-4cfc-abc3-edc7168af9d8",
+      "domain": null
+    },
+    {
+      "nev": "Claude Platform release notes",
+      "url": "https://docs.anthropic.com/en/release-notes/api",
+      "domain": null
+    },
+    {
+      "nev": "Migration - Claude Platform Docs",
+      "url": "https://platform.claude.com/docs/en/managed-agents/migration",
+      "domain": null
+    },
+    {
+      "nev": "Messages",
+      "url": "https://platform.claude.com/docs/en/api/messages.md",
+      "domain": null
+    },
+    {
+      "nev": "platform.claude.com",
+      "url": "https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide.md",
+      "domain": null
+    },
+    {
+      "nev": "Migrating to API version 2026-10-21 - Claude Platform Docs",
+      "url": "https://platform.claude.com/docs/en/api/migration-2026-10-21",
+      "domain": null
+    },
+    {
+      "nev": "Claude API skill - Claude Platform Docs - platform.claude.com",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill",
+      "domain": null
+    },
+    {
+      "nev": "Newsroom",
+      "url": "https://www.anthropic.com/news",
+      "domain": null
+    },
+    {
+      "nev": "Anthropic Rewrote Claude's Messages API in Rust",
+      "url": "https://cellcog.ai/blog/anthropic-messages-api-rust-rewrite/",
+      "domain": null
+    },
+    {
+      "nev": "Anthropic Says Rust API Rewrite Cut CPU Use 40–50%",
+      "url": "https://www.zeniteq.com/anthropic-says-rust-api-rewrite-cut-cpu-use-40-50-6bbvjg",
+      "domain": null
+    }
+  ],
+  "szoveg_eredeti": "Az Anthropic szerdán részletesen bemutatta, hogyan migrálta alapvető Messages API-ját Pythonról Rustra autonóm Claude-ügynökök segítségével. A nyilvános forgalom átállása 2026 szeptemberében fejeződött be, leállás és fejlesztési fagyasztás nélkül. A cég mérnöki beszámolója szerint az új Rust-szolgáltatás kérésenként nagyjából 70%-kal kevesebb CPU-t használ, a medián első tokenig eltelt idő pedig nagyjából 20%-kal csökkent.\n\nA 2023-ban Pythonban készült Messages API a külső fejlesztők és az Anthropic saját termékei, köztük a Claude Code és a Cowork fő belépési pontja. 2024 eleje és 2026 ősze között az API forgalma nagyjából 1800-szorosára nőtt. Emiatt a Python objektum- és memóriaterhelése a kérések validálása, a tokenizálás, a biztonsági szűrés és a kimenet streamelése során egyre nagyobb szűk keresztmetszetté vált. Egy korábbi, fokozatos próbálkozás során csak a kimenet feldolgozását írták újra Rustban. Ez 8–10%-kal csökkentette a CPU-használatot, de a tokenek nyelvi határon át háromszori átadása túl nagy bonyolultságot okozott.\n\nAhogy Claude kódolási képességei fejlődtek – 2026 májusára az Anthropicnál beolvasztott kód több mint 80%-át már ő írta –, a modell nagyjából egy hét alatt megírta a Rust kérési útvonal első változatát. Azt viszont, hogy a viselkedés megegyezik egy folyamatosan változó, éles szolgáltatáséval, sokkal nehezebb volt bizonyítani, mint magát a kódot legenerálni. 2026 áprilisában a Rust API az integrációs tesztek nagyjából 98%-án átment, az éles bemeneteknek viszont csak nagyjából a negyede egyezett. Ennek részben az volt az oka, hogy az átültetett tesztek több mint 100 meggyengített állítást tartalmaztak, és kihagytak valós szélsőséges eseteket.\n\nAz Anthropic úgy zárta le ezt a rést, hogy közben megvédte a felhasználók magánszféráját: az éles forgalmat tükrözte mindkét kódbázison, az ügyfelek promptjait és válaszait viszont nem vizsgálta. Claude kimenetei nem determinisztikusak, a kérések pedig csak egyszer számlázhatók. Ezért a rendszer a modellt csak egyszer futtatta le, a kimenetét pedig újra lejátszotta a Rustnak. Összehasonlította a végrehajtási ellenőrzőpontokat és a bájtszintű ujjlenyomatokat, így minden eltérést külön ki tudott szűrni.\n\nEgy szkript 10–30 percenként csoportosította az eltérési naplókat (mismatch logokat). Amikor új hibaminta jelent meg, értesített egy koordináló Claude-ügynököt, az pedig munkavégző ügynököket küldött a kivizsgálására. A felhőalapú homokozókban (sandboxokban) az ügynökök szintetikus kéréseket írtak a hibaujjlenyomatok reprodukálásához, javították a Rust-kódot, majd egy másodpercnél rövidebb idő alatt ellenőrizték a javításokat. Ezután pull requestet nyújtottak be emberi felülvizsgálatra.\n\nA mérnökök kapuőrként működtek a homokozós tesztelés és az éles, árnyékolt (shadowed) forgalom között. Elutasították a kerülőutakat, például a keménykódolt eszközleírásokat, amelyek megfeleltek az automatikus ellenőrzéseknek, de a mögöttes architekturális követelményeket nem teljesítették. A felülvizsgálati visszajelzéseket megosztott memóriaszabályokba, automatikus lintekbe és merge-ellenőrzésekbe mentették. Így a későbbi ügynökök nem ismételték meg ugyanazokat a hibákat. A mérnökök munkája az egyes hibák debugolásáról áttevődött a migrációt irányító korlátok meghatározására (Anthropic; Crypto Briefing).",
+  "modell": "gemini-3.5-flash",
+  "cim": "Claude írta újra a saját háttérrendszerét Rust nyelven az Anthropicnál",
+  "lead": "Az Anthropic autonóm AI-ügynökökkel költöztette át alapvető Messages API-ját Pythonról Rustra, amivel 70 százalékkal csökkentette a CPU-használatot.",
+  "osszefoglalo": "Az Anthropic mérnöki csapata autonóm Claude-ügynökök segítségével állította át a [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages)-t Pythonról Rust nyelvre. Az API forgalma az elmúlt években 1800-szorosára nőtt, ami miatt a Python memória- és objektumkezelése komoly szűk keresztmetszetet jelentett. A modell mindössze egy hét alatt megírta a Rust kérési útvonal első változatát, a tényleges éles működéshez szükséges illeszkedést pedig automatizált tesztciklusokkal érték el.\n\nA fejlesztési folyamat során egy koordináló Claude-ügynök felügyelte az eltéréseket, és felhőalapú homokozókban dolgozó ügynököknek adta ki a hibajavítási feladatokat. Az ügynökök szintetikus tesztekkel reprodukálták a hibákat, kijavították a Rust-kódot, majd pull requesteket küldtek a mérnököknek. A human-in-the-loop megközelítésnek köszönhetően az emberi fejlesztők a hibakeresés helyett a szabályok és korlátok meghatározására összpontosíthattak.\n\nAz új Rust-alapú szolgáltatás kérésenként **70 százalékkal kevesebb CPU-t használ**, miközben az első tokenig eltelt idő mediánja 20 százalékkal csökkent. A teljes átállás leállás és fejlesztési fagyasztás nélkül zajlott le.",
+  "miert_szamit": "Ez az első részletes példa arra, hogy egy AI-cég **teljesen autonóm ügynökökkel írta újra a saját nagyterhelésű rendszereit**, ami előrejelzi a szoftverfejlesztés új, architektúraközpontú modelljét.",
+  "cimkek": [
+    "Claude",
+    "Anthropic",
+    "Rust",
+    "szoftverfejlesztés"
+  ],
+  "kategoria": "üzlet",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Messages API"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 86,
+    "szint": "P1",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 78,
+      "aktualitas": 98,
+      "kozossegi": 86
+    },
+    "elofeszures": 89,
+    "tanult": 95,
+    "indok": "Komoly mérnöki áttörés: az Anthropic autonóm Claude-ügynökökkel írta át fő API-ját Rustra, jelentős teljesítménynövekedést elérve. Forrás-tapasztalat: -2.",
+    "tema": "anthropic claude rust migration",
+    "cim_hu": "Autonóm Claude-ügynökök írták át az Anthropic API-ját Rust nyelvre",
+    "lead_hu": "Az Anthropic teljesen átállította Messages API-ját Pythonról Rustra autonóm AI-ügynökök segítségével. Az átállás leállás nélkül zajlott le, és 70 százalékkal csökkentette a szerverek CPU-terhelését.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-25T17:50:20+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-25T17:50:53+00:00",
+  "megjelent": "2026-11-25T17:50:53+00:00",
+  "tenyellenorzes": {
+    "ok": false,
+    "ido": "2026-11-25T17:51:08+00:00",
+    "esemeny": "Az Anthropic platformfejlesztési vezetője (Katelyn Lesse) a Latent Space podcastban számolt be arról, hogy a Messages API-t Pythonról Rust nyelvre költöztették át. A kódfejlesztés túlnyomó részét a Claude végezte el a fejlesztőcsapat irányítása és ellenőrzése mellett, amivel 40–50%-os CPU-megtakarítást és 10–20%-os válaszidő-javulást értek el.",
+    "forrasok": [
+      "https://www.youtube.com/watch?v=MRQTlwcW-aQ"
+    ],
+    "hibak": [
+      "Az állított teljesítményadatok hibásak: a CPU-használat valójában kb. 40-50%-kal csökkent (nem 70%-kal), az első tokenig eltelt idő pedig 10-20%-kal mérséklődött (nem 20%-kal).",
+      "Hiányzik az elsődleges forrásra mutató link a szövegből.",
+      "a javított változat hibás vagy hiányos",
+      "gondolatjel a(z) osszefoglalo mezőben"
+    ],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-25T17:51:38+00:00",
+  "linkek_ellenorizve": true
+}
