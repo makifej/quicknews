@@ -1,0 +1,49 @@
+{
+  "id": "2c2f00149ae2",
+  "slug": "openclaw-launches-an-ai-performance-benchmark-that-it-argues-is-more",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Computerworld",
+  "url": "https://www.computerworld.com/article/4252841/openclaw-launches-an-ai-performance-benchmark-that-it-argues-is-more-realistic-than-others.html",
+  "publikalva": "2026-11-25T02:35:40+00:00",
+  "cim": "OpenClaw launches an AI performance benchmark that it argues is more realistic than others",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 49 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.computerworld.com/wp-content/uploads/2026/11/4252841-0-62426000-1795574035-Gorodenkoff_shutterstock_2577081273_16z9.jpg?quality=50&strip=all&w=1024"
+  },
+  "cim_eredeti": "OpenClaw launches an AI performance benchmark that it argues is more realistic than others",
+  "szoveg_eredeti": "OpenClaw, working with a host of other industry players including Hugging Face, Nvidia, Red Hat, Google and Amazon, Tuesday rolled out an AI performance benchmark called ShellBench.\n\nOpenClaw’s position is that the benchmark will compare various AI models (it will soon look at a total of 24) and test them on complex queries, ones that should better replicate the kind of complicated tasks that an enterprise would perform.\n\n“Ask an AI agent to summarize a document, and it will probably do a decent job. Ask it to reconcile a handful of receipts against a spreadsheet, check which information is current, flag a suspicious payment request, and explain how it reached its answer? Maybe not so well,” said the OpenClaw post describing the new benchmark. “This kind of realistic test, one that expects an agent not just to find the right information but also to keep track of it along the way, is exactly what we’re launching ShellBench to evaluate.”\n\nAnalysts and consultants said the new benchmark findings appear initially to be more useful than existing AI performance benchmarks, but it is less clear how useful those results will be.\n\nThomas Randall, a research director at Infotech, said that he sees ShellBench as focusing on those who are building and configuring agents directly, but most enterprises instead buy their AI capabilities from various large AI vendors.\n\n“They are choosing capabilities within an enterprise platform, often with limited control over the underlying model or agent configuration. For these organizations, ShellBench offers little direct use,” Randall said. “ShellBench giving a strong score for an underlying model does not tell us the quality of output from a solution built on it. The tasks ShellBench tests are skewed toward personal knowledge work rather than heavy enterprise workflows that buyers typically evaluate for.”\n\nAnother analyst concern is how open ShellBench will be, especially in terms of how easily IT can reproduce its findings.\n\nBrian Levine, a partner with consulting firm Control Risks, said that reproducibility is essential.\n\n“Whoever writes the exam has a stake in who passes it. That doesn’t make the results wrong, but the right question isn’t whether you trust OpenClaw. It’s whether you can check their work,” Levine said. “If the tasks, scoring, and raw results are open and others can reproduce them, pay attention. If not, read it the way you’d read a carmaker’s own crash test.”\n\nHowever, the problem with ShellBench is that parts of it are open and parts of it are not.\n\nLouka Ewington-Pitsos, a co-founder of Parsewave and a collaborating researcher for the benchmark, said the division of public and private elements in the benchmark is complicated.\n\n“Teams can rerun ShellBench on the public task set, which is a subset of roughly 20 tasks of the full benchmark. The ShellBench GitHub repo includes the evaluation configurations and we pin the agent harnesses to the exact versions used in the study so teams can reproduce the same setup,” Ewington-Pitsos said. “The remaining tasks are private.”\n\nHe added that the “private part is only the 80 remaining tasks. The evaluation configs and the pinned harness versions apply to the whole benchmark and are available for anyone to use.”\n\nEwington-Pitsos said that the reason those tasks have to remain private is “to avoid benchmark contamination, which is where data leaks from the public internet into model training data, making the benchmark less valid for future models.”\n\nThe initial version of the benchmark looks at 13 models, but the number of models tracked will double to 26 by next week, said Vincent Koc, the OpenClaw chief architect, in an interview.\n\nKoc said that although almost all enterprises will do their own AI performance benchmarks, they typically won’t be able to replicate ShellBench’s comprehensiveness. They “won’t have it at this speed and scale,” he said.\n\nMost analysts and consultants thought that ShellBench specs were just about right, in that they focused on the more complex tasks most large businesses need.\n\n“Most agent benchmarks are the equivalent of testing a new hire on spelling. Enterprises don’t need an agent that can spell. They need one that can run a messy, multi-step job across five systems without locking the CFO out of email. A benchmark built around that kind of work is measuring the right thing,” Levine said. “From a risk standpoint, the most important result isn’t which agent finishes the task. It’s how an agent fails. An agent that stalls is an annoyance. An agent that confidently does the wrong thing with admin credentials is an incident. Realistic, complex tests are where you find out which one you have, before your production environment does.”\n\nIshraq Khan, CEO of coding productivity tool vendor Kodezi, said that the leapfrog nature of AI model performance, in which models regularly exceed each others’ performance, only to be superseded by the next version of their competitor’s model, is a concern, but ShellBench could still be useful by providing a look at the trends over time.\n\n“The leaderboard itself will inevitably become outdated. However, the underlying failure patterns and evaluation methodology have a much longer shelf life. Enterprises should use benchmarks like ShellBench as a foundation for continuously evaluating agents against their own operational workflows, rather than making a one-time purchasing decision,” Khan said. “As for OpenClaw’s credibility, the involvement of researchers from established academic and industry institutions is encouraging. But OpenClaw is also evaluating its own harness against competing products, so independent replication is important.”\n\nJason Andersen, principal analyst at Moor Insights & Strategy, said that he found much to like in ShellBench.\n\n“This is a really interesting benchmark since it finally decouples the harness and the model and measures it. So far the benchmark activity is limited to the model and that is not accurate in terms of how people are actually using models which is via a harness,” he said. “I think this is a trend we will see continue to expand due to technologies like OpenClaw and Hermes. Some vendors like IBM and Microsoft have been publishing results of open weight or small models with a good harness performing quite well versus medium and large frontier models.”\n\nAndersen also suggested that the more complex testing from ShellBench may have the added benefit of making the results harder for vendors to fool.\n\n“One of the things about benchmarks is that they can be gamed, and the simpler the benchmark, the easier it is for entrants to game with solutions or configurations that may never apply in real life,” he said. “But a more complex set of methods is harder to game, so there’s a chance this could be a more realistic set of outputs than the simpler model performance metrics.”\n\nFrank Dickson, principal analyst at Dickson Research, agreed, adding that ShellBench included a lot more verification in their analysis.\n\n“The researchers deserve credit for the bar they set. Requiring every criterion to pass, running each task three times, and publishing exactly where and how agents fall short is more rigor than most AI benchmarks offer,” he said.\n\nDickson pointed to some of the initial findings of the benchmark as examples of the model’s advantages.\n\n“Consider the spread: The top three models, GPT-6 Astra, Claude Fable 5.2, and GPT-6.1 Sol, finished within 1.1 percentage points of each other,” he said. “Yet GPT-6 Astra completed 75.1% of tasks at least once in three tries and only 48.8% on all three. OpenClaw notes that its grader may account for some of that swing. Either way, a 26-point swing inside one model dwarfs a 1.1-point gap between the leaders.”\n\nSo, he observed, “the enterprise question is not who is number one this week. The question is which tier a model sits in, and which failures show up no matter who leads. ShellBench found a median gap of 45.7 points between the best",
+  "begyujtve": "2026-11-25T09:06:27.635328+00:00",
+  "prioritas": {
+    "pont": 49,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 60,
+      "egyediseg": 60,
+      "aktualitas": 99,
+      "kozossegi": 62
+    },
+    "elofeszures": 88,
+    "tanult": 62,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -7.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-25T09:06:32+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-25T09:06:35+00:00"
+}
