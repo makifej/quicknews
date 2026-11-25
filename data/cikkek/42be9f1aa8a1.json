@@ -1,0 +1,49 @@
+{
+  "id": "42be9f1aa8a1",
+  "slug": "review-shows-artificial-intelligence-accurately-classifies-brain",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/review-shows-artificial-intelligence-accurately-classifies-brain-tumors-despite-implementation-challenges/",
+  "publikalva": "2026-11-25T07:24:35+00:00",
+  "cim": "Review Shows Artificial Intelligence Accurately Classifies Brain Tumors Despite Implementation Challenges",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 44 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-7597.jpg"
+  },
+  "cim_eredeti": "Review Shows Artificial Intelligence Accurately Classifies Brain Tumors Despite Implementation Challenges",
+  "szoveg_eredeti": "Review Shows Artificial Intelligence Accurately Classifies Brain Tumors Despite Implementation Challenges\n\nA systematic review evaluating artificial intelligence applications in neuropathology has found that deep learning systems achieve high diagnostic accuracy when classifying brain tumors, while demonstrating moderate accuracy in grading neurodegenerative diseases and emerging utility in inflammatory conditions. The analysis examined 58 studies published between January 2015 and December 2025 to characterize how computational models process whole-slide images of neural tissue specimens. Across the surveyed literature, algorithmic performance varied substantially across diagnostic subfields due to disparities in training dataset dimensions, annotation consistency, and the biological complexity of underlying neuropathologies.\n\nThe integration of machine learning into neuropathological workflows has been propelled by several clinical challenges inherent to tissue diagnosis. Specimen examination frequently involves subtle morphological variations that are difficult to identify consistently with conventional microscopy. Additionally, modern diagnostic standards, such as the World Health Organization classification of central nervous system tumors, require the synthesis of morphological appearances with complex molecular profiles. These interpretive requirements, coupled with a worldwide shortage of specialized neuropathologists, have intensified interest in computational tools that can provide standardized, high-throughput, and quantitative evaluations of digitized tissue sections.\n\nTo evaluate the state of the field, investigators conducted a systematic literature search adhering to the Preferred Reporting Items for Systematic Reviews and Meta-Analyses 2020 guidelines across PubMed, Scopus, Web of Science, and Embase. Eligible investigations were required to evaluate artificial intelligence or machine learning systems utilizing whole-slide imaging or digital pathology platforms for neuropathological diagnosis, report quantitative performance metrics including sensitivity, specificity, or the area under the receiver operating characteristic curve, and be published in English. Non-original research, conference abstracts lacking full-text availability, studies lacking methodological detail, and investigations focusing purely on radiology or non-neural tissues were excluded.\n\nMethodological quality across the included literature was appraised using the Quality Assessment of Diagnostic Accuracy Studies tool for diagnostic accuracy papers and the Prediction model Risk Of Bias Assessment Tool for prediction models. The initial search yielded 1,247 records, which was narrowed to 142 articles during title and abstract screening before yielding the final cohort of 58 studies. Geographic distribution showed that the highest concentration of studies originated from the United States with 18 publications, followed by China with 12, Germany with 8, and the United Kingdom with 6, with activity accelerating sharply between 2022 and 2025.\n\nBrain tumor classification constituted the most mature application domain, accounting for 27 of the 58 evaluated studies. Deep learning architectures, primarily convolutional neural networks and increasingly vision transformers, served as the dominant diagnostic frameworks. A random-effects bivariate meta-analysis synthesizing comparable brain tumor classification models yielded a pooled sensitivity of 0.94 with a 95 percent confidence interval of 0.91 to 0.96, alongside a pooled specificity of 0.92 with a 95 percent confidence interval of 0.89 to 0.94. However, significant statistical heterogeneity was present across these studies, reflected in an I-squared value of 82 percent stemming from differences in tumor categories, sample sizes, and model configurations.\n\nBeyond basic histological categorization, several recent studies demonstrated the capacity of deep learning models to predict underlying molecular alterations directly from hematoxylin and eosin-stained sections. These tasks included predicting IDH mutation status and 1p/19q codeletion in gliomas, offering potential low-cost adjuncts to standard molecular testing. Researchers also evaluated the diagnostic capabilities of large language models such as ChatGPT-4.0 in histopathological glioma analysis; one single-institution study observed an accuracy of 88 percent, indicating that while language models may assist diagnostic reasoning, they currently lack the reliability necessary for autonomous clinical deployment.\n\nNeurodegenerative disease evaluation was addressed in 18 studies, reporting diagnostic and grading accuracies ranging between 0.82 and 0.95. The primary computational focus in this area has been the automated identification and quantification of hallmark protein inclusions, including amyloid plaques and neurofibrillary tangles in Alzheimer’s disease, Lewy bodies in Parkinson’s disease, and TDP-43 inclusions in frontotemporal lobar degeneration. Models consistently achieved their highest detection metrics on amyloid plaques due to their relatively uniform morphology, whereas performance declined and displayed greater variability when segmenting subtle or morphologically diverse pathological aggregates.\n\nInflammatory and demyelinating conditions formed the focus of 13 studies, representing the least developed domain identified in the review. Evaluated applications included quantifying demyelinated regions in multiple sclerosis lesions, categorizing inflammatory infiltrates in encephalitis, and identifying vasculitis in cerebral biopsy samples. These models demonstrated accuracies ranging from 0.78 to 0.91, with significant performance fluctuations driven by the broad heterogeneity of neuroinflammatory tissue responses and a persistent scarcity of well-annotated, large-scale training datasets.\n\nTechnological trends across the review period showed a decisive shift away from traditional machine learning approaches that relied on hand-crafted morphological features paired with support vector machines or random forests. Contemporary frameworks predominantly employ convolutional neural networks that extract hierarchical visual features directly from raw pixels, alongside vision transformers and multiple instance learning. These newer architectures allow algorithms to evaluate gigapixel whole-slide images without requiring exhaustive pixel-level annotations, thereby streamlining model development on expansive digital slide collections.\n\nDespite promising benchmark metrics, the authors emphasized that immediate clinical translation remains impeded by critical technical and methodological bottlenecks. Digital pathology workflows exhibit substantial pre-analytical variability in tissue fixation, staining protocols, and scanner hardware, which frequently degrades algorithmic performance when tools are deployed in external laboratories. Furthermore, the majority of evidence derives from retrospective, single-center datasets, and the uninterpretable nature of deep learning decision boundaries continues to challenge clinical accountability. The authors concluded that future progress will depend on prospective multi-center validation, explainable artificial intelligence techniques, federated learning paradigms, and the multimodal integration of histological images with genomic and clinical data.\n\nA notable individual benchmark identified among the neuro-oncology literature was Neuropath-AI, a deep learning classifier designed to analyze histopathological sections across a broad spectrum of central nervous system tumors. In comparative evaluations, this automated architecture attained diagnostic accuracy comparable to, and in certain evaluative dimensions exceeding, the performance of experienced human neuropathologists. Such systems build upon earlier diagnostic traditions that relied on manually engineered visual features, including cell shape, textural density, and spatial di",
+  "begyujtve": "2026-11-25T07:49:50.131397+00:00",
+  "prioritas": {
+    "pont": 44,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 50,
+      "hirertek": 50,
+      "hitelesseg": 60,
+      "egyediseg": 60,
+      "aktualitas": 100,
+      "kozossegi": 14
+    },
+    "elofeszures": 73,
+    "tanult": 14,
+    "indok": "Csak gépi pontozás (az AI-pontozás nem futott le); érdemes ránézni. Forrás-tapasztalat: -7.",
+    "tema": "",
+    "cim_hu": "",
+    "lead_hu": "",
+    "klaszter": null,
+    "ai": false,
+    "ido": "2026-11-25T07:49:57+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-25T07:49:58+00:00"
+}
