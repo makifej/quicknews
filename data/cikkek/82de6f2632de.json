@@ -1,0 +1,50 @@
+{
+  "id": "82de6f2632de",
+  "slug": "new-anthropic-fellows-research-returning-to-the-neuron-basis-for",
+  "forras_id": "x-anthropicai",
+  "forras_nev": "Anthropic (X)",
+  "url": "https://x.com/AnthropicAI/status/2125365268381929637",
+  "publikalva": "2026-11-24T23:05:42+00:00",
+  "cim": "New Anthropic Fellows research: Returning to the neuron basis for interpretability",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 84 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "x",
+    "kep": null,
+    "x_url": "https://x.com/AnthropicAI/status/2125365268381929637"
+  },
+  "cim_eredeti": "New Anthropic Fellows research: Returning to the neuron basis for interpretability",
+  "szoveg_eredeti": "New Anthropic Fellows research: Returning to the neuron basis for interpretability\n\nUnderstanding what’s happening inside an AI model helps to make it safer. One obvious place to look is its neurons, or the simple units it’s built from. Early interpretability work did just that, but over the past couple years, researchers largely moved on from that idea, for three reasons: a single neuron often fires on several unrelated inputs, the way a concept is represented can change between two layers of neurons within a single model, and facts seem to be spread across many neurons.\n\nWe re-examined these problems by looking at what each neuron contributed to the model’s outputs, not just what caused that neuron to fire. All three problems turned out to be smaller than assumed. Neurons rarely add two unrelated concepts at once, their outputs mean roughly the same thing across most layers, and facts, though widely distributed across neurons, are still readable.\n\nIn a second post, we put these findings to use. With no extra training, neurons in open-weight models helped us to detect harmful text, steer behavior, and find hidden behaviors in finetuned models.\n\nPart 1: https://alignment.anthropic.com/2026/neuron-basis-theory/\nPart 2: https://alignment.anthropic.com/2026/neuron-basis-applications/",
+  "begyujtve": "2026-11-25T07:02:44.700751+00:00",
+  "prioritas": {
+    "pont": 84,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 80,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 92,
+      "aktualitas": 91,
+      "kozossegi": 61
+    },
+    "elofeszures": 89,
+    "tanult": 56,
+    "indok": "Az Anthropic fontos kutatási anyaga az AI-modellek belső működésének értelmezhetőségéről.",
+    "tema": "anthropic ai interpretability research",
+    "cim_hu": "Újra a neuronok működését vizsgálják az Anthropic biztonsági kutatói",
+    "lead_hu": "Az Anthropic új kutatása visszatér az alapokhoz, hogy a neuronok szintjén értse meg és tegye biztonságosabbá a nyelvi modelleket.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-25T07:20:33+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-25T07:20:59+00:00"
+}
