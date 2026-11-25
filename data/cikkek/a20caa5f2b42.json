@@ -1,0 +1,79 @@
+{
+  "id": "a20caa5f2b42",
+  "slug": "nyilt-forraskoduva-valt-a-laminar-keretrendszer-az-ai-modelltreninghez",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/24/bytedance-seed-laminar-async-rl-post-training-framework/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-11-25T05:42:05+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.marktechpost.com/wp-content/uploads/2026/11/WP-BLOG-BANNER-111oo-4-scaled.png"
+  },
+  "cim_eredeti": "ByteDance Researchers Open-Sources Laminar, an Async Reinforcement Learning RL Post-Training Framework",
+  "forrasok": [],
+  "szoveg_eredeti": "Researchers from The University of Hong Kong and ByteDance Seed have open-sourced Laminar . Laminar is an reinforcement learning RL post-training framework for LLMs and long-horizon agents. The core idea is simple: stop forcing every trajectory and every GPU to wait for the slowest one. For teams training coding agents with long, skewed rollouts, that is where most GPU time goes.\n\n TL;DR \n\n What: A framework. Tested on Qwen3-Coder-30B-A3B-Instruct (30.5B total, 3.3B active) and Qwen2.5 at 7B, 32B and 72B.\n\n Runs on: Multi-node NVIDIA GPU clusters with Ray and CUDA. Tested on 64x H800 and up to 1024 H800 GPUs. vLLM for inference, Megatron-LM or FSDP2 for training.\n\n Performance: Strong end-to-end gains on SWE agent RL and up to 5.48x throughput in the paper.\n\n Best: 52.2% on SWE-bench Verified, up from 46.6% for the base model.\n\n Worst: Early repo (1 commit at launch), vLLM is the only listed inference backend, and per-step async checkpointing is still in progress.\n\n Bottom line: Best: fewer samples and GPU-hours to a higher SWE-bench score. Worst: the headline comparison mixes H800 and H100 hardware.\n\n What is Laminar? \n\n Laminar is an asynchronous RL post-training framework that decouples rollout, buffering, training and weight transfer into independent loops. It is built on verl and Uni-Agent and released under Apache-2.0.\n\n The launch blog splits the stack into 3 layers. verl provides training and inference compute backends. Uni-Agent handles agent execution, tool calls and sandboxes. Laminar handles cluster-scale orchestration.\n\n How does Laminar’s architecture work? \n\n The design rests on 3 principles: full decoupling, fine-grained asynchrony and fault tolerance. \n\n Rollout loop: Drives agent interactions and serves generation across inference replicas.\n\n Experience buffer (data plane): Separates trajectory production from training and serves ready batches on demand.\n\n Training loop: Samples batches, computes advantages and off-policy corrections, and publishes weights.\n\n Weight Relay (weight plane): The trainer stages weights into per-node shared CPU memory and keeps going. Replicas pull updates on their own schedule.\n\n In the research paper , relays are CPU processes, 1 per rollout machine. They broadcast weights along a pipelined RDMA chain. A 72B model reaches 127 other relays in under 1.6 seconds.\n\n What is version-consistent rollout? \n\n Most async systems use version-mixed partial rollout. They interrupt in-flight trajectories at each weight update and resume under the new policy. That forces repeated re-prefill.\n\n Laminar also supports a version-consistent mode. Each trajectory finishes under 1 policy version. Replicas update independently, without a global weight-switch barrier. The blog states that this keeps the prefix KV cache intact. It argues re-prefill cost scales cubically with sequence length under frequent updates.\n\n Repack handles the tail. Once new weights exist, leftover old-version trajectories are consolidated onto fewer replicas. Drained replicas then load the new version immediately.\n\n How does Laminar perform on SWE-bench Verified? \n\n The research team trained Qwen3-Coder-30B-A3B-Instruct on SWE-rebench. They evaluated on all 500 SWE-bench Verified tasks with greedy decoding.\n\n Base model: 46.6% (233/500).\n\n Baseline peak (step 150, 64x H100): 51.4% with 76.4k samples and 5,085 GPU-hours.\n\n Laminar match (step 320, 64x H800): 51.4% with 41.0k samples (46% fewer) and 1,450 GPU-hours (71% fewer).\n\n Laminar peak (step 400, 64x H800): 52.2% with 51.2k samples (33% fewer) and 1,843 GPU-hours (64% fewer).\n\n How does Laminar handle failures? \n\n Faults stay local. If a rollout replica fails, the router fences only that replica. It restarts, reloads weights from the local relay and resumes from its generated token prefix. A replica that fails during weight loading recovers without blocking the trainer. Trainer checkpoints align model state, prompt cursors and published weight versions.\n\n laminar.eval also evaluates several checkpoints at once across resident replicas, in batch or streaming mode during training.\n\n Laminar vs verl vs AReaL vs slime \n\n Feature Laminar verl AReaL slime Developer HKU + ByteDance Seed ByteDance Seed, verl community Tsinghua IIIS + Ant Group THUDM License Apache-2.0 Apache-2.0 Apache-2.0 Apache-2.0 Async mode Trajectory-level, no global barrier Sync default; fully async and 1-step off-policy (experimental) Fully asynchronous Async rollout, fully async example Version-consistent rollout Yes, plus version-mixed partial Not disclosed Not disclosed Not disclosed Inference backend vLLM vLLM, SGLang, HF vLLM, SGLang SGLang Training backend Megatron-LM, FSDP2 FSDP, FSDP2, Megatron-LM Megatron, FSDP, Archon Megatron Agentic RL Via Uni-Agent Multi-turn tool calling Yes (coding, search, Tau2) Yes (coding, search, multi-agent) Fault tolerance Replica, weight sync and trainer level Not disclosed Not disclosed Documented Key result 52.2% SWE-bench Verified Not disclosed Not disclosed Not disclosed \n\n Key Takeaways \n\n Laminar decouples rollout, training and weight sync into independent loops.\n\n Version-consistent rollout avoids re-prefill by finishing each trajectory on 1 policy.\n\n Qwen3-Coder-30B-A3B rose from 46.6% to 52.2% on SWE-bench Verified.\n\n It used 33% fewer samples and 64% fewer GPU-hours, on different GPUs than the baseline.\n\n The code is Apache-2.0 but early, with vLLM-only inference.\n\n Check out the Paper , arXiv preprint , GitHub Repo and Technical Blog . You can check the deployment options and specs here through our GPULeaderboard.com chrome extension .\n\n Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n The post ByteDance Researchers Open-Sources Laminar, an Async Reinforcement Learning RL Post-Training Framework appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "Nyílt forráskódúvá vált a Laminar keretrendszer az AI-modelltréninghez",
+  "lead": "A ByteDance Seed és a Hongkongi Egyetem kutatói kiadták a Laminar nevű aszinkron megerősítéses tanulási keretrendszert.",
+  "osszefoglalo": "A ByteDance Seed és a Hongkongi Egyetem kutatói nyílt forráskódúvá tették a [Laminar](https://github.com/verl-project/laminar) nevű aszinkron megerősítéses tanulási (RL) keretrendszert. Az eszköz különválasztja az adatgenerálást, a tréninget és a súlyfrissítéseket, így a GPU-knak nem kell megvárniuk a leglassabb feladatokat. Ez a megoldás jelentősen csökkenti a tréninghez szükséges számítási kapacitást és időt.\n\nA tesztek során a Qwen3-Coder-30B-A3B modellt tanították a keretrendszerrel, amellyel a SWE-bench Verified teszten **52,2 százalékos pontosságot** értek el a korábbi 46,6 százalékos alapértékkel szemben. A rendszer a korábbi módszereknél 64 százalékkal kevesebb GPU-órát és 33 százalékkal kevesebb mintát igényelt a magasabb teljesítmény eléréséhez.\n\nA szoftver Apache-2.0 licenc alatt ingyenesen érhető el a GitHubon. Használatához NVIDIA GPU-klaszterekre, valamint Ray, CUDA és vLLM keretrendszerekre van szükség.",
+  "miert_szamit": "Az aszinkron tréningnek köszönhetően a saját ágensmodelleket fejlesztő csapatok **drasztikusan csökkenthetik a GPU-költségeket** és a tanítási időt.",
+  "cimkek": [
+    "ByteDance",
+    "Laminar",
+    "nyílt forráskód",
+    "LLM"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Laminar"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 74,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 76,
+      "aktualitas": 98,
+      "kozossegi": 57
+    },
+    "elofeszures": 82,
+    "tanult": 38,
+    "indok": "Jelentős nyílt forráskódú keretrendszer bejelentése a ByteDance kutatóitól. Forrás-tapasztalat: -6.",
+    "tema": "bytedance laminar open-source rl",
+    "cim_hu": "Nyílt forráskódúvá tette Laminar nevű megerősítéses tanulási keretrendszerét a ByteDance",
+    "lead_hu": "A ByteDance és a Hongkongi Egyetem kutatói kiadták a Laminar keretrendszert, amely megszünteti a skálázási szűk keresztmetszeteket a komplex MI-ügynökök tanítása során.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-25T07:06:11+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-25T07:07:35+00:00",
+  "megjelent": "2026-11-25T07:07:35+00:00",
+  "tenyellenorzes": {
+    "ok": false,
+    "ido": "2026-11-25T07:08:41+00:00",
+    "esemeny": "A Hongkongi Egyetem és a ByteDance Seed kutatói nyílt forráskódúvá tették a Laminar nevű aszinkron megerősítéses tanulási (RL) keretrendszert, amely független ciklusokra bontja a tréning és adatgenerálás folyamatát.",
+    "forrasok": [
+      "https://www.marktechpost.com/2026/11/24/bytedance-seed-laminar-async-rl-post-training-framework/"
+    ],
+    "hibak": [
+      "A hír szövege hiányolja a kötelező elvárt elsődleges forrásra mutató linket.",
+      "a javított változat sem ment át: A cikkben elhelyezett link nem az elsődleges forrásra (GitHub repo, blog vagy tanulmány), hanem a másodlagos forrás cikkére mutat."
+    ],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-25T07:09:38+00:00",
+  "linkek_ellenorizve": true
+}
