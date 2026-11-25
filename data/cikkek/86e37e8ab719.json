@@ -1,0 +1,49 @@
+{
+  "id": "86e37e8ab719",
+  "slug": "multispectral-imaging-and-artificial-intelligence-uncover-heritable",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/multispectral-imaging-and-artificial-intelligence-uncover-heritable-architectural-traits-in-human-facial-skin/",
+  "publikalva": "2026-11-25T19:23:03+00:00",
+  "cim": "Multispectral Imaging and Artificial Intelligence Uncover Heritable Architectural Traits in Human Facial Skin",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 46 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-7970.jpg"
+  },
+  "cim_eredeti": "Multispectral Imaging and Artificial Intelligence Uncover Heritable Architectural Traits in Human Facial Skin",
+  "szoveg_eredeti": "Multispectral Imaging and Artificial Intelligence Uncover Heritable Architectural Traits in Human Facial Skin\n\nA quantitative genetic investigation integrating high-resolution multispectral imaging with artificial intelligence has demonstrated that key structural characteristics of human facial skin, including pore patterns, pigment distribution, and ultraviolet reflectance, possess substantial heritability, whereas cutaneous vascular features are predominantly shaped by non-genetic factors. By examining familial resemblances across multi-generational genealogical records, researchers revealed that primary axes of phenotypic variation in facial tissue correspond closely to underlying additive genetic architecture. The findings establish that computational vision models can extract biologically meaningful, heritable signatures directly from specialized spectral bands without requiring manual clinical scoring. Facial skin represents a complex biological interface that chronically interacts with environmental insults, lifestyle variables, and intrinsic metabolic aging. The identification of distinct heritable components across non-visible spectral captures indicates that deep subcutaneous properties harbor structured genetic signals that traditional RGB photography fails to isolate, establishing an objective framework for precision dermatological assessment and evolutionary biology.\n\nFacial skin occupies a distinctive biological and sociocultural paradigm, functioning simultaneously as a vital physiological barrier and the primary canvas for human identity, nonverbal expression, and interpersonal communication. Cutaneous tissue shields internal physiology from exogenous pathogens, harmful ultraviolet radiation, chemical irritants, and mechanical trauma, while continuously regulating body temperature through sweating and microvascular vasodilation. Macroscopic visual inspection captures only a superficial fraction of cutaneous complexity, obscuring critical subsurface phenomena such as epidermal porosity, microvascular perfusion architecture, melanin dispersion depth, and sebaceous gland secretory dynamics. In conventional dermatology, evaluating subtle phenotypic variations across these micro-architectures remains challenging due to the optical constraints of standard trichromatic visible light. To transcend these observational limitations, analytical methodologies must incorporate extended spectral ranges, such as near-infrared and ultraviolet wavelengths, which penetrate diverse anatomical strata of the epidermis and dermis. Combining multispectral captures with quantitative genetic modeling enables investigators to dissect how hereditary predispositions and cumulative lifetime environmental exposures jointly configure human cutaneous morphology.\n\nTo rigorously examine these hereditary and environmental determinants, the research team evaluated facial imagery obtained from a cohort embedded within the Baependi Heart Study, a longitudinal epidemiological project initiated in 2005 in southeastern Brazil. Although originally established to track cardiovascular risk factors and metabolic parameters across extended pedigrees, the study gradually expanded its phenotyping protocol to incorporate comprehensive anthropometric, sleep, and multispectral imaging assessments. The imaging dataset analyzed for this genetic investigation comprised 380 adult participants, consisting of 169 males and 211 females distributed across 64 distinct families with documented genealogical records. High-resolution facial photographs were systematically acquired under standardized optical conditions using the commercial Visia Skin Analysis System developed by Canfield Scientific. For every individual, five discrete multispectral exposures were recorded at a resolution of 2736 by 3648 pixels, yielding 1,900 high-resolution images that supplied seven superimposed spectral channels: visible red-green-blue, ultraviolet, an optimized facial pore capture designated as porosity, an erythrocyte-sensitive capture highlighting blood flow, and a channel isolating localized pigmentation accumulation and deficits.\n\nStandardizing phenotypic measurements across hundreds of unique facial geometries required rigorous spatial pre-processing to eliminate confounding morphological artifacts. An expert dermatologist performed manual image segmentation on each participant’s visible light capture to delineate an unobstructed region of interest spanning exactly 256 by 256 pixels within the central forehead. This anatomical location was selected because it presents minimal interference from scalp hair, dynamic expression creases, and external obstructions such as headwear, while maintaining an authentic representation of intrinsic cutaneous features including freckles, spots, and minor nevi. The precise spatial coordinates established on the visible light image were subsequently mapped across all five spectral captures for that subject, generating 1,900 uniform segmented regions. To quantify global cutaneous tone across the primary red-green-blue imagery, the investigators calculated the Individual Typology Angle for every photograph by transforming RGB pixel intensities into the three-dimensional CIELAB color space. Mean values of the lightness metric and the blue-yellow chromaticity axis across all converted pixels were evaluated through arctangent transformation to establish an objective baseline of baseline epidermal pigmentation.\n\nExtracting informative mathematical descriptions from the segmented cutaneous patches involved comparing two distinct computational paradigms: direct raw pixel vectorization and deep convolutional neural feature encoding. In the raw intensity approach, the red-green-blue channels were processed as a three-channel matrix of 256 by 256 pixels, whereas the single-channel blood, pigmentation, porosity, and ultraviolet captures were each formatted into single-channel matrices of identical dimensions before being reshaped into continuous one-dimensional numerical arrays. In the deep learning approach, spatial textures were extracted using a convolutional neural network based on the VGG16 architecture pre-trained on the comprehensive ImageNet benchmark dataset without supervised task-specific fine-tuning. Because the study sample comprised 380 individuals per spectral channel and lacked ground-truth clinical annotations, fine-tuning deep convolutional weights would have induced severe computational overfitting. The single-channel multispectral inputs were adapted to the network’s required three-channel architecture by replicating the single channel across all three input layers, and an average pooling layer was positioned at the model terminus to compress complex hierarchical representations into a standardized 512-dimensional vector per image.\n\nHigh-dimensional descriptor vectors generated by both raw pixel indexing and neural convolutional encoding underwent systematic dimensionality reduction using both linear and non-linear mathematical frameworks. Principal Component Analysis was implemented to perform sequential orthogonal linear transformations, generating independent principal components ordered strictly by the proportion of total phenotypic variance explained across the cohort. In parallel, the investigators deployed Uniform Manifold Approximation and Projection, a non-linear topological technique that constructs weighted neighborhood graphs to compute low-dimensional embeddings that preserve complex local and non-linear data structures. Although 15 dimensions were initially computed across all extraction pipelines, scree plot evaluations revealed an abrupt elbow-shaped inflection point wherein explained variance declined exponentially beyond the fourth principal component. Components five through fifteen collectively accounted for less than eight percent of cumulative variance across the dataset. Consequently, retaining only the first four principal components was est",
+  "begyujtve": "2026-11-25T19:34:01.733436+00:00",
+  "prioritas": {
+    "pont": 46,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 50,
+      "egyediseg": 75,
+      "hitelesseg": 70,
+      "aktualitas": 98,
+      "kozossegi": 26
+    },
+    "elofeszures": 74,
+    "tanult": 20,
+    "indok": "Specifikus orvosi-biológiai kutatási eredmény az AI és a multispektrális képalkotás ötvözéséről. Forrás-tapasztalat: -7.",
+    "tema": "ai multispectral facial skin genetics",
+    "cim_hu": "AI és spektrális képalkotás tárja fel az arcbőr örökletes tulajdonságait",
+    "lead_hu": "Kutatók mesterséges intelligencia segítségével igazolták, hogy az arcbőr pórusai és UV-visszaverődése örökletesek, míg az erezettséget külső tényezők alakítják.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-25T19:34:37+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-25T19:34:52+00:00"
+}

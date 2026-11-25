@@ -1,0 +1,49 @@
+{
+  "id": "376b26325964",
+  "slug": "ai-agents-are-creating-a-shared-responsibility-gap",
+  "forras_id": "dailydev",
+  "forras_nev": "BleepingComputer (daily.dev)",
+  "url": "https://www.bleepingcomputer.com/news/security/ai-agents-are-creating-a-shared-responsibility-gap",
+  "publikalva": "2026-11-23T15:00:10+00:00",
+  "cim": "AI Agents Are Creating a Shared Responsibility Gap",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 55 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/5e99a8efd8fb5450d13ee430714e4eb0?_a=AQAEuop"
+  },
+  "cim_eredeti": "AI Agents Are Creating a Shared Responsibility Gap",
+  "szoveg_eredeti": "Frontier AI labs are very clear about their responsibilities: making the model more robust, better guarded, and harder to hijack. They are also clear about what they can’t do, which is understand the business context of an action. An agent deleting files from Google Drive could be malicious or perfectly normal. They can't tell.\n\nThat raises questions about the shared responsibility model for Agentic AI. In cloud security, there is a clear separation of responsibilities between cloud vendors and their customers. If you copy data from AWS into SFDC, each vendor is responsible for the data's infrastructure security while they have it, but the customer is responsible for the action.\n\nThe AWS Shared Responsibility Model is a classic example.\n\nThe separation isn’t nearly as clean for AI agents. Agents act as intermediaries between you and the request, and that intermediary isn't deterministic by nature. It sends authenticated, authorized requests that can be compromised or rogue.\n\nThe first scenario is somewhat clear and goes back to what the AI labs try to prevent: a rogue agent has either misunderstood something or acted in a way it shouldn’t. A human mistake, only not human and not necessarily a mistake.\n\nFive organizations have published guidance on responsibility for AI agents: shared responsibility models from Microsoft, CSA and CoSAI, AWS's security guidance for AgentCore, and Anthropic's “Trustworthy agents in practice.” Only two assign ownership of an agent’s identity, and they split it differently. No one agrees on who is responsible for the agent's behavior.\n\nThe available guidance approaches responsibility from different angles. Some publications assign specific tasks to providers and customers; others describe security layers or broader stakeholder roles.\n\nTogether, they show why organizations need to determine who owns each agent, what permissions it has, and how it operates across the systems it uses.\n\nConsider a coding agent that reads a support ticket through an MCP server. That ticket contains malicious instructions that cause the agent to push a change to GitHub using the developer's token.\n\nIt isn't a contrived case. In the organizations Token monitors, 60% of Claude Code and Desktop agents called two or more outside vendors, and 47% called three or more, in the span of one month.\n\nNow to the million-dollar question: who's responsible for catching the malicious push and stopping it?\n\nLearn how security teams at Roblox, Amex, and more give each agent an owner, narrow its access, and cut it off fast, then see how Token Security does it in a live demo.\n\nThe software that runs the agent has the most visibility: it knows where the instructions were (albeit not why they were there) and the command about to run.\n\nClaude Code, for example, checks both. A server-side probe \"scans incoming tool results and flags suspicious content before Claude reads it.\" In auto mode, now the starting mode for interactive sessions, a separate classifier blocks actions that appear \"driven by hostile content Claude read.\"\n\nOpenAI, Cursor, and GitHub each have their own versions of approval prompts, automated reviewers, network limits, and sandboxes.\n\nThis capability doesn't come with responsibility, though. Harnesses put that squarely on the user's shoulders, both within the interface and in their terms.\n\nThe poisoned ticket came in over MCP, a protocol built for model clients. You might expect it to carry some of the load, because it's a door purpose-made for agents. At least conceptually, it could denote expanded responsibility for the people who built this door.\n\nThe MCP spec hands the load back to the client. Clients SHOULD validate tool results before passing them to the model, and \"there SHOULD always be a human in the loop with the ability to deny tool invocations,\" it says.\n\nThe server's duties involve tokens, inputs, access controls, and rate limits.\n\nAnd so, a typical MCP server will check who sent a request, not whether it should have been sent.\n\nIt all goes back to the MCP spec, which neither uses the term \"prompt injection\" nor provides the server with any verified information about its caller; client information is \"self-reported.\" It says outright that \"MCP itself cannot enforce these security principles at the protocol level.\"\n\nAtlassian, for its part, calls the use of MCP clients with its products \"a customer-elected action.\"\n\nThe push reaches GitHub with a valid token. Unless an admin has set up a branch protection rule for main, nothing stops it, and by default, those rules \"don't apply to people with admin permissions to the repository.\"\n\nGitHub's audit log includes an agent marker, actor_is_agent, for agents that run on GitHub. Nothing in the docs says it marks a local agent's push, though. And the terms are the same as everyone's: \"You are responsible for all content posted and activity that occurs under your Account.\"\n\nIn an ideal scenario, every agent has its own identity, which should carry narrower, shorter-lived access.\n\nMicrosoft, for example, gives agents identities of their own: a Microsoft Entra agent identity is a service principal in your Entra tenant. Microsoft's framework also marks per-action authorization as shared.\n\nBut when an agent acts on behalf of a user, Microsoft's documentation says \"risky activity is attributed to the user.\" A Conditional Access policy aimed at an agent identity \"doesn't cover agent requests made on behalf of the user.\"\n\nAnd that's the story in a nutshell, within one vendor. Even if the framework points to shared responsibility, the product attributes the risk to the user when it's actually time to act.\n\nThat leaves you. And it's probably going to remain the norm. While platforms could, in theory, do more, agents are considered extensions of our will, even though they often have a “will” of their own.\n\nIt's a novel scenario, and the only choice is to look at the risk honestly and decide how much of it we're willing to accept. And even that is easier said than done because you can't see the agent as a single thing.\n\nThe harness has its telemetry, Atlassian has its MCP log, and GitHub has the developer's push. Coding agents like this one run under the developer's credentials by default, so their actions appear to be the developer's.\n\nNo vendor in this chain sees the whole agent:\n\nOnly the identity the agent uses crosses all three. That makes it the one place where a single owner can set scope, expiry, and revocation. Branch protection and allowlists help, but identity ties them together.\n\nIdeally, you treat the agent as one identity, whatever number of vendors it touches:\n\nAn organization cannot delegate accountability for an agent’s actions to a model provider or infer intent from an authenticated request. It can assign an owner, limit the agent’s access, connect its activity across systems, and test how to stop it.\n\nThose decisions make agent adoption governable without assuming any single vendor can see the whole workflow.\n\nIf the responsibility is yours, it pays to be responsible.\n\nWhen you’re ready to secure your AI Agents for growth, book a demo with the Token Security team.\n\nSponsored and written by Token Security.",
+  "begyujtve": "2026-11-25T19:33:58.709090+00:00",
+  "prioritas": {
+    "pont": 55,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 60,
+      "egyediseg": 80,
+      "hitelesseg": 65,
+      "aktualitas": 48,
+      "kozossegi": 46
+    },
+    "elofeszures": 70,
+    "tanult": 33,
+    "indok": "Érdekes elemzés az autonóm AI-ágensek biztonsági felelősségi modelljéről és a vállalatok kihívásairól. Forrás-tapasztalat: -8.",
+    "tema": "ai agent security responsibility",
+    "cim_hu": "Felelősségi űrt teremtenek a vállalati rendszerekbe engedett AI-ágensek",
+    "lead_hu": "A fejlesztő laborok sem tudják garantálni az AI-ágensek biztonságát a vállalati kontextus hiánya miatt, ami komoly biztonsági kockázatokat vet fel.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-25T19:34:37+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-25T19:34:44+00:00"
+}

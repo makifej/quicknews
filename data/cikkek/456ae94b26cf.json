@@ -1,0 +1,49 @@
+{
+  "id": "456ae94b26cf",
+  "slug": "putting-sixta-to-the-test-ai-assisted-mysql-troubleshooting-with-pmm",
+  "forras_id": "dailydev",
+  "forras_nev": "Planet MySQL (daily.dev)",
+  "url": "https://www.percona.com/blog/putting-sixta-to-the-test-ai-assisted-mysql-troubleshooting-with-pmm",
+  "publikalva": "2026-11-23T14:51:49+00:00",
+  "cim": "Putting Sixta to the Test: AI-Assisted MySQL Troubleshooting with PMM",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 39 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/30f3b3facb6c177389c683a93d769cc1?_a=AQAEuop"
+  },
+  "cim_eredeti": "Putting Sixta to the Test: AI-Assisted MySQL Troubleshooting with PMM",
+  "szoveg_eredeti": "Sixta is an AI agent that investigates database problems the way a DBA would. We wanted to evaluate how effectively it could diagnose MySQL problems using only the monitoring data already available in Percona Monitoring and Management (PMM).\n\nTo test this, we set up a Percona Server for MySQL 8.0 primary-replica environment monitored by PMM. We introduced several test scenarios, ranging from simulated database failures and performance issues to proactive health checks. For each scenario, we asked Sixta to investigate through Slack, relying exclusively on PMM metrics and monitoring data, without direct access to the database servers.\n\nIn this blog post, we share how Sixta works, the scenarios we tested, how it analyzed the available data, and the insights it provided. We also highlight where Sixta performed well, its limitations, and the situations where human DBA expertise remains essential.\n\nSixta is an AI-assisted database diagnostics layer. It reads the monitoring data a DBA would read, runs a structured investigation, and writes up what it found and what it concluded.\n\nIn our setup, Sixta worked alongside PMM. We asked it a question in Slack, and it investigated using PMM metrics, Query Analytics (QAN), and alerts, then replied with its findings.\n\nSixta runs as two processes on the PMM host. Nothing is installed on the database hosts, and Sixta never connects to them.\n\nDuring an investigation, the model (Claude, through Anthropic’s API by default) calls the diagnostic tools it needs and reads Sixta’s memory of earlier investigations on that database. It then produces a conclusion in a fixed shape: what happened, the likely cause, the evidence, the severity, and whether action is needed. Each investigation has a ten-minute budget.\n\nWe used a dedicated three-server test environment with the following setup:\n\nSixta could see only what PMM collects. It could not run SQL against the databases, read MySQL error logs, or log in to the hosts. We integrated Sixta into Slack and asked it questions in plain English by tagging @sixta, the same way you would ask a colleague. This tells us how far the agent can get with PMM data alone.\n\nWe introduced controlled problems: extra workload, configuration changes, schema changes, an uncommitted transaction, direct changes on the replica, and a restart into read-only mode. For each one, we prompted Sixta to find the cause and recommend a fix, then compared its answer with what we had actually done.\n\nWhat we did: Ran a sysbench read/write workload with 8 threads on db1.\n\nHow it showed up: Threads_Running spike alert on db1\n\nThis is a load test, not an organic problem. At 18:37 UTC a sysbench-style benchmark started on db1: QPS jumped from ∼7/s to ∼5,500-6,000/s, connections doubled from 2 to 10, and threads_running went from a baseline of 1-2 to 9-10. QAN for that window is dominated by the classic sysbench query patterns against sbtest1–sbtest10 (∼30k executions each of SELECT c FROM sbtestN WHERE id BETWEEN ? AND ? ORDER BY c in 20 minutes).\n\nThe alert fires when avg threads_running per CPU exceeds 3; the firing value is 3.5, so on this small box even a modest benchmark trips it. The queries themselves are healthy (sub-millisecond, ∼200 rows examined per 100 returned).\n\nFix options: stop the benchmark if it’s not supposed to be running, or if it’s intentional, either lower the sysbench thread count or silence/suppress this rule for db1 while the test runs. Nothing is wrong with the database itself.\n\nSixta identified the benchmark workload by analyzing query patterns in PMM Query Analytics (QAN). It supported its findings by correlating the workload with changes in QPS, database connections, and running threads observed around 18:37 UTC.\n\nSixta also explained why the alert was triggered. Since the alert threshold is normalized by CPU count, even a benchmark running with a relatively small number of threads can exceed the threshold on a server with limited CPU resources.\n\nSixta’s recommended actions were also appropriate: stop the benchmark, reduce the number of benchmark threads, or temporarily silence the alert during planned load testing.\n\nWhat we did: Changed innodb_flush_log_at_trx_commit from 2 to 1 and sync_binlog from 1000 to 1 on db1.\n\nHow it showed up: Throughput dropped from about 6,000 to 4,000 QPS.\n\nThis is a durability config change, not a query problem. At 19:00 UTC on db1-mysql, innodb_flush_log_at_trx_commit was changed from 2 → 1 and sync_binlog from 1000 → 1 (both visible in the exporter’s variable metrics). That makes MySQL fsync the redo log and binlog on every commit instead of batching. The effect is unambiguous: InnoDB fsyncs jumped from ∼10/s to ∼500/s at exactly 19:00, iowait rose while user CPU actually dropped (the server has spare CPU but commits are now stalling on disk flushes), and QPS fell from ∼6k to ∼3.7–4k at the same minute.\n\nThe trade-off: the current settings are the fully durable ones — reverting means up to ∼1s of committed transactions could be lost on a crash. On this sysbench test box that’s presumably fine; if you need full durability and higher throughput, the fix is faster fsync (better disk) or binlog group-commit tuning rather than query changes.\n\nIt found both variable changes at the exact minute throughput fell, and confirmed the mechanism with three independent signals: fsyncs up from about 10 to 500 per second, iowait up, and user CPU down. That combination shows the server was waiting on disk flushes, not short of CPU.\n\nThe fix came with the right trade-off. Sixta did not simply recommend reverting; it stated the data-loss risk of doing so and named the alternatives if full durability must stay.\n\nWhat we did: We dropped the primary key from the sbtest1 table directly on the replica to simulate a scenario where the absence of a primary key can slow down row-based replication. Without a primary key, MySQL may need to scan more rows to locate records for UPDATE and DELETE operations, potentially causing replication lag. We then asked Sixta to investigate the increasing lag, identify the underlying cause.\n\nHow it showed up: Replication lag started increasing after the primary key was dropped, indicating that the replica was struggling to keep up with changes from the primary.\n\nReplica is falling behind, lag is now ∼220s, growing ∼60s/min (i.e. near-zero effective apply). The cause is in db2’s QAN: someone ran ALTER TABLE sbtest1 MODIFY id INTEGER NOT NULL, DROP PRIMARY KEY directly on the replica at ∼19:15 ( it did NOT run on the primary). With no primary key on the replica’s copy of sbtest1, row-based replication must full-scan the table for every replicated row change — rows read are pegged at ∼400k/s with a CPU core burning, and apply collapsed from ∼300 to ∼7 trx/s.\n\nThe ALTER will take a minute or two (table rebuild behind the stalled applier), then apply should jump back to full speed and burn down the backlog. Worth finding out who’s running DDL on this replica.\n\nIt found the real cause of the lag in the replica’s QAN, confirmed the DDL had run only on the replica, and explained the mechanism: without a primary key, every replicated row change becomes a full table scan. Rows read at about 400,000 per second and apply falling from about 300 to 7 transactions per second backed that up. The fix was precise and included the expected rebuild time.\n\nWhat we did: Opened a transaction on db1, ran a query and left it uncommitted.\n\nHow it showed up: InnoDB history list length kept rising on the primary.\n\nConfirmed — history list length on db1 was near zero all day, ran at a healthy 50–300 after the sysbench-style read/write workload on the sbtest* tables started at 18:37 UTC, then went into runaway growth at ∼19:30 UTC: 215 → 10,884 → 27,357 → 41,196 in three minutes, still climbing ∼14k/min.\n\nThe write rate is what rules out “just heavy load”: updates held steady at ∼550–600/s and commits at ∼280–300/s across the transition, and connections stayed flat at 10. Undo gen",
+  "begyujtve": "2026-11-25T19:33:58.708940+00:00",
+  "prioritas": {
+    "pont": 39,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 40,
+      "egyediseg": 75,
+      "hitelesseg": 62,
+      "aktualitas": 48,
+      "kozossegi": 42
+    },
+    "elofeszures": 67,
+    "tanult": 60,
+    "indok": "Niche technikai teszt egy konkrét adatbázis-hibaelhárító AI-ágensről, szűk szakmai közönségnek. Forrás-tapasztalat: -8.",
+    "tema": "mysql ai troubleshooting agent",
+    "cim_hu": "AI-ágenssel tesztelték a MySQL adatbázisok hibaelhárítását",
+    "lead_hu": "A Sixta nevű AI-ágens teljesítményét értéyelték adatbázis-összeomlások és teljesítményproblémák diagnosztizálásában Percona környezetben.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-25T19:34:37+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-25T19:34:44+00:00"
+}

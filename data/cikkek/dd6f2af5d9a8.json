@@ -1,0 +1,49 @@
+{
+  "id": "dd6f2af5d9a8",
+  "slug": "building-a-wireless-network-adapter-for-the-super-nintendo",
+  "forras_id": "dailydev",
+  "forras_nev": "Hacker News (daily.dev)",
+  "url": "https://boland.dev/snet",
+  "publikalva": "2026-11-23T22:48:32.190000+00:00",
+  "cim": "Building a wireless network adapter for the Super Nintendo",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/8230361411bd9efb0c0b2d50bf947c0e?_a=AQAEuop"
+  },
+  "cim_eredeti": "Building a wireless network adapter for the Super Nintendo",
+  "szoveg_eredeti": "Building a wireless network adapter for the Super Nintendo.\n\nBy Danny Boland · November 2026 · Source\n\nI always come back to the Super Nintendo (SNES). It was my first console and it’s still my most potent source of nostalgia. It inspired my early interest in electronics as a teenager, designing circuits for mods and flash carts that I hoped to build one day. I followed the launch of Hackaday, Adafruit, and the progress of bunnie Huang’s Chumby and knew exactly what I wanted to do.\n\nI dropped out of my final years of high school to study hands-on electronics at college, and continued on to university. Then, finally equipped with those skills I’d aspired to, I went off-track and spent the next fifteen years working in data, ML and software. A lot has changed in that time but I’m back now, picking up exactly where I left off.\n\nThe Super Network Adapter is an exercise in ‘16-bit futurism’, it aims to be a faithful peripheral to the original SNES hardware and what we imagined the future might be back then: a wireless link to the net, sync’ing saves across devices and an uplink to AI.\n\nThe SNES never had a dedicated network port. The closest it came was the Satellaview, a modem peripheral connected to a hidden expansion port that could receive game broadcasts via satellite. There was also the XBAND, a modem that plugged into the cartridge slot and supported pass-through patching of specific games for online play. Reproducing the hardware of either of these today would be challenging, however most peripherals for the SNES took a much simpler route, they used one of the controller ports.\n\nThe SNES controller ports are small synchronous serial buses that a game can control, setting and reading individual lines and driving the clock. These ports have seven lines but in a typical controller cable, only five tend to be present, with the wires for D1 and IOBit left out. To make sourcing parts for this project easier, my design also only relies on the remaining five wires.\n\nFirst I needed a protocol for talking over this serial link, which I iterated with Mesen and a virtual network adapter written in Lua simulating the controller port link. This protocol has the SNES writing to the Latch line and reading from the adapter on D0, one bit at a time (‘bit-banging’). Even with some optimisation (unrolling loops and ignoring mid-stream replies) this approach tops out at about 30 KB/s, but that’s enough for the ’90s.\n\nThe first physical prototype was built using a Pico 2 W dev board. The additional circuitry needed was very simple, just some pull-up resistors for CLK and Latch. The board’s RP2350A can handle the console’s 5v logic on its pins directly, and it has two cores: one can maintain the console link, while the other maintains the Wi-Fi network link, without juggling interrupts.\n\nThe prototype runs from USB, with the console’s 5v only feeding the pull-ups. I did not connect the SNES 5v to the Pico’s VBUS or VSYS while USB is plugged in. The Pico was powered on before the console so the RP2350’s pins were ready to handle 5v. The PCB design later can run on either supply.\n\nAdding Cloud Save or ‘Save Sync’ seemed the most practical use for a Wi-Fi connection. I often go back to the SNES and start a new game, but if I could continue playing that save file in RetroArch on my phone and then back to the SNES, it would fit into my life much more easily.\n\nGame save data is stored in battery-backed SRAM and in order for a game to send that through my adapter, I needed some of my own code to run. I already have a programmable flash cart for the SNES, so I wrote a utility to patch ROMs and inject this ‘save sync’ code into the reset vector. At power-on and whenever the console is reset, it syncs the save data through the adapter to a WebDAV server as saves/<core>/<name>.srm (the same path RetroArch uses) so the console save can be continued on the phone, and vice versa.\n\nFirst though, the adapter needs to join the local Wi-Fi network. I wanted an era-appropriate UI that can be run from a setup ROM (fig.2), which has you pick a network and type its password with an on-screen keyboard, one letter at a time. That felt most ‘authentic’ but I also made a second iteration that shows the typical QR code on the TV for setup via mobile phone.\n\nThe second version has the adapter set up a temporary network. Scanning the QR code with a phone joins the network and it then does the usual captive portal flow to open the adapter’s setup page, where the network and WebDAV auth details can be input in a much more user-friendly way.\n\nAn important detail to get right was checking whether the save on the cartridge was newest, or whether to download a newer one from WebDAV. RetroArch keeps a manifest file with a hash of every save, so the adapter updates that too, comparing hashes to decide whether the cartridge or the server has the newest save. If both sides have changed, nothing is overwritten and the cartridge’s save goes to a conflicts folder to play it safe.\n\nSRAM saves are small but this sync still has to run whenever a game starts, potentially introducing a delay. To avoid this, the save is split into chunks that each have their own checksum, so only the chunks that have changed are sent over the controller port. In practice this makes the save sync delay imperceptible, and only when an existing save is pulled by the SNES for the first time is there a 1-2s load screen.\n\nNaturally in 2026, an internet connection also means a connection to LLMs. The dialogue in SNES-era games tends to be fixed and unresponsive. In A Link to the Past, the villagers don’t react when you smash their pots (unlike in subsequent Zelda games). With the network adapter though, we can hook the game’s dialogue text renderer to swap out the original text for an in-character line generated by an LLM.\n\nIn order to prompt for dialogue, the LLM needs to be passed the game context, such as the character being interacted with and recent events. Since Link to the Past has been fully disassembled, it was possible to patch it to accumulate this state in RAM and push it out over the controller serial to the adapter and on to an LLM (via a proxy I ran on a local machine that holds the API key).\n\nI tried a few different models and settled on Claude Opus 5.5, as cheaper models would break character or leak spoilers despite being prompted not to. I used LLM as a Judge evals to measure the proportion of responses that fit the context - Haiku scored 66%, Sonnet 90% and Opus 98%. The challenge was the time to first token of the LLM, for Haiku it was about 0.8 s but for Opus it averaged 2.2 s.\n\nTo avoid game-breaking delays from the LLM response times, I switched to speculatively generating the dialogue when Link approaches an NPC, storing the responses in a cache and invalidating them as the context updates. The delay from using a larger model was hidden and most NPC interactions had the response ready. This is a great way to burn tokens so probably not something to do for the full game duration!\n\nWhen designing the PCB version of the adapter (fig.0) I replicated the same architecture as the prototype, an RP2350A microcontroller that handles the 5v lines and maintains the serial link, with an ESP32-C3 Wi-Fi coprocessor that handles the Wi-Fi connection. These communicate with each other over UART, allowing each link to be maintained by a dedicated core.\n\nA PIO state machine on the RP2350 watches clock and latch, queueing the data and filtering out glitches shorter than 100 ns. This frees up the cores to prepare data to be sent over D0 while also talking to the C3.\n\nThe USB socket was included not just for flashing the board but also to support debugging it while it is powered from the SNES. This means the board needs to safely support taking a 5v supply from either the controller port or USB, and avoid backfeeding if both are connected. This is done with a LM66200 dual ideal diode. Supply can be taken from either source and we avoi",
+  "begyujtve": "2026-11-25T19:33:58.708816+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 10,
+      "hirertek": 20,
+      "egyediseg": 90,
+      "hitelesseg": 68,
+      "aktualitas": 52,
+      "kozossegi": 22
+    },
+    "elofeszures": 73,
+    "tanult": 33,
+    "indok": "Nem AI-ról szóló tétel, egy retro konzol hardveres hálózati kiegészítőjének építése.",
+    "tema": "snes hardware modding wireless",
+    "cim_hu": "Vezeték nélküli hálózati kártyát épített a Super Nintendo konzolhoz egy fejlesztő",
+    "lead_hu": "Egy fejlesztő nosztalgikus hobbirojekt keretében egyedi Wi-Fi adaptert tervezett és épített a klasszikus SNES konzolhoz.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-25T19:34:37+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-25T19:34:54+00:00"
+}
