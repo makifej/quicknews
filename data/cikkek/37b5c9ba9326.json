@@ -1,0 +1,49 @@
+{
+  "id": "37b5c9ba9326",
+  "slug": "where-scientists-draw-the-line-on-ai-agents",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/allenai/where-scientists-draw-the-line-on-ai-agents",
+  "publikalva": "2026-11-25T18:52:55+00:00",
+  "cim": "Where scientists draw the line on AI agents",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 54 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/F32BgZC_rj0kg99apJlto.png"
+  },
+  "cim_eredeti": "Where scientists draw the line on AI agents",
+  "szoveg_eredeti": "Delegating research tasks to AI does not remove scientists’ responsibility for how the work is accomplished. For example, a researcher using AI to review the literature needs to check whether the system overlooks conflicting evidence or makes claims the cited papers don’t support. Someone handing off data analysis to an agentic system needs to understand which methods it used, which files it accessed, and whether the results can be successfully reproduced. A researcher automating part of a lab protocol needs confidence that the system respects physical safety constraints, such as temperature limits or material toxicity, while a researcher working with human-participant data needs assurance that a system protects participants' privacy and limits who can access their information. Researchers also need clear institutional guidelines for verifying and disclosing AI-assisted work.\n\nThese ethical and safety questions are central to our work on AI for science. Responsible science is about more than accuracy—scientific fields have ethical research norms because of past actions and choices by scientists and scientific communities, and those norms also cover how research is conducted and what impact it has. We want AI tools to expand what scientists can accomplish without compromising their ability to scrutinize evidence, verify methods, and – perhaps most importantly – stand behind their findings.\n\nTo better understand what that requires, we interviewed 17 scientists working in the natural, applied, and social sciences about the responsible development of AI agents. These systems can use tools and carry out research tasks with varying degrees of autonomy. The interviews drew on a network of researchers established through earlier survey work—we wanted to understand how scientists would steer AI’s development to reflect the responsibilities of their fields. We asked where researchers would welcome agentic assistance, what could go wrong, and what safeguards they would need to trust agents with their own studies.\n\nOur interest in these questions grew out of work to evaluate the safety of models developed at Ai2. As we expand our focus on AI for science, we’ve found that much of the safety work on scientific applications emphasizes catastrophic risks in areas such as biology and nuclear physics. We also need ways to assess whether agents follow the standards of responsible conduct of research in the fields where they’re used.\n\nOne of our main findings concerns trust. Across the interviews, we identified five dimensions of scientific trust: validation, privacy, objectivity, accountability, and transparency. Together, they reflect concerns that go beyond whether an AI system produces a correct answer. Researchers also need to understand how an answer was reached, protect sensitive information, recognize bias, and determine who is charged with verifying and standing behind AI-assisted findings. These are matters of responsible conduct of research.\n\nAnother main finding suggests that scientists should help decide which research tasks agents take on, how those agents operate, and how their performance is evaluated. Even a technically correct result may be unsuitable for scientific use if researchers cannot inspect how it was produced, or if an agent accesses confidential data or files beyond what the researcher authorized.\n\nA third key finding pertains to the future of science. Interviewees were divided between excitement about AI-driven progress and existential concern about the role of human scientists. They proposed training in AI use and named developing and enforcing guidelines as a critical, timely challenge.\n\nFor many participants in our interviews, the appeal of AI agents began with time-consuming research tasks—processing large datasets, writing code, documenting experimental procedures, and handling repetitive administrative work. Automating these activities could free researchers to spend more time on fieldwork, mentoring, or developing new ideas. It could also make it possible to analyze volumes of data that would be difficult to examine manually.\n\nBut delegating research tasks creates a corresponding need to verify the work an AI system performs.\n\nSeveral participants described checking AI-generated answers against original publications rather than accepting summaries at face value. They worried about confident responses containing subtle inaccuracies, as well as tools that reinforce assumptions by retrieving only studies that support a favored hypothesis.\n\nBut checking the final answer from an AI system is only part of the challenge. Researchers may also need to know which sources an agent omitted, whether it followed the requested methodology, and what information it accessed along the way.\n\nOur interviews suggest how evaluations of AI agents for scientific research could better reflect these concerns. A literature-review benchmark, for example, could test whether an agent overlooks contradictory evidence or draws conclusions unsupported by its sources. A coding benchmark could assess not only whether the generated code works, but whether the agent accesses files outside its authorized scope. Evaluations of data-processing agents could compare their methods and results with established human workflows.\n\nThese examples point toward a longer-term goal—a participatory benchmark in which scientists help define the research practices and safety requirements that agents should be tested against. We want to evaluate whether systems developed at Ai2 or elsewhere follow the standards of the fields where they’re used, as well as whether they complete assigned tasks.\n\nThese evaluations remain proposals to develop and test with scientists, rather than established solutions. But they offer a direction for our work at Ai2: building open scientific tools means making their behavior and limitations easier to investigate and giving the research community a role in defining what trustworthy performance looks like.\n\nVerification is only one consideration in using AI tools for science. Respondents also raised a more fundamental question—what happens to scientific expertise when AI takes over parts of the research process?\n\nAn early-career biologist described deliberately limiting AI use while acquiring skills they hoped to teach future students. Another researcher questioned whether producing a correct result was sufficient if the researcher learned nothing in the process: even with perfect outputs, “did the person who obtained the perfect outputs get anything out of this?”\n\nSome participants were concerned that AI-assisted research could diminish learning, though the value of automation depends in part on the researcher and the task. An experienced scientist may reasonably delegate a familiar procedure to save time, while someone still learning that procedure may benefit from doing the work themselves.\n\nParticipants also drew different boundaries around activities involving intellectual contribution. One biologist refused to use AI to generate research ideas, considering that a responsibility to retain personally. Others were more open to AI-assisted ideation or writing. An anthropologist, for example, argued that some sections of scientific papers, particularly routine descriptions of methods and results, are formulaic enough to benefit from automation.\n\nEven researchers who tried AI for writing sometimes reconsidered. One political scientist described using Claude to help revise a manuscript, then deciding to rewrite the entire paper because the boundaries of their own intellectual contribution had become unclear. “I don’t know what was AI and what was me,” the researcher said.\n\nContext mattered, too. Having AI critique a manuscript before submission was viewed favorably by some participants, while using it to review another researcher's unpublished work raised concerns. The distinction involves more than technical capability; peer review carries responsibilities aro",
+  "begyujtve": "2026-11-25T19:03:03.354447+00:00",
+  "prioritas": {
+    "pont": 54,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 50,
+      "egyediseg": 85,
+      "hitelesseg": 88,
+      "aktualitas": 95,
+      "kozossegi": 43
+    },
+    "elofeszures": 90,
+    "tanult": 48,
+    "indok": "Tudományos etikai állásfoglalás az AI-ágensek felelősségteljes kutatási használatáról, mérsékelt hírértékkel. Forrás-tapasztalat: -5.",
+    "tema": "ai research responsibility guidelines",
+    "cim_hu": "Hol húzzák meg a tudósok a határokat az AI-ágensek használatában",
+    "lead_hu": "A kutatási feladatok automatizálása nem mentesíti a tudósokat a felelősség alól az eredmények ellenőrzése és reprodukálhatósága terén.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-25T19:05:46+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-25T19:05:51+00:00"
+}
