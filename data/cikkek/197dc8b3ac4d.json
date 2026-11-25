@@ -1,0 +1,49 @@
+{
+  "id": "197dc8b3ac4d",
+  "slug": "a-training-engine-for-your-local-model-using-your-idle-compute",
+  "forras_id": "dailydev",
+  "forras_nev": "Hacker News (daily.dev)",
+  "url": "https://github.com/sous-labs/songe",
+  "publikalva": "2026-11-24T17:51:49.344000+00:00",
+  "cim": "A training engine for your local model, using your idle compute",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 48 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/8f82a50b0befcfb134f2b7ba2bd6d413?_a=AQAEuop"
+  },
+  "cim_eredeti": "A training engine for your local model, using your idle compute",
+  "szoveg_eredeti": "Install • How it works • Commands • Roadmap • Discord • Website\n\nUse your local model as usual through opencode, pi or any OpenAI-compatible tool. While you work, Songe notices what happens after each of the model's actions: the tool result, the error, your next message. When your agent is quiet, it teaches the model to see those coming. A new version is used only if it passes its checks, and nothing leaves your machine unless you turn on the optional cloud learning.\n\nNo uv or pipx yet? Either installs in one line:\n\nBoth give Songe its own environment in a lasting place, which its background service needs.\n\nsonge init finds your model server and your agents, shows what it will change, and asks once:\n\nThen pick a Songe model in your agent (opencode lists them as songe/songe/<name>), and work as usual.\n\npip install songe works inside a virtual environment; outside one, Homebrew's and most Linux distributions' Python refuse it.\n\nYou need a model served locally, and an agent:\n\nMachines without a GPU still serve and record, but do not train. Tried Songe on another setup? Share the result on the testing board.\n\nWith auto-dream on, Dreams start when your agent has been quiet for a while. Or press Dream in the dashboard (songe open). A Dream never just disappears: it keeps going on the page, or says why it stopped.\n\nBefore the first training Songe measures how much your computer can learn at once, and trains on what fits. See DESIGN.md.\n\nuv tool upgrade songe, pipx upgrade songe or brew upgrade songe: the service moves to the new version by itself in a quiet moment.\n\nsonge uninstall stops the service and restores your agent settings; add --purge to also delete its data and learned versions. Run it before brew uninstall songe.\n\nWhere Songe is going: ROADMAP.md. Ideas and bugs are welcome as issues. Questions and results from your nights go in Discord. To contribute, see CONTRIBUTING.md. Security reports: SECURITY.md.",
+  "begyujtve": "2026-11-25T15:20:40.785947+00:00",
+  "prioritas": {
+    "pont": 48,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 50,
+      "egyediseg": 85,
+      "hitelesseg": 62,
+      "aktualitas": 74,
+      "kozossegi": 44
+    },
+    "elofeszures": 75,
+    "tanult": 35,
+    "indok": "Érdekes nyílt forráskódú AI eszköz helyi modellek finomhangolására, de csekély piaci hatással bír. Forrás-tapasztalat: -8.",
+    "tema": "local ai model training",
+    "cim_hu": "Megjelent a Songe, a helyi AI-modelleket háttérben tanító eszköz",
+    "lead_hu": "A Songe egy új nyílt forráskódú fejlesztés, amely a számítógép tétlen kapacitását használja fel a helyi AI-modellek automatikus tanítására a felhasználó lépései alapján.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-25T15:20:57+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-25T15:21:00+00:00"
+}

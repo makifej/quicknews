@@ -1,0 +1,49 @@
+{
+  "id": "b69abb928f28",
+  "slug": "our-predictions-on-the-agentic-data-world",
+  "forras_id": "dailydev",
+  "forras_nev": "dltHub (daily.dev)",
+  "url": "https://dlthub.com/blog/first-self-driving-company",
+  "publikalva": "2026-11-25T14:00:00+00:00",
+  "cim": "Our predictions on the agentic data world.",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 32 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/8610af9fce6cd4ffe1e2f39e62b41370?_a=AQAEuop"
+  },
+  "cim_eredeti": "Our predictions on the agentic data world.",
+  "szoveg_eredeti": "Dina leads GTM for Honeycart, a fictional small e-commerce shop. On a Saturday night in September 2027, while the whole team is offline, the shop’s autonomous data platform analyzes the day's support tickets and finds refund requests clustering around a delivery partner in northern Italy. The platform sets itself an objective: cut late deliveries in that region. It finds the partner's undocumented tracking API, requests an access token from the partner's integration agent, writes and tests a pipeline, and starts measuring. By Monday morning, Honeycart’s partner platform agreed to delivery terms with a second partner. The platform decides to move a quarter of the region's shipments to it.\n\nSix weeks later, late deliveries no longer predict refund requests. Customers complain about damaged packaging instead. The platform's control unit opens a new objective on packaging. In the same six weeks, the platform ran eleven other experiments and stopped nine. Free express shipping in the region raised costs without cutting refunds, so the platform ended it after a week.\n\nMost reports from this kind of experiment are not read by any of the eight employees at Honeycart. They focus on setting the hard rules the platform cannot trade away: keep customer data in the EU, trace each number in a board report to its source, stay within the compute and token budget, and set up integrations only with partners that passed a security review. They also negotiate and periodically check the norms the platform measures and adheres to, such as customer trust over short-term growth. The platform turns each norm into a metric, and trades off metrics against other goals in accordance with its self-evolving norm hierarchy. Once a week, the platform asks Dina whether one of these numbers still means what the norm suggests. This week it asks about customer trust. So far, the platform has measured trust as the share of customers who keep their order without asking for a refund. It now also proposes counting customers who get a refund and order again within 60 days, because they still trust the shop. It then proposes giving up as much as 2% of conversion to keep the refund-and-reorder rate above 30%. Dina agrees, and the platform recalculates each objective and report built on the old number.\n\nThe Superdark Factory, published in the Antikythera Journal (MIT Press), calls self-driving companies like Honeycart a class 3 factory, or superdark factory: it automates not only execution and planning but also goal setting. It represents the ultimate goal self-driving companies work towards. It negotiates norms and constraints with the people who govern it, turns them into its own objectives and metrics, keeps renegotiating those metrics, and is judged by its results.\n\nTo set an objective, a superdark factory measures its results and outcomes, like customer retention, cost, and revenue. To know whether it met the objective, it measures these metrics continuously. Each new objective needs data sources, pipelines, and checks – built, maintained, and retired faster than a team of humans ever could. Dina’s platform built the delivery tracking pipeline overnight without any human intervention.\n\nA few small companies will build toward a superdark factory in 2027 based on a fully autonomous data platform. These companies have a very high risk appetite and work with the hungriest agentic coding talent. Most of them will be lean and recently founded.\n\nWe already see early signals for the agentification of data engineering in our data. dlt users and agents have run about 28,000 custom source families since January 2025. In October, 78% of active source families were custom. A software factory generates many versions of a source throughout its experiments until one settles on the requirements. Most of those versions are throwaway code. With declarative pipelines in Python code that adapt to changing requirements, agents are far more flexible than the ~700 connectors in a managed catalog.\n\nThe rest of this post explains how we expect AI to impact data teams in 2027, and how it aligns with our product strategy at dltHub.\n\nModel capabilities keep rising: AI agents improved from 12% to about 66% task success on OSWorld, a benchmark of real computer tasks (AI Index, 2026). Any company can buy access to the top models, but higher capability alone does not translate into impact: \"models post striking benchmark scores while aggregate economic output barely moves\" (Evans & Weyl, 2026). Access to talent and how fast an organization adapts decide who gains. AI-first companies such as the big AI labs or Dina’s self-driving company hire most of the agentic coding talent and get increasingly productive with each model release. Most enterprises adopt new capabilities months or years later, so the gap keeps widening. Our goal at dltHub is to support organizations that cannot \"jump\" straight to the superdark factory stage with a step-by-step transformation based on our autonomy ladder.\n\nAn agent connected to raw systems through MCP works for small tasks focused on this particular system. For complex work that requires combining data from different sources and tracing an answer to its source, agents perform better with a curated layer of company knowledge and data. Dina’s platform could link refund tickets to a single delivery partner because tickets, orders, and shipments share curated definitions, and their high-level relationship is periodically confirmed with an employee, like the trust metric mentioned in the introduction.\n\nIn a 2023 benchmark, GPT-4 answered 16% of enterprise questions correctly over raw SQL tables and 54% over a knowledge graph of the same data (Sequeda et al., 2023). A 2026 benchmark comparing frontier models found the same pattern: a short document describing the dataset's measures and conventions raised accuracy from 45-51% to about 68-69% (Rumiantsau & Fokeev, 2026).\n\nThis curated layer can be a semantic layer or a gold layer of modeled tables that lives alongside the company’s knowledge base and ontology. A curated layer becomes increasingly important as teams feed agents more sources each month, as shown in our dlt telemetry data: in October 2026, dlt users and agents created 258,632 new private sources – 85% more than in September. Agents can only combine these reliably if they are curated: relationships between data sources need to be defined, and semantic definitions need to be aligned. Most enterprises have a semantic layer covering a fraction of their data, and we expect extending it to become a top priority for data teams in 2027. This curation becomes feasible using ontologies – one of dltHub’s core primitives.\n\nIn 2027, most knowledge workers manage agents, and an agent works only as well as the context it receives. What we see with our customers: Data and context curation becomes part of most knowledge workers’ jobs. What we hear from our customers: Analysts and software engineers are broadening their scope, taking over data engineering work, and building pipelines with coding agents. Some analytics engineering teams are starting to own ingestion pipelines in addition to the transformations and metric definitions they report on.\n\nOne of the most successful AI companies in Europe keeps its data team intentionally lean and lets its GTM team build dlt pipelines directly, with support from coding agents and background agents. GTM teams managing the autonomous data stack match what we see in our data: 69% of marketing sources are custom, and 63% of sales and CRM sources are custom.\n\nMore people building pipelines means more systems to secure, and AI keeps increasing the number of attacks. CrowdStrike's 2026 Global Threat Report counts 89% more activity from AI-enabled attackers than a year earlier. Exploit Factories keep challenging the tech world.\n\nThe number of vulnerabilities disclosed grew by 167% from January to August 2026. Source: Google\n\nData teams handle systems that hold and p",
+  "begyujtve": "2026-11-25T15:20:40.785417+00:00",
+  "prioritas": {
+    "pont": 32,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 25,
+      "hirertek": 25,
+      "egyediseg": 80,
+      "hitelesseg": 52,
+      "aktualitas": 88,
+      "kozossegi": 32
+    },
+    "elofeszures": 82,
+    "tanult": 35,
+    "indok": "Spekulatív vélemény cikk és jövőbeli fikciós forgatókönyv valódi hírérték nélkül. Forrás-tapasztalat: -8.",
+    "tema": "agentic data predictions",
+    "cim_hu": "Autonóm adatplatformok jövőjét jósolja egy új elemzés",
+    "lead_hu": "A dltHub blogbejegyzésében azt vázolja fel, miként kezelhetik az önálló AI-ágensek a vállalati adatfolyamokat és integrációkat a közeli jövőben.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-25T15:20:57+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-25T15:21:01+00:00"
+}
