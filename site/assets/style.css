@@ -1894,6 +1894,13 @@ html.qn-ads-ki .qn-ad { display: none; }  /* a pult kapcsolójával kikapcsolva 
   .gyu-egy .gyu-gomb { grid-row: 5; }
   .gyu-egy .gyu-kartya { grid-template-rows: auto auto 1fr auto auto; }
 }
+/* Heni 2026-11-25: mobilon a fizetési sor a leírás cellájába került, és egymásra csúszott a két szöveg.
+   Saját, teljes szélességű sort kap a gomb fölött. */
+@media (max-width: 640px) {
+  .gyu-kartya, .gyu-egy .gyu-kartya { grid-template-rows: auto auto 1fr auto auto auto; }
+  .gyu-test .gyu-fizet { grid-column: 1 / -1; grid-row: 5; align-self: start; margin: 4px 0 0; padding-top: 0; }
+  .gyu-gomb, .gyu-egy .gyu-gomb { grid-row: 6; }
+}
 
 /* Gyakorlati útmutatók: saját, figyelemfelkeltő szín (Heni 2026-11-02), csak erre a sávra; a párbaj piros, a szavazás lila, a fő kiemelő narancs */
 .gyu { --gyu-hatter: #0c2c29; --gyu-kartya: #081f1d; --gyu-keret: #1d4a45; --gyu-akcent: #34e3ad; --gyu-akcent-szoveg: #05211b; --gyu-szoveg-2: #a9c9c2; --gyu-pont: #4f7d76;
