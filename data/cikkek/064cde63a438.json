@@ -1,0 +1,49 @@
+{
+  "id": "064cde63a438",
+  "slug": "all-sandbox-runtimes-now-use-vercel-managed-images",
+  "forras_id": "dailydev",
+  "forras_nev": "Vercel (daily.dev)",
+  "url": "https://vercel.com/changelog/all-sandbox-runtimes-now-use-vercel-managed-images",
+  "publikalva": "2026-11-24T18:00:00+00:00",
+  "cim": "All Sandbox runtimes now use Vercel Managed Images",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/1113b140128ac1acfdeb73a75caea4c4?_a=AQAEuop"
+  },
+  "cim_eredeti": "All Sandbox runtimes now use Vercel Managed Images",
+  "szoveg_eredeti": "All Vercel Sandbox runtimes now use Vercel Managed Images (VMIs).\n\nLegacy runtimes, such as node22, now use the open-source images in the vercel/sandbox repository, distributed through Vercel Container Registry (VCR). Sandboxes created with these now come with 64 GB of storage and use the same infrastructure as sandboxes powered by VCR.\n\nThe universal image is released nightly, and rolling tags such as latest pick up operating system, dependency, and coding agent updates. Pin an image digest when you need a reproducible environment.\n\nSandboxes created with version 3 or later of the JavaScript Sandbox SDK use vercel/sandbox/universal:latest by default. The universal image includes Node.js, Python, coding agents such as Claude Code and Pi, and common utilities. You can pull it at vcr.vercel.com/vercel/sandbox/universal:latest.\n\nLearn more in the Sandbox documentation.",
+  "begyujtve": "2026-11-26T19:49:37.731996+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 30,
+      "hirertek": 25,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 42,
+      "kozossegi": 36
+    },
+    "elofeszures": 80,
+    "tanult": 59,
+    "indok": "Technikai infrastruktúra-frissítés a Verceltől, nem minősül valódi AI-hírnek.",
+    "tema": "vercel sandbox infrastructure update",
+    "cim_hu": "Frissítette homokozó infrastruktúráját a Vercel",
+    "lead_hu": "A Vercel Sandbox futtatókörnyezetei mostantól a kezelt konténerképeket használják, 64 GB tárhelyet és éjszakai frissítéseket kínálva a fejlesztőknek.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T19:50:07+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-26T19:50:09+00:00"
+}
