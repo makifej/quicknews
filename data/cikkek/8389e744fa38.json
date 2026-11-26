@@ -1,0 +1,49 @@
+{
+  "id": "8389e744fa38",
+  "slug": "i-dont-want-a-lesson-in-computer-science",
+  "forras_id": "dailydev",
+  "forras_nev": "DuckDB (daily.dev)",
+  "url": "https://duckdb.org/2026/11/25/star-trek-queries-duckdb.html",
+  "publikalva": "2026-11-25T00:00:00+00:00",
+  "cim": "I Don’t Want a Lesson in Computer Science!",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 33 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/5f4ddd3ff52a3fe6d77b3f37d38c1828?_a=AQAEuop"
+  },
+  "cim_eredeti": "I Don’t Want a Lesson in Computer Science!",
+  "szoveg_eredeti": "TL;DR: For seven seasons, the crew of the Enterprise talked to the ship’s computer and solved hard data problems. We gave Claude a DuckDB database and the crew’s actual lines to see whether we have the Enterprise computer now.\n\nI have been a “Trekkie” ever since I watched Star Trek: The Next Generation (TNG) on weekday afternoons back in the ’90s. We had grainy terrestrial TV reception because my parents refused to pay for cable. Also, I had to fight my younger sister because she wanted to watch The Nanny instead, which was on at the same time. Oh, and it was all dubbed into German with a terrible translation. But the magic caught on regardless. Decades later, I am still a huge fan and re-watch episodes regularly.\n\nRecently, the great Patrick Stewart departed on his last voyage. Captain Picard’s style of leadership has always been an inspiration to me. In his honor, let’s revisit some classic Star Trek: The Next Generation dialogues in which things happen with data. Let’s start with a quick teaser:\n\nIn “The Battle”, Picard’s old ship, the Stargazer, is handed back to him with a personal log aboard in which he appears to confess to an unprovoked attack on the Ferengi. Data (the TNG character, not the bits of information) compares the personal log with the ship’s main computer log and reports to the first officer, commander William T. Riker.\n\nDATA: By comparing the main Stargazer computer log with Captain Picard’s personal log, I have found “checksum” discrepancies, sir.\n\nDATA: All information is time-coded by entry, and the bits when totaled produce an aggregate amount which…\n\nRIKER: I don’t want a lesson in computer science! Bottom line?\n\nDATA: One of these two logs is a forgery.\n\nDespite his shocking disregard for Computer Science, Riker gets his bottom line. If we were to express this request for information as a SQL query, it is a GROUP BY: recompute the checksum of every log entry, compare it with the one stored when the entry was recorded, and count the mismatches per log. Three of the five entries in the captain’s personal log fail. The main computer log is clean. A smoking gun.\n\nEven as a wee lad, I noticed something very cool about the Enterprise D: You could interact with its massive central computer by just talking to it. Very complex questions about all sorts of things would be answered (if Data did not already blurt out the answer immediately). Over many episodes, I watched the intrepid crew of the Enterprise to talk to the computer and solve hard data problems. Back then this was a wild idea. But now, we have things like Claude and we have DuckDB, one component being able to translate human language into more formal things like SQL queries, and the other component being able to process those queries at hard-to-believe speeds.\n\nFor Science, we took the actual shooting scripts of TNG and had Claude find some of the interactions with the computer that looked like data analysis. I picked eleven scenes.\n\nWe then generated a DuckDB database (enterprise_computer.duckdb) to stand in for the ship’s records. The data is made up, but it is built so the results are the same as in the dialogue, given correct queries. For example, if the computer says there are 15,525 undetectable substances, the table has 15,525 of them. It also holds believable rows that each condition has to filter out: “Darmok” entries in other sectors and in non-linguistic databases, substances that alter glass but show up on scans, log entries from another ship. The ship’s own date and position sit in a one-row ship_status table, which is how “this sector” and “the past six months” get resolved.\n\nThen, we gave a fresh Claude Code session that database and fed it the actual dialog lines from the Enterprise crew, translated their data requests to SQL and had them run on DuckDB. Claude was simply told that it is the main computer of the USS Enterprise, the ship’s records are in that database, and it should answer each crew member’s line from it.\n\nResults have been amazing: not only did the “Enterprise computer” answer all the questions, by our reading 40 out of 49 answers matched what the dialogue says. Below are some particularly nice examples:\n\nIn “Darmok”, the Enterprise meets a people who speak only in references to their own stories. It is a strong contender for my favorite episode of TNG. Counselor Troi and Data have two words to go on, “Darmok” and “Tanagra”. They start talking to the computer.\n\nTROI: Computer, search for the term “Darmok” in all linguistic databases compiled for this sector.\n\nCOMPUTER: Searching… “Darmok” is the name of a seventh dynasty emperor on Kanda Four… A mytho-historical hunter on Shantil Three… A colony on Malindi Seven… A frozen dessert on Razna Five… A –\n\nTROI: – Stop search. Computer, how many entries for “Darmok”?\n\nDATA: Computer, search for the term “Tanagra.” All databases.\n\nCOMPUTER: Searching… Tanagra is the name of the ruling family on Gallos Two… A ceremonial drink on Lerishi Four… An island-continent on Shantil Three –\n\nTROI: Shantil Three? Computer, cross-reference the last entry with the previous search index.\n\nCOMPUTER: “Darmok” is the name of a mytho-historical hunter on Shantil Three.\n\nA search with too many hits, a count, a second search, and a join (a join!) that takes 47 rows down to one. Nobody on the bridge wrote any of the right-hand column. They asked, the computer answered, and they asked a sharper question.\n\nIn “Hollow Pursuits” the ship is about to tear itself apart and Geordi narrows the cause one sentence at a time.\n\nGEORDI: Computer, list all physical substances that wouldn’t normally be picked up by internal scans.\n\nCOMPUTER: There are fifteen thousand five hundred twenty-five known substances that cannot be detected by standard scans.\n\nGEORDI: Great. How many of those can exist in an oxygen atmosphere?\n\nGEORDI: And could alter molecular structure when it comes in contact with… with glass.\n\nBARCLAY: Jakmanite has a half life of about fifteen seconds. There wouldn’t be enough time to spread it around the ship.\n\nWESLEY: Selgninaem and Lucrovexitrin are extremely toxic.\n\nGEORDI: We’d all be dead by now. That leaves Saltzgadum and Invidium.\n\nEvery sentence is one more predicate: 15,525, then 532, then 5, then 2.\n\nThe database is one single DuckDB database, and DuckDB can attach it straight from the web:\n\nRun any of the queries above, or hand the file to your assistant, tell it that it is the main computer of the USS Enterprise, and start with: Computer, search for the term “Darmok” in all linguistic databases compiled for this sector. No lesson in computer science required, I promise. If you want, you can even install our Claude plugin to make it even smoother.\n\nTo boldly go where no-one has gone before. I think we can claim that at least that part of the Enterprise computer is now a reality, at least given enough data.\n\nThe rest of the scenes we picked, run the same way. On the left is the script. On the right is the query Claude ran for that step, with the first rows of its actual result. Where Claude’s answer departed from the dialogue, a note says how.\n\nScript. Season 1. Picard suspects Starfleet Command has been infiltrated and sets Data to reading its orders.\n\nDATA: Computer – this is Lieutenant Commander Data. Access all Starfleet Command orders to starships, starbases and colonies, for the past six months.\n\nNot what the script says: Reports 1,207 orders, not 1,214: it used a strict ‘>’ on the six-month boundary, so the seven orders dated exactly six months back (2368-04-10) are left out.\n\nDATA: My orders were to search for abnormal patterns in Starfleet’s directives. I believe I have found just that.\n\nDATA: These are various outposts and starbases where I have detected unusual activity over the past few months.\n\nNot what the script says: Finds the same five installations, but by a different signal: reassignments issued by offices other than Personnel (45 orders). It does not report the command reassignment counts",
+  "begyujtve": "2026-11-26T15:34:42.686164+00:00",
+  "prioritas": {
+    "pont": 33,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 20,
+      "hirertek": 25,
+      "egyediseg": 90,
+      "hitelesseg": 68,
+      "aktualitas": 60,
+      "kozossegi": 40
+    },
+    "elofeszures": 69,
+    "tanult": 41,
+    "indok": "Szórakoztató kísérlet a Claude és a DuckDB összekötéséről Star Trek idézetekkel, de hiányzik a valódi hírérték. Forrás-tapasztalat: -8.",
+    "tema": "claude duckdb star trek experiment",
+    "cim_hu": "Star Trek idézetekkel tesztelték a Claude és a DuckDB adatbázis képességeit",
+    "lead_hu": "Egy rajongó a Star Trek Enterprise űrhajójának számítógépét próbálta modellezni a Claude és a DuckDB segítségével.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T15:35:10+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-26T15:35:12+00:00"
+}

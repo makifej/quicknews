@@ -1,0 +1,49 @@
+{
+  "id": "357e87411e24",
+  "slug": "i-stopped-trusting-claude-s-memory-and-setup-my-own-memory-system",
+  "forras_id": "dailydev",
+  "forras_nev": "XDA Developers (daily.dev)",
+  "url": "https://www.xda-developers.com/stopped-trusting-claudes-memory-setup-my-own-memory-system",
+  "publikalva": "2026-11-23T17:30:22+00:00",
+  "cim": "I stopped trusting Claude's memory and setup my own memory system",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 35 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/35716e6df60db641d6f92fadfc9dd848?_a=AQAEuop"
+  },
+  "cim_eredeti": "I stopped trusting Claude's memory and setup my own memory system",
+  "szoveg_eredeti": "I think one of the things that makes AI tools feel especially dystopian is just how much they seem to remember about us. You could casually mention something to ChatGPT once, completely forget about it yourself, and have it bring that exact detail up in a conversation months later. It's impressive, but also a little unsettling when you think about it.\n\nHowever, if you use AI tools seriously for work, particularly coding agents like Claude Code and Codex, you'll quickly realize that their memory isn't nearly as impressive as it might seem. I'll explain more below, but that's exactly why I've stopped relying solely on Claude's built-in memory system and started using my own setup to make sure important context doesn't get lost between sessions.\n\nOne thing I've realized from using AI tools extensively is that how much their memory matters really depends on what you're using them for. When you're using them for ongoing projects, software development, brainstorming and refining ideas over multiple sessions, or building workflows that change over time, remembering previous conversations becomes a lot more important.\n\nThe decisions you've made, the approaches you've already tried, and even the mistakes you've encountered all become important context. Without that information, you're basically starting from scratch every time you open a new session. This is where I've noticed that the memory of AI coding agents tends to fall short. For starters, they don't always remember important decisions you've made in previous sessions, which can lead to them suggesting approaches you've already ruled out or repeating mistakes you've already spent hours fixing.\n\nThen there's context compaction, which can sometimes cause smaller but equally important details to get lost, even within the same working session. There are also times when the information is already stored somewhere in their memory, but they simply don't retrieve it when it's relevant.\n\nI've experimented with quite a few ways to improve Claude Code's memory, and one of the simplest approaches I've found is using good old Markdown files. First up are CLAUDE.md files. I've written more about this file in a separate article, but this is basically a Markdown document that Claude Code reads when you start a session in a project.\n\nYou can use it to specify everything from your project's architecture and coding conventions to important decisions you've made and things you absolutely don't want Claude to do. Before you even begin working on a project, you can create a CLAUDE.md file outlining its basic structure, the technologies you're using, your coding conventions, and any other instructions you'd want Claude to follow throughout development.\n\nHowever, where I think these files become especially useful is when you're actually working on a project. Say Claude does something you didn't ask it to do, or makes a mistake you absolutely don't want it to repeat. You could correct it in the chat, but there's no guarantee that the correction will make its way into Claude's auto memory. Even if it does, there's no guarantee Claude will retrieve that information when it matters.\n\nInstead, you can simply open your CLAUDE.md file and explicitly add a rule telling Claude not to repeat that mistake. This is actually something Boris Cherny, the creator of Claude Code, has mentioned doing himself.\n\nCLAUDE.md files aren't the only Markdown files you can use to improve your coding agent's memory. I've also experimented with using good old README files, which serve a slightly different purpose. A while ago, I asked Claude Code to create a hierarchy of README files across my computer.\n\nThe idea was to have one master README acting as an index, pointing to smaller READMEs inside important folders that explained what the files actually contained. I also had Claude create a CLAUDE.md file instructing it to consult these READMEs whenever I asked it to find something.\n\nUnlike CLAUDE.md files, which Claude automatically reads at the beginning of a session, ordinary README files aren't automatically loaded as project instructions. They're more like reference documents that Claude can consult when it needs specific information. So, rather than cramming everything into a single CLAUDE.md file, you can use it to tell Claude where to look for more detailed information.\n\nWhile my previous experiment was more about finding files than remembering previous conversations (and you can read all about it here), the same approach can be used for ongoing coding projects. You could maintain separate Markdown files documenting important decisions, previous mistakes, how different parts of your project work, and what you've accomplished so far. Then, all your CLAUDE.md file needs to do is point Claude toward the relevant documents whenever it needs that information.\n\nWhile CLAUDE.md and README files have been a huge part of how I manage Claude Code's memory, another solution I've been using for quite a while now is a dedicated memory tool called claude-mem.\n\nIt's an open-source plugin that automatically records what happens during your Claude Code sessions, generates summaries, and stores everything in a searchable database. Unlike Claude's built-in auto memory, which selectively decides what's worth remembering, claude-mem takes a more comprehensive approach to capturing your work.\n\nI've written an entire article about my experience with claude-mem, but what impressed me was its ability to retrieve information from multiple previous sessions. For example, while working on a university project, I asked Claude whether we'd ever discussed adding a billing feature. It remembered that we'd considered the feature twice, which features I'd chosen to work on instead, and even a specific rule I'd mentioned in passing about who should be allowed to pay bills.\n\nThe fact that I could ask a question about something we'd discussed several sessions ago and get such a detailed answer was what really sold me on the plugin. Of course, claude-mem is far from the only option available. There's Supermemory, which can provide persistent memory across different AI coding agents, and Hindsight, which focuses on retaining and retrieving important information, including previous decisions. Another interesting option is memsearch, which combines Markdown-based memory with semantic search.\n\nOf course, these tools aren't perfect either. Automatically recording more information can introduce additional overhead, and you'll still need to make sure outdated or irrelevant memories aren't getting in the way. Still, if you frequently work on projects that span multiple sessions, they're worth exploring.\n\nWhile Markdown files are an excellent way to store important information, there's still one problem: you have to make sure they stay updated. If you're anything like me, remembering to document every important decision you make during a coding session probably isn't high on your priority list.\n\nThis is where custom skills can come in handy. Essentially, you can create a skill that instructs Claude Code or Codex to review your conversations, figure out what information is worth saving, and update the relevant memory files accordingly. I came across a particularly interesting example on Reddit, where a developer shared a custom /wrap-up skill they use at the end of every Claude Code session.\n\nAlong with committing code and checking for unfinished work, the skill reviews everything that happened during the session and identifies important lessons worth remembering. It even looks for repeated mistakes and updates Claude's instructions to help prevent them from happening again.\n\nI've personally built a /remember skill that works hand-in-hand with my CLAUDE.md file. Whenever Claude makes a mistake I don't want it to repeat, or we make an important decision during a coding session, I can simply invoke the skill and it navigates to the relevant section of my CLAUDE.md file and adds that information",
+  "begyujtve": "2026-11-26T15:34:42.686880+00:00",
+  "prioritas": {
+    "pont": 35,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 25,
+      "hirertek": 30,
+      "egyediseg": 85,
+      "hitelesseg": 62,
+      "aktualitas": 33,
+      "kozossegi": 59
+    },
+    "elofeszures": 69,
+    "tanult": 80,
+    "indok": "Személyes blogbejegyzés és vélemény saját memóriarendszer építéséről Claude-hoz, ami alacsony hírértékű. Forrás-tapasztalat: -8.",
+    "tema": "claude memory personal workflow",
+    "cim_hu": "Saját memóriarendszerre cserélte a Claude beépített emlékezetét egy fejlesztő",
+    "lead_hu": "Egy fejlesztő megelégelte a mesterséges intelligencia bizonytalan memóriáját, ezért saját egyedi rendszert épített a kódolási feladatok támogatására.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T15:35:10+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-26T15:35:11+00:00"
+}
