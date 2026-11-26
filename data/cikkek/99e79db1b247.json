@@ -1,0 +1,49 @@
+{
+  "id": "99e79db1b247",
+  "slug": "bibliometric-review-maps-explainable-artificial-intelligence-surge-in",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/bibliometric-review-maps-explainable-artificial-intelligence-surge-in-brain-tumor-imaging/",
+  "publikalva": "2026-11-26T17:06:18+00:00",
+  "cim": "Bibliometric Review Maps Explainable Artificial Intelligence Surge in Brain Tumor Imaging",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 39 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-29814.png"
+  },
+  "cim_eredeti": "Bibliometric Review Maps Explainable Artificial Intelligence Surge in Brain Tumor Imaging",
+  "szoveg_eredeti": "Bibliometric Review Maps Explainable Artificial Intelligence Surge in Brain Tumor Imaging\n\nA systematic bibliometric and qualitative synthesis examining academic output between January 2019 and January 2026 has mapped the trajectory, structural patterns, and technical shortcomings of explainable artificial intelligence applied to brain tumor diagnosis and classification. Automated analysis of magnetic resonance imaging scans has increasingly relied on deep learning models, yet the black-box nature of complex neural networks has historically limited their clinical utility, where diagnostic transparency is critical for human experts. The investigation, which evaluated 565 rigorously selected research records from the Scopus database, documented an exponential surge in scientific production across recent years. Annual research output accelerated from 51 dedicated publications in 2023 to 140 papers in 2024, representing an initial increase of 174.5 percent, before reaching 293 publications in 2025, which added another 109.3 percent rise. While automated systems achieve remarkably high reported benchmark accuracies when segmenting tumor regions or categorizing suprasellar lesions, meningiomas, and low-grade or high-grade gliomas, the study revealed that more than 85 percent of published investigations evaluate explainability solely through qualitative visual inspection rather than objective, quantitative metrics.\n\nTo capture the evolution of explainable artificial intelligence within neuro-oncology, the investigative team established an exhaustive record retrieval protocol following the Preferred Reporting Items for Systematic Reviews and Meta-Analyses guidelines. Operating through the Scopus database, which indexes broad technical and clinical literature across IEEE, Elsevier, Springer, and Nature Publishing Group sources, the researchers retrieved an initial cohort of 687 records published between January 2019 and January 29, 2026. Structured multi-stage screening was implemented to remove noise and ensure dataset integrity: three non-English records were discarded immediately, followed by the elimination of 22 duplicate entries. An additional 48 documents were removed due to missing author details to avoid fragmenting co-occurrence and co-citation linkages, while 25 book chapters, editorials, or errata and 24 topic-divergent studies were excluded. The resulting 565 records encompassed peer-reviewed journal articles, high-impact conference proceedings, and preprints that detailed the deployment of interpretable machine learning models for brain tumor detection, pathological grading, or structural boundary segmentation.\n\nBecause cutting-edge innovations in machine learning and medical informatics circulate rapidly through competitive double-blind conference platforms such as MICCAI, CVPR, NeurIPS, and IEEE ISBI, the study incorporated conference proceedings alongside formal journal articles. To confirm that mixing publication channels did not skew the bibliometric findings, the authors conducted a subgroup sensitivity analysis comparing 358 journal-only papers against 207 conference proceedings and preprints. A Chi-square statistical evaluation revealed no significant variance across the primary categories of explainable techniques: gradient-based methods registered across 158 journal articles and 90 conference papers with a p-value of 0.88, while perturbation-based methods were implemented in 108 journal papers and 62 conference works yielding a p-value of 0.96. Furthermore, clinical validation and human reader evaluations displayed no statistically significant divergence, occurring in 60 journal papers and 25 conference papers with a p-value of 0.13. The single recorded difference occurred within multimodal dataset usage, which appeared in 14.5 percent of conference papers compared to 8.9 percent of journal articles, producing a borderline p-value of 0.042 that lost statistical significance following Yates’ continuity correction and Bonferroni adjustment.\n\nGeographic and institutional analysis demonstrated that global research activity in explainable neuro-oncology is heavily concentrated within a few highly collaborative scientific hubs. Nearly 50 percent of the 565 reviewed publications originated from India, China, and the United States, followed in publication volume by Germany and Bangladesh. India produced the largest absolute volume of research with 228 documents, while the United States demonstrated the highest total link strength at 79, followed by India with 68 and Saudi Arabia with 47. An examination of international co-authorship networks identified strong bilateral ties, most prominently between India and the United States with 16 shared documents, Bangladesh and the United States with 13 publications, China and the United States with 12 collaborative works, and India and Saudi Arabia with 8 documents. Institutional productivity leaders included Chitkara University in India with 15 publications between 2023 and early 2026, West China School of Medicine producing 13 works, Chandigarh University and Harvard Medical School contributing 12 papers each, and Fudan University and the Islamic University of Bangladesh logging 10 publications each.\n\nThe evaluation of dissemination avenues and citation dynamics highlighted the influence of open-access publishing models and prominent serials across computer science and biomedical engineering. Scientific Reports led all contributing venues with 19 accepted articles and an h-index of 6, followed closely by Springer’s Lecture Notes in Networks and Systems with 18 papers and an h-index of 2. Citation distribution analyses indicated that open-access documents attained significantly higher citation ranks than closed-access publications under a univariate Mann-Whitney test, which calculated a test statistic of U = 51901.5 and a p-value of less than 0.001. The median citation rate for open-access works was 3, with an interquartile range of 15, compared to a median of 0 and an interquartile range of 3 for closed-access papers, though the researchers emphasized that unadjusted citation comparisons do not establish causal citation advantages over unmeasured confounding variables.\n\nA granular technical inspection of the top-cited and contemporary literature revealed a rapid evolution in foundational deep learning frameworks, transitioning from conventional convolutional structures toward complex hybrid networks. Highly cited architectures, such as the SECNN-MNet model combining Squeeze-and-Excitation mechanisms with MobileNet, reported diagnostic accuracy rates reaching 99.6 percent while utilizing Grad-CAM to visualize recalibrated feature weights. Ensemble approaches combining standard convolutional layers, ResNet50, and EfficientNet-B5 with dynamic adaptive weighting achieved 99.4 percent accuracy across multi-class datasets discerning pituitary tumors, meningiomas, gliomas, and healthy tissue.\n\nDespite reported predictive success across diverse experimental pipelines, the bibliometric review uncovered pervasive methodological risks regarding training data composition and validation rigor. A substantial fraction of the literature depends entirely on a limited set of publicly available benchmark archives, notably the BraTS challenge cohorts from 2018 through 2021, Figshare, and aggregated Kaggle image sets. Across the top 20 cited articles, 25 percent utilized Kaggle cohorts comprising 7,023 magnetic resonance images. The researchers warned that models developed on pre-cropped two-dimensional image slices frequently suffer severe performance degradation when exposed to three-dimensional volumetric scans that introduce motion artifacts and magnetic field inhomogeneities. Furthermore, widespread deployment of random slice-wise validation splits introduces extreme patient-level data leakage, where slices from a single individual appear in both training and testing partitions. This methodological flaw produces ar",
+  "begyujtve": "2026-11-26T17:19:28.725747+00:00",
+  "prioritas": {
+    "pont": 39,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 30,
+      "egyediseg": 85,
+      "hitelesseg": 65,
+      "aktualitas": 90,
+      "kozossegi": 23
+    },
+    "elofeszures": 74,
+    "tanult": 19,
+    "indok": "Egy elméleti bibliometriai áttekintés az agydaganatok diagnosztikájáról, alacsony közvetlen iparági hatással. Forrás-tapasztalat: -7.",
+    "tema": "xai brain tumor imaging",
+    "cim_hu": "Tudományos elemzés térképezi fel a magyarázható AI terjedését az agydaganatok diagnosztikájában",
+    "lead_hu": "Egy új bibliometriai felmérés részletesen vizsgálja a magyarázható mesterséges intelligencia alkalmazását az agydaganatok MRI-alapú diagnosztikájában és annak technikai korlátait.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T17:19:50+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-26T17:19:51+00:00"
+}
