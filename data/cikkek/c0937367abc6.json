@@ -1,0 +1,49 @@
+{
+  "id": "c0937367abc6",
+  "slug": "microsoft-details-how-state-backed-hackers-use-the-artex-ai-framework",
+  "forras_id": "the-decoder",
+  "forras_nev": "The Decoder",
+  "url": "https://the-decoder.com/microsoft-details-how-state-backed-hackers-use-the-artex-ai-framework-to-automate-cyberattacks/",
+  "publikalva": "2026-11-26T11:30:06+00:00",
+  "cim": "Microsoft details how state-backed hackers use the ARTEX AI framework to automate cyberattacks",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 81 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://the-decoder.com/wp-content/uploads/2026/10/microsoft_human_touch.png"
+  },
+  "cim_eredeti": "Microsoft details how state-backed hackers use the ARTEX AI framework to automate cyberattacks",
+  "szoveg_eredeti": "The AI framework ARTEX automates cyberattacks from reconnaissance to data theft. A Microsoft analysis shows how state-backed groups and cybercriminals use its specialized agents at machine speed, and how defenders can respond.\n\nSince its release in July 2026, the AI-powered penetration-testing framework ARTEX has become a go-to tool for cyberattacks. The software was recently suspected of being used in an intrusion into an analytics system run by the CIA, NGA, and ODNI (Link nicht geprüft). That breach surfaced shortly before US financial crimes agency FinCEN reported a security incident. The FBI and the US Department of Agriculture had reported incidents earlier.\n\nA report from Microsoft Threat Intelligence now details how ARTEX works and how widely it has spread. GitHub user \"Autumn-27\" published the source code in July and deleted it in October, though other developers still distribute copies. Chinese security firm ThreatBook also sells a commercial Pro version. Microsoft says state-backed groups from China and North Korea have integrated ARTEX into their operations, including Salt Typhoon, Crystal Typhoon, Onyx Sleet, and Storm-0940. Financially motivated cybercriminals also use the system, the company says, with both state-backed and criminal groups deploying it in operations such as supply chain attacks.\n\nMicrosoft points out that ARTEX doesn't invent new attack techniques. Instead, the framework operates existing security software with almost no human intervention, including tools such as Nmap, Sqlmap, Metasploit, and automated headless browsers. Attackers can connect any large language model, including modified versions without safety guardrails. A built-in pooling feature automatically switches models or API keys on errors or usage limits, making attacks hard for any single AI provider to track.\n\nAccording to Microsoft, the system is built on a multi-agent architecture. A goal model breaks an attacker's instructions into verifiable subgoals. From there, a planning agent continuously reviews a knowledge graph, a dynamic map of discovered systems and vulnerabilities, to assign short attack tasks. Worker agents carry out those tasks via system commands, including deploying web shells on web servers, reading password files, or hijacking cloud accounts. Each new finding feeds back into the map and prompts the planning agent for the next step until a reporting agent documents all exploited flaws.\n\nAutomation cuts defender response times to just a few minutes, the company found. In one case, an AI agent took just five minutes to search for accidentally exposed credentials on GitHub and pull data from Azure Key Vault, a cloud key store. During a Storm-0940 campaign, the company logged more than 151,000 failed login attempts from automated password guessing, peaking at 2,900 per minute. In that same campaign, Microsoft observed some compromised apps granting themselves top administrator privileges.\n\nConventional rule-based filters often fail against ARTEX because they rely on fixed markers like known IP addresses or the browser identifiers \"artex-enrich\" and \"norma.\" Agents and their human operators constantly change those markers and reroute blocked traffic through rotating VPNs, proxy servers, or Tor. Even when security teams spot and isolate a breach, that is often not enough. Because ARTEX usually runs two to three attack chains simultaneously, its agents adapt immediately and shift to new network paths at machine speed.\n\nARTEX still gives itself away with huge bursts of traffic, because the framework doesn't hide its activity by default. Microsoft recommends deception technologies tailored to how AI agents operate, alongside strict access controls, rate limits, and automated real-time isolation for compromised devices.\n\nHoneypots present autonomous agents with attractive but worthless decoy systems to pull traffic away from real targets. Artificial delay loops, known as tarpits, slow down requests and drain an agent's built-in time and compute budget. Fake wins, Microsoft says, are especially effective because ARTEX's goal model looks for verifiable proof of a breach. When a trap returns convincing fake success messages, the AI considers its task complete and stops the attack by itself.\n\nDecoy credentials, called honeytokens, trigger early alerts when agents try to hijack someone else's AI compute. Microsoft's own tests show these deception tactics sharply reduce successful attack traffic against real systems and deliver high-precision data for identifying the attackers behind them.\n\nHow long these defenses will hold up remains open in Microsoft's analysis. The recommended safeguards depend heavily on ARTEX remaining noisy and unmasked. Threshold filters and decoys are likely to reach their limits once attackers space out their requests. Powerful language models that independently recognize artificial test environments and deception attempts, as seen in recent safety tests, pose a similar risk.",
+  "begyujtve": "2026-11-26T11:34:07.587962+00:00",
+  "prioritas": {
+    "pont": 81,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 78,
+      "hirertek": 80,
+      "egyediseg": 90,
+      "hitelesseg": 85,
+      "aktualitas": 99,
+      "kozossegi": 69
+    },
+    "elofeszures": 95,
+    "tanult": 59,
+    "indok": "Komoly kiberbiztonsági hír az AI-alapú támadóeszközök terjedéséről és használatáról.",
+    "tema": "microsoft artex ai cyberattack",
+    "cim_hu": "A Microsoft figyelmeztet: államilag támogatott hackerek használnak AI-alapú támadóeszközt",
+    "lead_hu": "Az ARTEX nevű AI-keretrendszer teljes kiberfelderítést és adatlopást képes automatizálni gépi sebességgel, amit a Microsoft szerint már éles támadásokban is bevetnek.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T11:34:18+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-26T11:34:19+00:00"
+}
