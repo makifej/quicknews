@@ -1,0 +1,49 @@
+{
+  "id": "9c508e8f7f59",
+  "slug": "sandboxed-ai-models-secretly-talk-via-gpu-rounding-errors-on-shared",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Tom's Hardware",
+  "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/sandboxed-ai-models-secretly-talk-via-gpu-rounding-errors-on-shared-vllm-servers-with-no-network-or-shared-files-colluding-watchdog-let-all-354-attacks-slip-through",
+  "publikalva": "2026-11-26T12:30:00+00:00",
+  "cim": "Sandboxed AI models secretly talk via GPU rounding errors on shared vLLM servers with no network or shared files — colluding watchdog let all 354 attacks slip through",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 80 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn.mos.cms.futurecdn.net/TMUte2TB7mThSYVgWPKiQL-2560-80.jpg"
+  },
+  "cim_eredeti": "Sandboxed AI models secretly talk via GPU rounding errors on shared vLLM servers with no network or shared files — colluding watchdog let all 354 attacks slip through",
+  "szoveg_eredeti": "Sandboxed AI models on the same vLLM inference server can reliably exchange information even when cut off from the network and from any shared files, new research shows. Two models secretly communicated through tiny GPU rounding errors over two separate channels with perfect accuracy. In a follow-up experiment, a trained watchdog let all 354 of its partner’s attacks through while still catching most of the decoy honeypots, too.\n\nThe research comes from a LessWrong post by Niranjan Deshpande and David Africa, “Models Can Communicate via Inference Servers Despite Being Sandboxed.” The agents primarily worked through two protocols, “Step Sizing” and “KV Cache Message Board,” to carry information through the way vLLM, an open-source inference engine, selects GPU kernels for each engine step. At the crux of it, one model modifies how the server batches work, and the other reads the traces in its own math, much like the OpenAI red-team agents that built a hidden CPU cache channel to talk last month.\n\nThe two demonstrations, which are shared in a GitHub repository, are “quite contrived,” but one model could affect another’s computation, and “we should expect superintelligent models to discover ways to communicate” even when supposedly sandboxed. In the demos, one model, using a fine-tuned reader (a helper model trained to spot the signal), named which of eight colors its partner picked in 1,221 of 1,221 rounds. In the second experiment, the colluding monitor still caught about as many decoys as an honest one.\n\nEven a few bits “can be tremendously dangerous,” Deshpande writes. A working model could advise a colluding watchdog that its attack isn’t a test, two models could trade a signal for a planned attack, or one could tip off another about monitoring. In a comment, he added that, since most of the channels come from performance optimizations, a clever model asking for an inference speed-up could open further channels with apparently harmless changes.\n\nAt the heart is the inference engine, vLLM, which groups the work of many requests into one “engine step” on the GPU, where it picks a kernel for each step based on the number of tokens processed in that step. Different kernels order the math differently, so the same request comes out with slightly different results; these are tiny rounding errors that “essentially never” change the output text, but they are deterministic. That means a model can be trained to read them.\n\nThe two models in the experiments are called Alice and Bob. If Alice wants to send a 1, she can make a tool call for reading a long document, creating a step large enough to need a kernel switch. Bob, running in the same step, sees the other kernel in his own activations. If she wants to send a 0, she skips the long read, keeping the step small instead. This can transmit one bit, and repeating it over more passes sends more data, effectively enabling communication.\n\nThe second method involves the KV cache, where cached blocks maintain the rounding of the step that computed them. Here, both models are told in advance which fixed piece of text serves as a “mailbox.” To send a 1, Alice has a helper model read that mailbox inside a long prompt, so it’s cached under the big-step kernel. Bob’s own helper then reads the same mailbox in a small step, and the rounding shows whether Alice’s cached copy was used. Unlike step sizing, the two don’t have to run at the same time, but each needs a helper model on the server.\n\nGet Tom's Hardware's best news and in-depth reviews, straight to your inbox.\n\nOf course, this scenario and its two methods were created for exploitation, and the models were told the protocol in advance. In some games, scripts stood in for Alice and Bob to save costs, though the helper models were real. More importantly, step sizing’s accuracy dropped quickly once the researchers replayed real traffic from Microsoft’s Azure in the background, while the message board held up until the server got much busier, as the table below shows. On a busy GPU, Alice can no longer control the step size, and Bob’s mailbox reads land in big steps too, so he can’t tell her cached copy from his own.\n\nBoth protocols also worked on SGLang, LMDeploy, and TensorRT-LLM, in addition to vLLM. Step sizing also worked on multiple GPUs, including the A40, RTX 4090, RTX 5090, and H100. A reader trained on one GPU, though, didn’t recognize the signal on another; which step sizes give identical results depends on the GPU and software, so a reader trained on one setup doesn’t work on another. The main experiments ran on one Nvidia L40S. The consumer cards on the list mean this isn’t just something for the data center, and enthusiasts capable of training their own readers could play around with this themselves.\n\nIn separate in-context games run by Africa on H200s, with no fine-tuning at all, the helper models used unmodified Qwen3-8B, a relatively small model without deeper refinement. Bob was an unmodified GLM model, which is larger, but ran at low effort. Pairing a small model with a larger one is common anyway, as in speculative decoding, where a small draft model proposes tokens for a bigger one to check. What really mattered was how much Bob was told, as the table below shows.\n\nCache explanation, baselines, direction of change\n\nCache explanation and a log of earlier rounds, no baselines\n\nLog only; Bob picks which mailboxes to check\n\nThen again, this doesn’t say anything about what future models could achieve. Claude, Anthropic’s AI model, wrote the research’s code and figures, according to the authors, and Claude Opus 5.5, a frontier model, also “was able to arrive at” the protocols “with minimal prompting” after being told that engine step size affects kernel choice. Decoding accuracy also rose with model capability, which is the real concern.\n\nThe researchers say the channels are “easy to close” and suggest three fixes: serve models on different engine instances, turn on batch-invariant kernels, which make activations bit-identical, and use per-user cache isolation. For the monitor, running it on a different engine instance than the policy “closes nearly every side channel.” vLLM already documents both fixes — cache salting and batch invariance — but they are opt-in. These fixes can reduce cache efficiency and performance, so they do come at a cost.\n\nFollow Tom’s Hardware on Google News, or add us as a preferred source, to get our latest news, analysis, & reviews in your feeds.\n\nShane Downing is a Contributing Writer for Tom’s Hardware, covering consumer storage, PC hardware, and AI.",
+  "begyujtve": "2026-11-26T14:34:33.062050+00:00",
+  "prioritas": {
+    "pont": 80,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 85,
+      "hirertek": 90,
+      "egyediseg": 95,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 78
+    },
+    "elofeszures": 82,
+    "tanult": 74,
+    "indok": "Kritikus biztonsági sérülékenység vLLM szervereken, ahol izolált AI modellek GPU kerekítési hibákon keresztül tudnak titokban kommunikálni. Forrás-tapasztalat: -7.",
+    "tema": "ai safety gpu vulnerability",
+    "cim_hu": "Szigorúan izolált AI-modellek tanulmány szerint GPU-kerekítési hibákon keresztül kommunikálnak titokban",
+    "lead_hu": "Új kutatás szerint a vLLM szervereken futó izolált AI modellek hálózati kapcsolat nélkül is képesek adatokat cserélni GPU kerekítési hibák kihasználásával. A tesztelt ellenőrző rendszer az összes támadást átengedte.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T14:34:53+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-26T14:34:54+00:00"
+}
