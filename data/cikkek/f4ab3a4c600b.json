@@ -1,0 +1,83 @@
+{
+  "id": "f4ab3a4c600b",
+  "slug": "mesterseges-intelligencia-azonositja-a-parkinson-kort-a-hang-alapjan",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Nature",
+  "url": "https://www.nature.com/articles/s41598-026-74294-w",
+  "szerzo": null,
+  "publikalva": "2026-11-26T11:14:56+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41598-026-74294-w/MediaObjects/41598_2026_74294_Fig1_HTML.png",
+    "kep_kicsi": "https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41598-026-74294-w/MediaObjects/41598_2026_74294_Fig1_HTML.png"
+  },
+  "cim_eredeti": "Artificial Intelligence-based hierarchical classification of parkinsonism using digital voice biomarkers",
+  "forrasok": [],
+  "szoveg_eredeti": "Parkinsonian disorders and related movement disorders, including Parkinson disease, essential tremor, multiple system atrophy, and progressive supranuclear palsy, are heterogeneous conditions that can be difficult to differentiate clinically. We developed and validated a voice-based digital biomarker approach using a large-scale dataset of approximately 1600 participants across five diagnostic groups. Acoustic features capturing phonation stability, articulation, and voice quality were extracted, and a hierarchical classification framework reflecting clinical diagnostic workflows was applied. The pipeline consisted of three stages: normal controls versus disease, essential tremor versus Parkinsonism, and differentiation among Parkinsonian subtypes. On an independent test set, the model achieved AUCs of 0.892 and 0.737 in Stages 1 and 2, respectively, and a macro-average one-vs-rest AUC of 0.710 in Stage 3. When evaluated end-to-end, the complete hierarchical pipeline achieved an overall accuracy of 0.533 and an F1-score of 0.404. Explainability analysis identified phonation and articulation features as key contributors to classification. These findings suggest the feasibility of using voice-based digital biomarkers as supportive tools for screening and classification of Parkinsonian disorders.\n\nParkinson’s disease (PD) is one of the fastest-growing neurodegenerative disorders worldwide, with the number of affected patients increasing substantially over the past few decades. According to recent epidemiological studies, the number of individuals affected by PD has increased from approximately 3.15 million in 1990 to 11.77 million in 2021, representing a nearly 3.7-fold increase. Furthermore, PD shows a strong age dependency, with the highest prevalence observed in individuals aged 80–84 years1. Parkinsonism encompasses a group of neurodegenerative conditions, including PD, multiple system atrophy (MSA), and progressive supranuclear palsy (PSP), which are characterized by progressive motor impairment and a wide range of neurological symptoms that significantly affect patients’ quality of life2,3. Although essential tremor (ET) is not classified as a Parkinsonian disorder, it shares overlapping clinical features, particularly tremor, making it an important condition in the differential diagnosis of PD4. These disorders often present with similar clinical manifestations, especially in the early stages, making accurate differential diagnosis challenging and limiting early detection5.\n\nRecent advances in artificial intelligence (AI) have facilitated the development of data-driven approaches across diverse biomedical applications, ranging from molecular-level prediction to disease classification and clinical decision support6,7. In PD, numerous studies have explored speech and voice data as digital biomarkers for disease detection and classification8. Voice-based analysis offers several advantages, including its noninvasive nature and cost-effectiveness, and has demonstrated potential for early screening, differential diagnosis, and symptom assessment. In particular, machine learning approaches have been widely applied to classify Parkinsonian disorders and predict disease progression using speech-derived features9.\n\nRecent studies have reported promising results using speech biomarkers for various clinical tasks. For example, Subert et al.10 performed binary classification across multiple disease groups (MSA, PD, and healthy controls) using a balanced dataset with 39 patients per class, reporting AUC values of 0.81 for MSA vs. PD, 0.88 for MSA vs HC, and 0.74 for PD vs HC. Sousa et al.11 focused on predicting motor symptoms in PD rather than simple classification, achieving an AUC of 0.86 using speech features, suggesting their potential in reflecting disease severity. Thies et al.9 investigated medication state classification in PD patients reporting an AUC of 0.74, indicating that speech characteristics can capture intra-patient changes. Additionally, Daoudi et al.8 conducted multi-class classification among patients with PD, MSA, PSP, and healthy controls, demonstrating high performance with AUC values exceeding 0.89 across several pairwise comparisons. Diao et al.12 further extended this approach to include both classification and disease progression analysis achieving an AUC of 0.80 and showing meaningful correlations with disease severity.\n\nDespite these promising results, several limitations remain. Most previous studies have primarily focused on binary classification tasks, typically distinguishing patients with PD from healthy controls, which limits their applicability in real-world clinical settings, where multiple disorders must be differentiated. Furthermore, many studies rely on relatively small datasets, typically ranging from 20 to 150 participants10,13 which restricts the generalizability and robustness of the proposed models. Furthermore, although model performance has been emphasized, interpretability has often been insufficiently addressed.\n\nTo address these limitations, this study proposes a hierarchical classification framework that reflects the clinical diagnostic workflow using a large-scale voice dataset14,15. Specifically, the classification process is divided into three stages: Stage 1 distinguishes normal controls from disease groups, Stage 2 differentiates ET from Parkinsonism (PD, MSA, and PSP), and Stage 3 further classifies Parkinsonism into PD, MSA, and PSP. This progressive classification strategy enables stepwise refinement of disease categories while providing interpretable insights through the identification of key voice features at each stage on a patient-level basis. In addition, this study employed explainable AI techniques, including a SHAP-based analysis, to quantitatively evaluate the contributions of acoustic features. By integrating statistical analyses with interpretable model outputs, this approach provides a deeper insight into the relationship between speech-derived biomarkers and neurodegenerative disorders.\n\nIn this study, the performances of machine learning models (CatBoost, LightGBM, RF, Support Vector Machine [SVM], and XGBoost) and deep learning models (CNN, FT-Transformer, MLP, TabTransformer, and TabFuseNet) were compared across different stages using AUC and F1-score, as summarized in Table 1. In Stage 1, which distinguished normal controls from the disease groups, RF and TabFuseNet achieved the highest mean AUC of 0.899, while CatBoost achieved an AUC of 0.892 and an F1-score of 0.792. In Stage 2, which distinguished ET from Parkinsonism, SVM achieved the highest mean AUC of 0.737, with F1-score of 0.604. In Stage 3, which differentiated PD, MSA, and PSP, CatBoost achieved the highest macro-average one-vs-rest AUC of 0.710, whereas MLP achieved the highest F1-score of 0.476.\n\nAdditional sensitivity and specificity analyses across the five independent runs are provided in Supplementary Table S1. In Stage 1, CatBoost showed high sensitivity (0.950) but relatively lower specificity (0.587), whereas several deep learning models exhibited more balanced sensitivity–specificity profiles.\n\nOverall, AUC-based evaluation demonstrated that discrimination was strongest in Stage 1 and became progressively more challenging in the later stages. For the selected hierarchical pipeline, CatBoost achieved an AUC of 0.892 (95% CI, 0.876–0.908) in Stage 1, and SVM achieved an AUC of 0.737 (95% CI, 0.700–0.773) in Stage 2. In Stage 3, CatBoost achieved one-vs-rest AUCs of 0.706 (95% CI, 0.677–0.736) for PD, 0.729 (95% CI, 0.674–0.784) for MSA, and 0.696 (95% CI, 0.637–0.755) for PSP, with a corresponding macro-average AUC of 0.710 (95% CI, 0.683–0.738). These findings indicate that differentiating PD, MSA, and PSP remains substantially more challenging than distinguishing normal controls from disease groups.\n\nTo evaluate the complete hierarchical framework while accounting for sequential error propagation, predictions",
+  "modell": "gemini-3.5-flash",
+  "cim": "Mesterséges intelligencia azonosítja a Parkinson-kórt a hang alapján",
+  "lead": "Egy új kutatás szerint a hangképzési sajátosságok elemzésével a mesterséges intelligencia képes felismerni és megkülönböztetni a Parkinson-kórt.",
+  "osszefoglalo": "A [NatureScientific Reportsban](https://www.nature.com/srep) megjelent tanulmányban a kutatók egy **hangalapú digitális biomarkert** fejlesztettek ki, amely nagyjából 1600 résztvevő hangmintái alapján azonosítja a neurodegeneratív betegségeket. A rendszer a hangképzés stabilitását, az artikulációt és a hangminőséget elemzi egy háromlépcsős diagnosztikai folyamat során.\n\nA modell az első szakaszban **0,892-es AUC-értékkel** tudta elkülöníteni az egészséges résztvevőket a betegektől. A második és harmadik lépésben a rendszer a Parkinson-kór különböző alcsoportjait és a hasonló tünetekkel járó esszenciális remegést igyekezett megkülönböztetni egymástól, ahol a teljes folyamat végpontok közötti pontossága 0,533 lett.\n\nBár a teljes folyamat együttes pontossága még korlátozott, a kísérlet bebizonyította, hogy a hangalapú mesterséges intelligencia hatékony kiegészítő eszközzé válhat a korai szűrésekben és a diagnosztikában.",
+  "miert_szamit": "Az eredmény jól mutatja, hogy az AI-alapú hang- és beszédelemzés **nem invazív, olcsó szűrőeszközzé válhat** az egészségügyi és diagnosztikai alkalmazásokban.",
+  "cimkek": [
+    "kutatás",
+    "egészségügy",
+    "CatBoost",
+    "SVM"
+  ],
+  "kategoria": "kutatás",
+  "forras_tipus": "kutatas",
+  "fontossag": 3,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 74,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 78,
+      "aktualitas": 98,
+      "kozossegi": 64
+    },
+    "elofeszures": 79,
+    "tanult": 55,
+    "indok": "A Nature-ben megjelent komoly orvosi kutatás a Parkinson-kór digitális hang-biomarkerekkel történő AI-alapú diagnosztizálásáról. Forrás-tapasztalat: -7.",
+    "tema": "ai medical parkinsons detection",
+    "cim_hu": "A hang alapján ismerheti fel a Parkinson-kórt egy új AI-modell",
+    "lead_hu": "A Nature-ben megjelent kutatás szerint a digitális hang-biomarkereket elemző mesterséges intelligencia hatékonyan segíthet a nehezen megkülönböztethető mozgásszervi betegségek diagnosztizálásában.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T11:20:32+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-26T11:20:54+00:00",
+  "megjelent": "2026-11-26T11:20:54+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-26T11:20:56+00:00",
+    "esemeny": "A kutatók a NatureScientific Reportsban publikált tanulmányukban egy hangalapú, háromlépcsős mesterségesintelligencia-rendszert fejlesztettek ki és validáltak mintegy 1600 résztvevő adatai alapján a Parkinson-kór, annak altípusai, az esszenciális remegés és az egészséges kontrollcsoport megkülönböztetésére.",
+    "forrasok": [
+      "https://www.nature.com/articles/s41598-026-74294-w"
+    ],
+    "hibak": [
+      "A leadben és az összefoglalóban az AUC érték (0,892) tévesen pontosságként (accuracy) szerepel. Az AUC a ROC-görbe alatti területet jelenti, míg a modell tényleges teljes végpontok közötti pontossága (accuracy) 0,533 (53,3%) volt."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Mesterséges intelligencia azonosítja a Parkinson-kórt a hang alapján",
+      "lead": "Egy új kutatás szerint a hangképzési sajátosságok elemzésével a mesterséges intelligencia képes felismerni és megkülönböztetni a Parkinson-kórt.",
+      "osszefoglalo": "A Nature folyóiratban megjelent tanulmányban a kutatók egy **hangalapú digitális biomarkert** fejlesztettek ki, amely nagyjából 1600 résztvevő hangmintái alapján azonosítja a neurodegeneratív betegségeket. A rendszer a hangképzés stabilitását, az artikulációt és a hangminőséget elemzi egy háromlépcsős diagnosztikai folyamat során.\n\nA modell az első szakaszban **0,892-es pontossággal (AUC)** tudta elkülöníteni az egészséges résztvevőket a betegektől. A második és harmadik lépésben a rendszer a Parkinson-kór különböző alcsoportjait és a hasonló tünetekkel járó esszenciális remegést igyekezett megkülönböztetni egymástól.\n\nBár a teljes folyamat együttes pontossága még korlátozott, a kísérlet bebizonyította, hogy a hangalapú mesterséges intelligencia hatékony kiegészítő eszközzé válhat a korai szűrésekben és a diagnosztikában.",
+      "miert_szamit": "Az eredmény jól mutatja, hogy az AI-alapú hang- és beszédelemzés **nem invazív, olcsó szűrőeszközzé válhat** az egészségügyi és diagnosztikai alkalmazásokban."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-26T11:21:35+00:00",
+  "linkek_ellenorizve": true
+}

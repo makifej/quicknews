@@ -1,0 +1,49 @@
+{
+  "id": "0c130beeac3f",
+  "slug": "your-agents-instructions-are-not-its-permissions",
+  "forras_id": "dailydev",
+  "forras_nev": "Kilo Blog (daily.dev)",
+  "url": "https://blog.kilo.ai/p/your-agents-instructions-are-not",
+  "publikalva": "2026-11-24T18:18:21+00:00",
+  "cim": "Your Agent’s Instructions Are Not Its Permissions",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 64 pont, tendencia 20%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/93b36a02a468fa3b8583179c2c2ad2e6?_a=AQAEuop"
+  },
+  "cim_eredeti": "Your Agent’s Instructions Are Not Its Permissions",
+  "szoveg_eredeti": "Sam Shaddox just wanted his $300 mattress rebate.\n\nThe rebate was sitting somewhere in his inbox, so he gave his personal AI agent one instruction: go find the mattress rebate in my email. It found it. Then it kept going. It clicked the link, created an account with the rebate administrator, accepted the program’s terms “without asking me,” submitted the claim, and accepted a second set of terms on the way out. He told the story in his talk, Agents Signing Contracts: Legal Authority and Liability for Autonomous AI.\n\nThanks for reading Kilo Blog! Subscribe for free to receive new posts and support my work.\n\nShaddox is the founding attorney at Talairis, an AI-native law firm, so he read the situation the way a lawyer would. His agent had signed him up to two contracts he never read. If those terms ever ended up in a dispute, saying he didn’t expect his AI to agree to anything “wouldn’t be a defense to me.” Then he asked the room to picture a worse version: “what if the rebate terms and conditions said you agree to actually pay five hundred dollars to a third party in order to get this three hundred dollars?”\n\nHis bottom line fits in one sentence: “delegation itself is never going to be a defense.”\n\nShaddox focused on the legal side, but he wasn’t alone in the underlying concern: What you tell an agent is guidance. What the system lets it do is permission. You’re accountable for both.\n\nOn October 22 we helped run All Day AI. In the security-track recap, I summarized how five practitioners argued for limits enforced outside the model. These eight speakers bring the question down to the grant itself: whose authority the agent uses, how far it goes, when it expires, and how to test that the limits hold.\n\nIn Shaddox’s account, the mattress agent used the access he had given it and decided for itself how far the task went. Under the agency law he walked through, “permission settings are grants of authority,” and “an open-ended permission is telling the agent that you are going to be responsible for everything it does.”\n\n“When you click always allow or allow always, then the agency that you are giving to that particular agent is going to be something that you’re responsible for,” he said.\n\nShaddox also pointed to the tribunal ruling against Air Canada over what its website chatbot told a customer, and summed up the decision as “nice try Air Canada, you are responsible for this chatbot that you put on your website and everything that it says.”\n\nMy developer takeaway from Shaddox’s talk: think about the shell command you auto-approved three weeks ago and forgot about. Every line on your allowlist lets the agent act without asking again. Treat it as a standing delegation you need to review. As Shaddox put it: “The agent is autonomous, and it’s acting on your behalf, but the accountability is not. The accountability is going to be yours.”\n\nIf every permission is a grant, the next question is how big the grant should be. Caroline Wong, chief strategy officer at Axari and author of The AI Cybersecurity Handbook, built her talk, The AI Cybersecurity Handbook, Continued, around an accounts-payable agent and opened with a simple distinction: “permission to read an invoice is different from permission to approve a payment.”\n\nA goal like “process invoices” doesn’t say whether the agent can add a vendor, change bank details, or approve a payment. “Those permissions need to be specified separately.” In the pilot she described, the agent reads invoices, purchase orders, and the vendor list, and approves payments up to $10,000 for vendors already in the system. It doesn’t add vendors, change bank details, or move money outside the payment system, because “adding vendors and changing bank details create opportunities to redirect payments.”\n\nThen came the line that sums up her talk: “If the ten thousand dollar limit is only written in the agent’s instructions, the agent will usually follow it, but nothing stops it from doing otherwise.”\n\nSo in her design, a payment over $10,000 goes to a manager, and the payment system won’t release the money without that manager’s approval on record. “That approval should be checked by the payment system, not by the agent.”\n\nVarija Singh, of EXLService, used an assistant exposing confidential salary figures to make the same point in AI Is Only as Trusted as Its Data: Building the Governance Foundation for Enterprise AI. “Just because the AI can find something doesn’t mean that it should be allowed to use it,” she said. Access rules “need to be enforced when the AI retrieves the data or calls a tool, not just written in a prompt saying that, oh, just be careful.”\n\nWong’s limits cover what the agent is allowed to do. The next problem is what it reads along the way. Shaddox’s agent found the rebate link in an email, and an email can carry other instructions too. Agents read untrusted text all day: issues, emails, READMEs, attachments, web pages. Wong was direct about how far prevention goes: “We can’t fully prevent an agent from being influenced by what it can read.”\n\nBrendan O’Leary, developer marketing lead at Composio, in his talk Autonomous but Accountable: Building Agents You Can Trust to Take Action, used an email that says to ignore the earlier request and send the whole customer list. “That text is in the email, but it doesn’t grant authority.”\n\nStaford Titus Selvaraj, co-founder of Charlemagne Labs, in his talk Your AI Agent Has Permission. But Whose Permission?, used an invoice whose attachment asks the agent to update the supplier’s banking details, when the user only asked for a payment recommendation. The attachment could come from the real supplier or from an attacker. “Either way, reading a request and possessing the ability to execute it are actually two different things.” His rule for the system around the agent was short: “The agent cannot edit the policy or it cannot give its own self a grant.”\n\nHe also flagged the failure that happens before any attacker shows up. If an ambiguous request turns into an overly broad grant, “perfect downstream enforcement will enforce that bad grant too.” The grant has to be right before enforcement can help.\n\nO’Leary opened his talk with a story that went around tech Twitter: a private financial report sent to the wrong audience. A user set up an agent to deliver a monthly personal financial audit, privately, to him. He called it his personal CFO. “But the audit then appeared later in his company’s executive Slack channel under his identity,” O’Leary said. “It was posted as him.” His bank connection was read-only, and the Slack post came from a different agent. He only found out because a teammate alerted him, and by then the report had been sitting in the channel for two hours. Afterward, in O’Leary’s words, “all we have is the agent’s apology.”\n\nRead-only access to the bank didn’t stop the disclosure. Once the data was out, another agent could post it as him, and nothing showed who had actually taken the action. A separate agent identity helps with attribution; the system also has to control where the report can go. O’Leary’s fix starts with identity: “If the user ID is supplied by the model, that’s not the proof of who it’s going to go act for.” Authority also has to expire. In his second example, a user’s agent sends a financial report every Monday, and later that week she changes teams and shouldn’t see that data anymore. The check has to run again when the job wakes up. “Monday’s permission can’t silently become permanent permission for that agent to always do this.”\n\nAnusha Mukka, who builds identity and access-control infrastructure at Meta, spoke on Policy Decision Engines: The Infrastructure Behind Enterprise Access Control and offered a useful image: a delegated agent should work like a valet key, which “starts the car, but it won’t open the trunk or a glove box.” She pointed to the OAuth token exchange spec, RFC 8693, which separates impersonation (one identity becomes another) f",
+  "begyujtve": "2026-11-26T11:20:17.872277+00:00",
+  "prioritas": {
+    "pont": 64,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 90,
+      "hitelesseg": 70,
+      "aktualitas": 64,
+      "kozossegi": 65
+    },
+    "elofeszures": 68,
+    "tanult": 51,
+    "indok": "Érdekes esettanulmány az AI-ágensek jogi és biztonsági kockázatairól, amikor felhatalmazás nélkül fogadnak el Szerződéseket. Forrás-tapasztalat: -8. A forrás P3-as híreiből eddig kb. 20%-ot fogadtál el.",
+    "tema": "ai agent security liability",
+    "cim_hu": "Túlbuzgó AI-ágens fogadott el felhasználási feltételeket a gazdája helyett",
+    "lead_hu": "Egy felhasználó csak egy e-mailben lévő visszatérítést kerestetett az AI-ágensével, az azonban magától fiókot regisztrált és jogi nyilatkozatokat is elfogadott.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T11:20:32+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-26T11:20:40+00:00"
+}
