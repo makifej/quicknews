@@ -1,0 +1,49 @@
+{
+  "id": "02a088434703",
+  "slug": "introducing-the-llama-cpp-benchmark-dashboard-for-amd-ryzen-and-radeon",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/ggml-org/llamacpp-amd-bench",
+  "publikalva": "2026-11-26T11:37:17+00:00",
+  "cim": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 58 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-uploads.huggingface.co/production/uploads/67289c93ff90038d9a6e5675/tbIvyMSISXCm64WYP3atl.png"
+  },
+  "cim_eredeti": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
+  "szoveg_eredeti": "The llama.cpp × AMD Benchmark dashboard is available on Hugging Face. It lets you track prompt processing and text generation performance across llama.cpp builds, models, and quantizations, so you can explore how local inference performs on AMD Ryzen and Radeon hardware.\n\nLocal inference performance changes as models, kernels, and builds evolve. We want those changes to be easy to inspect for any AMD developer: pick a hardware, a model and a build, compare quantizations, and follow performance over time. The benchmark workflow and underlying results are public, so you can also inspect how we benchmark inference performance.\n\nYou can choose Hardware, Model, and llama.cpp build in the Configuration sidebar. The current hardware choices are Radeon 8060S (gfx1151) and Radeon AI Pro R9700S (gfx1201).\n\nThe dashboard shows two separate tests, both measured in tokens per second:\n\nBoth tests start at context depth zero (n_depth=0). PP512 measures processing 512 input tokens without generation; TG128 measures generating 128 tokens without a pre-existing context. The plotted value is the mean throughput (avg_ts). These are useful reference workloads, while the Context scaling tab lets you explore token generation throughput as the context grows.\n\nWe benchmark the prebuilt binaries distributed through llama-install.sh, the build and installation project behind llama.app. The public gfx1151 and gfx1201 workflows are scheduled weekly and run the standard benchmarks using the llama-bench tool with Flash Attention on and off, with 10 repetitions per configuration.\n\nThe model set evolves and currently includes Inkling 2 Mini, Qwen, Gemma, gpt-oss, and LFM models, covering both dense and mixture-of-experts architectures. Available GGUF formats include Q4_K_M, Q8_0, other quantizations, and higher-precision formats such as BF16 and F16.\n\nThe explorer reads directly from the public ggml-org/install.sh-benches-data Storage Bucket on Hugging Face. The data source link beside the chart title opens the folder for the selected build, hardware, and model.\n\nStandard results use <build>/<hardware>/<model>/<quant>.jsonl. Workload sweeps use the same folder <quant>-tg.jsonl filename.\n\nUse them to investigate a result, make your own charts, or compare with a local run.\n\nThanks to the AMD team for providing test infrastructure and helping validate the setup! Try the dashboard, inspect the data, and let us know which models and workloads you would like to see next.",
+  "begyujtve": "2026-11-26T11:47:56.264911+00:00",
+  "prioritas": {
+    "pont": 58,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 50,
+      "egyediseg": 90,
+      "hitelesseg": 90,
+      "aktualitas": 98,
+      "kozossegi": 69
+    },
+    "elofeszures": 100,
+    "tanult": 89,
+    "indok": "Hasznos technikai eszköz a helyi AI-modell futtatás rajongóinak, de nem kiemelkedő nagy hír. Forrás-tapasztalat: -5.",
+    "tema": "llama.cpp amd benchmark dashboard",
+    "cim_hu": "Megjelent a llama.cpp teljesítménymérő felülete AMD processzorokhoz és videókártyákhoz",
+    "lead_hu": "A Hugging Face és az AMD közös felületén nyomon követhető a helyi AI-modellfuttatás sebessége a különféle llama.cpp verziók és kvantálások mellett.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T11:49:44+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-26T11:49:50+00:00"
+}
