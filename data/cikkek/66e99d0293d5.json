@@ -1,0 +1,49 @@
+{
+  "id": "66e99d0293d5",
+  "slug": "physics-guided-artificial-intelligence-reconstructs-fluid-flow-from",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/physics-guided-artificial-intelligence-reconstructs-fluid-flow-from-imperfect-imaging-data/",
+  "publikalva": "2026-11-26T17:46:35+00:00",
+  "cim": "Physics-Guided Artificial Intelligence Reconstructs Fluid Flow From Imperfect Imaging Data",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 67 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-29886.png"
+  },
+  "cim_eredeti": "Physics-Guided Artificial Intelligence Reconstructs Fluid Flow From Imperfect Imaging Data",
+  "szoveg_eredeti": "Physics-Guided Artificial Intelligence Reconstructs Fluid Flow From Imperfect Imaging Data\n\nResearchers at the University of California, Irvine have developed a computational method that combines fundamental principles of physics with artificial intelligence to reconstruct accurate, detailed fluid-flow fields from sparse and imperfect measurements. Detailed in a study published in the journal Physics of Fluids, the framework couples neural networks with theoretical fluid mechanics to recover flow features that standard imaging technologies cannot fully capture. The computational modeling approach was created through an interdisciplinary collaboration between mechanical engineers and medical researchers seeking to overcome the physical and technical constraints common to fluid flow visualization.\n\nContemporary diagnostic technologies have substantially advanced the clinical visualization of blood moving through the human heart, but current instruments face inherent physical limitations. Tools such as echocardiography and four-dimensional flow magnetic resonance imaging yield representations of cardiovascular flow rather than complete physical descriptions. Because acquisition systems are constrained by finite spatial resolution, temporal sampling limits, and measurement noise, the resulting data sets frequently omit subtle yet vital components of fluid dynamics that govern intracardiac hemodynamics.\n\nThese measurement constraints extend beyond clinical medicine to encompass multiple domains of experimental fluid dynamics, including air circulating across an aircraft wing or fluids traveling through industrial conduits. In all such environments, physical sensors capture fluid behavior only at selected positions and moments in time. Conventional computational post-processing algorithms typically attempt to interpolate between observed data points or apply numerical smoothing to suppress measurement noise; however, these statistical procedures do not guarantee that the reconstructed velocity field adheres to the governing conservation laws of fluid mechanics.\n\nTo solve this fundamental challenge, the research team developed a framework known as the principle of minimum pressure gradient-based neural network, or PMPG-NN. The technique merges deep learning architectures with the principle of minimum pressure gradient, an established theoretical concept in fluid mechanics previously advanced by mechanical and aerospace engineering professor Haithem Taha and his colleagues. Rather than relying exclusively on data-driven curve fitting, PMPG-NN incorporates governing physical laws directly into the learning process, identifying flow fields that simultaneously match sparse empirical data points and satisfy the physical equations of fluid motion.\n\nA notable distinction between PMPG-NN and conventional physics-informed neural network models lies in how fluid pressure is handled during computation. Standard physics-informed neural networks frequently demand an explicit numerical representation of fluid pressure alongside velocity terms, which introduces complexity and requires supplementary data. In contrast, the UC Irvine framework applies the physics-based minimization principle to guide velocity field reconstruction without requiring direct pressure measurements or explicit pressure formulations.\n\nThe researchers evaluated the computational framework across three classical benchmark problems in fluid mechanics: steady flow around a sphere, interacting vortex dynamics, and time-dependent fluid flow through a channel. These controlled benchmark scenarios provided synthetic and known reference flow fields against which the algorithm could be rigorously tested. By deliberately corrupting reference data with substantial measurement noise and systematically restricting the spatial and temporal availability of sampling points, the investigators analyzed the model’s capacity to recover the true underlying fluid motion.\n\nAcross all simulated benchmark tests, the framework demonstrated substantial improvements in flow reconstruction accuracy relative to pure data interpolation, exhibiting particular resilience when measurements were heavily contaminated by noise. The neural network maintained high accuracy under spatially sparse observations and temporally limited sampling intervals, demonstrating that it can reconstruct fluid behavior with far fewer data points than would be necessary for direct measurement. Furthermore, the framework markedly enhanced the recovery of velocity gradients, which quantify spatial changes in fluid velocity and are critical for characterizing complex flow patterns.\n\nThe research project was led by first author Abdelrahman Elmaradny, who completed his doctoral studies at UC Irvine under Taha’s supervision and now works at Ford Motor Company. Co-authors include Mohammad Saber Hashemi, a former postdoctoral researcher at UC Irvine who now directs his own laboratory at Kansas State University, alongside senior collaborators Taha and Arash Kheradvar, a professor of radiological sciences and biomedical engineering. The project represents a cross-disciplinary bridge uniting theoretical fluid mechanics from the Samueli School of Engineering with medical imaging expertise from the UC Irvine School of Medicine.\n\nAlthough the present paper focuses on fundamental fluid mechanics problems rather than clinical trials, the team identified immediate biomedical imaging techniques that could benefit from physics-guided reconstruction. Applying PMPG-NN to echocardiographic particle image velocimetry and four-dimensional flow magnetic resonance imaging could help clinicians resolve complex intracardiac vortices and blood-flow structures that are currently blurred by imaging limits. Enhancing flow fields computationally could provide clearer characterization of cardiovascular function in patients with complex heart disease without demanding new clinical scanner hardware.\n\nBeyond cardiology, the researchers noted that the physics-guided framework offers potential utility in aerospace engineering and industrial processing where experimental measurements encounter severe resolution limits. The published investigation, titled On physics-based reconstruction of incompressible flow fields from noisy and sparse data, received financial support from the National Heart, Lung, and Blood Institute and the National Science Foundation.\n\nThe collaborative project originated from complementary research specializations within the University of California, Irvine. Haithem Taha, a professor of mechanical and aerospace engineering in the Samueli School of Engineering, concentrates his academic research on theoretical fluid mechanics, mathematical modeling, and the underlying physical principles governing fluid motion. Arash Kheradvar, a medical doctor and professor holding joint appointments in radiological sciences within the School of Medicine and biomedical engineering within the Samueli School of Engineering, focuses his investigations on cardiovascular mechanics, medical imaging techniques to characterize cardiovascular function, and the development of specialized medical device technologies. Together with their co-authors, the senior investigators sought to determine how theoretical discoveries emerging from engineering and fluid physics could be systematically applied to address unresolved challenges in diagnostic imaging.\n\nIn describing the conceptual foundation of the investigation, Kheradvar noted the universal constraints that challenge clinical fluid visualization. Every medical imaging technique has inherent limitations in what it can measure, he explained, pointing out that when clinicians image blood flow using echocardiography or four-dimensional flow magnetic resonance imaging, they obtain a representation of the actual flow field rather than its complete physical description. The primary objective of the team was to deploy the governing laws of fluid mechanics",
+  "begyujtve": "2026-11-26T18:04:07.369693+00:00",
+  "prioritas": {
+    "pont": 67,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 98,
+      "kozossegi": 36
+    },
+    "elofeszures": 73,
+    "tanult": 15,
+    "indok": "Tudományos áttörés a fizika és a mesterséges intelligencia ötvözésével, megbízható egyetemi forrásból. Forrás-tapasztalat: -7.",
+    "tema": "physics guided ai fluid dynamics",
+    "cim_hu": "A fizika törvényeit használó AI rekonstruálja az áramlásokat hiányos adatokból",
+    "lead_hu": "A Kaliforniai Egyetem kutatói a fizika alapelveit ötvözték a mesterséges intelligenciával, így pontos áramlási mezőket tudnak rekonstruálni hiányos mérésekből.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T18:04:25+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-26T18:04:26+00:00"
+}
