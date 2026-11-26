@@ -1,0 +1,49 @@
+{
+  "id": "c01600d41603",
+  "slug": "swarms-flocks-gangs-how-to-build-train-and-evaluate-multi-agent",
+  "forras_id": "huggingface",
+  "forras_nev": "Hugging Face",
+  "url": "https://huggingface.co/blog/training-swarms",
+  "publikalva": "2026-11-26T00:00:00+00:00",
+  "cim": "Swarms, Flocks, Gangs: How to build, train, and evaluate multi-agent systems",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 48 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://huggingface.co/blog/assets/training-swarms/thumbnail.png"
+  },
+  "cim_eredeti": "Swarms, Flocks, Gangs: How to build, train, and evaluate multi-agent systems",
+  "szoveg_eredeti": "Part 1: Understanding swarms and training to communicate\n\nThis is an aspirational blog series for aspirational readers. We (us, the community, you) want to build our own agent swarms because they're exciting, challenging, and increasingly capable. Furthermore, it would be extremely cool if we could train our own agents to work in a swarm. And exponentially cool if those swarms used small and affordable models.\n\nThat's what we'll do in this series! Each blog post will include some context on building swarms, alongside reproducible examples that you can run on Hugging Face Jobs. This post's example takes about five hours on two H200s, which costs roughly $50.\n\nMulti-Agent Systems are hard to get working. Adding agents changes the agent's context, the budget, and in turn the complexity of the whole system. Mixing agents' context together through communication is not an inherent performance boost compared to a single agent. The model needs to learn to communicate through training. How do we define what models should learn? And which model weights do we update when we're dealing with many agents?\n\nIn this series, we'll work through those problems with an educational overview and practical examples. Each post will introduce a question, build a small system, and examine what happens and how you can reproduce it. This first example starts with four agents, a shared language model, and a simple verifiable task. It's ideal to implement yourself, to tinker with, and to learn from.\n\nFirst, we'll start off with some context on swarms.\n\nWe've heard a lot about swarms over the past few months, both good and bad. In September this year, OpenAI announced that a swarm of roughly 10,000 agents had found a singularity in the 3D Navier-Stokes equations, one of the Millennium Prize problems. A smaller group of nearly 100 agents had already disproved regularity for the unforced 3D Euler equations, a closely related open problem.\n\nBut swarms don't always work on the problems we want them to. METR's investigation of the Hugging Face incident found that around 1,200 OpenAI agents, which were supposed to be isolated, had found a way to exchange over 70,000 messages and files. Around 700 joined an attack on Hugging Face while looking for ways to fool their benchmark's scorer, without instruction to do so.\n\nA big swarm isn't, by itself, evidence that cooperation helped. Noam Brown estimates that less than 10% of the Navier-Stokes result came from multi-agent cooperation. In Anthropic's vulnerability-finding experiment, coordinated agents found more bugs than independent agents, but also searched more code and used more tokens. When the comparison was restricted to the same directories, the results per million tokens were about the same.\n\nStart with the simplest case. If four agents each try a task independently, the chance that at least one gets it right is higher than with a single attempt, as long as we can tell which answer is correct. That makes a useful baseline for a multi-agent system, but it doesn't show that the agents helped each other. They may simply have had more tries.\n\nFour attempts also cost four times as much. So the fairer comparison is at an equal budget: if each of four agents gets a quarter of the total tokens, can they still beat one agent that spends all of them? We can only find out by testing, because the answer depends on the task, the model and how the work is divided.\n\nThis series keeps asking one question: when agents communicate, does it actually help, or are we just spending more compute?\n\nWe understand that question through this simple expectation.\n\nWe'll treat agent count as a scaling dimension, alongside tokens and model size. Sometimes adding agents will help. Sometimes coordination will consume the budget we hoped to save. The point is to measure both. We won't start with 10,000 agents. We'll start with a small team on a task that we can check easily.\n\nMulti-agent reinforcement learning has studied cooperation and competition long before language models were called swarms.\n\nA single agent's task is a Markov decision process: observe, act, get a reward. In a team, everyone shares the reward, but each agent sees only part of the world. This is a decentralized partially observable Markov decision process: teammates, but no one sees the whole picture.\n\nThis creates three practical problems. First, teammates keep changing while each agent learns. Second, credit assignment: when the team succeeds, which actions deserve the credit? A winning team can include weak actions, and we may end up rewarding them. Third, a message changes what other agents observe, so communication is part of the policy we're training.\n\nA common solution is centralized training with decentralized execution: training uses information from the whole team, but each agent acts only on its own observations. Our first example follows this pattern with a shared team reward.\n\nAgents can also be organized in different ways. Two useful starting points are:\n\nA hierarchy. A lead agent assigns work to workers and collects their results. Anthropic's Research system works this way, with a separate context for each worker. Kimi K2.5's PARL trains only the orchestrator and keeps the subagents frozen, so training a multi-agent system doesn't mean updating every component. See Anthropic's system description and Kimi's technical blog.\n\nA distributed team. Peers send each other messages and decide when to read their inboxes. No lead agent assigns the actions. This is the setup we'll use here, following the information-aggregation task in s³: Simple Scaling of Swarms via Cooperative Multi-agent RL.\n\nWe'll reproduce the information-sharing task from Simple Scaling of Swarms because it's interpretable and straightforward to implement. Four agents share a small language model and learn to pool what each of them knows.\n\nEach agent receives one integer from 1 to 99. It knows its own assignment and its teammates' names. It does not initially know the other agents' numbers. For example, four private assignments might be \"five\", \"twenty-six\", \"five\" and \"seventy-eight\". Duplicates stay in the list, so a correct final answer is:\n\nThe team succeeds when at least one agent submits the complete, correctly sorted list. One correct answer is enough; success does not require all four agents to answer correctly. An agent cannot reliably infer the other private assignments without information from its teammates.\n\nThis means the task does not yet test Figure 1 directly. Each agent holds information the others need, so a single agent, or a team without messaging, cannot succeed however many retries it gets. Instead, the task tests the precondition behind Figure 1: can a small shared policy learn to communicate at all, and how many tokens does that cost? A later post moves to a task that a single agent can solve alone, where the matched-budget comparison is meaningful.\n\nThe main communication tools are message(to, text), read_messages(), and check_notifications(). A notification tells an agent that unread messages exist; reading its inbox makes their contents available. Agents can send direct messages or broadcast to everyone.\n\nWe defined a four-agent system using one shared Qwen3-0.6B policy, with separate contexts and private inputs. We are not training four different models. The prompt explains the task and the tools, including the need to share assignments.\n\nIn this post, a team means one episode: four agents attempting one problem once. A successful team receives a reward reduced by the tokens it uses. A failed team receives zero:\n\nFor illustration, a correct team using half its allowance receives 0.875. There is no separate reward for sending messages. The incentive is to solve the task while using fewer generated tokens.\n\nFor every training problem, we collect eight independent team attempts. Their rewards are normalized within that group. An attempt that does better than its group average gets a positive ad",
+  "begyujtve": "2026-11-26T13:03:00.917884+00:00",
+  "prioritas": {
+    "pont": 48,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 35,
+      "hirertek": 40,
+      "egyediseg": 90,
+      "hitelesseg": 88,
+      "aktualitas": 70,
+      "kozossegi": 47
+    },
+    "elofeszures": 90,
+    "tanult": 57,
+    "indok": "Fejlesztői oktatóanyag és blogbejegyzés-sorozat, nem pedig áttörést jelentő hír. Forrás-tapasztalat: -5.",
+    "tema": "huggingface multi agent tutorial",
+    "cim_hu": "Hogyan építsünk és tanítsunk többágenses AI rendszereket",
+    "lead_hu": "Oktatóanyag-sorozatot indított a Hugging Face a többágenses AI-rendszerek építéséről és tanításáról, kifejezetten kisméretű és olcsó modellek használatára fókuszálva.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T13:04:45+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-26T13:04:51+00:00"
+}
