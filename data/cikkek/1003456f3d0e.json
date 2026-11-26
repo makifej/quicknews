@@ -1,0 +1,49 @@
+{
+  "id": "1003456f3d0e",
+  "slug": "az-anthropic-claude-fable-5-2-modellje-vezeti-az-uj-mi-fizikai",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/anthropic-s-claude-fable-5-2-t-sSCGlrxmTj2aj9zjPtu1.A",
+  "publikalva": "2026-11-26T02:54:54.637773+00:00",
+  "cim": "Az Anthropic Claude Fable 5.2 modellje vezeti az új MI-fizikai teljesítménymérőt",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 79 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/upload/t_limit/v1795702154/url_uploads/fable_52_sand_oj99mh.jpg"
+  },
+  "cim_eredeti": "Az Anthropic Claude Fable 5.2 modellje vezeti az új MI-fizikai teljesítménymérőt",
+  "szoveg_eredeti": "Az Artificial Analysis szerint az Anthropic Claude Fable 5.2 modellje vezeti a valós fizikai kutatásokon végzett MI-ágens-értékelést, bár még a legjobb modell is csak a benchmark nagyjából harmadát teljesíti.\n\nAz Artificial Analysis 2026. november 25-én, szerdán elindította a FrontierPhysics ranglistát. Ez a BenchFlow által fejlesztett, teljes körű fizikai kutatási benchmark. A Claude Fable 5.2 végzett az első helyen 32,9%-os eredménnyel, megelőzve az OpenAI GPT-6.2 Astra modelljét (26,3%) és a Google Gemini 4 Neon modelljét (24,6%). A Claude Opus 5.5, a Claude Sonnet 5.5 és a GPT-6.2 Sol 22 és 24% közötti eredménnyel követte őket.\n\nA vizsgaszerű értékelésekkel szemben a FrontierPhysics 56 feladatból áll, amelyeket valódi projektekből adaptáltak. Ezek átlagosan 270 nap munkát jelentettek, és 26 intézmény 42 fizikusa dolgozott rajtuk. Az ágenseknek szakirodalmat kell áttekinteniük, szimulációkat vagy elemzéseket kell futtatniuk, és a kéziratot kísérő numerikus eredményeket kell leadniuk. A feladatok kilenc területet fednek le, köztük a kondenzált anyagok fizikáját, az asztrofizikát és az áramlástant (BenchFlow; arXiv-preprint). Az Artificial Analysis az 56 feladatból 54-et értékel, mert kettőhöz GPU szükséges. A promptokat titokban tartja, hogy elkerülje az adatszennyeződést.\n\nA pontozás egy determinisztikus numerikus ellenőrzőt és egy szakértői értékelési rubrikát kombinál. A rubrika kötelező, kizáró kritériumokat tartalmaz a tudományos érvényességre. Ha egy futásból akár csak egyetlen ilyen kizáró kritérium hiányzik, az nulla pontot kap (Artificial Analysis; BenchFlow). A BenchFlow 2026. november 23-án frissített, auditált ranglistáján mind az 56 feladaton, natív ágens-keretrendszerekkel mérve szintén a Claude Fable 5.2 vezetett 33,3%-os sikerességi aránnyal.\n\nFizikusok az OpenAI GPT-6 Astra modelljének 143 sikertelen futtatását vizsgálták át. Az audit szerint a hibák 48%-át a nem kellően szigorú gondolkodás okozta, 34%-át pedig a szakértői intuíció hiánya. A fizikai ismeretek hiányosságai 16%-ban, a kivitelezési hibák 4%-ban jelentek meg.\n\nAz új eredmények azt is megmutatták, hogy nagy a távolság a számítás és a publikálható tudomány között. A Gemini 4 Neon a futtatások 54%-ában megfelelt a numerikus ellenőrzésen. Ez a legmagasabb arány a tesztelt modellek között. A tudományos felülvizsgálaton viszont csak az esetek 28%-ában ment át, mert például érvénytelen szimulációs beállításokat használt, vagy a következtetéseit nem támasztották alá az eredmények.\n\nAz eredmények alterületenként és számítási kapacitástól függően élesen eltértek. A Claude Fable 5.2 a fotonika és képalkotás területén 64%-ot, a statisztikus fizikában 41%-ot ért el, a kvantuminformatikában viszont mindössze 6%-ot. Ez utóbbi területen a Claude Sonnet 5.5 vezetett 50%-kal. Az atom-, molekuláris és optikai fizika bizonyult a legnehezebbnek, itt a csúcseredmény 17% volt. A GPT-6.2 Sol és a GPT-6.2 Astra határozta meg a költséghatékonysági élvonalat feladatonként 1,70, illetve 5,97 dollárral. Feladatonként átlagosan nagyjából 17 percet vettek igénybe, szemben a Claude Fable 5.2 körülbelül 83 percével (Artificial Analysis az X-en; Artificial Analysis az X-en).",
+  "begyujtve": "2026-11-26T16:47:53.835344+00:00",
+  "prioritas": {
+    "pont": 79,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 80,
+      "egyediseg": 95,
+      "hitelesseg": 75,
+      "aktualitas": 88,
+      "kozossegi": 81
+    },
+    "elofeszures": 89,
+    "tanult": 97,
+    "indok": "Új benchmarkon tesztelték a legújabb élvonalbeli AI-modelleket, amiben a Claude Fable 5.2 végzett az élen. Forrás-tapasztalat: -2.",
+    "tema": "anthropic claude fable benchmark",
+    "cim_hu": "A Claude Fable 5.2 vezeti az új fizikai AI-benchmarkot",
+    "lead_hu": "Az Artificial Analysis új FrontierPhysics ranglistáján az Anthropic Claude Fable 5.2 modellje szerezte meg az első helyet, megelőzve az OpenAI GPT-6.2 Astra modelljét.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T16:49:54+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-26T16:49:54+00:00"
+}
