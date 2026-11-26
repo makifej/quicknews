@@ -1,0 +1,49 @@
+{
+  "id": "7771aae6af00",
+  "slug": "female-trained-mammography-artificial-intelligence-shows-limited",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/female-trained-mammography-artificial-intelligence-shows-limited-diagnostic-agreement-in-men/",
+  "publikalva": "2026-11-26T15:46:44+00:00",
+  "cim": "Female-Trained Mammography Artificial Intelligence Shows Limited Diagnostic Agreement in Men",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 55 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-29686.png"
+  },
+  "cim_eredeti": "Female-Trained Mammography Artificial Intelligence Shows Limited Diagnostic Agreement in Men",
+  "szoveg_eredeti": "Female-Trained Mammography Artificial Intelligence Shows Limited Diagnostic Agreement in Men\n\nAn artificial intelligence platform developed exclusively on mammograms from female patients demonstrated high sensitivity but notably poor specificity when identifying breast parenchyma in male patients, while achieving only limited overall agreement with expert radiologist classifications across diagnostic mammographic examinations. In a comprehensive single-center retrospective study evaluating male breast examinations, the machine learning system detected the presence of glandular tissue with a sensitivity of 0.96 but exhibited a specificity of merely 0.13, reflecting a pronounced tendency to identify breast tissue across images where human experts observed only radiolucent adipose tissue. When evaluated across clinical suspicion thresholds defined by the Breast Imaging Reporting and Data System, the software achieved moderate sensitivity and specificity relative to expert reader consensus, but its agreement with human radiologists varied substantially depending on the morphological subtype of gynecomastia present. The automated diagnostic assessment performed least reliably in the presence of nodular gynecomastia, a benign proliferative pattern that frequently mimics malignancy, underscoring substantial domain shift challenges when applying models trained on female anatomy to male clinical cohorts.\n\nMale breast cancer represents a distinctly uncommon disease that accounts for less than one percent of all diagnosed breast malignancies and less than one percent of all cancers occurring in men. Despite its statistical rarity, male breast carcinoma carries considerable clinical significance because patients are routinely diagnosed five to ten years later in life and at significantly more advanced pathological stages compared with female breast cancer patients. This systematic diagnostic delay stems largely from the absence of population-based mammographic screening programs for men, compounded by limited public and clinical awareness regarding male breast disease.\n\nThe predominant clinical indication for diagnostic male breast imaging and the most widespread etiology of male breast enlargement is gynecomastia, a benign proliferation of ductal and stromal elements driven by an altered estrogen-to-androgen physiological balance. This condition can arise through physiologic processes associated with age-related endocrine transitions or through pathologic mechanisms triggered by intrinsic systemic diseases and extrinsic pharmaceutical exposures. Mammographically, gynecomastia manifests in distinct morphological patterns consisting of nodular, dendritic, and diffuse glandular configurations, as well as pseudogynecomastia caused entirely by adipose deposition without underlying glandular proliferation. Tissue density varies dramatically across these patterns and is frequently asymmetric between breasts, which shapes lesion conspicuity and reader confidence: localized nodular tissue can closely mimic malignant masses, while extensive diffuse glandular proliferation can obscure underlying focal lesions.\n\nAlthough commercial artificial intelligence systems have achieved high diagnostic precision in female mammography screening programs—often matching or exceeding the diagnostic performance of dedicated breast radiologists for detecting invasive masses and clustered microcalcifications—their performance is known to degrade in dense female breasts where parenchymal masking complicates feature extraction. Because male breast anatomy exhibits distinct histological and structural characteristics, and because male mammography is performed infrequently, prior artificial intelligence development cohorts have routinely excluded male patients entirely. The present study addressed this knowledge gap by evaluating the commercial b-box plus platform (version 2.1.23, b-rayZ, Schlieren, Switzerland), examining its dedicated b-density module for parenchymal identification and its b-diagnostics module for lesion detection and classification across adult male patients without prior surgical breast interventions or gender-affirming hormonal therapies.\n\nThe retrospective single-center investigation was conducted under formal institutional ethics approval granted by the Kantonale Ethikkommission Zürich on July 6, 2021 (Approval Code: 2021-01095) in full compliance with the Declaration of Helsinki and Swiss federal regulations. The study identified 581 adult male patients who had provided general research consent and undergone diagnostic mammography at University Hospital Zurich or affiliated regional outpatient centers between 2000 and 2025. Following the protocol-specified exclusion of 14 female-to-male transgender men accounting for 19 examinations and seven men with prior breast surgical history contributing 12 images, the final analysis analyzed 560 male patients comprising 600 separate diagnostic examinations and 1,264 individual native digital images. The median patient age at examination was 48.7 years, with an interquartile range spanning from 34.2 to 61.2 years. Mammographic examinations were acquired using full-field digital systems from General Electric Healthcare, Giotto IMS, Hologic, and Siemens Healthcare, consisting predominantly of 1,129 mediolateral oblique projections alongside 135 selectively acquired craniocaudal views.\n\nTo establish an authoritative ground truth, two board-certified radiologists with 25 and 6 years of specialized mammographic experience independently reviewed all digital images in accordance with the fifth edition of the American College of Radiology BI-RADS guidelines. The interpreting radiologists had access to clinical referral information and referring pathology notes but remained completely blinded to original diagnostic reports and automated software outputs; disagreements in category assignment were adjudicated by a third expert breast radiologist with eight years of experience. A dedicated subspecialist also reviewed all images to categorize gynecomastia into nodular, dendritic, or diffuse subtypes, while classifying cases of pure adipose accumulation as pseudogynecomastia. Images assigned BI-RADS categories 0 or 6 were excluded from numerical threshold calculations and weighted agreement statistics, leaving 1,239 evaluable images across 553 unique patients for formal analytical comparisons.\n\nAnalysis of image-level baseline features revealed that gynecomastia was present in 70.1 percent of images (886 of 1,264), with dendritic gynecomastia representing the most prevalent presentation at 37.7 percent (476 images), followed by nodular gynecomastia at 23.3 percent (295 images) and diffuse gynecomastia at 9.1 percent (115 images), while 29.9 percent (378 images) demonstrated no glandular proliferation. Human-assigned BI-RADS distributions differed significantly between breasts with and without gynecomastia (p < 0.001): images lacking gynecomastia were primarily classified as BI-RADS 1 (64.8 percent), whereas breasts exhibiting gynecomastia were overwhelmingly assigned BI-RADS 2, encompassing 97.9 percent of dendritic and 99.1 percent of diffuse cases. Suspicious categories of BI-RADS 4 or 5 were rare overall but concentrated disproportionately within nodular gynecomastia cases. Macrocalcifications appeared in 34.2 percent of images without significant distribution differences between groups, whereas suspicious grouped microcalcifications occurred in only 0.5 percent (six images), and breast arterial calcifications were detected in 0.8 percent (ten images).\n\nFor the primary objective of automated breast tissue identification, the evaluated neural network architecture achieved a high sensitivity point estimate of 0.96 (95 percent confidence interval, 0.94 to 0.98), determined through 5,000 patient-level cluster bootstrap iterations. However, corresponding specificity reached only 0.13 (95 percent confidence interval, 0.09 to 0.18), accompanied",
+  "begyujtve": "2026-11-26T15:49:45.196784+00:00",
+  "prioritas": {
+    "pont": 55,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 45,
+      "hirertek": 65,
+      "egyediseg": 90,
+      "hitelesseg": 72,
+      "aktualitas": 98,
+      "kozossegi": 37
+    },
+    "elofeszures": 74,
+    "tanult": 17,
+    "indok": "Tudományos kutatás a nők adataival tanított AI korlátairól férfiak emlővizsgálata során Forrás-tapasztalat: -7.",
+    "tema": "ai medical mammography bias",
+    "cim_hu": "Gyengén teljesít a férfiaknál a női adatokon tanított emlődiagnosztikai AI",
+    "lead_hu": "Egy új kutatás szerint a kizárólag női mammográfiás felvételeken kiképzett mesterséges intelligencia pontatlanabb eredményeket ad a férfi páciensek esetében.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T15:50:13+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-26T15:50:18+00:00"
+}
