@@ -1,0 +1,49 @@
+{
+  "id": "e4996fe3a750",
+  "slug": "a-1password-szerint-hackerek-ugyfelek-nevet-es-e-mail-cimet-loptak-el",
+  "forras_id": "perplexity-tech",
+  "forras_nev": "Perplexity Discover",
+  "url": "https://www.perplexity.ai/discover/tech/1password-says-hackers-stole-c-NsqLXqErT7etgXfgYWmDVQ",
+  "publikalva": "2026-11-25T20:31:38.593385+00:00",
+  "cim": "A 1Password szerint hackerek ügyfelek nevét és e-mail-címét lopták el",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pplx-res.cloudinary.com/image/upload/t_limit/v1795638629/getty_uploads/2262197017_e1yxuw.jpg"
+  },
+  "cim_eredeti": "A 1Password szerint hackerek ügyfelek nevét és e-mail-címét lopták el",
+  "szoveg_eredeti": "A 1Password 2026. november 25-én, szerdán közölte, hogy egy támadó behatolt néhány háttérrendszerébe, és az ügyfelek egy részének fiókadatait, köztük a nevüket és a bejelentkezéshez használt e-mail-címüket is lemásolta. A cég incidensfrissítése szerint az ügyfelek széfjeihez, a tárolt jelszavakhoz és a titkosítási kulcsokhoz nem fért hozzá senki, az érintett felhasználókat viszont adathalászat veszélye fenyegeti.\n\nA 1Password november 19-én kezdett vizsgálatot, miután jogosulatlan hozzáférést észlelt egy alkalmazott vállalati GitHub fiókjához. A behatoló privát forráskódot másolt le, hozzáfért a cég folyamatos integrációs és telepítési rendszeréhez, és rosszindulatú kódot juttatott a háttérszolgáltatásokba, hogy ügyfélrekordokat töltsön le.\n\nA rekordok a nevek és az e-mail-címek mellett tartalmaztak fiókazonosítókat, a létrehozás és az utolsó bejelentkezés időbélyegét, nyilvános kulcsokat, Secure Remote Password (SRP) paramétereket, valamint egyes e-mailben küldött meghívó-, kiépítési és helyreállítási hivatkozások tokenjeit. A 1Password, amelynek felhasználói között milliónyi magánszemély és több mint 200 000 vállalkozás található, nem közölte, hány fiókot érintett az incidens, és azt sem árulta el, hogyan került veszélybe a GitHub-fiók.\n\nA 1Password közölte, hogy nem tárolja az ügyfelek jelszavait és Secret Key-jeit, így a szervereit támadók nem tudják elolvasni a széfek tartalmát. Az alkalmazásokat, a böngészőbővítményeket és a fiók-helyreállítási kulcsokat nem érintette a támadás, és a cég nem talált arra utaló jelet, hogy bárki átvette volna fiókok feletti irányítást.\n\nA vállalat letiltotta a GitHub-fiókot, visszavonta az ellopott tokent, helyreállította a tiszta szolgáltatásokat, lecserélte a kitett belső hitelesítő adatokat, és független kiberbiztonsági szakértőket vont be az elszigetelés felülvizsgálatába. A kitett meghívó- és helyreállítási tokenekhez továbbra is egyszeri bejelentkezéses (SSO) hitelesítés vagy e-mailben küldött ellenőrző kód szükséges. A 1Password ezért a kódokat hatjegyű számsorról tízkarakteres, betűkből és számokból álló kódra bővítette, és értesítette azt a kis számú felhasználót, akinek aktív kiépítési vagy helyreállítási hivatkozása volt.\n\nA 1Password közölte, hogy az ügyfeleknek nem kell frissíteniük a fiókjukat. Arra viszont figyelmeztette őket, hogy gyanúsnak tekintsenek minden váratlan e-mailt, SMS-t vagy hívást, amely 1Password-meghívókra vagy fiók-helyreállítási kérelmekre hivatkozik. A cég hangsúlyozta, hogy soha nem kéri el a fiók jelszavát vagy a Secret Key-t (titkos kulcsot). A felhasználók ezeket kizárólag a hivatalos alkalmazásban vagy weboldalon adják meg.",
+  "begyujtve": "2026-11-26T07:32:51.932273+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 20,
+      "hirertek": 30,
+      "egyediseg": 50,
+      "hitelesseg": 70,
+      "aktualitas": 72,
+      "kozossegi": 61
+    },
+    "elofeszures": 83,
+    "tanult": 92,
+    "indok": "Általános kiberbiztonsági incidens a 1Passwordnél, nem tartalmaz MI-szálat.",
+    "tema": "1password data breach security",
+    "cim_hu": "Hackerek fértek hozzá a 1Password egyes ügyféladataihoz",
+    "lead_hu": "A jelszókezelő cég közlése szerint a támadók neveket és e-mail-címeket loptak el, de a mentett jelszavakhoz és széfekhez nem fértek hozzá.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T07:35:03+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-26T07:35:15+00:00"
+}
