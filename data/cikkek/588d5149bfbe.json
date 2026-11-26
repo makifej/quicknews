@@ -1,0 +1,50 @@
+{
+  "id": "588d5149bfbe",
+  "slug": "hands-on-with-the-install-as-app-feature-for-claude-artifacts-they",
+  "forras_id": "techmeme",
+  "forras_nev": "MacStories",
+  "url": "https://www.macstories.net/stories/a-closer-look-at-claudes-mac-apps/",
+  "publikalva": "2026-11-25T23:20:01+00:00",
+  "cim": "Hands-on with the \"Install as app\" feature for Claude artifacts: they are HTML apps wrapped inside an Electron shim, which is managed via the main Claude app (Federico Viticci/MacStories)",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "duplikátum: 0794865ff5e3",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn.macstories.net/images/uploads/2026/11/25/shortcut-upload-1795625565922-e54ce57825.png"
+  },
+  "cim_eredeti": "Hands-on with the \"Install as app\" feature for Claude artifacts: they are HTML apps wrapped inside an Electron shim, which is managed via the main Claude app (Federico Viticci/MacStories)",
+  "szoveg_eredeti": "Yesterday, Anthropic announced a major new feature for artifacts, now available in beta for Mac and Windows: the ability for users to turn artifacts into “apps” they can install on their computers. From the company’s blog:\n\nStarting today, you can use Claude artifacts to create, run, and share desktop apps. The “Install as app” feature is rolling out in beta in Claude for Mac and Windows.\n\nWhen an artifact is installed as a Mac or Windows app, it gets its own icon and opens in its own window instead of inside Claude. You can share it with others, and it needs your permission before it can interact with your computer. You choose how much to allow.\n\nEach app can use Claude and your connectors, and it updates automatically when the underlying artifact is edited. This simplifies the process for building and maintaining apps for both knowledge workers and developers. Requests the app makes to Claude count toward your plan’s usage limits.\n\nIf you’re an AppStories listener, you know that I’ve long thought it was only a matter of time until one of the big labs figured out how to turn their models’ frontier coding capabilities into a means to disrupt the App Store. This move feels like Anthropic’s first step in that direction.\n\nBefore I get into the technical details, let me say this upfront: if I were Apple, I’d be very concerned that Anthropic is now shipping a nicely packaged system for users to make whatever app they want and turn Apple’s ecosystem into Claude’s ecosystem of tools and mods on their computers.\n\nNow, the way Anthropic made this happen can be debated, but I think the system is based on some clever engineering and savvy lock-in strategy. First, for these apps to work, you need the main Claude app to be installed and logged in with your account. These apps require the main Claude process to be running because every action they perform is actually handled by the Claude app behind the scenes, including permissions such as Full Disk Access. All apps made with Claude (either the ones you make, or the ones shared with you by other people) get installed at ~/Applications/Claude Apps, so they’re indexed by Spotlight and can be pinned to the macOS Dock. In fact, when you first create an app inside a Claude conversation (which can be a regular Claude session – you do not need to use Claude Code for these), there is a cute animation and install flow that puts an app directly in your Dock. It’s not too dissimilar from how the Shortcuts app can add individual shortcuts to your Mac’s Dock.\n\nYou can preview and install apps from Claude.\n\nCrucially, these are not native apps created with Swift or SwiftUI: they’re HTML apps, wrapped inside an Electron shim, which is entirely managed by Claude’s Chromium process for Electron. It’s somewhat reminiscent of Raycast’s Glaze product, which uses Vite/React web apps, rendered inside Apple’s WKWebView, wrapped in a custom Swift shell. (Glaze also added the ability to integrate native Swift modules into their apps; I expect Anthropic to add this too.)\n\nTo test out this Claude feature, I wanted to create a disk analyzer utility with a menu bar companion for my Mac. The initial prompt was pure vibe coding:\n\nmake me an artifact that analyzes disk space on my Mac with a stunning native Liquid Glass UI and install it in my dock\n\nA few minutes later, Opus 5.5 made something that worked and installed it in my Dock, but it wasn’t great. So, I kept tweaking it. As Claude was working, I noticed that it kept editing a single index.html file:\n\nWhen the app was done, I asked Claude Code to explain how the other Claude built the app. Here is the Claude Code explanation of it all:\n\nStorage Lens isn’t a traditional Mac app. Its 900 KB bundle holds no web code at all, just three pieces:\n\nWhat looks like a standalone app with its own Dock icon is really a Claude process in disguise.\n\nThe app itself is a single HTML file, written by hand with no third-party frameworks: no React, no Tailwind, no D3. It’s plain JavaScript, with one state object and render() functions that rebuild the page. Everything visual is hand-made:\n\nThe interesting part is how a web page gets to touch the file system. Storage Lens calls window.claude.use('desktop'), an API that closely mirrors Electron’s own: childProcess.spawn, fs.readdir, shell.trashItem, Menu.setApplicationMenu, app.dock.setBadge. With that, it runs the same command-line tools a power user would:\n\nIt reads their output line by line as they run and caches the results in localStorage. Nothing leaves the Mac.\n\nThat pretty much says it all. Liquid Glass is faked with CSS (incredible), everything is designed in HTML (not a surprise, given how much Claude loves pretty HTML artifacts), and all code routes through Electron via the main Claude app.\n\nAnyway, back to my Storage Lens app. In a follow-up prompt, I asked:\n\nmenu bar works, segmented control still does not, and these overlapping elements are ugly. do better. follow Apple HIG.\n\nA few minutes later, I ended up with this, which has all the makings of a web app putting on a native macOS trench coat, but which…also works:\n\nBehind the scenes, this app asks Claude to run some Terminal commands to list my files and delete them.\n\nI’ve been using the app on my Mac mini this morning to free up some storage. Since I’d already granted Full Disk Access to Claude, I didn’t have to go through a similar flow with the app again: after all, it’s just an HTML page asking Claude to run some shell commands in the background! I also took one of Anthropic’s official demos for a spin – Vitals, their menu bar take on a simplified macOS Activity Monitor.\n\nApps made by other people can be shared with a traditional artifact landing page; when you install an app made by someone else, you get a warning about potential risks:\n\nI chuckled at the fake Full Disk Access prompt. Once again, Claude already had Full Disk Access, so clicking the ‘Allow’ button doesn’t actually change anything in macOS:\n\nThe app, of course, works as expected, too. It breaks Apple’s UI conventions in several ways, but it does perform its primary function reasonably well.\n\nAnthropic has also published a support document that goes into more detail about what these apps can do, how permissions are handled, and what happens to an app you installed from someone else if the original creator stops sharing it. I found this part amusing:\n\nIf you lose access to an app, for example because its owner stops sharing it with you, the programs it started stop too. This can take up to about 20 minutes. It can take longer while Claude can’t check, such as when it’s offline, signed out, or using another organization.\n\nSo, unless you’re making your own apps, I wouldn’t build a serious workflow on top of an “app” created by somebody else, because they could stop sharing it at any moment and you’d lose access to it.\n\nBut then again: why be concerned if you can just prompt your way into a copy of it?\n\nMany longtime macOS and native app purists will grimace at the mere thought of installing vibe-coded “apps” that are Electron wrappers bridging their commands to another app, and I get it. What Anthropic devised here is a hodgepodge of web technologies, disk permissions, and HTML UI that is the opposite of what native Apple app development should – at least in theory – still represent today.\n\nAt the same time, if I were Apple, I’d be concerned. Effectively, Anthropic shipped an app creation playground that only requires basic prompts to put together something that works. They did so by entirely bypassing the App Store or Apple’s notarization system for apps distributed outside the App Store, and by creating their own lock-in system around Claude’s identity and capabilities instead.\n\nWith Anthropic’s new artifacts-driven system, you’re making apps for your Mac, but, really, you’re making Claude apps for your Mac – which require your Claude account, can use your Claude connectors, and draw usage from your Claude account. Those ap",
+  "begyujtve": "2026-11-26T07:04:37.752530+00:00",
+  "prioritas": {
+    "pont": 41,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 35,
+      "egyediseg": 20,
+      "hitelesseg": 86,
+      "aktualitas": 74,
+      "kozossegi": 62
+    },
+    "elofeszures": 99,
+    "tanult": 79,
+    "indok": "Duplikátum: 0794865ff5e3",
+    "tema": "anthropic claude desktop artifacts",
+    "cim_hu": "Kipróbálták a Claude új funkcióját: így működnek az asztali alkalmazássá alakítható Artifacts elemek",
+    "lead_hu": "A MacStories részletes elemzésben mutatta be, miként csomagolja Electron-alapú önálló asztali alkalmazásokká a mesterséges intelligencia által generált kódokat az Anthropic.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T07:07:06+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-26T07:08:18+00:00",
+  "dupla_of": "0794865ff5e3"
+}

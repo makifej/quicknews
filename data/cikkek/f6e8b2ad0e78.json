@@ -1,0 +1,49 @@
+{
+  "id": "f6e8b2ad0e78",
+  "slug": "an-ai-coding-agent-a-browser-and-a-mac-tool-found-a-financial-firm-s",
+  "forras_id": "dailydev",
+  "forras_nev": "The Register (daily.dev)",
+  "url": "https://www.theregister.com/security/2026/11/24/an-ai-coding-agent-a-browser-and-a-mac-tool-found-a-financial-firms-access-key-in-under-6-minutes/5311922",
+  "publikalva": "2026-11-24T00:00:00+00:00",
+  "cim": "An AI coding agent, a browser, and a Mac tool found a financial firm's access key in under 6 minutes",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 60 pont, tendencia 20%, jóváhagyás után fordul",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/9d1f73184de258a4d54067c255a2e4ee?_a=AQAEuop"
+  },
+  "cim_eredeti": "An AI coding agent, a browser, and a Mac tool found a financial firm's access key in under 6 minutes",
+  "szoveg_eredeti": "No sophisticated malware or attack framework required\n\nA Romanian hacker, armed with only an open source coding agent, a Chrome browser, and a Mac, tried multiple ways to break into a financial services firm, ultimately found an access key - luckily, it was a decoy - and carried out an entire (almost) attack in under six minutes.\n\nIt’s a stark reminder that miscreants don’t need sophisticated malware - as in the Binance heist - or AI pen-testing tools like ARTEX to carry out intrusions into critical networks. Open source coding agents, and specifically OpenCode in this case, also work just fine.\n\n“What surprised me most was how little it took and the toolkit: a free coding agent, the curl that comes with every Mac and an ordinary Chrome, all from one laptop,” Jesta co-founder and CTO Lior Finkelshtein told The Register. “Until now I thought that we had more time until tools like OpenCode are used in offensive operations. This incident shows us that it's already in use in the field, and we will probably see more of that in the future.”\n\nJesta is a Tel Aviv-based security startup that builds defensive tools to detect and stop autonomous AI attacks. In a report shared exclusively with The Register, Finkelshtein documented an attempted intrusion targeting a major financial services company that’s also a Jesta customer - the security shop declined to say which one.\n\nJesta’s investigation into the incident determined that someone in Bucharest downloaded a free AI coding agent called OpenCode and pointed it at the financial services customer on November 16 at 4:24:57 a.m. ET.\n\nOpenCode is an open source coding agent that lets users connect to more than 200 model providers or local models, including Anthropic’s Claude models, OpenAI’s GPTs, Google’s Gemini, DeepSeek, and Z.ai’s GLM. Jesta doesn’t know which model the attacker used, as there was nothing in the traffic that named the model. OpenCode's web fetch tool, however, did name itself, so Jesta knows the attacker used this coding agent - not a scanner - to do the dirty work.\n\n“Nothing in OpenCode was built for hacking,” Finkelshtein said in a Tuesday report about the agent-led attack. But, he added, nothing in the coding agent “stops you from pointing it at someone else's website either. When you do, the agent goes through the site the same way it goes through code. It reads, tries something, reads the result and tries the next thing, for as long as you let it run.”\n\nThat’s what it did in this operation, which took less than six minutes and cost the human operator nothing.\n\nThe first call came from a Chrome browser on a Mac, requesting the front page of one of the financial firm’s systems. The site refused it, and six seconds later, the same IPv6 address in Bucharest, on an ordinary DIGI Romania business line, tried again. It used the same Chrome version, but said it was an Android Pixel 10 phone (it wasn’t) to see if the site would let a phone in (it didn’t).\n\nAfter failing to gain access through the front page, the agent asked the system for its API definition, which was also refused. Five seconds later, it tried a different address - this one was a decoy set up by Jesta - and it answered the agent, providing the readable file defining how the API works.\n\nThe agent read the document, and 13 seconds later followed a link it contained. At 4:26:01 a.m. ET, Jesta’s defenses marked the website visitor as an AI agent, opened a case, and from here on out, everything the agent accessed was contained inside a fake environment designed to trick intruders. This included a phony key, which the attacker then used to attempt to break into the company’s systems.\n\n“It worked like a developer,” Finkelshtein said about the coding agent. “It read the API docs and did what they said. It found a key and used it. It checked whether the lock was real, then made up a key of its own and tried that. None of the threat feeds the customer has knew the address, so a blocklist would never have stopped it. The bar for doing this is now installing an app. Think about how many people can do that.”\n\nIn addition to OpenCode, the attacker used only Chrome 157, both in desktop and mobile modes, and curl/8.7.1, a command-line tool that has shipped with every Mac since macOS 15. The agent passed information between the three tools. It included the planted key in a command-line request and then tested three scenarios – using the decoy key, no key, and a fabricated key – to determine whether what it found in the API documentation was legit.\n\nIt also tried multiple URLs using the browser. While it ultimately identified a valid endpoint, it attempted to read from one that accepts only data submissions, so its request was blocked again. Five minutes and 44 seconds after the first request, it gave up, and the logs haven’t detected any activity from this same intruder since then.\n\nThe security shop and its customer disclosed the activity to law enforcement and told us it’s “being handled.”\n\nWhile the attacker wasn’t able to steal anything in this attempt, security teams still need to take note, according to Finkelshtein.\n\n“No blocklist would have helped” detect the malicious traffic, he explained. “Most security tools still decide by asking whether an address is known to be bad, and for this one the answer was no. If that key had been real, it would have been in.”\n\nInstead of blocklists, Finkelshtein suggests paying attention to what the visitor does. In this case, several of its actions gave it away - including following a link that only existed inside an API doc, using a desktop browser and a fake phone, then curl, all from the same address within minutes, and trying multiple keys - including one with a made up name and then no key - within seconds.\n\n“Open source lets anyone build software without a big team,” Finkelshtein wrote in the Tuesday blog. “AI is doing the same for hacking. The skill is in the model, the model is a setting, and the person giving the instructions doesn't need to know how any of it works.” ®\n\nApproval for ‘Starmind’ granted but it’s a long way from the launchpad, or making sense\n\nAnd intruders don't always need to exploit bugs to break in\n\nPARTNER CONTENT: PARTNER CONTENT: Hyperscalers and colos have distinct power strategies, but for both, securing flexible, fast power relies on self-generated solutions\n\nChip design software leans heavily into 3D packaging and multi-node assemblies\n\nIf a service falls in the forest and nobody hears it...\n\nNext step is to move in for a closer look at the carnage",
+  "begyujtve": "2026-11-26T07:04:35.903770+00:00",
+  "prioritas": {
+    "pont": 60,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 65,
+      "egyediseg": 90,
+      "hitelesseg": 68,
+      "aktualitas": 32,
+      "kozossegi": 72
+    },
+    "elofeszures": 71,
+    "tanult": 76,
+    "indok": "Biztonsági kísérlet, ahol egy AI kódoló ágens 6 perc alatt szerzett hozzáférést adatokhoz. Forrás-tapasztalat: -8. A forrás P3-as híreiből eddig kb. 20%-ot fogadtál el.",
+    "tema": "ai agent cybersecurity access key",
+    "cim_hu": "Hatos percen belül talált meg egy érzékeny hozzáférési kulcsot az AI ágens",
+    "lead_hu": "Egy etikus hacker nyílt forráskódú AI-eszközzel és böngészővel mindössze hat perc alatt jutott hozzá egy pénzügyi cég teszt kulcsához.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T07:07:06+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-26T07:09:14+00:00"
+}

@@ -1,0 +1,76 @@
+{
+  "id": "17a805c0d69c",
+  "slug": "kinai-es-eszak-koreai-hackerek-is-az-artex-ai-eszkozt-hasznaljak",
+  "forras_id": "techmeme",
+  "forras_nev": "The Record",
+  "url": "https://therecord.media/microsoft-china-salt-typhoon-using-artex-ai-tool",
+  "szerzo": null,
+  "publikalva": "2026-11-26T06:00:48+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cms.therecord.media/uploads/microsoft_sign_pexels_altabena_efbc5ae4db.jpg"
+  },
+  "cim_eredeti": "Microsoft says state-backed hacking groups in China and North Korea, including Salt Typhoon, have added AI penetration testing tool ARTEX to their arsenals (Jonathan Greig/The Record)",
+  "forrasok": [],
+  "szoveg_eredeti": "State-backed hacking groups in China and North Korea are using a powerful AI hacking tool in attacks, according to a new report from Microsoft.\n\nMicrosoft explained that state-sponsored and financially motivated hackers are using Artex, an AI-powered platform that can automate multiple phases of cyber intrusions at machine speed.\n\nThe study emerged hours after The New York Times and NextGov reported that Artex was allegedly used in attacks on the CIA, the National Geospatial-Intelligence Agency and the Office of the Director of National Intelligence.\n\nMicrosoft said on Wednesday that Chinese state-backed groups Crystal Typhoon and Salt Typhoon have integrated Artex into their suite of tools, using it for “network reconnaissance, credential attacks, and web application exploitation.”\n\n“In the past few weeks, we’ve reported several distinct campaigns that abused Artex to search public repositories for exposed secrets, enable supply chain compromise, and scan internet-facing systems for exploitation,” Microsoft explained.\n\nSalt Typhoon is a prolific Chinese hacking group that U.S. agencies believe was behind the breach of at least nine telecommunications giants in 2024. The hack alarmed White House officials in 2024 because it allegedly gave China’s hackers access to communications from the phones of President Donald Trump and Vice President JD Vance as well as several Democratic leaders.\n\nSalt Typhoon was also accused of attacking several European governments and critical infrastructure organizations globally.\n\nArtex was released in July, and according to Microsoft, it has been steadily added to the arsenal of multiple North Korean and Chinese groups.\n\nArtex allows threat actors to define specific goals and use AI agents to attack targets. Microsoft said Artex “can advance from reconnaissance to persistent, privileged access to a target organization in a matter of minutes.”\n\n“ARTEX does not introduce new attack techniques; it uses common, pre-existing penetration testing tools and techniques. ARTEX does sometimes transmit distinctive characteristics associated with its integrated penetration testing tools,” Microsoft explained.\n\n“However, threat actors using ARTEX can and do vary network indicators like source IP address or user agent string, especially to bypass static or simple signature-based detection and blocking. The most reliable and durable signal of ARTEX activity is behavioral: ARTEX sends a wide variety of requests in a brief time and retries variations on the same technique or moves on to next-stage actions at machine speed.”\n\nBy default, Artex does not take measures to hide its activity, the researchers added.\n\nWhile the Chinese researcher behind the tool initially removed the source code from GitHub last month, other developers made copies, and at least one Chinese company now offers commercial access to a version of it.\n\nMicrosoft noted that defenders can tell when Artex is being used based on bursts of machine speed activity and by the “characteristically large volume of anomalous traffic from a single source in a short time.”\n\nThe FBI released its own advisory on Artex two weeks ago, warning that it is being used prolifically by cybercriminals and nation-states to breach government agencies and dozens of critical sectors worldwide.\n\nThe tool was recently implicated in multiple attacks on South Korean and Japanese financial institutions, causing national scandals in both countries. Microsoft previously said Artex was used by Chinese state-backed actors in a recent supply chain attack on IT management software company ConnectWise.\n\nis a Breaking News Reporter at Recorded Future News. Jonathan has worked across the globe as a journalist since 2014. Before moving back to New York City, he worked for news outlets in South Africa, Jordan and Cambodia. He previously covered cybersecurity at ZDNet and TechRepublic.",
+  "modell": "gemini-3.5-flash",
+  "cim": "Kínai és észak-koreai hackerek is az Artex AI-eszközt használják támadásaikhoz",
+  "lead": "A Microsoft szerint államilag támogatott hekkercsoportok az Artex AI-platformmal automatizálják a kibertámadásokat gépi sebességre gyorsítva a folyamatokat.",
+  "osszefoglalo": "A Microsoft közzétette, hogy kínai és észak-koreai államilag támogatott hekkercsoportok integrálták eszköztárukba az [Artex](https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse/) nevű AI-alapú behatolástesztelő platformot. Az eszközt többek között a Salt Typhoon és a Crystal Typhoon csoportok használják hálózati felderítésre, hitelesítő adatok elleni támadásokra és webes alkalmazások sebezhetőségeinek kihasználására.\n\nAz Artex segítségével a támadók AI-ügynökökkel határozhatnak meg célokat, a rendszer pedig **percek alatt eljut a felderítéstől a jogosultsági hozzáférés megszerzéséig**. Az eszköz nem új támadási technikákat hoz létre, hanem a meglévő behatolási eljárásokat automatizálja és futtatja rendkívül gyorsan.\n\nA Microsoft megjegyzése szerint az Artex használata a rövid idő alatt kibocsátott, szokatlanul nagy hálózati forgalomról és a gépi sebességű műveletváltásokról ismerhető fel a védelmi rendszerek számára.",
+  "miert_szamit": "A mesterséges intelligenciával automatizált kibertámadások miatt a céges védelmi rendszereknek **azonnali incidensreagálásra** kell felkészülniük, mivel a hagyományos szűrési módszerek nem tudják lépést tartani a gépi sebességű behatolási kísérletekkel.",
+  "cimkek": [
+    "Artex",
+    "kiberbiztonság",
+    "Microsoft",
+    "AI-ügynök"
+  ],
+  "kategoria": "eszköz",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [
+    "Artex"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 80,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 75,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 86,
+      "aktualitas": 98,
+      "kozossegi": 76
+    },
+    "elofeszures": 92,
+    "tanult": 70,
+    "indok": "A Microsoft hivatalos jelentése az államilag támogatott AI-kiberfegyverek használatáról kiemelkedő biztonsági hír. Forrás-tapasztalat: -3.",
+    "tema": "ai cybersecurity artex",
+    "cim_hu": "A Microsoft szerint kínai és észak-koreai hackerek az Artex AI-kiberfegyvert használják támadásaikban",
+    "lead_hu": "A Microsoft új jelentése szerint államilag támogatott kínai és észak-koreai kiberbűnözők az Artex nevű AI-alapú behatolási eszközt vetik be a kiberbenyomulások felgyorsítására.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-26T07:07:05+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-26T07:07:15+00:00",
+  "megjelent": "2026-11-26T07:07:15+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-26T07:09:26+00:00",
+    "esemeny": "A Microsoft elemzésében ismertette, hogy kínai és észak-koreai államilag támogatott hekkercsoportok, köztük a Salt Typhoon és a Crystal Typhoon, integrálták eszköztárukba az Artex nevű AI-alapú behatolástesztelő platformot a kibertámadások automatizálására.",
+    "forrasok": [
+      "https://www.microsoft.com/en-us/security/blog/2026/11/25/what-defenders-need-to-know-artex-agentic-ai-framework-threat-actors-abuse/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-26T07:10:21+00:00",
+  "linkek_ellenorizve": true
+}
