@@ -1,0 +1,51 @@
+{
+  "id": "1efe97ebd93b",
+  "slug": "we-made-the-transformers-serve-api-server-as-fast-as-we-could",
+  "forras_id": "linkedin",
+  "forras_nev": "Hugging Face (LinkedIn)",
+  "url": "https://www.linkedin.com/feed/update/urn:li:activity:7532132750934609921/",
+  "publikalva": "2026-11-27T17:26:28.082000+00:00",
+  "cim": "We made the transformers serve API server as fast as we could ⚡️",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P2: 72 pont, napi P2-keret (10) betelt",
+  "media": {
+    "tipus": "mp4",
+    "url": "https://dms.licdn.com/playlist/vid/v2/D4E05AQGlAL_rDgsfWw/mp4-640p-30fp-crf28/B4EaId7KVoIkB4-/0/1795798380631?e=2147483647&v=beta&t=NaWmsffwoZIOSBb8bTQYFpy54dUXPalxZXq3XuSY3RU",
+    "kep": "https://media.licdn.com/dms/image/v2/D4E05AQGlAL_rDgsfWw/videocover-high/B4EaId7KVoIkBM-/0/1795798379305?e=2147483647&v=beta&t=YcBlqua9O9QNM8dgeqbBBIvz-IMt2NoSSzutlKzNJXw",
+    "linkedin_embed": "https://www.linkedin.com/embed/feed/update/urn:li:activity:7532132750934609921"
+  },
+  "cim_eredeti": "We made the transformers serve API server as fast as we could ⚡️",
+  "szoveg_eredeti": "We made the transformers serve API server as fast as we could ⚡️\n\ntransformers serve gives you an OpenAI-compatible server for transformers models. Under load, its API server used to hold the GPU back. Not anymore.\n\nThe problem: one Python process did everything. HTTP, the chat template, tokenizing, decoding, and the generation loop right next to them. Python runs one thread at a time, so they took turns, and while the server handled requests, the GPU waited.\n\nWhat we changed:\n- The model now runs in its own process. The API server handles everything else, and the two talk through queues: prompts go in, new tokens come out. The GPU never waits for HTTP anymore.\n- Then we went through every step of the API server. Tokenizing runs in its own thread, off the event loop. Streamed events are built from a template instead of from scratch. The model sends one message per generation step, not one per token. A client that reads slowly gets its waiting text in one event. And a lighter middleware no longer adds a task to every streamed chunk.\n- Use --api-server-count for more API servers on the same port. They share one model process, so the model still loads once.\n\nIf one day, we are bottlenecked by the api server (hopefully), we will switch to a rust api server !\n\nNext up: faster generation overall. I heard that Quentin Gallouédec and Rémi Ouazan are already cooking 🧑🍳\n\nPR: https://lnkd.in/ey8Yc79J",
+  "begyujtve": "2026-11-27T17:49:31.451674+00:00",
+  "prioritas": {
+    "pont": 72,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 65,
+      "hirertek": 75,
+      "egyediseg": 95,
+      "hitelesseg": 90,
+      "aktualitas": 98,
+      "kozossegi": 67
+    },
+    "elofeszures": 91,
+    "tanult": 63,
+    "indok": "Technikai jellegű, de fontos fejlesztés a népszerű Hugging Face transformers könyvtár API kiszolgálási sebességében. Forrás-tapasztalat: -5.",
+    "tema": "huggingface transformers api performance",
+    "cim_hu": "Jelentősen felgyorsította a transformers API szerverét a Hugging Face",
+    "lead_hu": "A Hugging Face átalakította a nyílt forráskódú modelljeit kiszolgáló architektúrát, megszüntetve a GPU-kat korábban lefékező Python szűk keresztmetszeteket.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-27T17:49:49+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-27T17:49:50+00:00"
+}
