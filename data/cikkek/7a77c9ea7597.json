@@ -1,0 +1,74 @@
+{
+  "id": "7a77c9ea7597",
+  "slug": "szigoritjak-az-ai-ugynokok-biztonsagi-ellenorzeset-az-amerikai-bankok",
+  "forras_id": "google-news-ai",
+  "forras_nev": "AI News",
+  "url": "https://www.artificialintelligence-news.com/news/us-banks-ai-agent-security-controls/",
+  "szerzo": null,
+  "publikalva": "2026-11-27T10:12:04+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://www.artificialintelligence-news.com/wp-content/uploads/2026/11/US-banks-tighten-AI-agent-security-amid-cybersecurity-concerns-scaled-e1795767375160.jpg"
+  },
+  "cim_eredeti": "US banks tighten AI agent security amid cybersecurity concerns",
+  "forrasok": [],
+  "szoveg_eredeti": "Several large and mid-sized US banks are tightening security controls around their internally developed AI agents after incidents at technology companies exposed weaknesses in existing safeguards, according to Reuters.\n\nThe measures include restricting agent access to credentials and security records, reviewing emergency shutdown procedures, and isolating testing environments from production systems.\n\nDuring JPMorgan Chase’s third-quarter earnings call on October 13, CEO Jamie Dimon raised concerns about external AI agents accessing the bank’s systems.\n\n“We’re not going to allow just any outside agent to come in inside the company because that’s just too risky for clients and for JPMorgan,” Dimon said, as reported by Reuters.\n\nSpeaking at the Evident AI Symposium in October, JPMorgan Global CIO Lori Beer said the bank would initially use a single agent-building platform to centralise development and security controls. Its internal generative AI platform, LLM Suite, supports 1,000 business applications and had 200,000 active employee users as of October.\n\nAccording to Banking Dive, JPMorgan is working to implement real-time safeguards and evaluations, with an emphasis on identity management, privileged access, and environment isolation.\n\n“We have to make sure security, how we manage risk, is front and center of everything we do,” Beer said.\n\nBeer also discussed the bank’s application of 15 safeguards, including agent identity verification and access permissions, according to Evident.\n\nCanada’s Office of the Superintendent of Financial Institutions (OSFI) identified excessive permissions and shared credentials as cybersecurity risks in a technical bulletin published in July. The regulator recommends assigning agents individual non-human identities, limiting permissions, and issuing short-lived credentials.\n\nOther recommendations include restricting access to approved tools through API gateways, requiring authorisation before high-impact actions, and periodically reviewing permissions.\n\nThe US National Institute of Standards and Technology (NIST) also recommends maintaining independent, tamper-resistant audit logs recording agent identities, assigned tasks, and completed actions in its October design principles for AI agent identity management.\n\nAt the Evident AI Symposium, Goldman Sachs CIO Marco Argenti discussed applying zero-trust security principles to AI agents, including enforcing operating rules and introducing security checkpoints before transactions.\n\n“Every agent could potentially cause unexpected outcomes,” Argenti said, according to Evident.\n\nJPMorgan has tested transaction-level security controls through a collaboration between its blockchain business, Kinexys, and South Korean financial services company Hyundai Card. The companies announced a proof of concept involving autonomous treasury operations in a test environment without exchanging actual funds.\n\nA Hyundai Card agent was tasked with maintaining a minimum euro balance in its Frankfurt account using British pounds held in London. The agent monitored balances, obtained foreign exchange quotes, and submitted transaction requests, while a separate Kinexys agent handled execution.\n\nThe security framework bound an approved transaction mandate to the requesting agent’s cryptographic public key, enabling Kinexys to verify its delegated authority before execution and maintain an auditable transaction record.\n\nIn a September publication, JPMorgan proposed enforcing transaction restrictions through an independent policy engine rather than AI prompts. The engine would verify the agent’s identity, the organisation it represents, and its transaction authority.\n\nA survey by the Bank of England and Financial Conduct Authority (FCA) found that 80% of responding financial institutions had deployed AI agents for decision support. Some 46% reported constrained execution, 22% allowed conditional autonomy, and only 2% reported broad autonomy.\n\nIncluding planned deployments over the following 12 months, no more than 9% of respondents reported current or planned agent use for each of several activities, including executing trades, processing payments, approving customer outcomes, or modifying operational controls.\n\nIn July, experimental OpenAI models bypassed network isolation controls during internal cybersecurity evaluations, gaining unauthorised access to parts of the company’s research infrastructure and systems operated by Hugging Face.\n\nFollowing the incident, OpenAI introduced additional AI-based monitoring and investigative capabilities to examine suspicious activities, gather evidence, and escalate incidents to human responders.\n\nIn September, the system detected unauthorised internet access from an isolated training environment within 15 minutes, with a human responder beginning an investigation three minutes later. OpenAI said in October that certain critical alerts can automatically suspend affected workloads.\n\nOn November 19, the Bank of England, Prudential Regulation Authority (PRA), and FCA jointly published recommended practices for managing AI-related cybersecurity risks. The guidance outlines security practices rather than introducing new mandatory requirements.\n\nThe regulators recommend continuous monitoring across cloud infrastructure, on-premises systems, external connections, and human and non-human identities, including AI-specific components such as agent memory and tool connections.\n\nAI can assist security teams in prioritising vulnerabilities based on system dependencies, exploitability, and operational impact. Security teams can also identify abnormal agent behaviour by correlating activity logs from model interfaces, application sessions, and tool executions.\n\nAutomated containment measures include isolating compromised assets and revoking access permissions through predefined response procedures. AI can also assist with forensic analysis and evidence collection.\n\nRecovery procedures include restoring affected services, reverting agents to previously validated states, and removing compromised information from AI memory. Incidents involving corrupted data can require replacing affected data sources or retraining models.\n\nThe regulators recommend matching human oversight to application risk and autonomy, with human approval for potentially irreversible actions and predefined intervention thresholds for lower-risk operations.\n\nThe Bank of England and FCA’s October survey found that more than 90% of respondents used pre-deployment assessments, human approval, and vendor due diligence to manage AI-related data risks. Around half reported ongoing monitoring, data leakage testing, or periodic reassessments.\n\nAlthough 94% of respondents had established organisation-wide AI policies, principles, or standards, fewer than half had incident management and response playbooks.\n\nIn its November Financial Stability Report, the Bank of England identified autonomous AI agents as a source of operational and cybersecurity risk, particularly in environments where multiple agents interact.\n\nUK regulators are updating their threat-led penetration testing framework to account for AI-enabled vulnerability discovery, social engineering, and automated attacks. A December 2026 exercise will assess collective responses to simultaneous AI-enabled cybersecurity incidents.\n\nThe Bank of England’s 2027 Cyber and Operational Resilience Stress Test will also incorporate an advanced AI scenario to assess how financial institutions respond to disruptions and recover services. Findings are scheduled for publication in the fourth quarter of 2027.\n\nSee also: Why Commonwealth Bank is using AI to detect software vulnerabilities earlier\n\nWant to learn more about Cloud Computing from industry leaders? Check out Cyber Security & Cloud Expo taking place in Amsterdam, California, and London. The comprehensive event is part of TechEx and is co-located with other leading technology events, click here for more information.\n\nA",
+  "modell": "gemini-3.5-flash",
+  "cim": "Szigorítják az AI-ügynökök biztonsági ellenőrzését az amerikai bankok",
+  "lead": "A legnagyobb amerikai pénzintézetek szigorú hozzáférési korlátozásokkal és elkülönített tesztkörnyezetekkel védik rendszereiket az AI-ügynököktől.",
+  "osszefoglalo": "Több nagy és közepes amerikai bank szigorítja a házon belül fejlesztett AI-ügynökök biztonsági ellenőrzését, miután technológiai cégeknél történt incidensek rávilágítottak a meglévő védelmi vonalak hiányosságaira. A pénzintézetek korlátozzák az ügynökök hozzáférését a hitelesítő adatokhoz és a biztonsági rekordokhoz, emellett átdolgozzák a vészleállítási eljárásokat, és szigorúan **elkülönítik a tesztkörnyezeteket a termelési rendszerektől**.\n\nA JPMorgan Chase vezérigazgatója, Jamie Dimon jelezte, hogy nem engedélyezik a külső AI-ügynökök belépését a bank belső hálózataiba a magas kockázatok miatt. A pénzintézet egyetlen ügynöképítő platformra központosítja a fejlesztést és a biztonságot, miközben **egyedi nem-emberi azonosítókkal** és valós idejű kiértékeléssel korlátozza az autonóm rendszerek jogosultságait.\n\nA Goldman Sachs a zero-trust biztonsági elveket alkalmazza az autonóm funkciókra, tranzakciós ellenőrzőpontokat beiktatva. Az angol jegybank és a brit pénzügyi felügyelet felmérése szerint a pénzintézetek 80 százaléka használ már AI-ügynököket döntéstámogatásra, de **mindössze 2 százalékuk engedélyez széles körű autonómiát** a kritikus folyamatokban.",
+  "miert_szamit": "Ha vállalati környezetben építesz vagy használsz AI-ügynököket, számítanod kell rá, hogy a biztonsági szabályozás a **nulla bizalom elvére és a szigorú jogosultságkezelésre** áll át, így az ügynökök nem kaphatnak korlátlan hozzáférést a belső adatbázisokhoz.",
+  "cimkek": [
+    "AI-ügynök",
+    "kiberbiztonság",
+    "JPMorgan",
+    "Goldman Sachs"
+  ],
+  "kategoria": "üzlet",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": null,
+  "linkelendo_nevek": [],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 75,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 82,
+      "hirertek": 85,
+      "egyediseg": 90,
+      "hitelesseg": 75,
+      "aktualitas": 98,
+      "kozossegi": 57
+    },
+    "elofeszures": 77,
+    "tanult": 26,
+    "indok": "Jelentős pénzügyi és kibervédelmi lépés a legnagyobb amerikai bankok részéről az AI-ágensek szigorítására. Forrás-tapasztalat: -7.",
+    "tema": "us banks ai agent security",
+    "cim_hu": "Szigorítják az AI-ágensek védelmét a nagy amerikai bankok a kiberbiztonsági kockázatok miatt",
+    "lead_hu": "Több nagy amerikai bank korlátozza az autonóm AI-eszközök hozzáférését az érzékeny adatokhoz, miután technológiai cégeknél történt incidensek rávilágítottak a jelenlegi védelmi rendszerek hiányosságaira.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-27T10:20:21+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-27T10:20:37+00:00",
+  "megjelent": "2026-11-27T10:20:37+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-27T10:20:40+00:00",
+    "esemeny": "A Reuters értesülései szerint több amerikai bank szigorítja a saját fejlesztésű AI-ügynökeik biztonsági ellenőrzését, miután technológiai cégeknél történt biztonsági incidensek rávilágítottak a kockázatokra.",
+    "forrasok": [
+      "https://www.reuters.com/business/finance/exclusive-some-us-banks-tighten-ai-agent-controls-concern-about-models-escaping-2026-11-23/",
+      "https://www.artificialintelligence-news.com/news/us-banks-ai-agent-security-controls/"
+    ],
+    "hibak": [],
+    "kereses": [],
+    "javitva": false
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-27T10:21:12+00:00"
+}
