@@ -1,0 +1,49 @@
+{
+  "id": "c32501e7dacc",
+  "slug": "issue-828-do-static-types-help-coding-agents-with-ruby-ruby-weekly",
+  "forras_id": "dailydev",
+  "forras_nev": "RUBYLAND (daily.dev)",
+  "url": "https://rubyweekly.com/issues/828",
+  "publikalva": "2026-11-26T17:20:27+00:00",
+  "cim": "Issue #828: Do static types help coding agents with Ruby? — Ruby Weekly",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 20 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/s--ZrL_HSsR--/f_auto/v1722860399/public/Placeholder%2006"
+  },
+  "cim_eredeti": "Issue #828: Do static types help coding agents with Ruby? — Ruby Weekly",
+  "szoveg_eredeti": "Content-Addressable Gems: The New Way of Packaging Precompiled Binaries — RubyGems 4.1 lets native gems ship a separate precompiled build for each Ruby minor version, so you only download the binary for the version you're running. Another neat thing is when a new Ruby version lands, maintainers can add a matching build even to older gem releases.\n\n💡 In related news, RubyGems and Bundler 4.1.1 are out along with 4.0.25.\n\nYour Rails Reports Don’t Need a Second Database — Slow Rails reports usually get a warehouse and an ETL job. Then numbers lag and you run two systems. TimescaleDB extends the Postgres your app already uses, so reports run on live data with plain Active Record. $1000 credit on Tiger Cloud.\n\nTiger Data (creators of TimescaleDB) sponsor\n\nDo Static Types Help Coding Agents? — It's often claimed types can make agents produce better code, so the Evil Martians tested it out in various ways, including adding features to a Rails app written in plain Ruby, RBS and Sorbet flavors. Task solving rates were all roughly the same, however.\n\n💡 Nate Berkopec's stylebench comes at AI and Ruby from a different direction, showing the results of different small Ruby coding tasks through various models as a way to see which models you vibe with best.\n\n🔒 Following on from the recent 8.1 releases, Puma 8.1.3, 8.0.5 and 7.2.4 fix more security issues (all rated medium or low).\n\n🔒 Rack 3.2.9, 3.1.24 and 2.2.26 also fix several security issues, the most serious of the 3.x fixes tackling a multipart charset lookup that can be used to peg CPU.\n\nRails has merged a change so Active Job loads arrays of records in one query per model (rather than one per record).\n\n🎉 22 years later, the Rails repo has 𝕏 passed 100,000 commits.\n\n🔒 The Rails Security Guide, Rewritten — The official Rails security guide has had a major rewrite targeting the latest (edge) Rails 8.2 era (which is why it's an 'Edge Guide' for now) and removing outdated advice.\n\n🇯🇵 Matz: Open Source Culture 'Might Not Last Another 10 Years' — In a Japanese interview (my browser did a good job of auto-translating it!) Matz worries that as AI is more heavily used to build apps, the open source underneath becomes more hidden, so fewer people will fund or contribute to it.\n\n📄 Using the Official Ruby Image for Rails Dev Containers – As a way to avoid waiting on image updates when a new Ruby release lands. t27duck\n\n📄 Using UUIDv7 Primary Keys in Rails with Postgres 18 Matias Korhonen\n\nFamily mruby: A Ruby + C GUI Operating System for the ESP32 — A tiny windowed OS for ESP32 microcontrollers that runs apps written in Ruby, complete with graphics, sound and even MIDI support! A neat project that you can even try from your browser thanks to a WebAssembly build. (GitHub repo.)\n\nRuboCop 1.93 Can Now Use Prism 'Without the Middleman' — Prism is Ruby's default parser, but until now RuboCop had to use it through a translation layer. 1.93 adds a new engine that uses it directly, and Bozhidar explains what changed and how to try it.\n\nNew Relic Bill Climbing With Your Team? AppSignal Has No Per-Seat Fees — Errors, N+1s, Sidekiq jobs and logs in one Ruby gem. Unlimited users, free dev-to-dev support, 30-day trial.\n\nPhlex 3.0 Beta: View Components Now Compile to String Appends — Phlex lets you build HTML views as plain Ruby objects, and v3's new compiler rewrites components into string appends with identical output. Joel's benchmarking shows the compiler helping v3 to render >30x faster than v2.\n\nBord: A Rails Engine for Internal Dashboards — Declare metrics, lists and per-record actions (e.g. to refund an order, retry a job, log in as a different user) with a small routing-style DSL and you get an admin dashboard for your app.\n\njekyll-ruby-link-checker: Find Dead Links in Jekyll Sites — A plugin that checks links, anchors and assets at build time, with a cache and GitHub workflows to comment on PRs.\n\njson 3.2 – script_safe mode, for embedding JSON in a page, now follows the HTML spec, escaping script tags and HTML comment openers properly.\n\nAddressable 2.10 – The more powerful/flexible URI replacement gets numerous strictness/validation improvements.\n\n🔒 JRuby 9.4.16 – The Ruby 3.1-compatible branch updates several dependencies to pick up security fixes.\n\n🤖 OpenAI Ruby SDK 1.0 – The official OpenAI library hits 1.0. There's a migration guide for existing users.\n\nKino 0.8 – The experimental Ractor-based Rack server adds WebSocket support.\n\nHashdiff 1.3 – Generate deep diffs of hashes and arrays.\n\n🇬🇧 UK Ruby Conference is a new one-day event from the South West Ruby team, on June 18, 2027 in Bristol, England. Speakers so far include Rosa Gutiérrez, Mike Dalessio, Jean Boussier, and Maciej Mensfeld.\n\n📺 DHH sat down with a16z to discuss ▶️ why AI has him working 16 hour days.\n\nminipg is a neat 'Postgres as a single executable' option that provides an interesting way to test/work with Postgres in development. A .pgdb directory holds your database, and a server can be spun up and down on demand.\n\nOn the topic of Postgres, I should take this opportunity to recommend Postgres Weekly, our sister newsletter for all things Postgres related!\n\nAlso, I keep meaning to write a blog post about this, but if you fancy thinking about what arr.max_by &arr.tally does, and why, it's a cute little golfy trick…\n\nCurated by Peter Cooper and Glenn Goodrich.Published by Cooperpress.\n\nChange your email or Stop getting this newsletter.\n\n© Cooper Press Ltd · Fairfield Enterprise Centre, Louth, LN11 0LS, United Kingdom\n\nOther weekly newsletters we publish include Postgres Weekly, React Status, Frontend Focus, and JavaScript Weekly.",
+  "begyujtve": "2026-11-27T15:06:39.095648+00:00",
+  "prioritas": {
+    "pont": 20,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 10,
+      "hirertek": 10,
+      "egyediseg": 90,
+      "hitelesseg": 68,
+      "aktualitas": 66,
+      "kozossegi": 31
+    },
+    "elofeszures": 85,
+    "tanult": 63,
+    "indok": "Nem AI-hír, hanem egy Ruby programozási hírlevél technikai részletei",
+    "tema": "ruby programming update",
+    "cim_hu": "Megjelent a RubyGems 4.1 az előre lefordított binárisok új csomagolásával",
+    "lead_hu": "A Ruby Weekly legújabb száma a statikus típusok használatát és a RubyGems új verziójának újdonságait taglalja.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-27T15:07:06+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-27T15:07:12+00:00"
+}
