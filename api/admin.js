@@ -662,7 +662,6 @@ module.exports = async (req, res) => {
         return json(res, 200, { ok: true });
       }
       if (mi === "elofizetok_gep") return json(res, 200, await elofizetokAdat());
-      if (mi === "umami_nyers_gep") { const pp = Object.fromEntries(url.searchParams); delete pp.mi; const ut = String(pp.ut || ""); delete pp.ut; if (!/^\/[a-z\-\/]+$/.test(ut)) return json(res, 400, {}); return json(res, 200, await umami(ut, pp).catch(e => ({ hiba: String(e.message) }))); }
       if (mi === "latogatok_gep") return json(res, 200, await latogatokAdat(String(url.searchParams.get("i") || "7d"), String(url.searchParams.get("p") || ""), String(url.searchParams.get("e") || "")));
       if (mi === "vasarlasok_gep") return json(res, 200, await vasarlasokAdat());
       if (mi === "elofizeto_gep") {
