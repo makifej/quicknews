@@ -335,31 +335,84 @@ function umamiKpi(s) {
     atlag_ido: latogatas ? Math.round(umamiSzam(s.totaltime) / latogatas) : null,
   };
 }
-async function latogatokAdat(idoszak) {
+const UMAMI_GYORS = new Map();
+async function latogatokAdat(idoszak, platform, eszkoz) {
   if (!process.env.UMAMI_API_URL || !process.env.UMAMI_WEBSITE_ID) return { hiba: "Az Umami nincs beállítva." };
-  const hossz = { "24h": 86400000, "7d": 7 * 86400000, "30d": 30 * 86400000 }[idoszak] ? idoszak : "7d";
-  const ms = { "24h": 86400000, "7d": 7 * 86400000, "30d": 30 * 86400000 }[hossz];
+  const MS = { "24h": 86400000, "7d": 7 * 86400000, "30d": 30 * 86400000 };
+  const hossz = MS[idoszak] ? idoszak : "7d", ms = MS[hossz];
+  const szuro = {};
+  if (platform === "app" || platform === "web") szuro.tag = platform;
+  if (["desktop", "mobile", "tablet", "laptop"].includes(eszkoz)) szuro.device = eszkoz;
+  const kulcs = [hossz, szuro.tag || "", szuro.device || ""].join("|");
+  const gy = UMAMI_GYORS.get(kulcs);
+  if (gy && Date.now() - gy.ido < 60000) return gy.adat;
   const veg = Date.now(), kezd = veg - ms;
-  const ab = { startAt: kezd, endAt: veg };
+  const ab = { startAt: kezd, endAt: veg, ...szuro };
   const egyseg = hossz === "24h" ? "hour" : "day";
-  const metr = (type) => umami("/metrics", { ...ab, type, limit: 10 }).catch(() => []);
-  const [most, elozo, sor, oldalak, forrasok, orszagok, eszkozok, bongeszok, aktiv] = await Promise.all([
-    umami("/stats", ab), umami("/stats", { startAt: kezd - ms, endAt: kezd }),
-    umami("/pageviews", { ...ab, unit: egyseg, timezone: "Europe/Budapest" }),
-    metr("path").then(x => (x && x.length) ? x : metr("url")), metr("referrer"), metr("country"), metr("device"), metr("browser"),
+  const tz = { unit: egyseg, timezone: "Europe/Budapest" };
+  const metr = (type, extra) => umami("/metrics", { ...ab, type, limit: 10, ...(extra || {}) }).catch(() => []);
+  const ertek = (event, propertyName) => umami("/event-data/values", { ...ab, event, propertyName }).catch(() => []);
+  const [most, elozo, sor, oldalak, forrasok, orszagok, eszkozok, bongeszok, aktiv, esemenyek, esemenySor, kibont,
+    cikkKatt, vegig, utmKer, utmKi, utmVid] = await Promise.all([
+    umami("/stats", ab), umami("/stats", { ...szuro, startAt: kezd - ms, endAt: kezd }),
+    umami("/pageviews", { ...ab, ...tz }),
+    metr("path"), metr("referrer"), metr("country"), metr("device"), metr("browser"),
     umami("/active").catch(() => null),
+    metr("event", { limit: 30 }), umami("/events/series", { ...ab, ...tz }).catch(() => []),
+    umami("/metrics/expanded", { ...ab, type: "path", limit: 500 }).catch(() => []),
+    ertek("Cikk megnyitása", "cikk"), ertek("Végigolvasás", "cikk"),
+    ertek("Útmutató kérése", "utmutato"), ertek("Útmutató kimenő link", "utmutato"), ertek("Útmutató videó", "utmutato"),
   ]);
   const ido = (t) => String(t).replace(" ", "T");
   const pont = {};
-  for (const p of sor.pageviews || []) (pont[ido(p.x)] = pont[ido(p.x)] || { t: ido(p.x), megtekintes: 0, latogato: 0 }).megtekintes = p.y;
-  for (const p of sor.sessions || []) (pont[ido(p.x)] = pont[ido(p.x)] || { t: ido(p.x), megtekintes: 0, latogato: 0 }).latogato = p.y;
+  const p0 = (t) => (pont[ido(t)] = pont[ido(t)] || { t: ido(t), megtekintes: 0, latogato: 0 });
+  for (const p of sor.pageviews || []) p0(p.x).megtekintes = p.y;
+  for (const p of sor.sessions || []) p0(p.x).latogato = p.y;
   const lista = (x) => (Array.isArray(x) ? x : []).map(e => ({ nev: e.x == null ? "" : String(e.x), db: Number(e.y) || 0 }));
-  return {
-    idoszak: hossz, egyseg, kezd, veg, aktiv: aktiv == null ? null : umamiSzam(aktiv.visitors ?? aktiv.x ?? aktiv),
+  const ertekMap = (x) => { const m = {}; for (const e of Array.isArray(x) ? x : []) m[String(e.value)] = (m[String(e.value)] || 0) + (Number(e.total) || 0); return m; };
+  // eseménytrend: időpontonként az összes esemény (a Görgetés és a Végigolvasás nélkül, azok nem kattintások)
+  const NEMKATT = new Set(["Görgetés", "Végigolvasás", "Cikk elolvasva"]);
+  const esor = {};
+  for (const e of Array.isArray(esemenySor) ? esemenySor : []) { if (NEMKATT.has(e.x)) continue; const t = ido(e.t); esor[t] = (esor[t] || 0) + (Number(e.y) || 0); }
+  // cikkek olvasottsága: /hir/ és /elemzes/ oldalak; cím a friss hírekből, különben az Umami oldalcíméből
+  const cimek = {}; for (const h of HIREK) if (h.url) cimek[h.url] = h.cim;
+  let utmCim = {}; try { const u = require("./_utmutatok.json"); for (const k of Object.keys(u)) utmCim[k] = u[k].cim; } catch (e) {}
+  const sorok = (Array.isArray(kibont) ? kibont : []).map(r => ({ ut: String(r.name || ""), megtekintes: Number(r.pageviews) || 0, olvaso: Number(r.visitors) || 0,
+    latogatas: Number(r.visits) || 0, ido: Number(r.visits) ? Math.round((Number(r.totaltime) || 0) / Number(r.visits)) : null }));
+  const vegigM = ertekMap(vegig), kattM = ertekMap(cikkKatt);
+  const cikkSorok = sorok.filter(r => /^\/(hir|elemzes)\/[^/]+$/.test(r.ut)).sort((a, b) => b.olvaso - a.olvaso || b.megtekintes - a.megtekintes).slice(0, 25);
+  const utmSorok = sorok.filter(r => /^\/utmutato\/[^/]+$/.test(r.ut)).sort((a, b) => b.olvaso - a.olvaso).slice(0, 25);
+  const ref1 = async (ut) => { const r = await metr("referrer", { path: ut, limit: 1 }); return r && r[0] ? String(r[0].x || "") : ""; };
+  const [cikkReszlet, utmReszlet] = await Promise.all([
+    Promise.all(cikkSorok.map(async r => {
+      const slug = r.ut.split("/")[2];
+      let cim = cimek[r.ut];
+      const [forras, cimU] = await Promise.all([ref1(r.ut), cim ? null : metr("title", { path: r.ut, limit: 1 })]);
+      if (!cim && cimU && cimU[0]) cim = String(cimU[0].x || "").replace(/ · quicknews\.hu$/, "").replace(/ \| quicknews\.hu$/, "");
+      return { ...r, tipus: r.ut.startsWith("/elemzes/") ? "elemzés" : "hír", cim: cim || slug.replace(/-/g, " "), vegig: vegigM[slug] || 0, katt: kattM[slug] || 0, forras };
+    })),
+    Promise.all(utmSorok.map(async r => {
+      const slug = r.ut.split("/")[2];
+      const [forras, utm] = await Promise.all([ref1(r.ut), metr("utmSource", { path: r.ut, limit: 5 })]);
+      const katt = (ertekMap(utmKer)[slug] || 0) + (ertekMap(utmKi)[slug] || 0) + (ertekMap(utmVid)[slug] || 0);
+      return { ...r, cim: utmCim[slug] || slug, slug, forras, utm: lista(utm), katt, tiktok: (lista(utm).find(x => /tiktok/i.test(x.nev)) || {}).db || 0 };
+    })),
+  ]);
+  const ev = lista(esemenyek);
+  const adat = {
+    idoszak: hossz, egyseg, kezd, veg, szuro: { platform: szuro.tag || "osszes", eszkoz: szuro.device || "osszes" },
+    aktiv: aktiv == null ? null : umamiSzam(aktiv.visitors ?? aktiv.x ?? aktiv),
     kpi: umamiKpi(most), elozo: umamiKpi(elozo),
+    apk: (ev.find(e => e.nev === "App letöltés") || {}).db || 0,
     sor: Object.values(pont).sort((a, b) => a.t < b.t ? -1 : 1),
     oldalak: lista(oldalak), forrasok: lista(forrasok), orszagok: lista(orszagok), eszkozok: lista(eszkozok), bongeszok: lista(bongeszok),
+    esemenyek: ev.filter(e => !NEMKATT.has(e.nev)).slice(0, 12),
+    esemeny_sor: Object.entries(esor).map(([t, db]) => ({ t, db })).sort((a, b) => a.t < b.t ? -1 : 1),
+    cikk_kattintas: Object.entries(kattM).map(([slug, db]) => ({ slug, cim: cimek["/hir/" + slug] || slug.replace(/-/g, " "), db })).sort((a, b) => b.db - a.db).slice(0, 10),
+    cikkek: cikkReszlet, utmutatok: utmReszlet,
   };
+  UMAMI_GYORS.set(kulcs, { ido: Date.now(), adat });
+  return adat;
 }
 
 async function elofizetokAdat() {
@@ -610,7 +663,7 @@ module.exports = async (req, res) => {
       }
       if (mi === "elofizetok_gep") return json(res, 200, await elofizetokAdat());
       if (mi === "umami_nyers_gep") { const pp = Object.fromEntries(url.searchParams); delete pp.mi; const ut = String(pp.ut || ""); delete pp.ut; if (!/^\/[a-z\-\/]+$/.test(ut)) return json(res, 400, {}); return json(res, 200, await umami(ut, pp).catch(e => ({ hiba: String(e.message) }))); }
-      if (mi === "latogatok_gep") return json(res, 200, await latogatokAdat(String(url.searchParams.get("i") || "7d")));
+      if (mi === "latogatok_gep") return json(res, 200, await latogatokAdat(String(url.searchParams.get("i") || "7d"), String(url.searchParams.get("p") || ""), String(url.searchParams.get("e") || "")));
       if (mi === "vasarlasok_gep") return json(res, 200, await vasarlasokAdat());
       if (mi === "elofizeto_gep") {
         const email = String(url.searchParams.get("email") || "").trim().toLowerCase();
@@ -826,7 +879,7 @@ module.exports = async (req, res) => {
     // útmutatókat is, külön fülön”. Csak olvasás.
     if (mi === "elofizetok") return json(res, 200, await elofizetokAdat());
     // Heni 2026-11-27: látogatottság az adminban (Umami, szerveroldali lekérés)
-    if (mi === "latogatok") return json(res, 200, await latogatokAdat(String(url.searchParams.get("i") || "7d")));
+    if (mi === "latogatok") return json(res, 200, await latogatokAdat(String(url.searchParams.get("i") || "7d"), String(url.searchParams.get("p") || ""), String(url.searchParams.get("e") || "")));
     if (mi === "vasarlasok") return json(res, 200, await vasarlasokAdat());
     if (mi === "apk_letoltes") return json(res, 200, await apkAdat());
     if (mi === "hirdetes_katt") return json(res, 200, await hirdetesAdat(String(url.searchParams.get("h") || "")));    if (mi === "torles" && req.method === "POST") {
