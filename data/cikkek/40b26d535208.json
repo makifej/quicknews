@@ -1,0 +1,49 @@
+{
+  "id": "40b26d535208",
+  "slug": "llm-evaluation-in-python-build-an-eval-harness-from-scratch",
+  "forras_id": "dailydev",
+  "forras_nev": "Real Python (daily.dev)",
+  "url": "https://realpython.com/llm-evaluation",
+  "publikalva": "2026-11-25T14:00:00+00:00",
+  "cim": "LLM Evaluation in Python: Build an Eval Harness From Scratch",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "prioritás: 36 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://media.daily.dev/image/upload/f_auto,q_auto/v1/posts/7981bb79bbe2b21d8b7ba567bc3e39c1?_a=AQAEuop"
+  },
+  "cim_eredeti": "LLM Evaluation in Python: Build an Eval Harness From Scratch",
+  "szoveg_eredeti": "You change the system prompt behind an LLM feature, try a few examples, and think you’ve fixed the bug. The new outputs look better when you inspect them manually, so you deploy the change. All is well. That is, until you discover that a separate class of requests has regressed or that responses seem worse on average. This is the problem with making ad hoc prompt changes without systematic LLM evaluation.\n\nAd hoc changes and manual inspection are useful while you’re experimenting, but they don’t give you a repeatable regression signal. You also find it increasingly difficult to distinguish stochastic variation from real improvement. In this tutorial, you’ll build an LLM evaluation harness from scratch that catches potential output regressions and turns product expectations into verifiable tests.\n\nBy the end of this tutorial, you’ll understand that:\n\nAlong the way, you’ll build a framework-agnostic Python command-line program that compares two prompt versions on the same test cases and returns a PASS, FAIL, or REVIEW decision, with a matching exit code you can wire into CI. Here’s the final comparison you’ll reproduce:\n\nThe output compares two prompt versions across six evaluation dimensions, separates new failures from ones that already existed, and ends with a clear release decision.\n\nTake the Quiz: Test your knowledge with our interactive “LLM Evaluation in Python: Build an Eval Harness From Scratch” quiz. You’ll receive a score upon completion to help you track your learning progress:\n\nTest your understanding of LLM evaluation in Python, from rubrics and code checks to LLM judges, calibration, and release gates.\n\nYou’ll build an LLM evaluator for a customer-support bot. The bot receives a customer message and the relevant support policy, then generates a reply. Return eligibility has an authoritative answer, while qualities such as helpfulness and tone require semantic judgment.\n\nYour harness will evaluate LLM output against the requirements in three layers:\n\nData flows through the evaluator as follows:\n\nThe harness follows an oracle hierarchy, where each independent oracle represents a source of truth capable of determining whether an answer is good. The most direct source of truth available settles each criterion, passing anything it can’t settle to a higher oracle:\n\nHuman-labeled examples aren’t part of this hierarchy. They play a different role: they check the LLM judge itself. You’ll use them to calibrate the judge in Step 6.\n\nEach test case also includes a human-written reference that records the expected decision and the facts a good reply must include. For criteria that need it, the LLM judge uses this reference to help assess whether the target LLM output meets the desired quality standards. These are reference plus judge oracles. This tutorial uses grader and oracle interchangeably.\n\nThe harness keeps each criterion separate so you can see how the LLM performs in each dimension as you assess its overall output quality. After the harness scores all dimensions, the release policy makes the final decision based on which blocker criteria the change caused to fail.\n\nThis tutorial assumes you’re comfortable with the following concepts:\n\nYou’ll learn the evaluation-specific design as you build it, so you don’t need prior experience with LLM evaluation frameworks.\n\nGet Your Code: Click here to download the free sample code that shows you how to build an LLM evaluation harness in Python.\n\nDownload the supporting materials and move into llm-evaluation/follow_along. You can then run the following command to download the required Python libraries and create your virtual environment:\n\nThe remaining commands use uv, but you can set up your environment with pip if you prefer:\n\nIf you use pip, run commands with python from your activated virtual environment instead of uv run. For example, uv run evals.py validate becomes python evals.py validate.\n\nBefore continuing, make sure you’re in the llm-evaluation/follow_along/ directory in your terminal. All file paths from this point on assume a root directory of llm-evaluation/follow_along/.\n\nThe harness runs in one of two modes. Replay mode is the default and needs no API key, since every command reads recorded generations and judgments from data/replay/ instead of calling a model. Here’s a replay-mode run, although it won’t work in follow_along/ until you’ve built the LLM judge in Step 5:\n\nLive mode calls the OpenAI API instead. Since LLMs are stochastic, live mode lets you see more of the behavior the evaluation harness is built to catch. Enable live mode with --live:\n\nBefore your first live run, copy the environment template:\n\nWhen you open .env, you’ll see the following lines:\n\nReplace the placeholder value for OPENAI_API_KEY with your own API key if you want to use the --live flag throughout the tutorial.\n\nGiven this project’s complexity, you’ll find a completed reference harness in llm-evaluation/completed/. There’s already some scaffolding in llm-evaluation/follow_along so you can focus on the code and logic directly related to LLM output evaluation.\n\nNote: It’s impossible to cover all aspects of LLM output evaluation in one tutorial. Use this as a starting point, then explore the areas that interest you.\n\nYou should now have an activated Python virtual environment, a .env file with your API key if you’re using live mode, and the tutorial’s code repository on your local machine. You should also understand the difference between live and replay modes. With llm-evaluation/follow_along as your working directory, you’re ready to build.\n\nAI Agent From Scratch Live Course: Want to see what happens when an LLM’s output decides an agent’s next action? In Real Python’s Build an AI Agent From Scratch in Python live course, you write the agent loop by hand, then recognize every piece of it in the tools you already use. Join the waitlist to hear about the next dates.\n\nAnecdotal judgments about whether output is “good” or “bad” won’t survive contact with an evaluation system. You’ll start by turning product expectations or business requirements into observable, clearly defined behavior. Think of the evaluation contract as a common language that connects product requirements, automated graders, human reviewers, and the final release gate.\n\nThe support application uses six criteria:\n\nThe first three are blockers. If your prompt, tool, or context change causes a blocker failure, it’s serious enough that you shouldn’t put that change into production. The remaining criteria are preferences. They help you compare versions and ensure responses generally improve with each iteration, but they can’t override a blocker. For example, if a response is unsafe or harmful, it doesn’t matter how helpful it is.\n\nThis is why the harness scores multiple dimensions. Your goal is to quickly see which ones need work before releasing a change.\n\nEach categorical label and numeric score needs a behavioral anchor that defines what passes and what fails. For example, here are the anchors for policy correctness:\n\nEach criterion gets one of these verdicts for each case:\n\nOrdinal dimensions use a numeric scale instead, and each dimension has its own anchors. Here’s the scale for helpfulness:\n\nEach model-graded criterion also states whether the harness must validate a quote from the response, the policy, or both.\n\nTo put these ideas into a usable file, create rubrics/support.json and add the following:\n\nWith the contract written, load it through the harness and validate it:\n\nvalidate uses prebuilt Pydantic models to reject duplicate criterion IDs, categorical criteria missing one of their three anchors, ordinal scales with gaps, and nonsensical pass_threshold values. Once you add test cases in Step 2, it also compiles each forbidden_patterns entry to ensure the regex is valid. If validate passes, then you know your JSON contracts are valid.\n\nAs in a traditional machine learning (ML) pipeline, you’ll create a test set for your LLM evaluation. A",
+  "begyujtve": "2026-11-27T11:04:41.294850+00:00",
+  "prioritas": {
+    "pont": 36,
+    "szint": "X",
+    "reszpont": {
+      "hatas": 25,
+      "hirertek": 35,
+      "egyediseg": 90,
+      "hitelesseg": 68,
+      "aktualitas": 42,
+      "kozossegi": 32
+    },
+    "elofeszures": 67,
+    "tanult": 34,
+    "indok": "Fejlesztői oktatóanyag és útmutató, nem klasszikus hírértékű iparági esemény Forrás-tapasztalat: -8.",
+    "tema": "llm evaluation python guide",
+    "cim_hu": "Így építsünk saját LLM-értékelő rendszert Pythonban a nulláról",
+    "lead_hu": "Gyakorlati útmutató készült arról, miként lehet szisztematikus értékelési folyamatokkal megelőzni az nyelvi modellek promptjainak módosításából eredő hibákat.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-27T11:05:02+00:00"
+  },
+  "jovahagyas_kell": true,
+  "megjelent": "2026-11-27T11:05:03+00:00"
+}
