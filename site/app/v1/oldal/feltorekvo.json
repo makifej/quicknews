@@ -2,7 +2,7 @@
   "cim": "Feltörekvő",
   "leiras": "Az elmúlt 14 nap hírei közül azok, amelyekről több forrás is beszámolt, vagy amelyek legalább 2 pontot kaptak az olvasóktól. Sorrend: elöl a szerkesztőség kiemelései, utána pontszám szerint. A pontszám a szavazatokból és abból adódik, hány forrás írt a hírről, és 2 naponta a felére csökken, így a friss hír előrébb kerül.",
   "leiras_cimke": "Hogyan áll össze a lista?",
-  "alcim": "19 hír, pontszám szerint",
+  "alcim": "18 hír, pontszám szerint",
   "blokkok": [
     {
       "t": "nagy",
@@ -51,25 +51,6 @@
     {
       "t": "cimsor",
       "hirek": [
-        {
-          "id": "0794865ff5e3",
-          "cim": "Asztali alkalmazássá alakíthatók a Claude Artifacts elemei Macen és Windowson",
-          "lead": "Az Anthropic új funkciójával kódolás nélkül hozhatók létre és telepíthetők asztali appok a Claude segítségével.",
-          "slug": "asztali-alkalmazassa-alakithatok-a-claude-artifacts-elemei-macen-es",
-          "forras": "The Decoder",
-          "kat": "eszköz",
-          "rovat": "eszkoz",
-          "ido": "2026-11-25T07:28:41.553Z",
-          "ido_hu": "nov. 25. 08:28",
-          "kep": "https://quicknews.hu/assets/kep/0794865ff5e3.webp",
-          "kep_nagy": "https://quicknews.hu/assets/kep/0794865ff5e3-n.webp",
-          "video": false,
-          "fontossag": 4,
-          "felkapott": true,
-          "forraskep": false,
-          "url": "https://quicknews.hu/hir/asztali-alkalmazassa-alakithatok-a-claude-artifacts-elemei-macen-es",
-          "jova": true
-        },
         {
           "id": "3993e7068daa",
           "cim": "Az OpenAI azt állítja, megoldotta a mátrixszorzás 57 éves matematikai rejtélyét",
@@ -126,74 +107,27 @@
           "forraskep": false,
           "url": "https://quicknews.hu/hir/nem-indulhat-az-animacios-oscarert-a-teljesen-ai-jal-keszult-gods-dont-give-gifts",
           "jova": true
-        }
-      ]
-    },
-    {
-      "t": "rovat",
-      "cim": "Eszközök",
-      "link": null,
-      "osszes": 3,
-      "fo": {
-        "id": "eaadf2423721",
-        "cim": "Az Instagram üzeneteibe költözik a Meta AI-segédje, a **Muse**",
-        "lead": "Közvetlenül az Instagram privát üzeneteiből is elérhetővé válik a Meta Muse nevű AI-asszisztense.",
-        "slug": "az-instagram-uzeneteibe-koltozik-a-meta-ai-segedje-a-muse",
-        "forras": "TechCrunch AI",
-        "kat": "eszköz",
-        "rovat": "eszkoz",
-        "ido": "2026-11-24T19:54:34.224Z",
-        "ido_hu": "nov. 24. 20:54",
-        "kep": "https://quicknews.hu/assets/kep/eaadf2423721.webp",
-        "kep_nagy": "https://quicknews.hu/assets/kep/eaadf2423721.webp",
-        "video": false,
-        "fontossag": 3,
-        "felkapott": false,
-        "forraskep": false,
-        "url": "https://quicknews.hu/hir/az-instagram-uzeneteibe-koltozik-a-meta-ai-segedje-a-muse",
-        "jova": true
-      },
-      "kis": [
-        {
-          "id": "70c66d38ddc0",
-          "cim": "Új vizualizációt kap a Tesla FSD V15",
-          "lead": "A Tesla FSD V15 új vizualizációja folyamatos virtuális kamerafelvételt vetít a jármű fölé.",
-          "slug": "uj-vizualizaciot-kap-a-tesla-fsd-v15",
-          "forras": "Elon Musk (X)",
-          "kat": "eszköz",
-          "rovat": "eszkoz",
-          "ido": "2026-11-22T07:32:46.284Z",
-          "ido_hu": "nov. 22. 08:32",
-          "kep": "https://quicknews.hu/assets/kep/70c66d38ddc0.webp",
-          "kep_nagy": "https://quicknews.hu/assets/kep/70c66d38ddc0.webp",
-          "video": true,
-          "fontossag": 3,
-          "felkapott": false,
-          "forraskep": false,
-          "url": "https://quicknews.hu/hir/uj-vizualizaciot-kap-a-tesla-fsd-v15",
-          "jova": true
         },
         {
-          "id": "06210d668ac3",
-          "cim": "Saját AI-csapatot futtathatsz a gépeden az OpenBottal, otthoni használatra ingyen",
-          "lead": "A lengyel OpenBot egy asztali alkalmazásba fogja össze a Claude Code-ot, a Codexet, a Geminit és a helyi modelleket, és ezekből tartós AI-munkatársakat csinál, amelyek egymásnak is adnak ki feladatot. A GitHubon 3 hónap alatt 8800 csillagot gyűjtött.",
-          "slug": "sajat-ai-csapatot-futtathatsz-a-gepeden-az-openbottal",
-          "forras": "openbot.run",
+          "id": "eaadf2423721",
+          "cim": "Az Instagram üzeneteibe költözik a Meta AI-segédje, a **Muse**",
+          "lead": "Közvetlenül az Instagram privát üzeneteiből is elérhetővé válik a Meta Muse nevű AI-asszisztense.",
+          "slug": "az-instagram-uzeneteibe-koltozik-a-meta-ai-segedje-a-muse",
+          "forras": "TechCrunch AI",
           "kat": "eszköz",
           "rovat": "eszkoz",
-          "ido": "2026-11-18T08:59:17.267Z",
-          "ido_hu": "nov. 18. 09:59",
-          "kep": "https://quicknews.hu/assets/kep/06210d668ac3-openbot-v3.webp",
-          "kep_nagy": "https://quicknews.hu/assets/kep/06210d668ac3-openbot-v3.webp",
+          "ido": "2026-11-24T19:54:34.224Z",
+          "ido_hu": "nov. 24. 20:54",
+          "kep": "https://quicknews.hu/assets/kep/eaadf2423721.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/eaadf2423721.webp",
           "video": false,
           "fontossag": 3,
           "felkapott": false,
           "forraskep": false,
-          "url": "https://quicknews.hu/hir/sajat-ai-csapatot-futtathatsz-a-gepeden-az-openbottal",
+          "url": "https://quicknews.hu/hir/az-instagram-uzeneteibe-koltozik-a-meta-ai-segedje-a-muse",
           "jova": true
         }
-      ],
-      "tobb": []
+      ]
     },
     {
       "t": "rovat",
@@ -369,6 +303,53 @@
           "felkapott": false,
           "forraskep": false,
           "url": "https://quicknews.hu/hir/ai-alapu-virtualis-csapat-indult-iphone-ra-stormi-neven",
+          "jova": true
+        }
+      ],
+      "tobb": []
+    },
+    {
+      "t": "rovat",
+      "cim": "Eszközök",
+      "link": null,
+      "osszes": 2,
+      "fo": {
+        "id": "70c66d38ddc0",
+        "cim": "Új vizualizációt kap a Tesla FSD V15",
+        "lead": "A Tesla FSD V15 új vizualizációja folyamatos virtuális kamerafelvételt vetít a jármű fölé.",
+        "slug": "uj-vizualizaciot-kap-a-tesla-fsd-v15",
+        "forras": "Elon Musk (X)",
+        "kat": "eszköz",
+        "rovat": "eszkoz",
+        "ido": "2026-11-22T07:32:46.284Z",
+        "ido_hu": "nov. 22. 08:32",
+        "kep": "https://quicknews.hu/assets/kep/70c66d38ddc0.webp",
+        "kep_nagy": "https://quicknews.hu/assets/kep/70c66d38ddc0.webp",
+        "video": true,
+        "fontossag": 3,
+        "felkapott": false,
+        "forraskep": false,
+        "url": "https://quicknews.hu/hir/uj-vizualizaciot-kap-a-tesla-fsd-v15",
+        "jova": true
+      },
+      "kis": [
+        {
+          "id": "06210d668ac3",
+          "cim": "Saját AI-csapatot futtathatsz a gépeden az OpenBottal, otthoni használatra ingyen",
+          "lead": "A lengyel OpenBot egy asztali alkalmazásba fogja össze a Claude Code-ot, a Codexet, a Geminit és a helyi modelleket, és ezekből tartós AI-munkatársakat csinál, amelyek egymásnak is adnak ki feladatot. A GitHubon 3 hónap alatt 8800 csillagot gyűjtött.",
+          "slug": "sajat-ai-csapatot-futtathatsz-a-gepeden-az-openbottal",
+          "forras": "openbot.run",
+          "kat": "eszköz",
+          "rovat": "eszkoz",
+          "ido": "2026-11-18T08:59:17.267Z",
+          "ido_hu": "nov. 18. 09:59",
+          "kep": "https://quicknews.hu/assets/kep/06210d668ac3-openbot-v3.webp",
+          "kep_nagy": "https://quicknews.hu/assets/kep/06210d668ac3-openbot-v3.webp",
+          "video": false,
+          "fontossag": 3,
+          "felkapott": false,
+          "forraskep": false,
+          "url": "https://quicknews.hu/hir/sajat-ai-csapatot-futtathatsz-a-gepeden-az-openbottal",
           "jova": true
         }
       ],
