@@ -303,6 +303,65 @@ async function hgetall(kulcs) {
   for (let i = 0; i < k.length; i += 2) { try { ki.push([k[i], JSON.parse(k[i + 1])]); } catch (e) { /* hibás sor kimarad */ } }
   return ki;
 }
+// Látogatottság az Umamiból (Napi feladatok / Heni 2026-11-27). Csak szerveroldalon: a jelszó és a token nem megy ki a
+// böngészőbe. Env: UMAMI_API_URL, UMAMI_USERNAME, UMAMI_PASSWORD, UMAMI_WEBSITE_ID (csak olvasó felhasználó).
+let UMAMI_TOKEN = null, UMAMI_TOKEN_IDO = 0;
+async function umamiToken(uj) {
+  if (!uj && UMAMI_TOKEN && Date.now() - UMAMI_TOKEN_IDO < 3600000) return UMAMI_TOKEN;
+  const r = await fetch(process.env.UMAMI_API_URL.replace(/\/$/, "") + "/api/auth/login", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username: process.env.UMAMI_USERNAME, password: process.env.UMAMI_PASSWORD }),
+  });
+  if (!r.ok) throw new Error("Umami belépés sikertelen (" + r.status + ")");
+  UMAMI_TOKEN = (await r.json()).token; UMAMI_TOKEN_IDO = Date.now();
+  return UMAMI_TOKEN;
+}
+async function umami(ut, param) {
+  const u = new URL(process.env.UMAMI_API_URL.replace(/\/$/, "") + `/api/websites/${process.env.UMAMI_WEBSITE_ID}` + ut);
+  for (const [k, v] of Object.entries(param || {})) u.searchParams.set(k, String(v));
+  for (let i = 0; i < 2; i++) {
+    const r = await fetch(u, { headers: { Authorization: "Bearer " + await umamiToken(i > 0), Accept: "application/json" } });
+    if (r.status === 401 && i === 0) continue;
+    if (!r.ok) throw new Error("Umami " + ut + ": " + r.status);
+    return r.json();
+  }
+}
+function umamiSzam(x) { return Number(x && typeof x === "object" ? x.value : x) || 0; }
+function umamiKpi(s) {
+  const latogatas = umamiSzam(s.visits);
+  return {
+    latogatok: umamiSzam(s.visitors), megtekintesek: umamiSzam(s.pageviews), latogatasok: latogatas,
+    visszafordulas: latogatas ? Math.min(1, umamiSzam(s.bounces) / latogatas) : null,
+    atlag_ido: latogatas ? Math.round(umamiSzam(s.totaltime) / latogatas) : null,
+  };
+}
+async function latogatokAdat(idoszak) {
+  if (!process.env.UMAMI_API_URL || !process.env.UMAMI_WEBSITE_ID) return { hiba: "Az Umami nincs beállítva." };
+  const hossz = { "24h": 86400000, "7d": 7 * 86400000, "30d": 30 * 86400000 }[idoszak] ? idoszak : "7d";
+  const ms = { "24h": 86400000, "7d": 7 * 86400000, "30d": 30 * 86400000 }[hossz];
+  const veg = Date.now(), kezd = veg - ms;
+  const ab = { startAt: kezd, endAt: veg };
+  const egyseg = hossz === "24h" ? "hour" : "day";
+  const metr = (type) => umami("/metrics", { ...ab, type, limit: 10 }).catch(() => []);
+  const [most, elozo, sor, oldalak, forrasok, orszagok, eszkozok, bongeszok, aktiv] = await Promise.all([
+    umami("/stats", ab), umami("/stats", { startAt: kezd - ms, endAt: kezd }),
+    umami("/pageviews", { ...ab, unit: egyseg, timezone: "Europe/Budapest" }),
+    metr("path").then(x => (x && x.length) ? x : metr("url")), metr("referrer"), metr("country"), metr("device"), metr("browser"),
+    umami("/active").catch(() => null),
+  ]);
+  const ido = (t) => String(t).replace(" ", "T");
+  const pont = {};
+  for (const p of sor.pageviews || []) (pont[ido(p.x)] = pont[ido(p.x)] || { t: ido(p.x), megtekintes: 0, latogato: 0 }).megtekintes = p.y;
+  for (const p of sor.sessions || []) (pont[ido(p.x)] = pont[ido(p.x)] || { t: ido(p.x), megtekintes: 0, latogato: 0 }).latogato = p.y;
+  const lista = (x) => (Array.isArray(x) ? x : []).map(e => ({ nev: e.x == null ? "" : String(e.x), db: Number(e.y) || 0 }));
+  return {
+    idoszak: hossz, egyseg, kezd, veg, aktiv: aktiv == null ? null : umamiSzam(aktiv.visitors ?? aktiv.x ?? aktiv),
+    kpi: umamiKpi(most), elozo: umamiKpi(elozo),
+    sor: Object.values(pont).sort((a, b) => a.t < b.t ? -1 : 1),
+    oldalak: lista(oldalak), forrasok: lista(forrasok), orszagok: lista(orszagok), eszkozok: lista(eszkozok), bongeszok: lista(bongeszok),
+  };
+}
+
 async function elofizetokAdat() {
   // qn:elofizetesek: Stripe-számlánként egy sor (első fizetés és megújítások); előfizetésenként összevonjuk
   const szamlak = await hgetall("qn:elofizetesek");
@@ -550,6 +609,7 @@ module.exports = async (req, res) => {
         return json(res, 200, { ok: true });
       }
       if (mi === "elofizetok_gep") return json(res, 200, await elofizetokAdat());
+      if (mi === "latogatok_gep") return json(res, 200, await latogatokAdat(String(url.searchParams.get("i") || "7d")));
       if (mi === "vasarlasok_gep") return json(res, 200, await vasarlasokAdat());
       if (mi === "elofizeto_gep") {
         const email = String(url.searchParams.get("email") || "").trim().toLowerCase();
@@ -764,6 +824,8 @@ module.exports = async (req, res) => {
     // Heni 2026-11-22: „adminba is rakd be, hogy lássam az előfizetőket, mettől meddig tart, mire fizetett elő, és az
     // útmutatókat is, külön fülön”. Csak olvasás.
     if (mi === "elofizetok") return json(res, 200, await elofizetokAdat());
+    // Heni 2026-11-27: látogatottság az adminban (Umami, szerveroldali lekérés)
+    if (mi === "latogatok") return json(res, 200, await latogatokAdat(String(url.searchParams.get("i") || "7d")));
     if (mi === "vasarlasok") return json(res, 200, await vasarlasokAdat());
     if (mi === "apk_letoltes") return json(res, 200, await apkAdat());
     if (mi === "hirdetes_katt") return json(res, 200, await hirdetesAdat(String(url.searchParams.get("h") || "")));    if (mi === "torles" && req.method === "POST") {
