@@ -1,0 +1,49 @@
+{
+  "id": "30d256494ab3",
+  "slug": "explainable-artificial-intelligence-workflow-boosts-accuracy-in-lung",
+  "forras_id": "google-news-ai",
+  "forras_nev": "Bioengineer.org",
+  "url": "https://bioengineer.org/explainable-artificial-intelligence-workflow-boosts-accuracy-in-lung-injury-histopathology-scoring/",
+  "publikalva": "2026-11-27T04:02:13+00:00",
+  "cim": "Explainable Artificial Intelligence Workflow Boosts Accuracy in Lung Injury Histopathology Scoring",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 45 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://bioengineer.org/wp-content/uploads/2026/11/stackrss-featured-8286.jpg"
+  },
+  "cim_eredeti": "Explainable Artificial Intelligence Workflow Boosts Accuracy in Lung Injury Histopathology Scoring",
+  "szoveg_eredeti": "Explainable Artificial Intelligence Workflow Boosts Accuracy in Lung Injury Histopathology Scoring\n\nResearchers developing automated diagnostic systems have demonstrated that integrating complementary explainable artificial intelligence techniques into an iterative engineering workflow can expose hidden dataset flaws, guide structural model refinements, and significantly enhance predictive performance in lung histopathology. In digital pathology, convolutional neural networks have advanced computerized tissue analysis, yet their opaque black-box architecture remains a major impediment to clinical trust and regulatory approval. Rather than treating post-hoc interpretability as a passive visualization step performed after training, this investigation showed that diagnostic tools such as latent-space clustering, gradient-weighted class activation mapping, and Shapley additive explanations can actively drive model optimization. Applying this iterative pipeline to complex lung biopsy specimens, the authors uncovered how common dataset artifacts and inactive neural pathways undermine algorithmic reliability, transforming those computational insights into targeted fine-tuning strategies that elevated classification accuracy by more than seventeen percentage points. The findings demonstrate that explainability methods can bridge the persistent gap between technical transparency and clinical utility by converting algorithmic explanations into actionable model improvements.\n\nThe study evaluated this explainable workflow within the demanding clinical domain of automated pulmonary injury assessment, an area where automated scoring is severely complicated by intricate histological damage features and human observer subjectivity. Utilizing an open-access histology dataset derived from a porcine model of acute respiratory distress syndrome, the research team analyzed lung tissue biopsies stained with hematoxylin and eosin across diverse experimental groups. These cohorts included healthy control animals alongside subjects treated with lipopolysaccharide, an inflammatory agent used to model acute respiratory distress syndrome, combined with mechanical ventilation or extracorporeal membrane oxygenation interventions commonly administered to clinical patients. The degree of lung injury was graded by five annotators using the Silva scoring system, which assesses seven distinct pathological hallmarks: interstitial inflammatory cell infiltration, hyaline membrane formation lining alveolar spaces, proteinaceous debris within alveolar cavities, alveolar wall thickening, composite enhanced injury, hemorrhage, and atelectasis, which manifests as the obstruction and collapse of functional air spaces.\n\nAutomating histopathological classification across these diverse features faced substantial data constraints common to medical image computing. Because acquiring extensive biopsy series is restricted by ethical, temporal, and financial limitations, the experimental dataset was relatively small, containing only nine to ten whole-slide images per treatment group. To overcome the computational challenge of processing massive whole-slide scans and eliminate extraneous visual elements such as slide text and scale bars, earlier studies divided the high-resolution images into smaller tiles. However, this preprocessing introduced label noise, as each tile inherited the broad damage category assigned to its parent slide, ignoring the spatial heterogeneity of pulmonary lesions. Furthermore, baseline evaluations revealed noticeable inter-annotator and intra-annotator variation across repeat scoring sessions, creating an imperfect ground truth across low, medium, and high damage classes. Starting from two top-performing baseline networks from earlier work—a VGG16 model designated V_r_a and an EfficientNetB4 model designated EN_m_a—the team initiated an interpretability audit to diagnose these underlying training anomalies.\n\nTo interrogate model behavior independently of potentially flawed ground-truth annotations, the researchers first evaluated predictions using unsupervised clustering of latent feature representations extracted from the final fully connected dense layers. Each prediction yielded a compressed 128-dimensional feature vector, which the investigators projected into two dimensions using principal component analysis, t-distributed stochastic neighbor embedding, and uniform manifold approximation and projection. While raw image tiles formed no distinct groupings, the learned latent representations produced clear clusters corresponding to individual cross-validation folds. In the VGG16 network, the second fold exhibited marked structural divergence, splitting into subclusters where numerous latent feature vectors collapsed to zero. Visualizing cluster coordinates alongside experimental treatments and original histology tiles revealed that latent trajectories tracked physiological injury transitions, progressing from light regions with open airspaces to dark purple areas reflecting inflammatory influx and atelectasis. Crucially, in ambiguous medium-damage classifications, model predictions aligned more faithfully with visible histological damage and therapeutic exposures than did the conflicting manual annotations provided by human pathologists.\n\nThe diagnostic workflow next used Gradient-based Class Activation Mapping, known as Grad-CAM, to track gradients of predicted class logits with respect to feature maps in the final convolutional layers. By generating spatial heatmaps overlaid on microscopic fields, Grad-CAM revealed the histological structures driving class predictions. In mildly damaged tiles with open airspaces, the networks concentrated activation weights along intact alveolar walls, whereas in severely injured tiles, activations highlighted dense clumps of inflammatory cells. Crucially, Grad-CAM revealed that numerous tiles in the second evaluation fold exhibited non-activated heatmaps that contributed nothing to predictions. The researchers traced this problem to the dying ReLU phenomenon, wherein rectified linear units zeroed out negative inputs and halted gradient flow. Replacing standard ReLU activations with Exponential Linear Units and Leaky ReLU restored gradient continuity across previously disregarded tissue sections. Evaluated with McNemar’s statistical testing, retaining a LeakyReLU-ReLU configuration in the final layers achieved a net accuracy gain of 17.39 percent over the baseline VGG16 model, yielding statistically significant improvements across more than twenty-seven percent of evaluated samples.\n\nTo corroborate these spatial gradient heatmaps at the level of individual input features, the team implemented Shapley Additive exPlanations, or SHAP, treating pixel configurations as cooperating players within an axiomatic game-theoretic attribution framework. Employing a partition-based image explainer coupled with an inpainting masker, the algorithm calculated credit matrices quantifying the positive or negative contribution of localized image regions toward each class assignment. The resulting attribution distributions demonstrated remarkable alignment with established biological criteria: pathological features such as dense leukocyte clusters, proliferative fibroblasts occupying respiratory spaces, and alveolar hemorrhage consistently registered high positive Shapley values that actively supported a high-damage decision. Conversely, intact alveolar architecture generated negative Shapley values that opposed high-damage classifications, while empty background areas devoid of tissue showed attribution scores near zero. This rigorous attribution profiling confirmed that the neural networks were responding authentically to valid morphological biomarkers rather than memorizing confounding artifacts, providing essential empirical justification for subsequent structural model optimization.\n\nCapitalizing on these interpretability discoveries, the investigator",
+  "begyujtve": "2026-11-27T07:05:00.663799+00:00",
+  "prioritas": {
+    "pont": 45,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 40,
+      "hirertek": 50,
+      "egyediseg": 70,
+      "hitelesseg": 70,
+      "aktualitas": 95,
+      "kozossegi": 26
+    },
+    "elofeszures": 71,
+    "tanult": 19,
+    "indok": "Specifikus orvosi kutatási eredmény magyarázható AI-val Forrás-tapasztalat: -7.",
+    "tema": "explainable ai lung injury pathology",
+    "cim_hu": "Magyarázható AI-módszer javítja a tüdősérülések diagnosztikai pontosságát",
+    "lead_hu": "Kutatók eljárást fejlesztettek ki, amely magyarázható mesterséges intelligencia segítségével tárja fel az adathalmazok hibáit és pontosítja a tüdőszöveti elváltozások elemzését.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-27T07:05:56+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-27T07:06:18+00:00"
+}
