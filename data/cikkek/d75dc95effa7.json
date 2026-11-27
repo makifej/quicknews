@@ -1,0 +1,52 @@
+{
+  "id": "d75dc95effa7",
+  "slug": "grok-build-upgrades",
+  "forras_id": "x-elonmusk",
+  "forras_nev": "Elon Musk (X)",
+  "url": "https://x.com/elonmusk/status/2126390700660920546",
+  "publikalva": "2026-11-27T19:00:24+00:00",
+  "cim": "Grok Build upgrades",
+  "lead": "",
+  "osszefoglalo": "",
+  "miert_szamit": "",
+  "cimkek": [],
+  "kategoria": "egyéb",
+  "forras_tipus": "elemzes",
+  "fontossag": 1,
+  "video_szoveg": "",
+  "relevans": false,
+  "kihagyva": "P3: 62 pont",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://pbs.twimg.com/media/HXnRc_rbUAAEgAC.jpg?name=orig",
+    "x_url": "https://x.com/elonmusk/status/2126390700660920546",
+    "eredeti_keszito": "X Freeze (@XFreeze)",
+    "eredeti_url": "https://x.com/XFreeze/status/2123959003084664952"
+  },
+  "cim_eredeti": "Grok Build upgrades",
+  "szoveg_eredeti": "Grok Build upgrades\n\n[IDÉZETT POSZT, amelyet Elon Musk megosztott. Eredeti szerzője: X Freeze (@XFreeze); megjelent: 2026-11-21T01:57:42+00:00; link: https://x.com/XFreeze/status/2123959003084664952; média: 1 kép]\nGrok Build just got a solid upgrade for headless agents, MCP integrations, and remote terminal workflows\n\nHeadless sessions can now include images returned by MCP tools in streaming and JSON output, positional prompts automatically run headless when no interactive terminal is available, and local file links open directly from responses\n\nLong-running headless tasks also get better reliability, with a five-minute inactivity timeout that prevents sessions from hanging indefinitely. Image pasting now works through remote tmux and nested terminal wrappers, while session recovery and hook inspection are more dependable\n\nThere’s also a performance improvement that eliminates unnecessary directory watching when Grok only needs to track the current Git branch\n\nRelease Notes: v1.0.92\n\nFeatures:\n\n• Positional prompts without `-p` now run headless and print their reply when the process has no terminal for the TUI\n• MCP tool results that contain images now include those images in headless streaming and JSON output\n• Clickable `file://` links to local files now open the file the same way bare paths do\n\nBug Fixes:\n\n• Question cards in minimal mode now keep the first option visible instead of scrolling it off-screen\n• Headless runs (`grok -p`) now stop after 5 minutes of no model output instead of hanging indefinitely\n• Session resume errors now give the same helpful instruction on every route instead of suggesting the TUI picker\n• `grok inspect` now shows the hooks a headless run would actually load, with a note for those that still need folder trust\n• Image paste with `grok wrap` now works when Grok runs inside a remote tmux or through a second wrap\n\nPerformance:\n\n• Grok no longer watches every directory when only tracking the current Git branch",
+  "begyujtve": "2026-11-27T19:04:33.035176+00:00",
+  "prioritas": {
+    "pont": 62,
+    "szint": "P3",
+    "reszpont": {
+      "hatas": 55,
+      "hirertek": 60,
+      "egyediseg": 85,
+      "hitelesseg": 76,
+      "aktualitas": 98,
+      "kozossegi": 57
+    },
+    "elofeszures": 87,
+    "tanult": 44,
+    "indok": "Fejlesztői frissítés a Grok Build eszközhöz headless ágensek és MCP integrációk terén. Forrás-tapasztalat: -3.",
+    "tema": "grok build mcp upgrade",
+    "cim_hu": "Jelentős frissítést kapott a Grok Build a fejlesztői munkafolyamatokhoz",
+    "lead_hu": "A Grok Build legújabb frissítése jobb támogatást nyújt a headless ágenseknek, az MCP-integrációknak és a távoli terminálos munkafolyamatoknak.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-27T19:20:49+00:00"
+  },
+  "jovahagyas_kell": false,
+  "megjelent": "2026-11-27T19:20:57+00:00"
+}
