@@ -96,7 +96,7 @@ function oldal(res, kod, cim, szoveg) {
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   res.setHeader("Cache-Control", "no-store");
   res.setHeader("X-Robots-Tag", "noindex");
-  res.end(`<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${cim} · quicknews.hu</title>
+  res.end(`<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script defer src="https://umami-analytics-eight-gules.vercel.app/script.js" data-website-id="c7372e5a-c3dd-4c0c-8ad9-58d780ef55ff"></script><title>${cim} · quicknews.hu</title>
 <style>body{margin:0;background:#181818;color:#f2f2f2;font:17px/1.6 Manrope,system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;min-height:100dvh;padding:24px;box-sizing:border-box}
 main{max-width:480px}h1{font-size:30px;line-height:36px;margin:0 0 12px}a{color:#ffb224}.logo{font-weight:800;font-size:20px;margin-bottom:32px;display:block;color:#f2f2f2;text-decoration:none}.logo span{color:#ffb224}</style></head>
 <body><main><a class="logo" href="/">quicknews<span>.</span>hu</a><h1>${cim}</h1><p>${szoveg}</p><p><a href="/">Vissza a hírekhez</a></p></main></body></html>`);
