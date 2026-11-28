@@ -591,7 +591,7 @@ if(/quicknews-android-admin/.test(navigator.userAgent))document.documentElement.
 </section>
 
 <section id="p-statisztika" hidden>
-<div class="szeg alful" role="group" aria-label="Statisztika nézet"><button type="button" data-alful="statisztika">Áttekintés</button><button type="button" data-alful="koltseg">Gemini-költség</button></div>
+<div class="szeg alful" role="group" aria-label="Statisztika nézet"><button type="button" data-alful="statisztika">Áttekintés</button><button type="button" data-alful="latogatok">Látogatottság</button><button type="button" data-alful="koltseg">Gemini-költség</button></div>
 <div class="idoszak st-szuro">
 <label class="st-datum">Ettől <input type="date" id="st-tol" aria-label="Ettől"></label>
 <label class="st-datum">Eddig <input type="date" id="st-ig" aria-label="Eddig"></label>
@@ -603,8 +603,43 @@ if(/quicknews-android-admin/.test(navigator.userAgent))document.documentElement.
 <p class="lab" id="st-lab"></p>
 </section>
 
+<section id="p-latogatok" hidden>
+<div class="szeg alful" role="group" aria-label="Statisztika nézet"><button type="button" data-alful="statisztika">Áttekintés</button><button type="button" data-alful="latogatok">Látogatottság</button><button type="button" data-alful="koltseg">Gemini-költség</button></div>
+<div class="lt-fej"><div><h2 class="lt-cim">Látogatottság</h2><p class="lt-al" id="lt-al">quicknews.hu, cookie nélküli mérés (Umami)</p></div>
+<div class="szeg" role="group" aria-label="Időszak"><button data-lti="24h" aria-pressed="false">24 óra</button><button data-lti="7d" aria-pressed="true">7 nap</button><button data-lti="30d" aria-pressed="false">30 nap</button></div></div>
+<div class="lt-szurok"><div class="szeg" role="group" aria-label="Platform"><button data-ltp="osszes" aria-pressed="true">Összes</button><button data-ltp="app" aria-pressed="false">App</button><button data-ltp="web" aria-pressed="false">Web</button></div><div class="szeg" role="group" aria-label="Eszköz"><button data-lte="osszes" aria-pressed="true">Minden eszköz</button><button data-lte="desktop" aria-pressed="false">Asztali</button><button data-lte="mobile" aria-pressed="false">Mobil</button><button data-lte="tablet" aria-pressed="false">Tablet</button></div></div>
+<div id="lt-tart"><p class="a-bev">Betöltés…</p></div>
+<style>
+.lt-fej{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;margin:18px 0 20px}
+.lt-cim{font-size:24px;font-weight:800;letter-spacing:-.01em}.lt-al{color:var(--halk);font-size:14px;margin-top:2px}
+.lt-elo{display:inline-flex;align-items:center;gap:6px;color:#34d399;font-weight:700}.lt-elo i{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 0 rgba(52,211,153,.6);animation:ltp 2s infinite}
+@keyframes ltp{70%{box-shadow:0 0 0 8px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+.lt-kpik{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:16px}
+.lt-kpi{background:var(--lap);border:1px solid var(--vonal);border-radius:16px;padding:18px 20px;min-width:0}
+.lt-kpi span{display:block;color:var(--halk);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.lt-kpi b{display:block;font-size:34px;font-weight:800;line-height:1.15;margin:8px 0 6px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.lt-kpi small{font-size:13px;color:var(--halk)}.lt-kpi .fel{color:#34d399;font-weight:700}.lt-kpi .le{color:#f87171;font-weight:700}
+.lt-kpi:first-child{border-color:rgba(255,178,36,.35);background:linear-gradient(160deg,rgba(255,178,36,.10),var(--lap) 60%)}
+.lt-kartya{background:var(--lap);border:1px solid var(--vonal);border-radius:16px;padding:18px 20px;min-width:0}
+.lt-kartya h3{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;justify-content:space-between;gap:12px}.lt-kartya h3 small{color:var(--halk);font-weight:600;font-size:13px}
+.lt-jel{display:flex;gap:16px;font-size:13px;color:var(--halk)}.lt-jel i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.lt-graf{position:relative;margin-bottom:16px}.lt-graf svg{display:block;width:100%;height:auto;overflow:visible}
+.lt-graf text{fill:var(--halkabb);font:500 11px Manrope,system-ui,sans-serif}
+.lt-tip{position:absolute;pointer-events:none;background:#0d0d0d;border:1px solid var(--vonal);border-radius:10px;padding:8px 12px;font-size:13px;white-space:nowrap;transform:translate(-50%,-110%);display:none;z-index:2}
+.lt-tip b{color:var(--amber)}
+.lt-racs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.lt-sor{position:relative;display:flex;justify-content:space-between;gap:12px;padding:8px 10px;font-size:14px;border-radius:8px;overflow:hidden}
+.lt-sor+.lt-sor{margin-top:4px}.lt-sor em{position:absolute;inset:0 auto 0 0;background:rgba(255,178,36,.13);border-radius:8px}
+.lt-sor span{position:relative;min-width:0;overflow-wrap:anywhere}.lt-sor b{position:relative;font-variant-numeric:tabular-nums}
+.lt-ures{color:var(--halk);font-size:14px;padding:6px 0}
+.lt-szurok{display:flex;flex-wrap:wrap;gap:10px 14px;margin:-6px 0 18px}.lt-szeles{margin-bottom:16px}.halk{color:var(--halk)}
+.lt-tg{overflow-x:auto}.lt-tab{width:100%;border-collapse:collapse;font-size:14px}.lt-tab th{text-align:left;color:var(--halk);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;border-bottom:1px solid var(--vonal);white-space:nowrap}.lt-tab th[data-ltr]{cursor:pointer}.lt-tab th.akt{color:var(--amber)}.lt-tab td{padding:10px;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top}.lt-tab .j{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.lt-tab tr:hover td{background:rgba(255,255,255,.02)}.lt-cikk{color:var(--szoveg);text-decoration:none;font-weight:600}.lt-cikk:hover{color:var(--amber)}.lt-tipus{display:inline-block;margin-left:8px;font-size:11px;color:var(--halk);border:1px solid var(--vonal);border-radius:6px;padding:0 6px;vertical-align:1px}.lt-kpik{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media (max-width:1100px){.lt-kpik{grid-template-columns:repeat(2,minmax(0,1fr))}.lt-kpi:last-child{grid-column:1/-1}}
+@media (max-width:760px){.lt-racs{grid-template-columns:1fr}.lt-kpi{padding:14px 16px}.lt-kpi span{text-transform:none;letter-spacing:0;font-size:13px}.lt-kpi b{font-size:26px}.lt-kartya h3{flex-wrap:wrap}.lt-jel{width:100%;gap:14px}.lt-fej .szeg{width:100%}.lt-graf text{font-size:13px}.lt-szurok .szeg{width:100%}.lt-szurok .szeg button{flex:1;padding-left:4px;padding-right:4px}.lt-tab thead{display:none}.lt-tab,.lt-tab tbody,.lt-tab tr,.lt-tab td{display:block;width:100%}.lt-tab tr{border:1px solid var(--vonal);border-radius:12px;padding:4px 12px;margin:0 0 10px}.lt-tab td{display:flex;justify-content:space-between;gap:14px;padding:7px 0;text-align:right;border-bottom:1px solid rgba(255,255,255,.06)}.lt-tab td:last-child{border-bottom:0}.lt-tab td::before{content:attr(data-c);color:var(--halk);font-size:12px;font-weight:600;text-align:left;flex:0 0 auto}.lt-tab td:first-child{display:block;text-align:left;font-size:15px;overflow-wrap:anywhere}.lt-tab td:first-child::before{display:none}.lt-tg{overflow:visible}.lt-fej .szeg button{flex:1}.lt-kartya{padding:14px 14px}.lt-cim{font-size:20px}}
+</style>
+</section>
 <section id="p-koltseg" hidden>
-<div class="szeg alful" role="group" aria-label="Statisztika nézet"><button type="button" data-alful="statisztika">Áttekintés</button><button type="button" data-alful="koltseg">Gemini-költség</button></div>
+<div class="szeg alful" role="group" aria-label="Statisztika nézet"><button type="button" data-alful="statisztika">Áttekintés</button><button type="button" data-alful="latogatok">Látogatottság</button><button type="button" data-alful="koltseg">Gemini-költség</button></div>
 <div class="mutatok" id="k-mutatok"></div>
 <div class="idoszak">
 <div class="szeg" role="group" aria-label="Bontás"><button data-m="nap" aria-pressed="true">Nap</button><button data-m="het" aria-pressed="false">Hét</button><button data-m="honap" aria-pressed="false">Hónap</button></div>
@@ -1349,6 +1384,87 @@ setInterval(()=>{if(!document.hidden&&!document.getElementById("p-prioritas").hi
 /* ---------- előfizetők és útmutató-vásárlások (Heni 2026-11-22) ---------- */
 const efzDatum=t=>t?new Date(t).toLocaleDateString("hu-HU",{year:"numeric",month:"short",day:"numeric"}):"";
 const efzFt=n=>n==null?"":(Math.round(n/100)).toLocaleString("hu-HU")+" Ft";
+let LTP="osszes",LTE="osszes",LT_REND={m:"olvaso",i:-1},LT_UREND={m:"olvaso",i:-1},LT_ADAT=null;
+try{LTP=localStorage.getItem("lt-platform")||"osszes";LTE=localStorage.getItem("lt-eszkoz")||"osszes"}catch(e){}
+document.querySelectorAll("[data-ltp]").forEach(b=>b.onclick=()=>{LTP=b.dataset.ltp;try{localStorage.setItem("lt-platform",LTP)}catch(e){}lttolt()});
+document.querySelectorAll("[data-lte]").forEach(b=>b.onclick=()=>{LTE=b.dataset.lte;try{localStorage.setItem("lt-eszkoz",LTE)}catch(e){}lttolt()});
+function ltTabla(sorok,oszl,rend,nev){if(!sorok||!sorok.length)return'<p class="lt-ures">Még nincs adat ebben az időszakban.</p>';
+ const s=[...sorok].sort((a,b)=>((a[rend.m]??-1)>(b[rend.m]??-1)?1:(a[rend.m]??-1)<(b[rend.m]??-1)?-1:0)*rend.i);
+ return`<div class="lt-tg"><table class="lt-tab"><thead><tr>${oszl.map(o=>`<th${o.k?` data-ltr="${nev}:${o.k}" class="${rend.m===o.k?"akt":""}"`:""}${o.j?' class="j"':""}>${o.c}${rend.m===o.k?(rend.i<0?" ↓":" ↑"):""}</th>`).join("")}</tr></thead><tbody>${s.map(r=>`<tr>${oszl.map(o=>`<td data-c="${o.c}"${o.j?' class="j"':""}>${o.f(r)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`}
+function ltForras(x){return x?esc(x.replace(/^https?:\/\/(www\.)?/,"").replace(/\/$/,"")):'<span class="halk">közvetlen / belső</span>'}
+function ltCikkBlokk(d){return`<div class="lt-kartya lt-szeles"><h3>Cikkek olvasottsága<small>olvasók szerint, kattints a fejlécre a rendezéshez</small></h3>${ltTabla(d.cikkek,[
+ {c:"Cikk",f:r=>`<a href="https://quicknews.hu${esc(r.ut)}" target="_blank" rel="noopener" class="lt-cikk">${esc(r.cim)}</a><span class="lt-tipus">${r.tipus}</span>`},
+ {c:"Olvasók",k:"olvaso",j:1,f:r=>`<b>${ltSzam(r.olvaso)}</b>`},{c:"Megtekintés",k:"megtekintes",j:1,f:r=>ltSzam(r.megtekintes)},
+ {c:"Átl. idő",k:"ido",j:1,f:r=>ltIdo(r.ido)},{c:"Végigolvasta",k:"vegig",j:1,f:r=>r.olvaso?`<span>${ltSzam(r.vegig)} <span class="halk">(${Math.min(100,Math.round(r.vegig/Math.max(r.olvaso,1)*100))}%)</span></span>`:ltSzam(r.vegig)},
+ {c:"Top forrás",f:r=>ltForras(r.forras)}],LT_REND,"c")}</div>`}
+function ltUtmBlokk(d){return`<div class="lt-kartya lt-szeles"><h3>Útmutatók<small>megnyitások és kattintások az útmutatókon belül</small></h3>${ltTabla(d.utmutatok,[
+ {c:"Útmutató",f:r=>`<a href="https://quicknews.hu${esc(r.ut)}" target="_blank" rel="noopener" class="lt-cikk">${esc(r.cim)}</a>`},
+ {c:"Megnyitás",k:"megtekintes",j:1,f:r=>`<b>${ltSzam(r.megtekintes)}</b>`},{c:"Egyedi látogató",k:"olvaso",j:1,f:r=>ltSzam(r.olvaso)},
+ {c:"TikTokról",k:"tiktok",j:1,f:r=>ltSzam(r.tiktok)},{c:"Kattintás bent",k:"katt",j:1,f:r=>ltSzam(r.katt)},
+ {c:"Honnan",f:r=>r.utm&&r.utm.length?r.utm.slice(0,3).map(u=>`${esc(u.nev)} (${ltSzam(u.db)})`).join(", "):ltForras(r.forras)}],LT_UREND,"u")}</div>`}
+function ltOszlop(d){const kul=ltKulcsok(d),ora=d.egyseg==="hour",m={};(d.esemeny_sor||[]).forEach(p=>{m[ora?p.t.slice(0,13):p.t.slice(0,10)]=p.db});
+ const pt=kul.map(k=>({k,v:m[k]||0})),kis=innerWidth<700,W=kis?400:1000,H=kis?170:190,bal=kis?26:36,lent=26,fent=10,max=Math.max(2,...pt.map(p=>p.v));
+ const sz=(W-bal-8)/pt.length,Y=v=>fent+(H-fent-lent)*(1-v/max);let o="";
+ pt.forEach((p,i)=>{const x=bal+i*sz+sz*.18,w=Math.max(2,sz*.64);o+=`<rect x="${x.toFixed(1)}" y="${Y(p.v).toFixed(1)}" width="${w.toFixed(1)}" height="${(H-lent-Y(p.v)).toFixed(1)}" rx="3" fill="${p.v?"#ffb224":"rgba(255,255,255,.06)"}"><title>${p.v} kattintás</title></rect>`});
+ const ugr=Math.ceil(pt.length/(kis?5:ora?12:10));let xc="";pt.forEach((p,i)=>{if(i%ugr===0)xc+=`<text x="${(bal+i*sz+sz/2).toFixed(1)}" y="${H-6}" text-anchor="middle">${ora?p.k.slice(11,13)+":00":p.k.slice(5,7).replace(/^0/,"")+". "+p.k.slice(8,10).replace(/^0/,"")+"."}</text>`});
+ return`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Kattintások időben"><line x1="${bal}" x2="${W-8}" y1="${Y(0)}" y2="${Y(0)}" stroke="rgba(255,255,255,.1)"/><text x="${bal-6}" y="${Y(max)+4}" text-anchor="end">${max}</text>${o}${xc}</svg>`}
+function ltKattBlokk(d){return`<div class="lt-kartya lt-szeles lt-graf"><h3>Kattintások<small>linkek, gombok, megosztás, keresés; a görgetés nélkül</small></h3>${ltOszlop(d)}</div>
+<div class="lt-racs">${ltLista("Top események",d.esemenyek,null,"db")}${ltLista("Legtöbbet kattintott cikkek",(d.cikk_kattintas||[]).map(x=>({nev:x.cim,db:x.db})),null,"kattintás")}</div>`}
+/* ---------- Látogatottság (Umami, Heni 2026-11-27): az adat az /api/admin?mi=latogatok szerveroldali végpontból jön ---------- */
+let LTI="7d";try{LTI=localStorage.getItem("lt-idoszak")||"7d"}catch(e){}
+document.querySelectorAll("[data-lti]").forEach(b=>b.onclick=()=>{LTI=b.dataset.lti;try{localStorage.setItem("lt-idoszak",LTI)}catch(e){}lttolt()});
+const ltSzam=n=>n==null?"nincs adat":Number(n).toLocaleString("hu-HU");
+const ltIdo=s=>{if(s==null)return"nincs adat";s=Math.round(s);if(s<60)return s+" mp";const p=Math.floor(s/60),m=s%60;return p+" p "+(m<10?"0":"")+m+" mp"};
+function ltValt(m,e,forditott){if(m==null||e==null)return'<small>nincs összevetés</small>';if(!e)return m?'<small>előtte nem volt adat</small>':'<small>változatlan</small>';
+ const d=(m-e)/e*100,j=Math.abs(d)<.5?0:d>0?1:-1;if(!j)return'<small>változatlan az előzőhöz képest</small>';const jo=forditott?j<0:j>0;
+ return`<small><span class="${jo?"fel":"le"}">${j>0?"▲":"▼"} ${Math.abs(d).toLocaleString("hu-HU",{maximumFractionDigits:d<10&&d>-10?1:0})}%</span> az előző időszakhoz képest</small>`}
+const LT_ORSZ=(()=>{try{return new Intl.DisplayNames(["hu"],{type:"region"})}catch(e){return null}})();
+const ltZaszlo=k=>/^[A-Z]{2}$/.test(k)?String.fromCodePoint(...[...k].map(c=>127397+c.charCodeAt(0)))+" ":"";
+const LT_ESZK={desktop:"Asztali gép",laptop:"Laptop",mobile:"Mobil",tablet:"Tablet"};
+function ltLista(cim,l,nev,ossz){if(!l||!l.length)return`<div class="lt-kartya"><h3>${cim}</h3><p class="lt-ures">Még nincs adat ebben az időszakban.</p></div>`;
+ const max=Math.max(...l.map(x=>x.db))||1;
+ return`<div class="lt-kartya"><h3>${cim}<small>${ossz||"látogatás"}</small></h3>${l.map(x=>`<div class="lt-sor"><em style="width:${(x.db/max*100).toFixed(1)}%"></em><span>${esc(nev?nev(x.nev):x.nev)}</span><b>${ltSzam(x.db)}</b></div>`).join("")}</div>`}
+function ltKulcsok(d){const ora=d.egyseg==="hour",f=new Intl.DateTimeFormat("sv-SE",{timeZone:"Europe/Budapest",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",hourCycle:"h23"});
+ const ki=[],lep=ora?3600000:86400000;let t=d.kezd+(ora?3600000:0);
+ for(;t<=d.veg+1;t+=lep){const s=f.format(new Date(t)).replace(" ","T");const k=ora?s.slice(0,13):s.slice(0,10);if(!ki.includes(k))ki.push(k)}
+ if(!ora&&ki.length>({"7d":7,"30d":30}[d.idoszak]||ki.length))ki.splice(0,ki.length-({"7d":7,"30d":30}[d.idoszak]));return ki}
+function ltGraf(d){const ora=d.egyseg==="hour",kul=ltKulcsok(d),m={};(d.sor||[]).forEach(p=>{m[ora?p.t.slice(0,13):p.t.slice(0,10)]=p});
+ const pt=kul.map(k=>({k,v:(m[k]||{}).megtekintes||0,l:(m[k]||{}).latogato||0}));
+ const kis=innerWidth<700,W=kis?400:1000,H=kis?240:300,bal=kis?30:44,jobb=12,fent=16,lent=30,max=Math.max(4,...pt.map(p=>Math.max(p.v,p.l)));
+ const lepes=Math.pow(10,Math.floor(Math.log10(max/4)));const tick=[1,2,2.5,5,10].map(x=>x*lepes).find(x=>max/x<=5)||lepes*10;const fmax=Math.ceil(max/tick)*tick;
+ const X=i=>bal+(pt.length<2?0:(W-bal-jobb)*i/(pt.length-1)),Y=v=>fent+(H-fent-lent)*(1-v/fmax);
+ const vonal=key=>pt.map((p,i)=>(i?"L":"M")+X(i).toFixed(1)+","+Y(p[key]).toFixed(1)).join("");
+ let racs="";for(let v=0;v<=fmax;v+=tick)racs+=`<line x1="${bal}" x2="${W-jobb}" y1="${Y(v)}" y2="${Y(v)}" stroke="rgba(255,255,255,.07)"/><text x="${bal-8}" y="${Y(v)+4}" text-anchor="end">${v.toLocaleString("hu-HU")}</text>`;
+ const cimke=k=>ora?k.slice(11,13)+":00":k.slice(5,7).replace(/^0/,"")+". "+k.slice(8,10).replace(/^0/,"")+".";
+ const n=pt.length,ugr=Math.ceil(n/(kis?(ora?6:5):ora?12:10));let xc="";pt.forEach((p,i)=>{if(i%ugr===0||i===n-1&&(n-1)%ugr>ugr/2)xc+=`<text x="${X(i)}" y="${H-8}" text-anchor="middle">${cimke(p.k)}</text>`});
+ const ter=`${vonal("v")}L${X(n-1)},${Y(0)}L${X(0)},${Y(0)}Z`;
+ const pont=n<=31?pt.map((p,i)=>`<circle cx="${X(i)}" cy="${Y(p.v)}" r="3.5" fill="#ffb224"/>`).join(""):"";
+ return{pt,svg:`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Oldalmegtekintések és látogatók időben"><defs><linearGradient id="ltg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb224" stop-opacity=".35"/><stop offset="1" stop-color="#ffb224" stop-opacity="0"/></linearGradient></defs>${racs}<path d="${ter}" fill="url(#ltg)"/><path d="${vonal("l")}" fill="none" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5 5" stroke-linejoin="round"/><path d="${vonal("v")}" fill="none" stroke="#ffb224" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>${pont}${xc}<line id="lt-kurzor" y1="${fent}" y2="${H-lent}" stroke="rgba(255,255,255,.25)" visibility="hidden"/></svg>`,X,W,cimke}}
+async function lttolt(kesz){const T=document.getElementById("lt-tart");document.querySelectorAll("[data-lti]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lti===LTI)));document.querySelectorAll("[data-ltp]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.ltp===LTP)));document.querySelectorAll("[data-lte]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lte===LTE)));
+ if(!T.dataset.kesz)T.innerHTML='<p class="a-bev">Betöltés…</p>';let d;
+  if(kesz)d=kesz;else try{d=await lekér(ADMIN?"/api/admin?mi=latogatok&i="+LTI+"&p="+LTP+"&e="+LTE:"/latogatok-"+LTI+".json")}catch(e){d={hiba:"A látogatottsági adat most nem érhető el."}}
+ if(d.hiba){T.innerHTML=`<div class="hibasav">${esc(d.hiba)}</div>`;return}
+ LT_ADAT=d;const k=d.kpi||{},e=d.elozo||{},nev={"24h":"az utolsó 24 órában","7d":"az utolsó 7 napban","30d":"az utolsó 30 napban"}[d.idoszak];
+ document.getElementById("lt-al").innerHTML=`quicknews.hu ${{osszes:"",app:"(app) ",web:"(web) "}[LTP]||""}${nev}${LTE!=="osszes"?", "+({desktop:"asztali",mobile:"mobil",tablet:"tablet"}[LTE])+" eszközön":""}${d.aktiv!=null?` · <span class="lt-elo"><i></i>${ltSzam(d.aktiv)} most az oldalon</span>`:""}`;
+ const g=ltGraf(d);
+ T.innerHTML=`<div class="lt-kpik">
+<div class="lt-kpi"><span>Látogatók</span><b>${ltSzam(k.latogatok)}</b>${ltValt(k.latogatok,e.latogatok)}</div>
+<div class="lt-kpi"><span>Oldalmegtekintések</span><b>${ltSzam(k.megtekintesek)}</b>${ltValt(k.megtekintesek,e.megtekintesek)}</div>
+<div class="lt-kpi"><span>Visszafordulási arány</span><b>${k.visszafordulas==null?"nincs adat":Math.round(k.visszafordulas*100)+"%"}</b>${ltValt(k.visszafordulas,e.visszafordulas,true)}</div>
+<div class="lt-kpi"><span>Átlagos látogatási idő</span><b>${ltIdo(k.atlag_ido)}</b>${ltValt(k.atlag_ido,e.atlag_ido)}</div>
+<div class="lt-kpi"><span>APK-letöltések</span><b>${ltSzam(d.apk)}</b><small>kattintás a letöltés gombra</small></div></div>
+<div class="lt-kartya lt-graf"><h3>Forgalom ${d.egyseg==="hour"?"óránként":"naponta"}<span class="lt-jel"><span><i style="background:#ffb224"></i>Oldalmegtekintések</span><span><i style="background:#9ca3af"></i>Látogatók</span></span></h3>${g.svg}<div class="lt-tip" id="lt-tip"></div></div>
+${ltCikkBlokk(d)}${ltUtmBlokk(d)}${ltKattBlokk(d)}
+<div class="lt-racs">${ltLista("Top oldalak",d.oldalak,null,"megtekintés")}${ltLista("Forrásoldalak",d.forrasok,x=>x||"közvetlen")}${ltLista("Országok",d.orszagok,x=>ltZaszlo(x)+((LT_ORSZ&&/^[A-Z]{2}$/.test(x)&&LT_ORSZ.of(x))||x||"ismeretlen"))}${ltLista("Eszközök",d.eszkozok,x=>LT_ESZK[x]||x||"ismeretlen")}${ltLista("Böngészők",d.bongeszok,x=>x?x.replace(/(^|-)\w/g,c=>c.toUpperCase()).replace(/-/g," "):"ismeretlen")}</div>`;
+ T.dataset.kesz=1;
+ T.querySelectorAll("[data-ltr]").forEach(th=>th.onclick=()=>{const[t,m]=th.dataset.ltr.split(":"),R=t==="c"?LT_REND:LT_UREND;if(R.m===m)R.i*=-1;else{R.m=m;R.i=-1}const sc=scrollY;lttolt(LT_ADAT);scrollTo(0,sc)});
+ const box=T.querySelector(".lt-graf"),svg=box.querySelector("svg"),tip=box.querySelector("#lt-tip"),kur=svg.querySelector("#lt-kurzor");
+ const mozog=ev=>{const r=svg.getBoundingClientRect(),cx=((ev.touches?ev.touches[0].clientX:ev.clientX)-r.left)/r.width*g.W;let bi=0,bd=1e9;g.pt.forEach((p,i)=>{const dd=Math.abs(g.X(i)-cx);if(dd<bd){bd=dd;bi=i}});
+  const p=g.pt[bi],x=g.X(bi);kur.setAttribute("x1",x);kur.setAttribute("x2",x);kur.setAttribute("visibility","visible");
+  tip.innerHTML=`${d.egyseg==="hour"?p.k.slice(5,10).replace("-",". ")+". "+g.cimke(p.k):g.cimke(p.k)}<br><b>${ltSzam(p.v)}</b> megtekintés · ${ltSzam(p.l)} látogató`;
+  tip.style.display="block";const bx=box.getBoundingClientRect();tip.style.left=Math.min(Math.max(r.left-bx.left+x/g.W*r.width,90),bx.width-90)+"px";tip.style.top=(r.top-bx.top+24)+"px"};
+ svg.addEventListener("mousemove",mozog);svg.addEventListener("touchstart",mozog,{passive:true});svg.addEventListener("touchmove",mozog,{passive:true});
+ svg.addEventListener("mouseleave",()=>{tip.style.display="none";kur.setAttribute("visibility","hidden")})}
 async function efztolt(){const L=document.getElementById("efz-lista");L.innerHTML='<p class="a-bev">Betöltés…</p>';let d;
  try{d=await lekér(ADMIN?"/api/admin?mi=elofizetok":"/elofizetok.json")}catch(e){d={hiba:"Az előfizetők most nem érhetők el."}}
  if(d.hiba){L.innerHTML=`<div class="hibasav">${esc(d.hiba)}</div>`;return}
@@ -1365,14 +1481,14 @@ async function vastolt(){const L=document.getElementById("vas-lista");L.innerHTM
  d.sorok.map(s=>`<tr><td data-c="Vevő"><b>${esc(s.nev||"")}</b><div class="al">${esc(s.email||"")}</div></td><td data-c="Mikor">${efzDatum(s.ido)}</td><td data-c="Útmutató">${esc(s.cim||s.anyag||"")}</td><td data-c="Összeg">${efzFt(s.osszeg)}</td><td data-c="Számla">${s.szamla?esc(s.szamla):'<span class="efz-cimke efz-figy">'+esc(s.szamla_hiba||"nincs")+'</span>'}</td><td data-c="Letöltő levél">${s.level?'<span class="efz-cimke efz-ok">Elküldve</span>':'<span class="efz-cimke efz-nem">Nem ment ki</span>'}</td></tr>`).join("")+'</tbody></table></div>'}
 document.getElementById("efz-frissit").onclick=efztolt;document.getElementById("vas-frissit").onclick=vastolt;
 /* ---------- fülek ---------- */
-function ful(f){const fo=(f==="hirdetok"||f==="cikkbehuzas")?"bekuldes":f==="vasarlasok"?"elofizetok":f==="koltseg"?"statisztika":(f==="boo"||f==="utmutato")?"hirlevel":f==="ajanlott"?"posztok":f;if(fo==="posztok"&&!PNGORGETVE)setTimeout(napsavIgazit,50);document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===fo));document.querySelectorAll("[data-alful]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.alful===f)));try{document.querySelector(`.fulek [data-ful="${fo}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
- ["prioritas","posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas","hirlevel","boo","utmutato","statisztika","app","elofizetok","vasarlasok"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
+function ful(f){const fo=(f==="hirdetok"||f==="cikkbehuzas")?"bekuldes":f==="vasarlasok"?"elofizetok":(f==="koltseg"||f==="latogatok")?"statisztika":(f==="boo"||f==="utmutato")?"hirlevel":f==="ajanlott"?"posztok":f;if(fo==="posztok"&&!PNGORGETVE)setTimeout(napsavIgazit,50);document.querySelectorAll(".fulek button").forEach(x=>x.setAttribute("aria-selected",x.dataset.ful===fo));document.querySelectorAll("[data-alful]").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.alful===f)));try{document.querySelector(`.fulek [data-ful="${fo}"]`).scrollIntoView({block:"nearest",inline:"nearest"})}catch(e){}
+ ["prioritas","posztok","ajanlott","koltseg","bekuldes","hirdetok","cikkbehuzas","hirlevel","boo","utmutato","statisztika","app","elofizetok","vasarlasok","latogatok"].forEach(x=>document.getElementById("p-"+x).hidden=f!==x);
  if(f==="prioritas")prtolt();
- if(f==="statisztika")stolt();
+ if(f==="statisztika")stolt();if(f==="latogatok")lttolt();
  if(f==="koltseg"&&!K)ktolt();if(f==="ajanlott")atolt();if(f==="bekuldes")btolt();if(f==="hirdetok"){htolt();adstolt()}if(f==="cikkbehuzas")htolt(true);if(f==="hirlevel")hltolt();if(f==="boo")bootolt();if(f==="utmutato")utmtolt();if(f==="app")aptolt();if(f==="elofizetok")efztolt();if(f==="vasarlasok")vastolt();try{localStorage.setItem("ful",f)}catch(e){}AKTF=f;latta(f);jelvenyek()}
 document.querySelectorAll(".fulek button").forEach(b=>b.onclick=()=>ful(b.dataset.ful));
 document.querySelectorAll("[data-alful]").forEach(b=>b.onclick=()=>ful(b.dataset.alful));
-try{const f=location.hash==="#prioritas"?"prioritas":localStorage.getItem("ful");if(f==="prioritas"||f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok"||f==="cikkbehuzas"||f==="hirlevel"||f==="boo"||f==="utmutato"||f==="statisztika"||f==="app"||f==="elofizetok"||f==="vasarlasok")ful(f);else ful("posztok")}catch(e){ful("posztok")}
+try{const f=location.hash==="#prioritas"?"prioritas":localStorage.getItem("ful");if(f==="prioritas"||f==="koltseg"||f==="ajanlott"||f==="bekuldes"||f==="hirdetok"||f==="cikkbehuzas"||f==="hirlevel"||f==="boo"||f==="utmutato"||f==="statisztika"||f==="app"||f==="elofizetok"||f==="vasarlasok"||f==="latogatok")ful(f);else ful("posztok")}catch(e){ful("posztok")}
 window.addEventListener("hashchange",()=>{if(location.hash==="#prioritas")ful("prioritas")});
 document.getElementById("k-valaszt");
 /* ---------- piros számok a fülek mellett (2026-10-13): hány új esemény történt az adott fülön ---------- */
