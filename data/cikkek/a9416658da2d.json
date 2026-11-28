@@ -1,0 +1,89 @@
+{
+  "id": "a9416658da2d",
+  "slug": "nyilt-forrasu-orvosi-ai-modellt-adott-ki-az-ant-group",
+  "forras_id": "marktechpost",
+  "forras_nev": "MarkTechPost",
+  "url": "https://www.marktechpost.com/2026/11/28/ant-group-lingsante-3-1-flash-open-source-medical-ai/",
+  "szerzo": "Asif Razzaq",
+  "publikalva": "2026-11-28T09:45:33+00:00",
+  "media": {
+    "tipus": "kep",
+    "kep": "https://cdn-thumbnails.huggingface.co/social-thumbnails/models/inclusionAI/LingSante-3.1-flash.png",
+    "kep_kicsi": "https://www.marktechpost.com/wp-content/uploads/2026/11/image.jpeg"
+  },
+  "cim_eredeti": "Ant Group Releases LingSante-3.1-flash: An Open-Weight MoE Model with 560B Total Parameters and 25B Activations per Token",
+  "forrasok": [],
+  "szoveg_eredeti": "Ant Group has open-sourced LingSante , a family of medical and health AI models behind health app Afu. The flagship, LingSante-3.1-flash , is an open-weight medical AI model with 560B total parameters and 25B active per token. It ships under the MIT license with a 1M-token context window. On the new InclusionMed evaluation, it scores highest among open models. It is a self-hostable model trained for clinical reasoning, medical search and tool-using agents.\n\n TL;DR \n\n What? :It is a self-hostable model trained for clinical reasoning, medical search and tool-using agents.\n\n Size: 560B total, ~25B active per token (MoE), 1M-token context.\n\n Runs on: Multi-GPU servers. The reference SGLang setup uses 8x H200 or 4x GB300. An MXFP4 quantized checkpoint is available.\n\n Performance: Strong on medical reasoning and medical agents. Weaker on general coding and CLI agent tasks.\n\n Best: 65.72 on HealthBench Professional,the top score in the model card’s 9-model comparison\n\n What is LingSante-3.1-flash? \n\n LingSante-3.1-flash is a medical deep-reasoning model from Ant Group, built on the Ling-3.1-flash base model. It targets complex case analysis and professional medical agents.\n\n According to Ant’s official release, Afu serves 150 million users and handles nearly 20 million health consultations daily. LingSante is the model family behind that app.\n\n What is in the LingSante family? \n\n Ant group opened two models first, with more weights promised in phases: \n\n LingSante-3.1-flash: 560B total, ~25B active, 1M context, text-only deep reasoning.\n\n LingSante-3.1-air-VL : 124B total, 5.5B active, 256K context, built on Ling-3.0-flash-VL, MIT license.\n\n The research team also names 3 models not yet open. LingSante-Pulse predicts risk for more than 150 conditions. LingSante-MedGuard screens for medical safety, compliance and bioethics risks. LingSante-Live is a real-time video consultation agent already inside Afu.\n\n How does the architecture work? \n\n The model card describes a hybrid-linear MoE design: \n\n 63 KDA (linear attention) layers and 9 gated MLA layers, a 7:1 ratio\n\n 512 routed experts plus 1 shared expert, 8 routed experts active per token\n\n Hidden size 4096, 64 attention heads, vocabulary of 157,184\n\n BF16, F32 and F8_E4M3 tensor types\n\n The linear-heavy attention stack is what makes a 1M-token window practical at this size.\n\n How was it trained? \n\n Medical and general data were mixed through pretraining, mid-training and SFT. Post-training used RL for medical reasoning, tool use, search and professional behavior. The final stage was multi-teacher on-policy distillation.\n\n The research team adds 3 details: \n\n Agent environments: real MCP services, mock MCP tools and world models for rare edge cases.\n\n Deep search: Contribution-aware Joint RL rewards each agent by its contribution. Ant reports over 20% fewer search steps than accuracy-only multi-agent RL.\n\n Professional behavior: physicians annotated reward data with a reported 99.62% agreement rate.\n\n How does it perform on benchmarks? \n\n All scores below are from the model card’s comparison table . \n\n Where it leads the full 9-model field: \n\n HealthBench Professional: 65.72 (GPT-6 Astra 64.18, Claude Opus 5.5 61.19)\n\n EHR-Complex: 74.40 (GPT-6 Astra 74.20)\n\n BrowseComp with context: 94.10 (Kimi-K3.1-Pro 92.10)\n\n HLE text-only with tools: 72.22 single-agent, 74.87 multi-agent\n\n Where it trails: \n\n MedQA-USMLE: 94.50, versus 97.33 for GPT-6 Astra and Gemini 4 Argon\n\n InclusionMed-DxFiles: 56.09, versus 73.40 for Gemini 4 Argon\n\n On the InclusionMed Index , the model card reports an overall 45.064. That places it 5th of 23 configurations. The 4 models above it are all closed. They are Gemini 4 Argon (49.1), Claude Opus 5.5 (48.9), Claude Fable 5.1 (48.9) and GPT-6 Astra (45.1). That is the basis for the “number 1 open-source” claim.\n\n How does it compare with other open models? \n\n Feature LingSante-3.1-flash DeepSeek-V4.1-Flash GLM-5.3 Kimi-K3.1-Pro Total params 560B 552B backbone 753B (HF metadata) 2.8T Active params ~25B 16B decode, 8B prefill Not disclosed on card 104B Context 1M 1M 1,048,576 (config) 1M License MIT MIT GLM-5.3 license Kimi K3.1 Pro license Modality Text Text + image Text Text + image Medical tuning Yes No No No HealthBench Professional* 65.72 52.04 51.18 55.87 MedQA-USMLE* 94.50 95.13 93.09 96.15 InclusionMed-DxFiles* 56.09 53.85 52.56 59.94 BrowseComp (w. context)* 94.10 89.49 68.33 92.10 Terminal-Bench 4.0* 26.5 33.8 41.9 67.2 \n\n *Scores measured by Ant Group and published on the LingSante-3.1-flash model card . Specs for rivals come from each rival’s own model card. \n\n [EMBED: lingsante-explainer-embed.html] \n\n How do you deploy LingSante-3.1-flash? \n\n Weights are on Hugging Face and ModelScope . A MXFP4 checkpoint cuts memory needs. Hosted API access runs through Computrix .\n\n SGLang (recommended): image lmsysorg/sglang:dev-ling-3.1-flash, MTP speculative decoding, TP8 and EP8 on 8x H200. Use parallelism 4 on 4x GB300. See the SGLang cookbook .\n\n vLLM: TP8, expert parallelism, prefix caching, 3-token MTP and ling3 parsers.\n\n Sampling: temperature 1.0, top_p 0.95, top_k 20, thinking enabled.\n\n Key Takeaways \n\n 560B MoE, ~25B active, 1M context, MIT license.\n\n 45.064 on InclusionMed: top open model, 5th overall.\n\n Leads all 9 models on HealthBench Professional (65.72).\n\n Specialized for medical tasks; trails general models on coding benchmarks.\n\n Check out the model weights , technical blog , Medium post and InclusionMed paper .  You can check the deployment options and specs here through our GPULeaderboard.com chrome extension .\n\n Also, feel free to follow us on  Twitter  and don’t forget to join our  150k+ML SubReddit  and Subscribe to  our Newsletter . Wait! are you on telegram?  now you can join us on telegram as well. \n\n Need to partner with us for promoting your GitHub Repo OR Hugging Face Page OR Product Release OR Webinar etc.?  Connect with us \n\n Thanks to the Ant Research team for the thought leadership / resources for this article. This article is sponsored .\n\n The post Ant Group Releases LingSante-3.1-flash: An Open-Weight MoE Model with 560B Total Parameters and 25B Activations per Token appeared first on MarkTechPost .",
+  "modell": "gemini-3.5-flash",
+  "cim": "Nyílt forrású orvosi AI-modellt adott ki az Ant Group",
+  "lead": "Az Ant Group elérhetővé tette a 560 milliárd paraméteres **LingSante-3.1-flash** modellt, amely kiemelkedő eredményeket ért el az orvosi méréseken.",
+  "osszefoglalo": "Az Ant Group nyílt forráskódúvá tette a **LingSante-3.1-flash** elnevezésű orvosi AI-modelljét. A 560 milliárd összes és 25 milliárd aktív paraméterrel rendelkező, Mixture-of-Experts (MoE) architektúrájú modell 1 millió tokenes kontextusablakkal és nyílt MIT-licenccel jelent meg, a súlyai pedig közvetlenül letölthetők a Hugging Face felületéről.\n\nA klinikai érvelésre, orvosi keresésekre és ügynökalapú munkafolyamatokra optimalizált eszköz a teszteken a legjobb nyílt forráskódú modellként teljesített, a **HealthBench Professional** mérésen pedig még a zárt licencejű piacvezető rendszereket is megelőzte. A modell kifejezetten az egészségügyi feladatokra specializálódott, az általános kódolási és parancssori feladatokban gyengébb eredményt nyújt.\n\nA súlyok és a specifikációk a **Hugging Face** és a ModelScope platformján érhetők el. Futtatásához legalább 8 darab Nvidia H200 vagy 4 darab GB300 grafikus kártyával felszerelt szerverkörnyezet szükséges.",
+  "miert_szamit": "A nyílt MIT-licenc és a saját szerveres telepíthetőség lehetővé teszi a **szigorú adatvédelmi előírásoknak megfelelő orvosi asszisztensek** és egészségügyi elemzőeszközök fejlesztését külső felhős szolgáltatók bevonása nélkül.",
+  "cimkek": [
+    "Ant Group",
+    "LingSante-3.1-flash",
+    "orvosi AI",
+    "nyílt forráskód"
+  ],
+  "kategoria": "modell",
+  "forras_tipus": "elemzes",
+  "fontossag": 4,
+  "video_szoveg": "",
+  "relevans": true,
+  "kiprobalhato": {
+    "nev": "LingSante-3.1-flash",
+    "url": "https://go.adverr.hu/AC8neD",
+    "eredeti": "https://huggingface.co/inclusionAI/LingSante-3.1-flash"
+  },
+  "linkelendo_nevek": [
+    "LingSante-3.1-flash"
+  ],
+  "linkszabaly": 3,
+  "prioritas": {
+    "pont": 76,
+    "szint": "P2",
+    "reszpont": {
+      "hatas": 78,
+      "hirertek": 85,
+      "egyediseg": 95,
+      "hitelesseg": 76,
+      "aktualitas": 99,
+      "kozossegi": 66
+    },
+    "elofeszures": 86,
+    "tanult": 53,
+    "indok": "Jelentős nyílt forráskódú orvosi AI-modell kiadás a kínai Ant Group részéről, óriási kontextusablakkal. Forrás-tapasztalat: -6.",
+    "tema": "ant group lingsante model launch",
+    "cim_hu": "Az Ant Group nyílt forráskódúvá tette 560 milliárd paraméteres orvosi AI-modelljét",
+    "lead_hu": "Az Ant Group kiadta a LingSante-3.1-flash nyílt súlyú orvosi modellt, amely egymilliós kontextusablakkal és MIT-licenccel érkezik a klinikai érvelés segítésére.",
+    "klaszter": null,
+    "ai": true,
+    "ido": "2026-11-28T09:51:12+00:00"
+  },
+  "jovahagyas_kell": true,
+  "forditva": "2026-11-28T09:51:27+00:00",
+  "megjelent": "2026-11-28T09:51:27+00:00",
+  "nevelo_javitva": "2026-11-28T09:51:27+00:00",
+  "tenyellenorzes": {
+    "ok": true,
+    "ido": "2026-11-28T09:51:31+00:00",
+    "esemeny": "Az Ant Group kiadta a LingSante-3.1-flash nevű, 560 milliárd paraméteres nyílt súlyú orvosi AI-modellt a Hugging Face platformon MIT-licenc alatt.",
+    "forrasok": [
+      "https://huggingface.co/inclusionAI/LingSante-3.1-flash"
+    ],
+    "hibak": [
+      "Az eredeti hírben és az elsődleges forrásban a nyílt modell besorolás az InclusionMed tesztre és az óriásmodellek nyílt súlyaira vonatkozik, nem pedig arra a kizárólagos tényre, hogy 'az eddigi legerősebb nyílt kódú orvosi mesterséges intelligencia'. A magyar hír leadjéből hiányzik a kötelező kiemelés, és a szövegből hiányzik a beszédes hivatkozás az elsődleges forrásra."
+    ],
+    "kereses": [],
+    "javitva": true,
+    "javitas_elotti": {
+      "cim": "Nyílt forrású orvosi AI-modellt adott ki az Ant Group",
+      "lead": "Az Ant Group elérhetővé tette a 560 milliárd paraméteres LingSante-3.1-flash modellt, amely az eddigi legerősebb nyílt kódú orvosi mesterséges intelligencia.",
+      "osszefoglalo": "Az Ant Group nyílt forráskódúvá tette a **LingSante-3.1-flash** elnevezésű orvosi AI-modelljét. A 560 milliárd összes és 25 milliárd aktív paraméterrel rendelkező, Mixture-of-Experts (MoE) architektúrájú modell 1 millió tokenes kontextusablakkal és nyílt MIT-licenccel jelent meg.\n\nA klinikai érvelésre, orvosi keresésekre és ügynökalapú munkafolyamatokra optimalizált eszköz a teszteken a legjobb nyílt forráskódú modellként teljesített, a HealthBench Professional mérésen pedig még a zárt licencejű piacvezető rendszereket is megelőzte. A modell kifejezetten az egészségügyi feladatokra specializálódott, az általános kódolási és parancssori feladatokban gyengébb eredményt nyújt.\n\nA súlyok és a specifikációk a **Hugging Face** és a ModelScope platformján érhetők el. Futtatásához legalább 8 darab Nvidia H200 vagy 4 darab GB300 grafikus kártyával felszerelt szerverkörnyezet szükséges.",
+      "miert_szamit": "A nyílt MIT-licenc és a saját szerveres telepíthetőség lehetővé teszi a **szigorú adatvédelmi előírásoknak megfelelő orvosi asszisztensek** és egészségügyi elemzőeszközök fejlesztését külső felhős szolgáltatók bevonása nélkül."
+    }
+  },
+  "kiprobal_nezve": true,
+  "termeklinkek_nezve": true,
+  "kep_minoseg_kesz": "2026-11-28T09:52:09+00:00"
+}
